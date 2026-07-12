@@ -1,0 +1,363 @@
+{
+  "slug": "trigonometric-graphs-and-equations",
+  "title": "Trig Graphs & Equations",
+  "unit": 7,
+  "status": "published",
+  "blurb": "The sine wave unrolled from the circle, the four dials that tune it — amplitude, period, shifts — the identities that rewrite it, and equations with infinitely many answers.",
+  "buildsOn": "The unit circle (Unit 6); transformations of graphs (Unit 2).",
+  "lessons": [
+    {
+      "slug": "the-sine-and-cosine-graphs",
+      "title": "The Sine & Cosine Graphs",
+      "concreteComparison": "Strap a glowing marker to a ferris wheel car and film it from the side while the film strip scrolls: the marker draws a wave. Sine IS that wave — circular motion unrolled onto a time axis.",
+      "objective": "Graph y = sin x and y = cos x from unit-circle values, identify domain, range, zeros, and extremes, and understand period 2π and the cosine head start.",
+      "concept": [
+        "Track the HEIGHT of the circling point as the angle grows and plot it against $x = \\theta$: that graph is $y = \\sin x$. It rises from $(0,0)$ to 1 at $\\frac{\\pi}{2}$, returns to 0 at $\\pi$, dips to $-1$ at $\\frac{3\\pi}{2}$, and closes the lap at $2\\pi$ — then repeats forever. **Period: $2\\pi$.**",
+        "Cosine is the same trip tracking the X-coordinate instead: it STARTS at its maximum ($\\cos 0 = 1$) and runs the identical wave a quarter-lap ahead: $\\cos x = \\sin(x + \\frac{\\pi}{2})$. Same shape, different phase.",
+        "Both waves: domain all reals (the wheel never stops), range $[-1, 1]$ (a radius-1 wheel can't reach 2), zeros where the point crosses an axis. Everything about the graphs is the circle re-read: extremes at compass points, zeros between them."
+      ],
+      "keyIdea": "Sine is the circling point's height unrolled over time; cosine is its x-coordinate — the same 2π-periodic wave with a quarter-lap head start; range always [−1, 1].",
+      "facts": [
+        { "title": "The skeleton", "latex": "\\sin: 0 \\to 1 \\to 0 \\to -1 \\to 0 \\text{ at } 0, \\tfrac{\\pi}{2}, \\pi, \\tfrac{3\\pi}{2}, 2\\pi", "explanation": "Five anchor points draw one full wave." },
+        { "title": "Cosine's head start", "latex": "\\cos x = \\sin\\left(x + \\tfrac{\\pi}{2}\\right)", "explanation": "Same wave, shifted a quarter period left." },
+        { "title": "Hard limits", "latex": "-1 \\le \\sin x \\le 1, \\quad \\text{period } 2\\pi", "explanation": "A radius-1 wheel: heights can't escape [−1, 1]." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc71-we1",
+          "statement": "Using the five anchor points, state where $y = \\sin x$ on $[0, 2\\pi]$ is zero, maximal, and minimal — and verify each from the circle.",
+          "solution": "Zeros where the point crosses the x-axis: $x = 0, \\pi, 2\\pi$. Maximum 1 at $x = \\frac{\\pi}{2}$ (top of the wheel, point $(0,1)$). Minimum $-1$ at $x = \\frac{3\\pi}{2}$ (bottom, $(0,-1)$). The wave is the wheel, unrolled.",
+          "check": ["sin(0) == 0", "sin(pi) == 0", "sin(2*pi) == 0", "sin(pi/2) == 1", "sin(3*pi/2) == -1"]
+        },
+        {
+          "id": "pc71-we2",
+          "statement": "Does the equation $\\sin x = 1.4$ have a solution? What about $\\cos x = -0.3$? Explain from the range.",
+          "solution": "$\\sin x = 1.4$: NO — the range is $[-1, 1]$; a radius-1 wheel has no height 1.4. $\\cos x = -0.3$: YES — $-0.3$ lies inside $[-1, 1]$, and the x-coordinate sweeps every value in between continuously (infinitely many solutions, in fact).",
+          "check": ["Rational(14,10) > 1", "Abs(Rational(-3,10)) < 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Drawing sine as sharp zigzag teeth.", "correction": "The wave is SMOOTH — it's circular motion, which has no corners. It is flattest (momentarily level) exactly at the peaks and valleys, and steepest mid-crossing. Round the tops.", "authored": true },
+        { "text": "Giving sine's period as π because 'it returns to zero at π.'", "correction": "Returning to zero isn't returning HOME: at $\\pi$ the wave is zero but heading DOWN, while at 0 it was heading up. The full cycle — same value AND same direction — takes $2\\pi$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc71-t1",
+          "statement": "Sketch one period of $y = \\cos x$ by listing its five anchor points on $[0, 2\\pi]$.",
+          "solution": "Start at the max: $(0, 1)$, zero at $\\frac{\\pi}{2}$, minimum $(\\pi, -1)$, zero at $\\frac{3\\pi}{2}$, home at $(2\\pi, 1)$. Same wave as sine, starting at the top instead of mid-climb.",
+          "check": ["cos(0) == 1", "cos(pi/2) == 0", "cos(pi) == -1", "cos(3*pi/2) == 0", "cos(2*pi) == 1"]
+        },
+        {
+          "id": "pc71-t2",
+          "statement": "Using periodicity, evaluate $\\sin\\tfrac{13\\pi}{6}$ and $\\cos\\tfrac{9\\pi}{2}$ exactly.",
+          "solution": "$\\frac{13\\pi}{6} = 2\\pi + \\frac{\\pi}{6}$: strip the lap — $\\sin\\frac{\\pi}{6} = \\frac{1}{2}$. $\\frac{9\\pi}{2} = 4\\pi + \\frac{\\pi}{2}$: two laps stripped — $\\cos\\frac{\\pi}{2} = 0$.",
+          "check": ["sin(13*pi/6) == Rational(1,2)", "cos(9*pi/2) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "Film the ferris wheel", "body": "Unit 6 froze the circle at one angle at a time. Now let it SPIN and film the point's height from the side, scrolling the film as it turns. The height traces a curve through time — the **sine wave**, the single most important curve in science: sound, light, tides, alternating current, heartbeats. All of them are circles seen sideways." },
+          { "kind": "unitCircle", "eyebrow": "Watch", "title": "The wave unrolls", "teach": "Watch the orbiting point trace its height onto the scroll. Every feature of the wave is a place on the wheel: tops of the wave = top of the wheel, zero-crossings = the axis crossings, the smooth turns = circular motion having no corners.", "config": { "mode": "wave" } },
+          { "kind": "teach", "eyebrow": "The skeleton", "title": "Five anchors draw the wave", "body": "One period of $y = \\sin x$ hangs on five points — the four compass stops plus home: $(0, 0)$ rising, $(\\frac{\\pi}{2}, 1)$ peak, $(\\pi, 0)$ falling, $(\\frac{3\\pi}{2}, -1)$ valley, $(2\\pi, 0)$ home. Plot the five, connect SMOOTHLY, repeat in both directions forever. Every sine graph you ever draw starts from this skeleton." },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "The skeleton, plotted", "teach": "The five anchors with π-axis units compressed to grid steps (1 unit = π/2): up, peak, down, valley, home. Between anchors the wave bends smoothly — flattest exactly at the peak and valley, steepest at each crossing.", "config": { "mode": "plot", "min": -1, "max": 5, "points": [ { "x": 0, "y": 0, "label": "0" }, { "x": 1, "y": 1, "label": "π/2: peak" }, { "x": 2, "y": 0, "label": "π" }, { "x": 3, "y": -1, "label": "3π/2: valley" }, { "x": 4, "y": 0, "label": "2π: home" } ], "color": "#e8913c" } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Read the wave's features", "problemId": "pc71-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Period precision", "prompt": "$\\sin$ returns to the value 0 at $x = \\pi$. Why is the period $2\\pi$, not $\\pi$?", "options": ["at π it's zero but falling; home means same value AND direction", "the period really is π", "because cosine's period is 2π", "zeros don't count for periods"], "correctIndex": 0, "explanation": "A cycle is complete when the motion REPEATS: value and direction both match the start. At $\\pi$ the point crosses zero downward — half a cycle. Home, moving up again, is $2\\pi$.", "check": ["sin(pi) == 0", "cos(pi) == -1", "cos(0) == 1"] },
+          { "kind": "teach", "eyebrow": "Cosine", "title": "The same wave, a head start", "body": "Track the x-coordinate instead and you get cosine: it BEGINS at its peak ($\\cos 0 = 1$) and rolls through the identical shape — zero at $\\frac{\\pi}{2}$, valley at $\\pi$, zero, home. Cosine is sine shifted a quarter-lap left: $\\cos x = \\sin(x + \\frac{\\pi}{2})$. One wave, two starting lines — which is why every 'cosine problem' is a sine problem in disguise." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The range as a bouncer", "problemId": "pc71-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Who starts where?", "prompt": "At $x = 0$, the values $(\\sin 0, \\cos 0)$ are:", "options": ["$(0, 1)$ — sine mid-climb, cosine at its peak", "$(1, 0)$", "$(0, 0)$", "$(1, 1)$"], "correctIndex": 0, "explanation": "The point starts at $(1, 0)$: height (sine) 0, x-coordinate (cosine) 1. Sine starts climbing; cosine starts at the top. Their graphs differ by exactly that head start.", "check": ["sin(0) == 0", "cos(0) == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Strip laps before evaluating", "body": "Periodicity is an evaluation tool: $\\sin(x + 2\\pi k) = \\sin x$ for any integer $k$. Facing $\\sin\\frac{13\\pi}{6}$ or $\\cos\\frac{9\\pi}{2}$, subtract whole laps FIRST ($2\\pi = \\frac{12\\pi}{6} = \\frac{4\\pi}{2}$), then read the small angle from the circle. Big trig inputs are always small inputs wearing extra laps." },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Your ear does Fourier", "body": "Every sound — a violin, a voice, traffic noise — is a sum of sine waves, and the cochlea in your ear physically splits incoming sound back into its sine components before the brain hears anything. Fourier analysis, the mathematics of decomposing signals into sines, is arguably the most-used theorem in engineering." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Cosine's five anchors", "problemId": "pc71-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Strip the laps", "problemId": "pc71-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Sine = the circling point's height over time; five anchors per period, smooth curves only.", "Cosine = the same wave starting at its peak: cos x = sin(x + π/2).", "Range [−1, 1] is a hard wall; period 2π means value AND direction repeat."] }
+        ]
+      }
+    },
+    {
+      "slug": "amplitude-period-and-shifts",
+      "title": "Amplitude, Period & Shifts",
+      "concreteComparison": "y = A sin(B(x − C)) + D is a synthesizer patch: A is the volume knob (taller wave), B the frequency knob (more cycles per screen), C slides the wave sideways in time, D moves the whole speaker up on the shelf.",
+      "objective": "Read amplitude, period, phase shift, and midline from y = A sin(B(x − C)) + D; graph such functions; and write equations from wave descriptions.",
+      "concept": [
+        "All four dials are Unit 2 transformations wearing wave names. **Amplitude** $|A|$: vertical stretch — the wave's height from midline to peak. **Midline** $y = D$: vertical shift — the wave's new sea level, with range $[D - |A|, D + |A|]$.",
+        "**Period**: the inside coefficient $B$ compresses time — $B$ cycles now fit where one did, so each cycle lasts $T = \\frac{2\\pi}{B}$. $y = \\sin 2x$ completes a full wave in just $\\pi$. **Phase shift** $C$ (from the factored form $B(x - C)$): slides the wave right by $C$ — inside sign flip, as always.",
+        "Graphing recipe: draw the midline, mark $D \\pm |A|$ rails, start the skeleton at $x = C$, and divide one period $\\frac{2\\pi}{B}$ into four equal stops for the anchors. To go backwards from a graph: midline first (average of max and min), then amplitude, then period from peak-to-peak distance, then phase from a peak's position."
+      ],
+      "keyIdea": "A = height, D = sea level, period = 2π/B, phase = C from the FACTORED inside B(x − C) — four independent dials, all Unit 2 moves.",
+      "facts": [
+        { "title": "Range from A, D", "latex": "y \\in [D - |A|, \\; D + |A|]", "explanation": "Midline D, rails A above and below." },
+        { "title": "Period", "latex": "T = \\tfrac{2\\pi}{B}", "explanation": "B compresses time: bigger B, faster wave." },
+        { "title": "Factor first", "latex": "\\sin(2x - \\tfrac{\\pi}{3}) = \\sin 2\\left(x - \\tfrac{\\pi}{6}\\right)", "explanation": "The phase shift reads from the factored form only." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc72-we1",
+          "statement": "For $y = 3\\sin(2x) - 1$: amplitude, period, midline, range, and the first peak's location.",
+          "solution": "Amplitude 3; period $\\frac{2\\pi}{2} = \\pi$; midline $y = -1$; range $[-4, 2]$. Sine peaks a quarter period after its start: $x = \\frac{\\pi}{4}$, height $-1 + 3 = 2$: peak at $(\\frac{\\pi}{4}, 2)$.",
+          "check": ["Rational(2,2) == 1", "-1 - 3 == -4", "-1 + 3 == 2", "3*sin(2*(pi/4)) - 1 == 2"]
+        },
+        {
+          "id": "pc72-we2",
+          "statement": "Find amplitude, period, and phase shift of $y = 2\\sin\\left(3x - \\tfrac{\\pi}{2}\\right)$, then give its first ascending zero.",
+          "solution": "Factor the inside: $3\\left(x - \\frac{\\pi}{6}\\right)$. Amplitude 2, period $\\frac{2\\pi}{3}$, phase shift RIGHT $\\frac{\\pi}{6}$. The skeleton starts (ascending zero) exactly at the shift: $x = \\frac{\\pi}{6}$ — check: $2\\sin(3 \\cdot \\frac{\\pi}{6} - \\frac{\\pi}{2}) = 2\\sin 0 = 0$. ✓",
+          "check": ["2*sin(3*(pi/6) - pi/2) == 0", "Rational(1,3)*Rational(3,1) == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading the phase shift of sin(2x − π/3) as π/3.", "correction": "Factor the B out first: $2x - \\frac{\\pi}{3} = 2(x - \\frac{\\pi}{6})$ — the shift is $\\frac{\\pi}{6}$. The unfactored constant mixes B into the shift; the factored form is the only honest reading.", "authored": true },
+        { "text": "Making a bigger B stretch the wave longer.", "correction": "B multiplies the INPUT: bigger B means x 'ages faster', so cycles complete sooner — period SHRINKS to 2π/B. Frequency up, wavelength down.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc72-t1",
+          "statement": "Give amplitude, period, midline, and range of $y = -4\\cos\\left(\\tfrac{x}{2}\\right) + 3$, and its value at $x = 0$.",
+          "solution": "Amplitude $|-4| = 4$; period $\\frac{2\\pi}{1/2} = 4\\pi$; midline $y = 3$; range $[-1, 7]$. At 0: $-4\\cos 0 + 3 = -1$ — the negative A starts cosine at its VALLEY.",
+          "check": ["Abs(-4) == 4", "3 - 4 == -1", "3 + 4 == 7", "-4*cos(0) + 3 == -1"]
+        },
+        {
+          "id": "pc72-t2",
+          "statement": "Write a sine equation for a tide: high water 8 m, low water 2 m, one full cycle every 12 hours, first high tide at t = 3 h.",
+          "solution": "Midline $D = \\frac{8+2}{2} = 5$; amplitude $A = 3$; $B = \\frac{2\\pi}{12} = \\frac{\\pi}{6}$. A sine PEAKS a quarter period ($3$ h) after its ascending start, so start at $t = 0$: $h(t) = 3\\sin\\left(\\frac{\\pi}{6}t\\right) + 5$ — check: $h(3) = 3\\sin\\frac{\\pi}{2} + 5 = 8$ ✓, $h(9) = 2$ ✓.",
+          "check": ["Rational(8+2,2) == 5", "8 - 5 == 3", "3*sin(pi/6*3) + 5 == 8", "3*sin(pi/6*9) + 5 == 2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "Four knobs on a synthesizer", "body": "Real waves aren't all radius-1 and $2\\pi$-periodic: tides swing 3 meters every 12 hours, mains current cycles 50 times a second. The general wave $y = A\\sin(B(x - C)) + D$ has four independent dials — and every one is a Unit 2 transformation you already own: stretch, compress, slide, lift." },
+          { "kind": "teach", "eyebrow": "Dials 1 & 4", "title": "Amplitude and midline", "body": "$A$ multiplies outputs: the wave's height above its centerline becomes $|A|$ — the **amplitude** (negative $A$ also flips the wave). $D$ adds to outputs: the centerline itself rises to the **midline** $y = D$, the wave's sea level. Together they pin the range: $[D - |A|, D + |A|]$. Max and min are always midline ± amplitude." },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "y = 3 sin x − 1: new rails", "teach": "The five anchors of $3\\sin x - 1$ (x-axis in quarter-period steps): sea level dropped to $-1$, rails at $2$ and $-4$. Same skeleton timing as plain sine — only the heights re-scaled and re-centered.", "config": { "mode": "plot", "min": -5, "max": 5, "points": [ { "x": 0, "y": -1, "label": "midline" }, { "x": 1, "y": 2, "label": "peak 2" }, { "x": 2, "y": -1 }, { "x": 3, "y": -4, "label": "valley −4" }, { "x": 4, "y": -1 } ], "color": "#e8913c" } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Read all four dials", "problemId": "pc72-we1" },
+          { "kind": "teach", "eyebrow": "Dial 2", "title": "B compresses time", "body": "Inside coefficient, inside behavior: $\\sin(2x)$ reaches its landmarks when $2x$ does — everything happens TWICE as fast, so the period halves. General law: $T = \\frac{2\\pi}{B}$. A wave with $B = \\frac{1}{2}$ dawdles through a $4\\pi$ period; mains electricity, 50 cycles per second, runs $B = 100\\pi$." },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Tune the frequency", "prompt": "You want a sine wave with period $\\tfrac{\\pi}{3}$. Which B?", "options": ["$B = 6$", "$B = 3$", "$B = \\frac{1}{6}$", "$B = \\frac{\\pi}{3}$"], "correctIndex": 0, "explanation": "$T = \\frac{2\\pi}{B} \\Rightarrow B = \\frac{2\\pi}{T} = \\frac{2\\pi}{\\pi/3} = 6$: six full cycles per $2\\pi$ window.", "check": ["Rational(2,1)/Rational(1,3) == 6"] },
+          { "kind": "teach", "eyebrow": "Dial 3", "title": "Phase: factor before you read", "body": "The slide dial hides inside: $y = \\sin(Bx - \\phi)$ must be FACTORED to $\\sin(B(x - \\frac{\\phi}{B}))$ before reading the shift. $\\sin(2x - \\frac{\\pi}{3}) = \\sin 2(x - \\frac{\\pi}{6})$: shift right $\\frac{\\pi}{6}$, not $\\frac{\\pi}{3}$. Then the skeleton simply starts at $x = C$ instead of 0 — same five anchors, new starting line." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Factor, then read", "problemId": "pc72-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Backwards from a graph", "prompt": "A wave oscillates between 10 and 4 with one cycle per 8 units. Its midline and amplitude are:", "options": ["midline 7, amplitude 3", "midline 6, amplitude 4", "midline 7, amplitude 6", "midline 4, amplitude 10"], "correctIndex": 0, "explanation": "Midline = average of the rails: $\\frac{10 + 4}{2} = 7$. Amplitude = half the swing: $\\frac{10 - 4}{2} = 3$. (Period 8 would then give $B = \\frac{2\\pi}{8} = \\frac{\\pi}{4}$.)", "check": ["Rational(10+4,2) == 7", "Rational(10-4,2) == 3"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Graph in the dial order", "body": "Always draw in this order: (1) midline $y = D$ as a dashed line, (2) rails at $D \\pm |A|$, (3) starting line at $x = C$, (4) one period $\\frac{2\\pi}{B}$ split into four equal stops, (5) skeleton anchors, smooth connect. Five mechanical steps — the wave draws itself." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Negative A, slow wave", "problemId": "pc72-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Model the tide", "problemId": "pc72-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Range = midline ± amplitude: [D − |A|, D + |A|].", "Period = 2π/B — bigger B, faster wave; phase reads ONLY from the factored B(x − C).", "Graph in order: midline, rails, start line, four period-stops, smooth skeleton."] }
+        ]
+      }
+    },
+    {
+      "slug": "fundamental-identities",
+      "title": "Fundamental Identities",
+      "concreteComparison": "Identities are trig's currency exchange: tangent, secant, and friends are all denominated in sine and cosine. Any messy expression can be converted to the sine–cosine standard, simplified with ordinary algebra, and exchanged back.",
+      "objective": "Define tan, cot, sec, csc in terms of sine and cosine; master the three Pythagorean identities and even/odd rules; and simplify or verify trig expressions.",
+      "concept": [
+        "Four more functions, all fractions of the big two: $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$ (slope of the radius!), $\\cot\\theta = \\frac{\\cos\\theta}{\\sin\\theta}$, $\\sec\\theta = \\frac{1}{\\cos\\theta}$, $\\csc\\theta = \\frac{1}{\\sin\\theta}$. Each is undefined where its denominator dies — tangent's vertical asymptotes at $\\frac{\\pi}{2} + \\pi k$ are cosine's zeros.",
+        "Dividing $\\cos^2 + \\sin^2 = 1$ by $\\cos^2$ or $\\sin^2$ mints two more Pythagorean identities: $1 + \\tan^2\\theta = \\sec^2\\theta$ and $1 + \\cot^2\\theta = \\csc^2\\theta$. Three identities, one parent.",
+        "Parity from the circle: negating the angle mirrors the point across the x-axis, so $\\cos(-\\theta) = \\cos\\theta$ (even) and $\\sin(-\\theta) = -\\sin\\theta$ (odd), making tangent odd too. Simplification strategy: convert everything to sines and cosines, use algebra (factor, combine fractions), and spot Pythagorean patterns."
+      ],
+      "keyIdea": "Everything converts to sine and cosine; the circle equation mints all three Pythagorean identities; cos is even, sin and tan are odd — then it's just algebra.",
+      "facts": [
+        { "title": "The four ratios", "latex": "\\tan = \\tfrac{\\sin}{\\cos}, \\; \\cot = \\tfrac{\\cos}{\\sin}, \\; \\sec = \\tfrac{1}{\\cos}, \\; \\csc = \\tfrac{1}{\\sin}", "explanation": "All denominated in sine and cosine; undefined where the bottom dies." },
+        { "title": "Pythagorean family", "latex": "\\cos^2 + \\sin^2 = 1, \\;\\; 1 + \\tan^2 = \\sec^2, \\;\\; 1 + \\cot^2 = \\csc^2", "explanation": "One parent identity, divided by cos² or sin²." },
+        { "title": "Parity", "latex": "\\cos(-\\theta) = \\cos\\theta, \\quad \\sin(-\\theta) = -\\sin\\theta", "explanation": "Mirror across the x-axis: x survives, y flips." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc73-we1",
+          "statement": "Evaluate all six trig functions at $\\theta = \\tfrac{\\pi}{3}$.",
+          "solution": "Base pair: $\\cos = \\frac{1}{2}$, $\\sin = \\frac{\\sqrt{3}}{2}$. Then: $\\tan = \\frac{\\sqrt{3}/2}{1/2} = \\sqrt{3}$; $\\cot = \\frac{1}{\\sqrt{3}} = \\frac{\\sqrt{3}}{3}$; $\\sec = 2$; $\\csc = \\frac{2}{\\sqrt{3}} = \\frac{2\\sqrt{3}}{3}$.",
+          "check": ["tan(pi/3) == sqrt(3)", "sec(pi/3) == 2", "csc(pi/3) == 2*sqrt(3)/3", "cot(pi/3) == sqrt(3)/3"]
+        },
+        {
+          "id": "pc73-we2",
+          "statement": "Simplify $\\dfrac{\\sec\\theta - \\cos\\theta}{\\tan\\theta}$ to a single trig function.",
+          "solution": "Convert to the standard: $\\sec - \\cos = \\frac{1}{\\cos} - \\cos = \\frac{1 - \\cos^2}{\\cos} = \\frac{\\sin^2}{\\cos}$. Divide by $\\tan = \\frac{\\sin}{\\cos}$: $\\frac{\\sin^2}{\\cos} \\cdot \\frac{\\cos}{\\sin} = \\sin\\theta$. Spot-check at $\\theta = \\frac{\\pi}{3}$: $\\frac{2 - \\frac{1}{2}}{\\sqrt{3}} = \\frac{3/2}{\\sqrt{3}} = \\frac{\\sqrt{3}}{2} = \\sin\\frac{\\pi}{3}$. ✓",
+          "check": ["simplify((sec(x) - cos(x))/tan(x) - sin(x)) == 0", "expand((2 - Rational(1,2))/sqrt(3) - sqrt(3)/2) == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading sec θ as the inverse function of sine (or csc as inverse cosine) because of the s/c initials.", "correction": "The initials CROSS: secant = 1/COSINE, cosecant = 1/SINE — reciprocals, not inverse functions. (Inverse functions are arcsin, arccos — a different concept entirely.)", "authored": true },
+        { "text": "Verifying an identity by checking one angle and declaring victory.", "correction": "One angle can't prove ALL angles — an identity is universal. One angle CAN disprove: a single failure kills a claimed identity. Prove with algebra; test with numbers.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc73-t1",
+          "statement": "$\\tan\\theta = \\tfrac{3}{4}$ with $\\theta$ in the third quadrant. Find $\\sec\\theta$, $\\cos\\theta$, and $\\sin\\theta$.",
+          "solution": "$\\sec^2 = 1 + \\tan^2 = 1 + \\frac{9}{16} = \\frac{25}{16}$: $\\sec = \\pm\\frac{5}{4}$. QIII: cosine negative, so $\\sec = -\\frac{5}{4}$ and $\\cos = -\\frac{4}{5}$. Then $\\sin = \\tan \\cdot \\cos = \\frac{3}{4} \\cdot (-\\frac{4}{5}) = -\\frac{3}{5}$ — negative, as QIII demands. ✓",
+          "check": ["1 + Rational(9,16) == Rational(25,16)", "Rational(3,4)*Rational(-4,5) == Rational(-3,5)", "Rational(16,25) + Rational(9,25) == 1"]
+        },
+        {
+          "id": "pc73-t2",
+          "statement": "Verify the identity $\\dfrac{\\sin\\theta}{1 + \\cos\\theta} + \\dfrac{1 + \\cos\\theta}{\\sin\\theta} = 2\\csc\\theta$ algebraically.",
+          "solution": "Common denominator: $\\frac{\\sin^2 + (1 + \\cos)^2}{\\sin(1 + \\cos)} = \\frac{\\sin^2 + 1 + 2\\cos + \\cos^2}{\\sin(1+\\cos)} = \\frac{2 + 2\\cos}{\\sin(1+\\cos)} = \\frac{2(1 + \\cos)}{\\sin(1+\\cos)} = \\frac{2}{\\sin} = 2\\csc\\theta$. ✓ (Used $\\sin^2 + \\cos^2 = 1$ mid-stream.)",
+          "check": ["simplify(sin(x)/(1 + cos(x)) + (1 + cos(x))/sin(x) - 2*csc(x)) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "Four more functions, zero new information", "body": "Trigonometry names four more functions — tangent, cotangent, secant, cosecant — but adds NO new information: all four are built from sine and cosine. $\\tan = \\frac{\\sin}{\\cos}$, $\\cot = \\frac{\\cos}{\\sin}$, $\\sec = \\frac{1}{\\cos}$, $\\csc = \\frac{1}{\\sin}$. Learn them as exchange rates into the sine–cosine standard, and every trig expression becomes an algebra problem." },
+          { "kind": "unitCircle", "eyebrow": "See tangent", "title": "Tangent is the slope", "teach": "Step the angle and watch the radius line to the point: its SLOPE is $\\frac{\\text{rise}}{\\text{run}} = \\frac{\\sin\\theta}{\\cos\\theta} = \\tan\\theta$. At 45° the slope is 1; approaching 90° the line goes vertical — slope exploding, which is tangent's asymptote at work.", "config": { "mode": "explore", "start": 45 } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "All six at π/3", "problemId": "pc73-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Where does tangent break?", "prompt": "$\\tan\\theta$ is undefined exactly where…", "options": ["$\\cos\\theta = 0$: at $\\frac{\\pi}{2} + \\pi k$", "$\\sin\\theta = 0$: at $\\pi k$", "$\\theta$ is negative", "$\\theta$ exceeds $2\\pi$"], "correctIndex": 0, "explanation": "$\\tan = \\frac{\\sin}{\\cos}$ dies with its DENOMINATOR: cosine's zeros, the circle's top and bottom. There the radius is vertical — no slope exists. (Sine's zeros kill cotangent instead.)", "check": ["cos(pi/2) == 0", "sin(pi) == 0"] },
+          { "kind": "teach", "eyebrow": "The family", "title": "Minting new identities from the parent", "body": "Divide the parent $\\cos^2 + \\sin^2 = 1$ by $\\cos^2\\theta$ term by term: $1 + \\tan^2\\theta = \\sec^2\\theta$. Divide by $\\sin^2\\theta$ instead: $\\cot^2\\theta + 1 = \\csc^2\\theta$. Three Pythagorean identities, one parent — don't memorize three facts, remember one fact and two divisions." },
+          { "kind": "teach", "eyebrow": "Parity", "title": "Even cosine, odd sine", "body": "Negate the angle and the circle point mirrors across the x-axis: the x-coordinate SURVIVES, the y-coordinate FLIPS. So $\\cos(-\\theta) = \\cos\\theta$ (even — Unit 1's butterfly) and $\\sin(-\\theta) = -\\sin\\theta$ (odd — the propeller). Their ratio makes tangent odd too. Minus signs inside trig functions now have exit rules." },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Escort the minus out", "prompt": "$\\sin(-\\tfrac{\\pi}{6}) + \\cos(-\\tfrac{\\pi}{3}) = ?$", "options": ["$0$", "$1$", "$-1$", "$\\frac{1}{2}$"], "correctIndex": 0, "explanation": "Odd sine: $\\sin(-\\frac{\\pi}{6}) = -\\frac{1}{2}$. Even cosine: $\\cos(-\\frac{\\pi}{3}) = +\\frac{1}{2}$. Sum: 0. The minus escapes sine but is absorbed by cosine.", "check": ["sin(-pi/6) + cos(-pi/3) == 0"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Simplify to one function", "problemId": "pc73-we2" },
+          { "kind": "teach", "eyebrow": "Strategy", "title": "The simplification playbook", "body": "Facing any trig mess: (1) convert everything to sines and cosines, (2) do ALGEBRA — combine fractions, factor, cancel, (3) hunt Pythagorean patterns: $1 - \\cos^2$ IS $\\sin^2$; $\\sec^2 - 1$ IS $\\tan^2$. For verifying identities, work ONE side (usually the messier) toward the other — never move terms across the equals sign as if solving." },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Numeric spot-check", "body": "After any simplification, test one honest angle (say $\\frac{\\pi}{3}$ — never $0$ or $\\frac{\\pi}{4}$, where too many things coincide) in both the original and your answer. Equal values don't PROVE it, but unequal values catch an algebra slip immediately — a ten-second insurance policy." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "From tangent to everything", "problemId": "pc73-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Verify a classic", "problemId": "pc73-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["tan = sin/cos (the radius's slope); sec, csc, cot are the reciprocals — initials cross.", "One parent identity ÷ cos² or sin² mints the other two Pythagoreans.", "cos even, sin and tan odd; simplify by converting to the sine–cosine standard."] }
+        ]
+      }
+    },
+    {
+      "slug": "solving-trig-equations",
+      "title": "Solving Trig Equations",
+      "concreteComparison": "Solving sin x = ½ is asking 'when is the ferris wheel at height ½?' — and a spinning wheel is there twice every lap, forever. Trig equations don't have an answer; they have a pattern of answers: two seeds, plus laps.",
+      "objective": "Solve basic trig equations exactly: find all solutions in [0, 2π), express the general solution with + 2πk, and handle equations requiring isolation or factoring.",
+      "concept": [
+        "$\\sin x = \\frac{1}{2}$ asks: which ANGLES have height $\\frac{1}{2}$? Reference angle $\\frac{\\pi}{6}$; positive sine lives in QI and QII: seeds $x = \\frac{\\pi}{6}$ and $x = \\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}$. Every lap revisits both: the **general solution** is each seed $+ 2\\pi k$.",
+        "The four-step protocol: **(1) isolate** the trig function ($2\\cos x + 1 = 0 \\to \\cos x = -\\frac{1}{2}$), **(2) size**: reference angle from the value's magnitude, **(3) place**: which quadrants match the sign, **(4) laps**: append $+ 2\\pi k$. Quadratic-looking equations factor first: $2\\sin^2 x - \\sin x = 0$ gives $\\sin x (2\\sin x - 1) = 0$ — each factor its own mini-equation.",
+        "Special cases: $\\sin x = 1$ touches only the top — ONE seed per lap ($\\frac{\\pi}{2}$). Values outside $[-1, 1]$: NO solutions. And tangent, with period $\\pi$, repeats faster: its general solution uses $+ \\pi k$."
+      ],
+      "keyIdea": "Isolate, size (reference angle), place (quadrants by sign), laps (+2πk): trig equations yield seed solutions plus a periodic pattern — usually two seeds per lap, one at the extremes, none beyond the range.",
+      "facts": [
+        { "title": "The protocol", "latex": "\\text{isolate} \\to \\text{size} \\to \\text{place} \\to +2\\pi k", "explanation": "Four steps from equation to general solution." },
+        { "title": "Seed counts", "latex": "|v| < 1: 2 \\text{ seeds}; \\; |v| = 1: 1; \\; |v| > 1: 0", "explanation": "The horizontal line y = v cuts the wave twice, once (tangent), or never." },
+        { "title": "Tangent's lap", "latex": "\\tan x = v: \\; x = x_0 + \\pi k", "explanation": "Period π: one seed, faster repeats." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc74-we1",
+          "statement": "Solve $2\\cos x + 1 = 0$ on $[0, 2\\pi)$, then give the general solution.",
+          "solution": "Isolate: $\\cos x = -\\frac{1}{2}$. Size: reference $\\frac{\\pi}{3}$. Place: cosine negative in QII, QIII: $x = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$ and $x = \\pi + \\frac{\\pi}{3} = \\frac{4\\pi}{3}$. General: $x = \\frac{2\\pi}{3} + 2\\pi k$ or $x = \\frac{4\\pi}{3} + 2\\pi k$.",
+          "check": ["2*cos(2*pi/3) + 1 == 0", "2*cos(4*pi/3) + 1 == 0"]
+        },
+        {
+          "id": "pc74-we2",
+          "statement": "Solve $2\\sin^2 x - \\sin x = 0$ on $[0, 2\\pi)$.",
+          "solution": "Factor: $\\sin x(2\\sin x - 1) = 0$. Branch 1: $\\sin x = 0$: $x = 0, \\pi$. Branch 2: $\\sin x = \\frac{1}{2}$: $x = \\frac{\\pi}{6}, \\frac{5\\pi}{6}$. Four solutions: $\\{0, \\frac{\\pi}{6}, \\frac{5\\pi}{6}, \\pi\\}$. (Never divide by $\\sin x$ — that would silently delete the first branch.)",
+          "check": ["2*sin(0)**2 - sin(0) == 0", "2*sin(pi)**2 - sin(pi) == 0", "2*sin(pi/6)**2 - sin(pi/6) == 0", "2*sin(5*pi/6)**2 - sin(5*pi/6) == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reporting only the calculator/QI answer: sin x = ½ ⟹ x = π/6, done.", "correction": "The wave hits every interior height TWICE per lap: the QII partner $\\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}$ is equally valid, and both repeat every $2\\pi$. One seed is a quarter of the truth.", "authored": true },
+        { "text": "Dividing both sides of sin x cos x = cos x by cos x.", "correction": "Dividing by a possibly-zero factor deletes solutions: move everything left and FACTOR: $\\cos x(\\sin x - 1) = 0$ keeps both families — $\\cos x = 0$ AND $\\sin x = 1$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc74-t1",
+          "statement": "Solve $\\sqrt{2}\\sin x - 1 = 0$ on $[0, 2\\pi)$ and in general.",
+          "solution": "Isolate: $\\sin x = \\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$. Reference $\\frac{\\pi}{4}$; positive sine: QI, QII: $x = \\frac{\\pi}{4}, \\frac{3\\pi}{4}$. General: each $+ 2\\pi k$.",
+          "check": ["sqrt(2)*sin(pi/4) - 1 == 0", "sqrt(2)*sin(3*pi/4) - 1 == 0"]
+        },
+        {
+          "id": "pc74-t2",
+          "statement": "Solve $\\tan x = -1$ on $[0, 2\\pi)$, then compress the general solution using tangent's period.",
+          "solution": "Reference $\\frac{\\pi}{4}$; tangent negative in QII and QIV: $x = \\frac{3\\pi}{4}, \\frac{7\\pi}{4}$. But the two differ by exactly $\\pi$ — tangent's period — so ONE line suffices: $x = \\frac{3\\pi}{4} + \\pi k$.",
+          "check": ["tan(3*pi/4) == -1", "tan(7*pi/4) == -1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "When is the wheel at height ½?", "body": "Every equation you've solved before had finitely many answers. Trig equations break that: $\\sin x = \\frac{1}{2}$ asks when a spinning wheel sits at height $\\frac{1}{2}$ — and it's there TWICE every lap, forever. The answer isn't a number; it's a PATTERN: a few seeds, plus whole laps. Finding all of it, exactly, is this lesson." },
+          { "kind": "unitCircle", "eyebrow": "See it", "title": "Two angles, one height", "teach": "Step to 30°, note the height ½ — then keep stepping to 150°: height ½ AGAIN, from the mirror position. Any horizontal slice through the circle's interior cuts it at two angles. That geometric fact is why trig equations have two seeds per lap.", "config": { "mode": "explore", "start": 30 } },
+          { "kind": "teach", "eyebrow": "The protocol", "title": "Isolate, size, place, laps", "body": "Four beats, every time. **Isolate** the trig function algebraically. **Size**: the value's magnitude gives the reference angle (Unit 6). **Place**: the value's SIGN picks the two quadrants. **Laps**: every seed repeats — append $+ 2\\pi k$, $k$ any integer. The middle two beats are exactly reference-angle evaluation, run backwards." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The full protocol", "problemId": "pc74-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Count before solving", "prompt": "How many solutions does $\\cos x = 0.3$ have on $[0, 2\\pi)$? And $\\cos x = 1.3$?", "options": ["2 and 0", "1 and 1", "2 and 2", "infinitely many and 0"], "correctIndex": 0, "explanation": "$0.3$ is interior to $[-1,1]$: the slice cuts twice (QI and QIV for positive cosine). $1.3$ is outside the range: the wheel never reaches it — zero solutions. Count first; it audits your final list.", "check": ["Abs(Rational(3,10)) < 1", "Rational(13,10) > 1"] },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "A slice through the wave", "teach": "The line $y = \\frac{1}{2}$ laid across one period of the sine wave (axis in π/6 units): it cuts at $\\frac{\\pi}{6}$ (climbing) and $\\frac{5\\pi}{6}$ (descending) — the two seeds. Shift the whole picture by any number of periods and the cuts repeat: that's the $+2\\pi k$.", "config": { "mode": "plot", "min": -1, "max": 13, "points": [ { "x": 0, "y": 0 }, { "x": 1, "y": 0.5, "label": "π/6" }, { "x": 3, "y": 1, "label": "peak" }, { "x": 5, "y": 0.5, "label": "5π/6" }, { "x": 6, "y": 0 }, { "x": 9, "y": -1, "label": "valley" }, { "x": 12, "y": 0, "label": "2π" } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Harder shapes", "title": "Factor like a quadratic", "body": "$2\\sin^2 x - \\sin x = 0$ is a quadratic wearing a trig costume: substitute $u = \\sin x$ mentally and factor: $u(2u - 1) = 0$. Each factor spawns its own mini-equation, solved by the protocol. Golden rule: NEVER divide by a trig factor that could be zero — factoring keeps all solution families; dividing silently executes one." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Factor, two branches", "problemId": "pc74-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "The extreme case", "prompt": "How many solutions does $\\sin x = 1$ have in $[0, 2\\pi)$, and what's the general solution?", "options": ["one: $x = \\frac{\\pi}{2} + 2\\pi k$", "two, like every equation", "none — too big", "one: $x = \\pi + 2\\pi k$"], "correctIndex": 0, "explanation": "Height 1 is the wheel's TOP — touched at a single point per lap, $\\frac{\\pi}{2}$. Extremes ($\\pm 1$) are the tangent slices: one seed, not two.", "check": ["sin(pi/2) == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Audit with a count", "body": "Before solving, predict the count: interior value → 2 seeds per lap per function; extreme → 1; outside range → 0; each factor of a factored equation adds its own. After solving, compare. A solution list that disagrees with its predicted count has a missing mirror partner or a divided-away family — the two classic losses." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Isolate the radical coefficient", "problemId": "pc74-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Tangent's faster clock", "problemId": "pc74-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Protocol: isolate → reference angle → quadrants by sign → +2πk.", "Interior values: two seeds per lap; extremes: one; outside [−1,1]: none; tangent repeats by +πk.", "Factor, never divide by a trig expression — dividing deletes solution families."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc7-pr-1",
+      "statement": "List the five anchor points of one period of $y = \\sin x$ starting at $x = 0$, and state where the wave is steepest.",
+      "solution": "$(0,0), (\\frac{\\pi}{2}, 1), (\\pi, 0), (\\frac{3\\pi}{2}, -1), (2\\pi, 0)$. Steepest at the zero-crossings ($0, \\pi, 2\\pi$); flat at peak and valley.",
+      "check": ["sin(0) == 0", "sin(pi/2) == 1", "sin(3*pi/2) == -1", "sin(2*pi) == 0"]
+    },
+    {
+      "id": "pc7-pr-2",
+      "statement": "Evaluate using periodicity: $\\cos\\tfrac{17\\pi}{6}$ and $\\sin\\tfrac{15\\pi}{4}$.",
+      "solution": "$\\frac{17\\pi}{6} - 2\\pi = \\frac{5\\pi}{6}$ (QII, ref $\\frac{\\pi}{6}$): $-\\frac{\\sqrt{3}}{2}$. $\\frac{15\\pi}{4} - 2\\pi = \\frac{7\\pi}{4}$ (QIV, ref $\\frac{\\pi}{4}$): $-\\frac{\\sqrt{2}}{2}$.",
+      "check": ["cos(17*pi/6) == -sqrt(3)/2", "sin(15*pi/4) == -sqrt(2)/2"]
+    },
+    {
+      "id": "pc7-pr-3",
+      "statement": "For $y = 5\\sin(4x) + 2$: amplitude, period, midline, range, and maximum value.",
+      "solution": "Amplitude 5, period $\\frac{2\\pi}{4} = \\frac{\\pi}{2}$, midline $y = 2$, range $[-3, 7]$, max 7.",
+      "check": ["Rational(2,4) == Rational(1,2)", "2 + 5 == 7", "2 - 5 == -3"]
+    },
+    {
+      "id": "pc7-pr-4",
+      "statement": "Find the amplitude, period, and phase shift of $y = \\tfrac{1}{2}\\cos\\left(2x + \\tfrac{\\pi}{2}\\right)$.",
+      "solution": "Factor: $2\\left(x + \\frac{\\pi}{4}\\right)$. Amplitude $\\frac{1}{2}$, period $\\pi$, phase shift LEFT $\\frac{\\pi}{4}$ (inside plus).",
+      "check": ["Rational(1,2)*cos(2*(-pi/4) + pi/2) == Rational(1,2)", "Rational(2,2) == 1"]
+    },
+    {
+      "id": "pc7-pr-5",
+      "statement": "A wave oscillates between $-2$ and $6$, completing a cycle every $\\pi$ units, starting at its midline heading up at $x = 0$. Write its equation.",
+      "solution": "Midline $\\frac{6 + (-2)}{2} = 2$; amplitude 4; $B = \\frac{2\\pi}{\\pi} = 2$. Midline-up start = plain sine: $y = 4\\sin(2x) + 2$.",
+      "check": ["Rational(6 - 2, 2) == 2", "Rational(6 + 2, 2) == 4", "4*sin(0) + 2 == 2", "4*sin(2*(pi/4)) + 2 == 6"]
+    },
+    {
+      "id": "pc7-pr-6",
+      "statement": "$\\sin\\theta = -\\tfrac{5}{13}$, $\\theta$ in QIV. Find $\\cos\\theta$ and $\\tan\\theta$.",
+      "solution": "$\\cos^2 = 1 - \\frac{25}{169} = \\frac{144}{169}$; QIV: $\\cos = +\\frac{12}{13}$. $\\tan = \\frac{-5/13}{12/13} = -\\frac{5}{12}$.",
+      "check": ["1 - Rational(25,169) == Rational(144,169)", "Rational(-5,13)/Rational(12,13) == Rational(-5,12)"]
+    },
+    {
+      "id": "pc7-pr-7",
+      "statement": "Simplify $\\csc\\theta \\cdot \\tan\\theta$ and $(1 - \\sin\\theta)(1 + \\sin\\theta)$ to single functions.",
+      "solution": "$\\frac{1}{\\sin} \\cdot \\frac{\\sin}{\\cos} = \\frac{1}{\\cos} = \\sec\\theta$. Difference of squares: $1 - \\sin^2 = \\cos^2\\theta$.",
+      "check": ["simplify(csc(x)*tan(x) - sec(x)) == 0", "simplify((1 - sin(x))*(1 + sin(x)) - cos(x)**2) == 0"]
+    },
+    {
+      "id": "pc7-pr-8",
+      "statement": "Solve on $[0, 2\\pi)$: $2\\sin x - \\sqrt{3} = 0$ and $\\cos^2 x - \\cos x = 0$.",
+      "solution": "First: $\\sin x = \\frac{\\sqrt{3}}{2}$: $x = \\frac{\\pi}{3}, \\frac{2\\pi}{3}$. Second: factor $\\cos x(\\cos x - 1) = 0$: $\\cos x = 0$ at $\\frac{\\pi}{2}, \\frac{3\\pi}{2}$; $\\cos x = 1$ at $0$. Solutions: $\\{0, \\frac{\\pi}{2}, \\frac{3\\pi}{2}\\}$.",
+      "check": ["2*sin(pi/3) - sqrt(3) == 0", "2*sin(2*pi/3) - sqrt(3) == 0", "cos(pi/2)**2 - cos(pi/2) == 0", "cos(0)**2 - cos(0) == 0", "cos(3*pi/2)**2 - cos(3*pi/2) == 0"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc7-ty-1",
+      "statement": "Sketch-plan $y = -2\\sin x$ on $[0, 2\\pi]$: give its five anchor points and explain the flip.",
+      "solution": "Negative A reflects: $(0,0), (\\frac{\\pi}{2}, -2)$ — VALLEY first — $(\\pi, 0), (\\frac{3\\pi}{2}, 2), (2\\pi, 0)$. Amplitude still 2; the wave leads with its dip.",
+      "check": ["-2*sin(pi/2) == -2", "-2*sin(3*pi/2) == 2", "-2*sin(pi) == 0"]
+    },
+    {
+      "id": "pc7-ty-2",
+      "statement": "For $y = 3\\cos\\left(\\tfrac{\\pi}{6} t\\right) + 8$ modeling a wheel's height in meters over minutes: period, max/min heights, and height at $t = 3$.",
+      "solution": "Period $\\frac{2\\pi}{\\pi/6} = 12$ min; max $11$, min $5$. At $t = 3$: $3\\cos\\frac{\\pi}{2} + 8 = 8$ — crossing the midline.",
+      "check": ["Rational(2,1)/Rational(1,6) == 12", "8 + 3 == 11", "8 - 3 == 5", "3*cos(pi/2) + 8 == 8"]
+    },
+    {
+      "id": "pc7-ty-3",
+      "statement": "Write the equation of a cosine wave with amplitude 6, period $4\\pi$, midline $y = -2$, no phase shift, and evaluate it at $x = 2\\pi$.",
+      "solution": "$B = \\frac{2\\pi}{4\\pi} = \\frac{1}{2}$: $y = 6\\cos\\left(\\frac{x}{2}\\right) - 2$. At $2\\pi$: $6\\cos\\pi - 2 = -8$ — the valley, half a period in.",
+      "check": ["Rational(2,4) == Rational(1,2)", "6*cos(pi) - 2 == -8", "6*cos(0) - 2 == 4"]
+    },
+    {
+      "id": "pc7-ty-4",
+      "statement": "$\\sec\\theta = -\\tfrac{13}{5}$ with $\\theta$ in QII. Find all six trig values.",
+      "solution": "$\\cos = -\\frac{5}{13}$. $\\sin^2 = 1 - \\frac{25}{169} = \\frac{144}{169}$; QII: $\\sin = +\\frac{12}{13}$, $\\csc = \\frac{13}{12}$. $\\tan = \\frac{12/13}{-5/13} = -\\frac{12}{5}$, $\\cot = -\\frac{5}{12}$.",
+      "check": ["1 - Rational(25,169) == Rational(144,169)", "Rational(12,13)/Rational(-5,13) == Rational(-12,5)", "Rational(25,169) + Rational(144,169) == 1"]
+    },
+    {
+      "id": "pc7-ty-5",
+      "statement": "Verify algebraically: $\\dfrac{\\tan^2\\theta}{\\sec\\theta + 1} = \\sec\\theta - 1$.",
+      "solution": "$\\tan^2 = \\sec^2 - 1 = (\\sec - 1)(\\sec + 1)$ — Pythagorean family plus difference of squares. Divide by $\\sec + 1$: left side becomes $\\sec\\theta - 1$. ✓",
+      "check": ["simplify(tan(x)**2/(sec(x) + 1) - (sec(x) - 1)) == 0"]
+    },
+    {
+      "id": "pc7-ty-6",
+      "statement": "Solve on $[0, 2\\pi)$: $2\\cos^2 x + \\cos x - 1 = 0$.",
+      "solution": "Factor (u = cos x): $(2u - 1)(u + 1) = 0$. $\\cos x = \\frac{1}{2}$: $x = \\frac{\\pi}{3}, \\frac{5\\pi}{3}$. $\\cos x = -1$: $x = \\pi$. Three solutions: $\\{\\frac{\\pi}{3}, \\pi, \\frac{5\\pi}{3}\\}$ — two from the interior value, one from the extreme.",
+      "check": ["expand((2*x - 1)*(x + 1) - (2*x**2 + x - 1)) == 0", "2*cos(pi/3)**2 + cos(pi/3) - 1 == 0", "2*cos(pi)**2 + cos(pi) - 1 == 0", "2*cos(5*pi/3)**2 + cos(5*pi/3) - 1 == 0"]
+    }
+  ]
+}

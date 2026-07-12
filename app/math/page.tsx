@@ -151,7 +151,7 @@ export default function MathLandingPage() {
               className="mono text-[10px] uppercase"
               style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
             >
-              New · Full course
+              Full course
             </span>
             <span
               className="serif"
@@ -162,6 +162,37 @@ export default function MathLandingPage() {
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
               Expressions, equations, inequalities, functions, lines, systems,
               factoring, and quadratics — the whole first course. 8 units.
+            </span>
+          </Link>
+          <Link
+            href="/math/precalculus"
+            className="card-edit p-6 flex flex-col gap-2 transition-colors"
+            style={{ textDecoration: "none" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-line)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-wash)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "";
+              (e.currentTarget as HTMLAnchorElement).style.background = "";
+            }}
+          >
+            <span
+              className="mono text-[10px] uppercase"
+              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+            >
+              New · Full course
+            </span>
+            <span
+              className="serif"
+              style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Precalculus
+            </span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+              The bridge to calculus, graph-first: transformations, polynomials,
+              rationals, exponentials and logs, the unit circle, trig waves,
+              and conics. 8 units.
             </span>
           </Link>
         </div>

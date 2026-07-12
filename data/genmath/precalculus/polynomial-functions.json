@@ -1,0 +1,1095 @@
+{
+  "slug": "polynomial-functions",
+  "title": "Polynomial Functions",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Degree and leading sign call the arms, zeros pin the crossings, multiplicity sets the touch — plus the division and remainder theorems that factor it all.",
+  "buildsOn": "Quadratics and factoring from Algebra 1; graph features from Unit 1.",
+  "lessons": [
+    {
+      "slug": "power-functions-and-end-behavior",
+      "title": "Power Functions & End Behavior",
+      "concreteComparison": "Zoom far out on any polynomial and only the boss term survives: like a city skyline from an airplane, all you see is the tallest tower. The leading term alone decides where the two arms of the graph point.",
+      "objective": "Determine the end behavior of any polynomial from its degree (even/odd) and leading coefficient (sign), using power functions y = ±xⁿ as models.",
+      "concept": [
+        "A polynomial's **end behavior** — where the graph's two arms point as $x \\to \\pm\\infty$ — is decided entirely by its **leading term** $a x^n$. Far from the origin, $x^4$ dwarfs $50x^2$: at $x = 100$, $x^4$ is $10^8$ while $50x^2$ is only $5 \\times 10^5$. The lower terms are noise at long range.",
+        "So study the models $y = \\pm x^n$. **Even degree**: both arms point the SAME way ($x^2$: both up). **Odd degree**: the arms point OPPOSITE ways ($x^3$: down-left, up-right, like every line with positive slope).",
+        "A negative leading coefficient flips both arms. Four cases total: even+ (up/up), even− (down/down), odd+ (down/up), odd− (up/down). Two questions — is $n$ even or odd? is $a$ positive or negative? — settle every polynomial ever written."
+      ],
+      "keyIdea": "Only the leading term axⁿ speaks at long range: even n = arms together, odd n = arms opposite; negative a flips both.",
+      "facts": [
+        {
+          "title": "Leading term rules",
+          "latex": "x \\to \\pm\\infty: \\; f(x) \\approx a x^n",
+          "explanation": "Lower-degree terms are negligible far from the origin."
+        },
+        {
+          "title": "Even vs odd",
+          "latex": "x^{2k}: \\text{arms together}, \\quad x^{2k+1}: \\text{arms opposite}",
+          "explanation": "Even powers erase sign; odd powers preserve it."
+        },
+        {
+          "title": "Sign flip",
+          "latex": "a < 0: \\text{both arms flip}",
+          "explanation": "A negative leading coefficient reflects the far ends over the x-axis."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc31-we1",
+          "statement": "Describe the end behavior of $f(x) = -3x^5 + 40x^3 - 7x + 100$.",
+          "solution": "Only $-3x^5$ matters. Degree 5 is odd: arms opposite. Coefficient $-3$ is negative: flip the $x^3$ pattern — UP on the left, DOWN on the right. As $x \\to -\\infty$, $f \\to +\\infty$; as $x \\to +\\infty$, $f \\to -\\infty$. (At $x = 10$: $-3x^5 = -300{,}000$ vs $40x^3 = 40{,}000$ — the boss term already dominates.)",
+          "check": [
+            "-3*10**5 == -300000",
+            "40*10**3 == 40000",
+            "300000 > 40000"
+          ]
+        },
+        {
+          "id": "pc31-we2",
+          "statement": "A degree-4 polynomial has both arms pointing down and passes through $(0, 5)$. What can you conclude about its leading coefficient and its number of x-intercepts?",
+          "solution": "Even degree with arms DOWN forces leading coefficient $a < 0$. Starting down, rising to pass through $y = 5 > 0$ somewhere, and ending down: the graph must cross the x-axis at least twice (once going up, once coming down) — and a quartic allows at most 4 crossings.",
+          "check": [
+            "5 > 0",
+            "2 <= 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Judging end behavior from the biggest COEFFICIENT: reading 40x³ as the boss of −3x⁵ + 40x³.",
+          "correction": "Rank by DEGREE, not coefficient size. At x = 100, x⁵ is 10,000× bigger than x³ — no coefficient of 40 survives that. The highest power always wins the long game.",
+          "authored": true
+        },
+        {
+          "text": "Saying an odd-degree polynomial 'rises to the right' without checking the sign.",
+          "correction": "Odd degree only says the arms OPPOSE. Positive leading coefficient: down-left/up-right. Negative: up-left/down-right. Always make both calls: parity AND sign.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc31-t1",
+          "statement": "State the end behavior of $g(x) = 7x^6 - x^5 + 2$ and of $h(x) = 5x - x^3$.",
+          "solution": "$g$: leading term $7x^6$ — even, positive: BOTH arms up. $h$: rewrite by degree: $-x^3 + 5x$, leading term $-x^3$ — odd, negative: UP left, DOWN right.",
+          "check": [
+            "7*(-2)**6 == 448",
+            "448 > 0",
+            "-(-10)**3 == 1000",
+            "1000 > 0",
+            "-(10**3) < 0"
+          ]
+        },
+        {
+          "id": "pc31-t2",
+          "statement": "Can a polynomial with both arms pointing up have an ODD degree? Why or why not?",
+          "solution": "No. Odd powers preserve sign: $(-x)^n = -x^n$ for odd $n$, so the two far ends of $ax^n$ always take OPPOSITE signs — one arm up forces the other down. Arms together demands even degree.",
+          "check": [
+            "(-2)**3 == -8",
+            "(2)**3 == 8",
+            "-8 != 8",
+            "(-2)**4 == (2)**4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The skyline from the airplane",
+            "body": "Up close, a polynomial like $-3x^5 + 40x^3 - 7x + 100$ looks complicated. But zoom OUT and it simplifies brutally: the highest power grows so much faster than the rest that from far away the graph is indistinguishable from its **leading term** alone. End behavior — where the two arms point — is a one-term question."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Feel the dominance",
+            "title": "Who's bigger at x = 100?",
+            "prompt": "At $x = 100$, compare $x^4$ with $50x^2$.",
+            "options": [
+              "$x^4$ is 200 times bigger",
+              "$50x^2$ is bigger",
+              "they're roughly equal",
+              "$x^4$ is twice as big"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^4 = 10^8$; $50x^2 = 5 \\times 10^5$. Ratio: $200$. And it only grows — by $x = 1000$ the ratio is $20{,}000$. Degree beats coefficient at long range, always.",
+            "check": [
+              "100**4 == 10**8",
+              "50*100**2 == 5*10**5",
+              "10**8 == 200 * (5*10**5)"
+            ]
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Play",
+            "title": "The four arm patterns",
+            "teach": "Step the degree $n$ up and down, then hit the sign flip. Watch only the ARMS: even $n$ points them together, odd $n$ opposes them, and the negative sign flips whatever pattern you had. Four patterns — that's the complete catalogue.",
+            "config": {
+              "mode": "endBehavior",
+              "n": 3,
+              "negative": false
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why parity",
+            "title": "Even erases, odd remembers",
+            "body": "The whole story is what a power does to a NEGATIVE input. Even: $(-10)^4 = +10000$ — the sign is erased, so both far ends of $x^{even}$ are positive (arms together, up). Odd: $(-10)^3 = -1000$ — the sign survives, so the far ends of $x^{odd}$ disagree (arms opposite). A negative leading coefficient then flips both verdicts."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Call the arms",
+            "problemId": "pc31-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Reverse reading",
+            "prompt": "A polynomial's arms point down-left and up-right. Its leading term could be:",
+            "options": [
+              "$2x^7$",
+              "$-2x^7$",
+              "$2x^8$",
+              "$-2x^8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Opposite arms = odd degree; down-left/up-right specifically = positive coefficient (the $x^3$ pattern). $2x^7$ fits. The even options point arms together; $-2x^7$ points them up-left/down-right.",
+            "check": [
+              "2*(-1)**7 == -2",
+              "2*(1)**7 == 2",
+              "-2 < 0",
+              "2 > 0"
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Cubic vs quartic, sampled",
+            "teach": "Orange samples of $y = x^3 - 4x$ (odd: enters bottom-left, exits top-right) laid against its turning middle. However wiggly the middle gets, the ARMS obey the leading term — the middle is local news; the ends are the leading term's law.",
+            "config": {
+              "mode": "plot",
+              "min": -6,
+              "max": 6,
+              "points": [
+                {
+                  "x": -2.5,
+                  "y": -5.6
+                },
+                {
+                  "x": -2,
+                  "y": 0
+                },
+                {
+                  "x": -1,
+                  "y": 3
+                },
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 1,
+                  "y": -3
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "x": 2.5,
+                  "y": 5.6
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Arms constrain the crossings",
+            "problemId": "pc31-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Rewrite by degree first",
+            "body": "Polynomials arrive shuffled: $5x - x^3 + 2$. Before ANY analysis, sort by falling degree: $-x^3 + 5x + 2$. Now the leading term is visibly $-x^3$ and the two calls (odd, negative) are instant. Most end-behavior errors are really just reading the wrong term as the leader."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why odd degrees always cross",
+            "body": "An odd-degree polynomial has one arm at $-\\infty$ and the other at $+\\infty$ — so somewhere in between it must cross zero. Every odd-degree polynomial has at least one real root; a quintic can never dodge the x-axis. Even degrees can float free (like $x^2 + 1$)."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two calls each",
+            "problemId": "pc31-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "An impossible skyline",
+            "problemId": "pc31-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "End behavior = leading term only; degree beats coefficient at long range.",
+              "Even degree: arms together. Odd degree: arms opposite. Negative a: flip both.",
+              "Sort by falling degree before reading the leader; odd degree guarantees a real root."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "zeros-and-factors",
+      "title": "Zeros & the Factor Theorem",
+      "concreteComparison": "Zeros and factors are the same information in two languages: the graph says 'crosses at x = 2', the algebra says 'divisible by (x − 2)'. The Factor Theorem is the dictionary between them.",
+      "objective": "Convert between zeros and linear factors, build polynomials from prescribed zeros, and use the Factor Theorem to test and find factors.",
+      "concept": [
+        "A **zero** of $f$ is an input with $f(c) = 0$ — an x-intercept of the graph. The **Factor Theorem** says these are exactly the roots of factors: $f(c) = 0$ if and only if $(x - c)$ divides $f(x)$. Graph language and factor language are interchangeable.",
+        "Factored form displays everything: $f(x) = (x + 2)(x - 1)(x - 3)$ has zeros $-2, 1, 3$ — each factor set to zero. Reading them requires the OPPOSITE sign of what's written: $(x + 2)$ gives $x = -2$.",
+        "Building runs backwards: zeros at $-2, 1, 3$ give $f(x) = a(x+2)(x-1)(x-3)$, with the stretch $a$ still free — infinitely many polynomials share the same crossings. One extra point (like a y-intercept) pins $a$ down."
+      ],
+      "keyIdea": "f(c) = 0 ⟺ (x − c) is a factor: zeros are x-intercepts are roots of factors; a family a(x−r₁)(x−r₂)… shares the same zeros until one more point fixes a.",
+      "facts": [
+        {
+          "title": "Factor Theorem",
+          "latex": "f(c) = 0 \\iff (x - c) \\mid f(x)",
+          "explanation": "Zeros and linear factors are the same fact in two languages."
+        },
+        {
+          "title": "Read zeros",
+          "latex": "(x + 2)(x - 1): \\text{zeros } -2, 1",
+          "explanation": "Each factor kills the product at its own root — opposite the written sign."
+        },
+        {
+          "title": "Build with a",
+          "latex": "f(x) = a(x - r_1)(x - r_2)\\cdots",
+          "explanation": "Zeros fix the crossings; one more point fixes the stretch a."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc32-we1",
+          "statement": "Is $(x - 3)$ a factor of $f(x) = x^3 - 2x^2 - 5x + 6$? Find all zeros if so.",
+          "solution": "Factor Theorem test: $f(3) = 27 - 18 - 15 + 6 = 0$ — yes, $(x-3)$ divides $f$. Dividing gives $f(x) = (x - 3)(x^2 + x - 2) = (x-3)(x+2)(x-1)$. Zeros: $3, -2, 1$.",
+          "check": [
+            "3**3 - 2*3**2 - 5*3 + 6 == 0",
+            "expand((x - 3)*(x**2 + x - 2) - (x**3 - 2*x**2 - 5*x + 6)) == 0",
+            "expand((x+2)*(x-1) - (x**2 + x - 2)) == 0",
+            "(-2)**3 - 2*(-2)**2 - 5*(-2) + 6 == 0",
+            "1 - 2 - 5 + 6 == 0"
+          ]
+        },
+        {
+          "id": "pc32-we2",
+          "statement": "Find the cubic with zeros $-1, 2, 4$ passing through $(0, 16)$.",
+          "solution": "Family: $f(x) = a(x+1)(x-2)(x-4)$. Pin $a$ with the point: $f(0) = a(1)(-2)(-4) = 8a = 16$, so $a = 2$: $f(x) = 2(x+1)(x-2)(x-4)$.",
+          "check": [
+            "2*(0+1)*(0-2)*(0-4) == 16",
+            "2*(2+1)*(2-2)*(2-4) == 0",
+            "2*(-1+1)*(-1-2)*(-1-4) == 0",
+            "Rational(16,8) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the zero of (x + 5) as x = 5.",
+          "correction": "Set the factor to zero: $x + 5 = 0$ gives $x = -5$ — OPPOSITE the written sign. The factor for zero c is (x − c), minus included.",
+          "authored": true
+        },
+        {
+          "text": "Believing the zeros alone determine the polynomial.",
+          "correction": "Zeros fix only where the graph crosses — the vertical stretch $a$ is still free, and even the degree can grow (repeated or extra complex factors). Always use one more point to pin $a$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc32-t1",
+          "statement": "Use the Factor Theorem to decide whether $(x + 2)$ and $(x - 1)$ are factors of $f(x) = x^3 + 3x^2 - 4$.",
+          "solution": "$f(-2) = -8 + 12 - 4 = 0$: $(x+2)$ IS a factor. $f(1) = 1 + 3 - 4 = 0$: $(x-1)$ is TOO. Dividing out both: $f(x) = (x+2)^2(x-1)$ — the zero $-2$ is actually doubled.",
+          "check": [
+            "(-2)**3 + 3*(-2)**2 - 4 == 0",
+            "1 + 3 - 4 == 0",
+            "expand((x+2)**2*(x-1) - (x**3 + 3*x**2 - 4)) == 0"
+          ]
+        },
+        {
+          "id": "pc32-t2",
+          "statement": "Write the quadratic with zeros $\\tfrac{1}{2}$ and $-3$ whose leading coefficient is 2, expanded.",
+          "solution": "$f(x) = 2(x - \\frac{1}{2})(x + 3) = (2x - 1)(x + 3) = 2x^2 + 5x - 3$. Check: $f(\\frac{1}{2}) = \\frac{1}{2} + \\frac{5}{2} - 3 = 0$. ✓",
+          "check": [
+            "expand(2*(x - Rational(1,2))*(x + 3) - (2*x**2 + 5*x - 3)) == 0",
+            "2*Rational(1,4) + 5*Rational(1,2) - 3 == 0",
+            "2*9 - 15 - 3 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "One fact, two languages",
+            "body": "The graph says: 'crosses the x-axis at $x = 2$.' The algebra says: '$(x - 2)$ divides evenly.' The **Factor Theorem** guarantees these are the SAME statement: $f(c) = 0$ exactly when $(x - c)$ is a factor. Everything in this lesson is translation practice between the two languages."
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Play",
+            "title": "Drag a zero, drag a factor",
+            "teach": "This cubic is $y = a(x - r_1)(x - r_2)(x - r_3)$ with one root on a stepper. Move it and watch the crossing slide along the x-axis while the factored formula updates in lockstep — the intercept and the factor are one object.",
+            "config": {
+              "mode": "zeros",
+              "zeros": [
+                -2,
+                1,
+                3
+              ]
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Translate a factor",
+            "prompt": "The zeros of $f(x) = (x + 4)(x - 5)x$ are:",
+            "options": [
+              "$-4, 5, 0$",
+              "$4, -5, 0$",
+              "$4, 5$",
+              "$-4, 5$ only"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each factor dies at its own root: $x + 4 = 0$ at $-4$, $x - 5 = 0$ at $5$, and the lone $x$ at $0$ — don't forget the naked factor $x$.",
+            "check": [
+              "(-4 + 4)*(-4 - 5)*(-4) == 0",
+              "(5 + 4)*(5 - 5)*5 == 0",
+              "(0 + 4)*(0 - 5)*0 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Plug in the candidate",
+            "body": "To test whether $(x - 3)$ divides a big polynomial, DON'T divide — evaluate. Compute $f(3)$: zero means yes (and you may divide it out to shrink the problem); nonzero means no, and the value you got is actually the REMAINDER that division would leave (next lesson's theorem, sneak-previewed)."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Test, divide, finish",
+            "problemId": "pc32-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "The worked cubic, sampled",
+            "teach": "Samples of $f(x) = (x+2)(x-1)(x-3)$: three crossings at exactly the three roots $-2, 1, 3$ — with the odd-degree arms (down-left, up-right) from last lesson framing them.",
+            "config": {
+              "mode": "plot",
+              "min": -5,
+              "max": 6,
+              "points": [
+                {
+                  "x": -3,
+                  "y": -24
+                },
+                {
+                  "x": -2,
+                  "y": 0
+                },
+                {
+                  "x": 0,
+                  "y": 6
+                },
+                {
+                  "x": 1,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": -4
+                },
+                {
+                  "x": 3,
+                  "y": 0
+                },
+                {
+                  "x": 4,
+                  "y": 18
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Backwards",
+            "title": "Building from zeros — with a free dial",
+            "body": "Zeros $-1, 2, 4$ hand you the skeleton $a(x+1)(x-2)(x-4)$ — note each sign flips going from root to factor. But $a$ is still FREE: doubling it doubles every height and keeps every crossing. Infinitely many polynomials share those zeros; one extra point (often the y-intercept) pins the family down to one member."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Pin down a",
+            "problemId": "pc32-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The free dial",
+            "prompt": "Two different cubics both have zeros exactly $\\{-1, 2, 4\\}$. How is that possible?",
+            "options": [
+              "different leading coefficients a",
+              "one of them has a fourth zero",
+              "it isn't possible",
+              "different y-intercepts force different zeros"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2(x+1)(x-2)(x-4)$ and $5(x+1)(x-2)(x-4)$ share every crossing but differ everywhere else — the vertical stretch $a$ is invisible to the zeros.",
+            "check": [
+              "2*(0+1)*(0-2)*(0-4) == 16",
+              "5*(0+1)*(0-2)*(0-4) == 40",
+              "16 != 40"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Candidate zeros from the constant",
+            "body": "For integer-coefficient polynomials, any INTEGER zero must divide the constant term (if $c$ is a root, $x - c$ divides, and the constant is a product involving $c$). Facing $x^3 - 2x^2 - 5x + 6$, test only $\\pm 1, \\pm 2, \\pm 3, \\pm 6$ — a short menu instead of a blind search."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two candidates",
+            "problemId": "pc32-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Fractional zero, fixed leader",
+            "problemId": "pc32-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Factor Theorem: f(c) = 0 ⟺ (x − c) divides f — test by evaluating, not dividing.",
+              "Read zeros opposite the written sign; build factors as (x − root).",
+              "Zeros give a family a(x−r₁)…; one more point pins the stretch a."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "multiplicity-and-graph-shape",
+      "title": "Multiplicity & Graph Shape",
+      "concreteComparison": "At a crossing, multiplicity is how the road meets the river: multiplicity 1 is a bridge straight across, multiplicity 2 bounces off the bank like a skipping stone, multiplicity 3 flattens out mid-crossing like a slow S-bend.",
+      "objective": "Use the multiplicity of each zero to predict cross / bounce / flatten behavior, sketch polynomials from factored form, and recover factored form from a graph.",
+      "concept": [
+        "A repeated factor $(x - c)^m$ gives the zero $c$ **multiplicity** $m$, and $m$ controls the SHAPE at the intercept. $m = 1$: the graph CROSSES cleanly, like a line. $m = 2$: it touches and BOUNCES back (a parabola kissing the axis). $m = 3$: it crosses but FLATTENS first, an S-bend through the intercept.",
+        "The parity rule: **odd multiplicity crosses** (sign changes), **even multiplicity bounces** (sign doesn't). Near $x = c$ the factor $(x-c)^m$ behaves like a tiny copy of $x^m$ at the origin — the same even-erases / odd-remembers logic as end behavior.",
+        "Multiplicities also budget the degree: they must SUM to it. A degree-5 polynomial with a double zero and a triple zero is fully spent: $a(x-r)^2(x-s)^3$. Counting multiplicities, every degree-$n$ polynomial has at most $n$ real zeros."
+      ],
+      "keyIdea": "(x − c)^m: odd m crosses (m ≥ 3 flattens first), even m bounces; multiplicities sum to the degree.",
+      "facts": [
+        {
+          "title": "Parity at the intercept",
+          "latex": "m \\text{ odd: cross}, \\quad m \\text{ even: bounce}",
+          "explanation": "Sign changes exactly when the multiplicity is odd."
+        },
+        {
+          "title": "Local model",
+          "latex": "\\text{near } c: f(x) \\approx k(x - c)^m",
+          "explanation": "The intercept looks like x^m at the origin: line, parabola, or S-bend."
+        },
+        {
+          "title": "Degree budget",
+          "latex": "\\sum m_i = \\deg f",
+          "explanation": "Multiplicities spend the degree; at most n real zeros counted with multiplicity."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc33-we1",
+          "statement": "Describe the graph of $f(x) = (x + 1)^2 (x - 2)$ at each intercept, and give its end behavior.",
+          "solution": "Zero $-1$ has multiplicity 2: BOUNCE (touch and turn). Zero $2$ has multiplicity 1: clean CROSS. Degree $2 + 1 = 3$, leading coefficient positive: arms down-left, up-right. Sanity: $f(0) = (1)(−2) = -2$ — below the axis between the bounce and the cross. ✓",
+          "check": [
+            "((-1) + 1)**2 * ((-1) - 2) == 0",
+            "(2 + 1)**2 * (2 - 2) == 0",
+            "(0 + 1)**2 * (0 - 2) == -2",
+            "2 + 1 == 3"
+          ]
+        },
+        {
+          "id": "pc33-we2",
+          "statement": "A polynomial bounces off the x-axis at $x = -3$, crosses with a flattened S-bend at $x = 1$, and passes through $(0, -9)$. Find the lowest-degree polynomial that fits, and explain why no quartic can.",
+          "solution": "Bounce at $-3$: even multiplicity, cheapest is 2. Flattened cross at 1: odd and at least 3, cheapest is 3. The budget $2 + 3 = 5$ already exceeds 4 — a quartic cannot host this pair of behaviors, so the minimum degree is 5: $f(x) = a(x+3)^2(x-1)^3$. Pin $a$: $f(0) = a(9)(-1) = -9a = -9$, so $a = 1$ and $f(x) = (x+3)^2(x-1)^3$.",
+          "check": [
+            "2 + 3 == 5",
+            "5 > 4",
+            "(0+3)**2*(0-1)**3 == -9",
+            "((-3)+3)**2*((-3)-1)**3 == 0",
+            "(1+3)**2*(1-1)**3 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing a bounce as a sharp V-corner.",
+          "correction": "A bounce is a smooth parabolic kiss — polynomials have no corners anywhere. Near the double zero the graph IS a small parabola $k(x-c)^2$.",
+          "authored": true
+        },
+        {
+          "text": "Counting a double zero once against the degree.",
+          "correction": "Multiplicities SUM to the degree: $(x+1)^2(x-2)$ is degree 3 with only two distinct intercepts. A quartic with zeros 1, 2, 3, 4 has no room for any repeat.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc33-t1",
+          "statement": "For $f(x) = -2x(x - 3)^2(x + 2)^3$: list each zero with multiplicity and behavior, and give the degree and end behavior.",
+          "solution": "Zeros: $0$ (m = 1, cross), $3$ (m = 2, bounce), $-2$ (m = 3, flattened cross). Degree $1 + 2 + 3 = 6$, leading coefficient $-2$: even degree, negative — BOTH arms down.",
+          "check": [
+            "1 + 2 + 3 == 6",
+            "-2*(1)*(1-3)**2*(1+2)**3 == -216",
+            "-2*3*(3-3)**2*(3+2)**3 == 0",
+            "-2*(-2)*((-2)-3)**2*((-2)+2)**3 == 0"
+          ]
+        },
+        {
+          "id": "pc33-t2",
+          "statement": "Write the lowest-degree polynomial with leading coefficient 1 that bounces at $x = 4$ and crosses cleanly at $x = -1$, then expand it.",
+          "solution": "Bounce: $(x-4)^2$; clean cross: $(x+1)^1$. Lowest degree: $f(x) = (x-4)^2(x+1) = x^3 - 7x^2 + 8x + 16$.",
+          "check": [
+            "expand((x-4)**2*(x+1) - (x**3 - 7*x**2 + 8*x + 16)) == 0",
+            "(4-4)**2*(4+1) == 0",
+            "(-1-4)**2*(-1+1) == 0",
+            "(0-4)**2*(0+1) == 16"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Three ways to meet the axis",
+            "body": "Two polynomials can share a zero and look completely different there. $(x-1)$ crosses like a bridge; $(x-1)^2$ touches and BOUNCES back; $(x-1)^3$ crosses but flattens into an S-bend first. The exponent on the factor — the **multiplicity** — is the whole story at that intercept."
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Play",
+            "title": "Cross, bounce, flatten",
+            "teach": "Step the multiplicity $m$ at the marked zero through 1, 2, 3. Watch the meeting change character: straight through, skip off the bank, slow S through. Odd crosses, even bounces — and higher $m$ hugs the axis flatter.",
+            "config": {
+              "mode": "multiplicity",
+              "m": 1
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why parity",
+            "title": "A tiny x^m lives at each zero",
+            "body": "Near its zero, $(x - c)^m$ IS a miniature $x^m$ centered at $c$ (other factors just contribute a nonzero constant there). So the intercept inherits $x^m$'s origin behavior: odd powers change sign (cross), even powers don't (bounce). Same even-erases/odd-remembers logic that ran end behavior — now applied locally."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the meeting",
+            "prompt": "How does $f(x) = (x - 5)^4(x + 2)$ meet the x-axis at $x = 5$?",
+            "options": [
+              "bounces (touches and turns back)",
+              "crosses cleanly",
+              "crosses with a flat S-bend",
+              "has a corner"
+            ],
+            "correctIndex": 0,
+            "explanation": "Multiplicity 4 is EVEN: no sign change — a bounce, hugging the axis even flatter than a parabola. At $x = -2$ (m = 1) it crosses cleanly.",
+            "check": [
+              "(5-5)**4*(5+2) == 0",
+              "(6-5)**4*(6+2) == 8",
+              "(4-5)**4*(4+2) == 6",
+              "8 > 0",
+              "6 > 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Full shape report",
+            "problemId": "pc33-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Bounce at −1, cross at 2",
+            "teach": "Samples of $(x+1)^2(x-2)$: at $-1$ the graph kisses the axis from below and turns back (both neighbours negative); at $2$ it passes straight through (signs flip). One glance now tells you the exponents.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 4,
+              "points": [
+                {
+                  "x": -2,
+                  "y": -4
+                },
+                {
+                  "x": -1,
+                  "y": 0,
+                  "label": "bounce"
+                },
+                {
+                  "x": 0,
+                  "y": -2
+                },
+                {
+                  "x": 1,
+                  "y": -4
+                },
+                {
+                  "x": 2,
+                  "y": 0,
+                  "label": "cross"
+                },
+                {
+                  "x": 2.5,
+                  "y": 6.1
+                },
+                {
+                  "x": 3,
+                  "y": 16
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The budget",
+            "title": "Multiplicities spend the degree",
+            "body": "Exponents in factored form add up to the degree — no exceptions. $(x+1)^2(x-2)$: degree 3, two intercepts. This budget is a powerful audit: a 'quartic' bouncing at one point ($\\ge 2$) and flattening through another ($\\ge 3$) is IMPOSSIBLE — that's degree 5 minimum. Always tally before you trust a description."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Audit the degree, then build",
+            "problemId": "pc33-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Budget audit",
+            "prompt": "Can a degree-4 polynomial bounce at THREE different x-intercepts?",
+            "options": [
+              "no — three bounces need degree ≥ 6",
+              "yes, if the leading coefficient is small",
+              "yes — bounces don't count against degree",
+              "only if one bounce is at x = 0"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each bounce costs an even multiplicity, at least 2. Three bounces cost at least $2+2+2 = 6 > 4$. The budget vetoes it regardless of coefficients.",
+            "check": [
+              "2 + 2 + 2 == 6",
+              "6 > 4"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Sketch protocol",
+            "body": "From factored form, sketch in this order: (1) arms from degree + leading sign, (2) mark each zero with its behavior letter — C (cross), B (bounce), S (flat cross), (3) connect smoothly, checking one easy value like $f(0)$ to choose above/below between intercepts. Three passes, correct shape every time."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Six degrees of behavior",
+            "problemId": "pc33-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Build the cheapest bouncer",
+            "problemId": "pc33-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Odd multiplicity crosses (≥ 3 flattens first); even multiplicity bounces.",
+              "Near each zero the graph is a tiny k(x − c)^m — smooth, never a corner.",
+              "Multiplicities sum to the degree; audit the budget before building or believing."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "division-and-the-remainder-theorem",
+      "title": "Division & the Remainder Theorem",
+      "concreteComparison": "Polynomial division is integer division with x's: 17 ÷ 5 is 3 remainder 2, and (x³ …) ÷ (x − 2) is a quadratic quotient with a constant remainder. The Remainder Theorem is the shortcut: the remainder is just f(2) — no long division needed.",
+      "objective": "Divide polynomials by linear divisors (long division and synthetic division), and use the Remainder Theorem to evaluate and to connect remainders with factors.",
+      "concept": [
+        "Dividing $f(x)$ by $(x - c)$ writes $f(x) = (x - c) \\, q(x) + r$ with a constant remainder $r$ — exactly like $17 = 5 \\cdot 3 + 2$. Long division runs the school algorithm on terms; **synthetic division** is its fast bookkeeping for linear divisors: bring down, multiply by $c$, add, repeat.",
+        "The **Remainder Theorem** falls straight out of the equation: plug $x = c$ into $f(x) = (x-c)q(x) + r$ and the first term dies, leaving $f(c) = r$. The remainder IS the function value — so synthetic division doubles as a fast evaluator.",
+        "The Factor Theorem is now just the special case $r = 0$: remainder zero ⟺ $f(c) = 0$ ⟺ $(x - c)$ is a factor. Division, evaluation, and factoring are one machine seen from three sides."
+      ],
+      "keyIdea": "f(x) = (x − c)q(x) + r forces r = f(c); synthetic division computes q and r in one pass, and r = 0 recovers the Factor Theorem.",
+      "facts": [
+        {
+          "title": "Division identity",
+          "latex": "f(x) = (x - c)\\,q(x) + r",
+          "explanation": "Quotient one degree lower, constant remainder — like integers."
+        },
+        {
+          "title": "Remainder Theorem",
+          "latex": "r = f(c)",
+          "explanation": "Substitute x = c: the (x − c) term vanishes, leaving the remainder."
+        },
+        {
+          "title": "Factor as special case",
+          "latex": "r = 0 \\iff (x - c) \\mid f",
+          "explanation": "The Factor Theorem is the Remainder Theorem at r = 0."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc34-we1",
+          "statement": "Divide $f(x) = x^3 - 4x^2 + x + 6$ by $(x - 2)$ using synthetic division, and state the conclusion.",
+          "solution": "Coefficients $1, -4, 1, 6$ with $c = 2$: bring down 1; $1 \\cdot 2 = 2$, add to $-4$: $-2$; $-2 \\cdot 2 = -4$, add to 1: $-3$; $-3 \\cdot 2 = -6$, add to 6: $0$. Quotient $x^2 - 2x - 3$, remainder 0 — so $(x-2)$ is a factor and $f(x) = (x-2)(x-3)(x+1)$ after factoring the quotient.",
+          "check": [
+            "expand((x - 2)*(x**2 - 2*x - 3) - (x**3 - 4*x**2 + x + 6)) == 0",
+            "expand((x-3)*(x+1) - (x**2 - 2*x - 3)) == 0",
+            "2**3 - 4*2**2 + 2 + 6 == 0"
+          ]
+        },
+        {
+          "id": "pc34-we2",
+          "statement": "Without dividing, find the remainder when $f(x) = 2x^4 - 3x^2 + 5x - 1$ is divided by $(x + 1)$.",
+          "solution": "$(x + 1) = (x - (-1))$, so the remainder is $f(-1) = 2(1) - 3(1) + 5(-1) - 1 = 2 - 3 - 5 - 1 = -7$. One substitution replaces the whole division.",
+          "check": [
+            "2*(-1)**4 - 3*(-1)**2 + 5*(-1) - 1 == -7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using c = 1 in synthetic division when dividing by (x + 1).",
+          "correction": "The divisor is $(x - c)$: dividing by $(x + 1)$ means $c = -1$. Flip the sign of what's written — the same trap as reading zeros from factors.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting a zero placeholder for a missing term: dividing x³ + 5 with coefficients 1, 5.",
+          "correction": "Every degree needs a slot: $x^3 + 5$ is $1, 0, 0, 5$. Skipping placeholders shifts every product one column and wrecks the whole tableau.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc34-t1",
+          "statement": "Divide $f(x) = x^3 + 2x^2 - 5x - 6$ by $(x + 3)$ synthetically, and factor $f$ completely.",
+          "solution": "$c = -3$, coefficients $1, 2, -5, -6$: bring 1; $\\times(-3) = -3$, add: $-1$; $\\times(-3) = 3$, add: $-2$; $\\times(-3) = 6$, add: 0. Quotient $x^2 - x - 2 = (x-2)(x+1)$; so $f(x) = (x+3)(x-2)(x+1)$.",
+          "check": [
+            "expand((x + 3)*(x**2 - x - 2) - (x**3 + 2*x**2 - 5*x - 6)) == 0",
+            "expand((x-2)*(x+1) - (x**2 - x - 2)) == 0",
+            "(-3)**3 + 2*(-3)**2 - 5*(-3) - 6 == 0"
+          ]
+        },
+        {
+          "id": "pc34-t2",
+          "statement": "When $f(x) = x^3 + kx + 4$ is divided by $(x - 2)$, the remainder is 6. Find $k$.",
+          "solution": "Remainder Theorem: $f(2) = 8 + 2k + 4 = 6$, so $2k = -6$ and $k = -3$. Check: $f(x) = x^3 - 3x + 4$ gives $f(2) = 8 - 6 + 4 = 6$. ✓",
+          "check": [
+            "8 + 2*(-3) + 4 == 6",
+            "Rational(-6,2) == -3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "17 ÷ 5, but with x's",
+            "body": "You have divided with remainders since primary school: $17 = 5 \\cdot 3 + 2$. Polynomials obey the identical grammar: $f(x) = (x - c) \\cdot q(x) + r$ — a quotient one degree lower, plus a constant remainder. Hold onto that equation; both of this lesson's theorems are one substitution away from it."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The fast lane",
+            "title": "Synthetic division",
+            "body": "For linear divisors there is a beautiful shorthand. To divide $x^3 - 4x^2 + x + 6$ by $(x - 2)$: write the coefficients $1 \\;\\; {-4} \\;\\; 1 \\;\\; 6$ and the root $c = 2$. **Bring down** the 1. Then repeat: multiply by $c$, add to the next coefficient. The row you produce — $1, -2, -3, \\mathbf{0}$ — is the quotient's coefficients ($x^2 - 2x - 3$) with the remainder last."
+          },
+          {
+            "kind": "orderOfOps",
+            "eyebrow": "Watch",
+            "title": "The bring-multiply-add loop",
+            "teach": "The same three-beat rhythm drives every column of a synthetic tableau — here it is on the worked numbers: each stage multiplies the running value by c = 2, then adds the next coefficient.",
+            "config": {
+              "stages": [
+                {
+                  "expr": "1",
+                  "did": "bring down the leading 1"
+                },
+                {
+                  "expr": "1*2 + (-4) = -2",
+                  "did": "multiply by c, add next coefficient"
+                },
+                {
+                  "expr": "-2*2 + 1 = -3",
+                  "did": "multiply by c, add next"
+                },
+                {
+                  "expr": "-3*2 + 6 = 0",
+                  "did": "final add: the remainder, 0"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Divide, then factor down",
+            "problemId": "pc34-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Set up the tableau",
+            "prompt": "To divide $x^3 + 7x - 2$ by $(x + 4)$ synthetically, you use $c$ and coefficient row:",
+            "options": [
+              "$c = -4$; $\\;1, 0, 7, -2$",
+              "$c = 4$; $\\;1, 0, 7, -2$",
+              "$c = -4$; $\\;1, 7, -2$",
+              "$c = 4$; $\\;1, 7, -2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two traps at once: $(x + 4) = (x - (-4))$ makes $c = -4$, and the missing $x^2$ term needs its 0 placeholder.",
+            "check": [
+              "-4 + 4 == 0",
+              "1 + 3 == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The theorem",
+            "title": "The remainder is f(c)",
+            "body": "Now the punchline. In $f(x) = (x - c)q(x) + r$, substitute $x = c$: the first term is $0 \\cdot q(c) = 0$, and what survives is $f(c) = r$. **The remainder equals the function value.** Need $f(-1)$ for a quartic? Synthetic-divide by $c = -1$ and read the last cell — often faster and safer than powers-and-signs arithmetic."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Remainder without dividing",
+            "problemId": "pc34-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Three faces, one machine",
+            "prompt": "Dividing $f$ by $(x - 5)$ leaves remainder 0. Which conclusions follow?",
+            "options": [
+              "all three of the others",
+              "$f(5) = 0$",
+              "$(x - 5)$ is a factor of $f$",
+              "the graph crosses or touches the x-axis at $x = 5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Remainder 0 = value 0 (Remainder Theorem) = factor (Factor Theorem) = intercept (graph language). One fact, four dialects.",
+            "check": [
+              "5 - 5 == 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Audit with the identity",
+            "body": "After any division, multiply back: does $(x - c) \\cdot q(x) + r$ expand to the original $f$? Checking just the constant term takes five seconds — for the worked example, $(-2)(-3) + 0 = 6$ ✓ — and instantly catches dropped placeholders and sign slips."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Horner's method",
+            "body": "Synthetic division is also how computers evaluate polynomials — under the name Horner's method, it needs only $n$ multiplications for degree $n$ instead of the $\\frac{n(n+1)}{2}$ that naive powers cost. Your tableau shortcut is production-grade numerical code."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Negative c, full factor",
+            "problemId": "pc34-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Solve for the coefficient",
+            "problemId": "pc34-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "f(x) = (x − c)q(x) + r: quotient one degree down, constant remainder.",
+              "Synthetic division: root c (sign flipped!), zero placeholders, bring-multiply-add.",
+              "r = f(c); r = 0 is the Factor Theorem — division, evaluation, factoring are one machine."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc3-pr-1",
+      "statement": "State the end behavior of $f(x) = -2x^4 + 9x^3 - x$ and of $g(x) = x^5 - 100x^2$.",
+      "solution": "$f$: leader $-2x^4$ — even, negative: both arms DOWN. $g$: leader $x^5$ — odd, positive: down-left, up-right. (At $x = 10$, $x^5 = 100000$ vs $100x^2 = 10000$: the leader rules.)",
+      "check": [
+        "10**5 == 100000",
+        "100*10**2 == 10000",
+        "100000 > 10000"
+      ]
+    },
+    {
+      "id": "pc3-pr-2",
+      "statement": "List the zeros of $f(x) = 3(x - 4)(x + 1)(2x - 1)$ and give its degree and end behavior.",
+      "solution": "Zeros: $4, -1, \\frac{1}{2}$. Degree 3; leading term $3 \\cdot x \\cdot x \\cdot 2x = 6x^3$ — odd, positive: down-left, up-right.",
+      "check": [
+        "3*(4-4)*(4+1)*(2*4-1) == 0",
+        "3*(-1-4)*(-1+1)*(2*(-1)-1) == 0",
+        "3*(Rational(1,2)-4)*(Rational(1,2)+1)*(2*Rational(1,2)-1) == 0",
+        "3*2 == 6"
+      ]
+    },
+    {
+      "id": "pc3-pr-3",
+      "statement": "Is $(x + 5)$ a factor of $f(x) = x^3 + 6x^2 + 3x - 10$?",
+      "solution": "$f(-5) = -125 + 150 - 15 - 10 = 0$: YES. Dividing: $f(x) = (x+5)(x^2 + x - 2) = (x+5)(x+2)(x-1)$.",
+      "check": [
+        "(-5)**3 + 6*(-5)**2 + 3*(-5) - 10 == 0",
+        "expand((x+5)*(x**2 + x - 2) - (x**3 + 6*x**2 + 3*x - 10)) == 0"
+      ]
+    },
+    {
+      "id": "pc3-pr-4",
+      "statement": "Find the cubic with zeros $-2, 0, 5$ passing through $(1, 6)$.",
+      "solution": "$f(x) = a x(x+2)(x-5)$; at $x = 1$: $a(1)(3)(-4) = -12a = 6$, so $a = -\\frac{1}{2}$: $f(x) = -\\frac{1}{2}x(x+2)(x-5)$.",
+      "check": [
+        "Rational(-1,2)*1*(1+2)*(1-5) == 6",
+        "Rational(6,-12) == Rational(-1,2)",
+        "Rational(-1,2)*0*(0+2)*(0-5) == 0"
+      ]
+    },
+    {
+      "id": "pc3-pr-5",
+      "statement": "For $f(x) = x^2(x + 3)(x - 1)^3$: give each zero's multiplicity and behavior, the degree, and the end behavior.",
+      "solution": "$0$: m = 2, bounce. $-3$: m = 1, cross. $1$: m = 3, flattened cross. Degree $2 + 1 + 3 = 6$, positive leader: both arms UP.",
+      "check": [
+        "2 + 1 + 3 == 6",
+        "(2)**2*(2+3)*(2-1)**3 == 20",
+        "(-1)**2*(-1+3)*(-1-1)**3 == -16"
+      ]
+    },
+    {
+      "id": "pc3-pr-6",
+      "statement": "Write the lowest-degree monic polynomial that crosses cleanly at $x = -2$ and bounces at $x = 3$, expanded.",
+      "solution": "$f(x) = (x + 2)(x - 3)^2 = x^3 - 4x^2 - 3x + 18$.",
+      "check": [
+        "expand((x + 2)*(x - 3)**2 - (x**3 - 4*x**2 - 3*x + 18)) == 0",
+        "(-2 + 2)*(-2 - 3)**2 == 0",
+        "(3 + 2)*(3 - 3)**2 == 0"
+      ]
+    },
+    {
+      "id": "pc3-pr-7",
+      "statement": "Use synthetic division to divide $f(x) = 2x^3 - 7x^2 + 5$ by $(x - 3)$, and state quotient and remainder.",
+      "solution": "$c = 3$, coefficients $2, -7, 0, 5$ (placeholder!): bring 2; $6$, add: $-1$; $-3$, add: $-3$; $-9$, add: $-4$. Quotient $2x^2 - x - 3$, remainder $-4$. Check: $f(3) = 54 - 63 + 5 = -4$. ✓",
+      "check": [
+        "expand((x - 3)*(2*x**2 - x - 3) + (-4) - (2*x**3 - 7*x**2 + 5)) == 0",
+        "2*27 - 7*9 + 5 == -4"
+      ]
+    },
+    {
+      "id": "pc3-pr-8",
+      "statement": "Without dividing, find the remainder when $x^{10} - 3x + 7$ is divided by $(x - 1)$ and by $(x + 1)$.",
+      "solution": "By $(x-1)$: $f(1) = 1 - 3 + 7 = 5$. By $(x+1)$: $f(-1) = 1 + 3 + 7 = 11$.",
+      "check": [
+        "1**10 - 3*1 + 7 == 5",
+        "(-1)**10 - 3*(-1) + 7 == 11"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc3-ty-1",
+      "statement": "A polynomial has both arms up and exactly three x-intercepts, one a bounce. What is its minimum possible degree?",
+      "solution": "Arms up: even degree. Multiplicity budget: bounce (2) + two other intercepts (1 + 1) = 4 — even. Minimum degree 4.",
+      "check": [
+        "2 + 1 + 1 == 4",
+        "4 > 3"
+      ]
+    },
+    {
+      "id": "pc3-ty-2",
+      "statement": "Factor $f(x) = x^3 - 7x + 6$ completely, starting from a Factor Theorem test of small integers.",
+      "solution": "$f(1) = 1 - 7 + 6 = 0$: $(x-1)$ divides. Synthetic: quotient $x^2 + x - 6 = (x+3)(x-2)$. So $f(x) = (x-1)(x+3)(x-2)$; zeros $1, -3, 2$.",
+      "check": [
+        "1 - 7 + 6 == 0",
+        "expand((x-1)*(x**2 + x - 6) - (x**3 - 7*x + 6)) == 0",
+        "expand((x+3)*(x-2) - (x**2 + x - 6)) == 0",
+        "(-3)**3 - 7*(-3) + 6 == 0",
+        "2**3 - 7*2 + 6 == 0"
+      ]
+    },
+    {
+      "id": "pc3-ty-3",
+      "statement": "Sketch plan for $f(x) = -(x + 2)^2(x - 1)$: end behavior, each intercept's behavior, and the sign of $f(0)$.",
+      "solution": "Degree 3, leading coefficient $-1$: arms UP-left, DOWN-right. At $-2$: bounce (m = 2); at $1$: cross (m = 1). $f(0) = -(4)(-1) = 4 > 0$ — the graph rides above the axis between the bounce and the cross.",
+      "check": [
+        "2 + 1 == 3",
+        "-(0 + 2)**2*(0 - 1) == 4",
+        "4 > 0",
+        "-((-2) + 2)**2*((-2) - 1) == 0"
+      ]
+    },
+    {
+      "id": "pc3-ty-4",
+      "statement": "Confirm that a double zero at $x = 2$ with simple zeros at $x = \\pm 1$ spends degree 4 exactly, then build the monic quartic, expanded.",
+      "solution": "Budget: $2 + 1 + 1 = 4$ ✓ — exactly degree 4, so a quartic exists. Monic: $f(x) = (x-2)^2(x-1)(x+1) = (x-2)^2(x^2 - 1) = x^4 - 4x^3 + 3x^2 + 4x - 4$.",
+      "check": [
+        "2 + 1 + 1 == 4",
+        "expand((x-2)**2*(x**2 - 1) - (x**4 - 4*x**3 + 3*x**2 + 4*x - 4)) == 0",
+        "(2-2)**2*(2**2-1) == 0",
+        "(1-2)**2*(1-1)*(1+1) == 0"
+      ]
+    },
+    {
+      "id": "pc3-ty-5",
+      "statement": "Divide $x^4 - 16$ by $(x - 2)$ synthetically and interpret the remainder.",
+      "solution": "Coefficients $1, 0, 0, 0, -16$, $c = 2$: bring 1; 2; 4; 8; final add $16 - 16 = 0$. Quotient $x^3 + 2x^2 + 4x + 8$, remainder 0 — so $x = 2$ is a zero and $(x-2)$ a factor, as $2^4 = 16$ predicts.",
+      "check": [
+        "expand((x - 2)*(x**3 + 2*x**2 + 4*x + 8) - (x**4 - 16)) == 0",
+        "2**4 - 16 == 0"
+      ]
+    },
+    {
+      "id": "pc3-ty-6",
+      "statement": "When $f(x) = x^3 + ax^2 - 5$ is divided by $(x + 1)$ the remainder is $-2$. Find $a$ and then the remainder upon division by $(x - 1)$.",
+      "solution": "$f(-1) = -1 + a - 5 = -2$ gives $a = 4$. Then $f(x) = x^3 + 4x^2 - 5$ and the remainder by $(x-1)$ is $f(1) = 1 + 4 - 5 = 0$ — in fact $(x - 1)$ is a factor.",
+      "check": [
+        "-1 + 4 - 5 == -2",
+        "1 + 4 - 5 == 0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1040 @@
+{
+  "slug": "exponentials-and-logarithms",
+  "title": "Exponentials & Logarithms",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Growth that multiplies instead of adds, the compounding that leads to e, and logarithms — the inverse that turns multiplication into addition and solves for exponents.",
+  "buildsOn": "Exponent rules from Algebra 1; inverse functions from Unit 1.",
+  "lessons": [
+    {
+      "slug": "exponential-growth-and-decay",
+      "title": "Exponential Growth & Decay",
+      "concreteComparison": "Linear growth is a salary: +500 every month, same step forever. Exponential growth is a rumor: everyone who hears it tells two friends — the step itself grows, and what starts slower ends unimaginably faster.",
+      "objective": "Model with f(x) = a·bˣ: identify initial value and growth/decay factor, convert percent rates to factors, and compare exponential with linear growth.",
+      "concept": [
+        "The exponential family is $f(x) = a \\cdot b^x$ with $a$ the **initial value** ($f(0) = a$, the y-intercept) and $b$ the **factor** applied once per step. $b > 1$: growth. $0 < b < 1$: decay. Each step MULTIPLIES where linear growth adds.",
+        "Percent language converts to factors: '+12% per year' means $b = 1.12$; '−25% per year' means $b = 0.75$. The factor is $1 + r$ with $r$ signed — never the percent alone, always 'one plus'.",
+        "Every exponential $a \\cdot b^x$ (with $a > 0$) has the same skeleton: y-intercept at $a$, horizontal asymptote $y = 0$ on one side (decay side), unbounded blast-off on the other. It NEVER touches zero: halving forever never reaches nothing."
+      ],
+      "keyIdea": "f(x) = a·bˣ: start at a, multiply by b each step — b = 1 + r from percent language; growth beats any line eventually, decay halves toward the y = 0 asymptote forever.",
+      "facts": [
+        {
+          "title": "Anatomy",
+          "latex": "f(x) = a b^x: \\; f(0) = a, \\; \\tfrac{f(x+1)}{f(x)} = b",
+          "explanation": "Start value and constant ratio — the two dials."
+        },
+        {
+          "title": "Percent to factor",
+          "latex": "+12\\%: b = 1.12, \\quad -25\\%: b = 0.75",
+          "explanation": "b = 1 + r, rate signed; the '1 +' is mandatory."
+        },
+        {
+          "title": "The floor",
+          "latex": "a b^x > 0 \\text{ always}; \\; y = 0 \\text{ asymptote}",
+          "explanation": "Repeated multiplication by a positive number never lands on zero."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc51-we1",
+          "statement": "A colony starts at 500 bacteria and grows 20% per hour. Write the model and find the population after 3 hours.",
+          "solution": "Factor: $b = 1 + 0.20 = 1.2$; model $P(t) = 500(1.2)^t$. After 3 hours: $500(1.2)^3 = 500 \\cdot 1.728 = 864$.",
+          "check": [
+            "Rational(6,5)**3 == Rational(216,125)",
+            "500*Rational(216,125) == 864"
+          ]
+        },
+        {
+          "id": "pc51-we2",
+          "statement": "A car worth $20{,}000$ loses 15% of its value each year. Model its value and compute it after 2 years.",
+          "solution": "Decay factor: $b = 1 - 0.15 = 0.85$. $V(t) = 20000(0.85)^t$. After 2: $20000(0.85)^2 = 20000 \\cdot 0.7225 = 14450$.",
+          "check": [
+            "Rational(17,20)**2 == Rational(289,400)",
+            "20000*Rational(289,400) == 14450"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Modeling '−15% per year' with b = 0.15.",
+          "correction": "The factor is what REMAINS: $b = 1 - 0.15 = 0.85$. Using 0.15 models losing 85% a year. Always compute 1 + r first, sign included.",
+          "authored": true
+        },
+        {
+          "text": "Adding the growth each step: 500, 600, 720 → writing 500 + 100t.",
+          "correction": "20% growth multiplies: $500 \\to 600 \\to 720$ has RATIO 1.2, not equal steps (100 then 120). Check consecutive values by dividing, not subtracting — constant ratio means exponential.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc51-t1",
+          "statement": "A table shows $g(0) = 6, g(1) = 18, g(2) = 54$. Find the formula and $g(4)$.",
+          "solution": "Ratios: $\\frac{18}{6} = 3 = \\frac{54}{18}$: constant, so exponential with $a = 6, b = 3$: $g(x) = 6 \\cdot 3^x$. $g(4) = 6 \\cdot 81 = 486$.",
+          "check": [
+            "Rational(18,6) == 3",
+            "Rational(54,18) == 3",
+            "6*3**4 == 486"
+          ]
+        },
+        {
+          "id": "pc51-t2",
+          "statement": "Medicine decays 50% every hour in the bloodstream. Starting from 80 mg, how much remains after 4 hours — and does it ever reach exactly 0?",
+          "solution": "$M(t) = 80(0.5)^t$; $M(4) = 80 \\cdot \\frac{1}{16} = 5$ mg. It never reaches 0: each hour halves what's left, and half of a positive amount is positive — the graph rides the asymptote $y = 0$ forever.",
+          "check": [
+            "Rational(1,2)**4 == Rational(1,16)",
+            "80*Rational(1,16) == 5",
+            "Rational(5,2) > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Adding vs multiplying",
+            "body": "Two ways to grow. A salary adds: $+500$ each month, the same step forever — that's LINEAR. A rumor multiplies: each teller recruits two more — the step itself grows. Exponential functions are the algebra of the second kind: $f(x) = a \\cdot b^x$, where each unit of time MULTIPLIES by the factor $b$."
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Play",
+            "title": "The two dials: a and b",
+            "teach": "Step the start value $a$ and the base $b$. The ×b chips along the curve show the signature: every step right multiplies by the same $b$. Push $b$ below 1 and growth turns to decay — the same machine, shrinking instead.",
+            "config": {
+              "mode": "growth",
+              "a": 500,
+              "b": 1.2,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Spot the exponential",
+            "prompt": "Which table is exponential? A: $4, 8, 12, 16$. B: $4, 8, 16, 32$.",
+            "options": [
+              "B — constant ratio ×2",
+              "A — constant step +4",
+              "both",
+              "neither"
+            ],
+            "correctIndex": 0,
+            "explanation": "Test by DIVIDING consecutive terms: B gives $2, 2, 2$ (exponential, $b = 2$); A gives $2, 1.5, 1.33$ — no. A has constant DIFFERENCES: linear.",
+            "check": [
+              "Rational(8,4) == 2",
+              "Rational(32,16) == 2",
+              "Rational(12,8) != 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Percent language",
+            "title": "The factor is 1 + r",
+            "body": "Real problems speak in percents: 'grows 20% per hour', 'loses 15% per year'. Convert BEFORE modeling: the factor is $b = 1 + r$ with the rate signed. $+20\\% \\to b = 1.2$; $-15\\% \\to b = 0.85$. The '1 +' carries the part that stays; the single most common exponential error is dropping it."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Growth model from percent",
+            "problemId": "pc51-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Decay model from percent",
+            "problemId": "pc51-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read a model",
+            "prompt": "$f(t) = 300(0.94)^t$ models a quantity that…",
+            "options": [
+              "starts at 300 and loses 6% per step",
+              "starts at 300 and loses 94% per step",
+              "starts at 0.94 and grows by 300",
+              "starts at 300 and grows 94%"
+            ],
+            "correctIndex": 0,
+            "explanation": "$b = 0.94 = 1 - 0.06$: each step keeps 94%, losing 6%. Read decay factors as 'what remains'.",
+            "check": [
+              "1 - Rational(6,100) == Rational(94,100)"
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "y = 6·3ˣ, sampled",
+            "teach": "Samples of the tryIt function $6 \\cdot 3^x$: left of the y-axis it hugs the floor $y = 0$ (at $x = -2$ it's only $\\frac{2}{3}$), passes its intercept $(0, 6)$, then detonates — 18, 54. The flat-left, explosive-right silhouette is every growth exponential.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 4,
+              "points": [
+                {
+                  "x": -2,
+                  "y": 0.67
+                },
+                {
+                  "x": -1,
+                  "y": 2
+                },
+                {
+                  "x": 0,
+                  "y": 6,
+                  "label": "start a"
+                },
+                {
+                  "x": 1,
+                  "y": 18,
+                  "label": "×3"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The floor",
+            "title": "Halving never reaches nothing",
+            "body": "Decay's destination deserves a close look: $80 \\to 40 \\to 20 \\to 10 \\to 5 \\to \\ldots$ Each hour halves what remains — and half of a positive number is still positive. The graph approaches the x-axis forever without landing: $y = 0$ is a horizontal asymptote, the exponential's only floor. (Shifted models $a b^x + c$ move the floor to $y = c$.)"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The chessboard bill",
+            "body": "The classic: one grain of rice on square 1, doubling each square. Square 64 carries $2^{63} \\approx 9.2 \\times 10^{18}$ grains — more rice than humanity has EVER harvested. Constant-ratio growth is genuinely beyond intuition; that's why we model it instead of guessing."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Formula from a table",
+            "problemId": "pc51-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The floor in action",
+            "problemId": "pc51-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "f(x) = a·bˣ: start a, constant ratio b — test tables by dividing, not subtracting.",
+              "Percent to factor: b = 1 + r, rate signed; decay keeps what remains.",
+              "Exponentials never touch 0: y = 0 is the horizontal asymptote."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "compound-interest-and-e",
+      "title": "Compound Interest & the Number e",
+      "concreteComparison": "Compounding is interest earning interest — a snowball picking up snow that itself picks up snow. Squeeze the compounding intervals tighter and tighter and the formula doesn't blow up; it converges to nature's own growth constant, e ≈ 2.718.",
+      "objective": "Apply the compound interest formula for n compoundings per year, see how more frequent compounding approaches the limit e, and use continuous growth A = Pe^(rt).",
+      "concept": [
+        "Compounding $n$ times per year at annual rate $r$ splits the rate into $n$ slices of $\\frac{r}{n}$, applied as factors: $A = P\\left(1 + \\frac{r}{n}\\right)^{nt}$. More slices beat fewer: 10% compounded twice gives $(1.05)^2 = 1.1025$ — a quarter percent better than 10% once, because mid-year interest starts earning too.",
+        "Push $n \\to \\infty$ and the sequence $\\left(1 + \\frac{1}{n}\\right)^n$ — yearly 2, monthly 2.613, daily 2.7146 — climbs toward a ceiling: **$e \\approx 2.71828$**, the natural base. Continuous compounding is the limit: $A = Pe^{rt}$.",
+        "$e$ is not a curiosity — it's the base nature prefers: population growth, radioactive decay, cooling coffee, and (later) calculus, where $e^x$ is the unique function that is its own derivative. Most scientific models arrive written as $Q(t) = Q_0 e^{kt}$: growth for $k > 0$, decay for $k < 0$."
+      ],
+      "keyIdea": "A = P(1 + r/n)^(nt): more compounding slices always help but converge — the limit is e ≈ 2.718 and continuous growth A = Pe^(rt).",
+      "facts": [
+        {
+          "title": "n compoundings",
+          "latex": "A = P\\left(1 + \\tfrac{r}{n}\\right)^{nt}",
+          "explanation": "Split the rate into n slices; apply each as a factor."
+        },
+        {
+          "title": "The limit",
+          "latex": "\\left(1 + \\tfrac{1}{n}\\right)^n \\to e \\approx 2.71828",
+          "explanation": "More slices converge — they don't blow up."
+        },
+        {
+          "title": "Continuous model",
+          "latex": "A = P e^{rt}",
+          "explanation": "The n → ∞ limit; nature's default growth law."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc52-we1",
+          "statement": "$1000$ is invested at 8% for one year: compare annual vs quarterly compounding.",
+          "solution": "Annual: $1000(1.08) = 1080$. Quarterly: four slices of 2%: $1000(1.02)^4 = 1000 \\cdot 1.08243216 = 1082.43$ — quarterly wins by about $2.43$, the interest earned by mid-year interest.",
+          "check": [
+            "Rational(102,100)**4 == Rational(108243216,100000000)",
+            "1000*Rational(108,100) == 1080",
+            "Rational(108243216,100000) > 1080"
+          ]
+        },
+        {
+          "id": "pc52-we2",
+          "statement": "A population grows continuously: $P(t) = 2000 e^{0.05t}$. What is the initial population, the continuous rate, and the population's factor over one year (3 decimal places, using $e^{0.05} \\approx 1.05127$)?",
+          "solution": "Initial: $P(0) = 2000e^0 = 2000$. Continuous rate 5%. Yearly factor: $e^{0.05} \\approx 1.051$ — slightly MORE than 5.0% effective growth, the continuous-compounding bonus.",
+          "check": [
+            "2000*1 == 2000",
+            "Abs(exp(Rational(5,100)) - Rational(105127,100000)) < Rational(1,100000)",
+            "exp(Rational(5,100)) > Rational(105,100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing quarterly compounding of 8% as (1.08)⁴ per year.",
+          "correction": "Slice the RATE, not just the count: each quarter applies $\\frac{8\\%}{4} = 2\\%$, so the year is $(1.02)^4 \\approx 1.0824$ — not $(1.08)^4 \\approx 1.36$, which would be 8% four times over.",
+          "authored": true
+        },
+        {
+          "text": "Expecting infinite compounding to produce infinite money.",
+          "correction": "The slices shrink as fast as they multiply: $(1 + \\frac{1}{n})^n$ climbs but converges to $e \\approx 2.718$. Continuous compounding of 100% yearly turns 1 into about 2.72, not into infinity.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc52-t1",
+          "statement": "$500$ at 6% for 2 years, compounded semiannually: compute the amount.",
+          "solution": "Four half-year slices of 3%: $A = 500(1.03)^4 = 500 \\cdot 1.12550881 = 562.75$ (to the cent).",
+          "check": [
+            "Rational(103,100)**4 == Rational(112550881,100000000)",
+            "500*Rational(112550881,100000000) == Rational(11255088100,20000000)",
+            "Abs(Rational(11255088100,20000000) - Rational(56275,100)) < Rational(1,20)"
+          ]
+        },
+        {
+          "id": "pc52-t2",
+          "statement": "Carbon dating uses $Q(t) = Q_0 e^{-0.000121 t}$. Is this growth or decay, and what fraction remains after one half-life cycle if $e^{-0.000121 \\cdot 5730} \\approx 0.4998$?",
+          "solution": "Negative exponent coefficient: DECAY. After $t = 5730$ years the factor is $\\approx 0.4998 \\approx \\frac{1}{2}$ — half remains. That's why 5730 years is called carbon-14's half-life.",
+          "check": [
+            "Abs(exp(Rational(-121,1000000)*5730) - Rational(4998,10000)) < Rational(2,10000)",
+            "Rational(4998,10000) < Rational(1,2) + Rational(1,1000)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Interest earning interest",
+            "body": "Simple interest pays on the principal only. **Compound** interest pays on the whole running balance — including past interest. The mid-year interest starts earning immediately, like a snowball whose new snow itself gathers snow. The natural question: does compounding MORE OFTEN always help? And by how much?"
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Play",
+            "title": "Watch a balance compound",
+            "teach": "A principal compounds year by year — each bar is the last bar times the same factor. Notice the bars' GROWTH grows: the increments themselves climb, because interest is earning interest. That widening gap is the whole difference from simple interest.",
+            "config": {
+              "mode": "compound",
+              "p": 1000,
+              "r": 0.08,
+              "years": 10
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Slice the rate into n pieces",
+            "body": "Compounding $n$ times a year at annual rate $r$: each period applies the SLICED rate $\\frac{r}{n}$, and a year runs $n$ periods: $A = P(1 + \\frac{r}{n})^{nt}$. Quarterly 8% means four multiplications by $1.02$ — NOT four by $1.08$. Slice first, then count periods."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Annual vs quarterly",
+            "problemId": "pc52-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Set up the slices",
+            "prompt": "$2000$ at 12% for 3 years, compounded monthly. The correct expression is:",
+            "options": [
+              "$2000(1.01)^{36}$",
+              "$2000(1.12)^{36}$",
+              "$2000(1.01)^{3}$",
+              "$2000(1.12)^{3} \\cdot 12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Slice: $\\frac{12\\%}{12} = 1\\%$ per month. Count: $12 \\times 3 = 36$ periods. $(1.01)^{36}$ — slice the rate AND multiply the periods.",
+            "check": [
+              "Rational(12,12) == 1",
+              "12*3 == 36"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The limit",
+            "title": "Squeezing to e",
+            "body": "Take 100% annual growth and slice ever finer: yearly $(1+1)^1 = 2$; monthly $(1 + \\frac{1}{12})^{12} \\approx 2.613$; daily $\\approx 2.7146$; hourly $\\approx 2.71813$. The gains shrink — the sequence converges to $e \\approx 2.71828$, the **natural base**. Infinite compounding buys you $e$, not infinity. The continuous-growth formula is the limit made law: $A = Pe^{rt}$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The ceiling",
+            "prompt": "As $n \\to \\infty$, $\\left(1 + \\frac{1}{n}\\right)^n$ …",
+            "options": [
+              "climbs but converges to e ≈ 2.718",
+              "grows without bound",
+              "approaches 1",
+              "oscillates"
+            ],
+            "correctIndex": 0,
+            "explanation": "More slices help less and less: 2, 2.61, 2.71, 2.718… The ceiling is $e$ — one of mathematics' fundamental constants, born from this exact squeeze.",
+            "check": [
+              "(1 + Rational(1,1))**1 == 2",
+              "(1 + Rational(1,12))**12 > Rational(26,10)",
+              "(1 + Rational(1,12))**12 < E"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Read a continuous model",
+            "problemId": "pc52-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why e matters",
+            "title": "Nature's default base",
+            "body": "Any base works for algebra, but science writes its models in base $e$: populations $Q_0e^{kt}$, radioactive decay $Q_0e^{-kt}$, cooling coffee, charging capacitors. The deep reason arrives in calculus — $e^x$ is the unique function equal to its own rate of change — but you'll meet $e$ on every calculator and in every textbook NOW, so treat it as a first-class base: just a number, $\\approx 2.718$."
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Sanity-band every answer",
+            "body": "Compound answers live in a predictable band: MORE than simple interest, LESS than continuous. For 8% on 1000: simple 1080, continuous $1000e^{0.08} \\approx 1083.29$. Any quarterly/monthly answer must land between — outside the band means a slicing error, instantly caught."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Semiannual slices",
+            "problemId": "pc52-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Decay written in e",
+            "problemId": "pc52-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "A = P(1 + r/n)^(nt): slice the rate, count the periods.",
+              "Finer slicing helps less and less: the limit is e ≈ 2.718, and A = Pe^(rt).",
+              "Science defaults to base e; k's sign says growth or decay."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "logarithms-as-inverses",
+      "title": "Logarithms as Inverses",
+      "concreteComparison": "A logarithm answers the question an exponential leaves hanging: the exponential says 'give me time, I'll give you the amount'; the log runs the machine backwards — 'here's the amount, tell me the time.' log₂ 8 just asks: 2 to WHAT power is 8?",
+      "objective": "Convert between exponential and logarithmic form, evaluate logs mentally, use the product/quotient/power rules, and graph y = log_b x as the mirror of y = bˣ.",
+      "concept": [
+        "$\\log_b y = x$ **means** $b^x = y$ — the same fact, arrow reversed. $\\log_2 8 = 3$ because $2^3 = 8$. A logarithm IS an exponent: the exponent you'd need. Special names: $\\log$ (base 10) and $\\ln$ (base $e$).",
+        "As the inverse of $y = b^x$, the graph of $y = \\log_b x$ is its mirror across $y = x$ (Unit 1!): domain and range swap, so logs accept only POSITIVE inputs and output all reals; the exponential's horizontal asymptote $y = 0$ becomes the log's vertical asymptote $x = 0$; the anchor $(0, 1)$ flips to $(1, 0)$: $\\log_b 1 = 0$ always.",
+        "Because logs are exponents, exponent rules become log rules: $\\log_b(MN) = \\log_b M + \\log_b N$ (products turn into sums), $\\log_b \\frac{M}{N} = \\log_b M - \\log_b N$, and $\\log_b(M^p) = p \\log_b M$ — the power rule that will unlock equation-solving next lesson."
+      ],
+      "keyIdea": "log_b y is THE exponent x with bˣ = y; its graph mirrors the exponential across y = x (domain x > 0, asymptote x = 0), and exponent rules become the product, quotient, and power rules.",
+      "facts": [
+        {
+          "title": "Definition",
+          "latex": "\\log_b y = x \\iff b^x = y",
+          "explanation": "A log is an exponent; convert to exponential form to evaluate."
+        },
+        {
+          "title": "Mirror graph",
+          "latex": "y = \\log_b x: \\text{domain } x > 0, \\text{ V.A. } x = 0, \\; (1, 0)",
+          "explanation": "Everything about bˣ, reflected across y = x."
+        },
+        {
+          "title": "Three rules",
+          "latex": "\\log MN = \\log M + \\log N, \\; \\log \\tfrac{M}{N} = \\log M - \\log N, \\; \\log M^p = p\\log M",
+          "explanation": "Exponent laws in log clothing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc53-we1",
+          "statement": "Evaluate: $\\log_3 81$, $\\log_5 \\tfrac{1}{25}$, $\\log_{10} 1$, $\\ln e^7$.",
+          "solution": "Each asks 'base to what power?'. $3^4 = 81$: answer 4. $5^{-2} = \\frac{1}{25}$: answer $-2$. $10^0 = 1$: answer 0. $e^7$: the exponent is sitting there — 7.",
+          "check": [
+            "3**4 == 81",
+            "5**(-2) == Rational(1,25)",
+            "10**0 == 1",
+            "log(exp(7)) == 7"
+          ]
+        },
+        {
+          "id": "pc53-we2",
+          "statement": "Given $\\log_b 2 = 0.36$ and $\\log_b 3 = 0.56$ (some base $b$), compute $\\log_b 12$ and $\\log_b \\tfrac{9}{2}$.",
+          "solution": "$12 = 2^2 \\cdot 3$: $\\log_b 12 = 2\\log_b 2 + \\log_b 3 = 0.72 + 0.56 = 1.28$. $\\frac{9}{2} = \\frac{3^2}{2}$: $2\\log_b 3 - \\log_b 2 = 1.12 - 0.36 = 0.76$.",
+          "check": [
+            "2*Rational(36,100) + Rational(56,100) == Rational(128,100)",
+            "2*Rational(56,100) - Rational(36,100) == Rational(76,100)",
+            "2**2*3 == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expanding log(M + N) as log M + log N.",
+          "correction": "The product rule turns MULTIPLICATION into addition: $\\log(MN) = \\log M + \\log N$. There is NO rule for $\\log(M + N)$ — it simplifies to nothing. Sums inside a log stay put.",
+          "authored": true
+        },
+        {
+          "text": "Evaluating log of a negative: log₂(−8) = −3.",
+          "correction": "$2^x$ is positive for EVERY real $x$ — no exponent produces $-8$. Logs of negatives (and of 0) are undefined; the domain is strictly $x > 0$. ($-3$ answers a different question: $\\log_2 \\frac{1}{8}$.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc53-t1",
+          "statement": "Evaluate $\\log_4 64$, $\\log_2 \\tfrac{1}{16}$, and $\\log_9 3$.",
+          "solution": "$4^3 = 64$: 3. $2^{-4} = \\frac{1}{16}$: $-4$. $9^{1/2} = 3$: $\\frac{1}{2}$ — fractional exponents are fair game.",
+          "check": [
+            "4**3 == 64",
+            "2**(-4) == Rational(1,16)",
+            "9**Rational(1,2) == 3"
+          ]
+        },
+        {
+          "id": "pc53-t2",
+          "statement": "Expand $\\log_b \\dfrac{x^3 \\sqrt{y}}{z}$ into separate logs, then verify your expansion at $b = 10, x = 10, y = 100, z = 10$.",
+          "solution": "$3\\log_b x + \\frac{1}{2}\\log_b y - \\log_b z$. Verify: original: $\\log_{10} \\frac{1000 \\cdot 10}{10} = \\log_{10} 1000 = 3$; expansion: $3(1) + \\frac{1}{2}(2) - 1 = 3$. ✓",
+          "check": [
+            "Rational(1000*10,10) == 1000",
+            "10**3 == 1000",
+            "3*1 + Rational(1,2)*2 - 1 == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The question exponentials can't answer",
+            "body": "$f(t) = 2^t$ answers 'after $t$ doublings, how much?'. But most real questions run BACKWARDS: 'how long until 8×?' You need the inverse machine — and Unit 1 taught you exactly what that means. The inverse of the exponential is the **logarithm**: $\\log_2 8$ asks '2 to WHAT power gives 8?' Answer: 3. A log is an exponent."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Translate both ways",
+            "prompt": "Which pair says the SAME fact twice?",
+            "options": [
+              "$\\log_4 64 = 3$ and $4^3 = 64$",
+              "$\\log_4 64 = 3$ and $3^4 = 64$",
+              "$\\log_4 3 = 64$ and $4^3 = 64$",
+              "$\\log_3 4 = 64$ and $4^3 = 64$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\log_b y = x \\iff b^x = y$: base stays the base, the log's OUTPUT is the exponent. Conversion is the universal log-evaluation move.",
+            "check": [
+              "4**3 == 64"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Four mental evaluations",
+            "problemId": "pc53-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The graph",
+            "title": "The exponential in a mirror",
+            "body": "Since $\\log_b x$ inverts $b^x$, its graph is the exponential reflected across $y = x$ — and every feature flips with it. Domain/range SWAP: logs accept only $x > 0$, output all reals. The exponential's floor $y = 0$ tips upright into the log's WALL $x = 0$ (vertical asymptote). The anchor $(0, 1)$ flips to $(1, 0)$: every log sends 1 to 0."
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "y = 2ˣ and y = log₂x, mirrored",
+            "teach": "Both curves sampled together: each orange exponential point $(a, b)$ has its log partner $(b, a)$ across the invisible diagonal $y = x$. The exponential hugs the floor going left; the log hugs the wall going down — the same tail, reflected.",
+            "config": {
+              "mode": "plot",
+              "min": -3,
+              "max": 9,
+              "points": [
+                {
+                  "x": 0,
+                  "y": 1,
+                  "label": "2ˣ"
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                },
+                {
+                  "x": 3,
+                  "y": 8
+                },
+                {
+                  "x": 1,
+                  "y": 0,
+                  "label": "log"
+                },
+                {
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "x": 8,
+                  "y": 3
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Forbidden inputs",
+            "prompt": "Which is UNDEFINED?",
+            "options": [
+              "$\\log_2(-4)$",
+              "$\\log_2 \\frac{1}{4}$",
+              "$\\log_2 1$",
+              "$\\log_2 \\sqrt{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "No power of 2 is negative — the log's domain is $x > 0$. The others: $-2$, $0$, $\\frac{1}{2}$: negative OUTPUTS are fine; negative INPUTS never.",
+            "check": [
+              "2**(-2) == Rational(1,4)",
+              "2**0 == 1",
+              "2**Rational(1,2) == sqrt(2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules",
+            "title": "Exponent laws, log clothing",
+            "body": "Logs ARE exponents, so exponent laws translate directly. $b^m b^n = b^{m+n}$ becomes the **product rule**: $\\log_b(MN) = \\log_b M + \\log_b N$ — multiplication downstairs is addition upstairs. Division becomes subtraction, and $\\left(b^m\\right)^p = b^{mp}$ becomes the **power rule**: $\\log_b(M^p) = p \\log_b M$ — exponents inside hop out front. These three rules are the entire toolkit."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Build 12 from 2s and 3s",
+            "problemId": "pc53-we2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Logs built the modern world",
+            "body": "Before calculators, every serious multiplication ran through log tables: to multiply two numbers, ADD their logs and convert back — the product rule as technology. Slide rules mechanized it, and engineers designed everything from bridges to Apollo trajectories sliding logs past each other."
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "When stuck, convert",
+            "body": "Any log expression that resists you: write it in exponential form immediately. $\\log_9 3 = ?$ becomes $9^? = 3$, and suddenly it's an exponent puzzle you've solved since Algebra 1 ($9^{1/2} = 3$). The definition is the escape hatch, every time."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Three evaluations, one fractional",
+            "problemId": "pc53-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Expand and verify",
+            "problemId": "pc53-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "log_b y = x ⟺ bˣ = y: a log IS an exponent; convert to evaluate.",
+              "Graph: the exponential mirrored over y = x — domain x > 0, wall at x = 0, anchor (1, 0).",
+              "Products → sums, quotients → differences, powers → out front; log(M + N) has no rule."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exponential-and-log-equations",
+      "title": "Exponential & Logarithmic Equations",
+      "concreteComparison": "Solving 3ˣ = 20 without logs is like measuring a coastline with a meter stick — you can bracket the answer (between 2 and 3) but never name it. Taking a log of both sides is the surveyor's laser: x = log 20 / log 3, exact, in one shot.",
+      "objective": "Solve exponential equations by matching bases or taking logarithms, solve log equations by converting to exponential form, and check for extraneous solutions.",
+      "concept": [
+        "**Matching bases** handles the tidy cases: $2^{3x} = 16 = 2^4$ forces $3x = 4$ (exponentials are one-to-one, so equal outputs mean equal exponents). Rewrite both sides over one base whenever possible — 4, 8, 16 are all powers of 2.",
+        "When bases won't match — $3^x = 20$ — take a log of both sides and pull the exponent down with the power rule: $x \\log 3 = \\log 20$, so $x = \\frac{\\log 20}{\\log 3} \\approx 2.727$. Any log base works; your calculator's $\\log$ or $\\ln$ both do the job.",
+        "**Log equations** convert to exponential form: $\\log_2(x + 3) = 4$ means $x + 3 = 2^4 = 16$, so $x = 13$. One mandatory ritual: CHECK every answer in the original — log equations can produce **extraneous solutions** that ask for the log of a negative, and those must be discarded."
+      ],
+      "keyIdea": "Match bases when possible (equal bases ⇒ equal exponents); otherwise log both sides and pull the power down; log equations convert to exponential form — and every log answer gets checked for domain.",
+      "facts": [
+        {
+          "title": "One-to-one",
+          "latex": "b^m = b^n \\Rightarrow m = n",
+          "explanation": "Match the bases, equate the exponents."
+        },
+        {
+          "title": "Log both sides",
+          "latex": "3^x = 20 \\Rightarrow x = \\tfrac{\\log 20}{\\log 3}",
+          "explanation": "The power rule pulls x down; any base of log works."
+        },
+        {
+          "title": "Extraneous check",
+          "latex": "\\log_b(\\text{negative}) \\text{ undefined} \\Rightarrow \\text{discard}",
+          "explanation": "Solving can create answers the original equation forbids."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc54-we1",
+          "statement": "Solve $4^{x+1} = 8^{x-1}$ exactly.",
+          "solution": "Both are powers of 2: $(2^2)^{x+1} = (2^3)^{x-1}$, so $2^{2x+2} = 2^{3x-3}$. Equal bases: $2x + 2 = 3x - 3$, giving $x = 5$. Check: $4^6 = 4096 = 8^4$. ✓",
+          "check": [
+            "4**6 == 4096",
+            "8**4 == 4096",
+            "2*5 + 2 == 3*5 - 3"
+          ]
+        },
+        {
+          "id": "pc54-we2",
+          "statement": "Solve $\\log_2(x) + \\log_2(x - 6) = 4$, checking all candidates.",
+          "solution": "Product rule: $\\log_2(x(x-6)) = 4$, so $x^2 - 6x = 16$: $x^2 - 6x - 16 = (x-8)(x+2) = 0$, candidates $8$ and $-2$. CHECK: $x = 8$: $\\log_2 8 + \\log_2 2 = 3 + 1 = 4$ ✓. $x = -2$: $\\log_2(-2)$ — undefined: EXTRANEOUS. Solution: $x = 8$ only.",
+          "check": [
+            "8*(8-6) == 16",
+            "expand((x-8)*(x+2) - (x**2 - 6*x - 16)) == 0",
+            "2**3 == 8",
+            "2**1 == 2",
+            "3 + 1 == 4",
+            "-2 < 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Keeping the extraneous root because 'the algebra was correct.'",
+          "correction": "Correct algebra can still widen the domain: combining logs hides the requirement that EACH original log input be positive. The original equation is the judge — always test candidates in it, and discard what it rejects.",
+          "authored": true
+        },
+        {
+          "text": "Simplifying log 20 / log 3 to log(20/3).",
+          "correction": "The quotient rule works INSIDE one log ($\\log \\frac{M}{N} = \\log M - \\log N$), not across a ratio OF logs. $\\frac{\\log 20}{\\log 3} \\approx 2.73$ but $\\log \\frac{20}{3} \\approx 0.82$ — different numbers. A ratio of logs is just division; leave it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc54-t1",
+          "statement": "Solve $5 \\cdot 2^{x} = 80$ two ways: by isolating and matching bases, and state the exact answer.",
+          "solution": "Isolate first: $2^x = 16$. Match: $16 = 2^4$, so $x = 4$. (Log route agrees: $x = \\frac{\\log 16}{\\log 2} = 4$.) Never take logs before isolating — $\\log(5 \\cdot 2^x)$ needs an extra product-rule step.",
+          "check": [
+            "Rational(80,5) == 16",
+            "2**4 == 16",
+            "5*2**4 == 80"
+          ]
+        },
+        {
+          "id": "pc54-t2",
+          "statement": "A city of 100{,}000 grows 4% yearly: $P(t) = 100000(1.04)^t$. Set up the equation for when the population reaches 150{,}000 and express $t$ exactly with logs.",
+          "solution": "$100000(1.04)^t = 150000 \\Rightarrow (1.04)^t = 1.5$. Log both sides: $t = \\frac{\\log 1.5}{\\log 1.04} \\approx 10.3$ years. Sanity: $(1.04)^{10} \\approx 1.48$ — just shy, so a bit over 10 years. ✓",
+          "check": [
+            "Rational(150000,100000) == Rational(3,2)",
+            "(Rational(104,100))**10 < Rational(3,2)",
+            "(Rational(104,100))**11 > Rational(3,2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The unknown is upstairs",
+            "body": "Every equation so far had the unknown on the ground floor. Exponential equations hide it UPSTAIRS, in the exponent: $3^x = 20$. Two tools bring it down: matching bases (when both sides are powers of one number) and logarithms (always). This lesson is those two tools plus the log equations that run the other way."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Match the bases",
+            "problemId": "pc54-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "One-to-one in action",
+            "prompt": "Solve $9^x = 27$.",
+            "options": [
+              "$x = \\frac{3}{2}$",
+              "$x = 3$",
+              "$x = \\frac{2}{3}$",
+              "$x = 18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Powers of 3: $(3^2)^x = 3^3$, so $2x = 3$: $x = \\frac{3}{2}$. Check: $9^{3/2} = (\\sqrt{9})^3 = 27$. ✓",
+            "check": [
+              "9**Rational(3,2) == 27",
+              "2*Rational(3,2) == 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The laser",
+            "title": "Log both sides",
+            "body": "When 20 refuses to be a power of 3, stop hunting and take a log of BOTH sides: $\\log(3^x) = \\log 20$. The power rule pulls the prisoner down: $x \\log 3 = \\log 20$, so $x = \\frac{\\log 20}{\\log 3} \\approx 2.727$. Any base works ($\\ln$ gives the same $x$); the answer is a ratio of logs — leave it exact, and do NOT merge it into $\\log \\frac{20}{3}$."
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "See it",
+            "title": "Where growth meets a target",
+            "teach": "The race view: an exponential climbing toward a line. Solving $3^x = 20$ IS finding this crossing — the input where the curve reaches the target height. Logs name that crossing exactly; the graph shows you it exists and is unique (exponentials are one-to-one).",
+            "config": {
+              "mode": "race",
+              "b": 2,
+              "m": 6
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Bracket before solving",
+            "prompt": "Without a calculator: $x = \\frac{\\log 20}{\\log 3}$ lies between…",
+            "options": [
+              "2 and 3",
+              "1 and 2",
+              "3 and 4",
+              "6 and 7"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3^2 = 9 < 20 < 27 = 3^3$: the exponent must sit between 2 and 3. Bracketing first makes calculator slips impossible to miss.",
+            "check": [
+              "3**2 == 9",
+              "3**3 == 27",
+              "9 < 20",
+              "20 < 27"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The reverse",
+            "title": "Log equations: convert and check",
+            "body": "When the LOG holds the unknown — $\\log_2(x + 3) = 4$ — convert to exponential form: $x + 3 = 2^4$, so $x = 13$. But add a mandatory ritual: **check in the original**. Combining logs (product rule) can smuggle in candidates that feed a log a negative number. Those are *extraneous* — algebra ghosts, not solutions."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One real, one ghost",
+            "problemId": "pc54-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Judge the candidates",
+            "prompt": "Solving $\\log_3(x) + \\log_3(x + 2) = 1$ yields candidates $x = 1$ and $x = -3$. The solution set is:",
+            "options": [
+              "$\\{1\\}$ — the −3 is extraneous",
+              "$\\{1, -3\\}$",
+              "$\\{-3\\}$",
+              "empty"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x = -3$ demands $\\log_3(-3)$: undefined — discard. $x = 1$: $\\log_3 1 + \\log_3 3 = 0 + 1 = 1$ ✓.",
+            "check": [
+              "1*(1 + 2) == 3",
+              "3**1 == 3",
+              "0 + 1 == 1",
+              "-3 < 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Isolate, bracket, solve, check",
+            "body": "The four-beat rhythm for anything exponential or logarithmic: ISOLATE the power or log first ($5 \\cdot 2^x = 80 \\to 2^x = 16$), BRACKET the answer between integer powers, SOLVE with matching bases or logs, CHECK in the original (mandatory for log equations). Each beat catches a different classic error."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Isolate first",
+            "problemId": "pc54-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "When does the city hit 150k?",
+            "problemId": "pc54-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Same base ⇒ same exponent; rewrite 4, 8, 16… over one base when you can.",
+              "Otherwise log both sides and pull the exponent down: x = log(target)/log(base).",
+              "Log equations: convert to exponential form, then CHECK — extraneous roots are routine."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc5-pr-1",
+      "statement": "Write the model: a forum starts with 800 members and grows 25% per month. Find the membership after 2 months.",
+      "solution": "$M(t) = 800(1.25)^t$; $M(2) = 800 \\cdot 1.5625 = 1250$.",
+      "check": [
+        "Rational(5,4)**2 == Rational(25,16)",
+        "800*Rational(25,16) == 1250"
+      ]
+    },
+    {
+      "id": "pc5-pr-2",
+      "statement": "A sample decays: $g(0) = 240, g(1) = 60, g(2) = 15$. Find the decay factor, the percent lost per step, and $g(3)$.",
+      "solution": "Ratio: $\\frac{60}{240} = \\frac{1}{4}$: factor $b = 0.25$, so 75% lost per step. $g(3) = 15 \\cdot \\frac{1}{4} = 3.75$.",
+      "check": [
+        "Rational(60,240) == Rational(1,4)",
+        "Rational(15,60) == Rational(1,4)",
+        "15*Rational(1,4) == Rational(15,4)",
+        "1 - Rational(1,4) == Rational(3,4)"
+      ]
+    },
+    {
+      "id": "pc5-pr-3",
+      "statement": "$3000$ at 6% for 5 years: compare simple interest with monthly compounding (set up both; evaluate the compound factor as $(1.005)^{60} \\approx 1.3489$).",
+      "solution": "Simple: $3000(1 + 0.06 \\cdot 5) = 3900$. Monthly: $3000(1.005)^{60} \\approx 3000 \\cdot 1.3489 = 4046.70$ — compounding earns about $147 more.",
+      "check": [
+        "3000*(1 + Rational(6,100)*5) == 3900",
+        "Abs((Rational(1005,1000))**60 - Rational(13489,10000)) < Rational(2,10000)",
+        "Rational(13489,10000)*3000 > 3900"
+      ]
+    },
+    {
+      "id": "pc5-pr-4",
+      "statement": "Evaluate: $\\log_2 32$, $\\log_7 7$, $\\log_4 \\tfrac{1}{2}$, $\\ln \\sqrt{e}$.",
+      "solution": "$2^5 = 32$: 5. $7^1$: 1. $4^{-1/2} = \\frac{1}{2}$: $-\\frac{1}{2}$. $\\sqrt{e} = e^{1/2}$: $\\frac{1}{2}$.",
+      "check": [
+        "2**5 == 32",
+        "7**1 == 7",
+        "4**Rational(-1,2) == Rational(1,2)",
+        "log(exp(Rational(1,2))) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "pc5-pr-5",
+      "statement": "Given $\\log_b 5 = 0.7$ and $\\log_b 2 = 0.3$: compute $\\log_b 20$, $\\log_b 2.5$, and $\\log_b \\sqrt{5}$.",
+      "solution": "$20 = 5 \\cdot 2^2$: $0.7 + 0.6 = 1.3$. $2.5 = \\frac{5}{2}$: $0.7 - 0.3 = 0.4$. $\\sqrt{5} = 5^{1/2}$: $0.35$.",
+      "check": [
+        "Rational(7,10) + 2*Rational(3,10) == Rational(13,10)",
+        "Rational(7,10) - Rational(3,10) == Rational(4,10)",
+        "Rational(1,2)*Rational(7,10) == Rational(35,100)",
+        "5*2**2 == 20"
+      ]
+    },
+    {
+      "id": "pc5-pr-6",
+      "statement": "Solve exactly: $8^{x} = 32$ and $27^{x-1} = 9$.",
+      "solution": "Base 2: $2^{3x} = 2^5$: $x = \\frac{5}{3}$. Base 3: $3^{3(x-1)} = 3^2$: $3x - 3 = 2$: $x = \\frac{5}{3}$ — both, coincidentally.",
+      "check": [
+        "3*Rational(5,3) == 5",
+        "3*(Rational(5,3) - 1) == 2",
+        "8**Rational(5,3) == 32",
+        "27**Rational(2,3) == 9"
+      ]
+    },
+    {
+      "id": "pc5-pr-7",
+      "statement": "Solve $6^x = 50$ exactly and bracket the answer between consecutive integers.",
+      "solution": "$x = \\frac{\\log 50}{\\log 6}$. Bracket: $6^2 = 36 < 50 < 216 = 6^3$: between 2 and 3 (about 2.18).",
+      "check": [
+        "6**2 == 36",
+        "6**3 == 216",
+        "36 < 50",
+        "50 < 216"
+      ]
+    },
+    {
+      "id": "pc5-pr-8",
+      "statement": "Solve $\\log_5(2x - 1) = 2$ and $\\log_2(x) + \\log_2(x - 2) = 3$, discarding any extraneous roots.",
+      "solution": "First: $2x - 1 = 25$: $x = 13$ (input $25 > 0$ ✓). Second: $x(x-2) = 8$: $x^2 - 2x - 8 = (x-4)(x+2) = 0$: candidates $4, -2$. $x = 4$: $\\log_2 4 + \\log_2 2 = 2 + 1 = 3$ ✓; $x = -2$: negative log input — extraneous. Answers: 13 and 4.",
+      "check": [
+        "2*13 - 1 == 25",
+        "5**2 == 25",
+        "4*(4-2) == 8",
+        "expand((x-4)*(x+2) - (x**2 - 2*x - 8)) == 0",
+        "2 + 1 == 3",
+        "-2 < 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc5-ty-1",
+      "statement": "An investment triples every decade. Express its 10-year factor, its 1-year factor exactly, and decide: does it more than double in 7 years, given $3^{0.7} \\approx 2.16$?",
+      "solution": "Decade factor 3; yearly factor $3^{1/10}$. Seven years: $3^{0.7} \\approx 2.16 > 2$: yes, it more than doubles.",
+      "check": [
+        "(3**Rational(1,10))**10 == 3",
+        "Abs(3**Rational(7,10) - Rational(216,100)) < Rational(2,100)",
+        "Rational(216,100) > 2"
+      ]
+    },
+    {
+      "id": "pc5-ty-2",
+      "statement": "Which pays more on $1000$ over one year: 12% compounded quarterly, or 11.8% compounded monthly? (Factors: $(1.03)^4 = 1.12550881$; $(1.009833...)^{12} \\approx 1.12459$.)",
+      "solution": "Quarterly 12%: factor $\\approx 1.12551$. Monthly 11.8%: $\\approx 1.12459$. The quarterly 12% wins by about $0.92$ per 1000 — a higher rate beat the finer slicing here.",
+      "check": [
+        "Rational(103,100)**4 == Rational(112550881,100000000)",
+        "Rational(112550881,100000000) > Rational(112459,100000)"
+      ]
+    },
+    {
+      "id": "pc5-ty-3",
+      "statement": "Evaluate without a calculator: $\\log_6 216$, $\\log_{10} 0.001$, $\\log_8 2$, and $e^{\\ln 5}$.",
+      "solution": "$6^3 = 216$: 3. $10^{-3} = 0.001$: $-3$. $8^{1/3} = 2$: $\\frac{1}{3}$. $e^{\\ln 5} = 5$ — inverse machines cancel.",
+      "check": [
+        "6**3 == 216",
+        "10**(-3) == Rational(1,1000)",
+        "8**Rational(1,3) == 2",
+        "exp(log(5)) == 5"
+      ]
+    },
+    {
+      "id": "pc5-ty-4",
+      "statement": "Condense to a single logarithm: $3\\log_b x - \\tfrac{1}{2}\\log_b y + \\log_b 2$, and verify at $b = 10, x = 10, y = 100$.",
+      "solution": "$\\log_b \\frac{2x^3}{\\sqrt{y}}$. Verify: pieces give $3(1) - \\frac{1}{2}(2) + \\log_{10} 2 = 2 + \\log_{10} 2$; condensed: $\\log_{10} \\frac{2 \\cdot 1000}{10} = \\log_{10} 200 = \\log_{10}(100 \\cdot 2) = 2 + \\log_{10} 2$. ✓",
+      "check": [
+        "Rational(2*1000,10) == 200",
+        "3*1 - Rational(1,2)*2 == 2",
+        "100*2 == 200"
+      ]
+    },
+    {
+      "id": "pc5-ty-5",
+      "statement": "Solve exactly and bracket: $4 \\cdot 3^{x} = 100$.",
+      "solution": "Isolate: $3^x = 25$. Exact: $x = \\frac{\\log 25}{\\log 3}$. Bracket: $3^2 = 9 < 25 < 27 = 3^3$: barely under 3 (about 2.93).",
+      "check": [
+        "Rational(100,4) == 25",
+        "3**2 == 9",
+        "3**3 == 27",
+        "9 < 25",
+        "25 < 27"
+      ]
+    },
+    {
+      "id": "pc5-ty-6",
+      "statement": "Solve $\\log_3(x + 6) + \\log_3(x) = 3$, judging every candidate.",
+      "solution": "$x(x + 6) = 27$: $x^2 + 6x - 27 = (x + 9)(x - 3) = 0$: candidates $-9, 3$. $x = 3$: $\\log_3 9 + \\log_3 3 = 2 + 1 = 3$ ✓. $x = -9$: $\\log_3(-9)$ undefined — extraneous. Solution: $x = 3$.",
+      "check": [
+        "3*(3 + 6) == 27",
+        "expand((x + 9)*(x - 3) - (x**2 + 6*x - 27)) == 0",
+        "3**2 == 9",
+        "2 + 1 == 3",
+        "-9 < 0"
+      ]
+    }
+  ]
+}

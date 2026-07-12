@@ -173,6 +173,14 @@ import a1LinearFn from "@/data/genmath/algebra-1/linear-functions.json";
 import a1Systems from "@/data/genmath/algebra-1/systems-of-equations.json";
 import a1Polynomials from "@/data/genmath/algebra-1/polynomials-and-factoring.json";
 import a1Quadratics from "@/data/genmath/algebra-1/quadratic-equations.json";
+import pcFunctions from "@/data/genmath/precalculus/functions-and-their-graphs.json";
+import pcTransforms from "@/data/genmath/precalculus/transformations-of-graphs.json";
+import pcPolyFns from "@/data/genmath/precalculus/polynomial-functions.json";
+import pcRationals from "@/data/genmath/precalculus/rational-functions.json";
+import pcExpLogs from "@/data/genmath/precalculus/exponentials-and-logarithms.json";
+import pcUnitCircle from "@/data/genmath/precalculus/the-unit-circle.json";
+import pcTrigGraphs from "@/data/genmath/precalculus/trigonometric-graphs-and-equations.json";
+import pcConics from "@/data/genmath/precalculus/conic-sections.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -1138,6 +1146,110 @@ export function getAlg1Lesson(
   lessonSlug: string
 ): GenMathLesson | null {
   const unit = getAlg1Unit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
+// Precalculus course — /math/precalculus
+// The bridge to calculus, taught graph-first: function anatomy and
+// transformations, polynomial and rational graphs, exponentials and
+// logarithms, the unit circle, trig graphs and equations, and conic
+// sections. Leans on the graph-widget family (parabolaGraph, polyGraph,
+// limitGraph, expGraph, unitCircle, circleUnroll, conicGraph) plus
+// coordinateGrid figures in nearly every lesson.
+// ---------------------------------------------------------------------------
+
+export const PRECALC_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "functions-and-their-graphs",
+    title: "Functions & Their Graphs",
+    blurb: "Domain, range, and graph features; composition; inverse functions; even/odd symmetry.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "transformations-of-graphs",
+    title: "Transformations of Graphs",
+    blurb: "Shifts, stretches, reflections, the combined form a·f(x−h)+k, and piecewise graphs.",
+    buildsOn: "Graph features and function notation from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "polynomial-functions",
+    title: "Polynomial Functions",
+    blurb: "End behavior, zeros and the Factor Theorem, multiplicity, division and the Remainder Theorem.",
+    buildsOn: "Quadratics and factoring from Algebra 1.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "rational-functions",
+    title: "Rational Functions",
+    blurb: "Vertical asymptotes, holes, horizontal and slant asymptotes, and complete graphs.",
+    buildsOn: "Polynomial zeros and factoring from Unit 3.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "exponentials-and-logarithms",
+    title: "Exponentials & Logarithms",
+    blurb: "Growth and decay, compound interest and e, logs as inverses, and exponential/log equations.",
+    buildsOn: "Exponent rules and inverse functions (Unit 1).",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "the-unit-circle",
+    title: "The Unit Circle",
+    blurb: "Radians, sine and cosine as coordinates, special angles, and reference angles in all quadrants.",
+    buildsOn: "Right-triangle trig from Geometry.",
+    live: true,
+  },
+  {
+    unit: 7,
+    slug: "trigonometric-graphs-and-equations",
+    title: "Trig Graphs & Equations",
+    blurb: "The sine wave, amplitude/period/shifts, fundamental identities, and solving trig equations.",
+    buildsOn: "The unit circle (Unit 6) and transformations (Unit 2).",
+    live: true,
+  },
+  {
+    unit: 8,
+    slug: "conic-sections",
+    title: "Conic Sections",
+    blurb: "Circles, ellipses, parabolas with foci, hyperbolas, and classifying second-degree equations.",
+    buildsOn: "Completing the square and the distance formula — the capstone.",
+    live: true,
+  },
+];
+
+const precalcUnits: CourseUnit[] = [
+  pcFunctions as unknown as CourseUnit,
+  pcTransforms as unknown as CourseUnit,
+  pcPolyFns as unknown as CourseUnit,
+  pcRationals as unknown as CourseUnit,
+  pcExpLogs as unknown as CourseUnit,
+  pcUnitCircle as unknown as CourseUnit,
+  pcTrigGraphs as unknown as CourseUnit,
+  pcConics as unknown as CourseUnit,
+];
+
+export function getPrecalcSpine(): GeometrySpineEntry[] {
+  return PRECALC_SPINE;
+}
+
+export function getPrecalcUnit(unitSlug: string): CourseUnit | null {
+  return precalcUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getPrecalcLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getPrecalcUnit(unitSlug);
   if (!unit) return null;
   return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }

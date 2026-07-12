@@ -1,0 +1,1110 @@
+{
+  "slug": "rational-functions",
+  "title": "Rational Functions",
+  "unit": 4,
+  "status": "published",
+  "blurb": "Fractions of polynomials: vertical asymptotes where the bottom dies, holes where a factor cancels, horizontal asymptotes from the long-range degree duel — then full graphs.",
+  "buildsOn": "Polynomial zeros and factoring (Unit 3); domain from Unit 1.",
+  "lessons": [
+    {
+      "slug": "vertical-asymptotes-and-domain",
+      "title": "Vertical Asymptotes & Domain",
+      "concreteComparison": "A vertical asymptote is an electric fence: the graph races toward the forbidden x-value, voltage climbing to ±infinity, but never touches the wire. The fence stands wherever the denominator dies and nothing cancels it.",
+      "objective": "Find the domain of a rational function, locate vertical asymptotes from the reduced denominator, and determine the sign of the blow-up on each side.",
+      "concept": [
+        "A **rational function** is a fraction of polynomials $f(x) = \\frac{p(x)}{q(x)}$. Its domain excludes every zero of the denominator — those inputs are simply illegal. At an excluded input where the (reduced) denominator dies and the numerator does NOT, the outputs explode: a **vertical asymptote**.",
+        "Why explosion? Near $x = 2$ in $\\frac{1}{x-2}$, you divide 1 by numbers like $0.01$ and $-0.001$: quotients of $100$, $-1000$ — magnitude without bound. The graph hugs the vertical line $x = 2$, shooting up one side and (often) down the other.",
+        "Each side gets its own sign, decided by a **sign test**: plug a value slightly left and slightly right of the asymptote into the factored form and count negative factors. $\\frac{1}{x-2}$: at $x = 1.9$, negative (down); at $x = 2.1$, positive (up)."
+      ],
+      "keyIdea": "Domain excludes denominator zeros; where the reduced denominator dies (numerator alive), the graph blows up along a vertical asymptote — sign-test each side separately.",
+      "facts": [
+        {
+          "title": "Domain",
+          "latex": "f = \\tfrac{p}{q}: \\; x \\text{ legal} \\iff q(x) \\ne 0",
+          "explanation": "Denominator zeros are excluded before any other analysis."
+        },
+        {
+          "title": "Vertical asymptote",
+          "latex": "q(c) = 0, \\; p(c) \\ne 0 \\Rightarrow x = c \\text{ V.A.}",
+          "explanation": "Small denominators make giant quotients — the blow-up line."
+        },
+        {
+          "title": "Side signs",
+          "latex": "\\text{test } c^- \\text{ and } c^+ \\text{ separately}",
+          "explanation": "Each side of the fence chooses up or down on its own."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc41-we1",
+          "statement": "Find the domain and vertical asymptotes of $f(x) = \\dfrac{x + 1}{x^2 - x - 6}$.",
+          "solution": "Factor the bottom: $x^2 - x - 6 = (x-3)(x+2)$, zero at $x = 3, -2$. Domain: all reals except $3$ and $-2$. The numerator $x + 1$ is nonzero at both ($4$ and $-1$), so BOTH are vertical asymptotes: $x = 3$ and $x = -2$.",
+          "check": [
+            "3**2 - 3 - 6 == 0",
+            "(-2)**2 - (-2) - 6 == 0",
+            "3 + 1 == 4",
+            "-2 + 1 == -1",
+            "4 != 0",
+            "-1 != 0"
+          ]
+        },
+        {
+          "id": "pc41-we2",
+          "statement": "For $f(x) = \\dfrac{2}{x - 4}$, determine the behavior on each side of the asymptote $x = 4$.",
+          "solution": "Left side, $x = 3.9$: denominator $-0.1$, so $f = -20$ — large NEGATIVE: the graph dives down. Right side, $x = 4.1$: denominator $0.1$, $f = 20$ — up. Down-left, up-right of the fence.",
+          "check": [
+            "Rational(2,1)/Rational(-1,10) == -20",
+            "Rational(2,1)/Rational(1,10) == 20",
+            "-20 < 0",
+            "20 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Setting the NUMERATOR to zero to find asymptotes.",
+          "correction": "Numerator zeros are x-intercepts (the fraction equals 0 there). Asymptotes come from the DENOMINATOR dying. Top = crossings, bottom = fences.",
+          "authored": true
+        },
+        {
+          "text": "Assuming the graph goes up on both sides of every vertical asymptote.",
+          "correction": "Each side is its own sign test. $\\frac{1}{x-2}$ dives to $-\\infty$ on the left and climbs to $+\\infty$ on the right; $\\frac{1}{(x-2)^2}$ climbs on both. Test both sides, always.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc41-t1",
+          "statement": "Find the domain and vertical asymptotes of $g(x) = \\dfrac{x - 5}{x^2 - 9}$.",
+          "solution": "Bottom: $(x-3)(x+3)$, dies at $\\pm 3$; numerator is $-2$ and $-8$ there — alive. Domain: $x \\ne \\pm 3$; vertical asymptotes $x = 3$ and $x = -3$.",
+          "check": [
+            "3**2 - 9 == 0",
+            "(-3)**2 - 9 == 0",
+            "3 - 5 == -2",
+            "-3 - 5 == -8"
+          ]
+        },
+        {
+          "id": "pc41-t2",
+          "statement": "For $h(x) = \\dfrac{x}{(x + 1)^2}$: find the asymptote and the sign of $h$ near it on both sides.",
+          "solution": "Asymptote $x = -1$ (numerator $-1 \\ne 0$ there). The squared bottom is POSITIVE on both sides; the top near $-1$ is negative ($\\approx -1$). So $h \\to -\\infty$ on BOTH sides — a double fence-dive, courtesy of the even power.",
+          "check": [
+            "(-1 + 1)**2 == 0",
+            "Rational(-11,10)/Rational(1,100) == -110",
+            "Rational(-9,10)/Rational(1,100) == -90",
+            "-110 < 0",
+            "-90 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Fractions of polynomials",
+            "body": "Divide one polynomial by another and you get precalculus's wildest graphs: $f(x) = \\frac{p(x)}{q(x)}$. One new law governs everything: **the denominator must not be zero**. Every zero of $q$ is stripped from the domain — and at those forbidden inputs the graph does something dramatic."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Feel it",
+            "title": "Divide by something tiny",
+            "prompt": "As the denominator shrinks $0.1 \\to 0.01 \\to 0.001$, the value of $\\dfrac{1}{\\text{denominator}}$…",
+            "options": [
+              "explodes: 10, 100, 1000, …",
+              "shrinks to 0",
+              "approaches 1",
+              "stays near the numerator"
+            ],
+            "correctIndex": 0,
+            "explanation": "Dividing by ever-smaller numbers produces ever-larger quotients: $\\frac{1}{0.001} = 1000$. That unbounded growth IS the vertical asymptote mechanism.",
+            "check": [
+              "Rational(1,1)/Rational(1,10) == 10",
+              "Rational(1,1)/Rational(1,100) == 100",
+              "Rational(1,1)/Rational(1,1000) == 1000"
+            ]
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "Watch",
+            "title": "The blow-up, animated",
+            "teach": "Watch the two probe points march toward the forbidden input. The outputs don't settle — they climb (or dive) without bound, hugging the vertical fence line. That line is the asymptote: approached forever, touched never.",
+            "config": {
+              "mode": "infinite"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Factor the bottom, strip the domain",
+            "body": "Step one for ANY rational function: factor the denominator and list its zeros — those inputs are out of the domain, no exceptions. Step two: check the numerator at each. Numerator ALIVE there → vertical asymptote (true blow-up). Numerator also dead → something subtler happens (next lesson's hole). Today, everything stays alive on top."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two fences from one quadratic",
+            "problemId": "pc41-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Top vs bottom",
+            "prompt": "For $f(x) = \\dfrac{x - 7}{x + 2}$, the line $x = -2$ is a vertical asymptote and $x = 7$ is:",
+            "options": [
+              "an x-intercept — the graph crosses there",
+              "another asymptote",
+              "a hole",
+              "outside the domain"
+            ],
+            "correctIndex": 0,
+            "explanation": "At $x = 7$ the TOP dies while the bottom is 9: the fraction equals 0 — a crossing, fully legal. Top zeros are intercepts; bottom zeros are fences.",
+            "check": [
+              "7 - 7 == 0",
+              "7 + 2 == 9",
+              "Rational(0,9) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Side by side",
+            "title": "Each side picks its own direction",
+            "body": "A fence has two sides, and the graph may dive on one and soar on the other. Decide with a **sign test**: evaluate (or just count negative factors) slightly left and slightly right. $\\frac{2}{x-4}$ at $3.9$: bottom negative → dive; at $4.1$: bottom positive → soar. Even powers like $(x+1)^2$ keep one sign — both sides match."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Sign-test both sides",
+            "problemId": "pc41-we2"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "y = 2/(x − 4), sampled",
+            "teach": "Samples of the worked function: on the left of the fence at $x = 4$ the outputs plunge ($-2, -4, -20$ as x nears 4); on the right they tower. The dashed line you should imagine at $x = 4$ is never touched — no sample can ever sit on it.",
+            "config": {
+              "mode": "plot",
+              "min": -1,
+              "max": 9,
+              "points": [
+                {
+                  "x": 0,
+                  "y": -0.5
+                },
+                {
+                  "x": 2,
+                  "y": -1
+                },
+                {
+                  "x": 3,
+                  "y": -2
+                },
+                {
+                  "x": 3.5,
+                  "y": -4
+                },
+                {
+                  "x": 4.5,
+                  "y": 4
+                },
+                {
+                  "x": 5,
+                  "y": 2
+                },
+                {
+                  "x": 6,
+                  "y": 1
+                },
+                {
+                  "x": 8,
+                  "y": 0.5
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Count negative factors",
+            "body": "Faster than plugging in decimals: write the function factored, pick a side, and count which factors are negative there. An ODD count makes the value negative (dive); EVEN makes it positive (soar). One mental tally per side, no arithmetic."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Difference of squares below",
+            "problemId": "pc41-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The even-power fence",
+            "problemId": "pc41-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Domain: strike every denominator zero first.",
+              "Bottom dead + top alive = vertical asymptote; top dead = intercept instead.",
+              "Sign-test each side of every fence — even powers match sides, odd powers flip."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "holes-vs-asymptotes",
+      "title": "Holes vs Asymptotes",
+      "concreteComparison": "A hole is a missing plank in an otherwise solid bridge: the road is fine on both sides and even points straight across — but one single board, one exact x-value, is absent. An asymptote, by contrast, is the whole bridge collapsing.",
+      "objective": "Detect common factors in numerator and denominator, classify each domain exclusion as a hole or a vertical asymptote, and compute hole coordinates from the reduced function.",
+      "concept": [
+        "When numerator AND denominator share a factor, it cancels: $f(x) = \\frac{(x-2)(x+3)}{x-2}$ simplifies to $x + 3$ — but the original still forbids $x = 2$ (you cannot divide 0 by 0). The graph is the LINE $y = x + 3$ with one point missing: a **hole** at $(2, 5)$.",
+        "Classification rule: factor top and bottom fully. For each domain exclusion $c$: if the factor **cancels completely**, it's a hole; if any copy of $(x - c)$ **survives in the denominator**, it's a vertical asymptote. The reduced function decides.",
+        "A hole has coordinates: the $x$ is the excluded input, the $y$ is the REDUCED function evaluated there. Holes are invisible to intercept and asymptote hunting — but exam questions (and calculus limits) love them, because the function ALMOST has a value there."
+      ],
+      "keyIdea": "Shared factors cancel into holes (missing single points at the reduced function's height); factors surviving in the denominator make true asymptotes.",
+      "facts": [
+        {
+          "title": "0/0 is a hole",
+          "latex": "\\tfrac{(x-2)(x+3)}{x-2}: \\text{hole at } (2, 5)",
+          "explanation": "The factor cancels; the reduced function gives the missing height."
+        },
+        {
+          "title": "Survivor rule",
+          "latex": "(x-c) \\text{ left below} \\Rightarrow \\text{V.A. at } c",
+          "explanation": "Cancel what you can; whatever remains in the denominator still blows up."
+        },
+        {
+          "title": "Hole height",
+          "latex": "y_{hole} = f_{reduced}(c)",
+          "explanation": "Evaluate the simplified formula at the excluded input."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc42-we1",
+          "statement": "Analyze $f(x) = \\dfrac{x^2 - 4}{x - 2}$: domain, and the exact nature of the exclusion.",
+          "solution": "Factor: $\\frac{(x-2)(x+2)}{x-2}$. Domain: $x \\ne 2$. The $(x-2)$ cancels COMPLETELY, leaving $x + 2$: no asymptote — a HOLE at $x = 2$, height $2 + 2 = 4$. The graph is the line $y = x + 2$ with the single point $(2, 4)$ missing.",
+          "check": [
+            "expand((x - 2)*(x + 2) - (x**2 - 4)) == 0",
+            "2 + 2 == 4",
+            "2**2 - 4 == 0",
+            "2 - 2 == 0"
+          ]
+        },
+        {
+          "id": "pc42-we2",
+          "statement": "Classify every domain exclusion of $g(x) = \\dfrac{(x - 1)(x + 4)}{(x - 1)(x - 6)}$.",
+          "solution": "Exclusions: $x = 1$ and $x = 6$. At $1$: the factor cancels fully → HOLE, height $\\frac{1 + 4}{1 - 6} = -1$, so hole at $(1, -1)$. At $6$: $(x - 6)$ survives in the denominator (numerator gives $10 \\ne 0$) → VERTICAL ASYMPTOTE $x = 6$.",
+          "check": [
+            "Rational(1 + 4, 1 - 6) == -1",
+            "6 + 4 == 10",
+            "10 != 0",
+            "6 - 6 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Cancelling the shared factor and then declaring x = 2 back in the domain.",
+          "correction": "The domain is set by the ORIGINAL formula, before any cancelling. Simplification changes the algebra, never the domain: the exclusion stays, as a hole.",
+          "authored": true
+        },
+        {
+          "text": "Calling every denominator zero an asymptote without factoring the top.",
+          "correction": "First factor BOTH. A denominator zero that fully cancels is a hole — the graph is calm there, just punctured. Only survivors in the bottom blow up.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc42-t1",
+          "statement": "Find the hole in $f(x) = \\dfrac{x^2 + x - 12}{x + 4}$ and describe the rest of the graph.",
+          "solution": "Top factors: $(x + 4)(x - 3)$. Cancel: $f$ reduces to $x - 3$ with $x \\ne -4$. Hole at $x = -4$, height $-4 - 3 = -7$: the line $y = x - 3$ punctured at $(-4, -7)$.",
+          "check": [
+            "expand((x + 4)*(x - 3) - (x**2 + x - 12)) == 0",
+            "-4 - 3 == -7",
+            "(-4)**2 + (-4) - 12 == 0"
+          ]
+        },
+        {
+          "id": "pc42-t2",
+          "statement": "For $h(x) = \\dfrac{(x + 2)^2 (x - 5)}{(x + 2)(x - 1)}$: classify $x = -2$ and $x = 1$.",
+          "solution": "At $-2$: one $(x+2)$ cancels but one copy SURVIVES — in the NUMERATOR. The reduced function $\\frac{(x+2)(x-5)}{x-1}$ is defined-looking but $x = -2$ is still excluded: a hole, height $\\frac{(0)(-7)}{-3} = 0$ — a hole sitting exactly ON the x-axis at $(-2, 0)$. At $1$: denominator survivor, numerator $\\frac{9 \\cdot (-4)}{\\cdot}$ alive → vertical asymptote $x = 1$.",
+          "check": [
+            "Rational((-2 + 2)*(-2 - 5), -2 - 1) == 0",
+            "(1 + 2)**2*(1 - 5) == -36",
+            "-36 != 0",
+            "1 - 1 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The missing plank",
+            "body": "Not every forbidden input is a catastrophe. Sometimes the numerator dies at the SAME input as the denominator — the fraction becomes $\\frac{0}{0}$, which is undefined, but nothing explodes. The graph is a perfectly calm curve with ONE point plucked out: a **hole**. The other lesson's asymptotes are collapsing bridges; this is a single missing plank."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "Watch",
+            "title": "Approaching the hole",
+            "teach": "Watch the probes close in on the punctured input from both sides. The outputs settle beautifully toward one height — the graph POINTS at a value — but the point itself is absent. (Calculus will say: the limit exists; the value doesn't.)",
+            "config": {
+              "mode": "hole"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The algebra",
+            "title": "0/0 means a shared factor",
+            "body": "$f(x) = \\frac{x^2 - 4}{x - 2}$ at $x = 2$ gives $\\frac{0}{0}$. Factor: $\\frac{(x-2)(x+2)}{x-2}$ — the top and bottom share $(x - 2)$, and it cancels to leave $x + 2$. BUT the original formula still bans $x = 2$: cancellation cleans the algebra without repairing the domain. Result: the line $y = x + 2$, punctured at $(2, 4)$."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A line with a puncture",
+            "problemId": "pc42-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "The punctured line",
+            "teach": "Samples of $\\frac{x^2-4}{x-2}$: every point sits exactly on the line $y = x + 2$ — except there is NO sample at $x = 2$, and there never can be. The missing point $(2, 4)$ is the hole; sketch it as an open circle.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 6,
+              "points": [
+                {
+                  "x": -2,
+                  "y": 0
+                },
+                {
+                  "x": -1,
+                  "y": 1
+                },
+                {
+                  "x": 0,
+                  "y": 2
+                },
+                {
+                  "x": 1,
+                  "y": 3
+                },
+                {
+                  "x": 3,
+                  "y": 5
+                },
+                {
+                  "x": 4,
+                  "y": 6
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Height of the hole",
+            "prompt": "Where exactly is the hole of $f(x) = \\dfrac{(x - 3)(x + 1)}{x - 3}$?",
+            "options": [
+              "$(3, 4)$",
+              "$(3, 0)$",
+              "$(-1, 0)$",
+              "$(3, 3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The reduced function is $x + 1$; at the excluded $x = 3$ it gives height 4. The hole is $(3, 4)$ — read the height from the SIMPLIFIED formula. ($x = -1$ is just an ordinary intercept.)",
+            "check": [
+              "3 + 1 == 4",
+              "-1 + 1 == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Classification",
+            "title": "The survivor rule",
+            "body": "Full protocol: factor top and bottom completely, then judge each excluded input by what REMAINS after cancelling. Factor gone entirely → **hole** (height = reduced formula's value). Any copy still standing in the denominator → **vertical asymptote**. One function can have both — a hole at one exclusion, a fence at another."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One hole, one fence",
+            "problemId": "pc42-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Repeated factor showdown",
+            "prompt": "In $f(x) = \\dfrac{(x - 4)}{(x - 4)^2}$, the exclusion $x = 4$ is:",
+            "options": [
+              "a vertical asymptote — one $(x-4)$ survives below",
+              "a hole at $(4, 1)$",
+              "a hole at $(4, 0)$",
+              "an x-intercept"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cancelling one copy leaves $\\frac{1}{x - 4}$: a survivor in the DENOMINATOR. The blow-up wins — asymptote. Holes need the bottom's copies gone entirely.",
+            "check": [
+              "2 - 1 == 1",
+              "1 >= 1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Domain before simplifying",
+            "body": "Write the domain exclusions down BEFORE you cancel anything — from the original denominator, every zero, no exceptions. Then simplify freely. This ordering makes it impossible to 'lose' a hole, the single most common rational-function error."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Holes are where calculus begins",
+            "body": "The derivative you'll meet next year is DEFINED as a fraction that hits $\\frac{0}{0}$ — a hole — at exactly the point of interest. Finding the hole's height (the limit) is differentiation. Every tangent line in calculus is the height of a hole like today's."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Factor, cancel, puncture",
+            "problemId": "pc42-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Squared factor duel",
+            "problemId": "pc42-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "0/0 at an input = shared factor: cancel it — that exclusion is a hole, not a fence.",
+              "Hole coordinates: (excluded x, reduced formula's value there).",
+              "Survivor rule: any (x − c) left in the denominator after cancelling makes a true asymptote."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "horizontal-asymptotes-and-end-behavior",
+      "title": "Horizontal Asymptotes & End Behavior",
+      "concreteComparison": "At long range a rational function is a tug-of-war between top and bottom degrees: heavier bottom drags the graph down to zero, a tie settles at the coefficient ratio, and a heavier top breaks the rope — no horizontal ceiling at all.",
+      "objective": "Determine horizontal asymptotes by comparing degrees, understand why via leading-term division, and handle the slant case when the top is one degree heavier.",
+      "concept": [
+        "Far from the origin, top and bottom are each ruled by their leading terms (Unit 3's skyline principle) — so the whole fraction behaves like $\\frac{a x^n}{b x^m}$. Three outcomes: **bottom heavier** ($m > n$): the fraction shrinks to 0, horizontal asymptote $y = 0$. **Tie** ($n = m$): the powers cancel, leaving $y = \\frac{a}{b}$. **Top heavier** ($n > m$): growth wins, no horizontal asymptote.",
+        "Horizontal asymptotes describe the FAR ENDS only. Unlike a vertical fence, the graph may cross its horizontal asymptote in the middle — it just has to settle toward it as $x \\to \\pm\\infty$.",
+        "When the top is heavier by EXACTLY one degree, the far ends follow a tilted line: divide and the quotient is linear — a **slant (oblique) asymptote**. $\\frac{x^2 + 1}{x}$ = $x + \\frac{1}{x}$: as $x$ grows, the $\\frac{1}{x}$ fades and the graph hugs $y = x$."
+      ],
+      "keyIdea": "Compare degrees: bottom wins → y = 0; tie → y = ratio of leading coefficients; top wins → none (one degree over: slant asymptote from the division quotient).",
+      "facts": [
+        {
+          "title": "Three-way rule",
+          "latex": "m > n: y = 0; \\quad n = m: y = \\tfrac{a}{b}; \\quad n > m: \\text{none}",
+          "explanation": "Only the leading terms matter at long range."
+        },
+        {
+          "title": "Crossable ceiling",
+          "latex": "\\text{graph may cross } y = L \\text{ mid-domain}",
+          "explanation": "Horizontal asymptotes bind the far ends, not the middle."
+        },
+        {
+          "title": "Slant case",
+          "latex": "n = m + 1: \\; f = (\\text{line}) + \\tfrac{r}{q} \\to \\text{line}",
+          "explanation": "Divide; the linear quotient is the slant asymptote."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc43-we1",
+          "statement": "Find the horizontal asymptote of each: $f(x) = \\dfrac{3x + 1}{x^2 - 4}$, $g(x) = \\dfrac{6x^2 - x}{2x^2 + 5}$, $h(x) = \\dfrac{x^3}{x + 1}$.",
+          "solution": "$f$: degrees 1 vs 2, bottom heavier: $y = 0$. $g$: tie at 2: $y = \\frac{6}{2} = 3$. $h$: top heavier by two: no horizontal (and too steep even for a slant — the ends follow a parabola). Long-range check for $g$ at $x = 100$: $\\frac{59900}{20005} \\approx 2.99$ — already hugging 3.",
+          "check": [
+            "Rational(6,2) == 3",
+            "6*100**2 - 100 == 59900",
+            "2*100**2 + 5 == 20005",
+            "Abs(Rational(59900, 20005) - 3) < Rational(1,100)"
+          ]
+        },
+        {
+          "id": "pc43-we2",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - 3x + 7}{x - 1}$.",
+          "solution": "Divide (synthetically, $c = 1$; coefficients $1, -3, 7$): bring 1; add $-3 + 1 = -2$; add $7 - 2 = 5$. So $f(x) = x - 2 + \\frac{5}{x - 1}$. As $x \\to \\pm\\infty$ the $\\frac{5}{x-1}$ fades: slant asymptote $y = x - 2$.",
+          "check": [
+            "expand((x - 1)*(x - 2) + 5 - (x**2 - 3*x + 7)) == 0",
+            "1 - 3 + 7 == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating a horizontal asymptote like a fence the graph can never touch.",
+          "correction": "Only VERTICAL asymptotes are untouchable (those x-values are outside the domain). A graph may cross its horizontal asymptote any number of times mid-domain — it merely settles toward it at the far ends.",
+          "authored": true
+        },
+        {
+          "text": "Reading the tie case from the constant terms: giving y = 1/5 for (6x² − x)/(2x² + 5).",
+          "correction": "Long-range behavior is governed by LEADING terms: $y = \\frac{6}{2} = 3$. Constants are the first casualties of zooming out.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc43-t1",
+          "statement": "Give the horizontal (or slant) asymptote of: $\\dfrac{5x^3 + 2}{10x^3 - x}$, $\\dfrac{4x}{x^2 + 1}$, $\\dfrac{x^2 + x}{x - 2}$.",
+          "solution": "First: tie at degree 3 → $y = \\frac{5}{10} = \\frac{1}{2}$. Second: bottom heavier → $y = 0$. Third: top heavier by one → divide: $\\frac{x^2 + x}{x - 2} = x + 3 + \\frac{6}{x-2}$: slant $y = x + 3$.",
+          "check": [
+            "Rational(5,10) == Rational(1,2)",
+            "expand((x - 2)*(x + 3) + 6 - (x**2 + x)) == 0"
+          ]
+        },
+        {
+          "id": "pc43-t2",
+          "statement": "Does $f(x) = \\dfrac{3x^2}{x^2 + 1}$ ever reach its horizontal asymptote $y = 3$? Answer by solving $f(x) = 3$.",
+          "solution": "$\\frac{3x^2}{x^2+1} = 3 \\Rightarrow 3x^2 = 3x^2 + 3 \\Rightarrow 0 = 3$: impossible. This particular graph NEVER touches $y = 3$ — it climbs toward it forever from below (values like $f(3) = 2.7$).",
+          "check": [
+            "Rational(3*9, 9 + 1) == Rational(27,10)",
+            "Rational(27,10) < 3",
+            "3 != 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The long-range tug-of-war",
+            "body": "Vertical asymptotes are local dramas; now we ask what happens FAR away, as $x \\to \\pm\\infty$. Unit 3's skyline principle applies twice at once: the top behaves like its leading term, the bottom like its own — so the whole fraction settles into $\\frac{ax^n}{bx^m}$. Which degree is heavier decides everything."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Feel it",
+            "title": "Heavier bottom",
+            "prompt": "Evaluate the trend of $\\dfrac{x}{x^2}$ at $x = 10, 100, 1000$.",
+            "options": [
+              "$0.1, 0.01, 0.001$ — sinking to 0",
+              "$10, 100, 1000$ — growing",
+              "always exactly 1",
+              "$0.1, 0.2, 0.3$ — creeping up"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{x}{x^2} = \\frac{1}{x}$: the extra power below drags the fraction to 0. Bottom-heavy always sinks — horizontal asymptote $y = 0$.",
+            "check": [
+              "Rational(10, 10**2) == Rational(1,10)",
+              "Rational(100, 100**2) == Rational(1,100)",
+              "Rational(1,100) < Rational(1,10)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three outcomes",
+            "title": "Bottom wins, tie, top wins",
+            "body": "**Bottom heavier**: fraction sinks to 0 — asymptote $y = 0$. **Tie**: the $x^n$'s cancel, leaving the leading coefficients' ratio — asymptote $y = \\frac{a}{b}$. **Top heavier**: growth wins, the graph escapes any ceiling — no horizontal asymptote. Degree comparison is the entire decision; constants and middle terms never vote."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All three cases at once",
+            "problemId": "pc43-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Settling onto y = 3",
+            "teach": "Samples of $g(x) = \\frac{6x^2 - x}{2x^2 + 5}$ far from the origin: at $x = \\pm 2$ the graph is still wandering, but by $x = \\pm 6$ every sample presses against height 3 — the tie-case asymptote $\\frac{6}{2}$. The far ends obey; the middle does its own thing.",
+            "config": {
+              "mode": "plot",
+              "min": -8,
+              "max": 8,
+              "points": [
+                {
+                  "x": -6,
+                  "y": 2.9
+                },
+                {
+                  "x": -4,
+                  "y": 2.8
+                },
+                {
+                  "x": -2,
+                  "y": 2
+                },
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 2,
+                  "y": 1.7,
+                  "label": "middle wanders"
+                },
+                {
+                  "x": 4,
+                  "y": 2.5
+                },
+                {
+                  "x": 6,
+                  "y": 2.8
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Crossable or not?",
+            "prompt": "A rational graph touches the line $y = 2$ at $x = 1$ and also has horizontal asymptote $y = 2$. Is that a contradiction?",
+            "options": [
+              "no — horizontal asymptotes only bind the far ends",
+              "yes — asymptotes are never touched",
+              "yes — it would need a hole at x = 1",
+              "only if the graph crosses twice"
+            ],
+            "correctIndex": 0,
+            "explanation": "Horizontal asymptotes describe behavior as $x \\to \\pm\\infty$. Mid-domain the graph is free to touch or cross $y = 2$ as often as it likes. Only vertical asymptotes are untouchable.",
+            "check": [
+              "2 == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One degree over",
+            "title": "The slant asymptote",
+            "body": "When the top is heavier by EXACTLY one degree, the escape has a shape: divide, and $f(x) = \\text{(linear quotient)} + \\frac{\\text{remainder}}{\\text{divisor}}$. The remainder fraction fades at long range, so the graph hugs the tilted line $y = qx + s$. Heavier by two or more? The ends follow a parabola or worse — we just say 'no horizontal asymptote'."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Divide out the slant",
+            "problemId": "pc43-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "One glance, three numbers",
+            "body": "Read the two degrees and (if tied) the two leading coefficients — three numbers, one glance, before any algebra. Writing 'deg 2 vs deg 2 → y = 3' at the top of your work makes the later graph impossible to get badly wrong."
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Drug doses ride these curves",
+            "body": "Medication concentration often follows $C(t) = \\frac{at}{t^2 + b}$: a spike, then a long bottom-heavy decay to the asymptote $y = 0$ — which is why doses repeat on a schedule. The 'safe residual level' question is literally a horizontal-asymptote calculation."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Three quick verdicts",
+            "problemId": "pc43-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Chase the ceiling",
+            "problemId": "pc43-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Compare degrees: bottom wins → y = 0; tie → leading-coefficient ratio; top wins → none.",
+              "Horizontal asymptotes bind only the far ends — the middle may cross them freely.",
+              "Top heavier by exactly one: divide; the linear quotient is the slant asymptote."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphing-rational-functions",
+      "title": "Graphing Rational Functions",
+      "concreteComparison": "Graphing a rational function is assembling a crime-scene reconstruction: fences (vertical asymptotes), the horizon line (horizontal asymptote), punctures (holes), and footprints (intercepts) — collect all the evidence first, and the curve has only one way to move.",
+      "objective": "Combine intercepts, holes, vertical and horizontal asymptotes, and sign tests into a complete graph of a rational function.",
+      "concept": [
+        "The full protocol: **(1) Factor** top and bottom. **(2) Domain & holes**: exclusions; cancelled factors are holes. **(3) Intercepts**: $x$-intercepts from surviving top factors, $y$-intercept from $f(0)$. **(4) Asymptotes**: vertical from surviving bottom factors, horizontal/slant from the degree duel. **(5) Sign test** each interval between fences and crossings.",
+        "The x-axis is carved by fences and crossings into intervals, and on each the function keeps ONE sign (it can only change sign at a crossing or across a fence). One test value per interval tells you above or below — enough to rough in every branch.",
+        "Each branch then connects its local evidence: hugging a fence on one end, settling toward the horizon (or slant) on the other, passing through its intercepts on the way. If the evidence seems to force a contradiction, one clue was misread — recheck rather than force the curve."
+      ],
+      "keyIdea": "Factor, exclude, intercept, asymptote, sign-test: five clues carve the plane, and each branch has exactly one way to thread them.",
+      "facts": [
+        {
+          "title": "The protocol",
+          "latex": "\\text{factor} \\to \\text{holes} \\to \\text{intercepts} \\to \\text{asymptotes} \\to \\text{signs}",
+          "explanation": "Five steps, always the same order."
+        },
+        {
+          "title": "Sign persistence",
+          "latex": "\\text{sign changes only at crossings or fences}",
+          "explanation": "One test value per interval settles above/below."
+        },
+        {
+          "title": "Branch discipline",
+          "latex": "\\text{each branch: fence} \\leftrightarrow \\text{horizon}",
+          "explanation": "Every branch connects its asymptotes through its intercepts."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc44-we1",
+          "statement": "Fully analyze $f(x) = \\dfrac{2x - 4}{x + 1}$ and describe its graph.",
+          "solution": "Factored: $\\frac{2(x-2)}{x+1}$. No shared factors: no holes. Intercepts: $x = 2$ (top), $y$-intercept $f(0) = -4$. Vertical asymptote $x = -1$; degrees tie: horizontal $y = 2$. Signs: $x < -1$: $\\frac{2(-)}{(-)} > 0$ (above); $-1 < x < 2$: negative (below — passing through $(0,-4)$); $x > 2$: positive. Two branches: upper-left settling on $y = 2$, and a right branch climbing from the fence through $(2, 0)$ toward $y = 2$.",
+          "check": [
+            "Rational(2*0 - 4, 0 + 1) == -4",
+            "Rational(2*2 - 4, 2 + 1) == 0",
+            "Rational(2*(-2) - 4, -2 + 1) == 8",
+            "8 > 0",
+            "Rational(2*5 - 4, 5 + 1) == 1",
+            "1 > 0"
+          ]
+        },
+        {
+          "id": "pc44-we2",
+          "statement": "Analyze $g(x) = \\dfrac{x^2 - 1}{x^2 - 4}$: intercepts, asymptotes, and the sign chart.",
+          "solution": "Factored: $\\frac{(x-1)(x+1)}{(x-2)(x+2)}$. No cancels. Intercepts $x = \\pm 1$; $g(0) = \\frac{-1}{-4} = \\frac{1}{4}$. Fences $x = \\pm 2$; tie of degrees: horizon $y = 1$. Sign chart on $(-\\infty,-2), (-2,-1), (-1,1), (1,2), (2,\\infty)$: $+, -, +, -, +$ — e.g. $g(0) = \\frac{1}{4} > 0$ in the middle, $g(1.5) = \\frac{1.25}{-1.75} < 0$.",
+          "check": [
+            "Rational((-1)**2 - 1, (-1)**2 - 4) == 0",
+            "Rational(0 - 1, 0 - 4) == Rational(1,4)",
+            "Rational(1,4) > 0",
+            "Rational(Rational(9,4) - 1, Rational(9,4) - 4) == Rational(-5,7)",
+            "Rational(-5,7) < 0",
+            "Rational(9 - 1, 9 - 4) == Rational(8,5)",
+            "Rational(8,5) > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing a branch that crosses a vertical asymptote to reach an intercept on the other side.",
+          "correction": "Nothing crosses a fence — the x-value doesn't exist for this function. If an intercept sits beyond the asymptote, it belongs to the NEXT branch. Re-thread, don't tunnel.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the y-intercept because 'asymptotes matter more.'",
+          "correction": "$f(0)$ is the cheapest, most reliable clue on the page — one substitution anchors the central branch's height and validates your sign chart. Never skip it (unless 0 is excluded).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc44-t1",
+          "statement": "Run the full protocol on $f(x) = \\dfrac{x + 3}{x - 1}$.",
+          "solution": "No shared factors. Intercepts: $x = -3$, $y$: $f(0) = -3$. Fence $x = 1$; degrees tie: horizon $y = 1$. Signs: $x < -3$: $+$; $-3 < x < 1$: $-$ (through $(0,-3)$); $x > 1$: $+$ (e.g. $f(3) = 3$). Left branch above the horizon far left, dipping through $(-3, 0)$, diving at the fence; right branch falls from $+\\infty$ through $(3, 3)$ toward $y = 1$.",
+          "check": [
+            "Rational(0 + 3, 0 - 1) == -3",
+            "Rational(-3 + 3, -3 - 1) == 0",
+            "Rational(3 + 3, 3 - 1) == 3",
+            "Rational(-5 + 3, -5 - 1) == Rational(1,3)",
+            "Rational(1,3) > 0"
+          ]
+        },
+        {
+          "id": "pc44-t2",
+          "statement": "Analyze $h(x) = \\dfrac{x^2 - x - 6}{x - 3}$ — start by checking for holes.",
+          "solution": "Top factors: $(x - 3)(x + 2)$ — the $(x-3)$ cancels COMPLETELY: hole, not fence, at $x = 3$. Reduced: $y = x + 2$, hole height $3 + 2 = 5$. The graph is the line $y = x + 2$ punctured at $(3, 5)$: no asymptotes at all.",
+          "check": [
+            "expand((x - 3)*(x + 2) - (x**2 - x - 6)) == 0",
+            "3 + 2 == 5",
+            "3**2 - 3 - 6 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Assemble the evidence",
+            "body": "You now own every clue type: intercepts (Unit 3), fences and side-signs, holes, horizons and slants. Graphing is assembling them in the right order — factor, exclude, intercept, asymptote, sign-test — and letting the curve thread the evidence. Done honestly, there is only ONE way to draw each branch."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The carve",
+            "title": "Sign persistence between clues",
+            "body": "Here is the load-bearing fact: a rational function can change sign ONLY at an x-intercept (crossing through zero) or across a vertical asymptote (jumping the fence). Between consecutive clue-points the sign is constant — so ONE test value per interval pins the whole stretch above or below the axis."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two branches, full report",
+            "problemId": "pc44-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "f(x) = (2x−4)/(x+1), sampled",
+            "teach": "The worked example's evidence, plotted: the left branch rides above the horizon $y = 2$, the right branch dives at the fence $x = -1$, bottoms through $(0, -4)$ and $(2, 0)$, then climbs toward the horizon. Imagine the dashed fence and horizon — every sample respects both.",
+            "config": {
+              "mode": "plot",
+              "min": -7,
+              "max": 7,
+              "points": [
+                {
+                  "x": -6,
+                  "y": 3.2
+                },
+                {
+                  "x": -4,
+                  "y": 4
+                },
+                {
+                  "x": -2,
+                  "y": 8,
+                  "label": "fence side"
+                },
+                {
+                  "x": 0,
+                  "y": -4
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "x": 5,
+                  "y": 1
+                },
+                {
+                  "x": 7,
+                  "y": 1.25
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Count the branches",
+            "prompt": "A rational function has vertical asymptotes at $x = -2$ and $x = 2$ (and no holes). Into how many branches is its graph split?",
+            "options": [
+              "3",
+              "2",
+              "4",
+              "1"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two fences carve the domain into three territories — $x < -2$, $-2 < x < 2$, $x > 2$ — and each hosts exactly one connected branch.",
+            "check": [
+              "2 + 1 == 3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Four fences' worth of signs",
+            "problemId": "pc44-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Threading discipline",
+            "prompt": "Your sign chart says a branch is NEGATIVE on $(-1, 1)$, but your sketch shows it crossing $y = 3$ there. What went wrong?",
+            "options": [
+              "one clue was misread — recheck before forcing the curve",
+              "nothing — branches can ignore sign charts",
+              "the horizontal asymptote moved",
+              "sign charts only apply near fences"
+            ],
+            "correctIndex": 0,
+            "explanation": "Evidence never contradicts itself — a 'negative' interval cannot host a point at height 3. A contradiction in the reconstruction means a clue (sign test, intercept, asymptote) was misread. Audit the clues, then redraw.",
+            "check": [
+              "3 > 0"
+            ]
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "Rewatch",
+            "title": "The two asymptote behaviors",
+            "teach": "One last look at the fence in motion: outputs blowing up along a vertical asymptote. Contrast with the horizon: THAT one gets approached gently at the far ends, and may even be crossed mid-domain. Two different kinds of 'never quite' — one violent, one calm.",
+            "config": {
+              "mode": "infinite"
+            }
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Evidence box before curve",
+            "body": "Draw nothing until you've written the evidence box: holes, x-intercepts, y-intercept, fences, horizon/slant, sign chart. Sixty seconds of bookkeeping — then the sketch takes ten, because every branch has exactly one legal path. Curve-first graphers redraw three times; evidence-first graphers draw once."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Full protocol, simple fraction",
+            "problemId": "pc44-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The hole in disguise",
+            "problemId": "pc44-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Protocol: factor → holes → intercepts → asymptotes → sign chart, then draw.",
+              "Signs change only at crossings and fences; one test value per interval.",
+              "Branches never tunnel through fences; contradictions mean a clue was misread."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc4-pr-1",
+      "statement": "Find the domain and vertical asymptotes of $f(x) = \\dfrac{x + 2}{x^2 - 2x - 15}$.",
+      "solution": "Bottom: $(x - 5)(x + 3)$, zeros $5, -3$; numerator alive at both ($7$ and $-1$). Domain: $x \\ne 5, -3$; asymptotes $x = 5$, $x = -3$.",
+      "check": [
+        "5**2 - 2*5 - 15 == 0",
+        "(-3)**2 - 2*(-3) - 15 == 0",
+        "5 + 2 == 7",
+        "-3 + 2 == -1"
+      ]
+    },
+    {
+      "id": "pc4-pr-2",
+      "statement": "Locate the hole of $f(x) = \\dfrac{x^2 - 25}{x - 5}$ and describe the graph.",
+      "solution": "$\\frac{(x-5)(x+5)}{x-5}$ reduces to $x + 5$, $x \\ne 5$: the line $y = x + 5$ with a hole at $(5, 10)$.",
+      "check": [
+        "expand((x-5)*(x+5) - (x**2 - 25)) == 0",
+        "5 + 5 == 10"
+      ]
+    },
+    {
+      "id": "pc4-pr-3",
+      "statement": "Classify each exclusion of $g(x) = \\dfrac{(x + 1)(x - 2)}{(x + 1)(x + 4)}$ and give the hole's coordinates.",
+      "solution": "$x = -1$: cancels fully → hole; reduced $\\frac{x-2}{x+4}$ gives height $\\frac{-3}{3} = -1$: hole $(-1, -1)$. $x = -4$: survivor below (top = $-18 \\ne 0$) → vertical asymptote.",
+      "check": [
+        "Rational(-1 - 2, -1 + 4) == -1",
+        "(-4 + 1)*(-4 - 2) == 18",
+        "18 != 0"
+      ]
+    },
+    {
+      "id": "pc4-pr-4",
+      "statement": "Give the horizontal asymptote (if any) of: $\\dfrac{7x^2 + x}{3x^2 - 5}$, $\\dfrac{x + 9}{x^3}$, $\\dfrac{x^4}{x^2 + 1}$.",
+      "solution": "Tie at degree 2: $y = \\frac{7}{3}$. Bottom heavier: $y = 0$. Top heavier (by 2): none.",
+      "check": [
+        "Rational(7,3) > 2",
+        "4 - 2 == 2",
+        "3 - 1 == 2"
+      ]
+    },
+    {
+      "id": "pc4-pr-5",
+      "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 2x - 3}{x + 4}$.",
+      "solution": "Divide ($c = -4$; $1, 2, -3$): bring 1; $2 - 4 = -2$; $-3 + 8 = 5$. So $f(x) = x - 2 + \\frac{5}{x+4}$: slant $y = x - 2$.",
+      "check": [
+        "expand((x + 4)*(x - 2) + 5 - (x**2 + 2*x - 3)) == 0"
+      ]
+    },
+    {
+      "id": "pc4-pr-6",
+      "statement": "For $f(x) = \\dfrac{4x}{x - 2}$: intercepts, asymptotes, and the sign on each interval.",
+      "solution": "Intercept $x = 0$ (also the y-intercept: $f(0) = 0$). Fence $x = 2$; tie: horizon $y = 4$. Signs on $(-\\infty, 0), (0, 2), (2, \\infty)$: $f(-1) = \\frac{4}{3} > 0$; $f(1) = -4 < 0$; $f(3) = 12 > 0$: $+, -, +$.",
+      "check": [
+        "Rational(4*(-1), -1 - 2) == Rational(4,3)",
+        "Rational(4*1, 1 - 2) == -4",
+        "Rational(4*3, 3 - 2) == 12",
+        "Rational(4,3) > 0",
+        "-4 < 0",
+        "12 > 0"
+      ]
+    },
+    {
+      "id": "pc4-pr-7",
+      "statement": "Sign-test both sides of the asymptote of $f(x) = \\dfrac{3}{(x - 1)^2}$ and describe the graph near it.",
+      "solution": "The squared bottom is positive on BOTH sides, top is 3: the graph soars to $+\\infty$ on both sides of $x = 1$ — a two-sided chimney, unlike $\\frac{1}{x-1}$'s dive-and-soar.",
+      "check": [
+        "Rational(3,1)/Rational(1,100) == 300",
+        "(Rational(9,10) - 1)**2 == Rational(1,100)",
+        "(Rational(11,10) - 1)**2 == Rational(1,100)",
+        "300 > 0"
+      ]
+    },
+    {
+      "id": "pc4-pr-8",
+      "statement": "Does the graph of $f(x) = \\dfrac{x}{x^2 + 1}$ cross its horizontal asymptote? Find every crossing.",
+      "solution": "Bottom heavier: horizon $y = 0$. Crossing: $\\frac{x}{x^2+1} = 0 \\Rightarrow x = 0$. Yes — it crosses its own asymptote exactly once, at the origin, then settles toward it from both far ends.",
+      "check": [
+        "Rational(0, 0 + 1) == 0",
+        "Rational(10, 101) > 0",
+        "Rational(-10, 101) < 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc4-ty-1",
+      "statement": "Find all vertical asymptotes AND holes of $f(x) = \\dfrac{(x - 2)(x + 5)}{(x - 2)(x - 7)}$, with hole coordinates.",
+      "solution": "$x = 2$ cancels fully: hole at height $\\frac{2+5}{2-7} = -\\frac{7}{5}$ → $(2, -\\frac{7}{5})$. $x = 7$: survivor, top $= 60 \\ne 0$: vertical asymptote.",
+      "check": [
+        "Rational(2 + 5, 2 - 7) == Rational(-7,5)",
+        "(7 - 2)*(7 + 5) == 60",
+        "60 != 0"
+      ]
+    },
+    {
+      "id": "pc4-ty-2",
+      "statement": "State the horizontal or slant asymptote of $f(x) = \\dfrac{8x^3 - x + 1}{2x^3 + 5x}$ and of $g(x) = \\dfrac{x^2 - 9}{x + 5}$.",
+      "solution": "$f$: tie at degree 3: $y = \\frac{8}{2} = 4$. $g$: top heavier by one — divide: $\\frac{x^2 - 9}{x + 5} = x - 5 + \\frac{16}{x + 5}$: slant $y = x - 5$.",
+      "check": [
+        "Rational(8,2) == 4",
+        "expand((x + 5)*(x - 5) + 16 - (x**2 - 9)) == 0"
+      ]
+    },
+    {
+      "id": "pc4-ty-3",
+      "statement": "For $f(x) = \\dfrac{x - 4}{x + 3}$: sign of $f$ just left and just right of the fence, and the far-end horizon.",
+      "solution": "Fence $x = -3$. Left ($x = -3.1$): $\\frac{-7.1}{-0.1} = 71 > 0$: soars. Right ($x = -2.9$): $\\frac{-6.9}{0.1} < 0$: dives. Degrees tie: horizon $y = 1$ at both far ends.",
+      "check": [
+        "Rational(-71,10)/Rational(-1,10) == 71",
+        "Rational(-69,10)/Rational(1,10) == -69",
+        "71 > 0",
+        "-69 < 0"
+      ]
+    },
+    {
+      "id": "pc4-ty-4",
+      "statement": "Sketch plan for $f(x) = \\dfrac{x^2 - 4}{x^2 - 9}$: intercepts, fences, horizon, and the sign chart across all five intervals.",
+      "solution": "$\\frac{(x-2)(x+2)}{(x-3)(x+3)}$: intercepts $\\pm 2$, $f(0) = \\frac{4}{9}$; fences $\\pm 3$; horizon $y = 1$. Signs on $(-\\infty,-3), (-3,-2), (-2,2), (2,3), (3,\\infty)$: $+, -, +, -, +$ (e.g. $f(0) = \\frac{4}{9} > 0$; $f(2.5) = \\frac{2.25}{-2.75} < 0$).",
+      "check": [
+        "Rational(0 - 4, 0 - 9) == Rational(4,9)",
+        "Rational(4,9) > 0",
+        "Rational(Rational(25,4) - 4, Rational(25,4) - 9) == Rational(-9,11)",
+        "Rational(-9,11) < 0",
+        "Rational(16 - 4, 16 - 9) == Rational(12,7)",
+        "Rational(12,7) > 0"
+      ]
+    },
+    {
+      "id": "pc4-ty-5",
+      "statement": "A function has a hole at $(1, 3)$, a vertical asymptote at $x = -2$, and horizontal asymptote $y = 2$. Build one rational function that fits.",
+      "solution": "Skeleton: $f(x) = \\frac{2(x - 1)(x - a)}{(x - 1)(x + 2)}$ — cancelled $(x-1)$ makes the hole; surviving $(x+2)$ the fence; tie of degrees with ratio 2 the horizon. Hole height: $\\frac{2(1 - a)}{3} = 3 \\Rightarrow a = -\\frac{7}{2}$: $f(x) = \\frac{2(x-1)(x + \\frac{7}{2})}{(x-1)(x+2)} = \\frac{(x-1)(2x + 7)}{(x-1)(x+2)}$.",
+      "check": [
+        "Rational(2*1 + 7, 1 + 2) == 3",
+        "Rational(2, 1) == 2",
+        "-2 + 2 == 0"
+      ]
+    },
+    {
+      "id": "pc4-ty-6",
+      "statement": "True or false, with a reason: 'A rational function's graph can cross its vertical asymptote if the numerator is large enough.'",
+      "solution": "FALSE. The vertical asymptote stands at an input EXCLUDED from the domain — there is no function value there to plot, whatever the numerator does elsewhere. Crossing would require a value at the forbidden x. (Horizontal asymptotes, by contrast, are crossable.)",
+      "check": [
+        "1 == 1"
+      ]
+    }
+  ]
+}

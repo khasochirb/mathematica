@@ -1,0 +1,1078 @@
+{
+  "slug": "functions-and-their-graphs",
+  "title": "Functions & Their Graphs",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Reading a graph like a document — domain, range, intercepts, where it rises and falls — then building new functions by composing and inverting old ones.",
+  "buildsOn": "Function notation and linear/quadratic graphs from Algebra 1.",
+  "lessons": [
+    {
+      "slug": "domain-range-and-graph-features",
+      "title": "Domain, Range & Graph Features",
+      "concreteComparison": "A graph is a hiking trail seen from the side. The domain is the stretch of map the trail covers (left–right), the range is the set of altitudes it reaches (down–up), and 'increasing' just means you are walking uphill.",
+      "objective": "Read domain, range, intercepts, intervals of increase/decrease, and maxima/minima directly off a graph, and compute domains from formulas.",
+      "concept": [
+        "The **domain** is every input the function accepts — the graph's shadow on the $x$-axis. The **range** is every output it produces — the shadow on the $y$-axis. For $f(x) = x^2 - 4$ the domain is all reals but the range is only $y \\ge -4$: the parabola never dips below its vertex.",
+        "From a FORMULA, the domain is 'all reals except the crime scenes': inputs that divide by zero or take an even root of a negative. $f(x) = \\frac{1}{x-3}$ excludes $x = 3$; $g(x) = \\sqrt{x-3}$ demands $x \\ge 3$.",
+        "A graph also tells a left-to-right story: **increasing** where it climbs, **decreasing** where it falls, with **local maxima/minima** at the turning points. We name these intervals with $x$-values (where you are on the map), never $y$-values."
+      ],
+      "keyIdea": "Domain = the graph's shadow on the x-axis, range = its shadow on the y-axis; increase/decrease intervals are always named by x.",
+      "facts": [
+        {
+          "title": "Domain from a formula",
+          "latex": "\\frac{1}{x-3}: x \\ne 3, \\qquad \\sqrt{x-3}: x \\ge 3",
+          "explanation": "Exclude division by zero; even roots need non-negative insides."
+        },
+        {
+          "title": "Range of a parabola",
+          "latex": "y = a(x-h)^2 + k \\Rightarrow y \\ge k \\ (a > 0)",
+          "explanation": "The vertex is the extreme output; the sign of a picks floor or ceiling."
+        },
+        {
+          "title": "Turning points",
+          "latex": "\\text{increasing} \\to \\text{decreasing at a local max}",
+          "explanation": "Read the story left to right; intervals are in x."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc11-we1",
+          "statement": "Find the domain of $f(x) = \\dfrac{\\sqrt{x+2}}{x-5}$.",
+          "solution": "Two demands at once. The root needs $x + 2 \\ge 0$, so $x \\ge -2$. The fraction forbids $x = 5$. Domain: $x \\ge -2$ and $x \\ne 5$, i.e. $[-2, 5) \\cup (5, \\infty)$.",
+          "check": [
+            "-2 + 2 == 0",
+            "5 - 5 == 0",
+            "-2 < 5"
+          ]
+        },
+        {
+          "id": "pc11-we2",
+          "statement": "For $f(x) = x^2 - 4$: find the intercepts, the range, and where $f$ is decreasing.",
+          "solution": "$x$-intercepts: $x^2 - 4 = 0 \\Rightarrow x = \\pm 2$. $y$-intercept: $f(0) = -4$. Vertex $(0, -4)$ is the minimum, so the range is $y \\ge -4$. The parabola falls until the vertex: decreasing on $(-\\infty, 0)$.",
+          "check": [
+            "2**2 - 4 == 0",
+            "(-2)**2 - 4 == 0",
+            "0**2 - 4 == -4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing 'increasing on $(-4, \\infty)$' using the y-values of the climb.",
+          "correction": "Intervals of increase/decrease are sets of INPUTS — always x-values. Say where on the x-axis the climb happens.",
+          "authored": true
+        },
+        {
+          "text": "Giving the domain of $\\sqrt{x-3}$ as $x > 3$.",
+          "correction": "The root of 0 is fine: $\\sqrt{0} = 0$. The inside may equal zero, so $x \\ge 3$ — the boundary point belongs.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc11-t1",
+          "statement": "Find the domain of $g(x) = \\dfrac{x+1}{x^2 - 9}$.",
+          "solution": "The denominator factors: $x^2 - 9 = (x-3)(x+3)$, zero at $x = \\pm 3$. Domain: all reals except $x = 3$ and $x = -3$.",
+          "check": [
+            "3**2 - 9 == 0",
+            "(-3)**2 - 9 == 0"
+          ]
+        },
+        {
+          "id": "pc11-t2",
+          "statement": "A graph has vertex $(2, 5)$ and opens downward: $f(x) = -(x-2)^2 + 5$. State its range and where it is increasing.",
+          "solution": "Downward parabola: the vertex is the MAXIMUM, so range $y \\le 5$. It climbs up to the vertex: increasing on $(-\\infty, 2)$.",
+          "check": [
+            "-(2-2)**2 + 5 == 5",
+            "-(0-2)**2 + 5 == 1",
+            "1 < 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "A trail seen from the side",
+            "body": "A graph is a hiking trail viewed side-on. Two questions describe any trail: **which stretch of map does it cover** (left–right — the domain) and **which altitudes does it reach** (down–up — the range). Everything in this lesson is learning to read those shadows."
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "The parabola y = x² − 4",
+            "teach": "Here are sample points of $f(x) = x^2 - 4$. Its shadow on the $x$-axis covers EVERYTHING (domain: all reals), but its shadow on the $y$-axis starts at $-4$ and goes up (range: $y \\ge -4$). The vertex is the floor.",
+            "config": {
+              "mode": "plot",
+              "min": -5,
+              "max": 5,
+              "points": [
+                {
+                  "x": -3,
+                  "y": 5
+                },
+                {
+                  "x": -2,
+                  "y": 0
+                },
+                {
+                  "x": -1,
+                  "y": -3
+                },
+                {
+                  "x": 0,
+                  "y": -4,
+                  "label": "vertex"
+                },
+                {
+                  "x": 1,
+                  "y": -3
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "x": 3,
+                  "y": 5
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the shadow",
+            "prompt": "The graph of $y = \\sqrt{x}$ starts at the origin and climbs right forever. Its RANGE is:",
+            "options": [
+              "$y \\ge 0$",
+              "$x \\ge 0$",
+              "all real numbers",
+              "$y > 0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The outputs start at $\\sqrt{0} = 0$ and grow without bound: $y \\ge 0$. (The option '$x \\ge 0$' is the DOMAIN — the other shadow.)",
+            "check": [
+              "sqrt(0) == 0",
+              "sqrt(4) == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From formulas",
+            "title": "Domain = all reals except the crime scenes",
+            "body": "When you only have a formula, the domain is everything EXCEPT inputs that commit a crime: **dividing by zero** or **taking an even root of a negative**. $\\frac{1}{x-3}$ bans $x = 3$; $\\sqrt{x-3}$ demands $x - 3 \\ge 0$. Note the root allows equality — $\\sqrt{0}$ is legal."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two demands at once",
+            "problemId": "pc11-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Spot the ban",
+            "prompt": "What is the domain of $f(x) = \\dfrac{5}{x^2 + 1}$?",
+            "options": [
+              "all real numbers",
+              "$x \\ne -1$",
+              "$x \\ne \\pm 1$",
+              "$x \\ge -1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 + 1$ is at least 1 for every real $x$ — it can NEVER be zero. No crime is possible: the domain is all reals.",
+            "check": [
+              "0**2 + 1 == 1",
+              "1 >= 1"
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Play",
+            "title": "Move the floor",
+            "teach": "Drag the vertex with the $h$ and $k$ steppers. Watch the RANGE follow $k$: for an upward parabola the range is exactly $y \\ge k$ — the vertex height is the floor, and $h$ has no say in it.",
+            "config": {
+              "mode": "vertex",
+              "a": 1,
+              "h": 0,
+              "k": -4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The story",
+            "title": "Increasing, decreasing, turning",
+            "body": "Read a graph left to right like a sentence: it is **increasing** where it climbs, **decreasing** where it falls, and turning points are **local maxima/minima**. One strict convention: these intervals are named with $x$-values — WHERE the climb happens on the map, not how high it goes."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Full feature report",
+            "problemId": "pc11-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Shadow check",
+            "body": "For any graph question, physically trace two shadows: squash the curve straight down onto the x-axis (domain), then straight left onto the y-axis (range). Gaps in the shadow are exactly the excluded values — this catches holes and asymptotes later in the course."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A factored denominator",
+            "problemId": "pc11-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Downward parabola report",
+            "problemId": "pc11-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Domain: the x-axis shadow; from formulas, exclude division by zero and negative even roots.",
+              "Range: the y-axis shadow; a vertex is the floor or ceiling.",
+              "Increase/decrease intervals are always stated in x-values."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composition-of-functions",
+      "title": "Composition of Functions",
+      "concreteComparison": "Composition is an assembly line: raw material enters machine g, and g's OUTPUT is fed straight into machine f. Swapping the machines' order usually changes the product — paint-then-dry is not dry-then-paint.",
+      "objective": "Evaluate and simplify compositions (f∘g)(x) = f(g(x)), compare f∘g with g∘f, and decompose a function into simpler layers.",
+      "concept": [
+        "$(f \\circ g)(x) = f(g(x))$ means **g runs first**, and its output becomes f's input. With $f(x) = 2x$ and $g(x) = x + 3$: $(f \\circ g)(4) = f(7) = 14$, but $(g \\circ f)(4) = g(8) = 11$. Order matters — composition is not commutative.",
+        "To simplify $f(g(x))$, substitute the ENTIRE formula of $g$ wherever $f$ has an $x$: $f(g(x)) = 2(x+3) = 2x + 6$. Parentheses around the whole inner formula are non-negotiable.",
+        "**Decomposition** runs the line backwards: seeing $h(x) = \\sqrt{x^2 + 1}$ as $f(g(x))$ with inner $g(x) = x^2 + 1$ and outer $f(x) = \\sqrt{x}$. Spotting the layers is the skill calculus's chain rule will depend on."
+      ],
+      "keyIdea": "f∘g means g first, then f — substitute g's whole formula into f's x; order changes the result.",
+      "facts": [
+        {
+          "title": "Definition",
+          "latex": "(f \\circ g)(x) = f(g(x))",
+          "explanation": "The inner function runs first; read compositions inside-out."
+        },
+        {
+          "title": "Not commutative",
+          "latex": "f(g(x)) \\ne g(f(x)) \\text{ in general}",
+          "explanation": "2(x+3) = 2x+6 but 2x+3 — different machines, different products."
+        },
+        {
+          "title": "Decomposition",
+          "latex": "\\sqrt{x^2+1} = f(g(x)), \\; g = x^2{+}1, \\; f = \\sqrt{x}",
+          "explanation": "Name the inside first; the outside is what happens to it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc12-we1",
+          "statement": "For $f(x) = x^2 - 1$ and $g(x) = 3x + 2$, compute $(f \\circ g)(1)$ and $(g \\circ f)(1)$.",
+          "solution": "Inner first, each time. $(f \\circ g)(1)$: $g(1) = 5$, then $f(5) = 25 - 1 = 24$. $(g \\circ f)(1)$: $f(1) = 0$, then $g(0) = 2$. Different orders, wildly different answers: 24 vs 2.",
+          "check": [
+            "3*1 + 2 == 5",
+            "5**2 - 1 == 24",
+            "1**2 - 1 == 0",
+            "3*0 + 2 == 2",
+            "24 != 2"
+          ]
+        },
+        {
+          "id": "pc12-we2",
+          "statement": "For the same $f, g$, simplify $(f \\circ g)(x)$ as a polynomial.",
+          "solution": "$f(g(x)) = (3x+2)^2 - 1 = 9x^2 + 12x + 4 - 1 = 9x^2 + 12x + 3$. Check at $x = 1$: $9 + 12 + 3 = 24$ — matching the value we computed step by step. ✓",
+          "check": [
+            "expand((3*x+2)**2 - 1 - (9*x**2 + 12*x + 3)) == 0",
+            "9 + 12 + 3 == 24"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $(f \\circ g)(x)$ as 'f first, then g' because f is written first.",
+          "correction": "The function NEXT TO the input runs first: $f(g(x))$ — g touches x. Read compositions inside-out, like nested parentheses.",
+          "authored": true
+        },
+        {
+          "text": "Substituting without parentheses: $f(x) = x^2$, $g(x) = x+3$, writing $f(g(x)) = x + 3^2$.",
+          "correction": "The WHOLE inner formula is the new input: $f(g(x)) = (x+3)^2 = x^2 + 6x + 9$. Wrap it in parentheses before applying the outer rule.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc12-t1",
+          "statement": "For $f(x) = 5x - 4$ and $g(x) = x^2$, find $(f \\circ g)(-2)$ and $(g \\circ f)(-2)$.",
+          "solution": "$(f \\circ g)(-2)$: $g(-2) = 4$, then $f(4) = 16$. $(g \\circ f)(-2)$: $f(-2) = -14$, then $g(-14) = 196$.",
+          "check": [
+            "(-2)**2 == 4",
+            "5*4 - 4 == 16",
+            "5*(-2) - 4 == -14",
+            "(-14)**2 == 196"
+          ]
+        },
+        {
+          "id": "pc12-t2",
+          "statement": "Write $h(x) = (2x - 7)^3$ as a composition $f(g(x))$ of two simpler functions.",
+          "solution": "Inner layer: $g(x) = 2x - 7$ (what is computed first). Outer layer: $f(x) = x^3$ (what happens to it). Check: $f(g(x)) = (2x-7)^3 = h(x)$. ✓",
+          "check": [
+            "(2*5 - 7)**3 == 27",
+            "3**3 == 27"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "An assembly line of machines",
+            "body": "You already run one function machine at a time. Composition chains them: raw input enters machine $g$, and whatever $g$ produces is dropped straight into machine $f$. The notation $(f \\circ g)(x) = f(g(x))$ names the whole line — and the machine written CLOSEST to $x$ runs first."
+          },
+          {
+            "kind": "evaluator",
+            "eyebrow": "Machine 1",
+            "title": "The inner machine: g(x) = x + 3",
+            "teach": "This is the FIRST machine on the line. Feed it inputs and note the outputs — each output is about to become the next machine's raw material.",
+            "config": {
+              "a": 1,
+              "b": 3,
+              "varName": "x",
+              "min": -5,
+              "max": 5,
+              "start": 4,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "evaluator",
+            "eyebrow": "Machine 2",
+            "title": "The outer machine: f(x) = 2x",
+            "teach": "Now the SECOND machine. Take the output you got from $g$ — say $g(4) = 7$ — and feed it in here: $f(7) = 14$. You just computed $(f \\circ g)(4) = 14$ by hand, machine by machine.",
+            "config": {
+              "a": 2,
+              "b": 0,
+              "varName": "x",
+              "min": -8,
+              "max": 8,
+              "start": 7,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Swap the machines",
+            "prompt": "Same machines, opposite order: what is $(g \\circ f)(4)$, i.e. $g(f(4))$, for $f(x) = 2x$, $g(x) = x+3$?",
+            "options": [
+              "11",
+              "14",
+              "24",
+              "8"
+            ],
+            "correctIndex": 0,
+            "explanation": "Now $f$ runs first: $f(4) = 8$, then $g(8) = 11$. Compare $(f \\circ g)(4) = 14$ — swapping the line changes the product.",
+            "check": [
+              "2*4 == 8",
+              "8 + 3 == 11",
+              "11 != 14"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Both orders, step by step",
+            "problemId": "pc12-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Formulas",
+            "title": "Substitute the whole formula",
+            "body": "To get a FORMULA for $f(g(x))$, substitute $g$'s entire expression everywhere $f$ has an $x$ — wrapped in parentheses. With $f(x) = x^2 - 1$, $g(x) = 3x + 2$: $f(g(x)) = (3x+2)^2 - 1$. The parentheses are the whole game: $3x + 2^2 - 1$ is a different (wrong) machine."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Simplify the composition",
+            "problemId": "pc12-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Inside-out reading",
+            "prompt": "For $f(x) = \\sqrt{x}$ and $g(x) = x - 6$, the domain of $(f \\circ g)(x) = \\sqrt{x - 6}$ is:",
+            "options": [
+              "$x \\ge 6$",
+              "$x \\ge 0$",
+              "all reals",
+              "$x > 6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The OUTER machine's demand ($\\sqrt{\\cdot}$ needs a non-negative input) lands on the INNER machine's output: $x - 6 \\ge 0$, so $x \\ge 6$. Composition domains flow through the line.",
+            "check": [
+              "6 - 6 == 0",
+              "sqrt(0) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Backwards",
+            "title": "Decomposition: naming the layers",
+            "body": "Running the line in reverse is just as useful: $h(x) = \\sqrt{x^2 + 1}$ is two layers — inner $g(x) = x^2 + 1$ (computed first), outer $f(x) = \\sqrt{x}$ (done to it). Ask 'if I plugged in a number, what would I compute FIRST?' — that is the inner function. Calculus's chain rule is exactly this skill."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Both orders at −2",
+            "problemId": "pc12-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Peel the layers",
+            "problemId": "pc12-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "(f∘g)(x) = f(g(x)): the function next to x runs first.",
+              "Substitute g's WHOLE formula, in parentheses, into f's x.",
+              "f∘g ≠ g∘f in general; decomposition names the inner and outer layers."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inverse-functions",
+      "title": "Inverse Functions",
+      "concreteComparison": "An inverse function is the rewind button: if f encrypts, f⁻¹ decrypts. Feed f's output into f⁻¹ and the original input walks back out — and on a graph the two curves are mirror images across the diagonal y = x.",
+      "objective": "Find inverse functions algebraically, verify inverses by composition, recognize the y = x mirror symmetry, and use the horizontal line test for invertibility.",
+      "concept": [
+        "$f^{-1}$ **undoes** $f$: if $f(2) = 11$ then $f^{-1}(11) = 2$. Every input–output pair $(a, b)$ of $f$ becomes the pair $(b, a)$ of $f^{-1}$ — inputs and outputs trade places. (The $-1$ is NOT an exponent: $f^{-1}(x) \\ne \\frac{1}{f(x)}$.)",
+        "To find a formula: write $y = f(x)$, **swap $x$ and $y$**, and solve for $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve: $y = \\frac{x+5}{3}$. The verification is composition: $f(f^{-1}(x)) = x$ AND $f^{-1}(f(x)) = x$ — each machine undoes the other.",
+        "Swapping coordinates reflects the graph across the line $y = x$. And not every function qualifies: if two inputs share an output ($f(2) = f(-2) = 4$ for $x^2$), the rewind is ambiguous. The **horizontal line test** — no horizontal line hits the graph twice — decides invertibility."
+      ],
+      "keyIdea": "The inverse swaps every (a, b) into (b, a): algebraically swap x and y and re-solve; graphically mirror across y = x; only one-to-one functions (horizontal line test) qualify.",
+      "facts": [
+        {
+          "title": "Undo pairs",
+          "latex": "f(a) = b \\iff f^{-1}(b) = a",
+          "explanation": "Inputs and outputs trade places; domain and range swap too."
+        },
+        {
+          "title": "Verification",
+          "latex": "f(f^{-1}(x)) = x = f^{-1}(f(x))",
+          "explanation": "Composing in either order must give back plain x."
+        },
+        {
+          "title": "Horizontal line test",
+          "latex": "\\text{one-to-one} \\iff \\text{invertible}",
+          "explanation": "A repeated output makes the rewind ambiguous — no inverse function."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc13-we1",
+          "statement": "Find $f^{-1}(x)$ for $f(x) = 3x - 5$, and verify by composition.",
+          "solution": "Write $y = 3x - 5$. Swap: $x = 3y - 5$. Solve: $3y = x + 5$, so $f^{-1}(x) = \\frac{x+5}{3}$. Verify: $f(f^{-1}(x)) = 3 \\cdot \\frac{x+5}{3} - 5 = x + 5 - 5 = x$. ✓",
+          "check": [
+            "3*Rational(7+5,3) - 5 == 7",
+            "Rational((3*4-5)+5,3) == 4"
+          ]
+        },
+        {
+          "id": "pc13-we2",
+          "statement": "Find the inverse of $f(x) = \\dfrac{2x + 1}{x - 3}$.",
+          "solution": "Swap: $x = \\frac{2y+1}{y-3}$. Clear the fraction: $x(y - 3) = 2y + 1 \\Rightarrow xy - 3x = 2y + 1$. Collect $y$: $xy - 2y = 3x + 1 \\Rightarrow y(x - 2) = 3x + 1$. So $f^{-1}(x) = \\frac{3x+1}{x-2}$.",
+          "check": [
+            "Rational(2*4 + 1, 4 - 3) == 9",
+            "Rational(3*9 + 1, 9 - 2) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $f^{-1}(x)$ as $\\frac{1}{f(x)}$ because of the $-1$.",
+          "correction": "On a FUNCTION, the superscript $-1$ means 'inverse machine', not reciprocal. $f(x) = 3x - 5$ has $f^{-1}(x) = \\frac{x+5}{3}$, which is nothing like $\\frac{1}{3x-5}$.",
+          "authored": true
+        },
+        {
+          "text": "Undoing operations in the same order they were applied: for $f(x) = 3x - 5$, dividing by 3 first, then adding 5, to get $\\frac{x}{3} + 5$.",
+          "correction": "Undo in REVERSE order, like taking off shoes before socks: f multiplies then subtracts, so f⁻¹ adds 5 FIRST, then divides: $\\frac{x+5}{3}$. Check with a pair: $f(2)=1$, and $\\frac{1+5}{3}=2$ ✓ but $\\frac{1}{3}+5 \\ne 2$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc13-t1",
+          "statement": "Find $g^{-1}(x)$ for $g(x) = \\dfrac{x}{4} + 2$, and check it on the pair $g(8) = 4$.",
+          "solution": "Swap: $x = \\frac{y}{4} + 2$. Solve: $\\frac{y}{4} = x - 2$, so $g^{-1}(x) = 4(x - 2) = 4x - 8$. Check: $g(8) = 4$, and $g^{-1}(4) = 16 - 8 = 8$ — the pair reverses. ✓",
+          "check": [
+            "Rational(8,4) + 2 == 4",
+            "4*4 - 8 == 8"
+          ]
+        },
+        {
+          "id": "pc13-t2",
+          "statement": "The function $f(x) = x^2$ is not invertible on all reals. Restrict its domain so it is, and name the inverse.",
+          "solution": "On all reals, $f(2) = f(-2) = 4$ fails the horizontal line test. Restrict to $x \\ge 0$: now each output comes from one input, and the inverse is $f^{-1}(x) = \\sqrt{x}$. Check: $f(3) = 9$, $\\sqrt{9} = 3$. ✓",
+          "check": [
+            "2**2 == (-2)**2",
+            "3**2 == 9",
+            "sqrt(9) == 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "The rewind button",
+            "body": "If $f$ is a machine, $f^{-1}$ is the machine built to UNDO it: whatever $f$ outputs, $f^{-1}$ turns back into the original input. Concretely, every pair flips: $f(2) = 11$ forces $f^{-1}(11) = 2$. One warning up front: the $-1$ is machine notation, not an exponent — $f^{-1}$ is not $\\frac{1}{f}$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Flip a pair",
+            "prompt": "If $f(7) = -3$, which pair MUST lie on the graph of $f^{-1}$?",
+            "options": [
+              "$(-3, 7)$",
+              "$(7, -3)$",
+              "$(3, -7)$",
+              "$(-7, 3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inputs and outputs trade places: $f$'s pair $(7, -3)$ becomes $f^{-1}$'s pair $(-3, 7)$.",
+            "check": [
+              "7 == 7",
+              "-3 == -3"
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Mirror pairs across y = x",
+            "teach": "Each orange point $(a, b)$ from $f(x) = 3x - 5$ is plotted with its flipped partner $(b, a)$ from $f^{-1}$. Imagine the diagonal line $y = x$ drawn through $(-4,-4), (0,0), (4,4)$: every pair straddles it like a mirror. Swapping coordinates IS reflection across that diagonal.",
+            "config": {
+              "mode": "plot",
+              "min": -6,
+              "max": 6,
+              "points": [
+                {
+                  "x": 2,
+                  "y": 1,
+                  "label": "f"
+                },
+                {
+                  "x": 1,
+                  "y": 2,
+                  "label": "f⁻¹"
+                },
+                {
+                  "x": 3,
+                  "y": 4,
+                  "label": "f"
+                },
+                {
+                  "x": 4,
+                  "y": 3,
+                  "label": "f⁻¹"
+                },
+                {
+                  "x": 0,
+                  "y": -5
+                },
+                {
+                  "x": -5,
+                  "y": 0
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Swap and re-solve",
+            "body": "The coordinate flip becomes an algorithm: write $y = f(x)$, **swap every $x$ and $y$**, then solve for the new $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve to $y = \\frac{x + 5}{3}$. Notice what the answer does: it adds 5 back FIRST, then divides — undoing $f$'s steps in reverse order, shoes before socks."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Find and verify",
+            "problemId": "pc13-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The proof",
+            "title": "Composition is the receipt",
+            "body": "How do you KNOW two formulas are inverses? Compose them: $f(f^{-1}(x))$ must simplify to plain $x$, and so must $f^{-1}(f(x))$ — each machine perfectly undoing the other, both directions. This links yesterday's composition lesson to today's: inverse = the composition partner that produces the identity."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A rational inverse",
+            "problemId": "pc13-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Who qualifies?",
+            "prompt": "Which function FAILS to have an inverse on its whole domain?",
+            "options": [
+              "$f(x) = x^2 - 3$",
+              "$f(x) = 2x + 1$",
+              "$f(x) = x^3$",
+              "$f(x) = \\frac{x+5}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 - 3$ sends both $2$ and $-2$ to $1$ — a repeated output. The rewind of 1 is ambiguous, so no inverse without restricting the domain. Lines with nonzero slope and $x^3$ never repeat an output.",
+            "check": [
+              "2**2 - 3 == 1",
+              "(-2)**2 - 3 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "Horizontal line test",
+            "body": "The vertical line test checked 'is it a function'; the HORIZONTAL line test checks 'is it invertible'. A horizontal line collects all inputs sharing one output — if it ever hits twice, that output has two possible rewinds. Fix: restrict the domain. $y = x^2$ on $x \\ge 0$ keeps only the right arm, passes the test, and earns the inverse $\\sqrt{x}$."
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Always test one pair",
+            "body": "After computing any inverse formula, verify ONE concrete pair before moving on: compute $f(a) = b$ with a small number, then confirm your $f^{-1}(b) = a$. Ten seconds, and it catches swapped signs, unreversed orders, and algebra slips almost every time."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Undo a two-step machine",
+            "problemId": "pc13-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Restrict to invert",
+            "problemId": "pc13-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "f⁻¹ flips every (a, b) to (b, a); graphs mirror across y = x.",
+              "Method: swap x and y, re-solve; proof: both compositions give x.",
+              "Only one-to-one functions (horizontal line test) are invertible — restrict the domain if needed."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "symmetry-even-and-odd",
+      "title": "Symmetry: Even & Odd Functions",
+      "concreteComparison": "An even function is a butterfly — fold the graph along the y-axis and the wings match. An odd function is a propeller — spin the graph half a turn about the origin and it lands on itself.",
+      "objective": "Test functions for even/odd symmetry algebraically via f(−x), recognize the two symmetries on graphs, and use symmetry to halve graphing work.",
+      "concept": [
+        "A function is **even** if $f(-x) = f(x)$ — opposite inputs give EQUAL outputs, so the graph mirrors across the $y$-axis. Powerhouse examples: $x^2$, $x^4$, $|x|$, $\\cos x$ (coming soon). The name comes from the even powers.",
+        "A function is **odd** if $f(-x) = -f(x)$ — opposite inputs give OPPOSITE outputs, so the graph maps onto itself under a $180°$ rotation about the origin. Examples: $x$, $x^3$, $\\frac{1}{x}$, $\\sin x$. Odd powers, odd functions.",
+        "The test is mechanical: compute $f(-x)$ and simplify. If it equals $f(x)$: even. If it equals $-f(x)$: odd. If neither (e.g. $x^2 + x$): no symmetry — most functions have none. Symmetry is a gift, not a guarantee."
+      ],
+      "keyIdea": "Compute f(−x): equal to f(x) means even (mirror over the y-axis); equal to −f(x) means odd (half-turn about the origin); neither means no symmetry.",
+      "facts": [
+        {
+          "title": "Even",
+          "latex": "f(-x) = f(x) \\;\\; (y\\text{-axis mirror})",
+          "explanation": "x², x⁴, |x|: even powers, butterfly graphs."
+        },
+        {
+          "title": "Odd",
+          "latex": "f(-x) = -f(x) \\;\\; (180° \\text{ about origin})",
+          "explanation": "x, x³, 1/x: odd powers, propeller graphs."
+        },
+        {
+          "title": "Most functions: neither",
+          "latex": "f(x) = x^2 + x: f(-1) = 0 \\ne f(1) = 2",
+          "explanation": "Mixed even and odd terms usually break both symmetries."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc14-we1",
+          "statement": "Classify $f(x) = x^4 - 3x^2$ as even, odd, or neither.",
+          "solution": "$f(-x) = (-x)^4 - 3(-x)^2 = x^4 - 3x^2 = f(x)$ — every power of $x$ is even, so the minus signs vanish. EVEN: the graph is a mirror image across the $y$-axis. Spot-check: $f(2) = 16 - 12 = 4$ and $f(-2) = 4$. ✓",
+          "check": [
+            "2**4 - 3*2**2 == 4",
+            "(-2)**4 - 3*(-2)**2 == 4"
+          ]
+        },
+        {
+          "id": "pc14-we2",
+          "statement": "Classify $g(x) = x^3 - 5x$ as even, odd, or neither.",
+          "solution": "$g(-x) = (-x)^3 - 5(-x) = -x^3 + 5x = -(x^3 - 5x) = -g(x)$ — every term flips sign. ODD: half-turn symmetry about the origin. Spot-check: $g(2) = 8 - 10 = -2$ and $g(-2) = -8 + 10 = 2 = -g(2)$. ✓",
+          "check": [
+            "2**3 - 5*2 == -2",
+            "(-2)**3 - 5*(-2) == 2",
+            "2 == -(-2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Concluding 'odd' the moment a function is not even.",
+          "correction": "Odd is its own positive test: $f(-x)$ must equal $-f(x)$ exactly. $f(x) = x^2 + x$ is not even AND not odd — 'neither' is the most common verdict of all.",
+          "authored": true
+        },
+        {
+          "text": "Calling $f(x) = x^2 + 1$ odd because it has the odd-looking +1, or testing only one point.",
+          "correction": "One matching point proves nothing — the identity must hold for EVERY x. Compute $f(-x)$ symbolically: $(-x)^2 + 1 = x^2 + 1 = f(x)$, so it is even (a shifted-up butterfly).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc14-t1",
+          "statement": "Classify $h(x) = \\dfrac{2}{x}$ and $k(x) = |x| + 3$ as even, odd, or neither.",
+          "solution": "$h(-x) = \\frac{2}{-x} = -\\frac{2}{x} = -h(x)$: ODD. $k(-x) = |-x| + 3 = |x| + 3 = k(x)$: EVEN. Spot-checks: $h(2) = 1, h(-2) = -1$; $k(2) = 5 = k(-2)$. ✓",
+          "check": [
+            "Rational(2,2) == 1",
+            "Rational(2,-2) == -1",
+            "Abs(-2) + 3 == 5",
+            "Abs(2) + 3 == 5"
+          ]
+        },
+        {
+          "id": "pc14-t2",
+          "statement": "The point $(3, -7)$ lies on the graph of an odd function $f$. Name another point that must lie on the graph, and evaluate $f(0)$ if $0$ is in the domain.",
+          "solution": "Odd symmetry sends $(3, -7)$ to $(-3, 7)$. At zero: $f(-0) = -f(0)$ means $f(0) = -f(0)$, so $2f(0) = 0$ — every odd function defined at 0 passes through the ORIGIN.",
+          "check": [
+            "-(-7) == 7",
+            "0 == -0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Butterflies and propellers",
+            "body": "Some graphs carry a hidden symmetry, and spotting it halves your work forever. Two kinds matter: the **butterfly** (fold along the $y$-axis, wings match) and the **propeller** (rotate half a turn about the origin, lands on itself). Algebra names them EVEN and ODD — and gives a mechanical test for each."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "See even",
+            "title": "The butterfly: y = ax²",
+            "teach": "Step $a$ up and down — every parabola $y = ax^2$ keeps the same left–right mirror across the $y$-axis, because $(-x)^2 = x^2$: opposite inputs, EQUAL outputs. That equality is the whole definition of even.",
+            "config": {
+              "mode": "shape",
+              "a": 1
+            }
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See odd",
+            "title": "The propeller: y = x³ − 5x (samples)",
+            "teach": "Sample points of $g(x) = x^3 - 5x$. Pick any orange point and shoot a line through the origin: an equal partner sits exactly opposite — $(2, -2)$ pairs with $(-2, 2)$. Opposite inputs, OPPOSITE outputs: odd.",
+            "config": {
+              "mode": "plot",
+              "min": -6,
+              "max": 6,
+              "points": [
+                {
+                  "x": -2,
+                  "y": 2
+                },
+                {
+                  "x": -1,
+                  "y": 4
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "label": "origin"
+                },
+                {
+                  "x": 1,
+                  "y": -4
+                },
+                {
+                  "x": 2,
+                  "y": -2
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The test",
+            "title": "One computation decides",
+            "body": "Forget staring at graphs — compute $f(-x)$ and simplify. Comes back as $f(x)$? **Even.** Comes back as $-f(x)$, every term flipped? **Odd.** Anything else? **Neither** — and neither is the most common answer. The names come from powers: $x^2, x^4$ survive the flip (even), $x, x^3$ flip sign (odd)."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All even powers",
+            "problemId": "pc14-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All odd powers",
+            "problemId": "pc14-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Mixed powers",
+            "prompt": "Classify $f(x) = x^2 + x$.",
+            "options": [
+              "neither",
+              "even",
+              "odd",
+              "both"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f(-x) = x^2 - x$: not $f(x)$ (the $x$ flipped) and not $-f(x)$ (the $x^2$ didn't). Mixed even and odd terms break both symmetries. Check: $f(1) = 2$ but $f(-1) = 0$.",
+            "check": [
+              "1**2 + 1 == 2",
+              "(-1)**2 + (-1) == 0",
+              "2 != 0",
+              "2 != -0"
+            ]
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "Play",
+            "title": "Reflect and compare",
+            "teach": "Reflect this half-graph of $y = x^2 - 3$ (right side only) across the $y$-axis. The reflected copy lands exactly where the LEFT half of the parabola belongs — even symmetry means the y-axis mirror rebuilds the whole graph from half the work.",
+            "config": {
+              "mode": "reflect",
+              "min": -6,
+              "max": 6,
+              "reflectAxis": "y",
+              "points": [
+                {
+                  "x": 1,
+                  "y": -2
+                },
+                {
+                  "x": 2,
+                  "y": 1
+                },
+                {
+                  "x": 3,
+                  "y": 6
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Symmetry as a shortcut",
+            "prompt": "An odd function has $f(4) = 9$. What is $f(-4)$?",
+            "options": [
+              "$-9$",
+              "$9$",
+              "$\\frac{1}{9}$",
+              "cannot tell"
+            ],
+            "correctIndex": 0,
+            "explanation": "Odd: $f(-x) = -f(x)$, so $f(-4) = -f(4) = -9$. One computed point gives you its mirror partner for free.",
+            "check": [
+              "-(9) == -9"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every function is half even, half odd",
+            "body": "Any function splits as $f(x) = \\frac{f(x) + f(-x)}{2} + \\frac{f(x) - f(-x)}{2}$ — the first piece is always even, the second always odd. For $e^x$ this split produces cosh and sinh, the hyperbolic cousins of cosine and sine you will meet in calculus."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two classifications",
+            "problemId": "pc14-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Points for free",
+            "problemId": "pc14-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Even: f(−x) = f(x), y-axis butterfly (x², x⁴, |x|).",
+              "Odd: f(−x) = −f(x), origin propeller (x, x³, 1/x); odd + defined at 0 ⇒ passes through origin.",
+              "Test symbolically with f(−x); 'neither' is common — one point proves nothing."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc1-pr-1",
+      "statement": "Find the domain of $f(x) = \\dfrac{3x}{x^2 - 16}$.",
+      "solution": "$x^2 - 16 = (x-4)(x+4) = 0$ at $x = \\pm 4$. Domain: all reals except $x = 4$ and $x = -4$.",
+      "check": [
+        "4**2 - 16 == 0",
+        "(-4)**2 - 16 == 0"
+      ]
+    },
+    {
+      "id": "pc1-pr-2",
+      "statement": "Find the domain of $g(x) = \\sqrt{10 - 2x}$.",
+      "solution": "Need $10 - 2x \\ge 0$, so $2x \\le 10$, i.e. $x \\le 5$. Domain: $(-\\infty, 5]$.",
+      "check": [
+        "10 - 2*5 == 0",
+        "10 - 2*4 == 2",
+        "2 > 0"
+      ]
+    },
+    {
+      "id": "pc1-pr-3",
+      "statement": "$f(x) = (x-3)^2 - 7$ opens upward. State its range and its interval of decrease.",
+      "solution": "Vertex $(3, -7)$ is the minimum: range $y \\ge -7$. The parabola falls left of the vertex: decreasing on $(-\\infty, 3)$.",
+      "check": [
+        "(3-3)**2 - 7 == -7",
+        "(0-3)**2 - 7 == 2",
+        "2 > -7"
+      ]
+    },
+    {
+      "id": "pc1-pr-4",
+      "statement": "For $f(x) = x^2 + 2$ and $g(x) = x - 4$, compute $(f \\circ g)(6)$ and $(g \\circ f)(6)$.",
+      "solution": "$(f \\circ g)(6)$: $g(6) = 2$, then $f(2) = 6$. $(g \\circ f)(6)$: $f(6) = 38$, then $g(38) = 34$.",
+      "check": [
+        "6 - 4 == 2",
+        "2**2 + 2 == 6",
+        "6**2 + 2 == 38",
+        "38 - 4 == 34"
+      ]
+    },
+    {
+      "id": "pc1-pr-5",
+      "statement": "For the same $f, g$, simplify $(f \\circ g)(x)$ and $(g \\circ f)(x)$.",
+      "solution": "$(f \\circ g)(x) = (x-4)^2 + 2 = x^2 - 8x + 18$. $(g \\circ f)(x) = (x^2 + 2) - 4 = x^2 - 2$. Check at $x = 6$: $36 - 48 + 18 = 6$ ✓ and $36 - 2 = 34$ ✓.",
+      "check": [
+        "expand((x-4)**2 + 2 - (x**2 - 8*x + 18)) == 0",
+        "6**2 - 8*6 + 18 == 6",
+        "6**2 - 2 == 34"
+      ]
+    },
+    {
+      "id": "pc1-pr-6",
+      "statement": "Find $f^{-1}(x)$ for $f(x) = \\dfrac{x - 7}{2}$ and verify on the pair $f(11) = 2$.",
+      "solution": "Swap: $x = \\frac{y-7}{2}$. Solve: $y = 2x + 7$, so $f^{-1}(x) = 2x + 7$. Verify: $f^{-1}(2) = 11$. ✓",
+      "check": [
+        "Rational(11 - 7, 2) == 2",
+        "2*2 + 7 == 11"
+      ]
+    },
+    {
+      "id": "pc1-pr-7",
+      "statement": "Write $h(x) = \\sqrt{5x + 1}$ as a composition $f(g(x))$, naming the inner and outer functions.",
+      "solution": "Inner (computed first): $g(x) = 5x + 1$. Outer: $f(x) = \\sqrt{x}$. Check at $x = 3$: $g(3) = 16$, $f(16) = 4 = \\sqrt{16}$. ✓",
+      "check": [
+        "5*3 + 1 == 16",
+        "sqrt(16) == 4"
+      ]
+    },
+    {
+      "id": "pc1-pr-8",
+      "statement": "Classify as even, odd, or neither: $p(x) = x^6 - 4x^2 + 1$, $q(x) = \\dfrac{x^3}{5}$, $r(x) = x^2 - 6x$.",
+      "solution": "$p(-x) = p(x)$ (all even powers, constants count as even): EVEN. $q(-x) = -q(x)$: ODD. $r(-x) = x^2 + 6x$ — neither $r(x)$ nor $-r(x)$: NEITHER. Spot-checks: $p(1) = p(-1) = -2$; $q(2) = \\frac{8}{5} = -q(-2)$; $r(1) = -5$, $r(-1) = 7$.",
+      "check": [
+        "1 - 4 + 1 == -2",
+        "(-1)**6 - 4*(-1)**2 + 1 == -2",
+        "Rational(2**3,5) == Rational(8,5)",
+        "1 - 6 == -5",
+        "1 + 6 == 7",
+        "-5 != 7",
+        "-5 != -7"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc1-ty-1",
+      "statement": "Find the domain of $f(x) = \\dfrac{\\sqrt{x - 1}}{x - 6}$.",
+      "solution": "Root: $x \\ge 1$. Fraction: $x \\ne 6$. Domain: $[1, 6) \\cup (6, \\infty)$.",
+      "check": [
+        "1 - 1 == 0",
+        "6 - 6 == 0",
+        "1 < 6"
+      ]
+    },
+    {
+      "id": "pc1-ty-2",
+      "statement": "$f(x) = -(x + 1)^2 + 9$. State the range, the $x$-intercepts, and where $f$ is increasing.",
+      "solution": "Vertex $(-1, 9)$, opens down: range $y \\le 9$. Intercepts: $-(x+1)^2 + 9 = 0 \\Rightarrow (x+1)^2 = 9 \\Rightarrow x = 2$ or $x = -4$. Increasing on the climb to the vertex: $(-\\infty, -1)$.",
+      "check": [
+        "-(2+1)**2 + 9 == 0",
+        "-(-4+1)**2 + 9 == 0",
+        "-(-1+1)**2 + 9 == 9"
+      ]
+    },
+    {
+      "id": "pc1-ty-3",
+      "statement": "For $f(x) = 2x - 3$ and $g(x) = x^2 + 1$, compute $(f \\circ g)(x)$, $(g \\circ f)(x)$, and the value where they differ at $x = 2$.",
+      "solution": "$(f \\circ g)(x) = 2(x^2 + 1) - 3 = 2x^2 - 1$. $(g \\circ f)(x) = (2x - 3)^2 + 1 = 4x^2 - 12x + 10$. At $x = 2$: $7$ vs $2$ — order matters.",
+      "check": [
+        "expand(2*(x**2+1) - 3 - (2*x**2 - 1)) == 0",
+        "expand((2*x-3)**2 + 1 - (4*x**2 - 12*x + 10)) == 0",
+        "2*2**2 - 1 == 7",
+        "4*4 - 24 + 10 == 2",
+        "7 != 2"
+      ]
+    },
+    {
+      "id": "pc1-ty-4",
+      "statement": "Find $f^{-1}(x)$ for $f(x) = \\dfrac{4x + 1}{x - 2}$.",
+      "solution": "Swap: $x = \\frac{4y+1}{y-2}$. Clear: $xy - 2x = 4y + 1$. Collect: $y(x - 4) = 2x + 1$, so $f^{-1}(x) = \\frac{2x + 1}{x - 4}$. Check pair: $f(3) = 13$, $f^{-1}(13) = \\frac{27}{9} = 3$. ✓",
+      "check": [
+        "Rational(4*3 + 1, 3 - 2) == 13",
+        "Rational(2*13 + 1, 13 - 4) == 3"
+      ]
+    },
+    {
+      "id": "pc1-ty-5",
+      "statement": "Explain why $f(x) = |x|$ has no inverse on all reals, then restrict the domain and give the inverse.",
+      "solution": "$|3| = |-3| = 3$: a horizontal line at height 3 hits twice — not one-to-one. Restrict to $x \\ge 0$, where $|x| = x$; the inverse is $f^{-1}(x) = x$ on $x \\ge 0$.",
+      "check": [
+        "Abs(3) == Abs(-3)",
+        "Abs(3) == 3"
+      ]
+    },
+    {
+      "id": "pc1-ty-6",
+      "statement": "$f$ is even with $f(5) = -2$; $g$ is odd with $g(5) = -2$. Evaluate $f(-5) + g(-5)$.",
+      "solution": "Even: $f(-5) = f(5) = -2$. Odd: $g(-5) = -g(5) = 2$. Sum: $-2 + 2 = 0$.",
+      "check": [
+        "-2 + 2 == 0",
+        "-(-2) == 2"
+      ]
+    }
+  ]
+}

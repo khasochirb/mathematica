@@ -1,0 +1,1080 @@
+{
+  "slug": "conic-sections",
+  "title": "Conic Sections",
+  "unit": 8,
+  "status": "published",
+  "blurb": "Slice a cone four ways — circle, ellipse, parabola, hyperbola — and each curve gets an equation, foci with physical superpowers, and a one-glance classification test.",
+  "buildsOn": "Completing the square (Algebra 1); distance formula; transformations (Unit 2).",
+  "lessons": [
+    {
+      "slug": "circles",
+      "title": "Circles",
+      "concreteComparison": "A circle's equation is a leash law: every point exactly r meters from the stake at (h, k). The equation (x−h)² + (y−k)² = r² is just the distance formula with the leash pulled taut.",
+      "objective": "Write and interpret the standard equation of a circle, convert general form to standard by completing the square, and solve tangency and point-membership questions.",
+      "concept": [
+        "A **circle** is all points at fixed distance $r$ (radius) from a center $(h, k)$. Apply the distance formula to any point $(x, y)$ on it and square both sides: $(x - h)^2 + (y - k)^2 = r^2$ — the standard equation. Center signs read OPPOSITE (Unit 2's inside rule); the right side is $r$ SQUARED.",
+        "Expanded, the equation scatters into **general form**: $x^2 + y^2 + Dx + Ey + F = 0$. To recover the geometry, **complete the square** in x and in y separately — the reverse trip exposes the center and radius that the expansion hid.",
+        "Membership and tangency are distance questions: a point is inside/on/outside as its distance to the center is $<, =, >$ r. A line is tangent when its distance from the center equals $r$ — one touch, at the point where the radius meets it perpendicularly."
+      ],
+      "keyIdea": "(x − h)² + (y − k)² = r²: the distance formula frozen at distance r; complete the square to un-scatter general form; inside/on/outside = compare distance to r.",
+      "facts": [
+        {
+          "title": "Standard form",
+          "latex": "(x - h)^2 + (y - k)^2 = r^2",
+          "explanation": "Center (h, k) — signs flipped — radius √(RHS)."
+        },
+        {
+          "title": "Complete the square",
+          "latex": "x^2 + 6x \\to (x + 3)^2 - 9",
+          "explanation": "Half the coefficient, squared; subtract what you added."
+        },
+        {
+          "title": "Membership test",
+          "latex": "d(P, C) \\lessgtr r: \\text{ inside / on / outside}",
+          "explanation": "Every circle question is a distance question."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc81-we1",
+          "statement": "Find the center and radius of $x^2 + y^2 - 6x + 4y - 12 = 0$.",
+          "solution": "Group and complete: $(x^2 - 6x + 9) + (y^2 + 4y + 4) = 12 + 9 + 4$, i.e. $(x - 3)^2 + (y + 2)^2 = 25$. Center $(3, -2)$, radius $\\sqrt{25} = 5$.",
+          "check": [
+            "expand((x - 3)**2 - (x**2 - 6*x + 9)) == 0",
+            "12 + 9 + 4 == 25",
+            "sqrt(25) == 5"
+          ]
+        },
+        {
+          "id": "pc81-we2",
+          "statement": "Write the equation of the circle with center $(-1, 4)$ passing through $(2, 8)$, and decide whether the origin lies inside it.",
+          "solution": "Radius = distance to the given point: $\\sqrt{(2-(-1))^2 + (8-4)^2} = \\sqrt{9 + 16} = 5$. Equation: $(x + 1)^2 + (y - 4)^2 = 25$. Origin: distance$^2 = 1 + 16 = 17 < 25$: INSIDE.",
+          "check": [
+            "(2 - (-1))**2 + (8 - 4)**2 == 25",
+            "(0 + 1)**2 + (0 - 4)**2 == 17",
+            "17 < 25"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the radius of (x−3)² + (y+2)² = 25 as 25.",
+          "correction": "The right side is $r^2$: the radius is $\\sqrt{25} = 5$. Equations with r² = 7 have the perfectly legal radius √7 — don't demand perfect squares.",
+          "authored": true
+        },
+        {
+          "text": "Completing the square but forgetting to add the same amounts to the right side.",
+          "correction": "Adding 9 and 4 to the left REQUIRES adding them to the right: the equation is a balance. Forgetting shrinks r² by 13 and every downstream answer with it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc81-t1",
+          "statement": "Convert $x^2 + y^2 + 8x - 2y + 8 = 0$ to standard form and give center and radius.",
+          "solution": "$(x^2 + 8x + 16) + (y^2 - 2y + 1) = -8 + 16 + 1$: $(x + 4)^2 + (y - 1)^2 = 9$. Center $(-4, 1)$, radius 3.",
+          "check": [
+            "-8 + 16 + 1 == 9",
+            "sqrt(9) == 3",
+            "expand((x + 4)**2 - (x**2 + 8*x + 16)) == 0"
+          ]
+        },
+        {
+          "id": "pc81-t2",
+          "statement": "Is the point $(6, 2)$ inside, on, or outside the circle $(x - 3)^2 + (y + 2)^2 = 25$?",
+          "solution": "Distance$^2$ from $(3, -2)$: $(6-3)^2 + (2+2)^2 = 9 + 16 = 25 = r^2$: exactly ON the circle.",
+          "check": [
+            "(6 - 3)**2 + (2 + 2)**2 == 25"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The unit",
+            "title": "Four slices of one cone",
+            "body": "Slice an ice-cream cone with a flat blade: level cut — a **circle**; tilt slightly — an **ellipse**; tilt parallel to the cone's slant — a **parabola**; steeper still (through both nappes) — a **hyperbola**. Four curves, one cone, and each gets its own equation and its own physical superpower. We start with the cleanest: the circle."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "A taut leash",
+            "body": "A circle is a LEASH LAW: all points exactly $r$ from the stake $(h, k)$. Write the distance formula for a point $(x, y)$ obeying the law and square it: $(x - h)^2 + (y - k)^2 = r^2$. That's the whole derivation — the standard equation is the distance formula with the leash pulled taut. Center signs read opposite (inside rule); right side is $r$ SQUARED."
+          },
+          {
+            "kind": "conicGraph",
+            "eyebrow": "Play",
+            "title": "Stake and leash",
+            "teach": "Step the center and radius. The equation updates live: watch $h, k$ flip signs inside the parentheses, and watch the right side track $r^2$ — set $r = 5$ and read 25.",
+            "config": {
+              "mode": "circle"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the equation",
+            "prompt": "The circle $(x + 5)^2 + (y - 1)^2 = 7$ has center and radius:",
+            "options": [
+              "$(-5, 1)$, $r = \\sqrt{7}$",
+              "$(5, -1)$, $r = \\sqrt{7}$",
+              "$(-5, 1)$, $r = 7$",
+              "$(5, -1)$, $r = 49$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside signs flip: center $(-5, 1)$. Right side is $r^2 = 7$, so $r = \\sqrt{7} \\approx 2.65$ — radii needn't be whole.",
+            "check": [
+              "sqrt(7)**2 == 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Un-scattering",
+            "title": "Complete the square, twice",
+            "body": "Expand the standard form and it scatters into $x^2 + y^2 + Dx + Ey + F = 0$ — general form, geometry hidden. Recover it by completing the square in x and y separately: take half of each linear coefficient, square it, add to BOTH sides. The buried center and radius reappear. This is the unit's master move — every conic uses it."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "General to standard",
+            "problemId": "pc81-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "The recovered circle",
+            "teach": "The worked example's circle, plotted: center $(3, -2)$, radius 5 — passing through $(8, -2), (3, 3), (-2, -2), (3, -7)$. Each plotted point sits exactly 5 from the center: the leash law, visible.",
+            "config": {
+              "mode": "plot",
+              "min": -8,
+              "max": 9,
+              "points": [
+                {
+                  "x": 3,
+                  "y": -2,
+                  "label": "center"
+                },
+                {
+                  "x": 8,
+                  "y": -2
+                },
+                {
+                  "x": 3,
+                  "y": 3
+                },
+                {
+                  "x": -2,
+                  "y": -2
+                },
+                {
+                  "x": 3,
+                  "y": -7
+                },
+                {
+                  "x": 6,
+                  "y": 2
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Through a point; who's inside?",
+            "problemId": "pc81-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Distance decides",
+            "prompt": "Circle: center $(0,0)$, $r = 10$. The point $(6, 8)$ is:",
+            "options": [
+              "on the circle",
+              "inside",
+              "outside",
+              "impossible to tell"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6^2 + 8^2 = 36 + 64 = 100 = 10^2$: distance exactly 10 — ON the circle. (The 6-8-10 triangle strikes again.)",
+            "check": [
+              "6**2 + 8**2 == 100",
+              "10**2 == 100"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Balance-check the completion",
+            "body": "After completing the square, expand your standard form back mentally and compare constants with the original. For the worked example: $(x-3)^2 + (y+2)^2 = 25$ expands to $x^2 + y^2 - 6x + 4y - 12 = 0$ ✓. Ten seconds; catches the missing-right-side error that plagues this move."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Un-scatter this one",
+            "problemId": "pc81-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Leash test",
+            "problemId": "pc81-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "(x−h)² + (y−k)² = r²: signs flip inside, right side is r squared.",
+              "General form hides the geometry; complete the square (both variables, both sides) to recover it.",
+              "Inside/on/outside: compare distance-to-center with r."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "ellipses",
+      "title": "Ellipses",
+      "concreteComparison": "Pin a loop of string at two tacks and pull a pencil taut around them: the pencil draws an ellipse. The two tacks are the foci — and in a whispering gallery shaped like this, a whisper at one tack is heard perfectly at the other.",
+      "objective": "Graph ellipses from standard form, find vertices and foci via c² = a² − b², distinguish horizontal from vertical major axes, and write equations from geometric data.",
+      "concept": [
+        "An **ellipse** is the set of points whose distances to two **foci** SUM to a constant $2a$ — the loop of string. Standard form, centered at the origin: $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$, a unit circle stretched to half-width $a$ and half-height $b$. The intercepts are $(\\pm a, 0)$ and $(0, \\pm b)$ — read them straight from the denominators' square roots.",
+        "The LONGER denominator marks the **major axis** and its endpoints are the **vertices**; the foci sit ON the major axis at distance $c$ from the center with $c^2 = a^2 - b^2$ ($a$ = the larger). Bigger gap between $a$ and $b$: foci farther out, ellipse more elongated — eccentricity $e = \\frac{c}{a}$ measures the stretch from 0 (circle) toward 1 (cigar).",
+        "Off-center ellipses shift like everything else: $\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1$ centers at $(h, k)$. To build an equation from data, extract $a$ (vertex distance), get $c$ (focus distance), and mint the missing $b^2 = a^2 - c^2$."
+      ],
+      "keyIdea": "Distances to the two foci sum to 2a; x²/a² + y²/b² = 1 with the larger denominator naming the major axis; foci at c² = a² − b² along it.",
+      "facts": [
+        {
+          "title": "String law",
+          "latex": "d_1 + d_2 = 2a",
+          "explanation": "The loop of string: constant total distance to the foci."
+        },
+        {
+          "title": "Standard form",
+          "latex": "\\tfrac{x^2}{a^2} + \\tfrac{y^2}{b^2} = 1",
+          "explanation": "Half-width √(x-denominator), half-height √(y-denominator)."
+        },
+        {
+          "title": "Foci",
+          "latex": "c^2 = a^2 - b^2 \\; (a > b)",
+          "explanation": "On the major axis, distance c out from the center."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc82-we1",
+          "statement": "For $\\dfrac{x^2}{25} + \\dfrac{y^2}{9} = 1$: vertices, co-vertices, foci, and eccentricity.",
+          "solution": "$a^2 = 25$ under $x$: HORIZONTAL major axis. Vertices $(\\pm 5, 0)$; co-vertices $(0, \\pm 3)$. $c^2 = 25 - 9 = 16$: foci $(\\pm 4, 0)$. Eccentricity $e = \\frac{4}{5} = 0.8$ — noticeably elongated.",
+          "check": [
+            "25 - 9 == 16",
+            "sqrt(16) == 4",
+            "Rational(4,5) < 1"
+          ]
+        },
+        {
+          "id": "pc82-we2",
+          "statement": "Write the equation of the ellipse with foci $(0, \\pm 3)$ and vertices $(0, \\pm 5)$, and find its width at the center.",
+          "solution": "Foci on the Y-axis: VERTICAL major axis, $a = 5$ under $y$. $b^2 = a^2 - c^2 = 25 - 9 = 16$. Equation: $\\frac{x^2}{16} + \\frac{y^2}{25} = 1$. Width at center: $2b = 8$.",
+          "check": [
+            "25 - 9 == 16",
+            "2*sqrt(16) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using c² = a² + b² for an ellipse's foci.",
+          "correction": "PLUS belongs to the hyperbola. The ellipse's foci are INSIDE, closer than the vertices: $c^2 = a^2 - b^2$, and $c < a$ always. If your c beats a, you've minted the wrong conic.",
+          "authored": true
+        },
+        {
+          "text": "Assigning a to x automatically, even in y²/25 + x²/9 = 1.",
+          "correction": "a is the LARGER denominator wherever it sits. Under y², the major axis is vertical: vertices up-down, foci up-down. The variable owning the big denominator owns the ellipse's long direction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc82-t1",
+          "statement": "For $\\dfrac{x^2}{9} + \\dfrac{y^2}{36} = 1$: direction of the major axis, vertices, and foci.",
+          "solution": "Larger denominator 36 under $y$: VERTICAL. $a = 6$: vertices $(0, \\pm 6)$; $b = 3$. $c^2 = 36 - 9 = 27$: foci $(0, \\pm 3\\sqrt{3})$.",
+          "check": [
+            "36 - 9 == 27",
+            "expand((3*sqrt(3))**2) == 27",
+            "36 > 9"
+          ]
+        },
+        {
+          "id": "pc82-t2",
+          "statement": "A whispering gallery is a half-ellipse 100 m long and 40 m high at the center. Where should two whisperers stand?",
+          "solution": "$a = 50$, $b = 40$: $c^2 = 2500 - 1600 = 900$, $c = 30$. Stand at the FOCI: 30 m either side of center along the long axis (20 m in from each end), where the sum-law focuses every echo from one to the other.",
+          "check": [
+            "2500 - 1600 == 900",
+            "sqrt(900) == 30",
+            "50 - 30 == 20"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Two tacks and a loop of string",
+            "body": "Pin a loop of string at two tacks, pull a pencil taut, and sweep: the pencil traces an **ellipse**. The tacks are the **foci**, and the defining law is the string itself: from any point on the curve, the distances to the two foci SUM to the same constant, $2a$. Slide the tacks together and the ellipse rounds into a circle; pull them apart and it stretches toward a cigar."
+          },
+          {
+            "kind": "conicGraph",
+            "eyebrow": "Play",
+            "title": "Stretch the ellipse",
+            "teach": "Step $a$ and $b$ and watch the foci (the beacons) respond: closer together as the shape rounds, farther apart as it stretches. The eccentricity readout $e = c/a$ tracks it: 0 is a perfect circle, near 1 is maximally elongated.",
+            "config": {
+              "mode": "ellipse"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The equation",
+            "title": "A stretched unit circle",
+            "body": "Standard form $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$ is the unit circle with the axes re-scaled: half-width $\\sqrt{x\\text{-denominator}}$, half-height $\\sqrt{y\\text{-denominator}}$. The LARGER denominator names the **major axis** — its endpoints are the vertices, and wherever it sits (under x or y), that's the long direction. The smaller one gives the co-vertices."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the frame",
+            "prompt": "$\\dfrac{x^2}{4} + \\dfrac{y^2}{49} = 1$ has its vertices at:",
+            "options": [
+              "$(0, \\pm 7)$ — vertical major axis",
+              "$(\\pm 2, 0)$",
+              "$(\\pm 7, 0)$",
+              "$(0, \\pm 2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The big denominator 49 sits under $y$: the long direction is vertical, vertices $(0, \\pm 7)$. The $(\\pm 2, 0)$ points are the co-vertices — ends of the SHORT axis.",
+            "check": [
+              "49 > 4",
+              "sqrt(49) == 7",
+              "sqrt(4) == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The foci",
+            "title": "c² = a² − b², and why",
+            "body": "Where exactly are the tacks? At the co-vertex, the two string segments are equal (each $a$, by symmetry of the sum $2a$) and form a right triangle with legs $b$ (up) and $c$ (over): $b^2 + c^2 = a^2$, i.e. $\\boxed{c^2 = a^2 - b^2}$. The foci sit at distance $c$ from center ALONG the major axis, always inside the curve. MINUS is the ellipse's signature — plus will belong to the hyperbola."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Full anatomy",
+            "problemId": "pc82-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "x²/25 + y²/9 = 1, plotted",
+            "teach": "The worked ellipse: vertices $(\\pm 5, 0)$, co-vertices $(0, \\pm 3)$, and the foci $(\\pm 4, 0)$ sitting INSIDE on the long axis. Check the string law at the co-vertex $(0, 3)$: distance to each focus is $\\sqrt{16 + 9} = 5$, summing to $10 = 2a$. ✓",
+            "config": {
+              "mode": "plot",
+              "min": -6,
+              "max": 6,
+              "points": [
+                {
+                  "x": -5,
+                  "y": 0,
+                  "label": "vertex"
+                },
+                {
+                  "x": 5,
+                  "y": 0,
+                  "label": "vertex"
+                },
+                {
+                  "x": 0,
+                  "y": 3
+                },
+                {
+                  "x": 0,
+                  "y": -3
+                },
+                {
+                  "x": -4,
+                  "y": 0,
+                  "label": "focus"
+                },
+                {
+                  "x": 4,
+                  "y": 0,
+                  "label": "focus"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Build from foci and vertices",
+            "problemId": "pc82-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "String-law arithmetic",
+            "prompt": "An ellipse has foci 6 apart ($c = 3$) and string length $2a = 10$. Its b² is:",
+            "options": [
+              "$16$",
+              "$34$",
+              "$4$",
+              "$91$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$a = 5$, $c = 3$: $b^2 = a^2 - c^2 = 25 - 9 = 16$ — the 3-4-5 triangle inside every classroom ellipse.",
+            "check": [
+              "25 - 9 == 16"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Kepler's heartbreak, physics' triumph",
+            "body": "Planets orbit the Sun in ellipses with the Sun at ONE FOCUS — Kepler's first law (1609), which broke two millennia of perfect-circle astronomy. The same focus property powers lithotripsy: a kidney-stone machine is an ellipsoidal reflector with the shockwave source at one focus and the stone placed at the other."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Vertical major axis",
+            "problemId": "pc82-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Design the whispering gallery",
+            "problemId": "pc82-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "String law: distances to the foci sum to 2a; equation = stretched unit circle.",
+              "Larger denominator = major axis direction; its root is a, the other is b.",
+              "Foci: c² = a² − b² (minus!), on the major axis, inside the curve."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parabolas-and-the-focus",
+      "title": "Parabolas & the Focus",
+      "concreteComparison": "A satellite dish is a parabola with a receiver at its focus: every signal arriving straight in bounces off the dish and lands on that single point. The curve is built from a tug-of-war — every point equally far from the focus and from a line called the directrix.",
+      "objective": "Define the parabola by focus and directrix, use x² = 4py (and y² = 4px) to locate both, convert vertex-form quadratics, and apply the reflector property.",
+      "concept": [
+        "A **parabola** is all points equidistant from a point (the **focus**) and a line (the **directrix**). Vertex halfway between them; the distance from vertex to focus is $p$. Opening upward from the origin: $x^2 = 4py$ — focus $(0, p)$ inside the cup, directrix $y = -p$ behind it.",
+        "Sideways parabolas swap the variables: $y^2 = 4px$ opens right (focus $(p, 0)$, directrix $x = -p$); negative $p$ flips the direction. The squared variable tells the axis: $x^2$ opens up/down, $y^2$ opens left/right — the sideways ones aren't functions, but they're perfectly good curves.",
+        "Your old friend $y = ax^2$ IS this: rewrite as $x^2 = \\frac{1}{a}y$, so $4p = \\frac{1}{a}$ — every quadratic graph secretly carries a focus at height $p = \\frac{1}{4a}$. The **reflector property**: rays parallel to the axis bounce off the parabola through the focus (dish antennas in), and rays FROM the focus exit parallel (headlights out)."
+      ],
+      "keyIdea": "Equidistant from focus and directrix; x² = 4py opens along the squared-variable's partner with focus p from the vertex; y = ax² has p = 1/(4a); parallel rays collect at the focus.",
+      "facts": [
+        {
+          "title": "Tug-of-war law",
+          "latex": "d(P, F) = d(P, \\text{directrix})",
+          "explanation": "Point-pull vs line-pull, perfectly balanced."
+        },
+        {
+          "title": "Standard forms",
+          "latex": "x^2 = 4py \\; (\\text{up}), \\qquad y^2 = 4px \\; (\\text{right})",
+          "explanation": "Squared variable ⟂ opening direction; focus p from vertex."
+        },
+        {
+          "title": "From y = ax²",
+          "latex": "p = \\tfrac{1}{4a}",
+          "explanation": "Every quadratic's hidden focus height."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc83-we1",
+          "statement": "Find the focus and directrix of $x^2 = 12y$, and of $y = \\tfrac{1}{8}x^2$.",
+          "solution": "First: $4p = 12$, $p = 3$: opens UP, focus $(0, 3)$, directrix $y = -3$. Second: rewrite $x^2 = 8y$: $4p = 8$, $p = 2$: focus $(0, 2)$, directrix $y = -2$.",
+          "check": [
+            "Rational(12,4) == 3",
+            "Rational(8,4) == 2",
+            "4*Rational(1,4*Rational(1,8)) == 8"
+          ]
+        },
+        {
+          "id": "pc83-we2",
+          "statement": "Verify the defining property for the point $(6, 3)$ on $x^2 = 12y$.",
+          "solution": "On the curve: $36 = 12 \\cdot 3$ ✓. Distance to focus $(0,3)$: $\\sqrt{(6-0)^2 + (3-3)^2} = 6$. Distance to directrix $y = -3$: $3 - (-3) = 6$. Equal — the tug-of-war balances. ✓",
+          "check": [
+            "6**2 == 12*3",
+            "sqrt((6-0)**2 + (3-3)**2) == 6",
+            "3 - (-3) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading p as the coefficient: x² = 12y giving p = 12.",
+          "correction": "The standard form is $x^2 = \\mathbf{4}py$: the coefficient is $4p$, so $p = 3$. Divide by 4 first — the focus sits at a QUARTER of the coefficient.",
+          "authored": true
+        },
+        {
+          "text": "Placing the directrix inside the cup, next to the focus.",
+          "correction": "Focus INSIDE the cup, directrix BEHIND the vertex, outside — the curve bends around its focus and away from its directrix, keeping the tug-of-war balanced. Both exactly p from the vertex, opposite sides.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc83-t1",
+          "statement": "Find focus and directrix of $y^2 = -8x$, and state its opening direction.",
+          "solution": "y is squared: horizontal opening; $4p = -8$, $p = -2$: opens LEFT. Focus $(-2, 0)$; directrix $x = 2$.",
+          "check": [
+            "Rational(-8,4) == -2",
+            "(-2)**2*(-8) < 0"
+          ]
+        },
+        {
+          "id": "pc83-t2",
+          "statement": "A satellite dish is 2 m wide and 0.25 m deep. Where does the receiver go?",
+          "solution": "Set the vertex at the origin: the rim point $(1, 0.25)$ lies on $x^2 = 4py$: $1 = 4p(0.25) = p$. So $p = 1$: the receiver sits on the axis 1 m above the vertex — well above the dish's rim.",
+          "check": [
+            "1**2 == 4*1*Rational(1,4)",
+            "1 > Rational(1,4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "A tug-of-war with a line",
+            "body": "The circle obeyed one point; the ellipse two. The **parabola** balances a point against a LINE: every point on the curve is exactly as far from the **focus** as from the **directrix**. Near the vertex the two pulls pinch the curve tight; far away it opens up to keep the balance. One number rules the shape: $p$, the vertex-to-focus distance."
+          },
+          {
+            "kind": "conicGraph",
+            "eyebrow": "Play",
+            "title": "Move the focus",
+            "teach": "Step $p$ and watch the cup respond: small $p$ pulls the focus close and pinches a narrow parabola; large $p$ relaxes it wide. The dashed line below is the directrix, always mirroring the focus across the vertex.",
+            "config": {
+              "mode": "parabola"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The equation",
+            "title": "x² = 4py, and the hidden 4",
+            "body": "Run the balance algebraically (distance to $(0,p)$ = distance to $y = -p$, square both sides) and the dust settles into $x^2 = 4py$. The trap is the **4**: the coefficient of $y$ is $4p$, not $p$ — so $x^2 = 12y$ has $p = 3$. Sideways versions swap letters: $y^2 = 4px$ opens right; negative $p$ reverses either. Squared variable ⟂ opening direction."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two foci found",
+            "problemId": "pc83-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Quarter the coefficient",
+            "prompt": "The focus of $y^2 = 20x$ is:",
+            "options": [
+              "$(5, 0)$",
+              "$(20, 0)$",
+              "$(0, 5)$",
+              "$(0, 20)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$y$ squared: opens along x. $4p = 20$: $p = 5$. Focus $(5, 0)$, directrix $x = -5$.",
+            "check": [
+              "Rational(20,4) == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Verify the balance",
+            "problemId": "pc83-we2"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "x² = 12y with its cast",
+            "teach": "Sample points of $x^2 = 12y$ with the focus $(0, 3)$ inside the cup. Take $(6, 3)$: it is 6 from the focus and 6 above the directrix $y = -3$ — the balance you just verified, drawn. Every point on the curve plays the same game.",
+            "config": {
+              "mode": "plot",
+              "min": -8,
+              "max": 8,
+              "points": [
+                {
+                  "x": -6,
+                  "y": 3
+                },
+                {
+                  "x": -3.5,
+                  "y": 1
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "label": "vertex"
+                },
+                {
+                  "x": 3.5,
+                  "y": 1
+                },
+                {
+                  "x": 6,
+                  "y": 3
+                },
+                {
+                  "x": 0,
+                  "y": 3,
+                  "label": "focus"
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Old friends",
+            "title": "Every quadratic has a focus",
+            "body": "$y = ax^2$ rearranges to $x^2 = \\frac{1}{a}y$: your Algebra-1 parabolas were conics all along, with $4p = \\frac{1}{a}$, i.e. focus height $p = \\frac{1}{4a}$. The narrower the parabola (big $a$), the closer the focus hugs the vertex. Shifted vertex forms $a(x-h)^2 + k$ carry the same focus, riding $p$ above $(h, k)$."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The superpower",
+            "title": "The reflector property",
+            "body": "Here is why engineers love this curve: rays arriving PARALLEL to the axis all reflect off the parabola into the FOCUS — satellite dishes, radio telescopes, solar cookers. Run it backwards: a source AT the focus exits as a parallel beam — headlights, searchlights, flashlights. The tug-of-war law makes every reflected path length equal, so the signals arrive in phase."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Design a headlight",
+            "prompt": "A headlight reflector follows $x^2 = 4py$ with the bulb at the focus, 2 cm from the vertex. The reflector's equation is:",
+            "options": [
+              "$x^2 = 8y$",
+              "$x^2 = 2y$",
+              "$x^2 = 4y$",
+              "$y^2 = 8x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bulb at focus means $p = 2$: $x^2 = 4(2)y = 8y$. The bulb's light exits as a parallel beam.",
+            "check": [
+              "4*2 == 8"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Opens which way?",
+            "problemId": "pc83-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Place the receiver",
+            "problemId": "pc83-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Parabola: equidistant from focus and directrix; p = vertex-to-focus distance.",
+              "x² = 4py (up), y² = 4px (right); the coefficient is 4p — quarter it.",
+              "Parallel rays → focus (dish); focus → parallel beam (headlight); y = ax² has p = 1/(4a)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "hyperbolas-and-classifying-conics",
+      "title": "Hyperbolas & Classifying Conics",
+      "concreteComparison": "A hyperbola is an ellipse with the rule flipped: instead of distances SUMMING to a constant, they DIFFER by one — which tears the curve into two branches that flee along asymptote rails, like sparks off a grinding wheel.",
+      "objective": "Graph hyperbolas from standard form using the central box and asymptotes, find foci via c² = a² + b², and classify any second-degree equation as one of the four conics.",
+      "concept": [
+        "A **hyperbola** is the set of points whose distances to two foci DIFFER by a constant $2a$. Standard form $\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$ — the MINUS is the signature. Vertices $(\\pm a, 0)$ toward the foci; the curve has two separate branches (set $x = 0$: $-\\frac{y^2}{b^2} = 1$ has no solution — nothing lives between them).",
+        "Far from the center the branches hug the **asymptotes** $y = \\pm\\frac{b}{a}x$ — draw the $2a \\times 2b$ central box and extend its diagonals. Foci: $c^2 = a^2 + b^2$ (PLUS — beyond the vertices, outside the box). If the $y$-term leads ($\\frac{y^2}{a^2} - \\frac{x^2}{b^2} = 1$), the branches open up/down instead.",
+        "Classification at a glance from $Ax^2 + Cy^2 + \\ldots = 0$: only one squared term → **parabola**; both present: same coefficient → **circle**, same sign → **ellipse**, opposite signs → **hyperbola**. One subtraction sign separates the bounded world from the fleeing one."
+      ],
+      "keyIdea": "Distance DIFFERENCE 2a; minus sign in the equation; asymptotes from the a×b box diagonals; foci c² = a² + b² (plus!); classify by the squared terms' signs.",
+      "facts": [
+        {
+          "title": "Difference law",
+          "latex": "|d_1 - d_2| = 2a",
+          "explanation": "The flipped string law tears the curve in two."
+        },
+        {
+          "title": "Asymptote rails",
+          "latex": "y = \\pm\\tfrac{b}{a}x",
+          "explanation": "Diagonals of the central 2a × 2b box."
+        },
+        {
+          "title": "Classification",
+          "latex": "x^2, y^2 \\text{ signs}: \\; =\\!: \\text{circle}, \\; +: \\text{ellipse}, \\; -: \\text{hyperbola}, \\; \\text{one}: \\text{parabola}",
+          "explanation": "Read the squared terms before any algebra."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc84-we1",
+          "statement": "For $\\dfrac{x^2}{9} - \\dfrac{y^2}{16} = 1$: vertices, asymptotes, and foci.",
+          "solution": "$a = 3, b = 4$: vertices $(\\pm 3, 0)$; asymptotes $y = \\pm\\frac{4}{3}x$ (box diagonals). $c^2 = 9 + 16 = 25$: foci $(\\pm 5, 0)$ — beyond the vertices, as the plus demands.",
+          "check": [
+            "9 + 16 == 25",
+            "sqrt(25) == 5",
+            "5 > 3"
+          ]
+        },
+        {
+          "id": "pc84-we2",
+          "statement": "Classify each: (a) $3x^2 + 3y^2 - 12x = 0$, (b) $4x^2 + 9y^2 = 36$, (c) $x^2 - 4y^2 = 4$, (d) $y^2 - 8x = 0$.",
+          "solution": "(a) equal coefficients on both squares: CIRCLE. (b) both positive, unequal: ELLIPSE ($\\frac{x^2}{9} + \\frac{y^2}{4} = 1$). (c) opposite signs: HYPERBOLA ($\\frac{x^2}{4} - y^2 = 1$). (d) one squared term only: PARABOLA ($y^2 = 8x$).",
+          "check": [
+            "3 == 3",
+            "4 != 9",
+            "Rational(36,9) == 4",
+            "Rational(36,4) == 9",
+            "Rational(8,4) == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using c² = a² − b² for a hyperbola.",
+          "correction": "MINUS belongs to the ellipse. Hyperbola foci sit BEYOND the vertices: $c^2 = a^2 + b^2$, always $c > a$. Ellipse: foci inside, subtract. Hyperbola: foci outside, add.",
+          "authored": true
+        },
+        {
+          "text": "Taking a from the bigger denominator, as with ellipses.",
+          "correction": "For hyperbolas, $a^2$ is the denominator of the POSITIVE term, whatever its size: in $\\frac{x^2}{4} - \\frac{y^2}{25} = 1$, $a = 2$ (not 5). The positive term names the opening direction too.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc84-t1",
+          "statement": "For $\\dfrac{y^2}{4} - \\dfrac{x^2}{21} = 1$: opening direction, vertices, and foci.",
+          "solution": "The $y$ term is positive: opens UP/DOWN. $a = 2$: vertices $(0, \\pm 2)$. $c^2 = 4 + 21 = 25$: foci $(0, \\pm 5)$.",
+          "check": [
+            "4 + 21 == 25",
+            "sqrt(25) == 5"
+          ]
+        },
+        {
+          "id": "pc84-t2",
+          "statement": "Verify the difference law for the point $(5, \\tfrac{16}{3})$ on $\\dfrac{x^2}{9} - \\dfrac{y^2}{16} = 1$ (foci $(\\pm 5, 0)$).",
+          "solution": "On the curve: $\\frac{25}{9} - \\frac{256/9}{16} = \\frac{25}{9} - \\frac{16}{9} = 1$ ✓. Distances to foci: to $(5,0)$: $\\frac{16}{3}$; to $(-5, 0)$: $\\sqrt{100 + \\frac{256}{9}} = \\frac{34}{3}$. Difference: $\\frac{34}{3} - \\frac{16}{3} = 6 = 2a$. ✓",
+          "check": [
+            "Rational(25,9) - Rational(256,144) == 1",
+            "sqrt(100 + Rational(256,9)) == Rational(34,3)",
+            "Rational(34,3) - Rational(16,3) == 6",
+            "2*3 == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Flip the string law",
+            "body": "The ellipse summed its two focal distances. Flip one sign — make the distances DIFFER by a constant $2a$ — and the curve tears apart into two branches, each wrapped around one focus, fleeing to infinity. That's the **hyperbola**, the only conic with an escape route. Its equation wears the flip openly: a MINUS between the squared terms."
+          },
+          {
+            "kind": "conicGraph",
+            "eyebrow": "Play",
+            "title": "Branches on rails",
+            "teach": "Step $a$ and $b$: the vertices sit $a$ out on the opening axis, and the dashed asymptotes — the diagonals of the invisible $a \\times b$ box — steer the branches at long range. Watch the foci ride OUTSIDE the vertices, unlike the ellipse's interior foci.",
+            "config": {
+              "mode": "hyperbola"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Graphing",
+            "title": "Box, diagonals, branches",
+            "body": "Fast, accurate hyperbola sketches use the **central box**: width $2a$, height $2b$, centered at the origin. Its diagonals, extended, are the asymptotes $y = \\pm\\frac{b}{a}x$; the branches start at the vertices (box's left/right midpoints for an $x$-leading form) and hug the diagonals outward. Foci: $c^2 = a^2 + b^2$ — the PLUS puts them past the vertices, outside the box."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Anatomy from the equation",
+            "problemId": "pc84-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "x²/9 − y²/16 = 1, sampled",
+            "teach": "Samples of both branches with the vertices $(\\pm 3, 0)$ and foci $(\\pm 5, 0)$. Note the void: NO points between $x = -3$ and $x = 3$ — set $x = 0$ and the equation demands $-\\frac{y^2}{16} = 1$, impossible. The two branches are genuinely separate curves sharing one equation.",
+            "config": {
+              "mode": "plot",
+              "min": -8,
+              "max": 8,
+              "points": [
+                {
+                  "x": -5,
+                  "y": -5.3
+                },
+                {
+                  "x": -3,
+                  "y": 0,
+                  "label": "vertex"
+                },
+                {
+                  "x": -5,
+                  "y": 5.3
+                },
+                {
+                  "x": 3,
+                  "y": 0,
+                  "label": "vertex"
+                },
+                {
+                  "x": 5,
+                  "y": 5.3
+                },
+                {
+                  "x": 5,
+                  "y": -5.3
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Plus or minus?",
+            "prompt": "For the hyperbola $\\dfrac{x^2}{4} - \\dfrac{y^2}{5} = 1$, the foci are at:",
+            "options": [
+              "$(\\pm 3, 0)$",
+              "$(\\pm 1, 0)$",
+              "$(0, \\pm 3)$",
+              "$(\\pm\\sqrt{5}, 0)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Hyperbola: ADD. $c^2 = 4 + 5 = 9$, $c = 3$ — past the vertices at $\\pm 2$, on the x-axis (the positive term's axis).",
+            "check": [
+              "4 + 5 == 9",
+              "sqrt(9) == 3",
+              "3 > 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Classify four strangers",
+            "problemId": "pc84-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One glance",
+            "title": "The classification test",
+            "body": "Any second-degree equation $Ax^2 + Cy^2 + Dx + Ey + F = 0$ declares its species in the squared terms alone. Only ONE square present: **parabola**. Both present: equal coefficients → **circle**; same sign, different size → **ellipse**; OPPOSITE signs → **hyperbola**. Read the signs before touching any algebra — completing the square then fills in the specifics."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Speed classification",
+            "prompt": "Classify: $5y^2 - 3x^2 + 10y - 12 = 0$.",
+            "options": [
+              "hyperbola — opposite signs on the squares",
+              "ellipse",
+              "parabola",
+              "circle"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both squares present, signs $+5$ and $-3$ — OPPOSITE: hyperbola (opening up/down, since y² leads positive). No further work needed to name the species.",
+            "check": [
+              "5 > 0",
+              "-3 < 0"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Navigation by difference",
+            "body": "Before GPS, ships fixed their position with LORAN: two radio stations broadcast synchronized pulses, and the DIFFERENCE in arrival times placed the ship on a specific hyperbola (the stations are its foci). A second station pair gave a second hyperbola — the ship sat at the intersection. Sonic booms, too, sweep hyperbolic curves across the ground."
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "The two-sign ritual",
+            "body": "Conic problems begin with two sign checks: (1) BETWEEN the squared terms — plus (ellipse family) or minus (hyperbola)? (2) In the focus formula — ellipse subtracts ($c$ inside), hyperbola adds ($c$ outside). Saying both aloud before computing prevents the classic cross-contamination of the two formulas."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Vertical opener",
+            "problemId": "pc84-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Audit the difference law",
+            "problemId": "pc84-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Difference law |d₁ − d₂| = 2a tears the curve into two branches; a² is under the POSITIVE term.",
+              "Sketch: central a × b box, diagonal asymptotes y = ±(b/a)x, foci past the vertices via c² = a² + b².",
+              "Classify by the squares: one → parabola; equal → circle; same sign → ellipse; opposite → hyperbola."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc8-pr-1",
+      "statement": "Write the equation of the circle with center $(2, -5)$ and radius 6, and test whether $(6, -2)$ lies on it.",
+      "solution": "$(x - 2)^2 + (y + 5)^2 = 36$. Test: $(6-2)^2 + (-2+5)^2 = 16 + 9 = 25 \\ne 36$: NOT on the circle (it's inside: $25 < 36$).",
+      "check": [
+        "(6-2)**2 + (-2+5)**2 == 25",
+        "25 != 36",
+        "25 < 36"
+      ]
+    },
+    {
+      "id": "pc8-pr-2",
+      "statement": "Convert $x^2 + y^2 - 10x + 6y + 18 = 0$ to standard form; give center and radius.",
+      "solution": "$(x^2 - 10x + 25) + (y^2 + 6y + 9) = -18 + 25 + 9$: $(x-5)^2 + (y+3)^2 = 16$. Center $(5, -3)$, radius 4.",
+      "check": [
+        "-18 + 25 + 9 == 16",
+        "sqrt(16) == 4",
+        "expand((x-5)**2 - (x**2 - 10*x + 25)) == 0"
+      ]
+    },
+    {
+      "id": "pc8-pr-3",
+      "statement": "For $\\dfrac{x^2}{49} + \\dfrac{y^2}{24} = 1$: vertices, foci, and eccentricity.",
+      "solution": "$a = 7$ (under x): vertices $(\\pm 7, 0)$. $c^2 = 49 - 24 = 25$: foci $(\\pm 5, 0)$. $e = \\frac{5}{7}$.",
+      "check": [
+        "49 - 24 == 25",
+        "sqrt(25) == 5",
+        "Rational(5,7) < 1"
+      ]
+    },
+    {
+      "id": "pc8-pr-4",
+      "statement": "Write the ellipse with vertices $(\\pm 10, 0)$ and foci $(\\pm 8, 0)$; give its height at the center.",
+      "solution": "$a = 10, c = 8$: $b^2 = 100 - 64 = 36$. $\\frac{x^2}{100} + \\frac{y^2}{36} = 1$; height $2b = 12$.",
+      "check": [
+        "100 - 64 == 36",
+        "2*sqrt(36) == 12"
+      ]
+    },
+    {
+      "id": "pc8-pr-5",
+      "statement": "Find the focus and directrix of $x^2 = -16y$ and describe its opening.",
+      "solution": "$4p = -16$: $p = -4$, opens DOWN. Focus $(0, -4)$; directrix $y = 4$.",
+      "check": [
+        "Rational(-16,4) == -4"
+      ]
+    },
+    {
+      "id": "pc8-pr-6",
+      "statement": "A solar cooker's parabolic mirror is 1.2 m wide and 0.3 m deep. How far above the vertex is the hot spot (focus)?",
+      "solution": "Rim point $(0.6, 0.3)$ on $x^2 = 4py$: $0.36 = 4p(0.3) = 1.2p$: $p = 0.3$ m. The pot hangs 30 cm above the vertex.",
+      "check": [
+        "Rational(6,10)**2 == Rational(36,100)",
+        "Rational(36,100)/Rational(12,10) == Rational(3,10)"
+      ]
+    },
+    {
+      "id": "pc8-pr-7",
+      "statement": "For $\\dfrac{x^2}{16} - \\dfrac{y^2}{9} = 1$: vertices, asymptotes, foci.",
+      "solution": "$a = 4, b = 3$: vertices $(\\pm 4, 0)$; asymptotes $y = \\pm\\frac{3}{4}x$; $c^2 = 16 + 9 = 25$: foci $(\\pm 5, 0)$.",
+      "check": [
+        "16 + 9 == 25",
+        "sqrt(25) == 5",
+        "5 > 4"
+      ]
+    },
+    {
+      "id": "pc8-pr-8",
+      "statement": "Classify each conic: (a) $x^2 + y^2 = 50$, (b) $x^2 - y^2 = 50$, (c) $x^2 + 4y^2 = 50$, (d) $x^2 - 4y = 0$.",
+      "solution": "(a) equal positive squares: CIRCLE. (b) opposite signs: HYPERBOLA. (c) same sign, unequal: ELLIPSE. (d) one square: PARABOLA ($x^2 = 4y$).",
+      "check": [
+        "1 == 1",
+        "1 - (-1) == 2",
+        "4 != 1",
+        "Rational(4,4) == 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc8-ty-1",
+      "statement": "Find the equation of the circle centered at $(3, 4)$ that passes through the origin, then find where it crosses the x-axis.",
+      "solution": "Radius: $\\sqrt{9 + 16} = 5$: $(x-3)^2 + (y-4)^2 = 25$. X-axis ($y = 0$): $(x-3)^2 = 9$: $x = 0$ or $x = 6$ — the circle crosses at the origin and $(6, 0)$.",
+      "check": [
+        "3**2 + 4**2 == 25",
+        "(0-3)**2 + (0-4)**2 == 25",
+        "(6-3)**2 + (0-4)**2 == 25"
+      ]
+    },
+    {
+      "id": "pc8-ty-2",
+      "statement": "An ellipse has co-vertices $(0, \\pm 6)$ and foci $(\\pm 8, 0)$. Write its equation and give its eccentricity.",
+      "solution": "$b = 6, c = 8$: $a^2 = b^2 + c^2 = 36 + 64 = 100$. $\\frac{x^2}{100} + \\frac{y^2}{36} = 1$; $e = \\frac{8}{10} = 0.8$.",
+      "check": [
+        "36 + 64 == 100",
+        "Rational(8,10) == Rational(4,5)"
+      ]
+    },
+    {
+      "id": "pc8-ty-3",
+      "statement": "Verify the string law at the point $(0, 6)$ of the ellipse from the previous problem.",
+      "solution": "Distances from $(0,6)$ to $(\\pm 8, 0)$: each $\\sqrt{64 + 36} = 10$. Sum: $20 = 2a$ ✓ — the co-vertex splits the string evenly.",
+      "check": [
+        "sqrt(64 + 36) == 10",
+        "10 + 10 == 20",
+        "2*10 == 20"
+      ]
+    },
+    {
+      "id": "pc8-ty-4",
+      "statement": "A bridge arch is parabolic, 40 m wide at the base and 10 m high. With the vertex at the top (origin, opening down), find its equation and the height 5 m from the center.",
+      "solution": "Base corner $(20, -10)$ on $x^2 = 4py$: $400 = 4p(-10)$ gives $4p = -40$, so $x^2 = -40y$. At $x = 5$: $25 = -40y$, so $y = -\\frac{5}{8}$ — the arch has dropped just $\\frac{5}{8}$ m, leaving height $10 - \\frac{5}{8} = 9.375$ m above the base.",
+      "check": [
+        "20**2 == -(-40)*10",
+        "Rational(25,-40) == Rational(-5,8)",
+        "10 - Rational(5,8) == Rational(75,8)"
+      ]
+    },
+    {
+      "id": "pc8-ty-5",
+      "statement": "For $\\dfrac{y^2}{9} - \\dfrac{x^2}{16} = 1$: opening direction, vertices, asymptotes, foci.",
+      "solution": "y-term positive: opens UP/DOWN. $a = 3$: vertices $(0, \\pm 3)$. Asymptotes $y = \\pm\\frac{a}{b}x = \\pm\\frac{3}{4}x$. $c^2 = 9 + 16 = 25$: foci $(0, \\pm 5)$.",
+      "check": [
+        "9 + 16 == 25",
+        "sqrt(25) == 5"
+      ]
+    },
+    {
+      "id": "pc8-ty-6",
+      "statement": "Classify, then convert to standard form: $9x^2 + 4y^2 - 36 = 0$ and $x^2 - y^2 + 4 = 0$.",
+      "solution": "First: same-sign unequal squares: ELLIPSE: $\\frac{x^2}{4} + \\frac{y^2}{9} = 1$ (vertical major, $a = 3$). Second: opposite signs: HYPERBOLA: $\\frac{y^2}{4} - \\frac{x^2}{4} = 1$ — opening up/down since moving the 4 gives $y^2 - x^2 = 4$.",
+      "check": [
+        "Rational(36,9) == 4",
+        "Rational(36,4) == 9",
+        "9 > 4",
+        "Rational(4,4) == 1"
+      ]
+    }
+  ]
+}

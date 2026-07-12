@@ -1,0 +1,364 @@
+{
+  "slug": "the-unit-circle",
+  "title": "The Unit Circle",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Radians as wrapped radii, sine and cosine as the coordinates of a point walking the rim, the exact-value angles worth memorizing, and reference angles that unlock all four quadrants.",
+  "buildsOn": "Right-triangle trig ratios (Geometry); the coordinate plane.",
+  "lessons": [
+    {
+      "slug": "radians",
+      "title": "Radians",
+      "concreteComparison": "A radian is measuring an angle with the circle's own ruler: peel off one radius, bend it along the rim — the angle it spans is 1 radian. A full lap swallows 2π of them, because the circumference is 2π radii.",
+      "objective": "Define the radian via arc length, convert between degrees and radians, and compute arc lengths with s = rθ.",
+      "concept": [
+        "Degrees are arbitrary (Babylonian 360); **radians** measure angles with the circle's own unit: one radian is the angle whose arc is exactly one RADIUS long. Since the circumference is $2\\pi r$ — the radius fits around $2\\pi \\approx 6.28$ times — a full turn is $2\\pi$ radians.",
+        "The exchange rate follows: $360° = 2\\pi$, so $180° = \\pi$ — the master conversion. Multiply by $\\frac{\\pi}{180}$ to go into radians, by $\\frac{180}{\\pi}$ to come back: $90° = \\frac{\\pi}{2}$, $60° = \\frac{\\pi}{3}$, $45° = \\frac{\\pi}{4}$, $30° = \\frac{\\pi}{6}$.",
+        "The payoff: in radians, arc length is just $s = r\\theta$ — angle times radius, no conversion factor. (In degrees it needs the clunky $\\frac{\\pi}{180}$ patch.) This is why calculus and physics run entirely on radians: the circle's native unit makes the formulas clean."
+      ],
+      "keyIdea": "One radian = arc of one radius; full turn = 2π; convert via 180° = π; and in radians, arc length is simply s = rθ.",
+      "facts": [
+        { "title": "Master conversion", "latex": "180° = \\pi \\text{ rad}", "explanation": "Multiply by π/180 (to rad) or 180/π (to deg)." },
+        { "title": "The lap", "latex": "360° = 2\\pi \\approx 6.28 \\text{ radii of arc}", "explanation": "The radius wraps the rim 2π times — a little more than 6." },
+        { "title": "Arc length", "latex": "s = r\\theta \\quad (\\theta \\text{ in radians})", "explanation": "Radians make the arc formula multiplication, nothing more." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc61-we1",
+          "statement": "Convert $135°$ to radians and $\\dfrac{5\\pi}{6}$ to degrees.",
+          "solution": "$135 \\cdot \\frac{\\pi}{180} = \\frac{135\\pi}{180} = \\frac{3\\pi}{4}$. And $\\frac{5\\pi}{6} \\cdot \\frac{180}{\\pi} = \\frac{5 \\cdot 180}{6} = 150°$.",
+          "check": ["Rational(135,180) == Rational(3,4)", "Rational(5*180,6) == 150"]
+        },
+        {
+          "id": "pc61-we2",
+          "statement": "A pendulum of length 2 m swings through $\\dfrac{\\pi}{6}$ radians. How long is the arc its tip traces? What would the same swing be in degrees?",
+          "solution": "$s = r\\theta = 2 \\cdot \\frac{\\pi}{6} = \\frac{\\pi}{3} \\approx 1.05$ m. In degrees: $\\frac{\\pi}{6} = 30°$ — and notice the degree version of the arc formula would need the $\\frac{\\pi}{180}$ patch to get the same answer.",
+          "check": ["2*Rational(1,6) == Rational(1,3)", "Rational(180,6) == 30"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Treating π as 180 ('π = 180, so π/2 = 90').", "correction": "$\\pi$ is a NUMBER, about 3.14; the statement is $\\pi$ RADIANS $= 180°$ — an equation between two units, like 1 inch = 2.54 cm. Keep the unit in mind or conversions start multiplying the wrong way.", "authored": true },
+        { "text": "Using s = rθ with θ in degrees.", "correction": "The clean formula is radian-only. With degrees you must first convert: $s = r \\cdot \\theta° \\cdot \\frac{\\pi}{180}$. If an arc answer looks 57× too big, this is why.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc61-t1",
+          "statement": "Convert $240°$ and $-45°$ to radians, and $\\dfrac{7\\pi}{4}$ to degrees.",
+          "solution": "$240 \\cdot \\frac{\\pi}{180} = \\frac{4\\pi}{3}$. $-45°$: $-\\frac{\\pi}{4}$ (negative = clockwise). $\\frac{7\\pi}{4} \\cdot \\frac{180}{\\pi} = 315°$.",
+          "check": ["Rational(240,180) == Rational(4,3)", "Rational(45,180) == Rational(1,4)", "Rational(7*180,4) == 315"]
+        },
+        {
+          "id": "pc61-t2",
+          "statement": "A circular track has radius 50 m. A runner covers an arc of 125 m. What central angle (in radians, then degrees) did they run through, using $\\frac{180}{\\pi} \\approx 57.3$?",
+          "solution": "$\\theta = \\frac{s}{r} = \\frac{125}{50} = 2.5$ radians. In degrees: $2.5 \\cdot 57.3 \\approx 143°$.",
+          "check": ["Rational(125,50) == Rational(5,2)", "Rational(5,2)*Rational(573,10) == Rational(2865,20)", "Abs(Rational(2865,20) - 143) < 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "Measure the circle with itself", "body": "Degrees are a historical accident — Babylon liked 360. Mathematics prefers a unit the circle chooses for itself: peel off one RADIUS, bend it along the rim, and call the angle it spans **one radian**. No culture, no convention: just the circle measuring itself." },
+          { "kind": "circleUnroll", "eyebrow": "Watch", "title": "How many radii around?", "teach": "Watch the circle roll one full turn, unrolling its rim into a straight line. The rim is $2\\pi$ radii long — a little more than 6. That number IS why a full turn is $2\\pi$ radians: you just watched π get defined.", "config": { "color": "#e8913c" } },
+          { "kind": "unitCircle", "eyebrow": "Play", "title": "Wrap radii onto the rim", "teach": "Now wrap radius-arcs around the rim one at a time: 1 radian, 2, 3… A half-turn swallows π ≈ 3.14 of them, the full lap 2π ≈ 6.28. Feel how big one radian is: about 57°, a generous slice.", "config": { "mode": "radians" } },
+          { "kind": "teach", "eyebrow": "Conversion", "title": "The master exchange rate", "body": "One equation carries every conversion: $180° = \\pi$ radians. Going TO radians, multiply by $\\frac{\\pi}{180}$; coming BACK, by $\\frac{180}{\\pi}$. The famous angles become clean fractions of π: $90° = \\frac{\\pi}{2}$, $60° = \\frac{\\pi}{3}$, $45° = \\frac{\\pi}{4}$, $30° = \\frac{\\pi}{6}$ — learn these as vocabulary, not calculations." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Both directions", "problemId": "pc61-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Instant vocabulary", "prompt": "$\\dfrac{2\\pi}{3}$ radians in degrees is:", "options": ["$120°$", "$60°$", "$150°$", "$240°$"], "correctIndex": 0, "explanation": "$\\frac{2\\pi}{3} = \\frac{2}{3} \\cdot 180° = 120°$. Reading fractions of π as fractions of 180° makes these instant.", "check": ["Rational(2*180,3) == 120"] },
+          { "kind": "teach", "eyebrow": "The payoff", "title": "Arc length becomes multiplication", "body": "Why bother switching units? Because radians make geometry ALGEBRAIC: the arc subtended by angle $\\theta$ on a circle of radius $r$ is simply $s = r\\theta$. One radian on a 5-m circle: 5 m of arc. Two radians: 10 m. In degrees the same formula needs a $\\frac{\\pi}{180}$ patch. Every formula downstream (angular velocity, calculus derivatives of sine) stays clean ONLY in radians." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A pendulum's arc", "problemId": "pc61-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Solve s = rθ backwards", "prompt": "An arc of 12 cm sits on a circle of radius 4 cm. The central angle is:", "options": ["3 radians", "48 radians", "3 degrees", "$\\frac{1}{3}$ radian"], "correctIndex": 0, "explanation": "$\\theta = \\frac{s}{r} = \\frac{12}{4} = 3$ radians (about 172°). Dividing arc by radius — literally counting how many radii fit — is what a radian measure IS.", "check": ["Rational(12,4) == 3"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Anchor to the quarter-lap", "body": "Orient any radian value instantly against the compass points: $\\frac{\\pi}{2}$ = quarter lap (up), $\\pi$ = half (left), $\\frac{3\\pi}{2}$ = three-quarters (down), $2\\pi$ = home. Is $\\frac{5\\pi}{6}$ big or small? Just under π — nearly half a lap, second quadrant. No conversion needed for orientation." },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "The τ rebellion", "body": "Some mathematicians argue the circle constant should be $\\tau = 2\\pi \\approx 6.28$, so a full turn is exactly 1τ, a quarter turn $\\frac{\\tau}{4}$ — no factor-of-2 bookkeeping. Tau Day (June 28) celebrates it. π's 300-year head start seems safe, but the debate is genuinely about making radians even MORE natural." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Three conversions", "problemId": "pc61-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Angle from an arc", "problemId": "pc61-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["1 radian = the angle cut by one radius of arc; full turn = 2π ≈ 6.28.", "Convert via 180° = π; know the family π/6, π/4, π/3, π/2 by heart.", "s = rθ (radians only) — the clean formula is the whole point of the unit."] }
+        ]
+      }
+    },
+    {
+      "slug": "sine-and-cosine-on-the-circle",
+      "title": "Sine & Cosine on the Circle",
+      "concreteComparison": "Put a bug on a ferris wheel of radius 1. At every moment, cosine is the bug's shadow on the ground (x-coordinate) and sine is its height on the wall (y-coordinate). Trig stops being about triangles and becomes about a point going around.",
+      "objective": "Define cos θ and sin θ as the coordinates of the point at angle θ on the unit circle, extend trig beyond 90°, and derive the Pythagorean identity.",
+      "concept": [
+        "The **unit circle** definition: stand at $(1, 0)$, rotate counterclockwise by angle $\\theta$; the point you reach has coordinates $(\\cos\\theta, \\sin\\theta)$. Cosine IS the x-coordinate, sine IS the y-coordinate — for ANY angle: bigger than 90°, negative, beyond a full lap.",
+        "This extends right-triangle trig seamlessly: in the first quadrant, the point, its shadow on the x-axis, and the center form a right triangle with hypotenuse 1 — adjacent $= \\cos\\theta$, opposite $= \\sin\\theta$, the old SOH-CAH-TOA. The circle just keeps going where triangles must stop.",
+        "The point sits on the circle $x^2 + y^2 = 1$, so $\\cos^2\\theta + \\sin^2\\theta = 1$ — the **Pythagorean identity**, true for every angle, the single most-used equation in trigonometry. Given one of sine/cosine (and a quadrant), it recovers the other."
+      ],
+      "keyIdea": "The point at angle θ on the unit circle is (cos θ, sin θ) — cosine is x, sine is y, for any θ — and living on x² + y² = 1 forces cos²θ + sin²θ = 1.",
+      "facts": [
+        { "title": "The definition", "latex": "P(\\theta) = (\\cos\\theta, \\sin\\theta)", "explanation": "Rotate from (1, 0) by θ; read the coordinates." },
+        { "title": "Anchors", "latex": "\\theta = 0: (1,0), \\; \\tfrac{\\pi}{2}: (0,1), \\; \\pi: (-1,0), \\; \\tfrac{3\\pi}{2}: (0,-1)", "explanation": "The four compass points give the easiest exact values." },
+        { "title": "Pythagorean identity", "latex": "\\cos^2\\theta + \\sin^2\\theta = 1", "explanation": "The circle's equation, worn as an identity." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc62-we1",
+          "statement": "Evaluate $\\cos\\pi$, $\\sin\\pi$, $\\cos\\tfrac{3\\pi}{2}$, and $\\sin\\tfrac{3\\pi}{2}$ from the circle.",
+          "solution": "Half a lap lands at $(-1, 0)$: $\\cos\\pi = -1$, $\\sin\\pi = 0$. Three quarters lands at $(0, -1)$: $\\cos\\frac{3\\pi}{2} = 0$, $\\sin\\frac{3\\pi}{2} = -1$. No triangles required — just read coordinates.",
+          "check": ["cos(pi) == -1", "sin(pi) == 0", "cos(3*pi/2) == 0", "sin(3*pi/2) == -1"]
+        },
+        {
+          "id": "pc62-we2",
+          "statement": "An angle $\\theta$ in the second quadrant has $\\sin\\theta = \\tfrac{3}{5}$. Find $\\cos\\theta$.",
+          "solution": "Identity: $\\cos^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$, so $\\cos\\theta = \\pm\\frac{4}{5}$. Second quadrant means x-coordinates are NEGATIVE: $\\cos\\theta = -\\frac{4}{5}$.",
+          "check": ["1 - Rational(9,25) == Rational(16,25)", "Rational(3,5)**2 + Rational(4,5)**2 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Refusing sin 150° because 'a right triangle can't have a 150° angle.'", "correction": "The CIRCLE definition doesn't need a triangle: rotate 150° and read the y-coordinate (it's $+\\frac{1}{2}$). Triangles were the training wheels; the circle is the definition.", "authored": true },
+        { "text": "Writing cos²θ + sin²θ = 1 only for acute θ, or 'fixing' signs: cos²θ − sin²θ.", "correction": "Squares erase signs — the identity holds for EVERY angle in every quadrant, verbatim. It is the circle equation $x^2 + y^2 = 1$; no angle escapes the circle.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc62-t1",
+          "statement": "Without a calculator, give $\\cos 0$, $\\sin\\tfrac{\\pi}{2}$, $\\cos(2\\pi)$, and $\\sin(-\\tfrac{\\pi}{2})$.",
+          "solution": "$(1,0)$: $\\cos 0 = 1$. $(0,1)$: $\\sin\\frac{\\pi}{2} = 1$. Full lap returns home: $\\cos 2\\pi = 1$. Quarter lap CLOCKWISE lands at $(0,-1)$: $\\sin(-\\frac{\\pi}{2}) = -1$.",
+          "check": ["cos(0) == 1", "sin(pi/2) == 1", "cos(2*pi) == 1", "sin(-pi/2) == -1"]
+        },
+        {
+          "id": "pc62-t2",
+          "statement": "$\\cos\\theta = -\\tfrac{5}{13}$ with $\\theta$ in the third quadrant. Find $\\sin\\theta$ and verify the identity.",
+          "solution": "$\\sin^2\\theta = 1 - \\frac{25}{169} = \\frac{144}{169}$: $\\sin\\theta = \\pm\\frac{12}{13}$. Third quadrant: y is negative — $\\sin\\theta = -\\frac{12}{13}$. Check: $\\frac{25}{169} + \\frac{144}{169} = 1$. ✓",
+          "check": ["1 - Rational(25,169) == Rational(144,169)", "Rational(25,169) + Rational(144,169) == 1"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "From triangles to a ferris wheel", "body": "Right-triangle trig dies at 90° — no right triangle holds a bigger angle. The fix is beautiful: put the angle at the center of a circle of radius 1, rotate a point from $(1, 0)$, and DEFINE cosine and sine as that point's coordinates: $P(\\theta) = (\\cos\\theta, \\sin\\theta)$. Now any angle works: 150°, 300°, $-\\frac{\\pi}{2}$, three full laps." },
+          { "kind": "unitCircle", "eyebrow": "Play", "title": "Ride the rim", "teach": "Step the angle and watch the point orbit. The inner right triangle shows the old story — adjacent = x, opposite = y — but keep stepping past 90°: the triangle flips into new quadrants while the coordinates simply keep reporting $(\\cos\\theta, \\sin\\theta)$, signs and all.", "config": { "mode": "explore", "start": 30 } },
+          { "kind": "teach", "eyebrow": "Anchors", "title": "The four compass points", "body": "Four angles need no computation — just look where the point lands. $\\theta = 0$: $(1, 0)$. Quarter lap $\\frac{\\pi}{2}$: $(0, 1)$. Half lap $\\pi$: $(-1, 0)$. Three quarters $\\frac{3\\pi}{2}$: $(0, -1)$. Every cos/sin of these is 0, 1, or −1, read straight off the axes. These anchors calibrate everything else." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Read the compass points", "problemId": "pc62-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Signs by quadrant", "prompt": "For an angle in the THIRD quadrant (between π and 3π/2), the signs of (cos θ, sin θ) are:", "options": ["$(-, -)$", "$(+, -)$", "$(-, +)$", "$(+, +)$"], "correctIndex": 0, "explanation": "Third-quadrant points sit down-left: x negative, y negative. Cosine and sine INHERIT the coordinate signs — no memorization beyond knowing the plane.", "check": ["cos(7*pi/6) < 0", "sin(7*pi/6) < 0"] },
+          { "kind": "teach", "eyebrow": "The identity", "title": "The circle equation in disguise", "body": "The point $(\\cos\\theta, \\sin\\theta)$ lives on the unit circle, whose equation is $x^2 + y^2 = 1$. Substitute: $$\\cos^2\\theta + \\sin^2\\theta = 1.$$ This **Pythagorean identity** holds for every angle without exception — it is the most-used equation in all of trigonometry. Practical power: know one of sine/cosine, and the identity yields the other (up to a sign the quadrant settles)." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Recover cosine from sine", "problemId": "pc62-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Use the identity", "prompt": "$\\sin\\theta = \\tfrac{1}{2}$ and $\\theta$ is in the second quadrant. Then $\\cos\\theta =$", "options": ["$-\\frac{\\sqrt{3}}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$-\\frac{1}{2}$", "$\\frac{3}{4}$"], "correctIndex": 0, "explanation": "$\\cos^2\\theta = 1 - \\frac{1}{4} = \\frac{3}{4}$, so $\\cos\\theta = \\pm\\frac{\\sqrt{3}}{2}$; quadrant II makes x negative. Identity for the size, quadrant for the sign.", "check": ["1 - Rational(1,4) == Rational(3,4)", "(Rational(1,2))**2 + (sqrt(3)/2)**2 == 1"] },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "One angle, four quadrant mirrors", "teach": "The four points at $(\\pm\\frac{4}{5}, \\pm\\frac{3}{5})$ all sit on the unit circle (check: $\\frac{16}{25} + \\frac{9}{25} = 1$). Same triangle shape, four sign patterns — the quadrant decides which signs cosine and sine wear. Next lesson turns this picture into a method.", "config": { "mode": "plot", "min": -2, "max": 2, "points": [ { "x": 0.8, "y": 0.6, "label": "(+, +)" }, { "x": -0.8, "y": 0.6, "label": "(−, +)" }, { "x": -0.8, "y": -0.6, "label": "(−, −)" }, { "x": 0.8, "y": -0.6, "label": "(+, −)" } ], "color": "#e8913c" } },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Sketch the point first", "body": "Before evaluating anything trig, mark roughly where the angle's point sits on the circle. The sketch hands you both signs and a size sanity-check ('$\\sin 200°$ should be small and negative') before any formula runs. Ten seconds of drawing beats every sign-memorization scheme ever invented." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Anchors and a negative angle", "problemId": "pc62-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Identity in quadrant III", "problemId": "pc62-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["P(θ) = (cos θ, sin θ): cosine is x, sine is y, for every angle.", "Compass anchors: (1,0), (0,1), (−1,0), (0,−1) at 0, π/2, π, 3π/2.", "cos²θ + sin²θ = 1 always; identity gives the size, quadrant gives the sign."] }
+        ]
+      }
+    },
+    {
+      "slug": "special-angles-and-exact-values",
+      "title": "Special Angles & Exact Values",
+      "concreteComparison": "Three numbers — ½, √2/2, √3/2 — are trig's entire multiplication table. They come from folding two tiles: a square cut along its diagonal (45°) and an equilateral triangle cut down its spine (30°–60°). Every exact value on the circle is one of these three, dressed in a sign.",
+      "objective": "Derive the exact sine/cosine values at 30°, 45°, 60° from the two special triangles, place them on the first-quadrant circle, and use the size ordering to self-check.",
+      "concept": [
+        "Two folded tiles generate everything. **The half-square** (45–45–90): legs 1, hypotenuse $\\sqrt{2}$ — scaled to hypotenuse 1, both legs are $\\frac{\\sqrt{2}}{2}$: $\\cos 45° = \\sin 45° = \\frac{\\sqrt{2}}{2}$. **The half-equilateral** (30–60–90): sides $1, \\sqrt{3}, 2$ — scaled down, $\\cos 30° = \\frac{\\sqrt{3}}{2}, \\sin 30° = \\frac{1}{2}$, and 60° swaps them.",
+        "The three values in size order: $\\frac{1}{2} = 0.5 < \\frac{\\sqrt{2}}{2} \\approx 0.707 < \\frac{\\sqrt{3}}{2} \\approx 0.866$. As the angle climbs 30° → 45° → 60°, sine climbs through them (the point rises) while cosine descends the same list (the point moves left). One list, two directions.",
+        "In radians the family is $\\frac{\\pi}{6}, \\frac{\\pi}{4}, \\frac{\\pi}{3}$ — with the compass anchors 0 and $\\frac{\\pi}{2}$ bracketing them. These five first-quadrant angles, plus reference-angle logic (next lesson), generate every exact value on the whole circle."
+      ],
+      "keyIdea": "Two triangles give three values — 1/2, √2/2, √3/2; sine climbs the list as the angle grows, cosine descends it, and 30°/60° swap each other's values.",
+      "facts": [
+        { "title": "The table", "latex": "\\begin{matrix} \\theta & 30° & 45° & 60° \\\\ \\sin & \\tfrac{1}{2} & \\tfrac{\\sqrt{2}}{2} & \\tfrac{\\sqrt{3}}{2} \\\\ \\cos & \\tfrac{\\sqrt{3}}{2} & \\tfrac{\\sqrt{2}}{2} & \\tfrac{1}{2} \\end{matrix}", "explanation": "Three values; sine reads up, cosine reads down." },
+        { "title": "Sources", "latex": "45°: 1{:}1{:}\\sqrt{2}, \\qquad 30°/60°: 1{:}\\sqrt{3}{:}2", "explanation": "Half a square; half an equilateral triangle." },
+        { "title": "Radian names", "latex": "\\tfrac{\\pi}{6}, \\; \\tfrac{\\pi}{4}, \\; \\tfrac{\\pi}{3}", "explanation": "30°, 45°, 60° — know both spellings." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc63-we1",
+          "statement": "Derive $\\cos 30°$ and $\\sin 30°$ from the equilateral triangle, exactly.",
+          "solution": "Fold an equilateral triangle of side 2 down its spine: the half-triangle has hypotenuse 2, short leg 1 (half the base), and spine $\\sqrt{4 - 1} = \\sqrt{3}$. At the 30° apex angle: opposite is the short leg: $\\sin 30° = \\frac{1}{2}$; adjacent is the spine: $\\cos 30° = \\frac{\\sqrt{3}}{2}$. Identity check: $\\frac{1}{4} + \\frac{3}{4} = 1$. ✓",
+          "check": ["sqrt(4 - 1) == sqrt(3)", "Rational(1,4) + Rational(3,4) == 1", "sin(pi/6) == Rational(1,2)", "cos(pi/6) == sqrt(3)/2"]
+        },
+        {
+          "id": "pc63-we2",
+          "statement": "Give the exact coordinates of the unit-circle point at $\\theta = \\tfrac{\\pi}{4}$, and verify it lies on the circle.",
+          "solution": "$45°$: both coordinates $\\frac{\\sqrt{2}}{2}$: $P = \\left(\\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{2}}{2}\\right)$ — the diagonal point, x = y. On the circle: $\\frac{2}{4} + \\frac{2}{4} = 1$. ✓",
+          "check": ["cos(pi/4) == sqrt(2)/2", "sin(pi/4) == sqrt(2)/2", "Rational(2,4) + Rational(2,4) == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Swapping the pair at 30°: sin 30° = √3/2.", "correction": "At 30° the point has barely risen — sine must be the SMALL value, $\\frac{1}{2}$. Picture the point: low and far right means small sine, big cosine. The size picture beats the memorized table.", "authored": true },
+        { "text": "Writing √2/2 as '1/√2 simplified to 2/√2' or other mangled forms.", "correction": "$\\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$ — multiply top and bottom by $\\sqrt{2}$. Both forms are correct; the mangled middle isn't. When in doubt, square it: a true form squares to $\\frac{1}{2}$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc63-t1",
+          "statement": "From memory (then verify with the identity): $\\sin 60°$, $\\cos 60°$, and the exact coordinates at $\\theta = \\tfrac{\\pi}{3}$.",
+          "solution": "$\\sin 60° = \\frac{\\sqrt{3}}{2}$, $\\cos 60° = \\frac{1}{2}$ (the 30° pair, swapped). Point: $\\left(\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)$. Identity: $\\frac{1}{4} + \\frac{3}{4} = 1$. ✓",
+          "check": ["sin(pi/3) == sqrt(3)/2", "cos(pi/3) == Rational(1,2)", "Rational(1,4) + Rational(3,4) == 1"]
+        },
+        {
+          "id": "pc63-t2",
+          "statement": "A ramp rises at 30° for 12 m along its slope. Using exact values, how high does it climb and how far does it run horizontally?",
+          "solution": "Height: $12\\sin 30° = 12 \\cdot \\frac{1}{2} = 6$ m. Run: $12\\cos 30° = 12 \\cdot \\frac{\\sqrt{3}}{2} = 6\\sqrt{3} \\approx 10.4$ m. Check: $6^2 + (6\\sqrt{3})^2 = 36 + 108 = 144 = 12^2$. ✓",
+          "check": ["12*Rational(1,2) == 6", "expand((6*sqrt(3))**2) == 108", "36 + 108 == 144"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "Three numbers to rule them all", "body": "Calculators give decimals; mathematics wants EXACT values — and remarkably, the entire exact-value catalogue of trigonometry runs on three numbers: $\\frac{1}{2}$, $\\frac{\\sqrt{2}}{2}$, $\\frac{\\sqrt{3}}{2}$. They fall out of two triangles you can fold from paper: a square cut along its diagonal, and an equilateral triangle cut down its spine." },
+          { "kind": "teach", "eyebrow": "Tile 1", "title": "The half-square: 45°", "body": "Cut a unit square corner to corner: two 45–45–90 triangles, legs 1 and hypotenuse $\\sqrt{2}$ (Pythagoras). Shrink so the hypotenuse is 1 (divide by $\\sqrt{2}$): each leg becomes $\\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$. On the circle at 45°, adjacent and opposite are EQUAL: $\\cos 45° = \\sin 45° = \\frac{\\sqrt{2}}{2} \\approx 0.707$ — the diagonal point where $x = y$." },
+          { "kind": "teach", "eyebrow": "Tile 2", "title": "The half-equilateral: 30° and 60°", "body": "Fold an equilateral triangle of side 2 down its spine: hypotenuse 2, short leg 1, spine $\\sqrt{3}$ — the famous $1 : \\sqrt{3} : 2$. Scaled to hypotenuse 1: the pair $\\frac{1}{2}$ and $\\frac{\\sqrt{3}}{2}$. At 30° (low angle): $\\sin = \\frac{1}{2}$, $\\cos = \\frac{\\sqrt{3}}{2}$. At 60° the SAME triangle stands on its other leg — the values swap." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Derive, don't memorize", "problemId": "pc63-we1" },
+          { "kind": "unitCircle", "eyebrow": "Play", "title": "Visit the special angles", "teach": "Step the angle to 30°, 45°, 60° and watch the coordinates hit the three sacred values. Notice the trade: as the point climbs (sine up through ½, .707, .866), it simultaneously slides left (cosine down the same list). One list, walked in both directions.", "config": { "mode": "explore", "start": 45 } },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "The size test", "prompt": "Without any table: which is LARGER, $\\sin 40°$ or $\\sin 50°$?", "options": ["$\\sin 50°$ — the point is higher", "$\\sin 40°$", "they're equal", "can't tell without a calculator"], "correctIndex": 0, "explanation": "Bigger first-quadrant angle = point farther around the rim = HIGHER: sine grows with the angle (until 90°). The picture answers instantly; no values needed.", "check": ["sin(pi/4) < sin(pi/3)"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The diagonal point", "problemId": "pc63-we2" },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "The first-quadrant ladder", "teach": "The five first-quadrant landmarks, plotted (values ×1 on the unit circle): from $(1, 0)$ the point ladders up through the 30°, 45°, 60° stations to $(0, 1)$. Read sine as the rungs' heights: $0, \\frac{1}{2}, 0.707, 0.866, 1$ — a staircase you can rebuild from two folded tiles.", "config": { "mode": "plot", "min": -1, "max": 2, "points": [ { "x": 1, "y": 0, "label": "0" }, { "x": 0.87, "y": 0.5, "label": "30°" }, { "x": 0.71, "y": 0.71, "label": "45°" }, { "x": 0.5, "y": 0.87, "label": "60°" }, { "x": 0, "y": 1, "label": "90°" } ], "color": "#e8913c" } },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Which value?", "prompt": "$\\cos\\tfrac{\\pi}{6} = ?$", "options": ["$\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{2}}{2}$", "$\\frac{\\pi}{6}$"], "correctIndex": 0, "explanation": "$\\frac{\\pi}{6} = 30°$: the point is far right, barely risen — cosine takes the BIG value $\\frac{\\sqrt{3}}{2}$. (Small angle: big cosine, small sine.)", "check": ["cos(pi/6) == sqrt(3)/2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Rebuild in the margin", "body": "Blank on an exact value mid-test? Don't guess — rebuild: sketch the half-square ($1, 1, \\sqrt{2}$) or half-equilateral ($1, \\sqrt{3}, 2$), scale to hypotenuse 1, read the legs. Twenty seconds, and it's derivation, not recall — immune to memory corruption." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The 60° station", "problemId": "pc63-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Exact ramp", "problemId": "pc63-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Two tiles: half-square gives 45° (both √2/2); half-equilateral gives 30°/60° (½ and √3/2, swapping).", "Sine climbs ½ → √2/2 → √3/2 as the angle grows; cosine walks the list backwards.", "Blank? Rebuild the triangle — derive, don't guess."] }
+        ]
+      }
+    },
+    {
+      "slug": "reference-angles-and-all-quadrants",
+      "title": "Reference Angles & All Quadrants",
+      "concreteComparison": "A reference angle is a mirror trick: the point at 150° is the 30° point reflected across the y-axis — same triangle, same numbers, different signs. Learn one quadrant, mirror it three times, and you own the whole circle.",
+      "objective": "Find reference angles in every quadrant, attach signs via quadrant reasoning, and evaluate sine and cosine exactly for any special-family angle, including negative and oversized angles.",
+      "concept": [
+        "The **reference angle** of $\\theta$ is the acute angle between its terminal ray and the x-axis. The point at $\\theta$ has the SAME |cos| and |sin| as its reference angle — only the SIGNS change, and the quadrant dictates them. Recipes: quadrant II: ref $= \\pi - \\theta$; III: ref $= \\theta - \\pi$; IV: ref $= 2\\pi - \\theta$.",
+        "Signs by quadrant, straight from coordinates: I $(+,+)$, II $(-,+)$, III $(-,-)$, IV $(+,-)$ for $(\\cos, \\sin)$. Two independent steps — size from the reference angle, sign from the quadrant — and any special-family angle falls: $\\sin 150° = +\\sin 30° = \\frac{1}{2}$; $\\cos\\frac{4\\pi}{3} = -\\cos\\frac{\\pi}{3} = -\\frac{1}{2}$.",
+        "Angles outside $[0, 2\\pi)$ first come home by adding or subtracting full laps ($2\\pi$ or $360°$): **coterminal angles** share the same point, so $\\sin 420° = \\sin 60°$ and $\\cos(-\\frac{\\pi}{4}) = \\cos\\frac{7\\pi}{4} = \\frac{\\sqrt{2}}{2}$."
+      ],
+      "keyIdea": "Size from the reference angle (acute gap to the x-axis), sign from the quadrant, and oversized/negative angles come home first via full laps.",
+      "facts": [
+        { "title": "Reference recipes", "latex": "\\text{II}: \\pi - \\theta, \\quad \\text{III}: \\theta - \\pi, \\quad \\text{IV}: 2\\pi - \\theta", "explanation": "The acute gap between the ray and the x-axis." },
+        { "title": "Sign grid", "latex": "(\\cos, \\sin): \\text{I}(+,+), \\; \\text{II}(-,+), \\; \\text{III}(-,-), \\; \\text{IV}(+,-)", "explanation": "Coordinates' signs, nothing more." },
+        { "title": "Coterminal", "latex": "\\theta \\pm 2\\pi k: \\text{ same point, same values}", "explanation": "Strip full laps before anything else." }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc64-we1",
+          "statement": "Evaluate $\\sin 150°$, $\\cos 225°$, and $\\sin\\tfrac{5\\pi}{3}$ exactly.",
+          "solution": "$150°$ (QII): ref $= 30°$, sine positive in II: $+\\frac{1}{2}$. $225°$ (QIII): ref $= 45°$, cosine negative: $-\\frac{\\sqrt{2}}{2}$. $\\frac{5\\pi}{3} = 300°$ (QIV): ref $= 60°$, sine negative: $-\\frac{\\sqrt{3}}{2}$.",
+          "check": ["sin(5*pi/6) == Rational(1,2)", "cos(5*pi/4) == -sqrt(2)/2", "sin(5*pi/3) == -sqrt(3)/2"]
+        },
+        {
+          "id": "pc64-we2",
+          "statement": "Evaluate $\\cos 495°$ and $\\sin\\left(-\\tfrac{\\pi}{6}\\right)$ exactly.",
+          "solution": "Come home first: $495° - 360° = 135°$ (QII), ref $45°$, cosine negative: $-\\frac{\\sqrt{2}}{2}$. $-\\frac{\\pi}{6}$: quarter-hour clockwise lands in QIV (same as $\\frac{11\\pi}{6}$), ref $\\frac{\\pi}{6}$, sine negative: $-\\frac{1}{2}$.",
+          "check": ["495 - 360 == 135", "cos(3*pi/4) == -sqrt(2)/2", "sin(-pi/6) == -Rational(1,2)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Measuring the reference angle from the y-axis: calling 150°'s reference 60°.", "correction": "Reference angles are measured to the X-AXIS, always: $180° - 150° = 30°$. The y-axis version swaps every sine with cosine — a silent disaster. When unsure, sketch the drop to the horizontal.", "authored": true },
+        { "text": "Letting the reference angle carry the sign: sin 210° = sin 30° because 'reference angles are equal.'", "correction": "The reference angle only carries the SIZE. The sign belongs to the quadrant: 210° is QIII where sine is negative: $\\sin 210° = -\\frac{1}{2}$. Two separate steps, never merged.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "pc64-t1",
+          "statement": "Find the reference angle and evaluate: $\\cos 120°$, $\\sin\\tfrac{7\\pi}{6}$, $\\cos\\tfrac{7\\pi}{4}$.",
+          "solution": "$120°$ (QII): ref $60°$, cos negative: $-\\frac{1}{2}$. $\\frac{7\\pi}{6}$ (QIII): ref $\\frac{\\pi}{6}$, sin negative: $-\\frac{1}{2}$. $\\frac{7\\pi}{4}$ (QIV): ref $\\frac{\\pi}{4}$, cos positive: $\\frac{\\sqrt{2}}{2}$.",
+          "check": ["cos(2*pi/3) == -Rational(1,2)", "sin(7*pi/6) == -Rational(1,2)", "cos(7*pi/4) == sqrt(2)/2"]
+        },
+        {
+          "id": "pc64-t2",
+          "statement": "Evaluate $\\sin 780°$ and find ALL angles in $[0°, 360°)$ with $\\cos\\theta = -\\tfrac{1}{2}$.",
+          "solution": "$780° - 720° = 60°$: $\\sin 780° = \\frac{\\sqrt{3}}{2}$. For $\\cos = -\\frac{1}{2}$: size says ref $= 60°$; negative cosine happens in QII and QIII: $\\theta = 120°$ and $240°$.",
+          "check": ["780 - 720 == 60", "sin(pi/3) == sqrt(3)/2", "cos(2*pi/3) == -Rational(1,2)", "cos(4*pi/3) == -Rational(1,2)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The idea", "title": "One quadrant, three mirrors", "body": "You know five first-quadrant angles exactly. Here's the multiplier: every other special angle is one of those five REFLECTED into another quadrant. The point at 150° is the 30° point mirrored across the y-axis — same triangle, same $\\frac{1}{2}$ and $\\frac{\\sqrt{3}}{2}$, different signs. The acute 'shadow angle' against the x-axis is called the **reference angle**." },
+          { "kind": "unitCircle", "eyebrow": "Play", "title": "Watch the mirror work", "teach": "Step from 30° up through 150°, 210°, 330°. The triangle under the point is IDENTICAL each time — only its quadrant changes. Watch the coordinates: same two numbers all four visits, wearing the quadrant's signs.", "config": { "mode": "explore", "start": 150 } },
+          { "kind": "teach", "eyebrow": "The recipes", "title": "Finding the reference angle", "body": "Measure the acute gap between the terminal ray and the x-axis (NEVER the y-axis). Quadrant II: $180° - \\theta$ (or $\\pi - \\theta$). Quadrant III: $\\theta - 180°$. Quadrant IV: $360° - \\theta$. Sanity: a reference angle is always between 0° and 90° — anything else means the wrong axis or the wrong quadrant." },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Three quick references", "prompt": "The reference angles of $135°$, $\\tfrac{4\\pi}{3}$, and $300°$ are:", "options": ["$45°, \\; \\frac{\\pi}{3}, \\; 60°$", "$45°, \\; \\frac{2\\pi}{3}, \\; 60°$", "$55°, \\; \\frac{\\pi}{3}, \\; 30°$", "$45°, \\; \\frac{\\pi}{6}, \\; 60°$"], "correctIndex": 0, "explanation": "QII: $180 - 135 = 45°$. QIII: $\\frac{4\\pi}{3} - \\pi = \\frac{\\pi}{3}$. QIV: $360 - 300 = 60°$. All acute ✓.", "check": ["180 - 135 == 45", "360 - 300 == 60", "Rational(4,3) - 1 == Rational(1,3)"] },
+          { "kind": "teach", "eyebrow": "The signs", "title": "Quadrants sign the values", "body": "Second step, independent of the first: the quadrant hands out signs, straight from coordinates. QI: both positive. QII: x negative — cosine negative, sine positive. QIII: both negative. QIV: sine negative. That's it — you're just remembering where points are up/down and left/right. Size from the mirror, sign from the address." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Three quadrants, three verdicts", "problemId": "pc64-we1" },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "The 30° family, all four quadrants", "teach": "The four cousins of 30° — at 30°, 150°, 210°, 330° — plotted on the unit circle. Same two coordinates $(0.87, 0.5)$ in size everywhere; each quadrant stamps its own signs. Identify each point's quadrant and the signs follow.", "config": { "mode": "quadrants", "min": -2, "max": 2, "points": [ { "x": 0.87, "y": 0.5, "label": "30°" }, { "x": -0.87, "y": 0.5, "label": "150°" }, { "x": -0.87, "y": -0.5, "label": "210°" }, { "x": 0.87, "y": -0.5, "label": "330°" } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Oversized angles", "title": "Come home first", "body": "Angles beyond a lap — $495°$, $-\\frac{\\pi}{6}$, $780°$ — describe the same points as some angle in $[0°, 360°)$: strip whole laps ($\\pm 360°$, $\\pm 2\\pi$) until home. These **coterminal** angles share everything: $\\sin 420° = \\sin 60°$. Protocol: come home, find the quadrant, mirror, sign." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A lap and a half", "problemId": "pc64-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check", "title": "Full protocol", "prompt": "$\\cos\\tfrac{11\\pi}{6} = ?$", "options": ["$\\frac{\\sqrt{3}}{2}$", "$-\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$", "$-\\frac{1}{2}$"], "correctIndex": 0, "explanation": "$\\frac{11\\pi}{6} = 330°$: QIV, reference $\\frac{\\pi}{6} = 30°$. Cosine in QIV is POSITIVE: $+\\frac{\\sqrt{3}}{2}$. Size from 30°, sign from the fourth quadrant.", "check": ["cos(11*pi/6) == sqrt(3)/2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Say the two steps aloud", "body": "Every evaluation, narrate: 'reference angle ___ , quadrant ___ , so sign ___.' For $\\sin\\frac{7\\pi}{6}$: 'reference $\\frac{\\pi}{6}$, quadrant III, sine negative: $-\\frac{1}{2}$.' Splitting size from sign out loud is what stops the classic merged-step errors — and it makes your work gradeable even when the final value slips." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Three mirrors", "problemId": "pc64-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Oversized + solve backwards", "problemId": "pc64-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Reference angle: acute gap to the x-axis — II: π−θ, III: θ−π, IV: 2π−θ.", "Size from the reference, sign from the quadrant — two steps, never merged.", "Oversized or negative? Strip full laps first (coterminal angles share the point)."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc6-pr-1",
+      "statement": "Convert to radians: $60°$, $270°$, $-30°$; and to degrees: $\\tfrac{3\\pi}{2}$, $\\tfrac{5\\pi}{4}$.",
+      "solution": "$\\frac{\\pi}{3}$, $\\frac{3\\pi}{2}$, $-\\frac{\\pi}{6}$; and $270°$, $225°$.",
+      "check": ["Rational(60,180) == Rational(1,3)", "Rational(270,180) == Rational(3,2)", "Rational(3*180,2) == 270", "Rational(5*180,4) == 225"]
+    },
+    {
+      "id": "pc6-pr-2",
+      "statement": "A wiper blade of radius 40 cm sweeps $\\tfrac{2\\pi}{3}$ radians. What arc does its tip trace?",
+      "solution": "$s = r\\theta = 40 \\cdot \\frac{2\\pi}{3} = \\frac{80\\pi}{3} \\approx 83.8$ cm.",
+      "check": ["40*Rational(2,3) == Rational(80,3)"]
+    },
+    {
+      "id": "pc6-pr-3",
+      "statement": "Read from the circle (no calculator): $\\cos\\tfrac{\\pi}{2}$, $\\sin 2\\pi$, $\\cos(-\\pi)$, $\\sin\\tfrac{\\pi}{2}$.",
+      "solution": "$(0,1)$: cos $= 0$. Full lap: sin $= 0$. Half lap either way lands at $(-1, 0)$: cos $= -1$. $(0,1)$: sin $= 1$.",
+      "check": ["cos(pi/2) == 0", "sin(2*pi) == 0", "cos(-pi) == -1", "sin(pi/2) == 1"]
+    },
+    {
+      "id": "pc6-pr-4",
+      "statement": "$\\sin\\theta = \\tfrac{8}{17}$ with $\\theta$ in the second quadrant. Find $\\cos\\theta$.",
+      "solution": "$\\cos^2\\theta = 1 - \\frac{64}{289} = \\frac{225}{289}$: $\\cos\\theta = \\pm\\frac{15}{17}$; QII makes it $-\\frac{15}{17}$.",
+      "check": ["1 - Rational(64,289) == Rational(225,289)", "Rational(64,289) + Rational(225,289) == 1"]
+    },
+    {
+      "id": "pc6-pr-5",
+      "statement": "Exact values: $\\sin 45°$, $\\cos\\tfrac{\\pi}{3}$, $\\sin\\tfrac{\\pi}{6}$, $\\cos 45°$.",
+      "solution": "$\\frac{\\sqrt{2}}{2}$, $\\frac{1}{2}$, $\\frac{1}{2}$, $\\frac{\\sqrt{2}}{2}$ — the half-square and half-equilateral values.",
+      "check": ["sin(pi/4) == sqrt(2)/2", "cos(pi/3) == Rational(1,2)", "sin(pi/6) == Rational(1,2)", "cos(pi/4) == sqrt(2)/2"]
+    },
+    {
+      "id": "pc6-pr-6",
+      "statement": "Evaluate exactly: $\\cos 150°$, $\\sin 225°$, $\\cos\\tfrac{5\\pi}{3}$.",
+      "solution": "QII, ref 30°: $-\\frac{\\sqrt{3}}{2}$. QIII, ref 45°: $-\\frac{\\sqrt{2}}{2}$. QIV, ref $\\frac{\\pi}{3}$: $+\\frac{1}{2}$.",
+      "check": ["cos(5*pi/6) == -sqrt(3)/2", "sin(5*pi/4) == -sqrt(2)/2", "cos(5*pi/3) == Rational(1,2)"]
+    },
+    {
+      "id": "pc6-pr-7",
+      "statement": "Evaluate $\\sin 405°$ and $\\cos\\left(-\\tfrac{2\\pi}{3}\\right)$ exactly.",
+      "solution": "$405 - 360 = 45$: $\\frac{\\sqrt{2}}{2}$. $-\\frac{2\\pi}{3}$ is coterminal with $\\frac{4\\pi}{3}$ (QIII), ref $\\frac{\\pi}{3}$: $-\\frac{1}{2}$.",
+      "check": ["405 - 360 == 45", "sin(pi/4) == sqrt(2)/2", "cos(-2*pi/3) == -Rational(1,2)"]
+    },
+    {
+      "id": "pc6-pr-8",
+      "statement": "Find every $\\theta$ in $[0, 2\\pi)$ with $\\sin\\theta = -\\tfrac{\\sqrt{3}}{2}$.",
+      "solution": "Size: ref $= \\frac{\\pi}{3}$. Negative sine: QIII and QIV: $\\theta = \\pi + \\frac{\\pi}{3} = \\frac{4\\pi}{3}$ and $\\theta = 2\\pi - \\frac{\\pi}{3} = \\frac{5\\pi}{3}$.",
+      "check": ["sin(4*pi/3) == -sqrt(3)/2", "sin(5*pi/3) == -sqrt(3)/2"]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc6-ty-1",
+      "statement": "Convert $\\tfrac{11\\pi}{6}$ to degrees and $315°$ to radians, then find both angles' reference angles.",
+      "solution": "$\\frac{11 \\cdot 180}{6} = 330°$; $315° = \\frac{7\\pi}{4}$. References: $360 - 330 = 30°$; $360 - 315 = 45°$ (both QIV).",
+      "check": ["Rational(11*180,6) == 330", "Rational(315,180) == Rational(7,4)", "360 - 330 == 30", "360 - 315 == 45"]
+    },
+    {
+      "id": "pc6-ty-2",
+      "statement": "A gear of radius 6 cm rotates $150°$. Find the arc traveled by a tooth, exactly.",
+      "solution": "Convert first: $150° = \\frac{5\\pi}{6}$. Arc: $s = 6 \\cdot \\frac{5\\pi}{6} = 5\\pi \\approx 15.7$ cm.",
+      "check": ["Rational(150,180) == Rational(5,6)", "6*Rational(5,6) == 5"]
+    },
+    {
+      "id": "pc6-ty-3",
+      "statement": "$\\cos\\theta = \\tfrac{7}{25}$ with $\\theta$ in the fourth quadrant. Find $\\sin\\theta$, then verify the identity.",
+      "solution": "$\\sin^2\\theta = 1 - \\frac{49}{625} = \\frac{576}{625}$: $\\sin\\theta = \\pm\\frac{24}{25}$; QIV: NEGATIVE: $-\\frac{24}{25}$. Check: $\\frac{49 + 576}{625} = 1$. ✓",
+      "check": ["1 - Rational(49,625) == Rational(576,625)", "Rational(49,625) + Rational(576,625) == 1"]
+    },
+    {
+      "id": "pc6-ty-4",
+      "statement": "Order from smallest to largest without a calculator: $\\sin 100°$, $\\sin 150°$, $\\sin 200°$.",
+      "solution": "$\\sin 200°$ is NEGATIVE (QIII) — smallest. $\\sin 150° = \\frac{1}{2}$; $\\sin 100°$ is just past the top, close to 1 — largest. Order: $\\sin 200° < \\sin 150° < \\sin 100°$.",
+      "check": ["sin(10*pi/9) < 0", "sin(5*pi/6) == Rational(1,2)", "sin(5*pi/9) > Rational(1,2)"]
+    },
+    {
+      "id": "pc6-ty-5",
+      "statement": "Evaluate exactly: $\\sin\\tfrac{3\\pi}{4} + \\cos\\tfrac{2\\pi}{3} + \\sin\\tfrac{11\\pi}{6}$.",
+      "solution": "QII ref $\\frac{\\pi}{4}$: $+\\frac{\\sqrt{2}}{2}$. QII ref $\\frac{\\pi}{3}$: $-\\frac{1}{2}$. QIV ref $\\frac{\\pi}{6}$: $-\\frac{1}{2}$. Sum: $\\frac{\\sqrt{2}}{2} - 1$.",
+      "check": ["sin(3*pi/4) == sqrt(2)/2", "cos(2*pi/3) == -Rational(1,2)", "sin(11*pi/6) == -Rational(1,2)", "expand(sqrt(2)/2 - Rational(1,2) - Rational(1,2) - (sqrt(2)/2 - 1)) == 0"]
+    },
+    {
+      "id": "pc6-ty-6",
+      "statement": "Find all $\\theta$ in $[0°, 360°)$ with $\\cos\\theta = \\tfrac{\\sqrt{2}}{2}$, and all with $\\sin\\theta = -1$.",
+      "solution": "Positive cosine: QI and QIV with ref $45°$: $\\theta = 45°, 315°$. $\\sin\\theta = -1$: only the bottom compass point: $\\theta = 270°$.",
+      "check": ["cos(pi/4) == sqrt(2)/2", "cos(7*pi/4) == sqrt(2)/2", "sin(3*pi/2) == -1"]
+    }
+  ]
+}

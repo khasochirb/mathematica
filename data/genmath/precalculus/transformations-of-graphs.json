@@ -1,0 +1,1072 @@
+{
+  "slug": "transformations-of-graphs",
+  "title": "Transformations of Graphs",
+  "unit": 2,
+  "status": "published",
+  "blurb": "One parent graph, four moves — shift, stretch, reflect, combine — and suddenly every function family is a single shape you already know, relocated.",
+  "buildsOn": "Graph features and function notation from Unit 1.",
+  "lessons": [
+    {
+      "slug": "vertical-and-horizontal-shifts",
+      "title": "Vertical & Horizontal Shifts",
+      "concreteComparison": "A shift is picking a graph up like a sticker and re-placing it — same shape, new spot. Adding outside the function slides the sticker up; adding INSIDE the parentheses slides it left, the direction that fools everyone.",
+      "objective": "Graph f(x) + k and f(x − h) as translations of a parent graph, and read h and k from a formula — including the counterintuitive inside sign.",
+      "concept": [
+        "**Outside changes act on outputs**: $y = f(x) + k$ adds $k$ to every height, sliding the whole graph UP by $k$ (down if negative). The shape is untouched — every point moves the same amount.",
+        "**Inside changes act on inputs**: $y = f(x - h)$ shifts the graph RIGHT by $h$. It feels backwards, but follow one point: $f(x-3)$ produces $f$'s old value at $x = 0$ only when you stand at $x = 3$ — everything happens 3 units later, i.e. to the right.",
+        "The two combine freely: $y = f(x - h) + k$ relocates the parent's key point (a parabola's vertex, an absolute value's corner) to $(h, k)$. Track ONE landmark point and the rest of the graph follows rigidly."
+      ],
+      "keyIdea": "Outside the function moves up/down as written; inside the parentheses moves left/right OPPOSITE to the sign: f(x − h) + k puts the landmark at (h, k).",
+      "facts": [
+        {
+          "title": "Vertical (outside)",
+          "latex": "y = f(x) + k: \\text{ up } k",
+          "explanation": "Outputs change; positive k up, negative down — as written."
+        },
+        {
+          "title": "Horizontal (inside)",
+          "latex": "y = f(x - h): \\text{ right } h",
+          "explanation": "Inputs change; x − 3 means right 3, x + 3 means left 3 — opposite the sign."
+        },
+        {
+          "title": "Landmark rule",
+          "latex": "f(x-h)+k: \\text{ landmark } \\to (h, k)",
+          "explanation": "Move one key point; the shape follows rigidly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc21-we1",
+          "statement": "Describe how to obtain $g(x) = |x - 4| - 2$ from the parent $f(x) = |x|$, and locate the corner.",
+          "solution": "Inside: $x - 4$ shifts RIGHT 4. Outside: $-2$ shifts DOWN 2. The parent's corner $(0,0)$ lands at $(4, -2)$. Spot-check: $g(4) = |0| - 2 = -2$, the lowest output — corner confirmed.",
+          "check": [
+            "Abs(4-4) - 2 == -2",
+            "Abs(5-4) - 2 == -1",
+            "-1 > -2"
+          ]
+        },
+        {
+          "id": "pc21-we2",
+          "statement": "The parabola $y = x^2$ is shifted so its vertex sits at $(-3, 5)$. Write the new equation and find its $y$-intercept.",
+          "solution": "Vertex to $(h,k) = (-3, 5)$: $y = (x - (-3))^2 + 5 = (x+3)^2 + 5$. Note the inside sign flip: LEFT 3 is written $x + 3$. Intercept: $x = 0$ gives $9 + 5 = 14$.",
+          "check": [
+            "(-3+3)**2 + 5 == 5",
+            "(0+3)**2 + 5 == 14"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $f(x + 5)$ as a shift RIGHT 5 because the sign is positive.",
+          "correction": "Inside shifts run opposite the sign: $x + 5 = x - (-5)$ means $h = -5$ — LEFT 5. Test one point: the parent's x = 0 behaviour now happens at x = −5.",
+          "authored": true
+        },
+        {
+          "text": "Shifting the vertex but redrawing the arms at a new steepness.",
+          "correction": "A pure shift is rigid — the shape must be IDENTICAL, point for point. If the arms look different, you changed a stretch, not a shift.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc21-t1",
+          "statement": "Describe $g(x) = \\sqrt{x + 1} + 6$ as transformations of $f(x) = \\sqrt{x}$, and give the new starting point of the graph.",
+          "solution": "Inside $x + 1$: LEFT 1. Outside $+6$: UP 6. The parent starts at $(0,0)$; the image starts at $(-1, 6)$. Check: $g(-1) = \\sqrt{0} + 6 = 6$. ✓",
+          "check": [
+            "sqrt(-1 + 1) + 6 == 6",
+            "sqrt(3 + 1) + 6 == 8"
+          ]
+        },
+        {
+          "id": "pc21-t2",
+          "statement": "Write the equation of $y = x^2$ shifted right 2 and down 9, then find its $x$-intercepts.",
+          "solution": "$y = (x-2)^2 - 9$. Intercepts: $(x-2)^2 = 9 \\Rightarrow x - 2 = \\pm 3 \\Rightarrow x = 5$ or $x = -1$.",
+          "check": [
+            "(5-2)**2 - 9 == 0",
+            "(-1-2)**2 - 9 == 0",
+            "(2-2)**2 - 9 == -9"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Graphs as stickers",
+            "body": "Here is the secret that collapses precalculus: there are only a handful of PARENT shapes — $x^2$, $|x|$, $\\sqrt{x}$, $\\frac{1}{x}$, and friends — and every variation you will ever graph is one of them picked up and re-placed like a sticker. This lesson is the two sliding moves; the next adds stretching and flipping."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Play",
+            "title": "Slide the vertex",
+            "teach": "Step $h$ and $k$ and watch $y = (x-h)^2 + k$: the vertex goes exactly to $(h, k)$ while the cup keeps its shape. Now watch the FORMULA as you step $h$ right: it writes $x - h$. Right 3 reads 'minus 3' — hold that thought.",
+            "config": {
+              "mode": "vertex",
+              "a": 1,
+              "h": 0,
+              "k": 0
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why inside flips",
+            "title": "The backwards-looking sign",
+            "body": "Why does $f(x - 3)$ move RIGHT? Chase one point. The parent $f$ does something special at $x = 0$ (a corner, a vertex). $f(x - 3)$ feeds the machine $x - 3$, which equals 0 only when $x = 3$ — the special moment now happens 3 units LATER on the number line. Inside changes preprocess the input, so the graph reacts opposite to the written sign."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Which way?",
+            "prompt": "The graph of $y = f(x + 5)$ is the graph of $f$ shifted…",
+            "options": [
+              "left 5",
+              "right 5",
+              "up 5",
+              "down 5"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside the parentheses, opposite the sign: $x + 5$ hits the parent's $x = 0$ behaviour when $x = -5$ — five units LEFT.",
+            "check": [
+              "-5 + 5 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Corner relocation",
+            "problemId": "pc21-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Same V, new corner",
+            "teach": "Sample points of $y = |x - 4| - 2$: the parent V-shape of $|x|$, corner moved from $(0,0)$ to $(4, -2)$, arms still climbing at slope $\\pm 1$. A shift changes WHERE, never WHAT.",
+            "config": {
+              "mode": "plot",
+              "min": -2,
+              "max": 8,
+              "points": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "x": 3,
+                  "y": -1
+                },
+                {
+                  "x": 4,
+                  "y": -2,
+                  "label": "corner"
+                },
+                {
+                  "x": 5,
+                  "y": -1
+                },
+                {
+                  "x": 6,
+                  "y": 0
+                },
+                {
+                  "x": 7,
+                  "y": 1
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Combining",
+            "title": "Track one landmark",
+            "body": "$y = f(x - h) + k$ does both moves at once, and the recipe is: find the parent's LANDMARK (vertex of $x^2$, corner of $|x|$, endpoint of $\\sqrt{x}$, center of $\\frac{1}{x}$), send it to $(h, k)$, and let the rigid shape follow. One point carries the whole graph."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Build the equation from the vertex",
+            "problemId": "pc21-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the landmark",
+            "prompt": "Where is the starting point (endpoint) of $y = \\sqrt{x - 7} + 3$?",
+            "options": [
+              "$(7, 3)$",
+              "$(-7, 3)$",
+              "$(3, 7)$",
+              "$(7, -3)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside $x - 7$: right 7. Outside $+3$: up 3. The parent endpoint $(0,0)$ lands at $(7, 3)$.",
+            "check": [
+              "sqrt(7 - 7) + 3 == 3"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Test the landmark numerically",
+            "body": "Whenever you announce a shift, plug the claimed landmark's x-value into the formula. For $y = (x+3)^2 + 5$ claiming vertex $(-3, 5)$: $f(-3) = 0 + 5 = 5$ ✓, and any neighbour gives more. Ten seconds, and the inside-sign trap never catches you."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Square-root relocation",
+            "problemId": "pc21-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Equation from moves",
+            "problemId": "pc21-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Outside (+k): vertical, as written. Inside (x − h): horizontal, opposite the sign.",
+              "f(x − h) + k sends the parent's landmark to (h, k); the shape follows rigidly.",
+              "Verify every shift by evaluating the formula at the claimed landmark."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "stretches-and-reflections",
+      "title": "Stretches & Reflections",
+      "concreteComparison": "Multiplying a graph is working dough: y = 2f(x) rolls it taller, y = ½f(x) presses it flatter, and a minus sign flips it over like a pancake. The shape stretches — it no longer moves rigidly.",
+      "objective": "Graph y = a·f(x) as a vertical stretch/compression, handle the reflections y = −f(x) and y = f(−x), and read |a| and sign separately.",
+      "concept": [
+        "$y = a \\cdot f(x)$ multiplies every OUTPUT by $a$: heights double under $a = 2$ (a vertical **stretch**), halve under $a = \\frac{1}{2}$ (a **compression**). Points ON the $x$-axis have height 0 and never move — the graph pivots around its own roots.",
+        "A negative sign is a mirror. **Outside**, $y = -f(x)$ flips every height: reflection across the $x$-axis. **Inside**, $y = f(-x)$ swaps left and right: reflection across the $y$-axis — inside changes act on inputs, as always.",
+        "Read $a$ in two parts: the SIGN says flipped or not, the SIZE $|a|$ says stretched ($|a| > 1$) or squashed ($|a| < 1$). $y = -3x^2$ is 'flip, then triple every depth': a narrow, downward cup."
+      ],
+      "keyIdea": "a·f(x) scales outputs (x-axis points pinned); the sign of a flips over the x-axis, f(−x) flips over the y-axis — sign and size are separate decisions.",
+      "facts": [
+        {
+          "title": "Vertical stretch",
+          "latex": "y = a f(x): \\text{ heights } \\times a",
+          "explanation": "|a| > 1 stretches, 0 < |a| < 1 compresses; roots stay pinned."
+        },
+        {
+          "title": "Two mirrors",
+          "latex": "-f(x): x\\text{-axis}, \\qquad f(-x): y\\text{-axis}",
+          "explanation": "Outside minus flips heights; inside minus flips left–right."
+        },
+        {
+          "title": "Sign and size",
+          "latex": "a = -3: \\text{ flip} + \\text{stretch } \\times 3",
+          "explanation": "Decide the flip and the stretch separately."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc22-we1",
+          "statement": "The point $(2, 6)$ lies on $y = f(x)$. Find its image on $y = \\tfrac{1}{2}f(x)$, on $y = -f(x)$, and on $y = f(-x)$.",
+          "solution": "Outputs scale or flip; inputs flip only for the inside minus. $\\frac{1}{2}f$: $(2, 3)$. $-f$: $(2, -6)$. $f(-x)$: the height 6 now happens at $x = -2$, giving $(-2, 6)$.",
+          "check": [
+            "Rational(6,2) == 3",
+            "-(6) == -6",
+            "-(2) == -2"
+          ]
+        },
+        {
+          "id": "pc22-we2",
+          "statement": "Describe $g(x) = -2(x - 1)^2 + 8$ as transformations of $x^2$, and find its $x$-intercepts.",
+          "solution": "Right 1, stretch $\\times 2$, flip over the x-axis, up 8: a downward cup with vertex $(1, 8)$. Intercepts: $-2(x-1)^2 + 8 = 0 \\Rightarrow (x-1)^2 = 4 \\Rightarrow x = 3$ or $x = -1$.",
+          "check": [
+            "-2*(3-1)**2 + 8 == 0",
+            "-2*(-1-1)**2 + 8 == 0",
+            "-2*(1-1)**2 + 8 == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Sliding the whole graph when multiplying: moving the roots of y = 2f(x).",
+          "correction": "A stretch is not a shift — points at height 0 stay EXACTLY put, because 2 × 0 = 0. Heights scale; roots are pinned.",
+          "authored": true
+        },
+        {
+          "text": "Treating −f(x) and f(−x) as the same flip.",
+          "correction": "The minus OUTSIDE flips heights (x-axis mirror); INSIDE it flips inputs (y-axis mirror). Test on (2, 6): they give (2, −6) versus (−2, 6) — different points.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc22-t1",
+          "statement": "$(−4, 10)$ lies on $y = f(x)$. Find its image on $y = -3f(x)$ and on $y = f(-x) + 2$.",
+          "solution": "$-3f$: height $10 \\to -30$, point $(-4, -30)$. $f(-x) + 2$: input flips to $4$, then height $10 + 2 = 12$: point $(4, 12)$.",
+          "check": [
+            "-3*10 == -30",
+            "-(-4) == 4",
+            "10 + 2 == 12"
+          ]
+        },
+        {
+          "id": "pc22-t2",
+          "statement": "Write the equation of $y = |x|$ flipped over the x-axis, stretched vertically by 4, and shifted up 12; find where it crosses the x-axis.",
+          "solution": "$y = -4|x| + 12$. Crossings: $-4|x| + 12 = 0 \\Rightarrow |x| = 3 \\Rightarrow x = \\pm 3$.",
+          "check": [
+            "-4*Abs(3) + 12 == 0",
+            "-4*Abs(-3) + 12 == 0",
+            "-4*Abs(0) + 12 == 12"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Working the dough",
+            "body": "Shifts relocate a graph rigidly. Multiplication actually DEFORMS it: $y = a f(x)$ takes every height and scales it by $a$ — taller dough for $|a| > 1$, flatter for $|a| < 1$, and a full pancake-flip when $a$ is negative. One anchor never moves: any point already sitting ON the x-axis, because scaling 0 gives 0."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Play",
+            "title": "Stretch and flip y = ax²",
+            "teach": "Step $a$ through $2, 1, \\frac{1}{2}$, then push it NEGATIVE. Watch two separate things: the SIZE of $a$ narrows or widens the cup, and the SIGN flips it upside down. The vertex, sitting on the x-axis, never budges.",
+            "config": {
+              "mode": "shape",
+              "a": 1
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Pinned points",
+            "prompt": "$f(3) = 0$. On the graph of $y = 5f(x)$, the point at $x = 3$ is…",
+            "options": [
+              "still $(3, 0)$ — unchanged",
+              "$(3, 5)$",
+              "$(15, 0)$",
+              "removed"
+            ],
+            "correctIndex": 0,
+            "explanation": "$5 \\cdot f(3) = 5 \\cdot 0 = 0$. Stretches scale heights, and a height of zero scales to zero — roots are pinned.",
+            "check": [
+              "5*0 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One point, three images",
+            "problemId": "pc22-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Mirrors",
+            "title": "Two different flips",
+            "body": "Both reflections come from a minus sign, in two different places. **Outside** — $y = -f(x)$ — negates outputs: the graph flips over the x-axis. **Inside** — $y = f(-x)$ — negates inputs: left and right trade places, a y-axis flip. Same rule as shifts: outside acts on heights, inside acts on the input axis."
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "Flip √x over the y-axis",
+            "teach": "Reflect these points of $y = \\sqrt{x}$ across the y-axis. The image is $y = \\sqrt{-x}$ — the same climbing curve, now living entirely on the LEFT, where $-x \\ge 0$. An inside minus rewrites which inputs are legal.",
+            "config": {
+              "mode": "reflect",
+              "min": -9,
+              "max": 9,
+              "reflectAxis": "y",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 1
+                },
+                {
+                  "x": 4,
+                  "y": 2
+                },
+                {
+                  "x": 9,
+                  "y": 3
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Name the mirror",
+            "prompt": "$(5, -2)$ lies on $y = f(x)$. Which point lies on $y = f(-x)$?",
+            "options": [
+              "$(-5, -2)$",
+              "$(5, 2)$",
+              "$(-5, 2)$",
+              "$(2, -5)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside minus flips the INPUT only: the output $-2$ now occurs at $x = -5$. (Flipping the sign of the output would be $-f$, the other mirror.)",
+            "check": [
+              "-(5) == -5"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading a",
+            "title": "Sign, then size",
+            "body": "For any coefficient, make two separate calls. $y = -3x^2$: the sign says FLIPPED (opens down), the size says STRETCHED (three times as steep — narrow). $y = -\\frac{1}{4}x^2$: flipped and SQUASHED — a wide, shallow, downward cup. Never let the minus distract you from the magnitude."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Full description + intercepts",
+            "problemId": "pc22-we2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 'wider' equals 'shorter'",
+            "body": "A vertical compression by ½ produces a graph that LOOKS wider — and for parabolas it literally is one: $\\frac{1}{2}x^2 = (\\frac{x}{\\sqrt{2}})^2$, a horizontal stretch by $\\sqrt{2}$. For power functions the two deformations coincide; for most other functions they genuinely differ."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two images",
+            "problemId": "pc22-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Build a flipped V",
+            "problemId": "pc22-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "a·f(x): heights × a; x-axis points are pinned.",
+              "−f(x) mirrors over the x-axis; f(−x) mirrors over the y-axis.",
+              "Read a as two decisions: sign = flip?, |a| = stretch or squash?"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "combining-transformations",
+      "title": "Combining Transformations",
+      "concreteComparison": "Reading a(x − h)² + k is reading dressing instructions: stretch and flip are the shirt (put on first, closest to the body), shifts are the jacket (last, outermost). Get the order wrong and the outfit — the graph — comes out wrong.",
+      "objective": "Graph functions of the form a·f(x − h) + k by applying transformations in the correct order, and write equations from described transformations or graphs.",
+      "concept": [
+        "The full form $g(x) = a \\cdot f(x - h) + k$ bundles every move so far. Apply in this order: **(1) horizontal shift** by $h$, **(2) stretch/flip** by $a$, **(3) vertical shift** by $k$. The order matters because the stretch multiplies heights BEFORE $k$ is added — $-2f(x) + 3$ is not the same as $-2(f(x) + 3)$.",
+        "The safest execution is **landmark arithmetic**: take the parent's key point $(x_0, y_0)$; its image is $(x_0 + h, \\; a y_0 + k)$. A second point (one unit from the landmark) fixes the shape: on the parent, one step gives rise $1$; on the image, one step gives rise $a$.",
+        "Going backwards — equation from a graph — read the pieces in reverse: the landmark position gives $h$ and $k$; the rise from the landmark to a neighbouring point gives $a$ (including its sign)."
+      ],
+      "keyIdea": "In a·f(x − h) + k, transform inside-out: shift horizontally, then stretch/flip, then shift vertically; a landmark point maps to (x₀ + h, a·y₀ + k).",
+      "facts": [
+        {
+          "title": "Order of moves",
+          "latex": "\\text{shift } h \\to \\text{scale } a \\to \\text{shift } k",
+          "explanation": "Stretch before vertical shift — a multiplies f's output, then k is added."
+        },
+        {
+          "title": "Point image",
+          "latex": "(x_0, y_0) \\mapsto (x_0 + h, \\; a y_0 + k)",
+          "explanation": "Landmark arithmetic replaces guesswork."
+        },
+        {
+          "title": "One step from vertex",
+          "latex": "\\text{parent rise } 1 \\Rightarrow \\text{image rise } a",
+          "explanation": "Read a (and its sign) from the first step away from the landmark."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc23-we1",
+          "statement": "Graph $g(x) = -2(x + 1)^2 + 8$ by tracking the vertex and one neighbouring point of $y = x^2$.",
+          "solution": "Landmark: $(0,0) \\mapsto (0 + (-1), -2 \\cdot 0 + 8) = (-1, 8)$. Neighbour: parent step from vertex rises 1; image step rises $a = -2$, so $(-1 + 1, 8 - 2) = (0, 6)$ is on the graph — confirmed by $g(0) = -2(1) + 8 = 6$. Downward narrow cup, vertex $(-1, 8)$.",
+          "check": [
+            "-2*(-1+1)**2 + 8 == 8",
+            "-2*(0+1)**2 + 8 == 6",
+            "8 - 2 == 6"
+          ]
+        },
+        {
+          "id": "pc23-we2",
+          "statement": "A graph is the parent $|x|$ flipped over the x-axis, stretched by 3, and moved to corner $(2, 5)$. Write $g(x)$ and compute $g(4)$.",
+          "solution": "$a = -3$ (flip + stretch), $(h, k) = (2, 5)$: $g(x) = -3|x - 2| + 5$. Then $g(4) = -3|2| + 5 = -1$. Sanity: two steps from the corner at slope $-3$ drops $6$ from height $5$. ✓",
+          "check": [
+            "-3*Abs(4-2) + 5 == -1",
+            "-3*Abs(2-2) + 5 == 5",
+            "5 - 6 == -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding k before multiplying by a: turning −2f(x) + 3 into −2(f(x) + 3).",
+          "correction": "In $a f(x) + k$, the stretch binds to $f$ FIRST; $k$ is added to the already-scaled height. Landmark check: $y_0 = 1, a = -2, k = 3$ gives $-2(1)+3 = 1$, not $-2(1+3) = -8$.",
+          "authored": true
+        },
+        {
+          "text": "Reading a's sign from the vertex position ('vertex is high, so a is positive').",
+          "correction": "The vertex position is pure (h, k) — it says NOTHING about a. Read a from the step away from the vertex: image falls where the parent rises means a < 0.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc23-t1",
+          "statement": "For $g(x) = \\tfrac{1}{2}\\sqrt{x - 4} + 1$: name the moves in order, the image of the parent's endpoint $(0,0)$, and $g(8)$.",
+          "solution": "Right 4, compress heights $\\times \\frac{1}{2}$, up 1. Endpoint image: $(0 + 4, \\frac{1}{2} \\cdot 0 + 1) = (4, 1)$. $g(8) = \\frac{1}{2}\\sqrt{4} + 1 = 2$.",
+          "check": [
+            "Rational(1,2)*sqrt(8-4) + 1 == 2",
+            "Rational(1,2)*sqrt(4-4) + 1 == 1"
+          ]
+        },
+        {
+          "id": "pc23-t2",
+          "statement": "A parabola has vertex $(3, -4)$ and passes through $(5, 4)$. Write it in the form $a(x-h)^2 + k$.",
+          "solution": "$y = a(x-3)^2 - 4$. Use the point: $4 = a(5-3)^2 - 4 \\Rightarrow 4a = 8 \\Rightarrow a = 2$. So $y = 2(x-3)^2 - 4$.",
+          "check": [
+            "2*(5-3)**2 - 4 == 4",
+            "2*(3-3)**2 - 4 == -4",
+            "Rational(8,4) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "All four moves, one formula",
+            "body": "Everything so far compresses into one master form: $g(x) = a \\cdot f(x - h) + k$. Shift, stretch, flip, shift — but in a specific ORDER, like dressing: the stretch $a$ is the shirt (applied to $f$'s output first), the vertical shift $k$ is the jacket (added last). Swap them and you get a different graph."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Why order matters",
+            "title": "Shirt before jacket",
+            "prompt": "$f$'s parent height at some point is $1$. With $a = -2$, $k = 3$, the image height is:",
+            "options": [
+              "$-2(1) + 3 = 1$",
+              "$-2(1 + 3) = -8$",
+              "$1 - 2 + 3 = 2$",
+              "$3 - 1 = 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "In $a f(x) + k$ the multiplication binds to $f$ first: scale the height to $-2$, THEN add 3. Adding first computes a different formula, $a(f + k)$.",
+            "check": [
+              "-2*1 + 3 == 1",
+              "-2*(1 + 3) == -8",
+              "1 != -8"
+            ]
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Play",
+            "title": "The full family a(x−h)² + k",
+            "teach": "This workbench runs the complete form. Step $h$ and $k$ to place the vertex — then notice the arms keep their steepness. The vertex answers to $(h, k)$ alone; the shape answers to $a$ alone. Two independent dials.",
+            "config": {
+              "mode": "vertex",
+              "a": 2,
+              "h": 1,
+              "k": -3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Landmark arithmetic",
+            "body": "Skip the mental animation — compute. The parent's landmark $(x_0, y_0)$ lands at $(x_0 + h, \\; a y_0 + k)$. Then fix the shape with ONE neighbour: a single step from the parent's landmark rises 1 (for $x^2$ and $|x|$), so the image's single step rises exactly $a$. Two points, and the whole graph is determined."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Vertex + one neighbour",
+            "problemId": "pc23-we1"
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "g(x) = −2(x+1)² + 8, plotted",
+            "teach": "The worked example's graph as sample points: vertex $(-1, 8)$ from $(h, k)$, and each step away drops by $2, 6, 10, \\ldots$ — the $\\times(-2)$ signature. Compare the parent's rises of $1, 3, 5$: same pattern, scaled and flipped.",
+            "config": {
+              "mode": "plot",
+              "min": -6,
+              "max": 9,
+              "points": [
+                {
+                  "x": -3,
+                  "y": 0
+                },
+                {
+                  "x": -2,
+                  "y": 6
+                },
+                {
+                  "x": -1,
+                  "y": 8,
+                  "label": "vertex"
+                },
+                {
+                  "x": 0,
+                  "y": 6
+                },
+                {
+                  "x": 1,
+                  "y": 0
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Backwards",
+            "title": "Equation from a graph",
+            "body": "Reverse-reading uses the same two facts in the other direction. The landmark's POSITION hands you $h$ and $k$ directly. Then step one unit horizontally from the landmark and read the rise — that rise IS $a$, sign included. If one step drops 3, then $a = -3$; done."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "From description to formula",
+            "problemId": "pc23-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read a from a step",
+            "prompt": "A transformed $|x|$ has corner $(1, 2)$; the graph passes through $(2, -1)$. What is $a$?",
+            "options": [
+              "$-3$",
+              "$3$",
+              "$-1$",
+              "$-\\frac{1}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One step right of the corner, the parent rises 1; this image FALLS 3 (from 2 to −1). So $a = -3$: $y = -3|x-1| + 2$.",
+            "check": [
+              "2 - 3 == -1",
+              "-3*Abs(2-1) + 2 == -1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Two-point verification",
+            "body": "Every combined-transformation answer earns a two-point check: evaluate your formula at the landmark (must give $k$) and at one step away (must give $k + a$). Both pass and the equation is almost certainly right; either fails and you know exactly which dial — position or shape — is off."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Name, map, evaluate",
+            "problemId": "pc23-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Equation through a point",
+            "problemId": "pc23-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "a·f(x−h)+k: horizontal shift, then stretch/flip, then vertical shift.",
+              "Landmark arithmetic: (x₀, y₀) → (x₀ + h, a·y₀ + k); one neighbour step reads a.",
+              "Backwards: landmark gives (h, k); the first step's rise gives a with its sign."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "piecewise-and-absolute-value-graphs",
+      "title": "Piecewise & Absolute Value Graphs",
+      "concreteComparison": "A piecewise function is a playlist with rules: THIS song plays before 6 pm, THAT one after. Each rule is an ordinary function; the art is switching at the right moment and knowing which endpoint owns the boundary.",
+      "objective": "Evaluate and graph piecewise-defined functions with correct open/closed endpoints, and rewrite |x| expressions as piecewise formulas.",
+      "concept": [
+        "A **piecewise function** applies different formulas on different stretches of the domain: $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ x^2 & x \\ge 1 \\end{cases}$. To evaluate, first ask WHICH rule owns the input: $f(0) = 3$ (first rule), $f(1) = 1$ (second — the $\\ge$ owns the boundary).",
+        "Graph each rule only over its own territory, and mark the boundary honestly: a **closed dot** where the inequality includes the endpoint ($\\le, \\ge$), an **open circle** where it doesn't ($<, >$). If the two pieces meet at the same height, the graph is continuous there; if not, it JUMPS.",
+        "Absolute value is secretly the simplest piecewise function: $|x| = \\begin{cases} x & x \\ge 0 \\\\ -x & x < 0 \\end{cases}$. Rewriting $|x - a|$ this way — split at $x = a$ — is how calculus will handle every absolute value it meets."
+      ],
+      "keyIdea": "Evaluate piecewise functions by finding which rule owns the input; graph each rule on its own territory with honest open/closed endpoints; |x| is the two-rule function x / −x split at 0.",
+      "facts": [
+        {
+          "title": "Which rule?",
+          "latex": "f(1) \\text{ uses the piece whose condition holds at } 1",
+          "explanation": "Check conditions before computing; exactly one owns each input."
+        },
+        {
+          "title": "Boundary dots",
+          "latex": "\\ge, \\le: \\bullet \\qquad >, <: \\circ",
+          "explanation": "Closed dot = endpoint included; open circle = approached, not owned."
+        },
+        {
+          "title": "|x| unpacked",
+          "latex": "|x| = \\begin{cases} x & x \\ge 0 \\\\ -x & x < 0 \\end{cases}",
+          "explanation": "Absolute value is a two-piece linear function split at 0."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "pc24-we1",
+          "statement": "For $f(x) = \\begin{cases} 2x + 5 & x < -1 \\\\ x^2 - 2 & -1 \\le x \\le 2 \\\\ 6 - x & x > 2 \\end{cases}$, evaluate $f(-3)$, $f(-1)$, $f(2)$, and $f(4)$.",
+          "solution": "Route each input first. $-3 < -1$: $f(-3) = -6 + 5 = -1$. $-1$ belongs to the middle ($\\le$): $f(-1) = 1 - 2 = -1$. $2$ also middle: $f(2) = 4 - 2 = 2$. $4 > 2$: $f(4) = 2$.",
+          "check": [
+            "2*(-3) + 5 == -1",
+            "(-1)**2 - 2 == -1",
+            "2**2 - 2 == 2",
+            "6 - 4 == 2"
+          ]
+        },
+        {
+          "id": "pc24-we2",
+          "statement": "Rewrite $g(x) = |x - 3|$ as a piecewise formula and evaluate both pieces' expressions at their shared boundary.",
+          "solution": "Split where the inside is zero, $x = 3$: $g(x) = \\begin{cases} x - 3 & x \\ge 3 \\\\ 3 - x & x < 3 \\end{cases}$. At $x = 3$ both expressions give 0 — the pieces MEET, which is why $|x-3|$ has a corner there, not a jump.",
+          "check": [
+            "3 - 3 == 0",
+            "Abs(5 - 3) == 5 - 3",
+            "Abs(1 - 3) == 3 - 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating f(1) with every rule and reporting several answers.",
+          "correction": "Exactly ONE condition holds for each input — route first, compute second. If two conditions could both claim an input, the function is badly defined; well-written pieces never overlap.",
+          "authored": true
+        },
+        {
+          "text": "Drawing both boundary dots closed at a jump.",
+          "correction": "At a boundary, at most one piece owns the endpoint (its dot is closed); the other approaches it with an open circle. Two closed dots at one x would flunk the vertical line test.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "pc24-t1",
+          "statement": "For $f(x) = \\begin{cases} -x & x \\le 0 \\\\ x + 1 & x > 0 \\end{cases}$: evaluate $f(-2)$, $f(0)$, and $f(0.5)$, and state whether the graph jumps at $x = 0$.",
+          "solution": "$f(-2) = 2$; $f(0) = 0$ (the $\\le$ piece owns 0); $f(0.5) = 1.5$. Near 0 the right piece approaches $0 + 1 = 1$ while the function value is 0: heights 0 vs 1 — the graph JUMPS at $x = 0$.",
+          "check": [
+            "-(-2) == 2",
+            "-(0) == 0",
+            "Rational(1,2) + 1 == Rational(3,2)",
+            "0 != 1"
+          ]
+        },
+        {
+          "id": "pc24-t2",
+          "statement": "Rewrite $h(x) = |2x - 6|$ as a piecewise formula, splitting at the right point.",
+          "solution": "The inside is zero at $x = 3$. For $x \\ge 3$: $h(x) = 2x - 6$. For $x < 3$: $h(x) = 6 - 2x$. Check: $h(5) = 4$ both ways ($|4| = 4$); $h(1) = |{-4}| = 4 = 6 - 2$. ✓",
+          "check": [
+            "2*3 - 6 == 0",
+            "Abs(2*5 - 6) == 2*5 - 6",
+            "Abs(2*1 - 6) == 6 - 2*1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Different rules, different territories",
+            "body": "Real systems switch formulas: a taxi charges one rate for the first km and another after; a tax bracket changes at a threshold. A **piecewise function** writes that honestly — several formulas, each owning a stretch of the domain. The whole skill is routing: for any input, find WHOSE territory it is, then use only that rule."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Route, then compute",
+            "problemId": "pc24-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Who owns the boundary?",
+            "prompt": "$f(x) = \\begin{cases} x + 1 & x < 2 \\\\ 10 - x & x \\ge 2 \\end{cases}$. What is $f(2)$?",
+            "options": [
+              "$8$",
+              "$3$",
+              "both 8 and 3",
+              "undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "The condition $x \\ge 2$ includes 2, so the second rule owns it: $f(2) = 8$. The first rule's $x < 2$ stops just short — a function gives ONE output per input.",
+            "check": [
+              "10 - 2 == 8",
+              "2 + 1 == 3",
+              "8 != 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Graphing",
+            "title": "Honest endpoints",
+            "body": "Graph each piece only over its own territory, then tell the truth at every boundary: a **closed dot** if that piece's inequality includes the endpoint, an **open circle** if it only approaches. When neighbouring pieces meet at the same height the dots merge and the graph flows through; when they disagree, the graph JUMPS — and the dots show exactly which height is real."
+          },
+          {
+            "kind": "coordinateGrid",
+            "eyebrow": "See it",
+            "title": "A jump at x = 0",
+            "teach": "Sample points of $f(x) = -x$ for $x \\le 0$ joined with $x + 1$ for $x > 0$. Walk left to right: descend to $(0, 0)$ — the value the $\\le$ piece owns — then the graph restarts a full unit higher at height 1 and climbs. That gap is a jump; no pen can draw it without lifting.",
+            "config": {
+              "mode": "plot",
+              "min": -4,
+              "max": 4,
+              "points": [
+                {
+                  "x": -3,
+                  "y": 3
+                },
+                {
+                  "x": -2,
+                  "y": 2
+                },
+                {
+                  "x": -1,
+                  "y": 1
+                },
+                {
+                  "x": 0,
+                  "y": 0,
+                  "label": "f(0) = 0"
+                },
+                {
+                  "x": 1,
+                  "y": 2
+                },
+                {
+                  "x": 2,
+                  "y": 3
+                },
+                {
+                  "x": 3,
+                  "y": 4
+                }
+              ],
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The classic",
+            "title": "|x| is piecewise in disguise",
+            "body": "Absolute value is the most famous piecewise function of all: $|x| = x$ when $x \\ge 0$, and $|x| = -x$ when $x < 0$. Both pieces are plain lines (slopes $+1$ and $-1$); they meet at $(0,0)$ at different angles — that's the corner. To unpack $|expr|$, always split where the INSIDE equals zero."
+          },
+          {
+            "kind": "absoluteValue",
+            "eyebrow": "Play",
+            "title": "Distance from zero",
+            "teach": "Slide $x$ across zero and watch $|x|$: right of zero it reports $x$ itself; left of zero it reports $-x$, the flipped sign. Two linear rules, switching at the split point — you are watching the piecewise definition run.",
+            "config": {
+              "min": -8,
+              "max": 8,
+              "start": -5,
+              "color": "#e8913c"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Unpack |x − 3|",
+            "problemId": "pc24-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Split point",
+            "prompt": "To write $|4x + 8|$ piecewise, you split the domain at:",
+            "options": [
+              "$x = -2$",
+              "$x = 8$",
+              "$x = 2$",
+              "$x = 0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Split where the inside changes sign: $4x + 8 = 0 \\Rightarrow x = -2$. Right of it the expression is its own value; left of it, the negation.",
+            "check": [
+              "4*(-2) + 8 == 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Test each piece at the seam",
+            "body": "After writing any piecewise formula, evaluate EVERY adjacent pair of expressions at their shared boundary. Equal values: the graph flows through (a corner at worst). Different values: a jump — and only the piece with the inclusive inequality gets the closed dot. This one habit prevents nearly all piecewise graphing errors."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Route and detect the jump",
+            "problemId": "pc24-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Unpack with a coefficient",
+            "problemId": "pc24-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Route the input to its owning rule before computing anything.",
+              "Closed dot = inequality includes the endpoint; open circle = approaches only; unequal heights = jump.",
+              "|expr| splits into two linear rules where the inside equals zero."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "pc2-pr-1",
+      "statement": "Describe the transformations taking $y = x^2$ to $y = (x - 6)^2 + 2$, and give the vertex.",
+      "solution": "Right 6 (inside, opposite sign), up 2 (outside, as written). Vertex $(6, 2)$.",
+      "check": [
+        "(6-6)**2 + 2 == 2",
+        "(7-6)**2 + 2 == 3"
+      ]
+    },
+    {
+      "id": "pc2-pr-2",
+      "statement": "The point $(3, 8)$ lies on $y = f(x)$. Find its image on $y = f(x + 2) - 5$.",
+      "solution": "Inside $x + 2$: left 2, so $x = 3 - 2 = 1$. Outside $-5$: height $8 - 5 = 3$. Image: $(1, 3)$.",
+      "check": [
+        "3 - 2 == 1",
+        "8 - 5 == 3"
+      ]
+    },
+    {
+      "id": "pc2-pr-3",
+      "statement": "$(−2, 6)$ lies on $y = f(x)$. Find its image on $y = -\\tfrac{1}{2}f(x)$ and on $y = f(-x)$.",
+      "solution": "$-\\frac{1}{2}f$: height $6 \\to -3$, image $(-2, -3)$. $f(-x)$: input flips, image $(2, 6)$.",
+      "check": [
+        "Rational(-1,2)*6 == -3",
+        "-(-2) == 2"
+      ]
+    },
+    {
+      "id": "pc2-pr-4",
+      "statement": "Write the equation of $y = \\sqrt{x}$ reflected over the x-axis and shifted up 4; find where it crosses the x-axis.",
+      "solution": "$y = -\\sqrt{x} + 4$. Crossing: $\\sqrt{x} = 4 \\Rightarrow x = 16$.",
+      "check": [
+        "-sqrt(16) + 4 == 0",
+        "-sqrt(0) + 4 == 4"
+      ]
+    },
+    {
+      "id": "pc2-pr-5",
+      "statement": "Graph plan for $g(x) = 3|x - 1| - 6$: give the corner, the slope of each arm, and the $x$-intercepts.",
+      "solution": "Corner $(1, -6)$; arms have slopes $\\pm 3$. Intercepts: $3|x-1| = 6 \\Rightarrow |x-1| = 2 \\Rightarrow x = 3$ or $x = -1$.",
+      "check": [
+        "3*Abs(3-1) - 6 == 0",
+        "3*Abs(-1-1) - 6 == 0",
+        "3*Abs(1-1) - 6 == -6"
+      ]
+    },
+    {
+      "id": "pc2-pr-6",
+      "statement": "A parabola has vertex $(-2, 3)$ and passes through $(0, -5)$. Write it as $a(x-h)^2 + k$.",
+      "solution": "$y = a(x+2)^2 + 3$; the point gives $-5 = 4a + 3$, so $a = -2$: $y = -2(x+2)^2 + 3$.",
+      "check": [
+        "-2*(0+2)**2 + 3 == -5",
+        "-2*(-2+2)**2 + 3 == 3",
+        "Rational(-8,4) == -2"
+      ]
+    },
+    {
+      "id": "pc2-pr-7",
+      "statement": "For $f(x) = \\begin{cases} x^2 & x < 2 \\\\ 3x - 5 & x \\ge 2 \\end{cases}$, evaluate $f(-3)$, $f(2)$, and $f(5)$, and decide whether the graph jumps at $x = 2$.",
+      "solution": "$f(-3) = 9$; $f(2) = 1$ (second rule owns 2); $f(5) = 10$. Near 2 the left piece approaches $2^2 = 4$, the actual value is 1: JUMP at $x = 2$.",
+      "check": [
+        "(-3)**2 == 9",
+        "3*2 - 5 == 1",
+        "3*5 - 5 == 10",
+        "2**2 == 4",
+        "4 != 1"
+      ]
+    },
+    {
+      "id": "pc2-pr-8",
+      "statement": "Rewrite $f(x) = |3x + 9|$ as a piecewise formula.",
+      "solution": "Split at $3x + 9 = 0 \\Rightarrow x = -3$. For $x \\ge -3$: $3x + 9$; for $x < -3$: $-3x - 9$. Check: $f(-5) = |-6| = 6 = -3(-5) - 9$. ✓",
+      "check": [
+        "3*(-3) + 9 == 0",
+        "Abs(3*(-5) + 9) == 6",
+        "-3*(-5) - 9 == 6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "pc2-ty-1",
+      "statement": "Name the transformations taking $y = |x|$ to $y = |x + 3| - 7$, and find the corner and $x$-intercepts.",
+      "solution": "Left 3, down 7; corner $(-3, -7)$. Intercepts: $|x + 3| = 7 \\Rightarrow x = 4$ or $x = -10$.",
+      "check": [
+        "Abs(4+3) - 7 == 0",
+        "Abs(-10+3) - 7 == 0",
+        "Abs(-3+3) - 7 == -7"
+      ]
+    },
+    {
+      "id": "pc2-ty-2",
+      "statement": "$(4, -6)$ lies on $y = f(x)$. Find its image on $y = -2f(x - 1) + 3$.",
+      "solution": "Inside $x - 1$: right 1, $x = 5$. Height: $-2(-6) + 3 = 15$. Image: $(5, 15)$.",
+      "check": [
+        "4 + 1 == 5",
+        "-2*(-6) + 3 == 15"
+      ]
+    },
+    {
+      "id": "pc2-ty-3",
+      "statement": "Which single reflection takes $y = 2^x$ (imagine its climbing curve) onto $y = 2^{-x}$, and what does it do to the point $(3, 8)$?",
+      "solution": "An inside minus: reflection across the y-axis. $(3, 8)$ maps to $(-3, 8)$ — indeed $2^{-(-3)} = 2^3 = 8$.",
+      "check": [
+        "2**3 == 8",
+        "-(3) == -3"
+      ]
+    },
+    {
+      "id": "pc2-ty-4",
+      "statement": "Write the equation of the parabola with vertex $(1, 10)$ passing through $(3, 2)$, and find its $x$-intercepts (exact form).",
+      "solution": "$y = a(x-1)^2 + 10$; point: $2 = 4a + 10 \\Rightarrow a = -2$. So $y = -2(x-1)^2 + 10$; intercepts: $(x-1)^2 = 5 \\Rightarrow x = 1 \\pm \\sqrt{5}$.",
+      "check": [
+        "-2*(3-1)**2 + 10 == 2",
+        "expand(-2*(1 + sqrt(5) - 1)**2 + 10) == 0",
+        "Rational(-8,4) == -2"
+      ]
+    },
+    {
+      "id": "pc2-ty-5",
+      "statement": "For $f(x) = \\begin{cases} 4 - x & x \\le 1 \\\\ x^2 + 2 & x > 1 \\end{cases}$: evaluate $f(1)$ and describe the boundary dots at $x = 1$.",
+      "solution": "$f(1) = 3$ (the $\\le$ piece owns 1): closed dot at $(1, 3)$. The right piece approaches $1 + 2 = 3$ — open circle at the SAME point, so the dots merge: the graph actually connects at height 3.",
+      "check": [
+        "4 - 1 == 3",
+        "1**2 + 2 == 3",
+        "3 == 3"
+      ]
+    },
+    {
+      "id": "pc2-ty-6",
+      "statement": "Rewrite $g(x) = |5 - x|$ piecewise, and compute $g(9)$ with the correct piece.",
+      "solution": "Inside zero at $x = 5$. For $x \\le 5$: $5 - x$; for $x > 5$: $x - 5$. $g(9)$ uses the second: $9 - 5 = 4$. Check: $|5 - 9| = 4$. ✓",
+      "check": [
+        "5 - 5 == 0",
+        "9 - 5 == 4",
+        "Abs(5 - 9) == 4"
+      ]
+    }
+  ]
+}
