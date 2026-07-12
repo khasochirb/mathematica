@@ -34,10 +34,6 @@ const i18n = {
     en: "Explore courses",
     mn: "Хичээлүүдийг үзэх",
   },
-  empty_btn_secondary: {
-    en: "ЭЕШ practice",
-    mn: "ЭЕШ дадлага",
-  },
 
   stat_total: { en: "Total problems", mn: "Нийт бодсон бодлого" },
   stat_accuracy: { en: "Accuracy", mn: "Зөв хариулсан хувь" },
@@ -174,6 +170,12 @@ export default function DashboardPage() {
   const testSessions = perf.getTestOnlySessions();
 
   const hasData = overall.total > 0 || testSessions.length > 0 || courseSummaries.length > 0;
+  // ЭЕШ (exam) activity specifically — drives whether the exam-prep block
+  // shows. Course-only students (and SAT/IB-only) never see the ЭЕШ section;
+  // it appears the moment they do any ЭЕШ practice, and is the whole dashboard
+  // for a dedicated ЭЕШ student. Courses/SAT/IB/placement render below on their
+  // own, independent of this.
+  const hasEshData = overall.total > 0 || testSessions.length > 0;
   const userName = user?.displayName ?? "";
 
   const latestSession = testSessions[0];
@@ -343,14 +345,13 @@ export default function DashboardPage() {
                 {t("empty_btn_primary")}
                 <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
-              <Link href="/practice/esh" className="btn btn-line">
-                {t("empty_btn_secondary")}
-              </Link>
             </div>
           </section>
-        ) : (
+        ) : hasEshData ? (
           <>
-            {/* ЭЕШ section — every stat below this header is exam-context only */}
+            {/* ЭЕШ section — every stat below this header is exam-context only.
+                Shown only to students with ЭЕШ activity; course-only students
+                skip straight to their course cards below. */}
             <div className="eyebrow mt-8">{t("esh_section")}</div>
             {/* Stats grid */}
             <section
@@ -654,7 +655,7 @@ export default function DashboardPage() {
               </Link>
             </section>
           </>
-        )}
+        ) : null}
 
         {/* Exam hubs beyond ЭЕШ — SAT and IB, each in its own score
             language. Rendered only when the hub has activity. */}
