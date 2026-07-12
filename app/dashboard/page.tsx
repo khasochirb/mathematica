@@ -27,16 +27,16 @@ const i18n = {
   personal_focus: { en: "Focus on", mn: "Анхаарах" },
   personal_open: { en: "Open", mn: "Нээх" },
   empty_p: {
-    en: "Topic-by-topic progress, weak spots, and recommendations show up here once you take a test.",
-    mn: "Шалгалт өгсний дараа сэдэв тус бүрийн ахиц, сул талууд, зөвлөмж энд гарч ирнэ.",
+    en: "Progress, weak spots, and recommendations will show up here once you start learning.",
+    mn: "Хичээл эхлүүлмэгц таны ахиц, сул талууд, зөвлөмж энд гарч ирнэ.",
   },
   empty_btn_primary: {
-    en: "Start ЭЕШ practice",
-    mn: "ЭЕШ дадлага эхлэх",
+    en: "Explore courses",
+    mn: "Хичээлүүдийг үзэх",
   },
   empty_btn_secondary: {
-    en: "Past-year tests",
-    mn: "Өмнөх жилийн шалгалт",
+    en: "ЭЕШ practice",
+    mn: "ЭЕШ дадлага",
   },
 
   stat_total: { en: "Total problems", mn: "Нийт бодсон бодлого" },
@@ -211,17 +211,16 @@ export default function DashboardPage() {
   const emptyHeading =
     lang === "mn" ? (
       <>
-        Эхний шалгалтаа{" "}
         <em className="serif-italic" style={{ color: "var(--accent)" }}>
-          өгье
-        </em>
-        .
+          Судалж
+        </em>{" "}
+        эхэлцгээе.
       </>
     ) : (
       <>
-        Take your first{" "}
+        Start{" "}
         <em className="serif-italic" style={{ color: "var(--accent)" }}>
-          test
+          exploring
         </em>
         .
       </>
@@ -340,11 +339,11 @@ export default function DashboardPage() {
               {t("empty_p")}
             </p>
             <div className="flex flex-wrap justify-center gap-2 mt-6">
-              <Link href="/practice/esh" className="btn btn-primary">
+              <Link href="/math" className="btn btn-primary">
                 {t("empty_btn_primary")}
                 <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
-              <Link href="/practice/esh/test?type=previous" className="btn btn-line">
+              <Link href="/practice/esh" className="btn btn-line">
                 {t("empty_btn_secondary")}
               </Link>
             </div>
