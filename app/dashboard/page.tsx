@@ -11,6 +11,7 @@ import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
 import { getAllQuestions } from "@/lib/esh-questions";
+import { courseTotalLessons } from "@/lib/genmath-lessons";
 
 const i18n = {
   eyebrow_dashboard: { en: "Dashboard", mn: "Хяналтын самбар" },
@@ -88,6 +89,7 @@ const i18n = {
   hubs_open: { en: "View progress", mn: "Прогресс харах" },
   courses_section: { en: "Courses", mn: "Хичээлүүд" },
   courses_checks: { en: "lesson checks", mn: "хичээлийн даалгавар" },
+  courses_lessons: { en: "lessons", mn: "хичээл" },
   courses_weakest: { en: "Weakest unit", mn: "Хамгийн сул нэгж" },
   courses_open: { en: "Open course", mn: "Курс нээх" },
   placement_section: { en: "Placement tests", mn: "Түвшин тогтоох тестүүд" },
@@ -711,12 +713,34 @@ export default function DashboardPage() {
                 const unitStats = perf.getTopicStats(s.context);
                 const weakestUnit = unitStats.find((u) => u.total >= 2) ?? unitStats[0];
                 const href = contextHref(s.context) ?? "/math";
+                // Lessons worked / total — the progress bar. total is null for
+                // any context not in the course registry (defensive); the bar
+                // hides rather than dividing by zero.
+                const lessonsWorked = perf.getLessonsWorked(s.context);
+                const lessonsTotal = courseTotalLessons(s.context);
+                const progressPct =
+                  lessonsTotal && lessonsTotal > 0
+                    ? Math.min(100, Math.round((lessonsWorked / lessonsTotal) * 100))
+                    : 0;
                 return (
                   <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
                     <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                       {contextLabel(s.context)}
                     </h3>
-                    <p className="mono tabular text-[12px]" style={{ color: "var(--fg-3)" }}>
+                    {lessonsTotal && lessonsTotal > 0 && (
+                      <div>
+                        <p className="mono tabular text-[12px]" style={{ color: "var(--fg-2)" }}>
+                          {lessonsWorked} / {lessonsTotal} {t("courses_lessons")} · {progressPct}%
+                        </p>
+                        <div className="h-[5px] rounded-full overflow-hidden mt-1.5" style={{ background: "var(--bg-2)" }}>
+                          <div
+                            className="h-full rounded-full"
+                            style={{ width: `${progressPct}%`, background: "var(--accent)" }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <p className="mono tabular text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>
                       {s.correct}/{s.total} {t("courses_checks")} · {s.accuracy}%
                     </p>
                     <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>

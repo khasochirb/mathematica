@@ -1255,6 +1255,55 @@ export function getPrecalcLesson(
 }
 
 // ---------------------------------------------------------------------------
+// Course size — total lessons per performance context. The DENOMINATOR of the
+// dashboard's per-course progress bar. Every authored lesson carries a
+// tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
+// exactly the reachable maximum: a student who works every lesson hits 100%.
+// Grades count published topics' lessons; named courses count live units'
+// lessons. Returns null for non-course contexts (esh / sat / ib).
+// ---------------------------------------------------------------------------
+
+const GRADE_TOPIC_GETTERS: Record<number, () => GenMathTopic[]> = {
+  6: getGrade6Topics,
+  7: getGrade7Topics,
+  8: getGrade8Topics,
+  9: getGrade9Topics,
+  10: getGrade10Topics,
+  11: getGrade11Topics,
+  12: getGrade12Topics,
+};
+
+const NAMED_COURSE_LESSON_SOURCES: Record<
+  string,
+  { spine: () => GeometrySpineEntry[]; unit: (slug: string) => CourseUnit | null }
+> = {
+  "course:geometry": { spine: getGeometrySpine, unit: getGeometryUnit },
+  "course:prob-stats": { spine: getProbStatSpine, unit: getProbStatUnit },
+  "course:vectors-matrices": { spine: getVecMatSpine, unit: getVecMatUnit },
+  "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
+  "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
+};
+
+export function courseTotalLessons(context: string): number | null {
+  const grade = /^course:grade-(\d+)$/.exec(context);
+  if (grade) {
+    const getter = GRADE_TOPIC_GETTERS[Number(grade[1])];
+    if (!getter) return null;
+    return getter()
+      .filter((t) => t.status !== "placeholder")
+      .reduce((n, t) => n + t.lessons.length, 0);
+  }
+  const named = NAMED_COURSE_LESSON_SOURCES[context];
+  if (named) {
+    return named
+      .spine()
+      .filter((e) => e.live)
+      .reduce((n, e) => n + (named.unit(e.slug)?.lessons.length ?? 0), 0);
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
 // Validation
 // ---------------------------------------------------------------------------
 

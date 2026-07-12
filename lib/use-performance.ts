@@ -674,6 +674,23 @@ export default function usePerformance() {
       .sort((a, b) => b.lastActive - a.lastActive);
   }, [attempts]);
 
+  // Distinct lessons the student has worked in a course context — the
+  // NUMERATOR of the dashboard progress bar. Only source==="lesson" attempts
+  // carry a lesson slug in subtopic (the LessonPlayer's tapQuestion first
+  // answers); bank practice/test attempts use "practice"/"test" for subtopic
+  // and are excluded, so this counts lessons touched, not problems answered.
+  const getLessonsWorked = useCallback(
+    (context: string): number => {
+      const seen = new Set<string>();
+      for (const a of attempts) {
+        if (a.source !== "lesson" || contextOf(a) !== context) continue;
+        if (a.subtopic) seen.add(a.subtopic);
+      }
+      return seen.size;
+    },
+    [attempts],
+  );
+
   // Per-topic stats limited to attempts written from full practice-test
   // sessions (source === "test"). Drives the weak-topic recommendation card
   // on /analytics and /dashboard. Drill-mode attempts and legacy rows
@@ -794,6 +811,7 @@ export default function usePerformance() {
     getWeakTopics,
     getOverallStats,
     getContextSummaries,
+    getLessonsWorked,
     getLastAttempt,
     clearAll,
   };
