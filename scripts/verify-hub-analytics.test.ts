@@ -26,4 +26,11 @@ describe("exam-hub analytics vocabulary", () => {
       expect(contextProgressHref(hub)).toBe(`/practice/${hub}/progress`);
     }
   });
+
+  it("course contexts share the /math/progress report page", () => {
+    expect(contextProgressHref("course:algebra-1")).toBe("/math/progress?course=algebra-1");
+    expect(contextProgressHref("course:grade-6")).toBe("/math/progress?course=grade-6");
+    // Unknown course slugs fall through to null, never a broken report link.
+    expect(contextProgressHref("course:nonsense")).toBeNull();
+  });
 });

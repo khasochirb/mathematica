@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   Flag,
   Target,
   Trash2,
 } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
 import useESHProgress from "@/lib/use-esh-progress";
 import usePerformance from "@/lib/use-performance";
@@ -61,13 +61,7 @@ export default function ProgressPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <Link
-            href="/practice/esh"
-            className="p-2 rounded-md transition-colors"
-            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
+          <BackButton fallback="/practice/esh" className="gm-press p-2 rounded-md" label="Буцах" />
           <div className="eyebrow flex-1">ЭЕШ · Прогресс</div>
           <button
             onClick={() => setShowClearConfirm(true)}

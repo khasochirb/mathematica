@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   XCircle,
 } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import QuestionCard from "@/components/esh/QuestionCard";
 import SimilarQuestionsPanel from "@/components/esh/SimilarQuestionsPanel";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
@@ -234,13 +235,9 @@ export default function TestResultsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <Link
-            href="/practice/esh/test"
-            className="p-2 rounded-md transition-colors"
-            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
+          {/* History-back: results are reached from the test list, analytics
+              review links, and the runner — back returns to the actual origin. */}
+          <BackButton fallback="/practice/esh/test" className="gm-press p-2 rounded-md" label="Буцах" />
           <div>
             <div className="eyebrow">{testInfo?.label || testKey} · Үр дүн</div>
             <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>

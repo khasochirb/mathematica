@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
@@ -21,7 +22,7 @@ const i18n = {
   nav_actions:    { en: "Quick actions",     mn: "Шуурхай үйлдэл" },
   nav_take_eesh:  { en: "Take an ЭЕШ test",  mn: "ЭЕШ тест өгөх" },
   nav_prev:       { en: "Previous year tests", mn: "Өмнөх жилийн тестүүд" },
-  nav_hub:        { en: "Practice hub",      mn: "Дадлагын төв" },
+  nav_hub:        { en: "Dashboard",         mn: "Хяналтын самбар" },
 
   // Head
   head_eyebrow:   { en: "Performance analytics", mn: "Дэлгэрэнгүй мэдээлэл" },
@@ -294,13 +295,19 @@ export default function AnalyticsPage() {
         <Link href="/practice/esh/test?type=previous" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {t("nav_prev")}
         </Link>
-        <Link href="/practice" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/dashboard" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {t("nav_hub")}
         </Link>
       </aside>
 
       {/* Main */}
       <section className="px-6 md:px-10 py-9 md:py-12 min-w-0">
+        {/* History-back: this report is reached from the dashboard, the ЭЕШ
+            hub, and test results — back returns wherever the student came
+            from. Also the only escape on mobile, where the side nav is hidden. */}
+        <div className="mb-5">
+          <BackButton fallback="/dashboard" className="gm-press p-2 rounded-md" label="Буцах" />
+        </div>
         {/* Head */}
         <div id="overview" className="flex items-end justify-between flex-wrap gap-6 pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
           <div>

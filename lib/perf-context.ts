@@ -68,10 +68,14 @@ export function contextHref(context: string): string | null {
 }
 
 // Where a context's detailed progress view lives. Exam hubs own their own
-// deep-dive pages; the dashboard only ever links, never inlines.
+// deep-dive pages; courses share one report page keyed by query param.
+// The dashboard only ever links, never inlines.
 export function contextProgressHref(context: string): string | null {
   if (context === ESH_CONTEXT) return "/practice/esh/progress";
   if (context === "sat") return "/practice/sat/progress";
   if (context === "ib") return "/practice/ib/progress";
+  if (context.startsWith("course:") && contextHref(context)) {
+    return `/math/progress?course=${context.slice("course:".length)}`;
+  }
   return contextHref(context);
 }

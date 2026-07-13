@@ -63,7 +63,7 @@ function ResultContent() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Link href="/practice" className="btn btn-primary w-full">
+          <Link href="/practice/esh" className="btn btn-primary w-full">
             Practice again
             <RotateCcw className="ml-1 h-3.5 w-3.5" />
           </Link>

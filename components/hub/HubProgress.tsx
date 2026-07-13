@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, BarChart3, Target } from "lucide-react";
+import { BarChart3, Target } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import usePerformance from "@/lib/use-performance";
 import { contextHref } from "@/lib/perf-context";
 import { hubTopicLabel, HUB_NATIVE_METRIC_NOTE } from "@/lib/hub-analytics";
@@ -32,13 +33,9 @@ export default function HubProgress({
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         <div className="flex items-center gap-3 mb-6">
-          <Link
-            href={hubHome}
-            className="p-2 rounded-md transition-colors"
-            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
+          {/* History-back: this page is reachable from both the dashboard and
+              the hub, so back must return to whichever the student came from. */}
+          <BackButton fallback={hubHome} className="gm-press p-2 rounded-md" />
           <div className="eyebrow flex-1">{title} · Progress</div>
         </div>
 
