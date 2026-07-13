@@ -1,0 +1,285 @@
+{
+  "slug": "sequences-and-series",
+  "title": "Sequences & Series",
+  "unit": 8,
+  "status": "published",
+  "blurb": "Lists with laws: arithmetic ladders and geometric rockets, the sums Gauss found as a schoolboy, infinite series that add to finite numbers, and sigma notation — algebra's summation shorthand.",
+  "buildsOn": "Linear thinking (Unit 3) and exponential thinking (Unit 6) — reborn as lists.",
+  "lessons": [
+    {
+      "slug": "arithmetic-sequences-and-series",
+      "title": "Arithmetic Sequences & Series",
+      "concreteComparison": "Theater rows: 20 seats in row 1, then 23, 26, 29… — each row adds the same 3. Any 'same amount each step' list is an arithmetic sequence, and it's a linear function that traded its smooth line for discrete stepping stones.",
+      "objective": "Write explicit formulas for arithmetic sequences, find terms and term counts, and sum series with the Gauss formula.",
+      "concept": [
+        "An **arithmetic sequence** adds a constant difference $d$ each step: $a_n = a_1 + (n-1)d$. Row 10 of the theater: $20 + 9(3) = 47$ seats. It's linear in $n$ — slope $d$ — just sampled at whole numbers.",
+        "A **series** is the SUM. Gauss's trick: pair first with last — every pair totals the same — giving $S_n = \\frac{n}{2}(a_1 + a_n)$. Sum 1 to 100: $\\frac{100}{2}(101) = 5050$.",
+        "Fluency questions: find $d$ from two known terms ($a_3 = 11, a_7 = 27$: $d = \\frac{27 - 11}{7 - 3} = 4$ — a slope computation!); find which $n$ hits a value; sum any block of consecutive terms."
+      ],
+      "keyIdea": "aₙ = a₁ + (n−1)d — a discrete line with slope d — and Sₙ = n/2 · (first + last): pair the ends and every pair matches.",
+      "facts": [
+        { "title": "Explicit term", "latex": "a_n = a_1 + (n - 1)d", "explanation": "Start plus $(n-1)$ hops of size $d$." },
+        { "title": "Gauss sum", "latex": "S_n = \\frac{n}{2}(a_1 + a_n)", "explanation": "Average of the ends, times the count." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a281-we1",
+          "statement": "For the sequence $7, 12, 17, 22, \\ldots$: find $a_{20}$, and determine which term equals 92.",
+          "solution": "$d = 5$: $a_{20} = 7 + 19(5) = 102$. For 92: $7 + (n-1)5 = 92 \\to n - 1 = 17 \\to n = 18$ — the 18th term.",
+          "check": ["7 + 19*5 == 102", "solve(7 + (n - 1)*5 - 92, n) == [18]", "7 + 17*5 == 92"]
+        },
+        {
+          "id": "a281-we2",
+          "statement": "A theater has 20 seats in row 1, each row 3 more than the last, 15 rows total. How many seats altogether?",
+          "solution": "Last row: $a_{15} = 20 + 14(3) = 62$. Sum: $S_{15} = \\frac{15}{2}(20 + 62) = \\frac{15 \\cdot 82}{2} = 615$ seats.",
+          "check": ["20 + 14*3 == 62", "Rational(15, 2)*(20 + 62) == 615", "Sum(20 + (k - 1)*3, (k, 1, 15)).doit() == 615"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Writing $a_n = a_1 + nd$ — one hop too many.", "correction": "Term 1 uses ZERO hops: $a_n = a_1 + (n-1)d$. Sanity: plug $n = 1$ and demand $a_1$ back.", "authored": true },
+        { "text": "Summing with the formula but the wrong count: 'terms 5 through 20' as $n = 20$.", "correction": "Count inclusively: $20 - 5 + 1 = 16$ terms. Then $S = \\frac{16}{2}(a_5 + a_{20})$ — the formula's $n$ is how many terms you're adding, not the label of the last.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a281-t1",
+          "statement": "An arithmetic sequence has $a_3 = 11$ and $a_7 = 27$. Find $d$, $a_1$, and $a_{50}$.",
+          "solution": "$d = \\frac{27 - 11}{7 - 3} = 4$; $a_1 = 11 - 2(4) = 3$; $a_{50} = 3 + 49(4) = 199$.",
+          "check": ["Rational(27 - 11, 7 - 3) == 4", "11 - 2*4 == 3", "3 + 49*4 == 199"]
+        },
+        {
+          "id": "a281-t2",
+          "statement": "Compute $5 + 8 + 11 + \\cdots + 62$.",
+          "solution": "Count: $62 = 5 + (n-1)3 \\to n = 20$. Sum: $\\frac{20}{2}(5 + 62) = 670$.",
+          "check": ["solve(5 + (n - 1)*3 - 62, n) == [20]", "10*(5 + 62) == 670", "Sum(5 + (k - 1)*3, (k, 1, 20)).doit() == 670"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Lists with laws", "body": "Theater rows, savings deposits, fence posts — quantities that arrive in numbered steps. A sequence is a function whose domain is 1, 2, 3, …, and the simplest law a list can obey is 'add the same amount each time.' You already know its mathematics: it's a line, chopped into stepping stones." },
+          { "kind": "patternGrow", "eyebrow": "Play", "title": "Same jump every step", "teach": "Reveal the stages: each figure adds the SAME number of tiles. Stage $n$ holds $2n - 1$ tiles — an explicit formula, no need to build stages 1 through 99 to know stage 100. That leap from 'next term' to 'any term' is this lesson's superpower.", "config": { "pattern": "odds", "maxSteps": 7 } },
+          { "kind": "teach", "eyebrow": "The formula", "title": "Start plus hops", "body": "To reach term $n$ from term 1 takes $n - 1$ hops of size $d$: $a_n = a_1 + (n-1)d$. It's $y = mx + b$ in sequence clothes — $d$ is the slope. Corollary: two known terms determine $d$ exactly like two points determine a slope: $d = \\frac{a_7 - a_3}{7 - 3}$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Any term, and which term", "problemId": "a281-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the formula", "title": "Count the hops", "prompt": "In $4, 10, 16, 22, \\ldots$, the 30th term is:", "options": ["$178$", "$184$", "$180$", "$120$"], "correctIndex": 0, "explanation": "$a_{30} = 4 + 29 \\cdot 6 = 178$. Using 30 hops (option B) forgets that term 1 needs zero.", "check": ["4 + 29*6 == 178", "4 + 30*6 == 184"] },
+          { "kind": "teach", "eyebrow": "The sum", "title": "Gauss's pairing", "body": "Legend: 8-year-old Gauss, told to sum 1 to 100, paired the ends — $1 + 100$, $2 + 99$, $3 + 98$… — fifty pairs of 101: 5050, in seconds. The pairing works for EVERY arithmetic series because equal steps make the ends close in symmetrically: $S_n = \\frac{n}{2}(a_1 + a_n)$ — the average of first and last, times how many." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Seats in the house", "problemId": "a281-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the sum", "title": "Pair the ends", "prompt": "$2 + 4 + 6 + \\cdots + 100 = $ ?", "options": ["$2550$", "$5050$", "$2500$", "$5100$"], "correctIndex": 0, "explanation": "Fifty terms, ends 2 and 100: $\\frac{50}{2}(102) = 2550$. (5050 is the sum of ALL integers to 100 — the evens are half the terms, not half the sum.)", "check": ["Rational(50,2)*(2 + 100) == 2550", "Sum(2*k, (k, 1, 50)).doit() == 2550"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "The n = 1 sanity plug", "body": "Every formula you write for a sequence — explicit term or sum — test at $n = 1$ before using it: $a_1 + (1-1)d = a_1$ ✓, $S_1 = \\frac{1}{2}(a_1 + a_1) = a_1$ ✓. Two seconds; catches off-by-one-hop errors, the genre's only real hazard." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "From two terms", "problemId": "a281-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Sum to 62", "problemId": "a281-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$a_n = a_1 + (n-1)d$ — a line sampled at whole numbers.", "$S_n = \\frac{n}{2}(a_1 + a_n)$ — pair the ends.", "Two known terms → $d$ by the slope formula; count terms inclusively."] }
+        ]
+      }
+    },
+    {
+      "slug": "geometric-sequences-and-series",
+      "title": "Geometric Sequences & Series",
+      "concreteComparison": "Fold-the-paper thickness, chain-letter recipients, compound interest balances — each term is the last one TIMES a constant. Where arithmetic sequences climb ladders, geometric ones ride rockets.",
+      "objective": "Write explicit formulas for geometric sequences, and sum finite geometric series with the ratio formula.",
+      "concept": [
+        "A **geometric sequence** multiplies by a constant ratio $r$ each step: $a_n = a_1 \\cdot r^{n-1}$. It's the exponential function of Unit 6 sampled at whole numbers — $3, 6, 12, 24, \\ldots$ is $a_n = 3 \\cdot 2^{n-1}$.",
+        "Identify by DIVIDING neighbors: $\\frac{a_{n+1}}{a_n}$ constant → geometric (that constant is $r$); subtracting neighbors constant → arithmetic. The two families cover the two great growth stories: add vs multiply.",
+        "**Finite sum**: $S_n = a_1 \\cdot \\frac{1 - r^n}{1 - r}$ (for $r \\ne 1$) — proved by one slick move: compute $S - rS$ and watch the middle terms annihilate. Chain letter, 5 rounds of tripling: $1 + 3 + 9 + 27 + 81 = \\frac{1 - 3^5}{1 - 3} = 121$."
+      ],
+      "keyIdea": "aₙ = a₁·rⁿ⁻¹ — the exponential in list form — and Sₙ = a₁(1 − rⁿ)/(1 − r), born from the telescoping of S − rS.",
+      "facts": [
+        { "title": "Explicit term", "latex": "a_n = a_1 \\cdot r^{n-1}", "explanation": "Start times $(n-1)$ multiplications by $r$." },
+        { "title": "Finite sum", "latex": "S_n = a_1 \\, \\frac{1 - r^n}{1 - r} \\quad (r \\ne 1)", "explanation": "From $S - rS = a_1(1 - r^n)$ — the telescope." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a282-we1",
+          "statement": "For $5, 10, 20, 40, \\ldots$: find $a_{10}$ and the first term exceeding 5000.",
+          "solution": "$r = 2$: $a_{10} = 5 \\cdot 2^9 = 2560$. Next: $a_{11} = 5120 > 5000$ — the 11th term. (Check $a_{10}$ falls short ✓.)",
+          "check": ["5*2**9 == 2560", "5*2**10 == 5120", "2560 < 5000", "5120 > 5000"]
+        },
+        {
+          "id": "a282-we2",
+          "statement": "Compute $2 + 6 + 18 + 54 + 162 + 486$.",
+          "solution": "$a_1 = 2, r = 3, n = 6$: $S_6 = 2 \\cdot \\frac{1 - 3^6}{1 - 3} = 2 \\cdot \\frac{-728}{-2} = 728$.",
+          "check": ["2*Rational(1 - 3**6, 1 - 3) == 728", "2 + 6 + 18 + 54 + 162 + 486 == 728", "summation(2*3**(k-1), (k, 1, 6)) == 728"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Using $n$ multiplications: $a_{10} = 5 \\cdot 2^{10}$.", "correction": "Term 1 has had ZERO multiplications: the exponent is $n - 1$. Same off-by-one as arithmetic's hops — same $n = 1$ sanity plug catches it.", "authored": true },
+        { "text": "Declaring $1, 4, 9, 16, \\ldots$ geometric ('it grows fast').", "correction": "Divide neighbors: $4, \\frac{9}{4}, \\frac{16}{9}$ — not constant. It's the perfect squares, neither arithmetic nor geometric. The ratio TEST decides, not the vibes.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a282-t1",
+          "statement": "A geometric sequence has $a_2 = 12$ and $a_5 = 96$. Find $r$ and $a_1$.",
+          "solution": "Three multiplications between them: $r^3 = \\frac{96}{12} = 8 \\to r = 2$; $a_1 = \\frac{12}{2} = 6$.",
+          "check": ["Rational(96, 12) == 8", "2**3 == 8", "Rational(12, 2) == 6", "6*2**4 == 96"]
+        },
+        {
+          "id": "a282-t2",
+          "statement": "You save $10 in week 1 and increase by 50% each week. Total saved after 8 weeks?",
+          "solution": "$r = 1.5$: $S_8 = 10 \\cdot \\frac{1 - 1.5^8}{1 - 1.5} = 10 \\cdot \\frac{1.5^8 - 1}{0.5} \\approx 493.3$ dollars — about \\$493.",
+          "check": ["summation(10*Rational(3,2)**(k-1), (k, 1, 8)) == Rational(31525, 64)", "Rational(31525, 64) > 492", "Rational(3,2)**2 == Rational(9,4)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The other law", "body": "Last lesson's lists ADDED a constant. The other great law MULTIPLIES by one — and everything compounding from Unit 6 (interest, populations, decay) generates exactly such lists. Arithmetic is the ladder; geometric is the rocket. Same two questions as before: any term directly, and any sum quickly." },
+          { "kind": "patternGrow", "eyebrow": "Play", "title": "Doubling, drawn in tiles", "teach": "Each stage holds DOUBLE the tiles: $2^{n-1}$ at stage $n$ — the geometric machine visualized. Compare the feel against the last lesson's steady stepper: by stage 7 the doubler holds 64 to the adder's 13. Multiplication doesn't walk; it leaps.", "config": { "pattern": "doubling", "maxSteps": 6 } },
+          { "kind": "teach", "eyebrow": "The formula", "title": "Start times ratio-hops", "body": "Reaching term $n$ takes $n - 1$ MULTIPLICATIONS: $a_n = a_1 \\cdot r^{n-1}$ — Unit 6's $a \\cdot b^x$ wearing list clothing. Find $r$ by dividing any neighbor pair; find it from distant terms by counting the multiplications between them: $a_5 / a_2 = r^3$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Tenth term, first past 5000", "problemId": "a282-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the test", "title": "Which family?", "prompt": "$81, 27, 9, 3, \\ldots$ is:", "options": ["geometric with $r = \\frac{1}{3}$", "arithmetic with $d = -54$", "geometric with $r = 3$", "neither"], "correctIndex": 0, "explanation": "Divide neighbors: $\\frac{27}{81} = \\frac{1}{3}$, constant. Shrinking geometrics have $0 < r < 1$ — decay in list form.", "check": ["Rational(27, 81) == Rational(1, 3)", "Rational(9, 27) == Rational(1, 3)"] },
+          { "kind": "teach", "eyebrow": "The sum", "title": "The telescope", "body": "To sum $S = 2 + 6 + 18 + 54$, multiply the whole line by $r$: $3S = 6 + 18 + 54 + 162$. Subtract: everything shared annihilates, leaving $S - 3S = 2 - 162$, so $S = 80$. Run it in letters and out falls $S_n = a_1\\frac{1 - r^n}{1 - r}$. One subtraction replaced $n - 1$ additions — the telescope trick, worth seeing once in slow motion." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Six tripling terms", "problemId": "a282-we2" },
+          { "kind": "expGraph", "eyebrow": "Connect", "title": "The sequence is the curve", "teach": "A geometric sequence with $r = 2$ plotted against Unit 6's exponential: the list IS the curve, sampled at whole steps — the ×2 chips are the ratio between consecutive terms. Two units, one mathematics.", "config": { "mode": "growth", "a": 3, "b": 2, "interactive": true } },
+          { "kind": "tapQuestion", "eyebrow": "Check the sum", "title": "Four terms of halving", "prompt": "$16 + 8 + 4 + 2 = $ ?", "options": ["$30$", "$32$", "$28$", "$31$"], "correctIndex": 0, "explanation": "$S_4 = 16 \\cdot \\frac{1 - (1/2)^4}{1 - 1/2} = 16 \\cdot \\frac{15/16}{1/2} = 30$. (Or just add — but the formula must agree, and does.)", "check": ["16 + 8 + 4 + 2 == 30", "16*Rational(1 - Rational(1,16), Rational(1,2)) == 30"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Divide, don't stare", "body": "Handed a mystery sequence, run both tests mechanically: subtract neighbors (constant? arithmetic), divide neighbors (constant? geometric). Thirty seconds, no guessing — and if both fail, say 'neither' with confidence. The tests, not the appearance, make the diagnosis." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "From distant terms", "problemId": "a282-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Savings that compound", "problemId": "a282-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$a_n = a_1 r^{n-1}$: the exponential as a list; ratio test identifies.", "$S_n = a_1\\frac{1 - r^n}{1 - r}$ — from the telescoping $S - rS$.", "Distant terms: $a_m / a_k = r^{m-k}$."] }
+        ]
+      }
+    },
+    {
+      "slug": "infinite-geometric-series",
+      "title": "Infinite Geometric Series",
+      "concreteComparison": "Walk half the distance to a wall, then half the remainder, forever: ½ + ¼ + ⅛ + … You take infinitely many steps yet travel exactly 1 meter. Infinitely many numbers CAN add to something finite — when each is a fixed fraction of the last.",
+      "objective": "Determine when an infinite geometric series converges, compute S = a₁/(1 − r), and convert repeating decimals to fractions.",
+      "concept": [
+        "In the finite sum $S_n = a_1\\frac{1 - r^n}{1 - r}$, watch $r^n$ as $n \\to \\infty$: when $|r| < 1$ it dies to zero, and the sum SETTLES: $$S = \\frac{a_1}{1 - r}.$$ When $|r| \\ge 1$ the terms don't shrink and the series **diverges** — no finite total exists.",
+        "The wall-walk: $a_1 = \\frac{1}{2}, r = \\frac{1}{2}$: $S = \\frac{1/2}{1/2} = 1$ — exactly the full distance, resolving Zeno's ancient paradox with one fraction bar.",
+        "**Repeating decimals are geometric series**: $0.7777\\ldots = \\frac{7}{10} + \\frac{7}{100} + \\cdots$ with $r = \\frac{1}{10}$: $S = \\frac{7/10}{9/10} = \\frac{7}{9}$. Every repeating decimal is secretly a fraction, and this formula is the decoder."
+      ],
+      "keyIdea": "When |r| < 1 the tail rⁿ dies and S = a₁/(1 − r); when |r| ≥ 1 the series diverges — and repeating decimals are this formula in disguise.",
+      "facts": [
+        { "title": "Convergence test", "latex": "|r| < 1: \\; S = \\frac{a_1}{1 - r}; \\qquad |r| \\ge 1: \\text{ diverges}", "explanation": "Shrinking terms are necessary AND (for geometric) sufficient." },
+        { "title": "Decimal decoder", "latex": "0.\\overline{d} = \\frac{d}{9}, \\quad 0.\\overline{dd} = \\frac{dd}{99}, \\ldots", "explanation": "Repeating block over as many 9's — straight from $\\frac{a_1}{1-r}$." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a283-we1",
+          "statement": "Evaluate $12 + 6 + 3 + \\frac{3}{2} + \\cdots$ or explain why it diverges.",
+          "solution": "$r = \\frac{1}{2}$: converges. $S = \\frac{12}{1 - \\frac{1}{2}} = 24$. The rocket burns out: all infinitely many terms together just double the first.",
+          "check": ["Rational(6, 12) == Rational(1, 2)", "Rational(12, 1 - Rational(1,2)) == 24", "summation(12*Rational(1,2)**(k-1), (k, 1, oo)) == 24"]
+        },
+        {
+          "id": "a283-we2",
+          "statement": "Write $0.\\overline{45} = 0.454545\\ldots$ as a fraction.",
+          "solution": "Series: $\\frac{45}{100} + \\frac{45}{10000} + \\cdots$, $r = \\frac{1}{100}$: $S = \\frac{45/100}{99/100} = \\frac{45}{99} = \\frac{5}{11}$. Check: $5 \\div 11 = 0.4545\\ldots$ ✓.",
+          "check": ["Rational(Rational(45,100), 1 - Rational(1,100)) == Rational(5, 11)", "Rational(45, 99) == Rational(5, 11)", "summation(45*Rational(1,100)**k, (k, 1, oo)) == Rational(5,11)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Applying $S = \\frac{a_1}{1-r}$ to $2 + 3 + 4.5 + \\cdots$ ($r = 1.5$) and reporting $S = -4$.", "correction": "The formula's fine print is $|r| < 1$. With $r = 1.5$ the terms GROW — sum diverges. A negative 'sum' of positive terms is the formula screaming it was misused.", "authored": true },
+        { "text": "Treating 'infinitely many terms' as automatically infinite in total.", "correction": "The wall-walk adds infinitely many positive lengths and totals exactly 1. When each term is a fixed fraction of the last, the tail collapses — infinity of terms, finitude of sum.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a283-t1",
+          "statement": "Evaluate $9 - 3 + 1 - \\frac{1}{3} + \\cdots$.",
+          "solution": "$r = -\\frac{1}{3}$ ($|r| < 1$ ✓): $S = \\frac{9}{1 + \\frac{1}{3}} = \\frac{9}{\\frac{4}{3}} = \\frac{27}{4}$.",
+          "check": ["Rational(-3, 9) == Rational(-1, 3)", "Rational(9, 1 + Rational(1,3)) == Rational(27, 4)", "summation(9*Rational(-1,3)**(k-1), (k, 1, oo)) == Rational(27,4)"]
+        },
+        {
+          "id": "a283-t2",
+          "statement": "A ball drops from 8 m and rebounds to $\\frac{3}{4}$ of each height. Find the total distance of all the rebounds UP.",
+          "solution": "Up-distances: $6 + 4.5 + \\cdots$, $a_1 = 6, r = \\frac{3}{4}$: $S = \\frac{6}{\\frac{1}{4}} = 24$ m of climbing.",
+          "check": ["8*Rational(3,4) == 6", "Rational(6, 1 - Rational(3,4)) == 24"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Zeno's wall", "body": "To reach a wall you must first cover half the distance, then half the rest, then half of THAT — infinitely many stages. The Greeks concluded motion was paradoxical. You're about to conclude something better: $\\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\cdots$ has a definite, finite, computable value." },
+          { "kind": "teach", "eyebrow": "The limit", "title": "Watching the tail die", "body": "Take the finite formula $S_n = a_1\\frac{1 - r^n}{1 - r}$ and grow $n$. Everything hinges on $r^n$: for $|r| < 1$ it shrivels — $(\\frac{1}{2})^{10} \\approx 0.001$, $(\\frac{1}{2})^{30} \\approx 10^{-9}$ — and in the limit vanishes, leaving $$S = \\frac{a_1}{1 - r}.$$ For $|r| \\ge 1$ the terms never stop mattering: divergence. One inequality decides everything." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The rocket burns out", "problemId": "a283-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check convergence", "title": "Which settles?", "prompt": "Which series has a finite sum?", "options": ["$100 + 80 + 64 + \\cdots$", "$1 + 1.1 + 1.21 + \\cdots$", "$5 + 5 + 5 + \\cdots$", "$1 + 2 + 4 + 8 + \\cdots$"], "correctIndex": 0, "explanation": "Ratios: $0.8$ ✓ (converges, to 500), $1.1$, $1$, $2$ — all others fail $|r| < 1$. Only shrinking terms can settle.", "check": ["Rational(80, 100) == Rational(4, 5)", "Rational(100, 1 - Rational(4,5)) == 500"] },
+          { "kind": "teach", "eyebrow": "The decoder", "title": "Repeating decimals unmasked", "body": "$0.7777\\ldots$ IS a geometric series: $\\frac{7}{10} + \\frac{7}{100} + \\cdots$, ratio $\\frac{1}{10}$. The formula digests it: $\\frac{7/10}{9/10} = \\frac{7}{9}$. General pattern: repeating block over that many 9's — $0.\\overline{45} = \\frac{45}{99}$. Every repeating decimal was a fraction all along; the series formula is the unmasking device." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Unmask 0.454545…", "problemId": "a283-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the decoder", "title": "Nine-nines", "prompt": "$0.\\overline{3} = 0.333\\ldots$ equals:", "options": ["$\\frac{1}{3}$", "$\\frac{3}{10}$", "$\\frac{33}{100}$", "slightly less than $\\frac{1}{3}$"], "correctIndex": 0, "explanation": "$\\frac{3}{9} = \\frac{1}{3}$, exactly — not approximately. The infinite tail is fully accounted for; nothing is 'left off.' (Corollary: $0.\\overline{9} = \\frac{9}{9} = 1$. Exactly.)", "check": ["Rational(3, 9) == Rational(1, 3)", "Rational(9, 9) == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Ratio check before formula", "body": "The convergence test is one division: is $|r| < 1$? Run it BEFORE touching $\\frac{a_1}{1-r}$ — the formula computes 'answers' for divergent series without complaint, and only the pre-check stands between you and a nonsense negative total." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Alternating and shrinking", "problemId": "a283-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The bouncing ball", "problemId": "a283-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Paradox to plumbing", "body": "Zeno posed the wall paradox around 450 BCE; a rigorous answer waited two millennia for the theory of limits. Today the same convergence idea prices perpetuity bonds, computes drug steady-states in the bloodstream, and renders the fractals on your screensaver. Infinity, domesticated." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$|r| < 1$: $S = \\frac{a_1}{1-r}$; otherwise diverges — check the ratio FIRST.", "Infinitely many terms can total finitely: the tail collapses.", "Repeating decimals: block over 9's — geometric series in costume."] }
+        ]
+      }
+    },
+    {
+      "slug": "sigma-notation-and-recursion",
+      "title": "Sigma Notation & Recursion",
+      "concreteComparison": "\"Add up 3k + 1 for k from 1 to 20\" is a full sentence of instructions; Σ writes it in five symbols. And some sequences — like your bank balance under monthly deposits — are easiest to define by \"next = f(current)\": recursion, the other way to speak list.",
+      "objective": "Read and write sigma notation, expand and evaluate sums, and convert between recursive and explicit definitions.",
+      "concept": [
+        "$\\sum_{k=1}^{20}(3k + 1)$: the index $k$ runs 1 to 20; each value feeds the formula; the results add. Term count: top − bottom + 1. Evaluate by recognizing the family: this one's arithmetic ($4, 7, \\ldots, 61$), so Gauss: $\\frac{20}{2}(4 + 61) = 650$.",
+        "**Recursive definitions** give the start and the step-law: $a_1 = 5$, $a_{n+1} = a_n + 3$ (arithmetic, $d = 3$); $a_1 = 2$, $a_{n+1} = 3a_n$ (geometric, $r = 3$). Recursion is how spreadsheets and simulations think; explicit formulas are how you jump straight to term 1000. Translating both ways is the skill.",
+        "Mixed laws like $a_{n+1} = 2a_n + 1$ (double and add one) are neither arithmetic nor geometric — recursion handles them gracefully where single formulas struggle. Compute forward: $1, 3, 7, 15, 31, \\ldots$ (each one shy of a power of 2)."
+      ],
+      "keyIdea": "Σ compresses 'run k, apply, add'; recursion defines by start + step-law; and the two great families translate freely between recursive and explicit forms.",
+      "facts": [
+        { "title": "Reading Σ", "latex": "\\sum_{k=1}^{n} f(k) = f(1) + f(2) + \\cdots + f(n)", "explanation": "Index runs bottom to top; results add; count = top − bottom + 1." },
+        { "title": "The two translations", "latex": "a_{n+1} = a_n + d \\leftrightarrow a_1 + (n-1)d; \\quad a_{n+1} = ra_n \\leftrightarrow a_1 r^{n-1}", "explanation": "Step-law ↔ jump-formula, both directions." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a284-we1",
+          "statement": "Evaluate $\\sum_{k=1}^{20} (3k + 1)$ and $\\sum_{k=1}^{6} 2 \\cdot 3^{k-1}$.",
+          "solution": "First: arithmetic from 4 to 61, 20 terms: $\\frac{20}{2}(65) = 650$. Second: geometric, $a_1 = 2, r = 3$: $2 \\cdot \\frac{3^6 - 1}{2} = 728$.",
+          "check": ["Sum(3*k + 1, (k, 1, 20)).doit() == 650", "summation(2*3**(k-1), (k, 1, 6)) == 728", "3*20 + 1 == 61"]
+        },
+        {
+          "id": "a284-we2",
+          "statement": "A sequence is defined by $a_1 = 5$, $a_{n+1} = a_n + 3$. Write the explicit formula and find $a_{100}$; then express $7, 14, 28, 56, \\ldots$ recursively.",
+          "solution": "Adding 3 each step: $a_n = 5 + (n-1)3 = 3n + 2$; $a_{100} = 302$. The doubler: $a_1 = 7$, $a_{n+1} = 2a_n$.",
+          "check": ["5 + 99*3 == 302", "3*100 + 2 == 302", "7*2**3 == 56"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Counting $\\sum_{k=5}^{20}$ as 15 terms.", "correction": "Inclusive count: $20 - 5 + 1 = 16$. The fence-post rule chases you into sigma notation too.", "authored": true },
+        { "text": "Reading $a_{n+1} = 3a_n$ as 'the sequence is $3, 6, 9, \\ldots$'.", "correction": "That law MULTIPLIES by 3 (geometric), and without $a_1$ it defines nothing yet. Recursive definitions are two-part: start AND step — never skip reading the start.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a284-t1",
+          "statement": "Evaluate $\\sum_{k=3}^{12} (5k - 2)$.",
+          "solution": "Ten terms, from $f(3) = 13$ to $f(12) = 58$: $\\frac{10}{2}(13 + 58) = 355$.",
+          "check": ["Sum(5*k - 2, (k, 3, 12)).doit() == 355", "12 - 3 + 1 == 10", "5*3 - 2 == 13", "5*12 - 2 == 58"]
+        },
+        {
+          "id": "a284-t2",
+          "statement": "For $a_1 = 1$, $a_{n+1} = 2a_n + 1$: compute $a_2$ through $a_5$, and conjecture a formula.",
+          "solution": "$3, 7, 15, 31$ — each is $2^n - 1$. (Check: $a_5 = 2^5 - 1 = 31$ ✓. Doubling-plus-one lives one below the powers of 2.)",
+          "check": ["2*1 + 1 == 3", "2*3 + 1 == 7", "2*7 + 1 == 15", "2*15 + 1 == 31", "2**5 - 1 == 31"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two dialects of list", "body": "This unit closes with the two professional dialects. **Sigma** compresses long sums into a formula with a counter — the notation every statistics and calculus course assumes. **Recursion** defines lists by their step-law — the dialect of spreadsheets, simulations, and compound processes. Fluency in both, and translation between them, is the exit skill." },
+          { "kind": "teach", "eyebrow": "Sigma", "title": "Run, apply, add", "body": "$\\sum_{k=1}^{20}(3k+1)$ is a tiny program: counter $k$ runs 1 through 20, each value feeds $3k + 1$, outputs accumulate. To EVALUATE, don't grind — identify the family first: linear formula in $k$ → arithmetic (Gauss it); $c \\cdot r^k$ shape → geometric (telescope it). The notation changes; Lessons 1–2 do the work." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two sigmas, two families", "problemId": "a284-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the reading", "title": "Unpack it", "prompt": "$\\sum_{k=4}^{7} k^2 = $ ?", "options": ["$126$", "$140$", "$110$", "$4 + 5 + 6 + 7 = 22$"], "correctIndex": 0, "explanation": "$16 + 25 + 36 + 49 = 126$ — four terms (7−4+1), each SQUARED before adding. Option D forgot to apply the formula.", "check": ["16 + 25 + 36 + 49 == 126", "Sum(k**2, (k, 4, 7)).doit() == 126"] },
+          { "kind": "teach", "eyebrow": "Recursion", "title": "Start plus step-law", "body": "$a_1 = 5$; $a_{n+1} = a_n + 3$: 'begin at 5, always add 3.' Two parts, both essential — a step-law without a start defines nothing. Recursion computes FORWARD beautifully (each term from the last) but jumping to $a_{100}$ means 99 steps... unless you translate: add-a-constant IS arithmetic, multiply-by-a-constant IS geometric, and their explicit formulas teleport." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Translate both directions", "problemId": "a284-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check translation", "title": "Law to formula", "prompt": "$a_1 = 4$, $a_{n+1} = 5a_n$. The explicit formula is:", "options": ["$a_n = 4 \\cdot 5^{n-1}$", "$a_n = 5 \\cdot 4^{n-1}$", "$a_n = 4 + 5(n-1)$", "$a_n = 20^{n-1}$"], "correctIndex": 0, "explanation": "Multiply-by-5 law → geometric with $a_1 = 4, r = 5$. (Option C is the ARITHMETIC translation — wrong law.)", "check": ["4*5**0 == 4", "4*5**1 == 20", "4*5**2 == 100"] },
+          { "kind": "patternGrow", "eyebrow": "See both", "title": "One picture, two dialects", "teach": "The doubling tiles once more, now read BOTH ways: recursively — 'each stage doubles the last' ($a_{n+1} = 2a_n$) — and explicitly — 'stage $n$ holds $2^{n-1}$' (jump anywhere instantly). Same pattern, two definitions, each best at a different job. That flexibility is what mastery of sequences means.", "config": { "pattern": "doubling", "maxSteps": 6 } },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Expand three terms", "body": "Any sigma or recursion you're unsure of: write out the first THREE terms by hand. Three terms expose the family, the start, the step, and the fence-posts — every property you need — and cost under a minute. Confusion rarely survives contact with concrete terms." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Off-center start", "problemId": "a284-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A mixed law", "problemId": "a284-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$\\Sigma$: run the index, apply, add; count = top − bottom + 1.", "Recursion = start + step-law; translate to explicit for long jumps.", "When unsure, expand three terms — the list confesses everything."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a28-pr-1", "statement": "Find $a_{25}$ of the sequence $9, 14, 19, \\ldots$.", "solution": "$9 + 24 \\cdot 5 = 129$.", "check": ["9 + 24*5 == 129"] },
+    { "id": "a28-pr-2", "statement": "Sum the first 40 terms of $2, 5, 8, \\ldots$.", "solution": "$a_{40} = 2 + 39(3) = 119$: $S = 20(2 + 119) = 2420$.", "check": ["2 + 39*3 == 119", "20*121 == 2420", "Sum(2 + (k-1)*3, (k, 1, 40)).doit() == 2420"] },
+    { "id": "a28-pr-3", "statement": "Find $a_8$ of the geometric sequence $3, 6, 12, \\ldots$.", "solution": "$3 \\cdot 2^7 = 384$.", "check": ["3*2**7 == 384"] },
+    { "id": "a28-pr-4", "statement": "Compute $1 + 4 + 16 + 64 + 256$.", "solution": "$r = 4, n = 5$: $\\frac{4^5 - 1}{3} = 341$.", "check": ["1 + 4 + 16 + 64 + 256 == 341", "Rational(4**5 - 1, 3) == 341"] },
+    { "id": "a28-pr-5", "statement": "Evaluate $18 + 6 + 2 + \\cdots$ (infinite).", "solution": "$r = \\frac{1}{3}$: $S = \\frac{18}{2/3} = 27$.", "check": ["Rational(18, 1 - Rational(1,3)) == 27", "summation(18*Rational(1,3)**(k-1), (k, 1, oo)) == 27"] },
+    { "id": "a28-pr-6", "statement": "Write $0.\\overline{6}$ as a fraction.", "solution": "$\\frac{6}{9} = \\frac{2}{3}$.", "check": ["Rational(6, 9) == Rational(2, 3)"] },
+    { "id": "a28-pr-7", "statement": "Evaluate $\\sum_{k=1}^{15} (2k + 3)$.", "solution": "Arithmetic 5 to 33: $\\frac{15}{2}(38) = 285$.", "check": ["Sum(2*k + 3, (k, 1, 15)).doit() == 285"] },
+    { "id": "a28-pr-8", "statement": "Give a recursive definition of $10, 7, 4, 1, \\ldots$.", "solution": "$a_1 = 10$; $a_{n+1} = a_n - 3$.", "check": ["10 - 3 == 7", "7 - 3 == 4", "4 - 3 == 1"] }
+  ],
+  "testYourself": [
+    { "id": "a28-ty-1", "statement": "An arithmetic sequence has $a_5 = 22$ and $a_{12} = 57$. Find $a_1$ and $a_{30}$.", "solution": "$d = \\frac{57-22}{7} = 5$; $a_1 = 22 - 4(5) = 2$; $a_{30} = 2 + 29(5) = 147$.", "check": ["Rational(57 - 22, 12 - 5) == 5", "22 - 4*5 == 2", "2 + 29*5 == 147"] },
+    { "id": "a28-ty-2", "statement": "How many multiples of 7 lie between 100 and 500, and what is their sum?", "solution": "First 105, last 497: $n = \\frac{497 - 105}{7} + 1 = 57$. Sum: $\\frac{57}{2}(105 + 497) = 17157$.", "check": ["Rational(497 - 105, 7) + 1 == 57", "Rational(57, 2)*(105 + 497) == 17157"] },
+    { "id": "a28-ty-3", "statement": "A geometric sequence has $a_3 = 18$ and $a_6 = 486$. Find $r$ and $a_1$.", "solution": "$r^3 = 27 \\to r = 3$; $a_1 = \\frac{18}{9} = 2$.", "check": ["Rational(486, 18) == 27", "3**3 == 27", "2*3**2 == 18"] },
+    { "id": "a28-ty-4", "statement": "Compute $\\sum_{k=1}^{8} 5 \\cdot 2^{k-1}$.", "solution": "$5(2^8 - 1) = 1275$.", "check": ["summation(5*2**(k-1), (k, 1, 8)) == 1275", "5*(2**8 - 1) == 1275"] },
+    { "id": "a28-ty-5", "statement": "Write $0.2\\overline{7} = 0.2777\\ldots$ as a fraction.", "solution": "$\\frac{2}{10} + \\frac{7/100}{1 - 1/10} = \\frac{2}{10} + \\frac{7}{90} = \\frac{18 + 7}{90} = \\frac{25}{90} = \\frac{5}{18}$.", "check": ["Rational(2,10) + Rational(7,90) == Rational(5,18)", "Rational(Rational(7,100), 1 - Rational(1,10)) == Rational(7,90)"] },
+    { "id": "a28-ty-6", "statement": "Each swing of a pendulum is 80% of the previous one. The first swing is 50 cm. Find the total distance over ALL swings.", "solution": "$S = \\frac{50}{1 - 0.8} = 250$ cm.", "check": ["Rational(50, 1 - Rational(8,10)) == 250"] }
+  ]
+}

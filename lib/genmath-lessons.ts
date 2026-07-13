@@ -173,6 +173,16 @@ import a1LinearFn from "@/data/genmath/algebra-1/linear-functions.json";
 import a1Systems from "@/data/genmath/algebra-1/systems-of-equations.json";
 import a1Polynomials from "@/data/genmath/algebra-1/polynomials-and-factoring.json";
 import a1Quadratics from "@/data/genmath/algebra-1/quadratic-equations.json";
+
+// Algebra 2 unit JSON imports
+import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
+import a2Quadratics from "@/data/genmath/algebra-2/quadratics-and-complex-numbers.json";
+import a2Systems from "@/data/genmath/algebra-2/systems-and-nonlinear-models.json";
+import a2Polynomials from "@/data/genmath/algebra-2/polynomial-functions.json";
+import a2Radicals from "@/data/genmath/algebra-2/radicals-and-rational-exponents.json";
+import a2ExpLogs from "@/data/genmath/algebra-2/exponentials-and-logarithms.json";
+import a2Rationals from "@/data/genmath/algebra-2/rational-functions.json";
+import a2Sequences from "@/data/genmath/algebra-2/sequences-and-series.json";
 import pcFunctions from "@/data/genmath/precalculus/functions-and-their-graphs.json";
 import pcTransforms from "@/data/genmath/precalculus/transformations-of-graphs.json";
 import pcPolyFns from "@/data/genmath/precalculus/polynomial-functions.json";
@@ -1151,6 +1161,110 @@ export function getAlg1Lesson(
 }
 
 // ---------------------------------------------------------------------------
+// Algebra 2 course — /math/algebra-2
+// The bridge between Algebra 1 and Precalculus: transformations and
+// piecewise functions, quadratics with complex numbers, advanced systems,
+// polynomial/radical/exponential-log/rational function families, and
+// sequences & series. Interactive-graph heavy by design: parabolaGraph,
+// polyGraph, expGraph, systemGraph, limitGraph, conicGraph, patternGrow,
+// absoluteValue, evaluator, exponentBuilder, and coordinateGrid figures.
+// ---------------------------------------------------------------------------
+
+export const ALG2_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "functions-and-transformations",
+    title: "Functions & Transformations",
+    blurb: "Function notation, domain and range, the four graph moves, absolute value, and piecewise functions.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "quadratics-and-complex-numbers",
+    title: "Quadratics & Complex Numbers",
+    blurb: "Vertex form and completing the square, the number i, complex roots, and quadratic inequalities.",
+    buildsOn: "Unit 1's transformation recipe and Algebra 1's quadratic toolkit.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "systems-and-nonlinear-models",
+    title: "Systems & Nonlinear Models",
+    blurb: "2×2 systems at speed, three variables, curves meeting lines, and feasible regions with the corner principle.",
+    buildsOn: "Algebra 1 systems; Unit 2's quadratic solving.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "polynomial-functions",
+    title: "Polynomial Functions",
+    blurb: "End behavior, division and the remainder/factor theorems, zeros with multiplicity, and cubic+ equations.",
+    buildsOn: "Unit 2's complex roots and Algebra 1 factoring.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "radicals-and-rational-exponents",
+    title: "Radicals & Rational Exponents",
+    blurb: "Fractional powers, radical arithmetic, equations with phantom solutions, and inverse functions.",
+    buildsOn: "Exponent laws; Unit 1's function machine.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "exponentials-and-logarithms",
+    title: "Exponentials & Logarithms",
+    blurb: "Growth and decay, logs as the reverse gear, the three log laws, and solving both equation families.",
+    buildsOn: "Unit 5's rational exponents and inverse functions.",
+    live: true,
+  },
+  {
+    unit: 7,
+    slug: "rational-functions",
+    title: "Rational Functions",
+    blurb: "Variation, asymptotes and holes, rational-expression arithmetic, and equations with work problems.",
+    buildsOn: "Unit 4's factoring.",
+    live: true,
+  },
+  {
+    unit: 8,
+    slug: "sequences-and-series",
+    title: "Sequences & Series",
+    blurb: "Arithmetic ladders, geometric rockets, infinite sums, sigma notation, and recursion — the capstone.",
+    buildsOn: "Linear (Unit 3) and exponential (Unit 6) thinking, reborn as lists.",
+    live: true,
+  },
+];
+
+const alg2Units: CourseUnit[] = [
+  a2Functions as unknown as CourseUnit,
+  a2Quadratics as unknown as CourseUnit,
+  a2Systems as unknown as CourseUnit,
+  a2Polynomials as unknown as CourseUnit,
+  a2Radicals as unknown as CourseUnit,
+  a2ExpLogs as unknown as CourseUnit,
+  a2Rationals as unknown as CourseUnit,
+  a2Sequences as unknown as CourseUnit,
+];
+
+export function getAlg2Spine(): GeometrySpineEntry[] {
+  return ALG2_SPINE;
+}
+
+export function getAlg2Unit(unitSlug: string): CourseUnit | null {
+  return alg2Units.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getAlg2Lesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getAlg2Unit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Precalculus course — /math/precalculus
 // The bridge to calculus, taught graph-first: function anatomy and
 // transformations, polynomial and rational graphs, exponentials and
@@ -1281,6 +1395,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:prob-stats": { spine: getProbStatSpine, unit: getProbStatUnit },
   "course:vectors-matrices": { spine: getVecMatSpine, unit: getVecMatUnit },
   "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
+  "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
 };
 

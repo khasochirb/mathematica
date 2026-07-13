@@ -1,0 +1,284 @@
+{
+  "slug": "exponentials-and-logarithms",
+  "title": "Exponentials & Logarithms",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Growth that multiplies instead of adds, the logarithm as its reverse gear, three laws that turn products into sums, and the equations behind interest, populations, and half-lives.",
+  "buildsOn": "Unit 5's rational exponents and inverse functions.",
+  "lessons": [
+    {
+      "slug": "exponential-growth-and-decay",
+      "title": "Exponential Growth & Decay",
+      "concreteComparison": "Fold a sheet of paper 42 times and its thickness would reach the Moon. Nothing in daily life prepares intuition for repeated DOUBLING — linear thinking undershoots exponential reality catastrophically. This lesson is the antidote.",
+      "objective": "Model repeated-multiplication situations with f(x) = a·bˣ, distinguish growth from decay, and read a, b from stories and graphs.",
+      "concept": [
+        "$f(x) = a \\cdot b^x$: start value $a$ (the $y$-intercept), factor $b$ per step. $b > 1$: **growth** ($b = 1.05$ is +5% per step); $0 < b < 1$: **decay** ($b = 0.8$ is −20% per step). Percent language: $b = 1 + r$.",
+        "Exponential vs linear is MULTIPLY vs ADD: linear $+300$/year vs exponential $\\times 1.05$/year. Any constant-percent story — interest, population, depreciation, half-life — is exponential by definition.",
+        "Graph anatomy: passes through $(0, a)$; climbs (or dives) by factor $b$ each unit step; hugs the x-axis on its shrinking side (horizontal asymptote $y = 0$) but NEVER touches: $a \\cdot b^x$ has no zeros."
+      ],
+      "keyIdea": "f(x) = a·bˣ multiplies by b each step: b = 1 + r encodes percent change, growth above 1, decay below, asymptote at zero, never touching.",
+      "facts": [
+        { "title": "The model", "latex": "f(x) = a \\cdot b^x, \\quad b = 1 + r", "explanation": "$a$: start; $b$: per-step factor; $r$: percent rate as a decimal." },
+        { "title": "Growth vs decay", "latex": "b > 1: \\nearrow \\qquad 0 < b < 1: \\searrow \\text{ (asymptote } y = 0)", "explanation": "Both hug zero on one side and explode on the other." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a261-we1",
+          "statement": "A town of 20,000 grows 5% per year. Write the model and find the population after 3 years.",
+          "solution": "$P(t) = 20000(1.05)^t$. $P(3) = 20000(1.157625) = 23152.5$ — about 23,153 people. (Linear +1000/yr would give 23,000: the gap is compounding, and it widens every year.)",
+          "check": ["20000*Rational(105,100)**3 == Rational(46305,2)", "Rational(105,100)**3 == Rational(9261,8000)"]
+        },
+        {
+          "id": "a261-we2",
+          "statement": "A car worth $24{,}000 loses 15% of its value each year. Model it and find the value after 2 years.",
+          "solution": "Decay factor $b = 1 - 0.15 = 0.85$: $V(t) = 24000(0.85)^t$. $V(2) = 24000(0.7225) = 17340$ dollars.",
+          "check": ["Rational(85,100)**2 == Rational(289,400)", "24000*Rational(289,400) == 17340"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Encoding '+5% per year' as $b = 0.05$.", "correction": "$b$ is the KEEP factor, not the change: 100% kept plus 5% gained → $b = 1.05$. ($b = 0.05$ would erase 95% of the town yearly.)", "authored": true },
+        { "text": "Modeling 15% decay as subtracting 15% of the ORIGINAL each year (linear).", "correction": "Each year takes 15% of the CURRENT value: multiply by 0.85 repeatedly. Year 2 loses less than year 1 in dollars — decay curves flatten, lines don't.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a261-t1",
+          "statement": "A colony of 500 bacteria doubles every hour. Write the model and count bacteria after 6 hours.",
+          "solution": "$N(t) = 500 \\cdot 2^t$; $N(6) = 500 \\cdot 64 = 32000$.",
+          "check": ["2**6 == 64", "500*64 == 32000"]
+        },
+        {
+          "id": "a261-t2",
+          "statement": "Which grows larger by year 10: $\\$1000$ at $+8\\%$ per year, or $\\$1000$ plus $\\$90$ per year?",
+          "solution": "Exponential: $1000(1.08)^{10} \\approx 2158.9$. Linear: $1000 + 900 = 1900$. The 8% curve wins — and the gap keeps widening forever after.",
+          "check": ["1000 + 90*10 == 1900", "1000*Rational(108,100)**10 > 1900*Rational(108,100)**0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Multiplying, not adding", "body": "Interest earns interest. Offspring have offspring. Each year's change is a PERCENT of the current amount — so bigger amounts change faster. Lines (constant addition) can't tell this story; a new function family can. Meet $f(x) = a \\cdot b^x$: the mathematics of compounding." },
+          { "kind": "expGraph", "eyebrow": "Play", "title": "Two dials: a and b", "teach": "Step the start value $a$ and the base $b$. The ×b chips along the curve are the signature: EVERY step right multiplies by the same factor. Push $b$ below 1 and growth flips to decay — same machine, shrinking. Notice the curve hugging the axis on one side: the asymptote.", "config": { "mode": "growth", "a": 2, "b": 2, "interactive": true } },
+          { "kind": "teach", "eyebrow": "The encoding", "title": "From percent to base", "body": "Stories speak percent; the model wants a factor. Convert with $b = 1 + r$: '+5%' → $b = 1.05$; '−15%' → $b = 0.85$; 'doubles' → $b = 2$; 'half-life' → $b = \\frac{1}{2}$ per half-life period. The factor answers: of each unit, how much exists one step later?" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A town compounds", "problemId": "a261-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the encoding", "title": "Percent to base", "prompt": "A quantity shrinks 7% per day. Its daily factor $b$ is:", "options": ["$0.93$", "$0.07$", "$1.07$", "$-0.07$"], "correctIndex": 0, "explanation": "Keep $100\\% - 7\\% = 93\\%$: $b = 0.93$. The factor is what REMAINS, not what leaves.", "check": ["1 - Rational(7,100) == Rational(93,100)"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A car depreciates", "problemId": "a261-we2" },
+          { "kind": "expGraph", "eyebrow": "Play", "title": "Curve vs line: the race", "teach": "An exponential racing a straight line. Early on the line can lead — watch closely — but the curve's growth GROWS, and once it passes the line it never looks back. Every exponential eventually beats every line; 'eventually' is the operative word intuition misses.", "config": { "mode": "race", "b": 2, "m": 6 } },
+          { "kind": "tapQuestion", "eyebrow": "Check the intuition", "title": "The doubling pond", "prompt": "Lily pads double daily and cover the pond on day 30. When was the pond HALF covered?", "options": ["day 29", "day 15", "day 20", "day 28"], "correctIndex": 0, "explanation": "One doubling from full: day 29. Half the time (day 15) covers just $\\frac{1}{2^{15}}$ — about three-millionths. Exponentials back-load everything.", "check": ["30 - 1 == 29", "2**1 == 2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Name a, b, and the step", "body": "Before computing, write three labels: start $a$, factor $b$, and what one STEP means (a year? an hour? a half-life?). Most exponential errors are unit errors — a monthly rate raised to years, a half-life treated as a day. The three-label header prevents them all." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Doubling colony", "problemId": "a261-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Curve vs line, priced", "problemId": "a261-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$f(x) = a\\,b^x$: start $a$, per-step factor $b = 1 + r$.", "$b > 1$ grows, $0 < b < 1$ decays; asymptote $y = 0$, no zeros.", "Exponentials multiply; lines add — and the curve always wins eventually."] }
+        ]
+      }
+    },
+    {
+      "slug": "logarithms-and-their-meaning",
+      "title": "Logarithms & Their Meaning",
+      "concreteComparison": "\"2 to the what gives 32?\" Your brain answers 5 by silently counting doublings. The logarithm is that silent count given a symbol: log₂32 = 5. It's not a new creature — it's the exponential machine from last lesson, running backwards.",
+      "objective": "Convert between exponential and logarithmic form, evaluate logs mentally, and graph log functions as reflected exponentials.",
+      "concept": [
+        "**Definition**: $\\log_b x = y$ means $b^y = x$ — the log answers 'what exponent?'. $\\log_2 32 = 5$ since $2^5 = 32$; $\\log_{10} 1000 = 3$; $\\log_5 \\frac{1}{25} = -2$ since $5^{-2} = \\frac{1}{25}$.",
+        "Instant anchors from the definition: $\\log_b 1 = 0$ ($b^0 = 1$), $\\log_b b = 1$, and $\\log_b b^k = k$. Only POSITIVE numbers have logs: $b^y$ never outputs 0 or negatives, so $\\log_b 0$ and $\\log_b(-8)$ don't exist.",
+        "$y = \\log_b x$ is the INVERSE (Unit 5!) of $y = b^x$: graphs mirror across $y = x$; domain and range swap. The log graph lives right of the y-axis (vertical asymptote $x = 0$), crosses $(1, 0)$, and climbs forever — but agonizingly slowly."
+      ],
+      "keyIdea": "log_b x is the exponent b needs to reach x — the exponential's inverse: log of 1 is 0, only positives allowed, graph mirrored across y = x with a wall at x = 0.",
+      "facts": [
+        { "title": "The two forms", "latex": "\\log_b x = y \\iff b^y = x", "explanation": "One fact, two costumes — translate freely between them." },
+        { "title": "Anchors", "latex": "\\log_b 1 = 0, \\quad \\log_b b = 1, \\quad \\log_b b^k = k", "explanation": "Straight from $b^0 = 1$ and $b^1 = b$." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a262-we1",
+          "statement": "Evaluate $\\log_2 32$, $\\log_9 3$, and $\\log_4 \\frac{1}{16}$.",
+          "solution": "$2^5 = 32$: answer 5. $9^{1/2} = 3$: answer $\\frac{1}{2}$. $4^{-2} = \\frac{1}{16}$: answer $-2$. Every log question is an exponent question in costume.",
+          "check": ["log(32, 2) == 5", "simplify(log(3, 9) - Rational(1,2)) == 0", "log(Rational(1,16), 4) == -2"]
+        },
+        {
+          "id": "a262-we2",
+          "statement": "Convert $5^3 = 125$ to log form and $\\log_7 x = 2$ to exponential form; solve the latter.",
+          "solution": "$\\log_5 125 = 3$. And $\\log_7 x = 2$ unwraps to $x = 7^2 = 49$.",
+          "check": ["log(125, 5) == 3", "7**2 == 49"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Evaluating $\\log_2 8$ as 4 ('because $8 \\div 2 = 4$').", "correction": "The log asks for an EXPONENT, not a quotient: $2^3 = 8$, so $\\log_2 8 = 3$. When in doubt, write the exponential costume.", "authored": true },
+        { "text": "Accepting $\\log_3(-9)$ as $-2$.", "correction": "$3^{-2} = \\frac{1}{9}$ — positive, like every power of 3. No exponent produces $-9$: logs of negatives (and of zero) do not exist.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a262-t1",
+          "statement": "Evaluate $\\log_3 81$, $\\log_{10} 0.001$, and $\\log_8 2$.",
+          "solution": "$3^4 = 81$: 4. $10^{-3} = 0.001$: $-3$. $8^{1/3} = 2$: $\\frac{1}{3}$.",
+          "check": ["log(81, 3) == 4", "log(Rational(1,1000), 10) == -3", "simplify(log(2, 8) - Rational(1,3)) == 0"]
+        },
+        {
+          "id": "a262-t2",
+          "statement": "Solve $\\log_x 64 = 3$ and $\\log_5 (2x - 1) = 2$.",
+          "solution": "$x^3 = 64 \\to x = 4$. And $2x - 1 = 25 \\to x = 13$.",
+          "check": ["4**3 == 64", "2*13 - 1 == 25", "5**2 == 25"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The backwards question", "body": "Last lesson: given time, compute the amount — $500 \\cdot 2^t$ at $t = 6$. Real life asks the reverse: WHEN does the colony hit a million? The unknown is upstairs, in the exponent, and no tool you own reaches up there. The reach tool is the logarithm — and Unit 5 told you exactly what it must be: the exponential's inverse." },
+          { "kind": "teach", "eyebrow": "The definition", "title": "An exponent, named", "body": "$\\log_b x$ = the exponent that $b$ needs to become $x$. That's the entire definition: $\\log_2 32 = 5$ because $2^5 = 32$. Two costumes, one fact: $\\log_b x = y \\iff b^y = x$. Fluency = translating between costumes without friction, both directions." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Three evaluations", "problemId": "a262-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the reflex", "title": "What exponent?", "prompt": "$\\log_6 216 = $ ?", "options": ["$3$", "$36$", "$6^3$", "$\\frac{216}{6}$"], "correctIndex": 0, "explanation": "$6^3 = 216$. The log IS the exponent — 3, a small number, not a division result.", "check": ["6**3 == 216", "log(216, 6) == 3"] },
+          { "kind": "expGraph", "eyebrow": "See it", "title": "Reading the curve backwards", "teach": "The race view answers log questions graphically: 'when does $2^x$ reach 20?' is asking WHERE the curve meets that height — read DOWN from the crossing to the x-axis, and that x is $\\log_2 20$ (a bit over 4.3). Evaluating a log = reading an exponential graph sideways.", "config": { "mode": "race", "b": 2, "m": 5 } },
+          { "kind": "tapQuestion", "eyebrow": "Check the anchors", "title": "Freebies", "prompt": "$\\log_{13} 1 = $ ?", "options": ["$0$", "$1$", "$13$", "undefined"], "correctIndex": 0, "explanation": "$13^0 = 1$ — every base reaches 1 with exponent 0. $\\log_b 1 = 0$ is universal, like $b^0 = 1$ wearing the other costume.", "check": ["13**0 == 1", "log(1, 13) == 0"] },
+          { "kind": "teach", "eyebrow": "The graph", "title": "Mirror across the diagonal", "body": "As the inverse of $y = b^x$, the log graph is its mirror across $y = x$ (Unit 5's picture). Everything swaps: the exponential's horizontal asymptote becomes the log's VERTICAL wall at $x = 0$; the y-intercept $(0,1)$ becomes the x-intercept $(1, 0)$; 'positive outputs only' becomes 'positive INPUTS only.' And the log climbs forever — just heartbreakingly slowly: $\\log_2$ of a million is still under 20." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Costume changes", "problemId": "a262-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "When stuck, change costumes", "body": "Every confusing log statement clarifies as an exponential, and vice versa. $\\log_x 64 = 3$ feels alien; $x^3 = 64$ is a Tuesday. Make the translation your first move, not your last resort." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Mental evaluation", "problemId": "a262-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Solve by unwrapping", "problemId": "a262-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "The calculators of 1614", "body": "Napier published logarithms as a computational hack: they turn multiplication into addition (next lesson's laws), so 17th-century astronomers multiplied giant numbers by ADDING their logs from tables. Slide rules mechanized the trick and ran engineering for 350 years — including the Apollo program's backup calculations." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$\\log_b x = y \\iff b^y = x$: the log IS the exponent.", "$\\log_b 1 = 0$, $\\log_b b = 1$, positives only.", "Graph: exponential mirrored across $y = x$; wall at $x = 0$; slow climb."] }
+        ]
+      }
+    },
+    {
+      "slug": "properties-of-logarithms",
+      "title": "Properties of Logarithms",
+      "concreteComparison": "Exponents add when powers multiply: b^m · b^n = b^(m+n). Logs ARE exponents — so logs of products must add. Three exponent laws, wearing log costumes: that's the entire lesson, and it's the engine that will crack every exponential equation.",
+      "objective": "Apply the product, quotient, and power rules to expand and condense log expressions, and use the change-of-base formula.",
+      "concept": [
+        "Three laws, inherited straight from exponents: **product** $\\log_b(MN) = \\log_b M + \\log_b N$; **quotient** $\\log_b \\frac{M}{N} = \\log_b M - \\log_b N$; **power** $\\log_b(M^k) = k \\log_b M$ — the exponent-puller, star of the show.",
+        "**Expand** to split composites: $\\log_2 \\frac{8x^3}{y} = 3 + 3\\log_2 x - \\log_2 y$. **Condense** to a single log: $2\\log_5 x + \\log_5 3 = \\log_5(3x^2)$ — power rule first (coefficients become exponents), then product/quotient.",
+        "**Change of base**: $\\log_b x = \\frac{\\log_c x}{\\log_c b}$ for any base $c$ — how a base-10 calculator computes $\\log_7 50$, and a genuinely useful identity: $\\log_8 32 = \\frac{\\log_2 32}{\\log_2 8} = \\frac{5}{3}$."
+      ],
+      "keyIdea": "Logs are exponents, so products add, quotients subtract, and powers pull out front; change of base rewrites any log as a ratio in a friendlier base.",
+      "facts": [
+        { "title": "The three laws", "latex": "\\log MN = \\log M + \\log N; \\;\\; \\log \\tfrac{M}{N} = \\log M - \\log N; \\;\\; \\log M^k = k\\log M", "explanation": "Product, quotient, power — same base throughout." },
+        { "title": "Change of base", "latex": "\\log_b x = \\frac{\\log_c x}{\\log_c b}", "explanation": "New base $c$, your choice — 10, $e$, or whatever's convenient." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a263-we1",
+          "statement": "Expand $\\log_2 \\dfrac{8x^3}{y}$ fully.",
+          "solution": "Quotient first: $\\log_2(8x^3) - \\log_2 y$. Product: $\\log_2 8 + \\log_2 x^3 - \\log_2 y$. Power + anchor: $3 + 3\\log_2 x - \\log_2 y$.",
+          "check": ["log(8, 2) == 3", "expand_log(log(x**3), force=True) == 3*log(x)", "simplify(expand_log(log(8*x**3/y), force=True) - (log(8) + 3*log(x) - log(y))) == 0"]
+        },
+        {
+          "id": "a263-we2",
+          "statement": "Condense $2\\log_5 x + \\log_5 3 - \\log_5 y$ into one logarithm, and evaluate $\\log_8 32$ by change of base.",
+          "solution": "Power rule: $\\log_5 x^2$; then product and quotient: $\\log_5 \\frac{3x^2}{y}$. Change of base through 2: $\\log_8 32 = \\frac{\\log_2 32}{\\log_2 8} = \\frac{5}{3}$.",
+          "check": ["simplify(expand_log(log(3*x**2/y), force=True) - (2*log(x) + log(3) - log(y))) == 0", "simplify(log(32, 8) - Rational(5,3)) == 0", "Rational(5,3) == log(32,2)/log(8,2)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Splitting the log of a SUM: $\\log(x + y) = \\log x + \\log y$.", "correction": "The product rule needs a PRODUCT inside: $\\log(xy) = \\log x + \\log y$. Sums inside logs don't split — there is no law for them.", "authored": true },
+        { "text": "Turning $\\frac{\\log M}{\\log N}$ into $\\log M - \\log N$.", "correction": "The quotient rule is about $\\log\\frac{M}{N}$ — quotient INSIDE one log. A ratio OF two logs is change-of-base material and simplifies differently ($\\frac{\\log 32}{\\log 8} = \\frac{5}{3}$, not $\\log 4$).", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a263-t1",
+          "statement": "Expand $\\log_3 \\dfrac{27a^2}{b^4}$.",
+          "solution": "$\\log_3 27 + 2\\log_3 a - 4\\log_3 b = 3 + 2\\log_3 a - 4\\log_3 b$.",
+          "check": ["log(27, 3) == 3", "simplify(expand_log(log(27*a**2/b**4), force=True) - (log(27) + 2*log(a) - 4*log(b))) == 0"]
+        },
+        {
+          "id": "a263-t2",
+          "statement": "Condense $3\\log_2 x - \\frac{1}{2}\\log_2 y + \\log_2 5$ and evaluate $\\log_9 27$.",
+          "solution": "$\\log_2 \\frac{5x^3}{\\sqrt{y}}$. And $\\log_9 27 = \\frac{\\log_3 27}{\\log_3 9} = \\frac{3}{2}$.",
+          "check": ["simplify(expand_log(log(5*x**3/sqrt(y)), force=True) - (3*log(x) - Rational(1,2)*log(y) + log(5))) == 0", "simplify(log(27, 9) - Rational(3,2)) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Taming composite insides", "body": "Real formulas stuff products, quotients, and powers inside logs: $\\log \\frac{8x^3}{y}$. To solve equations (next lesson) you need to take such things apart and put them back together. The disassembly manual is three laws — and you already know them, because you know exponent laws." },
+          { "kind": "teach", "eyebrow": "The inheritance", "title": "Same laws, log costume", "body": "$b^m \\cdot b^n = b^{m+n}$: multiply powers, ADD exponents. Since logs ARE exponents, take logs of that sentence: $\\log_b(MN) = \\log_b M + \\log_b N$. The quotient law inherits subtraction the same way, and $(b^m)^k = b^{mk}$ becomes the **power rule** $\\log_b(M^k) = k\\log_b M$ — exponents inside become coefficients outside. Nothing new was created; notation changed clothes." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Full expansion", "problemId": "a263-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the laws", "title": "Which splits?", "prompt": "Which equality is CORRECT?", "options": ["$\\log_2(8x) = 3 + \\log_2 x$", "$\\log_2(8 + x) = 3 + \\log_2 x$", "$\\log_2 x^3 = (\\log_2 x)^3$", "$\\frac{\\log_2 x}{\\log_2 y} = \\log_2\\frac{x}{y}$"], "correctIndex": 0, "explanation": "Product inside → sum outside: $\\log_2 8 + \\log_2 x = 3 + \\log_2 x$. Sums inside don't split; powers pull out as coefficients (not exponents on the log); ratios of logs are change-of-base, not quotient-rule.", "check": ["log(8, 2) == 3", "simplify(log(8*x) - log(8) - log(x)) == 0"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Condense, and switch base", "problemId": "a263-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check condensing", "title": "Back to one log", "prompt": "$2\\log_3 x + \\log_3 4 = $ ?", "options": ["$\\log_3(4x^2)$", "$\\log_3(8x)$", "$\\log_3(x^2 + 4)$", "$2\\log_3(4x)$"], "correctIndex": 0, "explanation": "Power rule first: $2\\log_3 x = \\log_3 x^2$; then product: $\\log_3(4x^2)$. Coefficients must become exponents BEFORE combining.", "check": ["simplify(expand_log(log(4*x**2), force=True) - (2*log(x) + log(4))) == 0"] },
+          { "kind": "teach", "eyebrow": "Change of base", "title": "Any log, any base", "body": "$\\log_b x = \\frac{\\log_c x}{\\log_c b}$: measure both $x$ and $b$ in a convenient base $c$, take the ratio. It's how calculators with only base-10 buttons compute $\\log_7 50$, and how ugly logs simplify by hand: $\\log_8 32$ through base 2 is $\\frac{5}{3}$ — both 8 and 32 are powers of 2, and the formula sees it." },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Power rule first, both directions", "body": "Expanding: strip the outside structure first (quotient, then products), pull powers last. Condensing: REVERSE — convert every coefficient into an exponent first, THEN merge with product/quotient rules. Merging before converting is the source of nearly every condensing error." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Expand fully", "problemId": "a263-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Condense and convert", "problemId": "a263-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Product adds, quotient subtracts, power pulls to the front.", "No law for sums inside; ratio of logs = change of base.", "Condense: coefficients → exponents FIRST."] }
+        ]
+      }
+    },
+    {
+      "slug": "solving-exponential-and-log-equations",
+      "title": "Solving Exponential & Log Equations",
+      "concreteComparison": "\"How long until my investment doubles?\" is an equation with the unknown trapped in the exponent. Logs are the crowbar built for exactly that — and the famous Rule of 72 is this lesson's computation, memorized by bankers.",
+      "objective": "Solve exponential equations (matching bases or taking logs) and log equations (condensing and unwrapping), checking domains throughout.",
+      "concept": [
+        "**Matching bases**: when both sides are powers of one base, equate exponents. $8^{x} = 32$: $2^{3x} = 2^5 \\to 3x = 5 \\to x = \\frac{5}{3}$. One-to-one functions permit exactly this move.",
+        "**Mismatched bases**: take a log of both sides and pull the exponent down with the power rule. $3^x = 20$: $x \\log 3 = \\log 20 \\to x = \\frac{\\log 20}{\\log 3} \\approx 2.73$. Exact answer: the log expression; decimal: the calculator's business.",
+        "**Log equations**: condense each side to a single log, then either equate insides ($\\log_2 A = \\log_2 B \\to A = B$) or unwrap to exponential form. DOMAIN CHECK is mandatory: candidates making any original log's inside $\\le 0$ are extraneous — same phantom mechanics as radical equations."
+      ],
+      "keyIdea": "Same base → equate exponents; different bases → log both sides and pull the power down; log equations condense then unwrap — and every candidate must keep all log insides positive.",
+      "facts": [
+        { "title": "The crowbar", "latex": "3^x = 20 \\;\\Rightarrow\\; x = \\frac{\\log 20}{\\log 3}", "explanation": "Log both sides; power rule frees the unknown." },
+        { "title": "Domain audit", "latex": "\\log(\\text{inside}): \\text{inside} > 0 \\text{ at every candidate}", "explanation": "Check candidates against the ORIGINAL equation's logs." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a264-we1",
+          "statement": "Solve $5 \\cdot 2^{3t} = 80$ exactly.",
+          "solution": "Isolate: $2^{3t} = 16 = 2^4 \\to 3t = 4 \\to t = \\frac{4}{3}$. (Matching bases made logs unnecessary — always check for that first.)",
+          "check": ["Rational(80, 5) == 16", "2**4 == 16", "5*2**(3*Rational(4,3)) == 80"]
+        },
+        {
+          "id": "a264-we2",
+          "statement": "Solve $\\log_2(x) + \\log_2(x - 6) = 4$.",
+          "solution": "Condense: $\\log_2\\big(x(x-6)\\big) = 4 \\to x^2 - 6x = 16 \\to (x-8)(x+2) = 0 \\to x = 8, -2$. Domain audit: $x = 8$: both insides positive ✓. $x = -2$: $\\log_2(-2)$ doesn't exist ✗. Answer: $x = 8$.",
+          "check": ["factor(x**2 - 6*x - 16) == (x - 8)*(x + 2)", "8*(8 - 6) == 16", "2**4 == 16"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "From $\\log x + \\log(x-6) = 4$ jumping to $x + (x - 6) = 10^4$... or worse, $= 4$.", "correction": "Condense FIRST (sum of logs = log of product), then unwrap the single log: $x(x-6) = 10^4$ (base 10) — insides multiply, never add.", "authored": true },
+        { "text": "Keeping $x = -2$ because it solves the quadratic.", "correction": "The quadratic is the FORGETFUL version (like the squared radical equation). The original contains $\\log_2 x$, and $\\log_2(-2)$ doesn't exist. Audit every candidate against the original's domains.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a264-t1",
+          "statement": "Solve $9^{x+1} = 27^x$.",
+          "solution": "Base 3: $3^{2(x+1)} = 3^{3x} \\to 2x + 2 = 3x \\to x = 2$. Check: $9^3 = 729 = 27^2$ ✓.",
+          "check": ["9**3 == 729", "27**2 == 729", "solve(2*(x + 1) - 3*x, x) == [2]"]
+        },
+        {
+          "id": "a264-t2",
+          "statement": "Solve $\\log_3(x + 2) - \\log_3(x - 4) = 2$.",
+          "solution": "Condense: $\\log_3\\frac{x+2}{x-4} = 2 \\to \\frac{x+2}{x-4} = 9 \\to x + 2 = 9x - 36 \\to x = \\frac{38}{8} = \\frac{19}{4}$. Audit: $x + 2 > 0$ ✓ and $x - 4 = \\frac{3}{4} > 0$ ✓. Valid.",
+          "check": ["solve(x + 2 - 9*(x - 4), x) == [Rational(19,4)]", "Rational(19,4) - 4 == Rational(3,4)", "(Rational(19,4) + 2)/(Rational(19,4) - 4) == 9"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The unknown upstairs", "body": "'When does $500 \\cdot 2^t$ reach a million?' — the $t$ lives in the exponent, untouchable by add, subtract, multiply, divide, or root. This is the lesson the whole unit has aimed at: two families of equations, one crowbar (the log), and the discipline of the domain audit." },
+          { "kind": "expGraph", "eyebrow": "See it", "title": "Solving = finding the crossing", "teach": "Every exponential equation is geometrically this picture: a growth curve, a target height, one crossing. The crossing EXISTS and is unique (exponentials never repeat a value) — the algebra below just names its coordinate exactly.", "config": { "mode": "race", "b": 3, "m": 7 } },
+          { "kind": "teach", "eyebrow": "Exponential equations", "title": "Match bases, or log both sides", "body": "Path 1 — both sides expressible in ONE base: rewrite and equate exponents ($8^x = 32 \\to 2^{3x} = 2^5$). Path 2 — no common base ($3^x = 20$): take log of both sides; the power rule drags $x$ downstairs: $x = \\frac{\\log 20}{\\log 3}$. Leave THAT as the exact answer; decimals are a calculator's afterthought." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Isolate, match, equate", "problemId": "a264-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the crowbar", "title": "Free the x", "prompt": "The EXACT solution of $7^x = 45$ is:", "options": ["$x = \\dfrac{\\log 45}{\\log 7}$", "$x = \\log 45 - \\log 7$", "$x = \\log(45 - 7)$", "$x = \\dfrac{45}{7}$"], "correctIndex": 0, "explanation": "$\\log(7^x) = x\\log 7 = \\log 45$: divide. (Answer B is the quotient rule misfiring — that would be $\\log \\frac{45}{7}$'s expansion, a different object.)", "check": ["simplify(log(45)/log(7) - log(45, 7)) == 0"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Condense, unwrap, audit", "problemId": "a264-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the audit", "title": "Phantom hunt", "prompt": "Solving $\\log_5(x) + \\log_5(x + 4) = 1$ gives candidates $x = 1$ and $x = -5$. The solution set is:", "options": ["$\\{1\\}$", "$\\{1, -5\\}$", "$\\{-5\\}$", "empty"], "correctIndex": 0, "explanation": "$x(x+4) = 5$ has both roots, but the ORIGINAL demands $x > 0$ and $x + 4 > 0$: only $x = 1$ passes. Log equations inherit radical equations' phantom discipline.", "check": ["1*(1 + 4) == 5", "(-5)*(-5 + 4) == 5"] },
+          { "kind": "expGraph", "eyebrow": "Apply", "title": "Doubling time, visualized", "teach": "Compound growth: each bar is the last times the same factor. 'When does the balance double?' is $1.08^t = 2$ — by the crowbar, $t = \\frac{\\log 2}{\\log 1.08} \\approx 9$ years. (Bankers memorize this as the Rule of 72: $72 \\div 8 \\approx 9$.)", "config": { "mode": "compound", "p": 1000, "r": 0.08, "years": 10 } },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Exact, then approximate", "body": "The exact answer to $3^x = 20$ is $\\frac{\\log 20}{\\log 3}$ — a complete, correct, checkable object. Write it BEFORE reaching for decimals. Exact answers compose (they plug into later steps losslessly); rounded ones accumulate drift." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "One base fits both", "problemId": "a264-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Quotient inside", "problemId": "a264-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Same base: equate exponents. Different: log both sides, power rule.", "Log equations: condense to ONE log, unwrap, then domain-audit.", "Exact first ($\\frac{\\log 20}{\\log 3}$); decimals last."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a26-pr-1", "statement": "A population of 800 grows 10% yearly. Write the model and evaluate at $t = 2$.", "solution": "$P(t) = 800(1.1)^t$; $P(2) = 800(1.21) = 968$.", "check": ["800*Rational(11,10)**2 == 968"] },
+    { "id": "a26-pr-2", "statement": "Evaluate $\\log_4 64$ and $\\log_2 \\frac{1}{8}$.", "solution": "$4^3 = 64$: 3. $2^{-3} = \\frac{1}{8}$: $-3$.", "check": ["log(64, 4) == 3", "log(Rational(1,8), 2) == -3"] },
+    { "id": "a26-pr-3", "statement": "Convert $\\log_6 36 = 2$ to exponential form and $2^{10} = 1024$ to log form.", "solution": "$6^2 = 36$; $\\log_2 1024 = 10$.", "check": ["6**2 == 36", "log(1024, 2) == 10"] },
+    { "id": "a26-pr-4", "statement": "Expand $\\log_5 \\dfrac{25x^4}{y}$.", "solution": "$2 + 4\\log_5 x - \\log_5 y$.", "check": ["log(25, 5) == 2", "simplify(expand_log(log(25*x**4/y), force=True) - (log(25) + 4*log(x) - log(y))) == 0"] },
+    { "id": "a26-pr-5", "statement": "Condense $\\log 7 + 2\\log x - \\log y$ into one log.", "solution": "$\\log \\dfrac{7x^2}{y}$.", "check": ["simplify(expand_log(log(7*x**2/y), force=True) - (log(7) + 2*log(x) - log(y))) == 0"] },
+    { "id": "a26-pr-6", "statement": "Solve $4^{x} = 8^{x-1}$.", "solution": "Base 2: $2^{2x} = 2^{3x - 3} \\to 2x = 3x - 3 \\to x = 3$. Check: $4^3 = 64 = 8^2$ ✓.", "check": ["4**3 == 64", "8**2 == 64"] },
+    { "id": "a26-pr-7", "statement": "Solve $2^x = 10$ exactly.", "solution": "$x = \\log_2 10 = \\frac{\\log 10}{\\log 2}$.", "check": ["simplify(log(10)/log(2) - log(10, 2)) == 0"] },
+    { "id": "a26-pr-8", "statement": "Solve $\\log_4(3x + 4) = 2$.", "solution": "$3x + 4 = 16 \\to x = 4$. Inside positive ✓.", "check": ["3*4 + 4 == 16", "4**2 == 16"] }
+  ],
+  "testYourself": [
+    { "id": "a26-ty-1", "statement": "A $9000 machine depreciates 20% yearly. Model and value after 3 years?", "solution": "$V(t) = 9000(0.8)^t$; $V(3) = 9000(0.512) = 4608$.", "check": ["Rational(8,10)**3 == Rational(64,125)", "9000*Rational(64,125) == 4608"] },
+    { "id": "a26-ty-2", "statement": "Evaluate $\\log_{27} 9$.", "solution": "Through base 3: $\\frac{\\log_3 9}{\\log_3 27} = \\frac{2}{3}$.", "check": ["simplify(log(9, 27) - Rational(2,3)) == 0"] },
+    { "id": "a26-ty-3", "statement": "Given $\\log_b 2 = 0.36$ and $\\log_b 3 = 0.56$, find $\\log_b 12$.", "solution": "$12 = 2^2 \\cdot 3$: $2(0.36) + 0.56 = 1.28$.", "check": ["2*Rational(36,100) + Rational(56,100) == Rational(128,100)"] },
+    { "id": "a26-ty-4", "statement": "Solve $6 \\cdot 3^{2x} = 486$ exactly.", "solution": "$3^{2x} = 81 = 3^4 \\to x = 2$.", "check": ["Rational(486, 6) == 81", "3**4 == 81"] },
+    { "id": "a26-ty-5", "statement": "Solve $\\log_2(x + 3) + \\log_2(x - 3) = 4$.", "solution": "$x^2 - 9 = 16 \\to x = \\pm 5$. Audit: $x = 5$ ✓; $x = -5$ makes both insides negative ✗. Answer 5.", "check": ["5**2 - 9 == 16", "2**4 == 16", "5 - 3 > 0"] },
+    { "id": "a26-ty-6", "statement": "An investment grows at 6% per year. Write the exact doubling time.", "solution": "$1.06^t = 2 \\to t = \\frac{\\log 2}{\\log 1.06}$ (≈ 11.9 years — Rule of 72: $72/6 = 12$).", "check": ["simplify(log(2)/log(Rational(106,100)) - log(2, Rational(106,100))) == 0", "Rational(72, 6) == 12"] }
+  ]
+}

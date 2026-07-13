@@ -1,0 +1,281 @@
+{
+  "slug": "rational-functions",
+  "title": "Rational Functions",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Division's function family: inverse variation, graphs with fences (asymptotes) and pinholes, fraction algebra scaled up to polynomials, and equations where phantoms lurk at forbidden inputs.",
+  "buildsOn": "Unit 4's factoring; fraction arithmetic instincts from middle school.",
+  "lessons": [
+    {
+      "slug": "direct-and-inverse-variation",
+      "title": "Direct & Inverse Variation",
+      "concreteComparison": "Double the workers, halve the days — inverse variation. Double the hours, double the pay — direct. Two opposite dances, each governed by one constant, and telling them apart is half of applied algebra.",
+      "objective": "Model direct (y = kx) and inverse (y = k/x) variation, find k from one data point, and predict new values.",
+      "concept": [
+        "**Direct variation**: $y = kx$ — double $x$, double $y$; the graph is a line through the ORIGIN, and $\\frac{y}{x}$ is constant ($= k$). 'Pay varies directly with hours': one data point pins $k$, then everything is known.",
+        "**Inverse variation**: $y = \\frac{k}{x}$ — double $x$, HALVE $y$; the product $xy$ is constant ($= k$). The graph is a hyperbola hugging both axes. 'Days vary inversely with workers,' 'pressure with volume' (Boyle's law).",
+        "Identification from data: constant RATIO $\\frac{y}{x}$ → direct; constant PRODUCT $xy$ → inverse. From words: quantities rising together → direct; one rising as the other falls (with fixed total work/area/etc.) → inverse."
+      ],
+      "keyIdea": "Direct: y/x constant (line through origin). Inverse: xy constant (hyperbola). One point determines k; k determines everything.",
+      "facts": [
+        { "title": "The two models", "latex": "y = kx \\quad \\text{vs} \\quad y = \\frac{k}{x}", "explanation": "Ratio constant vs product constant." },
+        { "title": "Find k first", "latex": "k = \\frac{y}{x} \\;\\;\\text{or}\\;\\; k = xy", "explanation": "One data point suffices; then predict anything." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a271-we1",
+          "statement": "$y$ varies inversely with $x$, and $y = 12$ when $x = 5$. Find $y$ when $x = 20$.",
+          "solution": "$k = xy = 60$: model $y = \\frac{60}{x}$. At $x = 20$: $y = 3$. (Four times the $x$, one-quarter the $y$ — the inverse signature.)",
+          "check": ["5*12 == 60", "Rational(60, 20) == 3", "Rational(20, 5) == 4", "Rational(12, 3) == 4"]
+        },
+        {
+          "id": "a271-we2",
+          "statement": "Six painters finish a job in 10 days. Assuming inverse variation, how long for 4 painters?",
+          "solution": "$k = 6 \\cdot 10 = 60$ painter-days (the job's total size). Four painters: $d = \\frac{60}{4} = 15$ days.",
+          "check": ["6*10 == 60", "Rational(60, 4) == 15"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Modeling 'y varies inversely with x' as $y = k - x$.", "correction": "Inverse means DIVIDE, not subtract: $y = \\frac{k}{x}$. The test: doubling $x$ should halve $y$; subtraction doesn't do that.", "authored": true },
+        { "text": "Direct variation with an intercept: 'pay varies directly with hours' as $y = kx + b$.", "correction": "Direct variation lines pass through the ORIGIN — zero hours, zero pay. If there's a base fee $b$, it's linear but not direct variation.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a271-t1",
+          "statement": "$y$ varies directly with $x$; $y = 21$ when $x = 6$. Find $y$ when $x = 10$.",
+          "solution": "$k = \\frac{21}{6} = \\frac{7}{2}$: $y = \\frac{7}{2}(10) = 35$.",
+          "check": ["Rational(21, 6) == Rational(7, 2)", "Rational(7,2)*10 == 35"]
+        },
+        {
+          "id": "a271-t2",
+          "statement": "A gas at volume 8 L has pressure 300 kPa. If pressure varies inversely with volume, what's the pressure at 12 L?",
+          "solution": "$k = 8 \\cdot 300 = 2400$: $P = \\frac{2400}{12} = 200$ kPa.",
+          "check": ["8*300 == 2400", "Rational(2400, 12) == 200"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two opposite dances", "body": "Some pairs of quantities rise together (hours ↔ pay); others seesaw (workers ↔ days). Both dances are governed by ONE constant, and both are everywhere: physics laws, recipes, workloads. This lesson is also your first date with the function family of the unit: $y = \\frac{k}{x}$, the simplest rational function." },
+          { "kind": "teach", "eyebrow": "Direct", "title": "Constant ratio", "body": "$y = kx$: the ratio $\\frac{y}{x}$ never changes. Graph: a line through the origin with slope $k$ — zero in, zero out. Recognize it in data by DIVIDING columns: if $\\frac{y}{x}$ repeats, it's direct, and that repeated number IS $k$." },
+          { "kind": "teach", "eyebrow": "Inverse", "title": "Constant product", "body": "$y = \\frac{k}{x}$: now the PRODUCT $xy$ never changes — $k$ is a fixed pie and $x, y$ are the two ways of slicing it (6 painters × 10 days = 60 painter-days of work, always). Graph: a hyperbola hugging both axes — huge $y$ for tiny $x$, tiny $y$ for huge $x$, never touching either axis. Those hugs have a name coming in Lesson 2: asymptotes." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Pin k, then predict", "problemId": "a271-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check identification", "title": "Which dance?", "prompt": "A data table shows $(2, 30), (5, 12), (6, 10)$. The relationship is:", "options": ["inverse — every product is 60", "direct — with $k = 15$", "linear with intercept 34", "neither"], "correctIndex": 0, "explanation": "$2 \\cdot 30 = 5 \\cdot 12 = 6 \\cdot 10 = 60$: constant product, inverse variation, $y = \\frac{60}{x}$. (The ratios $15, 2.4, \\frac{5}{3}$ are all different — not direct.)", "check": ["2*30 == 60", "5*12 == 60", "6*10 == 60"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Painter-days", "problemId": "a271-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the signature", "title": "Triple the x", "prompt": "$y$ varies inversely with $x$. If $x$ is TRIPLED, $y$ is:", "options": ["divided by 3", "tripled", "decreased by 3", "unchanged"], "correctIndex": 0, "explanation": "Product stays fixed: $x$ takes three times the share, $y$ keeps a third of its own. $y = \\frac{k}{3x} = \\frac{1}{3} \\cdot \\frac{k}{x}$.", "check": ["Rational(1, 3)*3 == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Interpret k in units", "body": "$k$ always MEANS something: painter-days of work, kPa·L of gas, dollars per hour. Saying the meaning aloud ('the job is 60 painter-days') turns formula-plugging into understanding — and instantly flags absurd setups." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Direct prediction", "problemId": "a271-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Boyle's law", "problemId": "a271-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Direct: $y = kx$, constant ratio, line through origin.", "Inverse: $y = \\frac{k}{x}$, constant product, axis-hugging hyperbola.", "One point pins $k$; $k$ has units and meaning."] }
+        ]
+      }
+    },
+    {
+      "slug": "graphs-asymptotes-and-holes",
+      "title": "Graphs: Asymptotes & Holes",
+      "concreteComparison": "Near a division-by-zero input, a rational function's outputs explode — the graph rockets along an invisible fence it can never touch. But sometimes the 'forbidden' input is just a pinhole the graph calmly points through. Fence or pinhole: the factoring decides.",
+      "objective": "Find domains, vertical asymptotes, holes, and horizontal asymptotes of rational functions, and sketch their graphs.",
+      "concept": [
+        "A **rational function** is a polynomial quotient. Its domain bans denominator zeros — but banned inputs come in two species. FACTOR first: a factor that CANCELS makes a **hole** (pinhole: the graph approaches a finite point that's simply missing); one that SURVIVES in the denominator makes a **vertical asymptote** (fence: outputs blow up).",
+        "$f(x) = \\frac{x^2 - 1}{x - 1} = \\frac{(x-1)(x+1)}{x-1}$: cancels to $x + 1$ with a HOLE at $(1, 2)$. But $g(x) = \\frac{x + 1}{x - 1}$: the $x - 1$ survives — vertical asymptote $x = 1$.",
+        "**Horizontal asymptotes** read from degrees (end behavior, Unit 4 thinking): bottom-heavy → $y = 0$; degrees equal → $y = \\frac{\\text{leading}}{\\text{leading}}$; top-heavy → none (the graph escapes). The horizontal fence CAN be crossed mid-graph — it only governs the far ends."
+      ],
+      "keyIdea": "Factor first: cancelled factors are holes, surviving denominator zeros are vertical asymptotes, and the degree comparison sets the horizontal asymptote.",
+      "facts": [
+        { "title": "Fence vs pinhole", "latex": "\\text{cancels} \\Rightarrow \\text{hole}; \\quad \\text{survives} \\Rightarrow \\text{VA}", "explanation": "Both are banned inputs; the graph treats them utterly differently." },
+        { "title": "Horizontal asymptote", "latex": "\\deg_{\\text{top}} < \\deg_{\\text{bot}}: y = 0; \\quad =: y = \\tfrac{a}{b}; \\quad >: \\text{none}", "explanation": "Compare degrees; equal degrees take the leading-coefficient ratio." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a272-we1",
+          "statement": "Analyze $f(x) = \\dfrac{x^2 - 4}{x^2 - x - 6}$: domain, holes, vertical and horizontal asymptotes.",
+          "solution": "Factor: $\\frac{(x-2)(x+2)}{(x-3)(x+2)}$. Domain: $x \\ne 3, -2$. The $(x+2)$ CANCELS: hole at $x = -2$, height $\\frac{-2-2}{-2-3} = \\frac{4}{5}$. The $(x-3)$ survives: VA $x = 3$. Degrees equal: HA $y = \\frac{1}{1} = 1$.",
+          "check": ["factor(x**2 - 4) == (x - 2)*(x + 2)", "factor(x**2 - x - 6) == (x - 3)*(x + 2)", "Rational(-2 - 2, -2 - 3) == Rational(4, 5)", "limit((x**2 - 4)/(x**2 - x - 6), x, oo) == 1"]
+        },
+        {
+          "id": "a272-we2",
+          "statement": "Find all asymptotes of $g(x) = \\dfrac{3x^2 + 1}{x^2 + 4}$ and $h(x) = \\dfrac{5}{x - 2}$.",
+          "solution": "$g$: denominator never zero (always $\\ge 4$) — NO vertical asymptote; degrees equal: HA $y = 3$. $h$: VA $x = 2$; bottom-heavy: HA $y = 0$.",
+          "check": ["limit((3*x**2 + 1)/(x**2 + 4), x, oo) == 3", "limit(5/(x - 2), x, oo) == 0", "0**2 + 4 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Calling every denominator zero a vertical asymptote.", "correction": "Factor FIRST. $\\frac{(x-1)(x+1)}{x-1}$ has a hole at 1, not a fence — the graph passes through the gap at height 2, calmly.", "authored": true },
+        { "text": "Treating the horizontal asymptote as untouchable.", "correction": "Only VERTICAL asymptotes are never-touch fences. Graphs cross their horizontal asymptote mid-domain routinely — it's an END-behavior statement, not a barrier.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a272-t1",
+          "statement": "Analyze $f(x) = \\dfrac{x^2 - 9}{x - 3}$.",
+          "solution": "$\\frac{(x-3)(x+3)}{x-3}$: cancels — the graph IS the line $y = x + 3$ with a hole at $(3, 6)$. No asymptotes at all.",
+          "check": ["factor(x**2 - 9) == (x - 3)*(x + 3)", "3 + 3 == 6"]
+        },
+        {
+          "id": "a272-t2",
+          "statement": "Find the asymptotes of $f(x) = \\dfrac{2x - 1}{x + 4}$ and give its intercepts.",
+          "solution": "VA $x = -4$; degrees equal: HA $y = 2$. Intercepts: $y$: $f(0) = -\\frac{1}{4}$; $x$: numerator zero, $x = \\frac{1}{2}$.",
+          "check": ["limit((2*x - 1)/(x + 4), x, oo) == 2", "Rational(2*0 - 1, 0 + 4) == Rational(-1, 4)", "2*Rational(1,2) - 1 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "What division does to graphs", "body": "Polynomials are tame: smooth, connected, no forbidden inputs. Put one UNDER another and wildness appears — inputs where the machine jams, outputs that explode, graphs in disconnected pieces. The taxonomy of that wildness is exactly two species, and factoring tells them apart." },
+          { "kind": "limitGraph", "eyebrow": "Watch", "title": "The blow-up, animated", "teach": "Watch the probe points march toward the forbidden input. The outputs don't settle — they climb (or dive) without bound, hugging the vertical fence. That's a **vertical asymptote**: approached forever, touched never. This is what a SURVIVING denominator zero does.", "config": { "mode": "infinite" } },
+          { "kind": "limitGraph", "eyebrow": "Watch", "title": "The pinhole", "teach": "Same setup, different fate: the probes close in and the outputs SETTLE toward one height — but the point itself is absent. A **hole**: the graph points at a value that isn't there. This is what a CANCELLED factor leaves behind. (Calculus will say: the limit exists; the value doesn't.)", "config": { "mode": "hole" } },
+          { "kind": "teach", "eyebrow": "The diagnosis", "title": "Factor, then sort", "body": "Factor top and bottom completely. Each denominator zero gets sorted: its factor CANCELS with the numerator → hole (find its height by plugging into the reduced formula); its factor SURVIVES → vertical asymptote. One function can have both — $\\frac{(x-2)(x+2)}{(x-3)(x+2)}$: hole at $-2$, fence at $3$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Full anatomy", "problemId": "a272-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the sort", "title": "Fence or pinhole?", "prompt": "$f(x) = \\dfrac{(x - 5)(x + 1)}{(x - 5)(x - 2)}$ has:", "options": ["a hole at $x = 5$ and a VA at $x = 2$", "VAs at both 5 and 2", "holes at both 5 and 2", "a VA at 5 and a hole at 2"], "correctIndex": 0, "explanation": "$(x-5)$ cancels → pinhole at $x = 5$ (height $\\frac{6}{3} = 2$). $(x-2)$ survives → fence at $x = 2$.", "check": ["Rational(5 + 1, 5 - 2) == 2"] },
+          { "kind": "teach", "eyebrow": "Far ends", "title": "The horizontal story", "body": "Zoom out (Unit 4 instinct): the leading terms rule. Bottom degree wins → outputs shrink to 0: HA $y = 0$. Degrees TIE → outputs settle at the leading-coefficient ratio: $\\frac{3x^2 + 1}{x^2 + 4} \\to y = 3$. Top wins → no horizontal settling. Unlike the vertical fence, this one CAN be crossed in the middle — it's a statement about the horizons only." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two more anatomies", "problemId": "a272-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Anatomy before sketch", "body": "Sketch from a checklist, never from a point table: (1) factor; (2) holes and VAs sorted; (3) HA from degrees; (4) intercepts ($x$: numerator zeros; $y$: plug 0); (5) one test point per region between VAs. Five lines of anatomy and the sketch draws itself." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A line with a pinhole", "problemId": "a272-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Fences and crossings", "problemId": "a272-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Factor first: cancelled → hole; surviving → vertical asymptote.", "HA from degrees: bottom-heavy 0, tie = ratio, top-heavy none.", "Vertical fences are untouchable; horizontal ones govern only the ends."] }
+        ]
+      }
+    },
+    {
+      "slug": "operations-on-rational-expressions",
+      "title": "Operations on Rational Expressions",
+      "concreteComparison": "Everything you know about ⅔ + ¼ — common denominators, cancel before multiplying, flip to divide — replays verbatim with polynomials upstairs and downstairs. Same music, bigger instruments.",
+      "objective": "Multiply, divide, add, and subtract rational expressions, factoring first and stating excluded values.",
+      "concept": [
+        "**Multiply**: factor everything, cancel any top-with-bottom pair, then multiply what survives. $\\frac{x^2 - 9}{x^2 + 5x} \\cdot \\frac{x + 5}{x - 3} = \\frac{(x-3)(x+3)}{x(x+5)} \\cdot \\frac{x+5}{x-3} = \\frac{x + 3}{x}$. **Divide**: flip the second fraction, then multiply.",
+        "**Add/subtract**: build the least common denominator from the FACTORED denominators (each factor at its highest power), convert each fraction, combine numerators. $\\frac{3}{x^2 - 4} + \\frac{2}{x + 2}$: LCD $(x-2)(x+2)$, giving $\\frac{3 + 2(x - 2)}{(x-2)(x+2)} = \\frac{2x - 1}{(x-2)(x+2)}$.",
+        "Cancellation is for FACTORS only — whole multiplied chunks. Slashing the $x^2$'s in $\\frac{x^2 - 9}{x^2 + 5x}$ is the cardinal sin: those are terms inside sums, not factors. And excluded values persist: the simplified $\\frac{x+3}{x}$ still remembers $x \\ne 0, -5, 3$."
+      ],
+      "keyIdea": "Factor everything first; cancel only whole factors; divide = flip and multiply; add via the factored LCD — and the original's excluded values survive simplification.",
+      "facts": [
+        { "title": "The cardinal rule", "latex": "\\text{cancel FACTORS, never terms}", "explanation": "$\\frac{x + 3}{x}$: nothing cancels — the $x$'s are a term and a factor, different species." },
+        { "title": "LCD recipe", "latex": "\\text{each factor, highest power present}", "explanation": "From factored denominators — like LCM of 12 and 18 via primes." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a273-we1",
+          "statement": "Simplify $\\dfrac{x^2 - 9}{x^2 + 5x} \\div \\dfrac{x - 3}{x + 5}$.",
+          "solution": "Flip and factor: $\\frac{(x-3)(x+3)}{x(x+5)} \\cdot \\frac{x+5}{x-3}$. Cancel $(x-3)$ and $(x+5)$: $\\frac{x+3}{x}$, with $x \\ne 0, -5, 3$.",
+          "check": ["factor(x**2 - 9) == (x - 3)*(x + 3)", "factor(x**2 + 5*x) == x*(x + 5)", "simplify((x**2 - 9)/(x**2 + 5*x) / ((x - 3)/(x + 5)) - (x + 3)/x) == 0"]
+        },
+        {
+          "id": "a273-we2",
+          "statement": "Combine $\\dfrac{3}{x^2 - 4} + \\dfrac{2}{x + 2}$.",
+          "solution": "Factor: $x^2 - 4 = (x-2)(x+2)$; LCD $(x-2)(x+2)$. Convert: $\\frac{3}{(x-2)(x+2)} + \\frac{2(x-2)}{(x-2)(x+2)} = \\frac{2x - 1}{(x-2)(x+2)}$.",
+          "check": ["factor(x**2 - 4) == (x - 2)*(x + 2)", "expand(3 + 2*(x - 2)) == 2*x - 1", "simplify(3/(x**2 - 4) + 2/(x + 2) - (2*x - 1)/((x - 2)*(x + 2))) == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Slashing matching TERMS: $\\frac{x^2 - 9}{x^2 + 5x} \\to \\frac{-9}{5x}$ by cancelling the $x^2$'s.", "correction": "Only whole FACTORS cancel — things multiplied against the entire top or bottom. Factor first; if it doesn't appear as a factor, it doesn't cancel.", "authored": true },
+        { "text": "Distributing a subtraction into only the first term of the second numerator: $\\frac{5}{x} - \\frac{x - 2}{3x}$ becoming $\\frac{15 - x - 2}{3x}$.", "correction": "The minus hits the WHOLE numerator: $\\frac{15 - (x - 2)}{3x} = \\frac{17 - x}{3x}$. Parentheses around subtracted numerators, always.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a273-t1",
+          "statement": "Simplify $\\dfrac{x^2 + 3x - 10}{x^2 - 25} \\cdot \\dfrac{x + 5}{x - 2}$.",
+          "solution": "$\\frac{(x+5)(x-2)}{(x-5)(x+5)} \\cdot \\frac{x+5}{x-2} = \\frac{x+5}{x-5}$ (with $x \\ne \\pm 5, 2$).",
+          "check": ["factor(x**2 + 3*x - 10) == (x + 5)*(x - 2)", "factor(x**2 - 25) == (x - 5)*(x + 5)", "simplify((x**2 + 3*x - 10)/(x**2 - 25) * (x + 5)/(x - 2) - (x + 5)/(x - 5)) == 0"]
+        },
+        {
+          "id": "a273-t2",
+          "statement": "Combine $\\dfrac{4}{x} - \\dfrac{3}{x + 1}$.",
+          "solution": "LCD $x(x+1)$: $\\frac{4(x+1) - 3x}{x(x+1)} = \\frac{x + 4}{x(x+1)}$.",
+          "check": ["expand(4*(x + 1) - 3*x) == x + 4", "simplify(4/x - 3/(x + 1) - (x + 4)/(x*(x + 1))) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Fraction arithmetic, upgraded", "body": "You've added fractions since grade school. Rational expressions are fractions whose numbers grew up into polynomials — and every rule transfers EXACTLY. What changes is one prerequisite: nothing works until things are factored, because factors are the currency of every operation here." },
+          { "kind": "teach", "eyebrow": "Multiply & divide", "title": "Factor, cancel, multiply", "body": "Multiplying $\\frac{6}{25} \\cdot \\frac{15}{8}$, you cancel BEFORE multiplying — cross out shared factors. Same script: factor all four polynomials, cancel any top-factor against any bottom-factor, multiply survivors. Division adds one prefix: FLIP the second fraction. That's the entire theory." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Flip, factor, cancel", "problemId": "a273-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the cardinal rule", "title": "What cancels?", "prompt": "In $\\dfrac{(x + 3)(x - 1)}{x + 3}$, what cancels — and in $\\dfrac{x + 3}{3}$?", "options": ["$(x+3)$ cancels in the first; NOTHING in the second", "both: leaving $x - 1$ and $x$", "the 3's in the second: leaving $x$", "nothing in either"], "correctIndex": 0, "explanation": "$(x+3)$ multiplies the whole top of the first — a factor: cancel. In $\\frac{x+3}{3}$ the top's 3 is a TERM (added to $x$): slashing it would claim $\\frac{5+3}{3} = 5$, but it's $\\frac{8}{3}$.", "check": ["Rational(5 + 3, 3) == Rational(8, 3)", "simplify((x + 3)*(x - 1)/(x + 3) - (x - 1)) == 0"] },
+          { "kind": "teach", "eyebrow": "Add & subtract", "title": "The factored LCD", "body": "Common denominators, like always — but built from FACTORED form: take every distinct factor at its highest power. Denominators $(x-2)(x+2)$ and $(x+2)$: LCD is $(x-2)(x+2)$, and only the second fraction needs conversion. Combine numerators over the shared bottom; if subtracting, parenthesize the whole second numerator before distributing the minus." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Build the LCD", "problemId": "a273-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the minus", "title": "Distribute fully", "prompt": "$\\dfrac{5x}{x^2} - \\dfrac{x - 4}{x^2} = $ ?", "options": ["$\\dfrac{4x + 4}{x^2}$", "$\\dfrac{4x - 4}{x^2}$", "$\\dfrac{6x - 4}{x^2}$", "$\\dfrac{4}{x}$... after cancelling the $x$'s"], "correctIndex": 0, "explanation": "$5x - (x - 4) = 5x - x + 4 = 4x + 4$. The minus flips BOTH terms of the subtracted numerator — forgetting the second flip gives option B.", "check": ["expand(5*x - (x - 4)) == 4*x + 4"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Numeric spot-check", "body": "After any simplification, plug one legal number into both the original and your answer — $x = 1$ is usually cheap. $\\frac{x+3}{x}$ vs the original at $x = 1$: both give 4? Confidence. Disagree? You just caught yourself slashing a term. Ten seconds, every time." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Multiply and reduce", "problemId": "a273-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Subtract with care", "problemId": "a273-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Factor first; cancel factors only, never terms.", "Divide = flip then multiply; LCD = each factor at highest power.", "Parenthesize subtracted numerators; spot-check with a number."] }
+        ]
+      }
+    },
+    {
+      "slug": "rational-equations",
+      "title": "Rational Equations & Work Problems",
+      "concreteComparison": "One hose fills a pool in 3 hours, another in 6. Together? Not 4.5 — rates add, times don't: ⅓ + ⅙ pool per hour fills it in 2. The equation that says so has x in denominators, and clearing them is this lesson's craft.",
+      "objective": "Solve rational equations by multiplying through by the LCD, reject solutions that zero a denominator, and model combined work and mixture problems.",
+      "concept": [
+        "**Clear denominators**: multiply EVERY term by the LCD; the equation becomes polynomial. $\\frac{5}{x} + \\frac{1}{2} = \\frac{7}{x}$: times $2x$: $10 + x = 14 \\to x = 4$. Check: legal input (no denominator dies) and arithmetic holds ✓.",
+        "**Phantoms at forbidden inputs**: if a candidate zeroes ANY original denominator, it's extraneous — the multiplication by LCD silently assumed the LCD wasn't zero. $\\frac{x}{x-3} = \\frac{3}{x-3} + 2$ yields $x = 3$... which annihilates both denominators: no solution at all.",
+        "**Work problems**: rates add. Machine A does $\\frac{1}{a}$ of the job per hour, B does $\\frac{1}{b}$: together $\\frac{1}{a} + \\frac{1}{b} = \\frac{1}{t}$. The pool above: $\\frac{1}{3} + \\frac{1}{6} = \\frac{1}{2}$ — two hours."
+      ],
+      "keyIdea": "Multiply every term by the LCD to reach polynomial land; audit candidates against the original denominators; and remember work adds by RATES: 1/a + 1/b = 1/t.",
+      "facts": [
+        { "title": "The clear-out", "latex": "\\times \\text{LCD on EVERY term}", "explanation": "The equation-wide version of building common denominators." },
+        { "title": "Work equation", "latex": "\\frac{1}{a} + \\frac{1}{b} = \\frac{1}{t}", "explanation": "Rates (jobs per hour) add; times never do." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a274-we1",
+          "statement": "Solve $\\dfrac{3}{x - 2} + \\dfrac{1}{x} = \\dfrac{4}{x(x - 2)}$.",
+          "solution": "LCD $x(x-2)$; multiply through: $3x + (x - 2) = 4 \\to 4x = 6 \\to x = \\frac{3}{2}$. Audit: $\\frac{3}{2} \\ne 0, 2$ — legal. Check: $\\frac{3}{-1/2} + \\frac{2}{3} = -6 + \\frac{2}{3}$... verify numerically: $\\frac{3}{3/2 - 2} = -6$, $\\frac{1}{3/2} = \\frac{2}{3}$, sum $-\\frac{16}{3}$; RHS: $\\frac{4}{(3/2)(-1/2)} = -\\frac{16}{3}$ ✓.",
+          "check": ["expand(3*x + (x - 2)) == 4*x - 2", "solve(4*x - 2 - 4, x) == [Rational(3,2)]", "simplify(3/(Rational(3,2) - 2) + 1/Rational(3,2) - 4/(Rational(3,2)*(Rational(3,2) - 2))) == 0"]
+        },
+        {
+          "id": "a274-we2",
+          "statement": "Pipe A fills a tank in 4 hours; with pipe B helping, it takes 2.4 hours. How long would B alone take?",
+          "solution": "$\\frac{1}{4} + \\frac{1}{b} = \\frac{1}{2.4} = \\frac{5}{12}$. So $\\frac{1}{b} = \\frac{5}{12} - \\frac{3}{12} = \\frac{2}{12} = \\frac{1}{6}$: B alone takes 6 hours.",
+          "check": ["Rational(1, Rational(12,5)) == Rational(5, 12)", "Rational(5,12) - Rational(1,4) == Rational(1,6)", "Rational(1,4) + Rational(1,6) == Rational(5,12)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Multiplying only the fraction terms by the LCD, skipping lone constants.", "correction": "EVERY term rides: in $\\frac{5}{x} + \\frac{1}{2} = \\frac{7}{x}$ times $2x$, the $\\frac{1}{2}$ becomes $x$ — skipping it derails the whole solve.", "authored": true },
+        { "text": "Averaging times in work problems: hoses of 3 h and 6 h 'together take 4.5 h.'", "correction": "Two hoses can't be SLOWER than the faster one alone. Rates add ($\\frac{1}{3} + \\frac{1}{6} = \\frac{1}{2}$): 2 hours. Convert times to rates before combining.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a274-t1",
+          "statement": "Solve $\\dfrac{2}{x} + \\dfrac{3}{x + 1} = \\dfrac{4x + 2}{x(x + 1)}$... wait — simplify smartly: solve $\\dfrac{2}{x} + \\dfrac{3}{x+1} = \\dfrac{23}{x(x+1)}$... use: $\\dfrac{6}{x} - \\dfrac{4}{x + 2} = 1$.",
+          "solution": "LCD $x(x+2)$: $6(x+2) - 4x = x(x+2) \\to 2x + 12 = x^2 + 2x \\to x^2 = 12 \\to x = \\pm 2\\sqrt{3}$. Neither is $0$ or $-2$: both legal.",
+          "check": ["expand(6*(x + 2) - 4*x) == 2*x + 12", "simplify((2*sqrt(3))**2 - 12) == 0", "simplify(6/(2*sqrt(3)) - 4/(2*sqrt(3) + 2) - 1) == 0"]
+        },
+        {
+          "id": "a274-t2",
+          "statement": "Solve $\\dfrac{x}{x - 4} - \\dfrac{4}{x - 4} = 3$ and interpret.",
+          "solution": "Combine: $\\frac{x - 4}{x - 4} = 3 \\to 1 = 3$?? More carefully: multiply by $(x-4)$: $x - 4 = 3(x - 4) \\to x - 4 = 3x - 12 \\to x = 4$. But $x = 4$ kills the denominators — extraneous. NO solution.",
+          "check": ["solve(x - 4 - 3*(x - 4), x) == [4]", "4 - 4 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "x moves downstairs", "body": "Shared workloads, average speeds, lens equations, resistor networks — nature loves putting the unknown in a denominator. The solving strategy is demolition: multiply the whole equation by the LCD and the fractions vanish, leaving polynomial ground you've owned since Unit 4. One tollbooth: forbidden inputs." },
+          { "kind": "teach", "eyebrow": "The method", "title": "Clear, solve, audit", "body": "Three beats. CLEAR: multiply EVERY term (constants included!) by the LCD of all denominators. SOLVE: the resulting linear or quadratic. AUDIT: any candidate that zeroes an ORIGINAL denominator is a phantom — multiplying by the LCD was only legal where the LCD ≠ 0. Same discipline as radical and log equations; same reason (an irreversible step).", "beats": ["Find the LCD of every denominator.", "Multiply every term by it — fractions die.", "Solve the polynomial equation.", "Reject candidates that zero any original denominator."] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Clear and audit", "problemId": "a274-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the audit", "title": "The vanishing solution", "prompt": "Solving $\\dfrac{x}{x-5} = \\dfrac{5}{x-5} + 1$ leads to $x = 5$. The equation has:", "options": ["no solution — 5 zeroes the denominators", "the solution $x = 5$", "infinitely many solutions", "the solution $x = 0$"], "correctIndex": 0, "explanation": "The only candidate is forbidden: at $x = 5$ the original says $\\frac{5}{0} = \\frac{5}{0} + 1$ — nonsense. Empty solution set is a legitimate answer.", "check": ["5 - 5 == 0"] },
+          { "kind": "teach", "eyebrow": "Work problems", "title": "Rates add, times don't", "body": "A 3-hour hose does $\\frac{1}{3}$ of the pool each hour — that RATE is the addable thing. Two workers: $\\frac{1}{a} + \\frac{1}{b} = \\frac{1}{t}$ where $t$ is the together-time. Sanity anchor: together-time is always SHORTER than the fastest worker alone. Any answer violating that failed before the algebra started." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Find the helper's speed", "problemId": "a274-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the model", "title": "Two painters", "prompt": "Painter A does a room in 2 hours, painter B in 3. Together they take:", "options": ["$\\frac{6}{5}$ hours (72 min)", "$2.5$ hours", "$5$ hours", "$1$ hour"], "correctIndex": 0, "explanation": "Rates: $\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}$ room/hour → $t = \\frac{6}{5}$ h. Averaging times (2.5) fails the sanity anchor: together must beat A's solo 2 hours.", "check": ["Rational(1,2) + Rational(1,3) == Rational(5,6)", "Rational(6,5) < 2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "List the forbidden inputs first", "body": "Before clearing anything, write the ban list in the margin: '$x \\ne 0, 2$.' The audit step then takes one glance instead of a re-derivation — and Unit 1's domain habit completes its arc: the note you learned to write is now catching phantoms." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Quadratic after clearing", "problemId": "a274-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "The empty set", "problemId": "a274-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["LCD × every term → polynomial equation.", "Candidates zeroing original denominators are phantoms; empty sets happen.", "Work: rates add — $\\frac{1}{a} + \\frac{1}{b} = \\frac{1}{t}$, and together beats fastest-alone."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a27-pr-1", "statement": "$y$ varies directly with $x$; $y = 18$ when $x = 4$. Find $y$ at $x = 10$.", "solution": "$k = \\frac{9}{2}$: $y = 45$.", "check": ["Rational(18, 4) == Rational(9, 2)", "Rational(9,2)*10 == 45"] },
+    { "id": "a27-pr-2", "statement": "$y$ varies inversely with $x$; $y = 9$ when $x = 8$. Find $y$ at $x = 6$.", "solution": "$k = 72$: $y = 12$.", "check": ["9*8 == 72", "Rational(72, 6) == 12"] },
+    { "id": "a27-pr-3", "statement": "Find the domain, holes, and VAs of $f(x) = \\dfrac{x + 1}{x^2 - 1}$.", "solution": "$\\frac{x+1}{(x-1)(x+1)}$: domain $x \\ne \\pm 1$; hole at $x = -1$ (height $-\\frac{1}{2}$), VA $x = 1$.", "check": ["factor(x**2 - 1) == (x - 1)*(x + 1)", "Rational(1, -1 - 1) == Rational(-1, 2)"] },
+    { "id": "a27-pr-4", "statement": "Give the horizontal asymptote of $f(x) = \\dfrac{6x^2 - x}{2x^2 + 5}$.", "solution": "Degrees tie: $y = 3$.", "check": ["limit((6*x**2 - x)/(2*x**2 + 5), x, oo) == 3"] },
+    { "id": "a27-pr-5", "statement": "Simplify $\\dfrac{x^2 - 16}{x^2 + 6x + 8}$.", "solution": "$\\frac{(x-4)(x+4)}{(x+2)(x+4)} = \\frac{x-4}{x+2}$ ($x \\ne -4, -2$).", "check": ["factor(x**2 + 6*x + 8) == (x + 2)*(x + 4)", "simplify((x**2 - 16)/(x**2 + 6*x + 8) - (x - 4)/(x + 2)) == 0"] },
+    { "id": "a27-pr-6", "statement": "Combine $\\dfrac{5}{x + 3} - \\dfrac{2}{x}$.", "solution": "LCD $x(x+3)$: $\\frac{5x - 2(x+3)}{x(x+3)} = \\frac{3x - 6}{x(x+3)}$.", "check": ["expand(5*x - 2*(x + 3)) == 3*x - 6", "simplify(5/(x + 3) - 2/x - (3*x - 6)/(x*(x + 3))) == 0"] },
+    { "id": "a27-pr-7", "statement": "Solve $\\dfrac{4}{x} + \\dfrac{1}{3} = \\dfrac{6}{x}$.", "solution": "×$3x$: $12 + x = 18 \\to x = 6$.", "check": ["solve(12 + x - 18, x) == [6]", "Rational(4,6) + Rational(1,3) == 1", "Rational(6,6) == 1"] },
+    { "id": "a27-pr-8", "statement": "Worker A finishes a job in 5 hours, B in 20. Together?", "solution": "$\\frac{1}{5} + \\frac{1}{20} = \\frac{1}{4}$: 4 hours.", "check": ["Rational(1,5) + Rational(1,20) == Rational(1,4)"] }
+  ],
+  "testYourself": [
+    { "id": "a27-ty-1", "statement": "The intensity of light varies inversely with the square of distance: $I = \\frac{k}{d^2}$. If $I = 90$ at $d = 2$ m, find $I$ at $d = 6$ m.", "solution": "$k = 90 \\cdot 4 = 360$: $I = \\frac{360}{36} = 10$.", "check": ["90*4 == 360", "Rational(360, 36) == 10"] },
+    { "id": "a27-ty-2", "statement": "Fully analyze $f(x) = \\dfrac{x^2 - x - 6}{x^2 - 9}$ (domain, hole, VA, HA).", "solution": "$\\frac{(x-3)(x+2)}{(x-3)(x+3)}$: domain $x \\ne \\pm 3$; hole at $x = 3$ (height $\\frac{5}{6}$); VA $x = -3$; HA $y = 1$.", "check": ["factor(x**2 - x - 6) == (x - 3)*(x + 2)", "Rational(3 + 2, 3 + 3) == Rational(5, 6)", "limit((x**2 - x - 6)/(x**2 - 9), x, oo) == 1"] },
+    { "id": "a27-ty-3", "statement": "Simplify $\\dfrac{x^2 - 4x}{x^2 - 2x - 8} \\div \\dfrac{x^2}{x + 2}$.", "solution": "$\\frac{x(x-4)}{(x-4)(x+2)} \\cdot \\frac{x+2}{x^2} = \\frac{1}{x}$ ($x \\ne 0, 4, -2$).", "check": ["factor(x**2 - 2*x - 8) == (x - 4)*(x + 2)", "simplify((x**2 - 4*x)/(x**2 - 2*x - 8) / (x**2/(x + 2)) - 1/x) == 0"] },
+    { "id": "a27-ty-4", "statement": "Combine and simplify $\\dfrac{x}{x - 1} + \\dfrac{2}{x + 1} - \\dfrac{2}{x^2 - 1}$.", "solution": "LCD $(x-1)(x+1)$: $\\frac{x(x+1) + 2(x-1) - 2}{(x-1)(x+1)} = \\frac{x^2 + 3x - 4}{(x-1)(x+1)} = \\frac{(x+4)(x-1)}{(x-1)(x+1)} = \\frac{x+4}{x+1}$.", "check": ["expand(x*(x + 1) + 2*(x - 1) - 2) == x**2 + 3*x - 4", "factor(x**2 + 3*x - 4) == (x + 4)*(x - 1)", "simplify(x/(x - 1) + 2/(x + 1) - 2/(x**2 - 1) - (x + 4)/(x + 1)) == 0"] },
+    { "id": "a27-ty-5", "statement": "Solve $\\dfrac{x}{x - 2} = \\dfrac{8}{x + 2} + \\dfrac{4x}{x^2 - 4}$.", "solution": "×$(x-2)(x+2)$: $x(x+2) = 8(x-2) + 4x \\to x^2 + 2x = 12x - 16 \\to x^2 - 10x + 16 = 0 \\to (x-2)(x-8) = 0$. Audit: $x = 2$ forbidden ✗; $x = 8$ legal ✓. Answer: 8.", "check": ["factor(x**2 - 10*x + 16) == (x - 8)*(x - 2)", "simplify(8/(8 - 2) - 8/(8 + 2) - 4*8/(8**2 - 4)) == 0"] },
+    { "id": "a27-ty-6", "statement": "A tank fills by pipe A in 6 h and drains by pipe B in 9 h. Both open: how long to fill?", "solution": "Net rate: $\\frac{1}{6} - \\frac{1}{9} = \\frac{1}{18}$: 18 hours.", "check": ["Rational(1,6) - Rational(1,9) == Rational(1,18)"] }
+  ]
+}

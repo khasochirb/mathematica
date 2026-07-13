@@ -1,0 +1,282 @@
+{
+  "slug": "radicals-and-rational-exponents",
+  "title": "Radicals & Rational Exponents",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Fractional powers as roots, radical arithmetic without fear, equations that manufacture phantom solutions, and inverse functions — the door logarithms walk through next unit.",
+  "buildsOn": "Exponent rules from Algebra 1; Unit 1's function machine.",
+  "lessons": [
+    {
+      "slug": "rational-exponents",
+      "title": "Rational Exponents",
+      "concreteComparison": "What could 8 to the power ⅓ possibly mean? You can't multiply 8 by itself a third of a time. But the exponent LAWS vote unanimously: whatever it is, cubing it must give 8. So it's the cube root — fractional powers are roots in disguise.",
+      "objective": "Convert between radical and exponent notation, evaluate rational powers, and simplify using the exponent laws.",
+      "concept": [
+        "Define $a^{1/n} = \\sqrt[n]{a}$ — forced by the law $(a^{1/n})^n = a^{n/n} = a$. Then $a^{m/n} = (\\sqrt[n]{a})^m$: denominator = root, numerator = power. $8^{2/3} = (\\sqrt[3]{8})^2 = 2^2 = 4$.",
+        "Root first is almost always lighter: $27^{4/3}$ as $(\\sqrt[3]{27})^4 = 3^4 = 81$ beats computing $27^4 = 531441$ first. Negative exponents still mean reciprocal: $16^{-3/4} = \\frac{1}{(\\sqrt[4]{16})^3} = \\frac{1}{8}$.",
+        "ALL the exponent laws survive: $x^{1/2} \\cdot x^{1/3} = x^{5/6}$, $(x^{2/3})^{3/4} = x^{1/2}$. One notation for roots and powers means one rulebook — that's the whole point of the definition."
+      ],
+      "keyIdea": "a^(m/n) = (n-th root of a)^m — denominator roots, numerator powers, root first for small numbers — and every exponent law applies unchanged.",
+      "facts": [
+        { "title": "The dictionary", "latex": "a^{m/n} = \\left(\\sqrt[n]{a}\\right)^m", "explanation": "Bottom of the fraction = index of the root; top = ordinary power." },
+        { "title": "Laws unchanged", "latex": "x^{p} x^{q} = x^{p+q}, \\quad (x^p)^q = x^{pq}", "explanation": "Fractions obey the same addition/multiplication of exponents." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a251-we1",
+          "statement": "Evaluate $8^{2/3}$, $16^{-3/4}$, and $25^{3/2}$.",
+          "solution": "$8^{2/3} = (\\sqrt[3]{8})^2 = 4$. $16^{-3/4} = \\frac{1}{(\\sqrt[4]{16})^3} = \\frac{1}{2^3} = \\frac{1}{8}$. $25^{3/2} = (\\sqrt{25})^3 = 125$.",
+          "check": ["8**Rational(2,3) == 4", "16**Rational(-3,4) == Rational(1,8)", "25**Rational(3,2) == 125"]
+        },
+        {
+          "id": "a251-we2",
+          "statement": "Simplify $x^{1/2} \\cdot x^{1/3}$ and $\\left(x^{2/3}\\right)^{3/4} \\cdot x^{-1/6}$ (for $x > 0$).",
+          "solution": "Add: $x^{1/2 + 1/3} = x^{5/6}$. Multiply then add: $x^{1/2} \\cdot x^{-1/6} = x^{1/2 - 1/6} = x^{1/3}$.",
+          "check": ["Rational(1,2) + Rational(1,3) == Rational(5,6)", "Rational(2,3)*Rational(3,4) == Rational(1,2)", "Rational(1,2) - Rational(1,6) == Rational(1,3)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading $a^{m/n}$ upside down: $8^{2/3}$ as the square root of $8^3$... wait, as $(\\sqrt{8})^3$.", "correction": "The DENOMINATOR is the root's index: $8^{2/3}$ = cube root, then square: 4. Mnemonic: the root sits at the bottom, like a tree's.", "authored": true },
+        { "text": "Treating the negative in $16^{-3/4}$ as making the answer negative.", "correction": "Negative exponent = reciprocal, nothing more: $\\frac{1}{16^{3/4}} = \\frac{1}{8}$ — positive. Sign of the EXPONENT and sign of the RESULT are unrelated for positive bases.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a251-t1",
+          "statement": "Evaluate $27^{2/3}$, $81^{3/4}$, and $4^{-5/2}$.",
+          "solution": "$(\\sqrt[3]{27})^2 = 9$; $(\\sqrt[4]{81})^3 = 27$; $\\frac{1}{(\\sqrt{4})^5} = \\frac{1}{32}$.",
+          "check": ["27**Rational(2,3) == 9", "81**Rational(3,4) == 27", "4**Rational(-5,2) == Rational(1,32)"]
+        },
+        {
+          "id": "a251-t2",
+          "statement": "Write $\\sqrt[3]{x^2} \\cdot \\sqrt{x}$ as a single power of $x$ (for $x > 0$).",
+          "solution": "$x^{2/3} \\cdot x^{1/2} = x^{2/3 + 1/2} = x^{7/6}$.",
+          "check": ["Rational(2,3) + Rational(1,2) == Rational(7,6)"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "A fraction upstairs", "body": "Exponents started as counting: $2^3$ means three 2's multiplied. Then zero and negatives forced extensions ($2^0 = 1$, $2^{-1} = \\frac{1}{2}$) chosen so the LAWS keep working. One frontier left: fractions. Same strategy — let the laws decide what $8^{1/3}$ must be." },
+          { "kind": "exponentBuilder", "eyebrow": "Warm up", "title": "The counting picture", "teach": "Integer exponents, the familiar machine: base and count. Watch $2^4$ unfold into $2 \\cdot 2 \\cdot 2 \\cdot 2 = 16$. Every extension — zero, negative, and today's fractions — is designed so THIS machine's laws never break.", "config": { "base": 2, "exp": 4, "minBase": 2, "maxBase": 5, "minExp": 1, "maxExp": 6, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The definition", "title": "The laws decide", "body": "If the power law is to survive, $(8^{1/3})^3$ must equal $8^{3/3} = 8^1 = 8$. So $8^{1/3}$ is a number whose CUBE is 8 — the cube root, 2. In general: $a^{1/n} = \\sqrt[n]{a}$, and stacking a power on top, $a^{m/n} = (\\sqrt[n]{a})^m$. Denominator = root, numerator = power." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Three evaluations", "problemId": "a251-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the dictionary", "title": "Root at the bottom", "prompt": "$32^{3/5} = $ ?", "options": ["$8$", "$2$", "$96/5$", "$\\sqrt{32^5}$... a huge number"], "correctIndex": 0, "explanation": "Fifth root first: $\\sqrt[5]{32} = 2$; then cube: $8$. Root at the bottom, power on top, small numbers throughout.", "check": ["32**Rational(3,5) == 8", "2**5 == 32"] },
+          { "kind": "teach", "eyebrow": "Strategy", "title": "Root first", "body": "$(\\sqrt[n]{a})^m$ and $\\sqrt[n]{a^m}$ are equal — but not equally pleasant. $27^{4/3}$ root-first: $3^4 = 81$. Power-first: $\\sqrt[3]{531441}$. Take the root while the number is small; save the power for last. And negative exponents just flip: reciprocal first OR last, your choice." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Laws with fractions", "problemId": "a251-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the laws", "title": "Add the exponents", "prompt": "$x^{3/4} \\cdot x^{1/2} = $ ? (for $x > 0$)", "options": ["$x^{5/4}$", "$x^{3/8}$", "$x^{4/6}$", "$x^{2}$"], "correctIndex": 0, "explanation": "Same base multiplied → ADD exponents: $\\frac{3}{4} + \\frac{1}{2} = \\frac{5}{4}$. (Multiplying the exponents is the power-of-a-power law — different situation.)", "check": ["Rational(3,4) + Rational(1,2) == Rational(5,4)"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Translate, then compute", "body": "Facing any rational power: write the translation line first — $16^{3/4} = (\\sqrt[4]{16})^3$ — before touching numbers. The one visible line kills the upside-down error, and fraction arithmetic (for the laws) happens on paper, not in your head." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Evaluate three", "problemId": "a251-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Radicals to powers", "problemId": "a251-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$a^{m/n} = (\\sqrt[n]{a})^m$: denominator roots, numerator powers.", "Root first keeps numbers small; negative exponent = reciprocal.", "All exponent laws hold — fractions add and multiply as usual."] }
+        ]
+      }
+    },
+    {
+      "slug": "simplifying-radicals-and-operations",
+      "title": "Simplifying Radicals & Operations",
+      "concreteComparison": "√50 and 5√2 are the same number wearing different clothes — and only one outfit lets you spot that √50 + √2 is really 6√2. Simplified form isn't pedantry; it's how radicals become combinable.",
+      "objective": "Simplify radicals by extracting perfect powers, add/subtract/multiply radical expressions, and rationalize denominators.",
+      "concept": [
+        "**Simplify by extraction**: hunt the largest perfect-square factor. $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$; $\\sqrt{72} = 6\\sqrt{2}$. Cube roots extract perfect cubes: $\\sqrt[3]{54} = \\sqrt[3]{27 \\cdot 2} = 3\\sqrt[3]{2}$.",
+        "**Add/subtract like radicals only**: $3\\sqrt{2} + 5\\sqrt{2} = 8\\sqrt{2}$, but $\\sqrt{2} + \\sqrt{3}$ stays put. Often simplifying REVEALS likeness: $\\sqrt{50} + \\sqrt{18} = 5\\sqrt{2} + 3\\sqrt{2} = 8\\sqrt{2}$. Multiply by combining under one root: $\\sqrt{6} \\cdot \\sqrt{10} = \\sqrt{60} = 2\\sqrt{15}$.",
+        "**Rationalize**: no radicals downstairs. Single root: $\\frac{5}{\\sqrt{3}} = \\frac{5\\sqrt{3}}{3}$. Binomial with roots: multiply by the CONJUGATE — $\\frac{2}{3 - \\sqrt{5}} = \\frac{2(3 + \\sqrt{5})}{9 - 5} = \\frac{3 + \\sqrt{5}}{2}$ — the same trick that cleared complex denominators in Unit 2."
+      ],
+      "keyIdea": "Extract the largest perfect power, combine only like radicals (simplify first to expose them), and rationalize denominators — with conjugates when a binomial blocks the way.",
+      "facts": [
+        { "title": "Product rule", "latex": "\\sqrt{ab} = \\sqrt{a}\\sqrt{b} \\;\\; (a, b \\ge 0)", "explanation": "The extraction engine — factor out perfect squares." },
+        { "title": "Conjugate clear-out", "latex": "(3 - \\sqrt{5})(3 + \\sqrt{5}) = 9 - 5 = 4", "explanation": "Difference of squares eats the root — same trick as complex division." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a252-we1",
+          "statement": "Simplify $\\sqrt{50} + \\sqrt{18} - \\sqrt{8}$.",
+          "solution": "Extract: $5\\sqrt{2} + 3\\sqrt{2} - 2\\sqrt{2} = 6\\sqrt{2}$. Unsimplified, nothing looked combinable; simplified, they're all $\\sqrt{2}$'s.",
+          "check": ["simplify(sqrt(50) - 5*sqrt(2)) == 0", "simplify(sqrt(18) - 3*sqrt(2)) == 0", "simplify(sqrt(8) - 2*sqrt(2)) == 0", "simplify(sqrt(50) + sqrt(18) - sqrt(8) - 6*sqrt(2)) == 0"]
+        },
+        {
+          "id": "a252-we2",
+          "statement": "Rationalize $\\dfrac{6}{\\sqrt{12}}$ and $\\dfrac{4}{\\sqrt{7} - \\sqrt{3}}$.",
+          "solution": "First simplify: $\\sqrt{12} = 2\\sqrt{3}$, so $\\frac{6}{2\\sqrt{3}} = \\frac{3}{\\sqrt{3}} = \\sqrt{3}$. Second: conjugate $\\sqrt{7} + \\sqrt{3}$: $\\frac{4(\\sqrt{7} + \\sqrt{3})}{7 - 3} = \\sqrt{7} + \\sqrt{3}$.",
+          "check": ["simplify(6/sqrt(12) - sqrt(3)) == 0", "simplify(4/(sqrt(7) - sqrt(3)) - (sqrt(7) + sqrt(3))) == 0", "7 - 3 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Adding under the root: $\\sqrt{9} + \\sqrt{16} = \\sqrt{25} = 5$.", "correction": "$3 + 4 = 7 \\ne 5$. The product rule has NO addition twin: $\\sqrt{a + b} \\ne \\sqrt{a} + \\sqrt{b}$. Roots distribute over ×, never over +.", "authored": true },
+        { "text": "Stopping extraction early: $\\sqrt{72} = \\sqrt{4 \\cdot 18} = 2\\sqrt{18}$, done.", "correction": "$18$ still hides a 9: $2 \\cdot 3\\sqrt{2} = 6\\sqrt{2}$. Hunt the LARGEST square (36), or keep extracting until the radicand is square-free.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a252-t1",
+          "statement": "Simplify $\\sqrt{75} + 2\\sqrt{27}$ and $\\sqrt[3]{16} \\cdot \\sqrt[3]{4}$.",
+          "solution": "$5\\sqrt{3} + 6\\sqrt{3} = 11\\sqrt{3}$. Cubes: $\\sqrt[3]{64} = 4$.",
+          "check": ["simplify(sqrt(75) + 2*sqrt(27) - 11*sqrt(3)) == 0", "simplify(root(16,3)*root(4,3) - 4) == 0"]
+        },
+        {
+          "id": "a252-t2",
+          "statement": "Rationalize $\\dfrac{10}{2 + \\sqrt{3}}$ and expand $(2 + \\sqrt{5})(3 - \\sqrt{5})$.",
+          "solution": "Conjugate: $\\frac{10(2 - \\sqrt{3})}{4 - 3} = 20 - 10\\sqrt{3}$. FOIL: $6 - 2\\sqrt{5} + 3\\sqrt{5} - 5 = 1 + \\sqrt{5}$.",
+          "check": ["simplify(10/(2 + sqrt(3)) - (20 - 10*sqrt(3))) == 0", "expand((2 + sqrt(5))*(3 - sqrt(5)) - (1 + sqrt(5))) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Same number, different clothes", "body": "$\\sqrt{50}$, $5\\sqrt{2}$, and $\\frac{10}{\\sqrt{2}}$ are one number in three outfits. Without a standard outfit, you can't combine terms, compare answers, or even notice two expressions are equal. This lesson sets the standard: nothing square left inside, nothing rooted left below." },
+          { "kind": "teach", "eyebrow": "Extraction", "title": "Perfect squares walk out", "body": "$\\sqrt{ab} = \\sqrt{a}\\sqrt{b}$ (for non-negatives) — so factor the radicand and let perfect squares exit: $\\sqrt{50} = \\sqrt{25}\\sqrt{2} = 5\\sqrt{2}$. Hunt the LARGEST square factor, or extract repeatedly until square-free. Cube roots: same game with cubes ($\\sqrt[3]{54} = 3\\sqrt[3]{2}$). Warning: the rule is multiplication-only — $\\sqrt{9 + 16}$ is $5$, not $7$." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Simplify to combine", "problemId": "a252-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check extraction", "title": "Largest square out", "prompt": "$\\sqrt{200} = $ ?", "options": ["$10\\sqrt{2}$", "$2\\sqrt{50}$", "$5\\sqrt{8}$", "$100\\sqrt{2}$"], "correctIndex": 0, "explanation": "$200 = 100 \\cdot 2$: out comes 10. Options B and C extracted a square, just not the biggest — they're unfinished, not wrong-number.", "check": ["simplify(sqrt(200) - 10*sqrt(2)) == 0", "simplify(2*sqrt(50) - 10*sqrt(2)) == 0"] },
+          { "kind": "tapQuestion", "eyebrow": "Check the trap", "title": "No addition twin", "prompt": "$\\sqrt{36 + 64} = $ ?", "options": ["$10$", "$14$", "$6 + 8$, so $14$... and also $10$?", "$48$"], "correctIndex": 0, "explanation": "Add first: $\\sqrt{100} = 10$. Splitting into $6 + 8 = 14$ uses a fake rule — roots never distribute over addition. (Triangle sides 6-8-10 live on exactly this fact.)", "check": ["sqrt(36 + 64) == 10", "6 + 8 == 14"] },
+          { "kind": "teach", "eyebrow": "Downstairs", "title": "Rationalizing", "body": "Convention: no radicals in denominators. Single root — multiply by itself: $\\frac{5}{\\sqrt{3}} \\cdot \\frac{\\sqrt{3}}{\\sqrt{3}} = \\frac{5\\sqrt{3}}{3}$. Binomial like $3 - \\sqrt{5}$ — multiply by its **conjugate** $3 + \\sqrt{5}$: difference of squares leaves $9 - 5 = 4$, root gone. You've run this exact play before: it cleared $i$ from denominators in Unit 2." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two rationalizations", "problemId": "a252-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Simplify before you operate", "body": "Whatever the task — adding, multiplying, rationalizing — extract perfect powers FIRST. Smaller radicands mean lighter arithmetic, hidden like-terms surface, and half the time the problem collapses before the 'real' work starts ($\\frac{6}{\\sqrt{12}}$ became $\\sqrt{3}$ in two steps)." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Combine after extracting", "problemId": "a252-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Conjugates at work", "problemId": "a252-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Extract the largest perfect power; roots split over × only.", "Only like radicals add — simplify first to expose them.", "Rationalize: self-multiply for single roots, conjugate for binomials."] }
+        ]
+      }
+    },
+    {
+      "slug": "radical-equations",
+      "title": "Radical Equations & Extraneous Solutions",
+      "concreteComparison": "Squaring both sides of an equation is like photocopying a document with its 'VOID' watermark removed — the copy can say things the original never did. Radical equations force you to square, so every answer must be walked back to the original for inspection.",
+      "objective": "Solve radical equations by isolating and raising to powers, and detect extraneous solutions by checking the original.",
+      "concept": [
+        "The routine: ISOLATE the radical, then raise both sides to the matching power. $\\sqrt{2x + 3} = 5 \\to 2x + 3 = 25 \\to x = 11$. Two radicals? Isolate one, square, isolate the survivor, square again.",
+        "**Why phantoms appear**: squaring is not reversible — from $x = 3$ AND from $x = -3$, squaring gives $x^2 = 9$. The squared equation remembers less, so it can hold extra 'solutions' the original rejects. These are **extraneous**: correct for the squared version, false for the real one.",
+        "$\\sqrt{x + 7} = x - 5$: squaring gives $x^2 - 11x + 18 = 0 \\to x = 9$ or $x = 2$. Check 9: $\\sqrt{16} = 4 = 9 - 5$ ✓. Check 2: $\\sqrt{9} = 3 \\ne -3$ ✗ — extraneous (a square root can't output $-3$). Solution: $x = 9$ only."
+      ],
+      "keyIdea": "Isolate, raise to the power, solve — then CHECK every candidate in the original: squaring forgets signs, so phantoms are routine, not rare.",
+      "facts": [
+        { "title": "The routine", "latex": "\\text{isolate } \\sqrt{\\;} \\to \\text{square} \\to \\text{solve} \\to \\text{CHECK}", "explanation": "The check is a mandatory step, not a courtesy." },
+        { "title": "Phantom source", "latex": "a = b \\Rightarrow a^2 = b^2, \\text{ but not back}", "explanation": "$(-3)^2 = 3^2$: squaring merges cases the original keeps apart." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a253-we1",
+          "statement": "Solve $\\sqrt{x + 7} = x - 5$.",
+          "solution": "Square: $x + 7 = x^2 - 10x + 25 \\to x^2 - 11x + 18 = 0 \\to (x - 9)(x - 2) = 0$. Check $x = 9$: $\\sqrt{16} = 4$ and $9 - 5 = 4$ ✓. Check $x = 2$: $\\sqrt{9} = 3$ but $2 - 5 = -3$ ✗ extraneous. Answer: $x = 9$.",
+          "check": ["factor(x**2 - 11*x + 18) == (x - 9)*(x - 2)", "sqrt(9 + 7) == 9 - 5", "sqrt(2 + 7) == 3", "2 - 5 == -3"]
+        },
+        {
+          "id": "a253-we2",
+          "statement": "Solve $\\sqrt[3]{4x - 7} = 3$ and explain why no check drama arises.",
+          "solution": "Cube: $4x - 7 = 27 \\to x = \\frac{34}{4} = \\frac{17}{2}$. Cubing IS reversible (every number has one real cube root, signs preserved), so odd-power equations don't manufacture phantoms — the check is a mere arithmetic audit: $\\sqrt[3]{34 - 7} = \\sqrt[3]{27} = 3$ ✓.",
+          "check": ["4*Rational(17,2) - 7 == 27", "root(27, 3) == 3"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Squaring term-by-term: from $\\sqrt{x} + 2 = 5$ writing $x + 4 = 25$.", "correction": "Square SIDES, not terms: $(\\sqrt{x} + 2)^2 = x + 4\\sqrt{x} + 4$ — messy, which is why you isolate first: $\\sqrt{x} = 3 \\to x = 9$.", "authored": true },
+        { "text": "Skipping the check because the algebra was careful.", "correction": "Phantoms aren't caused by sloppiness — they're built into squaring itself. Perfect algebra still produces them ($x = 2$ above). The check is part of the method.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a253-t1",
+          "statement": "Solve $\\sqrt{3x + 1} - 4 = 0$.",
+          "solution": "Isolate: $\\sqrt{3x + 1} = 4 \\to 3x + 1 = 16 \\to x = 5$. Check: $\\sqrt{16} = 4$ ✓.",
+          "check": ["3*5 + 1 == 16", "sqrt(16) == 4"]
+        },
+        {
+          "id": "a253-t2",
+          "statement": "Solve $x = \\sqrt{x + 6}$.",
+          "solution": "Square: $x^2 = x + 6 \\to (x - 3)(x + 2) = 0 \\to x = 3, -2$. Check 3: $\\sqrt{9} = 3$ ✓. Check $-2$: $\\sqrt{4} = 2 \\ne -2$ ✗. Answer: $x = 3$.",
+          "check": ["factor(x**2 - x - 6) == (x - 3)*(x + 2)", "sqrt(3 + 6) == 3", "sqrt(-2 + 6) == 2"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The unknown under the root", "body": "Depth from pressure, speed from skid marks, pendulum period from length — physics formulas trap variables under square roots constantly. Freeing them means squaring, and squaring has a dark side this lesson drags into the light: it can CREATE solutions that were never there." },
+          { "kind": "teach", "eyebrow": "The routine", "title": "Isolate, then raise", "body": "Get the radical ALONE on one side first — squaring a side that still carries stray terms creates cross-term chaos. Then raise both sides to the root's index: square for $\\sqrt{\\;}$, cube for $\\sqrt[3]{\\;}$. What remains is polynomial territory you already own.", "beats": ["Isolate the radical (move everything else across).", "Raise both sides to the matching power.", "Solve the polynomial equation that remains.", "Check every candidate in the ORIGINAL."] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "One real, one phantom", "problemId": "a253-we1" },
+          { "kind": "teach", "eyebrow": "The dark side", "title": "Where phantoms come from", "body": "Squaring both sides of $x = -3$ gives $x^2 = 9$ — an equation that ALSO accepts $x = +3$. Information (the sign) was destroyed, and destroyed information means extra candidates downstream. That's all an extraneous solution is: a candidate the forgetful squared equation accepts but the sharp-eyed original rejects. The check isn't paranoia; it's bookkeeping for lost information." },
+          { "kind": "tapQuestion", "eyebrow": "Check the concept", "title": "Spot the phantom", "prompt": "Solving $\\sqrt{5 - x} = x - 3$ yields candidates $x = 4$ and $x = 1$. Which survive the original?", "options": ["only $x = 4$", "only $x = 1$", "both", "neither"], "correctIndex": 0, "explanation": "$x = 4$: $\\sqrt{1} = 1 = 4 - 3$ ✓. $x = 1$: $\\sqrt{4} = 2$ but $1 - 3 = -2$ ✗ — the root's output can't be negative. Classic phantom.", "check": ["sqrt(5 - 4) == 4 - 3", "sqrt(5 - 1) == 2", "1 - 3 == -2"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Cube roots: no drama", "problemId": "a253-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the contrast", "title": "Why cubes are safe", "prompt": "Odd-index radical equations (cube roots, fifth roots) don't produce extraneous solutions because:", "options": ["cubing preserves signs — it's reversible, no information lost", "cube roots are always positive", "they can't be isolated", "they're not real equations"], "correctIndex": 0, "explanation": "$(-2)^3 = -8 \\ne 8 = 2^3$: distinct inputs stay distinct, so cubing forgets nothing and creates nothing. Only EVEN powers merge signs.", "check": ["(-2)**3 == -8", "2**3 == 8"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Pre-screen with the range", "body": "Before solving $\\sqrt{\\text{stuff}} = x - 5$, note: the left side is $\\ge 0$, so any solution needs $x \\ge 5$. Candidates violating that are dead on arrival — you've spotted the phantom before doing the check arithmetic. Range-thinking (Unit 1) as a solving tool." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Clean solve", "problemId": "a253-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Catch the phantom", "problemId": "a253-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Isolate the radical, raise to the index, solve, CHECK the original.", "Even powers destroy sign information → phantoms are structural.", "Odd roots are reversible: no extraneous solutions."] }
+        ]
+      }
+    },
+    {
+      "slug": "inverse-functions",
+      "title": "Inverse Functions",
+      "concreteComparison": "Every travel app has a reverse button: swap origin and destination. An inverse function is that button for math — it runs the machine backwards, output to input. Squaring's reverse is the square root; next unit, the exponential's reverse gets a name: the logarithm.",
+      "objective": "Find inverse functions algebraically, verify by composition, restrict domains where needed, and read the y = x reflection.",
+      "concept": [
+        "$f^{-1}$ undoes $f$: if $f(2) = 7$ then $f^{-1}(7) = 2$ — every $(a, b)$ pair flips to $(b, a)$. Graphically, the inverse is $f$'s reflection across the line $y = x$. To FIND it: write $y = f(x)$, swap $x \\leftrightarrow y$, solve for $y$.",
+        "$f(x) = 2x + 3$: swap: $x = 2y + 3 \\to y = \\frac{x - 3}{2}$. **Verify by composition**: $f^{-1}(f(x)) = \\frac{(2x + 3) - 3}{2} = x$ ✓ — both orders must return $x$.",
+        "Only **one-to-one** functions (each output from ONE input; graphs passing the horizontal line test) invert cleanly. $f(x) = x^2$ fails — 9 came from both 3 and $-3$ — so we restrict: on $x \\ge 0$, its inverse is $\\sqrt{x}$. Domain and range SWAP between $f$ and $f^{-1}$."
+      ],
+      "keyIdea": "Inverse = the machine run backwards: swap x and y and re-solve, verify with f(f⁻¹(x)) = x, and restrict to one-to-one pieces when outputs repeat.",
+      "facts": [
+        { "title": "The recipe", "latex": "y = f(x) \\;\\to\\; x = f(y) \\;\\to\\; \\text{solve for } y", "explanation": "Swap the roles, then untangle." },
+        { "title": "The verification", "latex": "f(f^{-1}(x)) = x = f^{-1}(f(x))", "explanation": "Both compositions must be the identity — one direction isn't proof." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a254-we1",
+          "statement": "Find the inverse of $f(x) = \\dfrac{3x - 1}{2}$ and verify by composition.",
+          "solution": "Swap: $x = \\frac{3y - 1}{2} \\to 2x = 3y - 1 \\to y = \\frac{2x + 1}{3}$. Verify: $f(f^{-1}(x)) = \\frac{3 \\cdot \\frac{2x+1}{3} - 1}{2} = \\frac{2x + 1 - 1}{2} = x$ ✓.",
+          "check": ["simplify((3*((2*x + 1)/3) - 1)/2 - x) == 0", "simplify((2*((3*x - 1)/2) + 1)/3 - x) == 0"]
+        },
+        {
+          "id": "a254-we2",
+          "statement": "For $f(x) = x^2 - 4$ with domain $x \\ge 0$, find $f^{-1}$ and state its domain.",
+          "solution": "Swap: $x = y^2 - 4 \\to y = \\sqrt{x + 4}$ (positive root — the restriction chose it). Domain of $f^{-1}$ = range of $f$ = $[-4, \\infty)$: $f^{-1}(x) = \\sqrt{x + 4}$, $x \\ge -4$. Check: $f(2) = 0$ and $f^{-1}(0) = 2$ ✓.",
+          "check": ["2**2 - 4 == 0", "sqrt(0 + 4) == 2", "sqrt(5**2 - 4 + 4) == 5"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading $f^{-1}(x)$ as $\\frac{1}{f(x)}$.", "correction": "The $-1$ marks INVERSE (undo), not reciprocal. $f(x) = 2x + 3$: reciprocal is $\\frac{1}{2x+3}$; inverse is $\\frac{x-3}{2}$ — totally different objects.", "authored": true },
+        { "text": "Verifying with one composition only.", "correction": "For full credit (and full truth) check both orders: $f(f^{-1}(x)) = x$ AND $f^{-1}(f(x)) = x$ — with restricted domains the two checks can genuinely differ.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a254-t1",
+          "statement": "Find $f^{-1}$ for $f(x) = 5x - 7$ and compute $f^{-1}(8)$.",
+          "solution": "Swap: $x = 5y - 7 \\to y = \\frac{x + 7}{5}$. $f^{-1}(8) = 3$. Sanity: $f(3) = 8$ ✓.",
+          "check": ["Rational(8 + 7, 5) == 3", "5*3 - 7 == 8", "simplify(5*((x + 7)/5) - 7 - x) == 0"]
+        },
+        {
+          "id": "a254-t2",
+          "statement": "Is $g(x) = x^3 + 1$ one-to-one? If so, find its inverse.",
+          "solution": "Cubes never repeat outputs (odd power, strictly increasing): yes. Swap: $x = y^3 + 1 \\to y = \\sqrt[3]{x - 1}$. Check: $g(2) = 9$, $\\sqrt[3]{8} = 2$ ✓.",
+          "check": ["2**3 + 1 == 9", "root(9 - 1, 3) == 2", "simplify((root(x - 1, 3))**3 + 1 - x) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Running machines backwards", "body": "Every function so far answers 'given the input, what's the output?' Real questions often arrive REVERSED: given the fare, how far can I ride? Given the volume, what cut size? The inverse function is the forward machine rebuilt to run backwards — and building it is pure algebra." },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "Pairs flip across y = x", "teach": "Plotted: three points of $f(x) = 2x + 3$ — $(0,3), (1,5), (2,7)$ — and their flipped twins $(3,0), (5,1), (7,2)$, which belong to $f^{-1}$. Every pair mirrors across the diagonal $y = x$: swapping input and output IS reflecting across that line.", "config": { "mode": "plot", "min": -1, "max": 8, "points": [ { "x": 0, "y": 3 }, { "x": 1, "y": 5 }, { "x": 2, "y": 7 }, { "x": 3, "y": 0, "label": "flipped" }, { "x": 5, "y": 1 }, { "x": 7, "y": 2 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The recipe", "title": "Swap and re-solve", "body": "Since the inverse exchanges input and output, the algebra is disarmingly literal: in $y = f(x)$, SWAP the letters $x$ and $y$, then solve for the new $y$. For $f(x) = 2x + 3$: $x = 2y + 3 \\to y = \\frac{x-3}{2}$. Then VERIFY by composition — feed one machine into the other and demand $x$ back, in both orders." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Swap, solve, verify", "problemId": "a254-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the notation", "title": "Not a reciprocal", "prompt": "If $f(4) = 10$, then $f^{-1}(10) = $ ?", "options": ["$4$", "$\\frac{1}{10}$", "$\\frac{1}{4}$", "$-10$"], "correctIndex": 0, "explanation": "The inverse reverses the pair $(4, 10)$: $f^{-1}$ sends 10 back to 4. The $-1$ is 'undo,' never 'one over.'", "check": ["10 - 10 == 0"] },
+          { "kind": "teach", "eyebrow": "The catch", "title": "One-to-one or no inverse", "body": "A machine can only run backwards if each output has ONE possible source. $f(x) = x^2$ fails: output 9 traces to both 3 and $-3$ — the reverse machine wouldn't know which to answer. Graph test: any HORIZONTAL line hitting twice kills invertibility. The fix is surgical: restrict the domain (keep $x \\ge 0$) and invert the surviving piece — that's precisely why $\\sqrt{x}$ means the POSITIVE root." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Restrict, then invert", "problemId": "a254-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the test", "title": "Horizontal line verdict", "prompt": "Which function needs a domain restriction before it has an inverse?", "options": ["$y = |x|$", "$y = x^3$", "$y = 2x - 5$", "$y = \\sqrt[3]{x}$"], "correctIndex": 0, "explanation": "$|3| = |-3|$: horizontal lines above 0 hit the V twice. The other three are strictly increasing — every output owned by one input.", "check": ["Abs(3) == Abs(-3)", "3**3 != (-3)**3"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Swap domain and range too", "body": "Whatever was true of $f$'s OUTPUTS is true of $f^{-1}$'s INPUTS: domain and range trade places. Writing 'domain of $f^{-1}$ = range of $f$' before solving tells you the target's restrictions in advance — and next unit it's exactly how the logarithm inherits 'positive inputs only' from the exponential's positive outputs." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Linear inverse", "problemId": "a254-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "A cubic inverts whole", "problemId": "a254-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Inverse: swap $x \\leftrightarrow y$, re-solve; graphs mirror across $y = x$.", "Verify BOTH compositions return $x$.", "Horizontal-line test; restrict domains to invert; domain ↔ range swap."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a25-pr-1", "statement": "Evaluate $64^{2/3}$ and $9^{-1/2}$.", "solution": "$(\\sqrt[3]{64})^2 = 16$; $\\frac{1}{\\sqrt{9}} = \\frac{1}{3}$.", "check": ["64**Rational(2,3) == 16", "9**Rational(-1,2) == Rational(1,3)"] },
+    { "id": "a25-pr-2", "statement": "Write $\\sqrt[4]{x^3}$ with a rational exponent and simplify $x^{3/4} \\cdot x^{5/4}$ ($x>0$).", "solution": "$x^{3/4}$; product: $x^{8/4} = x^2$.", "check": ["Rational(3,4) + Rational(5,4) == 2"] },
+    { "id": "a25-pr-3", "statement": "Simplify $\\sqrt{98}$.", "solution": "$\\sqrt{49 \\cdot 2} = 7\\sqrt{2}$.", "check": ["simplify(sqrt(98) - 7*sqrt(2)) == 0"] },
+    { "id": "a25-pr-4", "statement": "Simplify $\\sqrt{45} + \\sqrt{20}$.", "solution": "$3\\sqrt{5} + 2\\sqrt{5} = 5\\sqrt{5}$.", "check": ["simplify(sqrt(45) + sqrt(20) - 5*sqrt(5)) == 0"] },
+    { "id": "a25-pr-5", "statement": "Rationalize $\\dfrac{8}{\\sqrt{6}}$.", "solution": "$\\frac{8\\sqrt{6}}{6} = \\frac{4\\sqrt{6}}{3}$.", "check": ["simplify(8/sqrt(6) - 4*sqrt(6)/3) == 0"] },
+    { "id": "a25-pr-6", "statement": "Solve $\\sqrt{2x - 5} = 3$.", "solution": "$2x - 5 = 9 \\to x = 7$. Check: $\\sqrt{9} = 3$ ✓.", "check": ["2*7 - 5 == 9", "sqrt(9) == 3"] },
+    { "id": "a25-pr-7", "statement": "Solve $x = \\sqrt{2x + 8}$, discarding any extraneous root.", "solution": "$x^2 - 2x - 8 = 0 \\to (x-4)(x+2) = 0$. Check 4: $\\sqrt{16} = 4$ ✓; $-2$: root gives $2 \\ne -2$ ✗. Answer $x = 4$.", "check": ["factor(x**2 - 2*x - 8) == (x - 4)*(x + 2)", "sqrt(2*4 + 8) == 4"] },
+    { "id": "a25-pr-8", "statement": "Find $f^{-1}$ for $f(x) = \\dfrac{x}{3} + 2$.", "solution": "Swap: $x = \\frac{y}{3} + 2 \\to y = 3(x - 2) = 3x - 6$.", "check": ["simplify((3*x - 6)/3 + 2 - x) == 0"] }
+  ],
+  "testYourself": [
+    { "id": "a25-ty-1", "statement": "Evaluate $(-27)^{2/3} + 16^{3/4}$.", "solution": "$(\\sqrt[3]{-27})^2 = 9$; $(\\sqrt[4]{16})^3 = 8$. Sum: 17.", "check": ["(-3)**3 == -27", "(-3)**2 == 9", "16**Rational(3,4) == 8", "9 + 8 == 17"] },
+    { "id": "a25-ty-2", "statement": "Simplify $2\\sqrt{75} - \\sqrt{48} + \\sqrt{12}$.", "solution": "$10\\sqrt{3} - 4\\sqrt{3} + 2\\sqrt{3} = 8\\sqrt{3}$.", "check": ["simplify(2*sqrt(75) - sqrt(48) + sqrt(12) - 8*sqrt(3)) == 0"] },
+    { "id": "a25-ty-3", "statement": "Rationalize $\\dfrac{6}{\\sqrt{5} - \\sqrt{2}}$.", "solution": "Conjugate: $\\frac{6(\\sqrt{5} + \\sqrt{2})}{5 - 2} = 2\\sqrt{5} + 2\\sqrt{2}$.", "check": ["simplify(6/(sqrt(5) - sqrt(2)) - (2*sqrt(5) + 2*sqrt(2))) == 0"] },
+    { "id": "a25-ty-4", "statement": "Solve $\\sqrt{x + 10} = x - 2$.", "solution": "$x + 10 = x^2 - 4x + 4 \\to x^2 - 5x - 6 = 0 \\to (x-6)(x+1) = 0$. Check 6: $\\sqrt{16} = 4 = 6 - 2$ ✓; $-1$: $3 \\ne -3$ ✗. Answer $x = 6$.", "check": ["factor(x**2 - 5*x - 6) == (x - 6)*(x + 1)", "sqrt(6 + 10) == 4", "6 - 2 == 4"] },
+    { "id": "a25-ty-5", "statement": "Solve $\\sqrt[3]{2x + 3} = -1$.", "solution": "Cube (reversible): $2x + 3 = -1 \\to x = -2$. Check: $\\sqrt[3]{-1} = -1$ ✓ — odd roots take negatives happily.", "check": ["2*(-2) + 3 == -1", "(-1)**3 == -1"] },
+    { "id": "a25-ty-6", "statement": "For $f(x) = (x - 3)^2$ with $x \\ge 3$: find $f^{-1}$, its domain, and $f^{-1}(25)$.", "solution": "Swap: $x = (y-3)^2 \\to y = 3 + \\sqrt{x}$ (positive branch). Domain: $x \\ge 0$. $f^{-1}(25) = 8$; check $f(8) = 25$ ✓.", "check": ["3 + sqrt(25) == 8", "(8 - 3)**2 == 25"] }
+  ]
+}

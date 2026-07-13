@@ -1,0 +1,284 @@
+{
+  "slug": "polynomial-functions",
+  "title": "Polynomial Functions",
+  "unit": 4,
+  "status": "published",
+  "blurb": "Beyond the parabola: end behavior from the leading term, division with the remainder and factor theorems, zeros with multiplicity, and equations of degree three and up.",
+  "buildsOn": "Unit 2's quadratics and complex roots; Algebra 1 factoring.",
+  "lessons": [
+    {
+      "slug": "polynomial-basics-and-end-behavior",
+      "title": "Polynomial Basics & End Behavior",
+      "concreteComparison": "From an airplane you can't see a road's potholes — only which way it heads at the horizons. Zoom out on any polynomial and the same thing happens: every term but one fades, and the leading term alone steers both far ends.",
+      "objective": "Identify degree and leading coefficient, and read end behavior and turning-point limits from them.",
+      "concept": [
+        "A **polynomial** is a sum of whole-number-power terms: $f(x) = 2x^3 - 5x^2 + x - 7$ has **degree** 3 and **leading coefficient** 2. Degree and leading sign are the two facts that control the big picture.",
+        "**End behavior** is the leading term's business alone. Even degree: both arms point the SAME way (up if positive, down if negative — like $x^2$ or its flip). Odd degree: arms OPPOSE (down-left/up-right if positive, the reverse if negative — like $x^3$ or its flip). Four patterns total.",
+        "In between, degree $n$ allows at most $n - 1$ **turning points** and at most $n$ real zeros. A degree-3 graph can turn at most twice — a wiggle with three humps can't be cubic."
+      ],
+      "keyIdea": "The leading term steers both horizons — even degree: arms together; odd: arms opposed; sign flips the picture — and degree n caps turning points at n − 1.",
+      "facts": [
+        { "title": "Four end patterns", "latex": "\\text{even}^+: \\uparrow\\uparrow \\quad \\text{even}^-: \\downarrow\\downarrow \\quad \\text{odd}^+: \\downarrow\\uparrow \\quad \\text{odd}^-: \\uparrow\\downarrow", "explanation": "Degree parity picks together/opposed; leading sign picks which way." },
+        { "title": "Shape budget", "latex": "\\deg n: \\;\\le n \\text{ real zeros}, \\;\\le n-1 \\text{ turns}", "explanation": "A degree-3 curve turns at most twice." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a241-we1",
+          "statement": "Describe the end behavior of $f(x) = -2x^4 + 7x^3 - x + 5$ and bound its turning points.",
+          "solution": "Leading term $-2x^4$: even degree, negative — BOTH arms point down. At most $4 - 1 = 3$ turning points. (Check the far right: $f(10) = -20000 + 7000 - 10 + 5 = -13005 < 0$ — heading down ✓.)",
+          "check": ["-2*10**4 + 7*10**3 - 10 + 5 == -13005", "4 - 1 == 3", "(-2)*(-10)**4 < 0"]
+        },
+        {
+          "id": "a241-we2",
+          "statement": "A degree-5 polynomial has positive leading coefficient. What are its ends doing, and can it have exactly zero real zeros?",
+          "solution": "Odd, positive: down-left, up-right. Since one arm dives to $-\\infty$ and the other climbs to $+\\infty$, the graph must CROSS the axis somewhere — at least one real zero is forced. Zero real zeros is impossible for odd degree.",
+          "check": ["(-2)**5 < 0", "2**5 > 0", "5 % 2 == 1"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading end behavior from the constant or a middle term.", "correction": "Zoomed out, $2x^3$ dwarfs $-5x^2$ a hundredfold and more. Only the LEADING term (highest power) speaks at the horizons.", "authored": true },
+        { "text": "Claiming a degree-4 graph must have exactly 3 turning points.", "correction": "$n - 1$ is a CEILING, not a promise: $y = x^4$ has just one turn. At most 3; possibly fewer.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a241-t1",
+          "statement": "Give the degree, leading coefficient, and end behavior of $g(x) = 4x^3 - x^2 + 6$ and of $h(x) = 5 - x^6$.",
+          "solution": "$g$: degree 3, leading 4, odd-positive: down-left, up-right. $h$: rewrite by power — leading term $-x^6$: degree 6, leading $-1$, even-negative: both arms DOWN.",
+          "check": ["4*(-10)**3 < 0", "4*10**3 > 0", "5 - 10**6 < 0", "5 - (-10)**6 < 0"]
+        },
+        {
+          "id": "a241-t2",
+          "statement": "Could the graph of a polynomial with both arms up and 4 turning points have degree 4? Degree 5? Degree 6?",
+          "solution": "Arms together → even degree: 5 is out. Four turns needs degree $\\ge 5$: 4 is out (max 3 turns). Degree 6 fits both: even, and $6 - 1 = 5 \\ge 4$ ✓.",
+          "check": ["4 - 1 == 3", "6 - 1 == 5", "6 % 2 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Life beyond degree 2", "body": "Lines model steady change, parabolas one turnaround. But a drone's altitude over a flight, a company's revenue over a decade — several rises and falls need HIGHER degrees. Meet the polynomial family: the good news is that two numbers (degree, leading sign) already tell you the whole silhouette." },
+          { "kind": "polyGraph", "eyebrow": "Play", "title": "The four arm patterns", "teach": "Step the degree $n$ and flip the leading sign, watching ONLY the arms. Even $n$: arms together. Odd $n$: opposed. Negative sign: whole picture flips. Four patterns — the complete catalogue, no exceptions, for every polynomial ever written.", "config": { "mode": "endBehavior", "n": 3, "negative": false } },
+          { "kind": "teach", "eyebrow": "Why", "title": "The biggest power wins", "body": "At $x = 100$, the terms of $2x^3 - 5x^2 + x - 7$ are roughly $2{,}000{,}000$ vs $-50{,}000$ vs $100$ vs $-7$: the cubic term is 97% of the total. Push further out and its share approaches everything. That's why horizons belong to the leading term — the rest is potholes." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Read the silhouette", "problemId": "a241-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the catalogue", "title": "Match the arms", "prompt": "$f(x) = -x^5 + 3x^2 - 1$: the arms point…", "options": ["up on the left, down on the right", "down on the left, up on the right", "both up", "both down"], "correctIndex": 0, "explanation": "Odd degree, NEGATIVE leading: the odd pattern, flipped — rises to the left, dives to the right.", "check": ["-(-10)**5 > 0", "-(10)**5 < 0"] },
+          { "kind": "teach", "eyebrow": "The middle", "title": "Turning-point budget", "body": "Between the horizons the graph wiggles — but on a budget: degree $n$ affords at most $n - 1$ turning points and at most $n$ real zeros. Use it forensically: a graph with 4 turns can't be degree 4 or less; arms-together plus odd zero count hints at multiplicity games (next lessons)." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Forced crossings", "problemId": "a241-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the budget", "title": "Degree from the wiggles", "prompt": "A polynomial graph shows exactly 3 turning points and both arms down. The SMALLEST possible degree is:", "options": ["$4$", "$3$", "$5$", "$6$"], "correctIndex": 0, "explanation": "3 turns needs degree $\\ge 4$; arms together needs even degree. Degree 4 satisfies both — and its leading coefficient must be negative.", "check": ["4 - 1 == 3", "4 % 2 == 0"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Silhouette first", "body": "Before any detailed work on a polynomial — zeros, sketching, equation solving — write its silhouette: degree, leading sign, arm pattern, turn budget. Thirty seconds that makes every later step self-checking: an answer violating the silhouette is wrong on arrival." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two silhouettes", "problemId": "a241-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Degree forensics", "problemId": "a241-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Leading term owns the horizons: even together, odd opposed, sign flips.", "Degree $n$: at most $n$ real zeros, at most $n-1$ turns.", "Write the silhouette before the details."] }
+        ]
+      }
+    },
+    {
+      "slug": "polynomial-division-and-the-remainder-theorem",
+      "title": "Polynomial Division & the Remainder Theorem",
+      "concreteComparison": "23 ÷ 4 gives quotient 5, remainder 3 — so 23 = 4·5 + 3. Polynomials divide the same way, and a small miracle rides along: dividing f(x) by (x − 2) leaves remainder exactly f(2). Division and evaluation are the same information.",
+      "objective": "Divide polynomials by long and synthetic division, and use the Remainder and Factor Theorems to test factors fast.",
+      "concept": [
+        "**Long division** runs on the grade-school script: divide leading terms, multiply back, subtract, bring down, repeat. $\\frac{x^3 - 4x^2 + x + 6}{x - 2}$: quotient $x^2 - 2x - 3$, remainder 0 — so $x^3 - 4x^2 + x + 6 = (x - 2)(x^2 - 2x - 3)$.",
+        "**Synthetic division** compresses the same work into one coefficient row when the divisor is $x - c$: bring down, multiply by $c$, add, repeat. The final number is the remainder; the row before it is the quotient's coefficients.",
+        "**Remainder Theorem**: dividing $f(x)$ by $(x - c)$ leaves remainder $f(c)$. **Factor Theorem** is its punchline: $f(c) = 0 \\iff (x - c)$ is a factor. Testing 'is $(x-3)$ a factor?' costs one evaluation, no division at all."
+      ],
+      "keyIdea": "f(x) = (x − c)·q(x) + f(c): the remainder IS the evaluation, so zeros and factors are the same discovery — synthetic division just makes the bookkeeping fast.",
+      "facts": [
+        { "title": "Division identity", "latex": "f(x) = (x - c)\\,q(x) + r, \\quad r = f(c)", "explanation": "Remainder Theorem: divide by $x - c$, get $f(c)$." },
+        { "title": "Factor Theorem", "latex": "f(c) = 0 \\iff (x - c) \\mid f(x)", "explanation": "Zero remainder = clean factor = root found." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a242-we1",
+          "statement": "Divide $f(x) = x^3 - 4x^2 + x + 6$ by $x - 2$ synthetically, and factor $f$ completely.",
+          "solution": "Row 1, coefficients: $1, -4, 1, 6$ with $c = 2$: bring 1; $2(1) = 2$, $-4 + 2 = -2$; $2(-2) = -4$, $1 - 4 = -3$; $2(-3) = -6$, $6 - 6 = 0$. Quotient $x^2 - 2x - 3 = (x-3)(x+1)$, remainder 0. So $f = (x-2)(x-3)(x+1)$.",
+          "check": ["expand((x - 2)*(x**2 - 2*x - 3)) == x**3 - 4*x**2 + x + 6", "factor(x**2 - 2*x - 3) == (x - 3)*(x + 1)", "2**3 - 4*2**2 + 2 + 6 == 0"]
+        },
+        {
+          "id": "a242-we2",
+          "statement": "Without dividing, find the remainder when $f(x) = 2x^3 + x^2 - 5x + 4$ is divided by $x + 2$, and decide whether $x + 2$ is a factor.",
+          "solution": "$x + 2 = x - (-2)$: remainder $= f(-2) = -16 + 4 + 10 + 4 = 2$. Nonzero → not a factor (misses by 2).",
+          "check": ["2*(-2)**3 + (-2)**2 - 5*(-2) + 4 == 2"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Synthetic division with the sign unflipped: dividing by $x + 2$ using $c = 2$.", "correction": "The box holds the ROOT of the divisor: $x + 2 = 0 \\to c = -2$. Divisor $x - c$; box gets $c$, sign and all.", "authored": true },
+        { "text": "Skipping placeholder zeros: dividing $x^3 - 7x + 6$ with the row $1, -7, 6$.", "correction": "Every power needs a slot: $x^3 + 0x^2 - 7x + 6 \\to 1, 0, -7, 6$. A missing zero shifts every later column into the wrong place.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a242-t1",
+          "statement": "Divide $x^3 - 7x + 6$ by $x - 1$ and factor completely.",
+          "solution": "Row $1, 0, -7, 6$ with $c = 1$: $1, 1, -6, 0$. Quotient $x^2 + x - 6 = (x+3)(x-2)$. So $x^3 - 7x + 6 = (x-1)(x-2)(x+3)$.",
+          "check": ["expand((x - 1)*(x**2 + x - 6)) == x**3 - 7*x + 6", "factor(x**2 + x - 6) == (x + 3)*(x - 2)", "1 - 7 + 6 == 0"]
+        },
+        {
+          "id": "a242-t2",
+          "statement": "For which value of $k$ is $x - 3$ a factor of $f(x) = x^3 - 2x^2 + kx - 12$?",
+          "solution": "Factor Theorem: need $f(3) = 0$: $27 - 18 + 3k - 12 = 0 \\to 3k = 3 \\to k = 1$.",
+          "check": ["27 - 18 + 3*1 - 12 == 0", "solve(27 - 18 + 3*k - 12, k) == [1]"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Cracking cubics open", "body": "Factoring solved quadratics; degree 3 and up resists the old puzzles. The wedge that cracks them: DIVISION. If you can peel one factor $(x - c)$ off a cubic, what remains is a quadratic — solved territory. This lesson builds the peeler and its shortcut." },
+          { "kind": "teach", "eyebrow": "The identity", "title": "Quotient and remainder", "body": "Like integers: $f(x) = (\\text{divisor})(\\text{quotient}) + \\text{remainder}$, with the remainder's degree below the divisor's. Long division finds both by the familiar script — divide the leading terms, multiply back, subtract, repeat. It always works; it's just verbose. For the workhorse case (divisor $x - c$) there's a compression…" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Synthetic peel, then factor", "problemId": "a242-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the mechanics", "title": "Set up the row", "prompt": "To divide $x^4 - 3x^2 + 5x - 1$ by $x + 1$ synthetically, the setup is:", "options": ["box $-1$; row $1, 0, -3, 5, -1$", "box $1$; row $1, 0, -3, 5, -1$", "box $-1$; row $1, -3, 5, -1$", "box $1$; row $1, -3, 5, -1$"], "correctIndex": 0, "explanation": "Root of $x + 1$ is $-1$ (sign flips), and the missing $x^3$ needs its placeholder 0 or every column shifts.", "check": ["(-1) + 1 == 0"] },
+          { "kind": "teach", "eyebrow": "The theorem", "title": "The remainder is an evaluation", "body": "Plug $x = c$ into the identity $f(x) = (x - c)q(x) + r$: the first term dies instantly, leaving $f(c) = r$. That's the **Remainder Theorem** — division by $x - c$ and evaluation at $c$ carry identical information. Corollary (**Factor Theorem**): remainder zero $\\iff$ $f(c) = 0$ $\\iff$ $(x - c)$ is a factor $\\iff$ $c$ is a root. Four phrasings, one fact." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Remainder without dividing", "problemId": "a242-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the theorem", "title": "One evaluation", "prompt": "$f(x) = x^3 - 6x^2 + 11x - 6$. Is $(x - 1)$ a factor?", "options": ["Yes — $f(1) = 0$", "No — $f(1) = 2$", "Can't tell without dividing", "Only if the quotient is quadratic"], "correctIndex": 0, "explanation": "$f(1) = 1 - 6 + 11 - 6 = 0$: clean factor, by the Factor Theorem. (Dividing would confirm quotient $x^2 - 5x + 6$.)", "check": ["1 - 6 + 11 - 6 == 0", "expand((x - 1)*(x**2 - 5*x + 6)) == x**3 - 6*x**2 + 11*x - 6"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Evaluate before you divide", "body": "Division is for AFTER you know it will succeed. Test candidate roots by evaluation (fast, mental for small $c$); divide only when $f(c) = 0$ tells you the peel is clean. Order of operations for humans: probe cheaply, commit expensively." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Placeholder discipline", "problemId": "a242-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Tune k for a factor", "problemId": "a242-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$f(x) = (x-c)q(x) + f(c)$ — the remainder IS the evaluation.", "Synthetic division: root in the box, placeholders in the row.", "$f(c) = 0 \\iff (x-c)$ is a factor: probe by evaluating, then peel."] }
+        ]
+      }
+    },
+    {
+      "slug": "factoring-and-zeros",
+      "title": "Factoring Higher Degrees & Zeros",
+      "concreteComparison": "A locked cubic usually has one loose screw — an integer root hiding among the divisors of its constant term. Find it by trial, peel it off by division, and the leftover quadratic opens with keys you've owned since Unit 2.",
+      "objective": "Factor cubics and quartics via the rational root search, grouping, quadratic form, and sum/difference of cubes; connect zeros to x-intercepts with multiplicity.",
+      "concept": [
+        "**Rational root search**: integer roots of $x^3 - 4x^2 + x + 6$ hide among divisors of 6: $\\pm 1, \\pm 2, \\pm 3, \\pm 6$. Test by evaluation ($f(-1) = 0$ ✓), peel with synthetic division, finish the quadratic. This is THE standard cubic-cracking routine.",
+        "Pattern shortcuts: **grouping** ($x^3 - 3x^2 + 4x - 12 = x^2(x-3) + 4(x-3) = (x-3)(x^2+4)$), **quadratic form** ($x^4 - 13x^2 + 36$: substitute $u = x^2$), and **sum/difference of cubes**: $a^3 \\pm b^3 = (a \\pm b)(a^2 \\mp ab + b^2)$.",
+        "Each real zero is an x-intercept, and its **multiplicity** sets the touch: odd → the graph CROSSES; even → it BOUNCES off the axis. $f(x) = (x-1)^2(x+2)$: bounce at 1, cross at $-2$."
+      ],
+      "keyIdea": "Hunt an integer root among the constant's divisors, peel, finish the quadratic; recognize grouping / quadratic form / cubes patterns; and read multiplicity as cross (odd) or bounce (even).",
+      "facts": [
+        { "title": "Root candidates", "latex": "\\text{integer roots} \\mid \\text{constant term}", "explanation": "For monic polynomials: test divisors of the constant, both signs." },
+        { "title": "Cubes patterns", "latex": "a^3 - b^3 = (a-b)(a^2+ab+b^2)", "explanation": "And $a^3 + b^3 = (a+b)(a^2 - ab + b^2)$ — the middle sign flips." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a243-we1",
+          "statement": "Factor $f(x) = x^3 - 4x^2 + x + 6$ completely and list its zeros.",
+          "solution": "Candidates: $\\pm 1, \\pm 2, \\pm 3, \\pm 6$. $f(-1) = -1 - 4 - 1 + 6 = 0$ ✓. Peel $(x+1)$: quotient $x^2 - 5x + 6 = (x-2)(x-3)$. So $f = (x+1)(x-2)(x-3)$; zeros $-1, 2, 3$ — three crossings.",
+          "check": ["(-1)**3 - 4*(-1)**2 + (-1) + 6 == 0", "expand((x + 1)*(x - 2)*(x - 3)) == x**3 - 4*x**2 + x + 6", "2**3 - 4*2**2 + 2 + 6 == 0", "3**3 - 4*3**2 + 3 + 6 == 0"]
+        },
+        {
+          "id": "a243-we2",
+          "statement": "Solve $x^4 - 13x^2 + 36 = 0$.",
+          "solution": "Quadratic form, $u = x^2$: $u^2 - 13u + 36 = (u - 4)(u - 9) = 0 \\to x^2 = 4$ or $x^2 = 9$: $x = \\pm 2, \\pm 3$. Four real zeros — a quartic's full quota.",
+          "check": ["factor(u**2 - 13*u + 36) == (u - 4)*(u - 9)", "2**4 - 13*2**2 + 36 == 0", "(-3)**4 - 13*(-3)**2 + 36 == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Writing the difference of cubes with a doubled middle term: $a^3 - b^3 = (a - b)(a^2 - 2ab + b^2)$.", "correction": "That second factor is $(a-b)^2$ — wrong object. Cubes leave $a^2 + ab + b^2$ (single $ab$, sign opposite the first bracket). Expand to confirm.", "authored": true },
+        { "text": "From $x^2 = 4$ concluding $x = 2$ only.", "correction": "Unwrap with $\\pm$ (Unit 2 habit): $x = \\pm 2$. In quadratic-form problems this halves your zero count if forgotten.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a243-t1",
+          "statement": "Factor $x^3 + 2x^2 - 5x - 6$ completely.",
+          "solution": "Try $x = -1$: $-1 + 2 + 5 - 6 = 0$ ✓. Peel: quotient $x^2 + x - 6 = (x+3)(x-2)$. Result: $(x+1)(x+3)(x-2)$.",
+          "check": ["(-1)**3 + 2*(-1)**2 - 5*(-1) - 6 == 0", "expand((x + 1)*(x + 3)*(x - 2)) == x**3 + 2*x**2 - 5*x - 6"]
+        },
+        {
+          "id": "a243-t2",
+          "statement": "Factor $8x^3 - 27$ and solve $8x^3 - 27 = 0$ over the reals.",
+          "solution": "Cubes: $(2x)^3 - 3^3 = (2x - 3)(4x^2 + 6x + 9)$. The quadratic's $D = 36 - 144 < 0$: no real roots there. Real solution: $x = \\frac{3}{2}$.",
+          "check": ["expand((2*x - 3)*(4*x**2 + 6*x + 9)) == 8*x**3 - 27", "8*Rational(3,2)**3 - 27 == 0", "6**2 - 4*4*9 == -108"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The locked cubic", "body": "No product-and-sum puzzle opens $x^3 - 4x^2 + x + 6$. But last lesson built the wedge: ONE known root peels the cubic down to a quadratic. So the whole game becomes: find that first root. Happily, integer roots can't hide — they must divide the constant term." },
+          { "kind": "teach", "eyebrow": "The routine", "title": "Hunt, peel, finish", "body": "Step 1 — HUNT: list divisors of the constant (both signs), evaluate until one gives zero. Step 2 — PEEL: synthetic-divide by the found root. Step 3 — FINISH: the quotient is quadratic; factor or formula. Every zero found is an x-intercept of the graph, and the count is capped by the degree.", "beats": ["List candidates: divisors of the constant term.", "Evaluate candidates until $f(c) = 0$.", "Synthetic-divide by $(x - c)$.", "Solve the leftover quadratic by Unit 2 tools."] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The full routine", "problemId": "a243-we1" },
+          { "kind": "polyGraph", "eyebrow": "Play", "title": "Zeros are movable factors", "teach": "This cubic is built from its three roots: $y = a(x - r_1)(x - r_2)(x - r_3)$. Step a root and watch its x-intercept slide while the factored formula updates in lockstep. Factoring a polynomial and locating its crossings are one act.", "config": { "mode": "zeros", "zeros": [-1, 2, 3] } },
+          { "kind": "tapQuestion", "eyebrow": "Check the hunt", "title": "Where can roots hide?", "prompt": "Which list contains ALL possible integer roots of $x^3 + 3x^2 - 10x - 24$?", "options": ["$\\pm 1, \\pm 2, \\pm 3, \\pm 4, \\pm 6, \\pm 8, \\pm 12, \\pm 24$", "$\\pm 1, \\pm 2, \\pm 3$", "$1, 2, 3, 4, 6, 8, 12, 24$", "any integer at all"], "correctIndex": 0, "explanation": "Integer roots divide the constant 24 — both signs. (Here $-2$, $3$, and $-4$ turn out to work: $f = (x+2)(x-3)(x+4)$.)", "check": ["expand((x + 2)*(x - 3)*(x + 4)) == x**3 + 3*x**2 - 10*x - 24"] },
+          { "kind": "teach", "eyebrow": "Patterns", "title": "Three shortcuts", "body": "Some shapes skip the hunt. **Grouping**: four terms pairing cleanly — $x^2(x-3) + 4(x-3)$. **Quadratic form**: only even powers — substitute $u = x^2$ and it's Unit 2. **Cubes**: $a^3 \\pm b^3 = (a \\pm b)(a^2 \\mp ab + b^2)$ — first bracket takes the sign, middle term flips it, and the big bracket almost never factors further over the reals." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Quadratic in disguise", "problemId": "a243-we2" },
+          { "kind": "polyGraph", "eyebrow": "Play", "title": "Cross, bounce, flatten", "teach": "Step the multiplicity $m$ at the marked zero: $m = 1$ crosses straight through; $m = 2$ BOUNCES off the axis like a parabola's vertex; $m = 3$ flattens into a slow S as it crosses. Odd crosses, even bounces — read a graph's factorization right off its touches.", "config": { "mode": "multiplicity", "m": 2 } },
+          { "kind": "tapQuestion", "eyebrow": "Check multiplicity", "title": "Read the touch", "prompt": "$f(x) = (x + 3)^2 (x - 1)^3$. At its two x-intercepts, the graph:", "options": ["bounces at $-3$, crosses (flattened) at $1$", "crosses at $-3$, bounces at $1$", "bounces at both", "crosses cleanly at both"], "correctIndex": 0, "explanation": "Multiplicity 2 (even) at $-3$: bounce. Multiplicity 3 (odd) at $1$: crosses, with the flattened S of a cubic touch.", "check": ["((-3) + 3)**2 == 0", "(1 - 1)**3 == 0", "2 % 2 == 0", "3 % 2 == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Count zeros against degree", "body": "Finish every factoring by an audit: multiplicities must SUM to the degree. $(x+1)(x-2)(x-3)$: $1+1+1 = 3$ ✓ for a cubic. A quartic factored into three linear pieces is missing something — go find the fourth." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Hunt and peel", "problemId": "a243-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Cubes", "problemId": "a243-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Integer roots divide the constant: hunt, peel, finish the quadratic.", "Shortcuts: grouping, $u = x^2$, sum/difference of cubes.", "Odd multiplicity crosses; even bounces; multiplicities sum to the degree."] }
+        ]
+      }
+    },
+    {
+      "slug": "polynomial-equations-and-modeling",
+      "title": "Polynomial Equations & Modeling",
+      "concreteComparison": "An open-top box is cut from a cardboard sheet: fold up x at each corner and the volume is a cubic in x. 'What cut gives 48 cubic units?' is a polynomial equation — and now you own every tool it needs.",
+      "objective": "Solve polynomial equations completely (real and complex roots), apply the Fundamental Theorem's count, and model with cubics.",
+      "concept": [
+        "Full solving = factoring + Unit 2. $x^3 - 2x^2 + 9x - 18 = 0$: group $\\to (x - 2)(x^2 + 9) = 0 \\to x = 2$ and $x = \\pm 3i$. One real crossing, one conjugate pair off-stage.",
+        "**Fundamental Theorem of Algebra**: a degree-$n$ polynomial has EXACTLY $n$ roots, counting multiplicity, once complex numbers are allowed. Real-coefficient polynomials bundle their complex roots in conjugate pairs — so a cubic always has at least one real root.",
+        "**Modeling**: translate the story to a polynomial equation, solve completely, then let CONTEXT discard: lengths and times must be positive reals, so complex and negative roots exit. A box's $x(10-2x)(8-2x) = 48$ may have three algebraic roots but one physical answer."
+      ],
+      "keyIdea": "Degree n promises exactly n roots (with multiplicity, complex allowed, conjugates paired); solve by factoring down, then let the story discard the impossible ones.",
+      "facts": [
+        { "title": "Fundamental Theorem", "latex": "\\deg n \\Rightarrow n \\text{ roots (multiplicity, } \\mathbb{C})", "explanation": "Real coefficients → complex roots in conjugate pairs." },
+        { "title": "Model filter", "latex": "\\text{physical answers} \\in \\text{positive reals}", "explanation": "Solve fully; then context trims." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a244-we1",
+          "statement": "Solve $x^3 - 2x^2 + 9x - 18 = 0$ completely.",
+          "solution": "Group: $x^2(x - 2) + 9(x - 2) = (x - 2)(x^2 + 9) = 0$. Real: $x = 2$. Complex: $x^2 = -9 \\to x = \\pm 3i$. Three roots for degree 3 ✓ — one real, one conjugate pair.",
+          "check": ["expand((x - 2)*(x**2 + 9)) == x**3 - 2*x**2 + 9*x - 18", "2**3 - 2*2**2 + 9*2 - 18 == 0", "expand((3*I)**2 + 9) == 0"]
+        },
+        {
+          "id": "a244-we2",
+          "statement": "A box is made from a 10×8 sheet by cutting squares of side $x$ from each corner and folding. Its volume is $V(x) = x(10-2x)(8-2x)$. Verify that $x = 1$ gives volume 48, and state the physical domain of $x$.",
+          "solution": "$V(1) = 1 \\cdot 8 \\cdot 6 = 48$ ✓. Physically: $x > 0$ and the smaller side must stay positive, $8 - 2x > 0 \\to x < 4$. Domain $0 < x < 4$ — any algebraic root outside it is discarded.",
+          "check": ["1*(10 - 2)*(8 - 2) == 48", "8 - 2*4 == 0", "expand(x*(10 - 2*x)*(8 - 2*x)) == 4*x**3 - 36*x**2 + 80*x"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reporting a cubic 'solved' with one root.", "correction": "Degree promises three (with multiplicity, complex allowed). After finding $x = 2$, peel and finish the quadratic — even if its roots turn out complex, they're part of the answer.", "authored": true },
+        { "text": "Accepting $x = 5$ as a cut size for the 10×8 box.", "correction": "$8 - 2(5) = -2$: a negative side. Algebra proposes; the story disposes — check every root against the physical domain.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a244-t1",
+          "statement": "Solve $x^4 - 16 = 0$ completely.",
+          "solution": "Difference of squares twice: $(x^2-4)(x^2+4) = (x-2)(x+2)(x^2+4) = 0$: $x = \\pm 2, \\pm 2i$. Four roots for degree 4 ✓.",
+          "check": ["expand((x - 2)*(x + 2)*(x**2 + 4)) == x**4 - 16", "2**4 - 16 == 0", "expand((2*I)**4 - 16) == 0"]
+        },
+        {
+          "id": "a244-t2",
+          "statement": "A degree-3 polynomial with real coefficients has roots $4$ and $1 - 2i$. What is the third root, and what is the polynomial (leading coefficient 1)?",
+          "solution": "Conjugate pairing forces $1 + 2i$. $(x - 4)\\big[(x-1)^2 + 4\\big] = (x - 4)(x^2 - 2x + 5) = x^3 - 6x^2 + 13x - 20$.",
+          "check": ["expand((x - (1 - 2*I))*(x - (1 + 2*I))) == x**2 - 2*x + 5", "expand((x - 4)*(x**2 - 2*x + 5)) == x**3 - 6*x**2 + 13*x - 20"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The full quota", "body": "How many roots does a degree-3 equation have? Sometimes you see three crossings, sometimes one. The resolution is Unit 2's, scaled up: count COMPLEX roots with multiplicity and the answer is always exactly three. This lesson runs full solves — every root found and accounted for — then points the machinery at real objects." },
+          { "kind": "polyGraph", "eyebrow": "Play", "title": "Three roots, visible or not", "teach": "Slide this cubic's third root toward its neighbors and apart again. However you arrange them, a cubic with three real roots shows three crossings — and when two roots merge, the crossing becomes a bounce (double root). What you can't build here: zero real roots. Odd degree always crosses somewhere.", "config": { "mode": "zeros", "zeros": [-2, 1, 3] } },
+          { "kind": "teach", "eyebrow": "The theorem", "title": "Exactly n, no exceptions", "body": "**Fundamental Theorem of Algebra**: degree $n$ ⇒ exactly $n$ roots in the complex numbers, counting multiplicity. With real coefficients, non-real roots arrive ONLY as conjugate pairs — which is why odd degrees must keep at least one root on the real line, and why 'roots: $2, 3i$' can never be a finished answer for a real cubic." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "One real, two imaginary", "problemId": "a244-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the count", "title": "Audit the answer", "prompt": "A real-coefficient quartic has roots $5$, $-1$, and $2 + i$. Its remaining root is:", "options": ["$2 - i$", "$-2 - i$", "$-2 + i$", "any number — quartics can have 3 roots"], "correctIndex": 0, "explanation": "Four roots total, and $2 + i$ demands its conjugate $2 - i$. Real roots ($5$, $-1$) need no partners.", "check": ["expand((x - (2 + I))*(x - (2 - I))) == x**2 - 4*x + 5"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The corner-cut box", "problemId": "a244-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the filter", "title": "Story vs algebra", "prompt": "Solving a box-volume cubic yields $x = 1$, $x = 6$, and $x = -2$, with physical domain $0 < x < 4$. The usable answer(s):", "options": ["$x = 1$ only", "$x = 1$ and $x = 6$", "all three", "none — cubics don't model boxes"], "correctIndex": 0, "explanation": "$6$ exceeds the fold limit, $-2$ is a negative cut. Algebra proposes three; the cardboard accepts one.", "check": ["4 - 1 > 0", "6 - 4 > 0"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Root ledger", "body": "For every polynomial equation, keep a ledger: degree at the top, roots listed with multiplicity below, ledger closed only when the counts match. It converts 'I think I'm done' into arithmetic — and flags the missing conjugate instantly." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Fourth roots of 16", "problemId": "a244-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Build from a partial list", "problemId": "a244-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "Proved by a 21-year-old", "body": "The Fundamental Theorem resisted Euler and d'Alembert; the first accepted proof came in Gauss's 1799 doctoral thesis, at age 21. Fittingly, every known proof needs tools from OUTSIDE algebra — analysis or topology — as if the theorem were algebra's window to the rest of mathematics." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Degree $n$ = exactly $n$ roots, multiplicity counted, complex allowed.", "Real coefficients pair complex roots as conjugates.", "Model → solve fully → context discards; close the root ledger."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a24-pr-1", "statement": "Give the end behavior of $f(x) = -3x^5 + x^4 - 2$.", "solution": "Odd degree, negative leading: up on the left, down on the right.", "check": ["-3*(-10)**5 > 0", "-3*10**5 < 0"] },
+    { "id": "a24-pr-2", "statement": "What is the maximum number of turning points of a degree-6 polynomial?", "solution": "$6 - 1 = 5$.", "check": ["6 - 1 == 5"] },
+    { "id": "a24-pr-3", "statement": "Find the remainder when $x^3 + 2x^2 - 7x + 1$ is divided by $x - 2$.", "solution": "$f(2) = 8 + 8 - 14 + 1 = 3$.", "check": ["2**3 + 2*2**2 - 7*2 + 1 == 3"] },
+    { "id": "a24-pr-4", "statement": "Is $x + 3$ a factor of $x^3 + 5x^2 + x - 15$?", "solution": "$f(-3) = -27 + 45 - 3 - 15 = 0$ — yes.", "check": ["(-3)**3 + 5*(-3)**2 + (-3) - 15 == 0"] },
+    { "id": "a24-pr-5", "statement": "Factor $x^3 - 6x^2 + 11x - 6$ completely.", "solution": "$f(1) = 0$; peel: $x^2 - 5x + 6 = (x-2)(x-3)$. Result $(x-1)(x-2)(x-3)$.", "check": ["expand((x - 1)*(x - 2)*(x - 3)) == x**3 - 6*x**2 + 11*x - 6"] },
+    { "id": "a24-pr-6", "statement": "Factor $27x^3 + 8$.", "solution": "Sum of cubes: $(3x + 2)(9x^2 - 6x + 4)$.", "check": ["expand((3*x + 2)*(9*x**2 - 6*x + 4)) == 27*x**3 + 8"] },
+    { "id": "a24-pr-7", "statement": "Solve $x^4 - 5x^2 + 4 = 0$.", "solution": "$u^2 - 5u + 4 = (u-1)(u-4)$: $x = \\pm 1, \\pm 2$.", "check": ["1 - 5 + 4 == 0", "2**4 - 5*2**2 + 4 == 0", "(-1)**4 - 5*(-1)**2 + 4 == 0"] },
+    { "id": "a24-pr-8", "statement": "State the multiplicity behavior of $f(x) = (x - 5)^3 (x + 2)^2$ at each intercept.", "solution": "At 5: multiplicity 3 — flattened crossing. At $-2$: multiplicity 2 — bounce. Degree check: $3 + 2 = 5$.", "check": ["3 + 2 == 5", "3 % 2 == 1", "2 % 2 == 0"] }
+  ],
+  "testYourself": [
+    { "id": "a24-ty-1", "statement": "A polynomial graph has both arms down and exactly 3 turning points. Give the minimum degree and the leading coefficient's sign.", "solution": "Arms together → even degree; 3 turns → degree ≥ 4. Minimum degree 4, leading coefficient negative.", "check": ["4 % 2 == 0", "4 - 1 == 3"] },
+    { "id": "a24-ty-2", "statement": "Use synthetic division to divide $2x^3 - 3x^2 - 11x + 6$ by $x - 3$, and factor completely.", "solution": "Row $2, -3, -11, 6$, $c = 3$: $2, 3, -2, 0$. Quotient $2x^2 + 3x - 2 = (2x - 1)(x + 2)$. So $(x-3)(2x-1)(x+2)$.", "check": ["expand((x - 3)*(2*x**2 + 3*x - 2)) == 2*x**3 - 3*x**2 - 11*x + 6", "factor(2*x**2 + 3*x - 2) == (2*x - 1)*(x + 2)"] },
+    { "id": "a24-ty-3", "statement": "For which $k$ does $x - 2$ divide $x^3 + kx^2 - 4x + 6$ exactly?", "solution": "$f(2) = 8 + 4k - 8 + 6 = 0 \\to k = -\\frac{3}{2}$.", "check": ["solve(8 + 4*k - 8 + 6, k) == [Rational(-3,2)]"] },
+    { "id": "a24-ty-4", "statement": "Solve $x^3 + 4x^2 + x - 6 = 0$.", "solution": "$f(1) = 0$; peel: $x^2 + 5x + 6 = (x+2)(x+3)$. Roots: $1, -2, -3$.", "check": ["1 + 4 + 1 - 6 == 0", "expand((x - 1)*(x + 2)*(x + 3)) == x**3 + 4*x**2 + x - 6"] },
+    { "id": "a24-ty-5", "statement": "Solve $x^3 - 5x^2 + 4x - 20 = 0$ completely.", "solution": "Group: $x^2(x - 5) + 4(x - 5) = (x - 5)(x^2 + 4)$: $x = 5, \\pm 2i$.", "check": ["expand((x - 5)*(x**2 + 4)) == x**3 - 5*x**2 + 4*x - 20", "expand((2*I)**2 + 4) == 0"] },
+    { "id": "a24-ty-6", "statement": "A real-coefficient cubic with leading coefficient 1 has roots $-2$ and $3i$. Write it in standard form.", "solution": "Third root $-3i$. $(x + 2)(x^2 + 9) = x^3 + 2x^2 + 9x + 18$.", "check": ["expand((x + 2)*(x - 3*I)*(x + 3*I)) == x**3 + 2*x**2 + 9*x + 18"] }
+  ]
+}

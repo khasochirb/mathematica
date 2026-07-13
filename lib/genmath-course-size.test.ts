@@ -19,6 +19,7 @@ describe("courseTotalLessons", () => {
     "course:prob-stats",
     "course:vectors-matrices",
     "course:algebra-1",
+    "course:algebra-2",
     "course:precalculus",
   ];
 

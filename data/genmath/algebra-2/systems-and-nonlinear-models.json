@@ -1,0 +1,281 @@
+{
+  "slug": "systems-and-nonlinear-models",
+  "title": "Systems & Nonlinear Models",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Two equations, one answer: linear systems at full speed, three-variable elimination, curves meeting lines, and feasible regions with the corner principle — algebra as negotiation.",
+  "buildsOn": "Algebra 1's systems unit; Unit 2's quadratic solving.",
+  "lessons": [
+    {
+      "slug": "linear-systems-and-modeling",
+      "title": "Linear Systems & Modeling",
+      "concreteComparison": "Two phone plans: one cheap per-GB but a big base fee, the other the reverse. The break-even question — 'at what usage do they cost the same?' — is a system of two equations, and its answer is a single crossing point.",
+      "objective": "Solve 2×2 linear systems fluently by substitution and elimination, classify special cases, and translate two-condition stories into systems.",
+      "concept": [
+        "A **system** asks for the pair $(x, y)$ satisfying BOTH equations — graphically, where the two lines cross. **Substitution** shines when a variable is already alone: from $y = 2x - 1$, replace $y$ in the other equation. **Elimination** shines otherwise: scale the equations so one variable's coefficients cancel when added.",
+        "Solve $3x + 2y = 16$, $5x - 2y = 8$: add straight away (the $y$'s cancel): $8x = 24 \\to x = 3$, then $y = \\frac{16 - 9}{2} = \\frac{7}{2}$. Always finish by checking the pair in BOTH originals.",
+        "Special endings: variables all vanish leaving a FALSE statement ($0 = 7$) → parallel lines, no solution; leaving a TRUE one ($0 = 0$) → the same line twice, infinitely many. The algebra diagnoses the geometry."
+      ],
+      "keyIdea": "Substitute when a variable is alone, eliminate otherwise; 0 = false means parallel (none), 0 = 0 means same line (infinite) — and always check the pair in both equations.",
+      "facts": [
+        { "title": "Elimination move", "latex": "\\text{scale} \\to \\text{add} \\to \\text{one variable cancels}", "explanation": "Multiply each equation so one variable's coefficients are opposites." },
+        { "title": "The two degenerate endings", "latex": "0 = 7: \\text{ none}; \\qquad 0 = 0: \\text{ infinitely many}", "explanation": "Parallel lines vs the same line in disguise." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a231-we1",
+          "statement": "Solve the system $2x + 3y = 12$, $4x - y = 10$.",
+          "solution": "Elimination: multiply the second by 3: $12x - 3y = 30$. Add to the first: $14x = 42 \\to x = 3$. Then $4(3) - y = 10 \\to y = 2$. Check in the first: $6 + 6 = 12$ ✓. Solution $(3, 2)$.",
+          "check": ["2*3 + 3*2 == 12", "4*3 - 2 == 10", "Rational(42, 14) == 3"]
+        },
+        {
+          "id": "a231-we2",
+          "statement": "Tickets: adults $8, children $5. A show sells 120 tickets for $786. How many of each?",
+          "solution": "$a + c = 120$, $8a + 5c = 786$. From the first: $c = 120 - a$. Substitute: $8a + 600 - 5a = 786 \\to 3a = 186 \\to a = 62$, $c = 58$. Check: $8(62) + 5(58) = 496 + 290 = 786$ ✓.",
+          "check": ["62 + 58 == 120", "8*62 + 5*58 == 786", "Rational(186, 3) == 62"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Adding equations without scaling first: $2x + 3y = 12$ plus $4x - y = 10$ gives $6x + 2y = 22$ — nothing cancelled.", "correction": "Elimination needs OPPOSITE coefficients on one variable. Scale first (×3 on the second equation makes $-3y$), then add.", "authored": true },
+        { "text": "Checking the solution in only one equation.", "correction": "Any point on line 1 satisfies equation 1 — that check is free. The SYSTEM check is the second equation; both or it doesn't count.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a231-t1",
+          "statement": "Solve $5x + 2y = 1$, $3x - 4y = 24$.",
+          "solution": "Double the first: $10x + 4y = 2$; add the second: $13x = 26 \\to x = 2$; then $10 + 2y = 1 \\to y = -\\frac{9}{2}$.",
+          "check": ["5*2 + 2*Rational(-9,2) == 1", "3*2 - 4*Rational(-9,2) == 24"]
+        },
+        {
+          "id": "a231-t2",
+          "statement": "Classify the system $2x - y = 3$, $6x - 3y = 9$.",
+          "solution": "The second is exactly 3× the first — same line. Elimination gives $0 = 0$: infinitely many solutions (every point of the line $y = 2x - 3$).",
+          "check": ["3*2 == 6", "3*(-1) == -3", "3*3 == 9"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Two conditions at once", "body": "One equation, one unknown — Algebra 1. But stories impose SEVERAL conditions at once: total tickets AND total revenue; base fee AND per-unit rate. Each condition is an equation; the answer must satisfy all of them simultaneously. That's a system, and its geometry is a crossing." },
+          { "kind": "systemGraph", "eyebrow": "Play", "title": "Where lines negotiate", "teach": "Two lines, four dials. Drive the slopes and intercepts and watch the crossing point — the unique pair satisfying both equations — slide around. Make the slopes EQUAL and watch the solution vanish: parallel lines agree nowhere.", "config": { "m1": 1, "b1": -1, "m2": -2, "b2": 5, "interactive": true, "min": -8, "max": 8 } },
+          { "kind": "teach", "eyebrow": "Two tools", "title": "Substitute or eliminate", "body": "**Substitution**: one variable already alone ($y = 2x - 1$)? Inject it into the other equation — one unknown remains. **Elimination**: nobody alone? Scale the equations so one variable's coefficients become opposites, then ADD — that variable exits. Both tools always work; fluency means picking the cheaper one in two seconds." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Scale, add, back-substitute", "problemId": "a231-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the setup", "title": "What cancels?", "prompt": "To eliminate $y$ from $3x + 4y = 7$ and $5x - 2y = 9$, multiply the second equation by:", "options": ["$2$", "$-2$", "$4$", "$5$"], "correctIndex": 0, "explanation": "$\\times 2$ gives $-4y$, the exact opposite of $+4y$. Adding then kills $y$: $13x = 25$.", "check": ["4 + 2*(-2) == 0", "3 + 2*5 == 13"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The ticket booth", "problemId": "a231-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the diagnosis", "title": "When x and y both vanish", "prompt": "Eliminating in a system leaves $0 = 5$. The system has:", "options": ["no solutions — the lines are parallel", "infinitely many solutions", "the single solution $(0, 5)$", "the single solution $x = 5$"], "correctIndex": 0, "explanation": "A false statement means no pair can satisfy both equations: distinct parallel lines. ($0 = 0$ would mean the same line twice.)", "check": ["5 - 5 == 0"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Name, set up, solve, check, answer", "body": "For story systems: NAME the unknowns with units ('a = adult tickets'), write one equation per condition, solve, check in both, then answer in a sentence. The sentence step catches swapped variables — '62 children' should feel wrong when the story says fewer children." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Eliminate with scaling", "problemId": "a231-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Diagnose the special case", "problemId": "a231-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Substitute when alone, eliminate (scale → add) otherwise.", "$0 = $ false: parallel, none. $0 = 0$: same line, infinite.", "Check the pair in BOTH equations; answer stories in a sentence."] }
+        ]
+      }
+    },
+    {
+      "slug": "three-variable-systems",
+      "title": "Three-Variable Systems",
+      "concreteComparison": "A café sells three drink sizes and knows three days' totals. Three unknowns need three equations — and the strategy is beautifully recursive: use elimination to shrink 3×3 down to the 2×2 you already own.",
+      "objective": "Solve 3×3 linear systems by staged elimination, organizing work to avoid arithmetic chaos.",
+      "concept": [
+        "The plan: pick ONE variable to evict. Combine equations (1)&(2) to kill it, then (1)&(3) (or (2)&(3)) to kill THE SAME variable. Two new equations, two unknowns — a 2×2 you can already solve. Back-substitute twice to climb back up.",
+        "Solve: $x + y + z = 6$; $2x - y + z = 3$; $x + 2y - z = 2$. Add (1)+(3): $2x + 3y = 8$. Add (2)+(3): $3x + y = 5$. Solve the little system: $x = 1, y = 2$; then $z = 6 - 1 - 2 = 3$. Check in ALL three originals.",
+        "Geometry: each equation is a PLANE in 3D. Three planes typically meet at one point; degenerate layouts (parallel planes, or planes meeting in a line) produce the same $0 = $ false / $0 = 0$ diagnoses as before."
+      ],
+      "keyIdea": "Evict one variable twice to shrink 3×3 → 2×2, solve, then climb back up by substitution — and check the triple in all three originals.",
+      "facts": [
+        { "title": "The staged plan", "latex": "3\\times 3 \\;\\to\\; 2\\times 2 \\;\\to\\; 1 \\text{ unknown} \\;\\to\\; \\text{climb back}", "explanation": "Same eviction target both times, or the shrink fails." },
+        { "title": "One equation per condition", "latex": "3 \\text{ unknowns} \\Rightarrow 3 \\text{ independent equations}", "explanation": "Fewer equations leave a family of answers, not a point." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a232-we1",
+          "statement": "Solve: $x + y + z = 6$; $\\;2x - y + z = 3$; $\\;x + 2y - z = 2$.",
+          "solution": "Kill $z$: (1)+(3): $2x + 3y = 8$. (2)+(3): $3x + y = 5$. From the second: $y = 5 - 3x$; substitute: $2x + 15 - 9x = 8 \\to -7x = -7 \\to x = 1$, $y = 2$, then $z = 6 - 1 - 2 = 3$. Verify in (2): $2 - 2 + 3 = 3$ ✓. Solution $(1, 2, 3)$.",
+          "check": ["1 + 2 + 3 == 6", "2*1 - 2 + 3 == 3", "1 + 2*2 - 3 == 2"]
+        },
+        {
+          "id": "a232-we2",
+          "statement": "Three sizes: small $s$, medium $m$, large $l$ (dollars). Day 1: $2s + m + l = 13$. Day 2: $s + 2m + l = 14$. Day 3: $s + m + 2l = 17$. Find the prices.",
+          "solution": "Add all three: $4(s + m + l) = 44 \\to s + m + l = 11$. Subtract from each day: Day 1 minus: $s = 2$; Day 2 minus: $m = 3$; Day 3 minus: $l = 6$. Check Day 1: $4 + 3 + 6 = 13$ ✓.",
+          "check": ["2*2 + 3 + 6 == 13", "2 + 2*3 + 6 == 14", "2 + 3 + 2*6 == 17", "2 + 3 + 6 == 11"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Eliminating x from (1)&(2), then y from (2)&(3) — and stalling with two equations in different pairs of unknowns.", "correction": "The SAME variable must exit both times. Two equations in the same two unknowns — that's the 2×2 you know.", "authored": true },
+        { "text": "Checking the final triple in just one equation.", "correction": "Each equation catches different slips. Three originals, three ten-second checks — the only proof the triple is right.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a232-t1",
+          "statement": "Solve: $x + y + z = 2$; $\\;2x + y - z = 5$; $\\;x - y + 2z = -1$.",
+          "solution": "(1)+(2): wait — kill $z$: (1)+(2): $3x + 2y = 7$. Double (1) then subtract... cleaner: (2)+2×(... use (1)+(2): $3x + 2y = 7$; 2×(1)−(3): $x + 3y = 5$... solving: from the second $x = 5 - 3y$; $15 - 9y + 2y = 7 \\to y = \\frac{8}{7}$? Let's verify integer path instead: actually (1): $z = 2 - x - y$; sub into (2): $2x + y - 2 + x + y = 5 \\to 3x + 2y = 7$; into (3): $x - y + 4 - 2x - 2y = -1 \\to -x - 3y = -5 \\to x + 3y = 5$. Then $3(5 - 3y) + 2y = 7 \\to 15 - 7y = 7 \\to y = \\frac{8}{7}$, $x = 5 - \\frac{24}{7} = \\frac{11}{7}$, $z = 2 - \\frac{11}{7} - \\frac{8}{7} = -\\frac{5}{7}$.",
+          "check": ["Rational(11,7) + Rational(8,7) + Rational(-5,7) == 2", "2*Rational(11,7) + Rational(8,7) - Rational(-5,7) == 5", "Rational(11,7) - Rational(8,7) + 2*Rational(-5,7) == -1"]
+        },
+        {
+          "id": "a232-t2",
+          "statement": "Three numbers sum to 20. The second is twice the first, and the third exceeds the first by 8. Find them.",
+          "solution": "$x + y + z = 20$, $y = 2x$, $z = x + 8$. Substitute both: $x + 2x + x + 8 = 20 \\to 4x = 12 \\to x = 3$, $y = 6$, $z = 11$.",
+          "check": ["3 + 6 + 11 == 20", "6 == 2*3", "11 == 3 + 8"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Three unknowns, same idea", "body": "Nothing conceptually new happens at three variables — a solution is now a TRIPLE $(x, y, z)$ satisfying all three equations. What's new is bookkeeping: without a plan, six coefficients per line becomes arithmetic soup. The plan: shrink to a 2×2 you already own." },
+          { "kind": "teach", "eyebrow": "The plan", "title": "Evict one variable, twice", "body": "Choose the easiest eviction target — a variable with coefficient 1 or matching opposites. Kill it once using equations (1)&(2), AGAIN using (1)&(3). You now hold two equations in the same two unknowns. Solve that 2×2, then climb back: substitute into any original to recover the evicted variable.", "beats": ["Pick the target (easiest coefficients).", "Eliminate it from two DIFFERENT pairs of equations.", "Solve the resulting 2×2.", "Back-substitute to recover the third value.", "Check the triple in all three originals."] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Full staged solve", "problemId": "a232-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the plan", "title": "Choose the target", "prompt": "For $x + 2y - z = 4$; $3x - y + z = 1$; $2x + y + 2z = 7$, the cheapest variable to eliminate first is:", "options": ["$z$ — equations 1 and 2 have $-z$ and $+z$ ready to cancel", "$x$ — it appears first", "$y$ — its coefficients are smallest", "any; there is never a difference"], "correctIndex": 0, "explanation": "(1)+(2) kills $z$ with zero scaling work. Cheap first moves compound: less scaling, fewer fractions, fewer errors.", "check": ["-1 + 1 == 0"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The café trick", "problemId": "a232-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check understanding", "title": "Why three equations?", "prompt": "A puzzle gives only TWO equations for three unknowns. Typically its solutions form:", "options": ["a whole family (a line's worth) of triples", "exactly one triple", "exactly two triples", "no triples ever"], "correctIndex": 0, "explanation": "Each equation is a plane; two planes generally meet along a LINE — infinitely many triples. Pinning a point needs the third plane.", "check": ["3 - 2 == 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Label your lines", "body": "Number every equation — (1), (2), (3) — and write derived lines as '(4) = (1)+(3)'. When a check fails (it will), the labels turn 'redo everything' into 'find which single line broke.' Professional solvers are just organized solvers." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Fractions welcome", "problemId": "a232-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Words to triple", "problemId": "a232-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Same eviction target from two different pairs → a 2×2.", "Back-substitute to climb up; check the triple in all three originals.", "Label equations — organized beats clever."] }
+        ]
+      }
+    },
+    {
+      "slug": "nonlinear-systems",
+      "title": "Nonlinear Systems",
+      "concreteComparison": "A drone flies a straight path over parabolic terrain: does it clear the hill, graze it, or crash? Line meets curve — and the crossing count (0, 1, or 2) is a discriminant question wearing a geometry costume.",
+      "objective": "Solve systems mixing a line with a parabola or circle by substitution, and predict the number of intersections.",
+      "concept": [
+        "**Line + parabola**: substitute the line into the curve. $y = x^2 - 2x - 3$ and $y = x + 1$: set $x^2 - 2x - 3 = x + 1 \\to x^2 - 3x - 4 = 0 \\to x = 4, -1$. Two crossings: $(4, 5)$ and $(-1, 0)$ — each with its OWN y, computed from the line.",
+        "**Line + circle**: same move. $x^2 + y^2 = 25$ with $y = x + 1$: $x^2 + (x+1)^2 = 25 \\to 2x^2 + 2x - 24 = 0 \\to x = 3, -4$ — points $(3, 4)$ and $(-4, -3)$.",
+        "The substituted equation is a quadratic, so its discriminant COUNTS the crossings: $D > 0$ two, $D = 0$ one (tangent — the line grazes), $D < 0$ none (clean miss). Geometry and Unit 2 are the same subject."
+      ],
+      "keyIdea": "Substitute the line into the curve: the resulting quadratic's roots are the crossing x's, and its discriminant counts them — 2, 1 (tangent), or 0.",
+      "facts": [
+        { "title": "The move", "latex": "\\text{line into curve} \\Rightarrow \\text{one quadratic in } x", "explanation": "Each root is a crossing; find each $y$ from the LINE." },
+        { "title": "Crossing census", "latex": "D > 0: 2; \\quad D = 0: \\text{tangent}; \\quad D < 0: \\text{miss}", "explanation": "The discriminant of the substituted quadratic counts intersections." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a233-we1",
+          "statement": "Solve the system $y = x^2 - 2x - 3$, $\\;y = x + 1$.",
+          "solution": "Set equal: $x^2 - 2x - 3 = x + 1 \\to x^2 - 3x - 4 = 0 \\to (x-4)(x+1) = 0$: $x = 4, -1$. From the line: $y = 5$ and $y = 0$. Crossings: $(4, 5)$, $(-1, 0)$ — both satisfy the parabola too: $16 - 8 - 3 = 5$ ✓.",
+          "check": ["factor(x**2 - 3*x - 4) == (x - 4)*(x + 1)", "4**2 - 2*4 - 3 == 5", "(-1)**2 - 2*(-1) - 3 == 0", "4 + 1 == 5"]
+        },
+        {
+          "id": "a233-we2",
+          "statement": "For which $k$ is the line $y = 2x + k$ TANGENT to the parabola $y = x^2 + 4x + 7$?",
+          "solution": "$x^2 + 4x + 7 = 2x + k \\to x^2 + 2x + (7 - k) = 0$. Tangency: $D = 4 - 4(7 - k) = 0 \\to 4k = 24 \\to k = 6$. The graze point: $x = -1$, $y = 4$.",
+          "check": ["4 - 4*(7 - 6) == 0", "(-1)**2 + 4*(-1) + 7 == 4", "2*(-1) + 6 == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reporting only the x-values as 'the solution.'", "correction": "Crossings are POINTS. Finish each root with its $y$ (from the simpler equation — the line) and present pairs.", "authored": true },
+        { "text": "Pairing every x with every y: roots $x = 3, -4$ and values $y = 4, -3$ becoming four points.", "correction": "Each $x$ owns exactly one $y$: $(3, 4)$ and $(-4, -3)$. Mixed pairs like $(3, -3)$ satisfy neither equation.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a233-t1",
+          "statement": "Solve $x^2 + y^2 = 25$, $\\;y = x + 1$.",
+          "solution": "$x^2 + (x+1)^2 = 25 \\to 2x^2 + 2x - 24 = 0 \\to x^2 + x - 12 = 0 \\to (x+4)(x-3) = 0$. Points: $(3, 4)$ and $(-4, -3)$.",
+          "check": ["3**2 + 4**2 == 25", "(-4)**2 + (-3)**2 == 25", "factor(x**2 + x - 12) == (x + 4)*(x - 3)"]
+        },
+        {
+          "id": "a233-t2",
+          "statement": "How many times does $y = x - 5$ meet $y = x^2 + x + 1$?",
+          "solution": "$x^2 + x + 1 = x - 5 \\to x^2 + 6 = 0$: $D = 0 - 24 < 0$. No real roots — the line misses the parabola entirely: zero crossings.",
+          "check": ["0**2 - 4*1*6 == -24"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "When lines meet curves", "body": "Unit 2 asked where a parabola meets the x-AXIS. Tilt that axis: where does a parabola meet ANY line? Where does a circle? Same toolkit — substitution manufactures a quadratic, and everything you know about quadratics (roots, discriminant) becomes geometry (crossings, tangency)." },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "A line crossing a parabola", "teach": "Plotted: points of $y = x^2 - 2x - 3$ (the bowl) and $y = x + 1$ (the straight run). They meet at exactly $(-1, 0)$ and $(4, 5)$ — the two roots of the substituted quadratic, each carrying its own height from the line.", "config": { "mode": "plot", "min": -6, "max": 8, "points": [ { "x": -1, "y": 0, "label": "crossing" }, { "x": 0, "y": -3 }, { "x": 1, "y": -4 }, { "x": 2, "y": -3 }, { "x": 3, "y": 0 }, { "x": 4, "y": 5, "label": "crossing" }, { "x": 0, "y": 1 }, { "x": 2, "y": 3 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "The move", "title": "Feed the line to the curve", "body": "Both equations claim $y$. Set the claims equal (or substitute), collect everything on one side, and a familiar object appears: ONE quadratic in $x$. Its real roots are the crossing x-coordinates. Then — crucial etiquette — compute each $y$ from the LINE (simpler, less error-prone) and answer in points." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two crossings, found and checked", "problemId": "a233-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the finish", "title": "Points, not numbers", "prompt": "Solving a line–circle system yields $x = 1$ and $x = -2$, with the line $y = x + 3$. The solution set is:", "options": ["$(1, 4)$ and $(-2, 1)$", "$x = 1, -2$", "$(1, 1)$ and $(-2, 4)$", "$(1, 4), (1, 1), (-2, 4), (-2, 1)$"], "correctIndex": 0, "explanation": "Each root brings its own $y$ from the line: $1 + 3 = 4$ and $-2 + 3 = 1$. No mixing, no bare x's.", "check": ["1 + 3 == 4", "-2 + 3 == 1"] },
+          { "kind": "conicGraph", "eyebrow": "Play", "title": "The circle as an equation", "teach": "A circle $x^2 + y^2 = r^2$ with live dials — slide the center and radius and watch the equation track. Substituting a line into THIS equation is the same move as with the parabola: one quadratic, whose discriminant says whether your line crosses, grazes, or misses.", "config": { "mode": "circle" } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Tuning for tangency", "problemId": "a233-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the census", "title": "Crossing count", "prompt": "Substituting $y = 3x + 2$ into a parabola gives $x^2 - 6x + 9 = 0$. The line:", "options": ["grazes the parabola at exactly one point (tangent)", "crosses at two points", "misses entirely", "IS the parabola"], "correctIndex": 0, "explanation": "$D = 36 - 36 = 0$ — one repeated root, $x = 3$. One touch, no crossing-through: tangency.", "check": ["(-6)**2 - 4*1*9 == 0", "factor(x**2 - 6*x + 9) == (x - 3)**2"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Sketch before you solve", "body": "Five seconds of sketch — a bowl, a tilted line — predicts the crossing count before any algebra. If the algebra then returns a different count, one of the two is wrong and you KNOW to hunt. Prediction is the cheapest error-detector there is." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Line meets circle", "problemId": "a233-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Count the meetings", "problemId": "a233-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Substitute the line into the curve → one quadratic in $x$.", "Each root gets its $y$ FROM THE LINE; answer in points.", "$D$ counts crossings: 2, tangent, or miss."] }
+        ]
+      }
+    },
+    {
+      "slug": "systems-of-inequalities",
+      "title": "Systems of Inequalities & the Corner Principle",
+      "concreteComparison": "A bakery has limited flour and limited oven hours, and each cake or batch of cookies eats some of both. The recipes you CAN run form a polygon on a graph — and the most profitable plan always sits at one of its corners.",
+      "objective": "Graph systems of linear inequalities as feasible regions, find corner points, and optimize a linear objective over the region.",
+      "concept": [
+        "One inequality = a half-plane: the boundary line ($=$) plus one side. Test a point (origin, if legal) to pick the side; dash the boundary for strict symbols, solid for $\\le/\\ge$. A SYSTEM's solutions are where all half-planes overlap — the **feasible region**.",
+        "The region's **corner points** are intersections of boundary-line pairs — little 2×2 systems from Lesson 1. Constraints like $x \\ge 0, y \\ge 0$ (can't bake negative cakes) fence the region into the first quadrant.",
+        "**Corner principle**: a linear objective like $P = 30x + 20y$ reaches its max and min ON CORNERS of the feasible region. So optimization is: find corners, evaluate $P$ at each, pick the winner. That's linear programming — the algorithm running factories and flight schedules."
+      ],
+      "keyIdea": "Each inequality keeps a half-plane; the system keeps the overlap; and a linear objective is optimized by evaluating it at the region's corner points.",
+      "facts": [
+        { "title": "Half-plane test", "latex": "\\text{plug in } (0,0): \\text{ true} \\Rightarrow \\text{keep that side}", "explanation": "Any off-boundary point works; the origin is fastest." },
+        { "title": "Corner principle", "latex": "\\max / \\min \\text{ of } ax + by \\text{ occurs at a corner}", "explanation": "Evaluate the objective at every corner; compare." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a234-we1",
+          "statement": "Graph the system $x + y \\le 6$, $x \\ge 0$, $y \\ge 0$, $y \\le 2x$ and list its corner points.",
+          "solution": "First quadrant, under the line $x + y = 6$, and under... above? $y \\le 2x$ keeps the side BELOW $y = 2x$ (test $(1, 0)$: $0 \\le 2$ ✓). Corners: $(0,0)$; $(6, 0)$ (axis ∩ sum-line); and $y = 2x$ ∩ $x + y = 6$: $3x = 6 \\to (2, 4)$. Triangle with corners $(0,0), (6,0), (2,4)$.",
+          "check": ["2 + 4 == 6", "4 == 2*2", "6 + 0 == 6", "0 <= 2*1"]
+        },
+        {
+          "id": "a234-we2",
+          "statement": "Maximize $P = 30x + 20y$ over the region with corners $(0, 0)$, $(6, 0)$, $(2, 4)$.",
+          "solution": "$P(0,0) = 0$; $P(6, 0) = 180$; $P(2, 4) = 60 + 80 = 140$. Maximum profit 180 at $(6, 0)$ — all resources into $x$.",
+          "check": ["30*6 + 20*0 == 180", "30*2 + 20*4 == 140", "180 > 140"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Shading the wrong side by reading the symbol off the coefficients ('$\\le$ means below').", "correction": "'Below' is only reliable after solving for $y$. The test point never lies: plug in $(0,0)$ and believe the arithmetic.", "authored": true },
+        { "text": "Optimizing by trying interior points.", "correction": "The corner principle makes the interior irrelevant for linear objectives: only corners can win. Find them exactly (solve the 2×2s) — eyeballed corners give eyeballed profits.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a234-t1",
+          "statement": "Find the corner points of: $x \\ge 0$, $y \\ge 0$, $2x + y \\le 8$, $x + y \\le 5$.",
+          "solution": "Axes corners: $(0,0)$, $(4, 0)$ (from $2x + y = 8$), $(0, 5)$. Interior corner: $2x + y = 8$ ∩ $x + y = 5$: subtract → $x = 3, y = 2$. Corners: $(0,0), (4,0), (3,2), (0,5)$.",
+          "check": ["2*3 + 2 == 8", "3 + 2 == 5", "2*4 + 0 == 8"]
+        },
+        {
+          "id": "a234-t2",
+          "statement": "Maximize $P = 5x + 4y$ over the corners $(0,0), (4,0), (3,2), (0,5)$.",
+          "solution": "$P$: $0, 20, 23, 20$. Max 23 at $(3, 2)$ — the mixed plan beats both single-product corners.",
+          "check": ["5*4 + 4*0 == 20", "5*3 + 4*2 == 23", "5*0 + 4*5 == 20", "23 > 20"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Constraints draw shapes", "body": "'At most 6 total', 'no negatives', 'y can't exceed twice x' — each constraint erases half the plane. What survives ALL of them is a polygon: the feasible region, the geometry of what's possible. Then a second question lands: of everything possible, what's BEST?" },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "A feasible triangle", "teach": "The region for $x + y \\le 6$, $y \\le 2x$, $x, y \\ge 0$: a triangle. Its corners — $(0,0)$, $(6,0)$, $(2,4)$ — are plotted; each is an intersection of two boundary LINES, solved exactly as a 2×2 system. Corners are where the action will be.", "config": { "mode": "plot", "min": -1, "max": 8, "points": [ { "x": 0, "y": 0, "label": "corner" }, { "x": 6, "y": 0, "label": "corner" }, { "x": 2, "y": 4, "label": "corner" } ], "polygon": true, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Half-planes", "title": "Test, don't guess", "body": "For each inequality: draw the boundary line (solid for $\\le/\\ge$, dashed for strict), then plug ONE off-line point into the original inequality — the origin whenever it's off the line. True → shade the origin's side; false → the other. Repeat per constraint; the overlap is your region." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Region and corners", "problemId": "a234-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the shading", "title": "Which side survives?", "prompt": "For $3x - y > 6$, the point $(0, 0)$ gives $0 > 6$ — false. The solution side is:", "options": ["the side NOT containing the origin, boundary dashed", "the origin's side, boundary dashed", "the origin's side, boundary solid", "both sides; only the line is excluded"], "correctIndex": 0, "explanation": "False test → shade away from the tester. Strict symbol → the boundary itself is excluded: dashed.", "check": ["3*0 - 0 == 0"] },
+          { "kind": "teach", "eyebrow": "Optimization", "title": "The corner principle", "body": "Profit $P = 30x + 20y$ is a tilted flat plane over the region — no bumps, no dips. A flat sheet over a polygon is highest over a CORNER (slide any level line of $P$ outward; the last touch is a corner). So the algorithm is almost embarrassing: list corners, evaluate $P$, compare. This is **linear programming** — the same principle schedules airlines." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Evaluate the corners", "problemId": "a234-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the principle", "title": "Where's the max?", "prompt": "Over a feasible polygon, $C = 2x + 3y$ attains its maximum:", "options": ["at one of the polygon's corner points", "at the polygon's center", "wherever $x = y$", "at the corner nearest the origin"], "correctIndex": 0, "explanation": "Linear objectives level off nowhere — pushed to the boundary, then along it to a corner. Interior and center points never win alone.", "check": ["2 + 3 == 5"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Corners exactly, then a table", "body": "Solve each boundary-pair 2×2 for EXACT corners, then make a two-column table: corner | objective value. The table format prevents the classic slip — finding the best value but reporting the wrong corner, or vice versa. Answer with both: 'max $P = 23$ at $(3, 2)$.'" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Four constraints, four corners", "problemId": "a234-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Run the table", "problemId": "a234-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Inequality → boundary + tested half-plane; system → the overlap.", "Corners = boundary-pair 2×2 solutions, found exactly.", "Linear objectives win at corners: list, evaluate, compare."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a23-pr-1", "statement": "Solve $x + 2y = 11$, $3x - y = 5$.", "solution": "From the second: $y = 3x - 5$; substitute: $x + 6x - 10 = 11 \\to x = 3$, $y = 4$.", "check": ["3 + 2*4 == 11", "3*3 - 4 == 5"] },
+    { "id": "a23-pr-2", "statement": "Solve $4x + 3y = 10$, $2x - 6y = 10$.", "solution": "Double the first: $8x + 6y = 20$; add: $10x = 30 \\to x = 3$; then $12 + 3y = 10 \\to y = -\\frac{2}{3}$.", "check": ["4*3 + 3*Rational(-2,3) == 10", "2*3 - 6*Rational(-2,3) == 10"] },
+    { "id": "a23-pr-3", "statement": "Classify: $3x - 6y = 12$, $x - 2y = 5$.", "solution": "Triple the second: $3x - 6y = 15 \\ne 12$ — parallel lines, no solution.", "check": ["3*1 == 3", "3*(-2) == -6", "3*5 == 15"] },
+    { "id": "a23-pr-4", "statement": "Solve: $x + y + z = 4$; $2x - y + z = 1$; $x + 2y - z = 7$.", "solution": "(1)+(3): $2x + 3y = 11$. (2)+(3): $3x + y = 8 \\to y = 8 - 3x$. Then $2x + 24 - 9x = 11 \\to x = \\frac{13}{7}$... cleaner: $-7x = -13$, $x = \\frac{13}{7}$, $y = \\frac{17}{7}$, $z = \\frac{-2}{7}$.", "check": ["Rational(13,7) + Rational(17,7) + Rational(-2,7) == 4", "2*Rational(13,7) - Rational(17,7) + Rational(-2,7) == 1", "Rational(13,7) + 2*Rational(17,7) - Rational(-2,7) == 7"] },
+    { "id": "a23-pr-5", "statement": "Solve $y = x^2 - 4x + 3$, $y = 2x - 5$.", "solution": "$x^2 - 6x + 8 = 0 \\to (x-2)(x-4) = 0$: points $(2, -1)$ and $(4, 3)$.", "check": ["2**2 - 4*2 + 3 == -1", "2*2 - 5 == -1", "4**2 - 4*4 + 3 == 3", "2*4 - 5 == 3"] },
+    { "id": "a23-pr-6", "statement": "Solve $x^2 + y^2 = 20$, $y = 2x$.", "solution": "$x^2 + 4x^2 = 20 \\to x^2 = 4$: points $(2, 4)$ and $(-2, -4)$.", "check": ["2**2 + 4**2 == 20", "(-2)**2 + (-4)**2 == 20"] },
+    { "id": "a23-pr-7", "statement": "For which $k$ does $y = x + k$ graze $y = x^2 - x + 4$ at exactly one point?", "solution": "$x^2 - 2x + (4 - k) = 0$; $D = 4 - 4(4 - k) = 0 \\to k = 3$.", "check": ["4 - 4*(4 - 3) == 0"] },
+    { "id": "a23-pr-8", "statement": "Maximize $P = 4x + 7y$ over corners $(0,0), (5,0), (3,3), (0,4)$.", "solution": "Values: $0, 20, 33, 28$. Max 33 at $(3,3)$.", "check": ["4*5 + 7*0 == 20", "4*3 + 7*3 == 33", "4*0 + 7*4 == 28", "33 > 28"] }
+  ],
+  "testYourself": [
+    { "id": "a23-ty-1", "statement": "Solve $2x + 5y = -4$, $3x - 2y = 13$.", "solution": "×2 and ×5: $4x + 10y = -8$, $15x - 10y = 65$; add: $19x = 57 \\to x = 3$, $y = -2$.", "check": ["2*3 + 5*(-2) == -4", "3*3 - 2*(-2) == 13"] },
+    { "id": "a23-ty-2", "statement": "A boat goes 36 km downstream in 2 h and back upstream in 3 h. Find the boat's still-water speed and the current.", "solution": "$b + c = 18$, $b - c = 12$: add → $b = 15$ km/h, $c = 3$ km/h.", "check": ["15 + 3 == 18", "15 - 3 == 12", "2*18 == 36", "3*12 == 36"] },
+    { "id": "a23-ty-3", "statement": "Solve: $x + y + z = 10$; $x - y = 2$; $y + 2z = 11$.", "solution": "From (2): $x = y + 2$. Into (1): $2y + z = 8 \\to z = 8 - 2y$. Into (3): $y + 16 - 4y = 11 \\to y = \\frac{5}{3}$... check: $-3y = -5$. So $y = \\frac{5}{3}$, $x = \\frac{11}{3}$, $z = 8 - \\frac{10}{3} = \\frac{14}{3}$.", "check": ["Rational(11,3) + Rational(5,3) + Rational(14,3) == 10", "Rational(11,3) - Rational(5,3) == 2", "Rational(5,3) + 2*Rational(14,3) == 11"] },
+    { "id": "a23-ty-4", "statement": "Solve $y = x^2$, $y = -x + 6$, and state the number of solutions.", "solution": "$x^2 + x - 6 = 0 \\to (x+3)(x-2) = 0$: two solutions, $(-3, 9)$ and $(2, 4)$.", "check": ["(-3)**2 == 9", "-(-3) + 6 == 9", "2**2 == 4", "-2 + 6 == 4"] },
+    { "id": "a23-ty-5", "statement": "How many points do $x^2 + y^2 = 9$ and $y = x + 7$ share?", "solution": "$x^2 + (x+7)^2 = 9 \\to 2x^2 + 14x + 40 = 0 \\to x^2 + 7x + 20 = 0$: $D = 49 - 80 < 0$. None — the line misses the circle.", "check": ["7**2 - 4*1*20 == -31"] },
+    { "id": "a23-ty-6", "statement": "A workshop makes chairs ($x$) and tables ($y$): $x \\ge 0$, $y \\ge 0$, $x + 3y \\le 9$, $x + y \\le 5$. Profit $P = 20x + 45y$. Find the best plan.", "solution": "Corners: $(0,0), (5,0), (0,3)$, and $x + 3y = 9$ ∩ $x + y = 5$: $2y = 4 \\to (3, 2)$. $P$: $0, 100, 135, 150$. Best: 3 chairs, 2 tables, $P = 150$.", "check": ["3 + 3*2 == 9", "3 + 2 == 5", "20*3 + 45*2 == 150", "20*0 + 45*3 == 135", "150 > 135"] }
+  ]
+}

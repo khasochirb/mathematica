@@ -1,0 +1,285 @@
+{
+  "slug": "quadratics-and-complex-numbers",
+  "title": "Quadratics & Complex Numbers",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Vertex form as the parabola's native language, a new number called i, the quadratic formula finishing every equation it starts, and inequalities read straight off the graph.",
+  "buildsOn": "Unit 1's transformation recipe, and Algebra 1's quadratic solving toolkit.",
+  "lessons": [
+    {
+      "slug": "vertex-form-and-completing-the-square",
+      "title": "Vertex Form & Completing the Square",
+      "concreteComparison": "GPS coordinates beat 'drive around until you find it.' Standard form ax² + bx + c hides the vertex; vertex form a(x − h)² + k IS the coordinates. Completing the square is the converter between the two.",
+      "objective": "Convert between standard and vertex form by completing the square, and read the vertex, axis, and max/min directly.",
+      "concept": [
+        "**Vertex form** $y = a(x - h)^2 + k$ is the transformation recipe from Unit 1: vertex at $(h, k)$, axis $x = h$, opens by the sign of $a$. $y = 2(x - 3)^2 - 8$: vertex $(3, -8)$, minimum value $-8$, at a glance.",
+        "**Converting**: $y = x^2 + 6x + 1$. Take half of 6, square it (9), add AND subtract: $y = (x^2 + 6x + 9) + 1 - 9 = (x + 3)^2 - 8$. Vertex $(-3, -8)$. With a leading coefficient, factor it out of the $x$-terms first: $y = 2x^2 - 12x + 5 = 2(x^2 - 6x) + 5 = 2(x - 3)^2 - 13$.",
+        "Why bother? Optimization. The vertex IS the max or min: a profit model $P(x) = -2x^2 + 80x - 300$ peaks exactly at its vertex — completing the square (or $x_v = -\\frac{b}{2a}$) finds the best price, and vertex form displays the best profit."
+      ],
+      "keyIdea": "Vertex form displays the vertex; completing the square — add and subtract (b/2)², factoring a out first if needed — converts any quadratic into it.",
+      "facts": [
+        { "title": "The two forms", "latex": "ax^2 + bx + c \\;\\longleftrightarrow\\; a(x - h)^2 + k", "explanation": "Same parabola; the right side shows vertex $(h, k)$ directly." },
+        { "title": "The converter", "latex": "x^2 + bx = \\left(x + \\tfrac{b}{2}\\right)^2 - \\left(\\tfrac{b}{2}\\right)^2", "explanation": "Add and subtract $(b/2)^2$ — nothing changes, everything reorganizes." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a221-we1",
+          "statement": "Write $y = x^2 - 8x + 11$ in vertex form and give the vertex and minimum value.",
+          "solution": "Half of $-8$ is $-4$; square: 16. $y = (x^2 - 8x + 16) + 11 - 16 = (x - 4)^2 - 5$. Vertex $(4, -5)$; minimum value $-5$ ($a = 1 > 0$).",
+          "check": ["Rational(-8,2)**2 == 16", "expand((x - 4)**2 - 5) == x**2 - 8*x + 11", "4**2 - 8*4 + 11 == -5"]
+        },
+        {
+          "id": "a221-we2",
+          "statement": "Convert $y = 2x^2 - 12x + 5$ to vertex form.",
+          "solution": "Factor 2 from the x-terms: $y = 2(x^2 - 6x) + 5$. Complete inside: $x^2 - 6x = (x-3)^2 - 9$. So $y = 2[(x-3)^2 - 9] + 5 = 2(x-3)^2 - 13$. Vertex $(3, -13)$. The subtracted 9 got DOUBLED on the way out — that's the classic trap.",
+          "check": ["expand(2*(x - 3)**2 - 13) == 2*x**2 - 12*x + 5", "2*3**2 - 12*3 + 5 == -13"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Completing the square with a leading coefficient still attached: from $2x^2 - 12x$, adding $36$.", "correction": "Factor the 2 out FIRST: $2(x^2 - 6x)$, complete inside with 9, and remember the 9 leaves the brackets as $2 \\times 9 = 18$.", "authored": true },
+        { "text": "Reading the vertex of $y = (x + 3)^2 - 8$ as $(3, -8)$.", "correction": "Inside signs lie (Unit 1): $x + 3 = x - (-3)$, so $h = -3$. Vertex $(-3, -8)$.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a221-t1",
+          "statement": "Write $y = x^2 + 10x + 30$ in vertex form.",
+          "solution": "$(x + 5)^2 + 30 - 25 = (x + 5)^2 + 5$. Vertex $(-5, 5)$ — this parabola never touches the x-axis.",
+          "check": ["expand((x + 5)**2 + 5) == x**2 + 10*x + 30", "(-5)**2 + 10*(-5) + 30 == 5"]
+        },
+        {
+          "id": "a221-t2",
+          "statement": "A rocket's height is $h(t) = -5t^2 + 40t + 2$. Complete the square to find its peak height and when it happens.",
+          "solution": "$h = -5(t^2 - 8t) + 2 = -5[(t-4)^2 - 16] + 2 = -5(t-4)^2 + 82$. Peak: 82 m at $t = 4$ s.",
+          "check": ["expand(-5*(t - 4)**2 + 82) == -5*t**2 + 40*t + 2", "-5*16 + 40*4 + 2 == 82"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "The hidden vertex", "body": "$y = x^2 - 8x + 11$ — where's the turning point? Not visible. $y = (x - 4)^2 - 5$ — SAME parabola, and the vertex $(4, -5)$ is sitting right in the notation. This lesson is about the converter between the hiding form and the showing form." },
+          { "kind": "parabolaGraph", "eyebrow": "Play", "title": "Vertex form, live", "teach": "Drive $a$, $h$, $k$ and watch $y = a(x-h)^2 + k$ respond. The vertex obeys $(h, k)$ exactly — position dials — while $a$ reshapes around it. This form IS Unit 1's transformation recipe applied to $y = x^2$.", "config": { "mode": "vertex", "a": 2, "h": 3, "k": -8, "interactive": true, "min": -8, "max": 10 } },
+          { "kind": "parabolaGraph", "eyebrow": "Compare", "title": "Standard form hides it", "teach": "Same parabola family, standard-form dials: step $b$ and $c$ and try to predict the vertex... it slides diagonally, nothing reads directly. Standard form is great for the y-intercept ($c$) and the quadratic formula — terrible for the vertex. Hence the converter.", "config": { "mode": "standard", "b": -8, "c": 11, "interactive": true, "min": -8, "max": 10 } },
+          { "kind": "teach", "eyebrow": "The converter", "title": "Add and subtract the magic square", "body": "$x^2 + 6x$ wants to be $(x + 3)^2 = x^2 + 6x + 9$. So ADD the missing 9 — and immediately SUBTRACT it, changing nothing: $x^2 + 6x + 1 = (x^2 + 6x + 9) + 1 - 9 = (x+3)^2 - 8$. One expression, reorganized. With a leading coefficient: factor it off the x-terms first, complete inside, and multiply back out carefully." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Clean convert", "problemId": "a221-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the move", "title": "The magic number", "prompt": "To write $x^2 + 12x + 7$ in vertex form, add and subtract:", "options": ["$36$", "$144$", "$12$", "$6$"], "correctIndex": 0, "explanation": "Half of 12 is 6; squared is 36: $(x+6)^2 + 7 - 36 = (x+6)^2 - 29$.", "check": ["Rational(12,2)**2 == 36", "expand((x + 6)**2 - 29) == x**2 + 12*x + 7"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Leading coefficient in play", "problemId": "a221-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the trap", "title": "What leaves the brackets", "prompt": "$y = 3(x^2 - 4x) + 1 = 3[(x-2)^2 - 4] + 1 = $ ?", "options": ["$3(x-2)^2 - 11$", "$3(x-2)^2 - 3$", "$3(x-2)^2 - 4 + 1$... so $3(x-2)^2 - 3$?", "$3(x-2)^2 + 13$"], "correctIndex": 0, "explanation": "The $-4$ inside gets multiplied by 3 on exit: $-12 + 1 = -11$. Forgetting the multiplication is THE completing-the-square error.", "check": ["expand(3*(x - 2)**2 - 11) == 3*x**2 - 12*x + 1"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Expand back to verify", "body": "Vertex form claims are two seconds from certainty: expand your answer and compare with the original. $(x-4)^2 - 5 \\to x^2 - 8x + 16 - 5 = x^2 - 8x + 11$ ✓. Make this reflexive — it converts a hope into a check." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Converter practice", "problemId": "a221-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Peak of a rocket", "problemId": "a221-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Vertex form $a(x-h)^2 + k$ displays vertex, axis, and max/min.", "Convert: add and subtract $(b/2)^2$; factor $a$ off the x-terms first.", "The subtracted square exits the brackets MULTIPLIED by $a$ — expand back to verify."] }
+        ]
+      }
+    },
+    {
+      "slug": "complex-numbers",
+      "title": "Complex Numbers",
+      "concreteComparison": "Negative numbers once sounded absurd — 'a debt of 5 sheep?' — until they proved indispensable. The square root of −1 has the same biography: mocked as 'imaginary,' then it quietly became the working language of electronics, waves, and quantum physics.",
+      "objective": "Compute with i (powers, add/subtract/multiply, conjugates and division), and simplify square roots of negatives.",
+      "concept": [
+        "Define $i$ by $i^2 = -1$. Then $\\sqrt{-25} = 5i$, and every **complex number** has the form $a + bi$ (real part $a$, imaginary part $b$). Powers of $i$ cycle with period 4: $i, -1, -i, 1$ — so $i^{37} = i^{36} \\cdot i = i$.",
+        "**Arithmetic** works like polynomials in $i$: combine like parts to add, FOIL to multiply — then convert every $i^2$ to $-1$. $(2 + 3i)(4 - i) = 8 - 2i + 12i - 3i^2 = 8 + 10i + 3 = 11 + 10i$.",
+        "**Conjugates** $a + bi$ and $a - bi$ multiply to the real number $a^2 + b^2$. That clears $i$ from denominators: $\\frac{3 + i}{2 - i} = \\frac{(3+i)(2+i)}{(2-i)(2+i)} = \\frac{5 + 5i}{5} = 1 + i$."
+      ],
+      "keyIdea": "i² = −1 and everything else is polynomial arithmetic: like parts add, FOIL multiplies, conjugates turn denominators real, and powers of i cycle every 4.",
+      "facts": [
+        { "title": "The definition", "latex": "i^2 = -1, \\qquad \\sqrt{-k} = i\\sqrt{k} \\;(k > 0)", "explanation": "Pull the $i$ out FIRST, before any other root algebra." },
+        { "title": "Conjugate product", "latex": "(a + bi)(a - bi) = a^2 + b^2", "explanation": "Always real, always positive (unless 0) — the denominator-cleaner." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a222-we1",
+          "statement": "Simplify $(5 - 2i) - (3 + 4i)$ and $(2 + 3i)(4 - i)$.",
+          "solution": "Subtract like parts: $(5-3) + (-2-4)i = 2 - 6i$. Multiply: $8 - 2i + 12i - 3i^2 = 8 + 10i + 3 = 11 + 10i$.",
+          "check": ["expand((5 - 2*I) - (3 + 4*I)) == 2 - 6*I", "expand((2 + 3*I)*(4 - I)) == 11 + 10*I"]
+        },
+        {
+          "id": "a222-we2",
+          "statement": "Write $\\dfrac{3 + i}{2 - i}$ in the form $a + bi$.",
+          "solution": "Multiply top and bottom by the conjugate $2 + i$: numerator $(3+i)(2+i) = 6 + 3i + 2i + i^2 = 5 + 5i$; denominator $(2-i)(2+i) = 4 + 1 = 5$. Result: $\\frac{5 + 5i}{5} = 1 + i$.",
+          "check": ["expand((3 + I)*(2 + I)) == 5 + 5*I", "expand((2 - I)*(2 + I)) == 5", "simplify((3 + I)/(2 - I) - (1 + I)) == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "$\\sqrt{-4} \\cdot \\sqrt{-9} = \\sqrt{36} = 6$.", "correction": "Convert to $i$ FIRST: $2i \\cdot 3i = 6i^2 = -6$. The rule $\\sqrt{a}\\sqrt{b} = \\sqrt{ab}$ only holds for non-negative $a, b$.", "authored": true },
+        { "text": "Leaving $i^2$ alive in an answer: $(2+3i)(4-i) = 8 + 10i - 3i^2$, done.", "correction": "$i^2$ is $-1$ by definition — always convert: $-3i^2 = +3$, giving $11 + 10i$. Final answers have the form $a + bi$, no powers of $i$ above 1.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a222-t1",
+          "statement": "Simplify $\\sqrt{-49} + \\sqrt{-16}$ and compute $(3 + 2i)^2$.",
+          "solution": "$7i + 4i = 11i$. Square: $9 + 12i + 4i^2 = 9 + 12i - 4 = 5 + 12i$.",
+          "check": ["7*I + 4*I == 11*I", "expand((3 + 2*I)**2) == 5 + 12*I"]
+        },
+        {
+          "id": "a222-t2",
+          "statement": "Write $\\dfrac{10}{1 + 3i}$ in the form $a + bi$.",
+          "solution": "Times $\\frac{1 - 3i}{1 - 3i}$: numerator $10 - 30i$; denominator $1 + 9 = 10$. Result: $1 - 3i$.",
+          "check": ["expand((1 + 3*I)*(1 - 3*I)) == 10", "simplify(10/(1 + 3*I) - (1 - 3*I)) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "An equation with no answer?", "body": "$x^2 = -1$ has no real solution — squares are never negative. For centuries the response was 'so it has no solution.' Then algebraists noticed: if you INVENT a number whose square is $-1$ and just keep calculating, nothing breaks and formerly impossible problems fall open. That number is $i$, and next lesson it finishes the quadratic formula." },
+          { "kind": "teach", "eyebrow": "The rules", "title": "One new fact, old arithmetic", "body": "Everything about complex numbers follows from $i^2 = -1$ plus ordinary algebra. $\\sqrt{-25} = \\sqrt{25}\\,\\sqrt{-1} = 5i$. A complex number $a + bi$ is a two-part object — real part, imaginary part — handled exactly like the binomial $a + bx$. One habit: convert negatives under roots to $i$-form IMMEDIATELY, before any other simplification." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Subtract and FOIL", "problemId": "a222-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the conversion", "title": "Roots of negatives", "prompt": "$\\sqrt{-4} \\cdot \\sqrt{-9} = $ ?", "options": ["$-6$", "$6$", "$6i$", "$-6i$"], "correctIndex": 0, "explanation": "Convert first: $2i \\cdot 3i = 6i^2 = -6$. Multiplying under the root ($\\sqrt{36} = 6$) uses a rule that's only valid for non-negatives — this is where it visibly breaks.", "check": ["expand(2*I*3*I) == -6"] },
+          { "kind": "teach", "eyebrow": "The cycle", "title": "Powers of i", "body": "$i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$ — then it repeats forever. Any power reduces by dividing the exponent by 4 and keeping the remainder: $i^{37}$: $37 = 4(9) + 1$, so $i^{37} = i^1 = i$. Four values, cycling — the first periodic pattern in your algebra, and a preview of how rotation works." },
+          { "kind": "tapQuestion", "eyebrow": "Check the cycle", "title": "Big exponent, small answer", "prompt": "$i^{50} = $ ?", "options": ["$-1$", "$1$", "$i$", "$-i$"], "correctIndex": 0, "explanation": "$50 = 4(12) + 2$: remainder 2, so $i^{50} = i^2 = -1$.", "check": ["expand(I**50) == -1", "50 - 4*12 == 2"] },
+          { "kind": "teach", "eyebrow": "Division", "title": "The conjugate trick", "body": "$\\frac{3+i}{2-i}$ isn't in $a + bi$ form — there's an $i$ downstairs. The fix: multiply top and bottom by the denominator's **conjugate** $2 + i$. Downstairs becomes $(2-i)(2+i) = 4 + 1 = 5$ — the middle terms cancel and $-i^2$ turns positive. It's rationalizing a denominator, with $i$ playing the root." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Clear the denominator", "problemId": "a222-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Real part, imaginary part — always", "body": "Every final answer lands in the form $a + bi$: no $i^2$, no $i$ in denominators, like parts combined. Treat that form the way you treat 'fully reduced' for fractions — the universal handshake format." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Convert and square", "problemId": "a222-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Divide by a complex", "problemId": "a222-t2" },
+          { "kind": "funFact", "eyebrow": "Fun fact", "title": "The name was an insult", "body": "Descartes coined 'imaginary' to dismiss these numbers as fictions. The joke aged badly: your phone's signal processing, the power grid's AC analysis, and quantum mechanics itself all run on complex arithmetic. The 'imaginary' numbers turned out to be load-bearing." },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$i^2 = -1$; $\\sqrt{-k} = i\\sqrt{k}$ — convert before any other root algebra.", "Add like parts; FOIL and convert $i^2$; powers of $i$ cycle every 4.", "Divide by multiplying with the conjugate: $(a+bi)(a-bi) = a^2 + b^2$."] }
+        ]
+      }
+    },
+    {
+      "slug": "the-quadratic-formula-and-complex-roots",
+      "title": "The Quadratic Formula & Complex Roots",
+      "concreteComparison": "In Algebra 1, a negative discriminant meant 'no solutions — stop.' With i in your toolkit, the same square root now computes. Every quadratic equation has exactly two roots (counting repeats); some of them just live off the real line.",
+      "objective": "Solve any quadratic with the formula, classify roots by the discriminant, and connect complex roots to a graph that misses the x-axis.",
+      "concept": [
+        "The formula $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$ now works UNCONDITIONALLY. For $x^2 - 4x + 13 = 0$: $D = 16 - 52 = -36$, so $x = \\frac{4 \\pm 6i}{2} = 2 \\pm 3i$ — a conjugate pair.",
+        "**Discriminant, upgraded**: $D > 0$ — two real roots (graph crosses twice); $D = 0$ — one repeated real root (vertex kisses the axis); $D < 0$ — two COMPLEX CONJUGATE roots (graph misses the axis entirely; the roots are invisible on the real picture).",
+        "Complex roots of real quadratics always arrive as conjugate pairs $p \\pm qi$ — the $\\pm$ in the formula guarantees it. Handy reverse: a quadratic with roots $2 \\pm 3i$ is $(x - 2)^2 + 9 = x^2 - 4x + 13$, using sum $= 4$ and product $= 13$."
+      ],
+      "keyIdea": "With i, the quadratic formula never fails: D < 0 yields a conjugate pair p ± qi, and the graph shows it by floating clear of the x-axis.",
+      "facts": [
+        { "title": "Formula, unconditional", "latex": "x = \\frac{-b \\pm \\sqrt{D}}{2a}, \\quad D = b^2 - 4ac", "explanation": "$D < 0$: write $\\sqrt{D} = i\\sqrt{|D|}$ and keep going." },
+        { "title": "Conjugate pairs", "latex": "D < 0 \\Rightarrow x = p \\pm qi", "explanation": "Real coefficients force complex roots into mirror pairs." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a223-we1",
+          "statement": "Solve $x^2 - 4x + 13 = 0$.",
+          "solution": "$D = 16 - 52 = -36$. $x = \\frac{4 \\pm \\sqrt{-36}}{2} = \\frac{4 \\pm 6i}{2} = 2 \\pm 3i$. Check $2 + 3i$: $(2+3i)^2 = -5 + 12i$; $-5 + 12i - 8 - 12i + 13 = 0$ ✓.",
+          "check": ["(-4)**2 - 4*1*13 == -36", "expand((2 + 3*I)**2 - 4*(2 + 3*I) + 13) == 0", "expand((2 - 3*I)**2 - 4*(2 - 3*I) + 13) == 0"]
+        },
+        {
+          "id": "a223-we2",
+          "statement": "Solve $2x^2 + 2x + 5 = 0$ and verify the roots are conjugates.",
+          "solution": "$D = 4 - 40 = -36$. $x = \\frac{-2 \\pm 6i}{4} = -\\frac{1}{2} \\pm \\frac{3}{2}i$. Sum: $-1 = -\\frac{b}{a}$ ✓; product: $\\frac{1}{4} + \\frac{9}{4} = \\frac{5}{2} = \\frac{c}{a}$ ✓.",
+          "check": ["2**2 - 4*2*5 == -36", "expand(2*(Rational(-1,2) + Rational(3,2)*I)**2 + 2*(Rational(-1,2) + Rational(3,2)*I) + 5) == 0", "Rational(1,4) + Rational(9,4) == Rational(5,2)"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Halting at $D < 0$ with 'no solutions.'", "correction": "No REAL solutions — but the complex pair exists and the problem usually wants it: $\\sqrt{-36} = 6i$ and the formula finishes normally.", "authored": true },
+        { "text": "Forgetting to divide BOTH terms by $2a$: $\\frac{4 \\pm 6i}{2} = 2 \\pm 6i$.", "correction": "The bar covers everything: $\\frac{4}{2} \\pm \\frac{6}{2}i = 2 \\pm 3i$. Split the fraction before simplifying.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a223-t1",
+          "statement": "Solve $x^2 + 6x + 25 = 0$.",
+          "solution": "$D = 36 - 100 = -64$. $x = \\frac{-6 \\pm 8i}{2} = -3 \\pm 4i$.",
+          "check": ["6**2 - 4*1*25 == -64", "expand((-3 + 4*I)**2 + 6*(-3 + 4*I) + 25) == 0"]
+        },
+        {
+          "id": "a223-t2",
+          "statement": "Write a quadratic (leading coefficient 1) whose roots are $1 \\pm 2i$.",
+          "solution": "Sum $= 2$, product $= 1 + 4 = 5$: $x^2 - 2x + 5 = 0$. Or directly: $(x - 1)^2 + 4$.",
+          "check": ["expand((x - (1 + 2*I))*(x - (1 - 2*I))) == x**2 - 2*x + 5", "expand((1 + 2*I)*(1 - 2*I)) == 5"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Finishing what Algebra 1 started", "body": "Last year, $x^2 - 4x + 13 = 0$ ended with a shrug: $D = -36$, 'no solutions.' But you just built the number whose square is negative. Rerun the formula with $i$ on board and the answer appears — a pair of complex numbers as legitimate as any real root." },
+          { "kind": "parabolaGraph", "eyebrow": "Play", "title": "Watch the roots vanish", "teach": "Step $c$ upward and watch the parabola lift off the x-axis. Two crossings → one kiss → none. The moment it floats free is exactly $D = 0$; beyond it the real picture shows nothing — but the roots didn't die, they moved into the complex plane as a conjugate pair.", "config": { "mode": "standard", "b": -4, "c": 3, "interactive": true, "min": -6, "max": 8 } },
+          { "kind": "teach", "eyebrow": "The upgrade", "title": "√(negative) now computes", "body": "$D = -36$: write $\\sqrt{-36} = 6i$ and continue exactly as before: $x = \\frac{4 \\pm 6i}{2} = 2 \\pm 3i$. Note the shape of the answer: real part $\\pm$ imaginary part — a **conjugate pair**. Real-coefficient quadratics can't produce a lone complex root; the $\\pm$ makes twins every time." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A conjugate pair, verified", "problemId": "a223-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the finish", "title": "Complete the formula", "prompt": "For $x^2 - 2x + 10 = 0$, $D = -36$. The roots are:", "options": ["$1 \\pm 3i$", "$-1 \\pm 3i$", "$2 \\pm 6i$", "no solutions exist"], "correctIndex": 0, "explanation": "$x = \\frac{2 \\pm 6i}{2} = 1 \\pm 3i$ — divide BOTH terms by 2. Check: sum $= 2$ ✓, product $= 1 + 9 = 10$ ✓.", "check": ["(-2)**2 - 4*1*10 == -36", "expand((1 + 3*I)**2 - 2*(1 + 3*I) + 10) == 0"] },
+          { "kind": "teach", "eyebrow": "Three skies, final form", "title": "The discriminant's complete story", "body": "$D > 0$: two real roots — parabola crosses twice. $D = 0$: one repeated root — vertex on the axis. $D < 0$: conjugate pair $p \\pm qi$ — parabola clear of the axis, roots off-stage. Every quadratic has exactly two roots when you count with multiplicity and allow complex — no exceptions, ever. (Unit 4 upgrades this to ALL polynomials.)" },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Leading coefficient 2", "problemId": "a223-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check root-building", "title": "Reverse engineering", "prompt": "A quadratic with leading coefficient 1 has roots $3 \\pm i$. Its constant term is:", "options": ["$10$", "$9$", "$8$", "$6$"], "correctIndex": 0, "explanation": "Product of the roots: $(3+i)(3-i) = 9 + 1 = 10 = c$. (And $b = -(\\text{sum}) = -6$: the quadratic is $x^2 - 6x + 10$.)", "check": ["expand((3 + I)*(3 - I)) == 10"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Sum and product audit", "body": "For roots $r_1, r_2$ of $ax^2 + bx + c$: sum $= -\\frac{b}{a}$, product $= \\frac{c}{a}$ — real or complex, no difference. After any formula run, two seconds of adding and multiplying your roots catches sign slips that plugging back in would take minutes to find." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Formula, complex finish", "problemId": "a223-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Build from roots", "problemId": "a223-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$D < 0$: $\\sqrt{D} = i\\sqrt{|D|}$ and the formula finishes — conjugate pair $p \\pm qi$.", "Graph story: $D<0$ means the parabola never touches the x-axis.", "Audit roots via sum $= -b/a$, product $= c/a$."] }
+        ]
+      }
+    },
+    {
+      "slug": "quadratic-inequalities",
+      "title": "Quadratic Inequalities",
+      "concreteComparison": "A drone must stay above 30 m between two checkpoints — not AT 30, above it. 'Where is the parabola above the line?' is a between-the-roots question, and the graph answers it faster than any algebra.",
+      "objective": "Solve quadratic inequalities by finding roots and reading the parabola's sign between and beyond them.",
+      "concept": [
+        "To solve $x^2 - 2x - 8 < 0$: find the roots of the EQUATION first ($x = 4, -2$), then read the picture. An upward parabola is NEGATIVE between its roots, POSITIVE outside them. So: $-2 < x < 4$.",
+        "Boundary points follow the symbol: $\\le$ includes the roots, $<$ excludes them. A downward parabola ($a < 0$) flips the reading: positive between, negative outside — or just multiply through by $-1$ (flipping the inequality) to make it upward.",
+        "No real roots means no crossings: the parabola lives entirely on one side. $x^2 + 2x + 5 > 0$ ($D = -16$): always true (opens up, floats above); $x^2 + 2x + 5 < 0$: never true — solution set empty."
+      ],
+      "keyIdea": "Roots first, picture second: an upward parabola is negative between its roots and positive outside; no roots means one-sided forever.",
+      "facts": [
+        { "title": "The sign map", "latex": "a > 0: \\;\\; +\\;|\\;-\\;|\\;+ \\;\\text{ (outside, between, outside)}", "explanation": "Roots are the only sign-change points a parabola has." },
+        { "title": "No crossings", "latex": "D < 0: \\text{ same sign everywhere (the sign of } a)", "explanation": "Test any single point — 0 is easiest — to know which side." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a224-we1",
+          "statement": "Solve $x^2 - 2x - 8 \\le 0$.",
+          "solution": "Roots: $(x-4)(x+2) = 0 \\to x = 4, -2$. Upward parabola: negative between. With $\\le$, keep the roots: $-2 \\le x \\le 4$. Test $x = 0$: $-8 \\le 0$ ✓.",
+          "check": ["factor(x**2 - 2*x - 8) == (x - 4)*(x + 2)", "0**2 - 2*0 - 8 == -8", "4**2 - 2*4 - 8 == 0", "(-2)**2 - 2*(-2) - 8 == 0"]
+        },
+        {
+          "id": "a224-we2",
+          "statement": "A ball's height is $h(t) = -5t^2 + 30t$ m. For which times is it above 40 m?",
+          "solution": "$-5t^2 + 30t > 40 \\to -5t^2 + 30t - 40 > 0$; divide by $-5$ (flip!): $t^2 - 6t + 8 < 0 \\to (t-2)(t-4) < 0$. Between the roots: $2 < t < 4$ — a two-second window.",
+          "check": ["factor(t**2 - 6*t + 8) == (t - 4)*(t - 2)", "-5*3**2 + 30*3 == 45", "-5*2**2 + 30*2 == 40", "-5*4**2 + 30*4 == 40"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Solving $x^2 < 9$ as $x < 3$.", "correction": "Two roots: $\\pm 3$; negative between them: $-3 < x < 3$. Taking 'square root of both sides' of an inequality silently drops the left tail.", "authored": true },
+        { "text": "Dividing an inequality by a negative without flipping: $-5t^2 + 30t - 40 > 0 \\to t^2 - 6t + 8 > 0$.", "correction": "Dividing by $-5$ REVERSES the symbol: $t^2 - 6t + 8 < 0$. (Or keep the negative leading coefficient and read a downward parabola instead.)", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a224-t1",
+          "statement": "Solve $x^2 + 3x - 10 > 0$.",
+          "solution": "Roots: $(x+5)(x-2) = 0 \\to x = -5, 2$. Upward, positive OUTSIDE: $x < -5$ or $x > 2$.",
+          "check": ["factor(x**2 + 3*x - 10) == (x + 5)*(x - 2)", "3**2 + 3*3 - 10 == 8", "0**2 + 3*0 - 10 == -10"]
+        },
+        {
+          "id": "a224-t2",
+          "statement": "Solve $x^2 + 4x + 7 < 0$.",
+          "solution": "$D = 16 - 28 = -12 < 0$: no crossings, opens up — the parabola is positive EVERYWHERE. The inequality is never satisfied: no solutions.",
+          "check": ["4**2 - 4*1*7 == -12", "0**2 + 4*0 + 7 == 7"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Ranges, not points", "body": "Equations pin down instants — the ball is AT 40 m at $t = 2$ and $t = 4$. Real constraints are ranges: WHEN is it above 40? For quadratics that's an interval question, and the parabola's picture answers it in one glance once you hold the roots." },
+          { "kind": "parabolaGraph", "eyebrow": "Play", "title": "Read the sign regions", "teach": "This parabola's roots are on dials. The curve is BELOW the axis strictly between its roots and ABOVE outside them — drag the roots around and confirm the pattern never changes (while it opens upward). Sign regions are glued to the roots.", "config": { "mode": "roots", "a": 1, "k": -4, "interactive": true, "min": -8, "max": 8 } },
+          { "kind": "teach", "eyebrow": "The method", "title": "Roots, picture, symbol", "body": "Three moves. (1) Solve the EQUATION $ax^2 + bx + c = 0$ — factoring or formula. (2) Picture the parabola: up or down from the sign of $a$; negative between roots if up. (3) Match the symbol: $< 0$ wants the negative region, $> 0$ the positive; $\\le/\\ge$ keep the boundary roots, strict symbols drop them." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Between the roots", "problemId": "a224-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the regions", "title": "Which region?", "prompt": "$x^2 - 9 > 0$ exactly when:", "options": ["$x < -3$ or $x > 3$", "$-3 < x < 3$", "$x > 3$ only", "$x \\ne \\pm 3$"], "correctIndex": 0, "explanation": "Roots $\\pm 3$, opens up: positive OUTSIDE. The single-tail answer forgets that $(-4)^2 - 9 = 7 > 0$ too.", "check": ["(-4)**2 - 9 == 7", "4**2 - 9 == 7", "0**2 - 9 == -9"] },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The drone window", "problemId": "a224-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the flip", "title": "Divide by −2", "prompt": "$-2x^2 + 8 \\ge 0$ is equivalent to:", "options": ["$x^2 - 4 \\le 0$", "$x^2 - 4 \\ge 0$", "$x^2 + 4 \\le 0$", "$x^2 \\ge 4$"], "correctIndex": 0, "explanation": "Dividing by $-2$ flips the symbol: $x^2 - 4 \\le 0$, i.e. $-2 \\le x \\le 2$. Same answer as reading the original downward parabola between ITS roots.", "check": ["Rational(8, -2) == -4", "(-2)*2**2 + 8 == 0"] },
+          { "kind": "teach", "eyebrow": "Edge case", "title": "No roots, one answer", "body": "$D < 0$ means the parabola never crosses — it's entirely positive (opens up) or entirely negative (opens down). Then the inequality is either ALWAYS true or NEVER true. Don't reason abstractly: test $x = 0$, read the verdict, done." },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Test one point", "body": "After writing any solution interval, test a point inside it and a point outside it against the ORIGINAL inequality. Ten seconds, and it catches flipped symbols, dropped tails, and off-by-one boundary calls — the entire error catalogue of this topic." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Outside the roots", "problemId": "a224-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "No crossings", "problemId": "a224-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Roots first, then read the parabola: up → negative between, positive outside.", "Dividing by a negative flips the symbol; $\\le$ keeps roots, $<$ drops them.", "$D < 0$: always or never — test one point."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a22-pr-1", "statement": "Write $y = x^2 + 4x - 1$ in vertex form.", "solution": "$(x + 2)^2 - 5$. Vertex $(-2, -5)$.", "check": ["expand((x + 2)**2 - 5) == x**2 + 4*x - 1"] },
+    { "id": "a22-pr-2", "statement": "Convert $y = 3x^2 + 6x + 7$ to vertex form.", "solution": "$3(x^2 + 2x) + 7 = 3(x+1)^2 + 4$. Vertex $(-1, 4)$.", "check": ["expand(3*(x + 1)**2 + 4) == 3*x**2 + 6*x + 7"] },
+    { "id": "a22-pr-3", "statement": "Simplify $(4 - 3i) + (2 + 7i)$ and $(1 + 2i)(3 - 2i)$.", "solution": "$6 + 4i$; and $3 - 2i + 6i - 4i^2 = 7 + 4i$.", "check": ["expand((4 - 3*I) + (2 + 7*I)) == 6 + 4*I", "expand((1 + 2*I)*(3 - 2*I)) == 7 + 4*I"] },
+    { "id": "a22-pr-4", "statement": "Simplify $i^{23}$.", "solution": "$23 = 4(5) + 3$: $i^{23} = i^3 = -i$.", "check": ["expand(I**23) == -I"] },
+    { "id": "a22-pr-5", "statement": "Write $\\dfrac{4 + 2i}{1 - i}$ as $a + bi$.", "solution": "Times $\\frac{1+i}{1+i}$: $\\frac{4 + 4i + 2i + 2i^2}{2} = \\frac{2 + 6i}{2} = 1 + 3i$.", "check": ["simplify((4 + 2*I)/(1 - I) - (1 + 3*I)) == 0"] },
+    { "id": "a22-pr-6", "statement": "Solve $x^2 + 2x + 5 = 0$.", "solution": "$D = 4 - 20 = -16$: $x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$.", "check": ["2**2 - 4*1*5 == -16", "expand((-1 + 2*I)**2 + 2*(-1 + 2*I) + 5) == 0"] },
+    { "id": "a22-pr-7", "statement": "Solve $x^2 - 5x - 14 > 0$.", "solution": "Roots $7, -2$; positive outside: $x < -2$ or $x > 7$.", "check": ["factor(x**2 - 5*x - 14) == (x - 7)*(x + 2)", "8**2 - 5*8 - 14 == 10"] },
+    { "id": "a22-pr-8", "statement": "Solve $x^2 - 6x + 9 \\le 0$.", "solution": "$(x - 3)^2 \\le 0$: a square is never negative, so only $x = 3$ works.", "check": ["factor(x**2 - 6*x + 9) == (x - 3)**2", "(3 - 3)**2 == 0"] }
+  ],
+  "testYourself": [
+    { "id": "a22-ty-1", "statement": "Convert $y = -2x^2 + 8x - 3$ to vertex form and give the maximum value.", "solution": "$-2(x^2 - 4x) - 3 = -2(x-2)^2 + 5$. Max value 5 at $x = 2$.", "check": ["expand(-2*(x - 2)**2 + 5) == -2*x**2 + 8*x - 3", "-2*4 + 8*2 - 3 == 5"] },
+    { "id": "a22-ty-2", "statement": "Compute $(2 - 5i)^2$ and write it as $a + bi$.", "solution": "$4 - 20i + 25i^2 = -21 - 20i$.", "check": ["expand((2 - 5*I)**2) == -21 - 20*I"] },
+    { "id": "a22-ty-3", "statement": "Write $\\dfrac{7 - i}{3 + i}$ as $a + bi$.", "solution": "Times conjugate: $\\frac{(7-i)(3-i)}{10} = \\frac{21 - 7i - 3i + i^2}{10} = \\frac{20 - 10i}{10} = 2 - i$.", "check": ["simplify((7 - I)/(3 + I) - (2 - I)) == 0"] },
+    { "id": "a22-ty-4", "statement": "Solve $4x^2 - 4x + 5 = 0$.", "solution": "$D = 16 - 80 = -64$: $x = \\frac{4 \\pm 8i}{8} = \\frac{1}{2} \\pm i$.", "check": ["(-4)**2 - 4*4*5 == -64", "expand(4*(Rational(1,2) + I)**2 - 4*(Rational(1,2) + I) + 5) == 0"] },
+    { "id": "a22-ty-5", "statement": "Write a quadratic with leading coefficient 1 whose roots are $-2 \\pm 5i$.", "solution": "Sum $-4$, product $4 + 25 = 29$: $x^2 + 4x + 29$.", "check": ["expand((x - (-2 + 5*I))*(x - (-2 - 5*I))) == x**2 + 4*x + 29"] },
+    { "id": "a22-ty-6", "statement": "A firework's height is $h(t) = -5t^2 + 40t$. For which times is it above 60 m?", "solution": "$-5t^2 + 40t - 60 > 0 \\to t^2 - 8t + 12 < 0 \\to (t-2)(t-6) < 0$: $2 < t < 6$.", "check": ["factor(t**2 - 8*t + 12) == (t - 6)*(t - 2)", "-5*4**2 + 40*4 == 80", "-5*2**2 + 40*2 == 60"] }
+  ]
+}

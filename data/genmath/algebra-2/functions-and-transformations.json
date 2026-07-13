@@ -1,0 +1,286 @@
+{
+  "slug": "functions-and-transformations",
+  "title": "Functions & Transformations",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Function notation as a machine, domain and range, the four graph moves — shift, flip, stretch — plus absolute value and piecewise functions: the visual grammar every later unit speaks.",
+  "buildsOn": "Algebra 1's functions unit — f(x) notation and linear graphs.",
+  "lessons": [
+    {
+      "slug": "function-notation-domain-and-range",
+      "title": "Function Notation, Domain & Range",
+      "concreteComparison": "A vending machine takes a button press and returns exactly one snack — same button, same snack, every time. A function is that machine for numbers: input $x$, one guaranteed output $f(x)$. Domain is the list of buttons that work; range is the set of snacks it can actually drop.",
+      "objective": "Evaluate functions fluently (numbers, expressions, and nested calls), and read domain and range restrictions from formulas.",
+      "concept": [
+        "$f(x) = 2x^2 - 3x + 1$ names a rule. $f(4)$ means 'run 4 through it': $2(16) - 12 + 1 = 21$. Inputs can be expressions too: $f(a + 1)$ substitutes the WHOLE package, parentheses and all: $2(a+1)^2 - 3(a+1) + 1$.",
+        "**Domain** = every input the formula tolerates. Two classic outlaws: division by zero ($\\frac{1}{x-3}$ bans $x = 3$) and even roots of negatives ($\\sqrt{x-5}$ demands $x \\ge 5$). Everything else is welcome.",
+        "**Range** = every output the machine can actually produce. $f(x) = x^2$ never goes negative — its range is $y \\ge 0$ — even though its domain is all reals. Domain reads inputs; range reads outputs."
+      ],
+      "keyIdea": "f(x) is a machine: substitute the whole input, and read domain from what the formula forbids (zero denominators, negative even roots).",
+      "facts": [
+        { "title": "Substitute the package", "latex": "f(a+1): \\text{ every } x \\text{ becomes } (a+1)", "explanation": "Parentheses around the whole input — the most-skipped step in algebra." },
+        { "title": "Domain outlaws", "latex": "\\frac{1}{x-3}: x \\ne 3; \\qquad \\sqrt{x-5}: x \\ge 5", "explanation": "Ban zero denominators; even roots need non-negative insides." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a211-we1",
+          "statement": "For $f(x) = 2x^2 - 3x + 1$, compute $f(4)$, $f(-2)$, and $f(a+1)$.",
+          "solution": "$f(4) = 32 - 12 + 1 = 21$. $f(-2) = 8 + 6 + 1 = 15$. $f(a+1) = 2(a+1)^2 - 3(a+1) + 1 = 2a^2 + a$ after expanding — the whole package substitutes.",
+          "check": ["2*4**2 - 3*4 + 1 == 21", "2*(-2)**2 - 3*(-2) + 1 == 15", "expand(2*(a+1)**2 - 3*(a+1) + 1) == 2*a**2 + a"]
+        },
+        {
+          "id": "a211-we2",
+          "statement": "Find the domain of $g(x) = \\dfrac{x+1}{x^2 - 9}$ and $h(x) = \\sqrt{2x - 8}$.",
+          "solution": "$g$: the denominator $x^2 - 9 = (x-3)(x+3)$ dies at $x = \\pm 3$ — domain: all reals except $3$ and $-3$. $h$: need $2x - 8 \\ge 0$, so $x \\ge 4$.",
+          "check": ["factor(x**2 - 9) == (x - 3)*(x + 3)", "3**2 - 9 == 0", "(-3)**2 - 9 == 0", "solve(2*x - 8, x) == [4]"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Computing $f(a+1)$ by tacking $+1$ onto $f(a)$.", "correction": "$f(a+1) \\ne f(a) + 1$. The input is the package $(a+1)$: every $x$ in the formula becomes $(a+1)$, parentheses included.", "authored": true },
+        { "text": "Giving the domain of $\\sqrt{x-5}$ as $x > 5$.", "correction": "Zero under a square root is fine: $\\sqrt{0} = 0$. The condition is $x - 5 \\ge 0$, so $x \\ge 5$ — the boundary belongs.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a211-t1",
+          "statement": "For $f(x) = x^2 - 5x$, compute $f(7)$ and simplify $f(2t)$.",
+          "solution": "$f(7) = 49 - 35 = 14$. $f(2t) = (2t)^2 - 5(2t) = 4t^2 - 10t$ — the 2 gets squared with the $t$.",
+          "check": ["7**2 - 5*7 == 14", "expand((2*t)**2 - 5*(2*t)) == 4*t**2 - 10*t"]
+        },
+        {
+          "id": "a211-t2",
+          "statement": "Find the domain of $r(x) = \\dfrac{\\sqrt{x+2}}{x - 5}$.",
+          "solution": "Root: $x + 2 \\ge 0 \\to x \\ge -2$. Denominator: $x \\ne 5$. Both at once: $x \\ge -2$ and $x \\ne 5$.",
+          "check": ["solve(x + 2, x) == [-2]", "5 - 5 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "One rule, a thousand questions", "body": "Algebra 2 is a course about FUNCTIONS — quadratics, polynomials, exponentials, logarithms, rationals. Every one of them is the same object underneath: a machine that takes an input and returns exactly one output. Get fluent with the machine now and every later unit is just a new engine in the same chassis." },
+          { "kind": "evaluator", "eyebrow": "Play", "title": "Run the machine", "teach": "This is $f(x) = 2x + 3$ as a live machine. Slide the input and watch the output respond — one input, one output, every time. THAT reliability is what makes $f$ a function; the graph is just every (input, output) pair plotted at once.", "config": { "a": 2, "b": 3, "varName": "x", "min": -6, "max": 6, "start": 2, "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Notation", "title": "Substitute the package", "body": "$f(4)$: replace every $x$ with 4. $f(-2)$: replace every $x$ with $(-2)$ — parentheses shield the sign. $f(a+1)$: replace every $x$ with the ENTIRE package $(a+1)$. Wherever the formula squares $x$, it now squares the package. Writing the parentheses first and simplifying second prevents nearly every substitution error." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Three inputs, one machine", "problemId": "a211-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check substitution", "title": "The package rule", "prompt": "If $f(x) = x^2 + 1$, then $f(a + 3) = $ ?", "options": ["$a^2 + 6a + 10$", "$a^2 + 10$", "$a^2 + 4$", "$a^2 + 9 + 1$... so $a^2 + 10$?"], "correctIndex": 0, "explanation": "$(a+3)^2 + 1 = a^2 + 6a + 9 + 1 = a^2 + 6a + 10$. The middle term $6a$ is exactly what dropping the parentheses loses.", "check": ["expand((a + 3)**2 + 1) == a**2 + 6*a + 10"] },
+          { "kind": "teach", "eyebrow": "Domain", "title": "What the formula forbids", "body": "Most formulas accept every real number — the interesting ones don't. Two outlaws to hunt: a **denominator hitting zero** (ban those inputs) and an **even root of a negative** (demand the inside stay $\\ge 0$). State the domain as what's allowed: 'all reals except 3', or '$x \\ge 4$'." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Two restriction hunts", "problemId": "a211-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check domain", "title": "Spot the outlaws", "prompt": "The domain of $f(x) = \\dfrac{3}{\\sqrt{x - 1}}$ is:", "options": ["$x > 1$", "$x \\ge 1$", "$x \\ne 1$", "all real numbers"], "correctIndex": 0, "explanation": "The root demands $x - 1 \\ge 0$; the DENOMINATOR bans the root being zero, killing $x = 1$ too. Together: strictly $x > 1$.", "check": ["1 - 1 == 0"] },
+          { "kind": "teach", "eyebrow": "Range", "title": "What comes out", "body": "Range is the output side: which heights does the graph actually reach? $f(x) = x^2$ has domain all reals but range $y \\ge 0$ — squares are never negative. Range usually reads best from the GRAPH: lowest point, highest point, gaps. This course builds that graph-reading eye function family by family." },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Domain before algebra", "body": "Before manipulating any formula, note its domain restrictions in the margin. Later — solving rational and radical equations — phantom 'solutions' will appear precisely at forbidden inputs, and the margin note is what catches them." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Machine practice", "problemId": "a211-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Double restriction", "problemId": "a211-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$f(\\text{input})$: substitute the whole package, parentheses first.", "Domain outlaws: zero denominators, negative insides of even roots.", "Domain reads inputs from the formula; range reads outputs from the graph."] }
+        ]
+      }
+    },
+    {
+      "slug": "transformations-of-functions",
+      "title": "Transformations of Functions",
+      "concreteComparison": "Photo apps don't redraw your picture pixel by pixel — they slide it, flip it, stretch it. Algebra does exactly this to graphs: four standard moves turn one memorized parent shape into a whole family, and the formula tells you the recipe.",
+      "objective": "Read h, k, a in g(x) = a·f(x − h) + k as graph moves: horizontal/vertical shifts, reflection, and vertical stretch/compression.",
+      "concept": [
+        "**Shifts**: $f(x) + k$ slides the graph UP by $k$ (outside = vertical). $f(x - h)$ slides it RIGHT by $h$ (inside = horizontal, and the sign lies: $x - 3$ moves right, $x + 3$ moves left).",
+        "**Reflection and stretch**: $-f(x)$ flips over the x-axis. $a \\cdot f(x)$ stretches vertically by $a$ when $|a| > 1$, compresses when $|a| < 1$. Applied to $y = x^2$: $y = -2(x-3)^2 + 5$ is the parabola flipped, doubled, moved right 3 and up 5 — vertex now $(3, 5)$.",
+        "Order matters only between stretch/flip and vertical shift: $a f(x-h) + k$ means stretch/flip FIRST, then shift. Reading order: inside moves (horizontal), then $a$ (shape), then outside $+ k$ (vertical)."
+      ],
+      "keyIdea": "Inside the parentheses moves the graph horizontally (sign reversed); outside moves it vertically; a out front flips and stretches — one parent shape, four dials.",
+      "facts": [
+        { "title": "The transformation recipe", "latex": "g(x) = a\\,f(x - h) + k", "explanation": "$h$: right-shift (sign lies), $k$: up-shift, $a$: flip if negative, stretch if $|a|>1$." },
+        { "title": "Inside vs outside", "latex": "f(x - 3): \\text{right } 3; \\qquad f(x) - 3: \\text{down } 3", "explanation": "Inside touches the input (horizontal); outside touches the output (vertical)." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a212-we1",
+          "statement": "Describe $g(x) = (x + 4)^2 - 3$ as transformations of $y = x^2$, and give its vertex.",
+          "solution": "Inside: $x + 4 = x - (-4)$ → LEFT 4. Outside: $-3$ → DOWN 3. No flip or stretch. The parent vertex $(0,0)$ lands at $(-4, -3)$. Check a point: $g(-4) = 0 - 3 = -3$ ✓, and $g(-2) = 4 - 3 = 1$.",
+          "check": ["(-4 + 4)**2 - 3 == -3", "(-2 + 4)**2 - 3 == 1", "(0 + 4)**2 - 3 == 13"]
+        },
+        {
+          "id": "a212-we2",
+          "statement": "The graph of $f(x) = \\sqrt{x}$ is flipped over the x-axis, stretched vertically by 2, and shifted right 1 and up 6. Write $g(x)$ and find where it crosses the x-axis.",
+          "solution": "$g(x) = -2\\sqrt{x - 1} + 6$. Crossing: $-2\\sqrt{x-1} + 6 = 0 \\to \\sqrt{x-1} = 3 \\to x - 1 = 9 \\to x = 10$. Check: $g(10) = -2(3) + 6 = 0$ ✓.",
+          "check": ["-2*sqrt(10 - 1) + 6 == 0", "sqrt(9) == 3", "-2*sqrt(1 - 1) + 6 == 6"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Reading $f(x + 3)$ as a shift RIGHT 3.", "correction": "Inside signs lie: $x + 3 = x - (-3)$ shifts LEFT 3. Test one point: the input that used to give $f(0)$ is now $x = -3$.", "authored": true },
+        { "text": "Applying the vertical shift before the stretch in $y = 2f(x) + 1$.", "correction": "Stretch first, then shift: a point at height 3 goes to $2(3) + 1 = 7$, not $2(3 + 1) = 8$. The formula's order of operations IS the transformation order.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a212-t1",
+          "statement": "Give the vertex of $g(x) = -3(x - 2)^2 + 8$ and say whether it opens up or down.",
+          "solution": "Vertex $(2, 8)$ — inside gives right 2, outside up 8. $a = -3 < 0$: opens DOWN (flipped), three times steeper. Check: $g(2) = 8$, $g(3) = -3 + 8 = 5$.",
+          "check": ["-3*(2 - 2)**2 + 8 == 8", "-3*(3 - 2)**2 + 8 == 5"]
+        },
+        {
+          "id": "a212-t2",
+          "statement": "Write the equation of $y = |x|$ shifted left 5 and down 2, and find its two x-intercepts.",
+          "solution": "$g(x) = |x + 5| - 2$. Zeros: $|x + 5| = 2 \\to x + 5 = \\pm 2 \\to x = -3$ or $x = -7$.",
+          "check": ["Abs(-3 + 5) - 2 == 0", "Abs(-7 + 5) - 2 == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "One shape, a whole family", "body": "You know $y = x^2$ cold. But real problems hand you $y = -2(x-3)^2 + 5$. Redraw from a table? Never. Algebra 2's answer: memorize ONE parent shape per family, then learn the four moves — shift horizontally, shift vertically, flip, stretch — that the formula encodes. Same four moves for every family, all course long." },
+          { "kind": "parabolaGraph", "eyebrow": "Play", "title": "Drive the vertex", "teach": "This is $y = a(x - h)^2 + k$ with live dials. Step $h$ and watch the parabola slide HORIZONTALLY — notice the formula shows $x - 3$ when the graph sits at $+3$: inside signs lie. Step $k$ for vertical slides. The vertex is always exactly $(h, k)$.", "config": { "mode": "vertex", "a": 1, "h": 1, "k": -2, "interactive": true, "min": -8, "max": 8 } },
+          { "kind": "teach", "eyebrow": "The two shifts", "title": "Inside lies, outside doesn't", "body": "OUTSIDE the function touches the output: $f(x) + 3$ lifts every point 3 — honest. INSIDE touches the input: $f(x - 3)$ asks 'which x now gives the old $f(0)$?' Answer: $x = 3$ — so the graph moves RIGHT even though the formula says minus. Inside: horizontal, sign reversed. Every family, forever." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Reading a shifted parabola", "problemId": "a212-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the lie", "title": "Which way?", "prompt": "The graph of $y = f(x + 2) - 7$ is the graph of $f$ moved:", "options": ["left 2, down 7", "right 2, down 7", "left 2, up 7", "right 2, up 7"], "correctIndex": 0, "explanation": "Inside: $x + 2 = x - (-2)$ → left 2 (the sign lies). Outside: $-7$ → down 7 (honest).", "check": ["2 - 2 == 0"] },
+          { "kind": "parabolaGraph", "eyebrow": "Play", "title": "The a dial: flip and stretch", "teach": "Now step $a$. Past 1 the parabola narrows (every output stretched); between 0 and 1 it flattens; below 0 it FLIPS into an arch. $a$ never moves the vertex — it only reshapes around it. Shape dial and position dials are independent.", "config": { "mode": "shape", "a": 1, "interactive": true, "min": -8, "max": 8 } },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Build one from words", "problemId": "a212-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the order", "title": "Stretch, then lift", "prompt": "$f(2) = 5$. For $g(x) = 3f(x) - 4$, what is $g(2)$?", "options": ["$11$", "$3$", "$15 - 4 = 11$... or $3(5-4) = 3$?", "$-7$"], "correctIndex": 0, "explanation": "Formula order: multiply first, $3 \\cdot 5 = 15$, then subtract 4: $g(2) = 11$. Stretch before shift, always.", "check": ["3*5 - 4 == 11"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Track the landmark", "body": "Don't transform clouds of points — transform ONE landmark. For parabolas it's the vertex; for $\\sqrt{x}$ the endpoint; for $|x|$ the corner. Move the landmark with $(h, k)$, apply $a$ for shape, sketch. Three seconds, no table." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Read the recipe", "problemId": "a212-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Write the recipe", "problemId": "a212-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$a\\,f(x-h)+k$: $h$ right (sign lies), $k$ up (honest), $a$ flip/stretch.", "Inside = horizontal, outside = vertical.", "Stretch before shift; move the landmark, not the point cloud."] }
+        ]
+      }
+    },
+    {
+      "slug": "absolute-value-functions-and-equations",
+      "title": "Absolute Value Functions & Equations",
+      "concreteComparison": "\"We're within 3 degrees of freezing\" names TWO temperatures at once — 3 above and 3 below. Absolute value is the algebra of that sentence: distance from a center, direction ignored, and its graph is the sharpest shape in the course: a perfect V.",
+      "objective": "Graph absolute value functions via transformations, and solve absolute value equations and inequalities by the two-branch method.",
+      "concept": [
+        "$|x|$ is DISTANCE from zero: $|5| = |-5| = 5$. The graph of $y = |x|$ is a V with its corner at the origin — two rays of slope $\\pm 1$. The full family $y = a|x - h| + k$ moves the corner to $(h, k)$ exactly like the parabola's vertex.",
+        "**Equations split in two**: $|x - 3| = 5$ means 'distance from 3 is 5' — so $x - 3 = 5$ or $x - 3 = -5$: $x = 8$ or $x = -2$. Isolate the absolute value FIRST, then split. And $|A| = -2$ has no solutions: distances are never negative.",
+        "**Inequalities**: $|x - 3| < 5$ traps $x$ within 5 of 3: $-5 < x - 3 < 5$, an AND sandwich. $|x - 3| > 5$ pushes $x$ beyond: $x - 3 > 5$ OR $x - 3 < -5$. Less-than: sandwich; greater-than: two tails."
+      ],
+      "keyIdea": "Absolute value is distance: equations split into two branches after isolating, < makes an AND sandwich, > makes two OR tails, and |A| = negative is impossible.",
+      "facts": [
+        { "title": "The split", "latex": "|X| = c \\;(c>0) \\Rightarrow X = c \\text{ or } X = -c", "explanation": "Isolate the bars first; then two branch equations." },
+        { "title": "Sandwich vs tails", "latex": "|X| < c: -c < X < c; \\qquad |X| > c: X > c \\text{ or } X < -c", "explanation": "Within distance c = AND; beyond distance c = OR." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a213-we1",
+          "statement": "Solve $2|x - 1| + 3 = 11$.",
+          "solution": "Isolate: $2|x-1| = 8 \\to |x - 1| = 4$. Split: $x - 1 = 4 \\to x = 5$, or $x - 1 = -4 \\to x = -3$. Both check: $2(4) + 3 = 11$ ✓.",
+          "check": ["2*Abs(5 - 1) + 3 == 11", "2*Abs(-3 - 1) + 3 == 11", "Rational(8, 2) == 4"]
+        },
+        {
+          "id": "a213-we2",
+          "statement": "A bolt is acceptable if its diameter $d$ satisfies $|d - 10| \\le 0.2$ (mm). Solve the inequality and interpret.",
+          "solution": "Sandwich: $-0.2 \\le d - 10 \\le 0.2$, so $9.8 \\le d \\le 10.2$. Any diameter from 9.8 mm to 10.2 mm — within 0.2 of the 10 mm target — passes.",
+          "check": ["Abs(Rational(98,10) - 10) == Rational(2,10)", "Abs(Rational(102,10) - 10) == Rational(2,10)", "Abs(10 - 10) == 0"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Splitting before isolating: from $2|x-1| + 3 = 11$ writing $2(x-1) + 3 = \\pm 11$.", "correction": "The bars must stand ALONE first: $|x-1| = 4$, THEN split into $x - 1 = \\pm 4$. Isolate, then branch.", "authored": true },
+        { "text": "Solving $|x + 2| = -6$ by splitting into two equations anyway.", "correction": "Stop at the sight of $= -6$: absolute value is a distance, never negative. No solutions — writing $x + 2 = -6$ manufactures a phantom.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a213-t1",
+          "statement": "Solve $3|2x - 4| - 5 = 13$.",
+          "solution": "$3|2x-4| = 18 \\to |2x - 4| = 6$. Branches: $2x - 4 = 6 \\to x = 5$; $2x - 4 = -6 \\to x = -1$.",
+          "check": ["3*Abs(2*5 - 4) - 5 == 13", "3*Abs(2*(-1) - 4) - 5 == 13"]
+        },
+        {
+          "id": "a213-t2",
+          "statement": "Solve $|x - 7| > 2$ and describe the solution set.",
+          "solution": "Two tails: $x - 7 > 2 \\to x > 9$, or $x - 7 < -2 \\to x < 5$. Everything MORE than 2 away from 7: $x < 5$ or $x > 9$.",
+          "check": ["Abs(10 - 7) == 3", "Abs(4 - 7) == 3", "Abs(7 - 7) == 0"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "Direction-blind numbers", "body": "Tolerance specs, error bounds, 'within 3 of' — the real world constantly measures HOW FAR without caring WHICH WAY. Absolute value is that measurement, and because one distance corresponds to two positions, everything about it comes in pairs: two branches, two tails, two rays of a V." },
+          { "kind": "absoluteValue", "eyebrow": "Play", "title": "Distance from zero", "teach": "Drag the marker: $|x|$ reads the DISTANCE back to 0, direction erased. $|-5|$ and $|5|$ both report 5 — two different positions, one distance. Every rule in this lesson falls out of this one picture.", "config": { "min": -8, "max": 8, "start": -5, "color": "#e8913c" } },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "The V, transformed", "teach": "Points of $y = |x - 3| - 2$: the corner sits at $(3, -2)$ — the transformation recipe from last lesson, verbatim. Rays of slope $+1$ and $-1$ climb away symmetrically; the V crosses zero at $x = 1$ and $x = 5$, each a distance 2 from the corner's $x$.", "config": { "mode": "plot", "min": -6, "max": 8, "points": [ { "x": 1, "y": 0 }, { "x": 2, "y": -1 }, { "x": 3, "y": -2, "label": "corner" }, { "x": 4, "y": -1 }, { "x": 5, "y": 0 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Equations", "title": "Isolate, then split", "body": "$|x - 3| = 5$ says: distance from 3 equals 5. Two positions do that: $3 + 5 = 8$ and $3 - 5 = -2$. Algebraically: $x - 3 = 5$ or $x - 3 = -5$. The non-negotiable ritual: get the bars ALONE first ($2|x-1| + 3 = 11 \\to |x-1| = 4$), then write both branches. And if isolation leaves $|A| = $ negative: no solutions, full stop." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Isolate, split, check", "problemId": "a213-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the split", "title": "Both positions", "prompt": "$|x + 2| = 7$ has solutions:", "options": ["$x = 5$ or $x = -9$", "$x = 5$ only", "$x = 9$ or $x = -5$", "$x = \\pm 7$"], "correctIndex": 0, "explanation": "Branches: $x + 2 = 7 \\to x = 5$; $x + 2 = -7 \\to x = -9$. Both sit distance 7 from $-2$.", "check": ["Abs(5 + 2) == 7", "Abs(-9 + 2) == 7"] },
+          { "kind": "tapQuestion", "eyebrow": "Check the trap", "title": "A negative distance?", "prompt": "How many solutions does $|3x - 5| + 9 = 4$ have?", "options": ["none", "one", "two", "infinitely many"], "correctIndex": 0, "explanation": "Isolating: $|3x - 5| = -5$. A distance can't be negative — no value of $x$ works. The split ritual never even starts.", "check": ["4 - 9 == -5"] },
+          { "kind": "teach", "eyebrow": "Inequalities", "title": "Sandwich or tails", "body": "$|x - 3| < 5$: within 5 of 3 — one connected stretch, the AND sandwich $-5 < x - 3 < 5$, i.e. $-2 < x < 8$. $|x - 3| > 5$: beyond 5 from 3 — two separate tails, the OR pair $x > 8$ or $x < -2$. Less-than hugs the center; greater-than flees it. Picture the V against a horizontal line: below the line is the sandwich, above it the tails." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "A tolerance spec", "problemId": "a213-we2" },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Say it as distance", "body": "Before any algebra, read the statement aloud as distance: '$|x - 7| > 2$' = 'x is more than 2 away from 7.' The number line answers instantly — beyond 9 or below 5 — and your algebra now has a picture to match against." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Full ritual", "problemId": "a213-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Two tails", "problemId": "a213-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["$|x|$ = distance from zero; the graph is a V with corner at $(h,k)$.", "Isolate the bars, then split into two branches; $|A| = $ negative → no solutions.", "$< c$: AND sandwich. $> c$: two OR tails."] }
+        ]
+      }
+    },
+    {
+      "slug": "piecewise-functions",
+      "title": "Piecewise Functions",
+      "concreteComparison": "A parking garage charges $3 for the first hour, then $2 per extra hour, capped at $15 — three different rules, each ruling its own time interval. Real pricing, taxes, and shipping are all stitched from pieces, and piecewise notation is just that stitching written down.",
+      "objective": "Evaluate, graph, and write piecewise-defined functions, handling boundary points and open/closed endpoints correctly.",
+      "concept": [
+        "A piecewise function lists rule + territory pairs: $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ x^2 & x \\ge 1 \\end{cases}$. To evaluate, FIRST find which territory the input lives in, THEN apply only that rule: $f(0) = 3$ (first rule), $f(2) = 4$ (second).",
+        "Boundaries belong to exactly one piece: at $x = 1$ the $\\ge$ sends you to $x^2$, so $f(1) = 1$. Graphs mark this with a FILLED dot on the owning piece and an OPEN circle on the disowned one.",
+        "The absolute value function is secretly piecewise — $|x| = \\begin{cases} x & x \\ge 0 \\\\ -x & x < 0 \\end{cases}$ — and step functions (shipping tiers, tax brackets) are piecewise with constant pieces."
+      ],
+      "keyIdea": "One function, several territories: check which condition the input satisfies, apply only that rule, and give every boundary to exactly one piece (filled dot owns, open circle disowns).",
+      "facts": [
+        { "title": "Evaluate in two steps", "latex": "\\text{territory first, rule second}", "explanation": "$f(2)$: find the condition 2 satisfies, then use only that formula." },
+        { "title": "Boundary ownership", "latex": "\\bullet \\text{ owns}, \\quad \\circ \\text{ disowns}", "explanation": "Each boundary input belongs to exactly one piece — the one whose inequality includes it." }
+      ],
+      "workedExamples": [
+        {
+          "id": "a214-we1",
+          "statement": "For $f(x) = \\begin{cases} 2x + 5 & x < 0 \\\\ 5 - x & 0 \\le x \\le 4 \\\\ 1 & x > 4 \\end{cases}$, compute $f(-3)$, $f(0)$, $f(4)$, and $f(10)$.",
+          "solution": "$f(-3)$: territory $x < 0$ → $2(-3) + 5 = -1$. $f(0)$: middle territory (the $\\le$ owns 0) → $5 - 0 = 5$. $f(4)$: middle still ($\\le 4$) → $1$. $f(10)$: last → $1$.",
+          "check": ["2*(-3) + 5 == -1", "5 - 0 == 5", "5 - 4 == 1"]
+        },
+        {
+          "id": "a214-we2",
+          "statement": "A taxi charges a $4 flag fee covering the first 2 km, then $1.50 per km after. Write the fare $C(d)$ as a piecewise function and price a 7 km ride.",
+          "solution": "$C(d) = \\begin{cases} 4 & 0 < d \\le 2 \\\\ 4 + 1.5(d - 2) & d > 2 \\end{cases}$. For $d = 7$: $4 + 1.5(5) = 11.5$ — $11.50.",
+          "check": ["4 + Rational(3,2)*(7 - 2) == Rational(23,2)", "4 + Rational(3,2)*(2 - 2) == 4"]
+        }
+      ],
+      "commonMistakes": [
+        { "text": "Evaluating every piece and reporting several outputs.", "correction": "One input, one output — that's what makes it a function. Only the piece whose territory contains the input fires; the others don't exist for that $x$.", "authored": true },
+        { "text": "Giving a boundary point to both pieces (two filled dots stacked).", "correction": "Check the inequalities: exactly one includes the boundary ($\\le$ or $\\ge$); the strict one gets an open circle. Two filled dots at one $x$ fails the vertical line test.", "authored": true }
+      ],
+      "tryIt": [
+        {
+          "id": "a214-t1",
+          "statement": "For $g(x) = \\begin{cases} x^2 & x \\le 2 \\\\ 3x - 2 & x > 2 \\end{cases}$, compute $g(-2)$, $g(2)$, and $g(5)$. Do the pieces meet at $x = 2$?",
+          "solution": "$g(-2) = 4$; $g(2) = 4$ (first piece owns 2); $g(5) = 13$. At $x = 2$ the second rule would give $3(2) - 2 = 4$ too — the pieces MEET: the graph is connected there.",
+          "check": ["(-2)**2 == 4", "2**2 == 4", "3*5 - 2 == 13", "3*2 - 2 == 4"]
+        },
+        {
+          "id": "a214-t2",
+          "statement": "Cell data costs $10 for up to 5 GB, then $2 per extra GB. Write $P(g)$ and price 9 GB.",
+          "solution": "$P(g) = \\begin{cases} 10 & 0 \\le g \\le 5 \\\\ 10 + 2(g - 5) & g > 5 \\end{cases}$. $P(9) = 10 + 2(4) = 18$.",
+          "check": ["10 + 2*(9 - 5) == 18", "10 + 2*(5 - 5) == 10"]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          { "kind": "teach", "eyebrow": "The problem", "title": "When one rule isn't enough", "body": "Your parking garage, your tax bracket, your shipping fee — none obey a single formula. They switch rules at thresholds. Piecewise notation stitches several rules into ONE function by assigning each rule a territory. The skill: never let two rules fire at once." },
+          { "kind": "coordinateGrid", "eyebrow": "See it", "title": "A stitched graph", "teach": "Points from $f(x) = x + 3$ for $x < 1$ stitched to $f(x) = x^2$ for $x \\ge 1$: the line climbs to the seam at $x = 1$, where an open circle at height 4 hands off to a filled dot at height 1 — the parabola piece owns the boundary ($\\ge$). One x, one owner.", "config": { "mode": "plot", "min": -5, "max": 5, "points": [ { "x": -2, "y": 1 }, { "x": -1, "y": 2 }, { "x": 0, "y": 3 }, { "x": 1, "y": 1, "label": "owned" }, { "x": 2, "y": 4 }, { "x": 3, "y": 9 } ], "color": "#e8913c" } },
+          { "kind": "teach", "eyebrow": "Evaluating", "title": "Territory first, rule second", "body": "$f(2)$: don't touch any formula yet. STEP 1: which condition does 2 satisfy? STEP 2: apply that rule only. Discipline matters at the seams — $f(1)$ with conditions $x < 1$ and $x \\ge 1$ goes to the second piece, because $\\ge$ includes 1 and $<$ does not. Exactly one piece owns each input." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "Four inputs, three territories", "problemId": "a214-we1" },
+          { "kind": "tapQuestion", "eyebrow": "Check the seam", "title": "Who owns 3?", "prompt": "For $f(x) = \\begin{cases} x + 1 & x < 3 \\\\ 2x & x \\ge 3 \\end{cases}$, $f(3) = $ ?", "options": ["$6$", "$4$", "both 4 and 6", "undefined"], "correctIndex": 0, "explanation": "The $\\ge$ owns 3: $f(3) = 2(3) = 6$. The first piece stops strictly before 3 — open circle at height 4, filled dot at height 6.", "check": ["2*3 == 6", "3 + 1 == 4"] },
+          { "kind": "teach", "eyebrow": "Writing them", "title": "From story to braces", "body": "Real stories hand you the pieces: a flat fee UP TO some threshold, a per-unit rate BEYOND it. Translate each clause into rule + territory, and make the boundary belong to exactly one clause ('up to 2 km' → $d \\le 2$). Then test the seam: does a 2 km ride cost the flag fee under both readings? It should." },
+          { "kind": "worked", "eyebrow": "Worked example", "title": "The taxi meter", "problemId": "a214-we2" },
+          { "kind": "tapQuestion", "eyebrow": "Check the model", "title": "Read the tiers", "prompt": "Shipping: $\\$5$ for orders under $\\$50$, free otherwise. Which is the correct piecewise cost?", "options": ["$S = 5$ if $o < 50$; $S = 0$ if $o \\ge 50$", "$S = 5$ if $o \\le 50$; $S = 0$ if $o \\ge 50$", "$S = 0$ if $o < 50$; $S = 5$ if $o \\ge 50$", "$S = 5 - o$ for all $o$"], "correctIndex": 0, "explanation": "'Under \\$50' is strict ($<$); 'otherwise' takes everything else ($\\ge$), including the boundary \\$50 exactly — which ships free. Option B double-books $o = 50$.", "check": ["5 - 5 == 0"] },
+          { "kind": "tip", "eyebrow": "Habit", "title": "Audit the seams", "body": "Every piecewise error lives at a boundary. After writing or reading one, evaluate AT each seam: exactly one rule should claim it, and if the pieces happen to agree there (like $x^2$ meeting $3x - 2$ at $x = 2$), the graph is connected — worth noticing, since later mathematics (continuity) is built on exactly this check." },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Meet at the seam", "problemId": "a214-t1" },
+          { "kind": "tryIt", "eyebrow": "Try it", "title": "Data pricing", "problemId": "a214-t2" },
+          { "kind": "recap", "eyebrow": "Recap", "title": "What sticks", "points": ["Territory first, rule second — one piece fires per input.", "Each boundary has exactly one owner: filled dot owns, open circle disowns.", "Stories with thresholds (fees, tiers, brackets) ARE piecewise functions."] }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    { "id": "a21-pr-1", "statement": "For $f(x) = 3x^2 - 2x$, compute $f(-3)$.", "solution": "$3(9) - 2(-3) = 27 + 6 = 33$.", "check": ["3*(-3)**2 - 2*(-3) == 33"] },
+    { "id": "a21-pr-2", "statement": "Find the domain of $f(x) = \\dfrac{5}{x^2 - 16}$.", "solution": "Denominator zero at $x = \\pm 4$: all reals except $4$ and $-4$.", "check": ["4**2 - 16 == 0", "(-4)**2 - 16 == 0"] },
+    { "id": "a21-pr-3", "statement": "Find the domain of $g(x) = \\sqrt{7 - x}$.", "solution": "$7 - x \\ge 0 \\to x \\le 7$.", "check": ["solve(7 - x, x) == [7]", "7 - 7 == 0"] },
+    { "id": "a21-pr-4", "statement": "Give the vertex of $y = 2(x + 1)^2 - 9$.", "solution": "Corner of the recipe: left 1, down 9 — vertex $(-1, -9)$.", "check": ["2*(-1 + 1)**2 - 9 == -9", "2*(0 + 1)**2 - 9 == -7"] },
+    { "id": "a21-pr-5", "statement": "Describe $y = -|x - 6| + 2$ as transformations of $y = |x|$.", "solution": "Right 6, up 2, flipped over the x-axis: an upside-down V with corner $(6, 2)$.", "check": ["-Abs(6 - 6) + 2 == 2", "-Abs(8 - 6) + 2 == 0"] },
+    { "id": "a21-pr-6", "statement": "Solve $|4x - 3| = 9$.", "solution": "$4x - 3 = 9 \\to x = 3$; $4x - 3 = -9 \\to x = -\\frac{3}{2}$.", "check": ["Abs(4*3 - 3) == 9", "Abs(4*Rational(-3,2) - 3) == 9"] },
+    { "id": "a21-pr-7", "statement": "Solve $|x + 4| \\le 6$.", "solution": "Sandwich: $-6 \\le x + 4 \\le 6 \\to -10 \\le x \\le 2$.", "check": ["Abs(-10 + 4) == 6", "Abs(2 + 4) == 6"] },
+    { "id": "a21-pr-8", "statement": "For $f(x) = \\begin{cases} 5 - 2x & x \\le 1 \\\\ x^2 + 2 & x > 1 \\end{cases}$, compute $f(1)$ and $f(3)$.", "solution": "$f(1)$: first piece ($\\le$) → $3$. $f(3)$: second → $11$.", "check": ["5 - 2*1 == 3", "3**2 + 2 == 11"] }
+  ],
+  "testYourself": [
+    { "id": "a21-ty-1", "statement": "For $f(x) = x^2 - 3x$, expand and simplify $f(a - 2)$.", "solution": "$(a-2)^2 - 3(a-2) = a^2 - 4a + 4 - 3a + 6 = a^2 - 7a + 10$.", "check": ["expand((a - 2)**2 - 3*(a - 2)) == a**2 - 7*a + 10"] },
+    { "id": "a21-ty-2", "statement": "Find the domain of $f(x) = \\dfrac{\\sqrt{x - 3}}{x - 8}$.", "solution": "Root: $x \\ge 3$; denominator: $x \\ne 8$. Domain: $x \\ge 3$, $x \\ne 8$.", "check": ["3 - 3 == 0", "8 - 8 == 0"] },
+    { "id": "a21-ty-3", "statement": "The graph of $y = \\sqrt{x}$ is shifted left 4, stretched vertically by 3, and shifted down 6. Write the equation and compute its value at $x = 0$.", "solution": "$y = 3\\sqrt{x + 4} - 6$. At $x = 0$: $3(2) - 6 = 0$ — it crosses the origin.", "check": ["3*sqrt(0 + 4) - 6 == 0", "3*sqrt(5 + 4) - 6 == 3"] },
+    { "id": "a21-ty-4", "statement": "Solve $5 - 2|x + 1| = -3$.", "solution": "$-2|x+1| = -8 \\to |x + 1| = 4$: $x = 3$ or $x = -5$.", "check": ["5 - 2*Abs(3 + 1) == -3", "5 - 2*Abs(-5 + 1) == -3"] },
+    { "id": "a21-ty-5", "statement": "Solve $|2x - 5| > 7$.", "solution": "Tails: $2x - 5 > 7 \\to x > 6$; $2x - 5 < -7 \\to x < -1$.", "check": ["Abs(2*6 - 5) == 7", "Abs(2*(-1) - 5) == 7"] },
+    { "id": "a21-ty-6", "statement": "A gym charges $30/month for up to 10 visits, plus $4 per extra visit. Write $C(v)$ and price a 16-visit month.", "solution": "$C(v) = 30$ for $v \\le 10$; $C(v) = 30 + 4(v - 10)$ for $v > 10$. $C(16) = 30 + 24 = 54$.", "check": ["30 + 4*(16 - 10) == 54", "30 + 4*(10 - 10) == 30"] }
+  ]
+}

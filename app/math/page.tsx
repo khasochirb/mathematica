@@ -165,7 +165,7 @@ export default function MathLandingPage() {
             </span>
           </Link>
           <Link
-            href="/math/precalculus"
+            href="/math/algebra-2"
             className="card-edit p-6 flex flex-col gap-2 transition-colors"
             style={{ textDecoration: "none" }}
             onMouseEnter={(e) => {
@@ -182,6 +182,37 @@ export default function MathLandingPage() {
               style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
             >
               New · Full course
+            </span>
+            <span
+              className="serif"
+              style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
+            >
+              Algebra 2
+            </span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+              Transformations, complex numbers, polynomials, radicals,
+              exponentials and logs, rationals, and sequences — the bridge
+              to precalculus. 8 units.
+            </span>
+          </Link>
+          <Link
+            href="/math/precalculus"
+            className="card-edit p-6 flex flex-col gap-2 transition-colors"
+            style={{ textDecoration: "none" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-line)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-wash)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "";
+              (e.currentTarget as HTMLAnchorElement).style.background = "";
+            }}
+          >
+            <span
+              className="mono text-[10px] uppercase"
+              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+            >
+              Full course
             </span>
             <span
               className="serif"
