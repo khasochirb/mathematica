@@ -34,6 +34,14 @@ fraction of those.
   own THIS row?"
 - Auth surface: `app/api/auth/{login,register,logout,refresh,me,resend}`.
   Changes here get a mandatory second review pass.
+- **Rate limiting**: `middleware.ts` + `lib/rate-limit.ts` throttle
+  `login`/`register`/`resend` per IP (Upstash Redis sliding window,
+  10/5/5 per 60s). FAIL-OPEN: with `UPSTASH_REDIS_REST_URL`/`_TOKEN`
+  unset — or the store unreachable — every request passes (a config/
+  outage must never brick login). So "is it live?" = "are those two
+  Vercel env vars set?"; unset means NO protection, only the Supabase
+  upstream limits. `refresh`/`me`/`logout` are intentionally unlimited
+  (legit clients poll them; not credential oracles).
 
 ## Secrets policy
 
