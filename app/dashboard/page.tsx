@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
+import { ArrowRight, Calculator, Target } from "lucide-react";
 import { useEffect, useState } from "react";
 import usePerformance from "@/lib/use-performance";
 import { contextHref, contextLabel, contextProgressHref } from "@/lib/perf-context";
@@ -36,62 +36,27 @@ const i18n = {
     mn: "Хичээлүүдийг үзэх",
   },
 
-  stat_total: { en: "Total problems", mn: "Нийт бодсон бодлого" },
-  stat_accuracy: { en: "Accuracy", mn: "Зөв хариулсан хувь" },
-  stat_tests: { en: "Tests completed", mn: "Дуусгасан тест" },
-  stat_latest: { en: "Latest test", mn: "Сүүлийн тестийн дүн" },
-
-  focus_eyebrow: {
-    en: "Focus · weakest topic",
-    mn: "Анхаарах сул сэдэв",
+  // Unified module cards — one vocabulary for every section of the platform
+  // (courses, ЭЕШ, SAT, IB) so the dashboard reads the same no matter what
+  // mix a student is working on.
+  continue_p: {
+    en: "Pick up where you left off",
+    mn: "Тасалсан газраасаа үргэлжлүүлээрэй",
   },
-  focus_btn_learn: { en: "Learn", mn: "Суралцах" },
-  focus_btn_practice: { en: "Take a test", mn: "Шалгалт өгөх" },
-  focus_btn_master: { en: "Master this topic", mn: "Бүрэн эзэмших" },
-
-  practice_eyebrow: { en: "Practice", mn: "Дадлага" },
-  doing_well_p: {
-    en: "No clear weak topic right now. Keep taking tests to confirm.",
-    mn: "Одоогоор ямар нэг сэдэв тодорхой сул гэж гарсангүй. Илүү шалгалт өгч баталгаажуулцгаая.",
-  },
-  no_tests_eyebrow: { en: "Get started", mn: "Эхлэх" },
-  no_tests_h: {
-    en: "Take a practice test and check back.",
-    mn: "Шалгалт өгөөд эргэж очоорой.",
-  },
-  no_tests_p: {
-    en: "The recommendation surfaces based on test results.",
-    mn: "Шалгалтын үр дүн дээр үндэслэсэн зөвлөмж эндээс гарах болно.",
-  },
-
-  analytics_eyebrow: {
-    en: "Detailed analytics",
-    mn: "Дэлгэрэнгүй мэдээлэл",
-  },
-  analytics_h: { en: "Full report →", mn: "Бүрэн тайлан →" },
-  analytics_p: {
-    en: "Topic breakdown, test history, missed problems.",
-    mn: "Сэдвийн задаргаа, шалгалтын түүх, алдсан бодлогууд.",
-  },
-
-  topics_eyebrow: { en: "Top topics", mn: "Гол сэдвүүд" },
-
-  qa_practice_t: { en: "ЭЕШ practice", mn: "ЭЕШ дадлага" },
-  qa_practice_s: { en: "Take a test", mn: "Шалгалт өгөх" },
-  qa_learn_t: { en: "Study by topic", mn: "Сэдвээр суралцах" },
-  qa_learn_s: { en: "Formulas, tips", mn: "Томьёо, зөвлөгөө" },
-  qa_analytics_t: { en: "Full report", mn: "Бүрэн тайлан" },
-  qa_analytics_s: { en: "Detailed analytics", mn: "Дэлгэрэнгүй харах" },
-
-  esh_section: { en: "ЭЕШ preparation", mn: "ЭЕШ бэлтгэл" },
-  hubs_section: { en: "Exam prep", mn: "Шалгалтын бэлтгэл" },
-  hubs_questions: { en: "questions", mn: "бодлого" },
-  hubs_open: { en: "View progress", mn: "Прогресс харах" },
-  courses_section: { en: "Courses", mn: "Хичээлүүд" },
+  continue_btn: { en: "Continue", mn: "Үргэлжлүүлэх" },
+  learning_section: { en: "Your learning", mn: "Таны сургалт" },
+  tag_course: { en: "Course", mn: "Курс" },
+  tag_exam: { en: "Exam prep", mn: "Шалгалтын бэлтгэл" },
+  esh_test: { en: "test", mn: "тест" },
+  esh_tests: { en: "tests", mn: "тест" },
+  questions: { en: "problems", mn: "бодлого" },
   courses_checks: { en: "lesson checks", mn: "хичээлийн даалгавар" },
   courses_lessons: { en: "lessons", mn: "хичээл" },
-  courses_weakest: { en: "Weakest unit", mn: "Хамгийн сул нэгж" },
-  courses_open: { en: "Open course", mn: "Курс нээх" },
+  weakest_unit: { en: "Weakest unit", mn: "Хамгийн сул нэгж" },
+  weakest_topic: { en: "Weakest topic", mn: "Хамгийн сул сэдэв" },
+  focus_btn_master: { en: "Master this topic", mn: "Бүрэн эзэмших" },
+  open: { en: "Open", mn: "Нээх" },
+  details: { en: "Details", mn: "Дэлгэрэнгүй" },
   placement_section: { en: "Placement tests", mn: "Түвшин тогтоох тестүүд" },
   placement_level: { en: "Level", mn: "Түвшин" },
   placement_open: { en: "View plan", mn: "Төлөвлөгөө харах" },
@@ -142,17 +107,13 @@ export default function DashboardPage() {
     router.push("/practice/esh/loop");
   };
 
-  const overall = perf.getOverallStats();
-  const topicStats = perf.getTopicStats();
-  // Per-section summaries: each course the student has touched, with stats
-  // computed ONLY from that course's attempts. Accuracy never blends across
-  // sections — that's the whole point of the context column.
+  // Per-section summaries: one entry per context the student has touched
+  // (esh, each course, sat, ib), stats computed ONLY from that context's
+  // attempts, sorted by most-recent activity. This IS the dashboard: every
+  // entry renders as the same module card, so a student mixing courses,
+  // ЭЕШ prep, and SAT sees one uniform, scannable grid — never one section
+  // dominating the others.
   const contextSummaries = perf.getContextSummaries();
-  const courseSummaries = contextSummaries.filter((s) => s.context.startsWith("course:"));
-  // SAT/IB hub cards light up on the first recorded attempt in those
-  // contexts — pre-wired now so shipping the first mock test needs no
-  // dashboard work. Each card links out; depth lives in the hub.
-  const examHubSummaries = contextSummaries.filter((s) => s.context === "sat" || s.context === "ib");
   // Placement results are device-local (localStorage) — load after mount to
   // keep server and client renders identical.
   const [placements, setPlacements] = useState<
@@ -171,27 +132,18 @@ export default function DashboardPage() {
   // login still shows the correct "Tests completed" count and latest test.
   const testSessions = perf.getTestOnlySessions();
 
-  const hasData = overall.total > 0 || testSessions.length > 0 || courseSummaries.length > 0;
-  // ЭЕШ (exam) activity specifically — drives whether the exam-prep block
-  // shows. Course-only students (and SAT/IB-only) never see the ЭЕШ section;
-  // it appears the moment they do any ЭЕШ practice, and is the whole dashboard
-  // for a dedicated ЭЕШ student. Courses/SAT/IB/placement render below on their
-  // own, independent of this.
-  const hasEshData = overall.total > 0 || testSessions.length > 0;
+  const hasData = contextSummaries.length > 0 || testSessions.length > 0;
   const userName = user?.displayName ?? "";
 
-  const latestSession = testSessions[0];
-  const latestPct = latestSession?.accuracy ?? null;
   // Weak-topic recommendation reads from TEST-mode server attempts only —
   // drill rows excluded so the focus card doesn't recommend the topic the
   // student happens to drill instead of the one they struggle with on tests.
   const testTopicStats = perf.getTestOnlyTopicStats();
-  const hasQualifyingTests = perf.hasTestOnlyData();
   // §5: a topic mastered in the last 14 days is hidden from the weak-spot card
   // even if its accuracy still lags (stats trail the actual learning).
   const masteredTopics = useRecentlyMastered();
   const weakTopics = testTopicStats.filter((t) => t.accuracy < 70 && !masteredTopics.has(t.topic));
-  const weakest = weakTopics[0]; // already sorted asc by accuracy
+  const weakest = weakTopics[0]; // already sorted asc by accuracy — ЭЕШ card only
 
   const greeting =
     lang === "mn" ? (
@@ -229,21 +181,6 @@ export default function DashboardPage() {
         .
       </>
     );
-
-  const doingWellHeading =
-    lang === "mn" ? "Сайн явж байна." : "Doing well.";
-
-  // Focus banner sentence — interpolates accuracy + (correct/total).
-  const focusBanner = weakest && (
-    <>
-      {lang === "mn" ? "Одоогийн үнэлгээ " : "Current accuracy: "}
-      <strong style={{ color: "var(--warn)" }}>{weakest.accuracy}%</strong>{" "}
-      ({weakest.correct}/{weakest.total}){lang === "mn" ? " " : ". "}
-      {lang === "mn"
-        ? "Энэ сэдвээр илүү их дадлага хийх хэрэгтэй байна."
-        : "More practice on this topic will move your score the most."}
-    </>
-  );
 
   return (
     <div className="min-h-screen pt-16" style={{ background: "var(--bg)" }}>
@@ -349,437 +286,176 @@ export default function DashboardPage() {
               </Link>
             </div>
           </section>
-        ) : hasEshData ? (
+        ) : (
           <>
-            {/* ЭЕШ section — every stat below this header is exam-context only.
-                Shown only to students with ЭЕШ activity; course-only students
-                skip straight to their course cards below. */}
-            <div className="eyebrow mt-8">{t("esh_section")}</div>
-            {/* Stats grid */}
-            <section
-              className="grid gap-4 mt-3"
-              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
-            >
-              <div className="card-edit p-5">
-                <div className="eyebrow">{t("stat_total")}</div>
-                <div
-                  className="serif tabular mt-2"
-                  style={{
-                    fontSize: 40,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1,
-                    color: "var(--fg)",
-                  }}
-                >
-                  {overall.total}
-                </div>
-              </div>
-              <div className="card-edit p-5">
-                <div className="eyebrow">{t("stat_accuracy")}</div>
-                <div
-                  className="serif tabular mt-2"
-                  style={{
-                    fontSize: 40,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1,
-                    color: "var(--accent)",
-                  }}
-                >
-                  {overall.accuracy}
-                  <span className="mono ml-1" style={{ fontSize: 14, color: "var(--fg-3)" }}>
-                    %
-                  </span>
-                </div>
-              </div>
-              <div className="card-edit p-5">
-                <div className="eyebrow">{t("stat_tests")}</div>
-                <div
-                  className="serif tabular mt-2"
-                  style={{
-                    fontSize: 40,
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1,
-                    color: "var(--fg)",
-                  }}
-                >
-                  {testSessions.length}
-                </div>
-              </div>
-              {latestPct !== null && (
-                <div className="card-edit p-5">
-                  <div className="eyebrow">{t("stat_latest")}</div>
-                  <div
-                    className="serif tabular mt-2"
-                    style={{
-                      fontSize: 40,
-                      letterSpacing: "-0.03em",
-                      lineHeight: 1,
-                      color: "var(--fg)",
-                    }}
-                  >
-                    {latestPct}
-                    <span className="mono ml-1" style={{ fontSize: 14, color: "var(--fg-3)" }}>
-                      %
-                    </span>
-                  </div>
-                </div>
-              )}
-            </section>
-
-            {/* Focus row — single column on mobile/tablet so the weak-topic
-                 card (or empty-state copy) gets full width and Mongolian
-                 phrases don't wrap word-per-line. */}
-            <section className="grid gap-4 mt-5 grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-              {/* Weakest topic */}
-              {weakest ? (
-                <div
-                  className="card-edit p-6"
-                  style={{
-                    background: "var(--accent-wash)",
-                    borderColor: "var(--accent-line)",
-                  }}
-                >
-                  <div className="eyebrow" style={{ color: "var(--accent)" }}>
-                    {t("focus_eyebrow")}
-                  </div>
-                  <h3
-                    className="serif mt-2"
-                    style={{
-                      fontWeight: 400,
-                      fontSize: 26,
-                      letterSpacing: "-0.02em",
-                      color: "var(--fg)",
-                    }}
-                  >
-                    {weakest.label}
-                  </h3>
-                  <p className="text-[14px] mt-2" style={{ color: "var(--fg-1)" }}>
-                    {focusBanner}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-5">
-                    <button
-                      type="button"
-                      onClick={() => startTopicLoop(weakest.topic)}
-                      className="btn btn-primary"
-                    >
-                      <Target className="mr-1 h-3.5 w-3.5" />
-                      {t("focus_btn_master")}
-                    </button>
-                    <Link
-                      href={`/practice/esh/learn/${weakest.topic}`}
-                      className="btn btn-line"
-                    >
-                      {t("focus_btn_learn")}
-                      <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                    </Link>
-                    <Link href="/practice/esh" className="btn btn-line">
-                      {t("focus_btn_practice")}
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className="card-edit p-6">
-                  <div className="eyebrow">
-                    {hasQualifyingTests ? t("practice_eyebrow") : t("no_tests_eyebrow")}
-                  </div>
-                  <h3
-                    className="serif mt-2"
-                    style={{
-                      fontWeight: 400,
-                      fontSize: 26,
-                      letterSpacing: "-0.02em",
-                      color: "var(--fg)",
-                    }}
-                  >
-                    {hasQualifyingTests ? doingWellHeading : t("no_tests_h")}
-                  </h3>
-                  <p className="text-[14px] mt-2" style={{ color: "var(--fg-1)" }}>
-                    {hasQualifyingTests ? t("doing_well_p") : t("no_tests_p")}
-                  </p>
-                  <Link href="/practice/esh" className="btn btn-primary mt-5 self-start">
-                    {t("focus_btn_practice")}
-                    <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              )}
-
-              {/* Analytics link */}
-              <Link
-                href="/analytics"
-                className="card-edit p-6 group"
-                style={{ textDecoration: "none" }}
+            {/* Continue strip — the single most recently active module, one
+                obvious next click. Only shown when the student juggles more
+                than one module; with a single module its card IS the CTA. */}
+            {contextSummaries.length > 1 && (
+              <section
+                className="card-edit p-5 mt-8 flex flex-wrap items-center justify-between gap-3"
+                style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <BarChart3 className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-                  <div className="eyebrow">{t("analytics_eyebrow")}</div>
+                <div>
+                  <div className="eyebrow" style={{ color: "var(--accent)" }}>
+                    {t("continue_p")}
+                  </div>
+                  <p
+                    className="serif mt-1"
+                    style={{ fontWeight: 400, fontSize: 24, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                  >
+                    {contextLabel(contextSummaries[0].context)}
+                  </p>
                 </div>
-                <h3
-                  className="serif mt-2"
-                  style={{
-                    fontWeight: 400,
-                    fontSize: 22,
-                    letterSpacing: "-0.02em",
-                    color: "var(--fg)",
-                  }}
+                <Link
+                  href={contextHref(contextSummaries[0].context) ?? "/math"}
+                  className="btn btn-primary"
                 >
-                  {t("analytics_h")}
-                </h3>
-                <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
-                  {t("analytics_p")}
-                </p>
-              </Link>
-            </section>
+                  {t("continue_btn")}
+                  <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                </Link>
+              </section>
+            )}
 
-            {/* Topic strip */}
-            {topicStats.length > 0 && (
-              <section className="card-edit p-6 mt-5">
-                <div className="flex items-center gap-2 mb-4">
-                  <Target className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-                  <div className="eyebrow">{t("topics_eyebrow")}</div>
-                </div>
-                <div className="space-y-3">
-                  {topicStats.slice(0, 5).map((tt) => (
-                    <div key={tt.topic}>
-                      <div className="flex items-baseline justify-between mb-1.5 text-sm">
-                        <span className="flex items-center gap-1.5" style={{ color: "var(--fg-1)" }}>
-                          {tt.label}
-                          {masteredTopics.has(tt.topic) && (
-                            <span
-                              className="mono uppercase"
-                              style={{
-                                fontSize: 9,
-                                letterSpacing: "0.08em",
-                                color: "var(--accent)",
-                                border: "1px solid var(--accent-line)",
-                                background: "var(--accent-wash)",
-                                borderRadius: 4,
-                                padding: "1px 5px",
-                              }}
-                            >
-                              {lang === "mn" ? "Бүрэн эзэмшсэн" : "Mastered"}
-                            </span>
-                          )}
-                        </span>
-                        <span
-                          className="mono tabular"
-                          style={{ color: "var(--fg-3)", fontSize: 12 }}
-                        >
-                          {tt.correct}/{tt.total} · {tt.accuracy}%
-                        </span>
-                      </div>
-                      <div
-                        className="h-[3px] rounded-full overflow-hidden"
-                        style={{ background: "var(--bg-2)" }}
+            {/* One identical card per module the student works in — course,
+                ЭЕШ, SAT, IB — newest activity first. Same shape everywhere:
+                what it is, how far along, accuracy, weakest spot, one Open
+                link. Depth lives in each module's own progress page. */}
+            <section className="mt-8">
+              <div className="eyebrow mb-3">{t("learning_section")}</div>
+              <div
+                className="grid gap-4"
+                style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
+              >
+                {contextSummaries.map((s) => {
+                  const isCourse = s.context.startsWith("course:");
+                  const isEsh = s.context === "esh";
+                  const openHref = contextHref(s.context) ?? "/math";
+                  const detailsHref = contextProgressHref(s.context);
+                  // Course progress bar — lessons worked / total.
+                  const lessonsTotal = isCourse ? courseTotalLessons(s.context) : null;
+                  const lessonsWorked = isCourse ? perf.getLessonsWorked(s.context) : 0;
+                  const progressPct =
+                    lessonsTotal && lessonsTotal > 0
+                      ? Math.min(100, Math.round((lessonsWorked / lessonsTotal) * 100))
+                      : 0;
+                  const unitStats = isCourse ? perf.getTopicStats(s.context) : [];
+                  const weakestUnit = isCourse
+                    ? (unitStats.find((u) => u.total >= 2) ?? unitStats[0])
+                    : undefined;
+                  const metric = isEsh
+                    ? `${testSessions.length} ${t(testSessions.length === 1 ? "esh_test" : "esh_tests")} · ${s.total} ${t("questions")} · ${s.accuracy}%`
+                    : isCourse
+                      ? `${s.correct}/${s.total} ${t("courses_checks")} · ${s.accuracy}%`
+                      : `${s.total} ${t("questions")} · ${s.accuracy}%`;
+                  return (
+                    <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
+                      <div className="eyebrow">{isCourse ? t("tag_course") : t("tag_exam")}</div>
+                      <h3
+                        className="serif"
+                        style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}
                       >
+                        {contextLabel(s.context)}
+                      </h3>
+                      {isCourse && lessonsTotal !== null && lessonsTotal > 0 && (
+                        <div>
+                          <p className="mono tabular text-[12px]" style={{ color: "var(--fg-2)" }}>
+                            {lessonsWorked} / {lessonsTotal} {t("courses_lessons")} · {progressPct}%
+                          </p>
+                          <div
+                            className="h-[5px] rounded-full overflow-hidden mt-1.5"
+                            style={{ background: "var(--bg-2)" }}
+                          >
+                            <div
+                              className="h-full rounded-full"
+                              style={{ width: `${progressPct}%`, background: "var(--accent)" }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <p className="mono tabular text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>
+                        {metric}
+                      </p>
+                      <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
                         <div
                           className="h-full rounded-full"
                           style={{
-                            width: `${tt.accuracy}%`,
+                            width: `${s.accuracy}%`,
                             background:
-                              tt.accuracy >= 80
+                              s.accuracy >= 80
                                 ? "var(--accent)"
-                                : tt.accuracy >= 50
+                                : s.accuracy >= 50
                                   ? "var(--warn)"
                                   : "var(--danger)",
                           }}
                         />
                       </div>
+                      {isCourse && weakestUnit && weakestUnit.accuracy < 70 && (
+                        <p className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+                          {t("weakest_unit")}:{" "}
+                          <Link
+                            href={`${openHref}/${weakestUnit.topic}`}
+                            className="underline underline-offset-2"
+                            style={{ color: "var(--accent)" }}
+                          >
+                            {humanizeSlug(weakestUnit.topic)}
+                          </Link>{" "}
+                          <span className="mono tabular" style={{ color: "var(--fg-3)" }}>
+                            ({weakestUnit.accuracy}%)
+                          </span>
+                        </p>
+                      )}
+                      {isEsh && weakest && (
+                        <p className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+                          {t("weakest_topic")}:{" "}
+                          <Link
+                            href={`/practice/esh/learn/${weakest.topic}`}
+                            className="underline underline-offset-2"
+                            style={{ color: "var(--accent)" }}
+                          >
+                            {weakest.label}
+                          </Link>{" "}
+                          <span className="mono tabular" style={{ color: "var(--fg-3)" }}>
+                            ({weakest.accuracy}%)
+                          </span>
+                        </p>
+                      )}
+                      <div className="mt-auto pt-1 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                        <Link
+                          href={openHref}
+                          className="mono text-[11px] uppercase inline-flex items-center gap-1"
+                          style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+                        >
+                          {t("open")}
+                          <ArrowRight className="h-3 w-3" />
+                        </Link>
+                        {detailsHref && detailsHref !== openHref && (
+                          <Link
+                            href={detailsHref}
+                            className="mono text-[11px] uppercase"
+                            style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
+                          >
+                            {t("details")}
+                          </Link>
+                        )}
+                        {isEsh && weakest && (
+                          <button
+                            type="button"
+                            onClick={() => startTopicLoop(weakest.topic)}
+                            className="mono text-[11px] uppercase inline-flex items-center gap-1"
+                            style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
+                          >
+                            <Target className="h-3 w-3" />
+                            {t("focus_btn_master")}
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Quick actions */}
-            <section className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
-              <Link href="/practice/esh" className="card-edit p-5 flex items-center gap-3 group">
-                <div
-                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "var(--bg-2)",
-                    border: "1px solid var(--line)",
-                    color: "var(--fg-2)",
-                  }}
-                >
-                  <Calculator className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>
-                    {t("qa_practice_t")}
-                  </p>
-                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>
-                    {t("qa_practice_s")}
-                  </p>
-                </div>
-              </Link>
-              <Link
-                href="/practice/esh/learn"
-                className="card-edit p-5 flex items-center gap-3 group"
-              >
-                <div
-                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "var(--bg-2)",
-                    border: "1px solid var(--line)",
-                    color: "var(--fg-2)",
-                  }}
-                >
-                  <Sparkles className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>
-                    {t("qa_learn_t")}
-                  </p>
-                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>
-                    {t("qa_learn_s")}
-                  </p>
-                </div>
-              </Link>
-              <Link href="/analytics" className="card-edit p-5 flex items-center gap-3 group">
-                <div
-                  className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "var(--bg-2)",
-                    border: "1px solid var(--line)",
-                    color: "var(--fg-2)",
-                  }}
-                >
-                  <BarChart3 className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="serif" style={{ fontWeight: 400, fontSize: 15, color: "var(--fg)" }}>
-                    {t("qa_analytics_t")}
-                  </p>
-                  <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>
-                    {t("qa_analytics_s")}
-                  </p>
-                </div>
-              </Link>
+                  );
+                })}
+              </div>
             </section>
           </>
-        ) : null}
-
-        {/* Exam hubs beyond ЭЕШ — SAT and IB, each in its own score
-            language. Rendered only when the hub has activity. */}
-        {examHubSummaries.length > 0 && (
-          <section className="mt-8">
-            <div className="eyebrow mb-3">{t("hubs_section")}</div>
-            <div
-              className="grid gap-4"
-              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
-            >
-              {examHubSummaries.map((s) => (
-                <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
-                  <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                    {contextLabel(s.context)}
-                  </h3>
-                  <p className="mono tabular text-[12px]" style={{ color: "var(--fg-3)" }}>
-                    {s.correct}/{s.total} {t("hubs_questions")} · {s.accuracy}%
-                  </p>
-                  <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${s.accuracy}%`,
-                        background: s.accuracy >= 80 ? "var(--accent)" : s.accuracy >= 50 ? "var(--warn)" : "var(--danger)",
-                      }}
-                    />
-                  </div>
-                  <Link
-                    href={contextProgressHref(s.context) ?? "/practice"}
-                    className="mono text-[11px] uppercase mt-auto inline-flex items-center gap-1"
-                    style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
-                  >
-                    {t("hubs_open")}
-                    <ArrowRight className="h-3 w-3" />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Courses — one card per course the student has actually worked in.
-            Stats are per-course only; the weakest unit routes straight back
-            into the material. */}
-        {courseSummaries.length > 0 && (
-          <section className="mt-8">
-            <div className="eyebrow mb-3">{t("courses_section")}</div>
-            <div
-              className="grid gap-4"
-              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}
-            >
-              {courseSummaries.map((s) => {
-                const unitStats = perf.getTopicStats(s.context);
-                const weakestUnit = unitStats.find((u) => u.total >= 2) ?? unitStats[0];
-                const href = contextHref(s.context) ?? "/math";
-                // Lessons worked / total — the progress bar. total is null for
-                // any context not in the course registry (defensive); the bar
-                // hides rather than dividing by zero.
-                const lessonsWorked = perf.getLessonsWorked(s.context);
-                const lessonsTotal = courseTotalLessons(s.context);
-                const progressPct =
-                  lessonsTotal && lessonsTotal > 0
-                    ? Math.min(100, Math.round((lessonsWorked / lessonsTotal) * 100))
-                    : 0;
-                return (
-                  <div key={s.context} className="card-edit p-5 flex flex-col gap-2">
-                    <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                      {contextLabel(s.context)}
-                    </h3>
-                    {lessonsTotal && lessonsTotal > 0 && (
-                      <div>
-                        <p className="mono tabular text-[12px]" style={{ color: "var(--fg-2)" }}>
-                          {lessonsWorked} / {lessonsTotal} {t("courses_lessons")} · {progressPct}%
-                        </p>
-                        <div className="h-[5px] rounded-full overflow-hidden mt-1.5" style={{ background: "var(--bg-2)" }}>
-                          <div
-                            className="h-full rounded-full"
-                            style={{ width: `${progressPct}%`, background: "var(--accent)" }}
-                          />
-                        </div>
-                      </div>
-                    )}
-                    <p className="mono tabular text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>
-                      {s.correct}/{s.total} {t("courses_checks")} · {s.accuracy}%
-                    </p>
-                    <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-2)" }}>
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${s.accuracy}%`,
-                          background: s.accuracy >= 80 ? "var(--accent)" : s.accuracy >= 50 ? "var(--warn)" : "var(--danger)",
-                        }}
-                      />
-                    </div>
-                    {weakestUnit && weakestUnit.accuracy < 70 && (
-                      <p className="text-[12px]" style={{ color: "var(--fg-2)" }}>
-                        {t("courses_weakest")}:{" "}
-                        <Link
-                          href={`${href}/${weakestUnit.topic}`}
-                          className="underline underline-offset-2"
-                          style={{ color: "var(--accent)" }}
-                        >
-                          {humanizeSlug(weakestUnit.topic)}
-                        </Link>{" "}
-                        <span className="mono tabular" style={{ color: "var(--fg-3)" }}>
-                          ({weakestUnit.accuracy}%)
-                        </span>
-                      </p>
-                    )}
-                    <Link
-                      href={href}
-                      className="mono text-[11px] uppercase mt-auto inline-flex items-center gap-1"
-                      style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
-                    >
-                      {t("courses_open")}
-                      <ArrowRight className="h-3 w-3" />
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
         )}
 
         {/* Placement results — level per course, straight from the local
