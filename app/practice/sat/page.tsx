@@ -25,7 +25,8 @@ export default function SatHubPage() {
           adapts to how you do on the first — just like test day.
         </p>
 
-        <div className="mt-8 space-y-4">
+        <div className="eyebrow mt-10 mb-3">Practice tests</div>
+        <div className="space-y-4">
           {tests.map((t) => (
             <div key={t.testId} className="card-edit p-6">
               <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -57,21 +58,47 @@ export default function SatHubPage() {
           ))}
         </div>
 
+        {/* Same three-section shape as the ЭЕШ hub: tests above, then
+            weakness practice, then study-by-topic into the shared courses. */}
+        <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
         <Link
           href="/practice/sat/progress"
-          className="card-edit p-5 mt-4 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
+          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
           style={{ display: "flex" }}
         >
           <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
             <BarChart3 className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-            Your SAT progress
+            <span>
+              Your SAT progress
+              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
+                Per-domain accuracy and your weakest areas, once you&apos;ve taken a test.
+              </span>
+            </span>
           </span>
-          <ArrowRight className="h-4 w-4" style={{ color: "var(--fg-3)" }} />
+          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
+        </Link>
+
+        <div className="eyebrow mt-10 mb-3">Study by topic</div>
+        <Link
+          href="/math#topics"
+          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
+          style={{ display: "flex" }}
+        >
+          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
+            <Sparkles className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+            <span>
+              Full topic courses
+              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
+                Algebra 1 &amp; 2, Geometry, Probability &amp; Statistics — the SAT-tagged
+                courses, taught from zero.
+              </span>
+            </span>
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
         </Link>
 
         <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
-          More practice tests and the full SAT Math course (lessons by
-          domain, targeted drills) are on the way.
+          More practice tests and SAT-specific drills are on the way.
         </p>
       </div>
     </div>

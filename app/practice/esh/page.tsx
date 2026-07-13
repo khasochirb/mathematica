@@ -74,9 +74,13 @@ export default function ESHHubPage() {
       icon: Target,
     },
     {
-      href: "/practice/esh/learn",
-      title: "Суралцах",
-      subtitle: "Сэдвийн материал, томьёо",
+      // Shared study-by-topic destination: the full topic courses on /math
+      // (Алгебр 1–2, Геометр, Магадлал… — ЭЕШ-tagged). The exam-specific
+      // formula sheets stay at /practice/esh/learn, linked from every
+      // weak-topic recommendation.
+      href: "/math#topics",
+      title: "Сэдвээр суралцах",
+      subtitle: "Бүрэн курсууд · Алгебр, Геометр…",
       icon: BookOpen,
     },
   ];
