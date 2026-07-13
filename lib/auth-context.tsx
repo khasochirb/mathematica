@@ -7,6 +7,7 @@ import {
   setToken,
   clearToken,
   decodeJwtExpSeconds,
+  hydrateNativeToken,
   type User,
 } from "./api";
 import { clearAllLocalPerformanceData } from "./use-performance";
@@ -154,9 +155,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Mount: refresh-if-close-to-expiry, then fetch /me.
+  // Mount: (native only) seed the token from secure storage, then
+  // refresh-if-close-to-expiry, then fetch /me. hydrateNativeToken is a no-op
+  // on web, so this is unchanged there.
   useEffect(() => {
     (async () => {
+      await hydrateNativeToken();
       await refreshSession();
       await refresh();
     })();

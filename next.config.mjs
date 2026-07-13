@@ -1,7 +1,37 @@
+import withSerwistInit from "@serwist/next";
+
+// Service worker (PWA offline support). Compiles app/sw.ts → public/sw.js at
+// build; disabled in `next dev` by default to avoid stale-cache confusion.
+const withSerwist = withSerwistInit({
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [],
+  },
+  async headers() {
+    // The SW and manifest must never be long-cached, or users get stuck on a
+    // stale service worker after a deploy. _next/static keeps its immutable
+    // content-hashed caching (handled by Next).
+    return [
+      {
+        source: "/sw.js",
+        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
+      },
+      {
+        source: "/manifest.webmanifest",
+        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
+      },
+      {
+        // iOS requires the Apple App Site Association (deep links) served as
+        // application/json; the file has no extension so set it explicitly.
+        source: "/.well-known/apple-app-site-association",
+        headers: [{ key: "Content-Type", value: "application/json" }],
+      },
+    ];
   },
   async redirects() {
     return [
@@ -23,4 +53,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSerwist(nextConfig);

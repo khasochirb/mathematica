@@ -1,0 +1,9 @@
+# Native project trees + build artifacts are generated on the build machine
+# (`npx cap add ios/android`) and are large/platform-specific — not committed.
+# The config (capacitor.config.ts, package.json) IS committed.
+node_modules/
+ios/
+android/
+www/
+*.log
+.DS_Store

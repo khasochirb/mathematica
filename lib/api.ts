@@ -1,20 +1,74 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
+const TOKEN_KEY = "mp_token";
+
+// ---------------------------------------------------------------------------
+// Token storage seam. On the web the access token lives in the JS-readable
+// `mp_token` cookie (unchanged). Inside the Capacitor native shell it lives in
+// @capacitor/preferences (OS-backed secure-ish storage) instead — reached via
+// the runtime-injected `window.Capacitor` global so the WEB bundle never
+// imports Capacitor. Preferences is async but these three functions are called
+// synchronously everywhere, so native reads come from an in-memory cache that
+// hydrateNativeToken() seeds once on app boot. The HttpOnly refresh cookie is
+// untouched in both cases (it works in the remote-URL WebView).
+// ---------------------------------------------------------------------------
+type NativePreferences = {
+  get(o: { key: string }): Promise<{ value: string | null }>;
+  set(o: { key: string; value: string }): Promise<void>;
+  remove(o: { key: string }): Promise<void>;
+};
+type CapacitorGlobal = {
+  isNativePlatform?: () => boolean;
+  Plugins?: { Preferences?: NativePreferences };
+};
+function capacitor(): CapacitorGlobal | undefined {
+  return (globalThis as { Capacitor?: CapacitorGlobal }).Capacitor;
+}
+export function isNativeShell(): boolean {
+  return capacitor()?.isNativePlatform?.() === true;
+}
+
+let nativeTokenCache: string | null = null;
 
 export function getMpToken(): string | null {
+  if (isNativeShell()) return nativeTokenCache;
   if (typeof document === "undefined") return null;
   const match = document.cookie.match(/mp_token=([^;]+)/);
   return match ? match[1] : null;
 }
 
 export function setToken(token: string) {
+  if (isNativeShell()) {
+    nativeTokenCache = token;
+    void capacitor()?.Plugins?.Preferences?.set({ key: TOKEN_KEY, value: token });
+    return;
+  }
   const maxAge = 60 * 60 * 24 * 7; // 7 days
   document.cookie = `mp_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
 }
 
-// Clears only the JS-readable access-token cookie. The refresh-token
-// cookie is HttpOnly and must be cleared by the server via /api/auth/logout.
+// Clears only the JS-readable access token. On web the refresh-token cookie is
+// HttpOnly and must be cleared by the server via /api/auth/logout.
 export function clearToken() {
+  if (isNativeShell()) {
+    nativeTokenCache = null;
+    void capacitor()?.Plugins?.Preferences?.remove({ key: TOKEN_KEY });
+    return;
+  }
   document.cookie = "mp_token=; path=/; max-age=0";
+}
+
+// Native-only: seed the in-memory token cache from Preferences on app boot, so
+// the synchronous getMpToken() returns a persisted session before the first
+// setToken(). No-op on web (returns null immediately). Call once at startup.
+export async function hydrateNativeToken(): Promise<string | null> {
+  if (!isNativeShell()) return null;
+  try {
+    const res = await capacitor()?.Plugins?.Preferences?.get({ key: TOKEN_KEY });
+    nativeTokenCache = res?.value ?? null;
+  } catch {
+    nativeTokenCache = null;
+  }
+  return nativeTokenCache;
 }
 
 // Decode JWT payload (second base64url segment). Returns null on malformed input.

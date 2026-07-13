@@ -22,7 +22,7 @@ import {
   Calendar,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { api } from "./api";
+import { api, isNativeShell } from "./api";
 import { useLang } from "./lang-context";
 
 // Two namespaces:
@@ -148,6 +148,10 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
   useEffect(() => setMounted(true), []);
 
   const open = useCallback((options: OpenOptions) => {
+    // No upgrade/waitlist flow inside the native app — Apple forbids surfacing
+    // digital purchases outside store billing. The CTA is also hidden in the
+    // shell (useIsNativeShell); this is defense-in-depth so no code path opens it.
+    if (isNativeShell()) return;
     setOpts(options);
     setEmail("");
     setStatus("idle");

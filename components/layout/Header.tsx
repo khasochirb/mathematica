@@ -19,6 +19,7 @@ import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import { useIsNativeShell } from "@/lib/use-native-shell";
 
 // Curriculum hubs shown in the Resources menu. ЭЕШ is live; the rest link to
 // their own polished "coming soon / get notified" hub pages so the menu is
@@ -271,6 +272,9 @@ export default function Header() {
   const { user, isAuthenticated, isSubscribed, logout } = useAuth();
   const { theme, toggle: toggleTheme } = useTheme();
   const { open: openUpgrade } = useUpgradeModal();
+  // Hide the paid-upgrade CTA inside the native app (Apple forbids non-store
+  // billing surfaces). No-op on web.
+  const isNative = useIsNativeShell();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
@@ -391,7 +395,7 @@ export default function Header() {
               {lang === "en" ? "MN" : "EN"}
             </button>
 
-            {!isSubscribed && (
+            {!isSubscribed && !isNative && (
               <button
                 onClick={() => openUpgrade({ source: "header_button" })}
                 className="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md transition-all ml-1"
@@ -629,7 +633,7 @@ export default function Header() {
               >
                 {lang === "en" ? "MN" : "EN"}
               </button>
-              {!isSubscribed && (
+              {!isSubscribed && !isNative && (
                 <button
                   onClick={() => {
                     setMobileOpen(false);
