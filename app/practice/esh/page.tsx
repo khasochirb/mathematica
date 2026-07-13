@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   FileText,
   Target,
   BookOpen,
@@ -94,14 +93,6 @@ export default function ESHHubPage() {
           style={{ borderBottom: "1px solid var(--line)" }}
         >
           <div className="flex items-end gap-4">
-            <Link
-              href="/practice"
-              className="btn btn-ghost"
-              style={{ padding: "8px 10px" }}
-              aria-label="Back"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
             <div>
               <div className="eyebrow mb-1.5">ЭЕШ Математик</div>
               <h1
