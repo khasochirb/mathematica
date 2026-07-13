@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Calculator, Target } from "lucide-react";
+import { ArrowRight, BarChart3, Calculator, Sparkles, Target } from "lucide-react";
 import { useEffect, useState } from "react";
 import usePerformance from "@/lib/use-performance";
 import { contextHref, contextLabel, contextProgressHref } from "@/lib/perf-context";
@@ -57,6 +57,32 @@ const i18n = {
   focus_btn_master: { en: "Master this topic", mn: "Бүрэн эзэмших" },
   open: { en: "Open", mn: "Нээх" },
   details: { en: "Details", mn: "Дэлгэрэнгүй" },
+
+  // Rich ЭЕШ analysis block — the depth the redesign moved off the dashboard,
+  // brought back below the module grid for exam-prep students, with a clear
+  // path to the full analytics page (graphics, trends, mistake bank).
+  esh_analysis_section: { en: "ЭЕШ analysis", mn: "ЭЕШ-ийн шинжилгээ" },
+  stat_total: { en: "Total problems", mn: "Нийт бодсон бодлого" },
+  stat_accuracy: { en: "Accuracy", mn: "Зөв хариулсан хувь" },
+  stat_tests: { en: "Tests completed", mn: "Дуусгасан тест" },
+  stat_latest: { en: "Latest test", mn: "Сүүлийн тестийн дүн" },
+  focus_eyebrow: { en: "Focus · weakest topic", mn: "Анхаарах сул сэдэв" },
+  focus_btn_learn: { en: "Learn", mn: "Суралцах" },
+  focus_btn_practice: { en: "Take a test", mn: "Шалгалт өгөх" },
+  focus_well_eyebrow: { en: "Focus", mn: "Анхаарах" },
+  focus_well_h: { en: "You're solid across the board.", mn: "Бүх сэдэв дээр сайн байна." },
+  focus_well_p: {
+    en: "No clear weak topic right now. Keep taking tests to confirm.",
+    mn: "Одоогоор тодорхой сул сэдэв алга. Илүү шалгалт өгч баталгаажуулцгаая.",
+  },
+  topics_eyebrow: { en: "Top topics", mn: "Гол сэдвүүд" },
+  mastered_badge: { en: "Mastered", mn: "Бүрэн эзэмшсэн" },
+  analytics_eyebrow: { en: "Detailed analytics", mn: "Дэлгэрэнгүй мэдээлэл" },
+  analytics_h: { en: "Full report", mn: "Бүрэн тайлан" },
+  analytics_p: {
+    en: "Score trajectory, topic breakdown, test history, and your mistake bank.",
+    mn: "Онооны өсөлт, сэдвийн задаргаа, шалгалтын түүх, алдааны сан.",
+  },
   placement_section: { en: "Placement tests", mn: "Түвшин тогтоох тестүүд" },
   placement_level: { en: "Level", mn: "Түвшин" },
   placement_open: { en: "View plan", mn: "Төлөвлөгөө харах" },
@@ -144,6 +170,14 @@ export default function DashboardPage() {
   const masteredTopics = useRecentlyMastered();
   const weakTopics = testTopicStats.filter((t) => t.accuracy < 70 && !masteredTopics.has(t.topic));
   const weakest = weakTopics[0]; // already sorted asc by accuracy — ЭЕШ card only
+
+  // Rich ЭЕШ analysis block inputs. Scoped to the ЭЕШ context (getOverallStats
+  // / getTopicStats default to "esh"), so course-only students never see it.
+  const overall = perf.getOverallStats();
+  const eshTopicStats = perf.getTopicStats();
+  const latestPct = testSessions[0]?.accuracy ?? null;
+  const hasQualifyingTests = perf.hasTestOnlyData();
+  const hasEshData = overall.total > 0 || testSessions.length > 0;
 
   const greeting =
     lang === "mn" ? (
@@ -455,6 +489,209 @@ export default function DashboardPage() {
                 })}
               </div>
             </section>
+
+            {/* Rich ЭЕШ analysis — the depth the redesign moved off-page,
+                restored for exam-prep students: stat tiles, the actionable
+                weakest-topic focus, a top-topics breakdown, and one prominent
+                door to the full analytics page (graphics, trends, mistakes). */}
+            {hasEshData && (
+              <section className="mt-10">
+                <div className="eyebrow mb-3">{t("esh_analysis_section")}</div>
+
+                {/* Stat tiles */}
+                <div
+                  className="grid gap-4"
+                  style={{ gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))" }}
+                >
+                  <div className="card-edit p-5">
+                    <div className="eyebrow">{t("stat_total")}</div>
+                    <div
+                      className="serif tabular mt-2"
+                      style={{ fontSize: 40, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--fg)" }}
+                    >
+                      {overall.total}
+                    </div>
+                  </div>
+                  <div className="card-edit p-5">
+                    <div className="eyebrow">{t("stat_accuracy")}</div>
+                    <div
+                      className="serif tabular mt-2"
+                      style={{ fontSize: 40, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--accent)" }}
+                    >
+                      {overall.accuracy}
+                      <span className="mono ml-1" style={{ fontSize: 18, color: "var(--fg-3)" }}>
+                        %
+                      </span>
+                    </div>
+                  </div>
+                  <div className="card-edit p-5">
+                    <div className="eyebrow">{t("stat_tests")}</div>
+                    <div
+                      className="serif tabular mt-2"
+                      style={{ fontSize: 40, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--fg)" }}
+                    >
+                      {testSessions.length}
+                    </div>
+                  </div>
+                  {latestPct !== null && (
+                    <div className="card-edit p-5">
+                      <div className="eyebrow">{t("stat_latest")}</div>
+                      <div
+                        className="serif tabular mt-2"
+                        style={{ fontSize: 40, lineHeight: 1, letterSpacing: "-0.03em", color: "var(--fg)" }}
+                      >
+                        {latestPct}
+                        <span className="mono ml-1" style={{ fontSize: 18, color: "var(--fg-3)" }}>
+                          %
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Focus (weakest topic) + Top topics */}
+                <div
+                  className="grid gap-4 mt-4"
+                  style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
+                >
+                  {weakest ? (
+                    <div
+                      className="card-edit p-6"
+                      style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+                    >
+                      <div className="eyebrow">{t("focus_eyebrow")}</div>
+                      <h3
+                        className="serif mt-2"
+                        style={{ fontWeight: 400, fontSize: 24, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                      >
+                        {weakest.label}
+                      </h3>
+                      <p className="text-[13px] mt-1.5" style={{ color: "var(--fg-1)" }}>
+                        {lang === "mn"
+                          ? `Одоогийн зөв хариу: ${weakest.accuracy}% (${weakest.correct}/${weakest.total}). Дадлага хийж түвшингээ өсгөөрэй.`
+                          : `Current accuracy: ${weakest.accuracy}% (${weakest.correct}/${weakest.total}). More practice will lift it.`}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-5">
+                        <button
+                          type="button"
+                          onClick={() => startTopicLoop(weakest.topic)}
+                          className="btn btn-primary"
+                        >
+                          <Target className="h-3.5 w-3.5" />
+                          {t("focus_btn_master")}
+                        </button>
+                        <Link href={`/practice/esh/learn/${weakest.topic}`} className="btn btn-line">
+                          {t("focus_btn_learn")}
+                        </Link>
+                        <Link href="/practice/esh" className="btn btn-line">
+                          {t("focus_btn_practice")}
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="card-edit p-6">
+                      <div className="eyebrow">{t("focus_well_eyebrow")}</div>
+                      <h3
+                        className="serif mt-2"
+                        style={{ fontWeight: 400, fontSize: 24, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                      >
+                        {hasQualifyingTests ? t("focus_well_h") : t("focus_btn_practice")}
+                      </h3>
+                      <p className="text-[13px] mt-1.5" style={{ color: "var(--fg-1)" }}>
+                        {t("focus_well_p")}
+                      </p>
+                      <div className="mt-5">
+                        <Link href="/practice/esh" className="btn btn-primary">
+                          {t("focus_btn_practice")}
+                          <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+
+                  {eshTopicStats.length > 0 && (
+                    <div className="card-edit p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--fg-2)" }} />
+                        <div className="eyebrow">{t("topics_eyebrow")}</div>
+                      </div>
+                      <div className="space-y-3">
+                        {eshTopicStats.slice(0, 5).map((tt) => (
+                          <div key={tt.topic}>
+                            <div className="flex items-baseline justify-between gap-2 text-[13px] mb-1">
+                              <span style={{ color: "var(--fg)" }}>
+                                {tt.label}
+                                {masteredTopics.has(tt.topic) && (
+                                  <span
+                                    className="mono uppercase ml-2"
+                                    style={{ fontSize: 9, letterSpacing: "0.08em", color: "var(--accent)" }}
+                                  >
+                                    {t("mastered_badge")}
+                                  </span>
+                                )}
+                              </span>
+                              <span className="mono tabular" style={{ color: "var(--fg-3)", fontSize: 12 }}>
+                                {tt.correct}/{tt.total} · {tt.accuracy}%
+                              </span>
+                            </div>
+                            <div
+                              className="h-[3px] rounded-full overflow-hidden"
+                              style={{ background: "var(--bg-2)" }}
+                            >
+                              <div
+                                className="h-full rounded-full"
+                                style={{
+                                  width: `${tt.accuracy}%`,
+                                  background:
+                                    tt.accuracy >= 80
+                                      ? "var(--accent)"
+                                      : tt.accuracy >= 50
+                                        ? "var(--warn)"
+                                        : "var(--danger)",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* The door to the full old-style dashboard: graphics, trends,
+                    and the mistake bank. */}
+                <Link
+                  href="/analytics"
+                  className="card-edit p-6 mt-4 flex items-center justify-between gap-4 group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="w-11 h-11 rounded-md flex items-center justify-center shrink-0"
+                      style={{
+                        background: "var(--accent-wash)",
+                        border: "1px solid var(--accent-line)",
+                        color: "var(--accent)",
+                      }}
+                    >
+                      <BarChart3 className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="eyebrow">{t("analytics_eyebrow")}</div>
+                      <h3
+                        className="serif mt-1"
+                        style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                      >
+                        {t("analytics_h")}
+                      </h3>
+                      <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
+                        {t("analytics_p")}
+                      </p>
+                    </div>
+                  </div>
+                  <ArrowRight className="h-5 w-5 shrink-0" style={{ color: "var(--accent)" }} />
+                </Link>
+              </section>
+            )}
           </>
         )}
 
