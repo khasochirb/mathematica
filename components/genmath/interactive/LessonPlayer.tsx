@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Sparkles, Lightbulb } from "lucide-react";
 import MathText from "@/components/esh/MathText";
+import TutorPanel from "@/components/tutor/TutorPanel";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import StepProgress from "@/components/genmath/interactive/StepProgress";
@@ -1430,6 +1431,9 @@ export default function LessonPlayer({
   const C = CHROME[lang];
   const pathname = usePathname();
   const perf = usePerformance();
+  // Most recent wrong in-lesson answer — grounds the AI tutor's
+  // "explain my mistake" flow. Cleared when the student moves on.
+  const [lastMiss, setLastMiss] = useState<{ selected: string; correct: string } | null>(null);
 
   // Every first-attempt tapQuestion answer becomes a performance event in
   // this course's context ("course:prob-stats", "course:grade-6", ...),
@@ -1439,6 +1443,9 @@ export default function LessonPlayer({
   const handleTapAnswer = useCallback(
     (stepIndex: number): TapAnswerHandler =>
       (subId, correct, selected, correctOption) => {
+        // Feed the AI tutor's "why was my answer wrong?" context, on or off
+        // the course tree (the attempt recording below is course-tree-only).
+        if (!correct) setLastMiss({ selected, correct: correctOption });
         const context = contextFromPathname(pathname ?? "");
         if (!context) return;
         const slugs = lessonSlugsFromPathname(pathname ?? "");
@@ -1462,6 +1469,7 @@ export default function LessonPlayer({
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "auto" });
     }
+    setLastMiss(null);
   }, [i]);
 
   if (total === 0) return null;
@@ -1503,6 +1511,20 @@ export default function LessonPlayer({
           <StepBody lesson={lesson} step={steps[i]} onTapAnswer={handleTapAnswer(i)} />
         </div>
       </main>
+
+      {/* AI tutor, grounded on the exact step the student sees (plus their
+          latest wrong answer on this step, if any). */}
+      <TutorPanel
+        context={{
+          kind: "lesson",
+          course: crumb ?? topicTitle,
+          unit: topicSlug,
+          title: lesson.title,
+          content: JSON.stringify(steps[i]).slice(0, 6000),
+          selectedAnswer: lastMiss?.selected,
+          correctAnswer: lastMiss?.correct,
+        }}
+      />
 
       {/* Bottom nav */}
       <div

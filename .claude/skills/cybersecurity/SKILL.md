@@ -43,6 +43,14 @@ fraction of those.
   upstream limits. `refresh`/`me`/`logout` are intentionally unlimited
   (legit clients poll them; not credential oracles).
 
+- **AI tutor** (`app/api/tutor/route.ts` + `lib/tutor-prompt.ts`): auth
+  required; per-student daily quota (`FREE_DAILY_AI_LIMIT`); per-IP burst
+  limit in `middleware.ts`. `ANTHROPIC_API_KEY` is server-only — never
+  `NEXT_PUBLIC_`. PRIVACY INVARIANT: requests to Anthropic carry math
+  content + the student's answer choice ONLY — never name, email, or user
+  id, and tutor conversations are never logged or persisted. Unset key =
+  graceful 503, feature dark.
+
 ## Secrets policy
 
 - Secrets live in environment variables (Vercel project settings + local

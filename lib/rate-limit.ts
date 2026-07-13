@@ -34,6 +34,10 @@ const LIMITS: Record<string, number> = {
   "/api/auth/login": 10,
   "/api/auth/register": 5,
   "/api/auth/resend": 5,
+  // AI tutor: per-IP burst guard in front of the per-student daily quota the
+  // route itself enforces (FREE_DAILY_AI_LIMIT). A student never sends 15
+  // questions in a minute; a script does.
+  "/api/tutor": 15,
 };
 const DEFAULT_LIMIT = 10;
 

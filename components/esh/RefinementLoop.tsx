@@ -20,6 +20,7 @@ import Link from "next/link";
 import { CheckCircle2, Sparkles } from "lucide-react";
 import MathText from "./MathText";
 import QuestionCard from "./QuestionCard";
+import TutorPanel from "@/components/tutor/TutorPanel";
 import { useLang } from "@/lib/lang-context";
 import { getAllQuestions, getQuestionBySource } from "@/lib/esh-questions";
 import usePerformance from "@/lib/use-performance";
@@ -149,6 +150,18 @@ export default function RefinementLoop() {
           <button className="btn btn-primary" onClick={onContinue}>{L(T.continue)}</button>
           <button className="btn btn-line" onClick={() => dispatch({ type: "skip" })} style={{ color: "var(--fg-3)" }}>{L(T.skip)}</button>
         </div>
+        {/* AI tutor grounded on the exact missed question. */}
+        <TutorPanel
+          context={{
+            kind: "question",
+            course: "ЭЕШ",
+            unit: trigger.topic,
+            question: trigger.body,
+            options: trigger.options,
+            correctAnswer: trigger.answer,
+            solution: trigger.solution,
+          }}
+        />
       </Shell>
     );
   }

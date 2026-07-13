@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkAuthRateLimit } from "@/lib/rate-limit";
 
 export const config = {
-  matcher: ["/api/auth/login", "/api/auth/register", "/api/auth/resend"],
+  matcher: ["/api/auth/login", "/api/auth/register", "/api/auth/resend", "/api/tutor"],
 };
 
 export async function middleware(req: NextRequest) {
