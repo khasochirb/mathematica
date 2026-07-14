@@ -92,11 +92,11 @@ export const EXAM_STUDY_MAP: Record<string, StudyTarget> = {
     links: [],
   },
   calculus: {
-    primary: { label: "Анализ (12-р анги)", href: "/math/12" },
+    primary: { label: "Математик анализ курс", href: "/math/calculus" },
     links: [
-      { label: "Уламжлал", href: "/math/12/derivatives" },
-      { label: "Уламжлалын хэрэглээ", href: "/math/12/applications-of-derivatives" },
-      { label: "Интеграл", href: "/math/12/integrals" },
+      { label: "Уламжлал", href: "/math/calculus/the-derivative" },
+      { label: "Уламжлалын хэрэглээ", href: "/math/calculus/applications-of-derivatives" },
+      { label: "Интеграл", href: "/math/calculus/integrals" },
     ],
   },
   complex_numbers: {

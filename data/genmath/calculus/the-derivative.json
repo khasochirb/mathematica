@@ -1,0 +1,861 @@
+{
+  "slug": "the-derivative",
+  "title": "The Derivative",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Slope, upgraded to curves: the difference quotient, the limit that turns secants into tangents, the derivative as a function of its own — and the rules that make it fast.",
+  "buildsOn": "Limits from Unit 1; slope and function notation from Algebra 1.",
+  "lessons": [
+    {
+      "slug": "rates-of-change-and-the-derivative",
+      "title": "Rates of Change & the Derivative",
+      "concreteComparison": "A speed camera can't measure speed 'at an instant' — it photographs you twice, a split second apart, and divides distance by time. Make the gap between photos shorter and shorter and the average speed locks onto YOUR speedometer reading. The derivative is that lock-on, done with a limit.",
+      "objective": "Compute average rates of change, form the difference quotient, and evaluate the derivative at a point as a limit.",
+      "concept": [
+        "The **average rate of change** of $f$ from $a$ to $b$ is $\\frac{f(b) - f(a)}{b - a}$ — the slope of the secant line through the two points. It's the only rate algebra can offer: change in output over change in input, between two snapshots.",
+        "To get an INSTANTANEOUS rate, take the two snapshots closer together: from $a$ to $a + h$ the average rate is the **difference quotient** $\\frac{f(a + h) - f(a)}{h}$. As $h \\to 0$ the second snapshot slides onto the first, the secant tips onto the tangent, and the limit — if it exists — is the derivative: $f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}$.",
+        "$f'(a)$ is one number with two readings: geometrically, the SLOPE of the tangent line to $y = f(x)$ at $x = a$; physically, the instantaneous RATE of change of $f$ at $a$ — velocity if $f$ is position, growth rate if $f$ is population. Same number, two stories."
+      ],
+      "keyIdea": "Average rate = secant slope over [a, a+h]; the derivative f′(a) is its limit as h → 0 — the tangent slope, and the instantaneous rate of change.",
+      "facts": [
+        {
+          "title": "Average rate",
+          "latex": "\\frac{f(b) - f(a)}{b - a}",
+          "explanation": "Secant slope between two snapshots — plain algebra."
+        },
+        {
+          "title": "The derivative at a point",
+          "latex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}",
+          "explanation": "Slide the second snapshot onto the first; the limit is the lock-on."
+        },
+        {
+          "title": "Two readings",
+          "latex": "f'(a) = \\text{tangent slope} = \\text{instantaneous rate}",
+          "explanation": "Geometry and physics, one number."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal21-we1",
+          "statement": "For $f(x) = x^2$: find the average rate of change from $x = 1$ to $x = 3$, then the derivative $f'(4)$ from the limit definition.",
+          "solution": "Average: $\\frac{f(3) - f(1)}{3 - 1} = \\frac{9 - 1}{2} = 4$ — the secant through $(1,1)$ and $(3,9)$. Instantaneous at 4: $f'(4) = \\lim_{h \\to 0} \\frac{(4+h)^2 - 16}{h} = \\lim_{h \\to 0} \\frac{8h + h^2}{h} = \\lim_{h \\to 0} (8 + h) = 8$. The $h$ cancels — that cancellation is the whole trick.",
+          "check": [
+            "Rational(9 - 1, 3 - 1) == 4",
+            "expand((4 + h)**2 - 16 - (8*h + h**2)) == 0",
+            "limit(((4 + h)**2 - 16)/h, h, 0) == 8"
+          ]
+        },
+        {
+          "id": "cal21-we2",
+          "statement": "Compute $f'(2)$ from the definition for $f(x) = x^2 + x$.",
+          "solution": "$f(2 + h) = (2+h)^2 + (2+h) = 6 + 5h + h^2$ and $f(2) = 6$. Difference quotient: $\\frac{5h + h^2}{h} = 5 + h$. Limit as $h \\to 0$: $f'(2) = 5$. At $x = 2$ the curve climbs 5 output units per input unit — for an instant.",
+          "check": [
+            "expand((2 + h)**2 + (2 + h) - (6 + 5*h + h**2)) == 0",
+            "2**2 + 2 == 6",
+            "limit(((2 + h)**2 + (2 + h) - 6)/h, h, 0) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Setting h = 0 immediately in the difference quotient.",
+          "correction": "At $h = 0$ the quotient is $\\frac{0}{0}$ — the jammed door from Unit 1. Expand and SIMPLIFY first so the $h$ cancels, THEN send $h \\to 0$. The algebra must free the $h$ before the limit can act.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the average rate as 'the' rate of change at a point.",
+          "correction": "$\\frac{f(b)-f(a)}{b-a}$ is the rate over an INTERVAL — a two-snapshot average. The rate AT a point needs the limit. On a curve the two genuinely differ: average 4 versus instantaneous 8 in the worked example.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal21-t1",
+          "statement": "For $f(x) = x^2$: compute the average rate of change from $2$ to $2.1$, and compare it to $f'(2)$ from the definition.",
+          "solution": "Average: $\\frac{4.41 - 4}{0.1} = 4.1$. Definition: $\\frac{(2+h)^2 - 4}{h} = 4 + h \\to 4$. The tiny-interval average $4.1$ already sits close to the true instantaneous $4$ — that's the lock-on in action.",
+          "check": [
+            "(Rational(21,10)**2 - 4)/Rational(1,10) == Rational(41,10)",
+            "limit(((2 + h)**2 - 4)/h, h, 0) == 4"
+          ]
+        },
+        {
+          "id": "cal21-t2",
+          "statement": "Use the definition to find $f'(1)$ for $f(x) = \\dfrac{1}{x}$.",
+          "solution": "$\\frac{\\frac{1}{1+h} - 1}{h} = \\frac{\\frac{-h}{1+h}}{h} = \\frac{-1}{1 + h}$. As $h \\to 0$: $f'(1) = -1$. Negative — the curve is falling through $(1, 1)$, and the tangent there has slope exactly $-1$.",
+          "check": [
+            "limit((1/(1 + h) - 1)/h, h, 0) == -1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The problem",
+            "title": "Slope worked until now",
+            "body": "Lines have one slope — divide rise by run, done. Curves refuse: steepness changes at every point, and two-point slope formulas need TWO points. The question 'how steep is the curve exactly HERE?' broke algebra for two thousand years. The fix is the limit you built in Unit 1 — used on a moving secant."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tool",
+            "title": "The difference quotient",
+            "body": "Anchor one point at $(a, f(a))$; put the second at $(a + h, f(a + h))$, a distance $h$ away. The secant slope is $\\frac{f(a+h) - f(a)}{h}$ — the **difference quotient**. Now shrink $h$: the roving point slides toward the anchor and the secant pivots. Its slope's limit, $f'(a) = \\lim_{h \\to 0} \\frac{f(a+h)-f(a)}{h}$, is the **derivative** at $a$."
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "See it",
+            "title": "Secant onto tangent",
+            "teach": "Step $h$ down and watch the secant tip onto the dashed tangent. Every $h$ gives an honest average slope; the limit catches the one instant the averages are converging on. The 0/0 you'd get at $h = 0$ never happens — the limit sidesteps it.",
+            "config": { "mode": "secant" }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Average first",
+            "prompt": "For $f(x) = x^2$, what is the average rate of change from $x = 1$ to $x = 3$?",
+            "options": ["$4$", "$8$", "$5$", "$2$"],
+            "correctIndex": 0,
+            "explanation": "$\\frac{f(3) - f(1)}{3 - 1} = \\frac{9 - 1}{2} = 4$ — the secant slope through $(1,1)$ and $(3,9)$. No limit needed for an average; the limit enters only when the interval shrinks to a point.",
+            "check": [
+              "Rational(9 - 1, 2) == 4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Average, then instantaneous",
+            "problemId": "cal21-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The cancellation",
+            "title": "Why the algebra always frees h",
+            "body": "Every definition-based derivative runs the same play: expand $f(a + h)$, subtract $f(a)$ — the constant terms annihilate — and every surviving term carries an $h$. Factor it out, cancel with the bottom, and the $\\frac{0}{0}$ jam clears. What remains evaluates cleanly at $h = 0$. Unit 1's factor-and-cancel protocol, running on autopilot."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The definition, start to finish",
+            "problemId": "cal21-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the derivative",
+            "prompt": "$s(t)$ gives a car's position in meters after $t$ seconds, and $s'(3) = 24$. What does that mean?",
+            "options": [
+              "At the instant $t = 3$ s, the car is moving at 24 m/s",
+              "The car traveled 24 meters in the first 3 seconds",
+              "The car's average speed over the trip is 24 m/s",
+              "The car is 24 meters from the start at $t = 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "A derivative of position is instantaneous velocity — the speedometer reading AT $t = 3$, not a distance and not an average. Units help: meters per second, evaluated at an instant.",
+            "check": [
+              "24 > 0"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Watch the lock-on",
+            "problemId": "cal21-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A falling curve",
+            "problemId": "cal21-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 20-year feud",
+            "body": "Newton (in England) and Leibniz (in Germany) invented the derivative independently in the 1670s–80s — then their followers fought for decades over who stole what. History's verdict: both, independently. Leibniz won the notation war though: his $\\frac{dy}{dx}$ — 'a tiny change in $y$ per tiny change in $x$' — is the one that still teaches the idea every time you write it.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Average rate = secant slope: (f(b) − f(a))/(b − a) — two snapshots, plain algebra.",
+              "f′(a) = lim of the difference quotient as h → 0: expand, cancel the h, then evaluate.",
+              "One number, two readings: tangent slope on the graph, instantaneous rate in the world."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-derivative-function",
+      "title": "The Derivative Function",
+      "concreteComparison": "Instead of asking one weather station for today's temperature, publish the whole forecast map. The derivative FUNCTION f′ is that map: one formula that reports the slope at every x simultaneously — query it anywhere, no new limit required.",
+      "objective": "Build f′(x) from the limit definition with x left general, read f and f′ against each other, and spot where a function fails to be differentiable.",
+      "concept": [
+        "Run the difference quotient with $x$ left as a letter: $f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$. The output is a new FUNCTION — the slope machine. For $f(x) = x^2$: $\\frac{(x+h)^2 - x^2}{h} = 2x + h \\to 2x$. One computation, and now $f'(3) = 6$, $f'(-1) = -2$, free of charge.",
+        "Read $f$ and $f'$ as a pair: where $f$ climbs, $f' > 0$; where $f$ falls, $f' < 0$; where $f$ has a flat instant — a peak, valley, or shelf — $f' = 0$. The HEIGHT of the $f'$ graph equals the SLOPE of the $f$ graph, point for point. This dictionary powers all of Unit 4.",
+        "Differentiability can fail. At a **corner** (like $|x|$ at 0) the left and right difference quotients disagree — the one-sided limits are $-1$ and $+1$ — so no single tangent exists. At a **vertical tangent** the quotient blows up. And a discontinuity kills it outright: differentiable $\\Rightarrow$ continuous, never the reverse."
+      ],
+      "keyIdea": "Leave x general in the limit and you get the slope machine f′(x); its height reads f's slope everywhere, and corners, vertical tangents, and breaks are where it fails.",
+      "facts": [
+        {
+          "title": "The slope machine",
+          "latex": "f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}",
+          "explanation": "One limit with x general = the slope at every point at once."
+        },
+        {
+          "title": "The dictionary",
+          "latex": "f \\nearrow \\iff f' > 0, \\quad f \\searrow \\iff f' < 0, \\quad \\text{flat} \\iff f' = 0",
+          "explanation": "f′'s height narrates f's slope."
+        },
+        {
+          "title": "Where it breaks",
+          "latex": "\\text{corner, vertical tangent, discontinuity} \\Rightarrow f'(a) \\text{ DNE}",
+          "explanation": "Differentiable implies continuous — not the converse."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal22-we1",
+          "statement": "Use the definition to find $f'(x)$ for $f(x) = x^2 - 5x$, then evaluate $f'(1)$ and $f'(4)$.",
+          "solution": "$\\frac{(x+h)^2 - 5(x+h) - (x^2 - 5x)}{h} = \\frac{2xh + h^2 - 5h}{h} = 2x + h - 5 \\to 2x - 5$. So $f'(x) = 2x - 5$: at $x = 1$, slope $-3$ (falling); at $x = 4$, slope $3$ (climbing). One limit, every slope.",
+          "check": [
+            "limit(((x + h)**2 - 5*(x + h) - (x**2 - 5*x))/h, h, 0) == 2*x - 5",
+            "2*1 - 5 == -3",
+            "2*4 - 5 == 3"
+          ]
+        },
+        {
+          "id": "cal22-we2",
+          "statement": "Show from one-sided difference quotients that $f(x) = |x|$ is not differentiable at $0$.",
+          "solution": "The quotient at 0 is $\\frac{|h|}{h}$. From the right ($h > 0$): $\\frac{h}{h} = 1$. From the left ($h < 0$): $\\frac{-h}{h} = -1$. The one-sided limits disagree ($1 \\neq -1$), so the two-sided limit — and the derivative — does not exist. Geometrically: a corner has no single tangent; it has two candidate slopes fighting.",
+          "check": [
+            "Abs(Rational(1,10))/Rational(1,10) == 1",
+            "Abs(Rational(-1,10))/Rational(-1,10) == -1",
+            "1 != -1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking continuous and differentiable are the same property.",
+          "correction": "Differentiable is STRICTLY stronger. $|x|$ is continuous at 0 (no pen lift) yet has no derivative there (corner). The implication runs one way only: differentiable $\\Rightarrow$ continuous.",
+          "authored": true
+        },
+        {
+          "text": "Confusing the height of f′ with the height of f.",
+          "correction": "$f'(x)$'s VALUE is $f$'s SLOPE at $x$ — different axes entirely. $f$ can be enormous while $f'$ is 0 (a high flat peak), or $f$ can be 0 while $f'$ is huge (crossing the axis steeply). Always ask which graph you're reading.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal22-t1",
+          "statement": "Use the definition to find $f'(x)$ for $f(x) = 3x^2 + 2x$, and state where $f'(x) = 0$.",
+          "solution": "$\\frac{3(x+h)^2 + 2(x+h) - (3x^2 + 2x)}{h} = \\frac{6xh + 3h^2 + 2h}{h} = 6x + 3h + 2 \\to 6x + 2$. Zero slope where $6x + 2 = 0$: $x = -\\frac{1}{3}$ — the parabola's flat instant, its vertex.",
+          "check": [
+            "limit((3*(x + h)**2 + 2*(x + h) - (3*x**2 + 2*x))/h, h, 0) == 6*x + 2",
+            "6*Rational(-1,3) + 2 == 0"
+          ]
+        },
+        {
+          "id": "cal22-t2",
+          "statement": "For $f(x) = x^3$, find $f'(x)$ from the definition. Why does the graph of $f'$ never dip below the x-axis?",
+          "solution": "$\\frac{(x+h)^3 - x^3}{h} = \\frac{3x^2h + 3xh^2 + h^3}{h} = 3x^2 + 3xh + h^2 \\to 3x^2$. Since $3x^2 \\ge 0$ for every $x$, the cubic NEVER falls — it climbs everywhere except a single flat instant at $x = 0$.",
+          "check": [
+            "limit(((x + h)**3 - x**3)/h, h, 0) == 3*x**2",
+            "3*0**2 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "From one slope to all of them",
+            "body": "Last lesson you paid one limit for one slope. Outrageous price. The fix: run the SAME limit but leave $x$ as a letter. The answer comes out as a formula in $x$ — the **derivative function** $f'$, a machine that answers 'how steep at $x$?' for every $x$ at once. Compute once, query forever."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One limit, every slope",
+            "problemId": "cal22-we1"
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "See it",
+            "title": "f and f′ share a grid",
+            "teach": "Slide $x$: the orange dot rides the curve while the blue dot rides the slope curve $f'$. The blue HEIGHT at each $x$ is exactly the orange curve's SLOPE there — negative while it falls, zero at the flat instant, positive while it climbs.",
+            "config": { "mode": "slopeCurve" }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the pair",
+            "prompt": "$f'(x) = 2x - 5$. What is $f$ doing at $x = 1$?",
+            "options": [
+              "Falling — the slope there is $-3$",
+              "Rising — the slope there is $3$",
+              "Flat — the slope there is $0$",
+              "Undefined — $f$ has no tangent at 1"
+            ],
+            "correctIndex": 0,
+            "explanation": "Query the slope machine: $f'(1) = 2(1) - 5 = -3 < 0$, so $f$ is falling through $x = 1$, three output units per input unit. The machine's SIGN narrates rise and fall.",
+            "check": [
+              "2*1 - 5 == -3"
+            ]
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The tour",
+            "title": "Downhill, flat, uphill",
+            "teach": "Slide the touch point along the parabola. Left of the vertex the tangent tips downhill ($f' < 0$); AT the vertex it's perfectly flat ($f' = 0$); right of it, uphill ($f' > 0$). The sign of the derivative narrates the whole story — remember this picture in Unit 4.",
+            "config": { "mode": "tangent" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The fine print",
+            "title": "Where the machine jams",
+            "body": "Not every point has a slope. At a **corner** — $|x|$ at 0 — the left approach insists the slope is $-1$, the right insists $+1$: no agreement, no derivative. A **vertical tangent** makes the quotient blow up. And at any discontinuity the derivative is hopeless: you can't have a tangent where you don't even have an unbroken curve. Hence the one-way street: differentiable $\\Rightarrow$ continuous."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The corner, prosecuted",
+            "problemId": "cal22-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Continuous vs differentiable",
+            "prompt": "Which statement is true?",
+            "options": [
+              "Every differentiable function is continuous, but not every continuous function is differentiable",
+              "Every continuous function is differentiable, but not every differentiable function is continuous",
+              "The two properties are equivalent",
+              "Neither property implies the other"
+            ],
+            "correctIndex": 0,
+            "explanation": "A tangent needs an unbroken curve (differentiable ⇒ continuous), but an unbroken curve can still have corners — $|x|$ at 0 is the standing counterexample to the converse.",
+            "check": [
+              "1 != -1"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Build the machine",
+            "problemId": "cal22-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The cubic's secret",
+            "problemId": "cal22-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Notation",
+            "title": "Two costumes, one idea",
+            "body": "You'll meet the derivative in two outfits: Lagrange's $f'(x)$ (compact, great for evaluating at points) and Leibniz's $\\frac{dy}{dx}$ (self-documenting: change in $y$ per change in $x$ — the units are built into the symbol). $\\frac{d}{dx}[x^2] = 2x$ and $(x^2)' = 2x$ say identical things. Switch freely; the idea underneath never changes.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Leave x general in the limit → f′(x), the slope machine: compute once, query anywhere.",
+              "f′'s height = f's slope: positive while f climbs, zero at flat instants, negative while f falls.",
+              "Corners, vertical tangents, and breaks have no derivative; differentiable ⇒ continuous, one way only."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-power-rule",
+      "title": "The Power Rule",
+      "concreteComparison": "After building a few tables by hand, a carpenter buys a table saw. The limit definition is hand-sawing: honest, slow, and always the same motions. The power rule is the machine that does those motions instantly — because someone proved once that the motions always come out the same way.",
+      "objective": "Differentiate powers, constants, sums, and constant multiples instantly — including negative and fractional exponents.",
+      "concept": [
+        "The pattern you've watched all unit — $x^2 \\to 2x$, $x^3 \\to 3x^2$ — is a theorem. **Power rule:** $\\frac{d}{dx} x^n = n x^{n-1}$: the exponent drops down as a coefficient, then steps down by one. It works for EVERY constant exponent: negative, fractional, all of them.",
+        "Three helper rules make it an assembly line. Constants die: $\\frac{d}{dx} c = 0$ (a flat line has slope 0). Coefficients ride along: $(c f)' = c f'$. Sums split: $(f + g)' = f' + g'$. Together: differentiate any polynomial term-by-term in one pass — $\\frac{d}{dx}(4x^3 - 7x + 2) = 12x^2 - 7$.",
+        "The disguised powers matter most: rewrite BEFORE differentiating. $\\frac{1}{x^3} = x^{-3} \\to -3x^{-4}$; $\\sqrt{x} = x^{1/2} \\to \\frac{1}{2}x^{-1/2} = \\frac{1}{2\\sqrt{x}}$. Roots and reciprocals are just powers wearing costumes — unmask them, then run the rule."
+      ],
+      "keyIdea": "d/dx xⁿ = n xⁿ⁻¹ for any constant n; constants vanish, coefficients ride, sums split — and rewrite roots/reciprocals as powers before differentiating.",
+      "facts": [
+        {
+          "title": "Power rule",
+          "latex": "\\frac{d}{dx} x^n = n x^{n-1}",
+          "explanation": "Exponent drops down, then steps down — any constant n."
+        },
+        {
+          "title": "Assembly line",
+          "latex": "(c)' = 0, \\quad (cf)' = cf', \\quad (f + g)' = f' + g'",
+          "explanation": "Polynomials differentiate term-by-term in one pass."
+        },
+        {
+          "title": "Unmask first",
+          "latex": "\\tfrac{1}{x^n} = x^{-n}, \\qquad \\sqrt[k]{x} = x^{1/k}",
+          "explanation": "Rewrite as a power, THEN apply the rule."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal23-we1",
+          "statement": "Differentiate $f(x) = 4x^3 - 7x + 2$ and $g(x) = x^8 - 5x^4 + 6x^2$.",
+          "solution": "Term by term. $f'$: $4 \\cdot 3x^2 - 7 \\cdot 1 + 0 = 12x^2 - 7$. $g'$: $8x^7 - 20x^3 + 12x$. Each term: exponent drops, exponent steps down, coefficient rides along; the lone constant dies.",
+          "check": [
+            "diff(4*x**3 - 7*x + 2, x) == 12*x**2 - 7",
+            "diff(x**8 - 5*x**4 + 6*x**2, x) == 8*x**7 - 20*x**3 + 12*x"
+          ]
+        },
+        {
+          "id": "cal23-we2",
+          "statement": "Differentiate $y = \\dfrac{1}{x^3} + 6\\sqrt{x}$.",
+          "solution": "Unmask: $y = x^{-3} + 6x^{1/2}$. Power rule twice: $y' = -3x^{-4} + 6 \\cdot \\frac{1}{2}x^{-1/2} = -\\frac{3}{x^4} + \\frac{3}{\\sqrt{x}}$. The negative exponent got MORE negative ($-3 \\to -4$) — stepping down means down, even below zero.",
+          "check": [
+            "simplify(diff(1/x**3 + 6*sqrt(x), x) - (-3/x**4 + 3/sqrt(x))) == 0",
+            "Rational(6,2) == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Differentiating 1/x³ to 1/(3x²) — running the power rule on the denominator in place.",
+          "correction": "Rewrite FIRST: $\\frac{1}{x^3} = x^{-3}$, so the derivative is $-3x^{-4} = -\\frac{3}{x^4}$. The exponent is $-3$, not $3$ — it drops down as a NEGATIVE coefficient and steps down to $-4$.",
+          "authored": true
+        },
+        {
+          "text": "Killing the x along with the constant: d/dx (7x) = 0.",
+          "correction": "Only PURE constants die. $7x$ is a line with slope 7: $\\frac{d}{dx}(7x) = 7$. The constant RULE applies to $c$; the constant MULTIPLE rule keeps $c$ riding on $f'$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal23-t1",
+          "statement": "Differentiate $f(x) = 2x^5 - 3x^2 + 8x - 1$, and find the slope of its graph at $x = 1$.",
+          "solution": "$f'(x) = 10x^4 - 6x + 8$. At $x = 1$: $10 - 6 + 8 = 12$ — the tangent at $(1, f(1))$ climbs 12 to 1.",
+          "check": [
+            "diff(2*x**5 - 3*x**2 + 8*x - 1, x) == 10*x**4 - 6*x + 8",
+            "10*1**4 - 6*1 + 8 == 12"
+          ]
+        },
+        {
+          "id": "cal23-t2",
+          "statement": "Differentiate $y = \\dfrac{2}{x^2} + 4\\sqrt{x} - 9$.",
+          "solution": "Unmask: $y = 2x^{-2} + 4x^{1/2} - 9$. Then $y' = -4x^{-3} + 2x^{-1/2} = -\\frac{4}{x^3} + \\frac{2}{\\sqrt{x}}$; the $-9$ dies.",
+          "check": [
+            "simplify(diff(2/x**2 + 4*sqrt(x) - 9, x) - (-4/x**3 + 2/sqrt(x))) == 0",
+            "diff(-9, x) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shortcut",
+            "title": "The pattern was a theorem",
+            "body": "You hand-cranked these limits: $x^2 \\to 2x$, $x^3 \\to 3x^2$. See it? The exponent falls down front, then steps down by one. That's the **power rule**: $\\frac{d}{dx}x^n = nx^{n-1}$ — provable once from the definition, then free forever after. $x^{100} \\to 100x^{99}$, no expansion required."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Run the machine",
+            "prompt": "$\\dfrac{d}{dx} x^6 = ?$",
+            "options": ["$6x^5$", "$x^5$", "$6x^7$", "$5x^6$"],
+            "correctIndex": 0,
+            "explanation": "Exponent 6 drops down as the coefficient; the power steps down to 5: $6x^5$. Two motions, always the same two.",
+            "check": [
+              "diff(x**6, x) == 6*x**5"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The assembly line",
+            "title": "Three helpers, whole polynomials",
+            "body": "Constants: a horizontal line has slope 0, so $(c)' = 0$. Coefficients: scaling a graph vertically scales every slope the same way, so $(cf)' = cf'$. Sums: slopes add, so $(f+g)' = f' + g'$. Chain them and any polynomial differentiates in ONE pass, term by term. This is why polynomials are calculus's favorite functions."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two polynomials, one pass",
+            "problemId": "cal23-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The costumes",
+            "title": "Roots and reciprocals are powers",
+            "body": "The rule says ANY constant exponent — so put everything in exponent form first. $\\frac{1}{x^3} = x^{-3}$: derivative $-3x^{-4}$. $\\sqrt{x} = x^{1/2}$: derivative $\\frac{1}{2}x^{-1/2} = \\frac{1}{2\\sqrt{x}}$. The two-step habit — REWRITE, then differentiate — prevents nearly every power-rule error ever made."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Unmasking practice",
+            "problemId": "cal23-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The costume trap",
+            "prompt": "$\\dfrac{d}{dx} \\dfrac{1}{x} = ?$",
+            "options": [
+              "$-\\dfrac{1}{x^2}$",
+              "$\\dfrac{1}{x^2}$",
+              "$\\ln x$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{1}{x} = x^{-1}$: exponent $-1$ drops down, power steps to $-2$: $-x^{-2} = -\\frac{1}{x^2}$. Negative — matching the graph, which falls on both branches.",
+            "check": [
+              "diff(1/x, x) == -1/x**2"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Differentiate and evaluate",
+            "problemId": "cal23-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Full unmasking",
+            "problemId": "cal23-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Slope questions = derivative questions",
+            "body": "From now on, 'find the slope of the curve at $x = a$' is a two-line job: differentiate with the rules, then plug in $a$. For $f(x) = x^2 - 8x + 3$ at $x = 1$: $f'(x) = 2x - 8$, $f'(1) = -6$. The limit definition still runs underneath — you've just automated it.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Power rule: xⁿ → n xⁿ⁻¹, any constant exponent — drop down, step down.",
+              "Constants die, coefficients ride, sums split: polynomials go term-by-term.",
+              "Rewrite 1/xⁿ and roots as powers BEFORE differentiating — unmask, then run the rule."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "derivatives-of-sine-cosine-exp-and-ln",
+      "title": "Derivatives of Sine, Cosine, eˣ & ln x",
+      "concreteComparison": "Some contacts you look up; some you know by heart. The power rule handles the lookups — but sin, cos, eˣ, and ln x are the speed-dial numbers of calculus: four derivatives so fundamental that everything from physics to finance dials them constantly.",
+      "objective": "Memorize and apply the derivatives of sin x, cos x, eˣ, and ln x, and differentiate combinations built from them with the sum and constant-multiple rules.",
+      "concept": [
+        "The wave pair: $\\frac{d}{dx} \\sin x = \\cos x$ and $\\frac{d}{dx} \\cos x = -\\sin x$. It's visible on the graphs: where the sine wave crests (flat top), the cosine sits at 0; where sine climbs steepest (at $x = 0$), cosine is at its max of 1 — the cosine curve IS the sine curve's slope report. (One warning: this clean pair is a radians-only deal.)",
+        "The self-starter: $\\frac{d}{dx} e^x = e^x$ — the exponential is its OWN derivative. That's not a coincidence; it's the defining property of the base $e \\approx 2.718$. At every point, the height of $e^x$ equals its slope: the function grows at a rate equal to its own size, which is exactly why $e$ runs growth models.",
+        "The log: $\\frac{d}{dx} \\ln x = \\frac{1}{x}$ (for $x > 0$). The steeper story in reverse: $\\ln$ climbs fast near 0 (slope $\\frac{1}{x}$ huge) and nearly flattens for large $x$ (slope $\\to$ 0) — growing forever, but ever more slowly. With these four on speed-dial plus your sum/coefficient rules, expressions like $4e^x - \\sin x + x^2$ differentiate at sight."
+      ],
+      "keyIdea": "Four to memorize: (sin x)′ = cos x, (cos x)′ = −sin x, (eˣ)′ = eˣ, (ln x)′ = 1/x — then combine freely with the sum and constant-multiple rules.",
+      "facts": [
+        {
+          "title": "The wave pair",
+          "latex": "(\\sin x)' = \\cos x, \\qquad (\\cos x)' = -\\sin x",
+          "explanation": "Cosine is sine's slope report; the minus enters on cosine."
+        },
+        {
+          "title": "The self-starter",
+          "latex": "(e^x)' = e^x",
+          "explanation": "Height = slope at every point — the defining property of e."
+        },
+        {
+          "title": "The log",
+          "latex": "(\\ln x)' = \\frac{1}{x} \\quad (x > 0)",
+          "explanation": "Always climbing, ever slower."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal24-we1",
+          "statement": "Differentiate $f(x) = 3\\sin x - 2\\cos x$ and evaluate $f'(0)$.",
+          "solution": "Speed-dial plus coefficients: $f'(x) = 3\\cos x - 2(-\\sin x) = 3\\cos x + 2\\sin x$. At 0: $3(1) + 2(0) = 3$. Watch the sign flip on the cosine term — the $-2$ and the rule's minus multiply into a plus.",
+          "check": [
+            "simplify(diff(3*sin(x) - 2*cos(x), x) - (3*cos(x) + 2*sin(x))) == 0",
+            "3*cos(0) + 2*sin(0) == 3"
+          ]
+        },
+        {
+          "id": "cal24-we2",
+          "statement": "Differentiate $g(x) = 4e^x + x^2 - 3\\ln x$ and evaluate $g'(1)$.",
+          "solution": "Term by term: $g'(x) = 4e^x + 2x - \\frac{3}{x}$. At $x = 1$: $4e + 2 - 3 = 4e - 1$. Exact answers keep $e$ as a symbol — no decimal needed.",
+          "check": [
+            "simplify(diff(4*exp(x) + x**2 - 3*log(x), x) - (4*exp(x) + 2*x - 3/x)) == 0",
+            "simplify(4*exp(1) + 2*1 - Rational(3,1) - (4*E - 1)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Putting the minus on the wrong twin: (sin x)′ = −cos x.",
+          "correction": "The minus belongs to COSINE's derivative: $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$. Anchor it with the graph: at $x = 0$ sine climbs at its steepest, so its derivative there must be POSITIVE 1 — which is $\\cos 0$.",
+          "authored": true
+        },
+        {
+          "text": "Applying the power rule to eˣ: (eˣ)′ = x·eˣ⁻¹.",
+          "correction": "The power rule needs a CONSTANT exponent and a variable base ($x^n$). $e^x$ is the reverse — constant base, variable exponent — a different species entirely. Its rule is its own: $(e^x)' = e^x$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal24-t1",
+          "statement": "Differentiate $y = 5e^x - 4\\sin x$ and evaluate $y'$ at $x = 0$.",
+          "solution": "$y' = 5e^x - 4\\cos x$. At 0: $5(1) - 4(1) = 1$.",
+          "check": [
+            "simplify(diff(5*exp(x) - 4*sin(x), x) - (5*exp(x) - 4*cos(x))) == 0",
+            "5*exp(0) - 4*cos(0) == 1"
+          ]
+        },
+        {
+          "id": "cal24-t2",
+          "statement": "Differentiate $y = x^3 + 2\\ln x + \\cos x$, and find the slope at $x = 1$ in exact form.",
+          "solution": "$y' = 3x^2 + \\frac{2}{x} - \\sin x$. At 1: $3 + 2 - \\sin 1 = 5 - \\sin 1$ (radians — leave it exact).",
+          "check": [
+            "simplify(diff(x**3 + 2*log(x) + cos(x), x) - (3*x**2 + 2/x - sin(x))) == 0",
+            "simplify(3*1**2 + Rational(2,1) - sin(1) - (5 - sin(1))) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The library",
+            "title": "Four numbers on speed-dial",
+            "body": "The power rule covers powers — but the functions that run waves, growth, and decay need their own entries. There are exactly four to memorize: $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$, $(e^x)' = e^x$, $(\\ln x)' = \\frac{1}{x}$. Everything else in this course is built by COMBINING these with rules. Let's make each one believable."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The wave pair",
+            "title": "Cosine is sine's slope report",
+            "body": "Sketch $\\sin x$ and trace its steepness. At $x = 0$: climbing hardest — slope 1. At the crest ($x = \\frac{\\pi}{2}$): flat — slope 0. Then downhill into slope $-1$ at $\\pi$. Now plot those slope readings: you've drawn $\\cos x$. The derivative of the sine wave IS the cosine wave. Differentiate again and the crest-first wave reports $-\\sin x$ — the minus enters on cosine's turn."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the wave",
+            "prompt": "What is the slope of $y = \\sin x$ at $x = 0$?",
+            "options": ["$1$", "$0$", "$-1$", "$\\pi$"],
+            "correctIndex": 0,
+            "explanation": "The slope function is $\\cos x$, and $\\cos 0 = 1$. Sine launches from the origin at exactly 45° — the cleanest slope in trigonometry (in radians, which is WHY calculus insists on radians).",
+            "check": [
+              "cos(0) == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The self-starter",
+            "title": "The function that is its own slope",
+            "body": "Among all exponentials $b^x$, exactly one has slope equal to its height at every point — the one with base $e \\approx 2.718$. That's not a curiosity, it's the DEFINITION of $e$: $(e^x)' = e^x$. Growth proportional to current size — population, compound interest, radioactive decay run in reverse — is why $e^x$ owns applied mathematics."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Waves with coefficients",
+            "problemId": "cal24-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The log",
+            "title": "Climbing forever, ever slower",
+            "body": "$\\ln x$ inverts $e^x$, and its derivative is startlingly simple: $\\frac{1}{x}$. Read the graph through it: near $x = 0^+$ the slope $\\frac{1}{x}$ is enormous — the log rockets up its asymptote; by $x = 100$ the slope is $\\frac{1}{100}$ — barely creeping. Always positive, so always climbing; shrinking, so never fast. A function with unlimited growth and no hurry."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "All four in one expression",
+            "problemId": "cal24-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Mixed speed-dial",
+            "prompt": "$\\dfrac{d}{dx}\\left(e^x + \\ln x - \\cos x\\right) = ?$",
+            "options": [
+              "$e^x + \\dfrac{1}{x} + \\sin x$",
+              "$e^x + \\dfrac{1}{x} - \\sin x$",
+              "$xe^{x-1} + \\dfrac{1}{x} + \\sin x$",
+              "$e^x - \\dfrac{1}{x} + \\sin x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Three speed-dials: $e^x$ stays; $\\ln x \\to \\frac{1}{x}$; and $-\\cos x \\to -(-\\sin x) = +\\sin x$ — the double negative is where this question is won or lost.",
+            "check": [
+              "simplify(diff(exp(x) + log(x) - cos(x), x) - (exp(x) + 1/x + sin(x))) == 0"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Growth minus wave",
+            "problemId": "cal24-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Power, log, and wave together",
+            "problemId": "cal24-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why radians won",
+            "body": "In degrees, $(\\sin x)' = \\frac{\\pi}{180}\\cos x$ — that ugly constant would infect every formula in science. Radians are the one angle unit that makes the slope of sine at 0 exactly 1, so the constant vanishes. Radians aren't a convention calculus tolerates; they're the unit calculus CHOSE.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "(sin x)′ = cos x and (cos x)′ = −sin x — the minus enters on cosine; radians only.",
+              "(eˣ)′ = eˣ: height = slope, the defining property of e.",
+              "(ln x)′ = 1/x: always climbing, ever slower — and all four combine freely with sum/coefficient rules."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cal2-pr-1",
+      "statement": "For $f(x) = x^2 + 3x$: compute the average rate of change from $1$ to $4$, and $f'(1)$ from the limit definition.",
+      "solution": "Average: $\\frac{f(4) - f(1)}{3} = \\frac{28 - 4}{3} = 8$. Definition: $\\frac{(1+h)^2 + 3(1+h) - 4}{h} = \\frac{5h + h^2}{h} \\to 5$.",
+      "check": [
+        "Rational(28 - 4, 3) == 8",
+        "limit(((1 + h)**2 + 3*(1 + h) - 4)/h, h, 0) == 5"
+      ]
+    },
+    {
+      "id": "cal2-pr-2",
+      "statement": "Use the limit definition to find $f'(x)$ for $f(x) = x^2 - 6x$, and locate the x-value where the tangent is horizontal.",
+      "solution": "$\\frac{(x+h)^2 - 6(x+h) - (x^2 - 6x)}{h} = 2x + h - 6 \\to 2x - 6$. Horizontal tangent: $2x - 6 = 0$ at $x = 3$ — the vertex.",
+      "check": [
+        "limit(((x + h)**2 - 6*(x + h) - (x**2 - 6*x))/h, h, 0) == 2*x - 6",
+        "2*3 - 6 == 0"
+      ]
+    },
+    {
+      "id": "cal2-pr-3",
+      "statement": "Differentiate $f(x) = x^7 - 4x^3 + 9x - 2$.",
+      "solution": "Term by term: $f'(x) = 7x^6 - 12x^2 + 9$.",
+      "check": [
+        "diff(x**7 - 4*x**3 + 9*x - 2, x) == 7*x**6 - 12*x**2 + 9"
+      ]
+    },
+    {
+      "id": "cal2-pr-4",
+      "statement": "Differentiate $y = \\dfrac{5}{x^2} - 3\\sqrt{x} + 2x$.",
+      "solution": "Unmask: $5x^{-2} - 3x^{1/2} + 2x$. Then $y' = -10x^{-3} - \\frac{3}{2}x^{-1/2} + 2 = -\\frac{10}{x^3} - \\frac{3}{2\\sqrt{x}} + 2$.",
+      "check": [
+        "simplify(diff(5/x**2 - 3*sqrt(x) + 2*x, x) - (-10/x**3 - Rational(3,2)/sqrt(x) + 2)) == 0"
+      ]
+    },
+    {
+      "id": "cal2-pr-5",
+      "statement": "Find the slope of $f(x) = x^3 - 5x^2 + 4$ at $x = 2$, and decide whether $f$ is rising or falling there.",
+      "solution": "$f'(x) = 3x^2 - 10x$; $f'(2) = 12 - 20 = -8 < 0$: falling, 8 units of drop per unit run.",
+      "check": [
+        "diff(x**3 - 5*x**2 + 4, x) == 3*x**2 - 10*x",
+        "3*2**2 - 10*2 == -8"
+      ]
+    },
+    {
+      "id": "cal2-pr-6",
+      "statement": "Differentiate $y = 2\\sin x + 3\\cos x$ and evaluate at $x = 0$.",
+      "solution": "$y' = 2\\cos x - 3\\sin x$; at 0: $2(1) - 3(0) = 2$.",
+      "check": [
+        "simplify(diff(2*sin(x) + 3*cos(x), x) - (2*cos(x) - 3*sin(x))) == 0",
+        "2*cos(0) - 3*sin(0) == 2"
+      ]
+    },
+    {
+      "id": "cal2-pr-7",
+      "statement": "Differentiate $g(x) = 6e^x - 2\\ln x + x^4$ and evaluate $g'(1)$ exactly.",
+      "solution": "$g'(x) = 6e^x - \\frac{2}{x} + 4x^3$; $g'(1) = 6e - 2 + 4 = 6e + 2$.",
+      "check": [
+        "simplify(diff(6*exp(x) - 2*log(x) + x**4, x) - (6*exp(x) - 2/x + 4*x**3)) == 0",
+        "simplify(6*exp(1) - 2 + 4 - (6*E + 2)) == 0"
+      ]
+    },
+    {
+      "id": "cal2-pr-8",
+      "statement": "Where does $f(x) = x^3 - 12x$ have horizontal tangents?",
+      "solution": "$f'(x) = 3x^2 - 12 = 0$ at $x = \\pm 2$. Two flat instants — a peak and a valley, as Unit 4 will confirm.",
+      "check": [
+        "diff(x**3 - 12*x, x) == 3*x**2 - 12",
+        "3*2**2 - 12 == 0",
+        "3*(-2)**2 - 12 == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cal2-ty-1",
+      "statement": "Use the limit definition (not the rules) to compute $f'(3)$ for $f(x) = x^2 - 4x$.",
+      "solution": "$f(3+h) = (3+h)^2 - 4(3+h) = -3 + 2h + h^2$; $f(3) = -3$. Quotient: $\\frac{2h + h^2}{h} = 2 + h \\to 2$. So $f'(3) = 2$.",
+      "check": [
+        "expand((3 + h)**2 - 4*(3 + h) - (-3 + 2*h + h**2)) == 0",
+        "limit(((3 + h)**2 - 4*(3 + h) - (3**2 - 4*3))/h, h, 0) == 2"
+      ]
+    },
+    {
+      "id": "cal2-ty-2",
+      "statement": "Use the limit definition to find $f'(x)$ for $f(x) = 2x^2 + x$, then check your answer with the power rule.",
+      "solution": "Definition: $\\frac{2(x+h)^2 + (x+h) - (2x^2 + x)}{h} = 4x + 2h + 1 \\to 4x + 1$. Rules: $2 \\cdot 2x + 1 = 4x + 1$. ✓ Same machine, two speeds.",
+      "check": [
+        "limit((2*(x + h)**2 + (x + h) - (2*x**2 + x))/h, h, 0) == 4*x + 1",
+        "diff(2*x**2 + x, x) == 4*x + 1"
+      ]
+    },
+    {
+      "id": "cal2-ty-3",
+      "statement": "Differentiate $y = x^6 - \\dfrac{4}{x} + 2\\sqrt{x} - 7$.",
+      "solution": "Unmask: $x^6 - 4x^{-1} + 2x^{1/2} - 7$. Then $y' = 6x^5 + \\frac{4}{x^2} + \\frac{1}{\\sqrt{x}}$; the constant dies.",
+      "check": [
+        "simplify(diff(x**6 - 4/x + 2*sqrt(x) - 7, x) - (6*x**5 + 4/x**2 + 1/sqrt(x))) == 0"
+      ]
+    },
+    {
+      "id": "cal2-ty-4",
+      "statement": "Find the equation of the tangent line to $f(x) = x^2$ at $x = 3$.",
+      "solution": "Point: $(3, 9)$. Slope: $f'(x) = 2x$, so $m = 6$. Line: $y - 9 = 6(x - 3)$, i.e. $y = 6x - 9$. (Check: at $x = 3$, $y = 9$ ✓.)",
+      "check": [
+        "diff(x**2, x) == 2*x",
+        "2*3 == 6",
+        "6*3 - 9 == 9"
+      ]
+    },
+    {
+      "id": "cal2-ty-5",
+      "statement": "Differentiate $y = 3e^x + \\sin x - \\ln x$ and evaluate the slope at $x = 1$ exactly.",
+      "solution": "$y' = 3e^x + \\cos x - \\frac{1}{x}$. At 1: $3e + \\cos 1 - 1$ — exact form, radians understood.",
+      "check": [
+        "simplify(diff(3*exp(x) + sin(x) - log(x), x) - (3*exp(x) + cos(x) - 1/x)) == 0",
+        "simplify(3*exp(1) + cos(1) - 1 - (3*E + cos(1) - 1)) == 0"
+      ]
+    },
+    {
+      "id": "cal2-ty-6",
+      "statement": "Explain why $f(x) = |x - 2|$ is continuous at $x = 2$ but not differentiable there.",
+      "solution": "Continuity: $\\lim_{x \\to 2} |x - 2| = 0 = f(2)$ ✓. Differentiability: the difference quotient $\\frac{|h|}{h}$ gives $+1$ from the right, $-1$ from the left — no agreement, no derivative. A corner: unbroken, but with two competing slopes.",
+      "check": [
+        "Abs(2 - 2) == 0",
+        "Abs(Rational(1,10))/Rational(1,10) == 1",
+        "Abs(Rational(-1,10))/Rational(-1,10) == -1"
+      ]
+    }
+  ]
+}

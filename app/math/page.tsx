@@ -81,6 +81,16 @@ const COURSES: {
     level: 3,
     exams: ["ЭЕШ", "IB"],
   },
+  {
+    href: "/math/calculus",
+    title: "Calculus",
+    blurb:
+      "The mathematics of change: limits, derivatives and optimization, integrals and the Fundamental Theorem — the ladder's capstone.",
+    units: 6,
+    level: 3,
+    exams: ["ЭЕШ", "IB"],
+    isNew: true,
+  },
 ];
 
 const cardHover = {

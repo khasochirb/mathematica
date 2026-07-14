@@ -191,6 +191,12 @@ import pcExpLogs from "@/data/genmath/precalculus/exponentials-and-logarithms.js
 import pcUnitCircle from "@/data/genmath/precalculus/the-unit-circle.json";
 import pcTrigGraphs from "@/data/genmath/precalculus/trigonometric-graphs-and-equations.json";
 import pcConics from "@/data/genmath/precalculus/conic-sections.json";
+import calLimits from "@/data/genmath/calculus/limits-and-continuity.json";
+import calDeriv from "@/data/genmath/calculus/the-derivative.json";
+import calTech from "@/data/genmath/calculus/differentiation-techniques.json";
+import calDerivApps from "@/data/genmath/calculus/applications-of-derivatives.json";
+import calIntegrals from "@/data/genmath/calculus/integrals.json";
+import calIntApps from "@/data/genmath/calculus/applications-of-integrals.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -1369,6 +1375,92 @@ export function getPrecalcLesson(
 }
 
 // ---------------------------------------------------------------------------
+// Calculus course — /math/calculus
+// The capstone of the topic ladder and the full ЭЕШ calculus scope: limits
+// and continuity, the derivative and its rules (power, product, quotient,
+// chain), curve analysis and optimization, then antiderivatives, the definite
+// integral, the Fundamental Theorem, substitution, and integral applications
+// (areas between curves, motion, average value). Leans on the limitGraph /
+// tangentGraph / areaGraph widget family throughout.
+// ---------------------------------------------------------------------------
+
+export const CALC_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "limits-and-continuity",
+    title: "Limits & Continuity",
+    blurb: "What a function is heading toward: limits from graphs and algebra, limits at infinity, and the definition of an unbroken graph.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "the-derivative",
+    title: "The Derivative",
+    blurb: "Secants collapse onto tangents: the difference quotient, the derivative function, the power rule, and the four library derivatives.",
+    buildsOn: "Limits from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "differentiation-techniques",
+    title: "Differentiation Techniques",
+    blurb: "Product, quotient, and chain rules; combining them, and second derivatives — the whole differentiable world unlocked.",
+    buildsOn: "The power rule and library derivatives from Unit 2.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "applications-of-derivatives",
+    title: "Applications of Derivatives",
+    blurb: "Tangent and normal lines, rise and fall, peaks and valleys certified two ways, concavity — and optimization, the art of the best.",
+    buildsOn: "The full differentiation toolkit from Units 2–3.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "integrals",
+    title: "Integrals",
+    blurb: "Differentiation reversed, areas by slicing, and the Fundamental Theorem that collapses infinite sums into one subtraction.",
+    buildsOn: "Every derivative from Units 2–3, run backwards.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "applications-of-integrals",
+    title: "Applications of Integrals",
+    blurb: "Areas between curves, motion recovered from velocity, average values — and a capstone running the whole course in one arc.",
+    buildsOn: "The Fundamental Theorem and substitution from Unit 5.",
+    live: true,
+  },
+];
+
+const calcUnits: CourseUnit[] = [
+  calLimits as unknown as CourseUnit,
+  calDeriv as unknown as CourseUnit,
+  calTech as unknown as CourseUnit,
+  calDerivApps as unknown as CourseUnit,
+  calIntegrals as unknown as CourseUnit,
+  calIntApps as unknown as CourseUnit,
+];
+
+export function getCalcSpine(): GeometrySpineEntry[] {
+  return CALC_SPINE;
+}
+
+export function getCalcUnit(unitSlug: string): CourseUnit | null {
+  return calcUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getCalcLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getCalcUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Course size — total lessons per performance context. The DENOMINATOR of the
 // dashboard's per-course progress bar. Every authored lesson carries a
 // tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
@@ -1397,6 +1489,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
   "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
+  "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
 };
 
 export function courseTotalLessons(context: string): number | null {

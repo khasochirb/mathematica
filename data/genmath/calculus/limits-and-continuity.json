@@ -1,0 +1,885 @@
+{
+  "slug": "limits-and-continuity",
+  "title": "Limits & Continuity",
+  "unit": 1,
+  "status": "published",
+  "blurb": "The idea the whole subject stands on: what a function is HEADING TOWARD, computed exactly — limits by substitution, by factoring, at infinity, and the definition of an unbroken graph.",
+  "buildsOn": "Function notation and graphs from Precalculus Unit 1; factoring from Algebra 1.",
+  "lessons": [
+    {
+      "slug": "the-idea-of-a-limit",
+      "title": "The Idea of a Limit",
+      "concreteComparison": "Watch a friend walk toward a doorway. Long before they arrive you can say exactly where they're headed — even if the door slams at the last second and they never get there. A limit is that prediction: WHERE the function is heading as x closes in, whether or not it ever arrives.",
+      "objective": "Read limits from graphs and tables, write limit notation, and separate what f approaches from what f equals.",
+      "concept": [
+        "$\\lim_{x \\to a} f(x) = L$ says: as $x$ squeezes in on $a$ — from BOTH sides — the outputs $f(x)$ squeeze in on $L$. The limit is about the approach, never about the arrival: $f(a)$ itself can be different, or not exist at all.",
+        "Tables make the squeeze visible. For $f(x) = \\frac{x^2 - 4}{x - 2}$ near $x = 2$: at $x = 2.1$ the output is $4.1$; at $x = 1.99$ it's $3.99$. The outputs crowd around $4$, so $\\lim_{x \\to 2} f(x) = 4$ — even though $f(2)$ is $\\frac{0}{0}$, undefined.",
+        "Both sides must agree. The left-hand limit $\\lim_{x \\to a^-}$ (approaching from below) and right-hand limit $\\lim_{x \\to a^+}$ (from above) each exist on their own; the two-sided limit exists only when they MATCH. A graph that jumps at $a$ has two clean one-sided limits and no two-sided limit."
+      ],
+      "keyIdea": "The limit is the value the outputs squeeze toward as x approaches a from both sides — independent of f(a), and it exists only when left and right approaches agree.",
+      "facts": [
+        {
+          "title": "Definition (informal)",
+          "latex": "\\lim_{x \\to a} f(x) = L",
+          "explanation": "Outputs get as close to L as you like once x is close enough to a."
+        },
+        {
+          "title": "Limit ≠ value",
+          "latex": "\\lim_{x \\to a} f(x) \\text{ can exist while } f(a) \\text{ does not}",
+          "explanation": "The approach and the arrival are separate questions."
+        },
+        {
+          "title": "Two-sided agreement",
+          "latex": "\\lim_{x \\to a} f(x) = L \\iff \\lim_{x \\to a^-} f(x) = \\lim_{x \\to a^+} f(x) = L",
+          "explanation": "A jump kills the two-sided limit; each side can still be fine."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal11-we1",
+          "statement": "For $f(x) = \\dfrac{x^2 - 4}{x - 2}$, evaluate $f(2.1)$ and $f(1.99)$ exactly, then state $\\lim_{x \\to 2} f(x)$.",
+          "solution": "$f(2.1) = \\frac{2.1^2 - 4}{0.1} = \\frac{0.41}{0.1} = 4.1$. $f(1.99) = \\frac{1.99^2 - 4}{-0.01} = \\frac{-0.0399}{-0.01} = 3.99$. From above the outputs fall toward 4, from below they rise toward 4: $\\lim_{x \\to 2} f(x) = 4$ — while $f(2)$ itself is $\\frac{0}{0}$, undefined. The approach works; the arrival fails.",
+          "check": [
+            "(Rational(21,10)**2 - 4)/(Rational(21,10) - 2) == Rational(41,10)",
+            "(Rational(199,100)**2 - 4)/(Rational(199,100) - 2) == Rational(399,100)",
+            "limit((x**2 - 4)/(x - 2), x, 2) == 4"
+          ]
+        },
+        {
+          "id": "cal11-we2",
+          "statement": "The graph of $g$ follows $y = x + 2$ for $x < 1$ and $y = 5 - x$ for $x > 1$. Find both one-sided limits at $x = 1$ and decide whether $\\lim_{x \\to 1} g(x)$ exists.",
+          "solution": "From the left, $g$ rides $x + 2$: outputs head to $1 + 2 = 3$, so $\\lim_{x \\to 1^-} g(x) = 3$. From the right, $g$ rides $5 - x$: outputs head to $5 - 1 = 4$, so $\\lim_{x \\to 1^+} g(x) = 4$. Two healthy one-sided limits — but $3 \\neq 4$, so the two-sided limit does NOT exist. That mismatch IS a jump.",
+          "check": [
+            "limit(x + 2, x, 1) == 3",
+            "limit(5 - x, x, 1) == 4",
+            "3 != 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering the limit question by plugging in: 'f(2) is undefined, so the limit doesn't exist.'",
+          "correction": "The limit asks where outputs are HEADING, not what happens at the point. $\\frac{x^2-4}{x-2}$ has no value at $x = 2$, yet its limit there is a clean 4. Undefined at the point and no limit are different diagnoses.",
+          "authored": true
+        },
+        {
+          "text": "Reporting a two-sided limit when only one side was checked.",
+          "correction": "$\\lim_{x \\to a}$ is a two-sided promise. If the left side heads to 3 and the right to 4, each ONE-SIDED limit exists but the two-sided limit does not. Always ask: do the sides agree?",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal11-t1",
+          "statement": "For $f(x) = \\dfrac{x^3 - 1}{x - 1}$, evaluate $f(1.1)$ exactly and state $\\lim_{x \\to 1} f(x)$.",
+          "solution": "$f(1.1) = \\frac{1.331 - 1}{0.1} = \\frac{0.331}{0.1} = 3.31$. Outputs crowd toward 3 as $x \\to 1$ (factor: $x^2 + x + 1 \\to 3$): $\\lim_{x \\to 1} f(x) = 3$, while $f(1)$ is undefined.",
+          "check": [
+            "(Rational(11,10)**3 - 1)/(Rational(11,10) - 1) == Rational(331,100)",
+            "limit((x**3 - 1)/(x - 1), x, 1) == 3"
+          ]
+        },
+        {
+          "id": "cal11-t2",
+          "statement": "A graph follows $y = 2x$ for $x < 3$ and $y = x + 3$ for $x > 3$. Find both one-sided limits at $x = 3$; does the two-sided limit exist?",
+          "solution": "Left: $2 \\cdot 3 = 6$. Right: $3 + 3 = 6$. They AGREE, so $\\lim_{x \\to 3} = 6$ — the two pieces happen to meet, so there's no jump even though the formula changes.",
+          "check": [
+            "limit(2*x, x, 3) == 6",
+            "limit(x + 3, x, 3) == 6"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Where is it heading?",
+            "body": "All of calculus runs on one question: as $x$ closes in on a target, where do the outputs go? Not 'what is $f(a)$' — that's just arithmetic — but 'what are the outputs SQUEEZING TOWARD?' We write $\\lim_{x \\to a} f(x) = L$ and call $L$ the **limit**. The genius of the idea: the answer can be crisp even when the point itself is broken."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "See it",
+            "title": "Two dots, one target",
+            "teach": "Shrink $\\delta$ and watch: the outputs $f(2 - \\delta)$ and $f(2 + \\delta)$ close in from below and from above. The value they pinch toward IS the limit — the graph is literally pointing at it.",
+            "config": { "mode": "approach" }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the squeeze",
+            "prompt": "Near $x = 5$, a function's outputs run $8.1, 8.01, 8.001, \\ldots$ from one side and $7.9, 7.99, 7.999, \\ldots$ from the other. What is $\\lim_{x \\to 5} f(x)$?",
+            "options": ["$8$", "$5$", "$7.999$", "It cannot be determined"],
+            "correctIndex": 0,
+            "explanation": "Both streams of outputs crowd around 8 — that shared target is the limit. The input 5 is where x goes, not where the OUTPUTS go; don't confuse the two axes.",
+            "check": [
+              "Rational(81,10) - 8 == Rational(1,10)",
+              "8 - Rational(79,10) == Rational(1,10)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A limit at a broken point",
+            "problemId": "cal11-we1"
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "The hole",
+            "title": "Limit of a missing point",
+            "teach": "Shrink $\\delta$: the outputs squeeze toward the open circle's height. $f(2)$ doesn't exist — and the limit could not care less. The approach is intact; only the arrival is missing.",
+            "config": { "mode": "hole" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Both sides",
+            "title": "The agreement rule",
+            "body": "Approach can happen from the LEFT ($x \\to a^-$) or the RIGHT ($x \\to a^+$), and each side gets its own one-sided limit. The two-sided limit exists exactly when they match. Picture a step in a staircase: walk in from the left and you're at one height, from the right another — both walks are fine, but there is no single answer to 'what height is the staircase heading to?'"
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "The jump",
+            "title": "When sides disagree",
+            "teach": "Shrink $\\delta$: the left dot heads to one height, the right dot to another. Two clean one-sided limits, no two-sided limit at all — the agreement rule, drawn.",
+            "config": { "mode": "jump" }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One-sided limits at a jump",
+            "problemId": "cal11-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Limit vs value",
+            "prompt": "A graph has an open circle at $(3, 7)$ and a filled dot at $(3, 2)$; the curve funnels into the open circle from both sides. What are $\\lim_{x \\to 3} f(x)$ and $f(3)$?",
+            "options": [
+              "Limit $= 7$, $f(3) = 2$",
+              "Limit $= 2$, $f(3) = 7$",
+              "Both equal $2$",
+              "The limit does not exist"
+            ],
+            "correctIndex": 0,
+            "explanation": "The curve's approach targets the open circle at height 7 — that's the limit. The filled dot at height 2 is the actual value $f(3)$. The two answer different questions and here they disagree — which is allowed.",
+            "check": [
+              "7 != 2"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Table to limit",
+            "problemId": "cal11-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Judge the sides",
+            "problemId": "cal11-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "150 years of hand-waving",
+            "body": "Newton and Leibniz built calculus in the 1680s on 'infinitely small' quantities they couldn't define — and got mocked for it: Bishop Berkeley sneered at 'ghosts of departed quantities.' The clean limit definition you just learned took until Weierstrass in the 1860s. You've covered in one lesson what took mathematics 180 years to make honest."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "lim f(x) = L: outputs squeeze toward L as x squeezes toward a — approach, not arrival.",
+              "f(a) can be missing or different; the limit doesn't consult it.",
+              "Two-sided limit exists ⟺ left and right approaches agree."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "computing-limits",
+      "title": "Computing Limits",
+      "concreteComparison": "Most limits are like doors that open when you turn the handle: just plug in. The interesting ones are jammed — plugging in gives 0/0, which means 'there's a hidden common factor blocking the door.' Factor it out, cancel, and the door opens on the second try.",
+      "objective": "Evaluate limits by direct substitution, and resolve 0/0 forms by factoring or by multiplying by a conjugate.",
+      "concept": [
+        "Limit laws make limits respect arithmetic: the limit of a sum is the sum of the limits, same for products and quotients (denominator limit $\\neq 0$). Consequence: for polynomials and any rational function whose denominator isn't 0 at $a$, the limit is just $f(a)$ — **direct substitution**. Plugging in is not cheating; it's a theorem.",
+        "When substitution returns $\\frac{0}{0}$, you've hit an **indeterminate form** — the form says 'both top and bottom vanish at $a$', which means both contain the factor $(x - a)$. Factor, cancel it, and substitute again: $\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} = \\lim_{x \\to 3} (x + 3) = 6$. Cancelling is legal because near $a$ (where limits live) $x \\neq a$, so $x - a \\neq 0$.",
+        "Square roots hide their common factor. For $\\lim_{x \\to 9} \\frac{\\sqrt{x} - 3}{x - 9}$, multiply top and bottom by the **conjugate** $\\sqrt{x} + 3$: the top becomes $x - 9$, cancels, and the limit is $\\frac{1}{\\sqrt{9} + 3} = \\frac{1}{6}$. The conjugate manufactures the cancellation that factoring can't see."
+      ],
+      "keyIdea": "Substitute first; a 0/0 answer means a hidden (x − a) factor — expose it by factoring or by conjugate, cancel, substitute again.",
+      "facts": [
+        {
+          "title": "Substitution theorem",
+          "latex": "\\lim_{x \\to a} f(x) = f(a) \\text{ for polynomials; rationals when denom} \\neq 0",
+          "explanation": "Limit laws collapse the limit onto plain evaluation."
+        },
+        {
+          "title": "0/0 protocol",
+          "latex": "\\tfrac{0}{0} \\Rightarrow \\text{factor out } (x - a), \\text{ cancel, retry}",
+          "explanation": "Both parts vanishing at a means both contain (x − a)."
+        },
+        {
+          "title": "Conjugate move",
+          "latex": "\\frac{\\sqrt{u} - c}{v} \\cdot \\frac{\\sqrt{u} + c}{\\sqrt{u} + c}",
+          "explanation": "Turns a root difference into a cancellable polynomial."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal12-we1",
+          "statement": "Evaluate $\\lim_{x \\to 4} (x^2 - 3x + 1)$ and $\\lim_{x \\to 1} \\dfrac{x^2 + 2x}{x + 1}$.",
+          "solution": "Both are substitution cases. Polynomial: $16 - 12 + 1 = 5$. Rational: denominator at 1 is $2 \\neq 0$, so plug in: $\\frac{1 + 2}{2} = \\frac{3}{2}$. No drama — check the denominator, then substitute.",
+          "check": [
+            "limit(x**2 - 3*x + 1, x, 4) == 5",
+            "limit((x**2 + 2*x)/(x + 1), x, 1) == Rational(3,2)",
+            "4**2 - 3*4 + 1 == 5"
+          ]
+        },
+        {
+          "id": "cal12-we2",
+          "statement": "Evaluate $\\lim_{x \\to 2} \\dfrac{x^2 + x - 6}{x - 2}$.",
+          "solution": "Substituting gives $\\frac{0}{0}$ — indeterminate, so hunt the common factor. $x^2 + x - 6 = (x - 2)(x + 3)$. Cancel $(x - 2)$: the limit becomes $\\lim_{x \\to 2}(x + 3) = 5$. The graph is the line $y = x + 3$ with a hole punched at $x = 2$; the limit reads the hole's height.",
+          "check": [
+            "expand((x - 2)*(x + 3) - (x**2 + x - 6)) == 0",
+            "limit((x**2 + x - 6)/(x - 2), x, 2) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating 0/0 as an answer: 'the limit is 0' or 'the limit is undefined.'",
+          "correction": "$\\frac{0}{0}$ is not a value — it's a signal that the work isn't done. It can end up being 5, or 0, or $\\infty$, depending on the function. Factor or conjugate, THEN conclude.",
+          "authored": true
+        },
+        {
+          "text": "Cancelling (x − a) and worrying it was illegal division by zero.",
+          "correction": "Limits only look at $x$ NEAR $a$, never at $x = a$ itself — and near $a$, $x - a \\neq 0$, so cancelling is ordinary algebra. That's precisely why limits can see through holes.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal12-t1",
+          "statement": "Evaluate $\\lim_{x \\to 2} \\dfrac{2x^2 - 8}{x - 2}$.",
+          "solution": "Substitution: $\\frac{0}{0}$. Factor: $2x^2 - 8 = 2(x-2)(x+2)$. Cancel: $\\lim_{x \\to 2} 2(x + 2) = 8$.",
+          "check": [
+            "expand(2*(x - 2)*(x + 2) - (2*x**2 - 8)) == 0",
+            "limit((2*x**2 - 8)/(x - 2), x, 2) == 8"
+          ]
+        },
+        {
+          "id": "cal12-t2",
+          "statement": "Evaluate $\\lim_{x \\to 0} \\dfrac{\\sqrt{x + 16} - 4}{x}$.",
+          "solution": "$\\frac{0}{0}$ with a root: conjugate. Multiply by $\\frac{\\sqrt{x+16}+4}{\\sqrt{x+16}+4}$: top becomes $(x + 16) - 16 = x$, cancels with the bottom. Left with $\\lim_{x \\to 0} \\frac{1}{\\sqrt{x + 16} + 4} = \\frac{1}{8}$.",
+          "check": [
+            "limit((sqrt(x + 16) - 4)/x, x, 0) == Rational(1,8)",
+            "sqrt(16) + 4 == 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The easy path",
+            "title": "Substitution is a theorem",
+            "body": "The limit laws say limits pass through $+, -, \\times, \\div$ (denominator $\\neq 0$). Stack those laws and every polynomial limit collapses to plain evaluation: $\\lim_{x \\to a} p(x) = p(a)$. Same for rational functions wherever the denominator isn't zero. So the algorithm starts lazy: **plug in first**. Most limits end right there."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two substitutions",
+            "problemId": "cal12-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Spot the safe cases",
+            "prompt": "For which limit is direct substitution NOT enough?",
+            "options": [
+              "$\\lim_{x \\to 3} \\dfrac{x^2 - 9}{x - 3}$",
+              "$\\lim_{x \\to 3} (x^2 - 9)$",
+              "$\\lim_{x \\to 0} \\dfrac{x - 3}{x + 1}$",
+              "$\\lim_{x \\to 1} \\dfrac{x + 5}{x + 2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "At $x = 3$ the first gives $\\frac{0}{0}$ — indeterminate, more work needed. The others substitute cleanly: $0$, $-3$, and $2$ respectively.",
+            "check": [
+              "3**2 - 9 == 0",
+              "limit((x + 5)/(x + 2), x, 1) == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The jam",
+            "title": "What 0/0 is actually telling you",
+            "body": "Substituting and hitting $\\frac{0}{0}$ means the top and bottom BOTH vanish at $a$ — so by the Factor Theorem, both contain $(x - a)$. The fraction is carrying a disguised common factor. Factor both parts, cancel $(x - a)$, and substitute again. The cancellation is legal: limits live at $x \\neq a$, where $x - a \\neq 0$."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Factor and cancel",
+            "problemId": "cal12-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Run the protocol",
+            "prompt": "$\\lim_{x \\to 3} \\dfrac{x^2 - 9}{x - 3} = ?$",
+            "options": ["$6$", "$0$", "Does not exist", "$3$"],
+            "correctIndex": 0,
+            "explanation": "$x^2 - 9 = (x-3)(x+3)$; cancel the jammed factor and the limit is $\\lim_{x \\to 3}(x + 3) = 6$. The 0/0 was hiding a perfectly finite answer.",
+            "check": [
+              "expand((x - 3)*(x + 3) - (x**2 - 9)) == 0",
+              "limit((x**2 - 9)/(x - 3), x, 3) == 6"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The root case",
+            "title": "Conjugates manufacture the cancel",
+            "body": "When the 0/0 involves a square root — $\\lim_{x \\to 9} \\frac{\\sqrt{x} - 3}{x - 9}$ — factoring stalls. Multiply top AND bottom by the conjugate $\\sqrt{x} + 3$: the numerator becomes $(\\sqrt{x})^2 - 3^2 = x - 9$, which cancels the denominator. What survives is $\\frac{1}{\\sqrt{x} + 3} \\to \\frac{1}{6}$. Difference of squares, run in reverse, on demand."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The conjugate finish",
+            "prompt": "$\\lim_{x \\to 9} \\dfrac{\\sqrt{x} - 3}{x - 9} = ?$",
+            "options": [
+              "$\\dfrac{1}{6}$",
+              "$0$",
+              "$6$",
+              "Does not exist"
+            ],
+            "correctIndex": 0,
+            "explanation": "After the conjugate multiply, the limit is $\\frac{1}{\\sqrt{x} + 3}$ at $x = 9$: $\\frac{1}{3 + 3} = \\frac{1}{6}$. Roots make limits smaller-looking, not impossible.",
+            "check": [
+              "limit((sqrt(x) - 3)/(x - 9), x, 9) == Rational(1,6)"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Factor with a coefficient",
+            "problemId": "cal12-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Conjugate at zero",
+            "problemId": "cal12-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Always substitute first",
+            "body": "The professional workflow is strict: (1) plug in; (2) got a number? Done. (3) Got $\\frac{0}{0}$? Factor or conjugate, cancel, go to (1). Got $\\frac{c}{0}$ with $c \\neq 0$? That's not indeterminate — that's a blow-up, next lesson's business. Never start factoring before you know which case you're in."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Substitution is a theorem: polynomials and safe rationals evaluate directly.",
+              "0/0 = hidden (x − a) in top and bottom: factor, cancel, retry.",
+              "Square roots: multiply by the conjugate to manufacture the cancellation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "limits-at-infinity",
+      "title": "Limits at Infinity & Infinite Limits",
+      "concreteComparison": "Zoom a map ALL the way out and only the highways matter — side streets vanish. Limits at infinity work the same: as x grows huge, only each polynomial's biggest power matters, and the function settles toward whatever the leading terms decide.",
+      "objective": "Evaluate limits as x → ±∞ by comparing leading terms, connect them to horizontal asymptotes, and recognize infinite limits at vertical asymptotes.",
+      "concept": [
+        "As $x \\to \\infty$, every $\\frac{c}{x^n}$ shrinks to 0. Divide a rational function through by the highest power of $x$ downstairs and only leading terms survive. Shortcut — compare degrees: bottom degree bigger $\\Rightarrow$ limit 0; degrees equal $\\Rightarrow$ ratio of leading coefficients; top degree bigger $\\Rightarrow$ $\\pm\\infty$.",
+        "A finite limit at infinity IS a horizontal asymptote: $\\lim_{x \\to \\infty} \\frac{3x^2 + 5x}{x^2 + 1} = 3$ says the graph flattens onto $y = 3$ far to the right. This is the same end-behavior story from Precalculus, now written in limit language.",
+        "The reverse blow-up: at a **vertical asymptote**, outputs grow without bound as $x$ approaches a finite $a$. Substitution there gives $\\frac{c}{0}$ with $c \\neq 0$ — NOT indeterminate. Check the sign on each side: $\\lim_{x \\to 2} \\frac{1}{(x-2)^2} = \\infty$ (both sides positive), while $\\frac{1}{x - 2}$ splits: $-\\infty$ from the left, $+\\infty$ from the right."
+      ],
+      "keyIdea": "At infinity, leading terms rule: compare degrees for 0, coefficient ratio, or ±∞; a finite answer is a horizontal asymptote, and c/0 (c ≠ 0) marks a vertical one.",
+      "facts": [
+        {
+          "title": "The shrinking blocks",
+          "latex": "\\lim_{x \\to \\infty} \\frac{c}{x^n} = 0 \\; (n > 0)",
+          "explanation": "Every limit at infinity reduces to these going to 0."
+        },
+        {
+          "title": "Degree comparison",
+          "latex": "\\text{deg top} < \\text{deg bot}: 0; \\;\\; =: \\tfrac{a}{b}; \\;\\; >: \\pm\\infty",
+          "explanation": "a, b the leading coefficients — the highway rule."
+        },
+        {
+          "title": "c/0 is a blow-up",
+          "latex": "\\tfrac{c}{0}, c \\neq 0 \\Rightarrow \\text{vertical asymptote, } \\pm\\infty",
+          "explanation": "Not indeterminate — determine the sign side by side."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal13-we1",
+          "statement": "Evaluate $\\lim_{x \\to \\infty} \\dfrac{3x^2 + 5x}{x^2 + 1}$, $\\lim_{x \\to \\infty} \\dfrac{2x + 7}{x^2 + 1}$, and $\\lim_{x \\to \\infty} \\dfrac{x^3 + 1}{x^2 + 1}$.",
+          "solution": "Degrees decide. Equal ($2$ vs $2$): ratio of leading coefficients, $\\frac{3}{1} = 3$ — horizontal asymptote $y = 3$. Bottom-heavy ($1$ vs $2$): the denominator outgrows everything, limit $0$. Top-heavy ($3$ vs $2$): the numerator wins the race, limit $\\infty$ — no horizontal asymptote at all.",
+          "check": [
+            "limit((3*x**2 + 5*x)/(x**2 + 1), x, oo) == 3",
+            "limit((2*x + 7)/(x**2 + 1), x, oo) == 0",
+            "limit((x**3 + 1)/(x**2 + 1), x, oo) == oo"
+          ]
+        },
+        {
+          "id": "cal13-we2",
+          "statement": "Describe the behavior of $f(x) = \\dfrac{1}{(x - 3)^2}$ near $x = 3$ and as $x \\to \\infty$.",
+          "solution": "Near 3: substitution gives $\\frac{1}{0}$ — a blow-up, and since $(x-3)^2 > 0$ on BOTH sides, outputs climb to $+\\infty$ from both directions: $\\lim_{x \\to 3} f(x) = \\infty$, vertical asymptote $x = 3$. At infinity: bottom-heavy, so $\\lim_{x \\to \\infty} f(x) = 0$ — horizontal asymptote $y = 0$. One function, both asymptote types.",
+          "check": [
+            "limit(1/(x - 3)**2, x, 3) == oo",
+            "limit(1/(x - 3)**2, x, oo) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating c/0 like 0/0 and trying to factor.",
+          "correction": "$\\frac{c}{0}$ with $c \\neq 0$ is DETERMINATE: the function blows up, guaranteed. There's nothing to cancel — your only job is the sign on each side ($+\\infty$ or $-\\infty$). Factoring is for $\\frac{0}{0}$ only.",
+          "authored": true
+        },
+        {
+          "text": "Averaging all the coefficients instead of racing the leading terms.",
+          "correction": "As $x \\to \\infty$, lower-degree terms become rounding errors: $\\frac{3x^2 + 5x}{x^2 + 1}$ behaves like $\\frac{3x^2}{x^2}$. Only the LEADING term of top and bottom matters — the $5x$ and the $1$ are side streets on a zoomed-out map.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal13-t1",
+          "statement": "Evaluate $\\lim_{x \\to \\infty} \\dfrac{4x^2 - x}{2x^2 + 3}$ and $\\lim_{x \\to \\infty} \\dfrac{5 - 2x^2}{x^2 + 4}$.",
+          "solution": "Equal degrees both times: leading ratios. $\\frac{4}{2} = 2$, and $\\frac{-2}{1} = -2$. Horizontal asymptotes $y = 2$ and $y = -2$ — signs ride along with the leading coefficients.",
+          "check": [
+            "limit((4*x**2 - x)/(2*x**2 + 3), x, oo) == 2",
+            "limit((5 - 2*x**2)/(x**2 + 4), x, oo) == -2"
+          ]
+        },
+        {
+          "id": "cal13-t2",
+          "statement": "For $f(x) = \\dfrac{x + 1}{x - 4}$: find $\\lim_{x \\to \\infty} f(x)$ and describe what happens as $x \\to 4$.",
+          "solution": "At infinity: equal degrees, ratio $\\frac{1}{1} = 1$ — horizontal asymptote $y = 1$. At $x = 4$: $\\frac{5}{0}$, a blow-up. Left of 4 the bottom is negative (top $\\approx 5 > 0$): $-\\infty$; right of 4, positive: $+\\infty$. Vertical asymptote $x = 4$ with opposite arms.",
+          "check": [
+            "limit((x + 1)/(x - 4), x, oo) == 1",
+            "4 + 1 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Zoom all the way out",
+            "body": "New question: not $x \\to a$, but $x \\to \\infty$ — where does the function SETTLE as inputs grow without bound? The engine fact is humble: $\\frac{1}{x}, \\frac{5}{x^2}, \\frac{c}{x^n}$ all shrink to $0$. Divide any rational function by the bottom's highest power and everything except the leading terms turns into those shrinking blocks."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Three degree races",
+            "problemId": "cal13-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Call the race",
+            "prompt": "$\\lim_{x \\to \\infty} \\dfrac{6x^3 - x}{2x^3 + 5x^2} = ?$",
+            "options": ["$3$", "$0$", "$\\infty$", "$6$"],
+            "correctIndex": 0,
+            "explanation": "Equal degrees (3 vs 3): the limit is the leading-coefficient ratio $\\frac{6}{2} = 3$. The $-x$ and $+5x^2$ are side streets — invisible from this altitude.",
+            "check": [
+              "limit((6*x**3 - x)/(2*x**3 + 5*x**2), x, oo) == 3",
+              "Rational(6,2) == 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The connection",
+            "title": "Finite limit = horizontal asymptote",
+            "body": "When $\\lim_{x \\to \\infty} f(x) = L$ is finite, the graph flattens onto the line $y = L$ — that's literally what a **horizontal asymptote** is. Precalculus taught you to see it on the graph; the limit computes it exactly. And the two directions are separate questions: $x \\to -\\infty$ can settle somewhere else."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Asymptote from a limit",
+            "prompt": "$\\lim_{x \\to \\infty} \\dfrac{2x + 7}{x^2 + 1} = 0$. What does that say about the graph?",
+            "options": [
+              "It flattens onto $y = 0$ far to the right",
+              "It has a vertical asymptote at $x = 0$",
+              "It crosses the x-axis at $x = 7$",
+              "It grows without bound"
+            ],
+            "correctIndex": 0,
+            "explanation": "A finite limit at infinity IS the horizontal asymptote: outputs hug height 0 as x runs right. (Vertical asymptotes come from finite x-values, a different beast.)",
+            "check": [
+              "limit((2*x + 7)/(x**2 + 1), x, oo) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The blow-up",
+            "title": "c/0: the OTHER zero problem",
+            "body": "Back at finite $a$: substitution sometimes returns $\\frac{c}{0}$ with $c \\neq 0$. Unlike $\\frac{0}{0}$, nothing is hidden — the top insists on a nonzero number while the bottom vanishes, so the quotient's SIZE explodes. That's a vertical asymptote. Your one remaining job: the sign on each side. $(x-2)^2$ stays positive → $+\\infty$ both sides; $x - 2$ flips sign → the arms point opposite ways."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "See it",
+            "title": "Riding the asymptote",
+            "teach": "Watch the dots ride $\\frac{1}{(x-2)^2}$ toward $x = 2$: outputs pass 10, 100, 278… every bound falls. We write $\\lim_{x \\to 2} = \\infty$ — a precise description of HOW the finite limit fails. The dashed line is the vertical asymptote.",
+            "config": { "mode": "infinite" }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Both asymptotes, one function",
+            "problemId": "cal13-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two coefficient races",
+            "problemId": "cal13-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Full asymptote profile",
+            "problemId": "cal13-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Terminal velocity is a limit",
+            "body": "A skydiver's speed doesn't grow forever — air resistance balances gravity and speed flattens toward about 55 m/s. Physicists model it as $v(t) \\to v_{terminal}$ as $t \\to \\infty$: a horizontal asymptote you can feel in your stomach. 'Settles toward but never quite reaches' is exactly $\\lim_{t \\to \\infty}$.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "c/xⁿ → 0 powers everything: only leading terms survive at infinity.",
+              "Degree race: bottom wins → 0; tie → coefficient ratio; top wins → ±∞.",
+              "Finite limit at ∞ = horizontal asymptote; c/0 at finite a = vertical asymptote (check signs per side)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "continuity",
+      "title": "Continuity",
+      "concreteComparison": "A continuous function is one you can draw without lifting your pen. Every break forces a lift — a pinhole (missing point), a step (jump), or a cliff (asymptote). The three-part definition is just a checklist for 'no pen lift here.'",
+      "objective": "Test continuity at a point with the three-part definition, classify discontinuities, and choose parameters that glue piecewise functions together.",
+      "concept": [
+        "$f$ is **continuous at $a$** when three things hold: (1) $f(a)$ exists, (2) $\\lim_{x \\to a} f(x)$ exists, and (3) they're EQUAL. One sentence: the value is where the approach points. Fail any part and the graph breaks at $a$.",
+        "The failures have names. Limit exists but $f(a)$ is missing or different: **removable** (a hole — patchable by redefining one point). One-sided limits disagree: **jump**. Outputs blow up: **infinite** (vertical asymptote). Classifying the break tells you whether it's fixable.",
+        "Whole families are continuous everywhere they're defined — polynomials, roots, $\\sin$, $\\cos$, $e^x$, $\\ln x$, and rational functions off their zero-denominators. So continuity questions concentrate at the SEAMS of piecewise functions: make the pieces meet by setting left value = right value and solving for the parameter."
+      ],
+      "keyIdea": "Continuous at a: f(a) exists, the limit exists, and they match. Breaks classify as removable (hole), jump, or infinite — and piecewise seams glue by equating the pieces at the boundary.",
+      "facts": [
+        {
+          "title": "Three-part test",
+          "latex": "f(a) \\text{ exists}, \\; \\lim_{x \\to a} f(x) \\text{ exists}, \\; \\lim_{x \\to a} f(x) = f(a)",
+          "explanation": "Value, approach, agreement — all three or it's broken."
+        },
+        {
+          "title": "Break taxonomy",
+          "latex": "\\text{removable (hole)} \\; | \\; \\text{jump} \\; | \\; \\text{infinite}",
+          "explanation": "Diagnose by which part of the test failed."
+        },
+        {
+          "title": "Gluing a seam",
+          "latex": "\\text{left piece}(a) = \\text{right piece}(a)",
+          "explanation": "Solve for the parameter that makes the pieces meet."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal14-we1",
+          "statement": "Where is $f(x) = \\dfrac{x^2 - 1}{x - 1}$ discontinuous, and what kind of break is it? What single value would repair it?",
+          "solution": "Only suspect: $x = 1$, where $f$ is undefined (part 1 fails). But the limit exists: $\\frac{(x-1)(x+1)}{x-1} \\to 2$. Limit fine, value missing — a REMOVABLE discontinuity, a hole at $(1, 2)$. Redefine $f(1) = 2$ and the function becomes continuous: one-point surgery.",
+          "check": [
+            "expand((x - 1)*(x + 1) - (x**2 - 1)) == 0",
+            "limit((x**2 - 1)/(x - 1), x, 1) == 2"
+          ]
+        },
+        {
+          "id": "cal14-we2",
+          "statement": "Find $k$ so that $g(x) = \\begin{cases} kx - 5 & x \\le 3 \\\\ x^2 - 2x & x > 3 \\end{cases}$ is continuous at $x = 3$.",
+          "solution": "Glue the seam: left piece at 3 gives $3k - 5$; right piece approaches $9 - 6 = 3$. Set equal: $3k - 5 = 3$, so $k = \\frac{8}{3}$. With that $k$, value = limit = 3 and all three test parts pass — the pieces meet exactly.",
+          "check": [
+            "3**2 - 2*3 == 3",
+            "Rational(8,3)*3 - 5 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling a function continuous because it's defined everywhere.",
+          "correction": "Defined everywhere kills failure mode (1) only. A step function is defined at every $x$ and still jumps — the LIMIT fails to exist at the seam. All three parts of the test matter.",
+          "authored": true
+        },
+        {
+          "text": "Gluing a seam by setting the two pieces equal as formulas for all x.",
+          "correction": "The pieces are different functions — they only need to agree AT the boundary point. Evaluate both AT $x = a$ and equate the two numbers; solving $kx - 5 = x^2 - 2x$ for all $x$ is impossible and not the question.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal14-t1",
+          "statement": "Find $k$ so that $f(x) = \\begin{cases} x^2 + k & x < 1 \\\\ 4x & x \\ge 1 \\end{cases}$ is continuous at $x = 1$.",
+          "solution": "Left piece heads to $1 + k$; right piece gives $4$. Equate: $1 + k = 4$, so $k = 3$. Check the test: value $4$, limit $4$, equal ✓.",
+          "check": [
+            "1 + 3 == 4",
+            "4*1 == 4"
+          ]
+        },
+        {
+          "id": "cal14-t2",
+          "statement": "Show that $f(x) = x^3 - x - 2$ has a root between $x = 1$ and $x = 2$.",
+          "solution": "$f$ is a polynomial — continuous everywhere. $f(1) = 1 - 1 - 2 = -2 < 0$ and $f(2) = 8 - 2 - 2 = 4 > 0$. A continuous graph going from below the axis to above it must CROSS it: somewhere in $(1, 2)$ there's a root. (That's the Intermediate Value Theorem earning its keep.)",
+          "check": [
+            "1**3 - 1 - 2 < 0",
+            "2**3 - 2 - 2 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The definition",
+            "title": "Three checks, one pen stroke",
+            "body": "You now own both halves of the story — values and limits — so we can define the star property of the unit. $f$ is **continuous at $a$** when: (1) $f(a)$ exists, (2) $\\lim_{x \\to a} f(x)$ exists, (3) they're equal. In words: the function IS where it's HEADING. Anywhere all three hold, your pen doesn't lift."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Diagnose the failure",
+            "prompt": "At $x = 3$: $f(3) = 2$, but $\\lim_{x \\to 3} f(x) = 7$. Which part of the continuity test fails?",
+            "options": [
+              "Part 3 — value and limit both exist but disagree",
+              "Part 1 — $f(3)$ doesn't exist",
+              "Part 2 — the limit doesn't exist",
+              "Nothing fails; $f$ is continuous at 3"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both ingredients exist — they just don't match ($2 \\neq 7$). The dot floats away from the funnel: a removable discontinuity, fixable by moving one point.",
+            "check": [
+              "2 != 7"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Taxonomy",
+            "title": "Name the break",
+            "body": "Three ways to break, three names. **Removable**: the limit exists but the value is missing or misplaced — a hole; patch one point and it heals. **Jump**: one-sided limits disagree — no patch can help, the gap is structural. **Infinite**: outputs blow up at a vertical asymptote — the worst break of all. Diagnosing WHICH failure tells you whether repair is possible."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A hole and its repair",
+            "problemId": "cal14-we1"
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "See it",
+            "title": "The unfixable break",
+            "teach": "The jump again — now with continuity eyes. Left limit and right limit both exist but disagree, so part (2) of the test fails. No single-point patch can fix a jump: you'd have to move a whole branch. Compare that with the hole, where moving ONE dot heals everything.",
+            "config": { "mode": "jump" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The big families",
+            "title": "Continuity is the default",
+            "body": "Good news: polynomials, $\\sqrt{x}$, $\\sin$, $\\cos$, $e^x$, $\\ln x$, and every rational function AWAY from its zero-denominators are all continuous on their domains — sums, products, and compositions of continuous things stay continuous. So in practice, discontinuities hide in exactly two places: zero denominators, and the SEAMS of piecewise definitions."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Glue the seam",
+            "problemId": "cal14-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Your turn to glue",
+            "prompt": "$h(x) = \\begin{cases} 2x + c & x \\le 2 \\\\ x^2 & x > 2 \\end{cases}$. Which $c$ makes $h$ continuous at $x = 2$?",
+            "options": ["$c = 0$", "$c = 2$", "$c = 4$", "$c = -4$"],
+            "correctIndex": 0,
+            "explanation": "Left piece at 2: $4 + c$. Right piece heads to $4$. Equate: $4 + c = 4 \\Rightarrow c = 0$. The seam glues where the two numbers match.",
+            "check": [
+              "2*2 + 0 == 4",
+              "2**2 == 4"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Solve for the glue",
+            "problemId": "cal14-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "Why continuity buys theorems",
+            "body": "Continuity isn't just tidiness — it's a license for conclusions. The **Intermediate Value Theorem**: a continuous function that's negative at one end of an interval and positive at the other must be ZERO somewhere between. No formula for where — just a guarantee it exists. This is how you prove equations have solutions before you can solve them."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Trap a root",
+            "problemId": "cal14-t2"
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Continuous at a: value exists, limit exists, and they agree — the function is where it's heading.",
+              "Breaks: removable (hole, patchable), jump (structural), infinite (asymptote).",
+              "Piecewise seams glue by equating the pieces at the boundary; IVT turns sign changes into guaranteed roots."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cal1-pr-1",
+      "statement": "Evaluate by substitution: $\\lim_{x \\to 3} (x^2 - 2x + 5)$ and $\\lim_{x \\to 2} \\dfrac{x + 4}{x - 1}$.",
+      "solution": "Polynomial: $9 - 6 + 5 = 8$. Rational with safe denominator ($2 - 1 = 1 \\neq 0$): $\\frac{6}{1} = 6$.",
+      "check": [
+        "limit(x**2 - 2*x + 5, x, 3) == 8",
+        "limit((x + 4)/(x - 1), x, 2) == 6"
+      ]
+    },
+    {
+      "id": "cal1-pr-2",
+      "statement": "Evaluate $\\lim_{x \\to 5} \\dfrac{x^2 - 25}{x - 5}$.",
+      "solution": "$\\frac{0}{0}$: factor $x^2 - 25 = (x-5)(x+5)$, cancel, substitute: $5 + 5 = 10$.",
+      "check": [
+        "expand((x - 5)*(x + 5) - (x**2 - 25)) == 0",
+        "limit((x**2 - 25)/(x - 5), x, 5) == 10"
+      ]
+    },
+    {
+      "id": "cal1-pr-3",
+      "statement": "Evaluate $\\lim_{x \\to -1} \\dfrac{x^2 - x - 2}{x + 1}$.",
+      "solution": "$\\frac{0}{0}$: factor $x^2 - x - 2 = (x + 1)(x - 2)$, cancel: $\\lim_{x \\to -1} (x - 2) = -3$.",
+      "check": [
+        "expand((x + 1)*(x - 2) - (x**2 - x - 2)) == 0",
+        "limit((x**2 - x - 2)/(x + 1), x, -1) == -3"
+      ]
+    },
+    {
+      "id": "cal1-pr-4",
+      "statement": "Evaluate $\\lim_{x \\to 4} \\dfrac{\\sqrt{x} - 2}{x - 4}$.",
+      "solution": "Conjugate: multiply by $\\frac{\\sqrt{x}+2}{\\sqrt{x}+2}$; top becomes $x - 4$, cancels. Left with $\\frac{1}{\\sqrt{x}+2}$ at $x = 4$: $\\frac{1}{4}$.",
+      "check": [
+        "limit((sqrt(x) - 2)/(x - 4), x, 4) == Rational(1,4)",
+        "sqrt(4) + 2 == 4"
+      ]
+    },
+    {
+      "id": "cal1-pr-5",
+      "statement": "Evaluate $\\lim_{x \\to \\infty} \\dfrac{7x^2 - 3x + 1}{2x^2 + 9}$ and $\\lim_{x \\to \\infty} \\dfrac{x^2 + 8}{x^3 - 1}$.",
+      "solution": "Equal degrees: leading ratio $\\frac{7}{2}$. Bottom-heavy (2 vs 3): limit $0$.",
+      "check": [
+        "limit((7*x**2 - 3*x + 1)/(2*x**2 + 9), x, oo) == Rational(7,2)",
+        "limit((x**2 + 8)/(x**3 - 1), x, oo) == 0"
+      ]
+    },
+    {
+      "id": "cal1-pr-6",
+      "statement": "A graph follows $y = x^2$ for $x < 2$ and $y = 6 - x$ for $x > 2$. Find both one-sided limits at $x = 2$ and classify the point.",
+      "solution": "Left: $2^2 = 4$. Right: $6 - 2 = 4$. They agree — limit 4, no jump. (Whether it's continuous depends on $f(2)$; if $f(2) = 4$, all three test parts pass.)",
+      "check": [
+        "limit(x**2, x, 2) == 4",
+        "limit(6 - x, x, 2) == 4"
+      ]
+    },
+    {
+      "id": "cal1-pr-7",
+      "statement": "Find $k$ so that $f(x) = \\begin{cases} 5x + k & x \\le 2 \\\\ x^2 + 3 & x > 2 \\end{cases}$ is continuous at $x = 2$.",
+      "solution": "Left: $10 + k$. Right: $4 + 3 = 7$. Equate: $10 + k = 7$, so $k = -3$.",
+      "check": [
+        "2**2 + 3 == 7",
+        "5*2 + (-3) == 7"
+      ]
+    },
+    {
+      "id": "cal1-pr-8",
+      "statement": "For $f(x) = \\dfrac{x + 2}{x - 1}$: state its vertical and horizontal asymptotes, using limits.",
+      "solution": "At $x = 1$: $\\frac{3}{0}$, a blow-up — vertical asymptote $x = 1$. At infinity: equal degrees, ratio $\\frac{1}{1} = 1$ — horizontal asymptote $y = 1$.",
+      "check": [
+        "1 + 2 == 3",
+        "limit((x + 2)/(x - 1), x, oo) == 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cal1-ty-1",
+      "statement": "Evaluate $\\lim_{x \\to 6} \\dfrac{x^2 - 36}{x - 6}$ and $\\lim_{x \\to 0} \\dfrac{x^2 + 3x}{x}$.",
+      "solution": "Both $\\frac{0}{0}$. First: $(x-6)(x+6)$ cancels to $x + 6 \\to 12$. Second: factor $x$ from the top, cancel: $x + 3 \\to 3$.",
+      "check": [
+        "limit((x**2 - 36)/(x - 6), x, 6) == 12",
+        "limit((x**2 + 3*x)/x, x, 0) == 3"
+      ]
+    },
+    {
+      "id": "cal1-ty-2",
+      "statement": "Evaluate $\\lim_{x \\to 0} \\dfrac{\\sqrt{x + 25} - 5}{x}$.",
+      "solution": "Conjugate: top becomes $(x + 25) - 25 = x$, cancels. Left with $\\frac{1}{\\sqrt{x+25}+5} \\to \\frac{1}{10}$.",
+      "check": [
+        "limit((sqrt(x + 25) - 5)/x, x, 0) == Rational(1,10)",
+        "sqrt(25) + 5 == 10"
+      ]
+    },
+    {
+      "id": "cal1-ty-3",
+      "statement": "Compute all three: $\\lim_{x \\to \\infty} \\dfrac{3x^3 - x}{6x^3 + x^2}$, $\\lim_{x \\to \\infty} \\dfrac{x^4}{x^2 + 1}$, $\\lim_{x \\to \\infty} \\dfrac{10x + 3}{x^2}$.",
+      "solution": "Tie: $\\frac{3}{6} = \\frac{1}{2}$. Top-heavy: $\\infty$. Bottom-heavy: $0$. The degree race decides all three.",
+      "check": [
+        "limit((3*x**3 - x)/(6*x**3 + x**2), x, oo) == Rational(1,2)",
+        "limit(x**4/(x**2 + 1), x, oo) == oo",
+        "limit((10*x + 3)/x**2, x, oo) == 0"
+      ]
+    },
+    {
+      "id": "cal1-ty-4",
+      "statement": "$f(x) = \\dfrac{x^2 - 4}{x - 2}$ with the extra rule $f(2) = 5$. Test all three parts of continuity at $x = 2$ and classify the discontinuity.",
+      "solution": "(1) $f(2) = 5$ exists ✓. (2) Limit: factor-cancel gives $x + 2 \\to 4$ ✓. (3) $4 \\neq 5$ ✗ — removable discontinuity: the dot is misplaced. Moving $f(2)$ to 4 heals it.",
+      "check": [
+        "limit((x**2 - 4)/(x - 2), x, 2) == 4",
+        "4 != 5"
+      ]
+    },
+    {
+      "id": "cal1-ty-5",
+      "statement": "Find $c$ so that $g(x) = \\begin{cases} cx^2 & x < 3 \\\\ 2x + 3 & x \\ge 3 \\end{cases}$ is continuous everywhere.",
+      "solution": "Each piece is a polynomial — continuous on its own turf; only the seam at 3 matters. Left: $9c$; right: $9$. So $9c = 9$, $c = 1$.",
+      "check": [
+        "2*3 + 3 == 9",
+        "9*1 == 9"
+      ]
+    },
+    {
+      "id": "cal1-ty-6",
+      "statement": "Show $f(x) = x^3 + 2x - 6$ has a root between 1 and 2, and explain which theorem you used and why it applies.",
+      "solution": "$f(1) = 1 + 2 - 6 = -3 < 0$; $f(2) = 8 + 4 - 6 = 6 > 0$. $f$ is a polynomial, hence continuous on $[1, 2]$, so the Intermediate Value Theorem applies: continuous + sign change forces a zero in $(1, 2)$.",
+      "check": [
+        "1**3 + 2*1 - 6 < 0",
+        "2**3 + 2*2 - 6 > 0"
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import {
   getGeometryUnit,
   getProbStatUnit,
   getVecMatUnit,
+  getCalcUnit,
   getGenMathTopic,
   getGrade6Topics,
   getGrade7Topics,
@@ -18,9 +19,11 @@ import {
 // recommendation that 404s is worse than none.
 function hrefExists(href: string): boolean {
   // course roots and the geometry placement runner
-  if (["/math/geometry", "/math/prob-stats", "/math/vectors-matrices", "/math/geometry/placement"].includes(href)) return true;
+  if (["/math/geometry", "/math/prob-stats", "/math/vectors-matrices", "/math/calculus", "/math/geometry/placement"].includes(href)) return true;
   const vm = /^\/math\/vectors-matrices\/([a-z0-9-]+)$/.exec(href);
   if (vm) return getVecMatUnit(vm[1]) !== null;
+  const cal = /^\/math\/calculus\/([a-z0-9-]+)$/.exec(href);
+  if (cal) return getCalcUnit(cal[1]) !== null;
   const gradeRoot = /^\/math\/(\d+)$/.exec(href);
   if (gradeRoot) {
     const topicsByGrade: Record<string, () => unknown[]> = {

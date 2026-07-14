@@ -1,0 +1,841 @@
+{
+  "slug": "integrals",
+  "title": "Integrals",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Differentiation run in reverse, the area problem solved by slicing, and the Fundamental Theorem — the bridge that makes exact areas a two-step calculation.",
+  "buildsOn": "Every derivative from Units 2–3 — you're about to run them all backwards.",
+  "lessons": [
+    {
+      "slug": "antiderivatives",
+      "title": "Antiderivatives",
+      "concreteComparison": "You know every 'child' each function produces when differentiated. Now the question flips: here's the child — who's the parent? That's antidifferentiation: reverse-engineering the function whose derivative you're holding. And since parents differing by a constant have identical children, the answer always ends in '+ C'.",
+      "objective": "Find antiderivatives of powers and library functions, use the +C correctly, and pin down C from an initial condition.",
+      "concept": [
+        "$F$ is an **antiderivative** of $f$ when $F' = f$. The power rule reverses cleanly: to undo 'exponent drops, steps down,' RAISE the exponent by one and DIVIDE by the new exponent: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). Check any antiderivative by differentiating — the check is always free.",
+        "The **+C**: since constants die under differentiation, $x^3$, $x^3 + 5$, and $x^3 - 99$ all have derivative $3x^2$. The antiderivative is a whole FAMILY of parallel curves, one per constant. Writing $\\int 3x^2\\,dx = x^3 + C$ names the entire family at once.",
+        "An **initial condition** picks one family member. If $F' = 2x$ and $F(1) = 5$: the family is $x^2 + C$; force $1 + C = 5$, so $C = 4$ and $F(x) = x^2 + 4$. The library reverses too: $\\int \\cos x\\,dx = \\sin x + C$, $\\int \\sin x \\, dx = -\\cos x + C$, $\\int e^x dx = e^x + C$, $\\int \\frac{1}{x}dx = \\ln|x| + C$ — the missing $n = -1$ case, solved by the log."
+      ],
+      "keyIdea": "Antiderivative: raise the power, divide by the new power, add C — a family of parallel curves; an initial condition picks the one member.",
+      "facts": [
+        {
+          "title": "Reverse power rule",
+          "latex": "\\int x^n dx = \\frac{x^{n+1}}{n+1} + C \\quad (n \\neq -1)",
+          "explanation": "Raise by one, divide by the new exponent — then + C."
+        },
+        {
+          "title": "The family",
+          "latex": "F' = f \\Rightarrow (F + C)' = f \\text{ for every } C",
+          "explanation": "Constants vanish under d/dx, so answers come in families."
+        },
+        {
+          "title": "Library in reverse",
+          "latex": "\\int \\cos = \\sin, \\; \\int \\sin = -\\cos, \\; \\int e^x = e^x, \\; \\int \\tfrac{1}{x} = \\ln|x| \\; (+C)",
+          "explanation": "The n = −1 gap is exactly where the logarithm lives."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal51-we1",
+          "statement": "Find $\\int (6x^2 - 4x + 5)\\,dx$ and verify by differentiating.",
+          "solution": "Term by term, raise-and-divide: $\\frac{6x^3}{3} - \\frac{4x^2}{2} + 5x + C = 2x^3 - 2x^2 + 5x + C$. Verify: $\\frac{d}{dx}(2x^3 - 2x^2 + 5x + C) = 6x^2 - 4x + 5$ ✓. Differentiating your answer is the free, always-available check.",
+          "check": [
+            "simplify(integrate(6*x**2 - 4*x + 5, x) - (2*x**3 - 2*x**2 + 5*x)) == 0",
+            "diff(2*x**3 - 2*x**2 + 5*x, x) == 6*x**2 - 4*x + 5"
+          ]
+        },
+        {
+          "id": "cal51-we2",
+          "statement": "Find $F(x)$ with $F'(x) = 3x^2 - 2$ and $F(2) = 7$.",
+          "solution": "Family: $F(x) = x^3 - 2x + C$. Pin C: $F(2) = 8 - 4 + C = 7$, so $C = 3$. The one member through the point $(2, 7)$: $F(x) = x^3 - 2x + 3$.",
+          "check": [
+            "diff(x**3 - 2*x + 3, x) == 3*x**2 - 2",
+            "2**3 - 2*2 + 3 == 7"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the +C — or attaching it to only some of a sum's terms.",
+          "correction": "Without $+C$ you've named ONE curve when the answer is a family — and initial-condition problems become unsolvable. One $+C$ per antiderivative (all the term constants merge into it), every time, until a condition pins it.",
+          "authored": true
+        },
+        {
+          "text": "Reversing the power rule as 'divide by the OLD exponent': ∫x³dx = x⁴/3.",
+          "correction": "Raise FIRST, then divide by the NEW exponent: $\\int x^3 dx = \\frac{x^4}{4} + C$. The check catches it instantly: $(x^4/3)' = \\frac{4x^3}{3} \\neq x^3$. Differentiate your answer — always.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal51-t1",
+          "statement": "Find $\\int \\left(4x^3 + \\dfrac{1}{x^2}\\right) dx$ and verify by differentiating.",
+          "solution": "Unmask: $x^{-2}$. Raise-and-divide: $x^4 + \\frac{x^{-1}}{-1} + C = x^4 - \\frac{1}{x} + C$. Verify: derivative is $4x^3 + \\frac{1}{x^2}$ ✓.",
+          "check": [
+            "simplify(diff(x**4 - 1/x, x) - (4*x**3 + 1/x**2)) == 0"
+          ]
+        },
+        {
+          "id": "cal51-t2",
+          "statement": "A curve has slope $f'(x) = 2x + 1$ at every point and passes through $(1, 4)$. Find $f(x)$.",
+          "solution": "Family: $x^2 + x + C$. Through $(1, 4)$: $1 + 1 + C = 4$, $C = 2$. So $f(x) = x^2 + x + 2$.",
+          "check": [
+            "diff(x**2 + x + 2, x) == 2*x + 1",
+            "1**2 + 1 + 2 == 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The reversal",
+            "title": "Given the child, find the parent",
+            "body": "Three units of differentiation built a one-way dictionary: function → derivative. Half of calculus asks the REVERSE: here is $f$; find $F$ whose derivative is $f$. We call $F$ an **antiderivative**, write $\\int f(x)\\,dx$, and the payoff (two lessons from now) is enormous: antiderivatives compute exact areas."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The mechanics",
+            "title": "Raise, divide, add C",
+            "body": "To reverse 'drop the exponent, step down': **raise the exponent by one, divide by the new exponent.** $\\int x^2 dx = \\frac{x^3}{3} + C$. And that $+C$: differentiating kills constants, so $x^3$, $x^3 + 5$, $x^3 - 99$ are all legitimate parents of $3x^2$. The antiderivative is a FAMILY of vertically shifted curves; $+C$ names them all."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Raise and divide",
+            "prompt": "$\\displaystyle\\int x^4 \\, dx = ?$",
+            "options": [
+              "$\\dfrac{x^5}{5} + C$",
+              "$4x^3 + C$",
+              "$\\dfrac{x^4}{4} + C$",
+              "$x^5 + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Raise to 5, divide by 5. Option B differentiated instead of antidifferentiating; option C divided by the OLD exponent. Check by differentiating: $(\\frac{x^5}{5})' = x^4$ ✓.",
+            "check": [
+              "integrate(x**4, x) == x**5/5",
+              "diff(x**5/5, x) == x**4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A polynomial, reversed",
+            "problemId": "cal51-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The library, reversed",
+            "title": "Speed-dial, backwards",
+            "body": "Your four library derivatives flip into antiderivatives: $\\int \\cos x \\, dx = \\sin x + C$; $\\int \\sin x \\, dx = -\\cos x + C$ (check it: $(-\\cos x)' = \\sin x$ ✓); $\\int e^x dx = e^x + C$. And the power rule's forbidden case $n = -1$ finally resolves: $\\int \\frac{1}{x} dx = \\ln|x| + C$ — the logarithm was the missing parent all along."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Reverse the wave",
+            "prompt": "$\\displaystyle\\int \\sin x \\, dx = ?$",
+            "options": [
+              "$-\\cos x + C$",
+              "$\\cos x + C$",
+              "$-\\sin x + C$",
+              "$\\tan x + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Whose derivative is $\\sin x$? Test $-\\cos x$: $(-\\cos x)' = -(-\\sin x) = \\sin x$ ✓. The minus signs on the wave pair trip everyone once — differentiate to confirm, every time.",
+            "check": [
+              "simplify(diff(-cos(x), x) - sin(x)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Picking one",
+            "title": "Initial conditions pin the C",
+            "body": "Real problems come with a known data point — the ball STARTS at height 2, the account OPENS at 1000. That **initial condition** selects one curve from the family: solve for $C$. Slope field $\\to$ family $\\to$ one curve through the given point. This tiny pattern is the seed of differential equations — most of physics is exactly this."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Family, then one member",
+            "problemId": "cal51-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Reverse with a costume",
+            "problemId": "cal51-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Slope plus a point",
+            "problemId": "cal51-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Differentiate your answer",
+            "body": "Antidifferentiation has a luxury nothing else in math offers: a built-in, ten-second, complete correctness check. Differentiate what you wrote; if it isn't the integrand, fix it now. Never submit an antiderivative you haven't differentiated.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "∫xⁿ dx = xⁿ⁺¹/(n+1) + C — raise, divide by the NEW exponent, add C.",
+              "The +C names a family; an initial condition picks the member.",
+              "Library reversed: cos→sin, sin→−cos, eˣ→eˣ, 1/x→ln|x| — and differentiate to check."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-area-problem-and-the-definite-integral",
+      "title": "The Area Problem & the Definite Integral",
+      "concreteComparison": "How do you measure a lake's area with only rectangular tiles? Tile it coarsely and you're obviously wrong; use thinner and thinner tiles and the error shrinks toward nothing. The definite integral is the tiling scheme taken to its limit — the exact area, defined as where the approximations are heading.",
+      "objective": "Approximate areas with Riemann sums, define the definite integral as their limit, and interpret signed area.",
+      "concept": [
+        "The area under $y = f(x)$ from $a$ to $b$ has no classical formula — curves aren't triangles. Plan: slice $[a, b]$ into $n$ strips of width $\\Delta x$, erect a rectangle on each (height = $f$ at a sample point), and add: a **Riemann sum**. Crude for small $n$, better for large — and the error provably shrinks as slices thin.",
+        "The **definite integral** is the limit: $\\int_a^b f(x)\\,dx = \\lim_{n \\to \\infty} \\sum f(x_i)\\,\\Delta x$. It's a NUMBER (not a family of functions): the exact area under the curve between $a$ and $b$ — Unit 1's limit idea, deployed one final time.",
+        "Below the axis, rectangle 'heights' $f(x_i)$ are negative, so the integral counts that region NEGATIVE: the definite integral is **signed area** — area above the axis minus area below. $\\int_0^2 (x - 2)\\,dx = -2$: a triangle of area 2 that sits underwater."
+      ],
+      "keyIdea": "Slice, sample, sum, and take the limit: ∫ₐᵇ f dx is the exact signed area — above the axis positive, below negative.",
+      "facts": [
+        {
+          "title": "Riemann sum",
+          "latex": "\\sum_{i=1}^{n} f(x_i)\\, \\Delta x, \\qquad \\Delta x = \\tfrac{b-a}{n}",
+          "explanation": "Rectangles: sample height × width, added up."
+        },
+        {
+          "title": "Definite integral",
+          "latex": "\\int_a^b f(x)\\,dx = \\lim_{n \\to \\infty} \\sum f(x_i) \\Delta x",
+          "explanation": "The limit of the tiling — a number, not a family."
+        },
+        {
+          "title": "Signed area",
+          "latex": "\\text{above axis} \\; (+), \\qquad \\text{below axis} \\; (-)",
+          "explanation": "Negative heights make negative contributions."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal52-we1",
+          "statement": "Approximate the area under $f(x) = x^2$ on $[0, 2]$ with 4 right-endpoint rectangles, and compare with the exact value $\\frac{8}{3}$.",
+          "solution": "$\\Delta x = \\frac{1}{2}$; right endpoints $\\frac{1}{2}, 1, \\frac{3}{2}, 2$. Sum: $\\frac{1}{2}\\left(\\frac{1}{4} + 1 + \\frac{9}{4} + 4\\right) = \\frac{1}{2} \\cdot \\frac{15}{2} = \\frac{15}{4} = 3.75$. Exact: $\\frac{8}{3} \\approx 2.67$. The overshoot is the staircase poking above a rising curve — right endpoints overestimate; more slices shave it down.",
+          "check": [
+            "Rational(1,2)*(Rational(1,4) + 1 + Rational(9,4) + 4) == Rational(15,4)",
+            "integrate(x**2, (x, 0, 2)) == Rational(8,3)",
+            "Rational(15,4) > Rational(8,3)"
+          ]
+        },
+        {
+          "id": "cal52-we2",
+          "statement": "Compute $\\int_0^4 x \\, dx$ from geometry, and check that the integral agrees.",
+          "solution": "The region under $y = x$ from 0 to 4 is a right triangle: legs 4 and 4, area $\\frac{4 \\cdot 4}{2} = 8$. Integral: $\\int_0^4 x\\,dx = 8$ ✓. When a region IS classical, geometry and the integral must agree — a standing sanity check for the whole theory.",
+          "check": [
+            "Rational(4*4, 2) == 8",
+            "integrate(x, (x, 0, 4)) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating the definite integral as always-positive area.",
+          "correction": "It's SIGNED area: regions below the axis count negative. $\\int_0^2 (x-2)dx = -2$ even though the triangle has honest area 2. If a problem wants geometric area, split at the axis crossings and flip the negative pieces.",
+          "authored": true
+        },
+        {
+          "text": "Confusing ∫f(x)dx (a family of functions) with ∫ₐᵇf(x)dx (a number).",
+          "correction": "The indefinite integral is the antiderivative family ($+C$ and all); the DEFINITE integral has limits and is a single number — a signed area. Same symbol, two different species; the limits are the tell.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal52-t1",
+          "statement": "Approximate $\\int_0^2 x^2\\,dx$ with 4 LEFT-endpoint rectangles, and explain why your answer undershoots.",
+          "solution": "Left endpoints $0, \\frac{1}{2}, 1, \\frac{3}{2}$: sum $= \\frac{1}{2}(0 + \\frac{1}{4} + 1 + \\frac{9}{4}) = \\frac{7}{4} = 1.75 < \\frac{8}{3}$. On a rising curve, left-endpoint rectangles tuck UNDER the graph — the staircase misses the wedges above each step.",
+          "check": [
+            "Rational(1,2)*(0 + Rational(1,4) + 1 + Rational(9,4)) == Rational(7,4)",
+            "Rational(7,4) < Rational(8,3)"
+          ]
+        },
+        {
+          "id": "cal52-t2",
+          "statement": "Evaluate $\\int_0^2 (x - 2)\\,dx$ and reconcile the sign with the picture.",
+          "solution": "The segment runs from $(0, -2)$ up to $(2, 0)$ — a triangle of geometric area $\\frac{2 \\cdot 2}{2} = 2$ lying entirely BELOW the axis. Signed: $\\int_0^2 (x-2)dx = -2$. The integral reports the minus; geometry reports the magnitude.",
+          "check": [
+            "integrate(x - 2, (x, 0, 2)) == -2",
+            "Rational(2*2,2) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The second problem",
+            "title": "Curves have no area formula",
+            "body": "Calculus was built on two ancient problems. Tangents — solved, Units 2–4. The other: what's the AREA under a curve? Triangles and circles have formulas; the region under $y = x^2$ has none. The strategy that cracks it is pure Unit 1 thinking: approximate crudely, refine forever, and DEFINE the answer as the limit."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The tiling",
+            "title": "Riemann sums",
+            "body": "Slice $[a, b]$ into $n$ equal strips of width $\\Delta x = \\frac{b-a}{n}$. On each strip stand a rectangle whose height is $f$ at a chosen sample point (left edge, right edge — either works in the limit). Add the areas: $\\sum f(x_i) \\Delta x$ — a **Riemann sum**. It's wrong, but honestly wrong: the error is visibly the little wedges between staircase and curve, and thinner slices shrink them."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "See it",
+            "title": "Watch the staircase melt",
+            "teach": "Step $n$ up: 2 slices are crude, 8 decent, 32 hug the curve. The sum readout climbs toward the true area — every extra slice shaves the error wedges thinner. The limit of this melting IS the definite integral.",
+            "config": { "mode": "riemann" }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Four rectangles by hand",
+            "problemId": "cal52-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The definition",
+            "title": "The definite integral",
+            "body": "$\\int_a^b f(x)\\,dx = \\lim_{n \\to \\infty} \\sum f(x_i)\\,\\Delta x$: the exact area, defined as the destination of the refining tilings. Note what species it is: a NUMBER. Not a function, not a family — one number for one curve over one interval. The elongated S is literally a stretched 'Sum'."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Geometry agrees",
+            "problemId": "cal52-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The sign",
+            "title": "Signed area",
+            "body": "What if the curve dips below the axis? The 'heights' $f(x_i)$ go NEGATIVE, so those rectangles subtract. The definite integral is **signed area**: above-axis regions count positive, below-axis negative, and they can cancel. Physics wants exactly this (a velocity below zero really does undo progress); geometry questions need you to split at the crossings and flip the minus pieces."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the sign",
+            "prompt": "$f(x) = x - 2$ on $[0, 2]$ lies entirely below the x-axis, forming a triangle of area 2. What is $\\int_0^2 (x-2)\\,dx$?",
+            "options": ["$-2$", "$2$", "$0$", "$4$"],
+            "correctIndex": 0,
+            "explanation": "Below the axis, the integral counts negative: signed area $-2$. The geometric area is 2; the integral's job is the signed version — know which one a question is asking for.",
+            "check": [
+              "integrate(x - 2, (x, 0, 2)) == -2"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The undershooting staircase",
+            "problemId": "cal52-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "An underwater triangle",
+            "problemId": "cal52-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Archimedes got there first",
+            "body": "Around 250 BCE, Archimedes computed the exact area under a parabola by exhausting it with triangles — the same shrink-the-error idea as Riemann sums, two millennia early. He called it the 'method of exhaustion.' What he lacked wasn't the idea of integration; it was the SHORTCUT you learn next lesson.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Slice, sample, sum: Riemann sums approximate; thinner slices approximate better.",
+              "∫ₐᵇ f dx = the limit of the sums — one exact number.",
+              "It's SIGNED area: below-axis regions subtract; split at crossings for geometric area."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-fundamental-theorem",
+      "title": "The Fundamental Theorem",
+      "concreteComparison": "Your trip odometer doesn't add up thousands of tiny distance slices to tell you how far you've come — it just subtracts its reading at the start from its reading now. The Fundamental Theorem says areas work the same way: find an 'odometer' (antiderivative) for the curve, and any area is one subtraction.",
+      "objective": "Evaluate definite integrals with the Fundamental Theorem: find an antiderivative, subtract its endpoint values.",
+      "concept": [
+        "**The Fundamental Theorem of Calculus:** if $F' = f$, then $\\int_a^b f(x)\\,dx = F(b) - F(a)$. Infinite rectangle-summing collapses to: antidifferentiate, evaluate at both ends, subtract. Notation: $\\left[F(x)\\right]_a^b$.",
+        "Why it's true: let $A(x)$ = the area accumulated from $a$ up to $x$. Nudge $x$ by a sliver $h$: the area gains a strip $\\approx f(x) \\cdot h$, so $A'(x) = f(x)$ — the area function IS an antiderivative of the curve. Any two antiderivatives differ by a constant, which the subtraction $F(b) - F(a)$ cancels — and so does the $+C$.",
+        "The theorem's name is earned: it welds the unit's two halves — derivatives (slopes) and integrals (areas) — into inverse operations. Slope of the area = the curve; area under the slope = the change. One theorem, both directions."
+      ],
+      "keyIdea": "∫ₐᵇ f dx = F(b) − F(a) for any antiderivative F — accumulate by subtracting the odometer at both ends; the +C cancels itself.",
+      "facts": [
+        {
+          "title": "FTC",
+          "latex": "\\int_a^b f(x)\\,dx = F(b) - F(a), \\quad F' = f",
+          "explanation": "Antidifferentiate, evaluate twice, subtract."
+        },
+        {
+          "title": "Why: the area function",
+          "latex": "A(x) = \\int_a^x f \\; \\Rightarrow \\; A'(x) = f(x)",
+          "explanation": "Area grows at exactly the rate the curve is tall."
+        },
+        {
+          "title": "No C needed",
+          "latex": "(F + C)(b) - (F + C)(a) = F(b) - F(a)",
+          "explanation": "The constant rides in and cancels out."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal53-we1",
+          "statement": "Evaluate $\\int_1^2 3x^2\\,dx$ and $\\int_0^5 2x\\,dx$.",
+          "solution": "Odometers: $x^3$ and $x^2$. First: $[x^3]_1^2 = 8 - 1 = 7$. Second: $[x^2]_0^5 = 25 - 0 = 25$. Compare with last lesson's infinite tilings: the same answers, in two lines each. That collapse is the theorem.",
+          "check": [
+            "integrate(3*x**2, (x, 1, 2)) == 7",
+            "2**3 - 1**3 == 7",
+            "integrate(2*x, (x, 0, 5)) == 25",
+            "5**2 - 0**2 == 25"
+          ]
+        },
+        {
+          "id": "cal53-we2",
+          "statement": "Evaluate $\\int_0^{\\pi/2} \\cos x \\, dx$ and $\\int_0^3 (x^2 - 4)\\,dx$, interpreting the second result.",
+          "solution": "Wave: $[\\sin x]_0^{\\pi/2} = 1 - 0 = 1$ — the first hump of cosine encloses exactly area 1. Second: $[\\frac{x^3}{3} - 4x]_0^3 = (9 - 12) - 0 = -3$: net NEGATIVE — the below-axis part of $x^2 - 4$ (from 0 to 2) outweighs the above-axis part (2 to 3). FTC handles the signs automatically.",
+          "check": [
+            "integrate(cos(x), (x, 0, pi/2)) == 1",
+            "integrate(x**2 - 4, (x, 0, 3)) == -3",
+            "Rational(27,3) - 12 == -3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Subtracting in the wrong order: F(a) − F(b).",
+          "correction": "Upper limit FIRST: $F(b) - F(a)$. Backwards flips every sign — a positive area reports negative. Anchor it with the odometer: reading at the END minus reading at the START.",
+          "authored": true
+        },
+        {
+          "text": "Evaluating only at the top limit: ∫₀³ … = F(3), forgetting F(0).",
+          "correction": "Even when $F(a) = 0$ it must be CHECKED, not assumed — $F(0) \\neq 0$ whenever the antiderivative has non-vanishing terms (try $\\int_0^1 \\cos x\\,dx$: $\\sin 0 = 0$, fine; but $\\int_0^1 e^x dx$: $e^0 = 1$, very much not 0). Two evaluations, one subtraction, always.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal53-t1",
+          "statement": "Evaluate $\\int_1^4 (2x - 3)\\,dx$.",
+          "solution": "Odometer: $x^2 - 3x$. $[x^2 - 3x]_1^4 = (16 - 12) - (1 - 3) = 4 - (-2) = 6$. Watch the double negative at the lower end — the classic slip.",
+          "check": [
+            "integrate(2*x - 3, (x, 1, 4)) == 6",
+            "(16 - 12) - (1 - 3) == 6"
+          ]
+        },
+        {
+          "id": "cal53-t2",
+          "statement": "Evaluate $\\int_0^1 e^x\\,dx$ and $\\int_1^e \\dfrac{1}{x}\\,dx$ exactly.",
+          "solution": "$[e^x]_0^1 = e - 1$. $[\\ln x]_1^e = \\ln e - \\ln 1 = 1 - 0 = 1$ — the area under $\\frac{1}{x}$ from 1 to $e$ is exactly 1 (that's one way to DEFINE $e$).",
+          "check": [
+            "simplify(integrate(exp(x), (x, 0, 1)) - (E - 1)) == 0",
+            "integrate(1/x, (x, 1, E)) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The bridge",
+            "title": "Two problems, secretly one",
+            "body": "Slopes (Units 2–4) and areas (last lesson) look unrelated. The **Fundamental Theorem of Calculus** says they're inverse operations: if $F' = f$, then $\\int_a^b f(x)\\,dx = F(b) - F(a)$. Every infinite tiling collapses to: find an antiderivative, evaluate at both ends, subtract. This equation is why the subject is ONE subject."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Why it's true",
+            "title": "The sweep argument",
+            "teach": "Watch the sweep: the filled area $A(x)$ grows exactly as fast as the curve is tall — gain a sliver of width $h$, gain area $\\approx f(x) \\cdot h$, so $A'(x) = f(x)$. The AREA function is an antiderivative of the curve. That's the theorem, in one animation.",
+            "config": { "mode": "accumulate" }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two integrals, two lines each",
+            "problemId": "cal53-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Run the odometer",
+            "prompt": "$\\displaystyle\\int_1^3 2x\\,dx = ?$",
+            "options": ["$8$", "$9$", "$4$", "$10$"],
+            "correctIndex": 0,
+            "explanation": "Odometer $x^2$: end reading $9$, start reading $1$, trip $= 9 - 1 = 8$. (Choosing $9$ means the lower limit got forgotten — the #1 FTC slip.)",
+            "check": [
+              "integrate(2*x, (x, 1, 3)) == 8",
+              "3**2 - 1**2 == 8"
+            ]
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Certify",
+            "title": "Geometry agrees, at every b",
+            "teach": "Step $b$: the region under $f(x) = x$ is a right triangle — geometry says $\\frac{b \\cdot b}{2}$. The antiderivative $\\frac{x^2}{2}$ evaluated at $b$ says the same number, at every $b$. When two independent methods always agree, you're holding a theorem.",
+            "config": { "mode": "ftc" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Fine print",
+            "title": "Why no +C, and which F",
+            "body": "ANY antiderivative works: pick $F$ or $F + 17$ — the subtraction $F(b) - F(a)$ cancels the constant either way, which is why definite integrals never carry a $+C$. Practical protocol: antidifferentiate (skip the C), write $[\\,\\cdot\\,]_a^b$, evaluate top, evaluate bottom, subtract — WITH the parentheses, because the lower value often arrives negative."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A wave and a signed mix",
+            "problemId": "cal53-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Mind the lower end",
+            "problemId": "cal53-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "e and the log, exactly",
+            "problemId": "cal53-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The most important equation you'll write this year",
+            "body": "Mathematicians rank theorems half-jokingly by 'surprise per symbol.' The FTC is routinely voted near the top of all mathematics: eleven symbols connecting two ancient, apparently unrelated problems — and powering every physics engine, actuarial table, and rocket trajectory computed since 1687. You now own it.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "∫ₐᵇ f dx = F(b) − F(a): antidifferentiate, evaluate both ends, subtract (upper first).",
+              "Why: the accumulated-area function has A′ = f — area IS an antiderivative.",
+              "No +C in definite integrals — the subtraction cancels it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "substitution",
+      "title": "Integration by Substitution",
+      "concreteComparison": "Substitution is the chain rule watched in a mirror. Differentiating sin(x²) SPRAYS a 2x out front; integrating 2x·cos(x²) means spotting that spray and folding it back in. You're not learning a new move — you're learning to recognize the old one, reversed.",
+      "objective": "Integrate composite expressions by substituting u for the inner function, including changing the limits of definite integrals.",
+      "concept": [
+        "**Substitution** reverses the chain rule. When an integrand contains a composition AND (a constant multiple of) its inner function's derivative — $\\int 2x(x^2 + 1)^3 dx$ has inner $u = x^2 + 1$ with $du = 2x\\,dx$ sitting right there — rewrite everything in $u$: $\\int u^3\\,du = \\frac{u^4}{4} + C = \\frac{(x^2+1)^4}{4} + C$.",
+        "The recipe: (1) choose $u$ = the inner function; (2) compute $du = u'\\,dx$; (3) swap until NO $x$ remains; (4) integrate in $u$; (5) substitute back. Off-by-constant mismatches are fine — $\\int x \\cos(x^2)dx$ has $du = 2x\\,dx$ but only $x\\,dx$ present: write $x\\,dx = \\frac{1}{2}du$ and carry the $\\frac{1}{2}$.",
+        "For DEFINITE integrals, convert the limits too: $x$-limits become $u$-limits via the substitution, and you never return to $x$. $\\int_0^1 2x(x^2+1)^3 dx$: $u$ runs $1 \\to 2$, giving $\\left[\\frac{u^4}{4}\\right]_1^2 = \\frac{15}{4}$. Always verify antiderivatives by differentiating — the chain rule should regenerate the original integrand exactly."
+      ],
+      "keyIdea": "Spot the inner function whose derivative is on scene, rename it u, swap completely, integrate, return — and definite integrals convert their limits along the way.",
+      "facts": [
+        {
+          "title": "The pattern",
+          "latex": "\\int f(g(x))\\,g'(x)\\,dx = \\int f(u)\\,du",
+          "explanation": "Chain rule, reversed: the g′ on scene is the tell."
+        },
+        {
+          "title": "Constant fixes",
+          "latex": "x\\,dx = \\tfrac{1}{2}\\,du \\text{ when } du = 2x\\,dx",
+          "explanation": "Off-by-constant is fine; carry the fraction through."
+        },
+        {
+          "title": "Definite version",
+          "latex": "x: a \\to b \\quad \\Rightarrow \\quad u: g(a) \\to g(b)",
+          "explanation": "Convert the limits; never go back to x."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal54-we1",
+          "statement": "Evaluate $\\int 2x(x^2 + 1)^3\\,dx$ and verify by differentiating.",
+          "solution": "Inner: $u = x^2 + 1$, and its derivative $2x$ is present: $du = 2x\\,dx$. Swap: $\\int u^3 du = \\frac{u^4}{4} + C = \\frac{(x^2+1)^4}{4} + C$. Verify: chain rule gives $\\frac{4(x^2+1)^3}{4} \\cdot 2x = 2x(x^2+1)^3$ ✓ — the spray folds back out.",
+          "check": [
+            "simplify(diff((x**2 + 1)**4/4, x) - 2*x*(x**2 + 1)**3) == 0"
+          ]
+        },
+        {
+          "id": "cal54-we2",
+          "statement": "Evaluate $\\int_0^1 2x(x^2 + 1)^3\\,dx$ by converting the limits.",
+          "solution": "$u = x^2 + 1$: at $x = 0$, $u = 1$; at $x = 1$, $u = 2$. Integral becomes $\\int_1^2 u^3 du = \\left[\\frac{u^4}{4}\\right]_1^2 = \\frac{16 - 1}{4} = \\frac{15}{4}$. New variable, new limits, no trip back to $x$.",
+          "check": [
+            "integrate(2*x*(x**2 + 1)**3, (x, 0, 1)) == Rational(15,4)",
+            "Rational(16 - 1, 4) == Rational(15,4)",
+            "0**2 + 1 == 1",
+            "1**2 + 1 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Leaving a stray x in the u-integral and integrating anyway.",
+          "correction": "The swap must be COMPLETE: if any $x$ survives (outside $u$), either express it via $u$ or the substitution is wrong — often the real problem needs a different $u$ or isn't a substitution problem at all. Mixed-variable integrals are meaningless.",
+          "authored": true
+        },
+        {
+          "text": "Keeping the old x-limits on the new u-integral.",
+          "correction": "$\\int_0^1 \\ldots dx \\to \\int_1^2 \\ldots du$: the limits belong to the VARIABLE. Either convert them ($u$-limits) or substitute back to $x$ before evaluating — never evaluate a $u$-antiderivative at $x$-limits.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal54-t1",
+          "statement": "Evaluate $\\int x \\cos(x^2)\\,dx$ (note the off-by-2) and verify by differentiating.",
+          "solution": "$u = x^2$, $du = 2x\\,dx$, so $x\\,dx = \\frac{1}{2}du$: $\\frac{1}{2}\\int \\cos u \\, du = \\frac{1}{2}\\sin(x^2) + C$. Verify: $\\frac{1}{2}\\cos(x^2) \\cdot 2x = x\\cos(x^2)$ ✓.",
+          "check": [
+            "simplify(diff(sin(x**2)/2, x) - x*cos(x**2)) == 0"
+          ]
+        },
+        {
+          "id": "cal54-t2",
+          "statement": "Evaluate $\\int_0^2 x\\sqrt{x^2 + 5}\\;dx$ with converted limits.",
+          "solution": "$u = x^2 + 5$: limits $5 \\to 9$; $x\\,dx = \\frac{1}{2}du$. $\\frac{1}{2}\\int_5^9 \\sqrt{u}\\,du = \\frac{1}{2} \\cdot \\frac{2}{3}\\left[u^{3/2}\\right]_5^9 = \\frac{27 - 5\\sqrt{5}}{3}$.",
+          "check": [
+            "simplify(integrate(x*sqrt(x**2 + 5), (x, 0, 2)) - (27 - 5*sqrt(5))/3) == 0",
+            "9**Rational(3,2) == 27"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The gap",
+            "title": "The chain rule left debris",
+            "body": "Raise-and-divide handles $x^n$; the library handles the classics. But $\\int 2x(x^2+1)^3 dx$? That integrand is chain-rule DEBRIS: differentiating $(x^2+1)^4$ sprays a $2x$ out front, and here's that spray, lying at the scene. **Substitution** is the art of recognizing sprayed derivatives and folding them back in."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Rename, swap, integrate, return",
+            "body": "(1) Set $u$ = the inner function — the thing wrapped by a power, root, wave, or exponential. (2) Compute $du = u'\\,dx$ and CONFIRM $u'$ (up to a constant) is present in the integrand. (3) Swap until zero $x$'s remain. (4) Integrate the clean $u$-integral. (5) Substitute back. If step 2 fails — no $u'$ anywhere — substitution isn't your tool."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The debris, folded back",
+            "problemId": "cal54-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Choose the u",
+            "prompt": "For $\\displaystyle\\int x^2 (x^3 + 7)^5\\,dx$, what's the right substitution?",
+            "options": [
+              "$u = x^3 + 7$ — its derivative $3x^2$ is present up to the constant 3",
+              "$u = x^2$",
+              "$u = (x^3 + 7)^5$",
+              "No substitution works here"
+            ],
+            "correctIndex": 0,
+            "explanation": "The inner function is what's WRAPPED (here, by the 5th power), and its derivative $3x^2$ matches the $x^2$ on scene up to a constant: $x^2 dx = \\frac{1}{3}du$. Result: $\\frac{(x^3+7)^6}{18} + C$.",
+            "check": [
+              "simplify(diff((x**3 + 7)**6/18, x) - x**2*(x**3 + 7)**5) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Off by a constant",
+            "title": "The ½ that saves the day",
+            "body": "Perfect matches are rare; off-by-a-constant is the norm. $\\int x\\cos(x^2)dx$: want $du = 2x\\,dx$, have only $x\\,dx$. No problem — solve: $x\\,dx = \\frac{1}{2}du$, and the $\\frac{1}{2}$ rides along outside: $\\frac{1}{2}\\sin(x^2) + C$. Constants can be imported and exported freely; missing FUNCTIONS cannot. $\\int \\cos(x^2)dx$ — no $x$ on scene — is beyond substitution (and beyond this course)."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Definite: convert the limits",
+            "problemId": "cal54-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "New variable, new limits",
+            "prompt": "In $\\displaystyle\\int_0^2 x(x^2 + 1)^4 dx$ with $u = x^2 + 1$, what are the $u$-limits?",
+            "options": [
+              "$1$ to $5$",
+              "$0$ to $2$",
+              "$1$ to $2$",
+              "$0$ to $5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Run the endpoints through the substitution: $u(0) = 1$, $u(2) = 5$. The old limits belonged to $x$; the new integral lives entirely in $u$-land.",
+            "check": [
+              "0**2 + 1 == 1",
+              "2**2 + 1 == 5"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Wave with a fix-up",
+            "problemId": "cal54-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Root, limits converted",
+            "problemId": "cal54-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "The tell is the derivative on scene",
+            "body": "Scan every integral with one question: 'is some function's derivative ALSO in the integrand?' $x$ next to $(x^2 + \\ldots)$, $x^2$ next to $(x^3 + \\ldots)$, $\\cos x$ next to $(\\sin x + \\ldots)$, $\\frac{1}{x}$ next to $\\ln x$. That pairing is the substitution signature — see it, and $u$ chooses itself.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Substitution reverses the chain rule: u = inner function, du must be on scene (up to a constant).",
+              "Swap completely — zero x's — integrate, substitute back; differentiate to verify.",
+              "Definite integrals convert their limits: evaluate in u-land, never return."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cal5-pr-1",
+      "statement": "Find $\\int (x^3 - 6x + 2)\\,dx$ and verify by differentiating.",
+      "solution": "$\\frac{x^4}{4} - 3x^2 + 2x + C$. Derivative: $x^3 - 6x + 2$ ✓.",
+      "check": [
+        "simplify(integrate(x**3 - 6*x + 2, x) - (x**4/4 - 3*x**2 + 2*x)) == 0",
+        "simplify(diff(x**4/4 - 3*x**2 + 2*x, x) - (x**3 - 6*x + 2)) == 0"
+      ]
+    },
+    {
+      "id": "cal5-pr-2",
+      "statement": "Find $f(x)$ with $f'(x) = 4x - 5$ and $f(3) = 2$.",
+      "solution": "Family: $2x^2 - 5x + C$. Pin: $18 - 15 + C = 2$, $C = -1$. $f(x) = 2x^2 - 5x - 1$.",
+      "check": [
+        "diff(2*x**2 - 5*x - 1, x) == 4*x - 5",
+        "2*3**2 - 5*3 - 1 == 2"
+      ]
+    },
+    {
+      "id": "cal5-pr-3",
+      "statement": "Approximate $\\int_0^4 x\\,dx$ with 4 right-endpoint rectangles; compare with the exact (triangle) value.",
+      "solution": "$\\Delta x = 1$, heights $1, 2, 3, 4$: sum 10. Exact: triangle area 8. Overestimate, as right endpoints on a rising line must be.",
+      "check": [
+        "1 + 2 + 3 + 4 == 10",
+        "integrate(x, (x, 0, 4)) == 8",
+        "10 > 8"
+      ]
+    },
+    {
+      "id": "cal5-pr-4",
+      "statement": "Evaluate $\\int_1^3 (x^2 + 1)\\,dx$.",
+      "solution": "$[\\frac{x^3}{3} + x]_1^3 = (9 + 3) - (\\frac{1}{3} + 1) = 12 - \\frac{4}{3} = \\frac{32}{3}$.",
+      "check": [
+        "integrate(x**2 + 1, (x, 1, 3)) == Rational(32,3)",
+        "12 - Rational(4,3) == Rational(32,3)"
+      ]
+    },
+    {
+      "id": "cal5-pr-5",
+      "statement": "Evaluate $\\int_0^{\\pi} \\sin x \\, dx$ — the area of one full sine hump.",
+      "solution": "$[-\\cos x]_0^{\\pi} = -(-1) - (-1) = 2$. The famous result: each hump of the sine wave encloses exactly area 2.",
+      "check": [
+        "integrate(sin(x), (x, 0, pi)) == 2"
+      ]
+    },
+    {
+      "id": "cal5-pr-6",
+      "statement": "Evaluate $\\int_0^2 (x^2 - 2x)\\,dx$ and explain the sign of the answer.",
+      "solution": "$[\\frac{x^3}{3} - x^2]_0^2 = \\frac{8}{3} - 4 = -\\frac{4}{3}$. Negative: on $(0, 2)$ the parabola runs BELOW the axis (roots at 0 and 2) — a genuine below-axis region, correctly counted negative.",
+      "check": [
+        "integrate(x**2 - 2*x, (x, 0, 2)) == Rational(-4,3)",
+        "Rational(8,3) - 4 == Rational(-4,3)"
+      ]
+    },
+    {
+      "id": "cal5-pr-7",
+      "statement": "Evaluate $\\int 3x^2(x^3 - 2)^4\\,dx$ by substitution and verify.",
+      "solution": "$u = x^3 - 2$, $du = 3x^2 dx$ — a perfect match: $\\int u^4 du = \\frac{(x^3 - 2)^5}{5} + C$. Verify: $\\frac{5(x^3-2)^4}{5} \\cdot 3x^2$ ✓.",
+      "check": [
+        "simplify(diff((x**3 - 2)**5/5, x) - 3*x**2*(x**3 - 2)**4) == 0"
+      ]
+    },
+    {
+      "id": "cal5-pr-8",
+      "statement": "Evaluate $\\int_0^1 x(x^2 + 3)^2\\,dx$ with converted limits.",
+      "solution": "$u = x^2 + 3$: limits $3 \\to 4$, $x\\,dx = \\frac{1}{2}du$. $\\frac{1}{2}\\int_3^4 u^2 du = \\frac{1}{2} \\cdot \\frac{64 - 27}{3} = \\frac{37}{6}$.",
+      "check": [
+        "integrate(x*(x**2 + 3)**2, (x, 0, 1)) == Rational(37,6)",
+        "Rational(64 - 27, 6) == Rational(37,6)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cal5-ty-1",
+      "statement": "Find $\\int \\left(6\\sqrt{x} - \\dfrac{4}{x^2} + e^x\\right) dx$ and verify by differentiating.",
+      "solution": "$6 \\cdot \\frac{2}{3}x^{3/2} + 4x^{-1} + e^x + C = 4x^{3/2} + \\frac{4}{x} + e^x + C$. Derivative: $6\\sqrt{x} - \\frac{4}{x^2} + e^x$ ✓.",
+      "check": [
+        "simplify(diff(4*x**Rational(3,2) + 4/x + exp(x), x) - (6*sqrt(x) - 4/x**2 + exp(x))) == 0"
+      ]
+    },
+    {
+      "id": "cal5-ty-2",
+      "statement": "A particle's velocity is $v(t) = 6t^2 - 4t$ with position $s(0) = 3$. Find $s(t)$.",
+      "solution": "Antidifferentiate: $s(t) = 2t^3 - 2t^2 + C$; $s(0) = C = 3$. So $s(t) = 2t^3 - 2t^2 + 3$.",
+      "check": [
+        "diff(2*t**3 - 2*t**2 + 3, t) == 6*t**2 - 4*t",
+        "2*0**3 - 2*0**2 + 3 == 3"
+      ]
+    },
+    {
+      "id": "cal5-ty-3",
+      "statement": "Evaluate $\\int_{-1}^{2} (3x^2 - 2x + 1)\\,dx$.",
+      "solution": "$[x^3 - x^2 + x]_{-1}^2 = (8 - 4 + 2) - (-1 - 1 - 1) = 6 + 3 = 9$. Parentheses on the lower value — it's a triple negative.",
+      "check": [
+        "integrate(3*x**2 - 2*x + 1, (x, -1, 2)) == 9",
+        "(8 - 4 + 2) - (-1 - 1 - 1) == 9"
+      ]
+    },
+    {
+      "id": "cal5-ty-4",
+      "statement": "Compute the GEOMETRIC area between $f(x) = x^2 - 1$ and the x-axis on $[0, 2]$ (split at the crossing).",
+      "solution": "Root at $x = 1$. Below-axis piece: $\\int_0^1 (x^2 - 1)dx = -\\frac{2}{3}$ → area $\\frac{2}{3}$. Above: $\\int_1^2 (x^2-1)dx = \\frac{4}{3}$. Total geometric area: $2$. (The raw integral $\\frac{2}{3}$ would have hidden the cancellation.)",
+      "check": [
+        "integrate(x**2 - 1, (x, 0, 1)) == Rational(-2,3)",
+        "integrate(x**2 - 1, (x, 1, 2)) == Rational(4,3)",
+        "Rational(2,3) + Rational(4,3) == 2",
+        "integrate(x**2 - 1, (x, 0, 2)) == Rational(2,3)"
+      ]
+    },
+    {
+      "id": "cal5-ty-5",
+      "statement": "Evaluate $\\int_0^{\\pi/2} \\cos x \\, \\sin^2 x \\; dx$ (substitute the sine).",
+      "solution": "$u = \\sin x$, $du = \\cos x\\,dx$: limits $0 \\to 1$. $\\int_0^1 u^2 du = \\frac{1}{3}$.",
+      "check": [
+        "integrate(cos(x)*sin(x)**2, (x, 0, pi/2)) == Rational(1,3)",
+        "sin(0) == 0",
+        "sin(pi/2) == 1"
+      ]
+    },
+    {
+      "id": "cal5-ty-6",
+      "statement": "Evaluate $\\int \\dfrac{2x}{x^2 + 1}\\,dx$, and explain how you recognized the form.",
+      "solution": "The numerator $2x$ is EXACTLY the derivative of the denominator $x^2 + 1$ — the substitution signature with $u$ = denominator: $\\int \\frac{du}{u} = \\ln|u| + C = \\ln(x^2 + 1) + C$ (absolute value optional: $x^2 + 1 > 0$). Verify: $\\frac{2x}{x^2+1}$ ✓.",
+      "check": [
+        "simplify(diff(log(x**2 + 1), x) - 2*x/(x**2 + 1)) == 0"
+      ]
+    }
+  ]
+}

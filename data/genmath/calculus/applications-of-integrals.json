@@ -1,0 +1,868 @@
+{
+  "slug": "applications-of-integrals",
+  "title": "Applications of Integrals",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Integration earning its keep: exact areas between curves, motion recovered from velocity, average values of things that never stop changing — and a capstone that runs the whole course in one arc.",
+  "buildsOn": "The Fundamental Theorem and substitution from Unit 5; the derivative toolkit from Units 2–4.",
+  "lessons": [
+    {
+      "slug": "area-between-curves",
+      "title": "Area Between Curves",
+      "concreteComparison": "To find the area of a lake with an island, you don't tile the island — you tile out to the outer shore and subtract the island. Area between curves is the same subtraction, run at every x at once: outer curve minus inner curve, integrated.",
+      "objective": "Compute areas between curves by integrating (top − bottom), finding intersection points for the limits when needed.",
+      "concept": [
+        "The region between an upper curve $f$ and a lower curve $g$ from $a$ to $b$ has area $\\int_a^b [f(x) - g(x)]\\,dx$ — at each $x$, a vertical strip of height (top minus bottom), summed by the integral. Subtracting FIRST also makes the below-axis worry vanish: the height $f - g$ is positive wherever $f$ is genuinely on top.",
+        "When the problem doesn't hand you $a$ and $b$, the curves' INTERSECTIONS are the natural walls: solve $f(x) = g(x)$. Two parabola-line crossings, and the enclosed lens between them is $\\int [\\text{top} - \\text{bottom}]$ across the crossing-to-crossing span.",
+        "Always confirm WHO is on top — evaluate both curves at a test point between the walls, or sketch. If the curves swap roles mid-interval, split at the crossing and integrate each piece with its own top; blindly integrating one order produces cancelling signed pieces instead of area."
+      ],
+      "keyIdea": "Area between curves = ∫ (top − bottom) dx, walls at the given limits or at the intersections — and check who's on top before you integrate.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "A = \\int_a^b [f(x) - g(x)]\\,dx, \\quad f \\ge g \\text{ on } [a,b]",
+          "explanation": "Strip height = top − bottom; the integral sums the strips."
+        },
+        {
+          "title": "Walls from crossings",
+          "latex": "f(x) = g(x) \\Rightarrow \\text{limits } a, b",
+          "explanation": "No limits given? The intersections are the limits."
+        },
+        {
+          "title": "Top check",
+          "latex": "\\text{test a point: } f(x_0) \\gtrless g(x_0)",
+          "explanation": "Swapped tops mid-interval ⟹ split at the crossing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal61-we1",
+          "statement": "Find the area enclosed between $y = x$ and $y = x^2$.",
+          "solution": "Walls: $x = x^2$ at $x = 0$ and $x = 1$. Top check at $x = \\frac{1}{2}$: line $\\frac{1}{2}$ vs parabola $\\frac{1}{4}$ — the line rides on top. Area: $\\int_0^1 (x - x^2)dx = \\left[\\frac{x^2}{2} - \\frac{x^3}{3}\\right]_0^1 = \\frac{1}{2} - \\frac{1}{3} = \\frac{1}{6}$. A perfect little lens of area exactly one-sixth.",
+          "check": [
+            "integrate(x - x**2, (x, 0, 1)) == Rational(1,6)",
+            "Rational(1,2) > Rational(1,4)",
+            "Rational(1,2) - Rational(1,3) == Rational(1,6)"
+          ]
+        },
+        {
+          "id": "cal61-we2",
+          "statement": "Find the area enclosed between $y = 4 - x^2$ and $y = x + 2$.",
+          "solution": "Walls: $4 - x^2 = x + 2 \\Rightarrow x^2 + x - 2 = (x + 2)(x - 1) = 0$: $x = -2, 1$. Top check at $x = 0$: parabola 4 vs line 2 — parabola on top. Area: $\\int_{-2}^{1} (4 - x^2 - x - 2)\\,dx = \\int_{-2}^{1}(2 - x - x^2)dx = \\frac{9}{2}$.",
+          "check": [
+            "expand((x + 2)*(x - 1) - (x**2 + x - 2)) == 0",
+            "integrate(4 - x**2 - (x + 2), (x, -2, 1)) == Rational(9,2)",
+            "4 > 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Integrating (bottom − top) and reporting a negative 'area.'",
+          "correction": "A negative answer to an area-between-curves problem means the order is flipped — area is positive by definition. Run the top check first; if the answer still lands negative, the curves swapped somewhere and the interval needs splitting.",
+          "authored": true
+        },
+        {
+          "text": "Using the axis as one wall out of habit.",
+          "correction": "Between-curves regions are bounded by the CURVES: the walls come from $f(x) = g(x)$, not from x-intercepts. The x-axis is only relevant when it IS one of the two curves ($g = 0$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal61-t1",
+          "statement": "Find the area enclosed between $y = 2x$ and $y = x^2$.",
+          "solution": "Walls: $x^2 = 2x$ at $0$ and $2$. Top at $x = 1$: line 2 vs parabola 1 — line on top. $\\int_0^2 (2x - x^2)dx = \\left[x^2 - \\frac{x^3}{3}\\right]_0^2 = 4 - \\frac{8}{3} = \\frac{4}{3}$.",
+          "check": [
+            "integrate(2*x - x**2, (x, 0, 2)) == Rational(4,3)",
+            "2 > 1",
+            "4 - Rational(8,3) == Rational(4,3)"
+          ]
+        },
+        {
+          "id": "cal61-t2",
+          "statement": "Find the area between $y = x^2$ and $y = 8 - x^2$ (two parabolas, one opening up, one down).",
+          "solution": "Walls: $x^2 = 8 - x^2$: $x^2 = 4$, $x = \\pm 2$. Top: at 0, $8$ vs $0$ — the downward parabola. $\\int_{-2}^{2} (8 - 2x^2)dx = \\left[8x - \\frac{2x^3}{3}\\right]_{-2}^{2} = \\frac{64}{3}$.",
+          "check": [
+            "integrate(8 - 2*x**2, (x, -2, 2)) == Rational(64,3)",
+            "2**2 == 4",
+            "8 - 0 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "From under-a-curve to between-curves",
+            "body": "Unit 5 measured regions against the x-axis. Most real regions aren't like that — they're trapped BETWEEN two graphs: a supply curve and a demand curve, a roof and a floor. The fix is one subtraction: at each $x$, the vertical strip has height $\\text{top}(x) - \\text{bottom}(x)$, and $\\int_a^b [f - g]\\,dx$ sums the strips."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The lens between line and parabola",
+            "problemId": "cal61-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Set up the strip",
+            "prompt": "On $[0, 1]$, $y = \\sqrt{x}$ runs above $y = x^2$ (check $x = \\frac{1}{4}$: $\\frac{1}{2}$ vs $\\frac{1}{16}$). What integral gives the enclosed area?",
+            "options": [
+              "$\\displaystyle\\int_0^1 (\\sqrt{x} - x^2)\\,dx$",
+              "$\\displaystyle\\int_0^1 (x^2 - \\sqrt{x})\\,dx$",
+              "$\\displaystyle\\int_0^1 \\sqrt{x}\\,dx + \\int_0^1 x^2\\,dx$",
+              "$\\displaystyle\\int_0^1 x^2 \\sqrt{x}\\;dx$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Strip height = top − bottom = $\\sqrt{x} - x^2$. (It evaluates to $\\frac{2}{3} - \\frac{1}{3} = \\frac{1}{3}$ — the twin lens of the worked example.) Adding the areas (option C) measures a completely different region.",
+            "check": [
+              "integrate(sqrt(x) - x**2, (x, 0, 1)) == Rational(1,3)",
+              "Rational(1,2) > Rational(1,16)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finding walls",
+            "title": "Intersections are the limits",
+            "body": "'The region ENCLOSED by two curves' comes with no $a$ and $b$ — because the curves supply their own: the region pinches shut where they CROSS. Solve $f(x) = g(x)$; the roots are the walls. A line meeting a parabola gives a quadratic — Algebra 1 doing the setup work for calculus, one more time."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Walls from a quadratic",
+            "problemId": "cal61-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Find the walls",
+            "prompt": "For the region enclosed by $y = x^2$ and $y = 3x$, what are the integration limits?",
+            "options": [
+              "$0$ and $3$ — solve $x^2 = 3x$",
+              "$0$ and $9$",
+              "$-3$ and $3$",
+              "$1$ and $3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 = 3x \\Rightarrow x(x - 3) = 0$: crossings at 0 and 3. (The enclosed area, if you're curious: $\\int_0^3 (3x - x^2)dx = \\frac{9}{2}$.)",
+            "check": [
+              "integrate(3*x - x**2, (x, 0, 3)) == Rational(9,2)",
+              "3*3 - 3**2 == 0"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Line over parabola",
+            "problemId": "cal61-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Parabola vs parabola",
+            "problemId": "cal61-t2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Sketch or test — never assume the top",
+            "body": "Thirty seconds of 'who's on top?' — one test point between the walls, or a two-stroke sketch — prevents the classic negative-area disaster. And if the curves trade places mid-region, that crossing is a mandatory split point: one integral per reign.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Area between curves: ∫ (top − bottom) over the region — strip by strip.",
+              "No limits given? Solve f = g; the crossings are the walls.",
+              "Verify the top with a test point; a swap mid-interval means split and re-top."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "motion-and-net-change",
+      "title": "Motion & Net Change",
+      "concreteComparison": "Your phone's step counter and your GPS disagree on purpose: walk 30 meters to the shop and 30 meters back, and GPS says you're 0 meters from home (net) while the step counter logged 60 (total). Integrals compute both — one integrates the velocity, the other its absolute value.",
+      "objective": "Recover displacement and total distance from velocity, and apply the net-change idea to any rate.",
+      "concept": [
+        "Since position's derivative is velocity, FTC runs the ladder in reverse: $\\int_a^b v(t)\\,dt = s(b) - s(a)$ — the **displacement** (net change in position). Where $v < 0$ (moving backward), the integral subtracts: net, not total.",
+        "**Total distance** ignores direction: integrate $|v(t)|$. In practice: find where $v = 0$ (the turnarounds), split the interval there, integrate each piece, and add the absolute values. Same rectangles, no cancelling.",
+        "Velocity is just the headline act. ANY rate integrates to its net change: water flowing at $R(t)$ liters/min fills $\\int_a^b R\\,dt$ liters; a population growing at $p'(t)$ adds $\\int p'$ people. **Net change theorem:** the integral of a rate of change is the net change — the odometer principle, everywhere."
+      ],
+      "keyIdea": "∫v dt = displacement (signed); ∫|v| dt = total distance (split at the turnarounds); and in general, the integral of any rate is the net change.",
+      "facts": [
+        {
+          "title": "Displacement",
+          "latex": "\\int_a^b v(t)\\,dt = s(b) - s(a)",
+          "explanation": "Signed: backward motion subtracts."
+        },
+        {
+          "title": "Total distance",
+          "latex": "\\int_a^b |v(t)|\\,dt",
+          "explanation": "Split where v = 0; add magnitudes."
+        },
+        {
+          "title": "Net change theorem",
+          "latex": "\\int_a^b F'(t)\\,dt = F(b) - F(a)",
+          "explanation": "Any rate integrates to its accumulated change."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal62-we1",
+          "statement": "A particle moves with $v(t) = 6 - 2t$ m/s on $[0, 4]$. Find its displacement and its total distance.",
+          "solution": "Displacement: $\\int_0^4 (6 - 2t)dt = [6t - t^2]_0^4 = 24 - 16 = 8$ m. Turnaround: $v = 0$ at $t = 3$. Forward leg: $\\int_0^3 (6-2t)dt = 9$; backward leg: $\\int_3^4 (6-2t)dt = -1$. Total distance: $9 + |-1| = 10$ m. The particle overshot by a meter and came back — net 8, walked 10.",
+          "check": [
+            "integrate(6 - 2*t, (t, 0, 4)) == 8",
+            "integrate(6 - 2*t, (t, 0, 3)) == 9",
+            "integrate(6 - 2*t, (t, 3, 4)) == -1",
+            "9 + 1 == 10"
+          ]
+        },
+        {
+          "id": "cal62-we2",
+          "statement": "Water flows into a tank at $R(t) = 2t$ liters per minute. How much water accumulates in the first 5 minutes — and why is this an integral?",
+          "solution": "$R$ is a RATE (liters per minute), so accumulation is its integral: $\\int_0^5 2t\\,dt = [t^2]_0^5 = 25$ liters. Reasoning: in each sliver of time $dt$, the tank gains $\\approx R(t)\\,dt$ liters; the integral sums the slivers. Rate in, net change out — the theorem in one sentence.",
+          "check": [
+            "integrate(2*t, (t, 0, 5)) == 25",
+            "5**2 == 25"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting displacement when the question asked how far the particle traveled.",
+          "correction": "'How far did it travel' = TOTAL DISTANCE = $\\int |v|$; 'where did it end up (relative to start)' = displacement = $\\int v$. They differ exactly when $v$ changes sign — find the turnarounds first, then decide which question you're answering.",
+          "authored": true
+        },
+        {
+          "text": "Computing total distance by |∫v| — absolute value OUTSIDE the integral.",
+          "correction": "$\\left|\\int v\\right|$ still lets the legs cancel BEFORE the absolute value acts: $|8| = 8 \\neq 10$ in the worked example. The absolute value must go INSIDE — split at $v = 0$ and add magnitudes leg by leg.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal62-t1",
+          "statement": "$v(t) = 3t^2 - 12$ m/s on $[0, 3]$. Find the displacement and the total distance.",
+          "solution": "Displacement: $\\int_0^3 (3t^2 - 12)dt = [t^3 - 12t]_0^3 = 27 - 36 = -9$ m (net backward). Turnaround: $v = 0$ at $t = 2$. Legs: $\\int_0^2 = 8 - 24 = -16$; $\\int_2^3 = (27 - 36) - (8 - 24) = 7$. Total: $16 + 7 = 23$ m.",
+          "check": [
+            "integrate(3*t**2 - 12, (t, 0, 3)) == -9",
+            "integrate(3*t**2 - 12, (t, 0, 2)) == -16",
+            "integrate(3*t**2 - 12, (t, 2, 3)) == 7",
+            "16 + 7 == 23"
+          ]
+        },
+        {
+          "id": "cal62-t2",
+          "statement": "A bacteria colony grows at $p'(t) = 30t^2$ organisms per hour. How many organisms are added between $t = 1$ and $t = 3$?",
+          "solution": "Net change: $\\int_1^3 30t^2\\,dt = [10t^3]_1^3 = 270 - 10 = 260$ organisms. A growth RATE integrates to a population CHANGE — no position or velocity in sight, same theorem.",
+          "check": [
+            "integrate(30*t**2, (t, 1, 3)) == 260",
+            "10*27 - 10 == 260"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The ladder, reversed",
+            "title": "From velocity back to position",
+            "body": "Unit 3 climbed DOWN the ladder: position → velocity → acceleration, one derivative per rung. FTC climbs back UP: $\\int_a^b v(t)\\,dt = s(b) - s(a)$ — integrate the velocity, recover the change in position. We call it **displacement**: where you ended relative to where you started."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The catch",
+            "title": "Net is not total",
+            "body": "Displacement is SIGNED: while $v < 0$ the particle backtracks and the integral subtracts. Walk 30 m out and 30 m back: displacement 0, yet you obviously traveled 60. For **total distance**, no cancellation allowed: integrate $|v|$ — operationally, find the turnarounds ($v = 0$), integrate each leg, add the MAGNITUDES."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Net 8, walked 10",
+            "problemId": "cal62-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Two questions, two answers",
+            "prompt": "A particle's legs: forward 12 m, then backward 5 m. What are its displacement and total distance?",
+            "options": [
+              "Displacement $7$ m; distance $17$ m",
+              "Both are $7$ m",
+              "Both are $17$ m",
+              "Displacement $17$ m; distance $7$ m"
+            ],
+            "correctIndex": 0,
+            "explanation": "Displacement nets the legs: $12 - 5 = 7$. Distance adds their sizes: $12 + 5 = 17$. The two integrals — $\\int v$ and $\\int |v|$ — encode exactly this difference.",
+            "check": [
+              "12 - 5 == 7",
+              "12 + 5 == 17"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The general law",
+            "title": "The Net Change Theorem",
+            "body": "Nothing about this is special to motion. ANY rate — liters per minute, people per year, dollars per day — integrates to its accumulated change: $\\int_a^b F'(t)\\,dt = F(b) - F(a)$. Given a flow rate, the integral fills the tank; given a growth rate, it counts the new arrivals. Spot the words 'per second/minute/year' in a problem, and an integral is usually being requested."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Filling the tank",
+            "problemId": "cal62-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Rate to change",
+            "prompt": "A city's population grows at $p'(t) = 100 + 20t$ people per year. How many people are added in the first 2 years?",
+            "options": [
+              "$240$ — integrate the rate over $[0, 2]$",
+              "$140$ — evaluate the rate at $t = 2$",
+              "$100$ — the starting rate",
+              "$280$ — rate at 2, doubled"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\int_0^2 (100 + 20t)dt = [100t + 10t^2]_0^2 = 200 + 40 = 240$. Evaluating the rate (option B) gives people-per-year at an instant — not people. Units expose the wrong choices immediately.",
+            "check": [
+              "integrate(100 + 20*t, (t, 0, 2)) == 240"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A backward net",
+            "problemId": "cal62-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Growth accumulated",
+            "problemId": "cal62-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your phone integrates constantly",
+            "body": "A phone has no position sensor — GPS aside, it has accelerometers. To know how it moved, its chips INTEGRATE acceleration into velocity, then integrate velocity into position, hundreds of times a second. Every step counted and every screen rotation is a tiny Fundamental Theorem calculation.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "∫v dt = displacement — signed, backtracking subtracts.",
+              "Total distance = ∫|v| dt: split at v = 0, add magnitudes.",
+              "Net Change Theorem: any rate integrates to its accumulated change — watch for 'per' in the units."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "average-value",
+      "title": "Average Value of a Function",
+      "concreteComparison": "The temperature changed all day — 12° at dawn, 23° mid-afternoon. What was the AVERAGE temperature? You can't add up infinitely many readings and divide by infinity… but that's exactly what an integral divided by the interval length does.",
+      "objective": "Compute the average value of a function on an interval and interpret it geometrically.",
+      "concept": [
+        "The average of finitely many numbers is their sum over the count. For a FUNCTION's continuum of values on $[a, b]$, the integral plays the sum and the length plays the count: $f_{avg} = \\frac{1}{b-a}\\int_a^b f(x)\\,dx$.",
+        "Geometric reading: $f_{avg}$ is the height of the RECTANGLE on $[a, b]$ with the same area as the region under the curve — the water level the region would settle to if the curve's hills poured into its valleys.",
+        "For continuous $f$, the **Mean Value Theorem for integrals** guarantees the function actually HITS its average: some $c$ in $[a, b]$ has $f(c) = f_{avg}$. And the ladder connects: the average VALUE of $v(t)$ on $[a, b]$ equals the familiar average velocity $\\frac{s(b) - s(a)}{b - a}$ — the two 'averages' you know are one."
+      ],
+      "keyIdea": "f_avg = (1/(b−a)) ∫ₐᵇ f dx — the level the area would settle to; continuous functions genuinely attain it somewhere on the interval.",
+      "facts": [
+        {
+          "title": "Average value",
+          "latex": "f_{avg} = \\frac{1}{b-a}\\int_a^b f(x)\\,dx",
+          "explanation": "Integral as the 'sum', length as the 'count'."
+        },
+        {
+          "title": "The water level",
+          "latex": "f_{avg} \\cdot (b - a) = \\int_a^b f\\,dx",
+          "explanation": "The equal-area rectangle's height."
+        },
+        {
+          "title": "MVT for integrals",
+          "latex": "\\exists\\, c \\in [a,b]: f(c) = f_{avg}",
+          "explanation": "A continuous function attains its own average."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal63-we1",
+          "statement": "Find the average value of $f(x) = x^2$ on $[0, 3]$, and the point where $f$ attains it.",
+          "solution": "$f_{avg} = \\frac{1}{3}\\int_0^3 x^2 dx = \\frac{1}{3} \\cdot 9 = 3$. Attained where $x^2 = 3$: $c = \\sqrt{3} \\approx 1.73$, inside $[0, 3]$ ✓. Note the average is NOT $f$ at the midpoint ($f(1.5) = 2.25$) — curves weight their values unevenly.",
+          "check": [
+            "integrate(x**2, (x, 0, 3)) == 9",
+            "Rational(1,3)*9 == 3",
+            "(sqrt(3))**2 == 3",
+            "Rational(3,2)**2 == Rational(9,4)"
+          ]
+        },
+        {
+          "id": "cal63-we2",
+          "statement": "A particle's velocity is $v(t) = 6t^2$ m/s. Show its average VALUE on $[0, 2]$ equals the average VELOCITY computed from positions.",
+          "solution": "Average value: $\\frac{1}{2}\\int_0^2 6t^2 dt = \\frac{1}{2} \\cdot 16 = 8$ m/s. Positions: $s(t) = 2t^3$ (any antiderivative), so average velocity $= \\frac{s(2) - s(0)}{2} = \\frac{16}{2} = 8$ m/s ✓. FTC makes the two definitions of 'average' provably identical.",
+          "check": [
+            "integrate(6*t**2, (t, 0, 2)) == 16",
+            "Rational(16,2) == 8",
+            "2*2**3 - 2*0**3 == 16"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the endpoint values: (f(a) + f(b))/2.",
+          "correction": "That's the average of TWO samples; the function has values everywhere in between, unevenly distributed. For $x^2$ on $[0,3]$: endpoint average $\\frac{0+9}{2} = 4.5$, true average 3. Only lines let the shortcut work.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the 1/(b − a): reporting the integral as the average.",
+          "correction": "The integral is the 'sum'; dividing by the length is what makes it an average. Units check: $\\int v\\,dt$ is meters, but an average VELOCITY must be m/s — the division by seconds is not optional.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal63-t1",
+          "statement": "Find the average value of $f(x) = 4x - x^2$ on $[0, 4]$, and compare it to the maximum value.",
+          "solution": "$f_{avg} = \\frac{1}{4}\\int_0^4 (4x - x^2)dx = \\frac{1}{4} \\cdot \\frac{32}{3} = \\frac{8}{3} \\approx 2.67$. Max: vertex at $x = 2$, $f(2) = 4$. The average sits below the peak — the arch spends time at its low shoulders.",
+          "check": [
+            "integrate(4*x - x**2, (x, 0, 4)) == Rational(32,3)",
+            "Rational(1,4)*Rational(32,3) == Rational(8,3)",
+            "4*2 - 2**2 == 4",
+            "Rational(8,3) < 4"
+          ]
+        },
+        {
+          "id": "cal63-t2",
+          "statement": "Find the average value of $f(x) = \\sin x$ over one hump, $[0, \\pi]$, exactly.",
+          "solution": "$f_{avg} = \\frac{1}{\\pi}\\int_0^{\\pi} \\sin x\\,dx = \\frac{2}{\\pi} \\approx 0.64$. The sine hump's water level: a peak of 1 averages to $\\frac{2}{\\pi}$ — a constant every electrical engineer knows by heart.",
+          "check": [
+            "integrate(sin(x), (x, 0, pi)) == 2",
+            "simplify(integrate(sin(x), (x, 0, pi))/pi - 2/pi) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The question",
+            "title": "Averaging the un-listable",
+            "body": "Averages you know: add the values, divide by the count. But a function on $[a, b]$ takes infinitely many values — no list, no count. The integral is built for exactly this: it IS the continuous sum. Divide by the interval's length (the continuous 'count'): $f_{avg} = \\frac{1}{b-a}\\int_a^b f\\,dx$."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The picture",
+            "title": "The water level",
+            "body": "Rearranged: $f_{avg} \\cdot (b - a) = \\int_a^b f\\,dx$ — the average is the height of the RECTANGLE with the same area as the region under the curve. Imagine the region as water and the curve melting flat: hills pour into valleys, and the surface settles at exactly $f_{avg}$. An average you can see."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The parabola's water level",
+            "problemId": "cal63-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Not the endpoint average",
+            "prompt": "What is the average value of $f(x) = x^2$ on $[0, 3]$?",
+            "options": [
+              "$3$ — one-third of the integral $9$",
+              "$4.5$ — average of $f(0)$ and $f(3)$",
+              "$9$ — the integral itself",
+              "$2.25$ — the value at the midpoint"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{1}{3}\\int_0^3 x^2 dx = \\frac{9}{3} = 3$. The endpoint shortcut (4.5) overweights the big right-hand values; forgetting the $\\frac{1}{b-a}$ (9) isn't an average at all. The integral democratically weights EVERY value.",
+            "check": [
+              "Rational(1,3)*9 == 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two averages, one number",
+            "title": "It agrees with average velocity",
+            "body": "You've 'averaged' before: average velocity $= \\frac{s(b) - s(a)}{b - a}$, from Unit 2. Apply the new formula to $v(t)$: $\\frac{1}{b-a}\\int_a^b v\\,dt = \\frac{s(b) - s(a)}{b - a}$ by FTC — the SAME number. The average value of the velocity function is the trip's average velocity. The definitions interlock perfectly, which is how you know they're the right ones."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The interlock, verified",
+            "problemId": "cal63-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "One guarantee",
+            "title": "The average is attained",
+            "body": "For CONTINUOUS $f$, some $c$ in $[a, b]$ actually satisfies $f(c) = f_{avg}$ — the Mean Value Theorem for integrals. The melted water level cuts the original curve somewhere. (It must: the curve can't stay strictly above its own average everywhere, nor strictly below — continuity forces a crossing, IVT-style. Unit 1's theorem, still earning.)"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Arch vs its average",
+            "problemId": "cal63-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "The sine hump's level",
+            "problemId": "cal63-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why '220V' isn't the peak",
+            "body": "Mains electricity is a sine wave, so its raw average over a cycle is zero — useless as a rating. Engineers rate power lines by an integral average instead (the RMS — root-mean-square — a cousin of today's formula). The '220 volts' in the wall is an average value computed with calculus, not the wave's peak (which is about 311 V).",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "f_avg = (1/(b−a)) ∫ f — integral as sum, length as count.",
+              "Geometrically: the equal-area rectangle's height; the settled water level.",
+              "Continuous f attains its average (MVT); for v(t) it IS the average velocity."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-capstone",
+      "title": "The Capstone: One Function, Every Tool",
+      "concreteComparison": "A pilot's checkride doesn't test one maneuver — it chains them: take off, navigate, handle the stall, land. This lesson is the checkride: one function, and every tool from six units used on it in a single continuous flight.",
+      "objective": "Chain the full course — limits, derivatives, curve analysis, and integrals — through complete multi-part problems.",
+      "concept": [
+        "The full analysis of a function runs in one arc: DOMAIN and limits at the edges (asymptotes, end behavior) → $f'$ (critical points, rise/fall, extrema) → $f''$ (concavity, inflections) → sketch → INTEGRATE for areas the curve encloses. Six units, one pipeline.",
+        "The derivative–integral pairing answers paired questions: WHERE is the function largest (a derivative question: $f' = 0$, certify) versus HOW MUCH does it accumulate (an integral question: $\\int f$). Exams love chaining them: find the max, then the area under the arch, then the average value.",
+        "Cross-checks are everywhere, and professionals use them: the max should exceed the average value; areas must be positive; $f$ should rise wherever you claimed $f' > 0$; a displacement should match $\\int v$. Chained problems GIVE you the redundancy — spend it on verification."
+      ],
+      "keyIdea": "Limits → f′ → f″ → sketch → integrate: one pipeline; and every chained answer cross-checks another.",
+      "facts": [
+        {
+          "title": "The pipeline",
+          "latex": "\\text{limits} \\to f' \\to f'' \\to \\text{sketch} \\to \\int",
+          "explanation": "The whole course, as one workflow."
+        },
+        {
+          "title": "Paired questions",
+          "latex": "\\text{where largest: } f' = 0; \\qquad \\text{how much: } \\int f",
+          "explanation": "Derivative locates; integral accumulates."
+        },
+        {
+          "title": "Built-in audits",
+          "latex": "f_{avg} \\le f_{max}, \\quad \\text{area} > 0, \\quad \\ldots",
+          "explanation": "Chained parts must agree — check them against each other."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "cal64-we1",
+          "statement": "For $f(x) = 4x - x^2$: find where $f$ is largest, the area under its arch (between its roots), and its average value there. Then run the audit: does max > average?",
+          "solution": "Max: $f' = 4 - 2x = 0$ at $x = 2$; $f'' = -2 < 0$ ✓ max, $f(2) = 4$. Roots: $x(4 - x) = 0$: 0 and 4. Area: $\\int_0^4 (4x - x^2)dx = [2x^2 - \\frac{x^3}{3}]_0^4 = 32 - \\frac{64}{3} = \\frac{32}{3}$. Average: $\\frac{1}{4} \\cdot \\frac{32}{3} = \\frac{8}{3}$. Audit: $\\frac{8}{3} \\approx 2.67 < 4$ ✓ — the average sits below the peak, as it must.",
+          "check": [
+            "diff(4*x - x**2, x) == 4 - 2*x",
+            "4 - 2*2 == 0",
+            "4*2 - 2**2 == 4",
+            "integrate(4*x - x**2, (x, 0, 4)) == Rational(32,3)",
+            "Rational(1,4)*Rational(32,3) == Rational(8,3)",
+            "Rational(8,3) < 4"
+          ]
+        },
+        {
+          "id": "cal64-we2",
+          "statement": "A particle has velocity $v(t) = t^2 - 4t + 3$ on $[0, 3]$. When does it change direction, what is its displacement, and what total distance does it cover?",
+          "solution": "Turnarounds: $v = (t-1)(t-3) = 0$ at $t = 1, 3$. Displacement: $\\int_0^3 v\\,dt = [\\frac{t^3}{3} - 2t^2 + 3t]_0^3 = 9 - 18 + 9 = 0$ — it ends where it started! Legs: $\\int_0^1 v = \\frac{4}{3}$ (forward); $\\int_1^3 v = -\\frac{4}{3}$ (backward). Total distance: $\\frac{4}{3} + \\frac{4}{3} = \\frac{8}{3}$. A zero displacement hiding $\\frac{8}{3}$ of real walking — the net-vs-total story in one problem.",
+          "check": [
+            "expand((t - 1)*(t - 3) - (t**2 - 4*t + 3)) == 0",
+            "integrate(t**2 - 4*t + 3, (t, 0, 3)) == 0",
+            "integrate(t**2 - 4*t + 3, (t, 0, 1)) == Rational(4,3)",
+            "integrate(t**2 - 4*t + 3, (t, 1, 3)) == Rational(-4,3)",
+            "Rational(4,3) + Rational(4,3) == Rational(8,3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering a 'how much accumulates' question with a derivative (or 'where is it largest' with an integral).",
+          "correction": "Sort by question type FIRST: locating (where largest, steepest, turning) is derivative work; accumulating (how much, how far, what area) is integral work. Reading the last sentence of the problem before computing anything prevents the wrong-tool trap entirely.",
+          "authored": true
+        },
+        {
+          "text": "Carrying an early arithmetic error through the whole chain unchecked.",
+          "correction": "Chained parts share data, so one slip poisons everything downstream — but the chain also AUDITS itself: max vs average, area positivity, displacement vs legs. Run the free checks at every junction; that's what they're for.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "cal64-t1",
+          "statement": "For $f(x) = x^3 - 3x^2$ on $[0, 3]$: find the minimum value, the inflection point, and $\\int_0^3 f(x)\\,dx$.",
+          "solution": "$f' = 3x^2 - 6x = 3x(x - 2)$: critical 0, 2; $f'' = 6x - 6$: $f''(2) = 6 > 0$ min at 2, $f(2) = -4$. Inflection: $f'' = 0$ at $x = 1$ (sign flips: $-6$ to $+6$), point $(1, -2)$. Integral: $[\\frac{x^4}{4} - x^3]_0^3 = \\frac{81}{4} - 27 = -\\frac{27}{4}$ — negative, matching the curve living below the axis on $(0, 3)$.",
+          "check": [
+            "diff(x**3 - 3*x**2, x) == 3*x**2 - 6*x",
+            "2**3 - 3*2**2 == -4",
+            "6*2 - 6 > 0",
+            "1**3 - 3*1**2 == -2",
+            "integrate(x**3 - 3*x**2, (x, 0, 3)) == Rational(-27,4)"
+          ]
+        },
+        {
+          "id": "cal64-t2",
+          "statement": "The region between $y = x^2$ and $y = 2x$ is a lens. Find its area AND the average height of the gap $g(x) = 2x - x^2$ across the lens.",
+          "solution": "Walls: 0 and 2 (from $x^2 = 2x$). Area: $\\int_0^2 (2x - x^2)dx = \\frac{4}{3}$. Average gap: $\\frac{1}{2} \\cdot \\frac{4}{3} = \\frac{2}{3}$. Audit: max gap is at $g' = 2 - 2x = 0$, $x = 1$: $g(1) = 1 > \\frac{2}{3}$ ✓.",
+          "check": [
+            "integrate(2*x - x**2, (x, 0, 2)) == Rational(4,3)",
+            "Rational(1,2)*Rational(4,3) == Rational(2,3)",
+            "2*1 - 1**2 == 1",
+            "Rational(2,3) < 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The checkride",
+            "title": "Six units, one flight",
+            "body": "You've collected the tools one lesson at a time. Real problems — and real exams, ЭЕШ included — chain them: analyze THIS function, find ITS max, compute THE area it traps. This lesson is deliberately nothing new: it's everything old, in sequence, on one function at a time. The skill being trained is the HANDOFF."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pipeline",
+            "title": "The standard analysis arc",
+            "body": "Given a function: (1) domain and edge limits — asymptotes, end behavior (Unit 1); (2) $f'$ — critical points, rise/fall, extrema (Units 2–4); (3) $f''$ — concavity, inflections (Unit 4); (4) sketch from the evidence; (5) integrate for any areas or accumulations requested (Units 5–6). Memorize the ARC, not the problems — every 'full analysis' question is this arc wearing different numbers."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "One arch, four questions",
+            "problemId": "cal64-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Sort by tool",
+            "prompt": "Which question about $f(x) = 4x - x^2$ needs an INTEGRAL?",
+            "options": [
+              "How much area does its arch enclose above the x-axis?",
+              "Where is its highest point?",
+              "On which interval is it increasing?",
+              "What is the slope of its tangent at $x = 1$?"
+            ],
+            "correctIndex": 0,
+            "explanation": "'How much' accumulates = integral. The other three locate or measure slope — derivative territory. Tool-sorting before computing is the capstone habit.",
+            "check": [
+              "integrate(4*x - x**2, (x, 0, 4)) == Rational(32,3)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "The round trip",
+            "problemId": "cal64-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Audit the chain",
+            "prompt": "In a chained problem you compute: max value 4, average value $\\frac{14}{3} \\approx 4.67$. What should you conclude?",
+            "options": [
+              "Something is wrong — an average can never exceed the maximum",
+              "Fine — averages often exceed the max",
+              "The function must be discontinuous",
+              "Round the average down to 4"
+            ],
+            "correctIndex": 0,
+            "explanation": "Every value of $f$ is $\\le$ the max, so their average must be too. An average above the max is an arithmetic smoke alarm: recheck the integral and the max before moving on. Free audits are the whole point of chains.",
+            "check": [
+              "Rational(14,3) > 4"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Full arc on a cubic",
+            "problemId": "cal64-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Lens: area, average, audit",
+            "problemId": "cal64-t2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where you stand",
+            "title": "What you now own",
+            "body": "Limits — the microscope. Derivatives — slopes, rates, and the shape of every graph. Optimization — the best of anything expressible. Integrals — exact areas and accumulated change. The Fundamental Theorem — the bridge making the two halves one subject. This is the full calculus core of the ЭЕШ and the working toolkit of physics, economics, and engineering. From here, everything is practice and depth."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "The arc: limits → f′ → f″ → sketch → integrate. Every full-analysis problem is this arc.",
+              "Sort questions by tool: locate/steepness = derivative; how-much/how-far = integral.",
+              "Chained answers audit each other — max vs average, sign vs sketch, net vs legs. Spend the free checks."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "cal6-pr-1",
+      "statement": "Find the area enclosed between $y = x^2$ and $y = 3x$.",
+      "solution": "Walls: $x(x - 3) = 0$: 0, 3. Line on top ($x = 1$: 3 vs 1). $\\int_0^3 (3x - x^2)dx = \\frac{27}{2} - 9 = \\frac{9}{2}$.",
+      "check": [
+        "integrate(3*x - x**2, (x, 0, 3)) == Rational(9,2)",
+        "3 > 1"
+      ]
+    },
+    {
+      "id": "cal6-pr-2",
+      "statement": "Find the area enclosed between $y = x^2 - 4$ and the x-axis.",
+      "solution": "The axis is the top here (parabola below on $(-2,2)$): $\\int_{-2}^{2} (0 - (x^2 - 4))dx = \\int_{-2}^{2}(4 - x^2)dx = \\frac{32}{3}$.",
+      "check": [
+        "integrate(4 - x**2, (x, -2, 2)) == Rational(32,3)"
+      ]
+    },
+    {
+      "id": "cal6-pr-3",
+      "statement": "$v(t) = 2t - 6$ m/s on $[0, 5]$. Find the displacement and total distance.",
+      "solution": "Displacement: $[t^2 - 6t]_0^5 = -5$ m. Turnaround at $t = 3$: legs $\\int_0^3 = -9$, $\\int_3^5 = 4$. Distance: $9 + 4 = 13$ m.",
+      "check": [
+        "integrate(2*t - 6, (t, 0, 5)) == -5",
+        "integrate(2*t - 6, (t, 0, 3)) == -9",
+        "integrate(2*t - 6, (t, 3, 5)) == 4",
+        "9 + 4 == 13"
+      ]
+    },
+    {
+      "id": "cal6-pr-4",
+      "statement": "Oil leaks from a tank at $r(t) = 12 - 3t$ liters/hour (for $0 \\le t \\le 4$). How much oil leaks in the 4 hours?",
+      "solution": "Net change: $\\int_0^4 (12 - 3t)dt = [12t - \\frac{3t^2}{2}]_0^4 = 48 - 24 = 24$ liters.",
+      "check": [
+        "integrate(12 - 3*t, (t, 0, 4)) == 24"
+      ]
+    },
+    {
+      "id": "cal6-pr-5",
+      "statement": "Find the average value of $f(x) = 3x^2$ on $[1, 3]$.",
+      "solution": "$\\frac{1}{2}\\int_1^3 3x^2 dx = \\frac{1}{2}(27 - 1) = 13$.",
+      "check": [
+        "integrate(3*x**2, (x, 1, 3)) == 26",
+        "Rational(26,2) == 13"
+      ]
+    },
+    {
+      "id": "cal6-pr-6",
+      "statement": "Find the average value of $f(x) = 2x + 1$ on $[0, 4]$, and verify it equals $f$ at the midpoint (lines are the one case where that works).",
+      "solution": "$\\frac{1}{4}\\int_0^4 (2x+1)dx = \\frac{1}{4}(16 + 4) = 5$. Midpoint: $f(2) = 5$ ✓ — for a LINE the average is the middle height; for curves it isn't.",
+      "check": [
+        "integrate(2*x + 1, (x, 0, 4)) == 20",
+        "Rational(20,4) == 5",
+        "2*2 + 1 == 5"
+      ]
+    },
+    {
+      "id": "cal6-pr-7",
+      "statement": "For $f(x) = 6x - x^2$: find the maximum value and the area under the arch between its roots.",
+      "solution": "Max: $f' = 6 - 2x = 0$ at 3, $f(3) = 9$ ($f'' = -2 < 0$ ✓). Roots 0 and 6. Area: $\\int_0^6 (6x - x^2)dx = 108 - 72 = 36$.",
+      "check": [
+        "6 - 2*3 == 0",
+        "6*3 - 3**2 == 9",
+        "integrate(6*x - x**2, (x, 0, 6)) == 36"
+      ]
+    },
+    {
+      "id": "cal6-pr-8",
+      "statement": "Find the area between $y = \\sqrt{x}$ and $y = x$ on $[0, 1]$.",
+      "solution": "Top check at $\\frac{1}{4}$: $\\frac{1}{2} > \\frac{1}{4}$ — root on top. $\\int_0^1 (\\sqrt{x} - x)dx = \\frac{2}{3} - \\frac{1}{2} = \\frac{1}{6}$.",
+      "check": [
+        "integrate(sqrt(x) - x, (x, 0, 1)) == Rational(1,6)",
+        "Rational(2,3) - Rational(1,2) == Rational(1,6)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "cal6-ty-1",
+      "statement": "Find the area enclosed by $y = x^2 - 2x$ and $y = x$.",
+      "solution": "Walls: $x^2 - 2x = x$: $x(x - 3) = 0$: 0, 3. Line on top (test 1: $1 > -1$). $\\int_0^3 (x - x^2 + 2x)dx = \\int_0^3 (3x - x^2)dx = \\frac{9}{2}$.",
+      "check": [
+        "integrate(x - (x**2 - 2*x), (x, 0, 3)) == Rational(9,2)",
+        "1 > -1"
+      ]
+    },
+    {
+      "id": "cal6-ty-2",
+      "statement": "Find the total area enclosed between $y = x^3$ and $y = x$ (careful: they cross three times).",
+      "solution": "Crossings: $x^3 = x$ at $-1, 0, 1$. On $(-1, 0)$ the cubic is on top ($x = -\\frac{1}{2}$: $-\\frac{1}{8} > -\\frac{1}{2}$); on $(0, 1)$ the line is. Two lobes, symmetric: $\\int_{-1}^0 (x^3 - x)dx = \\frac{1}{4}$ and $\\int_0^1 (x - x^3)dx = \\frac{1}{4}$. Total: $\\frac{1}{2}$.",
+      "check": [
+        "integrate(x**3 - x, (x, -1, 0)) == Rational(1,4)",
+        "integrate(x - x**3, (x, 0, 1)) == Rational(1,4)",
+        "Rational(1,4) + Rational(1,4) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "cal6-ty-3",
+      "statement": "$v(t) = t^2 - 2t$ m/s on $[0, 3]$: find when the particle reverses, its displacement, and its total distance.",
+      "solution": "Reverses at $v = t(t-2) = 0$: $t = 2$ (interior). Displacement: $\\int_0^3 = [\\frac{t^3}{3} - t^2]_0^3 = 0$. Legs: $\\int_0^2 = -\\frac{4}{3}$, $\\int_2^3 = \\frac{4}{3}$. Distance: $\\frac{8}{3}$ m — another perfect round trip.",
+      "check": [
+        "integrate(t**2 - 2*t, (t, 0, 3)) == 0",
+        "integrate(t**2 - 2*t, (t, 0, 2)) == Rational(-4,3)",
+        "integrate(t**2 - 2*t, (t, 2, 3)) == Rational(4,3)",
+        "Rational(4,3) + Rational(4,3) == Rational(8,3)"
+      ]
+    },
+    {
+      "id": "cal6-ty-4",
+      "statement": "Visitors enter a museum at $r(t) = 60 + 30t$ people/hour. How many enter between opening ($t = 0$) and $t = 4$? What is the average arrival rate over that period?",
+      "solution": "Total: $\\int_0^4 (60 + 30t)dt = 240 + 240 = 480$ people. Average rate: $\\frac{480}{4} = 120$ people/hour — which the linear rate attains at the midpoint $t = 2$: $60 + 60 = 120$ ✓.",
+      "check": [
+        "integrate(60 + 30*t, (t, 0, 4)) == 480",
+        "Rational(480,4) == 120",
+        "60 + 30*2 == 120"
+      ]
+    },
+    {
+      "id": "cal6-ty-5",
+      "statement": "Find the average value of $f(x) = x^3$ on $[0, 2]$ and the $c$ where $f$ attains it.",
+      "solution": "$f_{avg} = \\frac{1}{2}\\int_0^2 x^3 dx = \\frac{1}{2} \\cdot 4 = 2$. Attained: $c^3 = 2$, $c = \\sqrt[3]{2} \\approx 1.26$ — inside $[0, 2]$ ✓.",
+      "check": [
+        "integrate(x**3, (x, 0, 2)) == 4",
+        "Rational(4,2) == 2",
+        "(2**Rational(1,3))**3 == 2"
+      ]
+    },
+    {
+      "id": "cal6-ty-6",
+      "statement": "Capstone: for $f(x) = x^3 - 6x^2 + 9x$ on $[0, 4]$ — find the local max and min, the inflection point, and $\\int_0^3 f\\,dx$ (the area under the first arch, since $f \\ge 0$ there).",
+      "solution": "$f' = 3(x-1)(x-3)$: max at 1 ($f(1) = 4$), min at 3 ($f(3) = 0$) — certified by $f'' = 6x - 12$: $f''(1) = -6 < 0$, $f''(3) = 6 > 0$. Inflection: $x = 2$, point $(2, 2)$. Area: $\\int_0^3 (x^3 - 6x^2 + 9x)dx = \\frac{81}{4} - 54 + \\frac{81}{2} = \\frac{27}{4}$.",
+      "check": [
+        "expand(3*(x - 1)*(x - 3) - diff(x**3 - 6*x**2 + 9*x, x)) == 0",
+        "1 - 6 + 9 == 4",
+        "27 - 54 + 27 == 0",
+        "6*1 - 12 < 0",
+        "6*3 - 12 > 0",
+        "2**3 - 6*2**2 + 9*2 == 2",
+        "integrate(x**3 - 6*x**2 + 9*x, (x, 0, 3)) == Rational(27,4)"
+      ]
+    }
+  ]
+}
