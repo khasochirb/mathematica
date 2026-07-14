@@ -15,6 +15,7 @@ describe("performance contexts", () => {
     expect(contextFromPathname("/math/precalculus/the-unit-circle/radians")).toBe("course:precalculus");
     // "calculus" must never swallow "precalculus" paths (or vice versa)
     expect(contextFromPathname("/math/calculus/the-derivative/the-power-rule")).toBe("course:calculus");
+    expect(contextFromPathname("/math/trigonometry/the-unit-circle/radians")).toBe("course:trigonometry");
     expect(contextFromPathname("/math/algebra-2/polynomial-functions/polynomial-basics-and-end-behavior")).toBe("course:algebra-2");
     expect(contextFromPathname("/math/6/fractions/adding-fractions")).toBe("course:grade-6");
     expect(contextFromPathname("/math/12/derivatives/the-power-rule")).toBe("course:grade-12");

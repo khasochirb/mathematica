@@ -1,0 +1,1041 @@
+{
+  "slug": "radians-and-the-unit-circle",
+  "title": "Radians & the Unit Circle",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Trigonometry escapes the triangle: angles measured by arc length, a circle of radius 1 where cosine and sine ARE the coordinates — and exact values in every quadrant.",
+  "buildsOn": "The exact-value table from Unit 2.",
+  "lessons": [
+    {
+      "slug": "radians",
+      "title": "Radians",
+      "concreteComparison": "Measuring angles in degrees is like measuring your height in 'floors' — fine, but the unit is arbitrary (why 360?). Radians measure an angle by the most natural ruler a circle owns: its own radius, bent along the rim. One radius-length of arc = one radian. No committee chose it.",
+      "objective": "Convert between degrees and radians, know the landmark angles in radian form, and use arc length s = rθ.",
+      "concept": [
+        "**One radian** is the angle whose arc is exactly one radius long. Since the full rim is $2\\pi r$, a full turn holds $2\\pi$ radians: $360° = 2\\pi$, so $\\mathbf{180° = \\pi}$ — the only conversion fact you need. One radian $\\approx 57.3°$.",
+        "Convert by proportion: degrees $\\to$ radians, multiply by $\\frac{\\pi}{180}$; radians $\\to$ degrees, multiply by $\\frac{180}{\\pi}$. The landmarks: $30° = \\frac{\\pi}{6}$, $45° = \\frac{\\pi}{4}$, $60° = \\frac{\\pi}{3}$, $90° = \\frac{\\pi}{2}$, $180° = \\pi$, $270° = \\frac{3\\pi}{2}$, $360° = 2\\pi$. Read the denominators as 'how many slices fit in a half-turn.'",
+        "The payoff formula: **arc length $s = r\\theta$** ($\\theta$ in radians) — an angle times a radius gives a distance, with no conversion constant. In degrees the same formula needs $\\frac{\\pi}{180}$ glued on; radians are the unit that makes circle formulas clean, which is why all of higher math speaks them."
+      ],
+      "keyIdea": "1 radian = 1 radius of arc; 180° = π converts everything; and s = rθ turns angles into distances with zero fuss.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "\\theta \\text{ (rad)} = \\frac{\\text{arc length}}{\\text{radius}}",
+          "explanation": "The circle measures itself with its own radius."
+        },
+        {
+          "title": "The one conversion",
+          "latex": "180° = \\pi \\text{ rad}",
+          "explanation": "×π/180 to radians; ×180/π to degrees."
+        },
+        {
+          "title": "Arc length",
+          "latex": "s = r\\theta \\quad (\\theta \\text{ in radians})",
+          "explanation": "Angle × radius = distance; radians only."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig31-we1",
+          "statement": "Convert $135°$ to radians and $\\frac{5\\pi}{6}$ to degrees, exactly.",
+          "solution": "$135° \\cdot \\frac{\\pi}{180} = \\frac{135\\pi}{180} = \\frac{3\\pi}{4}$. And $\\frac{5\\pi}{6} \\cdot \\frac{180}{\\pi} = \\frac{5 \\cdot 180}{6} = 150°$. Both are landmark-adjacent: $135° = 90° + 45°$ and $150° = 180° - 30°$ — worth recognizing on sight.",
+          "check": [
+            "rad(135) == 3*pi/4",
+            "deg(5*pi/6) == 150"
+          ]
+        },
+        {
+          "id": "trig31-we2",
+          "statement": "A pendulum of length $6$ m swings through $\\frac{\\pi}{3}$ radians. How far does its tip travel, exactly?",
+          "solution": "Arc length: $s = r\\theta = 6 \\cdot \\frac{\\pi}{3} = 2\\pi \\approx 6.28$ m. Angle times radius, done — this one-liner is why physicists refuse to work in degrees.",
+          "check": [
+            "6*pi/3 == 2*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using s = rθ with the angle in degrees.",
+          "correction": "The formula is a RADIAN formula — it comes straight from the definition $\\theta = \\frac{s}{r}$. With degrees you'd need $s = \\frac{\\pi r \\theta}{180}$. Convert first, then multiply.",
+          "authored": true
+        },
+        {
+          "text": "Reading π/6 and π/3 as interchangeable 'small angles.'",
+          "correction": "The DENOMINATOR counts how many slices fill a half-turn: $\\frac{\\pi}{6}$ is one of SIX slices ($30°$), $\\frac{\\pi}{3}$ one of THREE ($60°$) — twice as big. Bigger denominator, smaller angle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig31-t1",
+          "statement": "Convert $240°$ to radians and $\\frac{7\\pi}{4}$ to degrees, exactly.",
+          "solution": "$240° = \\frac{240\\pi}{180} = \\frac{4\\pi}{3}$. $\\frac{7\\pi}{4} = \\frac{7 \\cdot 180}{4} = 315°$.",
+          "check": [
+            "rad(240) == 4*pi/3",
+            "deg(7*pi/4) == 315"
+          ]
+        },
+        {
+          "id": "trig31-t2",
+          "statement": "A circular running track has radius $50$ m. How far do you run sweeping a central angle of $\\frac{3\\pi}{5}$, exactly?",
+          "solution": "$s = 50 \\cdot \\frac{3\\pi}{5} = 30\\pi \\approx 94$ m.",
+          "check": [
+            "50*3*pi/5 == 30*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The natural unit",
+            "title": "Why 360 was never sacred",
+            "body": "Degrees are Babylonian bureaucracy — 360 chosen four thousand years ago (nice divisors, roughly the days in a year). Mathematics prefers a unit the circle chooses itself: wrap the RADIUS along the rim, and the angle that one radius-length of arc subtends is **one radian**. No culture, no committee — every circle in the universe agrees on it."
+          },
+          {
+            "kind": "circleUnroll",
+            "eyebrow": "Watch",
+            "title": "How many radii around?",
+            "teach": "Unroll the circumference: exactly $2\\pi \\approx 6.28$ radius-lengths wrap the full rim. That's the whole conversion story: a full turn is $2\\pi$ radians, a half-turn is $\\pi$.",
+            "config": { "color": "#e8913c" }
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Play",
+            "title": "Wrap radii onto the rim",
+            "teach": "Step arcs of one radius each around the circle: 1 rad, 2 rad, 3 rad ($\\approx 172°$ — just shy of the half-turn), and $\\pi \\approx 3.14$ rad lands the half-turn exactly. One radian $\\approx 57.3°$.",
+            "config": { "mode": "radians" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Converting",
+            "title": "One fact converts everything",
+            "body": "From $180° = \\pi$: degrees $\\to$ radians is $\\times \\frac{\\pi}{180}$; radians $\\to$ degrees is $\\times \\frac{180}{\\pi}$. The landmark angles become fractions of $\\pi$: $30° = \\frac{\\pi}{6}$, $45° = \\frac{\\pi}{4}$, $60° = \\frac{\\pi}{3}$, $90° = \\frac{\\pi}{2}$. Read denominators as slice counts of the half-turn: $\\frac{\\pi}{6}$ — six slices fit, so it's the small one."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "Multiply by π/180 or 180/π — then simplify the fraction.",
+            "examples": [
+              {
+                "prompt": "Convert $135°$ to radians, exactly.",
+                "steps": [
+                  "$135 \\cdot \\frac{\\pi}{180} = \\frac{135\\pi}{180}$.",
+                  "Reduce by 45: $\\frac{3\\pi}{4}$."
+                ],
+                "answer": "$\\tfrac{3\\pi}{4}$",
+                "check": [
+                  "rad(135) == 3*pi/4"
+                ]
+              },
+              {
+                "prompt": "Convert $\\frac{5\\pi}{6}$ to degrees.",
+                "steps": [
+                  "$\\frac{5\\pi}{6} \\cdot \\frac{180}{\\pi} = \\frac{5 \\cdot 180}{6}$.",
+                  "$= 150°$."
+                ],
+                "answer": "$150°$",
+                "check": [
+                  "deg(5*pi/6) == 150"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Slice count",
+            "prompt": "Which is the LARGER angle: $\\dfrac{\\pi}{6}$ or $\\dfrac{\\pi}{4}$?",
+            "options": [
+              "$\\dfrac{\\pi}{4}$ — only four of them fill a half-turn",
+              "$\\dfrac{\\pi}{6}$ — six is more than four",
+              "They're equal",
+              "Can't compare without converting"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{\\pi}{4} = 45°$ beats $\\frac{\\pi}{6} = 30°$. Bigger denominator = more slices fit = SMALLER slice. (Ordinary fraction logic — $\\pi$ changes nothing.)",
+            "check": [
+              "pi/4 > pi/6",
+              "deg(pi/4) == 45"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "s = rθ — angles become distances",
+            "body": "The definition $\\theta = \\frac{s}{r}$ flips into the cleanest formula in circle geometry: **arc length $= r\\theta$**. A $\\frac{\\pi}{3}$ sweep on a radius-6 circle covers $6 \\cdot \\frac{\\pi}{3} = 2\\pi$ meters. No $\\frac{\\pi}{180}$ barnacles — THIS is why radians win: they make every circle formula (and later, every calculus formula) drop its conversion constants."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The pendulum's sweep",
+            "intro": "Radius times radian angle — one multiplication.",
+            "examples": [
+              {
+                "prompt": "A $6$ m pendulum swings through $\\frac{\\pi}{3}$. Arc traveled?",
+                "steps": [
+                  "$s = r\\theta = 6 \\cdot \\frac{\\pi}{3}$.",
+                  "$= 2\\pi \\approx 6.28$ m."
+                ],
+                "answer": "$2\\pi$ m",
+                "check": [
+                  "6*pi/3 == 2*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Radian fluency",
+            "intro": "Convert, compare, and sweep.",
+            "problems": [
+              {
+                "prompt": "$240°$ in radians?",
+                "options": ["$\\dfrac{4\\pi}{3}$", "$\\dfrac{3\\pi}{4}$", "$\\dfrac{2\\pi}{3}$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{240\\pi}{180} = \\frac{4\\pi}{3}$ — a half-turn plus a $60°$ slice, deep in the third quadrant.",
+                "check": [
+                  "rad(240) == 4*pi/3"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{3\\pi}{2}$ in degrees?",
+                "options": ["$270°$", "$135°$", "$540°$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3 \\cdot 180}{2} = 270°$ — three quarter-turns, pointing straight down.",
+                "check": [
+                  "deg(3*pi/2) == 270"
+                ]
+              },
+              {
+                "prompt": "A wheel of radius $30$ cm rolls through $\\frac{2\\pi}{3}$. How far does a rim point travel?",
+                "options": ["$20\\pi$ cm", "$45\\pi$ cm", "$60\\pi$ cm"],
+                "correctIndex": 0,
+                "explanation": "$s = 30 \\cdot \\frac{2\\pi}{3} = 20\\pi \\approx 63$ cm.",
+                "check": [
+                  "30*2*pi/3 == 20*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "1 radian = 1 radius of arc; full turn = 2π, half-turn = π (≈ 57.3° each).",
+              "Convert through 180° = π; landmark denominators count slices of the half-turn.",
+              "s = rθ (radians only): angle × radius = distance, no constants."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-unit-circle",
+      "title": "The Unit Circle",
+      "concreteComparison": "A Ferris wheel of radius 1, boarding at the rightmost point: your position after rotating by θ has a horizontal coordinate and a vertical coordinate. Those two numbers ARE cosine and sine. The wheel doesn't compute them from a triangle — it IS them.",
+      "objective": "Define cos θ and sin θ as unit-circle coordinates, evaluate them at the axis angles, and extend trig beyond 90°.",
+      "concept": [
+        "The **unit circle**: radius 1, centered at the origin. Rotate from the positive x-axis by angle $\\theta$ (counterclockwise positive) to a point $P$. Definition: $P = (\\cos\\theta, \\sin\\theta)$ — cosine is the x-coordinate, sine is the y-coordinate. For acute $\\theta$ this MATCHES the triangle definition (drop the perpendicular: adjacent $= x$, opposite $= y$, hypotenuse $= 1$), but it keeps working for ANY angle: $120°$, $300°$, $-45°$, $750°$.",
+        "The axis angles read straight off the coordinates: at $0$: $(1, 0)$; at $\\frac{\\pi}{2}$: $(0, 1)$; at $\\pi$: $(-1, 0)$; at $\\frac{3\\pi}{2}$: $(0, -1)$. So $\\cos\\pi = -1$, $\\sin\\frac{3\\pi}{2} = -1$, and so on — no memorizing, just point at the circle.",
+        "Two structural facts come free. **Periodicity**: a full extra turn changes nothing, so $\\sin(\\theta + 2\\pi) = \\sin\\theta$. **The Pythagorean identity**: $P$ sits on the circle $x^2 + y^2 = 1$, so $\\cos^2\\theta + \\sin^2\\theta = 1$ for every $\\theta$ — the circle's equation wearing trig clothes. And $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta} = \\frac{y}{x}$, the slope of the radius arm."
+      ],
+      "keyIdea": "On the radius-1 circle, the rotated point IS (cos θ, sin θ) — a definition that works for every angle, makes the axis values readable, and hands you cos²θ + sin²θ = 1 for free.",
+      "facts": [
+        {
+          "title": "The definition",
+          "latex": "P(\\theta) = (\\cos\\theta, \\sin\\theta)",
+          "explanation": "Cosine = x, sine = y, on the radius-1 circle."
+        },
+        {
+          "title": "Axis values",
+          "latex": "0: (1,0), \\;\\; \\tfrac{\\pi}{2}: (0,1), \\;\\; \\pi: (-1,0), \\;\\; \\tfrac{3\\pi}{2}: (0,-1)",
+          "explanation": "Read them off the circle — never memorize."
+        },
+        {
+          "title": "Free theorems",
+          "latex": "\\cos^2\\theta + \\sin^2\\theta = 1, \\qquad \\sin(\\theta + 2\\pi) = \\sin\\theta",
+          "explanation": "The circle's equation, and a full turn changing nothing."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig32-we1",
+          "statement": "Evaluate $\\cos\\pi$, $\\sin\\pi$, $\\cos\\frac{3\\pi}{2}$, and $\\sin\\frac{3\\pi}{2}$ from the circle.",
+          "solution": "Half a turn lands at $(-1, 0)$: $\\cos\\pi = -1$, $\\sin\\pi = 0$. Three quarter-turns land at $(0, -1)$: $\\cos\\frac{3\\pi}{2} = 0$, $\\sin\\frac{3\\pi}{2} = -1$. Point at the circle, read the coordinates — that's the entire technique.",
+          "check": [
+            "cos(pi) == -1",
+            "sin(pi) == 0",
+            "cos(3*pi/2) == 0",
+            "sin(3*pi/2) == -1"
+          ]
+        },
+        {
+          "id": "trig32-we2",
+          "statement": "The angle $\\theta$ puts $P$ at $\\left(-\\frac{3}{5}, \\frac{4}{5}\\right)$ on the unit circle. Find $\\cos\\theta$, $\\sin\\theta$, and $\\tan\\theta$, and verify $P$ really is on the circle.",
+          "solution": "By definition: $\\cos\\theta = -\\frac{3}{5}$, $\\sin\\theta = \\frac{4}{5}$, $\\tan\\theta = \\frac{4/5}{-3/5} = -\\frac{4}{3}$. On-circle check: $\\left(-\\frac{3}{5}\\right)^2 + \\left(\\frac{4}{5}\\right)^2 = \\frac{9 + 16}{25} = 1$ ✓. Negative cosine, positive sine: second quadrant.",
+          "check": [
+            "Rational(-3,5)**2 + Rational(4,5)**2 == 1",
+            "Rational(4,5)/Rational(-3,5) == Rational(-4,3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assigning sine to x and cosine to y.",
+          "correction": "Cosine is the x-coordinate (alphabetical luck: C before S, x before y). Anchor: at $\\theta = 0$ the point is $(1, 0)$ — all the way right — and $\\cos 0 = 1$ ✓. One anchored example beats any mnemonic.",
+          "authored": true
+        },
+        {
+          "text": "Thinking trig values beyond 90° are undefined because no right triangle exists.",
+          "correction": "The unit circle REPLACES the triangle definition precisely to escape that limit: any rotation — $120°$, $-30°$, $500°$ — lands somewhere on the circle, and its coordinates are the cosine and sine. The triangle was the ladder; the circle is the building.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig32-t1",
+          "statement": "Evaluate $\\sin 2\\pi$, $\\cos 2\\pi$, and $\\sin\\left(\\frac{\\pi}{2} + 2\\pi\\right)$.",
+          "solution": "A full turn returns to $(1, 0)$: $\\sin 2\\pi = 0$, $\\cos 2\\pi = 1$. And $\\frac{\\pi}{2} + 2\\pi$ is just $\\frac{\\pi}{2}$ plus a full lap: $\\sin = 1$. Periodicity in action.",
+          "check": [
+            "sin(2*pi) == 0",
+            "cos(2*pi) == 1",
+            "sin(pi/2 + 2*pi) == 1"
+          ]
+        },
+        {
+          "id": "trig32-t2",
+          "statement": "$\\theta$ puts $P$ at $\\left(\\frac{5}{13}, -\\frac{12}{13}\\right)$. Find $\\tan\\theta$ and name the quadrant.",
+          "solution": "$\\tan\\theta = \\frac{-12/13}{5/13} = -\\frac{12}{5}$. Positive x, negative y: fourth quadrant. (On-circle: $\\frac{25 + 144}{169} = 1$ ✓.)",
+          "check": [
+            "Rational(5,13)**2 + Rational(-12,13)**2 == 1",
+            "Rational(-12,13)/Rational(5,13) == Rational(-12,5)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The upgrade",
+            "title": "From triangle to circle",
+            "body": "Right triangles cap $\\theta$ below $90°$ — no triangle has a $120°$ 'acute' angle. The escape: put the angle at the center of a radius-1 circle, rotating counterclockwise from the positive x-axis. The rotated point $P$ has coordinates, and we DEFINE $\\cos\\theta$ and $\\sin\\theta$ to BE those coordinates: $P = (\\cos\\theta, \\sin\\theta)$. For acute angles this agrees perfectly with SOH-CAH-TOA (hypotenuse 1); for every other angle, it's the new law."
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Play",
+            "title": "The coordinates ARE the values",
+            "teach": "Drive the point around the circle: the x-readout is $\\cos\\theta$, the y-readout is $\\sin\\theta$, live in every quadrant. Watch the signs flip as you cross each axis — and watch the little right triangle inside flip with them.",
+            "config": { "mode": "explore" }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the axis points",
+            "prompt": "The angle $\\pi$ (half a turn) lands at $(-1, 0)$. What are $\\cos\\pi$ and $\\sin\\pi$?",
+            "options": [
+              "$\\cos\\pi = -1$, $\\sin\\pi = 0$",
+              "$\\cos\\pi = 0$, $\\sin\\pi = -1$",
+              "$\\cos\\pi = 1$, $\\sin\\pi = 0$",
+              "Both are undefined at $\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine is the x-coordinate ($-1$), sine the y ($0$). The four axis angles never need memorizing — point at the circle, read the pair.",
+            "check": [
+              "cos(pi) == -1",
+              "sin(pi) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Free theorem #1",
+            "title": "The Pythagorean identity, geometrically",
+            "body": "Every point on the unit circle satisfies the circle's equation $x^2 + y^2 = 1$. Substitute the definition: $$\\cos^2\\theta + \\sin^2\\theta = 1$$ for EVERY angle — the single most-used identity in trigonometry, and here it costs nothing: it's just 'P is on the circle.' (For acute angles it's $a^2 + b^2 = c^2$ divided by $c^2$ — the same fact in triangle clothes.)"
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "A point tells all",
+            "intro": "Given the landing point, every trig value is a coordinate read.",
+            "examples": [
+              {
+                "prompt": "$\\theta$ lands at $P\\left(-\\frac{3}{5}, \\frac{4}{5}\\right)$. Find $\\cos\\theta$, $\\sin\\theta$, $\\tan\\theta$; verify $P$ is on the circle.",
+                "steps": [
+                  "$\\cos\\theta = -\\frac{3}{5}$ (x), $\\sin\\theta = \\frac{4}{5}$ (y), $\\tan\\theta = \\frac{y}{x} = -\\frac{4}{3}$.",
+                  "Check: $\\frac{9}{25} + \\frac{16}{25} = 1$ ✓ — a genuine unit-circle point."
+                ],
+                "answer": "$\\cos\\theta = -\\tfrac{3}{5}$, $\\sin\\theta = \\tfrac{4}{5}$, $\\tan\\theta = -\\tfrac{4}{3}$",
+                "check": [
+                  "Rational(-3,5)**2 + Rational(4,5)**2 == 1",
+                  "Rational(4,5)/Rational(-3,5) == Rational(-4,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Free theorem #2",
+            "title": "Laps don't matter",
+            "body": "Add a full turn ($2\\pi$) to any angle and you land on the SAME point — so every trig value repeats: $\\sin(\\theta + 2\\pi) = \\sin\\theta$, $\\cos(\\theta + 2\\pi) = \\cos\\theta$. Sine and cosine are **periodic** with period $2\\pi$. This one fact turns them from triangle tools into the mathematics of everything that repeats — tides, sound, seasons, circuits. Unit 4 draws the consequences."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Strip the laps",
+            "prompt": "What is $\\cos\\left(\\dfrac{\\pi}{3} + 4\\pi\\right)$?",
+            "options": [
+              "$\\dfrac{1}{2}$ — two full laps change nothing",
+              "$-\\dfrac{1}{2}$",
+              "$\\dfrac{1}{2} + 4\\pi$",
+              "Undefined"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4\\pi$ = two complete turns: the point lands exactly where plain $\\frac{\\pi}{3}$ does, and $\\cos\\frac{\\pi}{3} = \\frac{1}{2}$. First move on any big angle: subtract whole laps.",
+            "check": [
+              "cos(pi/3 + 4*pi) == Rational(1,2)"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Circle reading",
+            "intro": "Coordinates in, values out.",
+            "problems": [
+              {
+                "prompt": "$\\sin\\dfrac{3\\pi}{2} = ?$",
+                "options": ["$-1$", "$0$", "$1$"],
+                "correctIndex": 0,
+                "explanation": "Three quarter-turns point straight DOWN: $(0, -1)$, and sine reads the y-coordinate: $-1$.",
+                "check": [
+                  "sin(3*pi/2) == -1"
+                ]
+              },
+              {
+                "prompt": "$\\theta$ lands at $\\left(\\frac{5}{13}, -\\frac{12}{13}\\right)$. What is $\\tan\\theta$?",
+                "options": ["$-\\dfrac{12}{5}$", "$-\\dfrac{5}{12}$", "$\\dfrac{12}{5}$"],
+                "correctIndex": 0,
+                "explanation": "$\\tan = \\frac{y}{x} = \\frac{-12/13}{5/13} = -\\frac{12}{5}$ — fourth quadrant, where tangent runs negative.",
+                "check": [
+                  "Rational(-12,13)/Rational(5,13) == Rational(-12,5)"
+                ]
+              },
+              {
+                "prompt": "Which equation does EVERY unit-circle angle satisfy?",
+                "options": [
+                  "$\\cos^2\\theta + \\sin^2\\theta = 1$",
+                  "$\\cos\\theta + \\sin\\theta = 1$",
+                  "$\\tan^2\\theta = 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "It's the circle's own equation $x^2 + y^2 = 1$ with the definition substituted. (The middle option fails already at $45°$: $\\frac{\\sqrt2}{2} + \\frac{\\sqrt2}{2} = \\sqrt2 \\neq 1$.)",
+                "check": [
+                  "cos(pi/4)**2 + sin(pi/4)**2 == 1",
+                  "cos(pi/4) + sin(pi/4) != 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your GPS rides the unit circle",
+            "body": "Every satellite position, every phone-screen rotation, every game character turning smoothly — computed as $(\\cos\\theta, \\sin\\theta)$ pairs, millions of times per second. The unit circle is arguably the single most-executed piece of mathematics on Earth right now.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "P(θ) = (cos θ, sin θ) on the radius-1 circle — every angle allowed.",
+              "Axis angles read off coordinates: π → (−1, 0), 3π/2 → (0, −1).",
+              "Free theorems: cos²θ + sin²θ = 1 (the circle's equation) and 2π-periodicity (laps don't matter)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "reference-angles-and-signs",
+      "title": "Reference Angles & Signs",
+      "concreteComparison": "A city with four districts and one master key: every address in town is a mirrored copy of an address in the first district. To evaluate anything anywhere, find its first-district twin (the reference angle), look up the value there, then let the district decide the sign.",
+      "objective": "Determine the sign of each trig function by quadrant, find reference angles, and reduce any angle's evaluation to a first-quadrant lookup.",
+      "concept": [
+        "Signs come from coordinates. Quadrant I: $x > 0, y > 0$ — everything positive. QII: $x < 0$ — only sine positive. QIII: both negative — only tangent positive ($\\frac{-}{-} = +$). QIV: $y < 0$ — only cosine positive. The classic mnemonic reads counterclockwise: **A**ll, **S**ine, **T**angent, **C**osine ('All Students Take Calculus').",
+        "The **reference angle** $\\theta_{ref}$ is the acute angle between the terminal arm and the X-AXIS (never the y-axis): QII: $\\pi - \\theta$; QIII: $\\theta - \\pi$; QIV: $2\\pi - \\theta$. By the circle's mirror symmetry, $\\theta$ and its reference angle have the SAME trig values except possibly for sign.",
+        "The universal recipe: (1) strip whole laps; (2) find the quadrant → sign (ASTC); (3) find the reference angle → magnitude (from the Unit 2 table); (4) combine. Example: $\\sin\\frac{5\\pi}{6}$ — QII (sine positive), reference $\\pi - \\frac{5\\pi}{6} = \\frac{\\pi}{6}$, so $\\sin\\frac{5\\pi}{6} = +\\sin\\frac{\\pi}{6} = \\frac{1}{2}$."
+      ],
+      "keyIdea": "Quadrant gives the sign (All-Sine-Tangent-Cosine), the reference angle gives the magnitude — every evaluation reduces to a first-quadrant lookup.",
+      "facts": [
+        {
+          "title": "ASTC",
+          "latex": "\\text{QI: all} + , \\;\\; \\text{QII: } \\sin +, \\;\\; \\text{QIII: } \\tan +, \\;\\; \\text{QIV: } \\cos +",
+          "explanation": "Read counterclockwise; from the coordinate signs."
+        },
+        {
+          "title": "Reference angle",
+          "latex": "\\text{QII: } \\pi - \\theta, \\quad \\text{QIII: } \\theta - \\pi, \\quad \\text{QIV: } 2\\pi - \\theta",
+          "explanation": "The acute gap to the x-axis — always the x-axis."
+        },
+        {
+          "title": "The recipe",
+          "latex": "\\text{laps} \\to \\text{quadrant (sign)} \\to \\text{reference (magnitude)}",
+          "explanation": "Any angle, three steps, one table lookup."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig33-we1",
+          "statement": "Evaluate $\\sin\\frac{5\\pi}{6}$ and $\\cos\\frac{5\\pi}{6}$ exactly.",
+          "solution": "$\\frac{5\\pi}{6}$ ($150°$) is QII: sine positive, cosine negative. Reference angle: $\\pi - \\frac{5\\pi}{6} = \\frac{\\pi}{6}$. So $\\sin\\frac{5\\pi}{6} = +\\sin\\frac{\\pi}{6} = \\frac{1}{2}$ and $\\cos\\frac{5\\pi}{6} = -\\cos\\frac{\\pi}{6} = -\\frac{\\sqrt3}{2}$.",
+          "check": [
+            "sin(5*pi/6) == Rational(1,2)",
+            "cos(5*pi/6) == -sqrt(3)/2",
+            "pi - 5*pi/6 == pi/6"
+          ]
+        },
+        {
+          "id": "trig33-we2",
+          "statement": "Evaluate $\\tan\\frac{4\\pi}{3}$ exactly.",
+          "solution": "$\\frac{4\\pi}{3}$ ($240°$) is QIII: tangent POSITIVE (both coordinates negative, ratio positive). Reference: $\\frac{4\\pi}{3} - \\pi = \\frac{\\pi}{3}$. So $\\tan\\frac{4\\pi}{3} = +\\tan\\frac{\\pi}{3} = \\sqrt{3}$.",
+          "check": [
+            "tan(4*pi/3) == sqrt(3)",
+            "4*pi/3 - pi == pi/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Measuring the reference angle to the y-axis when the arm is 'closer' to it.",
+          "correction": "Reference angles are ALWAYS measured to the x-axis — that's what makes the mirror symmetry give equal magnitudes. For $\\frac{2\\pi}{3}$: reference is $\\pi - \\frac{2\\pi}{3} = \\frac{\\pi}{3}$, not the $\\frac{\\pi}{6}$ gap to the y-axis.",
+          "authored": true
+        },
+        {
+          "text": "Applying the sign to the reference angle itself instead of the final value.",
+          "correction": "The reference angle is a POSITIVE acute angle — a lookup key, nothing more. The sign belongs to the final answer, decided by the quadrant: $\\cos\\frac{5\\pi}{6} = -\\cos\\frac{\\pi}{6}$, the minus applied at assembly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig33-t1",
+          "statement": "Evaluate $\\cos\\frac{2\\pi}{3}$ and $\\sin\\frac{7\\pi}{6}$ exactly.",
+          "solution": "$\\frac{2\\pi}{3}$: QII, cosine negative, reference $\\frac{\\pi}{3}$: $-\\cos\\frac{\\pi}{3} = -\\frac{1}{2}$. $\\frac{7\\pi}{6}$: QIII, sine negative, reference $\\frac{7\\pi}{6} - \\pi = \\frac{\\pi}{6}$: $-\\sin\\frac{\\pi}{6} = -\\frac{1}{2}$.",
+          "check": [
+            "cos(2*pi/3) == Rational(-1,2)",
+            "sin(7*pi/6) == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "trig33-t2",
+          "statement": "$\\sin\\theta > 0$ and $\\cos\\theta < 0$. Which quadrant is $\\theta$ in — and what is the sign of $\\tan\\theta$ there?",
+          "solution": "Positive sine (upper half) with negative cosine (left half): QII. There $\\tan = \\frac{+}{-} < 0$ — negative. (Check with $\\frac{2\\pi}{3}$: $\\tan\\frac{2\\pi}{3} = -\\sqrt3$ ✓.)",
+          "check": [
+            "sin(2*pi/3) > 0",
+            "cos(2*pi/3) < 0",
+            "tan(2*pi/3) == -sqrt(3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The districts",
+            "title": "Signs come from coordinates",
+            "body": "Cosine IS x and sine IS y — so their signs are just the quadrant's coordinate signs. QI: $(+,+)$, all three functions positive. QII: $(-,+)$, only sine survives. QIII: $(-,-)$, only tangent (negative over negative). QIV: $(+,-)$, only cosine. Counterclockwise: **All, Sine, Tangent, Cosine** — the ASTC compass.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "O", "x": 0, "y": 0, "label": "" },
+                  { "id": "E", "x": 4, "y": 0, "label": "" },
+                  { "id": "W", "x": -4, "y": 0, "label": "" },
+                  { "id": "N", "x": 0, "y": 4, "label": "" },
+                  { "id": "S", "x": 0, "y": -4, "label": "" },
+                  { "id": "Q1", "x": 2.6, "y": 2.6, "label": "All +" },
+                  { "id": "Q2", "x": -2.6, "y": 2.6, "label": "sin +" },
+                  { "id": "Q3", "x": -2.6, "y": -2.6, "label": "tan +" },
+                  { "id": "Q4", "x": 2.6, "y": -2.6, "label": "cos +" }
+                ],
+                "hidePoints": ["O", "E", "W", "N", "S"],
+                "objects": [
+                  { "kind": "line", "from": "W", "to": "E" },
+                  { "kind": "line", "from": "S", "to": "N" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The master key",
+            "title": "Reference angles: the first-quadrant twin",
+            "body": "Fold the circle across the axes and every point lands on a first-quadrant twin. The **reference angle** is the acute gap between the arm and the X-AXIS: QII: $\\pi - \\theta$; QIII: $\\theta - \\pi$; QIV: $2\\pi - \\theta$. Mirrors preserve distances, so $\\theta$ and its twin share the same coordinate MAGNITUDES — same trig values up to sign. One table (Unit 2) now covers the whole circle."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The three-step recipe",
+            "intro": "Quadrant → sign; reference → magnitude; combine.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\sin\\frac{5\\pi}{6}$ and $\\cos\\frac{5\\pi}{6}$ exactly.",
+                "steps": [
+                  "$\\frac{5\\pi}{6} = 150°$: QII ⟹ sin $+$, cos $-$. Reference: $\\pi - \\frac{5\\pi}{6} = \\frac{\\pi}{6}$.",
+                  "$\\sin\\frac{5\\pi}{6} = +\\frac{1}{2}$; $\\cos\\frac{5\\pi}{6} = -\\frac{\\sqrt3}{2}$."
+                ],
+                "answer": "$\\tfrac{1}{2}$ and $-\\tfrac{\\sqrt3}{2}$",
+                "check": [
+                  "sin(5*pi/6) == Rational(1,2)",
+                  "cos(5*pi/6) == -sqrt(3)/2"
+                ]
+              },
+              {
+                "prompt": "Evaluate $\\tan\\frac{4\\pi}{3}$ exactly.",
+                "steps": [
+                  "QIII ⟹ tan $+$. Reference: $\\frac{4\\pi}{3} - \\pi = \\frac{\\pi}{3}$.",
+                  "$\\tan\\frac{4\\pi}{3} = +\\tan\\frac{\\pi}{3} = \\sqrt3$."
+                ],
+                "answer": "$\\sqrt{3}$",
+                "check": [
+                  "tan(4*pi/3) == sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Sign first",
+            "prompt": "Without computing: what is the SIGN of $\\cos 200°$?",
+            "options": [
+              "Negative — $200°$ is in QIII, where only tangent is positive",
+              "Positive — cosine is always positive",
+              "Zero",
+              "Depends on the reference angle"
+            ],
+            "correctIndex": 0,
+            "explanation": "$200°$ sits between $180°$ and $270°$: QIII, coordinates $(-,-)$. Cosine (the x-coordinate) is negative. The sign NEVER depends on the reference angle — quadrant decides sign, reference decides size.",
+            "check": [
+              "cos(rad(200)) < 0"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Find the twin",
+            "prompt": "What is the reference angle of $\\dfrac{7\\pi}{4}$?",
+            "options": [
+              "$\\dfrac{\\pi}{4}$ — the gap $2\\pi - \\frac{7\\pi}{4}$",
+              "$\\dfrac{3\\pi}{4}$",
+              "$\\dfrac{7\\pi}{4}$ itself",
+              "$\\dfrac{\\pi}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{7\\pi}{4} = 315°$ is QIV: reference $= 2\\pi - \\frac{7\\pi}{4} = \\frac{\\pi}{4}$. So e.g. $\\cos\\frac{7\\pi}{4} = +\\frac{\\sqrt2}{2}$ (QIV keeps cosine positive).",
+            "check": [
+              "2*pi - 7*pi/4 == pi/4",
+              "cos(7*pi/4) == sqrt(2)/2"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Around the circle",
+            "intro": "Run the recipe: laps, quadrant, reference, assemble.",
+            "problems": [
+              {
+                "prompt": "$\\cos\\dfrac{2\\pi}{3} = ?$",
+                "options": ["$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$", "$-\\dfrac{\\sqrt3}{2}$"],
+                "correctIndex": 0,
+                "explanation": "QII (cos negative), reference $\\frac{\\pi}{3}$: $-\\cos\\frac{\\pi}{3} = -\\frac{1}{2}$.",
+                "check": [
+                  "cos(2*pi/3) == Rational(-1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\dfrac{7\\pi}{6} = ?$",
+                "options": ["$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$", "$-\\dfrac{\\sqrt3}{2}$"],
+                "correctIndex": 0,
+                "explanation": "QIII (sin negative), reference $\\frac{\\pi}{6}$: $-\\frac{1}{2}$.",
+                "check": [
+                  "sin(7*pi/6) == Rational(-1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\tan\\dfrac{7\\pi}{4} = ?$",
+                "options": ["$-1$", "$1$", "$-\\sqrt3$"],
+                "correctIndex": 0,
+                "explanation": "QIV (tan negative), reference $\\frac{\\pi}{4}$: $-\\tan\\frac{\\pi}{4} = -1$.",
+                "check": [
+                  "tan(7*pi/4) == -1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Sketch the arm, every time",
+            "body": "A two-second sketch — circle, arm in roughly the right quadrant — makes both the sign and the reference angle VISIBLE before any formula runs. Nearly every quadrant error in existence comes from skipping the sketch. Don't be proud; draw the arm.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "ASTC counterclockwise: All, Sine, Tangent, Cosine positive — straight from coordinate signs.",
+              "Reference angle = acute gap to the x-axis: π−θ, θ−π, 2π−θ by quadrant.",
+              "Recipe: strip laps → quadrant (sign) → reference (magnitude) → assemble."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exact-values-around-the-circle",
+      "title": "Exact Values Around the Circle",
+      "concreteComparison": "Unit 2 gave you five landmark keys on the piano; the circle's symmetry now tunes the whole keyboard from them. Sixteen angles around the rim — every multiple of 30° and 45° — and you can play each one exactly, because each is a mirrored landmark.",
+      "objective": "Evaluate sin, cos, and tan exactly at any multiple of π/6 or π/4, in any quadrant, including negative angles.",
+      "concept": [
+        "The full tour: every multiple of $\\frac{\\pi}{6}$ ($30°$) and $\\frac{\\pi}{4}$ ($45°$) around the circle reduces by the three-step recipe to a Unit-2 landmark. $\\sin\\frac{5\\pi}{3}$: QIV, reference $\\frac{\\pi}{3}$, sine negative there: $-\\frac{\\sqrt3}{2}$. Sixteen special points, five memorized values, one recipe.",
+        "**Negative angles** rotate clockwise. Symmetry across the x-axis gives the parity rules: $\\cos(-\\theta) = \\cos\\theta$ (x survives the flip — cosine is EVEN) and $\\sin(-\\theta) = -\\sin\\theta$ (y flips — sine is ODD); hence $\\tan(-\\theta) = -\\tan\\theta$. So $\\cos(-\\frac{\\pi}{3}) = \\frac{1}{2}$, $\\sin(-\\frac{\\pi}{6}) = -\\frac{1}{2}$.",
+        "Big angles strip down: subtract $2\\pi$ until you land in $[0, 2\\pi)$ — $\\frac{13\\pi}{6} = \\frac{\\pi}{6} + 2\\pi$, so all its values match $\\frac{\\pi}{6}$'s. The full skill: ANY multiple of $30°$ or $45°$, positive, negative, or huge, evaluated exactly in three moves."
+      ],
+      "keyIdea": "Any multiple of π/6 or π/4 — negative or huge — reduces to a landmark: strip laps, apply even/odd for minus signs, then quadrant + reference.",
+      "facts": [
+        {
+          "title": "Even & odd",
+          "latex": "\\cos(-\\theta) = \\cos\\theta, \\qquad \\sin(-\\theta) = -\\sin\\theta",
+          "explanation": "Flip across the x-axis: x survives, y negates."
+        },
+        {
+          "title": "Strip laps",
+          "latex": "\\theta \\pm 2\\pi k \\text{ has identical values}",
+          "explanation": "Reduce into [0, 2π) before anything else."
+        },
+        {
+          "title": "The count",
+          "latex": "16 \\text{ special points} \\; \\to \\; 5 \\text{ landmarks} + \\text{recipe}",
+          "explanation": "Symmetry does the memorizing for you."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig34-we1",
+          "statement": "Evaluate exactly: $\\sin\\frac{5\\pi}{3}$, $\\cos\\frac{5\\pi}{3}$, $\\tan\\frac{5\\pi}{3}$.",
+          "solution": "$\\frac{5\\pi}{3} = 300°$: QIV — cosine positive, sine and tangent negative. Reference: $2\\pi - \\frac{5\\pi}{3} = \\frac{\\pi}{3}$. Values: $\\sin = -\\frac{\\sqrt3}{2}$, $\\cos = +\\frac{1}{2}$, $\\tan = -\\sqrt3$. (Consistency: $\\tan = \\frac{\\sin}{\\cos} = \\frac{-\\sqrt3/2}{1/2} = -\\sqrt3$ ✓.)",
+          "check": [
+            "sin(5*pi/3) == -sqrt(3)/2",
+            "cos(5*pi/3) == Rational(1,2)",
+            "tan(5*pi/3) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "trig34-we2",
+          "statement": "Evaluate exactly: $\\cos\\left(-\\frac{\\pi}{4}\\right)$ and $\\sin\\frac{13\\pi}{6}$.",
+          "solution": "Even rule: $\\cos(-\\frac{\\pi}{4}) = \\cos\\frac{\\pi}{4} = \\frac{\\sqrt2}{2}$. Lap-strip: $\\frac{13\\pi}{6} - 2\\pi = \\frac{\\pi}{6}$, so $\\sin\\frac{13\\pi}{6} = \\sin\\frac{\\pi}{6} = \\frac{1}{2}$.",
+          "check": [
+            "cos(-pi/4) == sqrt(2)/2",
+            "sin(13*pi/6) == Rational(1,2)",
+            "13*pi/6 - 2*pi == pi/6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Treating cosine like sine under negation: cos(−θ) = −cos θ.",
+          "correction": "Picture the flip across the x-axis: the x-coordinate DOESN'T move — cosine is even, $\\cos(-\\theta) = \\cos\\theta$. Only the y (sine) negates. Test on $\\theta = 0$: $\\cos 0 = 1$, and $-1$ would be absurd.",
+          "authored": true
+        },
+        {
+          "text": "Evaluating big angles by feeding them straight into the quadrant recipe.",
+          "correction": "The quadrant formulas assume $\\theta \\in [0, 2\\pi)$. Strip whole laps FIRST: $\\frac{17\\pi}{6} - 2\\pi = \\frac{5\\pi}{6}$, THEN run quadrant + reference. Skipping the strip mislocates the quadrant.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig34-t1",
+          "statement": "Evaluate exactly: $\\cos\\frac{7\\pi}{6}$ and $\\tan\\frac{11\\pi}{6}$.",
+          "solution": "$\\frac{7\\pi}{6}$: QIII, reference $\\frac{\\pi}{6}$, cosine negative: $-\\frac{\\sqrt3}{2}$. $\\frac{11\\pi}{6}$: QIV, reference $\\frac{\\pi}{6}$, tangent negative: $-\\frac{\\sqrt3}{3}$.",
+          "check": [
+            "cos(7*pi/6) == -sqrt(3)/2",
+            "tan(11*pi/6) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "trig34-t2",
+          "statement": "Evaluate exactly: $\\sin\\left(-\\frac{2\\pi}{3}\\right)$ and $\\cos\\frac{9\\pi}{4}$.",
+          "solution": "Odd rule: $\\sin(-\\frac{2\\pi}{3}) = -\\sin\\frac{2\\pi}{3} = -\\frac{\\sqrt3}{2}$. Lap-strip: $\\frac{9\\pi}{4} - 2\\pi = \\frac{\\pi}{4}$: $\\cos = \\frac{\\sqrt2}{2}$.",
+          "check": [
+            "sin(-2*pi/3) == -sqrt(3)/2",
+            "cos(9*pi/4) == sqrt(2)/2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The whole keyboard",
+            "title": "Sixteen points, five values",
+            "body": "Mark every multiple of $\\frac{\\pi}{6}$ and $\\frac{\\pi}{4}$ on the rim: sixteen special points. Each one is a MIRRORED landmark — same coordinates as a first-quadrant angle, up to sign. You memorized five values in Unit 2; symmetry now hands you all sixty-four (16 angles × 4 functions... minus the undefined tangents). This lesson is pure execution of the recipe."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "A full workup at 300°",
+            "intro": "One angle, all three functions, with the internal consistency check.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\sin$, $\\cos$, and $\\tan$ of $\\frac{5\\pi}{3}$ exactly.",
+                "steps": [
+                  "QIV: cos $+$, sin $-$, tan $-$. Reference: $2\\pi - \\frac{5\\pi}{3} = \\frac{\\pi}{3}$.",
+                  "$\\sin = -\\frac{\\sqrt3}{2}$, $\\cos = \\frac{1}{2}$, $\\tan = -\\sqrt3$; and $\\frac{\\sin}{\\cos} = -\\sqrt3$ ✓."
+                ],
+                "answer": "$-\\tfrac{\\sqrt3}{2}, \\; \\tfrac{1}{2}, \\; -\\sqrt3$",
+                "check": [
+                  "sin(5*pi/3) == -sqrt(3)/2",
+                  "cos(5*pi/3) == Rational(1,2)",
+                  "tan(5*pi/3) == -sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Clockwise",
+            "title": "Negative angles: even cosine, odd sine",
+            "body": "A negative angle rotates CLOCKWISE — the mirror image across the x-axis of its positive twin. The x-coordinate survives the flip: $\\cos(-\\theta) = \\cos\\theta$ (cosine is **even**). The y-coordinate negates: $\\sin(-\\theta) = -\\sin\\theta$ (sine is **odd**). Tangent inherits sine's flip. Two symmetry rules, and the negative half of the number line comes free."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The flip",
+            "prompt": "$\\cos\\left(-\\dfrac{\\pi}{3}\\right) = ?$",
+            "options": [
+              "$\\dfrac{1}{2}$ — cosine is even; the minus evaporates",
+              "$-\\dfrac{1}{2}$",
+              "$-\\dfrac{\\sqrt3}{2}$",
+              "$\\dfrac{\\sqrt3}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flipping across the x-axis leaves x untouched: $\\cos(-\\frac{\\pi}{3}) = \\cos\\frac{\\pi}{3} = \\frac{1}{2}$. Had it been SINE, the minus would stay: $\\sin(-\\frac{\\pi}{3}) = -\\frac{\\sqrt3}{2}$.",
+            "check": [
+              "cos(-pi/3) == Rational(1,2)",
+              "sin(-pi/3) == -sqrt(3)/2"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Minus signs and extra laps",
+            "intro": "Parity rules for the minus, lap-stripping for the excess.",
+            "examples": [
+              {
+                "prompt": "Evaluate $\\cos\\left(-\\frac{\\pi}{4}\\right)$ and $\\sin\\frac{13\\pi}{6}$ exactly.",
+                "steps": [
+                  "Even: $\\cos(-\\frac{\\pi}{4}) = \\cos\\frac{\\pi}{4} = \\frac{\\sqrt2}{2}$.",
+                  "Strip: $\\frac{13\\pi}{6} = \\frac{\\pi}{6} + 2\\pi$ ⟹ $\\sin\\frac{13\\pi}{6} = \\frac{1}{2}$."
+                ],
+                "answer": "$\\tfrac{\\sqrt2}{2}$ and $\\tfrac{1}{2}$",
+                "check": [
+                  "cos(-pi/4) == sqrt(2)/2",
+                  "sin(13*pi/6) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The grand tour",
+            "intro": "Every trick at once: laps, minus signs, quadrants, references.",
+            "problems": [
+              {
+                "prompt": "$\\cos\\dfrac{3\\pi}{4} = ?$",
+                "options": ["$-\\dfrac{\\sqrt2}{2}$", "$\\dfrac{\\sqrt2}{2}$", "$-\\dfrac{1}{2}$"],
+                "correctIndex": 0,
+                "explanation": "QII, reference $\\frac{\\pi}{4}$, cosine negative: $-\\frac{\\sqrt2}{2}$.",
+                "check": [
+                  "cos(3*pi/4) == -sqrt(2)/2"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\left(-\\dfrac{\\pi}{6}\\right) = ?$",
+                "options": ["$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$", "$-\\dfrac{\\sqrt3}{2}$"],
+                "correctIndex": 0,
+                "explanation": "Sine is odd: $-\\sin\\frac{\\pi}{6} = -\\frac{1}{2}$.",
+                "check": [
+                  "sin(-pi/6) == Rational(-1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\tan\\dfrac{9\\pi}{4} = ?$",
+                "options": ["$1$", "$-1$", "$\\sqrt3$"],
+                "correctIndex": 0,
+                "explanation": "Strip a lap: $\\frac{9\\pi}{4} - 2\\pi = \\frac{\\pi}{4}$; $\\tan\\frac{\\pi}{4} = 1$.",
+                "check": [
+                  "tan(9*pi/4) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The circle in your game controller",
+            "body": "Every analog-stick reading is a point near the unit circle: tilt direction = angle, tilt amount = radius, and games decode it with exactly the quadrant-and-sign logic you just practiced. Aim down-left and the code sees negative cosine, negative sine — QIII, verbatim from this lesson.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Sixteen special points all reduce to five landmarks via quadrant + reference.",
+              "cos is even, sin is odd: the minus evaporates or escapes accordingly.",
+              "Big angles: strip 2π laps first, THEN run the recipe."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig3-pr-1",
+      "statement": "Convert exactly: $150°$ to radians, and $\\frac{5\\pi}{4}$ to degrees.",
+      "solution": "$150° = \\frac{150\\pi}{180} = \\frac{5\\pi}{6}$. $\\frac{5\\pi}{4} = \\frac{5 \\cdot 180}{4} = 225°$.",
+      "check": [
+        "rad(150) == 5*pi/6",
+        "deg(5*pi/4) == 225"
+      ]
+    },
+    {
+      "id": "trig3-pr-2",
+      "statement": "A sector of a circle with radius $9$ has central angle $\\frac{2\\pi}{3}$. Find its arc length, exactly.",
+      "solution": "$s = r\\theta = 9 \\cdot \\frac{2\\pi}{3} = 6\\pi \\approx 18.8$.",
+      "check": [
+        "9*2*pi/3 == 6*pi"
+      ]
+    },
+    {
+      "id": "trig3-pr-3",
+      "statement": "$\\theta$ lands at $\\left(-\\frac{8}{17}, -\\frac{15}{17}\\right)$ on the unit circle. Find all three trig values and the quadrant.",
+      "solution": "$\\cos\\theta = -\\frac{8}{17}$, $\\sin\\theta = -\\frac{15}{17}$, $\\tan\\theta = \\frac{15}{8}$. Both coordinates negative: QIII (where tangent is positive ✓). On-circle: $\\frac{64 + 225}{289} = 1$ ✓.",
+      "check": [
+        "Rational(-8,17)**2 + Rational(-15,17)**2 == 1",
+        "Rational(-15,17)/Rational(-8,17) == Rational(15,8)"
+      ]
+    },
+    {
+      "id": "trig3-pr-4",
+      "statement": "Evaluate exactly: $\\sin\\frac{3\\pi}{4}$, $\\cos\\frac{3\\pi}{4}$, $\\tan\\frac{3\\pi}{4}$.",
+      "solution": "QII, reference $\\frac{\\pi}{4}$: $\\sin = \\frac{\\sqrt2}{2}$, $\\cos = -\\frac{\\sqrt2}{2}$, $\\tan = -1$.",
+      "check": [
+        "sin(3*pi/4) == sqrt(2)/2",
+        "cos(3*pi/4) == -sqrt(2)/2",
+        "tan(3*pi/4) == -1"
+      ]
+    },
+    {
+      "id": "trig3-pr-5",
+      "statement": "Evaluate exactly: $\\cos\\frac{11\\pi}{6}$ and $\\sin\\frac{4\\pi}{3}$.",
+      "solution": "$\\frac{11\\pi}{6}$: QIV, reference $\\frac{\\pi}{6}$, cos positive: $\\frac{\\sqrt3}{2}$. $\\frac{4\\pi}{3}$: QIII, reference $\\frac{\\pi}{3}$, sin negative: $-\\frac{\\sqrt3}{2}$.",
+      "check": [
+        "cos(11*pi/6) == sqrt(3)/2",
+        "sin(4*pi/3) == -sqrt(3)/2"
+      ]
+    },
+    {
+      "id": "trig3-pr-6",
+      "statement": "Evaluate exactly: $\\sin\\left(-\\frac{\\pi}{4}\\right)$, $\\cos\\left(-\\frac{5\\pi}{6}\\right)$, $\\tan(-\\pi)$.",
+      "solution": "Odd: $\\sin(-\\frac{\\pi}{4}) = -\\frac{\\sqrt2}{2}$. Even: $\\cos(-\\frac{5\\pi}{6}) = \\cos\\frac{5\\pi}{6} = -\\frac{\\sqrt3}{2}$. Odd: $\\tan(-\\pi) = -\\tan\\pi = 0$.",
+      "check": [
+        "sin(-pi/4) == -sqrt(2)/2",
+        "cos(-5*pi/6) == -sqrt(3)/2",
+        "tan(-pi) == 0"
+      ]
+    },
+    {
+      "id": "trig3-pr-7",
+      "statement": "In which quadrant is $\\theta$ if $\\tan\\theta > 0$ and $\\sin\\theta < 0$? Give one such angle exactly and verify.",
+      "solution": "Tangent positive: QI or QIII; sine negative rules out QI: **QIII**. Example: $\\frac{4\\pi}{3}$ — $\\tan\\frac{4\\pi}{3} = \\sqrt3 > 0$ and $\\sin\\frac{4\\pi}{3} = -\\frac{\\sqrt3}{2} < 0$ ✓.",
+      "check": [
+        "tan(4*pi/3) > 0",
+        "sin(4*pi/3) < 0"
+      ]
+    },
+    {
+      "id": "trig3-pr-8",
+      "statement": "Evaluate exactly: $\\sin\\frac{17\\pi}{6}$.",
+      "solution": "Strip a lap: $\\frac{17\\pi}{6} - 2\\pi = \\frac{5\\pi}{6}$. QII, reference $\\frac{\\pi}{6}$, sine positive: $\\frac{1}{2}$.",
+      "check": [
+        "sin(17*pi/6) == Rational(1,2)",
+        "17*pi/6 - 2*pi == 5*pi/6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig3-ty-1",
+      "statement": "A wiper blade of length $40$ cm sweeps $\\frac{3\\pi}{4}$ radians. How far does its tip travel, exactly — and how many degrees is the sweep?",
+      "solution": "Arc: $s = 40 \\cdot \\frac{3\\pi}{4} = 30\\pi \\approx 94$ cm. Degrees: $\\frac{3 \\cdot 180}{4} = 135°$.",
+      "check": [
+        "40*3*pi/4 == 30*pi",
+        "deg(3*pi/4) == 135"
+      ]
+    },
+    {
+      "id": "trig3-ty-2",
+      "statement": "For which two angles in $[0, 2\\pi)$ is $\\cos\\theta = 0$ — and what happens to $\\tan\\theta$ there?",
+      "solution": "Cosine (the x-coordinate) is 0 at the top and bottom of the circle: $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$. Tangent $= \\frac{\\sin}{\\cos}$ divides by zero: UNDEFINED at both — the two vertical asymptotes of Unit 4's tangent graph.",
+      "check": [
+        "cos(pi/2) == 0",
+        "cos(3*pi/2) == 0",
+        "sin(pi/2) == 1"
+      ]
+    },
+    {
+      "id": "trig3-ty-3",
+      "statement": "Evaluate exactly and simplify: $\\sin\\frac{2\\pi}{3} + \\sin\\frac{4\\pi}{3}$.",
+      "solution": "$\\frac{\\sqrt3}{2} + \\left(-\\frac{\\sqrt3}{2}\\right) = 0$. The two angles mirror across the x-axis... precisely: they're supplement-and-reflection partners whose sines cancel — visible instantly on a sketch.",
+      "check": [
+        "sin(2*pi/3) + sin(4*pi/3) == 0"
+      ]
+    },
+    {
+      "id": "trig3-ty-4",
+      "statement": "Given $\\sin\\theta = \\frac{3}{5}$ with $\\theta$ in QII, find $\\cos\\theta$ and $\\tan\\theta$ exactly.",
+      "solution": "Pythagorean identity: $\\cos^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$, so $\\cos\\theta = \\pm\\frac{4}{5}$ — and QII forces the NEGATIVE: $\\cos\\theta = -\\frac{4}{5}$. Then $\\tan\\theta = \\frac{3/5}{-4/5} = -\\frac{3}{4}$.",
+      "check": [
+        "1 - Rational(9,25) == Rational(16,25)",
+        "Rational(3,5)/Rational(-4,5) == Rational(-3,4)"
+      ]
+    },
+    {
+      "id": "trig3-ty-5",
+      "statement": "Order from smallest to largest, no calculator: $\\cos\\frac{\\pi}{6}$, $\\cos\\frac{5\\pi}{6}$, $\\cos\\frac{\\pi}{3}$.",
+      "solution": "$\\cos\\frac{5\\pi}{6} = -\\frac{\\sqrt3}{2} \\approx -0.87$ (QII, negative); $\\cos\\frac{\\pi}{3} = \\frac{1}{2}$; $\\cos\\frac{\\pi}{6} = \\frac{\\sqrt3}{2} \\approx 0.87$. Order: $\\cos\\frac{5\\pi}{6} < \\cos\\frac{\\pi}{3} < \\cos\\frac{\\pi}{6}$.",
+      "check": [
+        "cos(5*pi/6) < cos(pi/3)",
+        "cos(pi/3) < cos(pi/6)"
+      ]
+    },
+    {
+      "id": "trig3-ty-6",
+      "statement": "Evaluate exactly: $\\cos\\left(-\\frac{13\\pi}{4}\\right)$ (strip laps AND use parity).",
+      "solution": "Even first: $\\cos(-\\frac{13\\pi}{4}) = \\cos\\frac{13\\pi}{4}$. Strip a lap: $\\frac{13\\pi}{4} - 2\\pi = \\frac{5\\pi}{4}$. QIII, reference $\\frac{\\pi}{4}$, cosine negative: $-\\frac{\\sqrt2}{2}$.",
+      "check": [
+        "cos(-13*pi/4) == -sqrt(2)/2",
+        "13*pi/4 - 2*pi == 5*pi/4"
+      ]
+    }
+  ]
+}

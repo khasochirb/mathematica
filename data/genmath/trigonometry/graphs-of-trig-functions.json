@@ -1,0 +1,1045 @@
+{
+  "slug": "graphs-of-trig-functions",
+  "title": "Graphs of Trig Functions",
+  "unit": 4,
+  "status": "published",
+  "blurb": "The circle unrolled into a wave: sine and cosine as graphs, then the four dials — amplitude, period, phase, midline — that tune them to fit any rhythm, plus tangent's wilder portrait.",
+  "buildsOn": "The unit circle and periodicity from Unit 3; graph transformations from Algebra 2.",
+  "lessons": [
+    {
+      "slug": "the-sine-wave",
+      "title": "The Sine Wave",
+      "concreteComparison": "Film a Ferris-wheel cabin from the side and plot its HEIGHT against time: the ride's circular motion draws a perfect wave on the chart. Sine's graph isn't a new object — it's the unit circle's y-coordinate, unrolled along a time axis.",
+      "objective": "Graph y = sin x and y = cos x from unit-circle values, and command their anatomy: period, amplitude, zeros, peaks.",
+      "concept": [
+        "Let $\\theta$ run along a horizontal axis and plot $y = \\sin\\theta$: the y-coordinate of the circling point traces the **sine wave** — up to $1$ at $\\frac{\\pi}{2}$, back through $0$ at $\\pi$, down to $-1$ at $\\frac{3\\pi}{2}$, home at $2\\pi$. One lap of the circle = one full wave.",
+        "Anatomy: **period** $2\\pi$ (the wave repeats each lap, from Unit 3's periodicity); **amplitude** $1$ (max height above the center line — the circle's radius); **zeros** at $0, \\pi, 2\\pi, \\ldots$ (every axis crossing of the circle); peak at $\\frac{\\pi}{2}$, trough at $\\frac{3\\pi}{2}$.",
+        "Cosine's graph is the x-coordinate's story: it STARTS at its peak ($\\cos 0 = 1$) and otherwise has the same shape — in fact $\\cos\\theta = \\sin\\left(\\theta + \\frac{\\pi}{2}\\right)$: cosine is the sine wave slid left by a quarter-period. Two names, one wave, offset start."
+      ],
+      "keyIdea": "The sine wave is the circle's y-coordinate unrolled: period 2π, amplitude 1, zeros at multiples of π — and cosine is the same wave started at its peak.",
+      "facts": [
+        {
+          "title": "Anatomy of y = sin x",
+          "latex": "\\text{period } 2\\pi, \\;\\; \\text{amplitude } 1, \\;\\; \\text{zeros at } k\\pi",
+          "explanation": "Peak at π/2, trough at 3π/2 — one lap, one wave."
+        },
+        {
+          "title": "Cosine's head start",
+          "latex": "\\cos\\theta = \\sin\\!\\left(\\theta + \\tfrac{\\pi}{2}\\right)",
+          "explanation": "Same wave, slid a quarter-period — starts at the peak."
+        },
+        {
+          "title": "Bounded forever",
+          "latex": "-1 \\le \\sin\\theta \\le 1",
+          "explanation": "A coordinate of a radius-1 circle can't escape [−1, 1]."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig41-we1",
+          "statement": "Using exact values, tabulate $y = \\sin\\theta$ at $\\theta = 0, \\frac{\\pi}{6}, \\frac{\\pi}{2}, \\frac{5\\pi}{6}, \\pi$ and describe the wave's first half-lap.",
+          "solution": "Values: $0, \\frac{1}{2}, 1, \\frac{1}{2}, 0$. The wave rises from 0 through $\\frac{1}{2}$ to its peak 1 at $\\frac{\\pi}{2}$, then descends symmetrically back to 0 at $\\pi$ — a perfect arch, mirror-symmetric about $\\theta = \\frac{\\pi}{2}$.",
+          "check": [
+            "sin(0) == 0",
+            "sin(pi/6) == Rational(1,2)",
+            "sin(pi/2) == 1",
+            "sin(5*pi/6) == Rational(1,2)",
+            "sin(pi) == 0"
+          ]
+        },
+        {
+          "id": "trig41-we2",
+          "statement": "Where in $[0, 2\\pi]$ does $\\cos\\theta$ reach its maximum, its minimum, and its zeros?",
+          "solution": "Cosine reads the x-coordinate: maximum $1$ at $\\theta = 0$ (and again $2\\pi$); minimum $-1$ at $\\pi$ (far left of the circle); zeros at $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$ (top and bottom, where x vanishes). Same wave as sine, shifted to start at the top.",
+          "check": [
+            "cos(0) == 1",
+            "cos(pi) == -1",
+            "cos(pi/2) == 0",
+            "cos(3*pi/2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Drawing the wave with sharp corners at the peaks, like a zigzag.",
+          "correction": "The peak is a smooth turnaround — near $\\frac{\\pi}{2}$ the circling point moves almost horizontally, so the height changes SLOWLY there. Sine flattens at its extremes and is steepest at its zeros. (Unit 2 of Calculus makes this precise: the slope of sin is cos.)",
+          "authored": true
+        },
+        {
+          "text": "Confusing period with amplitude.",
+          "correction": "Period is HORIZONTAL — how far until the pattern repeats ($2\\pi$). Amplitude is VERTICAL — how high above the midline it swings ($1$). Two independent dials; the next lesson turns each separately.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig41-t1",
+          "statement": "In $[0, 2\\pi]$, solve $\\sin\\theta = \\frac{1}{2}$ by reading the wave (or circle).",
+          "solution": "The height $\\frac{1}{2}$ is hit twice per lap: once climbing at $\\frac{\\pi}{6}$, once descending at $\\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}$. Every horizontal line between $-1$ and $1$ cuts each wave arch twice — remember this for Unit 5's equations.",
+          "check": [
+            "sin(pi/6) == Rational(1,2)",
+            "sin(5*pi/6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "trig41-t2",
+          "statement": "Verify with exact values that $\\cos\\theta = \\sin\\left(\\theta + \\frac{\\pi}{2}\\right)$ at $\\theta = 0$ and $\\theta = \\frac{\\pi}{3}$.",
+          "solution": "At 0: $\\cos 0 = 1$ and $\\sin\\frac{\\pi}{2} = 1$ ✓. At $\\frac{\\pi}{3}$: $\\cos\\frac{\\pi}{3} = \\frac{1}{2}$ and $\\sin\\left(\\frac{\\pi}{3} + \\frac{\\pi}{2}\\right) = \\sin\\frac{5\\pi}{6} = \\frac{1}{2}$ ✓. Cosine is sine, a quarter-turn ahead.",
+          "check": [
+            "cos(0) == sin(pi/2)",
+            "cos(pi/3) == sin(5*pi/6)",
+            "simplify(cos(x) - sin(x + pi/2)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The unroll",
+            "title": "A circle filmed from the side",
+            "body": "Unit 3 parked the trig values on a circle. Now UNROLL: let the angle run along a horizontal axis and plot the y-coordinate above it. The circling point's height traces a curve — rising to 1, falling through 0 to $-1$, returning — the **sine wave**, the most famous curve in science. Nothing new was computed; the circle was just given a time axis."
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Watch",
+            "title": "The wave, traced live",
+            "teach": "The point orbits while its height streams onto the scroll: one full lap paints one full wave. Watch the peak happen exactly when the point crosses the top ($\\frac{\\pi}{2}$), the zero when it crosses the axis ($\\pi$).",
+            "config": { "mode": "wave" }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Anatomy",
+            "title": "Period, amplitude, zeros",
+            "body": "Three measurements describe the wave completely. **Period** $2\\pi$: one lap, then perfect repetition forever. **Amplitude** $1$: the swing above (and below) the midline — the circle's radius. **Zeros** at $0, \\pi, 2\\pi, \\ldots$: the axis crossings. Add the landmarks — peak $(\\frac{\\pi}{2}, 1)$, trough $(\\frac{3\\pi}{2}, -1)$ — and you can sketch the wave from five points per lap."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Five exact points, one arch",
+            "intro": "The Unit 2 table becomes the wave's skeleton.",
+            "examples": [
+              {
+                "prompt": "Tabulate $\\sin\\theta$ at $0, \\frac{\\pi}{6}, \\frac{\\pi}{2}, \\frac{5\\pi}{6}, \\pi$ and describe the arch.",
+                "steps": [
+                  "$0, \\frac{1}{2}, 1, \\frac{1}{2}, 0$ — rise, peak, symmetric fall.",
+                  "The arch is mirror-symmetric about $\\frac{\\pi}{2}$; the second half-lap digs the matching trough below."
+                ],
+                "answer": "$0, \\tfrac{1}{2}, 1, \\tfrac{1}{2}, 0$",
+                "check": [
+                  "sin(pi/6) == Rational(1,2)",
+                  "sin(5*pi/6) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the wave",
+            "prompt": "How many solutions does $\\sin\\theta = \\frac{1}{2}$ have in $[0, 2\\pi)$?",
+            "options": [
+              "Two — the line $y = \\frac{1}{2}$ cuts the arch going up and coming down",
+              "One — at $\\frac{\\pi}{6}$ only",
+              "Four",
+              "None"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{\\pi}{6}$ (climbing) and $\\frac{5\\pi}{6}$ (descending). Any height strictly between $-1$ and $1$ is hit exactly twice per period — the geometric heart of trig equations (Unit 5).",
+            "check": [
+              "sin(pi/6) == Rational(1,2)",
+              "sin(5*pi/6) == Rational(1,2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The twin",
+            "title": "Cosine: same wave, head start",
+            "body": "Plot the x-coordinate instead and you get cosine's graph: identical shape, but it STARTS at the peak ($\\cos 0 = 1$) — the circling point begins at the far right, where x is maximal. Formally: $\\cos\\theta = \\sin(\\theta + \\frac{\\pi}{2})$ — cosine is sine slid left a quarter-period. Everything you know about one graph transfers to the other with a shift."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Cosine's landmarks",
+            "intro": "Same questions, x-coordinate answers.",
+            "examples": [
+              {
+                "prompt": "In $[0, 2\\pi]$: where is $\\cos\\theta$ maximal, minimal, zero?",
+                "steps": [
+                  "Max 1 at $0$ and $2\\pi$ (far right); min $-1$ at $\\pi$ (far left).",
+                  "Zeros at $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$ — top and bottom, where x vanishes."
+                ],
+                "answer": "max at $0$; min at $\\pi$; zeros at $\\tfrac{\\pi}{2}, \\tfrac{3\\pi}{2}$",
+                "check": [
+                  "cos(pi) == -1",
+                  "cos(pi/2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wave literacy",
+            "intro": "Answer from the picture in your head.",
+            "problems": [
+              {
+                "prompt": "What is the maximum value of $y = \\sin\\theta$, and where in $[0, 2\\pi)$ is it attained?",
+                "options": ["$1$, at $\\theta = \\frac{\\pi}{2}$", "$1$, at $\\theta = \\pi$", "$2\\pi$, at $\\theta = 1$"],
+                "correctIndex": 0,
+                "explanation": "The circling point tops out at the circle's apex $(0, 1)$, reached a quarter-lap in.",
+                "check": [
+                  "sin(pi/2) == 1"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta$ and $\\cos\\theta$ are EQUAL at which angle in $(0, \\frac{\\pi}{2})$?",
+                "options": ["$\\dfrac{\\pi}{4}$", "$\\dfrac{\\pi}{6}$", "$\\dfrac{\\pi}{3}$"],
+                "correctIndex": 0,
+                "explanation": "At $45°$ the point sits on the diagonal: $x = y = \\frac{\\sqrt2}{2}$ — the waves cross there.",
+                "check": [
+                  "sin(pi/4) == cos(pi/4)"
+                ]
+              },
+              {
+                "prompt": "Can $\\sin\\theta = 1.2$ for any $\\theta$?",
+                "options": ["No — sine is trapped in $[-1, 1]$", "Yes, for large θ", "Yes, in radians only"],
+                "correctIndex": 0,
+                "explanation": "Sine is a coordinate of a radius-1 circle: it can never leave $[-1, 1]$, no matter the angle. Equations like $\\sin\\theta = 1.2$ have NO solutions — a fact Unit 5 will use.",
+                "check": [
+                  "sin(pi/2) == 1",
+                  "1 < Rational(12,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Every sound you hear is this graph",
+            "body": "A pure musical tone IS a sine wave — the A above middle C is $\\sin$ oscillating 440 times per second in air pressure. Every other sound, from speech to symphonies, is a SUM of sine waves (Fourier's theorem). The curve you just unrolled is, quite literally, what hearing is made of.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Sine's graph = the circle's y-coordinate on a time axis: period 2π, amplitude 1, zeros at kπ.",
+              "Cosine = the same wave started at its peak: cos θ = sin(θ + π/2).",
+              "Both live forever in [−1, 1]; any interior height is hit twice per lap."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "amplitude-and-period",
+      "title": "Amplitude & Period",
+      "concreteComparison": "A guitar string's VOLUME is how wide it swings; its PITCH is how fast it repeats. Two independent knobs — you can play the same note loud or soft, or different notes at the same volume. In y = a sin(bx), the a is the volume knob, the b is the pitch knob.",
+      "objective": "Read and set amplitude and period from y = a sin(bx) or y = a cos(bx), and sketch such waves from their key points.",
+      "concept": [
+        "**Amplitude** $= |a|$: the coefficient outside stretches the wave vertically. $y = 3\\sin\\theta$ swings between $-3$ and $3$; a negative $a$ additionally flips the wave upside down (the amplitude itself is always the positive $|a|$).",
+        "**Period** $= \\frac{2\\pi}{b}$: the coefficient INSIDE compresses time. $y = \\sin(2\\theta)$ finishes a wave in half the usual span — period $\\pi$ — because the inner $2\\theta$ reaches $2\\pi$ when $\\theta$ only reaches $\\pi$. Bigger $b$, faster repetition, shorter period.",
+        "Sketching recipe: draw the midline, mark the amplitude band $\\pm|a|$, divide one period into QUARTERS — start, peak, zero, trough, end (for positive sine) — and connect smoothly. Quarter-points are where all the action is; everything between is smooth interpolation."
+      ],
+      "keyIdea": "In y = a sin(bx): |a| is the vertical swing (amplitude), 2π/b is the repeat length (period) — independent knobs, read separately.",
+      "facts": [
+        {
+          "title": "Amplitude",
+          "latex": "\\text{amp} = |a|, \\quad \\text{range } [-|a|, |a|]",
+          "explanation": "Outside coefficient = vertical stretch; minus flips."
+        },
+        {
+          "title": "Period",
+          "latex": "T = \\frac{2\\pi}{b}",
+          "explanation": "Inside coefficient = horizontal compression."
+        },
+        {
+          "title": "Quarter-point sketch",
+          "latex": "\\text{start} \\to \\text{peak} \\to \\text{zero} \\to \\text{trough} \\to \\text{end}",
+          "explanation": "Five points per period; smooth curves between."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig42-we1",
+          "statement": "For $y = 3\\sin(2\\theta)$: state the amplitude, period, maximum value, and the first $\\theta > 0$ where the maximum occurs.",
+          "solution": "Amplitude $|3| = 3$; period $\\frac{2\\pi}{2} = \\pi$. Maximum $3$, reached a quarter-period in: $\\theta = \\frac{\\pi}{4}$ — check: $3\\sin\\left(2 \\cdot \\frac{\\pi}{4}\\right) = 3\\sin\\frac{\\pi}{2} = 3$ ✓.",
+          "check": [
+            "Abs(3) == 3",
+            "2*pi/2 == pi",
+            "3*sin(2*pi/4) == 3"
+          ]
+        },
+        {
+          "id": "trig42-we2",
+          "statement": "Write a cosine function with amplitude $5$ and period $\\frac{\\pi}{2}$, and verify its period.",
+          "solution": "Need $\\frac{2\\pi}{b} = \\frac{\\pi}{2}$ ⟹ $b = 4$: $y = 5\\cos(4\\theta)$. Verify: at $\\theta = \\frac{\\pi}{2}$ the inside is $2\\pi$ — one full cycle exactly: $5\\cos(4 \\cdot \\frac{\\pi}{2}) = 5\\cos 2\\pi = 5$, matching the start ✓.",
+          "check": [
+            "2*pi/4 == pi/2",
+            "5*cos(4*pi/2) == 5",
+            "5*cos(0) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the period AS b — 'y = sin(2θ) has period 2.'",
+          "correction": "$b$ counts how many waves fit in $2\\pi$, so the period is $\\frac{2\\pi}{b}$: for $b = 2$, period $\\pi$ (shorter!). Bigger $b$ squeezes MORE waves into the same window — b and period move in opposite directions.",
+          "authored": true
+        },
+        {
+          "text": "Calling the amplitude of y = −4 sin θ 'negative 4.'",
+          "correction": "Amplitude is a DISTANCE — always positive: $|-4| = 4$. The minus sign is separate information: it flips the wave (trough first instead of peak first). Report both: amplitude 4, reflected.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig42-t1",
+          "statement": "State the amplitude and period of $y = \\frac{1}{2}\\cos(3\\theta)$, and its value at $\\theta = \\frac{\\pi}{3}$.",
+          "solution": "Amplitude $\\frac{1}{2}$; period $\\frac{2\\pi}{3}$. At $\\frac{\\pi}{3}$: $\\frac{1}{2}\\cos\\pi = -\\frac{1}{2}$ — a trough: $\\frac{\\pi}{3}$ is half its period, and cosine bottoms out at half-period.",
+          "check": [
+            "2*pi/3 == 2*pi/3",
+            "cos(3*pi/3)/2 == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "trig42-t2",
+          "statement": "A wave has amplitude $2$ and completes exactly $4$ full cycles in $[0, 2\\pi]$. Write it as a sine function and give its period.",
+          "solution": "Four cycles in $2\\pi$ means $b = 4$: $y = 2\\sin(4\\theta)$, period $\\frac{2\\pi}{4} = \\frac{\\pi}{2}$.",
+          "check": [
+            "2*pi/4 == pi/2",
+            "2*sin(4*pi/8) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two knobs",
+            "title": "Volume and pitch",
+            "body": "The plain sine wave is one specific rhythm: swing 1, repeat every $2\\pi$. Real rhythms — tides, heartbeats, alternating current — need tuning. $y = a\\sin(b\\theta)$ has exactly two knobs: $a$ OUTSIDE scales the swing (volume), $b$ INSIDE scales the speed (pitch). They act independently — that's what makes the form so usable."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Knob 1",
+            "title": "Amplitude: the outside coefficient",
+            "body": "$y = 3\\sin\\theta$ multiplies every height by 3: peaks at $3$, troughs at $-3$ — **amplitude** $|a| = 3$, range $[-3, 3]$. A negative $a$ flips the wave (starts downward), but amplitude stays positive: $y = -4\\sin\\theta$ has amplitude 4, reflected. Vertical only — the zeros don't move."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Knob 2",
+            "title": "Period: the inside coefficient",
+            "body": "$y = \\sin(2\\theta)$: the INPUT is doubled, so the inside hits $2\\pi$ when $\\theta = \\pi$ — a full wave in half the space. **Period** $= \\frac{2\\pi}{b}$. Read $b$ as 'waves per $2\\pi$ window': $b = 2$ fits two, $b = \\frac{1}{2}$ fits half of one (period $4\\pi$ — stretched). Inside compresses, outside stretches: the eternal transformation rule from Algebra 2."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the dials, then set them",
+            "intro": "Amplitude from outside, period from inside — then reverse-engineer.",
+            "examples": [
+              {
+                "prompt": "$y = 3\\sin(2\\theta)$: amplitude, period, max value, first max location?",
+                "steps": [
+                  "Amp $3$; period $\\frac{2\\pi}{2} = \\pi$.",
+                  "Max $3$ at a quarter-period: $\\theta = \\frac{\\pi}{4}$ (inside reads $\\frac{\\pi}{2}$ there ✓)."
+                ],
+                "answer": "amp 3, period π, max 3 at θ = π/4",
+                "check": [
+                  "3*sin(2*pi/4) == 3",
+                  "2*pi/2 == pi"
+                ]
+              },
+              {
+                "prompt": "Build a cosine with amplitude $5$ and period $\\frac{\\pi}{2}$.",
+                "steps": [
+                  "$\\frac{2\\pi}{b} = \\frac{\\pi}{2} \\Rightarrow b = 4$.",
+                  "$y = 5\\cos(4\\theta)$."
+                ],
+                "answer": "$y = 5\\cos(4\\theta)$",
+                "check": [
+                  "2*pi/4 == pi/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Opposite directions",
+            "prompt": "Which function repeats FASTEST?",
+            "options": [
+              "$y = \\sin(4\\theta)$ — period $\\frac{\\pi}{2}$",
+              "$y = \\sin\\theta$ — period $2\\pi$",
+              "$y = 4\\sin\\theta$ — big amplitude means fast",
+              "$y = \\sin\\left(\\frac{\\theta}{4}\\right)$ — period $8\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Speed lives INSIDE: $b = 4$ gives period $\\frac{2\\pi}{4} = \\frac{\\pi}{2}$, four waves per window. Amplitude (option C) is pure volume — it never touches the rhythm.",
+            "check": [
+              "2*pi/4 < 2*pi",
+              "2*pi/Rational(1,4) == 8*pi"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sketching",
+            "title": "The quarter-point method",
+            "body": "To sketch $y = a\\sin(b\\theta)$: (1) draw the midline and the band $\\pm|a|$; (2) compute the period $\\frac{2\\pi}{b}$; (3) split ONE period into four equal parts; (4) plot the five checkpoints — start-zero, peak, mid-zero, trough, end-zero — and connect with smooth arches. All of a wave's personality lives at its quarter-points; the pencil just interpolates."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Dial reading",
+            "intro": "Outside = swing; inside = speed; quarter-points = key values.",
+            "problems": [
+              {
+                "prompt": "Amplitude and period of $y = \\frac{1}{2}\\cos(3\\theta)$?",
+                "options": [
+                  "amp $\\frac{1}{2}$, period $\\frac{2\\pi}{3}$",
+                  "amp $3$, period $\\frac{\\pi}{2}$",
+                  "amp $\\frac{1}{2}$, period $3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Outside $\\frac{1}{2}$ is the swing; inside 3 gives period $\\frac{2\\pi}{3}$ — three waves per $2\\pi$.",
+                "check": [
+                  "Abs(Rational(1,2)) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "What is the range of $y = -4\\sin(5\\theta)$?",
+                "options": ["$[-4, 4]$", "$[-5, 5]$", "$[4, -4]$"],
+                "correctIndex": 0,
+                "explanation": "Amplitude $|-4| = 4$: the wave fills $[-4, 4]$. The minus flips WHICH extreme comes first, not how far it swings; the 5 only sets speed.",
+                "check": [
+                  "Abs(-4) == 4"
+                ]
+              },
+              {
+                "prompt": "$y = 2\\sin(4\\theta)$: what is $y$ at $\\theta = \\frac{\\pi}{8}$ (its first quarter-point)?",
+                "options": ["$2$ — the peak", "$0$", "$-2$"],
+                "correctIndex": 0,
+                "explanation": "Inside: $4 \\cdot \\frac{\\pi}{8} = \\frac{\\pi}{2}$ — sine's peak, scaled to 2. A quarter of the period ($\\frac{\\pi}{2}$) after the start, right on schedule.",
+                "check": [
+                  "2*sin(4*pi/8) == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 50 hertz in your walls",
+            "body": "Mongolia's power grid delivers voltage shaped exactly like $y = a\\sin(b t)$ with 50 complete waves per second — engineers literally specify the grid by its amplitude (≈311 V peak) and period (0.02 s). When frequency drifts even 1%, power plants across the country adjust within seconds. Someone's job is keeping a national sine wave in tune.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Amplitude = |a| (outside): the swing; minus flips, never 'negative amplitude.'",
+              "Period = 2π/b (inside): bigger b, faster repeat — opposite directions.",
+              "Sketch by quarter-points: five checkpoints per period, smooth arches between."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "shifts-and-the-midline",
+      "title": "Shifts & the Midline",
+      "concreteComparison": "Daylight hours over a year make a wave — but it doesn't oscillate around zero (days aren't negative), and its peak isn't in January (it's the June solstice). To model real rhythms you must SLIDE the wave up to its true center and ACROSS to its true starting phase. Those two slides are this lesson.",
+      "objective": "Graph and write functions of the form y = a sin(b(x − c)) + d, reading midline, phase shift, and range.",
+      "concept": [
+        "**Vertical shift** $d$ raises the whole wave: $y = \\sin\\theta + 3$ oscillates around the **midline** $y = 3$, with range $[3 - 1, 3 + 1] = [2, 4]$. In general the range is $[d - |a|, \\; d + |a|]$: midline plus-and-minus amplitude.",
+        "**Phase shift** $c$ in $y = \\sin(b(\\theta - c))$ slides the wave RIGHT by $c$ (a subtraction inside delays the start — the same inside-is-backwards rule as every function transformation). Caution: factor the inside first! $\\sin(2\\theta - \\frac{\\pi}{2}) = \\sin\\left(2\\left(\\theta - \\frac{\\pi}{4}\\right)\\right)$: the shift is $\\frac{\\pi}{4}$, not $\\frac{\\pi}{2}$.",
+        "Full reading order for $y = a\\sin(b(\\theta - c)) + d$: amplitude $|a|$, period $\\frac{2\\pi}{b}$, phase shift $c$, midline $y = d$. Four dials, each read from its own position — and any periodic phenomenon on Earth can be dressed in them."
+      ],
+      "keyIdea": "d sets the midline (range = d ± |a|); c slides the start right by c — but only after factoring b out of the inside.",
+      "facts": [
+        {
+          "title": "Midline & range",
+          "latex": "y = d, \\qquad \\text{range } [d - |a|, \\; d + |a|]",
+          "explanation": "The wave breathes around its raised center."
+        },
+        {
+          "title": "Phase shift",
+          "latex": "y = a\\sin(b(\\theta - c)) + d: \\text{ shift right } c",
+          "explanation": "Subtraction inside delays; factor b out first."
+        },
+        {
+          "title": "Reading order",
+          "latex": "|a| \\to \\tfrac{2\\pi}{b} \\to c \\to d",
+          "explanation": "Amplitude, period, phase, midline — four independent dials."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig43-we1",
+          "statement": "For $y = 2\\sin(\\theta) + 3$: state the midline, range, maximum, and minimum.",
+          "solution": "Midline $y = 3$; amplitude 2 breathes around it: range $[3 - 2, 3 + 2] = [1, 5]$. Max 5 (at $\\theta = \\frac{\\pi}{2}$), min 1 (at $\\frac{3\\pi}{2}$). The wave never touches zero — lifted clear of the axis.",
+          "check": [
+            "3 + 2 == 5",
+            "3 - 2 == 1",
+            "2*sin(pi/2) + 3 == 5",
+            "2*sin(3*pi/2) + 3 == 1"
+          ]
+        },
+        {
+          "id": "trig43-we2",
+          "statement": "Find the amplitude, period, and phase shift of $y = 4\\sin\\left(2\\theta - \\frac{\\pi}{2}\\right)$, and its value at $\\theta = \\frac{\\pi}{4}$.",
+          "solution": "Factor the inside: $4\\sin\\left(2\\left(\\theta - \\frac{\\pi}{4}\\right)\\right)$. Amplitude 4, period $\\frac{2\\pi}{2} = \\pi$, phase shift $\\frac{\\pi}{4}$ right (NOT $\\frac{\\pi}{2}$). At $\\theta = \\frac{\\pi}{4}$: inside is 0, so $y = 4\\sin 0 = 0$ — the shifted wave STARTS there, confirming the shift.",
+          "check": [
+            "4*sin(2*pi/4 - pi/2) == 0",
+            "2*pi/2 == pi",
+            "4*sin(2*(pi/2) - pi/2) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the phase shift straight off sin(2θ − π/2) as π/2.",
+          "correction": "The shift is measured AFTER factoring: $2\\theta - \\frac{\\pi}{2} = 2(\\theta - \\frac{\\pi}{4})$ — shift $\\frac{\\pi}{4}$. The raw constant gets divided by $b$. Skipping the factor step is the single most common graphing error in trigonometry.",
+          "authored": true
+        },
+        {
+          "text": "Giving the range as [−|a|, |a|] after a vertical shift.",
+          "correction": "The shift moves the CENTER: range is $[d - |a|, d + |a|]$. For $2\\sin\\theta + 3$: $[1, 5]$, not $[-2, 2]$. Draw the midline first and the range brackets it symmetrically.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig43-t1",
+          "statement": "State the midline, amplitude, and range of $y = 3\\cos(2\\theta) - 1$, and evaluate it at $\\theta = 0$.",
+          "solution": "Midline $y = -1$, amplitude 3, range $[-4, 2]$. At 0: $3\\cos 0 - 1 = 2$ — a cosine starts at its (shifted) peak ✓.",
+          "check": [
+            "-1 + 3 == 2",
+            "-1 - 3 == -4",
+            "3*cos(0) - 1 == 2"
+          ]
+        },
+        {
+          "id": "trig43-t2",
+          "statement": "Write a sine function with amplitude $2$, period $\\pi$, phase shift $\\frac{\\pi}{6}$ right, and midline $y = 5$. Then verify its value at $\\theta = \\frac{\\pi}{6}$.",
+          "solution": "Period $\\pi$ needs $b = 2$: $y = 2\\sin\\left(2\\left(\\theta - \\frac{\\pi}{6}\\right)\\right) + 5$. At $\\theta = \\frac{\\pi}{6}$ the inside is 0: $y = 2\\sin 0 + 5 = 5$ — starting on its midline, as a shifted sine must.",
+          "check": [
+            "2*pi/2 == pi",
+            "2*sin(2*(pi/6 - pi/6)) + 5 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Real rhythms",
+            "title": "Waves that don't circle zero",
+            "body": "Daylight hours oscillate around 12, not 0. A heartbeat's pressure wave rides above 80. Real periodic data needs the wave MOVED — up to its true center, across to its true start. Two more dials finish the toolkit: $y = a\\sin(b(\\theta - c)) + d$, the complete general wave."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dial 3",
+            "title": "The midline: + d lifts everything",
+            "body": "Add $d$ and every point rises by $d$: the wave now breathes around the **midline** $y = d$, reaching up to $d + |a|$ and down to $d - |a|$. Sketch discipline: draw the midline FIRST (dashed), then the amplitude band around it, then the wave inside the band. The midline is the wave's true zero."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "A lifted wave",
+            "intro": "Midline first, then band, then landmarks.",
+            "examples": [
+              {
+                "prompt": "$y = 2\\sin\\theta + 3$: midline, range, max, min?",
+                "steps": [
+                  "Midline $y = 3$; band $3 \\pm 2$: range $[1, 5]$.",
+                  "Max 5 at $\\frac{\\pi}{2}$; min 1 at $\\frac{3\\pi}{2}$ — sine's schedule, lifted."
+                ],
+                "answer": "midline 3, range [1, 5]",
+                "check": [
+                  "2*sin(pi/2) + 3 == 5",
+                  "2*sin(3*pi/2) + 3 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Dial 4",
+            "title": "Phase shift: the delayed start",
+            "body": "$y = \\sin(\\theta - c)$ starts its cycle $c$ later — slid RIGHT by $c$ (inside transformations run backwards, as always). THE TRAP: with a $b$ present, factor before reading. $\\sin(2\\theta - \\frac{\\pi}{2}) = \\sin(2(\\theta - \\frac{\\pi}{4}))$: shift $\\frac{\\pi}{4}$. The raw constant is $bc$, not $c$ — divide by $b$ or read it wrong."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Factor, then read",
+            "intro": "The inside must be b(θ − c) before c is visible.",
+            "examples": [
+              {
+                "prompt": "$y = 4\\sin(2\\theta - \\frac{\\pi}{2})$: amplitude, period, phase shift?",
+                "steps": [
+                  "Factor: $4\\sin\\left(2(\\theta - \\frac{\\pi}{4})\\right)$.",
+                  "Amp 4, period $\\pi$, shift $\\frac{\\pi}{4}$ right — verify: $y(\\frac{\\pi}{4}) = 4\\sin 0 = 0$, the cycle's start ✓."
+                ],
+                "answer": "amp 4, period π, shift π/4",
+                "check": [
+                  "4*sin(2*pi/4 - pi/2) == 0",
+                  "2*pi/2 == pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The factor trap",
+            "prompt": "What is the phase shift of $y = \\sin\\left(3\\theta - \\pi\\right)$?",
+            "options": [
+              "$\\dfrac{\\pi}{3}$ right — factor: $\\sin\\left(3\\left(\\theta - \\frac{\\pi}{3}\\right)\\right)$",
+              "$\\pi$ right — read the constant directly",
+              "$\\pi$ left",
+              "$3\\pi$ right"
+            ],
+            "correctIndex": 0,
+            "explanation": "Factor the 3 out: the true shift is $\\frac{\\pi}{3}$. Confirm: at $\\theta = \\frac{\\pi}{3}$ the inside reads 0 — the wave starts there. The raw $\\pi$ is $b \\times c$, the pre-divided imposter.",
+            "check": [
+              "sin(3*pi/3 - pi) == 0"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Range after a lift",
+            "prompt": "What is the range of $y = 3\\cos(2\\theta) - 1$?",
+            "options": [
+              "$[-4, 2]$ — midline $-1$, band $\\pm 3$",
+              "$[-3, 3]$",
+              "$[-1, 3]$",
+              "$[-2, 4]$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Midline $y = -1$; amplitude 3 reaches up to $2$ and down to $-4$. (The inside 2 changes the SPEED only — the range never hears about it.)",
+            "check": [
+              "-1 + 3 == 2",
+              "-1 - 3 == -4"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "All four dials",
+            "intro": "Amplitude, period, shift (factored!), midline.",
+            "problems": [
+              {
+                "prompt": "Midline of $y = \\frac{1}{2}\\sin(4\\theta) + 6$?",
+                "options": ["$y = 6$", "$y = \\frac{1}{2}$", "$y = 4$"],
+                "correctIndex": 0,
+                "explanation": "The trailing $+6$ is the midline; the wave breathes in $[5.5, 6.5]$.",
+                "check": [
+                  "6 + Rational(1,2) == Rational(13,2)"
+                ]
+              },
+              {
+                "prompt": "Phase shift of $y = \\cos\\left(2\\theta + \\frac{\\pi}{3}\\right)$?",
+                "options": [
+                  "$\\dfrac{\\pi}{6}$ LEFT — factor: $\\cos\\left(2\\left(\\theta + \\frac{\\pi}{6}\\right)\\right)$",
+                  "$\\dfrac{\\pi}{3}$ left",
+                  "$\\dfrac{\\pi}{6}$ right"
+                ],
+                "correctIndex": 0,
+                "explanation": "Factor the 2: inside is $\\theta + \\frac{\\pi}{6}$ — a PLUS, so the wave starts EARLY: shift left $\\frac{\\pi}{6}$.",
+                "check": [
+                  "cos(2*(-pi/6) + pi/3) == 1"
+                ]
+              },
+              {
+                "prompt": "A wave has max $9$ and min $1$. Its amplitude and midline?",
+                "options": [
+                  "amp $4$, midline $y = 5$",
+                  "amp $8$, midline $y = 5$",
+                  "amp $4$, midline $y = 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Midline = average: $\\frac{9 + 1}{2} = 5$; amplitude = half the spread: $\\frac{9 - 1}{2} = 4$. This reverse-reading is how real data becomes a formula.",
+                "check": [
+                  "Rational(9 + 1, 2) == 5",
+                  "Rational(9 - 1, 2) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Modeling habit",
+            "title": "From data to dials",
+            "body": "Fitting a wave to real data runs the dials backwards: midline = (max + min)/2; amplitude = (max − min)/2; period = time between repeats (b = 2π/period); phase = when the first midline-crossing-going-up happens (sine) or the first peak (cosine). Four measurements, one formula — that's the whole craft of periodic modeling.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "+d lifts to midline y = d; range = d ± |a| — draw the midline first.",
+              "Phase shift reads AFTER factoring: sin(bθ − k) shifts by k/b, not k.",
+              "Data → dials: midline = average of extremes, amplitude = half the spread."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-tangent-graph",
+      "title": "The Tangent Graph",
+      "concreteComparison": "A lighthouse beam sweeping past a straight shoreline: as the beam turns at a steady rate, its bright spot slides along the shore — slowly when aimed straight at it, then faster and faster, racing off to infinity as the beam turns parallel. That runaway spot is the tangent function being graphed in real time.",
+      "objective": "Graph y = tan θ — period π, asymptotes at odd multiples of π/2 — and contrast its behavior with sine and cosine.",
+      "concept": [
+        "$\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$ is the SLOPE of the unit-circle arm. Where $\\cos\\theta = 0$ — the arm vertical, at $\\pm\\frac{\\pi}{2}, \\pm\\frac{3\\pi}{2}, \\ldots$ — the slope is undefined: the graph has **vertical asymptotes** at every odd multiple of $\\frac{\\pi}{2}$. Between consecutive asymptotes, tangent sweeps ALL real values, $-\\infty$ to $+\\infty$, once.",
+        "Tangent's period is $\\pi$, not $2\\pi$: rotating the arm half a turn negates BOTH coordinates, and $\\frac{-y}{-x} = \\frac{y}{x}$ — the slope repeats twice per lap. Landmarks per branch: $\\tan 0 = 0$, $\\tan\\frac{\\pi}{4} = 1$, $\\tan\\left(-\\frac{\\pi}{4}\\right) = -1$, climbing steeply toward the asymptotes.",
+        "Contrasts to keep straight: no amplitude (unbounded — 'amplitude of tangent' is meaningless); period formula $\\frac{\\pi}{b}$ for $\\tan(b\\theta)$ (half of sine's); always increasing on each branch; odd symmetry $\\tan(-\\theta) = -\\tan\\theta$."
+      ],
+      "keyIdea": "Tangent is the arm's slope: period π, asymptotes where cos = 0, each branch sweeping all reals — unbounded, so no amplitude exists.",
+      "facts": [
+        {
+          "title": "Asymptotes",
+          "latex": "\\theta = \\tfrac{\\pi}{2} + k\\pi",
+          "explanation": "Where cos θ = 0, the slope blows up."
+        },
+        {
+          "title": "Half period",
+          "latex": "\\tan(\\theta + \\pi) = \\tan\\theta",
+          "explanation": "Half a turn negates both coordinates; slope survives."
+        },
+        {
+          "title": "Per-branch landmarks",
+          "latex": "\\tan 0 = 0, \\quad \\tan\\tfrac{\\pi}{4} = 1, \\quad \\tan(-\\tfrac{\\pi}{4}) = -1",
+          "explanation": "Center zero, ±1 at the quarter-marks, then off to ±∞."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig44-we1",
+          "statement": "Verify $\\tan(\\theta + \\pi) = \\tan\\theta$ at $\\theta = \\frac{\\pi}{4}$, and explain the geometry.",
+          "solution": "$\\tan\\frac{5\\pi}{4}$: QIII, reference $\\frac{\\pi}{4}$, tangent positive there: $+1 = \\tan\\frac{\\pi}{4}$ ✓. Geometry: adding $\\pi$ points the arm the OPPOSITE way — both coordinates negate — but a line through the origin has the same slope in both directions. Slope is direction-blind; that's the halved period.",
+          "check": [
+            "tan(5*pi/4) == 1",
+            "tan(pi/4) == 1",
+            "simplify(tan(x + pi) - tan(x)) == 0"
+          ]
+        },
+        {
+          "id": "trig44-we2",
+          "statement": "For $y = \\tan(2\\theta)$: find the period and the two asymptotes closest to $\\theta = 0$.",
+          "solution": "Period: $\\frac{\\pi}{2}$ (tangent's $\\pi$, compressed by 2). Asymptotes where the inside hits $\\pm\\frac{\\pi}{2}$: $2\\theta = \\pm\\frac{\\pi}{2}$ ⟹ $\\theta = \\pm\\frac{\\pi}{4}$. One full branch lives in $\\left(-\\frac{\\pi}{4}, \\frac{\\pi}{4}\\right)$.",
+          "check": [
+            "pi/2 == pi/2",
+            "cos(2*pi/4) == 0",
+            "tan(2*pi/8) == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Giving tangent the period 2π like its parents.",
+          "correction": "Tangent repeats every HALF turn: $\\pi$. The slope of the arm doesn't care which END of the arm points where — $\\frac{-y}{-x} = \\frac{y}{x}$. For $\\tan(b\\theta)$ the period is $\\frac{\\pi}{b}$.",
+          "authored": true
+        },
+        {
+          "text": "Asking for tangent's amplitude.",
+          "correction": "Amplitude measures a bounded swing; tangent sweeps every real number on every branch — unbounded, so amplitude doesn't exist for it. A coefficient outside ($3\\tan\\theta$) steepens the branches but bounds nothing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig44-t1",
+          "statement": "List the asymptotes of $y = \\tan\\theta$ in $[0, 2\\pi]$, and evaluate $\\tan\\frac{3\\pi}{4}$.",
+          "solution": "Asymptotes where cosine dies: $\\frac{\\pi}{2}$ and $\\frac{3\\pi}{2}$. And $\\tan\\frac{3\\pi}{4}$: QII, reference $\\frac{\\pi}{4}$, tangent negative: $-1$.",
+          "check": [
+            "cos(pi/2) == 0",
+            "cos(3*pi/2) == 0",
+            "tan(3*pi/4) == -1"
+          ]
+        },
+        {
+          "id": "trig44-t2",
+          "statement": "Between its asymptotes at $\\pm\\frac{\\pi}{2}$, how many times does $\\tan\\theta$ take the value $5$? The value $-100$?",
+          "solution": "Once each. Every branch of tangent climbs from $-\\infty$ to $+\\infty$ without pausing (always increasing), so it crosses EVERY horizontal line exactly once per branch. This is why $\\tan\\theta = k$ always has exactly one solution per $\\pi$-length window — Unit 5 will lean on it.",
+          "check": [
+            "atan(5) < pi/2",
+            "atan(5) > -pi/2",
+            "atan(-100) > -pi/2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The third graph",
+            "title": "Tangent is a slope, not a height",
+            "body": "Sine and cosine are coordinates; $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta} = \\frac{y}{x}$ is the SLOPE of the arm itself. Slopes behave differently from heights: they're not trapped in $[-1, 1]$ — a nearly-vertical arm has slope in the thousands. Tangent's graph inherits that wildness: it's the story of a slope sweeping from flat to vertical."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The blow-ups",
+            "title": "Asymptotes where cosine dies",
+            "body": "At $\\theta = \\frac{\\pi}{2}$ the arm is VERTICAL — 'slope' divides by $x = 0$: undefined, with values exploding to $+\\infty$ approaching from the left and $-\\infty$ from the right. The graph gets a **vertical asymptote** at every odd multiple of $\\frac{\\pi}{2}$. Between consecutive asymptotes lives one complete branch: up from $-\\infty$, through the landmarks $-1, 0, 1$, off to $+\\infty$."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Why the period halves",
+            "intro": "Half a turn flips the arm — but not its slope.",
+            "examples": [
+              {
+                "prompt": "Verify $\\tan\\frac{5\\pi}{4} = \\tan\\frac{\\pi}{4}$ and explain.",
+                "steps": [
+                  "$\\frac{5\\pi}{4}$: QIII, reference $\\frac{\\pi}{4}$, tan positive: $+1 = \\tan\\frac{\\pi}{4}$ ✓.",
+                  "Adding $\\pi$ negates both coordinates: $\\frac{-y}{-x} = \\frac{y}{x}$ — the slope never notices. Period: $\\pi$."
+                ],
+                "answer": "both equal $1$; period $\\pi$",
+                "check": [
+                  "tan(5*pi/4) == 1",
+                  "simplify(tan(x + pi) - tan(x)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Locate the walls",
+            "prompt": "Where are the vertical asymptotes of $y = \\tan\\theta$ on $[0, 2\\pi]$?",
+            "options": [
+              "$\\dfrac{\\pi}{2}$ and $\\dfrac{3\\pi}{2}$ — wherever $\\cos\\theta = 0$",
+              "$0, \\pi, 2\\pi$ — wherever $\\sin\\theta = 0$",
+              "$\\pi$ only",
+              "Tangent has no asymptotes"
+            ],
+            "correctIndex": 0,
+            "explanation": "Tangent divides BY cosine, so it blows up where cosine vanishes: the arm's two vertical positions. (Where SINE vanishes, tangent is just 0 — zeros, not walls.)",
+            "check": [
+              "cos(pi/2) == 0",
+              "tan(pi) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Compressing tangent",
+            "intro": "Inside coefficients squeeze the π-period and drag the asymptotes in.",
+            "examples": [
+              {
+                "prompt": "$y = \\tan(2\\theta)$: period and the asymptotes nearest 0?",
+                "steps": [
+                  "Period $\\frac{\\pi}{2}$ (halved from $\\pi$).",
+                  "Asymptotes: $2\\theta = \\pm\\frac{\\pi}{2}$ ⟹ $\\theta = \\pm\\frac{\\pi}{4}$."
+                ],
+                "answer": "period $\\tfrac{\\pi}{2}$; asymptotes $\\pm\\tfrac{\\pi}{4}$",
+                "check": [
+                  "cos(2*pi/4) == 0",
+                  "tan(2*pi/8) == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Branch literacy",
+            "intro": "Slopes, walls, and landmarks.",
+            "problems": [
+              {
+                "prompt": "$\\tan\\dfrac{3\\pi}{4} = ?$",
+                "options": ["$-1$", "$1$", "undefined"],
+                "correctIndex": 0,
+                "explanation": "QII (tan negative), reference $\\frac{\\pi}{4}$: $-1$. The asymptote is at $\\frac{\\pi}{2}$, safely passed.",
+                "check": [
+                  "tan(3*pi/4) == -1"
+                ]
+              },
+              {
+                "prompt": "What is the period of $y = \\tan\\left(\\dfrac{\\theta}{2}\\right)$?",
+                "options": ["$2\\pi$", "$\\pi$", "$\\dfrac{\\pi}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{\\pi}{b} = \\frac{\\pi}{1/2} = 2\\pi$ — the half-speed inside stretches tangent's $\\pi$ to a full $2\\pi$.",
+                "check": [
+                  "pi/Rational(1,2) == 2*pi"
+                ]
+              },
+              {
+                "prompt": "On one branch, how many times does $\\tan\\theta = 1000$?",
+                "options": ["Exactly once", "Twice, like sine", "Never — too large"],
+                "correctIndex": 0,
+                "explanation": "Each branch climbs from $-\\infty$ to $+\\infty$ monotonically: every real value once. 'Too large' doesn't exist for a slope.",
+                "check": [
+                  "atan(1000) < pi/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The lighthouse proof",
+            "body": "The sweeping-lighthouse picture is real mathematics: a beam turning at constant speed moves its shore-spot at speed proportional to $\\tan$'s derivative — and as the beam nears parallel-to-shore, the spot's speed exceeds any bound. In relativity classrooms this classic shows how a projected POINT can outrun light without anything physical doing so.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Tangent = the arm's slope: unbounded, no amplitude, asymptotes at odd multiples of π/2.",
+              "Period π (half a turn flips both coordinates; slope survives); tan(bθ) has period π/b.",
+              "Each branch is always-increasing and hits every real value exactly once."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig4-pr-1",
+      "statement": "State the amplitude and period of $y = 6\\sin(3\\theta)$, and its maximum value.",
+      "solution": "Amplitude 6; period $\\frac{2\\pi}{3}$; max 6 (at $\\theta = \\frac{\\pi}{6}$, where the inside reads $\\frac{\\pi}{2}$).",
+      "check": [
+        "6*sin(3*pi/6) == 6",
+        "2*pi/3 == 2*pi/3"
+      ]
+    },
+    {
+      "id": "trig4-pr-2",
+      "statement": "Solve $\\cos\\theta = -1$ on $[0, 2\\pi)$, using the graph or circle.",
+      "solution": "Cosine bottoms out at $-1$ exactly once per lap: $\\theta = \\pi$ (the far-left point). Extremes are hit once per period; interior heights twice.",
+      "check": [
+        "cos(pi) == -1"
+      ]
+    },
+    {
+      "id": "trig4-pr-3",
+      "statement": "State the range of $y = 4\\sin(2\\theta) - 3$ and evaluate it at $\\theta = \\frac{\\pi}{4}$.",
+      "solution": "Midline $-3$, amplitude 4: range $[-7, 1]$. At $\\frac{\\pi}{4}$: $4\\sin\\frac{\\pi}{2} - 3 = 1$ — the maximum.",
+      "check": [
+        "-3 + 4 == 1",
+        "-3 - 4 == -7",
+        "4*sin(2*pi/4) - 3 == 1"
+      ]
+    },
+    {
+      "id": "trig4-pr-4",
+      "statement": "Find the phase shift and period of $y = \\sin\\left(2\\theta - \\frac{2\\pi}{3}\\right)$.",
+      "solution": "Factor: $\\sin\\left(2\\left(\\theta - \\frac{\\pi}{3}\\right)\\right)$: shift $\\frac{\\pi}{3}$ right, period $\\pi$. Verify: at $\\theta = \\frac{\\pi}{3}$ the inside is 0 ✓.",
+      "check": [
+        "sin(2*pi/3 - 2*pi/3) == 0",
+        "2*pi/2 == pi"
+      ]
+    },
+    {
+      "id": "trig4-pr-5",
+      "statement": "A Ferris wheel's height is $h(t) = 20 - 15\\cos\\left(\\frac{\\pi t}{30}\\right)$ meters after $t$ seconds. Find the boarding height, the top height, and the period.",
+      "solution": "Boarding ($t = 0$): $20 - 15 = 5$ m. Top: $20 + 15 = 35$ m. Period: $\\frac{2\\pi}{\\pi/30} = 60$ s — one revolution per minute.",
+      "check": [
+        "20 - 15*cos(0) == 5",
+        "20 + 15 == 35",
+        "2*pi/(pi/30) == 60"
+      ]
+    },
+    {
+      "id": "trig4-pr-6",
+      "statement": "Write a cosine function with amplitude $3$, period $4\\pi$, and midline $y = 2$; verify its maximum.",
+      "solution": "$b = \\frac{2\\pi}{4\\pi} = \\frac{1}{2}$: $y = 3\\cos\\left(\\frac{\\theta}{2}\\right) + 2$. Max at $\\theta = 0$: $3 + 2 = 5$ ✓.",
+      "check": [
+        "2*pi/Rational(1,2) == 4*pi",
+        "3*cos(0) + 2 == 5"
+      ]
+    },
+    {
+      "id": "trig4-pr-7",
+      "statement": "List the vertical asymptotes of $y = \\tan\\theta$ on $(-\\pi, \\pi)$ and evaluate $\\tan\\frac{2\\pi}{3}$ exactly.",
+      "solution": "Asymptotes at $\\pm\\frac{\\pi}{2}$. $\\tan\\frac{2\\pi}{3}$: QII, reference $\\frac{\\pi}{3}$, negative: $-\\sqrt{3}$.",
+      "check": [
+        "cos(pi/2) == 0",
+        "tan(2*pi/3) == -sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig4-pr-8",
+      "statement": "A wave has maximum $11$ at $\\theta = 0$ and minimum $3$. Write it as a cosine function (no phase shift needed) with period $2\\pi$.",
+      "solution": "Midline $\\frac{11 + 3}{2} = 7$; amplitude $\\frac{11 - 3}{2} = 4$. Max at 0 fits an unshifted cosine: $y = 4\\cos\\theta + 7$. Check: $y(0) = 11$ ✓, $y(\\pi) = 3$ ✓.",
+      "check": [
+        "Rational(11 + 3, 2) == 7",
+        "Rational(11 - 3, 2) == 4",
+        "4*cos(0) + 7 == 11",
+        "4*cos(pi) + 7 == 3"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig4-ty-1",
+      "statement": "For $y = -2\\sin(4\\theta)$: amplitude, period, range, and the value at $\\theta = \\frac{\\pi}{8}$.",
+      "solution": "Amplitude $|-2| = 2$ (reflected); period $\\frac{2\\pi}{4} = \\frac{\\pi}{2}$; range $[-2, 2]$. At $\\frac{\\pi}{8}$: $-2\\sin\\frac{\\pi}{2} = -2$ — the flip puts a TROUGH where plain sine peaks.",
+      "check": [
+        "Abs(-2) == 2",
+        "2*pi/4 == pi/2",
+        "-2*sin(4*pi/8) == -2"
+      ]
+    },
+    {
+      "id": "trig4-ty-2",
+      "statement": "How many solutions does $\\sin\\theta = 0.3$ have on $[0, 4\\pi)$ — and why, from the graph?",
+      "solution": "Four. Each $2\\pi$ period's arch is cut twice by the height 0.3 (once rising, once falling), and $[0, 4\\pi)$ holds two full periods: $2 \\times 2 = 4$.",
+      "check": [
+        "Rational(3,10) < 1",
+        "2*2 == 4"
+      ]
+    },
+    {
+      "id": "trig4-ty-3",
+      "statement": "Find all four dials of $y = 5\\sin\\left(3\\theta - \\pi\\right) + 1$ (factor first!), and its range.",
+      "solution": "Factor: $5\\sin\\left(3\\left(\\theta - \\frac{\\pi}{3}\\right)\\right) + 1$. Amplitude 5, period $\\frac{2\\pi}{3}$, phase $\\frac{\\pi}{3}$ right, midline $y = 1$; range $[-4, 6]$.",
+      "check": [
+        "sin(3*pi/3 - pi) == 0",
+        "1 + 5 == 6",
+        "1 - 5 == -4"
+      ]
+    },
+    {
+      "id": "trig4-ty-4",
+      "statement": "Daylight in a city runs from $8$ hours (winter solstice) to $16$ hours (summer solstice), cycling over $12$ months. Model it as a cosine with $t = 0$ at the SUMMER solstice.",
+      "solution": "Midline $\\frac{16 + 8}{2} = 12$; amplitude $\\frac{16 - 8}{2} = 4$; period 12: $b = \\frac{2\\pi}{12} = \\frac{\\pi}{6}$. Max at $t = 0$ fits plain cosine: $D(t) = 4\\cos\\left(\\frac{\\pi t}{6}\\right) + 12$. Check: $D(0) = 16$ ✓, $D(6) = 8$ ✓ (winter, half a year on).",
+      "check": [
+        "Rational(16 + 8, 2) == 12",
+        "Rational(16 - 8, 2) == 4",
+        "4*cos(0) + 12 == 16",
+        "4*cos(pi*6/6) + 12 == 8"
+      ]
+    },
+    {
+      "id": "trig4-ty-5",
+      "statement": "For $y = \\tan(3\\theta)$: period, and the asymptotes nearest $\\theta = 0$.",
+      "solution": "Period $\\frac{\\pi}{3}$. Asymptotes where $3\\theta = \\pm\\frac{\\pi}{2}$: $\\theta = \\pm\\frac{\\pi}{6}$.",
+      "check": [
+        "cos(3*pi/6) == 0",
+        "tan(3*pi/12) == 1"
+      ]
+    },
+    {
+      "id": "trig4-ty-6",
+      "statement": "True or false, with a reason from the graphs: (a) cosine is just sine shifted; (b) tangent's range is $[-1, 1]$; (c) $y = \\sin\\theta + 5$ never crosses the x-axis.",
+      "solution": "(a) TRUE: $\\cos\\theta = \\sin(\\theta + \\frac{\\pi}{2})$ — a quarter-period slide. (b) FALSE: tangent is a slope, unbounded — every branch covers ALL reals. (c) TRUE: range $[4, 6]$ stays strictly above 0 — the midline lift cleared the axis.",
+      "check": [
+        "simplify(cos(x) - sin(x + pi/2)) == 0",
+        "tan(pi/3) > 1",
+        "5 - 1 == 4"
+      ]
+    }
+  ]
+}

@@ -197,6 +197,12 @@ import calTech from "@/data/genmath/calculus/differentiation-techniques.json";
 import calDerivApps from "@/data/genmath/calculus/applications-of-derivatives.json";
 import calIntegrals from "@/data/genmath/calculus/integrals.json";
 import calIntApps from "@/data/genmath/calculus/applications-of-integrals.json";
+import trigRight from "@/data/genmath/trigonometry/right-triangle-trigonometry.json";
+import trigSpecial from "@/data/genmath/trigonometry/special-triangles-and-exact-values.json";
+import trigCircle from "@/data/genmath/trigonometry/radians-and-the-unit-circle.json";
+import trigGraphs from "@/data/genmath/trigonometry/graphs-of-trig-functions.json";
+import trigIdent from "@/data/genmath/trigonometry/identities-and-equations.json";
+import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -1461,6 +1467,92 @@ export function getCalcLesson(
 }
 
 // ---------------------------------------------------------------------------
+// Trigonometry course — /math/trigonometry
+// The figure-first course: right-triangle ratios, the two special triangles,
+// radians and the unit circle, the wave graphs, identities and equations,
+// and the laws of sines and cosines. Full ЭЕШ trigonometry scope; leans on
+// geo-diagram figures (GeoDiagram specs on teach/worked/tryIt/tapQuestion
+// steps and practice problems) plus the trigRatios / specialTriangle /
+// unitCircle / circleUnroll widget family.
+// ---------------------------------------------------------------------------
+
+export const TRIG_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "right-triangle-trigonometry",
+    title: "Right-Triangle Trigonometry",
+    blurb: "SOH-CAH-TOA: name the sides, pick the ratio, solve for any missing side or angle — then aim it at towers, ramps, and shadows.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "special-triangles-and-exact-values",
+    title: "Special Triangles & Exact Values",
+    blurb: "Half a square and half an equilateral: the two triangles behind every exact value of 30°, 45°, and 60°.",
+    buildsOn: "The three ratios from Unit 1.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "radians-and-the-unit-circle",
+    title: "Radians & the Unit Circle",
+    blurb: "Angles measured by arc, a circle where cosine and sine ARE the coordinates — and exact values in every quadrant.",
+    buildsOn: "The exact-value table from Unit 2.",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "graphs-of-trig-functions",
+    title: "Graphs of Trig Functions",
+    blurb: "The circle unrolled into a wave: amplitude, period, phase, midline — and tangent's wilder portrait.",
+    buildsOn: "The unit circle and periodicity from Unit 3.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "identities-and-equations",
+    title: "Identities & Equations",
+    blurb: "The Pythagorean identity, sum and double-angle formulas — and solving equations whose unknown is an angle.",
+    buildsOn: "Exact values across quadrants from Unit 3.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "laws-of-sines-and-cosines",
+    title: "Laws of Sines & Cosines",
+    blurb: "Trigonometry for EVERY triangle: the sine area formula, both laws, and the strategy for solving any triangle from any three facts.",
+    buildsOn: "Right-triangle trig from Unit 1; obtuse angles from Unit 3.",
+    live: true,
+  },
+];
+
+const trigUnits: CourseUnit[] = [
+  trigRight as unknown as CourseUnit,
+  trigSpecial as unknown as CourseUnit,
+  trigCircle as unknown as CourseUnit,
+  trigGraphs as unknown as CourseUnit,
+  trigIdent as unknown as CourseUnit,
+  trigLaws as unknown as CourseUnit,
+];
+
+export function getTrigSpine(): GeometrySpineEntry[] {
+  return TRIG_SPINE;
+}
+
+export function getTrigUnit(unitSlug: string): CourseUnit | null {
+  return trigUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getTrigLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getTrigUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Course size — total lessons per performance context. The DENOMINATOR of the
 // dashboard's per-course progress bar. Every authored lesson carries a
 // tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
@@ -1490,6 +1582,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
+  "course:trigonometry": { spine: getTrigSpine, unit: getTrigUnit },
 };
 
 export function courseTotalLessons(context: string): number | null {

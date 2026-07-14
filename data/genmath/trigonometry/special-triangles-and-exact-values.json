@@ -1,0 +1,1108 @@
+{
+  "slug": "special-triangles-and-exact-values",
+  "title": "Special Triangles & Exact Values",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Two triangles you'll never stop using: the square's half and the equilateral's half. From them, every exact value of 30°, 45°, and 60° — no calculator, no rounding, ever.",
+  "buildsOn": "The three ratios from Unit 1; the Pythagorean theorem.",
+  "lessons": [
+    {
+      "slug": "the-45-45-90-triangle",
+      "title": "The 45-45-90 Triangle",
+      "concreteComparison": "Fold a square napkin along its diagonal: two identical triangles, each with a right angle and two perfectly equal 45° corners. That fold is the entire theory — every 45-45-90 triangle is half a square, so its sides can't help following one fixed pattern.",
+      "objective": "Derive and use the leg-leg-leg√2 pattern of 45-45-90 triangles, and read off the exact trig values of 45°.",
+      "concept": [
+        "A right triangle with a $45°$ angle forces the OTHER acute angle to be $45°$ too ($90° - 45°$) — so the base angles are equal, and the triangle is **isosceles**: the two legs match. Every 45-45-90 triangle is half a square, cut along the diagonal.",
+        "Pythagoras fixes the third side: legs $x$ and $x$ give hypotenuse $\\sqrt{x^2 + x^2} = x\\sqrt{2}$. The pattern to memorize: $\\mathbf{x : x : x\\sqrt{2}}$. Leg to hypotenuse: multiply by $\\sqrt{2}$. Hypotenuse to leg: divide by $\\sqrt{2}$ (i.e. multiply by $\\frac{\\sqrt2}{2}$).",
+        "Exact values fall out immediately: $\\sin 45° = \\frac{x}{x\\sqrt2} = \\frac{1}{\\sqrt2} = \\frac{\\sqrt2}{2}$, $\\cos 45° = \\frac{\\sqrt2}{2}$ (same, by symmetry), $\\tan 45° = \\frac{x}{x} = 1$. Note the cleanup habit: $\\frac{1}{\\sqrt2}$ is rewritten as $\\frac{\\sqrt2}{2}$ by multiplying top and bottom by $\\sqrt2$ — **rationalizing the denominator**."
+      ],
+      "keyIdea": "45-45-90 = half a square: sides x : x : x√2, so sin 45° = cos 45° = √2/2 and tan 45° = 1 — exactly.",
+      "facts": [
+        {
+          "title": "The pattern",
+          "latex": "x : x : x\\sqrt{2}",
+          "explanation": "Equal legs; hypotenuse = leg × √2."
+        },
+        {
+          "title": "Exact values",
+          "latex": "\\sin 45° = \\cos 45° = \\tfrac{\\sqrt2}{2}, \\qquad \\tan 45° = 1",
+          "explanation": "Straight from the half-square's sides."
+        },
+        {
+          "title": "Rationalize",
+          "latex": "\\tfrac{1}{\\sqrt2} = \\tfrac{\\sqrt2}{2}",
+          "explanation": "Multiply top and bottom by √2 — the standard cleanup."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig21-we1",
+          "statement": "A 45-45-90 triangle has legs of length $5$. Find the hypotenuse exactly, and verify with Pythagoras.",
+          "solution": "Pattern: hypotenuse $= 5\\sqrt{2}$. Verify: $5^2 + 5^2 = 50$ and $(5\\sqrt2)^2 = 25 \\cdot 2 = 50$ ✓. Roughly $7.07$ — bigger than either leg, smaller than their sum, as a hypotenuse must be.",
+          "check": [
+            "sqrt(5**2 + 5**2) == 5*sqrt(2)",
+            "(5*sqrt(2))**2 == 50"
+          ]
+        },
+        {
+          "id": "trig21-we2",
+          "statement": "A square's diagonal is $8$. Find the square's side exactly.",
+          "solution": "The diagonal is the hypotenuse of a 45-45-90 triangle whose legs are the sides: $s\\sqrt{2} = 8$ ⟹ $s = \\frac{8}{\\sqrt2} = \\frac{8\\sqrt2}{2} = 4\\sqrt{2}$. Check: $(4\\sqrt2)\\sqrt2 = 4 \\cdot 2 = 8$ ✓.",
+          "check": [
+            "simplify(8/sqrt(2) - 4*sqrt(2)) == 0",
+            "4*sqrt(2)*sqrt(2) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying by √2 in both directions — hypotenuse from leg AND leg from hypotenuse.",
+          "correction": "The √2 lives on the hypotenuse. Leg → hypotenuse: MULTIPLY by $\\sqrt2$. Hypotenuse → leg: DIVIDE by $\\sqrt2$. Audit: the hypotenuse must be the longest side; if your 'leg' beats it, you multiplied the wrong way.",
+          "authored": true
+        },
+        {
+          "text": "Leaving 1/√2 unrationalized and then mis-adding fractions with it.",
+          "correction": "Rewrite $\\frac{1}{\\sqrt2}$ as $\\frac{\\sqrt2}{2}$ on sight (multiply top and bottom by $\\sqrt2$). Every exact-value table and answer key uses the rationalized form — matching it prevents comparison errors.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig21-t1",
+          "statement": "A 45-45-90 triangle has hypotenuse $12$. Find each leg exactly.",
+          "solution": "Leg $= \\frac{12}{\\sqrt2} = \\frac{12\\sqrt2}{2} = 6\\sqrt{2} \\approx 8.49$. Check: $(6\\sqrt2)^2 + (6\\sqrt2)^2 = 72 + 72 = 144 = 12^2$ ✓.",
+          "check": [
+            "simplify(12/sqrt(2) - 6*sqrt(2)) == 0",
+            "(6*sqrt(2))**2 + (6*sqrt(2))**2 == 144"
+          ]
+        },
+        {
+          "id": "trig21-t2",
+          "statement": "Compute exactly: $\\sin 45° + \\cos 45°$.",
+          "solution": "$\\frac{\\sqrt2}{2} + \\frac{\\sqrt2}{2} = \\sqrt{2}$. (A tidy surprise: the two 45° ratios sum to the very number that builds their triangle.)",
+          "check": [
+            "sin(pi/4) + cos(pi/4) == sqrt(2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Half a square",
+            "title": "Fold along the diagonal",
+            "body": "Take a square, corner-to-corner fold: two identical right triangles, each with two $45°$ angles. That's not one example of a 45-45-90 triangle — it's ALL of them (any 45-45-90 is similar to this one). Equal base angles force equal legs; the triangle is isosceles by construction. In the figure, the tick marks certify $AB = BC$.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "B", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "C", "x": 3, "y": 3 },
+                  { "id": "D", "x": 0, "y": 3 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "B", "ticks": 1 },
+                  { "kind": "segment", "from": "B", "to": "C", "ticks": 1 },
+                  { "kind": "segment", "from": "C", "to": "D", "dashed": true },
+                  { "kind": "segment", "from": "D", "to": "A", "dashed": true },
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "angle", "at": "B", "from": "A", "to": "C", "right": true },
+                  { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "45°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "specialTriangle",
+            "eyebrow": "Play",
+            "title": "45-45-90: leg, leg, leg√2",
+            "teach": "Step the leg length and watch all three sides: the legs stay equal and the hypotenuse is always exactly $\\sqrt2 \\approx 1.414$ times a leg. Scale never breaks the pattern — that's similarity doing its job.",
+            "config": { "type": "45-45-90", "start": 3 }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pattern",
+            "title": "x : x : x√2, from Pythagoras",
+            "body": "Legs $x$ and $x$: the hypotenuse is $\\sqrt{x^2 + x^2} = \\sqrt{2x^2} = x\\sqrt{2}$. So the sides run $x : x : x\\sqrt2$ forever. Two moves cover every problem: leg $\\to$ hypotenuse, multiply by $\\sqrt2$; hypotenuse $\\to$ leg, divide by $\\sqrt2$ (and rationalize: $\\frac{c}{\\sqrt2} = \\frac{c\\sqrt2}{2}$)."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "One multiply, one divide — never confuse which way the √2 goes.",
+            "examples": [
+              {
+                "prompt": "Legs $5$. Hypotenuse?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "B", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "C", "x": 3, "y": 3 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "B", "ticks": 1 },
+                      { "kind": "segment", "from": "B", "to": "C", "ticks": 1 },
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "angle", "at": "B", "from": "A", "to": "C", "right": true },
+                      { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "45°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Pattern: hypotenuse $= \\text{leg} \\times \\sqrt2$.",
+                  "$5\\sqrt{2} \\approx 7.07$."
+                ],
+                "answer": "$5\\sqrt{2}$",
+                "check": [
+                  "sqrt(5**2 + 5**2) == 5*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "A square's diagonal is $8$. Find its side, exactly.",
+                "steps": [
+                  "Diagonal = hypotenuse: $s\\sqrt2 = 8$.",
+                  "$s = \\frac{8}{\\sqrt2} = \\frac{8\\sqrt2}{2} = 4\\sqrt{2}$."
+                ],
+                "answer": "$s = 4\\sqrt{2}$",
+                "check": [
+                  "simplify(8/sqrt(2) - 4*sqrt(2)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "Exact values of 45°",
+            "body": "Read the ratios straight off the $x : x : x\\sqrt2$ triangle: $\\sin 45° = \\frac{x}{x\\sqrt2} = \\frac{1}{\\sqrt2} = \\frac{\\sqrt2}{2}$; by symmetry $\\cos 45°$ is identical; and $\\tan 45° = \\frac{x}{x} = 1$. These aren't approximations — they're the true values, and they never need a calculator. Exams (and Unit 3's unit circle) lean on them constantly."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Divide, don't multiply",
+            "prompt": "A 45-45-90 triangle has hypotenuse $10$. How long is each leg?",
+            "options": [
+              "$5\\sqrt{2}$ — divide by $\\sqrt2$ and rationalize",
+              "$10\\sqrt{2}$",
+              "$5$",
+              "$\\dfrac{10}{2}\\sqrt{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Leg $= \\frac{10}{\\sqrt2} = \\frac{10\\sqrt2}{2} = 5\\sqrt2 \\approx 7.07$ — shorter than the hypotenuse ✓. Option B multiplied (its 'leg' beats the hypotenuse — impossible); option C halved, which is the 30-60-90 move, not this triangle's.",
+            "check": [
+              "simplify(10/sqrt(2) - 5*sqrt(2)) == 0",
+              "5*sqrt(2) < 10"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The half-square in action",
+            "intro": "Pattern first, Pythagoras to verify.",
+            "problems": [
+              {
+                "prompt": "Legs $7$. Hypotenuse, exactly?",
+                "options": ["$7\\sqrt{2}$", "$14$", "$7\\sqrt{3}$"],
+                "correctIndex": 0,
+                "explanation": "$7 \\times \\sqrt2 = 7\\sqrt2 \\approx 9.9$ — comfortably between 7 and 14.",
+                "check": [
+                  "sqrt(7**2 + 7**2) == 7*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "$\\tan 45° \\cdot \\cos 45° = ?$ (exactly)",
+                "options": ["$\\dfrac{\\sqrt2}{2}$", "$1$", "$\\dfrac{1}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$1 \\cdot \\frac{\\sqrt2}{2} = \\frac{\\sqrt2}{2}$ — which is $\\sin 45°$, and no accident: $\\tan\\theta\\cos\\theta = \\sin\\theta$ always.",
+                "check": [
+                  "tan(pi/4)*cos(pi/4) == sqrt(2)/2"
+                ]
+              },
+              {
+                "prompt": "A 45-45-90 triangle has hypotenuse $6\\sqrt{2}$. What is its area?",
+                "options": ["$18$", "$36$", "$9\\sqrt{2}$"],
+                "correctIndex": 0,
+                "explanation": "Legs: $\\frac{6\\sqrt2}{\\sqrt2} = 6$ each. Area $= \\frac{6 \\cdot 6}{2} = 18$.",
+                "check": [
+                  "simplify(6*sqrt(2)/sqrt(2) - 6) == 0",
+                  "Rational(6*6, 2) == 18"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The number that broke a brotherhood",
+            "body": "The 45-45-90 triangle's $\\sqrt2$ was mathematics' first scandal: the Pythagoreans proved a square's diagonal shares NO common measuring unit with its side — $\\sqrt2$ is irrational. Legend says they drowned Hippasus for revealing it. The number your napkin fold produces was once a heresy.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "45-45-90 = half a square: isosceles, sides x : x : x√2.",
+              "Leg → hypotenuse: ×√2. Hypotenuse → leg: ÷√2, then rationalize.",
+              "Exact values: sin 45° = cos 45° = √2/2, tan 45° = 1."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-30-60-90-triangle",
+      "title": "The 30-60-90 Triangle",
+      "concreteComparison": "Snap an equilateral triangle in half down its altitude, like breaking a chocolate bar on the score line: each half keeps one 60° corner, gains a right angle, and the bottom edge halves. That broken half IS the 30-60-90 triangle — its side pattern inherited from the equilateral parent.",
+      "objective": "Derive and use the x : x√3 : 2x pattern of 30-60-90 triangles, and read off the exact trig values of 30° and 60°.",
+      "concept": [
+        "Bisect an equilateral triangle of side $2x$ down its altitude: the base splits into $x$ and $x$, the apex angle splits into $30°$ and $30°$, and each half is a right triangle with angles $30°$-$60°$-$90°$. Hypotenuse $2x$ (an original side), short leg $x$ (half the base), and the altitude $= \\sqrt{(2x)^2 - x^2} = x\\sqrt{3}$.",
+        "The pattern: $\\mathbf{x : x\\sqrt{3} : 2x}$ — short leg, long leg, hypotenuse. The geography matters: the SHORT leg faces the $30°$ angle, the LONG leg ($x\\sqrt3$) faces $60°$, the hypotenuse faces the right angle. Hypotenuse = twice the short leg — the most quotable fact in the triangle.",
+        "Exact values, read off the sides: $\\sin 30° = \\frac{x}{2x} = \\frac{1}{2}$, $\\cos 30° = \\frac{x\\sqrt3}{2x} = \\frac{\\sqrt3}{2}$, $\\tan 30° = \\frac{x}{x\\sqrt3} = \\frac{\\sqrt3}{3}$; and swapping perspective to the $60°$ corner: $\\sin 60° = \\frac{\\sqrt3}{2}$, $\\cos 60° = \\frac{1}{2}$, $\\tan 60° = \\sqrt{3}$. Notice the swap: $\\sin 30° = \\cos 60°$ and $\\sin 60° = \\cos 30°$ — complementary angles trading ratios again."
+      ],
+      "keyIdea": "30-60-90 = half an equilateral: sides x : x√3 : 2x with the short leg facing 30°; sin 30° = 1/2, cos 30° = √3/2, and the 60° values swap them.",
+      "facts": [
+        {
+          "title": "The pattern",
+          "latex": "x : x\\sqrt{3} : 2x",
+          "explanation": "Short leg (faces 30°), long leg (faces 60°), hypotenuse = 2 × short."
+        },
+        {
+          "title": "Exact values, 30°",
+          "latex": "\\sin 30° = \\tfrac{1}{2}, \\; \\cos 30° = \\tfrac{\\sqrt3}{2}, \\; \\tan 30° = \\tfrac{\\sqrt3}{3}",
+          "explanation": "Read off x, x√3, 2x."
+        },
+        {
+          "title": "Exact values, 60°",
+          "latex": "\\sin 60° = \\tfrac{\\sqrt3}{2}, \\; \\cos 60° = \\tfrac{1}{2}, \\; \\tan 60° = \\sqrt{3}",
+          "explanation": "Same triangle, other corner — sin and cos swap."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig22-we1",
+          "statement": "A 30-60-90 triangle has hypotenuse $10$. Find both legs exactly.",
+          "solution": "Hypotenuse $= 2x = 10$ ⟹ short leg $x = 5$ (faces $30°$); long leg $= x\\sqrt3 = 5\\sqrt{3} \\approx 8.66$ (faces $60°$). Verify: $5^2 + (5\\sqrt3)^2 = 25 + 75 = 100 = 10^2$ ✓.",
+          "check": [
+            "Rational(10,2) == 5",
+            "5**2 + (5*sqrt(3))**2 == 10**2",
+            "10*sin(pi/6) == 5",
+            "10*cos(pi/6) == 5*sqrt(3)"
+          ]
+        },
+        {
+          "id": "trig22-we2",
+          "statement": "An equilateral triangle has side $8$. Find its altitude and its area, exactly.",
+          "solution": "The altitude splits it into two 30-60-90 halves with hypotenuse 8 and short leg 4: altitude $= 4\\sqrt{3}$. Area $= \\frac{1}{2} \\cdot 8 \\cdot 4\\sqrt3 = 16\\sqrt{3} \\approx 27.7$. (General facts worth keeping: altitude $= \\frac{s\\sqrt3}{2}$, area $= \\frac{s^2\\sqrt3}{4}$.)",
+          "check": [
+            "sqrt(8**2 - 4**2) == 4*sqrt(3)",
+            "Rational(1,2)*8*4*sqrt(3) == 16*sqrt(3)",
+            "8**2*sqrt(3)/4 == 16*sqrt(3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Attaching the √3 to the short leg — or halving the LONG leg to get the short one.",
+          "correction": "Geography: the short leg faces $30°$, the $\\sqrt3$ leg faces $60°$, and the DOUBLE relationship connects short leg ↔ hypotenuse only. From the long leg to the short: divide by $\\sqrt3$, never by 2.",
+          "authored": true
+        },
+        {
+          "text": "Treating the 30-60-90 pattern like the 45-45-90 one (equal legs).",
+          "correction": "These are different animals: 45-45-90 has EQUAL legs and one $\\sqrt2$; 30-60-90 has three DIFFERENT sides and a $\\sqrt3$. Before applying any pattern, identify which special triangle you're holding — the angle inventory tells you instantly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig22-t1",
+          "statement": "A 30-60-90 triangle has short leg $6$. Find the other two sides exactly.",
+          "solution": "Hypotenuse $= 2 \\cdot 6 = 12$; long leg $= 6\\sqrt{3} \\approx 10.4$. Verify: $36 + 108 = 144$ ✓.",
+          "check": [
+            "6**2 + (6*sqrt(3))**2 == 12**2",
+            "2*6 == 12"
+          ]
+        },
+        {
+          "id": "trig22-t2",
+          "statement": "A 30-60-90 triangle has LONG leg $9$. Find the short leg and hypotenuse exactly.",
+          "solution": "Short leg $= \\frac{9}{\\sqrt3} = \\frac{9\\sqrt3}{3} = 3\\sqrt{3}$; hypotenuse $= 2 \\cdot 3\\sqrt3 = 6\\sqrt{3}$. Verify: $(3\\sqrt3)^2 + 9^2 = 27 + 81 = 108 = (6\\sqrt3)^2$ ✓.",
+          "check": [
+            "simplify(9/sqrt(3) - 3*sqrt(3)) == 0",
+            "(3*sqrt(3))**2 + 9**2 == (6*sqrt(3))**2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Half an equilateral",
+            "title": "Snap it down the middle",
+            "body": "Start with an equilateral triangle, side $2x$, all angles $60°$. Drop the altitude from the apex $C$ to the midpoint $M$: the base halves into $x + x$ (ticks in the figure), the apex angle halves into $30° + 30°$, and each half-triangle has angles $30°$-$60°$-$90°$. Every 30-60-90 triangle in the universe is one of these halves, scaled.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "B", "x": 4, "y": 0 },
+                  { "id": "C", "x": 2, "y": 3.46 },
+                  { "id": "M", "x": 2, "y": 0, "labelDx": 2, "labelDy": -1 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "M", "ticks": 1 },
+                  { "kind": "segment", "from": "M", "to": "B", "ticks": 1 },
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "B", "to": "C", "dashed": true },
+                  { "kind": "segment", "from": "C", "to": "M" },
+                  { "kind": "angle", "at": "M", "from": "A", "to": "C", "right": true },
+                  { "kind": "angle", "at": "A", "from": "M", "to": "C", "label": "60°" },
+                  { "kind": "angle", "at": "C", "from": "M", "to": "A", "label": "30°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pattern",
+            "title": "x : x√3 : 2x — with geography",
+            "body": "The half keeps hypotenuse $2x$ (an original side) and short leg $x$ (half the base); Pythagoras gives the altitude: $\\sqrt{4x^2 - x^2} = x\\sqrt3$. The pattern $x : x\\sqrt3 : 2x$ comes with a MAP: short leg faces $30°$, long leg faces $60°$, and the hypotenuse is exactly TWICE the short leg. Small angle, small side — the geography is the memory aid."
+          },
+          {
+            "kind": "specialTriangle",
+            "eyebrow": "Play",
+            "title": "30-60-90, live",
+            "teach": "Step the short leg and watch: the hypotenuse rides at exactly double, the long leg at exactly $\\sqrt3 \\approx 1.732$ times. Three different sides, two fixed multipliers, any scale.",
+            "config": { "type": "30-60-90", "start": 3 }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Entering from each side",
+            "intro": "Whichever side is given, route through the short leg x.",
+            "examples": [
+              {
+                "prompt": "Hypotenuse $10$. Find both legs.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "M", "x": 2, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "C", "x": 2, "y": 3.46 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "M" },
+                      { "kind": "segment", "from": "M", "to": "C" },
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "angle", "at": "M", "from": "A", "to": "C", "right": true },
+                      { "kind": "angle", "at": "A", "from": "M", "to": "C", "label": "60°" },
+                      { "kind": "angle", "at": "C", "from": "M", "to": "A", "label": "30°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$2x = 10 \\Rightarrow x = 5$: short leg (faces $30°$) is 5.",
+                  "Long leg $= x\\sqrt3 = 5\\sqrt{3} \\approx 8.66$ (faces $60°$)."
+                ],
+                "answer": "$5$ and $5\\sqrt{3}$",
+                "check": [
+                  "5**2 + (5*sqrt(3))**2 == 100"
+                ]
+              },
+              {
+                "prompt": "An equilateral triangle has side $8$. Find its altitude and area, exactly.",
+                "steps": [
+                  "Half it: hypotenuse 8, short leg 4 ⟹ altitude $= 4\\sqrt{3}$.",
+                  "Area $= \\frac{1}{2} \\cdot 8 \\cdot 4\\sqrt3 = 16\\sqrt{3}$."
+                ],
+                "answer": "altitude $4\\sqrt{3}$, area $16\\sqrt{3}$",
+                "check": [
+                  "sqrt(8**2 - 4**2) == 4*sqrt(3)",
+                  "Rational(1,2)*8*4*sqrt(3) == 16*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The payoff",
+            "title": "Exact values of 30° and 60°",
+            "body": "Read the six values straight off $x : x\\sqrt3 : 2x$. From the $30°$ corner: $\\sin 30° = \\frac{1}{2}$, $\\cos 30° = \\frac{\\sqrt3}{2}$, $\\tan 30° = \\frac{1}{\\sqrt3} = \\frac{\\sqrt3}{3}$. From the $60°$ corner the legs swap roles: $\\sin 60° = \\frac{\\sqrt3}{2}$, $\\cos 60° = \\frac{1}{2}$, $\\tan 60° = \\sqrt3$. The complementary swap — $\\sin 30° = \\cos 60°$ — isn't coincidence; the two corners share the triangle."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Mind the geography",
+            "prompt": "In a 30-60-90 triangle, the side facing the $60°$ angle is $4\\sqrt{3}$. What is the hypotenuse?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "M", "x": 2, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "C", "x": 2, "y": 3.46 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "M" },
+                  { "kind": "segment", "from": "M", "to": "C" },
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "angle", "at": "M", "from": "A", "to": "C", "right": true },
+                  { "kind": "angle", "at": "A", "from": "M", "to": "C", "label": "60°" },
+                  { "kind": "angle", "at": "C", "from": "M", "to": "A", "label": "30°" }
+                ]
+              }
+            },
+            "options": [
+              "$8$ — the long leg is $x\\sqrt3$, so $x = 4$ and $2x = 8$",
+              "$8\\sqrt{3}$ — double the given side",
+              "$2\\sqrt{3}$ — halve it",
+              "$4\\sqrt{6}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $60°$-facing side is the LONG leg $x\\sqrt3 = 4\\sqrt3$ ⟹ $x = 4$; hypotenuse $= 2x = 8$. The doubling connects hypotenuse to the SHORT leg — doubling the long leg (option B) is the classic geography error.",
+            "check": [
+              "4**2 + (4*sqrt(3))**2 == 8**2"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Route through x",
+            "intro": "Identify which side you were given, solve for x, then read out the rest.",
+            "problems": [
+              {
+                "prompt": "Short leg $6$. Hypotenuse and long leg?",
+                "options": ["$12$ and $6\\sqrt{3}$", "$6\\sqrt{2}$ and $6\\sqrt{3}$", "$18$ and $6\\sqrt{3}$"],
+                "correctIndex": 0,
+                "explanation": "$x = 6$: hypotenuse $2x = 12$, long leg $x\\sqrt3 = 6\\sqrt3$. Check: $36 + 108 = 144$ ✓.",
+                "check": [
+                  "6**2 + (6*sqrt(3))**2 == 12**2"
+                ]
+              },
+              {
+                "prompt": "$\\sin 60° \\cdot \\cos 30° = ?$ (exactly)",
+                "options": ["$\\dfrac{3}{4}$", "$\\dfrac{\\sqrt3}{2}$", "$\\dfrac{1}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{\\sqrt3}{2} \\cdot \\frac{\\sqrt3}{2} = \\frac{3}{4}$ — both factors are the same number, the complementary swap in action.",
+                "check": [
+                  "sin(pi/3)*cos(pi/6) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "An equilateral triangle has altitude $6$. What is its side, exactly?",
+                "options": ["$4\\sqrt{3}$", "$12$", "$3\\sqrt{3}$"],
+                "correctIndex": 0,
+                "explanation": "Altitude = long leg: $x\\sqrt3 = 6$ ⟹ $x = \\frac{6}{\\sqrt3} = 2\\sqrt3$; side $= 2x = 4\\sqrt{3} \\approx 6.9$.",
+                "check": [
+                  "simplify(6/sqrt(3) - 2*sqrt(3)) == 0",
+                  "(2*sqrt(3))**2 + 6**2 == (4*sqrt(3))**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "√2 means half-square, √3 means half-equilateral",
+            "body": "When a problem's answer involves $\\sqrt2$, a 45-45-90 triangle is hiding in it; $\\sqrt3$ betrays a 30-60-90 (or a whole equilateral). Reading the radicals backwards like this lets you check answers — and sometimes spot the fast solution — before doing any work.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "30-60-90 = half an equilateral: x : x√3 : 2x, short leg facing 30°.",
+              "Hypotenuse = 2 × SHORT leg; long leg = short × √3 — respect the geography.",
+              "sin 30° = 1/2, cos 30° = √3/2, tan 60° = √3 — and complements swap sin ↔ cos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-exact-value-table",
+      "title": "The Exact Value Table",
+      "concreteComparison": "A pianist doesn't re-derive where middle C is at every concert — five landmark keys are in their fingers, and everything else is found relative to them. The exact values of 0°, 30°, 45°, 60°, 90° are trigonometry's landmark keys: memorize five, navigate everything.",
+      "objective": "Command the exact sin/cos/tan values for 0°, 30°, 45°, 60°, 90°, using the √n/2 pattern, and combine them in exact computations.",
+      "concept": [
+        "The full table, with the pattern that makes it memorizable — every sine is $\\frac{\\sqrt{n}}{2}$ for $n = 0, 1, 2, 3, 4$: $\\sin 0° = \\frac{\\sqrt0}{2} = 0$, $\\sin 30° = \\frac{\\sqrt1}{2} = \\frac{1}{2}$, $\\sin 45° = \\frac{\\sqrt2}{2}$, $\\sin 60° = \\frac{\\sqrt3}{2}$, $\\sin 90° = \\frac{\\sqrt4}{2} = 1$. Cosine runs the SAME list backwards ($n = 4 \\to 0$).",
+        "Tangent is manufactured, not memorized: $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$, giving $0, \\frac{\\sqrt3}{3}, 1, \\sqrt3$, and UNDEFINED at $90°$ (cosine hits 0 — division by zero; geometrically, a $90°$ 'right triangle' has no second leg to compare).",
+        "The endpoints $0°$ and $90°$ are limiting cases worth picturing: as $\\theta \\to 0°$ the triangle squashes flat (opposite $\\to 0$, adjacent $\\to$ hypotenuse), so $\\sin \\to 0$, $\\cos \\to 1$; as $\\theta \\to 90°$ it stretches vertical and the roles flip. The table's monotone slide — sine climbing $0 \\to 1$ while cosine falls $1 \\to 0$ — is those two squashes in slow motion."
+      ],
+      "keyIdea": "Five sines follow √n/2 for n = 0..4; cosine runs the list backwards; tangent = sin/cos (undefined at 90°). Five landmarks, whole subject navigable.",
+      "facts": [
+        {
+          "title": "The √n/2 pattern",
+          "latex": "\\sin: \\tfrac{\\sqrt0}{2}, \\tfrac{\\sqrt1}{2}, \\tfrac{\\sqrt2}{2}, \\tfrac{\\sqrt3}{2}, \\tfrac{\\sqrt4}{2} \\;\\; (0°, 30°, 45°, 60°, 90°)",
+          "explanation": "Cosine is the same row reversed."
+        },
+        {
+          "title": "Tangent row",
+          "latex": "0, \\; \\tfrac{\\sqrt3}{3}, \\; 1, \\; \\sqrt3, \\; \\text{undefined}",
+          "explanation": "sin ÷ cos; blows up where cos = 0."
+        },
+        {
+          "title": "The slide",
+          "latex": "\\theta: 0° \\to 90°: \\;\\; \\sin \\uparrow 0 \\to 1, \\;\\; \\cos \\downarrow 1 \\to 0",
+          "explanation": "Squash the triangle flat or stretch it vertical."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig23-we1",
+          "statement": "Compute exactly: $\\sin 30° \\cos 60° + \\cos 30° \\sin 60°$.",
+          "solution": "Substitute the table: $\\frac{1}{2} \\cdot \\frac{1}{2} + \\frac{\\sqrt3}{2} \\cdot \\frac{\\sqrt3}{2} = \\frac{1}{4} + \\frac{3}{4} = 1$. (Foreshadowing: this expression is secretly $\\sin(30° + 60°) = \\sin 90°$ — Unit 5's sum formula, already whispering.)",
+          "check": [
+            "sin(pi/6)*cos(pi/3) + cos(pi/6)*sin(pi/3) == 1",
+            "Rational(1,4) + Rational(3,4) == 1"
+          ]
+        },
+        {
+          "id": "trig23-we2",
+          "statement": "Compute exactly: $\\tan 60° - \\tan 30°$, and simplify to a single term.",
+          "solution": "$\\sqrt3 - \\frac{\\sqrt3}{3} = \\frac{3\\sqrt3 - \\sqrt3}{3} = \\frac{2\\sqrt3}{3}$. Common denominators work on radicals exactly as on numbers — the table's values are just numbers with exact names.",
+          "check": [
+            "simplify(tan(pi/3) - tan(pi/6) - 2*sqrt(3)/3) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Swapping the sin and cos rows — writing cos 30° = 1/2.",
+          "correction": "Anchor on the picture: $30°$ is a SMALL tilt, so its sine (height) is small — $\\frac{1}{2}$ — and its cosine (flat reach) is big — $\\frac{\\sqrt3}{2} \\approx 0.87$. Small angle, small sine. One second of picture beats a memorized grid.",
+          "authored": true
+        },
+        {
+          "text": "Writing tan 90° = 1 or ∞ as if it were a number.",
+          "correction": "$\\tan 90° = \\frac{\\sin 90°}{\\cos 90°} = \\frac{1}{0}$ — UNDEFINED, not a value. Answers of 'tan θ = tan 90°' in equations mean no solution from that branch. (The graph of tangent, Unit 4, shows the vertical asymptote living exactly here.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig23-t1",
+          "statement": "Compute exactly: $\\sin^2 60° + \\cos^2 60°$ and $\\sin^2 45° + \\cos^2 45°$.",
+          "solution": "$\\frac{3}{4} + \\frac{1}{4} = 1$ and $\\frac{2}{4} + \\frac{2}{4} = 1$. Both are 1 — and Unit 5 proves this holds for EVERY angle (the Pythagorean identity, which is just $a^2 + b^2 = c^2$ divided by $c^2$).",
+          "check": [
+            "sin(pi/3)**2 + cos(pi/3)**2 == 1",
+            "sin(pi/4)**2 + cos(pi/4)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig23-t2",
+          "statement": "Compute exactly: $\\dfrac{\\tan 45° + \\tan 30°}{1 - \\tan 45°\\tan 30°}$, and recognize the answer.",
+          "solution": "$\\frac{1 + \\frac{\\sqrt3}{3}}{1 - \\frac{\\sqrt3}{3}} = \\frac{3 + \\sqrt3}{3 - \\sqrt3} = \\frac{(3+\\sqrt3)^2}{(3)^2 - 3} = \\frac{12 + 6\\sqrt3}{6} = 2 + \\sqrt{3}$. That's $\\tan 75°$ — the tangent sum formula computing a NEW exact value from two landmarks.",
+          "check": [
+            "simplify((tan(pi/4) + tan(pi/6))/(1 - tan(pi/4)*tan(pi/6)) - (2 + sqrt(3))) == 0",
+            "simplify(tan(5*pi/12) - (2 + sqrt(3))) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The landmarks",
+            "title": "Five angles you own forever",
+            "body": "Units 1–2 derived exact values from the two special triangles. Collected, with the endpoints $0°$ and $90°$: this is THE table of trigonometry, and it has a secret rhythm — every sine is $\\frac{\\sqrt n}{2}$: $$\\sin: \\frac{\\sqrt0}{2}, \\frac{\\sqrt1}{2}, \\frac{\\sqrt2}{2}, \\frac{\\sqrt3}{2}, \\frac{\\sqrt4}{2} = 0, \\frac{1}{2}, \\frac{\\sqrt2}{2}, \\frac{\\sqrt3}{2}, 1.$$ Cosine? The identical list, read backwards. Two rows for the price of one."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Run the pattern",
+            "prompt": "Using the $\\frac{\\sqrt n}{2}$ pattern, what is $\\cos 30°$?",
+            "options": [
+              "$\\dfrac{\\sqrt3}{2}$ — cosine runs the list backwards",
+              "$\\dfrac{1}{2}$ — same as $\\sin 30°$",
+              "$\\dfrac{\\sqrt2}{2}$",
+              "$\\dfrac{\\sqrt3}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine's row is the sine row reversed: at $30°$ (second position), cosine takes the second-from-END value $\\frac{\\sqrt3}{2}$. Picture-check: a small tilt reaches far horizontally — big cosine ✓.",
+            "check": [
+              "cos(pi/6) == sqrt(3)/2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The endpoints",
+            "title": "0° and 90° are squashed triangles",
+            "body": "Why $\\sin 0° = 0$ and $\\cos 0° = 1$? Squash the triangle flat: the opposite leg vanishes, the adjacent merges with the hypotenuse. Stretch it vertical for $90°$ and the roles flip. And $\\tan 90° = \\frac{1}{0}$ is UNDEFINED — there's no adjacent leg left to compare against. These limiting cases anchor the table's two ends and explain the slide between them: sine climbs $0 \\to 1$, cosine falls $1 \\to 0$."
+          },
+          {
+            "kind": "trigRatios",
+            "eyebrow": "Play",
+            "title": "Watch the slide",
+            "teach": "Sweep the angle from near $0°$ to near $90°$: sine climbs toward 1, cosine sinks toward 0, and they CROSS at $45°$ where both read $\\frac{\\sqrt2}{2} \\approx 0.707$. Tangent, their ratio, sweeps from near 0 through 1 (at 45°) toward infinity.",
+            "config": { "start": 45 }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Exact arithmetic",
+            "intro": "Substitute from the table, then treat the radicals as ordinary numbers.",
+            "examples": [
+              {
+                "prompt": "Compute $\\sin 30°\\cos 60° + \\cos 30°\\sin 60°$ exactly.",
+                "steps": [
+                  "$\\tfrac{1}{2} \\cdot \\tfrac{1}{2} + \\tfrac{\\sqrt3}{2} \\cdot \\tfrac{\\sqrt3}{2} = \\tfrac{1}{4} + \\tfrac{3}{4}$.",
+                  "$= 1$. (Secretly $\\sin(30° + 60°) = \\sin 90°$ — a preview of Unit 5.)"
+                ],
+                "answer": "$1$",
+                "check": [
+                  "sin(pi/6)*cos(pi/3) + cos(pi/6)*sin(pi/3) == 1"
+                ]
+              },
+              {
+                "prompt": "Compute $\\tan 60° - \\tan 30°$ as a single simplified term.",
+                "steps": [
+                  "$\\sqrt3 - \\tfrac{\\sqrt3}{3} = \\tfrac{3\\sqrt3 - \\sqrt3}{3}$.",
+                  "$= \\tfrac{2\\sqrt3}{3}$."
+                ],
+                "answer": "$\\tfrac{2\\sqrt3}{3}$",
+                "check": [
+                  "simplify(tan(pi/3) - tan(pi/6) - 2*sqrt(3)/3) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Table drills",
+            "intro": "No calculator — that's the whole point.",
+            "problems": [
+              {
+                "prompt": "$\\cos 45° \\cdot \\cos 45° = ?$",
+                "options": ["$\\dfrac{1}{2}$", "$\\dfrac{\\sqrt2}{2}$", "$1$"],
+                "correctIndex": 0,
+                "explanation": "$\\left(\\frac{\\sqrt2}{2}\\right)^2 = \\frac{2}{4} = \\frac{1}{2}$. Squaring kills the radical.",
+                "check": [
+                  "cos(pi/4)**2 == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$2\\sin 60°\\cos 60° = ?$ (exactly)",
+                "options": ["$\\dfrac{\\sqrt3}{2}$", "$\\dfrac{3}{4}$", "$\\sqrt3$"],
+                "correctIndex": 0,
+                "explanation": "$2 \\cdot \\frac{\\sqrt3}{2} \\cdot \\frac{1}{2} = \\frac{\\sqrt3}{2}$ — which happens to be $\\sin 120°$: the double-angle formula $2\\sin\\theta\\cos\\theta = \\sin 2\\theta$, making an early cameo.",
+                "check": [
+                  "2*sin(pi/3)*cos(pi/3) == sqrt(3)/2"
+                ]
+              },
+              {
+                "prompt": "Which is LARGER: $\\tan 60°$ or $\\sin 60° + \\cos 60°$?",
+                "options": ["$\\tan 60°$", "$\\sin 60° + \\cos 60°$", "They're equal"],
+                "correctIndex": 0,
+                "explanation": "$\\tan 60° = \\sqrt3 \\approx 1.732$; the sum is $\\frac{\\sqrt3}{2} + \\frac{1}{2} = \\frac{\\sqrt3 + 1}{2} \\approx 1.366$. Exact values make comparisons airtight.",
+                "check": [
+                  "tan(pi/3) > sin(pi/3) + cos(pi/3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Before calculators: 4,000 pages of tables",
+            "body": "For centuries, navigation and astronomy ran on printed trig tables — the grandest, France's 18th-century Tables du Cadastre, filled dozens of manuscript volumes computed by teams of human 'calculators.' The five exact values you just memorized were the anchor points those armies of arithmetic checked themselves against.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Sines run √0/2 … √4/2 across 0°, 30°, 45°, 60°, 90°; cosine is the row reversed.",
+              "Tangent = sin/cos: 0, √3/3, 1, √3, undefined.",
+              "Anchor by picture: small angle → small sine, big cosine; they cross at 45°."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exact-values-in-action",
+      "title": "Exact Values in Action",
+      "concreteComparison": "A carpenter who knows their materials doesn't measure twice on standard cuts — the 45° miter and the 30° roof pitch have known, exact proportions. This lesson is the workshop: real lengths, real areas, real perimeters, all computed exactly with the two special triangles.",
+      "objective": "Solve multi-step geometry problems — perimeters, areas, composite figures — exactly, by decomposing them into special triangles.",
+      "concept": [
+        "The workflow: SPOT the special triangle inside the figure (a square's diagonal, an equilateral's altitude, a $30°$ ramp), APPLY its side pattern to move between given and wanted lengths, and keep everything in exact form — radicals simplify and often cancel; decimals just accumulate rounding damage.",
+        "Composite figures decompose: a trapezoid with $45°$ base angles splits into a rectangle plus two 45-45-90 corners; a regular hexagon splits into six equilateral triangles (hence its area $= 6 \\cdot \\frac{s^2\\sqrt3}{4} = \\frac{3s^2\\sqrt3}{2}$). Find the hidden special triangles and the exact answer assembles itself.",
+        "Radical hygiene keeps answers comparable: rationalize denominators ($\\frac{6}{\\sqrt3} = 2\\sqrt3$), collect like radicals ($3\\sqrt2 + \\sqrt2 = 4\\sqrt2$ — but $\\sqrt2 + \\sqrt3$ does NOT combine), and simplify roots ($\\sqrt{12} = 2\\sqrt3$). An unsimplified correct answer loses exam points and hides its own meaning."
+      ],
+      "keyIdea": "Spot the special triangle hiding in the figure, run its pattern, and keep exact form — rationalize, collect like radicals, simplify roots.",
+      "facts": [
+        {
+          "title": "The hexagon secret",
+          "latex": "\\text{regular hexagon} = 6 \\text{ equilateral triangles}",
+          "explanation": "Area = 3s²√3/2 — special triangles at industrial scale."
+        },
+        {
+          "title": "Radical hygiene",
+          "latex": "\\tfrac{6}{\\sqrt3} = 2\\sqrt3, \\quad \\sqrt{12} = 2\\sqrt3, \\quad 3\\sqrt2 + \\sqrt2 = 4\\sqrt2",
+          "explanation": "Rationalize, simplify, collect — likes with likes only."
+        },
+        {
+          "title": "Decompose",
+          "latex": "\\text{trapezoid} = \\text{rectangle} + \\text{special corners}",
+          "explanation": "Composite figures hide special triangles at their edges."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig24-we1",
+          "statement": "A trapezoid has parallel sides of $10$ (bottom) and $4$ (top), and both base angles are $45°$. Find its height and area, exactly.",
+          "solution": "The overhang on each side is $\\frac{10 - 4}{2} = 3$. Each corner is a 45-45-90 triangle with horizontal leg 3, so the height (vertical leg) is also $3$. Area $= \\frac{(10 + 4)}{2} \\cdot 3 = 21$. Fully exact, no radicals needed — the 45° corners have equal legs.",
+          "check": [
+            "Rational(10 - 4, 2) == 3",
+            "3*tan(pi/4) == 3",
+            "Rational(10 + 4, 2)*3 == 21"
+          ]
+        },
+        {
+          "id": "trig24-we2",
+          "statement": "A regular hexagon has side $4$. Find its area exactly.",
+          "solution": "Six equilateral triangles of side 4: each has area $\\frac{4^2\\sqrt3}{4} = 4\\sqrt3$. Total: $6 \\cdot 4\\sqrt3 = 24\\sqrt{3} \\approx 41.6$. (The center-to-vertex distance equals the side — that's what makes the six triangles equilateral.)",
+          "check": [
+            "4**2*sqrt(3)/4 == 4*sqrt(3)",
+            "6*4*sqrt(3) == 24*sqrt(3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding unlike radicals: √2 + √3 = √5.",
+          "correction": "Radicals collect only when IDENTICAL: $3\\sqrt2 + \\sqrt2 = 4\\sqrt2$, but $\\sqrt2 + \\sqrt3$ stays two terms forever (numerically $1.41 + 1.73 = 3.15 \\neq \\sqrt5 \\approx 2.24$). Radicals are like units — meters add to meters, never to seconds.",
+          "authored": true
+        },
+        {
+          "text": "Rounding mid-problem and presenting a drifted final answer.",
+          "correction": "Keep $\\sqrt3$ AS $\\sqrt3$ until the final line. Rounding to 1.73 mid-stream then multiplying magnifies the error — and on exact-answer exams, $20.76$ scores zero where $12\\sqrt3$ scores full. Exactness isn't pedantry; it's the answer format.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig24-t1",
+          "statement": "A rhombus has side $6$ and one angle of $60°$. Find its area exactly (split it along the short diagonal).",
+          "solution": "The short diagonal opposite the $60°$ angle makes each half an equilateral... more directly: area $= s^2\\sin\\theta = 36\\sin 60° = 36 \\cdot \\frac{\\sqrt3}{2} = 18\\sqrt{3} \\approx 31.2$. (The height is $6\\sin 60° = 3\\sqrt3$; base times height gives the same $18\\sqrt3$.)",
+          "check": [
+            "36*sin(pi/3) == 18*sqrt(3)",
+            "6*(6*sin(pi/3)) == 18*sqrt(3)"
+          ]
+        },
+        {
+          "id": "trig24-t2",
+          "statement": "Simplify exactly: $\\sqrt{12} + \\dfrac{6}{\\sqrt{3}} - \\sqrt{27}$.",
+          "solution": "Hygiene pass: $\\sqrt{12} = 2\\sqrt3$; $\\frac{6}{\\sqrt3} = 2\\sqrt3$; $\\sqrt{27} = 3\\sqrt3$. Collect: $2\\sqrt3 + 2\\sqrt3 - 3\\sqrt3 = \\sqrt{3}$. Three ugly terms, one clean radical.",
+          "check": [
+            "simplify(sqrt(12) + 6/sqrt(3) - sqrt(27) - sqrt(3)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The workshop",
+            "title": "Spot the special triangle",
+            "body": "Real figures rarely announce '30-60-90 here.' They hide the patterns: a square's diagonal (45-45-90), an equilateral's altitude (30-60-90), a hexagon's spokes (equilateral), a trapezoid's slanted ends (either). The skill of this lesson is X-ray vision — see the special triangle inside the composite figure, and the exact arithmetic follows."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The trapezoid's corners",
+            "intro": "Split off the slanted corners; a rectangle remains.",
+            "examples": [
+              {
+                "prompt": "Trapezoid: bottom $10$, top $4$, base angles $45°$. Height and area?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "B", "x": 10, "y": 0 },
+                      { "id": "C", "x": 7, "y": 3 },
+                      { "id": "D", "x": 3, "y": 3 },
+                      { "id": "E", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1, "label": "" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "segment", "from": "B", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "D" },
+                      { "kind": "segment", "from": "D", "to": "A" },
+                      { "kind": "segment", "from": "D", "to": "E", "dashed": true },
+                      { "kind": "angle", "at": "E", "from": "A", "to": "D", "right": true },
+                      { "kind": "angle", "at": "A", "from": "B", "to": "D", "label": "45°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Overhang each side: $\\frac{10 - 4}{2} = 3$.",
+                  "45° corner triangle: legs equal ⟹ height $= 3$. Area $= \\frac{10 + 4}{2} \\cdot 3 = 21$."
+                ],
+                "answer": "height $3$, area $21$",
+                "check": [
+                  "Rational(10 - 4, 2) == 3",
+                  "Rational(10 + 4, 2)*3 == 21"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "X-ray the hexagon",
+            "prompt": "A regular hexagon of side $s$ splits from its center into six triangles. What kind are they?",
+            "options": [
+              "Equilateral — central angle $360°/6 = 60°$ and two equal spokes force all angles to 60°",
+              "45-45-90",
+              "30-60-90",
+              "Isosceles but otherwise arbitrary"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each central angle is $60°$, and the two spokes are equal (both circumradii), so the base angles are $\\frac{180° - 60°}{2} = 60°$ each — all three angles $60°$: equilateral, with side $= s$. Hexagon area $= 6 \\cdot \\frac{s^2\\sqrt3}{4}$ follows instantly.",
+            "check": [
+              "Rational(360,6) == 60",
+              "Rational(180 - 60, 2) == 60"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Hexagon area, exactly",
+            "intro": "Six equilateral triangles, one formula each.",
+            "examples": [
+              {
+                "prompt": "Regular hexagon, side $4$. Area?",
+                "steps": [
+                  "One equilateral triangle: $\\frac{4^2\\sqrt3}{4} = 4\\sqrt3$.",
+                  "Six of them: $24\\sqrt{3} \\approx 41.6$."
+                ],
+                "answer": "$24\\sqrt{3}$",
+                "check": [
+                  "6*(4**2*sqrt(3)/4) == 24*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Hygiene",
+            "title": "Keep radicals clean",
+            "body": "Three rules keep exact answers exact. **Rationalize**: $\\frac{6}{\\sqrt3} = \\frac{6\\sqrt3}{3} = 2\\sqrt3$. **Simplify roots**: $\\sqrt{12} = \\sqrt{4 \\cdot 3} = 2\\sqrt3$. **Collect likes only**: $2\\sqrt3 + 5\\sqrt3 = 7\\sqrt3$, but $\\sqrt2 + \\sqrt3$ is already as simple as it gets. Run all three passes and answers that looked different reveal themselves as equal — or genuinely different."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Exact craftsmanship",
+            "intro": "Spot the triangle, run the pattern, keep it clean.",
+            "problems": [
+              {
+                "prompt": "A square has side $5$. Its diagonal, exactly?",
+                "options": ["$5\\sqrt{2}$", "$\\sqrt{10}$", "$10$"],
+                "correctIndex": 0,
+                "explanation": "The diagonal is the 45-45-90 hypotenuse: $5\\sqrt2 \\approx 7.07$.",
+                "check": [
+                  "sqrt(5**2 + 5**2) == 5*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Simplify: $\\sqrt{48} - 2\\sqrt{3}$.",
+                "options": ["$2\\sqrt{3}$", "$\\sqrt{45}$", "$2\\sqrt{45}$"],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt3$; then $4\\sqrt3 - 2\\sqrt3 = 2\\sqrt3$.",
+                "check": [
+                  "simplify(sqrt(48) - 2*sqrt(3) - 2*sqrt(3)) == 0"
+                ]
+              },
+              {
+                "prompt": "An equilateral triangle and a square have the same perimeter, $24$. Which has the bigger area?",
+                "options": [
+                  "The square — $36$ vs $16\\sqrt3 \\approx 27.7$",
+                  "The triangle",
+                  "They're equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Square: side 6, area 36. Triangle: side 8, area $\\frac{64\\sqrt3}{4} = 16\\sqrt3 \\approx 27.7$. Same fence, more lawn for the square — fewer, wider corners hold more area.",
+                "check": [
+                  "8**2*sqrt(3)/4 == 16*sqrt(3)",
+                  "36 > 16*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Exact until the last line",
+            "body": "Carry $\\sqrt2$ and $\\sqrt3$ symbolically through EVERY step; convert to a decimal only if the question explicitly asks. Two wins: zero rounding drift, and your answer matches the key's format. If two of your radicals should cancel, they only will while they're still radicals.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "X-ray composite figures for hidden special triangles: diagonals, altitudes, corners, hexagon spokes.",
+              "Hexagon = 6 equilaterals; trapezoid = rectangle + special corners.",
+              "Hygiene: rationalize, simplify roots, collect like radicals — and stay exact to the last line."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig2-pr-1",
+      "statement": "A 45-45-90 triangle has leg $9$. Find the hypotenuse and the area, exactly.",
+      "solution": "Hypotenuse $= 9\\sqrt{2}$. Area $= \\frac{9 \\cdot 9}{2} = \\frac{81}{2}$.",
+      "check": [
+        "sqrt(9**2 + 9**2) == 9*sqrt(2)",
+        "Rational(9*9, 2) == Rational(81,2)"
+      ]
+    },
+    {
+      "id": "trig2-pr-2",
+      "statement": "A 30-60-90 triangle has hypotenuse $16$. Find both legs exactly.",
+      "solution": "Short leg $= 8$ (half the hypotenuse); long leg $= 8\\sqrt{3}$. Check: $64 + 192 = 256 = 16^2$ ✓.",
+      "check": [
+        "Rational(16,2) == 8",
+        "8**2 + (8*sqrt(3))**2 == 16**2"
+      ]
+    },
+    {
+      "id": "trig2-pr-3",
+      "statement": "A square's diagonal is $10\\sqrt{2}$. Find its side and its area.",
+      "solution": "Side $= \\frac{10\\sqrt2}{\\sqrt2} = 10$; area $= 100$.",
+      "check": [
+        "simplify(10*sqrt(2)/sqrt(2) - 10) == 0",
+        "10**2 == 100"
+      ]
+    },
+    {
+      "id": "trig2-pr-4",
+      "statement": "An equilateral triangle has side $10$. Find its altitude and area, exactly.",
+      "solution": "Altitude $= 5\\sqrt{3}$ (30-60-90 half with hypotenuse 10). Area $= \\frac{10 \\cdot 5\\sqrt3}{2} = 25\\sqrt{3}$.",
+      "geoFigure": {
+        "points": [
+          { "id": "A", "x": 0, "y": 0 },
+          { "id": "B", "x": 4, "y": 0 },
+          { "id": "C", "x": 2, "y": 3.46 },
+          { "id": "M", "x": 2, "y": 0, "labelDx": 2, "labelDy": -1 }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "A", "to": "B" },
+          { "kind": "segment", "from": "A", "to": "C" },
+          { "kind": "segment", "from": "B", "to": "C" },
+          { "kind": "segment", "from": "C", "to": "M", "dashed": true },
+          { "kind": "angle", "at": "M", "from": "B", "to": "C", "right": true }
+        ]
+      },
+      "check": [
+        "sqrt(10**2 - 5**2) == 5*sqrt(3)",
+        "Rational(1,2)*10*5*sqrt(3) == 25*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig2-pr-5",
+      "statement": "Compute exactly: $\\sin 60°\\cos 30° - \\sin 30°\\cos 60°$.",
+      "solution": "$\\frac{\\sqrt3}{2} \\cdot \\frac{\\sqrt3}{2} - \\frac{1}{2} \\cdot \\frac{1}{2} = \\frac{3}{4} - \\frac{1}{4} = \\frac{1}{2}$. (This is $\\sin(60° - 30°) = \\sin 30°$ ✓ — the difference formula in disguise.)",
+      "check": [
+        "sin(pi/3)*cos(pi/6) - sin(pi/6)*cos(pi/3) == Rational(1,2)",
+        "sin(pi/6) == Rational(1,2)"
+      ]
+    },
+    {
+      "id": "trig2-pr-6",
+      "statement": "Simplify exactly: $\\dfrac{12}{\\sqrt{3}} + \\sqrt{75} - \\sqrt{27}$.",
+      "solution": "$\\frac{12}{\\sqrt3} = 4\\sqrt3$; $\\sqrt{75} = 5\\sqrt3$; $\\sqrt{27} = 3\\sqrt3$. Total: $4\\sqrt3 + 5\\sqrt3 - 3\\sqrt3 = 6\\sqrt{3}$.",
+      "check": [
+        "simplify(12/sqrt(3) + sqrt(75) - sqrt(27) - 6*sqrt(3)) == 0"
+      ]
+    },
+    {
+      "id": "trig2-pr-7",
+      "statement": "A ramp rises at $30°$ and must reach a platform $2$ m high. How long is the ramp surface (the hypotenuse), exactly?",
+      "solution": "Height faces the $30°$ angle — it's the short leg: hypotenuse $= 2 \\cdot 2 = 4$ m. (The 30-60-90 doubling, no trig ratios needed.)",
+      "check": [
+        "2/sin(pi/6) == 4"
+      ]
+    },
+    {
+      "id": "trig2-pr-8",
+      "statement": "A regular hexagon has side $6$. Find its area exactly, and its long diagonal (vertex to opposite vertex).",
+      "solution": "Area $= 6 \\cdot \\frac{6^2\\sqrt3}{4} = 54\\sqrt{3} \\approx 93.5$. Long diagonal $= 2 \\times$ circumradius $= 2 \\cdot 6 = 12$ (the spokes equal the side).",
+      "check": [
+        "6*(6**2*sqrt(3)/4) == 54*sqrt(3)",
+        "2*6 == 12"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig2-ty-1",
+      "statement": "A 45-45-90 triangle has hypotenuse $9\\sqrt{2}$. Find its legs and its perimeter, exactly.",
+      "solution": "Legs $= \\frac{9\\sqrt2}{\\sqrt2} = 9$ each. Perimeter $= 9 + 9 + 9\\sqrt2 = 18 + 9\\sqrt{2} \\approx 30.7$.",
+      "check": [
+        "simplify(9*sqrt(2)/sqrt(2) - 9) == 0",
+        "9**2 + 9**2 == (9*sqrt(2))**2"
+      ]
+    },
+    {
+      "id": "trig2-ty-2",
+      "statement": "A 30-60-90 triangle has long leg $12$. Find the short leg, hypotenuse, and area, exactly.",
+      "solution": "Short $= \\frac{12}{\\sqrt3} = 4\\sqrt{3}$; hypotenuse $= 8\\sqrt{3}$; area $= \\frac{1}{2} \\cdot 12 \\cdot 4\\sqrt3 = 24\\sqrt{3}$.",
+      "check": [
+        "simplify(12/sqrt(3) - 4*sqrt(3)) == 0",
+        "(4*sqrt(3))**2 + 12**2 == (8*sqrt(3))**2",
+        "Rational(1,2)*12*4*sqrt(3) == 24*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig2-ty-3",
+      "statement": "Compute exactly and simplify: $\\dfrac{\\sin 60°}{\\cos 60°}$ and $\\dfrac{1 - \\cos 60°}{\\sin 60°}$.",
+      "solution": "First: $\\frac{\\sqrt3/2}{1/2} = \\sqrt{3} = \\tan 60°$ ✓. Second: $\\frac{1/2}{\\sqrt3/2} = \\frac{1}{\\sqrt3} = \\frac{\\sqrt3}{3}$ — which is $\\tan 30°$, the half-angle of $60°$ making a quiet appearance.",
+      "check": [
+        "sin(pi/3)/cos(pi/3) == sqrt(3)",
+        "simplify((1 - cos(pi/3))/sin(pi/3) - sqrt(3)/3) == 0"
+      ]
+    },
+    {
+      "id": "trig2-ty-4",
+      "statement": "A rhombus has side $8$ and a $60°$ angle. Find both diagonals exactly. (Hint: the diagonals bisect the angles and each other, at right angles.)",
+      "solution": "Half-diagonals from a vertex's $30°$-$60°$ split: the halves are $8\\cos 30° = 4\\sqrt3$ and $8\\sin 30° = 4$... assembling: short diagonal $= 2 \\cdot 4 = 8$ (opposite the $60°$ angles — it closes an equilateral triangle), long diagonal $= 2 \\cdot 4\\sqrt3 = 8\\sqrt{3}$. Check: $(4)^2 + (4\\sqrt3)^2 = 16 + 48 = 64 = 8^2$ ✓.",
+      "check": [
+        "8*sin(pi/6) == 4",
+        "8*cos(pi/6) == 4*sqrt(3)",
+        "4**2 + (4*sqrt(3))**2 == 8**2"
+      ]
+    },
+    {
+      "id": "trig2-ty-5",
+      "statement": "From a point $12$ m from a wall, a security light at the top is seen at elevation $60°$; a window ledge is seen at $30°$. How far apart (vertically) are the light and the ledge, exactly?",
+      "solution": "Light: $12\\tan 60° = 12\\sqrt3$. Ledge: $12\\tan 30° = 4\\sqrt3$. Gap: $12\\sqrt3 - 4\\sqrt3 = 8\\sqrt{3} \\approx 13.9$ m.",
+      "check": [
+        "12*tan(pi/3) == 12*sqrt(3)",
+        "12*tan(pi/6) == 4*sqrt(3)",
+        "12*sqrt(3) - 4*sqrt(3) == 8*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig2-ty-6",
+      "statement": "Show that a regular hexagon of side $s$ has area exactly $\\frac{3s^2\\sqrt3}{2}$, and evaluate for $s = 2$.",
+      "solution": "Six equilateral triangles of side $s$: $6 \\cdot \\frac{s^2\\sqrt3}{4} = \\frac{6s^2\\sqrt3}{4} = \\frac{3s^2\\sqrt3}{2}$. At $s = 2$: $\\frac{3 \\cdot 4 \\cdot \\sqrt3}{2} = 6\\sqrt{3} \\approx 10.4$.",
+      "check": [
+        "simplify(6*(s**2*sqrt(3)/4) - 3*s**2*sqrt(3)/2) == 0",
+        "3*2**2*sqrt(3)/2 == 6*sqrt(3)"
+      ]
+    }
+  ]
+}

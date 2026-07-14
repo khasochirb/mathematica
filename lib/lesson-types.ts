@@ -24,6 +24,10 @@ export interface LessonProblem {
   note?: string; // optional teaching note shown before the solution
   badges?: LessonProblemBadge[]; // e.g. difficulty / skill-tag chips
   figure?: FigureData;
+  // A declarative geometry diagram (points/segments/angle arcs) rendered by
+  // GeoDiagram — the genmath course system, distinct from the image-based
+  // `figure` above. Used by figure-heavy course banks (Trigonometry).
+  geoFigure?: import("@/lib/genmath-interactive").GeoDiagramSpec;
   // Sympy-verifiable boolean expressions. Each must evaluate True. Required for
   // every authored (General Math) problem — enforced by scripts/verify-genmath.py.
   // Not used by ЭЕШ (bank-backed) problems.

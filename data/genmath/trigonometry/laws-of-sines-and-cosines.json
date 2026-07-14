@@ -1,0 +1,1122 @@
+{
+  "slug": "laws-of-sines-and-cosines",
+  "title": "Laws of Sines & Cosines",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Trigonometry for EVERY triangle, right angle or not: the sine-based area formula, the Law of Sines, the Law of Cosines — and the strategy for solving any triangle from any three facts.",
+  "buildsOn": "Right-triangle trig from Unit 1; exact values across quadrants from Unit 3 (obtuse angles included).",
+  "lessons": [
+    {
+      "slug": "area-of-any-triangle",
+      "title": "Area of Any Triangle",
+      "concreteComparison": "A gardener fencing a triangular bed knows two sides and the angle where they meet — but no height, and heights are hard to measure on the ground. The sine formula computes the area from exactly what the tape measure gives: two sides and the wedge angle between them.",
+      "objective": "Compute triangle areas with Area = ½ab·sin C, including obtuse included angles.",
+      "concept": [
+        "The classic $\\frac{1}{2} \\cdot \\text{base} \\cdot \\text{height}$ needs a height nobody measured. But drop the height from $B$ onto side $CA$: in the right triangle formed, $h = a\\sin C$. Substitute: $$\\text{Area} = \\frac{1}{2}ab\\sin C$$ — half the product of two sides times the sine of the INCLUDED angle (the angle pinched between them).",
+        "The formula is symmetric in disguise: $\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B$ — any two sides work, paired with THEIR included angle. Pick whichever pair the problem measured.",
+        "Obtuse included angles work seamlessly: $\\sin 120° = \\sin 60° = \\frac{\\sqrt3}{2}$ (QII keeps sine positive — Unit 3's supplement symmetry), so areas stay positive as they must. A useful corollary: for FIXED side lengths, area is maximal when $\\sin C = 1$ — the right-angle wedge holds the most."
+      ],
+      "keyIdea": "Area = ½ab·sin C — two sides and the INCLUDED angle; the height h = a sin C is computed, not measured, and obtuse wedges work because supplements share sines.",
+      "facts": [
+        {
+          "title": "The formula",
+          "latex": "\\text{Area} = \\tfrac{1}{2}ab\\sin C",
+          "explanation": "C must be the angle BETWEEN sides a and b."
+        },
+        {
+          "title": "Three costumes",
+          "latex": "\\tfrac{1}{2}ab\\sin C = \\tfrac{1}{2}bc\\sin A = \\tfrac{1}{2}ca\\sin B",
+          "explanation": "Any side pair with its own included angle."
+        },
+        {
+          "title": "Obtuse OK",
+          "latex": "\\sin(180° - C) = \\sin C",
+          "explanation": "Supplements share sines; area stays positive."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig61-we1",
+          "statement": "Two sides of a triangle are $6$ and $8$, meeting at $60°$. Find the area exactly.",
+          "solution": "Included angle given — direct: $\\text{Area} = \\frac{1}{2} \\cdot 6 \\cdot 8 \\cdot \\sin 60° = 24 \\cdot \\frac{\\sqrt3}{2} = 12\\sqrt{3} \\approx 20.8$.",
+          "check": [
+            "Rational(1,2)*6*8*sin(pi/3) == 12*sqrt(3)"
+          ]
+        },
+        {
+          "id": "trig61-we2",
+          "statement": "Sides $5$ and $8$ meet at $150°$. Find the area exactly, and compare with the same sides at $30°$.",
+          "solution": "$\\sin 150° = \\sin 30° = \\frac{1}{2}$ (supplements!): $\\text{Area} = \\frac{1}{2} \\cdot 5 \\cdot 8 \\cdot \\frac{1}{2} = 10$. The $30°$ wedge gives the IDENTICAL area — a skinny-wide pair with the same sine. (The max for these sides would be at $90°$: area 20.)",
+          "check": [
+            "sin(5*pi/6) == sin(pi/6)",
+            "Rational(1,2)*5*8*sin(5*pi/6) == 10",
+            "Rational(1,2)*5*8*sin(pi/2) == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using an angle that is NOT between the two sides.",
+          "correction": "The formula's angle must be the INCLUDED one — the hinge the two sides open from. Using a far angle with sides it doesn't touch measures a different (wrong) wedge. Check on the figure: do both given sides emanate from the angle's vertex?",
+          "authored": true
+        },
+        {
+          "text": "Halving twice — writing ¼ab sin C 'because triangles are half.'",
+          "correction": "The $\\frac{1}{2}$ already IS the triangle's half (of the parallelogram $ab\\sin C$). One half, once: $\\frac{1}{2}ab\\sin C$. Audit with a known case: legs 3, 4 at $90°$ must give 6.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig61-t1",
+          "statement": "Sides $10$ and $7$ meet at $45°$. Area, exactly?",
+          "solution": "$\\frac{1}{2} \\cdot 10 \\cdot 7 \\cdot \\frac{\\sqrt2}{2} = \\frac{35\\sqrt2}{2} \\approx 24.7$.",
+          "check": [
+            "Rational(1,2)*10*7*sin(pi/4) == 35*sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "trig61-t2",
+          "statement": "An equilateral triangle has side $6$. Recover its area from the sine formula and confirm against Unit 2's $\\frac{s^2\\sqrt3}{4}$.",
+          "solution": "Two sides 6 and 6 at the included $60°$: $\\frac{1}{2} \\cdot 36 \\cdot \\frac{\\sqrt3}{2} = 9\\sqrt{3}$. Unit 2's formula: $\\frac{36\\sqrt3}{4} = 9\\sqrt3$ ✓ — two roads, one area.",
+          "check": [
+            "Rational(1,2)*6*6*sin(pi/3) == 9*sqrt(3)",
+            "6**2*sqrt(3)/4 == 9*sqrt(3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The missing height",
+            "title": "Compute the height you can't measure",
+            "body": "$\\frac{1}{2}bh$ demands a height — the one measurement nobody's tape ever has. But look at the figure: dropping the height from $B$ creates a right triangle in which $h = a\\sin C$ (opposite = hypotenuse × sine, Unit 1). Substitute and the height disappears from the requirements: $$\\text{Area} = \\frac{1}{2}ab\\sin C.$$ Two sides and the angle between them — exactly what surveys measure.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "C", "x": 0, "y": 0 },
+                  { "id": "A", "x": 4, "y": 0 },
+                  { "id": "B", "x": 1.25, "y": 2.17 },
+                  { "id": "H", "x": 1.25, "y": 0, "labelDx": 2, "labelDy": -1 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "C", "to": "A" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "segment", "from": "B", "to": "H", "dashed": true },
+                  { "kind": "angle", "at": "H", "from": "C", "to": "B", "right": true },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "60°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Wedges, acute and obtuse",
+            "intro": "Sides, included angle, sine — and supplements share sines.",
+            "examples": [
+              {
+                "prompt": "Sides $6$ and $8$ at $60°$. Area?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "C", "x": 0, "y": 0 },
+                      { "id": "A", "x": 4, "y": 0 },
+                      { "id": "B", "x": 1.5, "y": 2.6 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "C", "to": "A" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "60°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\text{Area} = \\frac{1}{2} \\cdot 6 \\cdot 8 \\cdot \\sin 60°$.",
+                  "$= 24 \\cdot \\frac{\\sqrt3}{2} = 12\\sqrt{3} \\approx 20.8$."
+                ],
+                "answer": "$12\\sqrt{3}$",
+                "check": [
+                  "Rational(1,2)*6*8*sin(pi/3) == 12*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Sides $5$ and $8$ at $150°$. Area?",
+                "steps": [
+                  "$\\sin 150° = \\sin 30° = \\frac{1}{2}$ — QII keeps sine positive.",
+                  "$\\text{Area} = \\frac{1}{2} \\cdot 40 \\cdot \\frac{1}{2} = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "Rational(1,2)*5*8*sin(5*pi/6) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The included test",
+            "prompt": "In triangle $ABC$ you know sides $AB = 7$, $AC = 9$, and angle $A = 40°$. Can you use Area $= \\frac{1}{2} \\cdot 7 \\cdot 9 \\cdot \\sin 40°$?",
+            "options": [
+              "Yes — both known sides emanate from $A$, so $A$ is their included angle",
+              "No — you need the angle at $B$",
+              "No — the formula needs a right angle",
+              "Only if the triangle is acute"
+            ],
+            "correctIndex": 0,
+            "explanation": "$AB$ and $AC$ both start at $A$: the $40°$ is the hinge between them — exactly what the formula wants. The included-angle check is always 'do both sides touch this vertex?'",
+            "check": [
+              "sin(rad(40)) > 0",
+              "Rational(1,2)*7*9 == Rational(63,2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Symmetry",
+            "title": "Any pair works — with ITS hinge",
+            "body": "Nothing is special about $C$: $\\text{Area} = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B$ too. Same triangle, three valid recipes — use the pair the problem measured. And note the corollary: with sides fixed, area peaks when the sine does — at a $90°$ hinge. Swing a gate wider than perpendicular and the enclosed wedge starts SHRINKING; that's $\\sin\\theta$ falling past its peak."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wedge areas",
+            "intro": "Identify the included angle, then one multiplication.",
+            "problems": [
+              {
+                "prompt": "Sides $10$ and $7$ at $45°$: area, exactly?",
+                "options": ["$\\dfrac{35\\sqrt2}{2}$", "$35\\sqrt{2}$", "$\\dfrac{35}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac{1}{2} \\cdot 70 \\cdot \\frac{\\sqrt2}{2} = \\frac{35\\sqrt2}{2} \\approx 24.7$.",
+                "check": [
+                  "Rational(1,2)*10*7*sin(pi/4) == 35*sqrt(2)/2"
+                ]
+              },
+              {
+                "prompt": "Sides $4$ and $9$ at $90°$: area?",
+                "options": ["$18$", "$36$", "$18\\sqrt{2}$"],
+                "correctIndex": 0,
+                "explanation": "$\\sin 90° = 1$: $\\frac{1}{2} \\cdot 36 \\cdot 1 = 18$ — the formula gracefully contains the old right-triangle case.",
+                "check": [
+                  "Rational(1,2)*4*9*sin(pi/2) == 18"
+                ]
+              },
+              {
+                "prompt": "Sides $6$ and $6$ at $120°$: area, exactly?",
+                "options": ["$9\\sqrt{3}$", "$18\\sqrt{3}$", "$9$"],
+                "correctIndex": 0,
+                "explanation": "$\\sin 120° = \\frac{\\sqrt3}{2}$: $\\frac{1}{2} \\cdot 36 \\cdot \\frac{\\sqrt3}{2} = 9\\sqrt3$ — same as the equilateral's, since $\\sin 120° = \\sin 60°$.",
+                "check": [
+                  "Rational(1,2)*6*6*sin(2*pi/3) == 9*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Area = ½ab sin C — the height h = a sin C is computed away.",
+              "The angle must be INCLUDED: both sides touch its vertex.",
+              "Supplements share sines (obtuse wedges fine); max area at the 90° hinge."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-law-of-sines",
+      "title": "The Law of Sines",
+      "concreteComparison": "In an orchestra, every instrument plays in the same key. In any triangle, every side 'plays' in proportion to the sine of its opposite angle — a shared ratio the whole triangle is tuned to. Know one complete side-angle pair and you know the key; every other part follows.",
+      "objective": "Use a/sin A = b/sin B = c/sin C to find missing sides and angles when a side-opposite-angle pair is known.",
+      "concept": [
+        "**Law of Sines**: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$ — each side over the sine of its OPPOSITE angle gives the same constant. Why: the area formula written three ways ($\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B$), divided through by $\\frac{1}{2}abc$.",
+        "It activates when you own a complete **pair** — a side AND its opposite angle. Then any additional side finds its angle, and any additional angle finds its side, by one proportion. Configurations: ASA/AAS (two angles + a side — the third angle is $180°$ minus the others, then sines).",
+        "The proportion encodes triangle common sense: BIGGER angles face LONGER sides, in exact sine ratio. Use it as the audit: if your computed side opposite $75°$ came out shorter than the side opposite $40°$, a ratio got inverted."
+      ],
+      "keyIdea": "Side over sine-of-opposite-angle is one shared constant; a known pair unlocks the triangle — and bigger angles must face longer sides.",
+      "facts": [
+        {
+          "title": "The law",
+          "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+          "explanation": "Side ÷ sine of the angle FACING it: constant."
+        },
+        {
+          "title": "When it activates",
+          "latex": "\\text{a known pair } (a, A) + \\text{any one more fact}",
+          "explanation": "ASA and AAS reduce here (third angle = 180° − sum)."
+        },
+        {
+          "title": "The audit",
+          "latex": "A > B \\iff a > b",
+          "explanation": "Bigger angle, longer opposite side — always."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig62-we1",
+          "statement": "In triangle $ABC$: $\\angle A = 30°$, $\\angle B = 45°$, and $a = 10$ (opposite $A$). Find $b$ exactly.",
+          "solution": "Pair in hand: $(a, A)$. Proportion: $\\frac{b}{\\sin 45°} = \\frac{10}{\\sin 30°}$ ⟹ $b = \\frac{10\\sin 45°}{\\sin 30°} = \\frac{10 \\cdot \\frac{\\sqrt2}{2}}{\\frac{1}{2}} = 10\\sqrt{2} \\approx 14.1$. Audit: $45° > 30°$ and $10\\sqrt2 > 10$ ✓.",
+          "check": [
+            "10*sin(pi/4)/sin(pi/6) == 10*sqrt(2)",
+            "10*sqrt(2) > 10"
+          ]
+        },
+        {
+          "id": "trig62-we2",
+          "statement": "In triangle $ABC$: $\\angle A = 60°$, $\\angle B = 45°$, $b = 6$. Find $a$ and the third angle.",
+          "solution": "Third angle first: $C = 180° - 60° - 45° = 75°$. Then $a = \\frac{6\\sin 60°}{\\sin 45°} = \\frac{6 \\cdot \\frac{\\sqrt3}{2}}{\\frac{\\sqrt2}{2}} = \\frac{6\\sqrt3}{\\sqrt2} = 3\\sqrt{6} \\approx 7.35$. Audit: $60° > 45°$, and $3\\sqrt6 > 6$ ✓.",
+          "check": [
+            "180 - 60 - 45 == 75",
+            "simplify(6*sin(pi/3)/sin(pi/4) - 3*sqrt(6)) == 0",
+            "3*sqrt(6) > 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Pairing a side with a NON-opposite angle in the proportion.",
+          "correction": "The law is strictly side-to-FACING-angle: $a$ goes over $\\sin A$ (the angle it faces from across the triangle), never over an adjacent angle's sine. Label the figure and draw the facing arrows before writing the proportion.",
+          "authored": true
+        },
+        {
+          "text": "Hunting for a law-of-sines setup when no side-opposite-angle pair exists.",
+          "correction": "SAS (two sides + included angle) and SSS have NO complete pair — the Law of Sines can't start. Those are Law of COSINES territory (next lesson). Inventory your facts first: pair ⟹ sines; no pair ⟹ cosines.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig62-t1",
+          "statement": "$\\angle A = 30°$, $\\angle C = 90°$, $c = 12$. Find $a$ using the Law of Sines, and confirm with Unit 1.",
+          "solution": "$a = \\frac{12\\sin 30°}{\\sin 90°} = \\frac{12 \\cdot \\frac{1}{2}}{1} = 6$. Unit 1's view: in a right triangle with hypotenuse 12, the side opposite $30°$ is $12\\sin 30° = 6$ ✓ — the Law of Sines contains right-triangle trig as its special case.",
+          "check": [
+            "12*sin(pi/6)/sin(pi/2) == 6",
+            "12*sin(pi/6) == 6"
+          ]
+        },
+        {
+          "id": "trig62-t2",
+          "statement": "$a = 8$, $\\angle A = 45°$, $b = 8\\sqrt{2} \\cdot \\frac{\\sqrt3}{2}$... simpler: $b = 4\\sqrt{6}$. Find $\\angle B$ given it is acute.",
+          "solution": "$\\sin B = \\frac{b\\sin A}{a} = \\frac{4\\sqrt6 \\cdot \\frac{\\sqrt2}{2}}{8} = \\frac{4\\sqrt{12}}{16} = \\frac{8\\sqrt3}{16} = \\frac{\\sqrt3}{2}$ ⟹ acute $B = 60°$. Audit: $60° > 45°$ and $4\\sqrt6 \\approx 9.8 > 8$ ✓.",
+          "check": [
+            "simplify(4*sqrt(6)*sin(pi/4)/8 - sqrt(3)/2) == 0",
+            "sin(pi/3) == sqrt(3)/2",
+            "4*sqrt(6) > 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Beyond right angles",
+            "title": "The shared ratio",
+            "body": "Unit 1's tools need a right angle. Most triangles don't have one — so here is the general instrument. In ANY triangle, label each side with the lowercase of its OPPOSITE angle ($a$ faces $A$, in the figure). Claim: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$ — one constant for the whole triangle. Proof in one line: the three area recipes $\\frac{1}{2}ab\\sin C = \\frac{1}{2}bc\\sin A = \\frac{1}{2}ca\\sin B$, each divided by $\\frac{1}{2}abc$.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "B", "x": 6, "y": 0 },
+                  { "id": "C", "x": 2, "y": 2.8 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "B", "to": "C" },
+                  { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "A" },
+                  { "kind": "angle", "at": "B", "from": "A", "to": "C", "label": "B" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "C" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pair in hand, proportion out",
+            "intro": "Own a (side, opposite angle) pair, and every other part is one proportion away.",
+            "examples": [
+              {
+                "prompt": "$\\angle A = 30°$, $\\angle B = 45°$, $a = 10$. Find $b$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "B", "x": 5, "y": 0 },
+                      { "id": "C", "x": 3.17, "y": 1.83 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "B", "to": "C" },
+                      { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "30°" },
+                      { "kind": "angle", "at": "B", "from": "A", "to": "C", "label": "45°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\frac{b}{\\sin 45°} = \\frac{10}{\\sin 30°}$.",
+                  "$b = \\frac{10 \\cdot \\frac{\\sqrt2}{2}}{\\frac{1}{2}} = 10\\sqrt{2} \\approx 14.1$ — longer than 10, as the bigger angle demands."
+                ],
+                "answer": "$b = 10\\sqrt{2}$",
+                "check": [
+                  "10*sin(pi/4)/sin(pi/6) == 10*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "$\\angle A = 60°$, $\\angle B = 45°$, $b = 6$. Find $C$ and $a$.",
+                "steps": [
+                  "$C = 180° - 105° = 75°$ (angles first — it's free).",
+                  "$a = \\frac{6\\sin 60°}{\\sin 45°} = \\frac{6\\sqrt3}{\\sqrt2} = 3\\sqrt{6} \\approx 7.35$."
+                ],
+                "answer": "$C = 75°$, $a = 3\\sqrt{6}$",
+                "check": [
+                  "simplify(6*sin(pi/3)/sin(pi/4) - 3*sqrt(6)) == 0",
+                  "180 - 60 - 45 == 75"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Can sines start?",
+            "prompt": "Which fact set lets the Law of Sines begin working immediately?",
+            "options": [
+              "$\\angle A = 50°$, $a = 12$, $\\angle B = 60°$ — a complete pair plus one more fact",
+              "Sides $5, 7$ and their included angle $40°$",
+              "All three sides: $4, 7, 9$",
+              "All three angles: $50°, 60°, 70°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Option A owns the pair $(a, A)$ — the ratio is known, everything follows. B (SAS) and C (SSS) have no pair: cosines territory. D has no sides at all — a shape but no size; no law can produce lengths from angles alone.",
+            "check": [
+              "50 + 60 + 70 == 180"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Finding angles",
+            "title": "The reverse proportion — with a care label",
+            "body": "Running toward an ANGLE: $\\sin B = \\frac{b\\sin A}{a}$, then arcsin. One honest warning: since $\\sin(180° - B) = \\sin B$, an obtuse partner can share the same sine — the ambiguous SSA case. In this course's problems the intended angle is stated acute or forced by context (a triangle's angles must sum to $180°$); check that your angle choice leaves room for the rest."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Tune to the shared key",
+            "intro": "Pair → proportion → audit (bigger angle, longer side).",
+            "problems": [
+              {
+                "prompt": "$\\angle A = 30°$, $a = 5$, $\\angle B = 90°$. Find $b$.",
+                "options": ["$10$", "$5\\sqrt{2}$", "$\\dfrac{5}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$b = \\frac{5\\sin 90°}{\\sin 30°} = \\frac{5}{1/2} = 10$ — the hypotenuse-doubles-the-30°-side fact, rediscovered by the general law.",
+                "check": [
+                  "5*sin(pi/2)/sin(pi/6) == 10"
+                ]
+              },
+              {
+                "prompt": "$a = 9$, $\\angle A = 60°$, $b = 6$. What is $\\sin B$?",
+                "options": ["$\\dfrac{\\sqrt3}{3}$", "$\\dfrac{\\sqrt3}{2}$", "$\\dfrac{2}{3}$"],
+                "correctIndex": 0,
+                "explanation": "$\\sin B = \\frac{6\\sin 60°}{9} = \\frac{6 \\cdot \\frac{\\sqrt3}{2}}{9} = \\frac{3\\sqrt3}{9} = \\frac{\\sqrt3}{3} \\approx 0.577$ ⟹ $B \\approx 35.3°$ — smaller than $A$, matching $b < a$ ✓.",
+                "check": [
+                  "simplify(6*sin(pi/3)/9 - sqrt(3)/3) == 0"
+                ]
+              },
+              {
+                "prompt": "Two angles are $70°$ and $80°$, and the side opposite the $70°$ angle is $14$. Which side is LONGEST?",
+                "options": [
+                  "The one opposite $80°$",
+                  "The $14$ — it's given",
+                  "The one opposite the third angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Third angle: $30°$. Longest side faces the biggest angle ($80°$). The sine audit needs no computation to rank sides — angles rank them for you.",
+                "check": [
+                  "180 - 70 - 80 == 30",
+                  "sin(rad(80)) > sin(rad(70))"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "How lighthouses found ships (and ships found themselves)",
+            "body": "Before radio, a ship sighting two lighthouses measured the two bearing angles between them — then solved the ASA triangle with the Law of Sines to fix its position on the chart. Triangulation networks built the same way mapped entire continents: France was measured to meter precision in the 1700s by chaining law-of-sines triangles across the country.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "a/sin A = b/sin B = c/sin C — side over the sine of its FACING angle.",
+              "Needs a complete pair to start; ASA/AAS gets the third angle free first.",
+              "Audit every answer: bigger angle ⟺ longer opposite side."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-law-of-cosines",
+      "title": "The Law of Cosines",
+      "concreteComparison": "Two hikers leave the same camp on straight paths, 60° apart. After 5 km and 8 km, how far apart are they? No right angle anywhere — but the answer is locked in by the two distances and the angle between them. The Law of Cosines is Pythagoras with a correction term for the tilt.",
+      "objective": "Apply c² = a² + b² − 2ab cos C to find the third side (SAS) or any angle (SSS).",
+      "concept": [
+        "**Law of Cosines**: $c^2 = a^2 + b^2 - 2ab\\cos C$, where $C$ is the angle INCLUDED between $a$ and $b$, and $c$ faces it. Read it as Pythagoras plus a correction: at $C = 90°$, $\\cos C = 0$ and it IS $a^2 + b^2 = c^2$; sharper $C$ subtracts (closer endpoints), blunter $C$ adds (the cosine goes negative).",
+        "Direction one — **SAS**: two sides and the included angle give the third side directly. The hikers: $c^2 = 25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\cos 60° = 89 - 40 = 49$, so $c = 7$ km.",
+        "Direction two — **SSS**: solve for the cosine: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$, then arccos. Bonus diagnostics: a POSITIVE result means $C$ is acute, NEGATIVE means obtuse, zero means right — the formula classifies the angle before you even finish computing it."
+      ],
+      "keyIdea": "c² = a² + b² − 2ab cos C: Pythagoras with a tilt correction — SAS gives the third side, SSS (rearranged) gives any angle, and the cosine's sign classifies it.",
+      "facts": [
+        {
+          "title": "The law",
+          "latex": "c^2 = a^2 + b^2 - 2ab\\cos C",
+          "explanation": "C included between a and b; c across from it."
+        },
+        {
+          "title": "Angle form",
+          "latex": "\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}",
+          "explanation": "SSS: three sides in, any angle out."
+        },
+        {
+          "title": "Built-in classifier",
+          "latex": "\\cos C > 0: \\text{acute}, \\; = 0: \\text{right}, \\; < 0: \\text{obtuse}",
+          "explanation": "The correction term's sign reads the angle type."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig63-we1",
+          "statement": "Sides $5$ and $8$ meet at $60°$. Find the third side exactly.",
+          "solution": "$c^2 = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8\\cos 60° = 25 + 64 - 80 \\cdot \\frac{1}{2} = 49$ ⟹ $c = 7$. Audit: between $|8 - 5| = 3$ and $8 + 5 = 13$ ✓ (triangle inequality), and less than the $\\sqrt{89} \\approx 9.4$ a right angle would give — the sharp $60°$ pulled the endpoints closer.",
+          "check": [
+            "sqrt(5**2 + 8**2 - 2*5*8*cos(pi/3)) == 7",
+            "3 < 7",
+            "7 < 13"
+          ]
+        },
+        {
+          "id": "trig63-we2",
+          "statement": "A triangle has sides $5$, $7$, $8$. Find the angle opposite the side of length $7$, exactly.",
+          "solution": "$\\cos B = \\frac{5^2 + 8^2 - 7^2}{2 \\cdot 5 \\cdot 8} = \\frac{25 + 64 - 49}{80} = \\frac{40}{80} = \\frac{1}{2}$ ⟹ $B = 60°$. Positive cosine: acute, as the diagnostic promised. (A 5-7-8 triangle secretly carries a perfect $60°$ — a classic.)",
+          "check": [
+            "Rational(5**2 + 8**2 - 7**2, 2*5*8) == Rational(1,2)",
+            "acos(Rational(1,2)) == pi/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Pairing the formula's c with a side ADJACENT to the angle.",
+          "correction": "The squared-alone side faces the angle: $c$ is OPPOSITE $C$, and $a, b$ are the two sides hugging $C$. Mixing them scrambles everything. Label the figure: angle first, then the facing side gets the lonely square.",
+          "authored": true
+        },
+        {
+          "text": "Sign slips with obtuse angles: treating −2ab cos 120° as a subtraction.",
+          "correction": "$\\cos 120° = -\\frac{1}{2}$, so $-2ab\\cos 120° = +ab$ — the correction ADDS for obtuse angles (blunter hinge, farther endpoints). Carry the cosine's sign through the arithmetic; don't pre-decide the direction.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig63-t1",
+          "statement": "Sides $3$ and $5$ meet at $120°$. Find the third side exactly.",
+          "solution": "$c^2 = 9 + 25 - 2 \\cdot 15 \\cdot \\left(-\\frac{1}{2}\\right) = 34 + 15 = 49$ ⟹ $c = 7$. The obtuse hinge ADDED: compare $\\sqrt{34} \\approx 5.8$ at $90°$.",
+          "check": [
+            "sqrt(3**2 + 5**2 - 2*3*5*cos(2*pi/3)) == 7",
+            "cos(2*pi/3) == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "trig63-t2",
+          "statement": "A triangle has sides $4$, $6$, $9$. Is its largest angle acute, right, or obtuse? Compute its cosine to decide.",
+          "solution": "Largest angle faces the 9: $\\cos\\theta = \\frac{16 + 36 - 81}{2 \\cdot 24} = \\frac{-29}{48} < 0$: OBTUSE. (Numerically $\\theta \\approx 127°$.) The sign answered the classification before any arccos.",
+          "check": [
+            "Rational(4**2 + 6**2 - 9**2, 2*4*6) == Rational(-29,48)",
+            "Rational(-29,48) < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Pythagoras, tilted",
+            "title": "The correction term",
+            "body": "SAS — two sides and their included angle — has no side-angle pair, so the Law of Sines can't start. The tool is the **Law of Cosines**: $$c^2 = a^2 + b^2 - 2ab\\cos C.$$ Read its anatomy: at $C = 90°$ the correction dies ($\\cos 90° = 0$) and Pythagoras remains. Sharper hinge: positive cosine, endpoints pulled CLOSER — subtract. Blunter hinge: negative cosine, pushed APART — the correction adds. Pythagoras is the special case, not the rival.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "C", "x": 0, "y": 0 },
+                  { "id": "A", "x": 4, "y": 0 },
+                  { "id": "B", "x": 1.25, "y": 2.17 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "C", "to": "A" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B", "color": "#e8913c" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "C" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "SAS: the hikers' gap",
+            "intro": "Two sides, the hinge between them, one formula.",
+            "examples": [
+              {
+                "prompt": "Paths of $5$ km and $8$ km from one camp, $60°$ apart. Distance between the hikers?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "C", "x": 0, "y": 0, "label": "camp" },
+                      { "id": "A", "x": 4, "y": 0 },
+                      { "id": "B", "x": 1.25, "y": 2.17 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "C", "to": "A" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B", "dashed": true },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "60°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$c^2 = 25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\frac{1}{2} = 89 - 40 = 49$.",
+                  "$c = 7$ km — between $3$ and $13$ ✓."
+                ],
+                "answer": "$7$ km",
+                "check": [
+                  "sqrt(5**2 + 8**2 - 2*5*8*cos(pi/3)) == 7"
+                ]
+              },
+              {
+                "prompt": "Sides $3$ and $5$ at $120°$. Third side?",
+                "steps": [
+                  "$\\cos 120° = -\\frac{1}{2}$: $c^2 = 9 + 25 + 15 = 49$.",
+                  "$c = 7$ — the obtuse hinge ADDS."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "sqrt(3**2 + 5**2 - 2*3*5*cos(2*pi/3)) == 7"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Which side gets the lonely square?",
+            "prompt": "In $c^2 = a^2 + b^2 - 2ab\\cos C$, which side is $c$?",
+            "options": [
+              "The side OPPOSITE the angle $C$ — the one the hinge opens toward",
+              "Either side touching $C$",
+              "Always the longest side",
+              "Always the shortest side"
+            ],
+            "correctIndex": 0,
+            "explanation": "The angle and its facing side are partners: $a, b$ hug the hinge $C$; $c$ spans the opening. (It's the longest side only when $C$ is the biggest angle.)",
+            "check": [
+              "cos(pi/2) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse gear",
+            "title": "SSS: three sides, any angle",
+            "body": "Solve the law for the cosine: $$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}.$$ Feed it three sides; out comes any angle you name (put ITS opposite side in the $c$ slot). Free diagnostics ride along: numerator positive ⟹ acute; zero ⟹ right; negative ⟹ obtuse. Three sides fully determine a triangle (SSS congruence) — this formula is that theorem, made computable.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "B", "x": 4, "y": 0 },
+                  { "id": "C", "x": 1.25, "y": 2.17 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "B", "to": "C" },
+                  { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "60°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The 5-7-8 secret",
+            "intro": "Three sides in, one exact angle out.",
+            "examples": [
+              {
+                "prompt": "Sides $5, 7, 8$: find the angle opposite the $7$.",
+                "steps": [
+                  "$\\cos B = \\frac{25 + 64 - 49}{2 \\cdot 5 \\cdot 8} = \\frac{40}{80} = \\frac{1}{2}$.",
+                  "$B = 60°$ — exactly. Positive cosine ⟹ acute, as promised."
+                ],
+                "answer": "$60°$",
+                "check": [
+                  "Rational(5**2 + 8**2 - 7**2, 2*5*8) == Rational(1,2)",
+                  "acos(Rational(1,2)) == pi/3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Both directions",
+            "intro": "SAS forward, SSS backward — and read the classifier.",
+            "problems": [
+              {
+                "prompt": "Sides $4$ and $6$ at $60°$: third side, exactly?",
+                "options": ["$2\\sqrt{7}$", "$\\sqrt{52}$", "$5$"],
+                "correctIndex": 0,
+                "explanation": "$c^2 = 16 + 36 - 48 \\cdot \\frac{1}{2} = 28$: $c = \\sqrt{28} = 2\\sqrt7 \\approx 5.3$.",
+                "check": [
+                  "simplify(sqrt(4**2 + 6**2 - 2*4*6*cos(pi/3)) - 2*sqrt(7)) == 0"
+                ]
+              },
+              {
+                "prompt": "Sides $2, 3, 4$: the cosine of the largest angle is…",
+                "options": [
+                  "$-\\dfrac{1}{4}$ — obtuse",
+                  "$\\dfrac{1}{4}$ — acute",
+                  "$0$ — right"
+                ],
+                "correctIndex": 0,
+                "explanation": "Largest angle faces the 4: $\\cos = \\frac{4 + 9 - 16}{12} = -\\frac{1}{4}$ — negative, so obtuse ($\\approx 104°$). The 2-3-4 triangle leans blunt.",
+                "check": [
+                  "Rational(2**2 + 3**2 - 4**2, 2*2*3) == Rational(-1,4)"
+                ]
+              },
+              {
+                "prompt": "A triangle has sides $6, 8, 10$. What is the angle opposite the $10$?",
+                "options": ["$90°$ — the cosine comes out 0", "$60°$", "obtuse"],
+                "correctIndex": 0,
+                "explanation": "$\\cos = \\frac{36 + 64 - 100}{96} = 0$: a right angle — 6-8-10 is 3-4-5 scaled, and the law detects Pythagorean triples by returning exactly zero.",
+                "check": [
+                  "Rational(6**2 + 8**2 - 10**2, 2*6*8) == 0",
+                  "acos(0) == pi/2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "c² = a² + b² − 2ab cos C: Pythagoras plus a hinge correction (dies at 90°).",
+              "SAS: third side directly; SSS: cos C = (a² + b² − c²)/2ab for any angle.",
+              "The cosine's sign classifies the angle: + acute, 0 right, − obtuse."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-any-triangle",
+      "title": "Solving Any Triangle",
+      "concreteComparison": "A mechanic doesn't reach for a random wrench — the bolt's size picks the tool. Triangle problems announce their tool the same way: inventory WHICH three facts you hold (angles vs sides, paired or not), and the law picks itself.",
+      "objective": "Choose the right law from the given facts and fully solve triangles, including area as a finishing step.",
+      "concept": [
+        "The decision table, by given facts: **ASA/AAS** (two angles + any side): third angle free, then Law of Sines. **SAS** (two sides + included angle): Law of Cosines for the third side, then Sines (or Cosines again) for a second angle. **SSS** (three sides): Law of Cosines for angles — start with the LARGEST (opposite the longest side) to keep later steps safely acute.",
+        "Full-solve discipline: find the pieces in the cheapest order, and finish angles with '$180°$ minus the others' whenever two are known. Cross-check as you go: longest side faces biggest angle; the three angles sum to $180°$; any area computed two ways must agree.",
+        "Applications wrap the same triangles in words: two distances and the angle between them (SAS — the hikers), a side seen from two angles (ASA — surveying a river's width), three measured distances (SSS — checking a truss). Draw the triangle, mark the givens, run the table."
+      ],
+      "keyIdea": "Inventory the three givens: pair ⟹ Sines; SAS/SSS ⟹ Cosines; and audit with angle-sum, side-order, and two-way area checks.",
+      "facts": [
+        {
+          "title": "The table",
+          "latex": "\\text{ASA/AAS} \\to \\text{Sines}; \\quad \\text{SAS/SSS} \\to \\text{Cosines first}",
+          "explanation": "A complete pair starts Sines; no pair starts Cosines."
+        },
+        {
+          "title": "Cheap moves first",
+          "latex": "\\text{two angles known} \\Rightarrow \\text{third} = 180° - \\text{sum}",
+          "explanation": "Never compute what subtraction gives free."
+        },
+        {
+          "title": "The audits",
+          "latex": "\\sum = 180°; \\quad \\text{longest side} \\leftrightarrow \\text{biggest angle}",
+          "explanation": "Run them at every step, not just the end."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig64-we1",
+          "statement": "Solve the triangle with $a = 5$, $b = 8$, included angle $C = 60°$ — all sides, all angles, and the area.",
+          "solution": "SAS ⟹ Cosines: $c = \\sqrt{25 + 64 - 40} = 7$. Angle $A$ (SSS form now available): $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} = \\frac{64 + 49 - 25}{112} = \\frac{88}{112} = \\frac{11}{14}$ ⟹ $A \\approx 38.2°$. Then $B = 180° - 60° - A \\approx 81.8°$. Area: $\\frac{1}{2} \\cdot 5 \\cdot 8 \\cdot \\sin 60° = 10\\sqrt{3} \\approx 17.3$. Audits: longest side 8 faces biggest angle $B$ ✓.",
+          "check": [
+            "sqrt(5**2 + 8**2 - 2*5*8*cos(pi/3)) == 7",
+            "Rational(8**2 + 7**2 - 5**2, 2*8*7) == Rational(11,14)",
+            "Rational(1,2)*5*8*sin(pi/3) == 10*sqrt(3)",
+            "acos(Rational(11,14)) < acos(Rational(1,2))"
+          ]
+        },
+        {
+          "id": "trig64-we2",
+          "statement": "A surveyor stands at $P$; a river's far-bank landmarks $Q$ and $R$ are sighted with $\\angle QPR = 30°$... simpler classic: from two points $A$ and $B$ on one bank, $100$ m apart, a tree $T$ across the river is sighted: $\\angle TAB = 60°$, $\\angle TBA = 45°$. How far is the tree from $A$, exactly?",
+          "solution": "ASA on triangle $ABT$: third angle $T = 180° - 105° = 75°$. Law of Sines with the pair $(AB, T)$: $AT = \\frac{100\\sin 45°}{\\sin 75°} = \\frac{100 \\cdot \\frac{\\sqrt2}{2}}{\\frac{\\sqrt6 + \\sqrt2}{4}} = \\frac{200\\sqrt2}{\\sqrt6 + \\sqrt2}$; rationalize: $= \\frac{200\\sqrt2(\\sqrt6 - \\sqrt2)}{4} = 50(\\sqrt{12} - 2) = 100\\sqrt{3} - 100 \\approx 73.2$ m. No one crossed the river.",
+          "check": [
+            "180 - 60 - 45 == 75",
+            "simplify(100*sin(pi/4)/sin(5*pi/12) - (100*sqrt(3) - 100)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Starting the Law of Sines from SAS givens.",
+          "correction": "SAS has no side-opposite-angle pair — the sines ratio can't be evaluated. Cosines FIRST creates the pair (third side facing the given angle); sines may then finish faster. Inventory before tools.",
+          "authored": true
+        },
+        {
+          "text": "Grinding all three angles with the Law of Cosines when two are already known.",
+          "correction": "Angles sum to $180°$ — the third is a SUBTRACTION. Beyond wasted time, the long route accumulates rounding; the subtraction is exact. Cheapest sufficient tool, always.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig64-t1",
+          "statement": "Solve: $a = 3$, $b = 5$, included $C = 120°$. Find $c$ and the area, exactly.",
+          "solution": "SAS: $c = \\sqrt{9 + 25 + 15} = 7$ (Lesson 3's triangle). Area $= \\frac{1}{2} \\cdot 3 \\cdot 5 \\cdot \\sin 120° = \\frac{15\\sqrt3}{4} \\approx 6.5$.",
+          "check": [
+            "sqrt(3**2 + 5**2 - 2*3*5*cos(2*pi/3)) == 7",
+            "Rational(1,2)*3*5*sin(2*pi/3) == 15*sqrt(3)/4"
+          ]
+        },
+        {
+          "id": "trig64-t2",
+          "statement": "A triangular park has sides $60$ m, $80$ m, $100$ m. Classify its largest angle and find the park's area.",
+          "solution": "Check the big angle (opposite 100): $\\cos = \\frac{3600 + 6400 - 10000}{9600} = 0$ — RIGHT angle (6-8-10 scaled). Area: legs are the two shorter sides: $\\frac{1}{2} \\cdot 60 \\cdot 80 = 2400$ m². The classifier saved a full solve.",
+          "check": [
+            "Rational(60**2 + 80**2 - 100**2, 2*60*80) == 0",
+            "Rational(1,2)*60*80 == 2400"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Tool selection",
+            "title": "The givens announce the law",
+            "body": "Every solvable triangle problem hands you three facts. Inventory them: **ASA/AAS** — two angles and a side: subtraction gives the third angle, then Sines. **SAS** — two sides hugging a known angle: Cosines makes the third side. **SSS** — three sides: Cosines (angle form), biggest angle first. The one un-solvable inventory: AAA — all angles, no side — a shape with no size."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Full solve from SAS",
+            "intro": "Cosines opens; cheap moves and audits finish.",
+            "examples": [
+              {
+                "prompt": "$a = 5$, $b = 8$, $C = 60°$: solve everything, plus the area.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "C", "x": 0, "y": 0 },
+                      { "id": "A", "x": 4, "y": 0 },
+                      { "id": "B", "x": 1.25, "y": 2.17 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "C", "to": "A" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B", "dashed": true },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "label": "60°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Cosines: $c = \\sqrt{89 - 40} = 7$. Then $\\cos A = \\frac{64 + 49 - 25}{112} = \\frac{11}{14}$: $A \\approx 38.2°$; $B = 180° - 60° - A \\approx 81.8°$.",
+                  "Area $= \\frac{1}{2} \\cdot 5 \\cdot 8\\sin 60° = 10\\sqrt3$. Audit: side order $5 < 7 < 8$ matches angle order $A < C < B$ ✓."
+                ],
+                "answer": "$c = 7$; $A \\approx 38.2°$, $B \\approx 81.8°$; area $10\\sqrt3$",
+                "check": [
+                  "sqrt(5**2 + 8**2 - 2*5*8*cos(pi/3)) == 7",
+                  "Rational(1,2)*5*8*sin(pi/3) == 10*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Inventory drill",
+            "prompt": "Given: sides $7$ and $9$, and the $50°$ angle BETWEEN them. First tool?",
+            "options": [
+              "Law of Cosines — SAS has no pair for the sines ratio",
+              "Law of Sines — always try it first",
+              "$180°$ subtraction",
+              "Pythagoras"
+            ],
+            "correctIndex": 0,
+            "explanation": "No side faces a known angle, so the sines ratio has no anchor. Cosines computes the side facing $50°$; only then does a pair exist. (Pythagoras needs the $90°$ this triangle doesn't have.)",
+            "check": [
+              "cos(rad(50)) > 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "Measuring across a river",
+            "intro": "ASA in the wild: baseline plus two sightings.",
+            "examples": [
+              {
+                "prompt": "From $A$ and $B$, $100$ m apart on one bank, a tree $T$ across the river: $\\angle A = 60°$, $\\angle B = 45°$. Distance $AT$, exactly?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "B", "x": 5, "y": 0 },
+                      { "id": "T", "x": 1.83, "y": 3.17, "label": "tree" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "T", "dashed": true },
+                      { "kind": "segment", "from": "B", "to": "T", "dashed": true },
+                      { "kind": "angle", "at": "A", "from": "B", "to": "T", "label": "60°" },
+                      { "kind": "angle", "at": "B", "from": "A", "to": "T", "label": "45°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$T = 180° - 105° = 75°$; pair: $(100, T)$.",
+                  "$AT = \\frac{100\\sin 45°}{\\sin 75°} = 100\\sqrt{3} - 100 \\approx 73.2$ m — measured without getting wet."
+                ],
+                "answer": "$AT = 100\\sqrt{3} - 100$ m",
+                "check": [
+                  "simplify(100*sin(pi/4)/sin(5*pi/12) - (100*sqrt(3) - 100)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The full toolkit",
+            "intro": "Inventory, tool, solve, audit.",
+            "problems": [
+              {
+                "prompt": "Sides $3$, $5$ at $120°$: the third side is…",
+                "options": ["$7$", "$\\sqrt{19}$", "$4$"],
+                "correctIndex": 0,
+                "explanation": "SAS + obtuse: $c^2 = 34 + 15 = 49$ (the negative cosine adds). $c = 7$.",
+                "check": [
+                  "sqrt(3**2 + 5**2 - 2*3*5*cos(2*pi/3)) == 7"
+                ]
+              },
+              {
+                "prompt": "$\\angle A = 40°$, $\\angle B = 60°$, $a = 12$. Which is the cheap third fact?",
+                "options": [
+                  "$\\angle C = 80°$ — by subtraction, before any law",
+                  "$c$ — by Law of Cosines",
+                  "$b$ — by Law of Cosines"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two angles known: the third costs one subtraction. THEN the sines pair $(12, 40°)$ opens every side.",
+                "check": [
+                  "180 - 40 - 60 == 80"
+                ]
+              },
+              {
+                "prompt": "Sides $5, 5, 8$: the angle between the two 5s has cosine…",
+                "options": [
+                  "$-\\dfrac{7}{25}$ — slightly obtuse",
+                  "$\\dfrac{7}{25}$ — acute",
+                  "$0$ — right"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos = \\frac{25 + 25 - 64}{50} = -\\frac{14}{50} = -\\frac{7}{25}$: the isosceles roof is pushed past square ($\\approx 106°$).",
+                "check": [
+                  "Rational(5**2 + 5**2 - 8**2, 2*5*5) == Rational(-7,25)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where you stand",
+            "title": "The course, complete",
+            "body": "Count what you now own: every right triangle (Units 1–2), every angle on the circle (Unit 3), every periodic rhythm as a graph (Unit 4), the algebra connecting it all (Unit 5), and now EVERY triangle whatsoever. This is the full trigonometry of the ЭЕШ and the working toolkit of surveying, navigation, physics, and engineering. From here: practice — the banks below and the tests in each unit."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Inventory picks the tool: pair ⟹ Sines; SAS/SSS ⟹ Cosines; AAA ⟹ unsolvable (no size).",
+              "Cheap moves first: the third angle is a subtraction, never a computation.",
+              "Audit relentlessly: angle sum 180°, longest-side-biggest-angle, two-way areas."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig6-pr-1",
+      "statement": "Sides $9$ and $4$ meet at $30°$. Find the area.",
+      "solution": "$\\frac{1}{2} \\cdot 9 \\cdot 4 \\cdot \\sin 30° = 18 \\cdot \\frac{1}{2} = 9$.",
+      "check": [
+        "Rational(1,2)*9*4*sin(pi/6) == 9"
+      ]
+    },
+    {
+      "id": "trig6-pr-2",
+      "statement": "In triangle $ABC$: $\\angle A = 45°$, $\\angle B = 60°$, $a = 12$. Find $b$ exactly.",
+      "solution": "$b = \\frac{12\\sin 60°}{\\sin 45°} = \\frac{12 \\cdot \\frac{\\sqrt3}{2}}{\\frac{\\sqrt2}{2}} = \\frac{12\\sqrt3}{\\sqrt2} = 6\\sqrt{6} \\approx 14.7$. Audit: $60° > 45°$, $6\\sqrt6 > 12$ ✓.",
+      "geoFigure": {
+        "points": [
+          { "id": "A", "x": 0, "y": 0 },
+          { "id": "B", "x": 5, "y": 0 },
+          { "id": "C", "x": 3.17, "y": 3.17 }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "A", "to": "B" },
+          { "kind": "segment", "from": "A", "to": "C" },
+          { "kind": "segment", "from": "B", "to": "C" },
+          { "kind": "angle", "at": "A", "from": "B", "to": "C", "label": "45°" },
+          { "kind": "angle", "at": "B", "from": "A", "to": "C", "label": "60°" }
+        ]
+      },
+      "check": [
+        "simplify(12*sin(pi/3)/sin(pi/4) - 6*sqrt(6)) == 0",
+        "6*sqrt(6) > 12"
+      ]
+    },
+    {
+      "id": "trig6-pr-3",
+      "statement": "Sides $7$ and $8$ meet at $60°$. Find the third side.",
+      "solution": "$c^2 = 49 + 64 - 2 \\cdot 56 \\cdot \\frac{1}{2} = 113 - 56 = 57$: $c = \\sqrt{57} \\approx 7.55$.",
+      "check": [
+        "simplify(sqrt(7**2 + 8**2 - 2*7*8*cos(pi/3)) - sqrt(57)) == 0"
+      ]
+    },
+    {
+      "id": "trig6-pr-4",
+      "statement": "A triangle has sides $7$, $8$, $13$. Find the angle opposite the $13$, exactly.",
+      "solution": "$\\cos\\theta = \\frac{49 + 64 - 169}{2 \\cdot 56} = \\frac{-56}{112} = -\\frac{1}{2}$ ⟹ $\\theta = 120°$. (A 7-8-13 triangle hides an exact $120°$ — the obtuse twin of 5-7-8's $60°$.)",
+      "check": [
+        "Rational(7**2 + 8**2 - 13**2, 2*7*8) == Rational(-1,2)",
+        "acos(Rational(-1,2)) == 2*pi/3"
+      ]
+    },
+    {
+      "id": "trig6-pr-5",
+      "statement": "Two ships leave port together: one sails $12$ km due east, the other $9$ km on a bearing $60°$ away from the first's course. How far apart are they?",
+      "solution": "SAS: $d^2 = 144 + 81 - 2 \\cdot 12 \\cdot 9 \\cdot \\cos 60° = 225 - 108 = 117$: $d = \\sqrt{117} = 3\\sqrt{13} \\approx 10.8$ km.",
+      "check": [
+        "simplify(sqrt(12**2 + 9**2 - 2*12*9*cos(pi/3)) - 3*sqrt(13)) == 0"
+      ]
+    },
+    {
+      "id": "trig6-pr-6",
+      "statement": "In triangle $ABC$: $a = 10$, $\\angle A = 30°$, $b = 10\\sqrt{3}$, and $\\angle B$ is known to be acute. Find $\\angle B$ exactly.",
+      "solution": "$\\sin B = \\frac{10\\sqrt3 \\cdot \\sin 30°}{10} = \\frac{\\sqrt3}{2}$ ⟹ acute $B = 60°$. (Then $C = 90°$ — this is the 30-60-90 in disguise: sides 10, 10√3, and c = 20.)",
+      "check": [
+        "simplify(10*sqrt(3)*sin(pi/6)/10 - sqrt(3)/2) == 0",
+        "180 - 30 - 60 == 90"
+      ]
+    },
+    {
+      "id": "trig6-pr-7",
+      "statement": "A triangular plot has sides $13$, $14$, $15$. Find the cosine of the angle opposite the $14$, and the plot's area (hint: that cosine gives a clean sine).",
+      "solution": "$\\cos B = \\frac{169 + 225 - 196}{2 \\cdot 13 \\cdot 15} = \\frac{198}{390} = \\frac{33}{65}$. Then $\\sin B = \\sqrt{1 - \\frac{1089}{4225}} = \\frac{56}{65}$, and area $= \\frac{1}{2} \\cdot 13 \\cdot 15 \\cdot \\frac{56}{65} = 84$. (The famous 13-14-15 triangle: area exactly 84.)",
+      "check": [
+        "Rational(13**2 + 15**2 - 14**2, 2*13*15) == Rational(33,65)",
+        "Rational(33,65)**2 + Rational(56,65)**2 == 1",
+        "Rational(1,2)*13*15*Rational(56,65) == 84"
+      ]
+    },
+    {
+      "id": "trig6-pr-8",
+      "statement": "$\\angle A = 75°$, $\\angle B = 45°$, and the side between them (c, opposite $C$) is $20$. Find $a$ exactly.",
+      "solution": "ASA: $C = 180° - 120° = 60°$; pair $(20, 60°)$. $a = \\frac{20\\sin 75°}{\\sin 60°} = \\frac{20 \\cdot \\frac{\\sqrt6+\\sqrt2}{4}}{\\frac{\\sqrt3}{2}} = \\frac{10(\\sqrt6+\\sqrt2)}{\\sqrt3} = 10\\sqrt2 + \\frac{10\\sqrt6}{3}$... cleaner: $= \\frac{10(\\sqrt6 + \\sqrt2)}{\\sqrt3}$; rationalized: $\\frac{10(\\sqrt{18} + \\sqrt6)}{3} = 10\\sqrt2 + \\frac{10\\sqrt6}{3}$. Numerically $\\approx 22.3$.",
+      "check": [
+        "180 - 75 - 45 == 60",
+        "simplify(20*sin(5*pi/12)/sin(pi/3) - (10*sqrt(2) + 10*sqrt(6)/3)) == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig6-ty-1",
+      "statement": "A rhombus has side $10$ and one interior angle $120°$. Using the triangle area formula, find the rhombus's area exactly.",
+      "solution": "The diagonal splits it into two triangles with sides $10, 10$ at $120°$: each $\\frac{1}{2} \\cdot 100 \\cdot \\sin 120° = 25\\sqrt3$. Total: $50\\sqrt{3} \\approx 86.6$.",
+      "check": [
+        "Rational(1,2)*10*10*sin(2*pi/3) == 25*sqrt(3)",
+        "2*25*sqrt(3) == 50*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig6-ty-2",
+      "statement": "In triangle $ABC$: $\\angle B = 30°$, $b = 7$, $\\angle C = 105°$. Find $a$ (exactly, via the third angle).",
+      "solution": "$A = 180° - 135° = 45°$. $a = \\frac{7\\sin 45°}{\\sin 30°} = \\frac{7 \\cdot \\frac{\\sqrt2}{2}}{\\frac{1}{2}} = 7\\sqrt{2} \\approx 9.9$.",
+      "check": [
+        "180 - 30 - 105 == 45",
+        "7*sin(pi/4)/sin(pi/6) == 7*sqrt(2)"
+      ]
+    },
+    {
+      "id": "trig6-ty-3",
+      "statement": "Two straight roads leave a junction at $120°$ to each other. Cars drive $4$ km and $7$ km along them. How far apart are the cars, and is the answer bigger or smaller than a right-angle junction would give?",
+      "solution": "$d^2 = 16 + 49 - 2 \\cdot 28\\cos 120° = 65 + 28 = 93$: $d = \\sqrt{93} \\approx 9.6$ km. A $90°$ junction gives $\\sqrt{65} \\approx 8.1$ — the blunter angle pushes them FARTHER apart.",
+      "check": [
+        "simplify(sqrt(4**2 + 7**2 - 2*4*7*cos(2*pi/3)) - sqrt(93)) == 0",
+        "sqrt(93) > sqrt(65)"
+      ]
+    },
+    {
+      "id": "trig6-ty-4",
+      "statement": "A triangle has sides $6$, $10$, $14$. Find its largest angle exactly, then its area exactly.",
+      "solution": "Largest faces 14: $\\cos\\theta = \\frac{36 + 100 - 196}{120} = -\\frac{1}{2}$ ⟹ $\\theta = 120°$. Area: the OTHER two sides hug that angle: $\\frac{1}{2} \\cdot 6 \\cdot 10 \\cdot \\sin 120° = 15\\sqrt{3} \\approx 26$.",
+      "check": [
+        "Rational(6**2 + 10**2 - 14**2, 2*6*10) == Rational(-1,2)",
+        "acos(Rational(-1,2)) == 2*pi/3",
+        "Rational(1,2)*6*10*sin(2*pi/3) == 15*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig6-ty-5",
+      "statement": "From two observation posts $A$ and $B$, $200$ m apart, a balloon $T$ is sighted in the vertical plane through $AB$: $\\angle TAB = 45°$ and $\\angle TBA = 60°$ (measured inside triangle $ABT$). Find the distance $BT$ exactly.",
+      "solution": "$T = 180° - 105° = 75°$. Pair $(AB = 200, T = 75°)$; $BT$ faces $\\angle A = 45°$: $BT = \\frac{200\\sin 45°}{\\sin 75°} = \\frac{200 \\cdot \\frac{\\sqrt2}{2}}{\\frac{\\sqrt6 + \\sqrt2}{4}} = \\frac{400\\sqrt2}{\\sqrt6 + \\sqrt2} = 200\\sqrt{3} - 200 \\approx 146$ m.",
+      "check": [
+        "180 - 45 - 60 == 75",
+        "simplify(200*sin(pi/4)/sin(5*pi/12) - (200*sqrt(3) - 200)) == 0"
+      ]
+    },
+    {
+      "id": "trig6-ty-6",
+      "statement": "Capstone: triangle with $a = 8$, $c = 5$, included angle $B = 60°$. Find $b$, then $\\sin A$ (Law of Sines), then the area — and run the side-angle-order audit.",
+      "solution": "Cosines: $b^2 = 64 + 25 - 80 \\cdot \\frac{1}{2} = 49$: $b = 7$. Sines: $\\sin A = \\frac{8\\sin 60°}{7} = \\frac{4\\sqrt3}{7} \\approx 0.99$ ($A \\approx 81.8°$). Area: $\\frac{1}{2} \\cdot 8 \\cdot 5 \\cdot \\sin 60° = 10\\sqrt{3}$. Audit: sides $5 < 7 < 8$ ⟺ angles $C < B < A$ — with $A \\approx 81.8°$ biggest ✓. (Same triangle as the lesson's SAS solve, entered from a different corner.)",
+      "check": [
+        "sqrt(8**2 + 5**2 - 2*8*5*cos(pi/3)) == 7",
+        "simplify(8*sin(pi/3)/7 - 4*sqrt(3)/7) == 0",
+        "Rational(1,2)*8*5*sin(pi/3) == 10*sqrt(3)",
+        "4*sqrt(3)/7 < 1"
+      ]
+    }
+  ]
+}

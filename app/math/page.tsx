@@ -45,6 +45,16 @@ const COURSES: {
     exams: ["ЭЕШ", "SAT"],
   },
   {
+    href: "/math/trigonometry",
+    title: "Trigonometry",
+    blurb:
+      "Right-triangle ratios, the special triangles, the unit circle and its waves, identities — and the laws that solve any triangle. A diagram at nearly every step.",
+    units: 6,
+    level: 2,
+    exams: ["ЭЕШ", "SAT", "IB"],
+    isNew: true,
+  },
+  {
     href: "/math/algebra-2",
     title: "Algebra 2",
     blurb:

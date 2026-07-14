@@ -1,0 +1,1359 @@
+{
+  "slug": "right-triangle-trigonometry",
+  "title": "Right-Triangle Trigonometry",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Three ratios that unlock every right triangle: name the sides, pick the ratio, and solve for any missing side or angle — then aim it at towers, cliffs, and shadows.",
+  "buildsOn": "The Pythagorean theorem and similar triangles from Geometry.",
+  "lessons": [
+    {
+      "slug": "the-three-ratios",
+      "title": "The Three Ratios",
+      "concreteComparison": "Every ramp with the same steepness has the same rise-to-run ratio, whether it's a doormat wedge or a highway overpass — similar triangles guarantee it. Trigonometry bottles that guarantee: three ratios that depend only on the ANGLE, never on the size.",
+      "objective": "Name the sides of a right triangle relative to an angle, and compute sine, cosine, and tangent from side lengths.",
+      "concept": [
+        "In a right triangle, sides get names RELATIVE to the acute angle $\\theta$ you're working from: the **hypotenuse** is always the side across from the right angle (the longest); the **opposite** side is the one across from $\\theta$; the **adjacent** side is the leg touching $\\theta$. Move to the other acute angle and opposite/adjacent swap.",
+        "The three ratios: $\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}$, $\\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta = \\frac{\\text{opp}}{\\text{adj}}$ — memorized as **SOH-CAH-TOA**. In the classic 3-4-5 triangle with $\\theta$ opposite the side of length 3: $\\sin\\theta = \\frac{3}{5}$, $\\cos\\theta = \\frac{4}{5}$, $\\tan\\theta = \\frac{3}{4}$.",
+        "WHY this works: any two right triangles sharing the angle $\\theta$ are similar, so their side RATIOS match exactly — the ratios are properties of the angle alone. That's the entire licence for trigonometry: $\\sin 35°$ means one specific number, no matter whose triangle you measure it in. And since the ratios use only two sides at a time, the Pythagorean theorem supplies any third side you're missing."
+      ],
+      "keyIdea": "Sides are named relative to θ (opposite, adjacent, hypotenuse); SOH-CAH-TOA gives three size-proof ratios that belong to the angle itself.",
+      "facts": [
+        {
+          "title": "SOH-CAH-TOA",
+          "latex": "\\sin\\theta = \\tfrac{opp}{hyp}, \\quad \\cos\\theta = \\tfrac{adj}{hyp}, \\quad \\tan\\theta = \\tfrac{opp}{adj}",
+          "explanation": "The three ratios, named by the sides they use."
+        },
+        {
+          "title": "Why size never matters",
+          "latex": "\\text{same } \\theta \\Rightarrow \\text{similar triangles} \\Rightarrow \\text{same ratios}",
+          "explanation": "The ratio belongs to the angle, not the triangle."
+        },
+        {
+          "title": "The third side",
+          "latex": "a^2 + b^2 = c^2",
+          "explanation": "Two sides known ⟹ Pythagoras hands you the third."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig11-we1",
+          "statement": "In right triangle $ABC$, the right angle is at $C$, $AC = 4$, $BC = 3$, $AB = 5$. Find $\\sin A$, $\\cos A$, and $\\tan A$.",
+          "solution": "Name the sides from $A$: opposite $= BC = 3$ (across from $A$), adjacent $= AC = 4$ (the leg touching $A$), hypotenuse $= AB = 5$. Then $\\sin A = \\frac{3}{5}$, $\\cos A = \\frac{4}{5}$, $\\tan A = \\frac{3}{4}$. Sanity: $\\sin^2 A + \\cos^2 A = \\frac{9}{25} + \\frac{16}{25} = 1$ ✓.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1",
+            "Rational(3,5)/Rational(4,5) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "trig11-we2",
+          "statement": "A right triangle has legs $5$ and $12$. Find the hypotenuse, then all three ratios of the angle $\\theta$ opposite the side of length $5$.",
+          "solution": "Pythagoras first: $c = \\sqrt{25 + 144} = \\sqrt{169} = 13$. From $\\theta$: opposite $= 5$, adjacent $= 12$, hypotenuse $= 13$: $\\sin\\theta = \\frac{5}{13}$, $\\cos\\theta = \\frac{12}{13}$, $\\tan\\theta = \\frac{5}{12}$.",
+          "check": [
+            "sqrt(5**2 + 12**2) == 13",
+            "Rational(5,13)**2 + Rational(12,13)**2 == 1",
+            "Rational(5,13)/Rational(12,13) == Rational(5,12)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Fixing 'opposite' and 'adjacent' to the picture instead of the angle.",
+          "correction": "The names are RELATIVE: the side opposite $A$ is adjacent to $B$. Before writing any ratio, put your finger on the angle you're using and re-derive which leg is across from it and which touches it.",
+          "authored": true
+        },
+        {
+          "text": "Using the hypotenuse in tan, or a leg-over-leg ratio in sin.",
+          "correction": "Only tangent is leg-over-leg (opp/adj); sine and cosine each use the HYPOTENUSE downstairs. If your sine comes out bigger than 1, you've smuggled a leg ratio into it — a sine or cosine can never exceed 1, because no leg outgrows the hypotenuse.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig11-t1",
+          "statement": "A right triangle has legs $8$ and $15$. Find the hypotenuse and $\\tan\\theta$ for the angle $\\theta$ opposite the side of length $8$.",
+          "solution": "$c = \\sqrt{64 + 225} = \\sqrt{289} = 17$. From $\\theta$: opposite 8, adjacent 15: $\\tan\\theta = \\frac{8}{15}$.",
+          "check": [
+            "sqrt(8**2 + 15**2) == 17",
+            "Rational(8,17)/Rational(15,17) == Rational(8,15)"
+          ]
+        },
+        {
+          "id": "trig11-t2",
+          "statement": "For an acute angle $\\theta$, $\\cos\\theta = \\frac{4}{5}$. Find $\\sin\\theta$ and $\\tan\\theta$ (build the triangle first).",
+          "solution": "Build it: adjacent 4, hypotenuse 5 ⟹ opposite $= \\sqrt{25 - 16} = 3$. So $\\sin\\theta = \\frac{3}{5}$ and $\\tan\\theta = \\frac{3}{4}$. One ratio determines the whole triangle's shape — and therefore the other two ratios.",
+          "check": [
+            "sqrt(5**2 - 4**2) == 3",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Naming the sides",
+            "title": "Three sides, three jobs",
+            "body": "Stand at the acute angle $\\theta$ (at $A$ in the figure) and look around the triangle. The side you're staring ACROSS at — $BC$ — is the **opposite**. The leg your angle touches — $AC$ — is the **adjacent**. And the slanted side across from the right angle — $AB$, always the longest — is the **hypotenuse**. Every trig ratio starts with this naming, so make it a reflex: finger on the angle, then name.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "C", "x": 4, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "B", "x": 4, "y": 3 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                  { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "θ" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Finger on the angle",
+            "prompt": "In the figure, the right angle is at $C$ and $\\theta$ sits at $A$. Which side is OPPOSITE $\\theta$?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "C", "x": 6, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "B", "x": 6, "y": 2.5 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                  { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "θ" }
+                ]
+              }
+            },
+            "options": ["$BC$ — the far leg, across from $A$", "$AC$ — the leg touching $A$", "$AB$ — the longest side", "It depends on the triangle's size"],
+            "correctIndex": 0,
+            "explanation": "Stand at $A$ and look across: you're staring at $BC$. The touching leg $AC$ is the adjacent, and $AB$ (across from the right angle) is the hypotenuse. Size is irrelevant to the naming — and, as you'll see, to the ratios too.",
+            "check": [
+              "6**2 + Rational(5,2)**2 == Rational(169,4)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ratios",
+            "title": "SOH-CAH-TOA",
+            "body": "Now the three stars of the subject: $\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}$, $\\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}}$, $\\tan\\theta = \\frac{\\text{opp}}{\\text{adj}}$ — chanted for four hundred years as **SOH-CAH-TOA**. Why do these deserve names? Because any two right triangles with the same $\\theta$ are SIMILAR, so these ratios come out identical regardless of size. $\\sin 35°$ is one fixed number for the whole universe — that's what makes a trig table (or calculator button) possible."
+          },
+          {
+            "kind": "trigRatios",
+            "eyebrow": "Play",
+            "title": "The three ratios, live",
+            "teach": "Drag the angle and watch all three ratios update: steeper angle → opposite grows → sin and tan climb while cos falls. Then grow the triangle without changing the angle — the sides change, the RATIOS don't move. That stubbornness is the whole subject.",
+            "config": { "start": 35 }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read the ratios off the sides",
+            "intro": "Name the sides from the angle, then write the three fractions.",
+            "examples": [
+              {
+                "prompt": "Right angle at $C$, $AC = 4$, $BC = 3$, $AB = 5$. Find $\\sin A$, $\\cos A$, $\\tan A$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 4, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 4, "y": 3 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "A" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "From $A$: opposite $= BC = 3$, adjacent $= AC = 4$, hypotenuse $= AB = 5$.",
+                  "$\\sin A = \\frac{3}{5}, \\quad \\cos A = \\frac{4}{5}, \\quad \\tan A = \\frac{3}{4}$."
+                ],
+                "answer": "$\\sin A = \\tfrac{3}{5}$, $\\cos A = \\tfrac{4}{5}$, $\\tan A = \\tfrac{3}{4}$",
+                "check": [
+                  "sqrt(3**2 + 4**2) == 5",
+                  "Rational(3,5)/Rational(4,5) == Rational(3,4)"
+                ]
+              },
+              {
+                "prompt": "Legs $5$ and $12$; $\\theta$ is opposite the leg of length $5$. Find all three ratios (hypotenuse first).",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 6, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 6, "y": 2.5 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "θ" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Hypotenuse: $\\sqrt{5^2 + 12^2} = \\sqrt{169} = 13$.",
+                  "From $\\theta$ ($BC = 5$ opposite, $AC = 12$ adjacent): $\\sin\\theta = \\frac{5}{13}$, $\\cos\\theta = \\frac{12}{13}$, $\\tan\\theta = \\frac{5}{12}$."
+                ],
+                "answer": "$\\sin\\theta = \\tfrac{5}{13}$, $\\cos\\theta = \\tfrac{12}{13}$, $\\tan\\theta = \\tfrac{5}{12}$",
+                "check": [
+                  "sqrt(5**2 + 12**2) == 13",
+                  "Rational(5,13)**2 + Rational(12,13)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Tangent from the figure",
+            "prompt": "Right angle at $C$, $AC = 15$, $BC = 8$, $AB = 17$. What is $\\tan A$?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "C", "x": 7.5, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "B", "x": 7.5, "y": 4 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                  { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "A" }
+                ]
+              }
+            },
+            "options": [
+              "$\\dfrac{8}{15}$ — opposite over adjacent",
+              "$\\dfrac{15}{8}$",
+              "$\\dfrac{8}{17}$",
+              "$\\dfrac{15}{17}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "From $A$: opposite $= BC = 8$, adjacent $= AC = 15$. Tangent is the leg-over-leg ratio: $\\frac{8}{15}$. Options C and D are $\\sin A$ and $\\cos A$ — right sides, wrong ratio.",
+            "check": [
+              "sqrt(8**2 + 15**2) == 17",
+              "Rational(8,17)/Rational(15,17) == Rational(8,15)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two sides suffice",
+            "title": "Pythagoras completes the triangle",
+            "body": "A ratio question hands you two sides; the theorem you already own supplies the third whenever you need it. Given $\\cos\\theta = \\frac{4}{5}$: build the triangle — adjacent 4, hypotenuse 5 — and the missing opposite is $\\sqrt{5^2 - 4^2} = 3$. Now ALL the ratios are yours: one ratio pins the triangle's shape, and the shape carries everything else."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Ratios from figures",
+            "intro": "Finger on the angle, name the sides, write the fraction.",
+            "problems": [
+              {
+                "prompt": "Right angle at $C$, $AC = 8$, $BC = 6$, $AB = 10$. What is $\\sin A$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 4, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 4, "y": 3 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "A" }
+                    ]
+                  }
+                },
+                "options": ["$\\dfrac{3}{5}$", "$\\dfrac{4}{5}$", "$\\dfrac{3}{4}$"],
+                "correctIndex": 0,
+                "explanation": "Opposite $= BC = 6$, hypotenuse $= 10$: $\\sin A = \\frac{6}{10} = \\frac{3}{5}$. (A scaled 3-4-5 — the ratio doesn't notice the scaling.)",
+                "check": [
+                  "Rational(6,10) == Rational(3,5)",
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "For an acute angle $\\theta$, $\\sin\\theta = \\frac{5}{13}$. What is $\\tan\\theta$?",
+                "options": ["$\\dfrac{5}{12}$", "$\\dfrac{12}{13}$", "$\\dfrac{12}{5}$"],
+                "correctIndex": 0,
+                "explanation": "Build: opposite 5, hypotenuse 13 ⟹ adjacent $= \\sqrt{169 - 25} = 12$. Then $\\tan\\theta = \\frac{5}{12}$.",
+                "check": [
+                  "sqrt(13**2 - 5**2) == 12",
+                  "Rational(5,13)/Rational(12,13) == Rational(5,12)"
+                ]
+              },
+              {
+                "prompt": "In the same triangle ($\\sin\\theta = \\frac{5}{13}$), what is $\\sin$ of the OTHER acute angle?",
+                "options": ["$\\dfrac{12}{13}$", "$\\dfrac{5}{13}$", "$\\dfrac{5}{12}$"],
+                "correctIndex": 0,
+                "explanation": "At the other angle, opposite and adjacent swap: its opposite is 12, so its sine is $\\frac{12}{13}$ — which is exactly $\\cos\\theta$. The two acute angles trade sin and cos; that's the 'co' in cosine.",
+                "check": [
+                  "Rational(12,13)**2 + Rational(5,13)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Sine is a translation accident",
+            "body": "Indian mathematicians called the half-chord 'jya-ardha', shortened to 'jiva'. Arabic scholars wrote it 'jiba' — but Arabic omits vowels, and later Latin translators misread 'jb' as 'jaib', meaning bay or fold, and translated it 'sinus'. Your calculator's SIN button carries a 900-year-old typo.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Name sides FROM the angle: opposite (across), adjacent (touching), hypotenuse (longest, across from the right angle).",
+              "SOH-CAH-TOA: sin = opp/hyp, cos = adj/hyp, tan = opp/adj — size-proof by similarity.",
+              "One ratio + Pythagoras rebuilds the triangle and yields the other two."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "finding-missing-sides",
+      "title": "Finding Missing Sides",
+      "concreteComparison": "A ladder leans against a wall at a known angle, and you know the ladder's length — the wall height is already determined; you just haven't computed it yet. One angle plus one side LOCKS a right triangle. Trig ratios are how you read the locked-in sides out.",
+      "objective": "Solve for unknown sides of right triangles using the appropriate trig ratio, multiplying or dividing as the unknown's position demands.",
+      "concept": [
+        "The three-step recipe: (1) mark the angle and NAME the two sides in play — the one you know and the one you want; (2) pick the ratio that links exactly those two names (opp&hyp → sin, adj&hyp → cos, opp&adj → tan); (3) write the equation and solve.",
+        "The unknown's position decides the algebra. Unknown UPSTAIRS: $\\sin 30° = \\frac{x}{10}$ ⟹ $x = 10\\sin 30° = 5$ — multiply. Unknown DOWNSTAIRS: $\\sin 30° = \\frac{6}{x}$ ⟹ $x = \\frac{6}{\\sin 30°} = 12$ — divide. Same ratio, opposite moves.",
+        "With the special angles $30°, 45°, 60°$ the answers come out EXACT: $\\sin 30° = \\frac{1}{2}$, $\\cos 60° = \\frac{1}{2}$, $\\tan 45° = 1$, $\\sin 60° = \\frac{\\sqrt{3}}{2}$, $\\sin 45° = \\frac{\\sqrt{2}}{2}$. Exams love them for precisely this reason — Unit 2 derives where these values come from."
+      ],
+      "keyIdea": "Name the known and wanted sides, pick the ratio that uses both, then multiply (unknown upstairs) or divide (unknown downstairs).",
+      "facts": [
+        {
+          "title": "The recipe",
+          "latex": "\\text{name} \\to \\text{pick ratio} \\to \\text{solve}",
+          "explanation": "The ratio must link the side you know to the side you want."
+        },
+        {
+          "title": "Position decides",
+          "latex": "x = h\\sin\\theta \\;\\; \\text{vs} \\;\\; x = \\tfrac{a}{\\sin\\theta}",
+          "explanation": "Unknown upstairs: multiply. Unknown downstairs: divide."
+        },
+        {
+          "title": "Special-angle values",
+          "latex": "\\sin 30° = \\tfrac{1}{2}, \\; \\sin 45° = \\tfrac{\\sqrt2}{2}, \\; \\sin 60° = \\tfrac{\\sqrt3}{2}",
+          "explanation": "30-45-60 answers come out exact — no calculator."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig12-we1",
+          "statement": "In right triangle $ABC$ (right angle at $C$), $\\angle A = 30°$ and the hypotenuse $AB = 10$. Find $BC$, the side opposite $A$.",
+          "solution": "Known: hypotenuse. Wanted: opposite. The ratio using both: sine. $\\sin 30° = \\frac{BC}{10}$, so $BC = 10\\sin 30° = 10 \\cdot \\frac{1}{2} = 5$. Sanity: opposite the SMALLEST angle sits the shortest side — 5 against hypotenuse 10 ✓.",
+          "check": [
+            "10*sin(rad(30)) == 5",
+            "sin(pi/6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "trig12-we2",
+          "statement": "A ladder leans at $60°$ to the ground, and its base sits $3$ m from the wall. How long is the ladder?",
+          "solution": "From the $60°$ angle: known adjacent (3 m), wanted hypotenuse — cosine links them. $\\cos 60° = \\frac{3}{L}$: unknown DOWNSTAIRS, so divide: $L = \\frac{3}{\\cos 60°} = \\frac{3}{1/2} = 6$ m. The steeper the ladder, the smaller the cosine — and the longer the ladder for the same base gap.",
+          "check": [
+            "cos(rad(60)) == Rational(1,2)",
+            "3/cos(pi/3) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Always multiplying: x = 6 sin 30° when the equation was sin 30° = 6/x.",
+          "correction": "Look WHERE the unknown sits before touching the algebra. Downstairs unknowns come out by DIVISION: $x = \\frac{6}{\\sin 30°} = 12$, not $3$. The wrong move shrinks a hypotenuse below a leg — impossible, and a sanity check would catch it.",
+          "authored": true
+        },
+        {
+          "text": "Picking the ratio by habit (always sine) instead of by the two sides in play.",
+          "correction": "The ratio is DICTATED by which sides the problem touches: adjacent-and-hypotenuse has no sine in it — that's cosine's pair. Name the known side and the wanted side out loud first; the ratio then picks itself.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig12-t1",
+          "statement": "Right angle at $C$, $\\angle A = 60°$, hypotenuse $AB = 14$. Find $BC$ (opposite $A$) exactly.",
+          "solution": "$\\sin 60° = \\frac{BC}{14}$ ⟹ $BC = 14 \\cdot \\frac{\\sqrt{3}}{2} = 7\\sqrt{3}$.",
+          "check": [
+            "14*sin(pi/3) == 7*sqrt(3)",
+            "sin(rad(60)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "trig12-t2",
+          "statement": "From a point $20$ m from a flagpole's base, the pole is seen at $45°$. Find the pole's height — then explain why no calculator was needed.",
+          "solution": "$\\tan 45° = \\frac{h}{20}$ ⟹ $h = 20\\tan 45° = 20 \\cdot 1 = 20$ m. At $45°$ the opposite and adjacent legs are EQUAL (the triangle is isosceles), so tangent is exactly 1 — height equals distance, no computation required.",
+          "check": [
+            "tan(pi/4) == 1",
+            "20*tan(rad(45)) == 20"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The lock",
+            "title": "One angle + one side = everything",
+            "body": "Similar triangles taught you that an acute angle fixes a right triangle's SHAPE; one known side then fixes its SIZE. So every other side is already determined — the trig ratios are the reading device. The whole lesson is one recipe: name the two sides in play, pick the ratio that links them, solve."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unknown upstairs: multiply",
+            "intro": "The wanted side sits on top of the ratio — isolate it with one multiplication.",
+            "examples": [
+              {
+                "prompt": "Right angle at $C$, $\\angle A = 30°$, hypotenuse $AB = 10$. Find $BC$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 4.33, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 4.33, "y": 2.5 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "30°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Known hypotenuse, wanted opposite ⟹ sine.",
+                  "$\\sin 30° = \\frac{BC}{10}$ ⟹ $BC = 10 \\cdot \\frac{1}{2} = 5$."
+                ],
+                "answer": "$BC = 5$",
+                "check": [
+                  "10*sin(pi/6) == 5"
+                ]
+              },
+              {
+                "prompt": "Right angle at $C$, $\\angle A = 45°$, adjacent $AC = 8$. Find the opposite side $BC$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 3, "y": 3 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "45°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Known adjacent, wanted opposite ⟹ tangent.",
+                  "$\\tan 45° = \\frac{BC}{8}$ ⟹ $BC = 8 \\cdot 1 = 8$."
+                ],
+                "answer": "$BC = 8$",
+                "check": [
+                  "8*tan(pi/4) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The flip side",
+            "title": "Unknown downstairs: divide",
+            "body": "When the side you WANT is the ratio's denominator — usually a wanted hypotenuse — the equation reads $\\sin 30° = \\frac{6}{x}$. Cross the $x$ over: $x = \\frac{6}{\\sin 30°} = \\frac{6}{1/2} = 12$. Dividing by a number less than 1 makes things BIGGER, which is exactly right: a hypotenuse must beat every leg. If your 'hypotenuse' comes out smaller than the given leg, you multiplied when you should have divided."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Which move?",
+            "prompt": "Right angle at $C$, $\\angle A = 30°$, and the OPPOSITE side $BC = 6$. Which computation gives the hypotenuse $AB$?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0 },
+                  { "id": "C", "x": 4.33, "y": 0, "labelDx": 2, "labelDy": -1 },
+                  { "id": "B", "x": 4.33, "y": 2.5 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "C" },
+                  { "kind": "segment", "from": "C", "to": "B" },
+                  { "kind": "segment", "from": "A", "to": "B" },
+                  { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                  { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "30°" }
+                ]
+              }
+            },
+            "options": [
+              "$AB = \\dfrac{6}{\\sin 30°} = 12$",
+              "$AB = 6\\sin 30° = 3$",
+              "$AB = 6\\tan 30°$",
+              "$AB = \\dfrac{\\sin 30°}{6}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sin 30° = \\frac{6}{AB}$ puts the unknown downstairs: divide. $AB = \\frac{6}{1/2} = 12$. Option B's 'hypotenuse' of 3 is SHORTER than the leg 6 — the sanity check screams.",
+            "check": [
+              "6/sin(pi/6) == 12"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The leaning ladder",
+            "intro": "A classic setup — adjacent known, hypotenuse wanted.",
+            "examples": [
+              {
+                "prompt": "A ladder leans at $60°$ to the ground; its base is $3$ m from the wall. How long is the ladder?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0, "label": "base" },
+                      { "id": "C", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 3, "y": 5.2, "label": "top" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "60°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Known adjacent (3), wanted hypotenuse ⟹ cosine: $\\cos 60° = \\frac{3}{L}$.",
+                  "Unknown downstairs: $L = \\frac{3}{\\cos 60°} = \\frac{3}{1/2} = 6$ m."
+                ],
+                "answer": "$L = 6$ m",
+                "check": [
+                  "3/cos(pi/3) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Solve for the side",
+            "intro": "Name, pick, solve — and sanity-check against the hypotenuse.",
+            "problems": [
+              {
+                "prompt": "Right angle at $C$, $\\angle A = 60°$, hypotenuse $14$. Find $BC$ (opposite $A$), exactly.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 2.5, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 2.5, "y": 4.33 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "60°" }
+                    ]
+                  }
+                },
+                "options": ["$7\\sqrt{3}$", "$7$", "$14\\sqrt{3}$"],
+                "correctIndex": 0,
+                "explanation": "$BC = 14\\sin 60° = 14 \\cdot \\frac{\\sqrt3}{2} = 7\\sqrt{3} \\approx 12.1$ — long, as it should be across from the big $60°$ angle.",
+                "check": [
+                  "14*sin(pi/3) == 7*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "$\\angle A = 30°$ and the opposite leg is $4$. Find the ADJACENT leg, exactly.",
+                "options": ["$4\\sqrt{3}$", "$\\dfrac{4}{\\sqrt{3}}$", "$8$"],
+                "correctIndex": 0,
+                "explanation": "$\\tan 30° = \\frac{4}{adj}$ ⟹ $adj = \\frac{4}{\\tan 30°} = \\frac{4}{1/\\sqrt3} = 4\\sqrt{3}$. Downstairs unknown, division — and dividing by the small $\\tan 30°$ makes the adjacent LONGER than 4, matching a shallow angle.",
+                "check": [
+                  "4/tan(pi/6) == 4*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Hypotenuse $20$, $\\angle A = 45°$. Find the opposite side, exactly.",
+                "options": ["$10\\sqrt{2}$", "$10$", "$20\\sqrt{2}$"],
+                "correctIndex": 0,
+                "explanation": "$20\\sin 45° = 20 \\cdot \\frac{\\sqrt2}{2} = 10\\sqrt{2} \\approx 14.1$ — bigger than 10 (the 45° triangle splits its right angle evenly, legs well over half the hypotenuse) and smaller than 20 ✓.",
+                "check": [
+                  "20*sin(pi/4) == 10*sqrt(2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Sanity-check against the hypotenuse",
+            "body": "Every answer gets a two-second audit: legs must be SHORTER than the hypotenuse, and the longer leg sits across from the bigger acute angle. An answer violating either rule isn't 'probably fine' — it's certainly a multiply/divide mix-up. This audit catches the most common trig error in the world at zero cost.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Recipe: name known + wanted sides → the ratio picks itself → solve.",
+              "Unknown upstairs: multiply. Unknown downstairs (wanted hypotenuse): divide.",
+              "Audit every answer: legs < hypotenuse; bigger angle faces longer leg."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "finding-missing-angles",
+      "title": "Finding Missing Angles",
+      "concreteComparison": "A wheelchair-ramp inspector doesn't measure the ramp's angle with a protractor in the sky — they measure rise and run with a tape, compute the ratio, and ask 'WHICH angle has this tangent?' That reverse question is the inverse trig function.",
+      "objective": "Find unknown acute angles from two known sides using inverse trigonometric functions.",
+      "concept": [
+        "Forward trig answers 'given the angle, what's the ratio?' The reverse question — 'given the ratio, what's the angle?' — is answered by the **inverse functions**: $\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$ (also written arcsin, arccos, arctan). $\\sin\\theta = \\frac{1}{2}$ ⟹ $\\theta = \\sin^{-1}\\!\\left(\\frac{1}{2}\\right) = 30°$.",
+        "The recipe mirrors the last lesson: name the TWO KNOWN sides from the mystery angle, build the ratio those names dictate, then apply the matching inverse. Legs 3 and 4 with opposite 3: $\\tan\\theta = \\frac{3}{4}$, so $\\theta = \\tan^{-1}\\!\\left(\\frac{3}{4}\\right) \\approx 36.9°$.",
+        "The notation trap: $\\sin^{-1} x$ is NOT $\\frac{1}{\\sin x}$ — the $-1$ means 'inverse function' (undo), not 'reciprocal'. And a free check always exists: the two acute angles of a right triangle sum to $90°$, so once you have one, the other is $90° - \\theta$ — compute it both ways and they must agree."
+      ],
+      "keyIdea": "Inverse trig answers 'which angle has this ratio?': build the ratio from two known sides, apply arcsin/arccos/arctan — and the acute angles must sum to 90°.",
+      "facts": [
+        {
+          "title": "The inverses",
+          "latex": "\\sin\\theta = k \\iff \\theta = \\sin^{-1}(k) \\;\\; (0° < \\theta < 90°)",
+          "explanation": "Ratio in, angle out — one acute answer."
+        },
+        {
+          "title": "Not a reciprocal",
+          "latex": "\\sin^{-1} x \\neq \\frac{1}{\\sin x}",
+          "explanation": "The −1 marks the inverse FUNCTION (undo), not division."
+        },
+        {
+          "title": "The free check",
+          "latex": "A + B = 90°",
+          "explanation": "Acute angles of a right triangle are complementary."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig13-we1",
+          "statement": "Right angle at $C$; the side opposite $A$ is $5$ and the hypotenuse is $10$. Find $\\angle A$.",
+          "solution": "Known: opposite and hypotenuse ⟹ sine. $\\sin A = \\frac{5}{10} = \\frac{1}{2}$, so $A = \\sin^{-1}\\!\\left(\\frac{1}{2}\\right) = 30°$. Check via the complement: $\\cos B = \\frac{1}{2}$ gives $B = 60°$, and $30° + 60° = 90°$ ✓.",
+          "check": [
+            "asin(Rational(1,2)) == pi/6",
+            "deg(asin(Rational(1,2))) == 30",
+            "30 + 60 == 90"
+          ]
+        },
+        {
+          "id": "trig13-we2",
+          "statement": "A ramp rises $3$ m over a horizontal run of $4$ m. Find its angle of incline to the nearest degree.",
+          "solution": "Rise is opposite, run is adjacent ⟹ tangent: $\\tan\\theta = \\frac{3}{4}$. So $\\theta = \\tan^{-1}\\!\\left(\\frac{3}{4}\\right) \\approx 36.9° \\approx 37°$. Sanity: $\\frac{3}{4} < 1 = \\tan 45°$, so the angle must land below $45°$ ✓.",
+          "check": [
+            "atan(Rational(3,4)) > rad(36)",
+            "atan(Rational(3,4)) < rad(37)",
+            "Rational(3,4) < 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading sin⁻¹ x as 1/sin x and computing a reciprocal.",
+          "correction": "The $-1$ is function-inverse notation: $\\sin^{-1}(0.5)$ asks 'which angle has sine $0.5$?' — answer $30°$. The reciprocal $\\frac{1}{0.5} = 2$ isn't even a possible sine. When in doubt, write arcsin instead.",
+          "authored": true
+        },
+        {
+          "text": "Building the ratio upside-down: tan θ = adj/opp.",
+          "correction": "The inverse faithfully returns the angle for whatever ratio you feed it — feed it the flipped ratio and you get the OTHER acute angle. Name the sides from the mystery angle first; if your two answers for a triangle's angles don't sum to $90°$, one ratio was inverted.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig13-t1",
+          "statement": "The side adjacent to $\\theta$ is $7$ and the hypotenuse is $14$. Find $\\theta$.",
+          "solution": "$\\cos\\theta = \\frac{7}{14} = \\frac{1}{2}$ ⟹ $\\theta = \\cos^{-1}\\!\\left(\\frac{1}{2}\\right) = 60°$.",
+          "check": [
+            "acos(Rational(1,2)) == pi/3",
+            "deg(acos(Rational(1,2))) == 60"
+          ]
+        },
+        {
+          "id": "trig13-t2",
+          "statement": "A $13$ m guy-wire runs from the top of a $12$ m pole to the ground. What angle does the wire make with the GROUND, and how far is its anchor from the pole's base?",
+          "solution": "Anchor distance first: $\\sqrt{13^2 - 12^2} = \\sqrt{25} = 5$ m. From the ground angle: opposite 12, hypotenuse 13: $\\theta = \\sin^{-1}\\!\\left(\\frac{12}{13}\\right) \\approx 67.4°$. Sanity: $\\frac{12}{13}$ is close to 1, so the angle should crowd $90°$ — it does.",
+          "check": [
+            "sqrt(13**2 - 12**2) == 5",
+            "asin(Rational(12,13)) > rad(67)",
+            "asin(Rational(12,13)) < rad(68)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The reverse question",
+            "title": "From ratio back to angle",
+            "body": "So far the angle was given. But surveyors, builders, and pilots usually have it backwards: the SIDES are measurable with a tape, and the ANGLE is the mystery. Enter the inverse functions $\\sin^{-1}, \\cos^{-1}, \\tan^{-1}$: feed in a ratio, get back the acute angle that owns it. $\\sin\\theta = \\frac{1}{2}$? Then $\\theta = \\sin^{-1}\\!\\left(\\frac{1}{2}\\right) = 30°$ — the machine that undoes sine."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Angle hunting",
+            "intro": "Two known sides → ratio → inverse.",
+            "examples": [
+              {
+                "prompt": "Opposite $5$, hypotenuse $10$ from angle $A$. Find $A$.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 4.33, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 4.33, "y": 2.5 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "?" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Opposite & hypotenuse ⟹ sine: $\\sin A = \\frac{5}{10} = \\frac{1}{2}$.",
+                  "$A = \\sin^{-1}\\!\\left(\\tfrac{1}{2}\\right) = 30°$."
+                ],
+                "answer": "$A = 30°$",
+                "check": [
+                  "deg(asin(Rational(1,2))) == 30"
+                ]
+              },
+              {
+                "prompt": "A ramp rises $3$ m over a run of $4$ m. Find the incline angle $\\theta$ (nearest degree).",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 4, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 4, "y": 3 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "θ" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Rise = opposite, run = adjacent ⟹ tangent: $\\tan\\theta = \\frac{3}{4}$.",
+                  "$\\theta = \\tan^{-1}\\!\\left(\\tfrac{3}{4}\\right) \\approx 36.9° \\approx 37°$."
+                ],
+                "answer": "$\\theta \\approx 37°$",
+                "check": [
+                  "atan(Rational(3,4)) > rad(36)",
+                  "atan(Rational(3,4)) < rad(37)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Which inverse?",
+            "prompt": "You know the ADJACENT side and the HYPOTENUSE of a mystery angle. Which button finds it?",
+            "options": [
+              "$\\cos^{-1}$ — those two sides are cosine's pair",
+              "$\\sin^{-1}$",
+              "$\\tan^{-1}$",
+              "Any of them works on any two sides"
+            ],
+            "correctIndex": 0,
+            "explanation": "Adjacent-and-hypotenuse is the CAH of the chant: cosine's pair, so $\\cos^{-1}$ recovers the angle. The two known sides always dictate the ratio — forward or inverse.",
+            "check": [
+              "acos(Rational(1,2)) == pi/3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "The −1 that isn't a power",
+            "body": "$\\sin^{-1} x$ does NOT mean $\\frac{1}{\\sin x}$. The superscript $-1$ here is function-inverse notation — 'undo the sine' — the same way $f^{-1}$ undoes $f$. To dodge the ambiguity entirely, mathematicians also write **arcsin, arccos, arctan**. (Annoyingly, $\\sin^2 x$ DOES mean $(\\sin x)^2$. The notation is inconsistent; four centuries of habit won't change it, so we adapt.)"
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Recover the angles",
+            "intro": "Build the ratio from the two knowns; feed the matching inverse.",
+            "problems": [
+              {
+                "prompt": "Adjacent $7$, hypotenuse $14$. What is $\\theta$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "A", "x": 0, "y": 0 },
+                      { "id": "C", "x": 2.5, "y": 0, "labelDx": 2, "labelDy": -1 },
+                      { "id": "B", "x": 2.5, "y": 4.33 }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "A", "to": "C" },
+                      { "kind": "segment", "from": "C", "to": "B" },
+                      { "kind": "segment", "from": "A", "to": "B" },
+                      { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+                      { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "θ" }
+                    ]
+                  }
+                },
+                "options": ["$60°$", "$30°$", "$45°$"],
+                "correctIndex": 0,
+                "explanation": "$\\cos\\theta = \\frac{7}{14} = \\frac{1}{2}$ ⟹ $\\theta = \\cos^{-1}(\\frac{1}{2}) = 60°$. A small cosine (adjacent only half the hypotenuse) means a BIG angle.",
+                "check": [
+                  "deg(acos(Rational(1,2))) == 60"
+                ]
+              },
+              {
+                "prompt": "Legs: opposite $1$, adjacent $1$. What is $\\theta$?",
+                "options": ["$45°$", "$30°$", "$60°$"],
+                "correctIndex": 0,
+                "explanation": "$\\tan\\theta = \\frac{1}{1} = 1$ ⟹ $\\theta = \\tan^{-1}(1) = 45°$ — equal legs, the perfectly balanced right triangle.",
+                "check": [
+                  "deg(atan(1)) == 45"
+                ]
+              },
+              {
+                "prompt": "In a 3-4-5 triangle, the angle opposite the 3-side is $\\approx 36.9°$. What is the OTHER acute angle?",
+                "options": ["$\\approx 53.1°$ — the complement", "$\\approx 46.9°$", "$\\approx 63.1°$"],
+                "correctIndex": 0,
+                "explanation": "The acute angles sum to $90°$: $90° - 36.9° = 53.1°$. (Direct check: $\\tan^{-1}(\\frac{4}{3}) \\approx 53.1°$ ✓ — both roads agree, as they must.)",
+                "check": [
+                  "Abs(atan(Rational(4,3)) + atan(Rational(3,4)) - pi/2) < Rational(1,1000)",
+                  "tan(pi/2 - atan(Rational(3,4))) == Rational(4,3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your thumb is a rangefinder",
+            "body": "Sailors estimate angles with body parts at arm's length: a thumb's width spans about $2°$, a fist about $10°$. Combined with inverse trig run backwards — known height, measured angle — you can estimate the distance to a lighthouse of known height with nothing but an outstretched arm. Trigonometry predates the calculator by two millennia and the tape measure by more.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Inverse trig answers the reverse question: ratio in, acute angle out.",
+              "Two known sides dictate the ratio, the ratio dictates which inverse.",
+              "sin⁻¹ is an undo, not a reciprocal — and A + B = 90° audits every answer for free."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "elevation-and-depression",
+      "title": "Angles of Elevation & Depression",
+      "concreteComparison": "Tilt your chin up to see a rooftop: that tilt above the horizontal is the angle of ELEVATION. Stand on the roof and look down at your friend: the tilt below the horizontal is the angle of DEPRESSION. Every 'how tall / how far' problem in the real world starts with one of these two tilts.",
+      "objective": "Translate elevation/depression descriptions into right triangles and solve them for heights and distances.",
+      "concept": [
+        "Both angles are measured FROM THE HORIZONTAL — never from a wall, pole, or slope. **Elevation**: looking up from horizontal. **Depression**: looking down from horizontal. The observer's horizontal line is the reference arm of the angle, every time.",
+        "The translation recipe: draw the horizontal at the observer's eye, mark the angle, and complete the right triangle (heights are vertical legs, ground distances horizontal legs). Then it's last lesson's machinery: two named sides + one angle → pick the ratio → solve.",
+        "The depression shortcut: the observer's horizontal is PARALLEL to the ground, so the angle of depression (down from the top) EQUALS the angle of elevation seen from the ground point — alternate interior angles from Geometry. In practice: mark the depression angle at the BOTTOM vertex of your triangle and proceed."
+      ],
+      "keyIdea": "Elevation and depression are tilts from the HORIZONTAL; draw the horizontal, complete the right triangle — and depression at the top equals elevation at the bottom (alternate interior angles).",
+      "facts": [
+        {
+          "title": "From the horizontal",
+          "latex": "\\text{elevation: up from horizontal;} \\;\\; \\text{depression: down from horizontal}",
+          "explanation": "The horizontal is the reference arm, never the wall."
+        },
+        {
+          "title": "The swap",
+          "latex": "\\text{depression at top} = \\text{elevation at bottom}",
+          "explanation": "Alternate interior angles across parallel horizontals."
+        },
+        {
+          "title": "The usual ratio",
+          "latex": "\\tan\\theta = \\frac{\\text{height}}{\\text{ground distance}}",
+          "explanation": "Height and ground distance are the two legs — tangent country."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig14-we1",
+          "statement": "From a point $30$ m from a tower's base, the angle of elevation of the top is $60°$. Find the tower's height exactly.",
+          "solution": "Ground distance 30 (adjacent), height $h$ (opposite): $\\tan 60° = \\frac{h}{30}$, so $h = 30\\tan 60° = 30\\sqrt{3} \\approx 52$ m. Sanity: at $45°$ the height would equal 30; a steeper $60°$ must give more ✓.",
+          "check": [
+            "30*tan(pi/3) == 30*sqrt(3)",
+            "30*sqrt(3) > 30"
+          ]
+        },
+        {
+          "id": "trig14-we2",
+          "statement": "From the top of a $40$ m cliff, a boat is seen at an angle of depression of $30°$. How far is the boat from the cliff's base, exactly?",
+          "solution": "Swap the angle to the boat: elevation from the boat is also $30°$. From the boat: opposite = cliff = 40, adjacent = distance $d$: $\\tan 30° = \\frac{40}{d}$, so $d = \\frac{40}{\\tan 30°} = 40\\sqrt{3} \\approx 69$ m. Shallow angle, far boat — the geometry agrees.",
+          "check": [
+            "40/tan(pi/6) == 40*sqrt(3)",
+            "tan(rad(30)) == sqrt(3)/3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Measuring the angle of depression from the cliff face or tower instead of the horizontal.",
+          "correction": "Depression is DOWN FROM HORIZONTAL — the angle between the flat line of sight and the tilted one. Measured from the vertical wall instead, every answer comes out as the complement (wrong by $90° - \\theta$). Draw the horizontal dashed line first, always.",
+          "authored": true
+        },
+        {
+          "text": "Placing the depression angle inside the triangle at the top vertex without the swap.",
+          "correction": "The depression angle sits OUTSIDE the triangle (between horizontal and hypotenuse). Use alternate interior angles to relocate it to the far vertex — where it becomes that point's elevation angle — and only then apply SOH-CAH-TOA.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig14-t1",
+          "statement": "A tree casts a $9$ m shadow when the sun's elevation is $45°$. How tall is the tree?",
+          "solution": "$\\tan 45° = \\frac{h}{9}$ ⟹ $h = 9 \\cdot 1 = 9$ m. At $45°$, every object is exactly as tall as its shadow is long.",
+          "check": [
+            "9*tan(pi/4) == 9"
+          ]
+        },
+        {
+          "id": "trig14-t2",
+          "statement": "A drone hovers $50$ m above the ground. Its operator sees it at an angle of elevation of $30°$. How far is the operator from the point directly below the drone, exactly?",
+          "solution": "$\\tan 30° = \\frac{50}{d}$ ⟹ $d = \\frac{50}{\\tan 30°} = 50\\sqrt{3} \\approx 87$ m. The shallow angle stretches the ground distance well past the height.",
+          "check": [
+            "50/tan(pi/6) == 50*sqrt(3)",
+            "50*sqrt(3) > 50"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The two tilts",
+            "title": "Everything is measured from horizontal",
+            "body": "Both angles start at the observer's HORIZONTAL line of sight. Chin up toward a rooftop: the tilt above horizontal is the **angle of elevation**. From a cliff, eyes down to a boat: the tilt below horizontal is the **angle of depression**. The single most common error in this topic is measuring from a wall or tower instead — so every solution starts the same way: draw the horizontal, dashed, at the observer's eye.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "O", "x": 0, "y": 0, "label": "you" },
+                  { "id": "H", "x": 6, "y": 0, "label": "" },
+                  { "id": "T", "x": 6, "y": 3.46, "label": "top" }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "O", "to": "H", "dashed": true },
+                  { "kind": "segment", "from": "H", "to": "T" },
+                  { "kind": "segment", "from": "O", "to": "T" },
+                  { "kind": "angle", "at": "H", "from": "O", "to": "T", "right": true },
+                  { "kind": "angle", "at": "O", "from": "H", "to": "T", "label": "30°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The tower, measured from the ground",
+            "intro": "Ground distance and height are the two legs — tangent territory.",
+            "examples": [
+              {
+                "prompt": "From $30$ m away, a tower's top sits at elevation $60°$. Find the height exactly.",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "O", "x": 0, "y": 0, "label": "you" },
+                      { "id": "B", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1, "label": "base" },
+                      { "id": "T", "x": 3, "y": 5.2, "label": "top" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "O", "to": "B" },
+                      { "kind": "segment", "from": "B", "to": "T" },
+                      { "kind": "segment", "from": "O", "to": "T" },
+                      { "kind": "angle", "at": "B", "from": "O", "to": "T", "right": true },
+                      { "kind": "angle", "at": "O", "from": "B", "to": "T", "label": "60°" }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Adjacent = 30 (ground), opposite = $h$ ⟹ tangent: $\\tan 60° = \\frac{h}{30}$.",
+                  "$h = 30\\tan 60° = 30\\sqrt{3} \\approx 52$ m."
+                ],
+                "answer": "$h = 30\\sqrt{3} \\approx 52$ m",
+                "check": [
+                  "30*tan(pi/3) == 30*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The swap",
+            "title": "Depression borrows elevation's angle",
+            "body": "From a cliff top, the depression angle lives between the horizontal and the downward gaze — OUTSIDE the useful triangle. But the observer's horizontal is parallel to the ground, and the line of sight cuts both: **alternate interior angles** (Geometry, back on stage) make the depression at the top EQUAL the elevation at the bottom. So relocate: mark the same angle down at the boat/car/person, and solve the triangle from there."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "The cliff and the boat",
+            "intro": "Relocate the depression angle to the boat, then run the recipe.",
+            "examples": [
+              {
+                "prompt": "From atop a $40$ m cliff, a boat sits at depression $30°$. How far is the boat from the cliff's base, exactly?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "T", "x": 0, "y": 4, "label": "top" },
+                      { "id": "H", "x": 6.93, "y": 4, "label": "" },
+                      { "id": "F", "x": 0, "y": 0, "labelDx": -2, "labelDy": -1, "label": "base" },
+                      { "id": "B", "x": 6.93, "y": 0, "label": "boat" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "T", "to": "H", "dashed": true },
+                      { "kind": "segment", "from": "T", "to": "F" },
+                      { "kind": "segment", "from": "F", "to": "B" },
+                      { "kind": "segment", "from": "T", "to": "B" },
+                      { "kind": "angle", "at": "T", "from": "H", "to": "B", "label": "30°" },
+                      { "kind": "angle", "at": "B", "from": "F", "to": "T", "label": "30°" },
+                      { "kind": "angle", "at": "F", "from": "T", "to": "B", "right": true }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Swap: depression $30°$ at the top = elevation $30°$ at the boat (alternate interior).",
+                  "From the boat: $\\tan 30° = \\frac{40}{d}$ ⟹ $d = \\frac{40}{\\tan 30°} = 40\\sqrt{3} \\approx 69$ m."
+                ],
+                "answer": "$d = 40\\sqrt{3} \\approx 69$ m",
+                "check": [
+                  "40/tan(pi/6) == 40*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Spot the angle",
+            "prompt": "A pilot at altitude looks DOWN at a runway at an angle of depression of $15°$. What is the angle of elevation of the plane, seen from the runway?",
+            "options": [
+              "$15°$ — alternate interior angles across parallel horizontals",
+              "$75°$ — the complement",
+              "$165°$ — the supplement",
+              "It depends on the altitude"
+            ],
+            "correctIndex": 0,
+            "explanation": "The pilot's horizontal and the ground are parallel; the line of sight crosses both, making the two angles alternate interior — equal, at any altitude. This swap is the standard first move of every depression problem.",
+            "check": [
+              "15 == 15"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Heights and distances",
+            "intro": "Draw the horizontal, complete the triangle, pick the ratio.",
+            "problems": [
+              {
+                "prompt": "A tree casts a $9$ m shadow under a $45°$ sun. How tall is the tree?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      { "id": "S", "x": 0, "y": 0, "label": "" },
+                      { "id": "F", "x": 3, "y": 0, "labelDx": 2, "labelDy": -1, "label": "" },
+                      { "id": "T", "x": 3, "y": 3, "label": "top" }
+                    ],
+                    "objects": [
+                      { "kind": "segment", "from": "S", "to": "F" },
+                      { "kind": "segment", "from": "F", "to": "T" },
+                      { "kind": "segment", "from": "S", "to": "T", "dashed": true },
+                      { "kind": "angle", "at": "F", "from": "S", "to": "T", "right": true },
+                      { "kind": "angle", "at": "S", "from": "F", "to": "T", "label": "45°" }
+                    ]
+                  }
+                },
+                "options": ["$9$ m", "$9\\sqrt{3}$ m", "$\\dfrac{9}{2}$ m"],
+                "correctIndex": 0,
+                "explanation": "$h = 9\\tan 45° = 9$. At $45°$, height = shadow — the sun's rays run the diagonal of a square.",
+                "check": [
+                  "9*tan(pi/4) == 9"
+                ]
+              },
+              {
+                "prompt": "An observer $60$ m from a building sees its top at elevation $30°$. Find the building's height, exactly.",
+                "options": ["$20\\sqrt{3}$ m", "$60\\sqrt{3}$ m", "$30$ m"],
+                "correctIndex": 0,
+                "explanation": "$h = 60\\tan 30° = 60 \\cdot \\frac{\\sqrt3}{3} = 20\\sqrt{3} \\approx 34.6$ m. (Option B multiplied by $\\tan 60°$ — the classic wrong-angle slip.)",
+                "check": [
+                  "60*tan(pi/6) == 20*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "From a $25$ m lighthouse, a ship is seen at depression $45°$. How far is the ship from the lighthouse's base?",
+                "options": ["$25$ m", "$25\\sqrt{2}$ m", "$50$ m"],
+                "correctIndex": 0,
+                "explanation": "Swap the $45°$ to the ship: $\\tan 45° = \\frac{25}{d}$ ⟹ $d = 25$ m. At $45°$ depression, distance = height — the square's diagonal again.",
+                "check": [
+                  "25/tan(pi/4) == 25"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Measuring Everest from 240 km away",
+            "body": "In 1852, surveyors of the Great Trigonometrical Survey of India computed Peak XV's height using elevation angles sighted from stations up to 240 km away — pure triangle trigonometry, no climbing. Their answer: 29,002 feet. The modern GPS value: 29,032 feet. An error of 0.1%, a century before satellites — with the mathematics of this lesson.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Elevation = up from horizontal; depression = down from horizontal — draw the dashed horizontal first.",
+              "Depression at the top relocates to elevation at the bottom (alternate interior angles).",
+              "Height and ground distance are legs: tangent solves most of these in one line."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig1-pr-1",
+      "statement": "In right triangle $ABC$ (right angle at $C$), $AC = 12$, $BC = 5$, $AB = 13$. Write $\\sin A$, $\\cos A$, and $\\tan A$.",
+      "solution": "From $A$: opposite $= BC = 5$, adjacent $= AC = 12$, hypotenuse $= 13$. $\\sin A = \\frac{5}{13}$, $\\cos A = \\frac{12}{13}$, $\\tan A = \\frac{5}{12}$.",
+      "geoFigure": {
+        "points": [
+          { "id": "A", "x": 0, "y": 0 },
+          { "id": "C", "x": 6, "y": 0, "labelDx": 2, "labelDy": -1 },
+          { "id": "B", "x": 6, "y": 2.5 }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "A", "to": "C" },
+          { "kind": "segment", "from": "C", "to": "B" },
+          { "kind": "segment", "from": "A", "to": "B" },
+          { "kind": "angle", "at": "C", "from": "A", "to": "B", "right": true },
+          { "kind": "angle", "at": "A", "from": "C", "to": "B", "label": "A" }
+        ]
+      },
+      "check": [
+        "sqrt(5**2 + 12**2) == 13",
+        "Rational(5,13)/Rational(12,13) == Rational(5,12)"
+      ]
+    },
+    {
+      "id": "trig1-pr-2",
+      "statement": "For an acute angle $\\theta$, $\\tan\\theta = \\frac{8}{15}$. Find $\\sin\\theta$ and $\\cos\\theta$.",
+      "solution": "Build the triangle: opposite 8, adjacent 15, hypotenuse $\\sqrt{64 + 225} = 17$. $\\sin\\theta = \\frac{8}{17}$, $\\cos\\theta = \\frac{15}{17}$.",
+      "check": [
+        "sqrt(8**2 + 15**2) == 17",
+        "Rational(8,17)**2 + Rational(15,17)**2 == 1"
+      ]
+    },
+    {
+      "id": "trig1-pr-3",
+      "statement": "Right angle at $C$, $\\angle A = 30°$, hypotenuse $AB = 26$. Find both legs exactly.",
+      "solution": "Opposite: $26\\sin 30° = 13$. Adjacent: $26\\cos 30° = 26 \\cdot \\frac{\\sqrt3}{2} = 13\\sqrt{3}$. Check: $13^2 + (13\\sqrt3)^2 = 169 + 507 = 676 = 26^2$ ✓.",
+      "check": [
+        "26*sin(pi/6) == 13",
+        "26*cos(pi/6) == 13*sqrt(3)",
+        "13**2 + (13*sqrt(3))**2 == 26**2"
+      ]
+    },
+    {
+      "id": "trig1-pr-4",
+      "statement": "A kite string is $50$ m long and makes a $60°$ angle with the ground. How high is the kite, exactly?",
+      "solution": "Height is opposite, string is hypotenuse: $h = 50\\sin 60° = 25\\sqrt{3} \\approx 43$ m.",
+      "geoFigure": {
+        "points": [
+          { "id": "O", "x": 0, "y": 0, "label": "you" },
+          { "id": "G", "x": 2.5, "y": 0, "labelDx": 2, "labelDy": -1, "label": "" },
+          { "id": "K", "x": 2.5, "y": 4.33, "label": "kite" }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "O", "to": "G", "dashed": true },
+          { "kind": "segment", "from": "G", "to": "K", "dashed": true },
+          { "kind": "segment", "from": "O", "to": "K" },
+          { "kind": "angle", "at": "G", "from": "O", "to": "K", "right": true },
+          { "kind": "angle", "at": "O", "from": "G", "to": "K", "label": "60°" }
+        ]
+      },
+      "check": [
+        "50*sin(pi/3) == 25*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig1-pr-5",
+      "statement": "The side opposite $\\theta$ is $9$ and the adjacent side is $9\\sqrt{3}$. Find $\\theta$ exactly.",
+      "solution": "$\\tan\\theta = \\frac{9}{9\\sqrt3} = \\frac{1}{\\sqrt3} = \\frac{\\sqrt3}{3}$ ⟹ $\\theta = 30°$.",
+      "check": [
+        "simplify(9/(9*sqrt(3)) - sqrt(3)/3) == 0",
+        "tan(pi/6) == sqrt(3)/3"
+      ]
+    },
+    {
+      "id": "trig1-pr-6",
+      "statement": "A $10$ m ladder reaches $8$ m up a wall. What angle does it make with the GROUND (nearest degree), and how far is its base from the wall?",
+      "solution": "Base: $\\sqrt{100 - 64} = 6$ m. Ground angle: $\\sin\\theta = \\frac{8}{10}$, $\\theta = \\sin^{-1}(0.8) \\approx 53°$.",
+      "check": [
+        "sqrt(10**2 - 8**2) == 6",
+        "asin(Rational(4,5)) > rad(53)",
+        "asin(Rational(4,5)) < rad(54)"
+      ]
+    },
+    {
+      "id": "trig1-pr-7",
+      "statement": "From $45$ m away, the top of a monument sits at elevation $45°$; from the same spot its flag-tip sits at elevation $60°$. Find the monument's height and the flag-tip's height, exactly.",
+      "solution": "Monument: $45\\tan 45° = 45$ m. Flag-tip: $45\\tan 60° = 45\\sqrt{3} \\approx 78$ m. (The flag itself is the difference, $45\\sqrt3 - 45 \\approx 33$ m.)",
+      "check": [
+        "45*tan(pi/4) == 45",
+        "45*tan(pi/3) == 45*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig1-pr-8",
+      "statement": "From the top of a $60$ m tower, a car is seen at an angle of depression of $60°$. How far is the car from the tower's base, exactly?",
+      "solution": "Swap to the car: elevation $60°$ there. $\\tan 60° = \\frac{60}{d}$ ⟹ $d = \\frac{60}{\\sqrt3} = 20\\sqrt{3} \\approx 35$ m. Steep angle, close car.",
+      "geoFigure": {
+        "points": [
+          { "id": "T", "x": 0, "y": 5.2, "label": "top" },
+          { "id": "H", "x": 3, "y": 5.2, "label": "" },
+          { "id": "F", "x": 0, "y": 0, "labelDx": -2, "labelDy": -1, "label": "base" },
+          { "id": "B", "x": 3, "y": 0, "label": "car" }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "T", "to": "H", "dashed": true },
+          { "kind": "segment", "from": "T", "to": "F" },
+          { "kind": "segment", "from": "F", "to": "B" },
+          { "kind": "segment", "from": "T", "to": "B" },
+          { "kind": "angle", "at": "T", "from": "H", "to": "B", "label": "60°" },
+          { "kind": "angle", "at": "F", "from": "T", "to": "B", "right": true }
+        ]
+      },
+      "check": [
+        "60/tan(pi/3) == 20*sqrt(3)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig1-ty-1",
+      "statement": "A right triangle has hypotenuse $25$ and one leg $7$. Find the other leg and all three ratios of the angle $\\theta$ opposite the 7-leg.",
+      "solution": "Other leg: $\\sqrt{625 - 49} = \\sqrt{576} = 24$. $\\sin\\theta = \\frac{7}{25}$, $\\cos\\theta = \\frac{24}{25}$, $\\tan\\theta = \\frac{7}{24}$.",
+      "check": [
+        "sqrt(25**2 - 7**2) == 24",
+        "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+      ]
+    },
+    {
+      "id": "trig1-ty-2",
+      "statement": "For an acute angle $\\theta$, $\\sin\\theta = \\frac{3}{5}$. Compute $\\frac{\\sin\\theta}{\\cos\\theta}$ and confirm it equals $\\tan\\theta$.",
+      "solution": "Triangle: 3-4-5, so $\\cos\\theta = \\frac{4}{5}$. $\\frac{\\sin\\theta}{\\cos\\theta} = \\frac{3/5}{4/5} = \\frac{3}{4} = \\tan\\theta$ ✓ — sine over cosine IS tangent, always (both are opp and adj, each divided by hyp).",
+      "check": [
+        "Rational(3,5)/Rational(4,5) == Rational(3,4)",
+        "sqrt(5**2 - 3**2) == 4"
+      ]
+    },
+    {
+      "id": "trig1-ty-3",
+      "statement": "Right angle at $C$, $\\angle B = 45°$, and $BC = 6$. Find $AC$ and $AB$ exactly.",
+      "solution": "From $B$: $AC$ is opposite, $BC = 6$ adjacent: $AC = 6\\tan 45° = 6$. Hypotenuse: $AB = \\frac{6}{\\cos 45°} = 6\\sqrt{2}$. The 45° triangle: equal legs, hypotenuse $\\sqrt2$ times a leg.",
+      "check": [
+        "6*tan(pi/4) == 6",
+        "6/cos(pi/4) == 6*sqrt(2)",
+        "6**2 + 6**2 == (6*sqrt(2))**2"
+      ]
+    },
+    {
+      "id": "trig1-ty-4",
+      "statement": "A zipline runs from a $30$ m platform to the ground, meeting it at $30°$. How long is the zipline?",
+      "solution": "Height opposite, zipline hypotenuse: $L = \\frac{30}{\\sin 30°} = \\frac{30}{1/2} = 60$ m.",
+      "check": [
+        "30/sin(pi/6) == 60"
+      ]
+    },
+    {
+      "id": "trig1-ty-5",
+      "statement": "A ramp must rise $2$ m and may have at most a $30°$ incline. What is the SHORTEST allowed horizontal run, exactly — and does a $3$ m run comply?",
+      "solution": "At exactly $30°$: $\\tan 30° = \\frac{2}{run}$ ⟹ run $= \\frac{2}{\\tan 30°} = 2\\sqrt{3} \\approx 3.46$ m — the shortest legal run. A 3 m run is SHORTER, making the ramp steeper than $30°$: not compliant.",
+      "check": [
+        "2/tan(pi/6) == 2*sqrt(3)",
+        "3 < 2*sqrt(3)"
+      ]
+    },
+    {
+      "id": "trig1-ty-6",
+      "statement": "Two buildings stand $24$ m apart. From the roof of the shorter ($18$ m), the top of the taller is at elevation $30°$. Find the taller building's height, exactly.",
+      "solution": "From the shorter roof, horizontal 24 m to the taller building: extra height $= 24\\tan 30° = 8\\sqrt{3}$. Total: $18 + 8\\sqrt{3} \\approx 31.9$ m.",
+      "geoFigure": {
+        "points": [
+          { "id": "R", "x": 0, "y": 3, "label": "roof" },
+          { "id": "H", "x": 6, "y": 3, "labelDx": 2, "labelDy": -1, "label": "" },
+          { "id": "T", "x": 6, "y": 6.46, "label": "top" },
+          { "id": "A", "x": 0, "y": 0, "label": "" },
+          { "id": "B", "x": 6, "y": 0, "label": "" }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "A", "to": "R" },
+          { "kind": "segment", "from": "B", "to": "T" },
+          { "kind": "segment", "from": "A", "to": "B", "dashed": true },
+          { "kind": "segment", "from": "R", "to": "H", "dashed": true },
+          { "kind": "segment", "from": "R", "to": "T" },
+          { "kind": "angle", "at": "H", "from": "R", "to": "T", "right": true },
+          { "kind": "angle", "at": "R", "from": "H", "to": "T", "label": "30°" }
+        ]
+      },
+      "check": [
+        "24*tan(pi/6) == 8*sqrt(3)",
+        "18 + 8*sqrt(3) > 31",
+        "18 + 8*sqrt(3) < 32"
+      ]
+    }
+  ]
+}

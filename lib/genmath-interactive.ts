@@ -1231,6 +1231,7 @@ export type InteractiveStep =
       title: string;
       prompt: string;
       grid?: CoordinateGridConfig; // an interactive coordinate plane to reason with
+      figure?: FigureSpec; // a static diagram (e.g. mode "geo") the question reads from
       options: string[];
       correctIndex: number;
       explanation: string;

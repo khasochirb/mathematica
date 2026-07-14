@@ -1315,6 +1315,7 @@ function StepBody({
             options={step.options}
             correctIndex={step.correctIndex}
             explanation={step.explanation}
+            figure={step.figure}
             grid={step.grid}
             onAnswer={(correct, selected, correctOption) =>
               onTapAnswer?.("q", correct, selected, correctOption)

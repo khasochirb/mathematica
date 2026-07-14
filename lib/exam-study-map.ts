@@ -59,7 +59,7 @@ export const EXAM_STUDY_MAP: Record<string, StudyTarget> = {
     ],
   },
   trigonometry: {
-    primary: { label: "Тригонометр ба нэгж тойрог (11-р анги)", href: "/math/11/trigonometry-and-the-unit-circle" },
+    primary: { label: "Тригонометр курс", href: "/math/trigonometry" },
     links: [
       { label: "Тригонометрийн адилтгалууд (12-р анги)", href: "/math/12/trigonometric-identities" },
       { label: "Тэгш өнцөгт гурвалжны тригонометр", href: "/math/geometry/right-triangles-and-trig" },

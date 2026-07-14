@@ -22,6 +22,7 @@ describe("courseTotalLessons", () => {
     "course:algebra-2",
     "course:precalculus",
     "course:calculus",
+    "course:trigonometry",
   ];
 
   it("resolves every course context to a positive lesson total", () => {

@@ -5,6 +5,7 @@ import { Check, Eye, EyeOff, X } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import { useLang } from "@/lib/lang-context";
 import type { LessonProblem } from "@/lib/lesson-types";
+import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 
 export interface RevealLabels {
   reveal: string;
@@ -65,6 +66,11 @@ export default function RevealProblemCard({
           {open ? labels.hide : labels.reveal}
         </button>
       </div>
+      {problem.geoFigure && (
+        <div className="mt-3">
+          <GeoDiagram spec={problem.geoFigure} />
+        </div>
+      )}
       {open && (
         <div
           className="q-math text-[14px] mt-3 pt-3"

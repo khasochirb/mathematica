@@ -1,0 +1,983 @@
+{
+  "slug": "identities-and-equations",
+  "title": "Identities & Equations",
+  "unit": 5,
+  "status": "published",
+  "blurb": "The algebra of the circle: the Pythagorean identity, the sum and double-angle formulas that manufacture new exact values — and how to solve equations whose unknown is an angle.",
+  "buildsOn": "The unit circle and exact values from Unit 3; the wave graphs from Unit 4.",
+  "lessons": [
+    {
+      "slug": "the-pythagorean-identity",
+      "title": "The Pythagorean Identity",
+      "concreteComparison": "Knowing a phone's diagonal screen size pins down the width once you know the height — the two dimensions aren't independent, the diagonal ties them. Sine and cosine live under the same tyranny: the radius-1 circle ties them, so one value (plus a quadrant) determines the other.",
+      "objective": "Use sin²θ + cos²θ = 1 (and its rearrangements) to find remaining trig values from one given value and a quadrant.",
+      "concept": [
+        "**The identity**: $\\sin^2\\theta + \\cos^2\\theta = 1$ for every angle — it's the unit circle's equation $x^2 + y^2 = 1$ with the coordinates renamed. Not a fact about special angles; a fact about ALL of them.",
+        "Rearranged, it's a lookup machine: $\\sin^2\\theta = 1 - \\cos^2\\theta$ and $\\cos^2\\theta = 1 - \\sin^2\\theta$. Given one value, the square root recovers the other's MAGNITUDE — and the square root's $\\pm$ ambiguity is resolved by the QUADRANT (Unit 3's ASTC). One value + one quadrant = the whole angle's profile.",
+        "With $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$, all three values chain together. Given $\\sin\\theta = \\frac{5}{13}$ in QII: $\\cos\\theta = -\\sqrt{1 - \\frac{25}{169}} = -\\frac{12}{13}$ (negative — QII), then $\\tan\\theta = -\\frac{5}{12}$. The 5-12-13 triangle from Unit 1, now living on the circle with signs attached."
+      ],
+      "keyIdea": "sin²θ + cos²θ = 1 is the circle's equation for every angle: one value plus a quadrant determines everything else — the root gives magnitude, ASTC gives sign.",
+      "facts": [
+        {
+          "title": "The identity",
+          "latex": "\\sin^2\\theta + \\cos^2\\theta = 1",
+          "explanation": "x² + y² = 1, renamed. Every θ, no exceptions."
+        },
+        {
+          "title": "The lookup",
+          "latex": "\\cos\\theta = \\pm\\sqrt{1 - \\sin^2\\theta}",
+          "explanation": "Root gives size; quadrant chooses the sign."
+        },
+        {
+          "title": "The chain",
+          "latex": "\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}",
+          "explanation": "Two values known ⟹ all three known."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig51-we1",
+          "statement": "Given $\\sin\\theta = \\frac{5}{13}$ with $\\theta$ in QII, find $\\cos\\theta$ and $\\tan\\theta$ exactly.",
+          "solution": "$\\cos^2\\theta = 1 - \\frac{25}{169} = \\frac{144}{169}$, so $\\cos\\theta = \\pm\\frac{12}{13}$. QII: cosine negative ⟹ $\\cos\\theta = -\\frac{12}{13}$. Then $\\tan\\theta = \\frac{5/13}{-12/13} = -\\frac{5}{12}$ — negative, correct for QII.",
+          "check": [
+            "1 - Rational(25,169) == Rational(144,169)",
+            "Rational(5,13)/Rational(-12,13) == Rational(-5,12)",
+            "Rational(5,13)**2 + Rational(-12,13)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig51-we2",
+          "statement": "Given $\\tan\\theta = 2$ with $\\theta$ in QIII, find $\\sin\\theta$ and $\\cos\\theta$ exactly.",
+          "solution": "Build the reference triangle: opposite 2, adjacent 1, hypotenuse $\\sqrt{5}$. Magnitudes: $|\\sin\\theta| = \\frac{2}{\\sqrt5} = \\frac{2\\sqrt5}{5}$, $|\\cos\\theta| = \\frac{\\sqrt5}{5}$. QIII makes BOTH negative: $\\sin\\theta = -\\frac{2\\sqrt5}{5}$, $\\cos\\theta = -\\frac{\\sqrt5}{5}$. Verify: $\\frac{4}{5} + \\frac{1}{5} = 1$ ✓ and their ratio is $2$ ✓.",
+          "check": [
+            "(2*sqrt(5)/5)**2 + (sqrt(5)/5)**2 == 1",
+            "simplify((-2*sqrt(5)/5)/(-sqrt(5)/5) - 2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the positive square root automatically.",
+          "correction": "$\\sqrt{1 - \\sin^2\\theta}$ gives only the SIZE of cosine. The sign is separate information carried by the quadrant — QII and QIII say negative. Skipping the quadrant check flips half of all answers.",
+          "authored": true
+        },
+        {
+          "text": "Writing sin²θ as sin(θ²).",
+          "correction": "$\\sin^2\\theta$ means $(\\sin\\theta)^2$ — square the OUTPUT, not the input. $\\sin(\\theta^2)$ is a completely different function. The notation is historical shorthand; the parentheses version is what it abbreviates.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig51-t1",
+          "statement": "Given $\\cos\\theta = -\\frac{3}{5}$ with $\\theta$ in QIII, find $\\sin\\theta$ and $\\tan\\theta$ exactly.",
+          "solution": "$\\sin^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$: $\\sin\\theta = \\pm\\frac{4}{5}$, and QIII forces $-\\frac{4}{5}$. Then $\\tan\\theta = \\frac{-4/5}{-3/5} = \\frac{4}{3}$ — positive, as QIII's tangent must be.",
+          "check": [
+            "1 - Rational(9,25) == Rational(16,25)",
+            "Rational(-4,5)/Rational(-3,5) == Rational(4,3)"
+          ]
+        },
+        {
+          "id": "trig51-t2",
+          "statement": "Simplify the expression $\\frac{1 - \\cos^2\\theta}{\\cos^2\\theta}$ to a single squared function.",
+          "solution": "The numerator is $\\sin^2\\theta$ (the identity rearranged): $\\frac{\\sin^2\\theta}{\\cos^2\\theta} = \\tan^2\\theta$. Recognizing $1 - \\cos^2$ and $1 - \\sin^2$ on sight is half of identity work.",
+          "check": [
+            "simplify((1 - cos(x)**2)/cos(x)**2 - tan(x)**2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The tie",
+            "title": "One circle, one constraint",
+            "body": "Every angle's $(\\cos\\theta, \\sin\\theta)$ sits ON the unit circle, so it obeys the circle's equation: $$\\sin^2\\theta + \\cos^2\\theta = 1.$$ This is an **identity** — true for every single $\\theta$, not an equation to solve. It means sine and cosine are never independent: know one, and the other is pinned to two candidates (a $\\pm$ pair)."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "One value + one quadrant = everything",
+            "intro": "Root for the size, ASTC for the sign, ratio for the tangent.",
+            "examples": [
+              {
+                "prompt": "$\\sin\\theta = \\frac{5}{13}$, θ in QII. Find $\\cos\\theta$ and $\\tan\\theta$.",
+                "steps": [
+                  "$\\cos^2\\theta = 1 - \\frac{25}{169} = \\frac{144}{169}$ ⟹ $|\\cos\\theta| = \\frac{12}{13}$; QII ⟹ negative.",
+                  "$\\cos\\theta = -\\frac{12}{13}$; $\\tan\\theta = \\frac{5/13}{-12/13} = -\\frac{5}{12}$."
+                ],
+                "answer": "$\\cos\\theta = -\\tfrac{12}{13}$, $\\tan\\theta = -\\tfrac{5}{12}$",
+                "check": [
+                  "Rational(5,13)**2 + Rational(12,13)**2 == 1",
+                  "Rational(5,13)/Rational(-12,13) == Rational(-5,12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Who chooses the sign?",
+            "prompt": "$\\cos\\theta = \\frac{4}{5}$ and $\\theta$ is in QIV. What is $\\sin\\theta$?",
+            "options": [
+              "$-\\dfrac{3}{5}$ — magnitude from the identity, minus from QIV",
+              "$\\dfrac{3}{5}$ — square roots are positive",
+              "$-\\dfrac{4}{5}$",
+              "$\\dfrac{5}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sin^2 = 1 - \\frac{16}{25} = \\frac{9}{25}$ gives $|\\sin| = \\frac{3}{5}$; QIV (below the axis) makes sine NEGATIVE. The identity never chooses signs — quadrants do.",
+            "check": [
+              "1 - Rational(16,25) == Rational(9,25)",
+              "Rational(-3,5)**2 + Rational(4,5)**2 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading it backwards",
+            "title": "Spot 1 − cos² on sight",
+            "body": "Identity fluency is mostly pattern recognition: wherever $1 - \\cos^2\\theta$ appears, it IS $\\sin^2\\theta$; wherever $1 - \\sin^2\\theta$, that's $\\cos^2\\theta$. Simplifications that look impossible collapse in one substitution: $\\frac{1 - \\cos^2\\theta}{\\cos^2\\theta} = \\frac{\\sin^2\\theta}{\\cos^2\\theta} = \\tan^2\\theta$. Train the eye; the algebra is then just bookkeeping."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "From tangent to the pair",
+            "intro": "A tangent value builds a reference triangle; the quadrant signs it.",
+            "examples": [
+              {
+                "prompt": "$\\tan\\theta = 2$, θ in QIII. Find $\\sin\\theta$ and $\\cos\\theta$.",
+                "steps": [
+                  "Reference triangle: opp 2, adj 1, hyp $\\sqrt5$ ⟹ magnitudes $\\frac{2}{\\sqrt5}, \\frac{1}{\\sqrt5}$.",
+                  "QIII: both negative: $\\sin\\theta = -\\frac{2\\sqrt5}{5}$, $\\cos\\theta = -\\frac{\\sqrt5}{5}$."
+                ],
+                "answer": "$-\\tfrac{2\\sqrt5}{5}$ and $-\\tfrac{\\sqrt5}{5}$",
+                "check": [
+                  "(2*sqrt(5)/5)**2 + (sqrt(5)/5)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Identity workouts",
+            "intro": "Size from the identity, sign from the quadrant.",
+            "problems": [
+              {
+                "prompt": "$\\cos\\theta = -\\frac{3}{5}$, θ in QIII. $\\sin\\theta = ?$",
+                "options": ["$-\\dfrac{4}{5}$", "$\\dfrac{4}{5}$", "$-\\dfrac{3}{4}$"],
+                "correctIndex": 0,
+                "explanation": "Magnitude $\\frac{4}{5}$ from the identity; QIII sits below the axis: negative.",
+                "check": [
+                  "Rational(-4,5)**2 + Rational(-3,5)**2 == 1"
+                ]
+              },
+              {
+                "prompt": "Simplify: $\\sin^2 25° + \\cos^2 25°$.",
+                "options": ["$1$", "$25$", "Needs a calculator"],
+                "correctIndex": 0,
+                "explanation": "The identity holds at EVERY angle — $25°$, $137°$, anything. No calculator can improve on 1.",
+                "check": [
+                  "simplify(sin(x)**2 + cos(x)**2) == 1"
+                ]
+              },
+              {
+                "prompt": "Simplify: $(1 - \\sin\\theta)(1 + \\sin\\theta)$.",
+                "options": ["$\\cos^2\\theta$", "$1 - \\sin\\theta$", "$\\sin^2\\theta$"],
+                "correctIndex": 0,
+                "explanation": "Difference of squares: $1 - \\sin^2\\theta = \\cos^2\\theta$. Algebra 1 and the identity, working the same shift.",
+                "check": [
+                  "simplify((1 - sin(x))*(1 + sin(x)) - cos(x)**2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Audit with the identity",
+            "body": "Any time you hold a (sin, cos) pair, square-and-add takes three seconds: if it isn't exactly 1, something upstream broke. This single audit catches sign slips, copied-wrong fractions, and inverted ratios — run it on every exact-value answer you ever produce.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "sin²θ + cos²θ = 1 — the circle's equation, true for every angle.",
+              "One value + quadrant ⟹ the rest: root for size, ASTC for sign, ratio for tangent.",
+              "See 1 − cos²θ AS sin²θ (and vice versa) — recognition is the skill."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sum-and-difference-formulas",
+      "title": "Sum & Difference Formulas",
+      "concreteComparison": "You can't mix two paint colors by mixing their names — combining ingredients follows recipes, not wishes. sin(A + B) is NOT sin A + sin B; the true recipe cross-multiplies the ingredients. Learn the recipe and you can manufacture exact values nobody gave you — like 15° and 75°.",
+      "objective": "Apply the sine and cosine sum/difference formulas to compute new exact values and simplify expressions.",
+      "concept": [
+        "The formulas: $\\sin(A \\pm B) = \\sin A\\cos B \\pm \\cos A\\sin B$ and $\\cos(A \\pm B) = \\cos A\\cos B \\mp \\sin A\\sin B$. Two structural memory hooks: sine MIXES the functions (sin·cos + cos·sin) and keeps the sign; cosine MATCHES them (cos·cos, sin·sin) and FLIPS the sign.",
+        "What they're for: manufacturing exact values beyond the landmark table. $75° = 45° + 30°$ and $15° = 45° - 30°$, so $\\sin 75° = \\sin 45°\\cos 30° + \\cos 45°\\sin 30° = \\frac{\\sqrt6 + \\sqrt2}{4}$. Any sum or difference of landmarks is now exact territory.",
+        "They also RUN BACKWARDS: recognizing the expanded shape $\\sin 40°\\cos 20° + \\cos 40°\\sin 20°$ as $\\sin(40° + 20°) = \\sin 60° = \\frac{\\sqrt3}{2}$ turns an impossible-looking expression into a landmark. Unit 2's mysterious computation ($\\sin 30°\\cos 60° + \\cos 30°\\sin 60° = 1$) was this formula whispering: $\\sin 90°$."
+      ],
+      "keyIdea": "sin(A±B) mixes and keeps the sign; cos(A±B) matches and flips it — manufacture 15° and 75° exactly, and collapse expanded shapes back to single angles.",
+      "facts": [
+        {
+          "title": "Sine: mix, keep",
+          "latex": "\\sin(A \\pm B) = \\sin A\\cos B \\pm \\cos A\\sin B",
+          "explanation": "Mixed products; sign passes straight through."
+        },
+        {
+          "title": "Cosine: match, flip",
+          "latex": "\\cos(A \\pm B) = \\cos A\\cos B \\mp \\sin A\\sin B",
+          "explanation": "Matched products; the sign flips."
+        },
+        {
+          "title": "New exact values",
+          "latex": "\\sin 75° = \\tfrac{\\sqrt6 + \\sqrt2}{4}, \\qquad \\cos 15° = \\tfrac{\\sqrt6 + \\sqrt2}{4}",
+          "explanation": "75 = 45 + 30 and 15 = 45 − 30 unlock the between-landmarks."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig52-we1",
+          "statement": "Compute $\\sin 75°$ exactly using $75° = 45° + 30°$.",
+          "solution": "$\\sin 75° = \\sin 45°\\cos 30° + \\cos 45°\\sin 30° = \\frac{\\sqrt2}{2}\\cdot\\frac{\\sqrt3}{2} + \\frac{\\sqrt2}{2}\\cdot\\frac{1}{2} = \\frac{\\sqrt6}{4} + \\frac{\\sqrt2}{4} = \\frac{\\sqrt6 + \\sqrt2}{4} \\approx 0.966$. Sanity: just under $\\sin 90° = 1$ ✓.",
+          "check": [
+            "simplify(sin(5*pi/12) - (sqrt(6) + sqrt(2))/4) == 0",
+            "(sqrt(6) + sqrt(2))/4 < 1"
+          ]
+        },
+        {
+          "id": "trig52-we2",
+          "statement": "Compute $\\cos 15°$ exactly using $15° = 45° - 30°$, and compare with $\\sin 75°$.",
+          "solution": "$\\cos 15° = \\cos 45°\\cos 30° + \\sin 45°\\sin 30° = \\frac{\\sqrt6}{4} + \\frac{\\sqrt2}{4} = \\frac{\\sqrt6 + \\sqrt2}{4}$ — the difference flips cosine's minus to plus. IDENTICAL to $\\sin 75°$, and it must be: $15°$ and $75°$ are complements, and complements swap sin ↔ cos.",
+          "check": [
+            "simplify(cos(pi/12) - (sqrt(6) + sqrt(2))/4) == 0",
+            "simplify(cos(pi/12) - sin(5*pi/12)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Distributing: sin(A + B) = sin A + sin B.",
+          "correction": "Test it: $\\sin 90° = 1$, but $\\sin 45° + \\sin 45° = \\sqrt2 \\approx 1.41$. Sine is not linear — the true recipe cross-multiplies: $\\sin A\\cos B + \\cos A\\sin B$. One counterexample, memorized, guards forever.",
+          "authored": true
+        },
+        {
+          "text": "Keeping the sign in the cosine formula: cos(A + B) = cos A cos B + sin A sin B.",
+          "correction": "Cosine FLIPS: the plus-version carries a MINUS: $\\cos(A+B) = \\cos A\\cos B - \\sin A\\sin B$. Anchor: $\\cos 90° = \\cos(45° + 45°) = \\frac{1}{2} - \\frac{1}{2} = 0$ ✓ — with a plus it would give 1, absurd.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig52-t1",
+          "statement": "Compute $\\sin 15°$ exactly.",
+          "solution": "$\\sin(45° - 30°) = \\sin 45°\\cos 30° - \\cos 45°\\sin 30° = \\frac{\\sqrt6}{4} - \\frac{\\sqrt2}{4} = \\frac{\\sqrt6 - \\sqrt2}{4} \\approx 0.259$.",
+          "check": [
+            "simplify(sin(pi/12) - (sqrt(6) - sqrt(2))/4) == 0"
+          ]
+        },
+        {
+          "id": "trig52-t2",
+          "statement": "Simplify to a single exact value: $\\cos 80°\\cos 20° + \\sin 80°\\sin 20°$.",
+          "solution": "Matched products with a PLUS — that's cosine of a DIFFERENCE: $\\cos(80° - 20°) = \\cos 60° = \\frac{1}{2}$. Running the formula backwards turns four unknowable values into one landmark.",
+          "check": [
+            "Abs(cos(rad(80))*cos(rad(20)) + sin(rad(80))*sin(rad(20)) - Rational(1,2)) < Rational(1,10**9)",
+            "simplify(cos(x)*cos(y) + sin(x)*sin(y) - cos(x - y)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The wrong guess",
+            "title": "Sine doesn't distribute",
+            "body": "The tempting move — $\\sin(A + B) = \\sin A + \\sin B$ — dies on its first test: $\\sin(45° + 45°) = \\sin 90° = 1$, while $\\sin 45° + \\sin 45° = \\sqrt2 \\approx 1.41$. Angle addition turns the circle, and turning is genuinely more intricate than adding heights. The true recipes are two of the most useful formulas in mathematics."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipes",
+            "title": "Mix-and-keep, match-and-flip",
+            "body": "$$\\sin(A \\pm B) = \\sin A\\cos B \\pm \\cos A\\sin B$$ $$\\cos(A \\pm B) = \\cos A\\cos B \\mp \\sin A\\sin B$$ Structure carries the memory: **sine mixes** the functions (sin·cos, cos·sin) and keeps your sign; **cosine matches** them (cos·cos, sin·sin) and flips it. Anchor the flip: $\\cos(45° + 45°)$ must be 0 — only the minus delivers."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Manufacturing 75° and 15°",
+            "intro": "Split into landmarks, run the recipe, collect radicals.",
+            "examples": [
+              {
+                "prompt": "$\\sin 75°$ exactly, via $45° + 30°$.",
+                "steps": [
+                  "$\\sin 45°\\cos 30° + \\cos 45°\\sin 30° = \\frac{\\sqrt2}{2}\\cdot\\frac{\\sqrt3}{2} + \\frac{\\sqrt2}{2}\\cdot\\frac{1}{2}$.",
+                  "$= \\frac{\\sqrt6 + \\sqrt2}{4} \\approx 0.966$ — just shy of 1 ✓."
+                ],
+                "answer": "$\\tfrac{\\sqrt6 + \\sqrt2}{4}$",
+                "check": [
+                  "simplify(sin(5*pi/12) - (sqrt(6) + sqrt(2))/4) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\cos 15°$ exactly, via $45° - 30°$.",
+                "steps": [
+                  "$\\cos 45°\\cos 30° + \\sin 45°\\sin 30°$ (difference flips cosine's minus to plus).",
+                  "$= \\frac{\\sqrt6 + \\sqrt2}{4}$ — equal to $\\sin 75°$, as complements must be."
+                ],
+                "answer": "$\\tfrac{\\sqrt6 + \\sqrt2}{4}$",
+                "check": [
+                  "simplify(cos(pi/12) - sin(5*pi/12)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Guard the flip",
+            "prompt": "$\\cos(A + B) = ?$",
+            "options": [
+              "$\\cos A\\cos B - \\sin A\\sin B$",
+              "$\\cos A\\cos B + \\sin A\\sin B$",
+              "$\\sin A\\cos B + \\cos A\\sin B$",
+              "$\\cos A + \\cos B$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine matches and FLIPS: plus inside becomes minus outside. Anchor: $\\cos 90° = \\cos(45°+45°) = \\frac{1}{2} - \\frac{1}{2} = 0$ ✓. (Option B is cos of a DIFFERENCE; option C is sine's recipe.)",
+            "check": [
+              "simplify(cos(x + y) - (cos(x)*cos(y) - sin(x)*sin(y))) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reverse gear",
+            "title": "Collapse the expanded shape",
+            "body": "The formulas are two-way streets. Meet $\\sin 40°\\cos 20° + \\cos 40°\\sin 20°$ — four values you'll never know exactly — and RECOGNIZE the mixed-products-plus shape: it's $\\sin(40° + 20°) = \\sin 60° = \\frac{\\sqrt3}{2}$. Exams adore this move: expressions that look transcendental collapse to landmarks the moment you read the structure."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Forward and backward",
+            "intro": "Manufacture new values; collapse expanded shapes.",
+            "problems": [
+              {
+                "prompt": "$\\sin 15° = ?$ (exactly)",
+                "options": ["$\\dfrac{\\sqrt6 - \\sqrt2}{4}$", "$\\dfrac{\\sqrt6 + \\sqrt2}{4}$", "$\\dfrac{\\sqrt2}{4}$"],
+                "correctIndex": 0,
+                "explanation": "$\\sin(45° - 30°)$: mixed products with a MINUS: $\\frac{\\sqrt6}{4} - \\frac{\\sqrt2}{4}$. Small angle, small sine ($\\approx 0.26$) ✓.",
+                "check": [
+                  "simplify(sin(pi/12) - (sqrt(6) - sqrt(2))/4) == 0"
+                ]
+              },
+              {
+                "prompt": "Collapse: $\\sin 25°\\cos 35° + \\cos 25°\\sin 35°$.",
+                "options": ["$\\sin 60° = \\dfrac{\\sqrt3}{2}$", "$\\sin 10°$", "$\\cos 60° = \\dfrac{1}{2}$"],
+                "correctIndex": 0,
+                "explanation": "Mixed products, plus sign: $\\sin(25° + 35°) = \\sin 60°$. Four unknowable values, one landmark.",
+                "check": [
+                  "Abs(sin(rad(25))*cos(rad(35)) + cos(rad(25))*sin(rad(35)) - sqrt(3)/2) < Rational(1,10**9)",
+                  "simplify(sin(x)*cos(y) + cos(x)*sin(y) - sin(x + y)) == 0"
+                ]
+              },
+              {
+                "prompt": "Collapse: $\\cos 50°\\cos 10° - \\sin 50°\\sin 10°$.",
+                "options": ["$\\cos 60° = \\dfrac{1}{2}$", "$\\cos 40°$", "$\\sin 60°$"],
+                "correctIndex": 0,
+                "explanation": "Matched products with a MINUS: cosine of a SUM: $\\cos(50° + 10°) = \\cos 60° = \\frac{1}{2}$.",
+                "check": [
+                  "Abs(cos(rad(50))*cos(rad(10)) - sin(rad(50))*sin(rad(10)) - Rational(1,2)) < Rational(1,10**9)",
+                  "simplify(cos(x)*cos(y) - sin(x)*sin(y) - cos(x + y)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Ptolemy's 2nd-century spreadsheet",
+            "body": "Ptolemy used (a geometric form of) the sum formulas around 150 CE to build chord tables in half-degree steps — the trig spreadsheet that ran Mediterranean astronomy for 1,400 years. He bootstrapped from a handful of exact constructible values, exactly as you just did from 45° and 30°.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Sine mixes and keeps the sign; cosine matches and flips it.",
+              "75° = 45° + 30° and 15° = 45° − 30°: new exact values from old landmarks.",
+              "Read the expanded shape backwards: mixed-plus = sin of sum; matched-minus = cos of sum."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "double-angle-formulas",
+      "title": "Double-Angle Formulas",
+      "concreteComparison": "Set A = B in any recipe and you get its self-mix — bread dough folded onto itself. The sum formulas fed their own angle produce the double-angle formulas: how the trig values of 2θ are built from θ's. No new memorizing; one substitution.",
+      "objective": "Derive and apply sin 2θ = 2 sin θ cos θ and the three faces of cos 2θ.",
+      "concept": [
+        "Set $B = A$ in the sum formulas: $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$ and $\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$. Both are one-substitution corollaries — derive them live rather than trusting memory.",
+        "Cosine's double has THREE faces, courtesy of the Pythagorean identity: $\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta$. Pick the face matching your known ingredient: know only $\\sin\\theta$? Use $1 - 2\\sin^2\\theta$. Know only $\\cos\\theta$? Use $2\\cos^2\\theta - 1$.",
+        "Typical exam flow: given ONE value and a quadrant, find the double's values. $\\sin\\theta = \\frac{3}{5}$, QII: $\\cos\\theta = -\\frac{4}{5}$ (Lesson 1), then $\\sin 2\\theta = 2 \\cdot \\frac{3}{5} \\cdot \\left(-\\frac{4}{5}\\right) = -\\frac{24}{25}$ and $\\cos 2\\theta = 1 - 2 \\cdot \\frac{9}{25} = \\frac{7}{25}$. (Sanity: $\\left(\\frac{24}{25}\\right)^2 + \\left(\\frac{7}{25}\\right)^2 = 1$ ✓ — the identity audits doubles too.)"
+      ],
+      "keyIdea": "B = A in the sum formulas: sin 2θ = 2 sin θ cos θ; cos 2θ has three interchangeable faces — choose the one matching what you know.",
+      "facts": [
+        {
+          "title": "Sine's double",
+          "latex": "\\sin 2\\theta = 2\\sin\\theta\\cos\\theta",
+          "explanation": "The mixed product, self-mixed."
+        },
+        {
+          "title": "Cosine's three faces",
+          "latex": "\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta",
+          "explanation": "Pythagorean identity converts between them."
+        },
+        {
+          "title": "The audit",
+          "latex": "\\sin^2 2\\theta + \\cos^2 2\\theta = 1",
+          "explanation": "2θ is an angle too — the identity checks your doubles."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig53-we1",
+          "statement": "Verify $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$ at $\\theta = 30°$, then use the formulas to compute $\\sin 120°$ and $\\cos 120°$ from $60°$'s values.",
+          "solution": "At $30°$: LHS $\\sin 60° = \\frac{\\sqrt3}{2}$; RHS $2 \\cdot \\frac{1}{2} \\cdot \\frac{\\sqrt3}{2} = \\frac{\\sqrt3}{2}$ ✓. Doubling $60°$: $\\sin 120° = 2\\sin 60°\\cos 60° = 2 \\cdot \\frac{\\sqrt3}{2} \\cdot \\frac{1}{2} = \\frac{\\sqrt3}{2}$, and $\\cos 120° = 2\\cos^2 60° - 1 = \\frac{1}{2} - 1 = -\\frac{1}{2}$ — matching Unit 3's quadrant work exactly.",
+          "check": [
+            "2*sin(pi/6)*cos(pi/6) == sqrt(3)/2",
+            "2*sin(pi/3)*cos(pi/3) == sqrt(3)/2",
+            "2*cos(pi/3)**2 - 1 == Rational(-1,2)"
+          ]
+        },
+        {
+          "id": "trig53-we2",
+          "statement": "Given $\\sin\\theta = \\frac{3}{5}$ with $\\theta$ in QII, find $\\sin 2\\theta$ and $\\cos 2\\theta$ exactly.",
+          "solution": "First the partner: $\\cos\\theta = -\\frac{4}{5}$ (identity + QII). Then $\\sin 2\\theta = 2 \\cdot \\frac{3}{5} \\cdot \\left(-\\frac{4}{5}\\right) = -\\frac{24}{25}$ and $\\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - \\frac{18}{25} = \\frac{7}{25}$. Audit: $\\frac{576 + 49}{625} = 1$ ✓.",
+          "check": [
+            "2*Rational(3,5)*Rational(-4,5) == Rational(-24,25)",
+            "1 - 2*Rational(9,25) == Rational(7,25)",
+            "Rational(-24,25)**2 + Rational(7,25)**2 == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Doubling the value: sin 2θ = 2 sin θ.",
+          "correction": "Test at $\\theta = 90°$: $\\sin 180° = 0$, but $2\\sin 90° = 2$. The double angle mixes BOTH functions: $2\\sin\\theta\\cos\\theta$ — the cosine factor is what bends the doubling.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the sign of cos θ before computing sin 2θ.",
+          "correction": "The double-angle formulas consume SIGNED values. In QII, $\\cos\\theta < 0$ drags $\\sin 2\\theta$ negative — meaning $2\\theta$ has crossed into QIII or QIV. Resolve the partner's sign FIRST (Lesson 1), then double.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig53-t1",
+          "statement": "Given $\\cos\\theta = \\frac{5}{13}$ with $\\theta$ in QIV, find $\\sin 2\\theta$ and $\\cos 2\\theta$.",
+          "solution": "Partner: $\\sin\\theta = -\\frac{12}{13}$ (QIV: negative). $\\sin 2\\theta = 2 \\cdot \\left(-\\frac{12}{13}\\right) \\cdot \\frac{5}{13} = -\\frac{120}{169}$; $\\cos 2\\theta = 2 \\cdot \\frac{25}{169} - 1 = -\\frac{119}{169}$. Audit: $\\frac{14400 + 14161}{28561} = 1$ ✓.",
+          "check": [
+            "2*Rational(-12,13)*Rational(5,13) == Rational(-120,169)",
+            "2*Rational(25,169) - 1 == Rational(-119,169)",
+            "Rational(-120,169)**2 + Rational(-119,169)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig53-t2",
+          "statement": "Simplify: $\\dfrac{\\sin 2\\theta}{\\sin\\theta}$ (for $\\sin\\theta \\neq 0$), and evaluate at $\\theta = 60°$.",
+          "solution": "$\\frac{2\\sin\\theta\\cos\\theta}{\\sin\\theta} = 2\\cos\\theta$. At $60°$: $2 \\cdot \\frac{1}{2} = 1$. (Direct check: $\\frac{\\sin 120°}{\\sin 60°} = \\frac{\\sqrt3/2}{\\sqrt3/2} = 1$ ✓.)",
+          "check": [
+            "simplify(sin(2*x)/sin(x) - 2*cos(x)) == 0",
+            "2*cos(pi/3) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Self-mix",
+            "title": "Set B = A and watch",
+            "body": "No new formulas to memorize — feed the sum recipes their own angle. $\\sin(\\theta + \\theta) = \\sin\\theta\\cos\\theta + \\cos\\theta\\sin\\theta = 2\\sin\\theta\\cos\\theta$. And $\\cos(\\theta + \\theta) = \\cos^2\\theta - \\sin^2\\theta$. Thirty seconds of derivation beats a memory slot — and can be re-run mid-exam whenever doubt strikes."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Three faces",
+            "title": "Cosine's double, three ways",
+            "body": "Substitute the Pythagorean identity into $\\cos^2\\theta - \\sin^2\\theta$ and cosine's double grows two more faces: $$\\cos 2\\theta = \\cos^2 - \\sin^2 = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta.$$ All equal; choose by INVENTORY. Know only sine? Face three. Only cosine? Face two. Both? Face one. (Faces two and three, solved for the squares, become calculus's power-reduction workhorses.)"
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Doubles from landmarks and from data",
+            "intro": "Verify on a landmark, then run the real workflow.",
+            "examples": [
+              {
+                "prompt": "Compute $\\sin 120°$ and $\\cos 120°$ by doubling $60°$.",
+                "steps": [
+                  "$\\sin 120° = 2\\sin 60°\\cos 60° = 2 \\cdot \\frac{\\sqrt3}{2} \\cdot \\frac{1}{2} = \\frac{\\sqrt3}{2}$.",
+                  "$\\cos 120° = 2\\cos^2 60° - 1 = \\frac{1}{2} - 1 = -\\frac{1}{2}$ — QII signs, automatic."
+                ],
+                "answer": "$\\tfrac{\\sqrt3}{2}$ and $-\\tfrac{1}{2}$",
+                "check": [
+                  "2*sin(pi/3)*cos(pi/3) == sqrt(3)/2",
+                  "2*cos(pi/3)**2 - 1 == Rational(-1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\sin\\theta = \\frac{3}{5}$, θ in QII. Find $\\sin 2\\theta$, $\\cos 2\\theta$.",
+                "steps": [
+                  "Partner first: $\\cos\\theta = -\\frac{4}{5}$ (QII).",
+                  "$\\sin 2\\theta = 2 \\cdot \\frac{3}{5} \\cdot (-\\frac{4}{5}) = -\\frac{24}{25}$; $\\cos 2\\theta = 1 - \\frac{18}{25} = \\frac{7}{25}$. Audit: squares sum to 1 ✓."
+                ],
+                "answer": "$-\\tfrac{24}{25}$ and $\\tfrac{7}{25}$",
+                "check": [
+                  "Rational(-24,25)**2 + Rational(7,25)**2 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Choose the face",
+            "prompt": "You know ONLY that $\\sin\\theta = \\frac{1}{3}$ (no quadrant needed). Which formula computes $\\cos 2\\theta$ directly?",
+            "options": [
+              "$1 - 2\\sin^2\\theta$ — sine-only face: $1 - \\frac{2}{9} = \\frac{7}{9}$",
+              "$2\\cos^2\\theta - 1$",
+              "$2\\sin\\theta\\cos\\theta$",
+              "$\\cos^2\\theta - \\sin^2\\theta$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The sine-only face needs no partner and no quadrant: $\\cos 2\\theta = 1 - 2 \\cdot \\frac{1}{9} = \\frac{7}{9}$. The other faces demand $\\cos\\theta$ — extra work and a sign decision. Inventory picks the face.",
+            "check": [
+              "1 - 2*Rational(1,9) == Rational(7,9)"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Double duty",
+            "intro": "Partner (with sign) first, then double, then audit.",
+            "problems": [
+              {
+                "prompt": "$2\\sin 15°\\cos 15° = ?$ (exactly — collapse it)",
+                "options": ["$\\dfrac{1}{2}$", "$\\dfrac{\\sqrt3}{2}$", "$\\dfrac{\\sqrt6 - \\sqrt2}{2}$"],
+                "correctIndex": 0,
+                "explanation": "The shape IS $\\sin(2 \\cdot 15°) = \\sin 30° = \\frac{1}{2}$ — no need for 15°'s messy values at all.",
+                "check": [
+                  "simplify(2*sin(pi/12)*cos(pi/12) - Rational(1,2)) == 0"
+                ]
+              },
+              {
+                "prompt": "$1 - 2\\sin^2 22.5° = ?$",
+                "options": ["$\\dfrac{\\sqrt2}{2}$", "$\\dfrac{1}{2}$", "$\\sqrt2 - 1$"],
+                "correctIndex": 0,
+                "explanation": "The sine-only face of $\\cos(2 \\cdot 22.5°) = \\cos 45° = \\frac{\\sqrt2}{2}$. Collapsing beats computing, every time the shape matches.",
+                "check": [
+                  "simplify(1 - 2*sin(pi/8)**2 - sqrt(2)/2) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\theta = -\\frac{1}{2}$ (any quadrant). $\\cos 2\\theta = ?$",
+                "options": ["$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$", "Needs the quadrant"],
+                "correctIndex": 0,
+                "explanation": "Cosine-only face: $2 \\cdot \\frac{1}{4} - 1 = -\\frac{1}{2}$. Because cosine enters SQUARED, its sign — and hence the quadrant — never matters here.",
+                "check": [
+                  "2*Rational(1,4) - 1 == Rational(-1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Habit",
+            "title": "Audit the double",
+            "body": "$2\\theta$ is just another angle, so its values obey the identity: $\\sin^2 2\\theta + \\cos^2 2\\theta$ must equal 1. After every double-angle computation, square-and-add — three seconds, and it catches sign slips (the most common double-angle error) with certainty.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "sin 2θ = 2 sin θ cos θ — derived by B = A, re-derivable anytime.",
+              "cos 2θ: three faces; pick by inventory (sine-only and cosine-only faces skip the partner).",
+              "Doubles obey the identity too — square-and-add audits every answer."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-trig-equations",
+      "title": "Solving Trig Equations",
+      "concreteComparison": "Asking 'when is the tide 3 meters high?' doesn't have ONE answer — the tide hits 3 m twice a day, forever. Trig equations are like that: the unknown is an angle, the function is periodic, and the honest answer is 'these two times each cycle, repeating.'",
+      "objective": "Solve trig equations on [0, 2π) — basic, multi-solution, and factorable quadratic types — and describe the general solution.",
+      "concept": [
+        "The base case $\\sin\\theta = k$ (for $-1 < k < 1$): the height line cuts the circle TWICE per lap — once in each of two quadrants (which two: ASTC by the sign of $k$). Find the reference angle from $|k|$, place it in both quadrants. $\\sin\\theta = \\frac{1}{2}$: QI and QII ⟹ $\\theta = \\frac{\\pi}{6}, \\frac{5\\pi}{6}$.",
+        "Edge cases and the empty case: $\\sin\\theta = \\pm 1$ or $0$ land ON axes — one or two special solutions per lap; $|k| > 1$ has NO solutions (the circle can't reach). For $\\tan\\theta = k$: exactly ONE solution per $\\pi$-window (Unit 4's always-increasing branch), so two in $[0, 2\\pi)$.",
+        "Bigger equations reduce to base cases by ALGEBRA: treat $\\sin\\theta$ as a variable. $2\\sin^2\\theta - \\sin\\theta - 1 = 0$ factors as $(2\\sin\\theta + 1)(\\sin\\theta - 1) = 0$: two base equations, $\\sin\\theta = -\\frac{1}{2}$ and $\\sin\\theta = 1$. Never divide by a trig factor — moving $\\sin\\theta\\cos\\theta = \\sin\\theta$ to $\\cos\\theta = 1$ by division DELETES the $\\sin\\theta = 0$ family; factor instead."
+      ],
+      "keyIdea": "Reference angle in the two ASTC quadrants solves sin/cos = k (twice per lap); harder equations factor down to base cases — and dividing by a trig factor loses solutions.",
+      "facts": [
+        {
+          "title": "Base case count",
+          "latex": "\\sin\\theta = k, \\; |k| < 1: \\text{ two solutions per } 2\\pi",
+          "explanation": "One per quadrant where the sign fits (ASTC)."
+        },
+        {
+          "title": "General solution",
+          "latex": "\\theta = \\theta_0 + 2\\pi k",
+          "explanation": "Periodicity: every solution repeats each lap."
+        },
+        {
+          "title": "Factor, never divide",
+          "latex": "\\sin\\theta\\cos\\theta = \\sin\\theta \\;\\Rightarrow\\; \\sin\\theta(\\cos\\theta - 1) = 0",
+          "explanation": "Dividing by sin θ silently deletes its zeros."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "trig54-we1",
+          "statement": "Solve $2\\cos\\theta + 1 = 0$ on $[0, 2\\pi)$.",
+          "solution": "Isolate: $\\cos\\theta = -\\frac{1}{2}$. Negative cosine: QII and QIII. Reference angle: $\\cos^{-1}\\frac{1}{2}$'s $\\frac{\\pi}{3}$. Solutions: $\\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$ and $\\pi + \\frac{\\pi}{3} = \\frac{4\\pi}{3}$. Verify both: $\\cos\\frac{2\\pi}{3} = \\cos\\frac{4\\pi}{3} = -\\frac{1}{2}$ ✓.",
+          "check": [
+            "cos(2*pi/3) == Rational(-1,2)",
+            "cos(4*pi/3) == Rational(-1,2)",
+            "2*cos(2*pi/3) + 1 == 0"
+          ]
+        },
+        {
+          "id": "trig54-we2",
+          "statement": "Solve $2\\sin^2\\theta - \\sin\\theta - 1 = 0$ on $[0, 2\\pi)$.",
+          "solution": "Let $s = \\sin\\theta$: $2s^2 - s - 1 = (2s + 1)(s - 1) = 0$ ⟹ $\\sin\\theta = -\\frac{1}{2}$ or $\\sin\\theta = 1$. First: QIII, QIV with reference $\\frac{\\pi}{6}$: $\\frac{7\\pi}{6}, \\frac{11\\pi}{6}$. Second: the single axis point $\\frac{\\pi}{2}$. Three solutions: $\\frac{\\pi}{2}, \\frac{7\\pi}{6}, \\frac{11\\pi}{6}$.",
+          "check": [
+            "expand((2*s + 1)*(s - 1) - (2*s**2 - s - 1)) == 0",
+            "2*sin(7*pi/6)**2 - sin(7*pi/6) - 1 == 0",
+            "2*sin(11*pi/6)**2 - sin(11*pi/6) - 1 == 0",
+            "2*sin(pi/2)**2 - sin(pi/2) - 1 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping at the calculator's single answer for sin θ = k.",
+          "correction": "Inverse sine hands you ONE solution (the reference-angle one); the wave crosses that height TWICE per period. Always place the reference angle in BOTH quadrants the sign allows: $\\sin\\theta = \\frac{1}{2}$ has $\\frac{\\pi}{6}$ AND $\\frac{5\\pi}{6}$.",
+          "authored": true
+        },
+        {
+          "text": "Dividing both sides by sin θ (or cos θ).",
+          "correction": "Division assumes the divisor isn't zero — but $\\sin\\theta = 0$ might be exactly where solutions live. Move everything to one side and FACTOR: $\\sin\\theta(\\cos\\theta - 1) = 0$ keeps both families. Lost solutions are the classic trig-equation wound.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "trig54-t1",
+          "statement": "Solve $2\\sin\\theta - \\sqrt{3} = 0$ on $[0, 2\\pi)$.",
+          "solution": "$\\sin\\theta = \\frac{\\sqrt3}{2}$: positive ⟹ QI, QII; reference $\\frac{\\pi}{3}$. Solutions: $\\frac{\\pi}{3}$ and $\\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$.",
+          "check": [
+            "2*sin(pi/3) - sqrt(3) == 0",
+            "2*sin(2*pi/3) - sqrt(3) == 0"
+          ]
+        },
+        {
+          "id": "trig54-t2",
+          "statement": "Solve $\\sin\\theta\\cos\\theta = \\sin\\theta$ on $[0, 2\\pi)$ — by factoring, not dividing.",
+          "solution": "$\\sin\\theta(\\cos\\theta - 1) = 0$: either $\\sin\\theta = 0$ ($\\theta = 0, \\pi$) or $\\cos\\theta = 1$ ($\\theta = 0$). Union: $\\{0, \\pi\\}$. Division by $\\sin\\theta$ would have found only $\\theta = 0$ — and silently executed $\\pi$.",
+          "check": [
+            "sin(pi)*cos(pi) == sin(pi)",
+            "sin(0)*cos(0) == sin(0)",
+            "cos(0) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A new species",
+            "title": "The unknown is an angle",
+            "body": "$\\sin\\theta = \\frac{1}{2}$ asks: WHICH rotations put the circling point at height $\\frac{1}{2}$? Periodicity changes the game: if $\\theta_0$ works, so does $\\theta_0 + 2\\pi$, forever — infinitely many solutions, organized as a few base solutions per lap plus laps. Convention: solve on $[0, 2\\pi)$ first; append $+ 2\\pi k$ if the general solution is wanted."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The base move",
+            "title": "Reference angle, both quadrants",
+            "body": "For $\\sin\\theta = k$ with $0 < |k| < 1$: the sign of $k$ names two ASTC quadrants; the reference angle comes from the landmark table (or arcsin of $|k|$); place it in both quadrants with the Unit-3 formulas. $\\sin\\theta = \\frac{1}{2}$: positive ⟹ QI, QII; reference $\\frac{\\pi}{6}$; solutions $\\frac{\\pi}{6}$ and $\\frac{5\\pi}{6}$. Two per lap — always two, for any interior height."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "A negative cosine",
+            "intro": "Sign → quadrants; landmark → reference; formulas → answers.",
+            "examples": [
+              {
+                "prompt": "Solve $2\\cos\\theta + 1 = 0$ on $[0, 2\\pi)$.",
+                "steps": [
+                  "$\\cos\\theta = -\\frac{1}{2}$: QII & QIII; reference $\\frac{\\pi}{3}$.",
+                  "$\\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$ and $\\pi + \\frac{\\pi}{3} = \\frac{4\\pi}{3}$."
+                ],
+                "answer": "$\\tfrac{2\\pi}{3}, \\; \\tfrac{4\\pi}{3}$",
+                "check": [
+                  "2*cos(2*pi/3) + 1 == 0",
+                  "2*cos(4*pi/3) + 1 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Count before solving",
+            "prompt": "How many solutions does each have on $[0, 2\\pi)$: (i) $\\sin\\theta = 0.4$, (ii) $\\sin\\theta = 1$, (iii) $\\sin\\theta = 3$?",
+            "options": [
+              "(i) two, (ii) one, (iii) none",
+              "(i) one, (ii) two, (iii) one",
+              "All have two",
+              "(i) two, (ii) two, (iii) two"
+            ],
+            "correctIndex": 0,
+            "explanation": "Interior heights: two crossings per lap. The extreme $1$: touched once, at $\\frac{\\pi}{2}$. And $3$ is off the circle entirely: empty. Counting first catches impossible equations before wasted work.",
+            "check": [
+              "sin(pi/2) == 1",
+              "Rational(4,10) < 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Harder shells",
+            "title": "Algebra first, circle second",
+            "body": "Quadratics in disguise: treat $\\sin\\theta$ as a letter. $2\\sin^2\\theta - \\sin\\theta - 1 = 0$ factors like $2s^2 - s - 1$: $(2s+1)(s-1)$ — yielding TWO base equations to run separately. And the iron rule: **never divide by a trig factor** — $\\sin\\theta\\cos\\theta = \\sin\\theta$ must become $\\sin\\theta(\\cos\\theta - 1) = 0$, keeping the $\\sin\\theta = 0$ family that division would murder."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked example",
+            "title": "A quadratic in sine",
+            "intro": "Factor the shell, then run each base case.",
+            "examples": [
+              {
+                "prompt": "Solve $2\\sin^2\\theta - \\sin\\theta - 1 = 0$ on $[0, 2\\pi)$.",
+                "steps": [
+                  "$(2\\sin\\theta + 1)(\\sin\\theta - 1) = 0$: $\\sin\\theta = -\\frac{1}{2}$ or $1$.",
+                  "$-\\frac{1}{2}$: QIII/QIV, ref $\\frac{\\pi}{6}$: $\\frac{7\\pi}{6}, \\frac{11\\pi}{6}$. $1$: the apex $\\frac{\\pi}{2}$. Three total."
+                ],
+                "answer": "$\\tfrac{\\pi}{2}, \\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$",
+                "check": [
+                  "2*sin(7*pi/6)**2 - sin(7*pi/6) - 1 == 0",
+                  "2*sin(pi/2)**2 - sin(pi/2) - 1 == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Angle hunting, full protocol",
+            "intro": "Isolate → count → quadrants → reference → verify.",
+            "problems": [
+              {
+                "prompt": "Solve $2\\sin\\theta = \\sqrt{3}$ on $[0, 2\\pi)$.",
+                "options": [
+                  "$\\dfrac{\\pi}{3}$ and $\\dfrac{2\\pi}{3}$",
+                  "$\\dfrac{\\pi}{3}$ only",
+                  "$\\dfrac{\\pi}{6}$ and $\\dfrac{5\\pi}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin\\theta = \\frac{\\sqrt3}{2}$: QI & QII, reference $\\frac{\\pi}{3}$: $\\frac{\\pi}{3}, \\frac{2\\pi}{3}$. One-answer temptation (option B) forgets the descending crossing.",
+                "check": [
+                  "2*sin(pi/3) == sqrt(3)",
+                  "2*sin(2*pi/3) == sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Solve $\\tan\\theta = -1$ on $[0, 2\\pi)$.",
+                "options": [
+                  "$\\dfrac{3\\pi}{4}$ and $\\dfrac{7\\pi}{4}$",
+                  "$\\dfrac{3\\pi}{4}$ only",
+                  "$\\dfrac{\\pi}{4}$ and $\\dfrac{5\\pi}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Negative tangent: QII and QIV, reference $\\frac{\\pi}{4}$: $\\frac{3\\pi}{4}$ and $\\frac{7\\pi}{4}$ — one per π-window, tangent's signature spacing.",
+                "check": [
+                  "tan(3*pi/4) == -1",
+                  "tan(7*pi/4) == -1"
+                ]
+              },
+              {
+                "prompt": "How many solutions does $\\cos^2\\theta = \\cos\\theta$ have on $[0, 2\\pi)$? (Factor!)",
+                "options": ["Three — $\\cos\\theta = 0$ gives two, $\\cos\\theta = 1$ gives one", "Two", "One"],
+                "correctIndex": 0,
+                "explanation": "$\\cos\\theta(\\cos\\theta - 1) = 0$: $\\cos\\theta = 0$ at $\\frac{\\pi}{2}, \\frac{3\\pi}{2}$; $\\cos\\theta = 1$ at $0$. Three — and dividing by $\\cos\\theta$ would have destroyed two of them.",
+                "check": [
+                  "cos(pi/2)**2 == cos(pi/2)",
+                  "cos(0)**2 == cos(0)",
+                  "cos(3*pi/2)**2 == cos(3*pi/2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Sunrise equations",
+            "body": "The time of sunrise on any date solves a trig equation — the 'sunrise equation' $\\cos\\omega = -\\tan\\phi\\tan\\delta$ relates your latitude $\\phi$ and the sun's declination $\\delta$. Someone at your table-solving skill level, armed with this one equation, can compute sunrise anywhere on Earth for any day of any year.",
+            "authored": true
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "sin/cos = k: reference angle in the two ASTC quadrants — two per lap (extremes: one; |k| > 1: none).",
+              "Quadratic shells factor with sin θ as the variable; each factor is a base case.",
+              "Factor, never divide by a trig expression — division deletes solution families."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "trig5-pr-1",
+      "statement": "Given $\\sin\\theta = \\frac{8}{17}$ with $\\theta$ in QII, find $\\cos\\theta$ and $\\tan\\theta$ exactly.",
+      "solution": "$\\cos^2\\theta = 1 - \\frac{64}{289} = \\frac{225}{289}$: QII ⟹ $\\cos\\theta = -\\frac{15}{17}$; $\\tan\\theta = -\\frac{8}{15}$.",
+      "check": [
+        "1 - Rational(64,289) == Rational(225,289)",
+        "Rational(8,17)/Rational(-15,17) == Rational(-8,15)"
+      ]
+    },
+    {
+      "id": "trig5-pr-2",
+      "statement": "Simplify: $\\cos\\theta + \\sin\\theta\\tan\\theta$.",
+      "solution": "$\\cos\\theta + \\sin\\theta \\cdot \\frac{\\sin\\theta}{\\cos\\theta} = \\frac{\\cos^2\\theta + \\sin^2\\theta}{\\cos\\theta} = \\frac{1}{\\cos\\theta}$ (the secant). The identity collapses the numerator.",
+      "check": [
+        "simplify(cos(x) + sin(x)*tan(x) - 1/cos(x)) == 0"
+      ]
+    },
+    {
+      "id": "trig5-pr-3",
+      "statement": "Compute $\\cos 75°$ exactly.",
+      "solution": "$\\cos(45° + 30°) = \\cos 45°\\cos 30° - \\sin 45°\\sin 30° = \\frac{\\sqrt6}{4} - \\frac{\\sqrt2}{4} = \\frac{\\sqrt6 - \\sqrt2}{4} \\approx 0.259$ — small, as a near-90° cosine should be.",
+      "check": [
+        "simplify(cos(5*pi/12) - (sqrt(6) - sqrt(2))/4) == 0"
+      ]
+    },
+    {
+      "id": "trig5-pr-4",
+      "statement": "Collapse to one exact value: $\\sin 70°\\cos 10° - \\cos 70°\\sin 10°$.",
+      "solution": "Mixed products, MINUS: $\\sin(70° - 10°) = \\sin 60° = \\frac{\\sqrt3}{2}$.",
+      "check": [
+        "Abs(sin(rad(70))*cos(rad(10)) - cos(rad(70))*sin(rad(10)) - sqrt(3)/2) < Rational(1,10**9)",
+        "simplify(sin(x)*cos(y) - cos(x)*sin(y) - sin(x - y)) == 0"
+      ]
+    },
+    {
+      "id": "trig5-pr-5",
+      "statement": "Given $\\cos\\theta = \\frac{4}{5}$ with $\\theta$ in QIV, find $\\sin 2\\theta$ and $\\cos 2\\theta$.",
+      "solution": "Partner: $\\sin\\theta = -\\frac{3}{5}$ (QIV). $\\sin 2\\theta = 2(-\\frac{3}{5})(\\frac{4}{5}) = -\\frac{24}{25}$; $\\cos 2\\theta = 2 \\cdot \\frac{16}{25} - 1 = \\frac{7}{25}$. Audit: $\\frac{576 + 49}{625} = 1$ ✓.",
+      "check": [
+        "2*Rational(-3,5)*Rational(4,5) == Rational(-24,25)",
+        "2*Rational(16,25) - 1 == Rational(7,25)",
+        "Rational(-24,25)**2 + Rational(7,25)**2 == 1"
+      ]
+    },
+    {
+      "id": "trig5-pr-6",
+      "statement": "Solve $2\\cos\\theta = \\sqrt{2}$ on $[0, 2\\pi)$.",
+      "solution": "$\\cos\\theta = \\frac{\\sqrt2}{2}$: QI & QIV, reference $\\frac{\\pi}{4}$: $\\theta = \\frac{\\pi}{4}, \\frac{7\\pi}{4}$.",
+      "check": [
+        "2*cos(pi/4) == sqrt(2)",
+        "2*cos(7*pi/4) == sqrt(2)"
+      ]
+    },
+    {
+      "id": "trig5-pr-7",
+      "statement": "Solve $\\sin^2\\theta = \\frac{1}{4}$ on $[0, 2\\pi)$.",
+      "solution": "$\\sin\\theta = \\pm\\frac{1}{2}$ — BOTH roots. Positive: $\\frac{\\pi}{6}, \\frac{5\\pi}{6}$; negative: $\\frac{7\\pi}{6}, \\frac{11\\pi}{6}$. Four solutions — squared equations double the families.",
+      "check": [
+        "sin(pi/6)**2 == Rational(1,4)",
+        "sin(5*pi/6)**2 == Rational(1,4)",
+        "sin(7*pi/6)**2 == Rational(1,4)",
+        "sin(11*pi/6)**2 == Rational(1,4)"
+      ]
+    },
+    {
+      "id": "trig5-pr-8",
+      "statement": "Solve $2\\cos^2\\theta + \\cos\\theta - 1 = 0$ on $[0, 2\\pi)$.",
+      "solution": "Factor ($c = \\cos\\theta$): $(2c - 1)(c + 1) = 0$: $\\cos\\theta = \\frac{1}{2}$ or $-1$. First: $\\frac{\\pi}{3}, \\frac{5\\pi}{3}$; second: $\\pi$. Three solutions.",
+      "check": [
+        "expand((2*c - 1)*(c + 1) - (2*c**2 + c - 1)) == 0",
+        "2*cos(pi/3)**2 + cos(pi/3) - 1 == 0",
+        "2*cos(pi)**2 + cos(pi) - 1 == 0",
+        "2*cos(5*pi/3)**2 + cos(5*pi/3) - 1 == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "trig5-ty-1",
+      "statement": "Given $\\tan\\theta = -\\frac{3}{4}$ with $\\theta$ in QII, find $\\sin\\theta$ and $\\cos\\theta$ exactly, and verify with the identity.",
+      "solution": "Reference triangle 3-4-5: magnitudes $\\frac{3}{5}, \\frac{4}{5}$. QII: sine positive, cosine negative: $\\sin\\theta = \\frac{3}{5}$, $\\cos\\theta = -\\frac{4}{5}$. Identity: $\\frac{9 + 16}{25} = 1$ ✓; ratio: $-\\frac{3}{4}$ ✓.",
+      "check": [
+        "Rational(3,5)**2 + Rational(-4,5)**2 == 1",
+        "Rational(3,5)/Rational(-4,5) == Rational(-3,4)"
+      ]
+    },
+    {
+      "id": "trig5-ty-2",
+      "statement": "Compute $\\tan 15°$ exactly (use sin 15° and cos 15°, or the tangent difference formula), and simplify.",
+      "solution": "$\\tan 15° = \\frac{\\sin 15°}{\\cos 15°} = \\frac{\\sqrt6 - \\sqrt2}{\\sqrt6 + \\sqrt2}$; multiply by the conjugate: $\\frac{(\\sqrt6 - \\sqrt2)^2}{4} = \\frac{8 - 4\\sqrt3}{4} = 2 - \\sqrt{3} \\approx 0.268$.",
+      "check": [
+        "simplify(tan(pi/12) - (2 - sqrt(3))) == 0"
+      ]
+    },
+    {
+      "id": "trig5-ty-3",
+      "statement": "Prove the identity $\\dfrac{\\sin 2\\theta}{1 + \\cos 2\\theta} = \\tan\\theta$ (state which faces you used), and verify at $\\theta = 45°$.",
+      "solution": "Numerator: $2\\sin\\theta\\cos\\theta$. Denominator: use the cosine-only face: $1 + (2\\cos^2\\theta - 1) = 2\\cos^2\\theta$. Ratio: $\\frac{2\\sin\\theta\\cos\\theta}{2\\cos^2\\theta} = \\tan\\theta$ ∎. At $45°$: LHS $= \\frac{1}{1 + 0} = 1 = \\tan 45°$ ✓.",
+      "check": [
+        "simplify(sin(2*x)/(1 + cos(2*x)) - tan(x)) == 0",
+        "sin(pi/2)/(1 + cos(pi/2)) == 1"
+      ]
+    },
+    {
+      "id": "trig5-ty-4",
+      "statement": "Solve $\\sqrt{3}\\tan\\theta = 1$ on $[0, 2\\pi)$... then give the GENERAL solution.",
+      "solution": "$\\tan\\theta = \\frac{\\sqrt3}{3}$: positive ⟹ QI, QIII; reference $\\frac{\\pi}{6}$: $\\theta = \\frac{\\pi}{6}, \\frac{7\\pi}{6}$. General (tangent repeats every $\\pi$): $\\theta = \\frac{\\pi}{6} + \\pi k$.",
+      "check": [
+        "sqrt(3)*tan(pi/6) == 1",
+        "sqrt(3)*tan(7*pi/6) == 1",
+        "simplify(tan(pi/6 + pi) - tan(pi/6)) == 0"
+      ]
+    },
+    {
+      "id": "trig5-ty-5",
+      "statement": "Solve $\\sin 2\\theta = \\cos\\theta$ on $[0, 2\\pi)$. (Expand the double, then factor — never divide.)",
+      "solution": "$2\\sin\\theta\\cos\\theta - \\cos\\theta = 0$: $\\cos\\theta(2\\sin\\theta - 1) = 0$. Family 1: $\\cos\\theta = 0$: $\\frac{\\pi}{2}, \\frac{3\\pi}{2}$. Family 2: $\\sin\\theta = \\frac{1}{2}$: $\\frac{\\pi}{6}, \\frac{5\\pi}{6}$. Four solutions — division by $\\cos\\theta$ would have kept only two.",
+      "check": [
+        "sin(2*pi/6) == cos(pi/6)",
+        "sin(2*5*pi/6) == cos(5*pi/6)",
+        "sin(2*pi/2) == cos(pi/2)",
+        "sin(2*3*pi/2) == cos(3*pi/2)"
+      ]
+    },
+    {
+      "id": "trig5-ty-6",
+      "statement": "A wave $h(t) = 3\\sin\\left(\\frac{\\pi t}{6}\\right) + 5$ models water depth (meters) over hours $t$. When in the first cycle $[0, 12)$ is the depth exactly $6.5$ m?",
+      "solution": "$3\\sin\\frac{\\pi t}{6} = 1.5$ ⟹ $\\sin\\frac{\\pi t}{6} = \\frac{1}{2}$: inside $= \\frac{\\pi}{6}$ or $\\frac{5\\pi}{6}$ ⟹ $t = 1$ or $t = 5$ hours. Twice per cycle — rising tide and falling tide, exactly as the concrete comparison promised.",
+      "check": [
+        "3*sin(pi*1/6) + 5 == Rational(13,2)",
+        "3*sin(pi*5/6) + 5 == Rational(13,2)"
+      ]
+    }
+  ]
+}
