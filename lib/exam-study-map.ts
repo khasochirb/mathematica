@@ -53,9 +53,9 @@ export const EXAM_STUDY_MAP: Record<string, StudyTarget> = {
     primary: { label: "Геометрийн курс", href: "/math/geometry" },
     links: [
       { label: "Түвшин тогтоох тест — аль нэгжээс эхлэхээ мэдэх", href: "/math/geometry/placement" },
+      { label: "Огторгуйн геометр (стереометр) курс", href: "/math/solid-geometry" },
       { label: "Тэгш өнцөгт гурвалжин ба тригонометр", href: "/math/geometry/right-triangles-and-trig" },
       { label: "Тойрог", href: "/math/geometry/circles" },
-      { label: "Гадаргуу ба эзлэхүүн", href: "/math/geometry/surface-area-and-volume" },
     ],
   },
   trigonometry: {

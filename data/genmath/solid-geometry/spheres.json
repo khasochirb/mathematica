@@ -1,0 +1,1327 @@
+{
+  "slug": "spheres",
+  "title": "Spheres",
+  "unit": 5,
+  "status": "published",
+  "blurb": "The perfect solid: every slice is a circle, the surface is exactly four shadow-circles, the volume is two-thirds of its can — and Archimedes liked that last fact enough to put it on his tombstone.",
+  "buildsOn": "Circle geometry; Unit 1's distance-to-a-plane; the cylinder and cone from Unit 4.",
+  "lessons": [
+    {
+      "slug": "the-sphere-and-its-sections",
+      "title": "The Sphere & Its Sections",
+      "concreteComparison": "Slice an orange anywhere — through the middle, near the top, at any tilt — and the cut face is always a perfect circle. Big cuts near the center, small caps near the edge, but never an oval, never a corner. The orange knows only one cross-section.",
+      "objective": "Use the definition of the sphere, and compute section radii with r² = R² − d² (the sphere's master triangle).",
+      "concept": [
+        "A **sphere** of radius $R$: all points at distance exactly $R$ from the center. (The solid version — everything within distance $R$ — is a **ball**.) One number, $R$, controls everything about it.",
+        "EVERY plane section of a sphere is a circle. A slice through the center is a **great circle**, radius $R$ — the biggest possible (Earth's equator). A slice at distance $d$ from the center is smaller: its radius obeys $r^2 = R^2 - d^2$ — the perpendicular from the center to the cutting plane (Unit 1!) makes a right triangle with $R$ as hypotenuse.",
+        "A tangent plane touches at exactly one point, at distance $d = R$ (section radius shrinks to 0). The master triangle {$d$, $r$, $R$} answers every 'how big is the cut' question — it's the 3D twin of the chord-distance triangle from circle geometry."
+      ],
+      "keyIdea": "Every section is a circle with r² = R² − d². Great circle: d = 0, r = R. Tangent plane: d = R, r = 0.",
+      "facts": [
+        {
+          "title": "The sphere",
+          "latex": "\\{P : |PO| = R\\}",
+          "explanation": "One center, one radius, total symmetry."
+        },
+        {
+          "title": "Section radius",
+          "latex": "r^2 = R^2 - d^2",
+          "explanation": "d = distance from center to the cutting plane."
+        },
+        {
+          "title": "Great circle",
+          "latex": "d = 0 \\Rightarrow r = R",
+          "explanation": "The biggest section — the equator cut."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg51-we1",
+          "statement": "A sphere of radius $5$ is cut by a plane at distance $3$ from the center. Find the section's radius and area.",
+          "solution": "$r = \\sqrt{25 - 9} = 4$ (the 3-4-5 triangle inside the sphere). Section area: $\\pi r^2 = 16\\pi \\approx 50.3$.",
+          "check": [
+            "sqrt(5**2 - 3**2) == 4",
+            "pi*4**2 == 16*pi"
+          ]
+        },
+        {
+          "id": "sg51-we2",
+          "statement": "A plane cuts a sphere of radius $13$ in a circle of radius $12$. How far is the plane from the center?",
+          "solution": "$d = \\sqrt{R^2 - r^2} = \\sqrt{169 - 144} = 5$ — the 5-12-13 triple, running the triangle backwards.",
+          "check": [
+            "sqrt(13**2 - 12**2) == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Expecting oval or polygonal cross-sections from tilted cuts.",
+          "correction": "The sphere has no 'tilt' — it looks the same from every direction, so every plane cut is a circle. (Ellipse sections belong to cylinders and cones cut at an angle, not spheres.)",
+          "authored": true
+        },
+        {
+          "text": "Writing r² = R² + d² (adding instead of subtracting).",
+          "correction": "$R$ is the HYPOTENUSE of the master triangle — the slant from center to the section's rim. The section radius is a leg: $r^2 = R^2 - d^2$, and a section can never beat the great circle ($r \\le R$).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg51-t1",
+          "statement": "Sphere radius $10$, cutting plane at distance $6$: section radius and area?",
+          "solution": "$r = \\sqrt{100 - 36} = 8$ (6-8-10); area $= 64\\pi \\approx 201$.",
+          "check": [
+            "sqrt(10**2 - 6**2) == 8",
+            "pi*8**2 == 64*pi"
+          ]
+        },
+        {
+          "id": "sg51-t2",
+          "statement": "The section at distance $d$ has HALF the area of the great circle. Find $d$ in terms of $R$.",
+          "solution": "$\\pi r^2 = \\frac12 \\pi R^2$ ⟹ $r^2 = \\frac{R^2}{2}$, so $d^2 = R^2 - \\frac{R^2}{2} = \\frac{R^2}{2}$: $d = \\frac{R}{\\sqrt2} = \\frac{R\\sqrt2}{2} \\approx 0.71R$. (Not halfway out! Area shrinks slowly near the center.)",
+          "check": [
+            "simplify(sqrt(1 - Rational(1,2)) - sqrt(2)/2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Definition",
+            "title": "One center, one distance",
+            "body": "Sphere = all points at distance $R$ from center $O$. No edges, no vertices, no preferred direction — the only perfectly symmetric surface. Drawn flat: a circle with a dashed 'equator' ellipse to suggest depth; the math needs only $O$ and $R$."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "The sphere, live",
+            "teach": "One stepper — that's the whole sphere. Watch surface and volume as exact multiples of π. Both formulas arrive in the next lessons; for now notice how fast they grow: radius 2× ⟹ surface 4×, volume 8×.",
+            "config": {
+              "solid": "sphere",
+              "r": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sections",
+            "title": "The master triangle: d, r, R",
+            "body": "Cut at distance $d$ from the center: drop the perpendicular $OF = d$ to the cutting plane (Unit 1's move), reach out to the section's rim — that's the hypotenuse $R$. The section's radius is the other leg, drawn true below for $R = 5$, $d = 3$: $r = \\sqrt{25 - 9} = 4$. Every section question is this one triangle.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "F",
+                    "x": 0,
+                    "y": 3,
+                    "labelDx": -10,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "P",
+                    "x": 4,
+                    "y": 3,
+                    "labelDx": 10,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "F",
+                    "label": "d = 3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "P",
+                    "label": "r = 4",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "P",
+                    "label": "R = 5"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "F",
+                    "from": "P",
+                    "to": "O",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Slice the orange",
+            "prompt": "Sphere $R = 13$, cut at $d = 5$ from the center. Section radius?",
+            "options": [
+              "$12$",
+              "$\\sqrt{194}$",
+              "$8$",
+              "$13$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$r = \\sqrt{169 - 25} = 12$ — the 5-12-13 triangle. Adding instead of subtracting gives the impossible $\\sqrt{194} > R$; a section can never beat the great circle.",
+            "check": [
+              "sqrt(13**2 - 5**2) == 12",
+              "12 < 13"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Forward and backward",
+            "intro": "The triangle solves in any direction: two of {d, r, R} give the third.",
+            "examples": [
+              {
+                "prompt": "$R = 5$, $d = 3$: section radius and area?",
+                "steps": [
+                  "$r = \\sqrt{25 - 9} = 4$.",
+                  "Area $= 16\\pi$."
+                ],
+                "answer": "$r = 4$, area $16\\pi$",
+                "check": [
+                  "sqrt(25 - 9) == 4"
+                ]
+              },
+              {
+                "prompt": "Section radius $12$, distance $5$: sphere radius?",
+                "steps": [
+                  "Now $R$ is the unknown hypotenuse.",
+                  "$R = \\sqrt{144 + 25} = 13$."
+                ],
+                "answer": "$R = 13$",
+                "check": [
+                  "sqrt(12**2 + 5**2) == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Section practice",
+            "intro": "Draw the d–r–R triangle first; label what you know.",
+            "problems": [
+              {
+                "prompt": "$R = 10$, $d = 8$: section radius?",
+                "options": [
+                  "$6$",
+                  "$2$",
+                  "$\\sqrt{164}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{100 - 64} = 6$ — 6-8-10.",
+                "check": [
+                  "sqrt(10**2 - 8**2) == 6"
+                ]
+              },
+              {
+                "prompt": "A tangent plane sits at what distance from the center of a radius-$R$ sphere?",
+                "options": [
+                  "exactly $R$",
+                  "$0$",
+                  "more than $R$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Touching at one point means the section circle has shrunk to radius 0: $d = R$. Farther and it misses entirely; nearer and it cuts a real circle.",
+                "check": [
+                  "sqrt(1 - 1) == 0"
+                ]
+              },
+              {
+                "prompt": "Earth ($R \\approx 6371$ km) cut at the 60th parallel — where $d = \\frac{R\\sqrt3}{2}$. The parallel's radius is…",
+                "options": [
+                  "$R/2$",
+                  "$R\\sqrt3/2$",
+                  "$R/\\sqrt3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = \\sqrt{R^2 - \\frac{3R^2}{4}} = \\frac{R}{2}$. At 60° latitude the circle of constant latitude is exactly HALF the equator — time zones get skinny fast up north.",
+                "check": [
+                  "simplify(sqrt(1 - Rational(3,4)) - Rational(1,2)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Sphere sections",
+            "bullets": [
+              "Sphere: all points at distance R from O; ball: all points within R.",
+              "Every plane section is a CIRCLE — no exceptions, no ellipses.",
+              "Master triangle: r² = R² − d² (R is always the hypotenuse).",
+              "d = 0: great circle. d = R: tangent plane. In between: the triangle."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "surface-area-of-a-sphere",
+      "title": "Surface Area of a Sphere",
+      "concreteComparison": "Peel an orange carefully and flatten the peel: it covers exactly four circles traced around the orange's widest part. Not three and a half, not about four — exactly four shadow-circles of peel. That 4 is the whole formula.",
+      "objective": "Use S = 4πR² for spheres, hemispheres, and painted-planet problems.",
+      "concept": [
+        "$S = 4\\pi R^2$: a sphere's surface equals exactly **four great circles**. Equivalently, it equals the LATERAL surface of the snuggest cylinder around it ($2\\pi R \\cdot 2R = 4\\pi R^2$) — Archimedes proved the sphere and its can have matching wallpaper.",
+        "Scaling: surface grows with the SQUARE of the radius. Double $R$: 4× the paint. This is why big planets are so much harder to map than small moons.",
+        "The **hemisphere** (half a sphere) is the classic trap: half the DOME is $2\\pi R^2$, but a closed half-ball needs its floor — the great-circle disk $\\pi R^2$ — totaling $3\\pi R^2$. Read whether the problem's dome is open or closed."
+      ],
+      "keyIdea": "S = 4πR² — four great circles, or the label of the snuggest can. Closed hemisphere: 2πR² dome + πR² floor = 3πR².",
+      "facts": [
+        {
+          "title": "Sphere surface",
+          "latex": "S = 4\\pi R^2",
+          "explanation": "Exactly four great-circle disks of peel."
+        },
+        {
+          "title": "Archimedes' can",
+          "latex": "S_{sphere} = S_{lat,\\,cyl}",
+          "explanation": "Sphere surface = the label of its snug cylinder."
+        },
+        {
+          "title": "Closed hemisphere",
+          "latex": "2\\pi R^2 + \\pi R^2 = 3\\pi R^2",
+          "explanation": "Dome plus floor disk."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg52-we1",
+          "statement": "Find the surface area of a sphere with radius $6$, exactly and approximately.",
+          "solution": "$S = 4\\pi \\cdot 36 = 144\\pi \\approx 452.4$.",
+          "check": [
+            "4*pi*6**2 == 144*pi",
+            "Abs(144*pi - 452.4) < 1"
+          ]
+        },
+        {
+          "id": "sg52-we2",
+          "statement": "A sphere's surface area is $100\\pi$. Find its radius and the area of its great circle.",
+          "solution": "$4\\pi R^2 = 100\\pi$ ⟹ $R^2 = 25$, $R = 5$. Great circle: $\\pi R^2 = 25\\pi$ — one quarter of the surface, as the 4 promises.",
+          "check": [
+            "sqrt(100/4) == 5",
+            "Rational(100, 4) == 25"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing 4πR² (surface) with πR² (great circle) or with the volume formula.",
+          "correction": "Keep the inventory: great circle $\\pi R^2$ (2D disk), surface $4\\pi R^2$ (wrapping), volume $\\frac43\\pi R^3$ (filling). Surface has the 4 and the SQUARE; volume has the 4/3 and the CUBE.",
+          "authored": true
+        },
+        {
+          "text": "Hemisphere surface = half of 4πR², i.e. 2πR², in every problem.",
+          "correction": "That's only the open dome. A CLOSED hemisphere (solid half-ball) adds the flat disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2$. Planetarium roof: open. Half an orange: closed.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg52-t1",
+          "statement": "Radius $3$: sphere surface, open-dome hemisphere, closed hemisphere?",
+          "solution": "Sphere: $36\\pi$. Dome: $18\\pi$. Closed: $18\\pi + 9\\pi = 27\\pi$.",
+          "check": [
+            "4*pi*9 == 36*pi",
+            "2*pi*9 == 18*pi",
+            "18*pi + 9*pi == 27*pi"
+          ]
+        },
+        {
+          "id": "sg52-t2",
+          "statement": "Planet B has twice the radius of planet A. How many times more paint does B's surface need? And if A needs $80\\pi$, what does B need?",
+          "solution": "$S \\propto R^2$: $2^2 = 4$ times. B needs $320\\pi$.",
+          "check": [
+            "2**2 == 4",
+            "4*80*pi == 320*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The four",
+            "title": "Four great circles of peel",
+            "body": "$S = 4\\pi R^2$. The 4 is exact and ancient: Archimedes showed the sphere's surface equals the lateral surface of its snug cylinder — height $2R$, circumference $2\\pi R$, label area $4\\pi R^2$. Project every patch of sphere sideways onto the can: areas match, patch by patch. (That projection is how some world maps are made — the Lambert cylindrical map preserves area for exactly this reason.)"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The can",
+            "title": "Sphere in the can: matching wallpaper",
+            "body": "The snug can around a radius-$R$ sphere, drawn in cross-section: the circle touches both walls, floor and lid. Can label: $2\\pi R \\times 2R = 4\\pi R^2$ — the sphere's exact surface. This same picture returns for VOLUME next lesson with a different ratio (2/3); together they were Archimedes' proudest theorem.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6,
+                    "y": 6,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0,
+                    "y": 6,
+                    "label": ""
+                  },
+                  {
+                    "id": "O",
+                    "x": 3,
+                    "y": 3,
+                    "labelDx": 10,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "E",
+                    "x": 6,
+                    "y": 3,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "E",
+                    "label": "R",
+                    "color": "accent"
+                  }
+                ],
+                "hidePoints": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Quarter inventory",
+            "prompt": "A sphere has surface area $64\\pi$. Its great circle's area is…",
+            "options": [
+              "$16\\pi$",
+              "$32\\pi$",
+              "$8\\pi$",
+              "$64\\pi/3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Great circle = exactly a QUARTER of the surface: $\\frac{64\\pi}{4} = 16\\pi$ (here $R = 4$). The 4 in $4\\pi R^2$ is literally 'four great circles'.",
+            "check": [
+              "64/4 == 16",
+              "sqrt(64/4) == 4"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Wrapping planets",
+            "intro": "Square the radius, times 4π; watch for hemisphere floors.",
+            "examples": [
+              {
+                "prompt": "$R = 6$: surface?",
+                "steps": [
+                  "$R^2 = 36$.",
+                  "$S = 144\\pi$."
+                ],
+                "answer": "$144\\pi \\approx 452$",
+                "check": [
+                  "4*pi*36 == 144*pi"
+                ]
+              },
+              {
+                "prompt": "Closed hemisphere, $R = 4$: total surface?",
+                "steps": [
+                  "Dome: $2\\pi \\cdot 16 = 32\\pi$.",
+                  "Floor: $16\\pi$; total $48\\pi$."
+                ],
+                "answer": "$48\\pi \\approx 150.8$",
+                "check": [
+                  "2*pi*16 + pi*16 == 48*pi",
+                  "3*pi*4**2 == 48*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Paint jobs",
+            "intro": "4πR² — and count your floors.",
+            "problems": [
+              {
+                "prompt": "$R = 5$: sphere surface?",
+                "options": [
+                  "$100\\pi$",
+                  "$25\\pi$",
+                  "$500\\pi/3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi \\cdot 25 = 100\\pi$.",
+                "check": [
+                  "4*pi*25 == 100*pi"
+                ]
+              },
+              {
+                "prompt": "Surface $36\\pi$: radius?",
+                "options": [
+                  "$3$",
+                  "$6$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\pi R^2 = 36\\pi$ ⟹ $R^2 = 9$.",
+                "check": [
+                  "sqrt(36/4) == 3"
+                ]
+              },
+              {
+                "prompt": "An open planetarium dome ($R = 10$ m) gets painted inside. Area?",
+                "options": [
+                  "$200\\pi$",
+                  "$300\\pi$",
+                  "$400\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Open dome = half the sphere's surface: $2\\pi \\cdot 100 = 200\\pi$ m². No floor in the sky.",
+                "check": [
+                  "2*pi*100 == 200*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why basketballs have dimples' cousins",
+            "body": "Earth's surface is $4\\pi R^2 \\approx 510$ million km² — and the 4 makes mental math easy: the visible disk of Earth from space ($\\pi R^2$) is exactly a quarter of the whole surface. That's why satellite constellations need at least four well-placed satellites for full coverage: each one 'sees' at most one great-circle disk's worth of planet at a time."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Sphere surface",
+            "bullets": [
+              "S = 4πR² — four great circles; equals the snug can's label.",
+              "Scaling: R×2 ⟹ S×4 (squares, not cubes).",
+              "Hemisphere: open dome 2πR²; closed adds the πR² floor ⟹ 3πR².",
+              "Inventory: πR² disk, 4πR² wrap, ⁴⁄₃πR³ fill — keep them straight."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "volume-of-a-sphere",
+      "title": "Volume of a Sphere",
+      "concreteComparison": "Drop a snug-fitting ball into a cylindrical glass it exactly fits (touching bottom, lid-level, and sides): the ball claims exactly two-thirds of the glass's space, leaving one-third for water. Archimedes valued that 2:3 so much he had the sphere-in-cylinder diagram carved on his tombstone.",
+      "objective": "Use V = ⁴⁄₃πR³ for spheres, hemispheres, and comparison problems; see Cavalieri's bowl argument.",
+      "concept": [
+        "$V = \\frac{4}{3}\\pi R^3$. The famous derivation (Cavalieri): at every height, the sphere's slice area equals the slice of a cylinder-minus-double-cone. Both slice stacks match level by level, so the volumes match: $\\pi R^2 \\cdot 2R - 2 \\cdot \\frac13 \\pi R^2 \\cdot R = \\frac43 \\pi R^3$.",
+        "Archimedes' 2:3: the sphere fills exactly $\\frac{2}{3}$ of its snug cylinder ($\\frac{4/3 \\pi R^3}{2\\pi R^3} = \\frac23$). Surface AND volume both relate sphere to can by neat ratios — the tombstone theorem.",
+        "Scaling: volume grows with the CUBE. Double the radius: 8× the ice cream. Half-sphere (hemisphere): $\\frac23 \\pi R^3$."
+      ],
+      "keyIdea": "V = ⁴⁄₃πR³ — proved by slice-matching (Cavalieri); the sphere is exactly ⅔ of its snug cylinder.",
+      "facts": [
+        {
+          "title": "Sphere volume",
+          "latex": "V = \\tfrac{4}{3}\\pi R^3",
+          "explanation": "Cube the radius; four-thirds π."
+        },
+        {
+          "title": "Archimedes 2:3",
+          "latex": "V_{sphere} = \\tfrac{2}{3} V_{cyl}",
+          "explanation": "The snug can holds exactly 1.5 spheres."
+        },
+        {
+          "title": "Hemisphere",
+          "latex": "V = \\tfrac{2}{3}\\pi R^3",
+          "explanation": "Half the ball."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg53-we1",
+          "statement": "Find the volume of a sphere with radius $3$, and notice something about the number.",
+          "solution": "$V = \\frac43 \\pi \\cdot 27 = 36\\pi \\approx 113.1$. Fun coincidence: its SURFACE is also $36\\pi$ — the radius-3 sphere is the unique sphere where the two agree numerically.",
+          "check": [
+            "Rational(4,3)*pi*27 == 36*pi",
+            "4*pi*9 == 36*pi"
+          ]
+        },
+        {
+          "id": "sg53-we2",
+          "statement": "A sphere sits snugly in a cylinder (touching top, bottom, sides), $R = 3$. Find both volumes and their ratio.",
+          "solution": "Sphere: $36\\pi$. Cylinder: $\\pi \\cdot 9 \\cdot 6 = 54\\pi$. Ratio: $\\frac{36}{54} = \\frac{2}{3}$ — Archimedes' tombstone.",
+          "check": [
+            "Rational(4,3)*pi*27 == 36*pi",
+            "pi*9*6 == 54*pi",
+            "Rational(36, 54) == Rational(2, 3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Squaring instead of cubing (or using the volume 4/3 with R²).",
+          "correction": "Volume is 3D: $R^3$. The pairs are (4, square) for surface and (4/3, cube) for volume. A radius-10 sphere: surface $400\\pi$, volume $\\frac{4000\\pi}{3}$ — different by a factor of R/3.",
+          "authored": true
+        },
+        {
+          "text": "Thinking double radius = double volume.",
+          "correction": "Cubes: $2^3 = 8$×. One size up at the ice-cream stand is a much better deal than it looks — a 2-cm-bigger scoop can be double the ice cream.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg53-t1",
+          "statement": "Radius $6$: sphere volume?",
+          "solution": "$V = \\frac43\\pi \\cdot 216 = 288\\pi \\approx 904.8$.",
+          "check": [
+            "Rational(4,3)*pi*216 == 288*pi"
+          ]
+        },
+        {
+          "id": "sg53-t2",
+          "statement": "A sphere's volume is $\\frac{500\\pi}{3}$. Find its radius and surface area.",
+          "solution": "$\\frac43 R^3 = \\frac{500}{3}$ ⟹ $R^3 = 125$, $R = 5$. Surface: $100\\pi$.",
+          "check": [
+            "Rational(500, 4) == 125",
+            "125**Rational(1,3) == 5",
+            "4*pi*25 == 100*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The bowl trick",
+            "title": "Cavalieri proves the 4/3",
+            "body": "Compare a hemisphere ($R$) with a cylinder ($R$, height $R$) that has a cone drilled out apex-down. At height $y$: hemisphere slice $= \\pi(R^2 - y^2)$; drilled slice $= \\pi R^2 - \\pi y^2$. Equal at EVERY level ⟹ equal volumes: $\\pi R^3 - \\frac{\\pi R^3}{3} = \\frac{2\\pi R^3}{3}$ per hemisphere, so $\\frac{4\\pi R^3}{3}$ per sphere. The master triangle from lesson 1 supplied the slice areas."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Cubes in action",
+            "teach": "Step the radius: 1 → 2 multiplies volume by 8; 2 → 4 by another 8. Surface only ×4 each time — volume runs away from surface, which is why big animals overheat and big planets stay geologically hot inside.",
+            "config": {
+              "solid": "sphere",
+              "r": 3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The tombstone ratio",
+            "prompt": "A snug cylinder holds $81\\pi$. The sphere inside holds…",
+            "options": [
+              "$54\\pi$",
+              "$40.5\\pi$",
+              "$27\\pi$",
+              "$60.75\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Exactly $\\frac23$: $\\frac23 \\cdot 81\\pi = 54\\pi$. (Here $2\\pi R^3 = 81\\pi$ gives $R^3 = 40.5$ — not a nice R, but the RATIO doesn't care.)",
+            "check": [
+              "Rational(2,3)*81 == 54"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fill the ball",
+            "intro": "Cube first, then 4π/3.",
+            "examples": [
+              {
+                "prompt": "$R = 3$: volume?",
+                "steps": [
+                  "$R^3 = 27$.",
+                  "$V = \\frac43 \\cdot 27\\pi = 36\\pi$."
+                ],
+                "answer": "$36\\pi \\approx 113$",
+                "check": [
+                  "Rational(4,3)*27 == 36"
+                ]
+              },
+              {
+                "prompt": "Hemisphere bowl, $R = 6$: capacity?",
+                "steps": [
+                  "Full ball: $288\\pi$.",
+                  "Half: $144\\pi$."
+                ],
+                "answer": "$144\\pi \\approx 452$",
+                "check": [
+                  "Rational(2,3)*pi*216 == 144*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Scoops and planets",
+            "intro": "⁴⁄₃πR³; ratios by cubing the scale factor.",
+            "problems": [
+              {
+                "prompt": "$R = 2$: volume?",
+                "options": [
+                  "$\\dfrac{32\\pi}{3}$",
+                  "$16\\pi$",
+                  "$\\dfrac{16\\pi}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac43\\pi \\cdot 8 = \\frac{32\\pi}{3} \\approx 33.5$.",
+                "check": [
+                  "Rational(4,3)*pi*8 == Rational(32,3)*pi"
+                ]
+              },
+              {
+                "prompt": "Volume $288\\pi$: radius?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$R^3 = \\frac{3 \\cdot 288}{4} = 216$ ⟹ $R = 6$.",
+                "check": [
+                  "(Rational(3,4)*288)**Rational(1,3) == 6"
+                ]
+              },
+              {
+                "prompt": "One melon has 3× the radius of another. It holds ___ times the fruit.",
+                "options": [
+                  "$27$",
+                  "$9$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3^3 = 27$. (And only $9\\times$ the rind — big melons are better value by rind-to-fruit ratio.)",
+                "check": [
+                  "3**3 == 27"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The tombstone",
+            "body": "Archimedes asked for the sphere-in-cylinder figure on his grave — prouder of the 2:3 ratios than of his war machines or his π bounds. When Cicero was quaestor of Sicily in 75 BC (137 years after Archimedes died), he found the tomb near Syracuse's gates 'overgrown with brambles and thorns', recognizable exactly by the little sphere and cylinder — nearly the only story we have of an ancient mathematician's grave being visited like a monument."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Sphere volume",
+            "bullets": [
+              "V = ⁴⁄₃πR³; hemisphere ²⁄₃πR³.",
+              "Sphere = ⅔ of its snug can (surface AND that ratio: the tombstone theorem).",
+              "Cavalieri's bowl: sphere slices = cylinder-minus-cone slices at every height.",
+              "Scaling: R×k ⟹ V×k³. Cubes beat squares — always."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inscribed-and-circumscribed-solids",
+      "title": "Inscribed & Circumscribed Solids",
+      "concreteComparison": "A basketball in its box: the ball touches all six walls, so the box edge IS the ball's diameter — no measuring tape needed inside. But a ball wrapped AROUND a box (a hamster ball around a die) must reach the box's corners, and corner-reach is the space diagonal. Touching faces vs touching corners: two different diameters.",
+      "objective": "Relate spheres to cubes and cylinders they inscribe in or circumscribe around: which length equals 2R, and why.",
+      "concept": [
+        "**Sphere inscribed in a cube** (ball in box): it touches the six face centers, so $2R = a$ — the EDGE. Ratios follow: ball fills $\\frac{4/3 \\pi (a/2)^3}{a^3} = \\frac{\\pi}{6} \\approx 52\\%$ of the box.",
+        "**Sphere circumscribed around a cube** (cube in ball): it passes through the 8 corners, so $2R = a\\sqrt{3}$ — the SPACE DIAGONAL (Unit 2 pays off). The rule of thumb: inscribed touches faces (use the edge/height); circumscribed touches vertices (use the diagonal).",
+        "Same logic for cylinders: sphere in a snug cylinder has $2R = h = 2r_{cyl}$; cylinder inscribed in a sphere has its axial-rectangle DIAGONAL as the sphere's diameter: $(2r)^2 + h^2 = (2R)^2$."
+      ],
+      "keyIdea": "Inscribed sphere touches faces: 2R = edge/height. Circumscribed sphere reaches corners: 2R = space diagonal (cube) or axial diagonal (cylinder).",
+      "facts": [
+        {
+          "title": "Ball in a cube",
+          "latex": "2R = a",
+          "explanation": "Touches face centers — edge = diameter."
+        },
+        {
+          "title": "Cube in a ball",
+          "latex": "2R = a\\sqrt{3}",
+          "explanation": "Reaches the corners — space diagonal = diameter."
+        },
+        {
+          "title": "Cylinder in a ball",
+          "latex": "(2r)^2 + h^2 = (2R)^2",
+          "explanation": "The axial rectangle's diagonal spans the sphere."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg54-we1",
+          "statement": "A cube has edge $6$. Find the radii of its inscribed and circumscribed spheres, and the ratio of the two spheres' volumes.",
+          "solution": "Inscribed: $R_{in} = 3$. Circumscribed: $R_{out} = \\frac{6\\sqrt3}{2} = 3\\sqrt{3}$. Radius ratio $\\sqrt3$ ⟹ volume ratio $(\\sqrt3)^3 = 3\\sqrt{3} \\approx 5.2$ — the corner-touching ball is over five times bigger.",
+          "check": [
+            "6/2 == 3",
+            "6*sqrt(3)/2 == 3*sqrt(3)",
+            "(sqrt(3))**3 == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "sg54-we2",
+          "statement": "A cylinder with $r = 3$ and $h = 8$ is inscribed in a sphere. Find the sphere's radius.",
+          "solution": "Axial rectangle $6 \\times 8$, diagonal $= \\sqrt{36 + 64} = 10 = 2R$ ⟹ $R = 5$. The 6-8-10 triangle strikes again.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10",
+            "10/2 == 5"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the edge for a CIRCUMSCRIBED sphere (or the diagonal for an inscribed one).",
+          "correction": "Ask what the sphere touches. Faces (inscribed) ⟹ shortest across: the edge. Vertices (circumscribed) ⟹ longest across: the space diagonal. Touch determines the diameter.",
+          "authored": true
+        },
+        {
+          "text": "For a cylinder in a sphere, setting 2R = h or 2R = 2r alone.",
+          "correction": "The sphere must reach the RIM of both lids — the farthest points, at the axial rectangle's corners. Both dimensions enter: $(2r)^2 + h^2 = (2R)^2$. Only the degenerate cases collapse to one dimension.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg54-t1",
+          "statement": "A sphere of radius $2$ fits snugly inside a cube. Find the cube's volume and the fraction the ball occupies (exactly).",
+          "solution": "$a = 2R = 4$: cube $= 64$. Ball: $\\frac{32\\pi}{3}$. Fraction: $\\frac{32\\pi/3}{64} = \\frac{\\pi}{6} \\approx 0.524$.",
+          "check": [
+            "4**3 == 64",
+            "Rational(4,3)*pi*8 == Rational(32,3)*pi",
+            "simplify(Rational(32,3)*pi/64 - pi/6) == 0"
+          ]
+        },
+        {
+          "id": "sg54-t2",
+          "statement": "A cube is inscribed in a sphere of radius $3\\sqrt{3}$. Find the cube's edge and volume.",
+          "solution": "$a\\sqrt3 = 2R = 6\\sqrt3$ ⟹ $a = 6$; volume $216$.",
+          "check": [
+            "6*sqrt(3)/sqrt(3) == 6",
+            "6**3 == 216"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Touch test",
+            "title": "Faces or corners?",
+            "body": "Everything hinges on what the sphere touches. INSCRIBED in a cube: kisses the 6 face centers — the tightest crossing, $2R = a$. CIRCUMSCRIBED around a cube: passes through the 8 corners — the widest crossing, $2R = a\\sqrt3$. One cube, two spheres, and the gap between them is exactly the gap between edge and space diagonal."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cross-section",
+            "title": "See it flat: the inscribed ball",
+            "body": "Cut the cube-with-ball through the middle, parallel to a face: a square of side $a = 6$ with its inscribed circle, touching all four sides at their midpoints — $2R = 6$, drawn true below. Cut through the DIAGONAL plane instead and the same ball no longer touches the corners: that's the room the circumscribed sphere claims.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6,
+                    "y": 6,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0,
+                    "y": 6,
+                    "label": ""
+                  },
+                  {
+                    "id": "O",
+                    "x": 3,
+                    "y": 3,
+                    "labelDx": -4,
+                    "labelDy": 12
+                  },
+                  {
+                    "id": "M",
+                    "x": 6,
+                    "y": 3,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "M",
+                    "label": "R = 3",
+                    "color": "accent"
+                  }
+                ],
+                "hidePoints": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "M"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Basketball in a box",
+            "prompt": "A ball of radius $R = 12$ cm ships in the smallest possible cubical box. The box's edge is…",
+            "options": [
+              "$24$ cm",
+              "$12$ cm",
+              "$24\\sqrt{3}$ cm",
+              "$12\\sqrt{3}$ cm"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inscribed ball: edge = diameter = $24$. The $\\sqrt3$ versions belong to the OTHER configuration (cube inside ball) — corners, not faces.",
+            "check": [
+              "2*12 == 24"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both directions",
+            "intro": "Touch faces: edge. Touch corners: diagonal.",
+            "examples": [
+              {
+                "prompt": "Cube edge $6$: both sphere radii?",
+                "steps": [
+                  "In: $R = 3$ (face centers).",
+                  "Out: $R = 3\\sqrt3$ (corners, via $6\\sqrt3$ diagonal)."
+                ],
+                "answer": "$3$ and $3\\sqrt{3}$",
+                "check": [
+                  "sqrt(3*6**2)/2 == 3*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Cylinder $r = 3$, $h = 8$ in a sphere: $R$?",
+                "steps": [
+                  "Axial diagonal: $\\sqrt{6^2 + 8^2} = 10$.",
+                  "$R = 5$."
+                ],
+                "answer": "$R = 5$",
+                "check": [
+                  "sqrt(6**2 + 8**2)/2 == 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Snug fits",
+            "intro": "Name what's touching before you write 2R.",
+            "problems": [
+              {
+                "prompt": "Sphere inscribed in a cube of edge $10$: sphere volume?",
+                "options": [
+                  "$\\dfrac{500\\pi}{3}$",
+                  "$\\dfrac{4000\\pi}{3}$",
+                  "$500\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$R = 5$: $V = \\frac43\\pi \\cdot 125 = \\frac{500\\pi}{3}$.",
+                "check": [
+                  "Rational(4,3)*pi*125 == Rational(500,3)*pi"
+                ]
+              },
+              {
+                "prompt": "Cube inscribed in a sphere of radius $R = \\sqrt{3}$: cube edge?",
+                "options": [
+                  "$2$",
+                  "$\\sqrt{3}$",
+                  "$2\\sqrt{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a\\sqrt3 = 2\\sqrt3$ ⟹ $a = 2$.",
+                "check": [
+                  "2*sqrt(3)/sqrt(3) == 2"
+                ]
+              },
+              {
+                "prompt": "A snug cylinder around a sphere of radius $3$ has volume…",
+                "options": [
+                  "$54\\pi$",
+                  "$36\\pi$",
+                  "$27\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 3$, $h = 6$: $V = \\pi \\cdot 9 \\cdot 6 = 54\\pi$. (And the sphere inside: $36\\pi = \\frac23 \\cdot 54\\pi$ — the tombstone again.)",
+                "check": [
+                  "pi*9*6 == 54*pi",
+                  "Rational(2,3)*54 == 36"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "52% is the packing ceiling (for boxes)",
+            "body": "A ball in its snug box wastes 48% of the space (π/6 ≈ 52% filled). Stack oranges the clever grocery way instead and you reach π/√18 ≈ 74% — Kepler conjectured in 1611 that nothing beats it, and the proof (Hales, 1998–2014) needed 300 pages plus a computer verification project. Solid geometry still has research-grade problems about... stacking fruit."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Inscribed & circumscribed",
+            "bullets": [
+              "Ball in cube: 2R = a (faces). Cube in ball: 2R = a√3 (corners).",
+              "Cylinder in ball: (2r)² + h² = (2R)² — the axial diagonal spans it.",
+              "Ball in snug can: 2R = h = 2r_cyl, and V ratio 2:3, S_lat match.",
+              "Always ask: does the sphere kiss faces or reach vertices?"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg5-pr-1",
+      "statement": "A sphere of radius $17$ is cut by a plane $15$ from the center. Find the section's radius and area.",
+      "solution": "$r = \\sqrt{289 - 225} = 8$ (8-15-17); area $64\\pi \\approx 201$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "F",
+            "x": 0,
+            "y": 3.75,
+            "labelDx": -10,
+            "labelDy": -4
+          },
+          {
+            "id": "P",
+            "x": 2,
+            "y": 3.75,
+            "labelDx": 10,
+            "labelDy": -4
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "F",
+            "label": "15",
+            "color": "blue"
+          },
+          {
+            "kind": "segment",
+            "from": "F",
+            "to": "P",
+            "label": "?",
+            "color": "accent"
+          },
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "P",
+            "label": "17"
+          },
+          {
+            "kind": "angle",
+            "at": "F",
+            "from": "P",
+            "to": "O",
+            "right": true
+          }
+        ]
+      },
+      "check": [
+        "sqrt(17**2 - 15**2) == 8",
+        "pi*8**2 == 64*pi"
+      ]
+    },
+    {
+      "id": "sg5-pr-2",
+      "statement": "Find the surface area and volume of a sphere with radius $6$.",
+      "solution": "$S = 4\\pi \\cdot 36 = 144\\pi$; $V = \\frac43\\pi \\cdot 216 = 288\\pi$.",
+      "check": [
+        "4*pi*36 == 144*pi",
+        "Rational(4,3)*pi*216 == 288*pi"
+      ]
+    },
+    {
+      "id": "sg5-pr-3",
+      "statement": "A sphere's great circle has circumference $10\\pi$. Find the sphere's surface area and volume.",
+      "solution": "$2\\pi R = 10\\pi$ ⟹ $R = 5$. $S = 100\\pi$; $V = \\frac{500\\pi}{3} \\approx 523.6$.",
+      "check": [
+        "10*pi/(2*pi) == 5",
+        "4*pi*25 == 100*pi",
+        "Rational(4,3)*pi*125 == Rational(500,3)*pi"
+      ]
+    },
+    {
+      "id": "sg5-pr-4",
+      "statement": "A closed hemispherical dome has radius $9$. Find its total surface area (dome + floor) and its volume.",
+      "solution": "Surface: $2\\pi \\cdot 81 + \\pi \\cdot 81 = 243\\pi$. Volume: $\\frac23\\pi \\cdot 729 = 486\\pi$.",
+      "check": [
+        "2*pi*81 + pi*81 == 243*pi",
+        "Rational(2,3)*pi*729 == 486*pi"
+      ]
+    },
+    {
+      "id": "sg5-pr-5",
+      "statement": "A cube of edge $4$ has a sphere inscribed in it and another circumscribed about it. Find both radii and both volumes.",
+      "solution": "In: $R = 2$, $V = \\frac{32\\pi}{3}$. Out: $R = 2\\sqrt{3}$, $V = \\frac43\\pi(2\\sqrt3)^3 = 32\\sqrt{3}\\pi \\approx 174$.",
+      "check": [
+        "4/2 == 2",
+        "4*sqrt(3)/2 == 2*sqrt(3)",
+        "Rational(4,3)*pi*8 == Rational(32,3)*pi",
+        "simplify(Rational(4,3)*pi*(2*sqrt(3))**3 - 32*sqrt(3)*pi) == 0"
+      ]
+    },
+    {
+      "id": "sg5-pr-6",
+      "statement": "A cylinder of radius $5$ and height $24$ is inscribed in a sphere. Find the sphere's radius and volume.",
+      "solution": "Axial diagonal: $\\sqrt{10^2 + 24^2} = 26$ ⟹ $R = 13$. $V = \\frac43\\pi \\cdot 2197 = \\frac{8788\\pi}{3} \\approx 9202$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "B",
+            "x": 2.5,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "C",
+            "x": 2.5,
+            "y": 6,
+            "label": ""
+          },
+          {
+            "id": "D",
+            "x": 0,
+            "y": 6,
+            "label": ""
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "B",
+            "label": "2r = 10"
+          },
+          {
+            "kind": "segment",
+            "from": "B",
+            "to": "C",
+            "label": "24"
+          },
+          {
+            "kind": "segment",
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "kind": "segment",
+            "from": "D",
+            "to": "A"
+          },
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "C",
+            "label": "2R",
+            "dashed": true,
+            "color": "accent"
+          }
+        ],
+        "hidePoints": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      },
+      "check": [
+        "sqrt(10**2 + 24**2) == 26",
+        "Rational(4,3)*pi*13**3 == Rational(8788,3)*pi"
+      ]
+    },
+    {
+      "id": "sg5-pr-7",
+      "statement": "Earth-style problem: a ball of radius $R = 6$ is cut at distance $d$ so the section has area $27\\pi$. Find $d$.",
+      "solution": "$\\pi r^2 = 27\\pi$ ⟹ $r = 3\\sqrt{3}$. $d = \\sqrt{36 - 27} = 3$. (A 30-60-90 hiding: $d = R/2$ exactly.)",
+      "check": [
+        "sqrt(27) == 3*sqrt(3)",
+        "sqrt(6**2 - 27) == 3"
+      ]
+    },
+    {
+      "id": "sg5-pr-8",
+      "statement": "An ice-cream shop doubles the radius of its spherical scoop from $3$ cm to $6$ cm and triples the price. Better or worse deal per cm³?",
+      "solution": "Volume goes $36\\pi \\to 288\\pi$: 8× the ice cream for 3× the price — much better per cm³ (price per volume falls to $\\frac38$ of before).",
+      "check": [
+        "Rational(4,3)*pi*27 == 36*pi",
+        "Rational(4,3)*pi*216 == 288*pi",
+        "Rational(288, 36) == 8"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg5-ty-1",
+      "statement": "Sphere radius $4$: surface area and volume?",
+      "solution": "$S = 64\\pi$; $V = \\frac{256\\pi}{3} \\approx 268.1$.",
+      "check": [
+        "4*pi*16 == 64*pi",
+        "Rational(4,3)*pi*64 == Rational(256,3)*pi"
+      ]
+    },
+    {
+      "id": "sg5-ty-2",
+      "statement": "A plane cuts a radius-$25$ sphere at distance $7$. Section radius?",
+      "solution": "$r = \\sqrt{625 - 49} = 24$ (7-24-25 triple).",
+      "check": [
+        "sqrt(25**2 - 7**2) == 24"
+      ]
+    },
+    {
+      "id": "sg5-ty-3",
+      "statement": "A sphere's surface is $144\\pi$. Find its volume.",
+      "solution": "$R = 6$; $V = 288\\pi$.",
+      "check": [
+        "sqrt(144/4) == 6",
+        "Rational(4,3)*pi*216 == 288*pi"
+      ]
+    },
+    {
+      "id": "sg5-ty-4",
+      "statement": "What fraction of its snug cylindrical can does a ball fill? And of its snug cubical box?",
+      "solution": "Can: exactly $\\frac{2}{3}$. Box: $\\frac{\\pi}{6} \\approx 52.4\\%$. The can wastes half as much space — cylinders hug better.",
+      "check": [
+        "Rational(2,3) > Rational(1,2)",
+        "pi/6 < Rational(2,3)"
+      ]
+    },
+    {
+      "id": "sg5-ty-5",
+      "statement": "A cube is inscribed in a sphere of radius $6$. Find the cube's edge and volume.",
+      "solution": "$a = \\frac{2R}{\\sqrt3} = \\frac{12}{\\sqrt3} = 4\\sqrt{3}$; $V = (4\\sqrt3)^3 = 192\\sqrt{3} \\approx 332.6$.",
+      "check": [
+        "simplify(12/sqrt(3) - 4*sqrt(3)) == 0",
+        "simplify((4*sqrt(3))**3 - 192*sqrt(3)) == 0"
+      ]
+    },
+    {
+      "id": "sg5-ty-6",
+      "statement": "A hemisphere and a cone share radius $R = 3$ and the cone has height $3$. Which holds more?",
+      "solution": "Hemisphere: $\\frac23\\pi \\cdot 27 = 18\\pi$. Cone: $\\frac13\\pi \\cdot 9 \\cdot 3 = 9\\pi$. The hemisphere holds exactly TWICE the cone — a preview of Cavalieri's bowl argument.",
+      "check": [
+        "Rational(2,3)*pi*27 == 18*pi",
+        "Rational(1,3)*pi*9*3 == 9*pi",
+        "Rational(18, 9) == 2"
+      ]
+    }
+  ]
+}

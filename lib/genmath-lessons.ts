@@ -203,6 +203,12 @@ import trigCircle from "@/data/genmath/trigonometry/radians-and-the-unit-circle.
 import trigGraphs from "@/data/genmath/trigonometry/graphs-of-trig-functions.json";
 import trigIdent from "@/data/genmath/trigonometry/identities-and-equations.json";
 import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json";
+import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
+import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
+import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
+import sgCylCones from "@/data/genmath/solid-geometry/cylinders-and-cones.json";
+import sgSpheres from "@/data/genmath/solid-geometry/spheres.json";
+import sgSections from "@/data/genmath/solid-geometry/cross-sections-and-similar-solids.json";
 
 const grade6Topics: GenMathTopic[] = [
   ratiosAndRates as GenMathTopic,
@@ -1553,6 +1559,92 @@ export function getTrigLesson(
 }
 
 // ---------------------------------------------------------------------------
+// Solid Geometry course — /math/solid-geometry
+// Geometry 2: stereometry for ЭЕШ. Lines & planes in space, the prism/pyramid/
+// cylinder/cone/sphere families, cross-sections, similar-solid scaling, and
+// the extract-the-flat-triangle exam strategy. Figure-dense by design: oblique
+// wireframes with dashed hidden edges on the 3D views, true-shape extracted
+// right triangles for every computation, plus the solid3d / solidNet /
+// arcSector interactive widgets.
+// ---------------------------------------------------------------------------
+
+export const SOLIDGEO_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "lines-and-planes-in-space",
+    title: "Lines & Planes in Space",
+    blurb: "The rules of 3D: what determines a plane, skew lines, perpendicularity, and the two angles every exam measures.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "prisms-and-the-cube",
+    title: "Prisms & the Cube",
+    blurb: "The box family: prism anatomy, the cube's √2 and √3 diagonals, and surface & volume you can see face by face.",
+    buildsOn: "Unit 1's perpendicular-and-oblique triangle.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "pyramids",
+    title: "Pyramids",
+    blurb: "Height, apothem, slant, edge — the two Pythagorean triangles inside every pyramid, the ⅓ in the volume, and the frustum.",
+    buildsOn: "Prisms from Unit 2 (a pyramid is a prism's third).",
+    live: true,
+  },
+  {
+    unit: 4,
+    slug: "cylinders-and-cones",
+    title: "Cylinders & Cones",
+    blurb: "The round solids you can unroll: the cylinder's rectangle label, the cone's pie-slice development, and both volumes.",
+    buildsOn: "Prisms and pyramids — same formulas, circular bases.",
+    live: true,
+  },
+  {
+    unit: 5,
+    slug: "spheres",
+    title: "Spheres",
+    blurb: "Every slice a circle (r² = R² − d²), the surface of exactly four great circles, and Archimedes' tombstone 2:3.",
+    buildsOn: "The cylinder and cone from Unit 4.",
+    live: true,
+  },
+  {
+    unit: 6,
+    slug: "cross-sections-and-similar-solids",
+    title: "Cross-Sections & Similar Solids",
+    blurb: "Predict any cut, scale with k / k² / k³, glue and drill combined solids — and the five-triangle exam strategy.",
+    buildsOn: "All five solid families.",
+    live: true,
+  },
+];
+
+const solidGeoUnits: CourseUnit[] = [
+  sgPlanes as unknown as CourseUnit,
+  sgPrisms as unknown as CourseUnit,
+  sgPyramids as unknown as CourseUnit,
+  sgCylCones as unknown as CourseUnit,
+  sgSpheres as unknown as CourseUnit,
+  sgSections as unknown as CourseUnit,
+];
+
+export function getSolidGeoSpine(): GeometrySpineEntry[] {
+  return SOLIDGEO_SPINE;
+}
+
+export function getSolidGeoUnit(unitSlug: string): CourseUnit | null {
+  return solidGeoUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getSolidGeoLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getSolidGeoUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Course size — total lessons per performance context. The DENOMINATOR of the
 // dashboard's per-course progress bar. Every authored lesson carries a
 // tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
@@ -1583,6 +1675,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
   "course:trigonometry": { spine: getTrigSpine, unit: getTrigUnit },
+  "course:solid-geometry": { spine: getSolidGeoSpine, unit: getSolidGeoUnit },
 };
 
 export function courseTotalLessons(context: string): number | null {

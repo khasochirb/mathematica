@@ -55,6 +55,16 @@ const COURSES: {
     isNew: true,
   },
   {
+    href: "/math/solid-geometry",
+    title: "Solid Geometry",
+    blurb:
+      "Geometry 2, off the page: lines and planes in space, prisms to spheres, cross-sections, and the k-k²-k³ scaling law — every 3D problem reduced to a flat triangle you can see.",
+    units: 6,
+    level: 2,
+    exams: ["ЭЕШ", "SAT", "IB"],
+    isNew: true,
+  },
+  {
     href: "/math/algebra-2",
     title: "Algebra 2",
     blurb:

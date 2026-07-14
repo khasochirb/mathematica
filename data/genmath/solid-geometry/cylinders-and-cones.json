@@ -1,0 +1,1355 @@
+{
+  "slug": "cylinders-and-cones",
+  "title": "Cylinders & Cones",
+  "unit": 4,
+  "status": "published",
+  "blurb": "The round solids you can unroll: the cylinder's secret rectangle, the cone's secret pie-slice, the 3-4-5 triangle hiding in every ice-cream cone, and the truncated cone in your coffee cup.",
+  "buildsOn": "Circle area & circumference; Unit 2's prisms (a cylinder is a circular prism) and Unit 3's pyramids (a cone is a circular pyramid).",
+  "lessons": [
+    {
+      "slug": "the-cylinder",
+      "title": "The Cylinder",
+      "concreteComparison": "Peel the label off a soup can in one piece and flatten it: a perfect rectangle. Its height is the can's height; its width is the distance AROUND the can — the circumference. Every cylinder is a rectangle rolled up plus two circular lids.",
+      "objective": "Know the cylinder's anatomy (axis, radius, height, axial section) and compute its surface area from the unrolled label.",
+      "concept": [
+        "A **cylinder** is a circle slid straight up: two parallel circular bases of radius $r$, connected by a curved lateral wall of height $h$. It's the prism idea with a circle for a base — the **axis** joins the two centers, and for a right cylinder it's perpendicular to the bases.",
+        "Unroll the wall: a rectangle of width $2\\pi r$ (the circumference, laid flat) and height $h$. So $S_{lat} = 2\\pi r h$ — the label's area. Total surface adds two lids: $S = 2\\pi r h + 2\\pi r^2 = 2\\pi r(h + r)$.",
+        "Slice a cylinder through its axis and the cross-section (**axial section**) is a rectangle of width $2r$ and height $h$. Slice perpendicular to the axis: always the same circle. These two views carry all the cylinder's measurements."
+      ],
+      "keyIdea": "Cylinder = rolled rectangle + 2 lids: S_lat = 2πrh, S = 2πr(h + r). Axial section: a 2r × h rectangle.",
+      "facts": [
+        {
+          "title": "Lateral surface",
+          "latex": "S_{lat} = 2\\pi r h",
+          "explanation": "The label: circumference × height."
+        },
+        {
+          "title": "Total surface",
+          "latex": "S = 2\\pi r(h + r)",
+          "explanation": "Label + two circular lids."
+        },
+        {
+          "title": "Axial section",
+          "latex": "2r \\times h \\text{ rectangle}",
+          "explanation": "The cut through the axis."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg41-we1",
+          "statement": "A cylinder has radius $3$ and height $5$. Find its lateral and total surface area, exactly.",
+          "solution": "$S_{lat} = 2\\pi \\cdot 3 \\cdot 5 = 30\\pi$. Total: $30\\pi + 2\\pi \\cdot 9 = 48\\pi \\approx 150.8$.",
+          "check": [
+            "2*pi*3*5 == 30*pi",
+            "30*pi + 2*pi*3**2 == 48*pi"
+          ]
+        },
+        {
+          "id": "sg41-we2",
+          "statement": "A cylinder's axial section is a SQUARE of area $36$. Find the cylinder's total surface area.",
+          "solution": "Square side $6$: so $2r = 6$ ($r = 3$) and $h = 6$. $S = 2\\pi r(h + r) = 2\\pi \\cdot 3 \\cdot 9 = 54\\pi$. (A cylinder with square axial section is called equilateral — it's as tall as it is wide.)",
+          "check": [
+            "sqrt(36) == 6",
+            "2*pi*3*(6 + 3) == 54*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using πr² (area) instead of 2πr (circumference) for the unrolled label's width.",
+          "correction": "The label wraps around the RIM, so its width is the rim's length $2\\pi r$. Area formulas answer 'how much fits inside the circle'; the label wants 'how far around'.",
+          "authored": true
+        },
+        {
+          "text": "Adding one lid instead of two (or two when the tube is open).",
+          "correction": "Read the container: sealed can = 2 lids, cup = 1, pipe = 0. The formula $2\\pi r(h+r)$ is the SEALED version — adjust consciously.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg41-t1",
+          "statement": "Radius $4$, height $6$: lateral and total surface?",
+          "solution": "$S_{lat} = 2\\pi \\cdot 4 \\cdot 6 = 48\\pi$; total $= 48\\pi + 32\\pi = 80\\pi \\approx 251.3$.",
+          "check": [
+            "2*pi*4*6 == 48*pi",
+            "48*pi + 2*pi*16 == 80*pi"
+          ]
+        },
+        {
+          "id": "sg41-t2",
+          "statement": "A can's label (lateral surface only) has area $20\\pi$ and the can's height is $5$. Find the radius and the axial-section area.",
+          "solution": "$2\\pi r \\cdot 5 = 20\\pi$ ⟹ $r = 2$. Axial section: $2r \\times h = 4 \\times 5 = 20$ — no π; it's a flat rectangle.",
+          "check": [
+            "20*pi/(2*pi*5) == 2",
+            "4*5 == 20"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Anatomy",
+            "title": "A circle, slid straight up",
+            "body": "Radius $r$, height $h$, axis joining the two centers. The cylinder inherits everything from the prism chapter — same slide construction, same 'every slice is the base' property — with the circle replacing the polygon. Rounder, but not stranger."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Stretch the can",
+            "teach": "Step $r$ and $h$ and watch surface and volume respond as exact multiples of π. Notice the two ways to grow: taller adds label ($2\\pi r h$ term); wider adds label AND lids ($r$ is in every term) — width is more expensive.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "solidNet",
+            "eyebrow": "Unroll",
+            "title": "The label is a rectangle",
+            "teach": "Unroll: one rectangle ($2\\pi r$ wide, $h$ tall) + two circular lids. The rectangle's width being the CIRCUMFERENCE — not the diameter, not the area — is the entire secret of cylinder surface area.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Label math",
+            "prompt": "Radius $3$, height $5$: the unrolled label is a rectangle measuring…",
+            "options": [
+              "$6\\pi \\times 5$",
+              "$9\\pi \\times 5$",
+              "$3 \\times 5$",
+              "$6 \\times 5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Width = circumference $= 2\\pi r = 6\\pi \\approx 18.8$; height $5$. Area $30\\pi$ ✓. $9\\pi$ is the base AREA — a different question entirely.",
+            "check": [
+              "2*pi*3 == 6*pi",
+              "6*pi*5 == 30*pi"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two views",
+            "title": "Axial section: the cylinder's ID card",
+            "body": "Cut straight down through the axis: a rectangle, $2r$ wide and $h$ tall (drawn true below for $r = 3$, $h = 5$). Every classic cylinder problem lives in this rectangle — its diagonal $\\sqrt{(2r)^2 + h^2} = \\sqrt{61}$ is the longest segment inside the cylinder, and 'the axial section is a square' translates instantly to $h = 2r$.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6,
+                    "y": 5,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0,
+                    "y": 5,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "label": "2r = 6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "h = 5"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "dashed": true,
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "B",
+                    "from": "A",
+                    "to": "C",
+                    "right": true
+                  }
+                ],
+                "hidePoints": [
+                  "A",
+                  "B",
+                  "C",
+                  "D"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cans and squares",
+            "intro": "Everything reads off r and h — or off the axial rectangle.",
+            "examples": [
+              {
+                "prompt": "$r = 3$, $h = 5$: total surface?",
+                "steps": [
+                  "Label: $2\\pi \\cdot 3 \\cdot 5 = 30\\pi$.",
+                  "Lids: $2 \\cdot 9\\pi$; total $48\\pi$."
+                ],
+                "answer": "$48\\pi \\approx 150.8$",
+                "check": [
+                  "2*pi*3*(5 + 3) == 48*pi"
+                ]
+              },
+              {
+                "prompt": "Axial section is a square of side $6$: total surface?",
+                "steps": [
+                  "$2r = 6, h = 6$: $r = 3$.",
+                  "$S = 2\\pi \\cdot 3 \\cdot 9 = 54\\pi$."
+                ],
+                "answer": "$54\\pi \\approx 169.6$",
+                "check": [
+                  "2*pi*3*(6 + 3) == 54*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Roll and unroll",
+            "intro": "Label width = 2πr. Count your lids.",
+            "problems": [
+              {
+                "prompt": "$r = 2$, $h = 7$: lateral surface?",
+                "options": [
+                  "$28\\pi$",
+                  "$14\\pi$",
+                  "$36\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\pi \\cdot 2 \\cdot 7 = 28\\pi$.",
+                "check": [
+                  "2*pi*2*7 == 28*pi"
+                ]
+              },
+              {
+                "prompt": "An OPEN-TOP cylindrical cup, $r = 3$, $h = 4$: material needed?",
+                "options": [
+                  "$33\\pi$",
+                  "$42\\pi$",
+                  "$24\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Wall $24\\pi$ + bottom $9\\pi$ = $33\\pi$. One lid only — you drink through the missing one.",
+                "check": [
+                  "2*pi*3*4 + pi*9 == 33*pi"
+                ]
+              },
+              {
+                "prompt": "The longest rod inside a cylinder with $r = 3$, $h = 8$ has length…",
+                "options": [
+                  "$10$",
+                  "$8$",
+                  "$\\sqrt{73}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The axial rectangle's diagonal: $\\sqrt{6^2 + 8^2} = 10$ — the 6-8-10 triple lying inside the can.",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The cylinder",
+            "bullets": [
+              "Label: 2πr × h rectangle ⟹ S_lat = 2πrh; sealed total 2πr(h+r).",
+              "Axial section: 2r × h rectangle — diagonal = longest inner segment.",
+              "'Equilateral cylinder' = square axial section = h equals 2r.",
+              "Count lids by container type: can 2, cup 1, pipe 0."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "volume-of-cylinders",
+      "title": "Volume of Cylinders",
+      "concreteComparison": "A stack of 100 identical coins is a cylinder, and its volume is obvious: one coin's area times the stack's height. Push the stack into a lean — same coins, same volume. Cavalieri already taught us this; the circle just joins the club.",
+      "objective": "Compute cylinder volumes with V = πr²h, including leaning (oblique) cylinders, and solve capacity problems.",
+      "concept": [
+        "Cylinder volume = slice area × height: $V = \\pi r^2 h$. The prism formula $V = Bh$ with a circular base — the coin stack says it all.",
+        "Cavalieri again: an oblique cylinder (leaning stack) holds exactly as much as the right one of the same TRUE height. And doubling dimensions is asymmetric: doubling $h$ doubles $V$; doubling $r$ QUADRUPLES it ($r$ is squared). Wide beats tall.",
+        "Capacity in real units: $1$ liter $= 1000$ cm³. A can with $r = 3$ cm, $h = 10$ cm holds $90\\pi \\approx 283$ cm³ — about $0.28$ L. Always finish word problems in the units the question asked."
+      ],
+      "keyIdea": "V = πr²h (slice × height). Doubling r quadruples V; doubling h only doubles it. Oblique cylinders: same formula, TRUE height.",
+      "facts": [
+        {
+          "title": "Volume",
+          "latex": "V = \\pi r^2 h",
+          "explanation": "Circle slice × stack height."
+        },
+        {
+          "title": "Scaling",
+          "latex": "r \\to 2r \\Rightarrow V \\to 4V",
+          "explanation": "The radius is squared; height isn't."
+        },
+        {
+          "title": "Capacity",
+          "latex": "1 \\text{ L} = 1000 \\text{ cm}^3",
+          "explanation": "Volume answers usually want real units."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg42-we1",
+          "statement": "Radius $3$, height $10$: find the volume exactly and to one decimal.",
+          "solution": "$V = \\pi \\cdot 9 \\cdot 10 = 90\\pi \\approx 282.7$.",
+          "check": [
+            "pi*3**2*10 == 90*pi",
+            "Abs(90*pi - 282.7) < 1"
+          ]
+        },
+        {
+          "id": "sg42-we2",
+          "statement": "Two cans: A has $r = 4, h = 5$; B has $r = 5, h = 4$ (dimensions swapped). Which holds more, and by how much?",
+          "solution": "A: $\\pi \\cdot 16 \\cdot 5 = 80\\pi$. B: $\\pi \\cdot 25 \\cdot 4 = 100\\pi$. B wins by $20\\pi \\approx 62.8$ — the radius carries a square, so giving the bigger number to $r$ pays more. Wide beats tall.",
+          "check": [
+            "pi*4**2*5 == 80*pi",
+            "pi*5**2*4 == 100*pi",
+            "100*pi - 80*pi == 20*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the diameter as r.",
+          "correction": "Problems love announcing diameters. $V = \\pi r^2 h$ wants the radius — halve first. A diameter-for-radius slip inflates volume by 4×, a big miss.",
+          "authored": true
+        },
+        {
+          "text": "Thinking doubling any dimension doubles the volume.",
+          "correction": "Only $h$ scales linearly. $r$ enters squared: double radius = quadruple volume. That's why a 'small' increase in cup width holds so much more coffee.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg42-t1",
+          "statement": "Diameter $8$, height $7$: volume?",
+          "solution": "$r = 4$: $V = \\pi \\cdot 16 \\cdot 7 = 112\\pi \\approx 351.9$.",
+          "check": [
+            "8/2 == 4",
+            "pi*4**2*7 == 112*pi"
+          ]
+        },
+        {
+          "id": "sg42-t2",
+          "statement": "A cylindrical tank of radius $2$ m must hold $36\\pi$ m³. How tall must it be? And if the radius were doubled, what height would suffice?",
+          "solution": "$h = \\frac{36\\pi}{\\pi \\cdot 4} = 9$ m. Doubled radius ($r = 4$): $h = \\frac{36\\pi}{16\\pi} = \\frac{9}{4} = 2.25$ m — a quarter of the height, because the base quadrupled.",
+          "check": [
+            "36*pi/(pi*2**2) == 9",
+            "36*pi/(pi*4**2) == Rational(9, 4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Coin stack",
+            "title": "V = πr²h, by stacking",
+            "body": "One coin: area $\\pi r^2$. Stack of height $h$: volume $\\pi r^2 h$. That's the whole derivation — the cylinder is the prism family's roundest member, and it obeys the family rule $V = Bh$."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Wide beats tall",
+            "teach": "Try this experiment with the steppers: from $r=3, h=5$, first add 1 to the height, then instead add 1 to the radius. Compare the volume jumps — the radius move wins big, because $r$ is squared in $\\pi r^2 h$.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The barista's secret",
+            "prompt": "A cup's radius grows from $3$ to $6$ (height fixed). The volume…",
+            "options": [
+              "quadruples",
+              "doubles",
+              "grows 8×",
+              "grows by π"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V \\propto r^2$: $(6/3)^2 = 4$. Double radius, quadruple coffee — while doubling the HEIGHT would merely double it.",
+            "check": [
+              "(6/3)**2 == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Leaning towers",
+            "title": "Oblique cylinders: Cavalieri's encore",
+            "body": "Push the coin stack sideways: an oblique cylinder. Every coin keeps its area; the pile keeps its (vertical) height; the volume is untouched: $V = \\pi r^2 h$ with $h$ the TRUE height. If a problem gives the slanted side length $\\ell$ and its angle $\\theta$ with the base, first extract $h = \\ell \\sin\\theta$ — the same move as oblique prisms."
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Tanks and swaps",
+            "intro": "πr²h, with r double-checked against sneaky diameters.",
+            "examples": [
+              {
+                "prompt": "$r = 3$, $h = 10$: volume?",
+                "steps": [
+                  "$B = 9\\pi$.",
+                  "$V = 90\\pi \\approx 283$."
+                ],
+                "answer": "$90\\pi$",
+                "check": [
+                  "pi*9*10 == 90*pi"
+                ]
+              },
+              {
+                "prompt": "Oblique cylinder: $r = 2$, side $\\ell = 10$ at $30°$ to the base. Volume?",
+                "steps": [
+                  "True height: $h = 10\\sin 30° = 5$.",
+                  "$V = \\pi \\cdot 4 \\cdot 5 = 20\\pi$."
+                ],
+                "answer": "$20\\pi \\approx 62.8$",
+                "check": [
+                  "10*sin(pi/6) == 5",
+                  "pi*2**2*5 == 20*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fill the cans",
+            "intro": "Radius first (beware diameters), then πr²h.",
+            "problems": [
+              {
+                "prompt": "$r = 5$, $h = 12$: volume?",
+                "options": [
+                  "$300\\pi$",
+                  "$120\\pi$",
+                  "$60\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\pi \\cdot 25 \\cdot 12 = 300\\pi \\approx 942$.",
+                "check": [
+                  "pi*25*12 == 300*pi"
+                ]
+              },
+              {
+                "prompt": "Volume $54\\pi$, height $6$: radius?",
+                "options": [
+                  "$3$",
+                  "$9$",
+                  "$\\sqrt{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r^2 = \\frac{54\\pi}{6\\pi} = 9$ ⟹ $r = 3$.",
+                "check": [
+                  "sqrt(54*pi/(6*pi)) == 3"
+                ]
+              },
+              {
+                "prompt": "A cylinder's axial section is a square of side $4$. Volume?",
+                "options": [
+                  "$16\\pi$",
+                  "$32\\pi$",
+                  "$64\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2r = 4$ ⟹ $r = 2$; $h = 4$: $V = \\pi \\cdot 4 \\cdot 4 = 16\\pi$.",
+                "check": [
+                  "pi*2**2*4 == 16*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why cans are the shape they are",
+            "body": "For a fixed volume, the cylinder using the least metal has $h = 2r$ — exactly the 'equilateral' cylinder with the square axial section. Real soda cans run slightly taller (marketing likes tall), but food cans sit close to the mathematical optimum. Calculus students prove this minimum; you can already verify a candidate beats its neighbors with pure $2\\pi r(h+r)$ arithmetic."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Cylinder volume",
+            "bullets": [
+              "V = πr²h — coin-stack logic, prism family rules.",
+              "Halve announced diameters before anything else.",
+              "r is squared: doubling r quadruples V; doubling h only doubles.",
+              "Oblique: same formula with TRUE height h = ℓ sin θ (Cavalieri)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-cone",
+      "title": "The Cone",
+      "concreteComparison": "Cut a paper circle, remove a pie slice, and tape the cut edges together: the flat circle pops into a party hat. Every cone is a pie-slice of some bigger circle — and the radius of that big circle is the cone's slant height, which is why unrolled cones are how you actually MAKE funnels, hats, and lampshades.",
+      "objective": "Master cone anatomy (r, h, slant ℓ with ℓ² = r² + h²), surface area S = πr² + πrℓ, and the unrolled-sector picture.",
+      "concept": [
+        "A **cone**: circular base of radius $r$, apex above the center at height $h$. The **slant height** $\\ell$ runs from apex to rim, and the axial right triangle binds them: $\\ell^2 = r^2 + h^2$. A 3-4-5 triangle stands inside every $r=3, h=4$ cone.",
+        "Unroll the lateral surface: a **circular sector** of radius $\\ell$ (the slant becomes the sector's radius!) and arc length $2\\pi r$ (the rim). Its area is $\\pi r \\ell$, so total surface $S = \\pi r^2 + \\pi r \\ell = \\pi r(r + \\ell)$.",
+        "The sector's central angle: $\\varphi = \\frac{r}{\\ell} \\cdot 360°$ — the fraction of the full circle that survives is $\\frac{r}{\\ell}$. An $r = 3, \\ell = 5$ cone unrolls to a $216°$ sector; the missing $144°$ is the pie slice you cut away."
+      ],
+      "keyIdea": "Axial triangle: ℓ² = r² + h². Unrolled: a sector of radius ℓ, arc 2πr, area πrℓ, angle (r/ℓ)·360°.",
+      "facts": [
+        {
+          "title": "Slant height",
+          "latex": "\\ell^2 = r^2 + h^2",
+          "explanation": "The axial right triangle — a 3-4-5 in every r=3, h=4 cone."
+        },
+        {
+          "title": "Surface area",
+          "latex": "S = \\pi r^2 + \\pi r \\ell",
+          "explanation": "Base disk + unrolled sector."
+        },
+        {
+          "title": "Sector angle",
+          "latex": "\\varphi = \\frac{r}{\\ell}\\cdot 360°",
+          "explanation": "The unrolled cone keeps the fraction r/ℓ of a full circle."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg43-we1",
+          "statement": "A cone has $r = 3$ and $h = 4$. Find the slant height and total surface area.",
+          "solution": "$\\ell = \\sqrt{9 + 16} = 5$. $S = \\pi r(r + \\ell) = \\pi \\cdot 3 \\cdot 8 = 24\\pi \\approx 75.4$.",
+          "check": [
+            "sqrt(3**2 + 4**2) == 5",
+            "pi*3*(3 + 5) == 24*pi"
+          ]
+        },
+        {
+          "id": "sg43-we2",
+          "statement": "A cone with $r = 3$, $\\ell = 5$ is cut open and unrolled. Find the sector's central angle and check its arc length equals the rim.",
+          "solution": "$\\varphi = \\frac{3}{5} \\cdot 360° = 216°$. Arc check: a $216°$ arc of radius $5$ has length $\\frac{216}{360} \\cdot 2\\pi \\cdot 5 = 6\\pi$ — exactly the rim $2\\pi \\cdot 3$ ✓.",
+          "check": [
+            "Rational(3, 5)*360 == 216",
+            "Rational(216, 360)*2*pi*5 == 6*pi",
+            "2*pi*3 == 6*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing the lateral surface as πrh.",
+          "correction": "The wall leans along the SLANT: $S_{lat} = \\pi r \\ell$, never $\\pi r h$. Since $\\ell > h$ always, the $h$ version under-wraps — same trap as pyramid faces.",
+          "authored": true
+        },
+        {
+          "text": "Unrolling the cone into a sector of radius r.",
+          "correction": "Lay a party hat flat: the straight edges are the SLANT. Sector radius $= \\ell$, arc $= 2\\pi r$. Mixing them up breaks both the area and the angle formulas.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg43-t1",
+          "statement": "$r = 6$, $h = 8$: slant height and total surface?",
+          "solution": "$\\ell = \\sqrt{36 + 64} = 10$; $S = \\pi \\cdot 6 \\cdot 16 = 96\\pi \\approx 301.6$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10",
+            "pi*6*(6 + 10) == 96*pi"
+          ]
+        },
+        {
+          "id": "sg43-t2",
+          "statement": "$r = 5$, $h = 12$: what central angle does the unrolled cone occupy?",
+          "solution": "$\\ell = 13$ (5-12-13): $\\varphi = \\frac{5}{13} \\cdot 360° = \\frac{1800°}{13} \\approx 138.5°$.",
+          "check": [
+            "sqrt(5**2 + 12**2) == 13",
+            "Rational(5, 13)*360 == Rational(1800, 13)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Anatomy",
+            "title": "The axial triangle: r, h, ℓ",
+            "body": "Slice a cone through its axis: an isosceles triangle whose half is the RIGHT triangle $r$–$h$–$\\ell$, drawn true below for $r = 3, h = 4, \\ell = 5$. Every cone question starts by finding two of these three and Pythagorating the third.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "A",
+                    "x": 3,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "T",
+                    "x": 0,
+                    "y": 4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "A",
+                    "label": "r = 3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "T",
+                    "label": "h = 4",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "A",
+                    "label": "ℓ = 5"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "A",
+                    "to": "T",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "The cone, live",
+            "teach": "Step $r$ and $h$; the readouts stay exact multiples of π. Watch the volume — it's already wearing the pyramid's ⅓ (next lesson makes it official).",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4,
+              "slant": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Unroll",
+            "title": "Every cone is a pie slice",
+            "body": "Cut the cone from rim to apex and press flat: a sector whose radius is the SLANT $\\ell$ and whose curved edge is the rim $2\\pi r$. Sector area $= \\pi r \\ell$ — that's the lateral surface. The base disk ($\\pi r^2$) rides along for the total: $S = \\pi r(r + \\ell)$."
+          },
+          {
+            "kind": "arcSector",
+            "eyebrow": "Play",
+            "title": "The unrolled cone",
+            "teach": "This sector IS a flattened cone of slant $5$: at central angle $216°$, its arc is $\\frac{216}{360} \\cdot 2\\pi \\cdot 5 = 6\\pi$ — exactly the rim of an $r = 3$ cone. Drag the angle and imagine the hat tightening (smaller angle = pointier cone) or flattening (bigger = shallower).",
+            "config": {
+              "start": 216,
+              "radius": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Slant, not height",
+            "prompt": "$r = 6$, $h = 8$. Lateral surface?",
+            "options": [
+              "$60\\pi$",
+              "$48\\pi$",
+              "$96\\pi$",
+              "$36\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\ell = 10$: $S_{lat} = \\pi \\cdot 6 \\cdot 10 = 60\\pi$. $48\\pi$ is the $\\pi r h$ trap; $96\\pi$ is the TOTAL (with the base disk).",
+            "check": [
+              "pi*6*10 == 60*pi",
+              "pi*6*(6+10) == 96*pi"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Hats by the numbers",
+            "intro": "ℓ first, always.",
+            "examples": [
+              {
+                "prompt": "$r = 3$, $h = 4$: total surface?",
+                "steps": [
+                  "$\\ell = 5$.",
+                  "$S = \\pi \\cdot 3 \\cdot (3 + 5) = 24\\pi$."
+                ],
+                "answer": "$24\\pi$",
+                "check": [
+                  "pi*3*(3 + sqrt(3**2 + 4**2)) == 24*pi"
+                ]
+              },
+              {
+                "prompt": "Unrolled: sector of radius $5$, angle $216°$. Which cone rolls back up?",
+                "steps": [
+                  "Slant $= 5$; arc $= \\frac{216}{360} \\cdot 10\\pi = 6\\pi$.",
+                  "Rim $2\\pi r = 6\\pi$ ⟹ $r = 3$ (and $h = 4$)."
+                ],
+                "answer": "$r = 3$, $h = 4$, $\\ell = 5$",
+                "check": [
+                  "Rational(216,360)*2*pi*5 == 6*pi",
+                  "sqrt(5**2 - 3**2) == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Roll them up",
+            "intro": "ℓ² = r² + h², then πr(r + ℓ) — or the sector fraction r/ℓ.",
+            "problems": [
+              {
+                "prompt": "$r = 5$, $h = 12$: total surface?",
+                "options": [
+                  "$90\\pi$",
+                  "$65\\pi$",
+                  "$85\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ell = 13$: $\\pi \\cdot 5 \\cdot 18 = 90\\pi$.",
+                "check": [
+                  "pi*5*(5 + 13) == 90*pi"
+                ]
+              },
+              {
+                "prompt": "A cone unrolls to a HALF-disk (180°). Then ℓ equals…",
+                "options": [
+                  "$2r$",
+                  "$r$",
+                  "$r\\sqrt2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{r}{\\ell} = \\frac{180}{360} = \\frac12$ ⟹ $\\ell = 2r$. (Its height: $h = \\sqrt{4r^2 - r^2} = r\\sqrt3$ — a 30-60-90 cone.)",
+                "check": [
+                  "Rational(180, 360) == Rational(1, 2)",
+                  "sqrt((2)**2 - 1) == sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "$r = 8$, $\\ell = 17$: the height is…",
+                "options": [
+                  "$15$",
+                  "$\\sqrt{353}$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$h = \\sqrt{289 - 64} = 15$ — the 8-15-17 triple.",
+                "check": [
+                  "sqrt(17**2 - 8**2) == 15"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Lampshades are engineering documents",
+            "body": "Ask a metalworker to build a funnel or a lampshade and the first thing they draw is the unrolled sector — they call it the 'development'. The two straight edges get riveted together; the sector angle is computed with exactly your $\\varphi = \\frac{r}{\\ell} \\cdot 360°$. Your homework is someone's day job in sheet metal."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The cone",
+            "bullets": [
+              "Axial triangle: ℓ² = r² + h² (3-4-5, 6-8-10, 5-12-13, 8-15-17 live here).",
+              "S = πr² + πrℓ — base disk + unrolled sector (never πrh).",
+              "Unrolled: sector radius ℓ, arc 2πr, angle (r/ℓ)·360°.",
+              "ℓ > h in every cone — if your 'slant' is shorter than your 'height', swap them."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cone-volume-and-the-truncated-cone",
+      "title": "Cone Volume & the Truncated Cone",
+      "concreteComparison": "The ice-cream test: one scoop melts and fills the cone exactly to the brim only if the scoop's volume equals ⅓πr²h — and your coffee cup, wider at the top than the bottom, is a truncated cone whose volume the barista's machine knows to the milliliter.",
+      "objective": "Compute volumes of cones (V = ⅓πr²h) and truncated cones (frustums of cones), reusing the pyramid's ⅓ and the frustum blend.",
+      "concept": [
+        "A cone is a circular pyramid, and it inherits the ⅓: $V = \\frac13 \\pi r^2 h$ — one third of the surrounding cylinder. Same water-pouring experiment, same result.",
+        "The **truncated cone** (cut parallel to the base, radii $R$ and $r$): $V = \\frac{\\pi h}{3}\\left(R^2 + Rr + r^2\\right)$ — the frustum blend with circles. Its slant: $\\ell^2 = h^2 + (R - r)^2$, and the lateral surface is $S_{lat} = \\pi (R + r) \\ell$.",
+        "Sanity anchors: set $r = R$ and the truncated formulas collapse to the cylinder's ($\\pi R^2 h$ and $2\\pi R \\ell$); set $r = 0$ and they collapse to the cone's. The frustum interpolates — just like Unit 3."
+      ],
+      "keyIdea": "Cone: V = ⅓πr²h. Truncated cone: V = (πh/3)(R² + Rr + r²), slant ℓ² = h² + (R−r)², S_lat = π(R+r)ℓ.",
+      "facts": [
+        {
+          "title": "Cone volume",
+          "latex": "V = \\tfrac{1}{3}\\pi r^2 h",
+          "explanation": "A third of its cylinder — the pyramid's ⅓, rounded."
+        },
+        {
+          "title": "Truncated volume",
+          "latex": "V = \\tfrac{\\pi h}{3}(R^2 + Rr + r^2)",
+          "explanation": "Both disks plus the mixed term Rr."
+        },
+        {
+          "title": "Truncated wall",
+          "latex": "S_{lat} = \\pi(R + r)\\ell, \\quad \\ell^2 = h^2 + (R-r)^2",
+          "explanation": "Average rim × slant."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg44-we1",
+          "statement": "A cone has $r = 3$ and $h = 4$. Find its volume, and the volume of the cylinder with the same base and height.",
+          "solution": "Cone: $V = \\frac13 \\pi \\cdot 9 \\cdot 4 = 12\\pi \\approx 37.7$. Cylinder: $36\\pi$ — three cones fill it exactly.",
+          "check": [
+            "Rational(1,3)*pi*9*4 == 12*pi",
+            "pi*9*4 == 36*pi",
+            "3*12*pi == 36*pi"
+          ]
+        },
+        {
+          "id": "sg44-we2",
+          "statement": "A truncated cone has radii $R = 5$, $r = 2$ and height $4$. Find its slant height, lateral surface, and volume.",
+          "solution": "Slant: $\\ell = \\sqrt{4^2 + (5-2)^2} = \\sqrt{25} = 5$ (3-4-5 again). Wall: $\\pi(5 + 2) \\cdot 5 = 35\\pi$. Volume: $\\frac{4\\pi}{3}(25 + 10 + 4) = \\frac{4\\pi}{3} \\cdot 39 = 52\\pi \\approx 163.4$.",
+          "check": [
+            "sqrt(4**2 + 3**2) == 5",
+            "pi*(5 + 2)*5 == 35*pi",
+            "Rational(4,3)*pi*(25 + 10 + 4) == 52*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the ⅓ from the cone (or keeping it for the cylinder).",
+          "correction": "Pointed solids (cone, pyramid) carry ⅓; flat-topped ones (cylinder, prism) don't. If your cone somehow beats its cylinder, the ⅓ went missing.",
+          "authored": true
+        },
+        {
+          "text": "Averaging the radii for truncated-cone volume: π((R+r)/2)²h.",
+          "correction": "Volume doesn't average that way — the correct blend is $\\frac{\\pi h}{3}(R^2 + Rr + r^2)$. The shortcut fails the extremes: at $r = 0$ it gives $\\frac{\\pi R^2 h}{4}$ instead of the cone's $\\frac{\\pi R^2 h}{3}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg44-t1",
+          "statement": "$r = 6$, $h = 8$: cone volume?",
+          "solution": "$V = \\frac13 \\pi \\cdot 36 \\cdot 8 = 96\\pi \\approx 301.6$.",
+          "check": [
+            "Rational(1,3)*pi*36*8 == 96*pi"
+          ]
+        },
+        {
+          "id": "sg44-t2",
+          "statement": "A bucket is a truncated cone: bottom radius $2$, top radius $5$, height $4$ (all in dm). How many LITERS does it hold? ($1$ dm³ $= 1$ L; use $\\pi \\approx 3.14$.)",
+          "solution": "$V = \\frac{4\\pi}{3}(4 + 10 + 25) = 52\\pi$ dm³ $\\approx 163.4$ L. A very big bucket — check: even its bottom disk alone spans $4\\pi \\approx 12.6$ dm².",
+          "check": [
+            "Rational(4,3)*pi*(2**2 + 2*5 + 5**2) == 52*pi",
+            "Abs(52*pi - 163.4) < 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The ⅓ returns",
+            "title": "A cone is a circular pyramid",
+            "body": "Same experiment as Unit 3: pour a full cone into its surrounding cylinder — three pours, one fill. $V = \\frac13 \\pi r^2 h$. Cavalieri makes it rigorous: compare the cone with any pyramid of matching base area and height, slice by slice."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Cone vs cylinder",
+            "teach": "Set $r = 3, h = 4$ and read $V = 12\\pi$; the same-size cylinder holds $36\\pi$. Step the dimensions — the 1:3 ratio never budges. Pointed = one third, always.",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4,
+              "slant": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Scoop check",
+            "prompt": "$r = 3$, $h = 4$: the cone's volume is…",
+            "options": [
+              "$12\\pi$",
+              "$36\\pi$",
+              "$24\\pi$",
+              "$16\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac13 \\pi \\cdot 9 \\cdot 4 = 12\\pi \\approx 37.7$. Without the ⅓ you'd claim the cylinder's $36\\pi$ — three times too generous.",
+            "check": [
+              "Rational(1,3)*pi*9*4 == 12*pi"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cut the tip",
+            "title": "The truncated cone (frustum, rounded)",
+            "body": "Slice parallel to the base: radii $R$ (bottom) and $r$ (top). The slant triangle, drawn true: height $h = 4$ up, radius offset $R - r = 3$ across, slant $\\ell = 5$ along the wall. Wall area $\\pi(R + r)\\ell$ — average rim times slant; volume $\\frac{\\pi h}{3}(R^2 + Rr + r^2)$ — the circle version of Unit 3's three-term blend.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "K",
+                    "x": 3,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 3,
+                    "y": 4,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "K",
+                    "label": "R−r = 3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K",
+                    "to": "M",
+                    "label": "h = 4"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "M",
+                    "label": "ℓ = 5",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "K",
+                    "from": "O",
+                    "to": "M",
+                    "right": true
+                  }
+                ],
+                "hidePoints": [
+                  "O",
+                  "K",
+                  "M"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Cones, whole and cut",
+            "intro": "⅓ for the whole; the three-term blend for the cut.",
+            "examples": [
+              {
+                "prompt": "$R = 5$, $r = 2$, $h = 4$: truncated volume?",
+                "steps": [
+                  "$R^2 + Rr + r^2 = 25 + 10 + 4 = 39$.",
+                  "$V = \\frac{4\\pi}{3} \\cdot 39 = 52\\pi$."
+                ],
+                "answer": "$52\\pi \\approx 163.4$",
+                "check": [
+                  "Rational(4,3)*pi*39 == 52*pi"
+                ]
+              },
+              {
+                "prompt": "Same solid: lateral surface?",
+                "steps": [
+                  "$\\ell = \\sqrt{16 + 9} = 5$.",
+                  "$S_{lat} = \\pi(5 + 2) \\cdot 5 = 35\\pi$."
+                ],
+                "answer": "$35\\pi \\approx 110$",
+                "check": [
+                  "pi*7*5 == 35*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Buckets and cups",
+            "intro": "Check extremes: r = R is a cylinder, r = 0 is a cone.",
+            "problems": [
+              {
+                "prompt": "$r = 5$, $h = 12$: cone volume?",
+                "options": [
+                  "$100\\pi$",
+                  "$300\\pi$",
+                  "$60\\pi$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac13 \\pi \\cdot 25 \\cdot 12 = 100\\pi$.",
+                "check": [
+                  "Rational(1,3)*pi*25*12 == 100*pi"
+                ]
+              },
+              {
+                "prompt": "Truncated cone $R = 4$, $r = 1$, $h = 4$: slant height?",
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$\\sqrt{17}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ell = \\sqrt{16 + (4-1)^2} = \\sqrt{25} = 5$.",
+                "check": [
+                  "sqrt(4**2 + 3**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Truncated cone $R = 4$, $r = 1$, $h = 4$: volume?",
+                "options": [
+                  "$28\\pi$",
+                  "$21\\pi$",
+                  "$\\dfrac{68\\pi}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{4\\pi}{3}(16 + 4 + 1) = \\frac{4\\pi}{3} \\cdot 21 = 28\\pi$.",
+                "check": [
+                  "Rational(4,3)*pi*(16 + 4 + 1) == 28*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Archimedes' warm-up",
+            "body": "Archimedes proved cone = ⅓ cylinder as a stepping stone to his masterpiece (the sphere, next unit). The result was already known to Eudoxus a century earlier via 'exhaustion' — squeezing the cone between stacks of thin cylinders from inside and outside until the gap vanishes. That squeeze IS the modern limit definition; the Greeks just refused to say 'infinity' out loud."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Cone volumes",
+            "bullets": [
+              "Cone: V = ⅓πr²h — a third of its cylinder.",
+              "Truncated: V = (πh/3)(R² + Rr + r²); wall π(R+r)ℓ; slant ℓ² = h² + (R−r)².",
+              "Extreme checks: r = R ⟹ cylinder formulas; r = 0 ⟹ cone formulas.",
+              "The axial triangle (r, h, ℓ) and offset triangle (R−r, h, ℓ) do all the Pythagoras."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg4-pr-1",
+      "statement": "A cylinder has radius $5$ and height $8$. Find its lateral surface, total surface, and volume.",
+      "solution": "$S_{lat} = 2\\pi \\cdot 5 \\cdot 8 = 80\\pi$; $S = 80\\pi + 50\\pi = 130\\pi$; $V = \\pi \\cdot 25 \\cdot 8 = 200\\pi$.",
+      "check": [
+        "2*pi*5*8 == 80*pi",
+        "80*pi + 2*pi*25 == 130*pi",
+        "pi*25*8 == 200*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-2",
+      "statement": "A cylinder's axial section is a square with diagonal $8\\sqrt{2}$. Find the cylinder's volume.",
+      "solution": "Square side $8$: $r = 4$, $h = 8$. $V = \\pi \\cdot 16 \\cdot 8 = 128\\pi \\approx 402$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "B",
+            "x": 4,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "C",
+            "x": 4,
+            "y": 4,
+            "label": ""
+          },
+          {
+            "id": "D",
+            "x": 0,
+            "y": 4,
+            "label": ""
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "B",
+            "label": "2r",
+            "ticks": 1
+          },
+          {
+            "kind": "segment",
+            "from": "B",
+            "to": "C",
+            "label": "h",
+            "ticks": 1
+          },
+          {
+            "kind": "segment",
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "kind": "segment",
+            "from": "D",
+            "to": "A"
+          },
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "C",
+            "label": "8√2",
+            "dashed": true,
+            "color": "accent"
+          }
+        ],
+        "hidePoints": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      },
+      "check": [
+        "8*sqrt(2)/sqrt(2) == 8",
+        "pi*4**2*8 == 128*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-3",
+      "statement": "A cone has radius $8$ and slant height $17$. Find its height, total surface, and volume.",
+      "solution": "$h = \\sqrt{289 - 64} = 15$ (8-15-17). $S = \\pi \\cdot 8 (8 + 17) = 200\\pi$. $V = \\frac13 \\pi \\cdot 64 \\cdot 15 = 320\\pi$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "A",
+            "x": 3.2,
+            "y": 0,
+            "labelDx": 10,
+            "labelDy": 6
+          },
+          {
+            "id": "T",
+            "x": 0,
+            "y": 6
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "A",
+            "label": "8",
+            "color": "blue"
+          },
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "T",
+            "label": "?",
+            "color": "accent"
+          },
+          {
+            "kind": "segment",
+            "from": "T",
+            "to": "A",
+            "label": "17"
+          },
+          {
+            "kind": "angle",
+            "at": "O",
+            "from": "A",
+            "to": "T",
+            "right": true
+          }
+        ]
+      },
+      "check": [
+        "sqrt(17**2 - 8**2) == 15",
+        "pi*8*(8 + 17) == 200*pi",
+        "Rational(1,3)*pi*64*15 == 320*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-4",
+      "statement": "A cone of radius $9$ and slant $15$ is unrolled. Find the sector's central angle and the cone's volume.",
+      "solution": "Angle: $\\frac{9}{15} \\cdot 360° = 216°$. Height: $\\sqrt{225 - 81} = 12$ (9-12-15). $V = \\frac13\\pi \\cdot 81 \\cdot 12 = 324\\pi$.",
+      "check": [
+        "Rational(9, 15)*360 == 216",
+        "sqrt(15**2 - 9**2) == 12",
+        "Rational(1,3)*pi*81*12 == 324*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-5",
+      "statement": "How much sheet metal (lateral + bottom, no lid) makes an open cylindrical tank of radius $3$ m and height $7$ m — and how much water does it hold?",
+      "solution": "Metal: $2\\pi \\cdot 3 \\cdot 7 + \\pi \\cdot 9 = 42\\pi + 9\\pi = 51\\pi \\approx 160.2$ m². Water: $\\pi \\cdot 9 \\cdot 7 = 63\\pi \\approx 197.9$ m³.",
+      "check": [
+        "2*pi*3*7 + pi*9 == 51*pi",
+        "pi*9*7 == 63*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-6",
+      "statement": "A truncated cone has radii $10$ and $4$ and height $8$. Find its slant height and lateral surface.",
+      "solution": "$\\ell = \\sqrt{64 + 36} = 10$; $S_{lat} = \\pi(10 + 4) \\cdot 10 = 140\\pi \\approx 439.8$.",
+      "check": [
+        "sqrt(8**2 + 6**2) == 10",
+        "pi*14*10 == 140*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-7",
+      "statement": "Find the volume of the same truncated cone ($R = 10$, $r = 4$, $h = 8$).",
+      "solution": "$V = \\frac{8\\pi}{3}(100 + 40 + 16) = \\frac{8\\pi}{3} \\cdot 156 = 416\\pi \\approx 1306.9$.",
+      "check": [
+        "Rational(8,3)*pi*(100 + 40 + 16) == 416*pi"
+      ]
+    },
+    {
+      "id": "sg4-pr-8",
+      "statement": "A cylindrical glass ($r = 3$, $h = 10$) is full. You pour it into cone-shaped party cups with $r = 3$, $h = 5$. How many cups can you fill?",
+      "solution": "Glass: $90\\pi$. Cup: $\\frac13 \\pi \\cdot 9 \\cdot 5 = 15\\pi$. Cups: $\\frac{90\\pi}{15\\pi} = 6$ exactly.",
+      "check": [
+        "pi*9*10 == 90*pi",
+        "Rational(1,3)*pi*9*5 == 15*pi",
+        "90/15 == 6"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg4-ty-1",
+      "statement": "Radius $4$, height $3$: cylinder volume and total surface?",
+      "solution": "$V = 48\\pi$; $S = 2\\pi \\cdot 4 \\cdot 7 = 56\\pi$.",
+      "check": [
+        "pi*16*3 == 48*pi",
+        "2*pi*4*(3 + 4) == 56*pi"
+      ]
+    },
+    {
+      "id": "sg4-ty-2",
+      "statement": "A cone has $r = 12$, $h = 5$. Find the slant height and lateral surface.",
+      "solution": "$\\ell = \\sqrt{144 + 25} = 13$; $S_{lat} = \\pi \\cdot 12 \\cdot 13 = 156\\pi$.",
+      "check": [
+        "sqrt(12**2 + 5**2) == 13",
+        "pi*12*13 == 156*pi"
+      ]
+    },
+    {
+      "id": "sg4-ty-3",
+      "statement": "A cone's volume is $96\\pi$ with radius $6$. Find its height and slant height.",
+      "solution": "$h = \\frac{3 \\cdot 96\\pi}{36\\pi} = 8$; $\\ell = \\sqrt{36 + 64} = 10$.",
+      "check": [
+        "3*96/36 == 8",
+        "sqrt(6**2 + 8**2) == 10"
+      ]
+    },
+    {
+      "id": "sg4-ty-4",
+      "statement": "An equilateral cylinder (axial section a square) has volume $54\\pi$. Find its radius.",
+      "solution": "$h = 2r$: $\\pi r^2 \\cdot 2r = 54\\pi$ ⟹ $r^3 = 27$, $r = 3$.",
+      "check": [
+        "Rational(54,2)**Rational(1,3) == 3",
+        "pi*3**2*(2*3) == 54*pi"
+      ]
+    },
+    {
+      "id": "sg4-ty-5",
+      "statement": "A truncated cone: $R = 7$, $r = 3$, $h = 3$. Find slant and volume.",
+      "solution": "$\\ell = \\sqrt{9 + 16} = 5$. $V = \\frac{3\\pi}{3}(49 + 21 + 9) = 79\\pi \\approx 248.2$.",
+      "check": [
+        "sqrt(3**2 + 4**2) == 5",
+        "Rational(3,3)*pi*(49 + 21 + 9) == 79*pi"
+      ]
+    },
+    {
+      "id": "sg4-ty-6",
+      "statement": "A cone unrolls to a quarter-disk ($90°$) of radius $8$. Find the cone's base radius.",
+      "solution": "$\\frac{r}{\\ell} = \\frac{90}{360} = \\frac14$ with $\\ell = 8$: $r = 2$. (Arc check: $\\frac14 \\cdot 16\\pi = 4\\pi = 2\\pi \\cdot 2$ ✓.)",
+      "check": [
+        "Rational(90, 360)*8 == 2",
+        "Rational(1,4)*2*pi*8 == 2*pi*2"
+      ]
+    }
+  ]
+}

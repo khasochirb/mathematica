@@ -1,0 +1,1033 @@
+{
+  "slug": "cross-sections-and-similar-solids",
+  "title": "Cross-Sections & Similar Solids",
+  "unit": 6,
+  "status": "published",
+  "blurb": "The capstone skills: predict the shape a cut makes, scale any solid with k, k², k³, add and subtract solids like numbers — and walk into any exam problem knowing which flat triangle to extract.",
+  "buildsOn": "Everything: all five solid families, their surfaces and volumes, and Unit 1's angles.",
+  "lessons": [
+    {
+      "slug": "cross-sections-of-solids",
+      "title": "Cross-Sections of Solids",
+      "concreteComparison": "A CT scanner never sees your whole body — it sees hundreds of flat slices and rebuilds the 3D truth from them. Reading a solid by its cross-sections is exactly that skill, run in reverse: given the solid and the knife angle, predict the slice.",
+      "objective": "Predict and compute cross-sections of cubes, prisms, pyramids, cylinders, and cones — including the diagonal section and the shapes a tilted knife makes.",
+      "concept": [
+        "A **cross-section** is the flat figure where a plane meets a solid. The workhorses: slicing PARALLEL to the base copies the base (prism/cylinder: same size; pyramid/cone: scaled down). Slicing PERPENDICULAR through the axis gives the **axial section** — rectangle for a cylinder, isosceles triangle for a cone.",
+        "The cube is the playground: face-parallel cuts give squares; the **diagonal section** (through two opposite edges) is a rectangle $a \\times a\\sqrt2$; a corner-slicing plane can make triangles — and a well-tilted plane through the midpoints of six edges makes a regular HEXAGON of side $\\frac{a\\sqrt2}{2}$.",
+        "Computing with sections: the section inherits real lengths from the solid (edges, diagonals, radii), so draw the section FLAT, transfer known lengths, and use plane geometry. The 3D problem was a 2D problem wearing a costume."
+      ],
+      "keyIdea": "Parallel cut copies the base (scaled for pointed solids); axial cut is the ID card (rectangle/triangle); the cube's diagonal section is a × a√2; tilted cuts can even make hexagons.",
+      "facts": [
+        {
+          "title": "Parallel cuts",
+          "latex": "\\text{prism/cyl: same; pyr/cone: scaled by } k",
+          "explanation": "Pointed solids shrink their base linearly to the apex."
+        },
+        {
+          "title": "Cube diagonal section",
+          "latex": "a \\times a\\sqrt{2}",
+          "explanation": "Width = face diagonal, height = edge."
+        },
+        {
+          "title": "Cone axial section",
+          "latex": "\\text{isosceles: base } 2r, \\text{ legs } \\ell",
+          "explanation": "The r–h–ℓ triangle, doubled."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg61-we1",
+          "statement": "A cube has edge $4$. Find the area of its diagonal section (the rectangle through two opposite vertical edges).",
+          "solution": "The rectangle's width is the base's diagonal $4\\sqrt{2}$; its height is the edge $4$. Area $= 4 \\cdot 4\\sqrt2 = 16\\sqrt{2} \\approx 22.6$ — bigger than any face ($16$), as a diagonal cut should be.",
+          "check": [
+            "sqrt(4**2 + 4**2) == 4*sqrt(2)",
+            "4*4*sqrt(2) == 16*sqrt(2)",
+            "16*sqrt(2) > 16"
+          ]
+        },
+        {
+          "id": "sg61-we2",
+          "statement": "A cone has $r = 6$, $h = 4$. Find the area of its axial section, and of the parallel section at half the height.",
+          "solution": "Axial: isosceles triangle, base $12$, height $4$: area $= \\frac12 \\cdot 12 \\cdot 4 = 24$. Half-height parallel cut: radius scales to $3$ (halfway to the apex halves the radius), area $= 9\\pi$ — a quarter of the base's $36\\pi$.",
+          "check": [
+            "Rational(1,2)*12*4 == 24",
+            "pi*3**2 == 9*pi",
+            "Rational(9, 36) == Rational(1, 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Assuming every cut of a cylinder is a circle (or of a cube, a square).",
+          "correction": "Only the base-parallel cuts are. Tilt the knife: the cylinder yields ellipses and (through the axis) a rectangle; the cube yields rectangles, triangles, pentagons — even a regular hexagon. Predict from the knife's angle, not the solid's name.",
+          "authored": true
+        },
+        {
+          "text": "Halving the AREA when cutting a pyramid at half-height.",
+          "correction": "Halfway up, LENGTHS halve, so areas quarter: the section is $(\\frac12)^2 = \\frac14$ of the base. Linear k, area k² — the next lesson makes this the law of the land.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg61-t1",
+          "statement": "A cylinder has $r = 3$, $h = 8$. Find the axial-section area and the area of a parallel cut at any height.",
+          "solution": "Axial: $2r \\times h = 6 \\times 8 = 48$. Any base-parallel cut: the same circle every time, $9\\pi \\approx 28.3$ — cylinders don't taper.",
+          "check": [
+            "6*8 == 48",
+            "pi*9 == 9*pi"
+          ]
+        },
+        {
+          "id": "sg61-t2",
+          "statement": "A square pyramid (base $6$, height $9$) is cut parallel to the base at $3$ from the APEX. Find the section's side and area.",
+          "solution": "Scale from the apex: $k = \\frac{3}{9} = \\frac13$, side $= 6 \\cdot \\frac13 = 2$, area $= 4$ — one ninth of the base's $36$ (k² at work).",
+          "check": [
+            "Rational(3, 9)*6 == 2",
+            "2**2 == 4",
+            "Rational(4, 36) == Rational(1, 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The knife",
+            "title": "Two standard cuts, every solid",
+            "body": "Cut PARALLEL to the base: prisms and cylinders repeat their base forever; pyramids and cones shrink it linearly toward the apex. Cut THROUGH the axis: the axial section is the solid's ID card — cylinder: a $2r \\times h$ rectangle; cone: an isosceles triangle with base $2r$ and legs $\\ell$. Learn these two knives first; every exotic cut is a variation."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The cube's cuts",
+            "title": "The diagonal section: a × a√2",
+            "body": "Slice a cube straight down through two opposite vertical edges: the section is a rectangle — height $a$ (an edge, drawn true) and width $a\\sqrt2$ (the base's diagonal). For $a = 4$: a $4 \\times 4\\sqrt2$ rectangle, area $16\\sqrt2$. It's the biggest rectangle a straight vertical cut can make, and problems love asking for its area or its own diagonal ($= a\\sqrt3$, the space diagonal!).",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0, "label": "" },
+                  { "id": "B", "x": 5.66, "y": 0, "label": "" },
+                  { "id": "C", "x": 5.66, "y": 4, "label": "" },
+                  { "id": "D", "x": 0, "y": 4, "label": "" }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "B", "label": "a√2" },
+                  { "kind": "segment", "from": "B", "to": "C", "label": "a" },
+                  { "kind": "segment", "from": "C", "to": "D" },
+                  { "kind": "segment", "from": "D", "to": "A" },
+                  { "kind": "segment", "from": "A", "to": "C", "label": "a√3", "dashed": true, "color": "accent" }
+                ],
+                "hidePoints": ["A", "B", "C", "D"]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Cut the cube",
+            "prompt": "Cube edge $6$: the diagonal section's area is…",
+            "options": [
+              "$36\\sqrt{2}$",
+              "$36$",
+              "$36\\sqrt{3}$",
+              "$72$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$a \\times a\\sqrt2 = 6 \\cdot 6\\sqrt2 = 36\\sqrt2 \\approx 50.9$. Bigger than a face ($36$), smaller than you'd guess — and its own diagonal is the cube's space diagonal $6\\sqrt3$.",
+            "check": [
+              "6*6*sqrt(2) == 36*sqrt(2)",
+              "36*sqrt(2) > 36"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Showpiece",
+            "title": "The hexagon in the cube",
+            "body": "Tilt the knife just right — through the midpoints of six edges — and the cube yields a regular HEXAGON of side $\\frac{a\\sqrt2}{2}$ (each side is half a face-diagonal). For $a = 2$: side $\\sqrt2$, area $\\frac{3\\sqrt3}{2}(\\sqrt2)^2 = 3\\sqrt{3} \\approx 5.2$. Slicing a square object and getting a perfect hexagon is the standard party trick of solid geometry — and a real exam question.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "P1", "x": 1.41, "y": 0, "label": "" },
+                  { "id": "P2", "x": 2.83, "y": 0, "label": "" },
+                  { "id": "P3", "x": 3.54, "y": 1.22, "label": "" },
+                  { "id": "P4", "x": 2.83, "y": 2.45, "label": "" },
+                  { "id": "P5", "x": 1.41, "y": 2.45, "label": "" },
+                  { "id": "P6", "x": 0.71, "y": 1.22, "label": "" }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "P1", "to": "P2", "ticks": 1 },
+                  { "kind": "segment", "from": "P2", "to": "P3", "ticks": 1 },
+                  { "kind": "segment", "from": "P3", "to": "P4", "ticks": 1 },
+                  { "kind": "segment", "from": "P4", "to": "P5", "ticks": 1 },
+                  { "kind": "segment", "from": "P5", "to": "P6", "ticks": 1 },
+                  { "kind": "segment", "from": "P6", "to": "P1", "ticks": 1 }
+                ],
+                "hidePoints": ["P1", "P2", "P3", "P4", "P5", "P6"]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Slice and compute",
+            "intro": "Draw the section flat; import true lengths; use plane geometry.",
+            "examples": [
+              {
+                "prompt": "Cone $r = 6$, $h = 4$: axial-section area?",
+                "steps": [
+                  "Isosceles triangle: base $12$, height $4$.",
+                  "$A = \\frac12 \\cdot 12 \\cdot 4 = 24$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "Rational(1,2)*12*4 == 24"
+                ]
+              },
+              {
+                "prompt": "Square pyramid base $6$, height $9$, cut $\\frac13$ of the way up from the base. Section side?",
+                "steps": [
+                  "Distance from apex: $9 - 3 = 6$; scale $k = \\frac69 = \\frac23$.",
+                  "Side $= 6 \\cdot \\frac23 = 4$."
+                ],
+                "answer": "$4$ (area $16$)",
+                "check": [
+                  "Rational(6, 9)*6 == 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Knife control",
+            "intro": "Which knife? Parallel (copy/scale) or axial (ID card)?",
+            "problems": [
+              {
+                "prompt": "Cylinder $r = 5$, $h = 6$: axial-section area?",
+                "options": ["$60$", "$30$", "$25\\pi$"],
+                "correctIndex": 0,
+                "explanation": "Rectangle $10 \\times 6 = 60$. No π in a flat rectangle!",
+                "check": [
+                  "10*6 == 60"
+                ]
+              },
+              {
+                "prompt": "Cone cut parallel to its base at $\\frac{2}{3}$ of the height from the apex: the section's AREA is what fraction of the base?",
+                "options": ["$\\dfrac{4}{9}$", "$\\dfrac{2}{3}$", "$\\dfrac{1}{3}$"],
+                "correctIndex": 0,
+                "explanation": "Lengths scale by $\\frac23$, areas by $(\\frac23)^2 = \\frac49$.",
+                "check": [
+                  "Rational(2,3)**2 == Rational(4,9)"
+                ]
+              },
+              {
+                "prompt": "Which solid can produce a regular hexagon as a cross-section?",
+                "options": ["the cube", "the sphere", "the cylinder"],
+                "correctIndex": 0,
+                "explanation": "The midpoint-tilted plane does it. The sphere only ever gives circles; the cylinder gives circles, ellipses, and rectangles — never a hexagon.",
+                "check": [
+                  "6 == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "CT scans are cross-section mathematics",
+            "body": "Computed tomography reconstructs your 3D anatomy from thousands of 1D X-ray shadows using the Radon transform — invented by a pure mathematician in 1917 with zero medical intent. The scanner's software solves 'what solid has THESE cross-sections?' — your Unit 6 skill, industrialized. The 1979 Nobel Prize in Medicine went to an engineer and a physicist for making the math walk."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Cross-sections",
+            "bullets": [
+              "Parallel cuts: prisms/cylinders copy; pyramids/cones scale by k (distance from apex).",
+              "Axial sections: cylinder 2r × h rectangle; cone isosceles (2r base, ℓ legs).",
+              "Cube: diagonal section a × a√2; the tilted hexagon of side a√2/2 exists.",
+              "Method: draw the section FLAT, import true lengths, do plane geometry."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "similar-solids-k-k2-k3",
+      "title": "Similar Solids: k, k², k³",
+      "concreteComparison": "A movie-theater popcorn 'large' looks barely bigger than the 'medium' — maybe 25% wider. But volume grows with the CUBE: 1.25³ ≈ 1.95, nearly double the popcorn. Sellers price the width; physics delivers the cube. Know which power you're buying.",
+      "objective": "Use the scaling laws — lengths ×k, areas ×k², volumes ×k³ — on any solid, forwards and backwards.",
+      "concept": [
+        "Scale every length of a solid by $k$: ALL lengths (edges, heights, slants, diagonals, radii) multiply by $k$; ALL areas (faces, cross-sections, total surface) multiply by $k^2$; the volume multiplies by $k^3$. No exceptions, no dependence on the solid's shape.",
+        "Backwards: volume ratio $\\frac{V_2}{V_1} = 8$ means $k = \\sqrt[3]{8} = 2$, and then surfaces relate by $k^2 = 4$. Root the given power to find $k$, then re-raise to the power you need.",
+        "This is why the half-height pyramid cut leaves $\\frac78$ of the volume below (top piece: $k = \\frac12$, volume $\\frac18$), why big animals need thick legs (weight grows $k^3$, bone cross-section only $k^2$), and why model railways list scale factors."
+      ],
+      "keyIdea": "Similar solids: lengths ×k, areas ×k², volumes ×k³. Given any one ratio, root it to k, then re-raise.",
+      "facts": [
+        {
+          "title": "The three powers",
+          "latex": "L \\to kL, \\quad A \\to k^2 A, \\quad V \\to k^3 V",
+          "explanation": "Length, area, volume — first, second, third power."
+        },
+        {
+          "title": "Backwards",
+          "latex": "k = \\sqrt[3]{V_2/V_1} = \\sqrt{A_2/A_1}",
+          "explanation": "Root the ratio you have; raise to what you need."
+        },
+        {
+          "title": "Apex cut",
+          "latex": "\\text{cut at } kh \\text{ from apex} \\Rightarrow V_{top} = k^3 V",
+          "explanation": "The top piece is a k-scaled copy of the whole."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg62-we1",
+          "statement": "Two similar bottles: the big one is $1.5\\times$ the height of the small. The small holds $400$ mL. The big holds…?",
+          "solution": "$V \\propto k^3$: $400 \\cdot 1.5^3 = 400 \\cdot \\frac{27}{8} = 1350$ mL. Not '1.5× more' — 3.375× more. The cube always surprises.",
+          "check": [
+            "Rational(3,2)**3 == Rational(27,8)",
+            "400*Rational(27,8) == 1350"
+          ]
+        },
+        {
+          "id": "sg62-we2",
+          "statement": "Two similar cones have surface areas $36\\pi$ and $100\\pi$. The small one's volume is $54\\pi$. Find the big one's volume.",
+          "solution": "Area ratio $\\frac{100}{36} = \\frac{25}{9}$ ⟹ $k = \\frac53$. Volume ratio $k^3 = \\frac{125}{27}$: $V_2 = 54\\pi \\cdot \\frac{125}{27} = 250\\pi$.",
+          "check": [
+            "sqrt(Rational(100, 36)) == Rational(5, 3)",
+            "Rational(5,3)**3 == Rational(125, 27)",
+            "54*Rational(125,27) == 250"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Scaling volume by k (or by k²).",
+          "correction": "Volume is three-dimensional: three length factors multiply, $k^3$. Doubling a fish tank's every dimension gives 8× the water — and 8× the weight; ask your floor first.",
+          "authored": true
+        },
+        {
+          "text": "Averaging or adding ratios when going area → volume.",
+          "correction": "Route everything through $k$: $k = \\sqrt{\\text{area ratio}}$, then volume ratio $= k^3$. Area ratio $\\frac{25}{9}$ ⟹ volume ratio $\\frac{125}{27}$ (not $\\frac{25 \\cdot 3}{9 \\cdot 3}$ or any shortcut).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg62-t1",
+          "statement": "A model of a building is at scale $1:50$. The model's roof area is $2$ m² and its volume is $0.4$ m³. Find the real roof area and volume.",
+          "solution": "Areas: $2 \\cdot 50^2 = 5000$ m². Volume: $0.4 \\cdot 50^3 = 50000$ m³.",
+          "check": [
+            "2*50**2 == 5000",
+            "Rational(2,5)*50**3 == 50000"
+          ]
+        },
+        {
+          "id": "sg62-t2",
+          "statement": "A pyramid is cut parallel to its base so that the small top pyramid has $\\frac{1}{27}$ of the original volume. At what fraction of the height (from the apex) was the cut made — and what fraction of the original SURFACE does the top piece's lateral surface make?",
+          "solution": "$k^3 = \\frac{1}{27}$ ⟹ $k = \\frac13$: the cut is a third of the way down from the apex. Lateral surfaces scale by $k^2 = \\frac{1}{9}$.",
+          "check": [
+            "Rational(1,27)**Rational(1,3) == Rational(1,3)",
+            "Rational(1,3)**2 == Rational(1,9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The law",
+            "title": "One factor, three powers",
+            "body": "Blow up any solid by factor $k$ — every length $\\times k$, every area $\\times k^2$, the volume $\\times k^3$. Why: lengths are one dimension of $k$; areas are length × length; volumes length × length × length. The solid's SHAPE is irrelevant — cube, cone, or dragon statue, the powers rule identically."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Watch the powers separate",
+            "teach": "Double the radius from 3 to 6 (leave everything to the sphere's one control): surface goes $36\\pi \\to 144\\pi$ (×4 = k²) while volume goes $36\\pi \\to 288\\pi$ (×8 = k³). Same k, different powers — this widget is the scaling law in motion.",
+            "config": { "solid": "sphere", "r": 3 }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Popcorn economics",
+            "prompt": "The 'large' cup is scaled $1.25\\times$ from the 'medium' in every dimension. Its volume is about…",
+            "options": [
+              "double the medium",
+              "$25\\%$ more",
+              "$56\\%$ more",
+              "triple the medium"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1.25^3 = \\frac{125}{64} \\approx 1.95$ — essentially double. ($56\\%$ more is $k^2$: that's the CUP MATERIAL increase, which is what the vendor pays. Guess who wins.)",
+            "check": [
+              "Rational(5,4)**3 == Rational(125, 64)",
+              "Abs(Rational(125,64) - 1.95) < 0.01"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Root, then re-raise",
+            "intro": "Whatever ratio you're given, extract k first.",
+            "examples": [
+              {
+                "prompt": "Heights 3 : 5, small volume $54\\pi$: big volume?",
+                "steps": [
+                  "$k = \\frac53$; $k^3 = \\frac{125}{27}$.",
+                  "$V = 54\\pi \\cdot \\frac{125}{27} = 250\\pi$."
+                ],
+                "answer": "$250\\pi$",
+                "check": [
+                  "54*Rational(125,27) == 250"
+                ]
+              },
+              {
+                "prompt": "Volumes 8 : 125: what's the ratio of surface areas?",
+                "steps": [
+                  "$k = \\sqrt[3]{\\frac{8}{125}} = \\frac25$.",
+                  "Areas: $k^2 = \\frac{4}{25}$."
+                ],
+                "answer": "$4 : 25$",
+                "check": [
+                  "Rational(8,125)**Rational(1,3) == Rational(2,5)",
+                  "Rational(2,5)**2 == Rational(4,25)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Power play",
+            "intro": "Name the power of what's given and of what's asked.",
+            "problems": [
+              {
+                "prompt": "Scale a solid by $k = 3$: volume multiplies by…",
+                "options": ["$27$", "$9$", "$3$"],
+                "correctIndex": 0,
+                "explanation": "$3^3 = 27$.",
+                "check": [
+                  "3**3 == 27"
+                ]
+              },
+              {
+                "prompt": "Surface ratio $9:16$: volume ratio?",
+                "options": ["$27 : 64$", "$9 : 16$", "$81 : 256$"],
+                "correctIndex": 0,
+                "explanation": "$k = \\frac34$; volumes $k^3 = \\frac{27}{64}$.",
+                "check": [
+                  "sqrt(Rational(9,16)) == Rational(3,4)",
+                  "Rational(3,4)**3 == Rational(27,64)"
+                ]
+              },
+              {
+                "prompt": "A pyramid cut at half-height (from the apex): the FRUSTUM keeps what fraction of the volume?",
+                "options": ["$\\dfrac{7}{8}$", "$\\dfrac{1}{2}$", "$\\dfrac{3}{4}$"],
+                "correctIndex": 0,
+                "explanation": "Top piece: $(\\frac12)^3 = \\frac18$. Frustum: $1 - \\frac18 = \\frac78$ — the bottom half of a pyramid is almost all of it.",
+                "check": [
+                  "1 - Rational(1,2)**3 == Rational(7,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why King Kong can't exist",
+            "body": "Scale a gorilla by $k = 10$: weight (volume) grows $1000\\times$, but bone strength (cross-section area) only $100\\times$. Every bone bears $10\\times$ its design load — Kong shatters his own legs on the first step. Galileo worked this out in 1638 ('On Two New Sciences'), which is why elephants look like elephants and insects can carry 50× their weight. The k²–k³ gap runs all of biology."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Similar solids",
+            "bullets": [
+              "One factor k: lengths ×k, areas ×k², volumes ×k³ — any solid.",
+              "Backwards: root the given ratio to k (√ for areas, ∛ for volumes), re-raise.",
+              "Apex cut at fraction k: top piece holds k³, frustum 1 − k³.",
+              "Real world: popcorn pricing, model scales, and why giants collapse."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "combined-solids",
+      "title": "Combined Solids",
+      "concreteComparison": "An ice-cream cone with its scoop, a pencil (cylinder + cone tip), a grain silo (cylinder + hemisphere hat), a washer (cylinder minus cylinder): the real world doesn't sell pure solids. It glues and drills them — and volumes simply add and subtract, as long as you inventory the pieces honestly.",
+      "objective": "Compute volumes and surfaces of solids built by adding or drilling out basic solids, tracking which surfaces survive the gluing.",
+      "concept": [
+        "**Volumes add and subtract like numbers**: silo = cylinder + half-sphere; washer = big cylinder − small cylinder; pencil = cylinder + cone. Inventory the pieces, compute each with its own formula, combine.",
+        "**Surfaces do NOT simply add**: where two solids glue, both touching faces vanish from the outside. An ice-cream cone + hemisphere scoop shows no cone-base disk and no flat hemisphere floor — the visible surface is (cone lateral) + (hemisphere dome). Always ask: which faces survived?",
+        "Drilled solids: subtract the removed volume, but ADD any newly exposed inner wall to the surface. A tube's surface includes its inner cylinder wall — removal can increase surface while decreasing volume."
+      ],
+      "keyIdea": "Volumes: add glued pieces, subtract drilled ones. Surfaces: glued faces disappear; drilled walls appear. Inventory before computing.",
+      "facts": [
+        {
+          "title": "Volume arithmetic",
+          "latex": "V = V_1 + V_2 \\quad \\text{or} \\quad V_1 - V_2",
+          "explanation": "Pieces add; holes subtract."
+        },
+        {
+          "title": "Glued faces vanish",
+          "latex": "S \\ne S_1 + S_2",
+          "explanation": "Both faces at the glue joint leave the surface."
+        },
+        {
+          "title": "Drilled walls appear",
+          "latex": "S_{tube} \\supset \\text{inner wall}",
+          "explanation": "Removing volume can ADD surface."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg63-we1",
+          "statement": "A silo is a cylinder ($r = 3$, $h = 8$) topped by a hemisphere ($R = 3$). Find its total volume.",
+          "solution": "Cylinder: $\\pi \\cdot 9 \\cdot 8 = 72\\pi$. Hemisphere: $\\frac23\\pi \\cdot 27 = 18\\pi$. Total: $90\\pi \\approx 282.7$.",
+          "check": [
+            "pi*9*8 == 72*pi",
+            "Rational(2,3)*pi*27 == 18*pi",
+            "72*pi + 18*pi == 90*pi"
+          ]
+        },
+        {
+          "id": "sg63-we2",
+          "statement": "Same silo: find the EXTERIOR surface (walls + dome + floor).",
+          "solution": "Cylinder wall: $2\\pi \\cdot 3 \\cdot 8 = 48\\pi$. Dome: $2\\pi \\cdot 9 = 18\\pi$. Floor: $9\\pi$. Total: $75\\pi \\approx 235.6$. NOT included: the cylinder's top disk and the hemisphere's flat floor — they were glued together and vanished.",
+          "check": [
+            "2*pi*3*8 == 48*pi",
+            "2*pi*9 == 18*pi",
+            "48*pi + 18*pi + 9*pi == 75*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding full surface areas of both pieces at a glue joint.",
+          "correction": "The joint eats BOTH faces: the cylinder's lid and the hemisphere's floor are inside the silo, painted by nobody. Inventory visible faces one by one instead of adding formulas blindly.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the inner wall of a drilled solid.",
+          "correction": "A pipe has TWO cylindrical surfaces — outer and inner. Drilling removes volume but exposes new wall: $S_{lat} = 2\\pi R h + 2\\pi r h$, plus two flat rings $2 \\cdot \\pi(R^2 - r^2)$ for a finite pipe.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg63-t1",
+          "statement": "An ice-cream: a cone ($r = 3$, $h = 4$) with a hemisphere scoop ($R = 3$) on top. Total volume?",
+          "solution": "Cone: $\\frac13\\pi \\cdot 9 \\cdot 4 = 12\\pi$. Scoop: $\\frac23 \\pi \\cdot 27 = 18\\pi$. Total: $30\\pi \\approx 94.2$ — the scoop beats the cone!",
+          "check": [
+            "Rational(1,3)*pi*9*4 == 12*pi",
+            "Rational(2,3)*pi*27 == 18*pi",
+            "12*pi + 18*pi == 30*pi"
+          ]
+        },
+        {
+          "id": "sg63-t2",
+          "statement": "A washer: a cylinder of radius $5$, height $2$, with a coaxial hole of radius $3$ drilled through. Find its volume and total surface.",
+          "solution": "Volume: $\\pi(25 - 9) \\cdot 2 = 32\\pi$. Surface: outer wall $2\\pi \\cdot 5 \\cdot 2 = 20\\pi$, inner wall $2\\pi \\cdot 3 \\cdot 2 = 12\\pi$, two flat rings $2\\pi(25 - 9) = 32\\pi$: total $64\\pi \\approx 201$.",
+          "check": [
+            "pi*(25 - 9)*2 == 32*pi",
+            "2*pi*5*2 + 2*pi*3*2 + 2*pi*(25 - 9) == 64*pi"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Inventory",
+            "title": "Name the pieces before you compute",
+            "body": "Every combined solid decomposes into the five families you now own: prism/box, pyramid, cylinder, cone, sphere. Silo = cylinder + hemisphere; pencil = cylinder + cone; capsule pill = cylinder + two hemispheres; washer = cylinder − cylinder. Write the inventory FIRST — the formulas are the easy part."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The silo",
+            "title": "Cross-section thinking for combined solids",
+            "body": "The silo in cross-section: an $r = 3$, $h = 8$ rectangle with a radius-3 semicircular hat, drawn true. Volumes add ($72\\pi + 18\\pi = 90\\pi$). For SURFACE, walk the outline: up the wall, over the dome, along the floor — the dashed glue line (the cylinder's lid) is interior and counts for nothing.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "A", "x": 0, "y": 0, "label": "" },
+                  { "id": "B", "x": 6, "y": 0, "label": "" },
+                  { "id": "C", "x": 6, "y": 8, "label": "" },
+                  { "id": "D", "x": 0, "y": 8, "label": "" },
+                  { "id": "O", "x": 3, "y": 8, "labelDx": 0, "labelDy": 12, "label": "" },
+                  { "id": "T", "x": 3, "y": 11, "label": "" }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "A", "to": "B", "label": "2r = 6" },
+                  { "kind": "segment", "from": "B", "to": "C", "label": "h = 8" },
+                  { "kind": "segment", "from": "D", "to": "A" },
+                  { "kind": "segment", "from": "D", "to": "C", "dashed": true, "color": "accent" },
+                  { "kind": "segment", "from": "O", "to": "T", "label": "R = 3", "dashed": true, "color": "blue" }
+                ],
+                "hidePoints": ["A", "B", "C", "D", "O", "T"]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "What vanished at the glue line?",
+            "prompt": "Silo = cylinder ($r=3$, $h=8$) + hemisphere. Its exterior surface EXCLUDES…",
+            "options": [
+              "the cylinder's top disk and the hemisphere's flat face",
+              "the hemisphere's dome",
+              "the cylinder's bottom disk",
+              "nothing — surfaces just add"
+            ],
+            "correctIndex": 0,
+            "explanation": "The glue joint eats both touching faces. What survives: wall $48\\pi$ + dome $18\\pi$ + floor $9\\pi$ = $75\\pi$ — not the naive $48\\pi + 18\\pi + 9\\pi + 9\\pi + 9\\pi$.",
+            "check": [
+              "48*pi + 18*pi + 9*pi == 75*pi"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Add, subtract, and walk the outline",
+            "intro": "Volume: arithmetic. Surface: an honest walk around the outside.",
+            "examples": [
+              {
+                "prompt": "Pencil: cylinder $r = 1$, $h = 10$ + cone tip $h = 3$ (same $r$). Volume?",
+                "steps": [
+                  "Cylinder $10\\pi$; cone $\\frac13\\pi \\cdot 1 \\cdot 3 = \\pi$.",
+                  "Total $11\\pi$."
+                ],
+                "answer": "$11\\pi \\approx 34.6$",
+                "check": [
+                  "pi*1*10 + Rational(1,3)*pi*1*3 == 11*pi"
+                ]
+              },
+              {
+                "prompt": "Capsule: cylinder $r = 2$, $h = 6$ + two hemisphere caps. Volume?",
+                "steps": [
+                  "Two hemispheres = one full sphere: $\\frac43\\pi \\cdot 8 = \\frac{32\\pi}{3}$.",
+                  "Cylinder $24\\pi$; total $24\\pi + \\frac{32\\pi}{3} = \\frac{104\\pi}{3}$."
+                ],
+                "answer": "$\\dfrac{104\\pi}{3} \\approx 108.9$",
+                "check": [
+                  "pi*4*6 + Rational(4,3)*pi*8 == Rational(104,3)*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Build and drill",
+            "intro": "Inventory → volumes add/subtract → surfaces walk the outline.",
+            "problems": [
+              {
+                "prompt": "Cone ($r = 3$, $h = 4$) + hemisphere scoop ($R = 3$): total volume?",
+                "options": ["$30\\pi$", "$21\\pi$", "$48\\pi$"],
+                "correctIndex": 0,
+                "explanation": "$12\\pi + 18\\pi = 30\\pi$.",
+                "check": [
+                  "Rational(1,3)*pi*9*4 + Rational(2,3)*pi*27 == 30*pi"
+                ]
+              },
+              {
+                "prompt": "Same treat's visible surface (cone wall + dome; $\\ell = 5$)?",
+                "options": ["$33\\pi$", "$42\\pi$", "$24\\pi$"],
+                "correctIndex": 0,
+                "explanation": "Cone lateral $\\pi \\cdot 3 \\cdot 5 = 15\\pi$ + dome $2\\pi \\cdot 9 = 18\\pi$ = $33\\pi$. The cone's base disk and scoop's floor vanished at the glue line.",
+                "check": [
+                  "pi*3*5 + 2*pi*9 == 33*pi"
+                ]
+              },
+              {
+                "prompt": "A cube of edge $6$ has a cylindrical hole ($r = 1$) drilled straight through a face. Volume left?",
+                "options": ["$216 - 6\\pi$", "$216 - \\pi$", "$210$"],
+                "correctIndex": 0,
+                "explanation": "Hole = cylinder of length 6: $\\pi \\cdot 1 \\cdot 6 = 6\\pi$. Left: $216 - 6\\pi \\approx 197.2$.",
+                "check": [
+                  "6**3 == 216",
+                  "pi*1**2*6 == 6*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Combined solids",
+            "bullets": [
+              "Inventory the basic pieces first; volumes then add (glue) or subtract (drill).",
+              "Surfaces: glued faces vanish (both of them); drilled inner walls appear.",
+              "Classic kits: silo (cyl + hemi), capsule (cyl + 2 hemi), pencil (cyl + cone), washer (cyl − cyl).",
+              "For surfaces, WALK the outline of the cross-section and name every visible piece."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solid-problem-strategies",
+      "title": "Solid Problem Strategies",
+      "concreteComparison": "Watch a chess master read a position: they don't see 32 pieces, they see three patterns. Exam stereometry is the same — behind every scary 3D setup hides one of about five flat right triangles. This lesson is the pattern book.",
+      "objective": "Solve multi-step exam problems by extracting the right flat triangle: the five classic configurations and the checklist that finds them.",
+      "concept": [
+        "**The five triangles that solve everything**: (1) box/cube climb — floor diagonal then space diagonal; (2) pyramid's $h$–$r$–$m$ and $h$–$R$–$\\ell$; (3) cone's $r$–$h$–$\\ell$ (axial); (4) sphere's $d$–$r$–$R$ (section); (5) the line-plane angle triangle (height–shadow–oblique). Every one is Pythagoras plus maybe one trig ratio.",
+        "**The checklist**: (i) name the solid(s); (ii) mark what's given ON a drawing; (iii) find which of the five triangles contains both a given and the unknown; (iv) redraw THAT triangle flat with true lengths; (v) compute; (vi) sanity-check against the solid ($\\ell > h$, section $\\le$ great circle, pyramid $<$ prism...).",
+        "Angles enter through the same triangles: 'lateral edge at $60°$ to the base' means $\\tan 60° = \\frac{h}{R}$ in triangle (2); 'axial section is right-angled' pins the cone's shape. Translate every angle phrase into a ratio inside its triangle."
+      ],
+      "keyIdea": "Five flat triangles solve all of stereometry: the climb, the two pyramid triangles, the cone's axial, the sphere's section, the shadow. Find the one holding your unknown; redraw it flat.",
+      "facts": [
+        {
+          "title": "The pattern book",
+          "latex": "5 \\text{ triangles} \\to \\text{every problem}",
+          "explanation": "Climb, slant/edge, axial, section, shadow."
+        },
+        {
+          "title": "Angle translation",
+          "latex": "\\text{'edge at } \\theta \\text{ to base'} \\Rightarrow \\tan\\theta = h/R",
+          "explanation": "Angle phrases are trig ratios inside a triangle."
+        },
+        {
+          "title": "Sanity bounds",
+          "latex": "\\ell > h, \\quad r_{sec} \\le R, \\quad V_{pyr} = \\tfrac13 V_{prism}",
+          "explanation": "Cheap checks that catch most errors."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg64-we1",
+          "statement": "A regular square pyramid's lateral edge is $\\ell = 6$, making a $45°$ angle with the base plane. Find the height and the base side.",
+          "solution": "The edge's shadow is the half-diagonal $R$; triangle (2b) with the $45°$: $h = 6\\sin 45° = 3\\sqrt{2}$ and $R = 6\\cos 45° = 3\\sqrt{2}$. Base side: $a = R\\sqrt2 = 3\\sqrt2 \\cdot \\sqrt2 = 6$. Sanity: $h < \\ell$ ✓.",
+          "check": [
+            "6*sin(pi/4) == 3*sqrt(2)",
+            "6*cos(pi/4) == 3*sqrt(2)",
+            "3*sqrt(2)*sqrt(2) == 6",
+            "3*sqrt(2) < 6"
+          ]
+        },
+        {
+          "id": "sg64-we2",
+          "statement": "A cone's axial section is a RIGHT isosceles triangle with hypotenuse $12$ (the hypotenuse is the base diameter). Find the cone's volume.",
+          "solution": "Hypotenuse = diameter: $r = 6$. Right isosceles axial section means the apex angle is $90°$ and the height equals half the hypotenuse: $h = 6$. $V = \\frac13\\pi \\cdot 36 \\cdot 6 = 72\\pi \\approx 226.2$.",
+          "check": [
+            "12/2 == 6",
+            "Rational(1,3)*pi*36*6 == 72*pi"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing inside the 3D picture — reading slanted drawing lengths as true.",
+          "correction": "Oblique drawings distort: equal segments draw unequal, right angles draw skewed. NEVER measure the picture. Extract the triangle, redraw flat with the TRUE lengths, compute there.",
+          "authored": true
+        },
+        {
+          "text": "Attaching a given angle to the wrong triangle (edge angle vs face angle).",
+          "correction": "'Lateral EDGE at θ to base' lives in the h–R–ℓ triangle; 'lateral FACE at θ to base' lives in the h–r–m triangle (the dihedral, measured square to the base edge). One word — edge vs face — switches triangles, and switches r for R.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg64-t1",
+          "statement": "A regular square pyramid has base side $6$ and its lateral FACE makes a $60°$ dihedral angle with the base. Find the height.",
+          "solution": "Face angle ⟹ the $h$–$r$–$m$ triangle with $r = 3$: $h = r\\tan 60° = 3\\sqrt{3} \\approx 5.2$.",
+          "check": [
+            "3*tan(pi/3) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "sg64-t2",
+          "statement": "A cylinder is inscribed in a sphere of radius $R = 5\\sqrt{2}$, with height equal to its diameter ($h = 2r$). Find the cylinder's radius.",
+          "solution": "Axial diagonal spans the sphere: $(2r)^2 + h^2 = (2R)^2$ with $h = 2r$: $8r^2 = 200$ ⟹ $r = 5$. (The axial section is a square — the 'equilateral cylinder' in its sphere.)",
+          "check": [
+            "sqrt(200/8) == 5",
+            "sqrt((2*5)**2 + (2*5)**2) == 2*5*sqrt(2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The pattern book",
+            "title": "Five triangles, all of stereometry",
+            "body": "(1) The CLIMB: floor diagonal, then up — boxes and rods. (2) The PYRAMID pair: $h$–$r$–$m$ (face/slant questions) and $h$–$R$–$\\ell$ (edge questions). (3) The AXIAL: $r$–$h$–$\\ell$ in every cone. (4) The SECTION: $d$–$r$–$R$ in every sphere. (5) The SHADOW: height–projection–oblique for every angle-with-a-plane. Memorize the five; every exam problem is one of them in costume."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Angle dictionary",
+            "title": "Translating angle phrases",
+            "body": "'Lateral edge at $60°$ to base' ⟹ in $h$–$R$–$\\ell$: $\\tan 60° = h/R$. 'Lateral face at $60°$ to base' ⟹ in $h$–$r$–$m$: $\\tan 60° = h/r$. 'Axial section is equilateral' (cone) ⟹ $2r = \\ell$, so $h = r\\sqrt3$. 'Axial section is right-angled' ⟹ $h = r$. 'Diagonal at $30°$ to base' (box) ⟹ $\\tan 30° = h/(\\text{floor diagonal})$. Build the reflex: angle phrase → which triangle → which ratio.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  { "id": "O", "x": 0, "y": 0, "labelDx": -8, "labelDy": 8 },
+                  { "id": "R", "x": 3, "y": 0, "labelDx": 10, "labelDy": 6 },
+                  { "id": "T", "x": 0, "y": 5.196 }
+                ],
+                "objects": [
+                  { "kind": "segment", "from": "O", "to": "R", "label": "R", "color": "blue" },
+                  { "kind": "segment", "from": "O", "to": "T", "label": "h", "color": "accent" },
+                  { "kind": "segment", "from": "T", "to": "R", "label": "ℓ" },
+                  { "kind": "angle", "at": "O", "from": "R", "to": "T", "right": true },
+                  { "kind": "angle", "at": "R", "from": "O", "to": "T", "label": "60°" }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Edge or face?",
+            "prompt": "Regular square pyramid, base side $6$. Its lateral FACE meets the base at $60°$. Which equation finds $h$?",
+            "options": [
+              "$h = 3\\tan 60°$",
+              "$h = 3\\sqrt{2}\\tan 60°$",
+              "$h = 6\\sin 60°$",
+              "$h = 3/\\tan 60°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "FACE angle ⟹ the $h$–$r$–$m$ triangle, and $r = \\frac{a}{2} = 3$: $h = 3\\tan 60° = 3\\sqrt3$. Option B used $R = 3\\sqrt2$ — that's the EDGE triangle. One word changes the answer by a factor $\\sqrt2$.",
+            "check": [
+              "3*tan(pi/3) == 3*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The checklist in action",
+            "intro": "Name solid → mark givens → pick triangle → flat redraw → compute → sanity.",
+            "examples": [
+              {
+                "prompt": "Pyramid: edge $\\ell = 6$ at $45°$ to base. Height and base side?",
+                "steps": [
+                  "Edge angle ⟹ $h$–$R$–$\\ell$: $h = 6\\sin45° = 3\\sqrt2$, $R = 3\\sqrt2$.",
+                  "$a = R\\sqrt2 = 6$."
+                ],
+                "answer": "$h = 3\\sqrt{2}$, $a = 6$",
+                "check": [
+                  "6*sin(pi/4) == 3*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Cone: axial section equilateral with side $6$. Volume?",
+                "steps": [
+                  "$2r = 6$: $r = 3$; equilateral ⟹ $h = 3\\sqrt3$.",
+                  "$V = \\frac13\\pi \\cdot 9 \\cdot 3\\sqrt3 = 9\\sqrt{3}\\pi$."
+                ],
+                "answer": "$9\\sqrt{3}\\pi \\approx 49$",
+                "check": [
+                  "sqrt(6**2 - 3**2) == 3*sqrt(3)",
+                  "Rational(1,3)*pi*9*3*sqrt(3) == 9*sqrt(3)*pi"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Full exam mode",
+            "intro": "Pick the triangle FIRST — the arithmetic is the reward, not the work.",
+            "problems": [
+              {
+                "prompt": "Box $6 \\times 6 \\times h$: the space diagonal makes $30°$ with the base. Find $h$.",
+                "options": ["$2\\sqrt{6}$", "$6\\sqrt{2}$", "$3$"],
+                "correctIndex": 0,
+                "explanation": "Shadow = floor diagonal $6\\sqrt2$; $h = 6\\sqrt2 \\tan30° = \\frac{6\\sqrt2}{\\sqrt3} = 2\\sqrt6 \\approx 4.9$.",
+                "check": [
+                  "simplify(6*sqrt(2)*tan(pi/6) - 2*sqrt(6)) == 0"
+                ]
+              },
+              {
+                "prompt": "Sphere of radius $R$: a section's radius equals its distance from the center ($r = d$). Then $r =$…",
+                "options": ["$\\dfrac{R\\sqrt2}{2}$", "$\\dfrac{R}{2}$", "$\\dfrac{R\\sqrt3}{2}$"],
+                "correctIndex": 0,
+                "explanation": "$r^2 + r^2 = R^2$ ⟹ $r = \\frac{R}{\\sqrt2} = \\frac{R\\sqrt2}{2}$ — the 45° section.",
+                "check": [
+                  "simplify(sqrt(Rational(1,2)) - sqrt(2)/2) == 0"
+                ]
+              },
+              {
+                "prompt": "A cone and a hemisphere share radius $r$ and have equal volumes. The cone's height is…",
+                "options": ["$2r$", "$r$", "$\\dfrac{4r}{3}$"],
+                "correctIndex": 0,
+                "explanation": "$\\frac13\\pi r^2 h = \\frac23\\pi r^3$ ⟹ $h = 2r$. A volume-matching cone must stand twice as tall as the dome it imitates.",
+                "check": [
+                  "solve(Rational(1,3)*r**2*h - Rational(2,3)*r**3, h)[0] == 2*r"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The ЭЕШ's favorite disguises",
+            "body": "Across the last decade of Mongolian university entrance exams, stereometry problems are overwhelmingly triangle (2) and (3) in costume: 'pyramid with face angle', 'cone from its axial section'. The setup paragraphs change — tents, yurts, grain piles — but the five-triangle pattern book covers them all. Learn patterns, not problems."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The strategy",
+            "bullets": [
+              "Five triangles: climb (box), h–r–m and h–R–ℓ (pyramid), r–h–ℓ (cone), d–r–R (sphere), shadow (angles).",
+              "Checklist: name → mark → pick triangle → redraw flat → compute → sanity-check.",
+              "Angle dictionary: EDGE angle ↔ R-triangle; FACE angle ↔ r-triangle; axial-section shapes pin h/r.",
+              "Never measure the drawing — extract and redraw true. That's the whole game."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg6-pr-1",
+      "statement": "A cube has edge $5$. Find the area of its diagonal section and that section's own diagonal.",
+      "solution": "Rectangle $5 \\times 5\\sqrt2$: area $25\\sqrt{2} \\approx 35.4$. Its diagonal: $\\sqrt{25 + 50} = 5\\sqrt{3}$ — the cube's space diagonal, as it must be.",
+      "check": [
+        "5*5*sqrt(2) == 25*sqrt(2)",
+        "sqrt(5**2 + (5*sqrt(2))**2) == 5*sqrt(3)"
+      ]
+    },
+    {
+      "id": "sg6-pr-2",
+      "statement": "A cone ($r = 9$, $h = 12$) is cut parallel to the base at $4$ from the apex. Find the section's radius and area.",
+      "solution": "$k = \\frac{4}{12} = \\frac13$: section radius $= 3$, area $= 9\\pi \\approx 28.3$.",
+      "check": [
+        "Rational(4, 12)*9 == 3",
+        "pi*3**2 == 9*pi"
+      ]
+    },
+    {
+      "id": "sg6-pr-3",
+      "statement": "Two similar pyramids have volumes $16$ and $250$. Their heights are in what ratio? Their surface areas?",
+      "solution": "$k = \\sqrt[3]{\\frac{250}{16}} = \\sqrt[3]{\\frac{125}{8}} = \\frac52$. Heights $2 : 5$; surfaces $k^2 = \\frac{25}{4}$, i.e. $4 : 25$.",
+      "check": [
+        "Rational(250, 16) == Rational(125, 8)",
+        "Rational(125,8)**Rational(1,3) == Rational(5,2)",
+        "Rational(5,2)**2 == Rational(25,4)"
+      ]
+    },
+    {
+      "id": "sg6-pr-4",
+      "statement": "A capsule tank: cylinder $r = 3$, $h = 10$, capped by two hemispheres. Find its volume and total surface.",
+      "solution": "Volume: $90\\pi + \\frac43\\pi \\cdot 27 = 90\\pi + 36\\pi = 126\\pi \\approx 395.8$. Surface: cylinder wall $60\\pi$ + full sphere surface $36\\pi$ = $96\\pi$ (the two flat glue-disks vanished; two hemisphere domes = one sphere).",
+      "check": [
+        "pi*9*10 + Rational(4,3)*pi*27 == 126*pi",
+        "2*pi*3*10 + 4*pi*9 == 96*pi"
+      ]
+    },
+    {
+      "id": "sg6-pr-5",
+      "statement": "A regular square pyramid's lateral edge is $10$ at $60°$ to the base plane. Find the height, the base side, and the volume.",
+      "solution": "$h = 10\\sin60° = 5\\sqrt{3}$; $R = 10\\cos 60° = 5$, so $a = 5\\sqrt{2}$ and $B = 50$. $V = \\frac13 \\cdot 50 \\cdot 5\\sqrt3 = \\frac{250\\sqrt{3}}{3} \\approx 144.3$.",
+      "geoFigure": {
+        "points": [
+          { "id": "O", "x": 0, "y": 0, "labelDx": -8, "labelDy": 8 },
+          { "id": "A", "x": 2.5, "y": 0, "labelDx": 12, "labelDy": 6, "label": "R" },
+          { "id": "T", "x": 0, "y": 4.33 }
+        ],
+        "objects": [
+          { "kind": "segment", "from": "O", "to": "A", "color": "blue" },
+          { "kind": "segment", "from": "O", "to": "T", "label": "h", "color": "accent" },
+          { "kind": "segment", "from": "T", "to": "A", "label": "10" },
+          { "kind": "angle", "at": "O", "from": "A", "to": "T", "right": true },
+          { "kind": "angle", "at": "A", "from": "O", "to": "T", "label": "60°" }
+        ]
+      },
+      "check": [
+        "10*sin(pi/3) == 5*sqrt(3)",
+        "10*cos(pi/3) == 5",
+        "(5*sqrt(2))**2 == 50",
+        "simplify(Rational(1,3)*50*5*sqrt(3) - Rational(250,3)*sqrt(3)) == 0"
+      ]
+    },
+    {
+      "id": "sg6-pr-6",
+      "statement": "A washer has outer radius $6$, inner radius $2$, thickness $3$. Find its volume and total surface area.",
+      "solution": "Volume: $\\pi(36 - 4) \\cdot 3 = 96\\pi$. Surface: outer wall $2\\pi \\cdot 6 \\cdot 3 = 36\\pi$; inner wall $2\\pi \\cdot 2 \\cdot 3 = 12\\pi$; two rings $2\\pi(36-4) = 64\\pi$. Total $112\\pi \\approx 351.9$.",
+      "check": [
+        "pi*(36 - 4)*3 == 96*pi",
+        "36*pi + 12*pi + 64*pi == 112*pi"
+      ]
+    },
+    {
+      "id": "sg6-pr-7",
+      "statement": "A cone's axial section is equilateral with side $8$. Find the cone's total surface area and volume.",
+      "solution": "$2r = 8$: $r = 4$, $\\ell = 8$, $h = 4\\sqrt{3}$. Surface: $\\pi \\cdot 4(4 + 8) = 48\\pi$. Volume: $\\frac13\\pi \\cdot 16 \\cdot 4\\sqrt3 = \\frac{64\\sqrt{3}\\pi}{3} \\approx 116.1$.",
+      "check": [
+        "sqrt(8**2 - 4**2) == 4*sqrt(3)",
+        "pi*4*(4 + 8) == 48*pi",
+        "simplify(Rational(1,3)*pi*16*4*sqrt(3) - Rational(64,3)*sqrt(3)*pi) == 0"
+      ]
+    },
+    {
+      "id": "sg6-pr-8",
+      "statement": "Doubling every dimension of a yurt (a cylinder wall + cone roof) multiplies the felt needed (surface) and the interior air (volume) by what factors?",
+      "solution": "Any solid, any combination: surfaces $\\times k^2 = 4$, volume $\\times k^3 = 8$. Composite solids obey the same powers — scaling doesn't care how the yurt decomposes.",
+      "check": [
+        "2**2 == 4",
+        "2**3 == 8"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg6-ty-1",
+      "statement": "Cube edge $3$: diagonal-section area?",
+      "solution": "$3 \\cdot 3\\sqrt2 = 9\\sqrt{2} \\approx 12.7$.",
+      "check": [
+        "3*3*sqrt(2) == 9*sqrt(2)"
+      ]
+    },
+    {
+      "id": "sg6-ty-2",
+      "statement": "A pyramid is cut parallel to its base at $\\frac{3}{4}$ of the height from the apex. The section's area is what fraction of the base area?",
+      "solution": "$k = \\frac34$: areas scale by $k^2 = \\frac{9}{16}$.",
+      "check": [
+        "Rational(3,4)**2 == Rational(9,16)"
+      ]
+    },
+    {
+      "id": "sg6-ty-3",
+      "statement": "Two similar cylinders have surface areas in ratio $4:49$. Ratio of volumes?",
+      "solution": "$k = \\frac27$: volumes $k^3 = \\frac{8}{343}$.",
+      "check": [
+        "sqrt(Rational(4,49)) == Rational(2,7)",
+        "Rational(2,7)**3 == Rational(8,343)"
+      ]
+    },
+    {
+      "id": "sg6-ty-4",
+      "statement": "A silo is a cylinder ($r = 2$, $h = 9$) plus a hemisphere cap. Total volume?",
+      "solution": "$36\\pi + \\frac23\\pi \\cdot 8 = 36\\pi + \\frac{16\\pi}{3} = \\frac{124\\pi}{3} \\approx 129.9$.",
+      "check": [
+        "pi*4*9 + Rational(2,3)*pi*8 == Rational(124,3)*pi"
+      ]
+    },
+    {
+      "id": "sg6-ty-5",
+      "statement": "A regular square pyramid: base side $8$, lateral FACE at $45°$ to the base. Find $h$ and the volume.",
+      "solution": "Face angle ⟹ $h = r\\tan45° = 4$. $V = \\frac13 \\cdot 64 \\cdot 4 = \\frac{256}{3} \\approx 85.3$.",
+      "check": [
+        "4*tan(pi/4) == 4",
+        "Rational(1,3)*64*4 == Rational(256,3)"
+      ]
+    },
+    {
+      "id": "sg6-ty-6",
+      "statement": "The axial section of a cone is a right isosceles triangle (right angle at the apex) with area $25$. Find $r$ and the volume.",
+      "solution": "For such a cone $h = r$ and the axial triangle's area is $\\frac12 \\cdot 2r \\cdot r = r^2 = 25$: $r = 5$, $h = 5$. $V = \\frac13\\pi \\cdot 25 \\cdot 5 = \\frac{125\\pi}{3} \\approx 130.9$.",
+      "check": [
+        "sqrt(25) == 5",
+        "Rational(1,3)*pi*25*5 == Rational(125,3)*pi"
+      ]
+    }
+  ]
+}

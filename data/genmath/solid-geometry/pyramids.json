@@ -1,0 +1,1774 @@
+{
+  "slug": "pyramids",
+  "title": "Pyramids",
+  "unit": 3,
+  "status": "published",
+  "blurb": "From Giza to the frustum: pyramid anatomy, the height–apothem–slant triangle that solves everything, the mysterious ⅓ in the volume, and what's left when you slice the top off.",
+  "buildsOn": "Unit 2's prisms and diagonals; the perpendicular-and-oblique triangle from Unit 1.",
+  "lessons": [
+    {
+      "slug": "pyramid-anatomy",
+      "title": "Pyramid Anatomy",
+      "concreteComparison": "A pyramid is a tent with one center pole: the floor is any polygon, every wall leans in, and they all pin to the pole's top. Egypt's architects, a circus tent, the roof of a bell tower — one polygon, one apex, triangular walls.",
+      "objective": "Name the parts of a pyramid, count its elements, and master the two right triangles inside a regular pyramid (height–apothem–slant and height–half-diagonal–edge).",
+      "concept": [
+        "A **pyramid**: one polygon base, one **apex** above, and triangular **lateral faces** joining each base edge to the apex. On an $n$-gon base: $n + 1$ vertices, $2n$ edges, $n + 1$ faces. Square pyramid: $5$ vertices, $8$ edges, $5$ faces. Euler: $5 - 8 + 5 = 2$ ✓.",
+        "A **regular pyramid**: regular polygon base + apex directly above the base's CENTER. Its lateral faces are identical isosceles triangles. The height of one such triangular face (apex to base-edge midpoint) is the **slant height** (apothem of the pyramid), written $m$.",
+        "Two right triangles run the whole unit, both standing on the height $h$: (1) $h$ + base-apothem $r$ (center to edge-midpoint) ⟹ hypotenuse = slant height $m$; (2) $h$ + half-diagonal $R$ (center to vertex) ⟹ hypotenuse = lateral edge $\\ell$. Solve pyramids by finding the right one of these two."
+      ],
+      "keyIdea": "Regular pyramid = regular base + apex over the center. Two Pythagorean triangles inside: m² = h² + r² (slant) and ℓ² = h² + R² (edge).",
+      "facts": [
+        {
+          "title": "Element counts",
+          "latex": "n\\text{-gon}: \\; n+1 \\text{ vertices}, \\; 2n \\text{ edges}, \\; n+1 \\text{ faces}",
+          "explanation": "n around the base ring plus the apex."
+        },
+        {
+          "title": "Slant height",
+          "latex": "m^2 = h^2 + r^2",
+          "explanation": "Height + base apothem (center→edge midpoint)."
+        },
+        {
+          "title": "Lateral edge",
+          "latex": "\\ell^2 = h^2 + R^2",
+          "explanation": "Height + circumradius (center→base vertex)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg31-we1",
+          "statement": "A regular square pyramid has base side $6$ and height $4$. Find its slant height $m$ and lateral edge $\\ell$.",
+          "solution": "Base apothem $r = \\frac{6}{2} = 3$: $m = \\sqrt{4^2 + 3^2} = 5$ (3-4-5!). Half-diagonal $R = \\frac{6\\sqrt2}{2} = 3\\sqrt{2}$: $\\ell = \\sqrt{16 + 18} = \\sqrt{34} \\approx 5.83$. Order check: $h < m < \\ell$ ✓ ($4 < 5 < 5.83$) — the edge leans out farthest, so it's longest.",
+          "check": [
+            "sqrt(4**2 + 3**2) == 5",
+            "sqrt(4**2 + (3*sqrt(2))**2) == sqrt(34)",
+            "4 < 5",
+            "5 < sqrt(34)"
+          ]
+        },
+        {
+          "id": "sg31-we2",
+          "statement": "A pyramid has $10$ faces. What is its base, and how many edges and vertices does it have?",
+          "solution": "Faces $= n + 1 = 10$ ⟹ $n = 9$: a nonagon base. Edges: $2n = 18$; vertices: $n + 1 = 10$. Euler: $10 - 18 + 10 = 2$ ✓.",
+          "check": [
+            "10 - 1 == 9",
+            "2*9 == 18",
+            "10 - 18 + 10 == 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing slant height (to an edge's MIDPOINT) with lateral edge (to a VERTEX).",
+          "correction": "Slant height $m$ runs down the middle of a triangular face; the lateral edge $\\ell$ runs down its side. Different feet, different triangles: $m$ pairs with the apothem $r$, $\\ell$ pairs with the half-diagonal $R$. Since $R > r$, always $\\ell > m$.",
+          "authored": true
+        },
+        {
+          "text": "Placing the apex over a vertex or edge and still using the regular-pyramid formulas.",
+          "correction": "The two Pythagorean triangles need the apex over the CENTER. If a problem says 'the apex is above vertex A', the height triangle changes feet — draw it fresh; don't autopilot with m² = h² + r².",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg31-t1",
+          "statement": "A regular square pyramid has base side $10$ and height $12$. Find its slant height.",
+          "solution": "$r = 5$: $m = \\sqrt{12^2 + 5^2} = \\sqrt{169} = 13$ — the 5-12-13 triple.",
+          "check": [
+            "sqrt(12**2 + 5**2) == 13"
+          ]
+        },
+        {
+          "id": "sg31-t2",
+          "statement": "A pyramid has $12$ edges. Name its base and count its faces.",
+          "solution": "$2n = 12$ ⟹ $n = 6$: hexagonal base, $n + 1 = 7$ faces (6 triangles + 1 hexagon).",
+          "check": [
+            "12/2 == 6",
+            "6 + 1 == 7"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The tent",
+            "title": "One base, one apex, triangular walls",
+            "body": "Square base $ABCD$, apex $T$ pinned above the center $O$. Four triangular faces lean in and meet at $T$. The dashed lines are hidden: the back edges and the height $TO$ dropping inside the solid. This is the **regular** square pyramid — base regular, apex over the center.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.8,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "O",
+                    "x": 2.9,
+                    "y": 0.9,
+                    "labelDx": 10,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "T",
+                    "x": 2.9,
+                    "y": 4.9
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "O",
+                    "dashed": true,
+                    "color": "accent"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Stretch the pyramid",
+            "teach": "Step the base and height. Watch how a taller pyramid steepens the faces while a wider base flattens them — the slant height $m$ responds to BOTH controls through $m^2 = h^2 + (a/2)^2$.",
+            "config": {
+              "solid": "pyramid",
+              "base": 6,
+              "h": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two triangles",
+            "title": "Slant vs edge: know which triangle you're in",
+            "body": "Both stand on the height $h = 4$ (base side $6$). LEFT triangle: $h$ with the base **apothem** $r = 3$ (center → edge midpoint $M$) gives the **slant height** $m = 5$ — the 3-4-5 triple, drawn true. The lateral **edge** uses the half-diagonal $R = 3\\sqrt2 \\approx 4.24$ instead: $\\ell = \\sqrt{16 + 18} = \\sqrt{34} \\approx 5.83$. Two feet, two answers — identify the FOOT before you compute.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "M",
+                    "x": 3,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "T",
+                    "x": 0,
+                    "y": 4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "M",
+                    "label": "r = 3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "T",
+                    "label": "h = 4",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "M",
+                    "label": "m = 5"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "M",
+                    "to": "T",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Which foot?",
+            "prompt": "Regular square pyramid, base $10$, height $12$. The SLANT HEIGHT is…",
+            "options": [
+              "$13$",
+              "$\\sqrt{194}$",
+              "$12$",
+              "$15$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Slant pairs with the apothem $r = 5$: $m = \\sqrt{144 + 25} = 13$. $\\sqrt{194}$ is the lateral EDGE (foot at the vertex, $R = 5\\sqrt2$, $144 + 50 = 194$) — the classic mix-up.",
+            "check": [
+              "sqrt(12**2 + 5**2) == 13",
+              "sqrt(12**2 + (5*sqrt(2))**2) == sqrt(194)"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Anatomy in numbers",
+            "intro": "Counts by rings of n; lengths by the two triangles.",
+            "examples": [
+              {
+                "prompt": "Base $6$, height $4$: slant height and lateral edge?",
+                "steps": [
+                  "$m = \\sqrt{4^2 + 3^2} = 5$.",
+                  "$\\ell = \\sqrt{4^2 + (3\\sqrt2)^2} = \\sqrt{34}$."
+                ],
+                "answer": "$m = 5$, $\\ell = \\sqrt{34} \\approx 5.83$",
+                "check": [
+                  "sqrt(16 + 9) == 5",
+                  "sqrt(16 + 18) == sqrt(34)"
+                ]
+              },
+              {
+                "prompt": "A pyramid has 7 faces. Base? Edges? Vertices?",
+                "steps": [
+                  "$n + 1 = 7$ ⟹ hexagon.",
+                  "$2n = 12$ edges, $n + 1 = 7$ vertices."
+                ],
+                "answer": "Hexagonal; $12$ edges, $7$ vertices",
+                "check": [
+                  "7 - 12 + 7 == 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Feet first",
+            "intro": "Apothem for slants, half-diagonal for edges.",
+            "problems": [
+              {
+                "prompt": "Base $16$, height $6$: slant height?",
+                "options": [
+                  "$10$",
+                  "$8$",
+                  "$\\sqrt{292}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$r = 8$: $m = \\sqrt{36 + 64} = 10$ (6-8-10).",
+                "check": [
+                  "sqrt(6**2 + 8**2) == 10"
+                ]
+              },
+              {
+                "prompt": "A pyramid has $n+1 = 13$ vertices. How many edges?",
+                "options": [
+                  "$24$",
+                  "$13$",
+                  "$26$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$n = 12$ ⟹ $2n = 24$ edges.",
+                "check": [
+                  "2*12 == 24"
+                ]
+              },
+              {
+                "prompt": "In every regular pyramid, the lateral edge is ___ the slant height.",
+                "options": [
+                  "longer than",
+                  "shorter than",
+                  "equal to"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ell^2 = h^2 + R^2$ vs $m^2 = h^2 + r^2$, and the circumradius $R$ always beats the apothem $r$ — so $\\ell > m$, always.",
+                "check": [
+                  "sqrt(2) > 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Pyramid anatomy",
+            "bullets": [
+              "n-gon base: n+1 vertices, 2n edges, n+1 faces.",
+              "Regular pyramid: apex over the CENTER of a regular base.",
+              "Slant height: m² = h² + r² (apothem foot). Lateral edge: ℓ² = h² + R² (vertex foot).",
+              "Always ℓ > m > h — edge, slant, height, in decreasing lean."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "surface-area-of-pyramids",
+      "title": "Surface Area of Pyramids",
+      "concreteComparison": "To gift-wrap a pyramid you need four triangular sheets, and each triangle's height is the SLANT height — the tape measure must run along the leaning face, not drop through the air inside. Confuse the two and your wrapping comes up short.",
+      "objective": "Compute lateral and total surface area of regular pyramids: S_lat = ½ P·m.",
+      "concept": [
+        "Each lateral face of a regular pyramid is an isosceles triangle with base = one base side $a$ and height = the slant height $m$. Face area $= \\frac{1}{2} a m$; with $n$ faces, $S_{lat} = n \\cdot \\frac12 a m = \\frac{1}{2} P m$ — half the base perimeter times the slant height.",
+        "Total surface adds the base: $S = \\frac12 P m + B$. Only ONE base this time (the apex isn't a face!). For the square pyramid: $S = 2am + a^2$.",
+        "The slant height $m$ is usually not given — build it from $m^2 = h^2 + r^2$ first. Pyramid problems are two-step by design: Pythagoras for $m$, then the area formula."
+      ],
+      "keyIdea": "S_lat = ½ P·m (P = base perimeter, m = slant height); total adds the single base. Find m via m² = h² + r² first.",
+      "facts": [
+        {
+          "title": "Lateral surface",
+          "latex": "S_{lat} = \\tfrac{1}{2} P m",
+          "explanation": "n identical triangles, ½·a·m each."
+        },
+        {
+          "title": "Total surface",
+          "latex": "S = \\tfrac{1}{2} P m + B",
+          "explanation": "One base only — a pyramid has no lid."
+        },
+        {
+          "title": "Square pyramid",
+          "latex": "S = 2am + a^2",
+          "explanation": "P = 4a makes ½Pm = 2am."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg32-we1",
+          "statement": "A regular square pyramid has base side $10$ and height $12$. Find its total surface area.",
+          "solution": "Slant: $m = \\sqrt{12^2 + 5^2} = 13$. Lateral: $\\frac12 P m = \\frac12 \\cdot 40 \\cdot 13 = 260$. Total: $260 + 100 = 360$.",
+          "check": [
+            "sqrt(12**2 + 5**2) == 13",
+            "Rational(1,2)*40*13 == 260",
+            "260 + 10**2 == 360"
+          ]
+        },
+        {
+          "id": "sg32-we2",
+          "statement": "A regular square pyramid's lateral surface is twice its base area, with base side $6$. Find the slant height and then the height.",
+          "solution": "$S_{lat} = 2B$: $\\frac12 \\cdot 24 \\cdot m = 2 \\cdot 36 = 72$ ⟹ $m = 6$. Height: $h = \\sqrt{m^2 - r^2} = \\sqrt{36 - 9} = \\sqrt{27} = 3\\sqrt{3} \\approx 5.2$.",
+          "check": [
+            "Rational(1,2)*24*6 == 72",
+            "sqrt(6**2 - 3**2) == 3*sqrt(3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the pyramid's height h in ½P·m.",
+          "correction": "The faces lean — their true height is the slant $m > h$. Using $h$ under-wraps every face. First convert: $m = \\sqrt{h^2 + r^2}$, THEN apply ½Pm.",
+          "authored": true
+        },
+        {
+          "text": "Adding two bases like a prism.",
+          "correction": "A pyramid has exactly one base; the top is a point, not a face. $S = \\frac12 Pm + B$ — one $B$, not $2B$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg32-t1",
+          "statement": "Regular square pyramid: base side $16$, height $6$. Total surface area?",
+          "solution": "$m = \\sqrt{36 + 64} = 10$; lateral $= \\frac12 \\cdot 64 \\cdot 10 = 320$; total $= 320 + 256 = 576$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10",
+            "Rational(1,2)*64*10 + 16**2 == 576"
+          ]
+        },
+        {
+          "id": "sg32-t2",
+          "statement": "The Great Pyramid model: base $6$, slant height $5$. A decorator gilds the four faces only. What area is gilded, and what fraction of the TOTAL surface is that?",
+          "solution": "Gilded: $\\frac12 \\cdot 24 \\cdot 5 = 60$. Total: $60 + 36 = 96$. Fraction: $\\frac{60}{96} = \\frac{5}{8}$.",
+          "check": [
+            "Rational(1,2)*24*5 == 60",
+            "Rational(60, 96) == Rational(5, 8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "One face",
+            "title": "Each wall is a triangle of height m",
+            "body": "Unfold one lateral face flat: an isosceles triangle, base $a = 10$, height = the SLANT $m = 13$ (drawn true below). Its area is $\\frac12 \\cdot 10 \\cdot 13 = 65$. Four of them: $260$. That's all $\\frac12 Pm$ says — per-face area, times the number of faces, collected into perimeter language.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "B",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "M",
+                    "x": 2.5,
+                    "y": 0,
+                    "labelDx": 0,
+                    "labelDy": 12
+                  },
+                  {
+                    "id": "T",
+                    "x": 2.5,
+                    "y": 6.5
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "a = 10"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "M",
+                    "label": "m = 13",
+                    "color": "accent",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "M",
+                    "from": "C",
+                    "to": "T",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pipeline",
+            "title": "h → m → area: always two steps",
+            "body": "Problems give the HEIGHT because it's the honest vertical — but wrapping needs the SLANT. The conversion triangle (height $12$, apothem $5$, slant $13$) is drawn true below. Pipeline: $m = \\sqrt{h^2 + r^2} = 13$, then $S_{lat} = \\frac12 \\cdot 40 \\cdot 13 = 260$, then $+B$ if the problem wants the base too.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "M",
+                    "x": 2.5,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "T",
+                    "x": 0,
+                    "y": 6
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "M",
+                    "label": "r = 5",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "T",
+                    "label": "h = 12",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "M",
+                    "label": "m = 13"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "M",
+                    "to": "T",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Height is not slant",
+            "prompt": "Base side $16$, height $6$. Lateral surface?",
+            "options": [
+              "$320$",
+              "$192$",
+              "$576$",
+              "$640$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$m = \\sqrt{6^2 + 8^2} = 10$, so $\\frac12 \\cdot 64 \\cdot 10 = 320$. Using $h = 6$ directly gives $192$ — under-wrapped by the lean. $576$ is the TOTAL (with the base).",
+            "check": [
+              "Rational(1,2)*64*10 == 320",
+              "Rational(1,2)*64*6 == 192"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Wrap the pyramid",
+            "intro": "Slant first — always.",
+            "examples": [
+              {
+                "prompt": "Base $10$, height $12$: total surface?",
+                "steps": [
+                  "$m = \\sqrt{144 + 25} = 13$.",
+                  "$S = \\frac12 \\cdot 40 \\cdot 13 + 100 = 360$."
+                ],
+                "answer": "$360$",
+                "check": [
+                  "Rational(1,2)*40*13 + 100 == 360"
+                ]
+              },
+              {
+                "prompt": "Base $6$, $S_{lat} = 72$: slant height?",
+                "steps": [
+                  "$\\frac12 \\cdot 24 \\cdot m = 72$.",
+                  "$m = 6$."
+                ],
+                "answer": "$m = 6$",
+                "check": [
+                  "72/(Rational(1,2)*24) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sheets and gilding",
+            "intro": "½Pm for the walls, +B if the floor counts.",
+            "problems": [
+              {
+                "prompt": "Base $6$, slant $5$: lateral surface?",
+                "options": [
+                  "$60$",
+                  "$96$",
+                  "$30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac12 \\cdot 24 \\cdot 5 = 60$.",
+                "check": [
+                  "Rational(1,2)*24*5 == 60"
+                ]
+              },
+              {
+                "prompt": "Base $6$, height $4$: TOTAL surface?",
+                "options": [
+                  "$96$",
+                  "$60$",
+                  "$84$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$m = \\sqrt{16+9} = 5$; $S = 60 + 36 = 96$.",
+                "check": [
+                  "Rational(1,2)*24*5 + 36 == 96"
+                ]
+              },
+              {
+                "prompt": "Two pyramids share base side $a$; one has height $h$, the other $2h$. The taller one's lateral surface is…",
+                "options": [
+                  "less than double the shorter one's",
+                  "exactly double",
+                  "more than double"
+                ],
+                "correctIndex": 0,
+                "explanation": "Doubling $h$ doesn't double $m = \\sqrt{h^2 + r^2}$ (the $r^2$ part doesn't grow). E.g. $h=3, r=4$: $m = 5$; $h=6$: $m = \\sqrt{52} \\approx 7.2 < 10$. Surface scales with $m$, so less than double.",
+                "check": [
+                  "sqrt(6**2 + 4**2) < 2*sqrt(3**2 + 4**2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Giza's slant is famous",
+            "body": "The Great Pyramid's faces rise at about $51.8°$ — some historians think the builders aimed for a slope where the slant height relates to the half-base as $\\pi/2$ does... probably a coincidence of using rolling-drum measurements. Its original casing was polished white limestone: roughly 21 acres of ½Pm, bright enough to be seen from the mountains of Israel — the largest 'lateral surface area' project in human history."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Pyramid surfaces",
+            "bullets": [
+              "Every lateral face: triangle of base a, height m (the SLANT, not h).",
+              "S_lat = ½Pm; total = ½Pm + B (one base only).",
+              "Pipeline: h → (Pythagoras with apothem) → m → area.",
+              "Sanity: using h instead of m always UNDERestimates — faces lean."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "volume-of-pyramids",
+      "title": "Volume of Pyramids",
+      "concreteComparison": "Fill a pyramid-shaped cup with water and pour it into a prism cup of the same base and height: it fills exactly one third. Do it twice more and the prism tops off perfectly. That stubborn ⅓ isn't an approximation — three pyramids genuinely tile one prism.",
+      "objective": "Compute pyramid volumes with V = ⅓Bh and solve inverse problems.",
+      "concept": [
+        "$V = \\frac{1}{3} B h$ — one third of the matching prism. The $\\frac13$ is exact: a cube splits into three identical square pyramids (each using one cube face as base, all sharing one cube corner as apex). Three pours, one prism.",
+        "Use the TRUE height $h$ — apex to base plane, perpendicular. Given the slant $m$ or edge $\\ell$ instead, convert first: $h^2 = m^2 - r^2$ or $h^2 = \\ell^2 - R^2$ (lesson 1's triangles, run backwards).",
+        "Inverse problems: given $V$ and the base, $h = \\frac{3V}{B}$; given $V$ and $h$, $B = \\frac{3V}{h}$. The 3 always moves first."
+      ],
+      "keyIdea": "V = ⅓Bh — exactly a third of the prism, with h the perpendicular height (convert from slant/edge if needed).",
+      "facts": [
+        {
+          "title": "Pyramid volume",
+          "latex": "V = \\tfrac{1}{3} B h",
+          "explanation": "One third of base × height."
+        },
+        {
+          "title": "Why ⅓",
+          "latex": "\\text{cube} = 3 \\text{ equal pyramids}",
+          "explanation": "Base = a face, apex = one far corner, three ways."
+        },
+        {
+          "title": "Inverse",
+          "latex": "h = \\frac{3V}{B}, \\qquad B = \\frac{3V}{h}",
+          "explanation": "Clear the ⅓ before anything else."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg33-we1",
+          "statement": "A regular square pyramid has base side $10$ and height $12$. Find its volume.",
+          "solution": "$V = \\frac13 \\cdot 100 \\cdot 12 = 400$.",
+          "check": [
+            "Rational(1,3)*100*12 == 400"
+          ]
+        },
+        {
+          "id": "sg33-we2",
+          "statement": "A regular square pyramid has base side $6$ and SLANT height $5$. Find its volume.",
+          "solution": "First the true height: $h = \\sqrt{m^2 - r^2} = \\sqrt{25 - 9} = 4$. Then $V = \\frac13 \\cdot 36 \\cdot 4 = 48$. (Feeding the slant straight into the formula would give the inflated $60$.)",
+          "check": [
+            "sqrt(5**2 - 3**2) == 4",
+            "Rational(1,3)*36*4 == 48",
+            "Rational(1,3)*36*5 == 60"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the ⅓ — computing a prism volume by reflex.",
+          "correction": "A pyramid is a prism with almost everything shaved off: $V = \\frac13 Bh$. Sanity check every answer against the prism $Bh$ — the pyramid must come out exactly 3× smaller.",
+          "authored": true
+        },
+        {
+          "text": "Plugging the slant height (or lateral edge) in as h.",
+          "correction": "Volume wants the plumb height. Convert: $h = \\sqrt{m^2 - r^2}$ (from slant) or $h = \\sqrt{\\ell^2 - R^2}$ (from edge). If your 'height' is longer than the slant, you've mixed them up.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg33-t1",
+          "statement": "Base side $6$, height $10$: volume?",
+          "solution": "$V = \\frac13 \\cdot 36 \\cdot 10 = 120$.",
+          "check": [
+            "Rational(1,3)*36*10 == 120"
+          ]
+        },
+        {
+          "id": "sg33-t2",
+          "statement": "A pyramid holds $V = 96$ on a base of area $B = 36$. Find its height, and the volume of the PRISM with the same base and height.",
+          "solution": "$h = \\frac{3 \\cdot 96}{36} = 8$. Prism: $36 \\cdot 8 = 288 = 3V$ ✓.",
+          "check": [
+            "3*96/36 == 8",
+            "36*8 == 3*96"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The claim",
+            "title": "A third of the box",
+            "body": "Same base, same height: the pyramid holds exactly $\\frac13$ of the prism. Not roughly — exactly. Two ways to believe it: the water-pouring experiment (three pyramid-fulls top off the prism), and the dissection on the next card: a cube literally cuts into three identical pyramids."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dissection",
+            "title": "Three pyramids hiding in every cube",
+            "body": "Take cube $ABCDA'B'C'D'$ and the corner $C'$. Three pyramids share apex $C'$: one on base $ABCD$ (bottom), one on base $ABB'A'$ (front), one on base $ADD'A'$ (left). They fill the cube perfectly with no overlap — three congruent pieces, so each is $\\frac{a^3}{3} = \\frac13 \\cdot a^2 \\cdot a = \\frac13 Bh$. The figure shows the first: base $ABCD$ (accent), apex $C'$, its slanted edges dashed through the interior.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.8,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 4,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 4,
+                    "y": 4,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "C2",
+                    "x": 5.8,
+                    "y": 5.8,
+                    "label": "C′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "D2",
+                    "x": 1.8,
+                    "y": 5.8,
+                    "label": "D′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "dashed": true,
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "dashed": true,
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C2",
+                    "to": "D2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D2",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "D2",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C2",
+                    "dashed": true,
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C2",
+                    "dashed": true,
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "C2",
+                    "dashed": true,
+                    "color": "blue"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Volume, live",
+            "teach": "Step the base and height and watch $V = \\frac13 \\cdot (\\text{base area}) \\cdot h$. Compare in your head with the box of the same dimensions — the readout is always exactly a third of it.",
+            "config": {
+              "solid": "pyramid",
+              "base": 6,
+              "h": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Don't feed it the slant",
+            "prompt": "Base side $6$, slant height $5$. Volume?",
+            "options": [
+              "$48$",
+              "$60$",
+              "$144$",
+              "$36$"
+            ],
+            "correctIndex": 0,
+            "explanation": "True height first: $h = \\sqrt{25 - 9} = 4$; $V = \\frac13 \\cdot 36 \\cdot 4 = 48$. Using $5$ as height gives $60$; forgetting the ⅓ with $h=4$ gives $144$.",
+            "check": [
+              "sqrt(5**2 - 3**2) == 4",
+              "Rational(1,3)*36*4 == 48"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Forward and inverse",
+            "intro": "The 3 moves first in every inverse.",
+            "examples": [
+              {
+                "prompt": "Base $10$, height $12$: volume?",
+                "steps": [
+                  "$B = 100$.",
+                  "$V = \\frac13 \\cdot 100 \\cdot 12 = 400$."
+                ],
+                "answer": "$400$",
+                "check": [
+                  "Rational(1,3)*100*12 == 400"
+                ]
+              },
+              {
+                "prompt": "$V = 120$, $h = 10$: base area?",
+                "steps": [
+                  "$B = \\frac{3V}{h} = \\frac{360}{10}$.",
+                  "$B = 36$ — base side $6$ if square."
+                ],
+                "answer": "$B = 36$",
+                "check": [
+                  "3*120/10 == 36",
+                  "sqrt(36) == 6"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Third time's the charm",
+            "intro": "V = ⅓Bh; convert slants/edges to true height first.",
+            "problems": [
+              {
+                "prompt": "Base $9$ (square), height $8$: volume?",
+                "options": [
+                  "$216$",
+                  "$648$",
+                  "$72$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac13 \\cdot 81 \\cdot 8 = 216$.",
+                "check": [
+                  "Rational(1,3)*81*8 == 216"
+                ]
+              },
+              {
+                "prompt": "Base $16$, slant $10$: volume?",
+                "options": [
+                  "$512$",
+                  "$\\dfrac{2560}{3}$",
+                  "$768$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$h = \\sqrt{100 - 64} = 6$; $V = \\frac13 \\cdot 256 \\cdot 6 = 512$.",
+                "check": [
+                  "sqrt(10**2 - 8**2) == 6",
+                  "Rational(1,3)*256*6 == 512"
+                ]
+              },
+              {
+                "prompt": "A pyramid and a prism share base and height. Prism volume $= 270$. Pyramid volume?",
+                "options": [
+                  "$90$",
+                  "$135$",
+                  "$810$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exactly a third: $90$.",
+                "check": [
+                  "270/3 == 90"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The yangma",
+            "body": "The cube-into-three-pyramids dissection is ancient: Chinese mathematicians called the piece a 'yangma' and used it in the Nine Chapters (~200 BC) to justify ⅓ long before limits existed. For NON-cubic boxes the three pieces aren't congruent — but Liu Hui showed each still takes a third, halving pieces forever in what is recognizably a limit argument, 1800 years early."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Pyramid volume",
+            "bullets": [
+              "V = ⅓Bh — exactly a third of the matching prism (cube = 3 yangmas).",
+              "h is the PLUMB height: from slant, h = √(m² − r²); from edge, h = √(ℓ² − R²).",
+              "Inverse: h = 3V/B, B = 3V/h — move the 3 first.",
+              "Sanity: pyramid answer × 3 should equal the prism you'd expect."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-frustum",
+      "title": "The Frustum",
+      "concreteComparison": "A paper cup, a lampshade, a flowerpot, a volcano with its top blown off: all pyramids (or cones) minus their tips. The frustum is what remains when you slice parallel to the base — two similar bases, one big and one small, and walls that taper between them.",
+      "objective": "Compute surface area and volume of a frustum (truncated pyramid), using similarity of the two bases.",
+      "concept": [
+        "Slice a pyramid with a plane PARALLEL to the base: the top piece is a smaller, similar pyramid; the bottom piece is the **frustum**. Its two bases are similar polygons; cutting at half the height makes the top base exactly half-scale ($\\frac{a}{2}$ side, $\\frac{B}{4}$ area).",
+        "Frustum volume: $V = \\frac{h}{3}\\left(B_1 + B_2 + \\sqrt{B_1 B_2}\\right)$ — the two base areas plus their geometric mean. (It's big-pyramid minus small-pyramid, packaged into one formula.)",
+        "Lateral faces are congruent trapezoids. For a regular frustum: $S_{lat} = \\frac{1}{2}(P_1 + P_2) \\, m$, with $m$ the SLANT height of a face — from $m^2 = h^2 + (r_1 - r_2)^2$, the offset between the two apothems."
+      ],
+      "keyIdea": "Frustum = pyramid minus similar top. V = (h/3)(B₁ + B₂ + √(B₁B₂)); S_lat = ½(P₁+P₂)m with m² = h² + (r₁−r₂)².",
+      "facts": [
+        {
+          "title": "Volume",
+          "latex": "V = \\tfrac{h}{3}\\left(B_1 + B_2 + \\sqrt{B_1 B_2}\\right)",
+          "explanation": "Both bases plus their geometric mean."
+        },
+        {
+          "title": "Lateral surface",
+          "latex": "S_{lat} = \\tfrac{1}{2}(P_1 + P_2)\\, m",
+          "explanation": "Trapezoid walls: average perimeter × slant."
+        },
+        {
+          "title": "Frustum slant",
+          "latex": "m^2 = h^2 + (r_1 - r_2)^2",
+          "explanation": "Height and the apothem offset."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg34-we1",
+          "statement": "A frustum has square bases with sides $6$ and $3$, and height $2$. Find its volume.",
+          "solution": "$B_1 = 36$, $B_2 = 9$, $\\sqrt{B_1 B_2} = \\sqrt{324} = 18$. $V = \\frac{2}{3}(36 + 9 + 18) = \\frac{2}{3} \\cdot 63 = 42$.",
+          "check": [
+            "sqrt(36*9) == 18",
+            "Rational(2,3)*(36 + 9 + 18) == 42"
+          ]
+        },
+        {
+          "id": "sg34-we2",
+          "statement": "A regular square frustum has bases $10$ and $4$ and height $4$. Find its slant height and lateral surface area.",
+          "solution": "Apothems $r_1 = 5$, $r_2 = 2$: offset $3$, so $m = \\sqrt{4^2 + 3^2} = 5$. Perimeters $40$ and $16$: $S_{lat} = \\frac12 (40 + 16) \\cdot 5 = 140$.",
+          "check": [
+            "sqrt(4**2 + (5-2)**2) == 5",
+            "Rational(1,2)*(40 + 16)*5 == 140"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the two base areas: V = h·(B₁+B₂)/2.",
+          "correction": "The taper isn't linear in area — the correct blend includes the geometric-mean term: $\\frac{h}{3}(B_1 + B_2 + \\sqrt{B_1B_2})$. The naive average OVERestimates (try $B_2 = 0$: a full pyramid should give ⅓Bh, but the average gives ½Bh).",
+          "authored": true
+        },
+        {
+          "text": "Using the height h as the slant m in the trapezoid-wall formula.",
+          "correction": "Frustum walls lean like pyramid walls: $m = \\sqrt{h^2 + (r_1 - r_2)^2} > h$ whenever the bases differ. Only a prism ($r_1 = r_2$) has $m = h$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg34-t1",
+          "statement": "Square bases $4$ and $2$, height $6$: volume? (This is the 4000-year-old Moscow papyrus problem.)",
+          "solution": "$B_1 = 16$, $B_2 = 4$, $\\sqrt{64} = 8$: $V = \\frac63 (16 + 4 + 8) = 2 \\cdot 28 = 56$ — the papyrus's own answer.",
+          "check": [
+            "sqrt(16*4) == 8",
+            "Rational(6,3)*(16 + 4 + 8) == 56"
+          ]
+        },
+        {
+          "id": "sg34-t2",
+          "statement": "A pyramid with base area $36$ and height $6$ is cut at half its height. Find the frustum's volume two ways: by the formula, and as big-minus-small.",
+          "solution": "Top base: half-scale, $B_2 = \\frac{36}{4} = 9$; frustum height $3$. Formula: $\\frac33(36 + 9 + 18) = 63$. Big-minus-small: $\\frac13 \\cdot 36 \\cdot 6 - \\frac13 \\cdot 9 \\cdot 3 = 72 - 9 = 63$ ✓.",
+          "check": [
+            "Rational(3,3)*(36 + 9 + sqrt(36*9)) == 63",
+            "Rational(1,3)*36*6 - Rational(1,3)*9*3 == 63"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The cut",
+            "title": "Slice parallel, keep the bottom",
+            "body": "Cut pyramid $T\\!-\\!ABCD$ with a plane parallel to the base: the small top pyramid floats away, leaving the frustum $ABCD\\,A_1B_1C_1D_1$. Because the cut is parallel, the top base is a scaled copy of the bottom — same shape, smaller size. Cut at half-height ⟹ sides halve, areas quarter.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4.8,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 6.6,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "E",
+                    "x": 1.5,
+                    "y": 3,
+                    "label": "A₁",
+                    "labelDx": -10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "F",
+                    "x": 3.9,
+                    "y": 3,
+                    "label": "B₁",
+                    "labelDx": 10,
+                    "labelDy": 2
+                  },
+                  {
+                    "id": "G",
+                    "x": 4.8,
+                    "y": 3.9,
+                    "label": "C₁",
+                    "labelDx": 10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "H2",
+                    "x": 2.4,
+                    "y": 3.9,
+                    "label": "D₁",
+                    "labelDx": -10,
+                    "labelDy": -2
+                  },
+                  {
+                    "id": "T",
+                    "x": 3.3,
+                    "y": 6,
+                    "labelDx": 0,
+                    "labelDy": -8
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "G",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "G",
+                    "to": "H2",
+                    "color": "accent",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "H2",
+                    "to": "E",
+                    "color": "accent",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "E"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "G"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "H2",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "T",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "T",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "G",
+                    "to": "T",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "H2",
+                    "to": "T",
+                    "dashed": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Volume",
+            "title": "Two bases and their geometric mean",
+            "body": "$V = \\frac{h}{3}(B_1 + B_2 + \\sqrt{B_1B_2})$. The odd third term $\\sqrt{B_1B_2}$ is what makes the tapering exact. Test the extremes: $B_2 = B_1$ gives $\\frac{h}{3} \\cdot 3B = Bh$ (a prism ✓); $B_2 = 0$ gives $\\frac{h}{3}B$ (a full pyramid ✓). The formula interpolates between prism and pyramid — which is exactly what a frustum is."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The papyrus problem",
+            "prompt": "Square bases $4$ and $2$, height $6$. Volume?",
+            "options": [
+              "$56$",
+              "$60$",
+              "$40$",
+              "$120$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac63(16 + 4 + 8) = 56$. The naive base-average $6 \\cdot \\frac{16+4}{2} = 60$ overshoots — the geometric-mean term corrects the taper. This exact problem appears in the Moscow papyrus, ~1850 BC.",
+            "check": [
+              "Rational(6,3)*(16 + 4 + sqrt(16*4)) == 56",
+              "6*(16 + 4)/2 == 60"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Walls",
+            "title": "Trapezoid walls and the frustum's slant",
+            "body": "Each wall is a trapezoid: parallel sides $a_1$, $a_2$ and height = the frustum's slant $m$. The slant triangle (drawn true): vertical leg $h = 4$, horizontal leg = apothem offset $r_1 - r_2 = 5 - 2 = 3$, so $m = 5$. Then $S_{lat} = \\frac12(P_1 + P_2)m = \\frac12(40+16) \\cdot 5 = 140$ — average perimeter times slant, the trapezoid formula wearing prism clothes.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0,
+                    "y": 0,
+                    "label": "",
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "K",
+                    "x": 3,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 3,
+                    "y": 4,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "K",
+                    "label": "r₁−r₂ = 3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K",
+                    "to": "M",
+                    "label": "h = 4"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "M",
+                    "label": "m = 5",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "K",
+                    "from": "O",
+                    "to": "M",
+                    "right": true
+                  }
+                ],
+                "hidePoints": [
+                  "O",
+                  "K",
+                  "M"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Flowerpot engineering",
+            "intro": "Volume by the three-term formula; walls by average perimeter × slant.",
+            "examples": [
+              {
+                "prompt": "Bases $6$ and $3$, height $2$: volume?",
+                "steps": [
+                  "$B_1 = 36$, $B_2 = 9$, mean $= 18$.",
+                  "$V = \\frac23 \\cdot 63 = 42$."
+                ],
+                "answer": "$42$",
+                "check": [
+                  "Rational(2,3)*(36 + 9 + 18) == 42"
+                ]
+              },
+              {
+                "prompt": "Bases $10$ and $4$, height $4$: lateral surface?",
+                "steps": [
+                  "$m = \\sqrt{16 + 9} = 5$.",
+                  "$S_{lat} = \\frac12(40 + 16) \\cdot 5 = 140$."
+                ],
+                "answer": "$140$",
+                "check": [
+                  "Rational(1,2)*56*5 == 140"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Cut tops",
+            "intro": "Check extremes if unsure: B₂ = B₁ should act like a prism, B₂ = 0 like a pyramid.",
+            "problems": [
+              {
+                "prompt": "Bases $9$ and $4$ (areas $81$, $16$), height $3$: volume?",
+                "options": [
+                  "$133$",
+                  "$97$",
+                  "$145.5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Mean $= \\sqrt{81 \\cdot 16} = 36$: $V = \\frac33(81 + 16 + 36) = 133$.",
+                "check": [
+                  "sqrt(81*16) == 36",
+                  "Rational(3,3)*(81 + 16 + 36) == 133"
+                ]
+              },
+              {
+                "prompt": "A frustum's bases are EQUAL ($B_1 = B_2 = B$). The formula gives…",
+                "options": [
+                  "$Bh$ — it's a prism",
+                  "$\\frac{2}{3}Bh$",
+                  "$\\frac{1}{3}Bh$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{h}{3}(B + B + B) = Bh$. No taper, no frustum — just a prism, and the formula knows.",
+                "check": [
+                  "Rational(1,3)*(1 + 1 + 1) == 1"
+                ]
+              },
+              {
+                "prompt": "Bases $10$ and $4$, height $4$ (slant $5$): TOTAL surface?",
+                "options": [
+                  "$256$",
+                  "$140$",
+                  "$140 + 100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Walls $140$ + bottom $100$ + top $16$ = $256$. A frustum has TWO bases (unlike a pyramid).",
+                "check": [
+                  "140 + 100 + 16 == 256"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The oldest volume formula we know",
+            "body": "Problem 14 of the Moscow papyrus (~1850 BC) computes our exact tryIt: bases 4 and 2, height 6, answer 56 — using the full three-term formula, a thousand years before Pythagoras. Nobody knows how the Egyptians derived it. It's the most advanced piece of mathematics to survive from the Old Kingdom's world, and it's about a broken pyramid — of course it is."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The frustum",
+            "bullets": [
+              "Parallel cut ⟹ similar bases; half-height cut ⟹ quarter-area top.",
+              "V = (h/3)(B₁ + B₂ + √(B₁B₂)) — prism when B₂=B₁, pyramid when B₂=0.",
+              "Walls are trapezoids: S_lat = ½(P₁+P₂)m, with m² = h² + (r₁−r₂)².",
+              "Total surface adds BOTH bases — the frustum has a floor and a lid."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg3-pr-1",
+      "statement": "A regular square pyramid has base side $12$ and height $8$. Find its slant height and lateral edge.",
+      "solution": "$r = 6$: $m = \\sqrt{64 + 36} = 10$. $R = 6\\sqrt2$: $\\ell = \\sqrt{64 + 72} = \\sqrt{136} = 2\\sqrt{34} \\approx 11.7$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "M",
+            "x": 4.5,
+            "y": 0,
+            "labelDx": 10,
+            "labelDy": 6
+          },
+          {
+            "id": "T",
+            "x": 0,
+            "y": 6
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "M",
+            "label": "r = 6",
+            "color": "blue"
+          },
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "T",
+            "label": "h = 8",
+            "color": "accent"
+          },
+          {
+            "kind": "segment",
+            "from": "T",
+            "to": "M",
+            "label": "m = ?"
+          },
+          {
+            "kind": "angle",
+            "at": "O",
+            "from": "M",
+            "to": "T",
+            "right": true
+          }
+        ]
+      },
+      "check": [
+        "sqrt(8**2 + 6**2) == 10",
+        "sqrt(8**2 + (6*sqrt(2))**2) == 2*sqrt(34)"
+      ]
+    },
+    {
+      "id": "sg3-pr-2",
+      "statement": "Find the total surface area of a regular square pyramid with base side $12$ and height $8$.",
+      "solution": "$m = 10$ (previous problem). Lateral: $\\frac12 \\cdot 48 \\cdot 10 = 240$; total: $240 + 144 = 384$.",
+      "check": [
+        "Rational(1,2)*48*10 + 144 == 384"
+      ]
+    },
+    {
+      "id": "sg3-pr-3",
+      "statement": "A regular square pyramid has base side $6$ and lateral edge $\\ell = \\sqrt{43}$. Find its height and volume.",
+      "solution": "$R = 3\\sqrt2$: $h = \\sqrt{43 - 18} = 5$. $V = \\frac13 \\cdot 36 \\cdot 5 = 60$.",
+      "check": [
+        "sqrt(43 - (3*sqrt(2))**2) == 5",
+        "Rational(1,3)*36*5 == 60"
+      ]
+    },
+    {
+      "id": "sg3-pr-4",
+      "statement": "A pyramid's volume is $400$ and its base is a square of side $10$. Find its height and slant height.",
+      "solution": "$h = \\frac{3 \\cdot 400}{100} = 12$; $m = \\sqrt{144 + 25} = 13$.",
+      "check": [
+        "3*400/100 == 12",
+        "sqrt(12**2 + 5**2) == 13"
+      ]
+    },
+    {
+      "id": "sg3-pr-5",
+      "statement": "A frustum has square bases $8$ and $2$ and height $4$. Find its volume.",
+      "solution": "$B_1 = 64$, $B_2 = 4$, mean $= 16$: $V = \\frac43(64 + 4 + 16) = \\frac43 \\cdot 84 = 112$.",
+      "check": [
+        "sqrt(64*4) == 16",
+        "Rational(4,3)*(64 + 4 + 16) == 112"
+      ]
+    },
+    {
+      "id": "sg3-pr-6",
+      "statement": "A regular square frustum has bases $14$ and $6$, height $3$. Find its slant height and lateral surface.",
+      "solution": "Apothem offset $7 - 3 = 4$: $m = \\sqrt{9 + 16} = 5$. $S_{lat} = \\frac12(56 + 24) \\cdot 5 = 200$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "K",
+            "x": 4,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "id": "M",
+            "x": 4,
+            "y": 3,
+            "label": ""
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "K",
+            "label": "r₁−r₂ = 4",
+            "color": "blue"
+          },
+          {
+            "kind": "segment",
+            "from": "K",
+            "to": "M",
+            "label": "h = 3"
+          },
+          {
+            "kind": "segment",
+            "from": "O",
+            "to": "M",
+            "label": "m = ?",
+            "color": "accent"
+          },
+          {
+            "kind": "angle",
+            "at": "K",
+            "from": "O",
+            "to": "M",
+            "right": true
+          }
+        ],
+        "hidePoints": [
+          "O",
+          "K",
+          "M"
+        ]
+      },
+      "check": [
+        "sqrt(3**2 + 4**2) == 5",
+        "Rational(1,2)*(56 + 24)*5 == 200"
+      ]
+    },
+    {
+      "id": "sg3-pr-7",
+      "statement": "A pyramid with base area $B = 45$ and height $9$ is cut by a plane parallel to the base so that the small top pyramid has height $6$. Parallel cuts scale areas by the height-ratio squared — find the frustum's volume.",
+      "solution": "Top pyramid: height ratio $\\frac69 = \\frac23$, base $45 \\cdot \\frac49 = 20$, volume $\\frac13 \\cdot 20 \\cdot 6 = 40$. Whole: $\\frac13 \\cdot 45 \\cdot 9 = 135$. Frustum: $135 - 40 = 95$.",
+      "check": [
+        "45*Rational(4,9) == 20",
+        "Rational(1,3)*20*6 == 40",
+        "Rational(1,3)*45*9 == 135",
+        "135 - 40 == 95"
+      ]
+    },
+    {
+      "id": "sg3-pr-8",
+      "statement": "A tent is a regular square pyramid: base $4$ m, height $3$ m. How much canvas covers its four faces, and how much air does it hold?",
+      "solution": "$m = \\sqrt{9 + 4} = \\sqrt{13}$: canvas $= \\frac12 \\cdot 16 \\cdot \\sqrt{13} = 8\\sqrt{13} \\approx 28.8$ m². Air: $V = \\frac13 \\cdot 16 \\cdot 3 = 16$ m³.",
+      "check": [
+        "sqrt(3**2 + 2**2) == sqrt(13)",
+        "Rational(1,2)*16*sqrt(13) == 8*sqrt(13)",
+        "Rational(1,3)*16*3 == 16"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg3-ty-1",
+      "statement": "A pyramid has an octagonal base. Count vertices, edges, faces; verify Euler.",
+      "solution": "$V = 9$, $E = 16$, $F = 9$: $9 - 16 + 9 = 2$ ✓.",
+      "check": [
+        "9 - 16 + 9 == 2"
+      ]
+    },
+    {
+      "id": "sg3-ty-2",
+      "statement": "Regular square pyramid: base $18$, height $12$. Slant height?",
+      "solution": "$r = 9$: $m = \\sqrt{144 + 81} = \\sqrt{225} = 15$ (9-12-15 = 3-4-5 × 3).",
+      "check": [
+        "sqrt(12**2 + 9**2) == 15"
+      ]
+    },
+    {
+      "id": "sg3-ty-3",
+      "statement": "Base side $8$, slant height $5$: total surface area?",
+      "solution": "Lateral $\\frac12 \\cdot 32 \\cdot 5 = 80$; total $80 + 64 = 144$.",
+      "check": [
+        "Rational(1,2)*32*5 + 64 == 144"
+      ]
+    },
+    {
+      "id": "sg3-ty-4",
+      "statement": "Base side $8$, slant height $5$: volume?",
+      "solution": "$h = \\sqrt{25 - 16} = 3$; $V = \\frac13 \\cdot 64 \\cdot 3 = 64$.",
+      "check": [
+        "sqrt(5**2 - 4**2) == 3",
+        "Rational(1,3)*64*3 == 64"
+      ]
+    },
+    {
+      "id": "sg3-ty-5",
+      "statement": "A frustum has square bases $5$ and $3$, height $6$. Volume?",
+      "solution": "$B_1 = 25$, $B_2 = 9$, mean $15$: $V = \\frac63 \\cdot 49 = 98$.",
+      "check": [
+        "sqrt(25*9) == 15",
+        "Rational(6,3)*(25 + 9 + 15) == 98"
+      ]
+    },
+    {
+      "id": "sg3-ty-6",
+      "statement": "A pyramid is cut at half its height (parallel to the base). What fraction of the original volume does the FRUSTUM keep?",
+      "solution": "The top pyramid is half-scale: volume $(\\frac12)^3 = \\frac18$ of the original. Frustum: $1 - \\frac18 = \\frac{7}{8}$.",
+      "check": [
+        "1 - Rational(1,2)**3 == Rational(7,8)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1699 @@
+{
+  "slug": "prisms-and-the-cube",
+  "title": "Prisms & the Cube",
+  "unit": 2,
+  "status": "published",
+  "blurb": "The box family: what a prism is, the cube's two famous diagonals (√2 and √3), and surface area & volume you can trust because you can see every face.",
+  "buildsOn": "Unit 1's perpendicular-and-oblique triangle; areas of rectangles and triangles; the Pythagorean theorem.",
+  "lessons": [
+    {
+      "slug": "what-is-a-prism",
+      "title": "What Is a Prism",
+      "concreteComparison": "A prism is a cookie-cutter shape pushed through dough: whatever polygon you start with slides along a straight line, and every slice along the way is that same polygon. A tent, a Toblerone bar, a skyscraper — same recipe, different cookie cutter.",
+      "objective": "Name the parts of a prism (bases, lateral faces, edges, height), distinguish right from oblique prisms, and count elements.",
+      "concept": [
+        "Take a polygon (the **base**), make an identical copy in a parallel plane, and join matching corners. That's a **prism**. The two copies are its bases; the connecting parallelograms are **lateral faces**; the connecting segments are **lateral edges**. All lateral edges are parallel and equal — they're the same slide repeated.",
+        "If the lateral edges are **perpendicular to the bases**, the prism is a **right prism** (lateral faces are rectangles; the Toblerone standing straight). Tilted, and it's an **oblique prism** (a leaning stack of cards). The **height** is always the DISTANCE between base planes — for a right prism that's the lateral edge itself; for an oblique one it's shorter than the edge.",
+        "Counting rules for a prism on an $n$-gon: $2n$ vertices, $n$ lateral faces ($n + 2$ faces total), and $3n$ edges ($n$ per base, $n$ lateral). A triangular prism: $6$ vertices, $5$ faces, $9$ edges."
+      ],
+      "keyIdea": "Prism = polygon slid to a parallel copy. Right prism: slide is perpendicular (faces are rectangles). Height = distance between base planes, not necessarily the lateral edge.",
+      "facts": [
+        {
+          "title": "Element counts",
+          "latex": "n\\text{-gon base}: \\; 2n \\text{ vertices}, \\; n+2 \\text{ faces}, \\; 3n \\text{ edges}",
+          "explanation": "n per base ring, n lateral — everything comes in rings of n."
+        },
+        {
+          "title": "Right prism",
+          "latex": "\\text{lateral edge} \\perp \\text{base} \\Rightarrow \\text{height} = \\text{lateral edge}",
+          "explanation": "Lateral faces become rectangles."
+        },
+        {
+          "title": "Euler check",
+          "latex": "V - E + F = 2",
+          "explanation": "2n − 3n + (n+2) = 2 — every prism passes Euler's formula."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg21-we1",
+          "statement": "A prism has a hexagonal base. Count its vertices, edges, and faces, and verify Euler's formula $V - E + F = 2$.",
+          "solution": "$n = 6$: vertices $2n = 12$, edges $3n = 18$, faces $n + 2 = 8$. Euler: $12 - 18 + 8 = 2$ ✓.",
+          "check": [
+            "2*6 == 12",
+            "3*6 == 18",
+            "6 + 2 == 8",
+            "12 - 18 + 8 == 2"
+          ]
+        },
+        {
+          "id": "sg21-we2",
+          "statement": "An oblique prism has lateral edge $10$ making a $60°$ angle with the base plane. Find the prism's height.",
+          "solution": "The height is the perpendicular between the base planes — Unit 1's triangle: $h = 10\\sin 60° = 10 \\cdot \\frac{\\sqrt3}{2} = 5\\sqrt{3} \\approx 8.66$. The lean costs height: $5\\sqrt3 < 10$.",
+          "check": [
+            "10*sin(pi/3) == 5*sqrt(3)",
+            "5*sqrt(3) < 10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the lateral edge as the height of an oblique prism.",
+          "correction": "Height = perpendicular DISTANCE between base planes. Only in a right prism does the lateral edge run perpendicular; in an oblique prism, height = edge × sin(angle with base) < edge.",
+          "authored": true
+        },
+        {
+          "text": "Counting a prism's faces as just the lateral ones and forgetting the two bases.",
+          "correction": "Faces = n lateral + 2 bases = n + 2. The bases are faces too — a closed box has a top and a bottom.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg21-t1",
+          "statement": "A prism has $24$ edges. What polygon is its base, and how many vertices and faces does it have?",
+          "solution": "$3n = 24$ ⟹ $n = 8$: an octagonal base. Vertices: $2n = 16$; faces: $n + 2 = 10$. Euler: $16 - 24 + 10 = 2$ ✓.",
+          "check": [
+            "24/3 == 8",
+            "2*8 == 16",
+            "8 + 2 == 10",
+            "16 - 24 + 10 == 2"
+          ]
+        },
+        {
+          "id": "sg21-t2",
+          "statement": "A right prism's lateral edge is $7$. What is its height? And if the same-edge prism were tilted to $30°$ above the base plane, what would the height become?",
+          "solution": "Right prism: height = lateral edge = $7$. Tilted to $30°$: $h = 7\\sin 30° = 3.5$ — half the edge. Tilting a prism flattens it.",
+          "check": [
+            "7*sin(pi/6) == Rational(7, 2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Slide a polygon, get a prism",
+            "body": "Base triangle $ABC$ below, identical copy $A'B'C'$ above, corners joined. The joins $AA'$, $BB'$, $CC'$ are the **lateral edges** — all parallel, all equal (each is 'the slide'). Each lateral face, like $ABB'A'$, is a parallelogram. In the drawing, hidden edges of the far side are dashed.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 3.3,
+                    "y": 1.6,
+                    "labelDx": 11,
+                    "labelDy": 2
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 3.4,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 4,
+                    "y": 3.4,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "C2",
+                    "x": 3.3,
+                    "y": 5,
+                    "label": "C′",
+                    "labelDx": 10,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2",
+                    "color": "accent"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "The triangular prism, live",
+            "teach": "Step the base and length and watch the volume respond. Every slice perpendicular to the slide is the same triangle — that's why volume will turn out to be (slice area) × (slide length) in lesson 4.",
+            "config": {
+              "solid": "triangularPrism",
+              "l": 4,
+              "h": 3,
+              "w": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Right vs oblique",
+            "title": "Standing straight or leaning",
+            "body": "Both prisms below have the same base segment and the same-length lateral edges — but the right prism's edges rise perpendicular to the base (height = edge), while the oblique prism leans (height < edge). Height is ALWAYS measured as the perpendicular distance between base planes, shown dashed on the oblique one.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -6,
+                    "labelDy": 10
+                  },
+                  {
+                    "id": "B",
+                    "x": 2.5,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 10
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 3,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 2.5,
+                    "y": 3,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "K",
+                    "x": 4.5,
+                    "y": 0,
+                    "labelDx": -6,
+                    "labelDy": 10
+                  },
+                  {
+                    "id": "L",
+                    "x": 7,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 10
+                  },
+                  {
+                    "id": "K2",
+                    "x": 6,
+                    "y": 3,
+                    "label": "K′",
+                    "labelDx": -10,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "L2",
+                    "x": 8.5,
+                    "y": 3,
+                    "label": "L′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "H",
+                    "x": 6,
+                    "y": 0,
+                    "labelDx": 0,
+                    "labelDy": 12
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "A",
+                    "from": "B",
+                    "to": "A2",
+                    "right": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K",
+                    "to": "L"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K2",
+                    "to": "L2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K",
+                    "to": "K2",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "L",
+                    "to": "L2",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K2",
+                    "to": "H",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "H",
+                    "from": "K",
+                    "to": "K2",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The leaning prism",
+            "prompt": "An oblique prism's lateral edge is $10$, making a $30°$ angle with the base plane. Its height is…",
+            "options": [
+              "$5$",
+              "$10$",
+              "$5\\sqrt{3}$",
+              "$10\\sqrt{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Height $= 10 \\sin 30° = 5$. The edge is the oblique, the height is the perpendicular — Unit 1's triangle exactly. ($5\\sqrt3 \\approx 8.66$ would be the $60°$ lean.)",
+            "check": [
+              "10*sin(pi/6) == 5"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Counting and leaning",
+            "intro": "Ring-of-n counting, then the height triangle.",
+            "examples": [
+              {
+                "prompt": "Hexagonal prism: vertices, edges, faces? Euler check.",
+                "steps": [
+                  "$V = 2n = 12$, $E = 3n = 18$, $F = n + 2 = 8$.",
+                  "$12 - 18 + 8 = 2$ ✓."
+                ],
+                "answer": "$12$ vertices, $18$ edges, $8$ faces",
+                "check": [
+                  "12 - 18 + 8 == 2"
+                ]
+              },
+              {
+                "prompt": "Lateral edge $10$ at $60°$ to the base. Height?",
+                "steps": [
+                  "$h = \\text{edge} \\times \\sin(\\text{lean angle})$.",
+                  "$h = 10\\sin 60° = 5\\sqrt3$."
+                ],
+                "answer": "$5\\sqrt{3} \\approx 8.66$",
+                "check": [
+                  "10*sin(pi/3) == 5*sqrt(3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Prism anatomy",
+            "intro": "Everything comes in rings of n.",
+            "problems": [
+              {
+                "prompt": "A prism has $15$ edges. Its base is a…",
+                "options": [
+                  "pentagon",
+                  "triangle",
+                  "hexagon"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3n = 15$ ⟹ $n = 5$.",
+                "check": [
+                  "15/3 == 5"
+                ]
+              },
+              {
+                "prompt": "A right prism's height is $8$ and its lateral edge is…",
+                "options": [
+                  "exactly $8$",
+                  "more than $8$",
+                  "less than $8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "In a RIGHT prism the lateral edge IS perpendicular to the bases, so edge = height = 8.",
+                "check": [
+                  "8 == 8"
+                ]
+              },
+              {
+                "prompt": "An oblique prism with lateral edge $6$ has height $3\\sqrt2$. Its lean angle above the base is…",
+                "options": [
+                  "$45°$",
+                  "$30°$",
+                  "$60°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin\\theta = \\frac{3\\sqrt2}{6} = \\frac{\\sqrt2}{2}$ ⟹ $\\theta = 45°$.",
+                "check": [
+                  "simplify(3*sqrt(2)/6 - sin(pi/4)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Prism basics",
+            "bullets": [
+              "Prism = base polygon + parallel copy + parallelogram walls; lateral edges all parallel & equal.",
+              "n-gon base ⟹ 2n vertices, 3n edges, n+2 faces (Euler: V − E + F = 2).",
+              "Right prism: edges ⊥ base, faces are rectangles, height = edge.",
+              "Oblique prism: height = edge × sin(lean) — always less than the edge."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-cube-and-its-diagonals",
+      "title": "The Cube & Its Diagonals",
+      "concreteComparison": "What's the longest pencil that fits in a cubic box? Not the edge, not the diagonal drawn on the bottom — it's the corner-to-opposite-corner line through the AIR inside. For a box of side 10, the floor diagonal is 14.1 but the air diagonal is 17.3. Two different diagonals, two different jobs.",
+      "objective": "Compute a cube's face diagonal (a√2) and space diagonal (a√3) by running Pythagoras twice, and extend to the general box diagonal.",
+      "concept": [
+        "A cube of edge $a$ has two kinds of diagonal. The **face diagonal** lies on a face: it's the hypotenuse of a right triangle with legs $a, a$, so $d_{face} = a\\sqrt{2}$ — the 45-45-90 pattern from plane geometry.",
+        "The **space diagonal** cuts through the interior from a corner to the opposite corner. Find it with Pythagoras TWICE: first across the floor ($a\\sqrt2$), then stand up the height: $d^2 = (a\\sqrt2)^2 + a^2 = 3a^2$, so $d_{space} = a\\sqrt{3}$. The right angle in the second step is guaranteed by Unit 1: the vertical edge is perpendicular to the whole floor, hence to the floor diagonal.",
+        "The same double-Pythagoras solves ANY box (rectangular parallelepiped) with edges $l, w, h$: $d = \\sqrt{l^2 + w^2 + h^2}$. This is the single most-used formula of the unit — and it's just Pythagoras run twice."
+      ],
+      "keyIdea": "Face diagonal a√2, space diagonal a√3; for any box d = √(l² + w² + h²) — Pythagoras across the floor, then Pythagoras up the wall.",
+      "facts": [
+        {
+          "title": "Cube diagonals",
+          "latex": "d_{face} = a\\sqrt{2}, \\qquad d_{space} = a\\sqrt{3}",
+          "explanation": "√2 on a face, √3 through the air."
+        },
+        {
+          "title": "Box diagonal",
+          "latex": "d = \\sqrt{l^2 + w^2 + h^2}",
+          "explanation": "All three edges enter symmetrically."
+        },
+        {
+          "title": "Why it works",
+          "latex": "d^2 = (\\text{floor diag})^2 + h^2",
+          "explanation": "The vertical edge ⊥ floor ⟹ right angle with the floor diagonal."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg22-we1",
+          "statement": "A cube has edge $6$. Find its face diagonal and space diagonal, exactly.",
+          "solution": "Face: $6\\sqrt{2} \\approx 8.49$. Space: run Pythagoras twice — $d^2 = (6\\sqrt2)^2 + 6^2 = 72 + 36 = 108$, $d = \\sqrt{108} = 6\\sqrt{3} \\approx 10.39$. As expected, edge < face diagonal < space diagonal.",
+          "check": [
+            "sqrt(6**2 + 6**2) == 6*sqrt(2)",
+            "sqrt((6*sqrt(2))**2 + 6**2) == 6*sqrt(3)",
+            "6 < 6*sqrt(2)",
+            "6*sqrt(2) < 6*sqrt(3)"
+          ]
+        },
+        {
+          "id": "sg22-we2",
+          "statement": "A box measures $3 \\times 4 \\times 12$. Find its space diagonal.",
+          "solution": "$d = \\sqrt{3^2 + 4^2 + 12^2} = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$. (A whole-number space diagonal! $3, 4, 12, 13$ is a Pythagorean QUADRUPLE — the floor diagonal is the familiar $5$, and then $5, 12, 13$ finishes the climb.)",
+          "check": [
+            "sqrt(3**2 + 4**2 + 12**2) == 13",
+            "sqrt(3**2 + 4**2) == 5",
+            "sqrt(5**2 + 12**2) == 13"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a√2 for the space diagonal (or a√3 for the face diagonal).",
+          "correction": "Count the dimensions the diagonal crosses: a FACE diagonal crosses 2 edges' worth of directions ($\\sqrt{a^2+a^2} = a\\sqrt2$); the SPACE diagonal crosses all 3 ($\\sqrt{3a^2} = a\\sqrt3$). More directions, bigger root.",
+          "authored": true
+        },
+        {
+          "text": "Adding the three edges' squares only for cubes, but improvising for boxes.",
+          "correction": "$d = \\sqrt{l^2 + w^2 + h^2}$ works for EVERY box, cube included ($l=w=h=a$ gives $a\\sqrt3$). One formula, no special cases.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg22-t1",
+          "statement": "A cube's space diagonal is $9$. Find its edge.",
+          "solution": "$a\\sqrt3 = 9$ ⟹ $a = \\frac{9}{\\sqrt3} = \\frac{9\\sqrt3}{3} = 3\\sqrt{3} \\approx 5.2$. Check: $(3\\sqrt3)\\sqrt3 = 9$ ✓.",
+          "check": [
+            "simplify(9/sqrt(3) - 3*sqrt(3)) == 0",
+            "3*sqrt(3)*sqrt(3) == 9"
+          ]
+        },
+        {
+          "id": "sg22-t2",
+          "statement": "Will a $17$-unit rod fit inside a $9 \\times 12 \\times 8$ box?",
+          "solution": "Longest fit = space diagonal $= \\sqrt{81 + 144 + 64} = \\sqrt{289} = 17$. It fits EXACTLY — corner to opposite corner, touching both.",
+          "check": [
+            "sqrt(9**2 + 12**2 + 8**2) == 17"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Two diagonals",
+            "title": "On the face vs through the air",
+            "body": "Cube $ABCDA'B'C'D'$, edge $a$. The **face diagonal** $AC$ (blue) lies flat on the bottom face. The **space diagonal** $AC'$ (accent, drawn dashed since it passes through the interior) flies from the front-bottom-left corner to the back-top-right. Different creatures: $AC = a\\sqrt2$, $AC' = a\\sqrt3$.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.8,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -4,
+                    "labelDy": -8
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 4,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 4,
+                    "y": 4,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "C2",
+                    "x": 5.8,
+                    "y": 5.8,
+                    "label": "C′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "D2",
+                    "x": 1.8,
+                    "y": 5.8,
+                    "label": "D′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C2",
+                    "to": "D2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D2",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "C",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "D2",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "color": "blue",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C2",
+                    "color": "accent",
+                    "dashed": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Pythagoras twice",
+            "title": "The climb: floor first, then up",
+            "body": "To reach $C'$ from $A$: cross the floor along $AC = a\\sqrt2$, then climb the vertical edge $CC' = a$. Unit 1 guarantees the right angle at $C$ (vertical edge ⊥ floor ⟹ ⊥ floor diagonal). The true-shape climb triangle for $a = 6$: legs $6\\sqrt2 \\approx 8.49$ and $6$, hypotenuse $\\sqrt{72 + 36} = \\sqrt{108} = 6\\sqrt3$. That's the whole derivation — no formula memorization needed, just two Pythagoras steps.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 8.49,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C2",
+                    "x": 8.49,
+                    "y": 6,
+                    "label": "C′"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "label": "6√2",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2",
+                    "label": "6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C2",
+                    "label": "6√3",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "C",
+                    "from": "A",
+                    "to": "C2",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "√2 or √3?",
+            "prompt": "Edge $5$ cube. The longest straight segment that fits INSIDE the cube has length…",
+            "options": [
+              "$5\\sqrt{3}$",
+              "$5\\sqrt{2}$",
+              "$5$",
+              "$15$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Longest fit = space diagonal $= 5\\sqrt3 \\approx 8.66$. $5\\sqrt2$ only crosses a face; $15$ would be the three edges laid end to end, but a straight rod can't turn corners.",
+            "check": [
+              "sqrt(5**2 + 5**2 + 5**2) == 5*sqrt(3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Generalize",
+            "title": "Any box: d = √(l² + w² + h²)",
+            "body": "The double climb works for every rectangular box: floor diagonal $\\sqrt{l^2 + w^2}$, then $d^2 = l^2 + w^2 + h^2$. Beautiful special case: the $3 \\times 4 \\times 12$ box. Floor: $\\sqrt{9+16} = 5$. Climb: $\\sqrt{25 + 144} = 13$. Whole numbers all the way — a Pythagorean quadruple $(3,4,12,13)$. Others to spot in problems: $(1,2,2,3)$, $(2,3,6,7)$, $(4,4,7,9)$, $(2,6,9,11)$.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 2.5,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "G",
+                    "x": 2.5,
+                    "y": 6,
+                    "label": "C′"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "label": "5",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "G",
+                    "label": "12"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "G",
+                    "label": "13",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "C",
+                    "from": "A",
+                    "to": "G",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Diagonals both ways",
+            "intro": "Forward (edge → diagonal) and backward (diagonal → edge).",
+            "examples": [
+              {
+                "prompt": "Cube, edge $6$: both diagonals?",
+                "steps": [
+                  "Face: $6\\sqrt2$.",
+                  "Space: $\\sqrt{6^2 \\cdot 3} = 6\\sqrt3$."
+                ],
+                "answer": "$6\\sqrt{2}$ and $6\\sqrt{3}$",
+                "check": [
+                  "sqrt(6**2*3) == 6*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Box $3 \\times 4 \\times 12$: space diagonal?",
+                "steps": [
+                  "$d^2 = 9 + 16 + 144 = 169$.",
+                  "$d = 13$."
+                ],
+                "answer": "$13$",
+                "check": [
+                  "sqrt(3**2 + 4**2 + 12**2) == 13"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rod-in-box problems",
+            "intro": "Space diagonal = the longest straight fit.",
+            "problems": [
+              {
+                "prompt": "Cube edge $4$: space diagonal?",
+                "options": [
+                  "$4\\sqrt{3}$",
+                  "$4\\sqrt{2}$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\sqrt3 \\approx 6.93$.",
+                "check": [
+                  "sqrt(4**2*3) == 4*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Box $2 \\times 3 \\times 6$: space diagonal?",
+                "options": [
+                  "$7$",
+                  "$\\sqrt{47}$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$ — the $(2,3,6,7)$ quadruple.",
+                "check": [
+                  "sqrt(2**2 + 3**2 + 6**2) == 7"
+                ]
+              },
+              {
+                "prompt": "A cube's FACE diagonal is $10$. The edge is…",
+                "options": [
+                  "$5\\sqrt{2}$",
+                  "$10\\sqrt{2}$",
+                  "$\\dfrac{10}{\\sqrt3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$a\\sqrt2 = 10$ ⟹ $a = \\frac{10}{\\sqrt2} = 5\\sqrt2 \\approx 7.07$.",
+                "check": [
+                  "simplify(10/sqrt(2) - 5*sqrt(2)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The √3 in your TV box",
+            "body": "Shipping companies quietly use the space diagonal: a '55-inch' TV (diagonal-measured screen) ships in a box whose space diagonal must beat 55 inches by enough margin for padding. And the ratio $\\sqrt3 : \\sqrt2 : 1 \\approx 1.73 : 1.41 : 1$ means the air diagonal beats the floor diagonal by about 22% in any cube — free extra length, if you tilt your cargo."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Diagonal toolkit",
+            "bullets": [
+              "Face diagonal: a√2 (two directions). Space diagonal: a√3 (all three).",
+              "Any box: d = √(l² + w² + h²) — Pythagoras across the floor, then up.",
+              "The right angle for the climb comes from Unit 1: vertical edge ⊥ floor plane.",
+              "Integer quadruples worth knowing: (3,4,12,13), (2,3,6,7), (1,2,2,3), (9,12,8,17)."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "surface-area-of-prisms",
+      "title": "Surface Area of Prisms",
+      "concreteComparison": "Wrapping a gift isn't about how much fits inside the box — it's about paper. Unfold the box flat and the mystery vanishes: the wrapping is two copies of the base plus one long rectangle (the walls, unrolled). Surface area is always just 'flatten it and add.'",
+      "objective": "Compute lateral and total surface area of right prisms via the unfolded net: S_lat = (base perimeter) × height.",
+      "concept": [
+        "Unfold (develop) a right prism: the lateral faces flatten into ONE rectangle whose width is the **base perimeter** $P$ and whose height is the prism's height $h$. So the lateral surface is $S_{lat} = P \\cdot h$ — one multiplication, no matter how many faces.",
+        "Total surface adds the two bases: $S = P h + 2B$, where $B$ is the base area. For a box $l \\times w \\times h$: $S = 2(lw + lh + wh)$ — each pair of opposite faces counted once, doubled.",
+        "The net is the honest picture: every square unit of material appears exactly once, nothing hidden. When a problem asks 'how much paint/cardboard/steel,' it's asking for the net's area."
+      ],
+      "keyIdea": "Unroll the walls into one rectangle: S_lat = P·h. Add the two bases for the total: S = P·h + 2B.",
+      "facts": [
+        {
+          "title": "Lateral surface",
+          "latex": "S_{lat} = P \\cdot h",
+          "explanation": "Perimeter times height — the unrolled wall rectangle."
+        },
+        {
+          "title": "Total surface",
+          "latex": "S = P h + 2B",
+          "explanation": "Walls plus two base copies."
+        },
+        {
+          "title": "The box",
+          "latex": "S = 2(lw + lh + wh)",
+          "explanation": "Three face-pairs, each twice."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg23-we1",
+          "statement": "Find the total surface area of a $3 \\times 4 \\times 5$ box.",
+          "solution": "$S = 2(lw + lh + wh) = 2(12 + 15 + 20) = 2 \\cdot 47 = 94$. Sanity check by nets: two $3\\times4$, two $3\\times5$, two $4\\times5$: $24 + 30 + 40 = 94$ ✓.",
+          "check": [
+            "2*(3*4 + 3*5 + 4*5) == 94",
+            "2*12 + 2*15 + 2*20 == 94"
+          ]
+        },
+        {
+          "id": "sg23-we2",
+          "statement": "A right prism of height $10$ stands on a right-triangle base with legs $6$ and $8$. Find its lateral and total surface area.",
+          "solution": "Base hypotenuse: $\\sqrt{36+64} = 10$, so perimeter $P = 6 + 8 + 10 = 24$ and $S_{lat} = P h = 240$. Base area $B = \\frac{6 \\cdot 8}{2} = 24$, total $S = 240 + 2 \\cdot 24 = 288$.",
+          "check": [
+            "sqrt(6**2 + 8**2) == 10",
+            "(6 + 8 + 10)*10 == 240",
+            "240 + 2*24 == 288"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting the bases (or counting only one).",
+          "correction": "A closed prism has TWO bases. Lateral = walls only; total = walls + 2B. Read the problem: an open-top aquarium wants walls + 1 base; a sealed box wants walls + 2.",
+          "authored": true
+        },
+        {
+          "text": "Using a slant edge as the height in S_lat = P·h for an oblique prism.",
+          "correction": "$P \\cdot h$ is a RIGHT-prism formula (walls unroll into a clean rectangle only then). Oblique prisms need face-by-face work — on exams, that's your signal the prism was meant to be right.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg23-t1",
+          "statement": "A cube has total surface area $150$. Find its edge and its face diagonal.",
+          "solution": "$6a^2 = 150$ ⟹ $a^2 = 25$, $a = 5$. Face diagonal $= 5\\sqrt{2} \\approx 7.07$.",
+          "check": [
+            "sqrt(150/6) == 5",
+            "sqrt(5**2 + 5**2) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "sg23-t2",
+          "statement": "A hexagonal pencil (right prism) has base perimeter $12$ mm and length $180$ mm. How much paint covers its lateral surface?",
+          "solution": "$S_{lat} = P h = 12 \\cdot 180 = 2160$ mm². (The two hexagonal ends are usually cut, not painted — lateral only is exactly right here.)",
+          "check": [
+            "12*180 == 2160"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Flatten it",
+            "title": "The net tells the truth",
+            "body": "Surface area hides in 3D and confesses in 2D. Unfold a right prism: the walls become ONE rectangle of width = base perimeter, height = prism height; the two bases hinge off it. Every wrapping/painting/sheet-metal question is really asking: what is the area of this flat net?"
+          },
+          {
+            "kind": "solidNet",
+            "eyebrow": "Play",
+            "title": "Unfold the box",
+            "teach": "Watch the box open into its net: 6 rectangles, in 3 matching pairs. Add them and you have the total surface — the formula $2(lw + lh + wh)$ is just this picture with the pairs collected.",
+            "config": {
+              "solid": "rectPrism",
+              "l": 4,
+              "w": 3,
+              "h": 2
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The formula",
+            "title": "Walls in one multiplication: P × h",
+            "body": "Going around the prism once covers every wall; unrolled, that walk is a straight line of length $P$ (the base perimeter). The walls form a $P \\times h$ rectangle: $S_{lat} = Ph$. Then total $= Ph + 2B$. For the triangle-base prism with legs $6, 8$: hypotenuse $10$ (the 6-8-10 triple), $P = 24$, and with $h = 10$, walls $= 240$, bases $2 \\times 24$, total $288$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Paint the pillar",
+            "prompt": "A square pillar ($a = 2$, height $9$) needs its WALLS painted (not top or bottom). Area to paint?",
+            "options": [
+              "$72$",
+              "$80$",
+              "$36$",
+              "$76$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$S_{lat} = Ph = (4 \\cdot 2) \\cdot 9 = 72$. Adding both square ends ($+8$) would give 80 — but nobody paints the underside of a pillar.",
+            "check": [
+              "4*2*9 == 72",
+              "72 + 2*4 == 80"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Boxes and triangle prisms",
+            "intro": "Net first, then arithmetic.",
+            "examples": [
+              {
+                "prompt": "Total surface of a $3 \\times 4 \\times 5$ box?",
+                "steps": [
+                  "Pairs: $lw = 12$, $lh = 15$, $wh = 20$.",
+                  "$S = 2(12 + 15 + 20) = 94$."
+                ],
+                "answer": "$94$",
+                "check": [
+                  "2*(3*4 + 3*5 + 4*5) == 94"
+                ]
+              },
+              {
+                "prompt": "Right prism: base right triangle legs $6, 8$; height $10$. Total surface?",
+                "steps": [
+                  "Hypotenuse $10$; $P = 24$; walls $= 24 \\cdot 10 = 240$.",
+                  "$B = 24$; total $= 240 + 48 = 288$."
+                ],
+                "answer": "$288$",
+                "check": [
+                  "(6 + 8 + 10)*10 + 2*(6*8/2) == 288"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Net worth",
+            "intro": "P × h for walls; don't forget how many bases the problem really wants.",
+            "problems": [
+              {
+                "prompt": "Cube of edge $3$: total surface?",
+                "options": [
+                  "$54$",
+                  "$27$",
+                  "$36$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6a^2 = 6 \\cdot 9 = 54$.",
+                "check": [
+                  "6*3**2 == 54"
+                ]
+              },
+              {
+                "prompt": "Open-top aquarium $50 \\times 30 \\times 40$ (h): glass area?",
+                "options": [
+                  "$7900$",
+                  "$9400$",
+                  "$6400$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Walls: $P h = 2(50+30) \\cdot 40 = 6400$; bottom: $50 \\cdot 30 = 1500$. Total $7900$ — one base only, it's open on top.",
+                "check": [
+                  "2*(50 + 30)*40 + 50*30 == 7900"
+                ]
+              },
+              {
+                "prompt": "A right prism's walls unroll into a $24 \\times 7$ rectangle. Its base perimeter and height are…",
+                "options": [
+                  "$P = 24$, $h = 7$",
+                  "$P = 7$, $h = 24$",
+                  "impossible to tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "The unrolled width IS the perimeter (the walk around the base); the rectangle's height is the prism's. Convention pins it: $P = 24$, $h = 7$.",
+                "check": [
+                  "24*7 == 168"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Surface area of prisms",
+            "bullets": [
+              "Unfold: walls = one P × h rectangle ⟹ S_lat = Ph (right prisms).",
+              "Total: S = Ph + 2B; box: S = 2(lw + lh + wh); cube: 6a².",
+              "Read the container: sealed = 2 bases, open-top = 1, pipe = 0.",
+              "When stuck, DRAW the net — areas can't hide on a flat sheet."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "volume-of-prisms",
+      "title": "Volume of Prisms",
+      "concreteComparison": "A ream of paper is 500 identical sheets: its volume is (area of one sheet) × (height of the stack). Slide the stack into a lean — volume unchanged, it's still the same 500 sheets. That's prism volume, and even the leaning-stack trick has a name: Cavalieri's principle.",
+      "objective": "Compute prism volumes with V = B·h, including composite bases, and use Cavalieri's idea for oblique prisms.",
+      "concept": [
+        "A prism is a stack of identical polygon slices. Volume = (slice area) × (stack height): $V = B \\cdot h$. For a box: $V = lwh$; for a cube: $V = a^3$.",
+        "**Cavalieri's principle**: two solids with equal cross-section areas at every height have equal volumes. Push a stack of paper sideways into a lean — every sheet keeps its area, so the volume stays $B \\cdot h$. That's why oblique prisms use the same formula, with $h$ = the TRUE height (perpendicular distance), not the slanted edge.",
+        "Composite bases: split the base polygon into rectangles/triangles, add the areas, then multiply by height once. Volume inherits all the area technology from plane geometry."
+      ],
+      "keyIdea": "V = B·h — base area times true height, for right AND oblique prisms (Cavalieri: leaning doesn't change slice areas).",
+      "facts": [
+        {
+          "title": "Prism volume",
+          "latex": "V = B \\cdot h",
+          "explanation": "Slice area × stack height."
+        },
+        {
+          "title": "Box and cube",
+          "latex": "V = lwh, \\qquad V = a^3",
+          "explanation": "The base area is just lw (or a²)."
+        },
+        {
+          "title": "Cavalieri",
+          "latex": "\\text{equal slices} \\Rightarrow \\text{equal volumes}",
+          "explanation": "A leaning ream of paper holds the same paper."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg24-we1",
+          "statement": "A right prism of height $10$ has a right-triangle base with legs $6$ and $8$. Find its volume.",
+          "solution": "$B = \\frac{6 \\cdot 8}{2} = 24$; $V = B h = 24 \\cdot 10 = 240$.",
+          "check": [
+            "6*8/2 == 24",
+            "24*10 == 240"
+          ]
+        },
+        {
+          "id": "sg24-we2",
+          "statement": "An oblique prism has base area $30$ and lateral edge $12$ leaning at $30°$ to the base plane. Find its volume.",
+          "solution": "True height $h = 12\\sin 30° = 6$ (NOT 12). $V = B h = 30 \\cdot 6 = 180$. Cavalieri licenses $B \\cdot h$; the lean only means $h$ must be computed, not read off the edge.",
+          "check": [
+            "12*sin(pi/6) == 6",
+            "30*6 == 180"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Multiplying by the lateral edge instead of the true height for oblique prisms.",
+          "correction": "V = B·h wants the perpendicular height. Oblique edge $\\ell$ at angle $\\theta$: $h = \\ell\\sin\\theta$. Using $\\ell$ overstates the volume by the factor $1/\\sin\\theta$.",
+          "authored": true
+        },
+        {
+          "text": "Doubling the base area 'because there are two bases' (importing surface-area thinking).",
+          "correction": "Volume uses the base ONCE — it's slice × height. The '2B' belongs to surface area only. Keep the formulas in separate pockets: S = Ph + 2B, V = Bh.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg24-t1",
+          "statement": "A cube has volume $216$. Find its edge, total surface area, and space diagonal.",
+          "solution": "$a = \\sqrt[3]{216} = 6$. Surface: $6a^2 = 216$ (a cube where V and S agree numerically!). Space diagonal: $6\\sqrt{3} \\approx 10.4$.",
+          "check": [
+            "216**Rational(1,3) == 6",
+            "6*6**2 == 216",
+            "sqrt(3*6**2) == 6*sqrt(3)"
+          ]
+        },
+        {
+          "id": "sg24-t2",
+          "statement": "An L-shaped room: a $6 \\times 4$ rectangle with a $2 \\times 2$ square bite removed, ceiling height $3$. Find the air volume.",
+          "solution": "Base: $24 - 4 = 20$; $V = 20 \\cdot 3 = 60$ cubic meters. Composite base, single height multiplication.",
+          "check": [
+            "6*4 - 2*2 == 20",
+            "20*3 == 60"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The stack",
+            "title": "Volume = slice × height",
+            "body": "Every prism is a deck of identical slices. Slice area $B$, deck height $h$: volume $V = Bh$. For boxes this collapses to $lwh$ — the base slice is a $l \\times w$ rectangle. No new idea beyond 'how much is one slice, how tall is the pile.'"
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "Play",
+            "title": "Grow a box",
+            "teach": "Step $l$, $w$, $h$ and watch $V = lwh$ and $S = 2(lw+lh+wh)$ update live. Notice: doubling ONE dimension doubles the volume, but does NOT double the surface — the two formulas scale differently (that asymmetry becomes a whole lesson in Unit 6).",
+            "config": {
+              "solid": "rectPrism",
+              "l": 4,
+              "w": 3,
+              "h": 5
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Cavalieri",
+            "title": "The leaning stack holds the same paper",
+            "body": "Shove the top of a paper ream sideways: an oblique prism. Sheet count unchanged, sheet areas unchanged ⟹ volume unchanged: still $Bh$ with $h$ the VERTICAL height of the pile. This is Cavalieri's principle — 'equal slices at every level, equal volumes' — and it will quietly power the pyramid and sphere formulas later in the course.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -6,
+                    "labelDy": 10,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 3,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 3,
+                    "y": 3,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0,
+                    "y": 3,
+                    "label": ""
+                  },
+                  {
+                    "id": "K",
+                    "x": 4.5,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "L",
+                    "x": 7.5,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 9,
+                    "y": 3,
+                    "label": ""
+                  },
+                  {
+                    "id": "N",
+                    "x": 6,
+                    "y": 3,
+                    "label": ""
+                  },
+                  {
+                    "id": "H",
+                    "x": 9,
+                    "y": 0,
+                    "labelDx": 0,
+                    "labelDy": 12,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "K",
+                    "to": "L"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "L",
+                    "to": "M"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "N"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "N",
+                    "to": "K"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "H",
+                    "dashed": true,
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "H",
+                    "from": "L",
+                    "to": "M",
+                    "right": true
+                  }
+                ],
+                "hidePoints": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "K",
+                  "L",
+                  "M",
+                  "N",
+                  "H"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The honest height",
+            "prompt": "An oblique prism: base area $30$, lateral edge $12$ at $30°$ to the base. Volume?",
+            "options": [
+              "$180$",
+              "$360$",
+              "$310$",
+              "$90$"
+            ],
+            "correctIndex": 0,
+            "explanation": "True height $= 12\\sin30° = 6$, so $V = 30 \\cdot 6 = 180$. Using the edge itself gives the inflated $360$ — the classic oblique trap.",
+            "check": [
+              "30*12*sin(pi/6) == 180"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Straight and leaning",
+            "intro": "B first, then the honest h.",
+            "examples": [
+              {
+                "prompt": "Right prism: base legs $6, 8$ (right triangle), $h = 10$. Volume?",
+                "steps": [
+                  "$B = 24$.",
+                  "$V = 240$."
+                ],
+                "answer": "$240$",
+                "check": [
+                  "(6*8/2)*10 == 240"
+                ]
+              },
+              {
+                "prompt": "Cube with space diagonal $6\\sqrt3$. Volume?",
+                "steps": [
+                  "$a\\sqrt3 = 6\\sqrt3$ ⟹ $a = 6$.",
+                  "$V = 6^3 = 216$."
+                ],
+                "answer": "$216$",
+                "check": [
+                  "6**3 == 216"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fill 'er up",
+            "intro": "Slice area × honest height, every time.",
+            "problems": [
+              {
+                "prompt": "Box $3 \\times 4 \\times 12$: volume?",
+                "options": [
+                  "$144$",
+                  "$156$",
+                  "$120$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\cdot 4 \\cdot 12 = 144$.",
+                "check": [
+                  "3*4*12 == 144"
+                ]
+              },
+              {
+                "prompt": "Prism: equilateral-triangle base of side $4$, height $9$. Volume?",
+                "options": [
+                  "$36\\sqrt{3}$",
+                  "$72$",
+                  "$48\\sqrt{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$B = \\frac{\\sqrt3}{4} \\cdot 16 = 4\\sqrt3$; $V = 4\\sqrt3 \\cdot 9 = 36\\sqrt3 \\approx 62.4$.",
+                "check": [
+                  "(sqrt(3)/4*4**2)*9 == 36*sqrt(3)"
+                ]
+              },
+              {
+                "prompt": "Two prisms share the same base; one stands straight with height $5$, the other leans with lateral edge $5$. Which holds more?",
+                "options": [
+                  "the straight one",
+                  "the leaning one",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "The leaner's TRUE height is $5\\sin\\theta < 5$. Equal edges, unequal heights — Cavalieri compares slices at equal HEIGHTS, and the leaning prism simply isn't as tall.",
+                "check": [
+                  "5*sin(pi/6) < 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Cavalieri, the volume whisperer",
+            "body": "Bonaventura Cavalieri published his 'method of indivisibles' in 1635 — thirty years before calculus. His slicing principle computes volumes that stumped the Greeks, and modern proofs of the sphere volume formula still route through it: compare the sphere's slices to a cylinder-minus-cone's slices, find them equal at every height, done. You'll do exactly this in Unit 5."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Prism volume",
+            "bullets": [
+              "V = B·h: slice area × perpendicular height — right or oblique.",
+              "Box: lwh; cube: a³; composite bases: add areas first, multiply once.",
+              "Oblique edge ℓ at angle θ: h = ℓ sin θ. Never multiply by the slant.",
+              "Cavalieri: equal slices at every level ⟹ equal volumes (the leaning ream)."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg2-pr-1",
+      "statement": "A prism has $30$ edges. Find its vertex and face counts, and verify Euler's formula.",
+      "solution": "$3n = 30$ ⟹ $n = 10$. $V = 20$, $F = 12$. Euler: $20 - 30 + 12 = 2$ ✓.",
+      "check": [
+        "30/3 == 10",
+        "20 - 30 + 12 == 2"
+      ]
+    },
+    {
+      "id": "sg2-pr-2",
+      "statement": "Find the space diagonal of a cube with edge $8$, and the edge of a cube whose space diagonal is $12$.",
+      "solution": "Edge 8: $d = 8\\sqrt{3} \\approx 13.9$. Diagonal 12: $a = \\frac{12}{\\sqrt3} = 4\\sqrt{3} \\approx 6.93$.",
+      "check": [
+        "sqrt(3*8**2) == 8*sqrt(3)",
+        "simplify(12/sqrt(3) - 4*sqrt(3)) == 0"
+      ]
+    },
+    {
+      "id": "sg2-pr-3",
+      "statement": "A box measures $9 \\times 12 \\times 8$. Find its space diagonal and total surface area.",
+      "solution": "$d = \\sqrt{81 + 144 + 64} = \\sqrt{289} = 17$. $S = 2(108 + 72 + 96) = 2 \\cdot 276 = 552$.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "C",
+            "x": 5,
+            "y": 0,
+            "labelDx": 8,
+            "labelDy": 8,
+            "label": "C"
+          },
+          {
+            "id": "G",
+            "x": 5,
+            "y": 2.67,
+            "label": "C′"
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "C",
+            "label": "15",
+            "color": "blue"
+          },
+          {
+            "kind": "segment",
+            "from": "C",
+            "to": "G",
+            "label": "8"
+          },
+          {
+            "kind": "segment",
+            "from": "A",
+            "to": "G",
+            "label": "?",
+            "color": "accent"
+          },
+          {
+            "kind": "angle",
+            "at": "C",
+            "from": "A",
+            "to": "G",
+            "right": true
+          }
+        ]
+      },
+      "check": [
+        "sqrt(9**2 + 12**2 + 8**2) == 17",
+        "sqrt(9**2 + 12**2) == 15",
+        "2*(9*12 + 9*8 + 12*8) == 552"
+      ]
+    },
+    {
+      "id": "sg2-pr-4",
+      "statement": "A right prism of height $12$ stands on an equilateral triangle of side $6$. Find its lateral surface, total surface, and volume.",
+      "solution": "$P = 18$: $S_{lat} = 18 \\cdot 12 = 216$. $B = \\frac{\\sqrt3}{4} \\cdot 36 = 9\\sqrt{3}$: $S = 216 + 18\\sqrt{3} \\approx 247.2$. $V = 9\\sqrt3 \\cdot 12 = 108\\sqrt{3} \\approx 187.1$.",
+      "check": [
+        "3*6*12 == 216",
+        "sqrt(3)/4*6**2 == 9*sqrt(3)",
+        "9*sqrt(3)*12 == 108*sqrt(3)"
+      ]
+    },
+    {
+      "id": "sg2-pr-5",
+      "statement": "A cube's total surface area is $96$. Find its volume and space diagonal.",
+      "solution": "$6a^2 = 96$ ⟹ $a = 4$. $V = 64$; $d = 4\\sqrt{3} \\approx 6.93$.",
+      "check": [
+        "sqrt(96/6) == 4",
+        "4**3 == 64",
+        "sqrt(3*4**2) == 4*sqrt(3)"
+      ]
+    },
+    {
+      "id": "sg2-pr-6",
+      "statement": "An oblique prism has a $5 \\times 4$ rectangular base and lateral edge $8$ making $60°$ with the base plane. Find its volume.",
+      "solution": "$h = 8\\sin 60° = 4\\sqrt{3}$; $V = 20 \\cdot 4\\sqrt3 = 80\\sqrt{3} \\approx 138.6$.",
+      "check": [
+        "8*sin(pi/3) == 4*sqrt(3)",
+        "5*4*4*sqrt(3) == 80*sqrt(3)"
+      ]
+    },
+    {
+      "id": "sg2-pr-7",
+      "statement": "The three face diagonals of a box from one corner are $\\sqrt{34}$, $\\sqrt{41}$, and $5$ (from faces $l\\times w$, $l \\times h$, $w \\times h$ with $l=5, w=3, h=4$ — verify), and find the space diagonal.",
+      "solution": "Check: $\\sqrt{25+9} = \\sqrt{34}$ ✓, $\\sqrt{25+16} = \\sqrt{41}$ ✓, $\\sqrt{9+16} = 5$ ✓. Space diagonal: $\\sqrt{25 + 9 + 16} = \\sqrt{50} = 5\\sqrt{2} \\approx 7.07$.",
+      "check": [
+        "sqrt(5**2 + 3**2) == sqrt(34)",
+        "sqrt(5**2 + 4**2) == sqrt(41)",
+        "sqrt(3**2 + 4**2) == 5",
+        "sqrt(5**2 + 3**2 + 4**2) == 5*sqrt(2)"
+      ]
+    },
+    {
+      "id": "sg2-pr-8",
+      "statement": "A swimming pool is a right prism $25$ m long and $10$ m wide, with depth $2$ m. Find the water volume when full and the area of the walls + floor that get tiled.",
+      "solution": "Volume: $25 \\cdot 10 \\cdot 2 = 500$ m³. Tiling: floor $250$ + long walls $2(25 \\cdot 2) = 100$ + short walls $2(10 \\cdot 2) = 40$: total $390$ m² (no ceiling on a pool!).",
+      "check": [
+        "25*10*2 == 500",
+        "250 + 2*25*2 + 2*10*2 == 390"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg2-ty-1",
+      "statement": "A prism's base is a polygon with $7$ sides. Count vertices, edges, faces; Euler check.",
+      "solution": "$V = 14$, $E = 21$, $F = 9$. Euler: $14 - 21 + 9 = 2$ ✓.",
+      "check": [
+        "14 - 21 + 9 == 2"
+      ]
+    },
+    {
+      "id": "sg2-ty-2",
+      "statement": "Find the space diagonal of a $2 \\times 6 \\times 9$ box.",
+      "solution": "$\\sqrt{4 + 36 + 81} = \\sqrt{121} = 11$ — the $(2,6,9,11)$ quadruple.",
+      "check": [
+        "sqrt(2**2 + 6**2 + 9**2) == 11"
+      ]
+    },
+    {
+      "id": "sg2-ty-3",
+      "statement": "A cube's face diagonal is $6$. Find its space diagonal.",
+      "solution": "Edge: $a = \\frac{6}{\\sqrt2} = 3\\sqrt{2}$. Space diagonal: $a\\sqrt3 = 3\\sqrt{6} \\approx 7.35$. (Or directly: $d_{space} = d_{face} \\cdot \\sqrt{3/2}$.)",
+      "check": [
+        "simplify(6/sqrt(2) - 3*sqrt(2)) == 0",
+        "3*sqrt(2)*sqrt(3) == 3*sqrt(6)"
+      ]
+    },
+    {
+      "id": "sg2-ty-4",
+      "statement": "Total surface area of a right prism with height $7$ on a $3 \\times 4$ rectangular base?",
+      "solution": "$P = 14$, walls $= 98$; bases $2 \\cdot 12 = 24$; total $= 122$. (Same as the box formula: $2(12 + 21 + 28) = 122$ ✓.)",
+      "check": [
+        "2*(3 + 4)*7 + 2*3*4 == 122",
+        "2*(3*4 + 3*7 + 4*7) == 122"
+      ]
+    },
+    {
+      "id": "sg2-ty-5",
+      "statement": "An oblique prism: base area $18$, lateral edge $10$ at $45°$ to the base. Volume?",
+      "solution": "$h = 10\\sin45° = 5\\sqrt{2}$; $V = 18 \\cdot 5\\sqrt2 = 90\\sqrt{2} \\approx 127.3$.",
+      "check": [
+        "10*sin(pi/4) == 5*sqrt(2)",
+        "18*5*sqrt(2) == 90*sqrt(2)"
+      ]
+    },
+    {
+      "id": "sg2-ty-6",
+      "statement": "A cube of edge $a$ has volume equal to its total surface area (numerically). Find $a$.",
+      "solution": "$a^3 = 6a^2$ ⟹ $a = 6$. (The 'perfect box': $V = S = 216$.)",
+      "check": [
+        "solve(a**3 - 6*a**2, a) == [0, 6]",
+        "6**3 == 6*6**2"
+      ]
+    }
+  ]
+}

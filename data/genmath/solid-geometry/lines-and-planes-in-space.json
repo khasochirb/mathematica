@@ -1,0 +1,2375 @@
+{
+  "slug": "lines-and-planes-in-space",
+  "title": "Lines & Planes in Space",
+  "unit": 1,
+  "status": "published",
+  "blurb": "The rules of 3D: how planes are determined, how lines can miss each other without being parallel, and how to measure distances and angles when things leave the flat page.",
+  "buildsOn": "Plane geometry — angles, parallel lines, the Pythagorean theorem, right-triangle trigonometry.",
+  "lessons": [
+    {
+      "slug": "planes-and-how-they-meet",
+      "title": "Planes & How They Meet",
+      "concreteComparison": "A camera tripod never wobbles, but a four-legged chair often does. Three feet always land on ONE flat plane — that's the first axiom of space working for you. The chair's fourth leg has no such guarantee, so it hovers.",
+      "objective": "Use the axioms of space: what determines a plane, and the three ways a line or another plane can meet it.",
+      "concept": [
+        "In space, the new object is the **plane** — an infinite flat sheet. The first rule: **three points not on one line determine exactly one plane.** That's why a tripod (3 feet) is always steady and a 4-legged chair can wobble: the 4th foot may miss the plane of the other three.",
+        "A **line and a plane** can meet in exactly three ways: the line lies IN the plane (every point shared), the line **pierces** it at exactly one point, or the line is **parallel** to it (no shared point). There is no fourth option — two shared points already drag the whole line into the plane.",
+        "**Two planes** either are parallel (never meet) or intersect — and when they intersect, the intersection is always a **straight line**, never just a point. Look at any wall meeting the floor: the crease is a line. Every 3D figure we build is stitched together along such lines."
+      ],
+      "keyIdea": "Three non-collinear points fix a plane; a line meets a plane in 0, 1, or infinitely many points; two non-parallel planes always meet in a line.",
+      "facts": [
+        {
+          "title": "Determining a plane",
+          "latex": "3 \\text{ points (not collinear)} \\Rightarrow 1 \\text{ plane}",
+          "explanation": "Also: a line + a point off it, or two intersecting lines."
+        },
+        {
+          "title": "Line meets plane",
+          "latex": "0, \\; 1, \\; \\text{or } \\infty \\text{ points}",
+          "explanation": "Parallel, piercing, or lying in the plane — no other case."
+        },
+        {
+          "title": "Plane meets plane",
+          "latex": "\\alpha \\cap \\beta = \\ell",
+          "explanation": "Intersecting planes always share a whole LINE."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg11-we1",
+          "statement": "How many distinct planes are determined by $4$ points in space, no $3$ of them collinear and not all $4$ in one plane?",
+          "solution": "Every choice of 3 points gives one plane, and the conditions make all these planes distinct: $\\binom{4}{3} = 4$ planes. (That's exactly a triangular pyramid: 4 vertices, 4 triangular faces.)",
+          "check": [
+            "binomial(4, 3) == 4"
+          ]
+        },
+        {
+          "id": "sg11-we2",
+          "statement": "A cube has $6$ faces. Each pair of ADJACENT faces meets in an edge (a line segment). Count the edges by counting adjacent face-pairs.",
+          "solution": "Each of the 6 faces touches 4 neighbors, giving $6 \\cdot 4 = 24$ face-pair contacts — but each edge got counted from both sides, so there are $\\frac{24}{2} = 12$ edges. This matches the cube's known 12 edges: intersecting planes meet in lines, and the cube's edges are exactly those intersection lines cut to size.",
+          "check": [
+            "6*4/2 == 12"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking two planes can intersect in a single point, the way two lines do.",
+          "correction": "Planes are too big for that. If planes share one point, they must share a whole line through it. Only a LINE and a plane can meet in a single point.",
+          "authored": true
+        },
+        {
+          "text": "Assuming any 3 points determine a plane — forgetting the collinear exception.",
+          "correction": "Three points ON one line lie in infinitely many planes (the pages of an open book all contain its spine). The determination rule needs three points NOT on one line.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg11-t1",
+          "statement": "Points $A, B, C, D, E$ in space, no 3 collinear, no 4 coplanar. How many planes do they determine?",
+          "solution": "Each 3-point choice gives a distinct plane: $\\binom{5}{3} = 10$ planes.",
+          "check": [
+            "binomial(5, 3) == 10"
+          ]
+        },
+        {
+          "id": "sg11-t2",
+          "statement": "A line pierces a plane. In how many points do they meet? What if the line lay in the plane?",
+          "solution": "Piercing: exactly $1$ point. Lying in the plane: infinitely many (every point of the line). The impossible count is exactly $2$: two shared points force the whole line into the plane.",
+          "check": [
+            "1 == 1",
+            "2 > 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The new object",
+            "title": "A plane is an infinite flat sheet",
+            "body": "Plane geometry lived inside ONE flat sheet. Solid geometry stacks many such sheets in space. We draw a plane as a parallelogram (you're seeing a rectangle tilted away from you) and name it with a Greek letter like $\\alpha$. In the figure, points $A$ and $B$ lie in the plane; $P$ floats above it.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "A",
+                    "x": 2.5,
+                    "y": 0.9
+                  },
+                  {
+                    "id": "B",
+                    "x": 5.5,
+                    "y": 1.1
+                  },
+                  {
+                    "id": "P",
+                    "x": 4.5,
+                    "y": 4.2
+                  },
+                  {
+                    "id": "G",
+                    "x": 8.6,
+                    "y": 0.4,
+                    "label": "α",
+                    "labelDx": 4,
+                    "labelDy": 0
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T",
+                  "G"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Axiom 1",
+            "title": "Three points make a plane — the tripod rule",
+            "body": "Through any **three points not on one line** passes exactly ONE plane. Fewer points aren't enough: through one point pass infinitely many planes; through two points (a line) still infinitely many — think of the pages of a book turning around its spine. Three non-collinear points $A$, $B$, $C$ nail the sheet down: that's why tripods never wobble.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "A",
+                    "x": 2.6,
+                    "y": 0.7
+                  },
+                  {
+                    "id": "B",
+                    "x": 6.2,
+                    "y": 0.8
+                  },
+                  {
+                    "id": "C",
+                    "x": 4.6,
+                    "y": 1.7
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "A",
+                    "dashed": true
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Why tripods and not chairs?",
+            "prompt": "A table with $3$ legs stands firm on any floor; one with $4$ legs can wobble. Which fact explains this?",
+            "options": [
+              "Three non-collinear points determine exactly one plane",
+              "Two planes intersect in a line",
+              "A line and a plane meet in at most one point unless the line lies in the plane",
+              "Four points always lie in one plane"
+            ],
+            "correctIndex": 0,
+            "explanation": "Any 3 leg-tips land in SOME plane — the tripod settles into it. A 4th tip has no guarantee of lying in the plane of the first three (option D is false!), so one leg can hover.",
+            "check": [
+              "binomial(3, 3) == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Line vs plane",
+            "title": "Three ways a line can meet a plane",
+            "body": "Count shared points. **In the plane**: infinitely many. **Piercing**: exactly one — the line stabs through at point $M$ like a pencil through paper. **Parallel**: zero. The figure shows a piercing line: the part below the plane is dashed, because the sheet hides it from view. There's no 'exactly two' case: two shared points pull the entire line into the plane.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 4.5,
+                    "y": 1
+                  },
+                  {
+                    "id": "U",
+                    "x": 5.7,
+                    "y": 4
+                  },
+                  {
+                    "id": "L",
+                    "x": 3.3,
+                    "y": -2,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "U"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "L",
+                    "dashed": true
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T",
+                  "L"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Plane vs plane",
+            "title": "Two planes meet in a LINE",
+            "body": "If two planes share even one point, they share a whole straight line — the crease $\\ell$ where wall meets floor, cover meets page. (They can't share just a point: planes are infinite in every direction, so an overlap that small is impossible.) The only alternative is that they never meet at all: **parallel planes**, like ceiling and floor.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "E",
+                    "x": 3,
+                    "y": 0.6,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 6.4,
+                    "y": 1.5,
+                    "label": ""
+                  },
+                  {
+                    "id": "E2",
+                    "x": 1.8,
+                    "y": 4.4,
+                    "label": ""
+                  },
+                  {
+                    "id": "F2",
+                    "x": 5.2,
+                    "y": 5.3,
+                    "label": ""
+                  },
+                  {
+                    "id": "L",
+                    "x": 5.4,
+                    "y": 1.24,
+                    "label": "ℓ",
+                    "labelDx": 3,
+                    "labelDy": 5
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "E2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "F2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E2",
+                    "to": "F2"
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T",
+                  "E",
+                  "F",
+                  "E2",
+                  "F2"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Counting planes",
+            "intro": "The determination rule turns into pure counting.",
+            "examples": [
+              {
+                "prompt": "4 points, no 3 collinear, not all coplanar. How many planes?",
+                "steps": [
+                  "Each 3-point subset determines one plane.",
+                  "$\\binom{4}{3} = 4$ — and the conditions keep them distinct."
+                ],
+                "answer": "$4$ planes (the faces of a triangular pyramid)",
+                "check": [
+                  "binomial(4, 3) == 4"
+                ]
+              },
+              {
+                "prompt": "How many planes pass through one given line?",
+                "steps": [
+                  "Rotate a sheet around the line like pages around a spine.",
+                  "Every rotation position is a different plane."
+                ],
+                "answer": "Infinitely many",
+                "check": [
+                  "oo > 1000"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Axioms in action",
+            "intro": "Think in shared points: 0, 1, or infinitely many.",
+            "problems": [
+              {
+                "prompt": "5 points, no 3 collinear, no 4 coplanar. How many planes do they determine?",
+                "options": [
+                  "$10$",
+                  "$5$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\binom{5}{3} = 10$ distinct planes.",
+                "check": [
+                  "binomial(5, 3) == 10"
+                ]
+              },
+              {
+                "prompt": "A line shares exactly $2$ points with a plane. What follows?",
+                "options": [
+                  "The line lies entirely in the plane",
+                  "The line pierces the plane twice",
+                  "The line is parallel to the plane"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two shared points force EVERY point of the line into the plane — so really it shares infinitely many, not just 2. A line can't pierce a plane twice (planes are flat, lines are straight).",
+                "check": [
+                  "2 > 1"
+                ]
+              },
+              {
+                "prompt": "Can two planes intersect in exactly one point?",
+                "options": [
+                  "No — if they share a point, they share a whole line",
+                  "Yes, if they touch at a corner",
+                  "Yes, if they are perpendicular"
+                ],
+                "correctIndex": 0,
+                "explanation": "Plane∩plane is all-or-line: either no common points (parallel) or a full straight line of them. 'Touching at a corner' is a polygon phenomenon, not a plane one.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "The ground rules of space",
+            "bullets": [
+              "3 non-collinear points ⟹ exactly 1 plane (tripod rule); also line + outside point, or two intersecting lines.",
+              "Line vs plane: 0 points (parallel), 1 point (pierces), or ∞ (lies inside) — never exactly 2.",
+              "Plane vs plane: parallel, or they meet in a straight LINE (the crease).",
+              "Dashed lines in figures = hidden behind a plane; solid = visible."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parallel-and-skew-lines",
+      "title": "Parallel & Skew Lines",
+      "concreteComparison": "A highway overpass: the road below and the road above never meet — but they're NOT parallel, they point in completely different directions. Lines that miss each other without being parallel exist only in 3D. That's what makes space genuinely different from a flat map.",
+      "objective": "Classify pairs of lines in space (intersecting, parallel, skew) and recognize when a line is parallel to a plane.",
+      "concept": [
+        "On a flat page, two lines either cross or are parallel. Space adds a third option: **skew lines** — lines that never meet AND aren't parallel, because they live in different planes. The overpass and the road beneath it: no intersection, different directions. Skew lines are the signature of 3D.",
+        "The test: parallel lines must lie **in one plane** and never meet. Skew lines lie in NO common plane. On a cube, edge $AB$ (bottom front) and edge $B'C'$ (top right, running away from you) are skew: extend them forever, they neither touch nor point the same way.",
+        "**Line parallel to a plane**: a line that never meets the plane. The working criterion — if line $\\ell$ (outside plane $\\alpha$) is parallel to SOME line inside $\\alpha$, then $\\ell \\parallel \\alpha$. A curtain rod is parallel to the floor because it's parallel to the floor's baseboard line."
+      ],
+      "keyIdea": "In space, non-meeting lines split into parallel (same plane, same direction) and skew (no common plane). A line is parallel to a plane iff it's parallel to a line inside it.",
+      "facts": [
+        {
+          "title": "Skew lines",
+          "latex": "a \\cap b = \\varnothing, \\; a \\nparallel b",
+          "explanation": "No meeting, no common plane — only possible in 3D."
+        },
+        {
+          "title": "Parallel transitivity",
+          "latex": "a \\parallel b, \\; b \\parallel c \\Rightarrow a \\parallel c",
+          "explanation": "Holds in space just as on the page."
+        },
+        {
+          "title": "Line ∥ plane",
+          "latex": "\\ell \\parallel m, \\; m \\subset \\alpha \\Rightarrow \\ell \\parallel \\alpha",
+          "explanation": "Parallel to one line of the plane ⟹ parallel to the plane."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg12-we1",
+          "statement": "In cube $ABCDA'B'C'D'$, classify each pair: (a) $AB$ and $A'B'$; (b) $AB$ and $CC'$; (c) $AB$ and $BC$.",
+          "solution": "(a) $A'B'$ is $AB$ shifted straight up — **parallel**. (b) $AB$ runs along the bottom front; $CC'$ is the vertical edge at the back-right. They never meet and point in different directions — **skew**. (c) $AB$ and $BC$ share corner $B$ — **intersecting** (at a right angle, since a cube's face is a square: $90°$).",
+          "check": [
+            "90 == 90"
+          ]
+        },
+        {
+          "id": "sg12-we2",
+          "statement": "A cube has $12$ edges. Pick edge $AB$. Of the other $11$ edges, how many are parallel to $AB$, how many intersect it, and how many are skew to it?",
+          "solution": "Parallel: the 3 other edges running the same direction — $DC$, $A'B'$, $D'C'$. Intersecting: the 4 edges through $A$ or through $B$ — $AD$, $AA'$, $BC$, $BB'$. Skew: the remaining $11 - 3 - 4 = 4$ — the verticals $CC'$, $DD'$ and the depth edges $A'D'$, $B'C'$. Count check: $3 + 4 + 4 = 11$ ✓.",
+          "check": [
+            "11 - 3 - 4 == 4",
+            "3 + 4 + 4 == 11"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling any two non-meeting lines 'parallel'.",
+          "correction": "Parallel needs BOTH: never meeting AND lying in one common plane (same direction). Non-meeting lines with different directions are skew. In space, 'they don't touch' is not enough evidence for parallel.",
+          "authored": true
+        },
+        {
+          "text": "Trusting the drawing: two segments that cross on PAPER must intersect in space.",
+          "correction": "An oblique drawing flattens depth — skew lines often LOOK like they cross. Verify with structure (do they lie in a common face?), not with the picture. In a cube drawing, $AB'$ and $A'B$ genuinely cross (both lie in face $ABB'A'$); $AB'$ and $DC'$ only appear to.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg12-t1",
+          "statement": "In the cube, edge $AA'$ is vertical. How many of the cube's $12$ edges are parallel to $AA'$?",
+          "solution": "All four vertical edges are parallel; besides $AA'$ itself that's $BB'$, $CC'$, $DD'$ — so $3$ others. The cube's 12 edges split into 3 directions × 4 parallel edges.",
+          "check": [
+            "12/3 == 4",
+            "4 - 1 == 3"
+          ]
+        },
+        {
+          "id": "sg12-t2",
+          "statement": "True or false: if line $\\ell$ is parallel to plane $\\alpha$, then $\\ell$ is parallel to EVERY line in $\\alpha$.",
+          "solution": "False. $\\ell$ is parallel to some lines of $\\alpha$ (the ones with its direction) but SKEW to all the others. A curtain rod is parallel to the floor, yet skew to most floor lines — e.g. any floor line running front-to-back. Being ∥ to the plane only promises no meeting, not shared direction with everything.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The third option",
+            "title": "Meet, run parallel — or miss sideways",
+            "body": "Flat geometry gives two lines only two choices: cross or be parallel. In space there's a third: **skew** — no meeting point AND no common plane. The cube shows all three at once: $AB$ and $AD$ intersect at $A$; $AB \\parallel A'B'$ (front face's top and bottom); $AB$ and $CC'$ are skew — trace them and feel how they slide past each other at different heights and directions. Hidden edges are dashed.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.8,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -4,
+                    "labelDy": -8
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 4,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 4,
+                    "y": 4,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "C2",
+                    "x": 5.8,
+                    "y": 5.8,
+                    "label": "C′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "D2",
+                    "x": 1.8,
+                    "y": 5.8,
+                    "label": "D′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C2",
+                    "to": "D2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D2",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "C",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "D2",
+                    "dashed": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The definition",
+            "title": "Skew = no meeting, no common plane",
+            "body": "Two lines are **skew** when no single flat sheet contains both. Test with the cube's $AB$ (bottom front, left-right) and $CC'$ (back-right, vertical): any plane containing $AB$ would have to tilt to also swallow the vertical line at the back corner — impossible. Compare: $AB$ and $A'B'$ DO share a plane (the front face), so they're parallel, not skew. **Skew lines are why the overpass never needs a traffic light.**"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Spot the skew pair",
+            "prompt": "In the cube, which pair of edges is SKEW?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "B",
+                    "x": 4,
+                    "y": 0,
+                    "labelDx": 8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.8,
+                    "y": 1.8,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "D",
+                    "x": 1.8,
+                    "y": 1.8,
+                    "labelDx": -4,
+                    "labelDy": -8
+                  },
+                  {
+                    "id": "A2",
+                    "x": 0,
+                    "y": 4,
+                    "label": "A′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "B2",
+                    "x": 4,
+                    "y": 4,
+                    "label": "B′",
+                    "labelDx": 9,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "C2",
+                    "x": 5.8,
+                    "y": 5.8,
+                    "label": "C′",
+                    "labelDx": 9,
+                    "labelDy": -4
+                  },
+                  {
+                    "id": "D2",
+                    "x": 1.8,
+                    "y": 5.8,
+                    "label": "D′",
+                    "labelDx": -9,
+                    "labelDy": -4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A2",
+                    "to": "B2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B2",
+                    "to": "C2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C2",
+                    "to": "D2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D2",
+                    "to": "A2"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "D",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "C",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "D2",
+                    "dashed": true
+                  }
+                ]
+              }
+            },
+            "options": [
+              "$AA'$ and $BC$",
+              "$AB$ and $DC$",
+              "$AA'$ and $BB'$",
+              "$AB$ and $BC$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$AA'$ is vertical at the front-left; $BC$ runs into the depth at the bottom-right. No common plane, no intersection: skew. ($AB \\parallel DC$ — both left-right; $AA' \\parallel BB'$ — both vertical; $AB$ and $BC$ meet at $B$.)",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Line ∥ plane",
+            "title": "Parallel to one line inside ⟹ parallel to the plane",
+            "body": "How do you certify a line never meets a whole infinite plane? Find ONE line inside the plane parallel to yours. In the figure, $\\ell$ runs above the plane parallel to $m$ (drawn inside the plane): if $\\ell$ ever dropped into the plane it would have to cross $m$'s direction — contradiction, so $\\ell \\parallel \\alpha$. This is the criterion you'll use constantly in prisms: every top edge is parallel to the bottom face.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "M1",
+                    "x": 2.6,
+                    "y": 0.8,
+                    "label": ""
+                  },
+                  {
+                    "id": "M2",
+                    "x": 6.6,
+                    "y": 1.2,
+                    "label": ""
+                  },
+                  {
+                    "id": "L1",
+                    "x": 1.6,
+                    "y": 3.3,
+                    "label": ""
+                  },
+                  {
+                    "id": "L2",
+                    "x": 5.6,
+                    "y": 3.7,
+                    "label": ""
+                  },
+                  {
+                    "id": "LM",
+                    "x": 4.9,
+                    "y": 1.13,
+                    "label": "m",
+                    "labelDx": 0,
+                    "labelDy": 14
+                  },
+                  {
+                    "id": "LL",
+                    "x": 3.9,
+                    "y": 3.63,
+                    "label": "ℓ",
+                    "labelDx": 0,
+                    "labelDy": -8
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M1",
+                    "to": "M2",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "L1",
+                    "to": "L2",
+                    "color": "accent"
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T",
+                  "LM",
+                  "LL"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Sorting a cube's edges",
+            "intro": "Fix one edge; sort the other 11 by relationship.",
+            "examples": [
+              {
+                "prompt": "Relative to edge $AB$: how many edges are parallel / intersecting / skew?",
+                "steps": [
+                  "Parallel: same direction — $DC$, $A'B'$, $D'C'$: $3$.",
+                  "Intersecting: those touching $A$ or $B$ — $AD$, $AA'$, $BC$, $BB'$: $4$.",
+                  "Skew: the remainder, $11 - 3 - 4 = 4$ ($CC'$, $DD'$, $A'D'$, $B'C'$)."
+                ],
+                "answer": "$3$ parallel, $4$ intersecting, $4$ skew",
+                "check": [
+                  "3 + 4 + 4 == 11"
+                ]
+              },
+              {
+                "prompt": "Is $A'B'$ (top-front edge) parallel to the bottom face $ABCD$?",
+                "steps": [
+                  "$A'B' \\parallel AB$, and $AB$ lies in the bottom face.",
+                  "Parallel to a line of the plane ⟹ parallel to the plane."
+                ],
+                "answer": "Yes: $A'B' \\parallel$ plane $ABCD$",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Classify with confidence",
+            "intro": "Same plane or not — that's always the question.",
+            "problems": [
+              {
+                "prompt": "Lines $a$ and $b$ never meet. What are the possibilities?",
+                "options": [
+                  "Parallel or skew",
+                  "Only parallel",
+                  "Only skew"
+                ],
+                "correctIndex": 0,
+                "explanation": "Never meeting rules out intersecting but leaves both parallel (common plane) and skew (no common plane).",
+                "check": [
+                  "1 == 1"
+                ]
+              },
+              {
+                "prompt": "In the cube, how many edges are SKEW to the vertical edge $AA'$?",
+                "options": [
+                  "$4$",
+                  "$6$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parallel to $AA'$: 3 (the other verticals). Meeting it: 4 (two at $A$: $AB$, $AD$; two at $A'$: $A'B'$, $A'D'$). Skew: $11 - 3 - 4 = 4$ — the four horizontal edges not touching $A$ or $A'$: $BC$, $DC$, $B'C'$, $D'C'$.",
+                "check": [
+                  "11 - 3 - 4 == 4"
+                ]
+              },
+              {
+                "prompt": "Line $\\ell$ is parallel to plane $\\alpha$. Can a line in $\\alpha$ be skew to $\\ell$?",
+                "options": [
+                  "Yes — most of them are",
+                  "No — all lines of α are parallel to ℓ",
+                  "Only if α is vertical"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\ell$ never MEETS any line of $\\alpha$ (it never meets $\\alpha$ at all), but only the lines sharing its direction are parallel; every other line of $\\alpha$ is skew to $\\ell$.",
+                "check": [
+                  "1 == 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Skew lines run the city",
+            "body": "Highway interchanges are skew-line sculptures: each ramp is built so its centerline is skew to the roads it crosses — no intersection, ever, by design. The four-level 'stack' interchanges in big cities hold 4+ mutually skew roadways within a hundred vertical feet. Traffic lights exist only where geometry forces lines to actually intersect."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Lines in space",
+            "bullets": [
+              "Three relationships: intersect (1 point), parallel (same plane, no meeting), skew (no plane, no meeting).",
+              "Cube edge count from any edge: 3 parallel + 4 intersecting + 4 skew = 11 others.",
+              "ℓ ∥ (a line in α) and ℓ ⊄ α ⟹ ℓ ∥ α.",
+              "Don't trust apparent crossings in oblique drawings — verify with faces/planes."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "perpendicular-to-a-plane",
+      "title": "Perpendicular to a Plane",
+      "concreteComparison": "A flagpole isn't 'mostly straight' — it's checked from TWO sides. Builders sight it from the north and from the east; if it's plumb in both views, it's plumb, period. That's the whole theorem: perpendicular to two directions of the ground means perpendicular to every direction of the ground.",
+      "objective": "Use the definition and criterion of line ⊥ plane, and compute distances via the perpendicular-and-oblique right triangle.",
+      "concept": [
+        "A line is **perpendicular to a plane** when it's perpendicular to EVERY line of the plane through its foot. Sounds like infinitely many checks — but the criterion cuts it to two: **perpendicular to two intersecting lines of the plane ⟹ perpendicular to the plane.** (The flagpole checked from two directions.)",
+        "From point $P$ above a plane, the **perpendicular** $PF$ is the shortest path down; its length is THE **distance from $P$ to the plane**. Any other segment $PA$ from $P$ to the plane is called an **oblique** — and $\\triangle PFA$ is a right triangle with the right angle at $F$: $PA^2 = PF^2 + FA^2$. Every distance problem in this course is this triangle, found and solved.",
+        "Longer reach along the ground means longer oblique: obliques with equal feet-distances are equal, and $PA > PF$ always — the perpendicular is unbeatable. This is Pythagoras wearing 3D clothes."
+      ],
+      "keyIdea": "⊥ to two intersecting lines of a plane ⟹ ⊥ to the whole plane. Distance from a point = the perpendicular, and perpendicular + oblique always form a right triangle.",
+      "facts": [
+        {
+          "title": "The criterion",
+          "latex": "\\ell \\perp a, \\; \\ell \\perp b, \\; a \\cap b \\neq \\varnothing \\Rightarrow \\ell \\perp \\alpha",
+          "explanation": "Two intersecting directions suffice — the flagpole test."
+        },
+        {
+          "title": "Distance to a plane",
+          "latex": "d(P, \\alpha) = PF, \\quad PF \\perp \\alpha",
+          "explanation": "The perpendicular is the shortest segment from P to the plane."
+        },
+        {
+          "title": "Oblique triangle",
+          "latex": "PA^2 = PF^2 + FA^2",
+          "explanation": "Perpendicular PF, foot-run FA, oblique PA: right angle at F."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg13-we1",
+          "statement": "$PF \\perp \\alpha$ with $PF = 4$. Point $A$ lies in $\\alpha$ with $FA = 3$. Find the oblique $PA$.",
+          "solution": "Right triangle at $F$: $PA = \\sqrt{PF^2 + FA^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5$. The 3-4-5 triangle, standing upright in space.",
+          "check": [
+            "sqrt(4**2 + 3**2) == 5"
+          ]
+        },
+        {
+          "id": "sg13-we2",
+          "statement": "From point $P$, two obliques of length $10$ and an unknown one reach plane $\\alpha$. The perpendicular is $PF = 6$. The feet of the length-10 obliques are how far from $F$? And how long is an oblique whose foot is $2\\sqrt{7}$ from $F$?",
+          "solution": "Foot distance for length 10: $FA = \\sqrt{10^2 - 6^2} = \\sqrt{64} = 8$. (Both length-10 obliques land on the circle of radius 8 around $F$.) For $FB = 2\\sqrt7$: $PB = \\sqrt{36 + 28} = \\sqrt{64} = 8$. Notice $8 < 10$: shorter run along the ground, shorter oblique.",
+          "check": [
+            "sqrt(10**2 - 6**2) == 8",
+            "sqrt(6**2 + (2*sqrt(7))**2) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Checking perpendicularity against just ONE line of the plane and concluding ⊥ to the plane.",
+          "correction": "One check isn't plumb: a leaning flagpole can still look vertical from one side. You need two INTERSECTING lines of the plane. (Two parallel lines don't work either — they're the same direction twice.)",
+          "authored": true
+        },
+        {
+          "text": "Taking an oblique segment as 'the distance' to the plane.",
+          "correction": "Distance means the perpendicular — the shortest. If a problem says 'distance from P to α is 6', that 6 is $PF$ with $PF \\perp \\alpha$, and every other reach $PA$ is strictly longer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg13-t1",
+          "statement": "$PF \\perp \\alpha$, $PF = 12$, oblique $PA = 13$. How far is $A$ from the foot $F$?",
+          "solution": "$FA = \\sqrt{13^2 - 12^2} = \\sqrt{169 - 144} = \\sqrt{25} = 5$. (The 5-12-13 triple.)",
+          "check": [
+            "sqrt(13**2 - 12**2) == 5"
+          ]
+        },
+        {
+          "id": "sg13-t2",
+          "statement": "From $P$, the perpendicular to $\\alpha$ is $8$ and an oblique is $17$. Find the oblique's foot-distance, and decide: can another oblique from $P$ have length $7$?",
+          "solution": "$FA = \\sqrt{17^2 - 8^2} = \\sqrt{289 - 64} = \\sqrt{225} = 15$ (8-15-17 triple). No oblique can be $7$: every oblique is LONGER than the perpendicular $8$.",
+          "check": [
+            "sqrt(17**2 - 8**2) == 15",
+            "7 < 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The definition",
+            "title": "Perpendicular to a plane = perpendicular to everything in it",
+            "body": "$PF \\perp \\alpha$ means: at the foot $F$, the line $PF$ makes a right angle with EVERY line of the plane through $F$. In the picture, $PF$ is vertical and two plane lines run through $F$; both meet $PF$ at $90°$. The mast-and-deck picture is the one to keep: a mast isn't perpendicular to one plank, it's perpendicular to the deck.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "Q",
+                    "x": 0,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 7,
+                    "y": 0,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 9,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 2,
+                    "y": 2,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 4.5,
+                    "y": 1,
+                    "labelDx": 8,
+                    "labelDy": 10
+                  },
+                  {
+                    "id": "P",
+                    "x": 4.5,
+                    "y": 4.6
+                  },
+                  {
+                    "id": "U",
+                    "x": 2.5,
+                    "y": 1,
+                    "label": ""
+                  },
+                  {
+                    "id": "V",
+                    "x": 6.5,
+                    "y": 1,
+                    "label": ""
+                  },
+                  {
+                    "id": "W",
+                    "x": 3.5,
+                    "y": 0.29,
+                    "label": ""
+                  },
+                  {
+                    "id": "X",
+                    "x": 5.5,
+                    "y": 1.71,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "U",
+                    "to": "V",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "W",
+                    "to": "X",
+                    "color": "blue",
+                    "dashed": true
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "P",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "F",
+                    "from": "V",
+                    "to": "P",
+                    "right": true
+                  }
+                ],
+                "hidePoints": [
+                  "Q",
+                  "R",
+                  "S",
+                  "T",
+                  "U",
+                  "V",
+                  "W",
+                  "X"
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The criterion",
+            "title": "Two checks are enough",
+            "body": "Infinitely many lines pass through $F$ — but you only test two. **If $\\ell \\perp a$ and $\\ell \\perp b$ where $a$ and $b$ are two INTERSECTING lines of the plane, then $\\ell \\perp \\alpha$.** Why two? Two intersecting directions span the whole plane — every other direction is a mix of those two, and perpendicularity survives the mixing. One direction is never enough: a tilted pole can hide its lean from a single viewpoint."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "The flagpole inspector",
+            "prompt": "A pole meets the ground at $90°$ measured against the east–west chalk line. What ELSE must you check to certify the pole ⊥ ground?",
+            "options": [
+              "A second, intersecting ground line — e.g. the north–south line",
+              "Nothing — one right angle is enough",
+              "Every ground line through the foot, one by one",
+              "A line parallel to the east–west line"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two intersecting directions span the ground plane, so two checks certify all of them. One check can be fooled by a lean in the unchecked direction, and a PARALLEL second line adds no new direction at all.",
+            "check": [
+              "2 == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Distance",
+            "title": "Perpendicular & oblique — the master right triangle",
+            "body": "Drop the perpendicular $PF$ (the **distance**), then reach out to any point $A$ of the plane with the **oblique** $PA$. Since $PF \\perp \\alpha$, the angle at $F$ is right, and $\\triangle PFA$ is drawn here in TRUE shape: $PF = 4$, $FA = 3$, so $PA = \\sqrt{4^2 + 3^2} = 5$. Height, run, slant — every 3D distance problem reduces to finding this triangle.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "F",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "A",
+                    "x": 3,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "P",
+                    "x": 0,
+                    "y": 4
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A",
+                    "label": "3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "P",
+                    "label": "4",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "P",
+                    "to": "A",
+                    "label": "5"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "F",
+                    "from": "A",
+                    "to": "P",
+                    "right": true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pythagoras, standing up",
+            "intro": "Perpendicular = one leg, ground-run = other leg, oblique = hypotenuse.",
+            "examples": [
+              {
+                "prompt": "$PF = 4$ (⊥), $FA = 3$. Oblique $PA$?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "F",
+                        "x": 0,
+                        "y": 0,
+                        "labelDx": -8,
+                        "labelDy": 8
+                      },
+                      {
+                        "id": "A",
+                        "x": 3,
+                        "y": 0,
+                        "labelDx": 10,
+                        "labelDy": 6
+                      },
+                      {
+                        "id": "P",
+                        "x": 0,
+                        "y": 4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "F",
+                        "to": "A",
+                        "label": "3"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "F",
+                        "to": "P",
+                        "label": "4",
+                        "color": "accent"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "P",
+                        "to": "A",
+                        "label": "?",
+                        "color": "blue"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "F",
+                        "from": "A",
+                        "to": "P",
+                        "right": true
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "Right angle at the foot $F$.",
+                  "$PA = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$."
+                ],
+                "answer": "$PA = 5$",
+                "check": [
+                  "sqrt(4**2 + 3**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Distance $PF = 6$; an oblique has length $10$. How far along the plane is its foot from $F$?",
+                "steps": [
+                  "Now the oblique is the hypotenuse: $FA = \\sqrt{10^2 - 6^2}$.",
+                  "$= \\sqrt{100 - 36} = \\sqrt{64} = 8$."
+                ],
+                "answer": "$FA = 8$",
+                "check": [
+                  "sqrt(10**2 - 6**2) == 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Ordering",
+            "title": "The perpendicular always wins",
+            "body": "Among ALL segments from $P$ to the plane, the perpendicular is strictly shortest — it's a leg while every oblique is a hypotenuse. And obliques sort by their ground-runs: farther foot, longer oblique; equal runs, equal obliques (their feet trace a circle around $F$). So 'distance to the plane' is well-defined: there's exactly one minimal reach, and it's the plumb drop."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Drop, run, reach",
+            "intro": "Identify which of the three lengths you have; Pythagoras does the rest.",
+            "problems": [
+              {
+                "prompt": "$PF = 12$ (⊥), oblique $PA = 13$. Foot-distance $FA$?",
+                "options": [
+                  "$5$",
+                  "$\\sqrt{313}$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{169 - 144} = 5$ — the 5-12-13 triangle.",
+                "check": [
+                  "sqrt(13**2 - 12**2) == 5"
+                ]
+              },
+              {
+                "prompt": "Perpendicular $8$; two obliques run to feet $6$ and $15$ from $F$. Their lengths?",
+                "options": [
+                  "$10$ and $17$",
+                  "$14$ and $23$",
+                  "$10$ and $16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sqrt{64+36} = 10$ and $\\sqrt{64+225} = 17$ — two Pythagorean triples sharing the leg 8. Farther foot ⟹ longer oblique ✓.",
+                "check": [
+                  "sqrt(8**2 + 6**2) == 10",
+                  "sqrt(8**2 + 15**2) == 17"
+                ]
+              },
+              {
+                "prompt": "Can an oblique from $P$ be SHORTER than the perpendicular from $P$?",
+                "options": [
+                  "Never — the perpendicular is the minimum",
+                  "Yes, if the plane tilts",
+                  "Yes, if the foot is very close to F"
+                ],
+                "correctIndex": 0,
+                "explanation": "The oblique is the hypotenuse of a right triangle in which the perpendicular is a leg — hypotenuse > leg, always. As the foot approaches $F$ the oblique approaches $PF$ but never dips below it.",
+                "check": [
+                  "sqrt(8**2 + 1**2) > 8"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Perpendicularity toolkit",
+            "bullets": [
+              "ℓ ⊥ α means ⊥ to every plane line through the foot; certify it with just TWO intersecting lines.",
+              "Distance from P to α = the perpendicular PF — the unique shortest segment.",
+              "Perpendicular + oblique ⟹ right triangle at the foot: PA² = PF² + FA².",
+              "Memorize the triple family: 3-4-5, 6-8-10, 5-12-13, 8-15-17 — solid geometry runs on them."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "angles-in-space",
+      "title": "Angles in Space",
+      "concreteComparison": "A ladder against a wall is safe at about 75° and lethal at 40° — but 75° measured against WHAT? Not the wall, not the rungs: against the ladder's own shadow at noon. The angle between a line and a plane is defined by exactly that shadow, and it's the angle every safety code, ski slope, and flight path is written in.",
+      "objective": "Measure the angle between a line and a plane (via the projection) and between two planes (the dihedral angle, via two perpendiculars to the edge).",
+      "concept": [
+        "**Line-plane angle**: drop the perpendicular from a point of the line to get its **projection** (shadow) on the plane; the angle between the line and its own projection is THE angle between line and plane. In the perpendicular-oblique triangle, that's the angle at $A$: $\\sin\\theta = \\frac{PF}{PA} = \\frac{\\text{height}}{\\text{oblique}}$.",
+        "**Dihedral angle** (between two planes): stand on the intersection line $\\ell$, draw one ray in each plane PERPENDICULAR to $\\ell$ at the same point — the angle between those rays is the dihedral angle. An open laptop: the hinge is $\\ell$, and the screen-keyboard angle is measured perpendicular to the hinge, not diagonally across.",
+        "Both definitions manufacture a flat, true-shape right triangle inside the 3D figure. The whole game of angle problems: FIND that triangle, then it's Unit-1-of-trigonometry — $\\sin$, $\\cos$, $\\tan$ of a right triangle."
+      ],
+      "keyIdea": "Line-plane angle = angle between the line and its projection (sin θ = height/oblique). Plane-plane angle = angle between two rays ⊥ to the edge, one in each plane.",
+      "facts": [
+        {
+          "title": "Line ∧ plane",
+          "latex": "\\sin\\theta = \\frac{PF}{PA}",
+          "explanation": "Height over oblique — the angle sits between oblique and its shadow."
+        },
+        {
+          "title": "Dihedral angle",
+          "latex": "\\text{ray} \\perp \\ell \\text{ in } \\alpha, \\; \\text{ray} \\perp \\ell \\text{ in } \\beta",
+          "explanation": "Measure square to the hinge, never diagonally."
+        },
+        {
+          "title": "Range",
+          "latex": "0° \\le \\theta \\le 90°",
+          "explanation": "Line-plane angles never exceed 90° — the shadow definition guarantees it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sg14-we1",
+          "statement": "An oblique $PA = 6$ meets plane $\\alpha$; the perpendicular from $P$ is $PF = 3$. Find the angle between $PA$ and the plane.",
+          "solution": "$\\sin\\theta = \\frac{PF}{PA} = \\frac{3}{6} = \\frac{1}{2}$, so $\\theta = 30°$. (The projection has length $FA = \\sqrt{36-9} = 3\\sqrt3$ — a 30-60-90 triangle.)",
+          "check": [
+            "Rational(3, 6) == Rational(1, 2)",
+            "sin(rad(30)) == Rational(1, 2)",
+            "sqrt(6**2 - 3**2) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "sg14-we2",
+          "statement": "At point $M$ on the edge of a dihedral angle, ray $MK \\perp$ edge is drawn in plane $\\alpha$ and ray $MN \\perp$ edge in plane $\\beta$, with $MK = MN = 6$ and $KN = 6\\sqrt{2}$. Find the dihedral angle.",
+          "solution": "The angle $\\angle KMN$ IS the dihedral angle (both rays ⊥ the edge at $M$). Triangle $KMN$ has sides $6, 6, 6\\sqrt2$ — and $6^2 + 6^2 = 72 = (6\\sqrt2)^2$, so by the converse of Pythagoras $\\angle KMN = 90°$. The planes are perpendicular.",
+          "check": [
+            "6**2 + 6**2 == (6*sqrt(2))**2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Measuring the line-plane angle between the line and some random line of the plane.",
+          "correction": "The definition is specific: line vs its own PROJECTION. Any other plane line gives a bigger angle. Build the projection by dropping the perpendicular first.",
+          "authored": true
+        },
+        {
+          "text": "Measuring a dihedral angle with rays that aren't perpendicular to the edge.",
+          "correction": "Slanted rays exaggerate or shrink the angle — a laptop 'measured' diagonally seems more closed than it is. Both rays must hit the hinge at 90°; only then is the angle between them the dihedral angle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sg14-t1",
+          "statement": "A $10$-unit oblique makes a $45°$ angle with a plane. Find the height (perpendicular) and the projection.",
+          "solution": "Height $= 10\\sin 45° = 10 \\cdot \\frac{\\sqrt2}{2} = 5\\sqrt{2}$; projection $= 10\\cos 45° = 5\\sqrt{2}$. At $45°$ they're equal — the perpendicular-oblique triangle is the isosceles half-square.",
+          "check": [
+            "10*sin(pi/4) == 5*sqrt(2)",
+            "10*cos(pi/4) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "sg14-t2",
+          "statement": "A mast of height $9$ is stabilized by a wire from its top to a ground anchor $9\\sqrt{3}$ from its base. What angle does the wire make with the GROUND?",
+          "solution": "$\\tan\\theta = \\frac{9}{9\\sqrt3} = \\frac{1}{\\sqrt3}$, so $\\theta = 30°$. (Wire length: $\\sqrt{81 + 243} = \\sqrt{324} = 18$ — and indeed $\\sin 30° = 9/18 = 1/2$ ✓.)",
+          "check": [
+            "simplify(tan(pi/6) - 9/(9*sqrt(3))) == 0",
+            "sqrt(9**2 + (9*sqrt(3))**2) == 18",
+            "Rational(9, 18) == sin(rad(30))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The shadow",
+            "title": "A line's angle with a plane is measured against its shadow",
+            "body": "Sun directly overhead: the oblique $PA$ casts the shadow (projection) $FA$ on the plane. The angle between $PA$ and the plane is $\\angle PAF$ — oblique vs shadow. The triangle $PFA$ is drawn in true shape here: height $3$, oblique $6$, so $\\sin\\theta = \\frac{3}{6} = \\frac12$ and $\\theta = 30°$. Never measure against anything but the projection.",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "F",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "A",
+                    "x": 5.196,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "P",
+                    "x": 0,
+                    "y": 3
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A",
+                    "label": "3√3",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "P",
+                    "label": "3",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "P",
+                    "to": "A",
+                    "label": "6"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "F",
+                    "from": "A",
+                    "to": "P",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "A",
+                    "from": "F",
+                    "to": "P",
+                    "label": "30°"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why sine",
+            "title": "sin θ = height / oblique",
+            "body": "In $\\triangle PFA$ the right angle is at the foot $F$. Relative to the angle $\\theta$ at $A$: opposite = the height $PF$, hypotenuse = the oblique $PA$. So $\\sin\\theta = \\frac{PF}{PA}$, $\\cos\\theta = \\frac{FA}{PA}$ (shadow over oblique), $\\tan\\theta = \\frac{PF}{FA}$ (height over shadow). Given any two of {height, shadow, oblique, angle}, the other two follow. This one triangle IS the lesson."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check",
+            "title": "Read the triangle",
+            "prompt": "An oblique of length $8$ makes a $60°$ angle with the plane. What's the height $PF$?",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "F",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "A",
+                    "x": 2,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 6
+                  },
+                  {
+                    "id": "P",
+                    "x": 0,
+                    "y": 3.464
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "P",
+                    "label": "?",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "P",
+                    "to": "A",
+                    "label": "8"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "F",
+                    "from": "A",
+                    "to": "P",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "A",
+                    "from": "F",
+                    "to": "P",
+                    "label": "60°"
+                  }
+                ]
+              }
+            },
+            "options": [
+              "$4\\sqrt{3}$",
+              "$4$",
+              "$8\\sqrt{3}$",
+              "$\\dfrac{8}{\\sqrt3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$PF = 8\\sin 60° = 8 \\cdot \\frac{\\sqrt3}{2} = 4\\sqrt3 \\approx 6.9$ — less than the oblique 8 ✓. Option B is $8\\cos 60°$: that's the SHADOW, not the height.",
+            "check": [
+              "8*sin(pi/3) == 4*sqrt(3)",
+              "8*cos(pi/3) == 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Between planes",
+            "title": "The dihedral angle: measure square to the hinge",
+            "body": "Two half-planes meet along edge $\\ell$ — a half-open book. To measure how far open: pick a point $M$ on the spine, draw $MK \\perp \\ell$ on one page and $MN \\perp \\ell$ on the other. $\\angle KMN$ is the **dihedral angle** — and drawn here in true shape, looking straight down the hinge. Rays not perpendicular to the hinge give false readings (that's why the definition insists).",
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "M",
+                    "x": 0,
+                    "y": 0,
+                    "labelDx": -8,
+                    "labelDy": 8
+                  },
+                  {
+                    "id": "K",
+                    "x": 5,
+                    "y": 0,
+                    "labelDx": 10,
+                    "labelDy": 0
+                  },
+                  {
+                    "id": "N",
+                    "x": 2.5,
+                    "y": 4.33
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "ray",
+                    "from": "M",
+                    "to": "K",
+                    "color": "blue"
+                  },
+                  {
+                    "kind": "ray",
+                    "from": "M",
+                    "to": "N",
+                    "color": "accent"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "M",
+                    "from": "K",
+                    "to": "N",
+                    "label": "60°"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Both kinds of angle",
+            "intro": "Find the true-shape triangle, then it's plain trig.",
+            "examples": [
+              {
+                "prompt": "Oblique $6$, height $3$. Angle with the plane?",
+                "steps": [
+                  "$\\sin\\theta = \\frac{3}{6} = \\frac12$.",
+                  "$\\theta = 30°$."
+                ],
+                "answer": "$30°$",
+                "check": [
+                  "sin(rad(30)) == Rational(1, 2)"
+                ]
+              },
+              {
+                "prompt": "Rays $MK = MN = 6$, both ⊥ the edge at $M$; $KN = 6\\sqrt2$. Dihedral angle?",
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "M",
+                        "x": 0,
+                        "y": 0,
+                        "labelDx": -8,
+                        "labelDy": 8
+                      },
+                      {
+                        "id": "K",
+                        "x": 4,
+                        "y": 0,
+                        "labelDx": 10,
+                        "labelDy": 6
+                      },
+                      {
+                        "id": "N",
+                        "x": 0,
+                        "y": 4
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "K",
+                        "label": "6",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "N",
+                        "label": "6",
+                        "ticks": 1
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "K",
+                        "to": "N",
+                        "label": "6√2",
+                        "dashed": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "M",
+                        "from": "K",
+                        "to": "N",
+                        "right": true
+                      }
+                    ]
+                  }
+                },
+                "steps": [
+                  "$\\angle KMN$ is the dihedral angle (both rays ⊥ edge).",
+                  "$6^2 + 6^2 = 72 = (6\\sqrt2)^2$ ⟹ right angle (Pythagoras, converse)."
+                ],
+                "answer": "$90°$ — the planes are perpendicular",
+                "check": [
+                  "6**2 + 6**2 == (6*sqrt(2))**2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Strategy",
+            "title": "Every angle problem is a triangle hunt",
+            "body": "The 3D drawing is scaffolding; the answer lives in a flat right triangle. Procedure: (1) identify the perpendicular (height) — build it if absent; (2) identify the shadow or the square-to-the-hinge rays; (3) redraw JUST that triangle flat, with its true lengths; (4) apply $\\sin/\\cos/\\tan$. Working flat is not a shortcut — it's the definition doing exactly what it was designed to do."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Angle hunting",
+            "intro": "Height, shadow, oblique — name them, then compute.",
+            "problems": [
+              {
+                "prompt": "Oblique $10$ at $45°$ to the plane. Height?",
+                "options": [
+                  "$5\\sqrt{2}$",
+                  "$5$",
+                  "$10\\sqrt{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10\\sin45° = 10 \\cdot \\frac{\\sqrt2}{2} = 5\\sqrt2 \\approx 7.07$.",
+                "check": [
+                  "10*sin(pi/4) == 5*sqrt(2)"
+                ]
+              },
+              {
+                "prompt": "Height $9$, shadow $9\\sqrt3$. Angle with the plane?",
+                "options": [
+                  "$30°$",
+                  "$60°$",
+                  "$45°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tan\\theta = \\frac{9}{9\\sqrt3} = \\frac{1}{\\sqrt3}$ ⟹ $\\theta = 30°$. (Long shadow = low sun = small angle.)",
+                "check": [
+                  "simplify(tan(pi/6) - 1/sqrt(3)) == 0"
+                ]
+              },
+              {
+                "prompt": "Dihedral rays $MK = 4$, $MN = 4$ (⊥ edge), $KN = 4$. The dihedral angle?",
+                "options": [
+                  "$60°$",
+                  "$90°$",
+                  "$45°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Triangle $KMN$ is equilateral ($4,4,4$) — all angles $60°$. The planes open like a book at $60°$.",
+                "check": [
+                  "cos(rad(60)) == Rational(1, 2)",
+                  "4**2 == 4**2 + 4**2 - 2*4*4*cos(pi/3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your ladder knows this lesson",
+            "body": "Fire codes worldwide prescribe the ladder angle as roughly $75°$ to the ground — the '4-to-1 rule': for every 4 units up, pull the base out 1 unit. That's $\\tan\\theta = 4$, i.e. $\\theta \\approx 75.96°$. Steeper and the ladder tips backward; shallower and the base slides. It's the line-plane angle, enforced by law."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "Angles in space",
+            "bullets": [
+              "Line-plane angle: between the line and its PROJECTION; sin θ = height/oblique.",
+              "Dihedral angle: rays ⊥ to the edge, one per plane, same point; measure between the rays.",
+              "Both reduce to a flat right triangle — find it, redraw it true, apply trig.",
+              "Special angles rule the exams: sin 30° = 1/2, sin 45° = √2/2, sin 60° = √3/2."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sg1-pr-1",
+      "statement": "How many distinct planes are determined by $6$ points, no $3$ collinear and no $4$ coplanar?",
+      "solution": "$\\binom{6}{3} = 20$ planes.",
+      "check": [
+        "binomial(6, 3) == 20"
+      ]
+    },
+    {
+      "id": "sg1-pr-2",
+      "statement": "$PF \\perp \\alpha$, $PF = 5$, and point $A$ in $\\alpha$ has $FA = 12$. Find the oblique $PA$.",
+      "solution": "$PA = \\sqrt{5^2 + 12^2} = \\sqrt{169} = 13$ (5-12-13).",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "F",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "A",
+            "x": 4.8,
+            "y": 0,
+            "labelDx": 10,
+            "labelDy": 6
+          },
+          {
+            "id": "P",
+            "x": 0,
+            "y": 2
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "F",
+            "to": "A",
+            "label": "12"
+          },
+          {
+            "kind": "segment",
+            "from": "F",
+            "to": "P",
+            "label": "5",
+            "color": "accent"
+          },
+          {
+            "kind": "segment",
+            "from": "P",
+            "to": "A",
+            "label": "?",
+            "color": "blue"
+          },
+          {
+            "kind": "angle",
+            "at": "F",
+            "from": "A",
+            "to": "P",
+            "right": true
+          }
+        ]
+      },
+      "check": [
+        "sqrt(5**2 + 12**2) == 13"
+      ]
+    },
+    {
+      "id": "sg1-pr-3",
+      "statement": "In cube $ABCDA'B'C'D'$, classify: (a) $AD$ and $B'C'$; (b) $AB'$ and $DC'$... just (a), plus: how many edges are skew to $BC$?",
+      "solution": "(a) $AD$ and $B'C'$ both run front-to-back — $B'C'$ is $BC$ lifted, and $BC \\parallel AD$ — so they're **parallel**. Skew to $BC$: by the 3-4-4 split every edge has, $11 - 3\\text{ (parallel)} - 4\\text{ (meeting)} = 4$ skew edges.",
+      "check": [
+        "11 - 3 - 4 == 4"
+      ]
+    },
+    {
+      "id": "sg1-pr-4",
+      "statement": "From point $P$ the perpendicular to plane $\\alpha$ has length $20$, and an oblique has length $25$. Find the projection of the oblique.",
+      "solution": "$\\sqrt{25^2 - 20^2} = \\sqrt{625 - 400} = \\sqrt{225} = 15$ (15-20-25 = 3-4-5 scaled by 5).",
+      "check": [
+        "sqrt(25**2 - 20**2) == 15"
+      ]
+    },
+    {
+      "id": "sg1-pr-5",
+      "statement": "An oblique makes a $60°$ angle with a plane and its projection (shadow) has length $4$. Find the oblique and the height.",
+      "solution": "Shadow = oblique × cos: $4 = PA\\cos 60° = \\frac{PA}{2}$ ⟹ $PA = 8$. Height $= 8\\sin 60° = 4\\sqrt{3}$. Check: $4^2 + (4\\sqrt3)^2 = 16 + 48 = 64 = 8^2$ ✓.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "F",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "A",
+            "x": 2,
+            "y": 0,
+            "labelDx": 10,
+            "labelDy": 6
+          },
+          {
+            "id": "P",
+            "x": 0,
+            "y": 3.464
+          }
+        ],
+        "objects": [
+          {
+            "kind": "segment",
+            "from": "F",
+            "to": "A",
+            "label": "4"
+          },
+          {
+            "kind": "segment",
+            "from": "F",
+            "to": "P",
+            "label": "?",
+            "color": "accent"
+          },
+          {
+            "kind": "segment",
+            "from": "P",
+            "to": "A",
+            "label": "?",
+            "color": "blue"
+          },
+          {
+            "kind": "angle",
+            "at": "F",
+            "from": "A",
+            "to": "P",
+            "right": true
+          },
+          {
+            "kind": "angle",
+            "at": "A",
+            "from": "F",
+            "to": "P",
+            "label": "60°"
+          }
+        ]
+      },
+      "check": [
+        "4/cos(pi/3) == 8",
+        "8*sin(pi/3) == 4*sqrt(3)",
+        "4**2 + (4*sqrt(3))**2 == 64"
+      ]
+    },
+    {
+      "id": "sg1-pr-6",
+      "statement": "Two obliques from $P$ have lengths $13$ and $15$; their projections differ, but the perpendicular is the same $PF = 12$. Find both projections.",
+      "solution": "$\\sqrt{13^2 - 12^2} = 5$ and $\\sqrt{15^2 - 12^2} = \\sqrt{81} = 9$. Both triples: 5-12-13 and 9-12-15 (3-4-5 × 3).",
+      "check": [
+        "sqrt(13**2 - 12**2) == 5",
+        "sqrt(15**2 - 12**2) == 9"
+      ]
+    },
+    {
+      "id": "sg1-pr-7",
+      "statement": "Rays $MK$ and $MN$ are drawn perpendicular to the edge of a dihedral angle at $M$, one in each face, with $MK = MN = 5$ and $KN = 5\\sqrt{3}$. Find the dihedral angle.",
+      "solution": "Law of cosines in $\\triangle KMN$: $\\cos\\angle M = \\frac{25 + 25 - 75}{2 \\cdot 25} = \\frac{-25}{50} = -\\frac12$ ⟹ $\\angle M = 120°$. An obtuse book-opening.",
+      "geoFigure": {
+        "points": [
+          {
+            "id": "M",
+            "x": 0,
+            "y": 0,
+            "labelDx": -8,
+            "labelDy": 8
+          },
+          {
+            "id": "K",
+            "x": 5,
+            "y": 0,
+            "labelDx": 10,
+            "labelDy": 6
+          },
+          {
+            "id": "N",
+            "x": -2.5,
+            "y": 4.33
+          }
+        ],
+        "objects": [
+          {
+            "kind": "ray",
+            "from": "M",
+            "to": "K",
+            "color": "blue",
+            "label": "5"
+          },
+          {
+            "kind": "ray",
+            "from": "M",
+            "to": "N",
+            "color": "accent",
+            "label": "5"
+          },
+          {
+            "kind": "segment",
+            "from": "K",
+            "to": "N",
+            "dashed": true,
+            "label": "5√3"
+          },
+          {
+            "kind": "angle",
+            "at": "M",
+            "from": "K",
+            "to": "N",
+            "label": "120°"
+          }
+        ]
+      },
+      "check": [
+        "Rational(25 + 25 - 75, 2*25) == Rational(-1, 2)",
+        "cos(rad(120)) == Rational(-1, 2)"
+      ]
+    },
+    {
+      "id": "sg1-pr-8",
+      "statement": "A $6$ m pole stands perpendicular to level ground. A taut wire runs from its top to a stake $6$ m from the pole's base. What angle does the wire make with the ground, and how long is it?",
+      "solution": "$\\tan\\theta = \\frac{6}{6} = 1$ ⟹ $\\theta = 45°$. Wire $= \\sqrt{36+36} = 6\\sqrt{2} \\approx 8.49$ m.",
+      "check": [
+        "tan(pi/4) == 1",
+        "sqrt(6**2 + 6**2) == 6*sqrt(2)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sg1-ty-1",
+      "statement": "Through a single line, how many planes pass? And through two INTERSECTING lines?",
+      "solution": "Through one line: infinitely many (the book's pages). Through two intersecting lines: exactly ONE — two intersecting lines determine a plane.",
+      "check": [
+        "oo > 1",
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "sg1-ty-2",
+      "statement": "$PF \\perp \\alpha$, oblique $PA = 2\\sqrt{5}$, projection $FA = 2$. Find the height $PF$.",
+      "solution": "$PF = \\sqrt{(2\\sqrt5)^2 - 2^2} = \\sqrt{20 - 4} = \\sqrt{16} = 4$.",
+      "check": [
+        "sqrt((2*sqrt(5))**2 - 2**2) == 4"
+      ]
+    },
+    {
+      "id": "sg1-ty-3",
+      "statement": "In the cube, name the relationship: $AB'$ (a face diagonal) and $CC'$ (a vertical edge).",
+      "solution": "$AB'$ lies in the front face and climbs left-bottom to right-top; $CC'$ is the vertical at the back-right. They don't meet (different faces, no shared vertex) and aren't parallel ($AB'$ isn't vertical) — **skew**.",
+      "check": [
+        "1 == 1"
+      ]
+    },
+    {
+      "id": "sg1-ty-4",
+      "statement": "An oblique is twice the perpendicular from the same point $P$. What angle does the oblique make with the plane?",
+      "solution": "$\\sin\\theta = \\frac{PF}{PA} = \\frac{PF}{2PF} = \\frac12$ ⟹ $\\theta = 30°$.",
+      "check": [
+        "sin(rad(30)) == Rational(1, 2)"
+      ]
+    },
+    {
+      "id": "sg1-ty-5",
+      "statement": "A dihedral angle is $60°$. Rays ⊥ the edge at the same point have lengths $MK = 8$ and $MN = 8$. Find $KN$.",
+      "solution": "Law of cosines: $KN^2 = 64 + 64 - 2 \\cdot 64 \\cdot \\frac12 = 64$ ⟹ $KN = 8$. (Equal rays at $60°$ make an equilateral triangle.)",
+      "check": [
+        "sqrt(8**2 + 8**2 - 2*8*8*cos(pi/3)) == 8"
+      ]
+    },
+    {
+      "id": "sg1-ty-6",
+      "statement": "A $12$-unit oblique makes a $30°$ angle with the plane. Find the height, the projection, and check them with Pythagoras.",
+      "solution": "Height $= 12\\sin 30° = 6$; projection $= 12\\cos 30° = 6\\sqrt{3}$. Check: $36 + 108 = 144 = 12^2$ ✓.",
+      "check": [
+        "12*sin(pi/6) == 6",
+        "12*cos(pi/6) == 6*sqrt(3)",
+        "6**2 + (6*sqrt(3))**2 == 144"
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ export const ESH_CONTEXT = "esh";
 // /math/6/... → "course:grade-6". Non-course paths return null (record
 // nothing rather than guess).
 export function contextFromPathname(pathname: string): string | null {
-  const m = /^\/math\/(geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|precalculus|calculus|trigonometry|\d+)\//.exec(pathname);
+  const m = /^\/math\/(solid-geometry|geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|precalculus|calculus|trigonometry|\d+)\//.exec(pathname);
   if (!m) return null;
   const seg = m[1];
   return /^\d+$/.test(seg) ? `course:grade-${seg}` : `course:${seg}`;
@@ -46,6 +46,7 @@ export function contextLabel(context: string): string {
   if (context === "course:precalculus") return "Прекалькулюс";
   if (context === "course:calculus") return "Математик анализ";
   if (context === "course:trigonometry") return "Тригонометр";
+  if (context === "course:solid-geometry") return "Огторгуйн геометр";
   const grade = /^course:grade-(\d+)$/.exec(context);
   if (grade) return `${grade[1]}-р анги`;
   if (context === "sat") return "SAT";
@@ -63,6 +64,7 @@ export function contextHref(context: string): string | null {
   if (context === "course:precalculus") return "/math/precalculus";
   if (context === "course:calculus") return "/math/calculus";
   if (context === "course:trigonometry") return "/math/trigonometry";
+  if (context === "course:solid-geometry") return "/math/solid-geometry";
   const grade = /^course:grade-(\d+)$/.exec(context);
   if (grade) return `/math/${grade[1]}`;
   if (context === ESH_CONTEXT) return "/practice/esh";
