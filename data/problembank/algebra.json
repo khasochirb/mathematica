@@ -1,0 +1,584 @@
+{
+  "slug": "algebra",
+  "title": "Algebra",
+  "titleMn": "Алгебр",
+  "blurb": "Equations, inequalities, systems, exponents — the moves behind a third of any exam.",
+  "forms": [
+    {
+      "id": "linear-two-step",
+      "title": "Two-step linear equations",
+      "level": 1,
+      "skill": "Undo addition, then undo multiplication — in that order.",
+      "variants": [
+        {
+          "id": "alg-lin-v1",
+          "statement": "Solve: $3x + 5 = 20$.",
+          "options": [
+            "$5$",
+            "$-5$",
+            "$6$",
+            "$\\frac{25}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Move the constant first: $3x = 15$, then divide by $3$: $x = 5$. Check: $3 \\cdot 5 + 5 = 20$ ✓.",
+          "check": [
+            "solve(3*x + 5 - 20, x) == [5]"
+          ]
+        },
+        {
+          "id": "alg-lin-v2",
+          "statement": "Solve: $4x - 7 = 13$.",
+          "options": [
+            "$5$",
+            "$-5$",
+            "$\\frac{3}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Move the constant first: $4x = 20$, then divide by $4$: $x = 5$. Check: $4 \\cdot 5 - 7 = 13$ ✓.",
+          "check": [
+            "solve(4*x + -7 - 13, x) == [5]"
+          ]
+        },
+        {
+          "id": "alg-lin-v3",
+          "statement": "Solve: $5x + 8 = 43$.",
+          "options": [
+            "$7$",
+            "$-7$",
+            "$8$",
+            "$\\frac{51}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Move the constant first: $5x = 35$, then divide by $5$: $x = 7$. Check: $5 \\cdot 7 + 8 = 43$ ✓.",
+          "check": [
+            "solve(5*x + 8 - 43, x) == [7]"
+          ]
+        },
+        {
+          "id": "alg-lin-v4",
+          "statement": "Solve: $7x - 4 = 24$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$\\frac{20}{7}$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Move the constant first: $7x = 28$, then divide by $7$: $x = 4$. Check: $7 \\cdot 4 - 4 = 24$ ✓.",
+          "check": [
+            "solve(7*x + -4 - 24, x) == [4]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exponent-laws",
+      "title": "Exponent laws",
+      "level": 1,
+      "skill": "x^a·x^b = x^(a+b); division subtracts exponents.",
+      "variants": [
+        {
+          "id": "alg-exp-v1",
+          "statement": "Simplify: $\\dfrac{x^{5} \\cdot x^{3}}{x^{4}}$.",
+          "options": [
+            "$x^{4}$",
+            "$x^{12}$",
+            "$x^{11}$",
+            "$x^{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiplying powers adds exponents ($5+3=8$); dividing subtracts ($8-4=4$). One add, one subtract — never multiply the exponents.",
+          "check": [
+            "5 + 3 - 4 == 4"
+          ]
+        },
+        {
+          "id": "alg-exp-v2",
+          "statement": "Simplify: $\\dfrac{x^{7} \\cdot x^{2}}{x^{6}}$.",
+          "options": [
+            "$x^{3}$",
+            "$x^{15}$",
+            "$x^{8}$",
+            "$x^{11}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiplying powers adds exponents ($7+2=9$); dividing subtracts ($9-6=3$). One add, one subtract — never multiply the exponents.",
+          "check": [
+            "7 + 2 - 6 == 3"
+          ]
+        },
+        {
+          "id": "alg-exp-v3",
+          "statement": "Simplify: $\\dfrac{x^{4} \\cdot x^{5}}{x^{3}}$.",
+          "options": [
+            "$x^{6}$",
+            "$x^{12}$",
+            "$x^{17}$",
+            "$x^{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiplying powers adds exponents ($4+5=9$); dividing subtracts ($9-3=6$). One add, one subtract — never multiply the exponents.",
+          "check": [
+            "4 + 5 - 3 == 6"
+          ]
+        },
+        {
+          "id": "alg-exp-v4",
+          "statement": "Simplify: $\\dfrac{x^{6} \\cdot x^{4}}{x^{8}}$.",
+          "options": [
+            "$x^{2}$",
+            "$x^{18}$",
+            "$x^{16}$",
+            "$x^{10}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiplying powers adds exponents ($6+4=10$); dividing subtracts ($10-8=2$). One add, one subtract — never multiply the exponents.",
+          "check": [
+            "6 + 4 - 8 == 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evaluate-expression",
+      "title": "Evaluating expressions",
+      "level": 1,
+      "skill": "Powers before products; substitute carefully.",
+      "variants": [
+        {
+          "id": "alg-eval-v1",
+          "statement": "Evaluate $2a^2 - 3b$ when $a = 3$ and $b = 4$.",
+          "options": [
+            "$6$",
+            "$24$",
+            "$30$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first, multiply second: $2 \\cdot 3^2 = 18$, then subtract $3 \\cdot 4 = 12$: answer $6$. The classic slip is $(2a)^2$ — the square belongs to $a$ alone.",
+          "check": [
+            "2*3**2 - 3*4 == 6"
+          ]
+        },
+        {
+          "id": "alg-eval-v2",
+          "statement": "Evaluate $3a^2 - 2b$ when $a = 2$ and $b = 5$.",
+          "options": [
+            "$2$",
+            "$26$",
+            "$22$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first, multiply second: $3 \\cdot 2^2 = 12$, then subtract $2 \\cdot 5 = 10$: answer $2$. The classic slip is $(3a)^2$ — the square belongs to $a$ alone.",
+          "check": [
+            "3*2**2 - 2*5 == 2"
+          ]
+        },
+        {
+          "id": "alg-eval-v3",
+          "statement": "Evaluate $2a^2 - 5b$ when $a = 4$ and $b = 3$.",
+          "options": [
+            "$17$",
+            "$49$",
+            "$47$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first, multiply second: $2 \\cdot 4^2 = 32$, then subtract $5 \\cdot 3 = 15$: answer $17$. The classic slip is $(2a)^2$ — the square belongs to $a$ alone.",
+          "check": [
+            "2*4**2 - 5*3 == 17"
+          ]
+        },
+        {
+          "id": "alg-eval-v4",
+          "statement": "Evaluate $5a^2 - 2b$ when $a = 3$ and $b = 2$.",
+          "options": [
+            "$41$",
+            "$221$",
+            "$49$",
+            "$26$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first, multiply second: $5 \\cdot 3^2 = 45$, then subtract $2 \\cdot 2 = 4$: answer $41$. The classic slip is $(5a)^2$ — the square belongs to $a$ alone.",
+          "check": [
+            "5*3**2 - 2*2 == 41"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inequality-flip",
+      "title": "Inequalities with a sign flip",
+      "level": 2,
+      "skill": "Dividing by a negative reverses the inequality.",
+      "variants": [
+        {
+          "id": "alg-ineq-v1",
+          "statement": "Solve: $20 - 4x < 8$.",
+          "options": [
+            "$x > 3$",
+            "$x < 3$",
+            "$x > -3$",
+            "$x < -3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract $20$: $-4x < -12$. Dividing by $-4$ FLIPS the inequality: $x > 3$. Test $x = 4$: $20 - 16 < 8$ ✓.",
+          "check": [
+            "Rational(20 - 8, 4) == 3",
+            "20 - 4*(3+1) < 8",
+            "20 - 4*(3-1) > 8"
+          ]
+        },
+        {
+          "id": "alg-ineq-v2",
+          "statement": "Solve: $15 - 3x < 6$.",
+          "options": [
+            "$x > 3$",
+            "$x < 3$",
+            "$x > -3$",
+            "$x < -3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract $15$: $-3x < -9$. Dividing by $-3$ FLIPS the inequality: $x > 3$. Test $x = 4$: $15 - 12 < 6$ ✓.",
+          "check": [
+            "Rational(15 - 6, 3) == 3",
+            "15 - 3*(3+1) < 6",
+            "15 - 3*(3-1) > 6"
+          ]
+        },
+        {
+          "id": "alg-ineq-v3",
+          "statement": "Solve: $30 - 5x < 10$.",
+          "options": [
+            "$x > 4$",
+            "$x < 4$",
+            "$x > -4$",
+            "$x < -4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract $30$: $-5x < -20$. Dividing by $-5$ FLIPS the inequality: $x > 4$. Test $x = 5$: $30 - 25 < 10$ ✓.",
+          "check": [
+            "Rational(30 - 10, 5) == 4",
+            "30 - 5*(4+1) < 10",
+            "30 - 5*(4-1) > 10"
+          ]
+        },
+        {
+          "id": "alg-ineq-v4",
+          "statement": "Solve: $14 - 2x < 6$.",
+          "options": [
+            "$x > 4$",
+            "$x < 4$",
+            "$x > -4$",
+            "$x < -4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract $14$: $-2x < -8$. Dividing by $-2$ FLIPS the inequality: $x > 4$. Test $x = 5$: $14 - 10 < 6$ ✓.",
+          "check": [
+            "Rational(14 - 6, 2) == 4",
+            "14 - 2*(4+1) < 6",
+            "14 - 2*(4-1) > 6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system-2x2",
+      "title": "Systems of two equations",
+      "level": 2,
+      "skill": "Eliminate one variable; always check the pair in BOTH equations.",
+      "variants": [
+        {
+          "id": "alg-sys-v1",
+          "statement": "The system $\\begin{cases} x + y = 5 \\\\ 2x - y = 4 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
+          "options": [
+            "$5$",
+            "$1$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding or substituting gives $x = 3$, $y = 2$ (check both equations!), so $x + y = 5$.",
+          "check": [
+            "1*3 + 1*2 == 5",
+            "2*3 + -1*2 == 4",
+            "3 + 2 == 5"
+          ]
+        },
+        {
+          "id": "alg-sys-v2",
+          "statement": "The system $\\begin{cases} x + y = 5 \\\\ x - y = 3 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding or substituting gives $x = 4$, $y = 1$ (check both equations!), so $x + y = 5$.",
+          "check": [
+            "1*4 + 1*1 == 5",
+            "1*4 + -1*1 == 3",
+            "4 + 1 == 5"
+          ]
+        },
+        {
+          "id": "alg-sys-v3",
+          "statement": "The system $\\begin{cases} 2x + y = 9 \\\\ x - y = -3 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
+          "options": [
+            "$7$",
+            "$-3$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding or substituting gives $x = 2$, $y = 5$ (check both equations!), so $x + y = 7$.",
+          "check": [
+            "2*2 + 1*5 == 9",
+            "1*2 + -1*5 == -3",
+            "2 + 5 == 7"
+          ]
+        },
+        {
+          "id": "alg-sys-v4",
+          "statement": "The system $\\begin{cases} x + 2y = 11 \\\\ x - y = 2 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$5$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding or substituting gives $x = 5$, $y = 3$ (check both equations!), so $x + y = 8$.",
+          "check": [
+            "1*5 + 2*3 == 11",
+            "1*5 + -1*3 == 2",
+            "5 + 3 == 8"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rational-equation",
+      "title": "Rational equations",
+      "level": 2,
+      "skill": "Clear the denominator, solve, then verify the denominator isn't zero.",
+      "variants": [
+        {
+          "id": "alg-rat-v1",
+          "statement": "Solve: $\\dfrac{x + 6}{x + 2} = 3$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x + 2$ (allowed since $x \\ne -2$): $x + 6 = 3x + 6$, so $2x = 0$ and $x = 0$. Check the denominator: $0 + 2 \\ne 0$ ✓.",
+          "check": [
+            "solve((x + 6)/(x + 2) - 3, x) == [0]",
+            "0 + 2 != 0"
+          ]
+        },
+        {
+          "id": "alg-rat-v2",
+          "statement": "Solve: $\\dfrac{x + 8}{x + 2} = 4$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x + 2$ (allowed since $x \\ne -2$): $x + 8 = 4x + 8$, so $3x = 0$ and $x = 0$. Check the denominator: $0 + 2 \\ne 0$ ✓.",
+          "check": [
+            "solve((x + 8)/(x + 2) - 4, x) == [0]",
+            "0 + 2 != 0"
+          ]
+        },
+        {
+          "id": "alg-rat-v3",
+          "statement": "Solve: $\\dfrac{x + 10}{x + 4} = 3$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x + 4$ (allowed since $x \\ne -4$): $x + 10 = 3x + 12$, so $2x = -2$ and $x = -1$. Check the denominator: $-1 + 4 \\ne 0$ ✓.",
+          "check": [
+            "solve((x + 10)/(x + 4) - 3, x) == [-1]",
+            "-1 + 4 != 0"
+          ]
+        },
+        {
+          "id": "alg-rat-v4",
+          "statement": "Solve: $\\dfrac{x + 9}{x + 3} = 4$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x + 3$ (allowed since $x \\ne -3$): $x + 9 = 4x + 12$, so $3x = -3$ and $x = -1$. Check the denominator: $-1 + 3 \\ne 0$ ✓.",
+          "check": [
+            "solve((x + 9)/(x + 3) - 4, x) == [-1]",
+            "-1 + 3 != 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "absolute-inequality",
+      "title": "Absolute-value inequalities",
+      "level": 3,
+      "skill": "|x − a| ≤ b is a distance statement: a ± b bracket the answer.",
+      "variants": [
+        {
+          "id": "alg-abs-v1",
+          "statement": "Solve: $|x - 3| \\le 5$.",
+          "options": [
+            "$-2 \\le x \\le 8$",
+            "$x \\le 8$",
+            "$x \\le -2 \\text{ or } x \\ge 8$",
+            "$-8 \\le x \\le 2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|x - 3| \\le 5$ means the distance from $x$ to $3$ is at most $5$: $3 - 5 \\le x \\le 3 + 5$, i.e. $[-2; 8]$. The 'or' split belongs to $\\ge$, not $\\le$.",
+          "check": [
+            "Abs(-2 - 3) == 5",
+            "Abs(8 - 3) == 5",
+            "Abs(3 - 3) < 5"
+          ]
+        },
+        {
+          "id": "alg-abs-v2",
+          "statement": "Solve: $|x - 2| \\le 7$.",
+          "options": [
+            "$-5 \\le x \\le 9$",
+            "$x \\le 9$",
+            "$x \\le -5 \\text{ or } x \\ge 9$",
+            "$-9 \\le x \\le 5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|x - 2| \\le 7$ means the distance from $x$ to $2$ is at most $7$: $2 - 7 \\le x \\le 2 + 7$, i.e. $[-5; 9]$. The 'or' split belongs to $\\ge$, not $\\le$.",
+          "check": [
+            "Abs(-5 - 2) == 7",
+            "Abs(9 - 2) == 7",
+            "Abs(2 - 2) < 7"
+          ]
+        },
+        {
+          "id": "alg-abs-v3",
+          "statement": "Solve: $|x - 4| \\le 3$.",
+          "options": [
+            "$1 \\le x \\le 7$",
+            "$x \\le 7$",
+            "$x \\le 1 \\text{ or } x \\ge 7$",
+            "$-7 \\le x \\le -1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|x - 4| \\le 3$ means the distance from $x$ to $4$ is at most $3$: $4 - 3 \\le x \\le 4 + 3$, i.e. $[1; 7]$. The 'or' split belongs to $\\ge$, not $\\le$.",
+          "check": [
+            "Abs(1 - 4) == 3",
+            "Abs(7 - 4) == 3",
+            "Abs(4 - 4) < 3"
+          ]
+        },
+        {
+          "id": "alg-abs-v4",
+          "statement": "Solve: $|x - 1| \\le 6$.",
+          "options": [
+            "$-5 \\le x \\le 7$",
+            "$x \\le 7$",
+            "$x \\le -5 \\text{ or } x \\ge 7$",
+            "$-7 \\le x \\le 5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|x - 1| \\le 6$ means the distance from $x$ to $1$ is at most $6$: $1 - 6 \\le x \\le 1 + 6$, i.e. $[-5; 7]$. The 'or' split belongs to $\\ge$, not $\\le$.",
+          "check": [
+            "Abs(-5 - 1) == 6",
+            "Abs(7 - 1) == 6",
+            "Abs(1 - 1) < 6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system-parameter",
+      "title": "Systems with a parameter",
+      "level": 3,
+      "skill": "No solution ⟺ slopes match, intercepts don't (proportional coefficients, unproportional constants).",
+      "variants": [
+        {
+          "id": "alg-par-v1",
+          "statement": "For which value of $m$ does the system $\\begin{cases} x + 2y = 3 \\\\ 2x + my = 5 \\end{cases}$ have NO solution?",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "No solution = parallel lines: coefficients proportional but constants not. $\\frac{2}{1} = \\frac{m}{2}$ gives $m = 4$ — and $\\frac{5}{3} \\ne \\frac{2}{1}$ confirms they never meet.",
+          "check": [
+            "Rational(2*2, 1) == 4",
+            "Rational(5, 3) != Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "alg-par-v2",
+          "statement": "For which value of $m$ does the system $\\begin{cases} x + 3y = 4 \\\\ 3x + my = 7 \\end{cases}$ have NO solution?",
+          "options": [
+            "$9$",
+            "$-9$",
+            "$10$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "No solution = parallel lines: coefficients proportional but constants not. $\\frac{3}{1} = \\frac{m}{3}$ gives $m = 9$ — and $\\frac{7}{4} \\ne \\frac{3}{1}$ confirms they never meet.",
+          "check": [
+            "Rational(3*3, 1) == 9",
+            "Rational(7, 4) != Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "alg-par-v3",
+          "statement": "For which value of $m$ does the system $\\begin{cases} 2x + 1y = 5 \\\\ 4x + my = 8 \\end{cases}$ have NO solution?",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "No solution = parallel lines: coefficients proportional but constants not. $\\frac{4}{2} = \\frac{m}{1}$ gives $m = 2$ — and $\\frac{8}{5} \\ne \\frac{4}{2}$ confirms they never meet.",
+          "check": [
+            "Rational(1*4, 2) == 2",
+            "Rational(8, 5) != Rational(4, 2)"
+          ]
+        },
+        {
+          "id": "alg-par-v4",
+          "statement": "For which value of $m$ does the system $\\begin{cases} x + 4y = 6 \\\\ 2x + my = 9 \\end{cases}$ have NO solution?",
+          "options": [
+            "$8$",
+            "$-8$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "No solution = parallel lines: coefficients proportional but constants not. $\\frac{2}{1} = \\frac{m}{4}$ gives $m = 8$ — and $\\frac{9}{6} \\ne \\frac{2}{1}$ confirms they never meet.",
+          "check": [
+            "Rational(4*2, 1) == 8",
+            "Rational(9, 6) != Rational(2, 1)"
+          ]
+        }
+      ]
+    }
+  ]
+}

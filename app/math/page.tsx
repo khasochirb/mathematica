@@ -153,6 +153,29 @@ export default function MathLandingPage() {
           <strong>school grade</strong> from Grade 6 through 12.
         </p>
 
+        {/* Problem Bank — leveled drilling with miss→similar remediation */}
+        <Link
+          href="/math/problem-bank"
+          className="card-edit p-5 mb-10 flex items-center gap-4 transition-colors"
+          style={{ textDecoration: "none", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }}
+        >
+          <div className="flex-1 min-w-0">
+            <span className="mono text-[10px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+              New · Practice
+            </span>
+            <span className="serif block mt-1" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.01em", color: "var(--fg)" }}>
+              Problem Bank
+            </span>
+            <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
+              192 problems in every exam form, labeled Level 1–3. Miss one and a
+              similar problem comes right back until the form sticks.
+            </span>
+          </div>
+          <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+            Practice
+          </span>
+        </Link>
+
         {/* Study by topic — shared destination for the exam hubs (/math#topics) */}
         <section id="topics" style={{ scrollMarginTop: 96 }}>
           <div className="eyebrow mb-1.5">Study by topic</div>

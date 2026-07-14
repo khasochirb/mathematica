@@ -1,0 +1,564 @@
+{
+  "slug": "trigonometry",
+  "title": "Trigonometry",
+  "titleMn": "Тригонометр",
+  "blurb": "Exact values, triangles from triples, equations on the circle, and the laws — trig in every exam costume.",
+  "forms": [
+    {
+      "id": "exact-values",
+      "title": "Exact values beyond 90°",
+      "level": 1,
+      "skill": "Reference angle + quadrant sign (ASTC).",
+      "variants": [
+        {
+          "id": "trig-exact-v1",
+          "statement": "Evaluate exactly: $\\sin 150°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$150°$ lies in quadrant II, reference angle $30°$. In QII sine is positive, cosine negative: $\\sin 150° = \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(150)) == 1/2"
+          ]
+        },
+        {
+          "id": "trig-exact-v2",
+          "statement": "Evaluate exactly: $\\cos 120°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$120°$ lies in quadrant II, reference angle $60°$. In QII sine is positive, cosine negative: $\\cos 120° = - \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(120)) == -1/2"
+          ]
+        },
+        {
+          "id": "trig-exact-v3",
+          "statement": "Evaluate exactly: $\\sin 120°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$120°$ lies in quadrant II, reference angle $60°$. In QII sine is positive, cosine negative: $\\sin 120° = \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(120)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "trig-exact-v4",
+          "statement": "Evaluate exactly: $\\cos 135°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$135°$ lies in quadrant II, reference angle $45°$. In QII sine is positive, cosine negative: $\\cos 135° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(135)) == -sqrt(2)/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deg-rad",
+      "title": "Degrees ↔ radians",
+      "level": 1,
+      "skill": "Multiply degrees by π/180; reduce the fraction.",
+      "variants": [
+        {
+          "id": "trig-conv-v1",
+          "statement": "Convert $150°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{4\\pi}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $150° = \\frac{150\\pi}{180} = \\dfrac{5\\pi}{6}$.",
+          "check": [
+            "Rational(150, 180) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "trig-conv-v2",
+          "statement": "Convert $120°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{4\\pi}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $120° = \\frac{120\\pi}{180} = \\dfrac{2\\pi}{3}$.",
+          "check": [
+            "Rational(120, 180) == Rational(2, 3)"
+          ]
+        },
+        {
+          "id": "trig-conv-v3",
+          "statement": "Convert $135°$ to radians.",
+          "options": [
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{4\\pi}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $135° = \\frac{135\\pi}{180} = \\dfrac{3\\pi}{4}$.",
+          "check": [
+            "Rational(135, 180) == Rational(3, 4)"
+          ]
+        },
+        {
+          "id": "trig-conv-v4",
+          "statement": "Convert $240°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{3\\pi}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $240° = \\frac{240\\pi}{180} = \\dfrac{4\\pi}{3}$.",
+          "check": [
+            "Rational(240, 180) == Rational(4, 3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "right-triangle-side",
+      "title": "Finding a side with sine",
+      "level": 1,
+      "skill": "SOH: opposite = hypotenuse × sin(angle).",
+      "variants": [
+        {
+          "id": "trig-side-v1",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$5$",
+            "$5 \\sqrt{3}$",
+            "$\\frac{5}{2}$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Opposite over hypotenuse is sine: side $= 10\\sin 30° = 5$. (Using cosine would give the ADJACENT side.)",
+          "check": [
+            "10*sin(rad(30)) == 5"
+          ]
+        },
+        {
+          "id": "trig-side-v2",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$4 \\sqrt{3}$",
+            "$4$",
+            "$16$",
+            "$1 + 4 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Opposite over hypotenuse is sine: side $= 8\\sin 60° = 4 \\sqrt{3}$. (Using cosine would give the ADJACENT side.)",
+          "check": [
+            "8*sin(rad(60)) == 4*sqrt(3)"
+          ]
+        },
+        {
+          "id": "trig-side-v3",
+          "statement": "A right triangle has hypotenuse $14$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$7$",
+            "$7 \\sqrt{3}$",
+            "$\\frac{7}{2}$",
+            "$28$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Opposite over hypotenuse is sine: side $= 14\\sin 30° = 7$. (Using cosine would give the ADJACENT side.)",
+          "check": [
+            "14*sin(rad(30)) == 7"
+          ]
+        },
+        {
+          "id": "trig-side-v4",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$5 \\sqrt{2}$",
+            "$5$",
+            "$20$",
+            "$1 + 5 \\sqrt{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Opposite over hypotenuse is sine: side $= 10\\sin 45° = 5 \\sqrt{2}$. (Using cosine would give the ADJACENT side.)",
+          "check": [
+            "10*sin(rad(45)) == 5*sqrt(2)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-to-cos-tan",
+      "title": "From sin to cos and tan",
+      "level": 2,
+      "skill": "Build the triangle from the triple; read the other ratios.",
+      "variants": [
+        {
+          "id": "trig-triple-v1",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{3}{5}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{4}{5}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Draw the right triangle: opposite $3$, hypotenuse $5$ ⟹ adjacent $= \\sqrt{5^2 - 3^2} = 4$ (the 3-4-5 triple). Then $\\cos\\alpha = \\frac{4}{5}$.",
+          "check": [
+            "sqrt(5**2 - 3**2) == 4",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig-triple-v2",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{5}{13}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{5}{12}$",
+            "$\\frac{5}{13}$",
+            "$\\frac{12}{13}$",
+            "$\\frac{12}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Draw the right triangle: opposite $5$, hypotenuse $13$ ⟹ adjacent $= \\sqrt{13^2 - 5^2} = 12$ (the 5-12-13 triple). Then $\\tan\\alpha = \\frac{5}{12}$.",
+          "check": [
+            "sqrt(13**2 - 5**2) == 12",
+            "Rational(5,13)**2 + Rational(12,13)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig-triple-v3",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{8}{17}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{15}{17}$",
+            "$\\frac{8}{17}$",
+            "$\\frac{8}{15}$",
+            "$\\frac{15}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Draw the right triangle: opposite $8$, hypotenuse $17$ ⟹ adjacent $= \\sqrt{17^2 - 8^2} = 15$ (the 8-15-17 triple). Then $\\cos\\alpha = \\frac{15}{17}$.",
+          "check": [
+            "sqrt(17**2 - 8**2) == 15",
+            "Rational(8,17)**2 + Rational(15,17)**2 == 1"
+          ]
+        },
+        {
+          "id": "trig-triple-v4",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{7}{25}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{7}{24}$",
+            "$\\frac{7}{25}$",
+            "$\\frac{24}{25}$",
+            "$\\frac{24}{7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Draw the right triangle: opposite $7$, hypotenuse $25$ ⟹ adjacent $= \\sqrt{25^2 - 7^2} = 24$ (the 7-24-25 triple). Then $\\tan\\alpha = \\frac{7}{24}$.",
+          "check": [
+            "sqrt(25**2 - 7**2) == 24",
+            "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solve-sin",
+      "title": "Solving sin x = k on one turn",
+      "level": 2,
+      "skill": "Two mirror solutions per turn; supplementary for positive k.",
+      "variants": [
+        {
+          "id": "trig-solve-v1",
+          "statement": "How many solutions does $\\sin x = \\dfrac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 180°$",
+            "$1 \\text{ solution, sum } 30°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 120°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 30°$ and $x = 150°$ (mirror pair). Sum: $180°$.",
+          "check": [
+            "sin(rad(30)) == 1/2",
+            "sin(rad(150)) == 1/2",
+            "30 + 150 == 180"
+          ]
+        },
+        {
+          "id": "trig-solve-v2",
+          "statement": "How many solutions does $\\sin x = \\dfrac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 180°$",
+            "$1 \\text{ solution, sum } 60°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 60°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 60°$ and $x = 120°$ (mirror pair). Sum: $180°$.",
+          "check": [
+            "sin(rad(60)) == sqrt(3)/2",
+            "sin(rad(120)) == sqrt(3)/2",
+            "60 + 120 == 180"
+          ]
+        },
+        {
+          "id": "trig-solve-v3",
+          "statement": "How many solutions does $\\sin x = \\dfrac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 180°$",
+            "$1 \\text{ solution, sum } 45°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 45°$ and $x = 135°$ (mirror pair). Sum: $180°$.",
+          "check": [
+            "sin(rad(45)) == sqrt(2)/2",
+            "sin(rad(135)) == sqrt(2)/2",
+            "45 + 135 == 180"
+          ]
+        },
+        {
+          "id": "trig-solve-v4",
+          "statement": "How many solutions does $\\sin x = -\\dfrac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 540°$",
+            "$1 \\text{ solution, sum } 210°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$2 \\text{ solutions, sum } 120°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 210°$ and $x = 330°$ (mirror pair). Sum: $540°$.",
+          "check": [
+            "sin(rad(210)) == -1/2",
+            "sin(rad(330)) == -1/2",
+            "210 + 330 == 540"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pythagorean-identity",
+      "title": "The Pythagorean identity",
+      "level": 2,
+      "skill": "sin² + cos² = 1, so 1 − cos² is sin².",
+      "variants": [
+        {
+          "id": "trig-ident-v1",
+          "statement": "If $\\cos\\alpha = \\dfrac{4}{5}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{9}{25}$",
+            "$\\frac{16}{25}$",
+            "$\\frac{3}{5}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{4}{5}$: $1 - \\frac{16}{25} = \\frac{9}{25}$.",
+          "check": [
+            "1 - Rational(4,5)**2 == Rational(9,25)"
+          ]
+        },
+        {
+          "id": "trig-ident-v2",
+          "statement": "If $\\cos\\alpha = \\dfrac{12}{13}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{25}{169}$",
+            "$\\frac{144}{169}$",
+            "$\\frac{5}{13}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{12}{13}$: $1 - \\frac{144}{169} = \\frac{25}{169}$.",
+          "check": [
+            "1 - Rational(12,13)**2 == Rational(25,169)"
+          ]
+        },
+        {
+          "id": "trig-ident-v3",
+          "statement": "If $\\cos\\alpha = \\dfrac{15}{17}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{64}{289}$",
+            "$\\frac{225}{289}$",
+            "$\\frac{8}{17}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{15}{17}$: $1 - \\frac{225}{289} = \\frac{64}{289}$.",
+          "check": [
+            "1 - Rational(15,17)**2 == Rational(64,289)"
+          ]
+        },
+        {
+          "id": "trig-ident-v4",
+          "statement": "If $\\cos\\alpha = \\dfrac{21}{29}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{841}$",
+            "$\\frac{441}{841}$",
+            "$\\frac{20}{29}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{21}{29}$: $1 - \\frac{441}{841} = \\frac{400}{841}$.",
+          "check": [
+            "1 - Rational(21,29)**2 == Rational(400,841)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "double-angle",
+      "title": "The double-angle formula",
+      "level": 3,
+      "skill": "sin 2α = 2 sin α cos α — never just double.",
+      "variants": [
+        {
+          "id": "trig-dbl-v1",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{3}{5}$ and $\\cos\\alpha = \\dfrac{4}{5}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{24}{25}$",
+            "$\\frac{12}{25}$",
+            "$\\frac{6}{5}$",
+            "$\\frac{7}{25}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{3}{5} \\cdot \\frac{4}{5} = \\frac{24}{25}$. Doubling the ANGLE never doubles the sine.",
+          "check": [
+            "2*Rational(3,5)*Rational(4,5) == Rational(24,25)"
+          ]
+        },
+        {
+          "id": "trig-dbl-v2",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{5}{13}$ and $\\cos\\alpha = \\dfrac{12}{13}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{120}{169}$",
+            "$\\frac{60}{169}$",
+            "$\\frac{10}{13}$",
+            "$\\frac{119}{169}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{5}{13} \\cdot \\frac{12}{13} = \\frac{120}{169}$. Doubling the ANGLE never doubles the sine.",
+          "check": [
+            "2*Rational(5,13)*Rational(12,13) == Rational(120,169)"
+          ]
+        },
+        {
+          "id": "trig-dbl-v3",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{8}{17}$ and $\\cos\\alpha = \\dfrac{15}{17}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{240}{289}$",
+            "$\\frac{120}{289}$",
+            "$\\frac{16}{17}$",
+            "$\\frac{161}{289}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{8}{17} \\cdot \\frac{15}{17} = \\frac{240}{289}$. Doubling the ANGLE never doubles the sine.",
+          "check": [
+            "2*Rational(8,17)*Rational(15,17) == Rational(240,289)"
+          ]
+        },
+        {
+          "id": "trig-dbl-v4",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{7}{25}$ and $\\cos\\alpha = \\dfrac{24}{25}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{336}{625}$",
+            "$\\frac{168}{625}$",
+            "$\\frac{14}{25}$",
+            "$\\frac{527}{625}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{7}{25} \\cdot \\frac{24}{25} = \\frac{336}{625}$. Doubling the ANGLE never doubles the sine.",
+          "check": [
+            "2*Rational(7,25)*Rational(24,25) == Rational(336,625)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "law-of-cosines",
+      "title": "The law of cosines",
+      "level": 3,
+      "skill": "c² = a² + b² − 2ab·cos C; 60° and 120° keep it exact.",
+      "variants": [
+        {
+          "id": "trig-loc-v1",
+          "statement": "A triangle has sides $5$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$7$",
+            "$\\sqrt{89}$",
+            "$\\sqrt{129}$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8\\cos 60° = 25 + 64 - 80 \\cdot (\\frac{1}{2}) = 49$, so $c = 7$.",
+          "check": [
+            "sqrt(5**2 + 8**2 - 2*5*8*cos(rad(60))) == 7"
+          ]
+        },
+        {
+          "id": "trig-loc-v2",
+          "statement": "A triangle has sides $3$ and $5$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$7$",
+            "$\\sqrt{34}$",
+            "$\\sqrt{19}$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 5^2 - 2 \\cdot 3 \\cdot 5\\cos 120° = 9 + 25 - 30 \\cdot (- \\frac{1}{2}) = 49$, so $c = 7$.",
+          "check": [
+            "sqrt(3**2 + 5**2 - 2*3*5*cos(rad(120))) == 7"
+          ]
+        },
+        {
+          "id": "trig-loc-v3",
+          "statement": "A triangle has sides $7$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{57}$",
+            "$\\sqrt{113}$",
+            "$13$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 7^2 + 8^2 - 2 \\cdot 7 \\cdot 8\\cos 60° = 49 + 64 - 112 \\cdot (\\frac{1}{2}) = 57$, so $c = \\sqrt{57}$.",
+          "check": [
+            "sqrt(7**2 + 8**2 - 2*7*8*cos(rad(60))) == sqrt(57)"
+          ]
+        },
+        {
+          "id": "trig-loc-v4",
+          "statement": "A triangle has sides $5$ and $8$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{129}$",
+            "$\\sqrt{89}$",
+            "$7$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8\\cos 120° = 25 + 64 - 80 \\cdot (- \\frac{1}{2}) = 129$, so $c = \\sqrt{129}$.",
+          "check": [
+            "sqrt(5**2 + 8**2 - 2*5*8*cos(rad(120))) == sqrt(129)"
+          ]
+        }
+      ]
+    }
+  ]
+}

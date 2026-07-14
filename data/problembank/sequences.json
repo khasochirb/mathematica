@@ -1,0 +1,564 @@
+{
+  "slug": "sequences",
+  "title": "Sequences & Series",
+  "titleMn": "Дараалал",
+  "blurb": "Arithmetic and geometric: nth terms, sums, hidden ratios, and the infinite series that converges.",
+  "forms": [
+    {
+      "id": "arith-nth",
+      "title": "Arithmetic: the nth term",
+      "level": 1,
+      "skill": "a_n = a_1 + (n−1)d — n−1 steps from the start.",
+      "variants": [
+        {
+          "id": "seq-anth-v1",
+          "statement": "An arithmetic sequence has $a_1 = 5$ and difference $d = 3$. Find $a_{12}$.",
+          "options": [
+            "$38$",
+            "$41$",
+            "$60$",
+            "$35$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$a_n = a_1 + (n-1)d$: $a_{12} = 5 + 11 \\cdot 3 = 38$. The count of steps is $n - 1$, not $n$ — you're already standing on the first term.",
+          "check": [
+            "5 + (12-1)*3 == 38"
+          ]
+        },
+        {
+          "id": "seq-anth-v2",
+          "statement": "An arithmetic sequence has $a_1 = 7$ and difference $d = 4$. Find $a_{10}$.",
+          "options": [
+            "$43$",
+            "$47$",
+            "$70$",
+            "$39$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$a_n = a_1 + (n-1)d$: $a_{10} = 7 + 9 \\cdot 4 = 43$. The count of steps is $n - 1$, not $n$ — you're already standing on the first term.",
+          "check": [
+            "7 + (10-1)*4 == 43"
+          ]
+        },
+        {
+          "id": "seq-anth-v3",
+          "statement": "An arithmetic sequence has $a_1 = 2$ and difference $d = 6$. Find $a_{15}$.",
+          "options": [
+            "$86$",
+            "$92$",
+            "$30$",
+            "$80$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$a_n = a_1 + (n-1)d$: $a_{15} = 2 + 14 \\cdot 6 = 86$. The count of steps is $n - 1$, not $n$ — you're already standing on the first term.",
+          "check": [
+            "2 + (15-1)*6 == 86"
+          ]
+        },
+        {
+          "id": "seq-anth-v4",
+          "statement": "An arithmetic sequence has $a_1 = 11$ and difference $d = -2$. Find $a_{20}$.",
+          "options": [
+            "$-27$",
+            "$-29$",
+            "$220$",
+            "$-25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$a_n = a_1 + (n-1)d$: $a_{20} = 11 + 19 \\cdot -2 = -27$. The count of steps is $n - 1$, not $n$ — you're already standing on the first term.",
+          "check": [
+            "11 + (20-1)*-2 == -27"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-nth",
+      "title": "Geometric: the nth term",
+      "level": 1,
+      "skill": "b_n = b_1·q^(n−1) — multiply n−1 times.",
+      "variants": [
+        {
+          "id": "seq-gnth-v1",
+          "statement": "A geometric sequence has $b_1 = 3$ and ratio $q = 2$. Find $b_{6}$.",
+          "options": [
+            "$96$",
+            "$192$",
+            "$30$",
+            "$48$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b_n = b_1 q^{n-1}$: $b_{6} = 3 \\cdot 2^{5} = 3 \\cdot 32 = 96$.",
+          "check": [
+            "3*2**(6-1) == 96"
+          ]
+        },
+        {
+          "id": "seq-gnth-v2",
+          "statement": "A geometric sequence has $b_1 = 2$ and ratio $q = 3$. Find $b_{5}$.",
+          "options": [
+            "$162$",
+            "$486$",
+            "$24$",
+            "$54$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b_n = b_1 q^{n-1}$: $b_{5} = 2 \\cdot 3^{4} = 2 \\cdot 81 = 162$.",
+          "check": [
+            "2*3**(5-1) == 162"
+          ]
+        },
+        {
+          "id": "seq-gnth-v3",
+          "statement": "A geometric sequence has $b_1 = 5$ and ratio $q = 2$. Find $b_{7}$.",
+          "options": [
+            "$320$",
+            "$640$",
+            "$60$",
+            "$160$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b_n = b_1 q^{n-1}$: $b_{7} = 5 \\cdot 2^{6} = 5 \\cdot 64 = 320$.",
+          "check": [
+            "5*2**(7-1) == 320"
+          ]
+        },
+        {
+          "id": "seq-gnth-v4",
+          "statement": "A geometric sequence has $b_1 = 1$ and ratio $q = 4$. Find $b_{5}$.",
+          "options": [
+            "$256$",
+            "$1024$",
+            "$16$",
+            "$64$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b_n = b_1 q^{n-1}$: $b_{5} = 1 \\cdot 4^{4} = 1 \\cdot 256 = 256$.",
+          "check": [
+            "1*4**(5-1) == 256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arith-find-d",
+      "title": "Finding the common difference",
+      "level": 1,
+      "skill": "d = (a_k − a_1)/(k − 1) — divide by the number of steps.",
+      "variants": [
+        {
+          "id": "seq-diff-v1",
+          "statement": "An arithmetic sequence has $a_1 = 4$ and $a_{9} = 28$. Find the difference $d$.",
+          "options": [
+            "$3$",
+            "$4$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $a_{9} = a_1 + 8d$: $28 = 4 + 8d$ ⟹ $d = \\frac{24}{8} = 3$.",
+          "check": [
+            "Rational(28 - 4, 9 - 1) == 3"
+          ]
+        },
+        {
+          "id": "seq-diff-v2",
+          "statement": "An arithmetic sequence has $a_1 = 3$ and $a_{7} = 27$. Find the difference $d$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $a_{7} = a_1 + 6d$: $27 = 3 + 6d$ ⟹ $d = \\frac{24}{6} = 4$.",
+          "check": [
+            "Rational(27 - 3, 7 - 1) == 4"
+          ]
+        },
+        {
+          "id": "seq-diff-v3",
+          "statement": "An arithmetic sequence has $a_1 = 10$ and $a_{11} = 40$. Find the difference $d$.",
+          "options": [
+            "$3$",
+            "$4$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $a_{11} = a_1 + 10d$: $40 = 10 + 10d$ ⟹ $d = \\frac{30}{10} = 3$.",
+          "check": [
+            "Rational(40 - 10, 11 - 1) == 3"
+          ]
+        },
+        {
+          "id": "seq-diff-v4",
+          "statement": "An arithmetic sequence has $a_1 = 2$ and $a_{6} = 22$. Find the difference $d$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $a_{6} = a_1 + 5d$: $22 = 2 + 5d$ ⟹ $d = \\frac{20}{5} = 4$.",
+          "check": [
+            "Rational(22 - 2, 6 - 1) == 4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arith-sum",
+      "title": "Arithmetic series sum",
+      "level": 2,
+      "skill": "S_n = (a_1 + a_n)·n/2 — Gauss's pairing.",
+      "variants": [
+        {
+          "id": "seq-asum-v1",
+          "statement": "Find the sum of the first $10$ terms: $a_1 = 3$, $d = 4$.",
+          "options": [
+            "$210$",
+            "$420$",
+            "$70$",
+            "$220$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Last term: $a_{10} = 3 + 9 \\cdot 4 = 39$. Sum: $S_n = \\frac{(a_1 + a_n)n}{2} = \\frac{(3 + 39) \\cdot 10}{2} = 210$ — average of the ends, times the count.",
+          "check": [
+            "3 + (10-1)*4 == 39",
+            "(3 + 39)*10/2 == 210"
+          ]
+        },
+        {
+          "id": "seq-asum-v2",
+          "statement": "Find the sum of the first $12$ terms: $a_1 = 5$, $d = 3$.",
+          "options": [
+            "$258$",
+            "$516$",
+            "$96$",
+            "$270$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Last term: $a_{12} = 5 + 11 \\cdot 3 = 38$. Sum: $S_n = \\frac{(a_1 + a_n)n}{2} = \\frac{(5 + 38) \\cdot 12}{2} = 258$ — average of the ends, times the count.",
+          "check": [
+            "5 + (12-1)*3 == 38",
+            "(5 + 38)*12/2 == 258"
+          ]
+        },
+        {
+          "id": "seq-asum-v3",
+          "statement": "Find the sum of the first $20$ terms: $a_1 = 2$, $d = 5$.",
+          "options": [
+            "$990$",
+            "$1980$",
+            "$140$",
+            "$1010$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Last term: $a_{20} = 2 + 19 \\cdot 5 = 97$. Sum: $S_n = \\frac{(a_1 + a_n)n}{2} = \\frac{(2 + 97) \\cdot 20}{2} = 990$ — average of the ends, times the count.",
+          "check": [
+            "2 + (20-1)*5 == 97",
+            "(2 + 97)*20/2 == 990"
+          ]
+        },
+        {
+          "id": "seq-asum-v4",
+          "statement": "Find the sum of the first $15$ terms: $a_1 = 10$, $d = -2$.",
+          "options": [
+            "$-60$",
+            "$-120$",
+            "$120$",
+            "$-45$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Last term: $a_{15} = 10 + 14 \\cdot -2 = -18$. Sum: $S_n = \\frac{(a_1 + a_n)n}{2} = \\frac{(10 + -18) \\cdot 15}{2} = -60$ — average of the ends, times the count.",
+          "check": [
+            "10 + (15-1)*-2 == -18",
+            "(10 + -18)*15/2 == -60"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-sum",
+      "title": "Geometric series sum",
+      "level": 2,
+      "skill": "S_n = b_1(qⁿ − 1)/(q − 1).",
+      "variants": [
+        {
+          "id": "seq-gsum-v1",
+          "statement": "Find the sum of the first $5$ terms: $b_1 = 3$, $q = 2$.",
+          "options": [
+            "$93$",
+            "$96$",
+            "$90$",
+            "$94$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 3 \\cdot \\frac{32 - 1}{1} = 93$.",
+          "check": [
+            "3*(2**5 - 1)/(2 - 1) == 93"
+          ]
+        },
+        {
+          "id": "seq-gsum-v2",
+          "statement": "Find the sum of the first $4$ terms: $b_1 = 2$, $q = 3$.",
+          "options": [
+            "$80$",
+            "$162$",
+            "$78$",
+            "$82$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 2 \\cdot \\frac{81 - 1}{2} = 80$.",
+          "check": [
+            "2*(3**4 - 1)/(3 - 1) == 80"
+          ]
+        },
+        {
+          "id": "seq-gsum-v3",
+          "statement": "Find the sum of the first $8$ terms: $b_1 = 1$, $q = 2$.",
+          "options": [
+            "$255$",
+            "$256$",
+            "$254$",
+            "$257$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 1 \\cdot \\frac{256 - 1}{1} = 255$.",
+          "check": [
+            "1*(2**8 - 1)/(2 - 1) == 255"
+          ]
+        },
+        {
+          "id": "seq-gsum-v4",
+          "statement": "Find the sum of the first $6$ terms: $b_1 = 5$, $q = 2$.",
+          "options": [
+            "$315$",
+            "$320$",
+            "$310$",
+            "$316$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 5 \\cdot \\frac{64 - 1}{1} = 315$.",
+          "check": [
+            "5*(2**6 - 1)/(2 - 1) == 315"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "which-term",
+      "title": "Which term is it?",
+      "level": 2,
+      "skill": "Set a_n = value, solve for n — it must land on a whole number.",
+      "variants": [
+        {
+          "id": "seq-which-v1",
+          "statement": "In the arithmetic sequence with $a_1 = 7$, $d = 5$: which term equals $82$?",
+          "options": [
+            "$n = 16$",
+            "$n = 17$",
+            "$n = 15$",
+            "$n = 18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Solve $7 + (n - 1) \\cdot 5 = 82$: $n - 1 = \\frac{75}{5} = 15$, so $n = 16$.",
+          "check": [
+            "7 + (16 - 1)*5 == 82"
+          ]
+        },
+        {
+          "id": "seq-which-v2",
+          "statement": "In the arithmetic sequence with $a_1 = 4$, $d = 3$: which term equals $49$?",
+          "options": [
+            "$n = 16$",
+            "$n = 17$",
+            "$n = 15$",
+            "$n = 18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Solve $4 + (n - 1) \\cdot 3 = 49$: $n - 1 = \\frac{45}{3} = 15$, so $n = 16$.",
+          "check": [
+            "4 + (16 - 1)*3 == 49"
+          ]
+        },
+        {
+          "id": "seq-which-v3",
+          "statement": "In the arithmetic sequence with $a_1 = 10$, $d = 6$: which term equals $100$?",
+          "options": [
+            "$n = 16$",
+            "$n = 17$",
+            "$n = 15$",
+            "$n = 18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Solve $10 + (n - 1) \\cdot 6 = 100$: $n - 1 = \\frac{90}{6} = 15$, so $n = 16$.",
+          "check": [
+            "10 + (16 - 1)*6 == 100"
+          ]
+        },
+        {
+          "id": "seq-which-v4",
+          "statement": "In the arithmetic sequence with $a_1 = 3$, $d = 8$: which term equals $91$?",
+          "options": [
+            "$n = 12$",
+            "$n = 13$",
+            "$n = 11$",
+            "$n = 14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Solve $3 + (n - 1) \\cdot 8 = 91$: $n - 1 = \\frac{88}{8} = 11$, so $n = 12$.",
+          "check": [
+            "3 + (12 - 1)*8 == 91"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "infinite-geo",
+      "title": "Infinite geometric series",
+      "level": 3,
+      "skill": "S = b_1/(1 − q), valid only when |q| < 1.",
+      "variants": [
+        {
+          "id": "seq-inf-v1",
+          "statement": "Find the sum of the infinite geometric series with $b_1 = 6$ and $q = \\frac{1}{2}$.",
+          "options": [
+            "$12$",
+            "$4$",
+            "$13$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|q| < 1$, so the series converges: $S = \\dfrac{b_1}{1 - q} = \\dfrac{6}{1 - \\frac{1}{2}} = 12$.",
+          "check": [
+            "6/(1 - Rational(1,2)) == 12"
+          ]
+        },
+        {
+          "id": "seq-inf-v2",
+          "statement": "Find the sum of the infinite geometric series with $b_1 = 8$ and $q = \\frac{1}{3}$.",
+          "options": [
+            "$12$",
+            "$16$",
+            "$6$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|q| < 1$, so the series converges: $S = \\dfrac{b_1}{1 - q} = \\dfrac{8}{1 - \\frac{1}{3}} = 12$.",
+          "check": [
+            "8/(1 - Rational(1,3)) == 12"
+          ]
+        },
+        {
+          "id": "seq-inf-v3",
+          "statement": "Find the sum of the infinite geometric series with $b_1 = 9$ and $q = \\frac{2}{3}$.",
+          "options": [
+            "$27$",
+            "$18$",
+            "$\\frac{27}{5}$",
+            "$28$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|q| < 1$, so the series converges: $S = \\dfrac{b_1}{1 - q} = \\dfrac{9}{1 - \\frac{2}{3}} = 27$.",
+          "check": [
+            "9/(1 - Rational(2,3)) == 27"
+          ]
+        },
+        {
+          "id": "seq-inf-v4",
+          "statement": "Find the sum of the infinite geometric series with $b_1 = 12$ and $q = \\frac{1}{4}$.",
+          "options": [
+            "$16$",
+            "$24$",
+            "$\\frac{48}{5}$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|q| < 1$, so the series converges: $S = \\dfrac{b_1}{1 - q} = \\dfrac{12}{1 - \\frac{1}{4}} = 16$.",
+          "check": [
+            "12/(1 - Rational(1,4)) == 16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-two-terms",
+      "title": "Geometric sequence from two terms",
+      "level": 3,
+      "skill": "Divide the given terms to isolate a power of q.",
+      "variants": [
+        {
+          "id": "seq-twoterms-v1",
+          "statement": "A geometric sequence has $b_{2} = 6$ and $b_{5} = 48$. Find $b_1$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide the terms: $\\frac{b_{5}}{b_{2}} = q^{3} = \\frac{48}{6} = 8$, so $q = 2$. Then $b_1 = \\frac{b_{2}}{q^{1}} = 3$.",
+          "check": [
+            "(48/6)**Rational(1,3) == 2",
+            "3*2**(2-1) == 6",
+            "3*2**(5-1) == 48"
+          ]
+        },
+        {
+          "id": "seq-twoterms-v2",
+          "statement": "A geometric sequence has $b_{3} = 12$ and $b_{6} = 96$. Find $b_1$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide the terms: $\\frac{b_{6}}{b_{3}} = q^{3} = \\frac{96}{12} = 8$, so $q = 2$. Then $b_1 = \\frac{b_{3}}{q^{2}} = 3$.",
+          "check": [
+            "(96/12)**Rational(1,3) == 2",
+            "3*2**(3-1) == 12",
+            "3*2**(6-1) == 96"
+          ]
+        },
+        {
+          "id": "seq-twoterms-v3",
+          "statement": "A geometric sequence has $b_{2} = 10$ and $b_{4} = 40$. Find $b_1$.",
+          "options": [
+            "$5$",
+            "$10$",
+            "$7$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide the terms: $\\frac{b_{4}}{b_{2}} = q^{2} = \\frac{40}{10} = 4$, so $q = 2$. Then $b_1 = \\frac{b_{2}}{q^{1}} = 5$.",
+          "check": [
+            "(40/10)**Rational(1,2) == 2",
+            "5*2**(2-1) == 10",
+            "5*2**(4-1) == 40"
+          ]
+        },
+        {
+          "id": "seq-twoterms-v4",
+          "statement": "A geometric sequence has $b_{1} = 4$ and $b_{4} = 108$. Find $b_1$.",
+          "options": [
+            "$4$",
+            "$12$",
+            "$7$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide the terms: $\\frac{b_{4}}{b_{1}} = q^{3} = \\frac{108}{4} = 27$, so $q = 3$. Then $b_1 = \\frac{b_{1}}{q^{0}} = 4$.",
+          "check": [
+            "(108/4)**Rational(1,3) == 3",
+            "4*3**(1-1) == 4",
+            "4*3**(4-1) == 108"
+          ]
+        }
+      ]
+    }
+  ]
+}
