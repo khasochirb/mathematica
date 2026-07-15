@@ -11,63 +11,543 @@
       "skill": "Reference angle + quadrant sign (ASTC).",
       "variants": [
         {
-          "id": "trig-exact-v1",
-          "statement": "Evaluate exactly: $\\sin 150°$.",
-          "options": [
-            "$\\frac{1}{2}$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$150°$ lies in quadrant II, reference angle $30°$. In QII sine is positive, cosine negative: $\\sin 150° = \\frac{1}{2}$.",
-          "check": [
-            "sin(rad(150)) == 1/2"
-          ]
-        },
-        {
-          "id": "trig-exact-v2",
-          "statement": "Evaluate exactly: $\\cos 120°$.",
-          "options": [
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$120°$ lies in quadrant II, reference angle $60°$. In QII sine is positive, cosine negative: $\\cos 120° = - \\frac{1}{2}$.",
-          "check": [
-            "cos(rad(120)) == -1/2"
-          ]
-        },
-        {
-          "id": "trig-exact-v3",
+          "id": "TRIG-ev-v01",
           "statement": "Evaluate exactly: $\\sin 120°$.",
           "options": [
             "$\\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
             "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
+            "$\\frac{1}{2}$"
           ],
           "correctIndex": 0,
-          "explanation": "$120°$ lies in quadrant II, reference angle $60°$. In QII sine is positive, cosine negative: $\\sin 120° = \\frac{\\sqrt{3}}{2}$.",
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 120° = \\frac{\\sqrt{3}}{2}$.",
           "check": [
             "sin(rad(120)) == sqrt(3)/2"
           ]
         },
         {
-          "id": "trig-exact-v4",
+          "id": "TRIG-ev-v02",
+          "statement": "Evaluate exactly: $\\cos 120°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 120° = - \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(120)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v03",
+          "statement": "Evaluate exactly: $\\tan 120°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$0$",
+            "$- \\sqrt{3}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 120° = - \\sqrt{3}$.",
+          "check": [
+            "tan(rad(120)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v04",
+          "statement": "Evaluate exactly: $\\sin 135°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 135° = \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(135)) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v05",
           "statement": "Evaluate exactly: $\\cos 135°$.",
           "options": [
             "$- \\frac{\\sqrt{2}}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 135° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(135)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v06",
+          "statement": "Evaluate exactly: $\\tan 135°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 135° = -1$.",
+          "check": [
+            "tan(rad(135)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v07",
+          "statement": "Evaluate exactly: $\\sin 150°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 150° = \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(150)) == 1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v08",
+          "statement": "Evaluate exactly: $\\cos 150°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
             "$\\frac{1}{2}$",
             "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 150° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(150)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v09",
+          "statement": "Evaluate exactly: $\\tan 150°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 150° = - \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(150)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v10",
+          "statement": "Evaluate exactly: $\\sin 210°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 210° = - \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(210)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v11",
+          "statement": "Evaluate exactly: $\\cos 210°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 210° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(210)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v12",
+          "statement": "Evaluate exactly: $\\tan 210°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 210° = \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(210)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v13",
+          "statement": "Evaluate exactly: $\\sin 225°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 225° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(225)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v14",
+          "statement": "Evaluate exactly: $\\cos 225°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 225° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(225)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v15",
+          "statement": "Evaluate exactly: $\\tan 225°$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 225° = 1$.",
+          "check": [
+            "tan(rad(225)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v16",
+          "statement": "Evaluate exactly: $\\sin 240°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 240° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(240)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v17",
+          "statement": "Evaluate exactly: $\\cos 240°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
             "$\\frac{\\sqrt{3}}{2}$"
           ],
           "correctIndex": 0,
-          "explanation": "$135°$ lies in quadrant II, reference angle $45°$. In QII sine is positive, cosine negative: $\\cos 135° = - \\frac{\\sqrt{2}}{2}$.",
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 240° = - \\frac{1}{2}$.",
           "check": [
-            "cos(rad(135)) == -sqrt(2)/2"
+            "cos(rad(240)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v18",
+          "statement": "Evaluate exactly: $\\tan 240°$.",
+          "options": [
+            "$- \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 240° = \\sqrt{3}$.",
+          "check": [
+            "tan(rad(240)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v19",
+          "statement": "Evaluate exactly: $\\sin 300°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 300° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(300)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v20",
+          "statement": "Evaluate exactly: $\\cos 300°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 300° = \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(300)) == 1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v21",
+          "statement": "Evaluate exactly: $\\tan 300°$.",
+          "options": [
+            "$- \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 300° = - \\sqrt{3}$.",
+          "check": [
+            "tan(rad(300)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v22",
+          "statement": "Evaluate exactly: $\\sin 315°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 315° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(315)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v23",
+          "statement": "Evaluate exactly: $\\cos 315°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 315° = \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(315)) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v24",
+          "statement": "Evaluate exactly: $\\tan 315°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 315° = -1$.",
+          "check": [
+            "tan(rad(315)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v25",
+          "statement": "Evaluate exactly: $\\sin 330°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 330° = - \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(330)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v26",
+          "statement": "Evaluate exactly: $\\cos 330°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 330° = \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(330)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v27",
+          "statement": "Evaluate exactly: $\\tan 330°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 330° = - \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(330)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v28",
+          "statement": "Evaluate exactly: $\\sin 0°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 0° = 0$.",
+          "check": [
+            "sin(rad(0)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v29",
+          "statement": "Evaluate exactly: $\\cos 0°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 0° = 1$.",
+          "check": [
+            "cos(rad(0)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v30",
+          "statement": "Evaluate exactly: $\\tan 0°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$0$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 0° = 0$.",
+          "check": [
+            "tan(rad(0)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v31",
+          "statement": "Evaluate exactly: $\\sin 90°$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 90° = 1$.",
+          "check": [
+            "sin(rad(90)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v32",
+          "statement": "Evaluate exactly: $\\cos 90°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 90° = 0$.",
+          "check": [
+            "cos(rad(90)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v33",
+          "statement": "Evaluate exactly: $\\sin 180°$.",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 180° = 0$.",
+          "check": [
+            "sin(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v34",
+          "statement": "Evaluate exactly: $\\cos 180°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 180° = -1$.",
+          "check": [
+            "cos(rad(180)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v35",
+          "statement": "Evaluate exactly: $\\tan 180°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 180° = 0$.",
+          "check": [
+            "tan(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v36",
+          "statement": "Evaluate exactly: $\\sin 270°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$270°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 270° = -1$.",
+          "check": [
+            "sin(rad(270)) == -1"
           ]
         }
       ]
@@ -79,43 +559,313 @@
       "skill": "Multiply degrees by π/180; reduce the fraction.",
       "variants": [
         {
-          "id": "trig-conv-v1",
-          "statement": "Convert $150°$ to radians.",
+          "id": "TRIG-dr-v01",
+          "statement": "Convert $12°$ to radians.",
           "options": [
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{2\\pi}{3}$",
-            "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{4\\pi}{3}$"
+            "$\\dfrac{\\pi}{15}$",
+            "$\\dfrac{2\\pi}{15}$",
+            "$\\dfrac{\\pi}{30}$",
+            "$\\dfrac{\\pi}{10}$"
           ],
           "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $150° = \\frac{150\\pi}{180} = \\dfrac{5\\pi}{6}$.",
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $12° = \\frac{12\\pi}{180} = \\dfrac{\\pi}{15}$.",
           "check": [
-            "Rational(150, 180) == Rational(5, 6)"
+            "Rational(12, 180) == Rational(1, 15)"
           ]
         },
         {
-          "id": "trig-conv-v2",
-          "statement": "Convert $120°$ to radians.",
+          "id": "TRIG-dr-v02",
+          "statement": "Convert $15°$ to radians.",
           "options": [
-            "$\\dfrac{2\\pi}{3}$",
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{4\\pi}{3}$"
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{12}$",
+            "$\\dfrac{\\pi}{24}$",
+            "$\\dfrac{\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $15° = \\frac{15\\pi}{180} = \\dfrac{\\pi}{12}$.",
+          "check": [
+            "Rational(15, 180) == Rational(1, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v03",
+          "statement": "Convert $18°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{\\pi}{20}$",
+            "$\\dfrac{\\pi}{10}$",
+            "$\\dfrac{3\\pi}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $18° = \\frac{18\\pi}{180} = \\dfrac{\\pi}{10}$.",
+          "check": [
+            "Rational(18, 180) == Rational(1, 10)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v04",
+          "statement": "Convert $20°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{9}$",
+            "$\\dfrac{\\pi}{18}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $20° = \\frac{20\\pi}{180} = \\dfrac{\\pi}{9}$.",
+          "check": [
+            "Rational(20, 180) == Rational(1, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v05",
+          "statement": "Convert $24°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{15}$",
+            "$\\dfrac{4\\pi}{15}$",
+            "$\\dfrac{\\pi}{15}$",
+            "$\\dfrac{\\pi}{5}$"
           ],
           "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $24° = \\frac{24\\pi}{180} = \\dfrac{2\\pi}{15}$.",
+          "check": [
+            "Rational(24, 180) == Rational(2, 15)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v06",
+          "statement": "Convert $30°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{3}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{12}$",
+            "$\\dfrac{\\pi}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $30° = \\frac{30\\pi}{180} = \\dfrac{\\pi}{6}$.",
+          "check": [
+            "Rational(30, 180) == Rational(1, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v07",
+          "statement": "Convert $36°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{\\pi}{10}$",
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{3\\pi}{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $36° = \\frac{36\\pi}{180} = \\dfrac{\\pi}{5}$.",
+          "check": [
+            "Rational(36, 180) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v08",
+          "statement": "Convert $40°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{\\pi}{9}$",
+            "$\\dfrac{\\pi}{3}$",
+            "$\\dfrac{2\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $40° = \\frac{40\\pi}{180} = \\dfrac{2\\pi}{9}$.",
+          "check": [
+            "Rational(40, 180) == Rational(2, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v09",
+          "statement": "Convert $45°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{4}$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{\\pi}{8}$",
+            "$\\dfrac{3\\pi}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $45° = \\frac{45\\pi}{180} = \\dfrac{\\pi}{4}$.",
+          "check": [
+            "Rational(45, 180) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v10",
+          "statement": "Convert $50°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{9}$",
+            "$\\dfrac{5\\pi}{18}$",
+            "$\\dfrac{5\\pi}{36}$",
+            "$\\dfrac{5\\pi}{12}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $50° = \\frac{50\\pi}{180} = \\dfrac{5\\pi}{18}$.",
+          "check": [
+            "Rational(50, 180) == Rational(5, 18)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v11",
+          "statement": "Convert $54°$ to radians.",
+          "options": [
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{3\\pi}{20}$",
+            "$\\dfrac{3\\pi}{10}$",
+            "$\\dfrac{9\\pi}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $54° = \\frac{54\\pi}{180} = \\dfrac{3\\pi}{10}$.",
+          "check": [
+            "Rational(54, 180) == Rational(3, 10)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v12",
+          "statement": "Convert $60°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{\\pi}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $60° = \\frac{60\\pi}{180} = \\dfrac{\\pi}{3}$.",
+          "check": [
+            "Rational(60, 180) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v13",
+          "statement": "Convert $72°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{3\\pi}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $72° = \\frac{72\\pi}{180} = \\dfrac{2\\pi}{5}$.",
+          "check": [
+            "Rational(72, 180) == Rational(2, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v14",
+          "statement": "Convert $75°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{12}$",
+            "$\\dfrac{5\\pi}{24}$",
+            "$\\dfrac{5\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $75° = \\frac{75\\pi}{180} = \\dfrac{5\\pi}{12}$.",
+          "check": [
+            "Rational(75, 180) == Rational(5, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v15",
+          "statement": "Convert $80°$ to radians.",
+          "options": [
+            "$\\dfrac{8\\pi}{9}$",
+            "$\\dfrac{2\\pi}{9}$",
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{2\\pi}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $80° = \\frac{80\\pi}{180} = \\dfrac{4\\pi}{9}$.",
+          "check": [
+            "Rational(80, 180) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v16",
+          "statement": "Convert $90°$ to radians.",
+          "options": [
+            "$\\pi$",
+            "$\\dfrac{\\pi}{4}$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{\\pi}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $90° = \\frac{90\\pi}{180} = \\dfrac{\\pi}{2}$.",
+          "check": [
+            "Rational(90, 180) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v17",
+          "statement": "Convert $100°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{9}$",
+            "$\\dfrac{10\\pi}{9}$",
+            "$\\dfrac{5\\pi}{18}$",
+            "$\\dfrac{5\\pi}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $100° = \\frac{100\\pi}{180} = \\dfrac{5\\pi}{9}$.",
+          "check": [
+            "Rational(100, 180) == Rational(5, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v18",
+          "statement": "Convert $105°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{6}$",
+            "$\\dfrac{7\\pi}{12}$",
+            "$\\dfrac{7\\pi}{24}$",
+            "$\\dfrac{7\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $105° = \\frac{105\\pi}{180} = \\dfrac{7\\pi}{12}$.",
+          "check": [
+            "Rational(105, 180) == Rational(7, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v19",
+          "statement": "Convert $108°$ to radians.",
+          "options": [
+            "$\\dfrac{6\\pi}{5}$",
+            "$\\dfrac{3\\pi}{10}$",
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{9\\pi}{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $108° = \\frac{108\\pi}{180} = \\dfrac{3\\pi}{5}$.",
+          "check": [
+            "Rational(108, 180) == Rational(3, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v20",
+          "statement": "Convert $120°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{\\pi}{3}$",
+            "$\\pi$",
+            "$\\dfrac{2\\pi}{3}$"
+          ],
+          "correctIndex": 3,
           "explanation": "Multiply by $\\frac{\\pi}{180}$: $120° = \\frac{120\\pi}{180} = \\dfrac{2\\pi}{3}$.",
           "check": [
             "Rational(120, 180) == Rational(2, 3)"
           ]
         },
         {
-          "id": "trig-conv-v3",
+          "id": "TRIG-dr-v21",
           "statement": "Convert $135°$ to radians.",
           "options": [
             "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{2\\pi}{3}$",
-            "$\\dfrac{4\\pi}{3}$"
+            "$\\dfrac{3\\pi}{2}$",
+            "$\\dfrac{3\\pi}{8}$",
+            "$\\dfrac{9\\pi}{8}$"
           ],
           "correctIndex": 0,
           "explanation": "Multiply by $\\frac{\\pi}{180}$: $135° = \\frac{135\\pi}{180} = \\dfrac{3\\pi}{4}$.",
@@ -124,18 +874,228 @@
           ]
         },
         {
-          "id": "trig-conv-v4",
+          "id": "TRIG-dr-v22",
+          "statement": "Convert $144°$ to radians.",
+          "options": [
+            "$\\dfrac{8\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{6\\pi}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $144° = \\frac{144\\pi}{180} = \\dfrac{4\\pi}{5}$.",
+          "check": [
+            "Rational(144, 180) == Rational(4, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v23",
+          "statement": "Convert $150°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{3}$",
+            "$\\dfrac{5\\pi}{12}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $150° = \\frac{150\\pi}{180} = \\dfrac{5\\pi}{6}$.",
+          "check": [
+            "Rational(150, 180) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v24",
+          "statement": "Convert $160°$ to radians.",
+          "options": [
+            "$\\dfrac{16\\pi}{9}$",
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{8\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $160° = \\frac{160\\pi}{180} = \\dfrac{8\\pi}{9}$.",
+          "check": [
+            "Rational(160, 180) == Rational(8, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v25",
+          "statement": "Convert $180°$ to radians.",
+          "options": [
+            "$\\pi$",
+            "$2\\pi$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{3\\pi}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $180° = \\frac{180\\pi}{180} = \\pi$.",
+          "check": [
+            "Rational(180, 180) == Rational(1, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v26",
+          "statement": "Convert $210°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{3}$",
+            "$\\dfrac{7\\pi}{6}$",
+            "$\\dfrac{7\\pi}{12}$",
+            "$\\dfrac{7\\pi}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $210° = \\frac{210\\pi}{180} = \\dfrac{7\\pi}{6}$.",
+          "check": [
+            "Rational(210, 180) == Rational(7, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v27",
+          "statement": "Convert $216°$ to radians.",
+          "options": [
+            "$\\dfrac{12\\pi}{5}$",
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{6\\pi}{5}$",
+            "$\\dfrac{9\\pi}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $216° = \\frac{216\\pi}{180} = \\dfrac{6\\pi}{5}$.",
+          "check": [
+            "Rational(216, 180) == Rational(6, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v28",
+          "statement": "Convert $225°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{2}$",
+            "$\\dfrac{5\\pi}{8}$",
+            "$\\dfrac{15\\pi}{8}$",
+            "$\\dfrac{5\\pi}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $225° = \\frac{225\\pi}{180} = \\dfrac{5\\pi}{4}$.",
+          "check": [
+            "Rational(225, 180) == Rational(5, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v29",
           "statement": "Convert $240°$ to radians.",
           "options": [
             "$\\dfrac{4\\pi}{3}$",
-            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{8\\pi}{3}$",
             "$\\dfrac{2\\pi}{3}$",
-            "$\\dfrac{3\\pi}{4}$"
+            "$2\\pi$"
           ],
           "correctIndex": 0,
           "explanation": "Multiply by $\\frac{\\pi}{180}$: $240° = \\frac{240\\pi}{180} = \\dfrac{4\\pi}{3}$.",
           "check": [
             "Rational(240, 180) == Rational(4, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v30",
+          "statement": "Convert $252°$ to radians.",
+          "options": [
+            "$\\dfrac{14\\pi}{5}$",
+            "$\\dfrac{7\\pi}{5}$",
+            "$\\dfrac{7\\pi}{10}$",
+            "$\\dfrac{21\\pi}{10}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $252° = \\frac{252\\pi}{180} = \\dfrac{7\\pi}{5}$.",
+          "check": [
+            "Rational(252, 180) == Rational(7, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v31",
+          "statement": "Convert $270°$ to radians.",
+          "options": [
+            "$3\\pi$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{3\\pi}{2}$",
+            "$\\dfrac{9\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $270° = \\frac{270\\pi}{180} = \\dfrac{3\\pi}{2}$.",
+          "check": [
+            "Rational(270, 180) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v32",
+          "statement": "Convert $288°$ to radians.",
+          "options": [
+            "$\\dfrac{16\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{12\\pi}{5}$",
+            "$\\dfrac{8\\pi}{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $288° = \\frac{288\\pi}{180} = \\dfrac{8\\pi}{5}$.",
+          "check": [
+            "Rational(288, 180) == Rational(8, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v33",
+          "statement": "Convert $300°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{3}$",
+            "$\\dfrac{10\\pi}{3}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $300° = \\frac{300\\pi}{180} = \\dfrac{5\\pi}{3}$.",
+          "check": [
+            "Rational(300, 180) == Rational(5, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v34",
+          "statement": "Convert $315°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{2}$",
+            "$\\dfrac{7\\pi}{4}$",
+            "$\\dfrac{7\\pi}{8}$",
+            "$\\dfrac{21\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $315° = \\frac{315\\pi}{180} = \\dfrac{7\\pi}{4}$.",
+          "check": [
+            "Rational(315, 180) == Rational(7, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v35",
+          "statement": "Convert $330°$ to radians.",
+          "options": [
+            "$\\dfrac{11\\pi}{3}$",
+            "$\\dfrac{11\\pi}{12}$",
+            "$\\dfrac{11\\pi}{6}$",
+            "$\\dfrac{11\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $330° = \\frac{330\\pi}{180} = \\dfrac{11\\pi}{6}$.",
+          "check": [
+            "Rational(330, 180) == Rational(11, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v36",
+          "statement": "Convert $360°$ to radians.",
+          "options": [
+            "$4\\pi$",
+            "$\\pi$",
+            "$3\\pi$",
+            "$2\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $360° = \\frac{360\\pi}{180} = 2\\pi$.",
+          "check": [
+            "Rational(360, 180) == Rational(2, 1)"
           ]
         }
       ]
@@ -147,63 +1107,543 @@
       "skill": "SOH: opposite = hypotenuse × sin(angle).",
       "variants": [
         {
-          "id": "trig-side-v1",
-          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "id": "TRIG-rt-v01",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
           "options": [
-            "$5$",
-            "$5 \\sqrt{3}$",
-            "$\\frac{5}{2}$",
-            "$20$"
+            "$2$",
+            "$2 \\sqrt{3}$",
+            "$4$",
+            "$4 \\sqrt{3}$"
           ],
           "correctIndex": 0,
-          "explanation": "Opposite over hypotenuse is sine: side $= 10\\sin 30° = 5$. (Using cosine would give the ADJACENT side.)",
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 4\\sin 30° = 2$.",
           "check": [
-            "10*sin(rad(30)) == 5"
+            "4*sin(rad(30)) == 2"
           ]
         },
         {
-          "id": "trig-side-v2",
+          "id": "TRIG-rt-v02",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$2$",
+            "$2 \\sqrt{3}$",
+            "$4$",
+            "$4 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 4\\cos 30° = 2 \\sqrt{3}$.",
+          "check": [
+            "4*cos(rad(30)) == 2*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v03",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$4$",
+            "$4 \\sqrt{2}$",
+            "$2 \\sqrt{2}$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 4\\sin 45° = 2 \\sqrt{2}$.",
+          "check": [
+            "4*sin(rad(45)) == 2*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v04",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$4$",
+            "$4 \\sqrt{2}$",
+            "$2$",
+            "$2 \\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 4\\cos 45° = 2 \\sqrt{2}$.",
+          "check": [
+            "4*cos(rad(45)) == 2*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v05",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$2 \\sqrt{3}$",
+            "$2$",
+            "$4$",
+            "$4 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 4\\sin 60° = 2 \\sqrt{3}$.",
+          "check": [
+            "4*sin(rad(60)) == 2*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v06",
+          "statement": "A right triangle has hypotenuse $4$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
+          "options": [
+            "$2 \\sqrt{3}$",
+            "$2$",
+            "$4$",
+            "$4 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 4\\cos 60° = 2$.",
+          "check": [
+            "4*cos(rad(60)) == 2"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v07",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$3 \\sqrt{3}$",
+            "$6$",
+            "$3$",
+            "$6 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 6\\sin 30° = 3$.",
+          "check": [
+            "6*sin(rad(30)) == 3"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v08",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$6 \\sqrt{3}$",
+            "$3 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 6\\cos 30° = 3 \\sqrt{3}$.",
+          "check": [
+            "6*cos(rad(30)) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v09",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$3 \\sqrt{2}$",
+            "$6$",
+            "$6 \\sqrt{2}$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 6\\sin 45° = 3 \\sqrt{2}$.",
+          "check": [
+            "6*sin(rad(45)) == 3*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v10",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$6$",
+            "$3 \\sqrt{2}$",
+            "$6 \\sqrt{2}$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 6\\cos 45° = 3 \\sqrt{2}$.",
+          "check": [
+            "6*cos(rad(45)) == 3*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v11",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$3 \\sqrt{3}$",
+            "$6 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 6\\sin 60° = 3 \\sqrt{3}$.",
+          "check": [
+            "6*sin(rad(60)) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v12",
+          "statement": "A right triangle has hypotenuse $6$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
+          "options": [
+            "$3 \\sqrt{3}$",
+            "$6$",
+            "$6 \\sqrt{3}$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 6\\cos 60° = 3$.",
+          "check": [
+            "6*cos(rad(60)) == 3"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v13",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$4$",
+            "$4 \\sqrt{3}$",
+            "$8$",
+            "$8 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 8\\sin 30° = 4$.",
+          "check": [
+            "8*sin(rad(30)) == 4"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v14",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$4$",
+            "$4 \\sqrt{3}$",
+            "$8$",
+            "$8 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 8\\cos 30° = 4 \\sqrt{3}$.",
+          "check": [
+            "8*cos(rad(30)) == 4*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v15",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$8$",
+            "$8 \\sqrt{2}$",
+            "$4 \\sqrt{2}$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 8\\sin 45° = 4 \\sqrt{2}$.",
+          "check": [
+            "8*sin(rad(45)) == 4*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v16",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$8$",
+            "$8 \\sqrt{2}$",
+            "$4$",
+            "$4 \\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 8\\cos 45° = 4 \\sqrt{2}$.",
+          "check": [
+            "8*cos(rad(45)) == 4*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v17",
           "statement": "A right triangle has hypotenuse $8$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
           "options": [
             "$4 \\sqrt{3}$",
             "$4$",
-            "$16$",
-            "$1 + 4 \\sqrt{3}$"
+            "$8$",
+            "$8 \\sqrt{3}$"
           ],
           "correctIndex": 0,
-          "explanation": "Opposite over hypotenuse is sine: side $= 8\\sin 60° = 4 \\sqrt{3}$. (Using cosine would give the ADJACENT side.)",
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 8\\sin 60° = 4 \\sqrt{3}$.",
           "check": [
             "8*sin(rad(60)) == 4*sqrt(3)"
           ]
         },
         {
-          "id": "trig-side-v3",
-          "statement": "A right triangle has hypotenuse $14$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "id": "TRIG-rt-v18",
+          "statement": "A right triangle has hypotenuse $8$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
           "options": [
-            "$7$",
-            "$7 \\sqrt{3}$",
-            "$\\frac{7}{2}$",
-            "$28$"
+            "$4 \\sqrt{3}$",
+            "$4$",
+            "$8$",
+            "$8 \\sqrt{3}$"
           ],
-          "correctIndex": 0,
-          "explanation": "Opposite over hypotenuse is sine: side $= 14\\sin 30° = 7$. (Using cosine would give the ADJACENT side.)",
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 8\\cos 60° = 4$.",
           "check": [
-            "14*sin(rad(30)) == 7"
+            "8*cos(rad(60)) == 4"
           ]
         },
         {
-          "id": "trig-side-v4",
+          "id": "TRIG-rt-v19",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$5 \\sqrt{3}$",
+            "$10$",
+            "$5$",
+            "$10 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 10\\sin 30° = 5$.",
+          "check": [
+            "10*sin(rad(30)) == 5"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v20",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$5$",
+            "$10$",
+            "$10 \\sqrt{3}$",
+            "$5 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 10\\cos 30° = 5 \\sqrt{3}$.",
+          "check": [
+            "10*cos(rad(30)) == 5*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v21",
           "statement": "A right triangle has hypotenuse $10$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
           "options": [
             "$5 \\sqrt{2}$",
-            "$5$",
-            "$20$",
-            "$1 + 5 \\sqrt{2}$"
+            "$10$",
+            "$10 \\sqrt{2}$",
+            "$5$"
           ],
           "correctIndex": 0,
-          "explanation": "Opposite over hypotenuse is sine: side $= 10\\sin 45° = 5 \\sqrt{2}$. (Using cosine would give the ADJACENT side.)",
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 10\\sin 45° = 5 \\sqrt{2}$.",
           "check": [
             "10*sin(rad(45)) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v22",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$10$",
+            "$5 \\sqrt{2}$",
+            "$10 \\sqrt{2}$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 10\\cos 45° = 5 \\sqrt{2}$.",
+          "check": [
+            "10*cos(rad(45)) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v23",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$5$",
+            "$10$",
+            "$5 \\sqrt{3}$",
+            "$10 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 10\\sin 60° = 5 \\sqrt{3}$.",
+          "check": [
+            "10*sin(rad(60)) == 5*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v24",
+          "statement": "A right triangle has hypotenuse $10$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
+          "options": [
+            "$5 \\sqrt{3}$",
+            "$10$",
+            "$10 \\sqrt{3}$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 10\\cos 60° = 5$.",
+          "check": [
+            "10*cos(rad(60)) == 5"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v25",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$6$",
+            "$6 \\sqrt{3}$",
+            "$12$",
+            "$12 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 12\\sin 30° = 6$.",
+          "check": [
+            "12*sin(rad(30)) == 6"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v26",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$6$",
+            "$6 \\sqrt{3}$",
+            "$12$",
+            "$12 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 12\\cos 30° = 6 \\sqrt{3}$.",
+          "check": [
+            "12*cos(rad(30)) == 6*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v27",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$12$",
+            "$12 \\sqrt{2}$",
+            "$6 \\sqrt{2}$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 12\\sin 45° = 6 \\sqrt{2}$.",
+          "check": [
+            "12*sin(rad(45)) == 6*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v28",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$12$",
+            "$12 \\sqrt{2}$",
+            "$6$",
+            "$6 \\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 12\\cos 45° = 6 \\sqrt{2}$.",
+          "check": [
+            "12*cos(rad(45)) == 6*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v29",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$6 \\sqrt{3}$",
+            "$6$",
+            "$12$",
+            "$12 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 12\\sin 60° = 6 \\sqrt{3}$.",
+          "check": [
+            "12*sin(rad(60)) == 6*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v30",
+          "statement": "A right triangle has hypotenuse $12$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
+          "options": [
+            "$6 \\sqrt{3}$",
+            "$6$",
+            "$12$",
+            "$12 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 12\\cos 60° = 6$.",
+          "check": [
+            "12*cos(rad(60)) == 6"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v31",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $30°$. Find the side OPPOSITE the $30°$ angle.",
+          "options": [
+            "$10 \\sqrt{3}$",
+            "$20$",
+            "$10$",
+            "$20 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 20\\sin 30° = 10$.",
+          "check": [
+            "20*sin(rad(30)) == 10"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v32",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$20 \\sqrt{3}$",
+            "$10 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 20\\cos 30° = 10 \\sqrt{3}$.",
+          "check": [
+            "20*cos(rad(30)) == 10*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v33",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $45°$. Find the side OPPOSITE the $45°$ angle.",
+          "options": [
+            "$10 \\sqrt{2}$",
+            "$20$",
+            "$20 \\sqrt{2}$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 20\\sin 45° = 10 \\sqrt{2}$.",
+          "check": [
+            "20*sin(rad(45)) == 10*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v34",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $45°$. Find the side ADJACENT the $45°$ angle.",
+          "options": [
+            "$20$",
+            "$10 \\sqrt{2}$",
+            "$20 \\sqrt{2}$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 20\\cos 45° = 10 \\sqrt{2}$.",
+          "check": [
+            "20*cos(rad(45)) == 10*sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v35",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $60°$. Find the side OPPOSITE the $60°$ angle.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$10 \\sqrt{3}$",
+            "$20 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The opposite side over the hypotenuse is the sine: side $= 20\\sin 60° = 10 \\sqrt{3}$.",
+          "check": [
+            "20*sin(rad(60)) == 10*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-rt-v36",
+          "statement": "A right triangle has hypotenuse $20$ and an acute angle of $60°$. Find the side ADJACENT the $60°$ angle.",
+          "options": [
+            "$10 \\sqrt{3}$",
+            "$20$",
+            "$20 \\sqrt{3}$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 20\\cos 60° = 10$.",
+          "check": [
+            "20*cos(rad(60)) == 10"
           ]
         }
       ]
@@ -215,7 +1655,7 @@
       "skill": "Build the triangle from the triple; read the other ratios.",
       "variants": [
         {
-          "id": "trig-triple-v1",
+          "id": "TRIG-sc-v01",
           "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{3}{5}$. Find $\\cos\\alpha$.",
           "options": [
             "$\\frac{4}{5}$",
@@ -224,30 +1664,318 @@
             "$\\frac{4}{3}$"
           ],
           "correctIndex": 0,
-          "explanation": "Draw the right triangle: opposite $3$, hypotenuse $5$ ⟹ adjacent $= \\sqrt{5^2 - 3^2} = 4$ (the 3-4-5 triple). Then $\\cos\\alpha = \\frac{4}{5}$.",
+          "explanation": "Use the $3\\text{-}4\\text{-}5$ right triangle (legs $3$, $4$, hypotenuse $5$); read off $\\cos\\alpha = \\frac{4}{5}$.",
           "check": [
-            "sqrt(5**2 - 3**2) == 4",
+            "3**2 + 4**2 == 5**2",
             "Rational(3,5)**2 + Rational(4,5)**2 == 1"
           ]
         },
         {
-          "id": "trig-triple-v2",
+          "id": "TRIG-sc-v02",
           "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{5}{13}$. Find $\\tan\\alpha$.",
           "options": [
+            "$\\frac{12}{5}$",
             "$\\frac{5}{12}$",
             "$\\frac{5}{13}$",
-            "$\\frac{12}{13}$",
-            "$\\frac{12}{5}$"
+            "$\\frac{12}{13}$"
           ],
-          "correctIndex": 0,
-          "explanation": "Draw the right triangle: opposite $5$, hypotenuse $13$ ⟹ adjacent $= \\sqrt{13^2 - 5^2} = 12$ (the 5-12-13 triple). Then $\\tan\\alpha = \\frac{5}{12}$.",
+          "correctIndex": 1,
+          "explanation": "Use the $5\\text{-}12\\text{-}13$ right triangle (legs $5$, $12$, hypotenuse $13$); read off $\\tan\\alpha = \\frac{5}{12}$.",
           "check": [
-            "sqrt(13**2 - 5**2) == 12",
+            "5**2 + 12**2 == 13**2",
             "Rational(5,13)**2 + Rational(12,13)**2 == 1"
           ]
         },
         {
-          "id": "trig-triple-v3",
+          "id": "TRIG-sc-v03",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{15}{17}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{15}{17}$",
+            "$\\frac{8}{15}$",
+            "$\\frac{8}{17}$",
+            "$\\frac{15}{8}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $8\\text{-}15\\text{-}17$ right triangle (legs $8$, $15$, hypotenuse $17$); read off $\\sin\\alpha = \\frac{8}{17}$.",
+          "check": [
+            "8**2 + 15**2 == 17**2",
+            "Rational(8,17)**2 + Rational(15,17)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v04",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{24}{25}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{24}{7}$",
+            "$\\frac{7}{25}$",
+            "$\\frac{24}{25}$",
+            "$\\frac{7}{24}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $7\\text{-}24\\text{-}25$ right triangle (legs $7$, $24$, hypotenuse $25$); read off $\\tan\\alpha = \\frac{7}{24}$.",
+          "check": [
+            "7**2 + 24**2 == 25**2",
+            "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v05",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{20}{29}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{21}{29}$",
+            "$\\frac{20}{29}$",
+            "$\\frac{20}{21}$",
+            "$\\frac{21}{20}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $20\\text{-}21\\text{-}29$ right triangle (legs $20$, $21$, hypotenuse $29$); read off $\\cos\\alpha = \\frac{21}{29}$.",
+          "check": [
+            "20**2 + 21**2 == 29**2",
+            "Rational(20,29)**2 + Rational(21,29)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v06",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{9}{41}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{40}{9}$",
+            "$\\frac{9}{40}$",
+            "$\\frac{9}{41}$",
+            "$\\frac{40}{41}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $9\\text{-}40\\text{-}41$ right triangle (legs $9$, $40$, hypotenuse $41$); read off $\\tan\\alpha = \\frac{9}{40}$.",
+          "check": [
+            "9**2 + 40**2 == 41**2",
+            "Rational(9,41)**2 + Rational(40,41)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v07",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{35}{37}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{35}{37}$",
+            "$\\frac{12}{35}$",
+            "$\\frac{12}{37}$",
+            "$\\frac{35}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $12\\text{-}35\\text{-}37$ right triangle (legs $12$, $35$, hypotenuse $37$); read off $\\sin\\alpha = \\frac{12}{37}$.",
+          "check": [
+            "12**2 + 35**2 == 37**2",
+            "Rational(12,37)**2 + Rational(35,37)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v08",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{60}{61}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{60}{11}$",
+            "$\\frac{11}{61}$",
+            "$\\frac{60}{61}$",
+            "$\\frac{11}{60}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $11\\text{-}60\\text{-}61$ right triangle (legs $11$, $60$, hypotenuse $61$); read off $\\tan\\alpha = \\frac{11}{60}$.",
+          "check": [
+            "11**2 + 60**2 == 61**2",
+            "Rational(11,61)**2 + Rational(60,61)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v09",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{28}{53}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{45}{53}$",
+            "$\\frac{28}{53}$",
+            "$\\frac{28}{45}$",
+            "$\\frac{45}{28}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $28\\text{-}45\\text{-}53$ right triangle (legs $28$, $45$, hypotenuse $53$); read off $\\cos\\alpha = \\frac{45}{53}$.",
+          "check": [
+            "28**2 + 45**2 == 53**2",
+            "Rational(28,53)**2 + Rational(45,53)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v10",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{13}{85}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{84}{13}$",
+            "$\\frac{13}{84}$",
+            "$\\frac{13}{85}$",
+            "$\\frac{84}{85}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $13\\text{-}84\\text{-}85$ right triangle (legs $13$, $84$, hypotenuse $85$); read off $\\tan\\alpha = \\frac{13}{84}$.",
+          "check": [
+            "13**2 + 84**2 == 85**2",
+            "Rational(13,85)**2 + Rational(84,85)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v11",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{56}{65}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{56}{65}$",
+            "$\\frac{33}{56}$",
+            "$\\frac{33}{65}$",
+            "$\\frac{56}{33}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $33\\text{-}56\\text{-}65$ right triangle (legs $33$, $56$, hypotenuse $65$); read off $\\sin\\alpha = \\frac{33}{65}$.",
+          "check": [
+            "33**2 + 56**2 == 65**2",
+            "Rational(33,65)**2 + Rational(56,65)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v12",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{63}{65}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{63}{16}$",
+            "$\\frac{16}{65}$",
+            "$\\frac{63}{65}$",
+            "$\\frac{16}{63}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $16\\text{-}63\\text{-}65$ right triangle (legs $16$, $63$, hypotenuse $65$); read off $\\tan\\alpha = \\frac{16}{63}$.",
+          "check": [
+            "16**2 + 63**2 == 65**2",
+            "Rational(16,65)**2 + Rational(63,65)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v13",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{48}{73}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{55}{73}$",
+            "$\\frac{48}{73}$",
+            "$\\frac{48}{55}$",
+            "$\\frac{55}{48}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $48\\text{-}55\\text{-}73$ right triangle (legs $48$, $55$, hypotenuse $73$); read off $\\cos\\alpha = \\frac{55}{73}$.",
+          "check": [
+            "48**2 + 55**2 == 73**2",
+            "Rational(48,73)**2 + Rational(55,73)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v14",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{36}{85}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{77}{36}$",
+            "$\\frac{36}{77}$",
+            "$\\frac{36}{85}$",
+            "$\\frac{77}{85}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $36\\text{-}77\\text{-}85$ right triangle (legs $36$, $77$, hypotenuse $85$); read off $\\tan\\alpha = \\frac{36}{77}$.",
+          "check": [
+            "36**2 + 77**2 == 85**2",
+            "Rational(36,85)**2 + Rational(77,85)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v15",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{80}{89}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{80}{89}$",
+            "$\\frac{39}{80}$",
+            "$\\frac{39}{89}$",
+            "$\\frac{80}{39}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $39\\text{-}80\\text{-}89$ right triangle (legs $39$, $80$, hypotenuse $89$); read off $\\sin\\alpha = \\frac{39}{89}$.",
+          "check": [
+            "39**2 + 80**2 == 89**2",
+            "Rational(39,89)**2 + Rational(80,89)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v16",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{72}{97}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{72}{65}$",
+            "$\\frac{65}{97}$",
+            "$\\frac{72}{97}$",
+            "$\\frac{65}{72}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $65\\text{-}72\\text{-}97$ right triangle (legs $65$, $72$, hypotenuse $97$); read off $\\tan\\alpha = \\frac{65}{72}$.",
+          "check": [
+            "65**2 + 72**2 == 97**2",
+            "Rational(65,97)**2 + Rational(72,97)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v17",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{20}{101}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{99}{101}$",
+            "$\\frac{20}{101}$",
+            "$\\frac{20}{99}$",
+            "$\\frac{99}{20}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $20\\text{-}99\\text{-}101$ right triangle (legs $20$, $99$, hypotenuse $101$); read off $\\cos\\alpha = \\frac{99}{101}$.",
+          "check": [
+            "20**2 + 99**2 == 101**2",
+            "Rational(20,101)**2 + Rational(99,101)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v18",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{60}{109}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{91}{60}$",
+            "$\\frac{60}{91}$",
+            "$\\frac{60}{109}$",
+            "$\\frac{91}{109}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $60\\text{-}91\\text{-}109$ right triangle (legs $60$, $91$, hypotenuse $109$); read off $\\tan\\alpha = \\frac{60}{91}$.",
+          "check": [
+            "60**2 + 91**2 == 109**2",
+            "Rational(60,109)**2 + Rational(91,109)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v19",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{4}{5}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{4}{5}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $3\\text{-}4\\text{-}5$ right triangle (legs $3$, $4$, hypotenuse $5$); read off $\\sin\\alpha = \\frac{3}{5}$.",
+          "check": [
+            "3**2 + 4**2 == 5**2",
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v20",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{12}{13}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{12}{5}$",
+            "$\\frac{5}{13}$",
+            "$\\frac{12}{13}$",
+            "$\\frac{5}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $5\\text{-}12\\text{-}13$ right triangle (legs $5$, $12$, hypotenuse $13$); read off $\\tan\\alpha = \\frac{5}{12}$.",
+          "check": [
+            "5**2 + 12**2 == 13**2",
+            "Rational(5,13)**2 + Rational(12,13)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v21",
           "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{8}{17}$. Find $\\cos\\alpha$.",
           "options": [
             "$\\frac{15}{17}$",
@@ -256,26 +1984,250 @@
             "$\\frac{15}{8}$"
           ],
           "correctIndex": 0,
-          "explanation": "Draw the right triangle: opposite $8$, hypotenuse $17$ ⟹ adjacent $= \\sqrt{17^2 - 8^2} = 15$ (the 8-15-17 triple). Then $\\cos\\alpha = \\frac{15}{17}$.",
+          "explanation": "Use the $8\\text{-}15\\text{-}17$ right triangle (legs $8$, $15$, hypotenuse $17$); read off $\\cos\\alpha = \\frac{15}{17}$.",
           "check": [
-            "sqrt(17**2 - 8**2) == 15",
+            "8**2 + 15**2 == 17**2",
             "Rational(8,17)**2 + Rational(15,17)**2 == 1"
           ]
         },
         {
-          "id": "trig-triple-v4",
+          "id": "TRIG-sc-v22",
           "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{7}{25}$. Find $\\tan\\alpha$.",
           "options": [
+            "$\\frac{24}{7}$",
             "$\\frac{7}{24}$",
             "$\\frac{7}{25}$",
-            "$\\frac{24}{25}$",
-            "$\\frac{24}{7}$"
+            "$\\frac{24}{25}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $7\\text{-}24\\text{-}25$ right triangle (legs $7$, $24$, hypotenuse $25$); read off $\\tan\\alpha = \\frac{7}{24}$.",
+          "check": [
+            "7**2 + 24**2 == 25**2",
+            "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v23",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{21}{29}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{21}{29}$",
+            "$\\frac{20}{21}$",
+            "$\\frac{20}{29}$",
+            "$\\frac{21}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $20\\text{-}21\\text{-}29$ right triangle (legs $20$, $21$, hypotenuse $29$); read off $\\sin\\alpha = \\frac{20}{29}$.",
+          "check": [
+            "20**2 + 21**2 == 29**2",
+            "Rational(20,29)**2 + Rational(21,29)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v24",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{40}{41}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{40}{9}$",
+            "$\\frac{9}{41}$",
+            "$\\frac{40}{41}$",
+            "$\\frac{9}{40}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $9\\text{-}40\\text{-}41$ right triangle (legs $9$, $40$, hypotenuse $41$); read off $\\tan\\alpha = \\frac{9}{40}$.",
+          "check": [
+            "9**2 + 40**2 == 41**2",
+            "Rational(9,41)**2 + Rational(40,41)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v25",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{12}{37}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{35}{37}$",
+            "$\\frac{12}{37}$",
+            "$\\frac{12}{35}$",
+            "$\\frac{35}{12}$"
           ],
           "correctIndex": 0,
-          "explanation": "Draw the right triangle: opposite $7$, hypotenuse $25$ ⟹ adjacent $= \\sqrt{25^2 - 7^2} = 24$ (the 7-24-25 triple). Then $\\tan\\alpha = \\frac{7}{24}$.",
+          "explanation": "Use the $12\\text{-}35\\text{-}37$ right triangle (legs $12$, $35$, hypotenuse $37$); read off $\\cos\\alpha = \\frac{35}{37}$.",
           "check": [
-            "sqrt(25**2 - 7**2) == 24",
-            "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+            "12**2 + 35**2 == 37**2",
+            "Rational(12,37)**2 + Rational(35,37)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v26",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{11}{61}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{60}{11}$",
+            "$\\frac{11}{60}$",
+            "$\\frac{11}{61}$",
+            "$\\frac{60}{61}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $11\\text{-}60\\text{-}61$ right triangle (legs $11$, $60$, hypotenuse $61$); read off $\\tan\\alpha = \\frac{11}{60}$.",
+          "check": [
+            "11**2 + 60**2 == 61**2",
+            "Rational(11,61)**2 + Rational(60,61)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v27",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{45}{53}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{45}{53}$",
+            "$\\frac{28}{45}$",
+            "$\\frac{28}{53}$",
+            "$\\frac{45}{28}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $28\\text{-}45\\text{-}53$ right triangle (legs $28$, $45$, hypotenuse $53$); read off $\\sin\\alpha = \\frac{28}{53}$.",
+          "check": [
+            "28**2 + 45**2 == 53**2",
+            "Rational(28,53)**2 + Rational(45,53)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v28",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{84}{85}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{84}{13}$",
+            "$\\frac{13}{85}$",
+            "$\\frac{84}{85}$",
+            "$\\frac{13}{84}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $13\\text{-}84\\text{-}85$ right triangle (legs $13$, $84$, hypotenuse $85$); read off $\\tan\\alpha = \\frac{13}{84}$.",
+          "check": [
+            "13**2 + 84**2 == 85**2",
+            "Rational(13,85)**2 + Rational(84,85)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v29",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{33}{65}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{56}{65}$",
+            "$\\frac{33}{65}$",
+            "$\\frac{33}{56}$",
+            "$\\frac{56}{33}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $33\\text{-}56\\text{-}65$ right triangle (legs $33$, $56$, hypotenuse $65$); read off $\\cos\\alpha = \\frac{56}{65}$.",
+          "check": [
+            "33**2 + 56**2 == 65**2",
+            "Rational(33,65)**2 + Rational(56,65)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v30",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{16}{65}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{63}{16}$",
+            "$\\frac{16}{63}$",
+            "$\\frac{16}{65}$",
+            "$\\frac{63}{65}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $16\\text{-}63\\text{-}65$ right triangle (legs $16$, $63$, hypotenuse $65$); read off $\\tan\\alpha = \\frac{16}{63}$.",
+          "check": [
+            "16**2 + 63**2 == 65**2",
+            "Rational(16,65)**2 + Rational(63,65)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v31",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{55}{73}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{55}{73}$",
+            "$\\frac{48}{55}$",
+            "$\\frac{48}{73}$",
+            "$\\frac{55}{48}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $48\\text{-}55\\text{-}73$ right triangle (legs $48$, $55$, hypotenuse $73$); read off $\\sin\\alpha = \\frac{48}{73}$.",
+          "check": [
+            "48**2 + 55**2 == 73**2",
+            "Rational(48,73)**2 + Rational(55,73)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v32",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{77}{85}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{77}{36}$",
+            "$\\frac{36}{85}$",
+            "$\\frac{77}{85}$",
+            "$\\frac{36}{77}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $36\\text{-}77\\text{-}85$ right triangle (legs $36$, $77$, hypotenuse $85$); read off $\\tan\\alpha = \\frac{36}{77}$.",
+          "check": [
+            "36**2 + 77**2 == 85**2",
+            "Rational(36,85)**2 + Rational(77,85)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v33",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{39}{89}$. Find $\\cos\\alpha$.",
+          "options": [
+            "$\\frac{80}{89}$",
+            "$\\frac{39}{89}$",
+            "$\\frac{39}{80}$",
+            "$\\frac{80}{39}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the $39\\text{-}80\\text{-}89$ right triangle (legs $39$, $80$, hypotenuse $89$); read off $\\cos\\alpha = \\frac{80}{89}$.",
+          "check": [
+            "39**2 + 80**2 == 89**2",
+            "Rational(39,89)**2 + Rational(80,89)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v34",
+          "statement": "An acute angle $\\alpha$ has $\\sin\\alpha = \\dfrac{65}{97}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{72}{65}$",
+            "$\\frac{65}{72}$",
+            "$\\frac{65}{97}$",
+            "$\\frac{72}{97}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the $65\\text{-}72\\text{-}97$ right triangle (legs $65$, $72$, hypotenuse $97$); read off $\\tan\\alpha = \\frac{65}{72}$.",
+          "check": [
+            "65**2 + 72**2 == 97**2",
+            "Rational(65,97)**2 + Rational(72,97)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v35",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{99}{101}$. Find $\\sin\\alpha$.",
+          "options": [
+            "$\\frac{99}{101}$",
+            "$\\frac{20}{99}$",
+            "$\\frac{20}{101}$",
+            "$\\frac{99}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the $20\\text{-}99\\text{-}101$ right triangle (legs $20$, $99$, hypotenuse $101$); read off $\\sin\\alpha = \\frac{20}{101}$.",
+          "check": [
+            "20**2 + 99**2 == 101**2",
+            "Rational(20,101)**2 + Rational(99,101)**2 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-sc-v36",
+          "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{91}{109}$. Find $\\tan\\alpha$.",
+          "options": [
+            "$\\frac{91}{60}$",
+            "$\\frac{60}{109}$",
+            "$\\frac{91}{109}$",
+            "$\\frac{60}{91}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the $60\\text{-}91\\text{-}109$ right triangle (legs $60$, $91$, hypotenuse $109$); read off $\\tan\\alpha = \\frac{60}{91}$.",
+          "check": [
+            "60**2 + 91**2 == 109**2",
+            "Rational(60,109)**2 + Rational(91,109)**2 == 1"
           ]
         }
       ]
@@ -287,16 +2239,16 @@
       "skill": "Two mirror solutions per turn; supplementary for positive k.",
       "variants": [
         {
-          "id": "trig-solve-v1",
-          "statement": "How many solutions does $\\sin x = \\dfrac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "id": "TRIG-ss-v01",
+          "statement": "How many solutions does $\\sin x = \\frac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
           "options": [
             "$2 \\text{ solutions, sum } 180°$",
             "$1 \\text{ solution, sum } 30°$",
             "$2 \\text{ solutions, sum } 360°$",
-            "$2 \\text{ solutions, sum } 120°$"
+            "$4 \\text{ solutions, sum } 180°$"
           ],
           "correctIndex": 0,
-          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 30°$ and $x = 150°$ (mirror pair). Sum: $180°$.",
+          "explanation": "On one turn the solutions are $30°, 150°$, so there are 2 of them with sum $180°$.",
           "check": [
             "sin(rad(30)) == 1/2",
             "sin(rad(150)) == 1/2",
@@ -304,16 +2256,16 @@
           ]
         },
         {
-          "id": "trig-solve-v2",
-          "statement": "How many solutions does $\\sin x = \\dfrac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "id": "TRIG-ss-v02",
+          "statement": "How many solutions does $\\sin x = \\frac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
           "options": [
-            "$2 \\text{ solutions, sum } 180°$",
             "$1 \\text{ solution, sum } 60°$",
+            "$2 \\text{ solutions, sum } 180°$",
             "$2 \\text{ solutions, sum } 360°$",
-            "$2 \\text{ solutions, sum } 60°$"
+            "$4 \\text{ solutions, sum } 180°$"
           ],
-          "correctIndex": 0,
-          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 60°$ and $x = 120°$ (mirror pair). Sum: $180°$.",
+          "correctIndex": 1,
+          "explanation": "On one turn the solutions are $60°, 120°$, so there are 2 of them with sum $180°$.",
           "check": [
             "sin(rad(60)) == sqrt(3)/2",
             "sin(rad(120)) == sqrt(3)/2",
@@ -321,16 +2273,16 @@
           ]
         },
         {
-          "id": "trig-solve-v3",
-          "statement": "How many solutions does $\\sin x = \\dfrac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "id": "TRIG-ss-v03",
+          "statement": "How many solutions does $\\sin x = \\frac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
           "options": [
-            "$2 \\text{ solutions, sum } 180°$",
             "$1 \\text{ solution, sum } 45°$",
             "$2 \\text{ solutions, sum } 360°$",
-            "$2 \\text{ solutions, sum } 90°$"
+            "$2 \\text{ solutions, sum } 180°$",
+            "$4 \\text{ solutions, sum } 180°$"
           ],
-          "correctIndex": 0,
-          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 45°$ and $x = 135°$ (mirror pair). Sum: $180°$.",
+          "correctIndex": 2,
+          "explanation": "On one turn the solutions are $45°, 135°$, so there are 2 of them with sum $180°$.",
           "check": [
             "sin(rad(45)) == sqrt(2)/2",
             "sin(rad(135)) == sqrt(2)/2",
@@ -338,20 +2290,556 @@
           ]
         },
         {
-          "id": "trig-solve-v4",
-          "statement": "How many solutions does $\\sin x = -\\dfrac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "id": "TRIG-ss-v04",
+          "statement": "How many solutions does $\\sin x = -\\frac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
           "options": [
-            "$2 \\text{ solutions, sum } 540°$",
             "$1 \\text{ solution, sum } 210°$",
-            "$2 \\text{ solutions, sum } 720°$",
-            "$2 \\text{ solutions, sum } 120°$"
+            "$2 \\text{ solutions, sum } 1080°$",
+            "$4 \\text{ solutions, sum } 540°$",
+            "$2 \\text{ solutions, sum } 540°$"
           ],
-          "correctIndex": 0,
-          "explanation": "Sine takes each value in $(-1; 1)$ twice per turn: at $x = 210°$ and $x = 330°$ (mirror pair). Sum: $540°$.",
+          "correctIndex": 3,
+          "explanation": "On one turn the solutions are $210°, 330°$, so there are 2 of them with sum $540°$.",
           "check": [
             "sin(rad(210)) == -1/2",
             "sin(rad(330)) == -1/2",
             "210 + 330 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v05",
+          "statement": "How many solutions does $\\sin x = -\\frac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 540°$",
+            "$1 \\text{ solution, sum } 240°$",
+            "$2 \\text{ solutions, sum } 1080°$",
+            "$4 \\text{ solutions, sum } 540°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On one turn the solutions are $240°, 300°$, so there are 2 of them with sum $540°$.",
+          "check": [
+            "sin(rad(240)) == -sqrt(3)/2",
+            "sin(rad(300)) == -sqrt(3)/2",
+            "240 + 300 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v06",
+          "statement": "How many solutions does $\\sin x = -\\frac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 225°$",
+            "$2 \\text{ solutions, sum } 540°$",
+            "$2 \\text{ solutions, sum } 1080°$",
+            "$4 \\text{ solutions, sum } 540°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On one turn the solutions are $225°, 315°$, so there are 2 of them with sum $540°$.",
+          "check": [
+            "sin(rad(225)) == -sqrt(2)/2",
+            "sin(rad(315)) == -sqrt(2)/2",
+            "225 + 315 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v07",
+          "statement": "How many solutions does $\\sin x = 0$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 0°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 180°$",
+            "$4 \\text{ solutions, sum } 180°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On one turn the solutions are $0°, 180°$, so there are 2 of them with sum $180°$.",
+          "check": [
+            "sin(rad(0)) == 0",
+            "sin(rad(180)) == 0",
+            "0 + 180 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v08",
+          "statement": "How many solutions does $\\sin x = 1$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 180°$",
+            "$0 \\text{ solutions, sum } 0°$",
+            "$3 \\text{ solutions, sum } 180°$",
+            "$1 \\text{ solution, sum } 90°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On one turn the solutions are $90°$, so there is 1 with sum $90°$.",
+          "check": [
+            "sin(rad(90)) == 1",
+            "90 == 90"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v09",
+          "statement": "How many solutions does $\\sin x = -1$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 270°$",
+            "$2 \\text{ solutions, sum } 540°$",
+            "$2 \\text{ solutions, sum } 180°$",
+            "$0 \\text{ solutions, sum } 0°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On one turn the solutions are $270°$, so there is 1 with sum $270°$.",
+          "check": [
+            "sin(rad(270)) == -1",
+            "270 == 270"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v10",
+          "statement": "How many solutions does $\\cos x = \\frac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 60°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$4 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On one turn the solutions are $60°, 300°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(60)) == 1/2",
+            "cos(rad(300)) == 1/2",
+            "60 + 300 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v11",
+          "statement": "How many solutions does $\\cos x = \\frac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 30°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$4 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On one turn the solutions are $30°, 330°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(30)) == sqrt(3)/2",
+            "cos(rad(330)) == sqrt(3)/2",
+            "30 + 330 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v12",
+          "statement": "How many solutions does $\\cos x = \\frac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 45°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$4 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On one turn the solutions are $45°, 315°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(45)) == sqrt(2)/2",
+            "cos(rad(315)) == sqrt(2)/2",
+            "45 + 315 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v13",
+          "statement": "How many solutions does $\\cos x = -\\frac{1}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 360°$",
+            "$1 \\text{ solution, sum } 120°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$4 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On one turn the solutions are $120°, 240°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(120)) == -1/2",
+            "cos(rad(240)) == -1/2",
+            "120 + 240 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v14",
+          "statement": "How many solutions does $\\cos x = -\\frac{\\sqrt{3}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 150°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$4 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On one turn the solutions are $150°, 210°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(150)) == -sqrt(3)/2",
+            "cos(rad(210)) == -sqrt(3)/2",
+            "150 + 210 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v15",
+          "statement": "How many solutions does $\\cos x = -\\frac{\\sqrt{2}}{2}$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 135°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$4 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On one turn the solutions are $135°, 225°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(135)) == -sqrt(2)/2",
+            "cos(rad(225)) == -sqrt(2)/2",
+            "135 + 225 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v16",
+          "statement": "How many solutions does $\\cos x = 0$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 90°$",
+            "$2 \\text{ solutions, sum } 720°$",
+            "$4 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 360°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On one turn the solutions are $90°, 270°$, so there are 2 of them with sum $360°$.",
+          "check": [
+            "cos(rad(90)) == 0",
+            "cos(rad(270)) == 0",
+            "90 + 270 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v17",
+          "statement": "How many solutions does $\\cos x = 1$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$1 \\text{ solution, sum } 0°$",
+            "$2 \\text{ solutions, sum } 360°$",
+            "$2 \\text{ solutions, sum } 180°$",
+            "$0 \\text{ solutions, sum } 0°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On one turn the solutions are $0°$, so there is 1 with sum $0°$.",
+          "check": [
+            "cos(rad(0)) == 1",
+            "0 == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v18",
+          "statement": "How many solutions does $\\cos x = -1$ have on $[0°; 360°)$ — and what is their SUM?",
+          "options": [
+            "$2 \\text{ solutions, sum } 360°$",
+            "$1 \\text{ solution, sum } 180°$",
+            "$2 \\text{ solutions, sum } 180°$",
+            "$0 \\text{ solutions, sum } 0°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On one turn the solutions are $180°$, so there is 1 with sum $180°$.",
+          "check": [
+            "cos(rad(180)) == -1",
+            "180 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v19",
+          "statement": "Find the SUM of all solutions of $\\sin x = \\frac{1}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$30°$",
+            "$360°$",
+            "$180°$",
+            "$45°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The solutions are $30°, 150°$; their sum is $180°$.",
+          "check": [
+            "sin(rad(30)) == 1/2",
+            "sin(rad(150)) == 1/2",
+            "30 + 150 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v20",
+          "statement": "Find the SUM of all solutions of $\\sin x = \\frac{\\sqrt{3}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$60°$",
+            "$360°$",
+            "$45°$",
+            "$180°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The solutions are $60°, 120°$; their sum is $180°$.",
+          "check": [
+            "sin(rad(60)) == sqrt(3)/2",
+            "sin(rad(120)) == sqrt(3)/2",
+            "60 + 120 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v21",
+          "statement": "Find the SUM of all solutions of $\\sin x = \\frac{\\sqrt{2}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$180°$",
+            "$45°$",
+            "$360°$",
+            "$90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The solutions are $45°, 135°$; their sum is $180°$.",
+          "check": [
+            "sin(rad(45)) == sqrt(2)/2",
+            "sin(rad(135)) == sqrt(2)/2",
+            "45 + 135 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v22",
+          "statement": "Find the SUM of all solutions of $\\sin x = -\\frac{1}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$210°$",
+            "$540°$",
+            "$1080°$",
+            "$360°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The solutions are $210°, 330°$; their sum is $540°$.",
+          "check": [
+            "sin(rad(210)) == -1/2",
+            "sin(rad(330)) == -1/2",
+            "210 + 330 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v23",
+          "statement": "Find the SUM of all solutions of $\\sin x = -\\frac{\\sqrt{3}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$240°$",
+            "$1080°$",
+            "$540°$",
+            "$360°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The solutions are $240°, 300°$; their sum is $540°$.",
+          "check": [
+            "sin(rad(240)) == -sqrt(3)/2",
+            "sin(rad(300)) == -sqrt(3)/2",
+            "240 + 300 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v24",
+          "statement": "Find the SUM of all solutions of $\\sin x = -\\frac{\\sqrt{2}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$225°$",
+            "$1080°$",
+            "$360°$",
+            "$540°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The solutions are $225°, 315°$; their sum is $540°$.",
+          "check": [
+            "sin(rad(225)) == -sqrt(2)/2",
+            "sin(rad(315)) == -sqrt(2)/2",
+            "225 + 315 == 540"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v25",
+          "statement": "Find the SUM of all solutions of $\\sin x = 0$ on $[0°; 360°)$.",
+          "options": [
+            "$180°$",
+            "$0°$",
+            "$360°$",
+            "$45°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The solutions are $0°, 180°$; their sum is $180°$.",
+          "check": [
+            "sin(rad(0)) == 0",
+            "sin(rad(180)) == 0",
+            "0 + 180 == 180"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v26",
+          "statement": "Find the SUM of all solutions of $\\sin x = 1$ on $[0°; 360°)$.",
+          "options": [
+            "$180°$",
+            "$90°$",
+            "$360°$",
+            "$45°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The solutions are $90°$; their sum is $90°$.",
+          "check": [
+            "sin(rad(90)) == 1",
+            "90 == 90"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v27",
+          "statement": "Find the SUM of all solutions of $\\sin x = -1$ on $[0°; 360°)$.",
+          "options": [
+            "$540°$",
+            "$180°$",
+            "$270°$",
+            "$360°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The solutions are $270°$; their sum is $270°$.",
+          "check": [
+            "sin(rad(270)) == -1",
+            "270 == 270"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v28",
+          "statement": "Find the SUM of all solutions of $\\cos x = \\frac{1}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$60°$",
+            "$720°$",
+            "$180°$",
+            "$360°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The solutions are $60°, 300°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(60)) == 1/2",
+            "cos(rad(300)) == 1/2",
+            "60 + 300 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v29",
+          "statement": "Find the SUM of all solutions of $\\cos x = \\frac{\\sqrt{3}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$360°$",
+            "$30°$",
+            "$720°$",
+            "$180°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The solutions are $30°, 330°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(30)) == sqrt(3)/2",
+            "cos(rad(330)) == sqrt(3)/2",
+            "30 + 330 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v30",
+          "statement": "Find the SUM of all solutions of $\\cos x = \\frac{\\sqrt{2}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$45°$",
+            "$360°$",
+            "$720°$",
+            "$180°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The solutions are $45°, 315°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(45)) == sqrt(2)/2",
+            "cos(rad(315)) == sqrt(2)/2",
+            "45 + 315 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v31",
+          "statement": "Find the SUM of all solutions of $\\cos x = -\\frac{1}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$120°$",
+            "$720°$",
+            "$360°$",
+            "$180°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The solutions are $120°, 240°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(120)) == -1/2",
+            "cos(rad(240)) == -1/2",
+            "120 + 240 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v32",
+          "statement": "Find the SUM of all solutions of $\\cos x = -\\frac{\\sqrt{3}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$150°$",
+            "$720°$",
+            "$180°$",
+            "$360°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The solutions are $150°, 210°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(150)) == -sqrt(3)/2",
+            "cos(rad(210)) == -sqrt(3)/2",
+            "150 + 210 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v33",
+          "statement": "Find the SUM of all solutions of $\\cos x = -\\frac{\\sqrt{2}}{2}$ on $[0°; 360°)$.",
+          "options": [
+            "$360°$",
+            "$135°$",
+            "$720°$",
+            "$180°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The solutions are $135°, 225°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(135)) == -sqrt(2)/2",
+            "cos(rad(225)) == -sqrt(2)/2",
+            "135 + 225 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v34",
+          "statement": "Find the SUM of all solutions of $\\cos x = 0$ on $[0°; 360°)$.",
+          "options": [
+            "$90°$",
+            "$360°$",
+            "$720°$",
+            "$180°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The solutions are $90°, 270°$; their sum is $360°$.",
+          "check": [
+            "cos(rad(90)) == 0",
+            "cos(rad(270)) == 0",
+            "90 + 270 == 360"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v35",
+          "statement": "Find the SUM of all solutions of $\\cos x = 1$ on $[0°; 360°)$.",
+          "options": [
+            "$90°$",
+            "$180°$",
+            "$0°$",
+            "$360°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The solutions are $0°$; their sum is $0°$.",
+          "check": [
+            "cos(rad(0)) == 1",
+            "0 == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ss-v36",
+          "statement": "Find the SUM of all solutions of $\\cos x = -1$ on $[0°; 360°)$.",
+          "options": [
+            "$360°$",
+            "$45°$",
+            "$90°$",
+            "$180°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The solutions are $180°$; their sum is $180°$.",
+          "check": [
+            "cos(rad(180)) == -1",
+            "180 == 180"
           ]
         }
       ]
@@ -363,7 +2851,7 @@
       "skill": "sin² + cos² = 1, so 1 − cos² is sin².",
       "variants": [
         {
-          "id": "trig-ident-v1",
+          "id": "TRIG-id-v01",
           "statement": "If $\\cos\\alpha = \\dfrac{4}{5}$, evaluate $1 - \\cos^2\\alpha$.",
           "options": [
             "$\\frac{9}{25}$",
@@ -372,28 +2860,58 @@
             "$1$"
           ],
           "correctIndex": 0,
-          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{4}{5}$: $1 - \\frac{16}{25} = \\frac{9}{25}$.",
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{9}{25}$.",
           "check": [
             "1 - Rational(4,5)**2 == Rational(9,25)"
           ]
         },
         {
-          "id": "trig-ident-v2",
-          "statement": "If $\\cos\\alpha = \\dfrac{12}{13}$, evaluate $1 - \\cos^2\\alpha$.",
+          "id": "TRIG-id-v02",
+          "statement": "If $\\sin\\alpha = \\dfrac{3}{5}$, evaluate $1 - \\sin^2\\alpha$.",
           "options": [
-            "$\\frac{25}{169}$",
-            "$\\frac{144}{169}$",
-            "$\\frac{5}{13}$",
+            "$\\frac{9}{25}$",
+            "$\\frac{16}{25}$",
+            "$\\frac{4}{5}$",
             "$1$"
           ],
-          "correctIndex": 0,
-          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{12}{13}$: $1 - \\frac{144}{169} = \\frac{25}{169}$.",
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{16}{25}$.",
+          "check": [
+            "1 - Rational(3,5)**2 == Rational(16,25)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v03",
+          "statement": "If $\\cos\\alpha = \\dfrac{12}{13}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{169}$",
+            "$\\frac{5}{13}$",
+            "$\\frac{25}{169}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{25}{169}$.",
           "check": [
             "1 - Rational(12,13)**2 == Rational(25,169)"
           ]
         },
         {
-          "id": "trig-ident-v3",
+          "id": "TRIG-id-v04",
+          "statement": "If $\\sin\\alpha = \\dfrac{5}{13}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{25}{169}$",
+            "$\\frac{12}{13}$",
+            "$1$",
+            "$\\frac{144}{169}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{144}{169}$.",
+          "check": [
+            "1 - Rational(5,13)**2 == Rational(144,169)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v05",
           "statement": "If $\\cos\\alpha = \\dfrac{15}{17}$, evaluate $1 - \\cos^2\\alpha$.",
           "options": [
             "$\\frac{64}{289}$",
@@ -402,13 +2920,58 @@
             "$1$"
           ],
           "correctIndex": 0,
-          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{15}{17}$: $1 - \\frac{225}{289} = \\frac{64}{289}$.",
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{64}{289}$.",
           "check": [
             "1 - Rational(15,17)**2 == Rational(64,289)"
           ]
         },
         {
-          "id": "trig-ident-v4",
+          "id": "TRIG-id-v06",
+          "statement": "If $\\sin\\alpha = \\dfrac{8}{17}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{64}{289}$",
+            "$\\frac{225}{289}$",
+            "$\\frac{15}{17}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{225}{289}$.",
+          "check": [
+            "1 - Rational(8,17)**2 == Rational(225,289)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v07",
+          "statement": "If $\\cos\\alpha = \\dfrac{24}{25}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{576}{625}$",
+            "$\\frac{7}{25}$",
+            "$\\frac{49}{625}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{49}{625}$.",
+          "check": [
+            "1 - Rational(24,25)**2 == Rational(49,625)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v08",
+          "statement": "If $\\sin\\alpha = \\dfrac{7}{25}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{49}{625}$",
+            "$\\frac{24}{25}$",
+            "$1$",
+            "$\\frac{576}{625}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{576}{625}$.",
+          "check": [
+            "1 - Rational(7,25)**2 == Rational(576,625)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v09",
           "statement": "If $\\cos\\alpha = \\dfrac{21}{29}$, evaluate $1 - \\cos^2\\alpha$.",
           "options": [
             "$\\frac{400}{841}$",
@@ -417,9 +2980,414 @@
             "$1$"
           ],
           "correctIndex": 0,
-          "explanation": "Pythagorean identity: $1 - \\cos^2\\alpha = \\sin^2\\alpha$. With $\\cos\\alpha = \\frac{21}{29}$: $1 - \\frac{441}{841} = \\frac{400}{841}$.",
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{841}$.",
           "check": [
             "1 - Rational(21,29)**2 == Rational(400,841)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v10",
+          "statement": "If $\\sin\\alpha = \\dfrac{20}{29}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{841}$",
+            "$\\frac{441}{841}$",
+            "$\\frac{21}{29}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{441}{841}$.",
+          "check": [
+            "1 - Rational(20,29)**2 == Rational(441,841)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v11",
+          "statement": "If $\\cos\\alpha = \\dfrac{40}{41}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1600}{1681}$",
+            "$\\frac{9}{41}$",
+            "$\\frac{81}{1681}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{81}{1681}$.",
+          "check": [
+            "1 - Rational(40,41)**2 == Rational(81,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v12",
+          "statement": "If $\\sin\\alpha = \\dfrac{9}{41}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{81}{1681}$",
+            "$\\frac{40}{41}$",
+            "$1$",
+            "$\\frac{1600}{1681}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1600}{1681}$.",
+          "check": [
+            "1 - Rational(9,41)**2 == Rational(1600,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v13",
+          "statement": "If $\\cos\\alpha = \\dfrac{35}{37}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{1369}$",
+            "$\\frac{1225}{1369}$",
+            "$\\frac{12}{37}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{144}{1369}$.",
+          "check": [
+            "1 - Rational(35,37)**2 == Rational(144,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v14",
+          "statement": "If $\\sin\\alpha = \\dfrac{12}{37}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{1369}$",
+            "$\\frac{1225}{1369}$",
+            "$\\frac{35}{37}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1225}{1369}$.",
+          "check": [
+            "1 - Rational(12,37)**2 == Rational(1225,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v15",
+          "statement": "If $\\cos\\alpha = \\dfrac{60}{61}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{3600}{3721}$",
+            "$\\frac{11}{61}$",
+            "$\\frac{121}{3721}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{121}{3721}$.",
+          "check": [
+            "1 - Rational(60,61)**2 == Rational(121,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v16",
+          "statement": "If $\\sin\\alpha = \\dfrac{11}{61}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{121}{3721}$",
+            "$\\frac{60}{61}$",
+            "$1$",
+            "$\\frac{3600}{3721}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3600}{3721}$.",
+          "check": [
+            "1 - Rational(11,61)**2 == Rational(3600,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v17",
+          "statement": "If $\\cos\\alpha = \\dfrac{45}{53}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{784}{2809}$",
+            "$\\frac{2025}{2809}$",
+            "$\\frac{28}{53}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{784}{2809}$.",
+          "check": [
+            "1 - Rational(45,53)**2 == Rational(784,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v18",
+          "statement": "If $\\sin\\alpha = \\dfrac{28}{53}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{784}{2809}$",
+            "$\\frac{2025}{2809}$",
+            "$\\frac{45}{53}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{2025}{2809}$.",
+          "check": [
+            "1 - Rational(28,53)**2 == Rational(2025,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v19",
+          "statement": "If $\\cos\\alpha = \\dfrac{84}{85}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{7056}{7225}$",
+            "$\\frac{13}{85}$",
+            "$\\frac{169}{7225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{169}{7225}$.",
+          "check": [
+            "1 - Rational(84,85)**2 == Rational(169,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v20",
+          "statement": "If $\\sin\\alpha = \\dfrac{13}{85}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{169}{7225}$",
+            "$\\frac{84}{85}$",
+            "$1$",
+            "$\\frac{7056}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{7056}{7225}$.",
+          "check": [
+            "1 - Rational(13,85)**2 == Rational(7056,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v21",
+          "statement": "If $\\cos\\alpha = \\dfrac{56}{65}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1089}{4225}$",
+            "$\\frac{3136}{4225}$",
+            "$\\frac{33}{65}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1089}{4225}$.",
+          "check": [
+            "1 - Rational(56,65)**2 == Rational(1089,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v22",
+          "statement": "If $\\sin\\alpha = \\dfrac{33}{65}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1089}{4225}$",
+            "$\\frac{3136}{4225}$",
+            "$\\frac{56}{65}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3136}{4225}$.",
+          "check": [
+            "1 - Rational(33,65)**2 == Rational(3136,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v23",
+          "statement": "If $\\cos\\alpha = \\dfrac{63}{65}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{3969}{4225}$",
+            "$\\frac{16}{65}$",
+            "$\\frac{256}{4225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{256}{4225}$.",
+          "check": [
+            "1 - Rational(63,65)**2 == Rational(256,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v24",
+          "statement": "If $\\sin\\alpha = \\dfrac{16}{65}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{256}{4225}$",
+            "$\\frac{63}{65}$",
+            "$1$",
+            "$\\frac{3969}{4225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3969}{4225}$.",
+          "check": [
+            "1 - Rational(16,65)**2 == Rational(3969,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v25",
+          "statement": "If $\\cos\\alpha = \\dfrac{55}{73}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{2304}{5329}$",
+            "$\\frac{3025}{5329}$",
+            "$\\frac{48}{73}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{2304}{5329}$.",
+          "check": [
+            "1 - Rational(55,73)**2 == Rational(2304,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v26",
+          "statement": "If $\\sin\\alpha = \\dfrac{48}{73}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{2304}{5329}$",
+            "$\\frac{3025}{5329}$",
+            "$\\frac{55}{73}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3025}{5329}$.",
+          "check": [
+            "1 - Rational(48,73)**2 == Rational(3025,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v27",
+          "statement": "If $\\cos\\alpha = \\dfrac{77}{85}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{5929}{7225}$",
+            "$\\frac{36}{85}$",
+            "$\\frac{1296}{7225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1296}{7225}$.",
+          "check": [
+            "1 - Rational(77,85)**2 == Rational(1296,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v28",
+          "statement": "If $\\sin\\alpha = \\dfrac{36}{85}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1296}{7225}$",
+            "$\\frac{77}{85}$",
+            "$1$",
+            "$\\frac{5929}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5929}{7225}$.",
+          "check": [
+            "1 - Rational(36,85)**2 == Rational(5929,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v29",
+          "statement": "If $\\cos\\alpha = \\dfrac{80}{89}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1521}{7921}$",
+            "$\\frac{6400}{7921}$",
+            "$\\frac{39}{89}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1521}{7921}$.",
+          "check": [
+            "1 - Rational(80,89)**2 == Rational(1521,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v30",
+          "statement": "If $\\sin\\alpha = \\dfrac{39}{89}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1521}{7921}$",
+            "$\\frac{6400}{7921}$",
+            "$\\frac{80}{89}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{6400}{7921}$.",
+          "check": [
+            "1 - Rational(39,89)**2 == Rational(6400,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v31",
+          "statement": "If $\\cos\\alpha = \\dfrac{72}{97}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{5184}{9409}$",
+            "$\\frac{65}{97}$",
+            "$\\frac{4225}{9409}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{4225}{9409}$.",
+          "check": [
+            "1 - Rational(72,97)**2 == Rational(4225,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v32",
+          "statement": "If $\\sin\\alpha = \\dfrac{65}{97}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{4225}{9409}$",
+            "$\\frac{72}{97}$",
+            "$1$",
+            "$\\frac{5184}{9409}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5184}{9409}$.",
+          "check": [
+            "1 - Rational(65,97)**2 == Rational(5184,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v33",
+          "statement": "If $\\cos\\alpha = \\dfrac{99}{101}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{10201}$",
+            "$\\frac{9801}{10201}$",
+            "$\\frac{20}{101}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{10201}$.",
+          "check": [
+            "1 - Rational(99,101)**2 == Rational(400,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v34",
+          "statement": "If $\\sin\\alpha = \\dfrac{20}{101}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{10201}$",
+            "$\\frac{9801}{10201}$",
+            "$\\frac{99}{101}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{9801}{10201}$.",
+          "check": [
+            "1 - Rational(20,101)**2 == Rational(9801,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v35",
+          "statement": "If $\\cos\\alpha = \\dfrac{91}{109}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{8281}{11881}$",
+            "$\\frac{60}{109}$",
+            "$\\frac{3600}{11881}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{3600}{11881}$.",
+          "check": [
+            "1 - Rational(91,109)**2 == Rational(3600,11881)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v36",
+          "statement": "If $\\sin\\alpha = \\dfrac{60}{109}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{3600}{11881}$",
+            "$\\frac{91}{109}$",
+            "$1$",
+            "$\\frac{8281}{11881}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{8281}{11881}$.",
+          "check": [
+            "1 - Rational(60,109)**2 == Rational(8281,11881)"
           ]
         }
       ]
@@ -431,7 +3399,7 @@
       "skill": "sin 2α = 2 sin α cos α — never just double.",
       "variants": [
         {
-          "id": "trig-dbl-v1",
+          "id": "TRIG-da-v01",
           "statement": "An acute angle has $\\sin\\alpha = \\dfrac{3}{5}$ and $\\cos\\alpha = \\dfrac{4}{5}$. Find $\\sin 2\\alpha$.",
           "options": [
             "$\\frac{24}{25}$",
@@ -440,28 +3408,58 @@
             "$\\frac{7}{25}$"
           ],
           "correctIndex": 0,
-          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{3}{5} \\cdot \\frac{4}{5} = \\frac{24}{25}$. Doubling the ANGLE never doubles the sine.",
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{3}{5}\\cdot\\frac{4}{5} = \\frac{24}{25}$.",
           "check": [
             "2*Rational(3,5)*Rational(4,5) == Rational(24,25)"
           ]
         },
         {
-          "id": "trig-dbl-v2",
+          "id": "TRIG-da-v02",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{3}{5}$ and $\\cos\\alpha = \\dfrac{4}{5}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-7}{25}$",
+            "$\\frac{7}{25}$",
+            "$\\frac{24}{25}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{16}{25} - \\frac{9}{25} = \\frac{7}{25}$.",
+          "check": [
+            "Rational(4,5)**2 - Rational(3,5)**2 == Rational(7,25)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v03",
           "statement": "An acute angle has $\\sin\\alpha = \\dfrac{5}{13}$ and $\\cos\\alpha = \\dfrac{12}{13}$. Find $\\sin 2\\alpha$.",
           "options": [
-            "$\\frac{120}{169}$",
             "$\\frac{60}{169}$",
             "$\\frac{10}{13}$",
+            "$\\frac{120}{169}$",
             "$\\frac{119}{169}$"
           ],
-          "correctIndex": 0,
-          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{5}{13} \\cdot \\frac{12}{13} = \\frac{120}{169}$. Doubling the ANGLE never doubles the sine.",
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{5}{13}\\cdot\\frac{12}{13} = \\frac{120}{169}$.",
           "check": [
             "2*Rational(5,13)*Rational(12,13) == Rational(120,169)"
           ]
         },
         {
-          "id": "trig-dbl-v3",
+          "id": "TRIG-da-v04",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{5}{13}$ and $\\cos\\alpha = \\dfrac{12}{13}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-119}{169}$",
+            "$\\frac{120}{169}$",
+            "$1$",
+            "$\\frac{119}{169}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{144}{169} - \\frac{25}{169} = \\frac{119}{169}$.",
+          "check": [
+            "Rational(12,13)**2 - Rational(5,13)**2 == Rational(119,169)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v05",
           "statement": "An acute angle has $\\sin\\alpha = \\dfrac{8}{17}$ and $\\cos\\alpha = \\dfrac{15}{17}$. Find $\\sin 2\\alpha$.",
           "options": [
             "$\\frac{240}{289}$",
@@ -470,24 +3468,474 @@
             "$\\frac{161}{289}$"
           ],
           "correctIndex": 0,
-          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{8}{17} \\cdot \\frac{15}{17} = \\frac{240}{289}$. Doubling the ANGLE never doubles the sine.",
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{8}{17}\\cdot\\frac{15}{17} = \\frac{240}{289}$.",
           "check": [
             "2*Rational(8,17)*Rational(15,17) == Rational(240,289)"
           ]
         },
         {
-          "id": "trig-dbl-v4",
+          "id": "TRIG-da-v06",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{8}{17}$ and $\\cos\\alpha = \\dfrac{15}{17}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-161}{289}$",
+            "$\\frac{161}{289}$",
+            "$\\frac{240}{289}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{225}{289} - \\frac{64}{289} = \\frac{161}{289}$.",
+          "check": [
+            "Rational(15,17)**2 - Rational(8,17)**2 == Rational(161,289)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v07",
           "statement": "An acute angle has $\\sin\\alpha = \\dfrac{7}{25}$ and $\\cos\\alpha = \\dfrac{24}{25}$. Find $\\sin 2\\alpha$.",
           "options": [
-            "$\\frac{336}{625}$",
             "$\\frac{168}{625}$",
             "$\\frac{14}{25}$",
+            "$\\frac{336}{625}$",
             "$\\frac{527}{625}$"
           ],
-          "correctIndex": 0,
-          "explanation": "Double angle: $\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2 \\cdot \\frac{7}{25} \\cdot \\frac{24}{25} = \\frac{336}{625}$. Doubling the ANGLE never doubles the sine.",
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{7}{25}\\cdot\\frac{24}{25} = \\frac{336}{625}$.",
           "check": [
             "2*Rational(7,25)*Rational(24,25) == Rational(336,625)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v08",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{7}{25}$ and $\\cos\\alpha = \\dfrac{24}{25}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-527}{625}$",
+            "$\\frac{336}{625}$",
+            "$1$",
+            "$\\frac{527}{625}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{576}{625} - \\frac{49}{625} = \\frac{527}{625}$.",
+          "check": [
+            "Rational(24,25)**2 - Rational(7,25)**2 == Rational(527,625)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v09",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{20}{29}$ and $\\cos\\alpha = \\dfrac{21}{29}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{840}{841}$",
+            "$\\frac{420}{841}$",
+            "$\\frac{40}{29}$",
+            "$\\frac{41}{841}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{20}{29}\\cdot\\frac{21}{29} = \\frac{840}{841}$.",
+          "check": [
+            "2*Rational(20,29)*Rational(21,29) == Rational(840,841)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v10",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{20}{29}$ and $\\cos\\alpha = \\dfrac{21}{29}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-41}{841}$",
+            "$\\frac{41}{841}$",
+            "$\\frac{840}{841}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{441}{841} - \\frac{400}{841} = \\frac{41}{841}$.",
+          "check": [
+            "Rational(21,29)**2 - Rational(20,29)**2 == Rational(41,841)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v11",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{9}{41}$ and $\\cos\\alpha = \\dfrac{40}{41}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{360}{1681}$",
+            "$\\frac{18}{41}$",
+            "$\\frac{720}{1681}$",
+            "$\\frac{1519}{1681}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{9}{41}\\cdot\\frac{40}{41} = \\frac{720}{1681}$.",
+          "check": [
+            "2*Rational(9,41)*Rational(40,41) == Rational(720,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v12",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{9}{41}$ and $\\cos\\alpha = \\dfrac{40}{41}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-1519}{1681}$",
+            "$\\frac{720}{1681}$",
+            "$1$",
+            "$\\frac{1519}{1681}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{1600}{1681} - \\frac{81}{1681} = \\frac{1519}{1681}$.",
+          "check": [
+            "Rational(40,41)**2 - Rational(9,41)**2 == Rational(1519,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v13",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{12}{37}$ and $\\cos\\alpha = \\dfrac{35}{37}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{840}{1369}$",
+            "$\\frac{420}{1369}$",
+            "$\\frac{24}{37}$",
+            "$\\frac{1081}{1369}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{12}{37}\\cdot\\frac{35}{37} = \\frac{840}{1369}$.",
+          "check": [
+            "2*Rational(12,37)*Rational(35,37) == Rational(840,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v14",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{12}{37}$ and $\\cos\\alpha = \\dfrac{35}{37}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-1081}{1369}$",
+            "$\\frac{1081}{1369}$",
+            "$\\frac{840}{1369}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{1225}{1369} - \\frac{144}{1369} = \\frac{1081}{1369}$.",
+          "check": [
+            "Rational(35,37)**2 - Rational(12,37)**2 == Rational(1081,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v15",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{11}{61}$ and $\\cos\\alpha = \\dfrac{60}{61}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{660}{3721}$",
+            "$\\frac{22}{61}$",
+            "$\\frac{1320}{3721}$",
+            "$\\frac{3479}{3721}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{11}{61}\\cdot\\frac{60}{61} = \\frac{1320}{3721}$.",
+          "check": [
+            "2*Rational(11,61)*Rational(60,61) == Rational(1320,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v16",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{11}{61}$ and $\\cos\\alpha = \\dfrac{60}{61}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-3479}{3721}$",
+            "$\\frac{1320}{3721}$",
+            "$1$",
+            "$\\frac{3479}{3721}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{3600}{3721} - \\frac{121}{3721} = \\frac{3479}{3721}$.",
+          "check": [
+            "Rational(60,61)**2 - Rational(11,61)**2 == Rational(3479,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v17",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{28}{53}$ and $\\cos\\alpha = \\dfrac{45}{53}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{2520}{2809}$",
+            "$\\frac{1260}{2809}$",
+            "$\\frac{56}{53}$",
+            "$\\frac{1241}{2809}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{28}{53}\\cdot\\frac{45}{53} = \\frac{2520}{2809}$.",
+          "check": [
+            "2*Rational(28,53)*Rational(45,53) == Rational(2520,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v18",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{28}{53}$ and $\\cos\\alpha = \\dfrac{45}{53}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-1241}{2809}$",
+            "$\\frac{1241}{2809}$",
+            "$\\frac{2520}{2809}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{2025}{2809} - \\frac{784}{2809} = \\frac{1241}{2809}$.",
+          "check": [
+            "Rational(45,53)**2 - Rational(28,53)**2 == Rational(1241,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v19",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{13}{85}$ and $\\cos\\alpha = \\dfrac{84}{85}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{1092}{7225}$",
+            "$\\frac{26}{85}$",
+            "$\\frac{2184}{7225}$",
+            "$\\frac{6887}{7225}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{13}{85}\\cdot\\frac{84}{85} = \\frac{2184}{7225}$.",
+          "check": [
+            "2*Rational(13,85)*Rational(84,85) == Rational(2184,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v20",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{13}{85}$ and $\\cos\\alpha = \\dfrac{84}{85}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-6887}{7225}$",
+            "$\\frac{2184}{7225}$",
+            "$1$",
+            "$\\frac{6887}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{7056}{7225} - \\frac{169}{7225} = \\frac{6887}{7225}$.",
+          "check": [
+            "Rational(84,85)**2 - Rational(13,85)**2 == Rational(6887,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v21",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{33}{65}$ and $\\cos\\alpha = \\dfrac{56}{65}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{3696}{4225}$",
+            "$\\frac{1848}{4225}$",
+            "$\\frac{66}{65}$",
+            "$\\frac{2047}{4225}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{33}{65}\\cdot\\frac{56}{65} = \\frac{3696}{4225}$.",
+          "check": [
+            "2*Rational(33,65)*Rational(56,65) == Rational(3696,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v22",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{33}{65}$ and $\\cos\\alpha = \\dfrac{56}{65}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-2047}{4225}$",
+            "$\\frac{2047}{4225}$",
+            "$\\frac{3696}{4225}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{3136}{4225} - \\frac{1089}{4225} = \\frac{2047}{4225}$.",
+          "check": [
+            "Rational(56,65)**2 - Rational(33,65)**2 == Rational(2047,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v23",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{16}{65}$ and $\\cos\\alpha = \\dfrac{63}{65}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{1008}{4225}$",
+            "$\\frac{32}{65}$",
+            "$\\frac{2016}{4225}$",
+            "$\\frac{3713}{4225}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{16}{65}\\cdot\\frac{63}{65} = \\frac{2016}{4225}$.",
+          "check": [
+            "2*Rational(16,65)*Rational(63,65) == Rational(2016,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v24",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{16}{65}$ and $\\cos\\alpha = \\dfrac{63}{65}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-3713}{4225}$",
+            "$\\frac{2016}{4225}$",
+            "$1$",
+            "$\\frac{3713}{4225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{3969}{4225} - \\frac{256}{4225} = \\frac{3713}{4225}$.",
+          "check": [
+            "Rational(63,65)**2 - Rational(16,65)**2 == Rational(3713,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v25",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{48}{73}$ and $\\cos\\alpha = \\dfrac{55}{73}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{5280}{5329}$",
+            "$\\frac{2640}{5329}$",
+            "$\\frac{96}{73}$",
+            "$\\frac{721}{5329}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{48}{73}\\cdot\\frac{55}{73} = \\frac{5280}{5329}$.",
+          "check": [
+            "2*Rational(48,73)*Rational(55,73) == Rational(5280,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v26",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{48}{73}$ and $\\cos\\alpha = \\dfrac{55}{73}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-721}{5329}$",
+            "$\\frac{721}{5329}$",
+            "$\\frac{5280}{5329}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{3025}{5329} - \\frac{2304}{5329} = \\frac{721}{5329}$.",
+          "check": [
+            "Rational(55,73)**2 - Rational(48,73)**2 == Rational(721,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v27",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{36}{85}$ and $\\cos\\alpha = \\dfrac{77}{85}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{2772}{7225}$",
+            "$\\frac{72}{85}$",
+            "$\\frac{5544}{7225}$",
+            "$\\frac{4633}{7225}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{36}{85}\\cdot\\frac{77}{85} = \\frac{5544}{7225}$.",
+          "check": [
+            "2*Rational(36,85)*Rational(77,85) == Rational(5544,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v28",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{36}{85}$ and $\\cos\\alpha = \\dfrac{77}{85}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-4633}{7225}$",
+            "$\\frac{5544}{7225}$",
+            "$1$",
+            "$\\frac{4633}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{5929}{7225} - \\frac{1296}{7225} = \\frac{4633}{7225}$.",
+          "check": [
+            "Rational(77,85)**2 - Rational(36,85)**2 == Rational(4633,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v29",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{39}{89}$ and $\\cos\\alpha = \\dfrac{80}{89}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{6240}{7921}$",
+            "$\\frac{3120}{7921}$",
+            "$\\frac{78}{89}$",
+            "$\\frac{4879}{7921}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{39}{89}\\cdot\\frac{80}{89} = \\frac{6240}{7921}$.",
+          "check": [
+            "2*Rational(39,89)*Rational(80,89) == Rational(6240,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v30",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{39}{89}$ and $\\cos\\alpha = \\dfrac{80}{89}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-4879}{7921}$",
+            "$\\frac{4879}{7921}$",
+            "$\\frac{6240}{7921}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{6400}{7921} - \\frac{1521}{7921} = \\frac{4879}{7921}$.",
+          "check": [
+            "Rational(80,89)**2 - Rational(39,89)**2 == Rational(4879,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v31",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{65}{97}$ and $\\cos\\alpha = \\dfrac{72}{97}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{4680}{9409}$",
+            "$\\frac{130}{97}$",
+            "$\\frac{9360}{9409}$",
+            "$\\frac{959}{9409}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{65}{97}\\cdot\\frac{72}{97} = \\frac{9360}{9409}$.",
+          "check": [
+            "2*Rational(65,97)*Rational(72,97) == Rational(9360,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v32",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{65}{97}$ and $\\cos\\alpha = \\dfrac{72}{97}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-959}{9409}$",
+            "$\\frac{9360}{9409}$",
+            "$1$",
+            "$\\frac{959}{9409}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{5184}{9409} - \\frac{4225}{9409} = \\frac{959}{9409}$.",
+          "check": [
+            "Rational(72,97)**2 - Rational(65,97)**2 == Rational(959,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v33",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{20}{101}$ and $\\cos\\alpha = \\dfrac{99}{101}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{3960}{10201}$",
+            "$\\frac{1980}{10201}$",
+            "$\\frac{40}{101}$",
+            "$\\frac{9401}{10201}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{20}{101}\\cdot\\frac{99}{101} = \\frac{3960}{10201}$.",
+          "check": [
+            "2*Rational(20,101)*Rational(99,101) == Rational(3960,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v34",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{20}{101}$ and $\\cos\\alpha = \\dfrac{99}{101}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-9401}{10201}$",
+            "$\\frac{9401}{10201}$",
+            "$\\frac{3960}{10201}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{9801}{10201} - \\frac{400}{10201} = \\frac{9401}{10201}$.",
+          "check": [
+            "Rational(99,101)**2 - Rational(20,101)**2 == Rational(9401,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v35",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{60}{109}$ and $\\cos\\alpha = \\dfrac{91}{109}$. Find $\\sin 2\\alpha$.",
+          "options": [
+            "$\\frac{5460}{11881}$",
+            "$\\frac{120}{109}$",
+            "$\\frac{10920}{11881}$",
+            "$\\frac{4681}{11881}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha = 2\\cdot\\frac{60}{109}\\cdot\\frac{91}{109} = \\frac{10920}{11881}$.",
+          "check": [
+            "2*Rational(60,109)*Rational(91,109) == Rational(10920,11881)"
+          ]
+        },
+        {
+          "id": "TRIG-da-v36",
+          "statement": "An acute angle has $\\sin\\alpha = \\dfrac{60}{109}$ and $\\cos\\alpha = \\dfrac{91}{109}$. Find $\\cos 2\\alpha$.",
+          "options": [
+            "$\\frac{-4681}{11881}$",
+            "$\\frac{10920}{11881}$",
+            "$1$",
+            "$\\frac{4681}{11881}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha = \\frac{8281}{11881} - \\frac{3600}{11881} = \\frac{4681}{11881}$.",
+          "check": [
+            "Rational(91,109)**2 - Rational(60,109)**2 == Rational(4681,11881)"
           ]
         }
       ]
@@ -499,63 +3947,543 @@
       "skill": "c² = a² + b² − 2ab·cos C; 60° and 120° keep it exact.",
       "variants": [
         {
-          "id": "trig-loc-v1",
-          "statement": "A triangle has sides $5$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "id": "TRIG-lc-v01",
+          "statement": "A triangle has sides $2$ and $3$ with a $60°$ angle between them. Find the third side.",
           "options": [
-            "$7$",
-            "$\\sqrt{89}$",
-            "$\\sqrt{129}$",
-            "$12$"
+            "$\\sqrt{7}$",
+            "$\\sqrt{19}$",
+            "$\\sqrt{13}$",
+            "$5$"
           ],
           "correctIndex": 0,
-          "explanation": "Law of cosines: $c^2 = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8\\cos 60° = 25 + 64 - 80 \\cdot (\\frac{1}{2}) = 49$, so $c = 7$.",
+          "explanation": "Law of cosines: $c^2 = 2^2 + 3^2 - 2\\cdot2\\cdot3\\cos 60° = 4+9-6 = 7$, so $c = \\sqrt{7}$.",
           "check": [
-            "sqrt(5**2 + 8**2 - 2*5*8*cos(rad(60))) == 7"
+            "sqrt(2**2 + 3**2 - 2*2*3*cos(rad(60))) == sqrt(7)"
           ]
         },
         {
-          "id": "trig-loc-v2",
-          "statement": "A triangle has sides $3$ and $5$ with a $120°$ angle between them. Find the third side.",
+          "id": "TRIG-lc-v02",
+          "statement": "A triangle has sides $2$ and $3$ with a $120°$ angle between them. Find the third side.",
           "options": [
+            "$\\sqrt{7}$",
+            "$\\sqrt{19}$",
+            "$\\sqrt{13}$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 3^2 - 2\\cdot2\\cdot3\\cos 120° = 4+9+6 = 19$, so $c = \\sqrt{19}$.",
+          "check": [
+            "sqrt(2**2 + 3**2 - 2*2*3*cos(rad(120))) == sqrt(19)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v03",
+          "statement": "A triangle has sides $2$ and $4$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{28}$",
+            "$\\sqrt{20}$",
+            "$\\sqrt{12}$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 4^2 - 2\\cdot2\\cdot4\\cos 60° = 4+16-8 = 12$, so $c = \\sqrt{12}$.",
+          "check": [
+            "sqrt(2**2 + 4**2 - 2*2*4*cos(rad(60))) == sqrt(12)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v04",
+          "statement": "A triangle has sides $2$ and $4$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{12}$",
+            "$\\sqrt{20}$",
+            "$6$",
+            "$\\sqrt{28}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 4^2 - 2\\cdot2\\cdot4\\cos 120° = 4+16+8 = 28$, so $c = \\sqrt{28}$.",
+          "check": [
+            "sqrt(2**2 + 4**2 - 2*2*4*cos(rad(120))) == sqrt(28)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v05",
+          "statement": "A triangle has sides $3$ and $4$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{13}$",
+            "$\\sqrt{37}$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 4^2 - 2\\cdot3\\cdot4\\cos 60° = 9+16-12 = 13$, so $c = \\sqrt{13}$.",
+          "check": [
+            "sqrt(3**2 + 4**2 - 2*3*4*cos(rad(60))) == sqrt(13)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v06",
+          "statement": "A triangle has sides $3$ and $4$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{13}$",
+            "$\\sqrt{37}$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 4^2 - 2\\cdot3\\cdot4\\cos 120° = 9+16+12 = 37$, so $c = \\sqrt{37}$.",
+          "check": [
+            "sqrt(3**2 + 4**2 - 2*3*4*cos(rad(120))) == sqrt(37)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v07",
+          "statement": "A triangle has sides $2$ and $5$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{39}$",
+            "$\\sqrt{29}$",
+            "$\\sqrt{19}$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 5^2 - 2\\cdot2\\cdot5\\cos 60° = 4+25-10 = 19$, so $c = \\sqrt{19}$.",
+          "check": [
+            "sqrt(2**2 + 5**2 - 2*2*5*cos(rad(60))) == sqrt(19)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v08",
+          "statement": "A triangle has sides $2$ and $5$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{19}$",
+            "$\\sqrt{29}$",
+            "$7$",
+            "$\\sqrt{39}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 5^2 - 2\\cdot2\\cdot5\\cos 120° = 4+25+10 = 39$, so $c = \\sqrt{39}$.",
+          "check": [
+            "sqrt(2**2 + 5**2 - 2*2*5*cos(rad(120))) == sqrt(39)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v09",
+          "statement": "A triangle has sides $3$ and $5$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{19}$",
             "$7$",
             "$\\sqrt{34}$",
-            "$\\sqrt{19}$",
             "$8$"
           ],
           "correctIndex": 0,
-          "explanation": "Law of cosines: $c^2 = 3^2 + 5^2 - 2 \\cdot 3 \\cdot 5\\cos 120° = 9 + 25 - 30 \\cdot (- \\frac{1}{2}) = 49$, so $c = 7$.",
+          "explanation": "Law of cosines: $c^2 = 3^2 + 5^2 - 2\\cdot3\\cdot5\\cos 60° = 9+25-15 = 19$, so $c = \\sqrt{19}$.",
+          "check": [
+            "sqrt(3**2 + 5**2 - 2*3*5*cos(rad(60))) == sqrt(19)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v10",
+          "statement": "A triangle has sides $3$ and $5$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{19}$",
+            "$7$",
+            "$\\sqrt{34}$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 5^2 - 2\\cdot3\\cdot5\\cos 120° = 9+25+15 = 49$, so $c = 7$.",
           "check": [
             "sqrt(3**2 + 5**2 - 2*3*5*cos(rad(120))) == 7"
           ]
         },
         {
-          "id": "trig-loc-v3",
-          "statement": "A triangle has sides $7$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "id": "TRIG-lc-v11",
+          "statement": "A triangle has sides $4$ and $5$ with a $60°$ angle between them. Find the third side.",
           "options": [
-            "$\\sqrt{57}$",
-            "$\\sqrt{113}$",
-            "$13$",
-            "$14$"
+            "$\\sqrt{61}$",
+            "$\\sqrt{41}$",
+            "$\\sqrt{21}$",
+            "$9$"
           ],
-          "correctIndex": 0,
-          "explanation": "Law of cosines: $c^2 = 7^2 + 8^2 - 2 \\cdot 7 \\cdot 8\\cos 60° = 49 + 64 - 112 \\cdot (\\frac{1}{2}) = 57$, so $c = \\sqrt{57}$.",
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 5^2 - 2\\cdot4\\cdot5\\cos 60° = 16+25-20 = 21$, so $c = \\sqrt{21}$.",
           "check": [
-            "sqrt(7**2 + 8**2 - 2*7*8*cos(rad(60))) == sqrt(57)"
+            "sqrt(4**2 + 5**2 - 2*4*5*cos(rad(60))) == sqrt(21)"
           ]
         },
         {
-          "id": "trig-loc-v4",
-          "statement": "A triangle has sides $5$ and $8$ with a $120°$ angle between them. Find the third side.",
+          "id": "TRIG-lc-v12",
+          "statement": "A triangle has sides $4$ and $5$ with a $120°$ angle between them. Find the third side.",
           "options": [
-            "$\\sqrt{129}$",
-            "$\\sqrt{89}$",
-            "$7$",
-            "$12$"
+            "$\\sqrt{21}$",
+            "$\\sqrt{41}$",
+            "$9$",
+            "$\\sqrt{61}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 5^2 - 2\\cdot4\\cdot5\\cos 120° = 16+25+20 = 61$, so $c = \\sqrt{61}$.",
+          "check": [
+            "sqrt(4**2 + 5**2 - 2*4*5*cos(rad(120))) == sqrt(61)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v13",
+          "statement": "A triangle has sides $2$ and $6$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{28}$",
+            "$\\sqrt{52}$",
+            "$\\sqrt{40}$",
+            "$8$"
           ],
           "correctIndex": 0,
-          "explanation": "Law of cosines: $c^2 = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8\\cos 120° = 25 + 64 - 80 \\cdot (- \\frac{1}{2}) = 129$, so $c = \\sqrt{129}$.",
+          "explanation": "Law of cosines: $c^2 = 2^2 + 6^2 - 2\\cdot2\\cdot6\\cos 60° = 4+36-12 = 28$, so $c = \\sqrt{28}$.",
           "check": [
-            "sqrt(5**2 + 8**2 - 2*5*8*cos(rad(120))) == sqrt(129)"
+            "sqrt(2**2 + 6**2 - 2*2*6*cos(rad(60))) == sqrt(28)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v14",
+          "statement": "A triangle has sides $2$ and $6$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{28}$",
+            "$\\sqrt{52}$",
+            "$\\sqrt{40}$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 6^2 - 2\\cdot2\\cdot6\\cos 120° = 4+36+12 = 52$, so $c = \\sqrt{52}$.",
+          "check": [
+            "sqrt(2**2 + 6**2 - 2*2*6*cos(rad(120))) == sqrt(52)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v15",
+          "statement": "A triangle has sides $3$ and $6$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{63}$",
+            "$\\sqrt{45}$",
+            "$\\sqrt{27}$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 6^2 - 2\\cdot3\\cdot6\\cos 60° = 9+36-18 = 27$, so $c = \\sqrt{27}$.",
+          "check": [
+            "sqrt(3**2 + 6**2 - 2*3*6*cos(rad(60))) == sqrt(27)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v16",
+          "statement": "A triangle has sides $3$ and $6$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{27}$",
+            "$\\sqrt{45}$",
+            "$9$",
+            "$\\sqrt{63}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 6^2 - 2\\cdot3\\cdot6\\cos 120° = 9+36+18 = 63$, so $c = \\sqrt{63}$.",
+          "check": [
+            "sqrt(3**2 + 6**2 - 2*3*6*cos(rad(120))) == sqrt(63)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v17",
+          "statement": "A triangle has sides $4$ and $6$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{28}$",
+            "$\\sqrt{76}$",
+            "$\\sqrt{52}$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 6^2 - 2\\cdot4\\cdot6\\cos 60° = 16+36-24 = 28$, so $c = \\sqrt{28}$.",
+          "check": [
+            "sqrt(4**2 + 6**2 - 2*4*6*cos(rad(60))) == sqrt(28)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v18",
+          "statement": "A triangle has sides $4$ and $6$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{28}$",
+            "$\\sqrt{76}$",
+            "$\\sqrt{52}$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 6^2 - 2\\cdot4\\cdot6\\cos 120° = 16+36+24 = 76$, so $c = \\sqrt{76}$.",
+          "check": [
+            "sqrt(4**2 + 6**2 - 2*4*6*cos(rad(120))) == sqrt(76)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v19",
+          "statement": "A triangle has sides $5$ and $6$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{91}$",
+            "$\\sqrt{61}$",
+            "$\\sqrt{31}$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 6^2 - 2\\cdot5\\cdot6\\cos 60° = 25+36-30 = 31$, so $c = \\sqrt{31}$.",
+          "check": [
+            "sqrt(5**2 + 6**2 - 2*5*6*cos(rad(60))) == sqrt(31)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v20",
+          "statement": "A triangle has sides $5$ and $6$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{31}$",
+            "$\\sqrt{61}$",
+            "$11$",
+            "$\\sqrt{91}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 6^2 - 2\\cdot5\\cdot6\\cos 120° = 25+36+30 = 91$, so $c = \\sqrt{91}$.",
+          "check": [
+            "sqrt(5**2 + 6**2 - 2*5*6*cos(rad(120))) == sqrt(91)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v21",
+          "statement": "A triangle has sides $2$ and $7$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{39}$",
+            "$\\sqrt{67}$",
+            "$\\sqrt{53}$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 7^2 - 2\\cdot2\\cdot7\\cos 60° = 4+49-14 = 39$, so $c = \\sqrt{39}$.",
+          "check": [
+            "sqrt(2**2 + 7**2 - 2*2*7*cos(rad(60))) == sqrt(39)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v22",
+          "statement": "A triangle has sides $2$ and $7$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{39}$",
+            "$\\sqrt{67}$",
+            "$\\sqrt{53}$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 7^2 - 2\\cdot2\\cdot7\\cos 120° = 4+49+14 = 67$, so $c = \\sqrt{67}$.",
+          "check": [
+            "sqrt(2**2 + 7**2 - 2*2*7*cos(rad(120))) == sqrt(67)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v23",
+          "statement": "A triangle has sides $3$ and $7$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{79}$",
+            "$\\sqrt{58}$",
+            "$\\sqrt{37}$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 7^2 - 2\\cdot3\\cdot7\\cos 60° = 9+49-21 = 37$, so $c = \\sqrt{37}$.",
+          "check": [
+            "sqrt(3**2 + 7**2 - 2*3*7*cos(rad(60))) == sqrt(37)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v24",
+          "statement": "A triangle has sides $3$ and $7$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{37}$",
+            "$\\sqrt{58}$",
+            "$10$",
+            "$\\sqrt{79}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 7^2 - 2\\cdot3\\cdot7\\cos 120° = 9+49+21 = 79$, so $c = \\sqrt{79}$.",
+          "check": [
+            "sqrt(3**2 + 7**2 - 2*3*7*cos(rad(120))) == sqrt(79)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v25",
+          "statement": "A triangle has sides $4$ and $7$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{37}$",
+            "$\\sqrt{93}$",
+            "$\\sqrt{65}$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 7^2 - 2\\cdot4\\cdot7\\cos 60° = 16+49-28 = 37$, so $c = \\sqrt{37}$.",
+          "check": [
+            "sqrt(4**2 + 7**2 - 2*4*7*cos(rad(60))) == sqrt(37)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v26",
+          "statement": "A triangle has sides $4$ and $7$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{37}$",
+            "$\\sqrt{93}$",
+            "$\\sqrt{65}$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 7^2 - 2\\cdot4\\cdot7\\cos 120° = 16+49+28 = 93$, so $c = \\sqrt{93}$.",
+          "check": [
+            "sqrt(4**2 + 7**2 - 2*4*7*cos(rad(120))) == sqrt(93)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v27",
+          "statement": "A triangle has sides $5$ and $7$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{109}$",
+            "$\\sqrt{74}$",
+            "$\\sqrt{39}$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 7^2 - 2\\cdot5\\cdot7\\cos 60° = 25+49-35 = 39$, so $c = \\sqrt{39}$.",
+          "check": [
+            "sqrt(5**2 + 7**2 - 2*5*7*cos(rad(60))) == sqrt(39)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v28",
+          "statement": "A triangle has sides $5$ and $7$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{39}$",
+            "$\\sqrt{74}$",
+            "$12$",
+            "$\\sqrt{109}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 5^2 + 7^2 - 2\\cdot5\\cdot7\\cos 120° = 25+49+35 = 109$, so $c = \\sqrt{109}$.",
+          "check": [
+            "sqrt(5**2 + 7**2 - 2*5*7*cos(rad(120))) == sqrt(109)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v29",
+          "statement": "A triangle has sides $6$ and $7$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{43}$",
+            "$\\sqrt{127}$",
+            "$\\sqrt{85}$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 6^2 + 7^2 - 2\\cdot6\\cdot7\\cos 60° = 36+49-42 = 43$, so $c = \\sqrt{43}$.",
+          "check": [
+            "sqrt(6**2 + 7**2 - 2*6*7*cos(rad(60))) == sqrt(43)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v30",
+          "statement": "A triangle has sides $6$ and $7$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{43}$",
+            "$\\sqrt{127}$",
+            "$\\sqrt{85}$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 6^2 + 7^2 - 2\\cdot6\\cdot7\\cos 120° = 36+49+42 = 127$, so $c = \\sqrt{127}$.",
+          "check": [
+            "sqrt(6**2 + 7**2 - 2*6*7*cos(rad(120))) == sqrt(127)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v31",
+          "statement": "A triangle has sides $2$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{84}$",
+            "$\\sqrt{68}$",
+            "$\\sqrt{52}$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 8^2 - 2\\cdot2\\cdot8\\cos 60° = 4+64-16 = 52$, so $c = \\sqrt{52}$.",
+          "check": [
+            "sqrt(2**2 + 8**2 - 2*2*8*cos(rad(60))) == sqrt(52)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v32",
+          "statement": "A triangle has sides $2$ and $8$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{52}$",
+            "$\\sqrt{68}$",
+            "$10$",
+            "$\\sqrt{84}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 2^2 + 8^2 - 2\\cdot2\\cdot8\\cos 120° = 4+64+16 = 84$, so $c = \\sqrt{84}$.",
+          "check": [
+            "sqrt(2**2 + 8**2 - 2*2*8*cos(rad(120))) == sqrt(84)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v33",
+          "statement": "A triangle has sides $3$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$7$",
+            "$\\sqrt{97}$",
+            "$\\sqrt{73}$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 8^2 - 2\\cdot3\\cdot8\\cos 60° = 9+64-24 = 49$, so $c = 7$.",
+          "check": [
+            "sqrt(3**2 + 8**2 - 2*3*8*cos(rad(60))) == 7"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v34",
+          "statement": "A triangle has sides $3$ and $8$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$7$",
+            "$\\sqrt{97}$",
+            "$\\sqrt{73}$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines: $c^2 = 3^2 + 8^2 - 2\\cdot3\\cdot8\\cos 120° = 9+64+24 = 97$, so $c = \\sqrt{97}$.",
+          "check": [
+            "sqrt(3**2 + 8**2 - 2*3*8*cos(rad(120))) == sqrt(97)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v35",
+          "statement": "A triangle has sides $4$ and $8$ with a $60°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{112}$",
+            "$\\sqrt{80}$",
+            "$\\sqrt{48}$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 8^2 - 2\\cdot4\\cdot8\\cos 60° = 16+64-32 = 48$, so $c = \\sqrt{48}$.",
+          "check": [
+            "sqrt(4**2 + 8**2 - 2*4*8*cos(rad(60))) == sqrt(48)"
+          ]
+        },
+        {
+          "id": "TRIG-lc-v36",
+          "statement": "A triangle has sides $4$ and $8$ with a $120°$ angle between them. Find the third side.",
+          "options": [
+            "$\\sqrt{48}$",
+            "$\\sqrt{80}$",
+            "$12$",
+            "$\\sqrt{112}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines: $c^2 = 4^2 + 8^2 - 2\\cdot4\\cdot8\\cos 120° = 16+64+32 = 112$, so $c = \\sqrt{112}$.",
+          "check": [
+            "sqrt(4**2 + 8**2 - 2*4*8*cos(rad(120))) == sqrt(112)"
           ]
         }
       ]

@@ -126,23 +126,34 @@ export default function BankBrowser({ topic }: { topic: BankTopic }) {
   );
 }
 
+const INITIAL_SHOWN = 8; // keep first render light; the rest expand on demand
+
 function FormBlock({
   topic, form, startIndex, userId,
 }: {
   topic: BankTopic; form: BankForm; startIndex: number; userId?: string | null;
 }) {
+  const [showAll, setShowAll] = useState(false);
+  const shown = showAll ? form.variants : form.variants.slice(0, INITIAL_SHOWN);
+  const hidden = form.variants.length - shown.length;
+
   return (
     <div>
-      <div className="mb-3">
-        <p className="serif" style={{ fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-          {form.title}
-        </p>
-        <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
-          {form.skill}
-        </p>
+      <div className="mb-3 flex items-end justify-between gap-3">
+        <div>
+          <p className="serif" style={{ fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
+            {form.title}
+          </p>
+          <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
+            {form.skill}
+          </p>
+        </div>
+        <span className="mono text-[11px] tabular flex-shrink-0" style={{ color: "var(--fg-3)" }}>
+          {form.variants.length} problems
+        </span>
       </div>
       <div className="space-y-3">
-        {form.variants.map((v, i) => {
+        {shown.map((v, i) => {
           const problem: LessonProblem = {
             id: v.id,
             statement: v.statement,
@@ -160,6 +171,15 @@ function FormBlock({
           );
         })}
       </div>
+      {hidden > 0 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(true)}
+          className="btn btn-line mt-3 text-[13px]"
+        >
+          Show all {form.variants.length} problems (+{hidden} more)
+        </button>
+      )}
     </div>
   );
 }
