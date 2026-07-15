@@ -317,6 +317,36 @@ export function saveBankSession(
   return next;
 }
 
+// Browse-mode self-grades feed the SAME per-form mastery as runner sessions:
+// grading yourself wrong marks the form needs-work; right re-masters it.
+export function recordSelfGrade(
+  topic: BankTopic,
+  formId: string,
+  correct: boolean,
+  userId?: string | null,
+): BankProgress {
+  const prev = loadBankProgress(topic.slug, userId);
+  const old = prev.forms[formId] ?? { mastered: false, attempts: 0, correct: 0, updatedAt: 0 };
+  const next: BankProgress = {
+    version: 1,
+    forms: {
+      ...prev.forms,
+      [formId]: {
+        mastered: correct,
+        attempts: old.attempts + 1,
+        correct: old.correct + (correct ? 1 : 0),
+        updatedAt: Date.now(),
+      },
+    },
+  };
+  try {
+    localStorage.setItem(keyFor(topic.slug, userId), JSON.stringify(next));
+  } catch {
+    /* storage unavailable */
+  }
+  return next;
+}
+
 export function topicMastery(topic: BankTopic, progress: BankProgress): { mastered: number; total: number } {
   const total = topic.forms.length;
   const mastered = topic.forms.filter((f) => progress.forms[f.id]?.mastered).length;

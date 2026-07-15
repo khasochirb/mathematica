@@ -47,8 +47,9 @@ export default function ProblemBankHub() {
         </h1>
         <p className="mt-4 mb-2" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "58ch" }}>
           {totalProblems} problems across every form a topic takes on an exam,
-          labeled Level 1–3. Miss one and a similar problem comes right back —
-          same form, new numbers — so you fix the mistake while it's fresh.
+          labeled Level 1–3. Open a topic to browse the full list — work on
+          paper, reveal solutions when ready — or run the practice set, where
+          missing a problem brings back a similar one until you've got it.
         </p>
         <div className="mb-8 flex flex-wrap gap-3 text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="inline-flex items-center gap-1.5"><Layers className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Level 1 basics · Level 2 standard · Level 3 exam</span>

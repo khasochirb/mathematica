@@ -83,10 +83,10 @@ export default function BankRunner({ topic }: { topic: BankTopic }) {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href="/math/problem-bank" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={`/math/problem-bank/${topic.slug}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Problem Bank · {topic.title}</div>
+          <div className="eyebrow">Problem Bank · {topic.title} · Practice set</div>
         </div>
 
         {phase === "setup" && <Setup topic={topic} onStart={start} />}
