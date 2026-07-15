@@ -104,6 +104,15 @@ export function Ticks({ x1, y1, x2, y2, count, color }: { x1: number; y1: number
 // The static diagram
 // ---------------------------------------------------------------------------
 
+// Spec authors write "accent"/"blue" as semantic colors; anything else is a
+// raw CSS color passed to the SVG stroke.
+function resolveColor(c: string | undefined, fallback: string): string {
+  if (!c) return fallback;
+  if (c === "accent") return GEO_ACCENT;
+  if (c === "blue") return GEO_BLUE;
+  return c;
+}
+
 export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
   const { points, objects, hidePoints = [], height = 200 } = spec;
   // entrance choreography timing: each object draws in ~0.1s after the last;
@@ -133,12 +142,44 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
   const dirDeg = (at: GeoPointSpec, through: GeoPointSpec) =>
     (Math.atan2(py(through.y) - py(at.y), px(through.x) - px(at.x)) * 180) / Math.PI;
 
+  // Figure centroid in screen px — side labels sit on the side of their
+  // segment that faces AWAY from it, i.e. outside the figure.
+  const cxAll = points.reduce((s, p) => s + px(p.x), 0) / Math.max(points.length, 1);
+  const cyAll = points.reduce((s, p) => s + py(p.y), 0) / Math.max(points.length, 1);
+
+  const sideLabel = (x1: number, y1: number, x2: number, y2: number, label: string, color: string, i: number) => {
+    const len = Math.hypot(x2 - x1, y2 - y1);
+    if (len < 1) return null;
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+    let nx = -(y2 - y1) / len;
+    let ny = (x2 - x1) / len;
+    if (nx * (mx - cxAll) + ny * (my - cyAll) < 0) {
+      nx = -nx;
+      ny = -ny;
+    }
+    return (
+      <text
+        className="gm-fade"
+        style={delay(i, 0.3)}
+        x={mx + nx * 13}
+        y={my + ny * 13 + 4}
+        fontSize="12.5"
+        textAnchor="middle"
+        fontFamily="serif"
+        fill={color}
+      >
+        {label}
+      </text>
+    );
+  };
+
   const renderObject = (o: GeoObjectSpec, i: number) => {
     if (o.kind === "angle") {
       const at = get(o.at);
       const a1 = dirDeg(at, get(o.from));
       const a2 = dirDeg(at, get(o.to));
-      const color = o.color ?? GEO_ACCENT;
+      const color = resolveColor(o.color, GEO_ACCENT);
       const r = (o.radius ?? 0.8) * scale;
       if (o.right) {
         // small square corner
@@ -179,9 +220,10 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
 
     const from = get(o.from);
     const to = get(o.to);
-    const color = o.color ?? "var(--fg-1)";
+    const color = resolveColor(o.color, "var(--fg-1)");
     const x1 = px(from.x), y1 = py(from.y), x2 = px(to.x), y2 = py(to.y);
     const dash = o.dashed ? "5 4" : undefined;
+    const labelColor = o.color ? color : "var(--fg)";
 
     if (o.kind === "segment") {
       return (
@@ -190,6 +232,7 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
             ? <line className="gm-fade" style={delay(i)} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} strokeDasharray={dash} />
             : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={2} />}
           {o.ticks ? <g className="gm-fade" style={delay(i, 0.3)}><Ticks x1={x1} y1={y1} x2={x2} y2={y2} count={o.ticks} color={color} /></g> : null}
+          {o.label ? sideLabel(x1, y1, x2, y2, o.label, labelColor, i) : null}
         </g>
       );
     }
@@ -204,6 +247,7 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
             ? <line className="gm-fade" style={delay(i)} x1={x1} y1={y1} x2={ax} y2={ay} stroke={color} strokeWidth={2} strokeDasharray={dash} />
             : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={x1} y1={y1} x2={ax} y2={ay} stroke={color} strokeWidth={2} />}
           <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax} y={ay} deg={deg} color={color} /></g>
+          {o.label ? sideLabel(x1, y1, x2, y2, o.label, labelColor, i) : null}
         </g>
       );
     }
@@ -220,6 +264,7 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
           : <line className="gm-arc-sweep" pathLength={1} style={delay(i)} x1={ax1} y1={ay1} x2={ax2} y2={ay2} stroke={color} strokeWidth={2} />}
         <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax2} y={ay2} deg={degF} color={color} /></g>
         <g className="gm-fade" style={delay(i, 0.25)}><ArrowHead x={ax1} y={ay1} deg={degF + 180} color={color} /></g>
+        {o.label ? sideLabel(x1, y1, x2, y2, o.label, labelColor, i) : null}
       </g>
     );
   };

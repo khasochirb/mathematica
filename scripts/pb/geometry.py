@@ -195,6 +195,26 @@ def gen_triangle_area():
         cands = [(intL(b * h), b * h), (intL(b + h), b + h),
                  (intL(ar + h), ar + h), (intL(ar + b), ar + b)]
         opts, ci = build_latex_options(correct, cands, pos, latex_of=intL)
+        # True-to-scale triangle: apex over 0.38·base, dashed height with a
+        # right-angle mark at its foot. World units = the actual lengths.
+        fx = round(0.38 * b, 4)
+        fig = {
+            "points": [
+                {"id": "A", "x": 0, "y": 0, "label": ""},
+                {"id": "B", "x": b, "y": 0, "label": ""},
+                {"id": "T", "x": fx, "y": h, "label": ""},
+                {"id": "F", "x": fx, "y": 0, "label": ""},
+            ],
+            "objects": [
+                {"kind": "segment", "from": "A", "to": "B", "label": str(b)},
+                {"kind": "segment", "from": "A", "to": "T"},
+                {"kind": "segment", "from": "B", "to": "T"},
+                {"kind": "segment", "from": "F", "to": "T", "label": str(h),
+                 "color": "blue", "dashed": True},
+                {"kind": "angle", "at": "F", "from": "B", "to": "T",
+                 "right": True},
+            ],
+        }
         out.append({
             "statement": "A triangle has base $%d$ and height $%d$. Find its "
                          "area." % (b, h),
@@ -203,6 +223,7 @@ def gen_triangle_area():
                            "%d = %d$. Dropping the $\\tfrac12$ gives the "
                            "rectangle $%d$." % (b, h, ar, b * h),
             "check": ["Rational(1,2)*%d*%d == %d" % (b, h, ar)],
+            "geoFigure": fig,
         })
     return out
 
@@ -281,17 +302,56 @@ def gen_circle_basics():
     return out
 
 
+def rt_fig(w, hgt, lab_bottom, lab_left, lab_hyp, ang_at, ang_label,
+           tick_legs=False):
+    """Right triangle drawn true to scale: right angle at the origin,
+    horizontal leg w, vertical leg hgt. Side labels may be None; the '?' side
+    is drawn in the accent color. ang_at ('B'|'C') carries the acute-angle
+    label (the drawn angle really is that size)."""
+    def seg(frm, to, lab):
+        o = {"kind": "segment", "from": frm, "to": to}
+        if lab is not None:
+            o["label"] = lab
+            if lab == "?":
+                o["color"] = "accent"
+        if tick_legs and frm == "A":  # both legs leave the right-angle vertex
+            o["ticks"] = 1
+        return o
+    objs = [
+        seg("A", "B", lab_bottom),
+        seg("A", "C", lab_left),
+        seg("B", "C", lab_hyp),
+        {"kind": "angle", "at": "A", "from": "B", "to": "C", "right": True},
+        {"kind": "angle", "at": ang_at,
+         "from": "A" if ang_at == "B" else "A",
+         "to": "C" if ang_at == "B" else "B",
+         "label": ang_label},
+    ]
+    return {
+        "points": [
+            {"id": "A", "x": 0, "y": 0, "label": ""},
+            {"id": "B", "x": round(w, 4), "y": 0, "label": ""},
+            {"id": "C", "x": 0, "y": round(hgt, 4), "label": ""},
+        ],
+        "objects": objs,
+    }
+
+
 def gen_special_triangles():
     bases = [3, 4, 5, 6, 7, 8]
     out = []
     idx = 0
+    SQ3 = 3 ** 0.5
 
-    def emit(st, correct, cands, ex, chk):
+    def emit(st, correct, cands, ex, chk, fig=None):
         nonlocal idx
         pos = idx % 4
         opts, ci = build_latex_options(correct, cands, pos)
-        out.append({"statement": st, "options": opts, "correctIndex": ci,
-                    "explanation": ex, "check": [chk]})
+        v = {"statement": st, "options": opts, "correctIndex": ci,
+             "explanation": ex, "check": [chk]}
+        if fig is not None:
+            v["geoFigure"] = fig
+        out.append(v)
         idx += 1
 
     # template 1: 45-45-90, legs x -> hypotenuse x*sqrt(2)
@@ -301,7 +361,8 @@ def gen_special_triangles():
              [(intL(x), x), (intL(2 * x), 2 * x), (surd(x, 3), x * sqrt(3))],
              "In a 45-45-90 triangle the hypotenuse is a leg times $\\sqrt2$: "
              "$%d\\sqrt2 = %s$." % (x, surd(x, 2)),
-             "sqrt(2*%d**2) == %d*sqrt(2)" % (x, x))
+             "sqrt(2*%d**2) == %d*sqrt(2)" % (x, x),
+             rt_fig(x, x, str(x), str(x), "?", "B", "45°"))
     # template 2: 30-60-90, short leg x -> long leg x*sqrt(3)
     for x in bases:
         emit("In a 30-60-90 triangle the shorter leg (opposite $30°$) is $%d$. "
@@ -310,7 +371,8 @@ def gen_special_triangles():
              [(surd(x, 2), x * sqrt(2)), (intL(2 * x), 2 * x), (intL(x), x)],
              "The longer leg is the shorter leg times $\\sqrt3$: "
              "$%d\\sqrt3 = %s$." % (x, surd(x, 3)),
-             "sqrt((2*%d)**2 - %d**2) == %d*sqrt(3)" % (x, x, x))
+             "sqrt((2*%d)**2 - %d**2) == %d*sqrt(3)" % (x, x, x),
+             rt_fig(x * SQ3, x, "?", str(x), None, "B", "30°"))
     # template 3: 30-60-90, short leg x -> hypotenuse 2x
     for x in bases:
         emit("In a 30-60-90 triangle the shorter leg (opposite $30°$) is $%d$. "
@@ -319,7 +381,8 @@ def gen_special_triangles():
              [(surd(x, 3), x * sqrt(3)), (intL(x), x), (surd(x, 2), x * sqrt(2))],
              "The hypotenuse is twice the shorter leg: $2\\cdot %d = %d$."
              % (x, 2 * x),
-             "%d/sin(rad(30)) == 2*%d" % (x, x))
+             "%d/sin(rad(30)) == 2*%d" % (x, x),
+             rt_fig(x * SQ3, x, None, str(x), "?", "B", "30°"))
     # template 4: 30-60-90, hypotenuse H=2x -> shorter leg x
     for x in bases:
         H = 2 * x
@@ -329,7 +392,8 @@ def gen_special_triangles():
              [(intL(H), H), (surd(x, 3), x * sqrt(3)), (surd(x, 2), x * sqrt(2))],
              "The shorter leg is half the hypotenuse: $\\tfrac{%d}{2} = %d$."
              % (H, x),
-             "%d*sin(rad(30)) == %d" % (H, x))
+             "%d*sin(rad(30)) == %d" % (H, x),
+             rt_fig(x * SQ3, x, None, "?", str(H), "B", "30°"))
     # template 5: 30-60-90, hypotenuse H=2x -> longer leg x*sqrt(3)
     for x in bases:
         H = 2 * x
@@ -339,7 +403,8 @@ def gen_special_triangles():
              [(intL(x), x), (intL(H), H), (surd(x, 2), x * sqrt(2))],
              "Longer leg $= \\tfrac{H}{2}\\sqrt3 = %d\\sqrt3 = %s$."
              % (x, surd(x, 3)),
-             "%d*sin(rad(60)) == %d*sqrt(3)" % (H, x))
+             "%d*sin(rad(60)) == %d*sqrt(3)" % (H, x),
+             rt_fig(x * SQ3, x, "?", None, str(H), "C", "60°"))
     # template 6: 45-45-90, hypotenuse n*sqrt(2) -> leg n
     for n in bases:
         emit("A 45-45-90 triangle has hypotenuse $%s$. Find each leg."
@@ -349,7 +414,9 @@ def gen_special_triangles():
               (surd(n, 3), n * sqrt(3))],
              "Each leg is the hypotenuse over $\\sqrt2$: "
              "$\\tfrac{%d\\sqrt2}{\\sqrt2} = %d$." % (n, n),
-             "%d*sqrt(2)*sin(rad(45)) == %d" % (n, n))
+             "%d*sqrt(2)*sin(rad(45)) == %d" % (n, n),
+             rt_fig(n, n, "?", None, "%d√2" % n, "B", "45°",
+                    tick_legs=True))
     return out
 
 
@@ -429,7 +496,37 @@ def gen_similar_triangles():
         cands = [(intL(added), added), (intL(A), A), (intL(b + A), b + A),
                  (intL(b * a), b * a)]
         opts, ci = build_latex_options(correct, cands, pos, latex_of=intL)
+        # Both triangles share ONE world scale, so the second really is k
+        # times the first. Right triangles with legs (a, b) and (A, ans);
+        # the correspondence a↔A (vertical), b↔ans (horizontal) matches the
+        # statement.
+        gap = round(0.15 * (b + ans) + 1.5, 4)
+        dx = round(b + gap, 4)
+        fig = {
+            "points": [
+                {"id": "P", "x": 0, "y": 0, "label": ""},
+                {"id": "Q", "x": b, "y": 0, "label": ""},
+                {"id": "R", "x": 0, "y": a, "label": ""},
+                {"id": "P2", "x": dx, "y": 0, "label": ""},
+                {"id": "Q2", "x": round(dx + ans, 4), "y": 0, "label": ""},
+                {"id": "R2", "x": dx, "y": A, "label": ""},
+            ],
+            "objects": [
+                {"kind": "segment", "from": "P", "to": "Q", "label": str(b)},
+                {"kind": "segment", "from": "P", "to": "R", "label": str(a)},
+                {"kind": "segment", "from": "Q", "to": "R"},
+                {"kind": "angle", "at": "P", "from": "Q", "to": "R",
+                 "right": True},
+                {"kind": "segment", "from": "P2", "to": "Q2", "label": "?",
+                 "color": "accent"},
+                {"kind": "segment", "from": "P2", "to": "R2", "label": str(A)},
+                {"kind": "segment", "from": "Q2", "to": "R2"},
+                {"kind": "angle", "at": "P2", "from": "Q2", "to": "R2",
+                 "right": True},
+            ],
+        }
         out.append({
+            "geoFigure": fig,
             "statement": "Two similar triangles: the first has sides $%d$ and "
                          "$%d$; the side of the second corresponding to $%d$ is "
                          "$%d$. Find the side corresponding to $%d$."

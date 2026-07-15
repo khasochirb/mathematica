@@ -260,7 +260,32 @@ def build_right_triangle_side():
         distractors = pick_numeric(correct, cand)
         opts, ci = place(correct_kat, distractors, i)
         ratio = "sine" if which == "opposite" else "cosine"
+        # True-to-scale right triangle: the acute angle at A really measures
+        # `angle`°, the hypotenuse really is h world units.
+        import math as _math
+        bx = round(h * _math.cos(_math.radians(angle)), 4)
+        cy = round(h * _math.sin(_math.radians(angle)), 4)
+        opp = {"kind": "segment", "from": "B", "to": "C"}
+        adj = {"kind": "segment", "from": "A", "to": "B"}
+        (opp if which == "opposite" else adj).update(
+            {"label": "?", "color": "accent"})
+        fig = {
+            "points": [
+                {"id": "A", "x": 0, "y": 0, "label": ""},
+                {"id": "B", "x": bx, "y": 0, "label": ""},
+                {"id": "C", "x": bx, "y": cy, "label": ""},
+            ],
+            "objects": [
+                adj, opp,
+                {"kind": "segment", "from": "A", "to": "C", "label": str(h)},
+                {"kind": "angle", "at": "B", "from": "A", "to": "C",
+                 "right": True},
+                {"kind": "angle", "at": "A", "from": "B", "to": "C",
+                 "label": "%d°" % angle},
+            ],
+        }
         variants.append({
+            "geoFigure": fig,
             "id": f"TRIG-rt-v{i+1:02d}",
             "statement": (f"A right triangle has hypotenuse ${h}$ and an acute "
                           f"angle of ${angle}°$. Find the side {which.upper()} "
@@ -597,7 +622,28 @@ def build_law_of_cosines():
         opts, ci = place(correct_kat, distractors, i)
         sign = "-" if angle == 60 else "+"
         cosval = "\\tfrac{1}{2}" if angle == 60 else "-\\tfrac{1}{2}"
+        # Triangle drawn with exact coordinates: the included angle at A
+        # really measures `angle`°, and AB/AC really are q and p world units.
+        import math as _math
+        cxx = round(p * _math.cos(_math.radians(angle)), 4)
+        cyy = round(p * _math.sin(_math.radians(angle)), 4)
+        fig = {
+            "points": [
+                {"id": "A", "x": 0, "y": 0, "label": ""},
+                {"id": "B", "x": qq, "y": 0, "label": ""},
+                {"id": "C", "x": cxx, "y": cyy, "label": ""},
+            ],
+            "objects": [
+                {"kind": "segment", "from": "A", "to": "B", "label": str(qq)},
+                {"kind": "segment", "from": "A", "to": "C", "label": str(p)},
+                {"kind": "segment", "from": "B", "to": "C", "label": "?",
+                 "color": "accent"},
+                {"kind": "angle", "at": "A", "from": "B", "to": "C",
+                 "label": "%d°" % angle},
+            ],
+        }
         variants.append({
+            "geoFigure": fig,
             "id": f"TRIG-lc-v{i+1:02d}",
             "statement": (f"A triangle has sides ${p}$ and ${qq}$ with a "
                           f"${angle}°$ angle between them. Find the third side."),

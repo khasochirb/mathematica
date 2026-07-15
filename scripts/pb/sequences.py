@@ -378,19 +378,31 @@ def gen_geo_two_terms():
         bi = b1 * q ** (i0 - 1)
         bj = b1 * q ** (j0 - 1)
         gap = j0 - i0
-        correct = b1
-        cands = [b1 * q, q, b1 + 2, b1 - 1, b1 * q ** 2]
-        cands = [c for c in cands if c >= 1]
+        if i0 == 1:
+            # b_1 is given directly — asking for it would be trivial; ask for q.
+            correct = q
+            cands = [q + 1, q - 1, q * 2, gap, bj // bi]
+            cands = [c for c in cands if c >= 1]
+            ask = "Find $q$."
+        else:
+            correct = b1
+            cands = [b1 * q, q, b1 + 2, b1 - 1, b1 * q ** 2]
+            cands = [c for c in cands if c >= 1]
+            ask = "Find $b_1$."
         dist = pick_distractors(correct, cands)
         if dist is None:
             continue
         i += 1
         vid = f"SEQ-two-v{i:02d}"
         stmt = (f"A geometric sequence has $b_{{{i0}}} = {bi}$ and "
-                f"$b_{{{j0}}} = {bj}$. Find $b_1$.")
-        expl = (f"Divide: $\\frac{{b_{{{j0}}}}}{{b_{{{i0}}}}} = q^{{{gap}}} = "
-                f"\\frac{{{bj}}}{{{bi}}} = {bj // bi}$, so $q = {q}$. "
-                f"Then $b_1 = \\frac{{b_{{{i0}}}}}{{q^{{{i0-1}}}}} = {b1}$.")
+                f"$b_{{{j0}}} = {bj}$. {ask}")
+        if i0 == 1:
+            expl = (f"Divide: $\\frac{{b_{{{j0}}}}}{{b_{{{i0}}}}} = q^{{{gap}}} = "
+                    f"\\frac{{{bj}}}{{{bi}}} = {bj // bi}$, so $q = {q}$.")
+        else:
+            expl = (f"Divide: $\\frac{{b_{{{j0}}}}}{{b_{{{i0}}}}} = q^{{{gap}}} = "
+                    f"\\frac{{{bj}}}{{{bi}}} = {bj // bi}$, so $q = {q}$. "
+                    f"Then $b_1 = \\frac{{b_{{{i0}}}}}{{q^{{{i0-1}}}}} = {b1}$.")
         checks = [
             f"Rational({bj}, {bi}) == {q}**{gap}",
             f"{b1}*{q}**({i0}-1) == {bi}",

@@ -477,7 +477,8 @@ export interface GeoPointSpec {
 export type GeoObjectSpec =
   // segment: both ends fixed; ray: from → through to, extended past `to`;
   // line: extended past both ends. `ticks` draws congruence marks at the middle.
-  | { kind: "segment" | "ray" | "line"; from: string; to: string; color?: string; ticks?: number; dashed?: boolean }
+  // `label` sits at the midpoint, offset to the side away from the figure.
+  | { kind: "segment" | "ray" | "line"; from: string; to: string; label?: string; color?: string; ticks?: number; dashed?: boolean }
   // angle arc at vertex `at` between rays toward `from` and `to` (small arc).
   // `right` draws the square corner instead. `label` sits along the arc.
   | { kind: "angle"; at: string; from: string; to: string; label?: string; color?: string; right?: boolean; radius?: number };
