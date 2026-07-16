@@ -1,0 +1,589 @@
+{
+  "slug": "solid-geometry",
+  "title": "Solid Geometry",
+  "titleMn": "Огторгуйн геометр",
+  "blurb": "Unit-by-unit practice for the Solid Geometry course — lines and planes in space through spheres and similar solids.",
+  "units": [
+    {
+      "id": "lines-and-planes-in-space",
+      "title": "Lines & Planes in Space",
+      "blurb": "The rules of 3D: what determines a plane, skew lines, perpendicularity, and the two angles every exam measures."
+    },
+    {
+      "id": "prisms-and-the-cube",
+      "title": "Prisms & the Cube",
+      "blurb": "The box family: prism anatomy, the cube's √2 and √3 diagonals, and surface & volume you can see face by face."
+    },
+    {
+      "id": "pyramids",
+      "title": "Pyramids",
+      "blurb": "Height, apothem, slant, edge — the two Pythagorean triangles inside every pyramid, the ⅓ in the volume, and the frustum."
+    },
+    {
+      "id": "cylinders-and-cones",
+      "title": "Cylinders & Cones",
+      "blurb": "The round solids you can unroll: the cylinder's rectangle label, the cone's pie-slice development, and both volumes."
+    },
+    {
+      "id": "spheres",
+      "title": "Spheres",
+      "blurb": "Every slice a circle (r² = R² − d²), the surface of exactly four great circles, and Archimedes' tombstone 2:3."
+    },
+    {
+      "id": "cross-sections-and-similar-solids",
+      "title": "Cross-Sections & Similar Solids",
+      "blurb": "Predict any cut, scale with k / k² / k³, glue and drill combined solids — and the five-triangle exam strategy."
+    }
+  ],
+  "forms": [
+    {
+      "id": "space-diagonal",
+      "title": "The space diagonal",
+      "level": 3,
+      "skill": "d² = l² + w² + h² — all three dimensions enter.",
+      "variants": [
+        {
+          "id": "GEO-diag-v01",
+          "statement": "Find the space diagonal of a $1 \\times 2 \\times 2$ box.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{1 + 4 + 4} = \\sqrt{9} = 3$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(1**2 + 2**2 + 2**2) == 3"
+          ]
+        },
+        {
+          "id": "GEO-diag-v02",
+          "statement": "Find the space diagonal of a $2 \\times 4 \\times 4$ box.",
+          "options": [
+            "$10$",
+            "$6$",
+            "$7$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 16 + 16} = \\sqrt{36} = 6$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 4**2 + 4**2) == 6"
+          ]
+        },
+        {
+          "id": "GEO-diag-v03",
+          "statement": "Find the space diagonal of a $2 \\times 3 \\times 6$ box.",
+          "options": [
+            "$11$",
+            "$8$",
+            "$7$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 3**2 + 6**2) == 7"
+          ]
+        },
+        {
+          "id": "GEO-diag-v04",
+          "statement": "Find the space diagonal of a $1 \\times 4 \\times 8$ box.",
+          "options": [
+            "$13$",
+            "$10$",
+            "$8$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{1 + 16 + 64} = \\sqrt{81} = 9$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(1**2 + 4**2 + 8**2) == 9"
+          ]
+        },
+        {
+          "id": "GEO-diag-v05",
+          "statement": "Find the space diagonal of a $3 \\times 6 \\times 6$ box.",
+          "options": [
+            "$9$",
+            "$15$",
+            "$10$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{9 + 36 + 36} = \\sqrt{81} = 9$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(3**2 + 6**2 + 6**2) == 9"
+          ]
+        },
+        {
+          "id": "GEO-diag-v06",
+          "statement": "Find the space diagonal of a $4 \\times 4 \\times 7$ box.",
+          "options": [
+            "$15$",
+            "$9$",
+            "$10$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 16 + 49} = \\sqrt{81} = 9$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 4**2 + 7**2) == 9"
+          ]
+        },
+        {
+          "id": "GEO-diag-v07",
+          "statement": "Find the space diagonal of a $2 \\times 6 \\times 9$ box.",
+          "options": [
+            "$17$",
+            "$12$",
+            "$11$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 36 + 81} = \\sqrt{121} = 11$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 6**2 + 9**2) == 11"
+          ]
+        },
+        {
+          "id": "GEO-diag-v08",
+          "statement": "Find the space diagonal of a $6 \\times 6 \\times 7$ box.",
+          "options": [
+            "$19$",
+            "$12$",
+            "$10$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 36 + 49} = \\sqrt{121} = 11$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 6**2 + 7**2) == 11"
+          ]
+        },
+        {
+          "id": "GEO-diag-v09",
+          "statement": "Find the space diagonal of a $4 \\times 8 \\times 8$ box.",
+          "options": [
+            "$12$",
+            "$20$",
+            "$13$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 64 + 64} = \\sqrt{144} = 12$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 8**2 + 8**2) == 12"
+          ]
+        },
+        {
+          "id": "GEO-diag-v10",
+          "statement": "Find the space diagonal of a $3 \\times 4 \\times 12$ box.",
+          "options": [
+            "$19$",
+            "$13$",
+            "$14$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(3**2 + 4**2 + 12**2) == 13"
+          ]
+        },
+        {
+          "id": "GEO-diag-v11",
+          "statement": "Find the space diagonal of a $4 \\times 6 \\times 12$ box.",
+          "options": [
+            "$22$",
+            "$15$",
+            "$14$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 36 + 144} = \\sqrt{196} = 14$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 6**2 + 12**2) == 14"
+          ]
+        },
+        {
+          "id": "GEO-diag-v12",
+          "statement": "Find the space diagonal of a $2 \\times 5 \\times 14$ box.",
+          "options": [
+            "$21$",
+            "$16$",
+            "$14$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 25 + 196} = \\sqrt{225} = 15$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 5**2 + 14**2) == 15"
+          ]
+        },
+        {
+          "id": "GEO-diag-v13",
+          "statement": "Find the space diagonal of a $2 \\times 10 \\times 11$ box.",
+          "options": [
+            "$15$",
+            "$23$",
+            "$16$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 100 + 121} = \\sqrt{225} = 15$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 10**2 + 11**2) == 15"
+          ]
+        },
+        {
+          "id": "GEO-diag-v14",
+          "statement": "Find the space diagonal of a $5 \\times 10 \\times 10$ box.",
+          "options": [
+            "$25$",
+            "$15$",
+            "$16$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{25 + 100 + 100} = \\sqrt{225} = 15$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(5**2 + 10**2 + 10**2) == 15"
+          ]
+        },
+        {
+          "id": "GEO-diag-v15",
+          "statement": "Find the space diagonal of a $1 \\times 12 \\times 12$ box.",
+          "options": [
+            "$25$",
+            "$18$",
+            "$17$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{1 + 144 + 144} = \\sqrt{289} = 17$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(1**2 + 12**2 + 12**2) == 17"
+          ]
+        },
+        {
+          "id": "GEO-diag-v16",
+          "statement": "Find the space diagonal of a $8 \\times 9 \\times 12$ box.",
+          "options": [
+            "$29$",
+            "$18$",
+            "$16$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{64 + 81 + 144} = \\sqrt{289} = 17$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(8**2 + 9**2 + 12**2) == 17"
+          ]
+        },
+        {
+          "id": "GEO-diag-v17",
+          "statement": "Find the space diagonal of a $2 \\times 8 \\times 16$ box.",
+          "options": [
+            "$18$",
+            "$26$",
+            "$19$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{4 + 64 + 256} = \\sqrt{324} = 18$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(2**2 + 8**2 + 16**2) == 18"
+          ]
+        },
+        {
+          "id": "GEO-diag-v18",
+          "statement": "Find the space diagonal of a $6 \\times 12 \\times 12$ box.",
+          "options": [
+            "$30$",
+            "$18$",
+            "$19$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 144 + 144} = \\sqrt{324} = 18$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 12**2 + 12**2) == 18"
+          ]
+        },
+        {
+          "id": "GEO-diag-v19",
+          "statement": "Find the space diagonal of a $8 \\times 8 \\times 14$ box.",
+          "options": [
+            "$30$",
+            "$19$",
+            "$18$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{64 + 64 + 196} = \\sqrt{324} = 18$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(8**2 + 8**2 + 14**2) == 18"
+          ]
+        },
+        {
+          "id": "GEO-diag-v20",
+          "statement": "Find the space diagonal of a $1 \\times 6 \\times 18$ box.",
+          "options": [
+            "$25$",
+            "$20$",
+            "$18$",
+            "$19$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{1 + 36 + 324} = \\sqrt{361} = 19$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(1**2 + 6**2 + 18**2) == 19"
+          ]
+        },
+        {
+          "id": "GEO-diag-v21",
+          "statement": "Find the space diagonal of a $6 \\times 6 \\times 17$ box.",
+          "options": [
+            "$19$",
+            "$29$",
+            "$20$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 36 + 289} = \\sqrt{361} = 19$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 6**2 + 17**2) == 19"
+          ]
+        },
+        {
+          "id": "GEO-diag-v22",
+          "statement": "Find the space diagonal of a $6 \\times 10 \\times 15$ box.",
+          "options": [
+            "$31$",
+            "$19$",
+            "$20$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 100 + 225} = \\sqrt{361} = 19$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 10**2 + 15**2) == 19"
+          ]
+        },
+        {
+          "id": "GEO-diag-v23",
+          "statement": "Find the space diagonal of a $4 \\times 5 \\times 20$ box.",
+          "options": [
+            "$29$",
+            "$22$",
+            "$21$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 25 + 400} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 5**2 + 20**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v24",
+          "statement": "Find the space diagonal of a $4 \\times 8 \\times 19$ box.",
+          "options": [
+            "$31$",
+            "$22$",
+            "$20$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 64 + 361} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 8**2 + 19**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v25",
+          "statement": "Find the space diagonal of a $4 \\times 13 \\times 16$ box.",
+          "options": [
+            "$21$",
+            "$33$",
+            "$22$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 169 + 256} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 13**2 + 16**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v26",
+          "statement": "Find the space diagonal of a $6 \\times 9 \\times 18$ box.",
+          "options": [
+            "$33$",
+            "$21$",
+            "$22$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 81 + 324} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 9**2 + 18**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v27",
+          "statement": "Find the space diagonal of a $7 \\times 14 \\times 14$ box.",
+          "options": [
+            "$35$",
+            "$22$",
+            "$21$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{49 + 196 + 196} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(7**2 + 14**2 + 14**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v28",
+          "statement": "Find the space diagonal of a $8 \\times 11 \\times 16$ box.",
+          "options": [
+            "$35$",
+            "$22$",
+            "$20$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{64 + 121 + 256} = \\sqrt{441} = 21$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(8**2 + 11**2 + 16**2) == 21"
+          ]
+        },
+        {
+          "id": "GEO-diag-v29",
+          "statement": "Find the space diagonal of a $4 \\times 12 \\times 18$ box.",
+          "options": [
+            "$22$",
+            "$34$",
+            "$23$",
+            "$21$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{16 + 144 + 324} = \\sqrt{484} = 22$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(4**2 + 12**2 + 18**2) == 22"
+          ]
+        },
+        {
+          "id": "GEO-diag-v30",
+          "statement": "Find the space diagonal of a $12 \\times 12 \\times 14$ box.",
+          "options": [
+            "$38$",
+            "$22$",
+            "$23$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{144 + 144 + 196} = \\sqrt{484} = 22$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(12**2 + 12**2 + 14**2) == 22"
+          ]
+        },
+        {
+          "id": "GEO-diag-v31",
+          "statement": "Find the space diagonal of a $3 \\times 6 \\times 22$ box.",
+          "options": [
+            "$31$",
+            "$24$",
+            "$23$",
+            "$22$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{9 + 36 + 484} = \\sqrt{529} = 23$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(3**2 + 6**2 + 22**2) == 23"
+          ]
+        },
+        {
+          "id": "GEO-diag-v32",
+          "statement": "Find the space diagonal of a $3 \\times 14 \\times 18$ box.",
+          "options": [
+            "$35$",
+            "$24$",
+            "$22$",
+            "$23$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{9 + 196 + 324} = \\sqrt{529} = 23$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(3**2 + 14**2 + 18**2) == 23"
+          ]
+        },
+        {
+          "id": "GEO-diag-v33",
+          "statement": "Find the space diagonal of a $6 \\times 13 \\times 18$ box.",
+          "options": [
+            "$23$",
+            "$37$",
+            "$24$",
+            "$22$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{36 + 169 + 324} = \\sqrt{529} = 23$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(6**2 + 13**2 + 18**2) == 23"
+          ]
+        },
+        {
+          "id": "GEO-diag-v34",
+          "statement": "Find the space diagonal of a $8 \\times 16 \\times 16$ box.",
+          "options": [
+            "$40$",
+            "$24$",
+            "$25$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{64 + 256 + 256} = \\sqrt{576} = 24$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(8**2 + 16**2 + 16**2) == 24"
+          ]
+        },
+        {
+          "id": "GEO-diag-v35",
+          "statement": "Find the space diagonal of a $9 \\times 12 \\times 20$ box.",
+          "options": [
+            "$41$",
+            "$26$",
+            "$25$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{81 + 144 + 400} = \\sqrt{625} = 25$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(9**2 + 12**2 + 20**2) == 25"
+          ]
+        },
+        {
+          "id": "GEO-diag-v36",
+          "statement": "Find the space diagonal of a $12 \\times 15 \\times 16$ box.",
+          "options": [
+            "$43$",
+            "$26$",
+            "$24$",
+            "$25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$d = \\sqrt{l^2 + w^2 + h^2} = \\sqrt{144 + 225 + 256} = \\sqrt{625} = 25$ — Pythagoras across the floor, then up.",
+          "check": [
+            "sqrt(12**2 + 15**2 + 16**2) == 25"
+          ]
+        }
+      ],
+      "unit": "prisms-and-the-cube"
+    }
+  ]
+}

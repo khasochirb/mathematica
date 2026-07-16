@@ -8,6 +8,7 @@ import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import { useAuth } from "@/lib/auth-context";
 import {
   type BankTopic,
+  type BankUnit,
   type BankSession,
   type BankLevel,
   type BankSummary,
@@ -20,16 +21,17 @@ import {
   displayVariant,
   getForm,
   getVariant,
-  sessionForms,
+  unitForms,
   saveBankSession,
 } from "@/lib/problem-bank";
 
 type Phase = "setup" | "quiz" | "done";
 
-// The bank runner: pick a level → sweep one problem per exam form → any miss
-// immediately queues a SIMILAR problem (sibling variant of the same form) →
-// summary names the forms that still need work and can re-drill just those.
-export default function BankRunner({ topic }: { topic: BankTopic }) {
+// The bank runner, scoped to ONE course unit: pick a level → sweep one
+// problem per exam form in the unit → any miss immediately queues a SIMILAR
+// problem (sibling variant of the same form) → summary names the forms that
+// still need work and can re-drill just those.
+export default function BankRunner({ topic, unit }: { topic: BankTopic; unit: BankUnit }) {
   const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("setup");
   const [level, setLevel] = useState<BankLevel>(0);
@@ -37,6 +39,9 @@ export default function BankRunner({ topic }: { topic: BankTopic }) {
   const [picked, setPicked] = useState<number | null>(null);
   const [summary, setSummary] = useState<BankSummary | null>(null);
   const [seed, setSeed] = useState(0); // re-shuffle key per question
+
+  const scopedForms = unitForms(topic, unit.id);
+  const scopedIds = scopedForms.map((f) => f.id);
 
   const item = session ? currentItem(session) : null;
   const form = item ? getForm(topic, item.formId) : null;
@@ -48,7 +53,7 @@ export default function BankRunner({ topic }: { topic: BankTopic }) {
   );
 
   function start(lv: BankLevel, formIds?: string[]) {
-    const s = initSession(topic, lv, Math.random, formIds);
+    const s = initSession(topic, lv, Math.random, formIds ?? scopedIds);
     setLevel(lv);
     setSession(s);
     setPicked(null);
@@ -83,13 +88,13 @@ export default function BankRunner({ topic }: { topic: BankTopic }) {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href={`/math/problem-bank/${topic.slug}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={`/math/problem-bank/${topic.slug}/${unit.id}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div className="eyebrow">Problem Bank · {topic.title} · Practice set</div>
         </div>
 
-        {phase === "setup" && <Setup topic={topic} onStart={start} />}
+        {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} />}
 
         {phase === "quiz" && session && item && form && variantData && disp && (
           <div>
@@ -180,22 +185,24 @@ export default function BankRunner({ topic }: { topic: BankTopic }) {
   );
 }
 
-function Setup({ topic, onStart }: { topic: BankTopic; onStart: (lv: BankLevel) => void }) {
-  const counts = [1, 2, 3].map((lv) => sessionForms(topic, lv as BankLevel).length);
-  const total = topic.forms.length;
-  const problems = topic.forms.reduce((n, f) => n + f.variants.length, 0);
+function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void }) {
+  const counts = [1, 2, 3].map((lv) => forms.filter((f) => f.level === lv).length);
+  const total = forms.length;
+  const problems = forms.reduce((n, f) => n + f.variants.length, 0);
   return (
     <div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
-        {topic.title}
+        {unit.title}
       </h1>
-      <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6 }}>
-        {topic.blurb}
-      </p>
+      {unit.blurb && (
+        <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6 }}>
+          {unit.blurb}
+        </p>
+      )}
       <ul className="mt-5 space-y-2" style={{ color: "var(--fg-2)", fontSize: 14 }}>
         <li className="flex items-start gap-2">
           <Layers className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span><b>{total} exam forms</b>, {problems} problems — every shape this topic takes on a test, labeled Level 1–3.</span>
+          <span><b>{total} exam forms</b>, {problems} problems — every shape this unit takes on a test, labeled Level 1–3.</span>
         </li>
         <li className="flex items-start gap-2">
           <Repeat2 className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
@@ -213,12 +220,14 @@ function Setup({ topic, onStart }: { topic: BankTopic; onStart: (lv: BankLevel) 
           <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>All levels</div>
           <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>The full sweep — {total} forms, easiest first.</div>
         </button>
-        {[1, 2, 3].map((lv) => (
-          <button key={lv} type="button" onClick={() => onStart(lv as BankLevel)} className="card-edit gm-press p-4 text-left">
-            <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{LEVEL_LABELS[lv]}</div>
-            <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{counts[lv - 1]} forms at this level.</div>
-          </button>
-        ))}
+        {[1, 2, 3]
+          .filter((lv) => counts[lv - 1] > 0)
+          .map((lv) => (
+            <button key={lv} type="button" onClick={() => onStart(lv as BankLevel)} className="card-edit gm-press p-4 text-left">
+              <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{LEVEL_LABELS[lv]}</div>
+              <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{counts[lv - 1]} forms at this level.</div>
+            </button>
+          ))}
       </div>
     </div>
   );
@@ -303,8 +312,8 @@ function Summary({
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
           <RotateCcw className="h-4 w-4" /> New set{level !== 0 ? ` · ${LEVEL_LABELS[level]}` : ""}
         </button>
-        <Link href="/math/problem-bank" className="btn btn-line inline-flex items-center gap-1.5" style={{ textDecoration: "none" }}>
-          All topics <ArrowRight className="h-4 w-4" />
+        <Link href={`/math/problem-bank/${topic.slug}`} className="btn btn-line inline-flex items-center gap-1.5" style={{ textDecoration: "none" }}>
+          All units <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </div>

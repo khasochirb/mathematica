@@ -167,8 +167,8 @@ export default function MathLandingPage() {
               Problem Bank
             </span>
             <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
-              192 problems in every exam form, labeled Level 1–3. Miss one and a
-              similar problem comes right back until the form sticks.
+              A problem collection for every course unit, labeled Level 1–3.
+              Miss one and a similar problem comes right back until it sticks.
             </span>
           </div>
           <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>

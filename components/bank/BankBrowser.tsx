@@ -2,15 +2,17 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Zap } from "lucide-react";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import { useAuth } from "@/lib/auth-context";
 import {
   type BankTopic,
+  type BankUnit,
   type BankForm,
   type BankLevel,
   LEVEL_LABELS,
   recordSelfGrade,
+  unitForms,
 } from "@/lib/problem-bank";
 import type { LessonProblem } from "@/lib/lesson-types";
 
@@ -21,24 +23,27 @@ const REVEAL_LABELS = {
   hideAria: "Hide the solution",
 };
 
-// The browsable problem book: EVERY problem in the topic on one page, grouped
-// by level and form, numbered like a printed problem set. Work on paper,
-// reveal the solution when ready, self-grade — grades feed the same per-form
-// mastery the practice runner uses. The quiz-style runner lives one click
-// away at ./practice for students who want instant feedback + retry loops.
-export default function BankBrowser({ topic }: { topic: BankTopic }) {
+// The unit's problem collection: EVERY problem for this course unit on one
+// page, grouped by level and form, numbered like a printed problem set. Work
+// on paper, reveal the solution when ready, self-grade — grades feed the same
+// per-form mastery the practice runner uses. The quiz-style runner lives one
+// click away at ./practice for students who want instant feedback + retry.
+export default function BankBrowser({ topic, unit }: { topic: BankTopic; unit: BankUnit }) {
   const { user } = useAuth();
   const [level, setLevel] = useState<BankLevel>(0);
 
-  const total = topic.forms.reduce((n, f) => n + f.variants.length, 0);
+  const allForms = unitForms(topic, unit.id);
+  const total = allForms.reduce((n, f) => n + f.variants.length, 0);
   const forms = useMemo(
     () =>
-      [...topic.forms]
+      allForms
         .filter((f) => level === 0 || f.level === level)
         .sort((a, b) => a.level - b.level),
-    [topic, level],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [topic, unit.id, level],
   );
   const shown = forms.reduce((n, f) => n + f.variants.length, 0);
+  const unitIndex = topic.units.findIndex((u) => u.id === unit.id);
 
   // Continuous numbering across the filtered list, like a printed booklet.
   let counter = 0;
@@ -47,20 +52,22 @@ export default function BankBrowser({ topic }: { topic: BankTopic }) {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href="/math/problem-bank" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={`/math/problem-bank/${topic.slug}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Problem Bank · {topic.title}</div>
+          <div className="eyebrow">
+            Problem Bank · {topic.title} · Unit {unitIndex + 1}
+          </div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
-          {topic.title}
+          {unit.title}
         </h1>
         <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "58ch" }}>
-          All <b className="tabular">{total}</b> problems, in order of difficulty.
-          Work each one out on paper, then reveal the solution. Neighboring
-          problems under one heading are the same form with different numbers —
-          missed one? The next is your second chance.
+          All <b className="tabular">{total}</b> problems for this unit, in
+          order of difficulty. Work each one out on paper, then reveal the
+          solution. Neighboring problems under one heading are the same form
+          with different numbers — missed one? The next is your second chance.
         </p>
 
         <div className="mt-5 flex items-center gap-2 flex-wrap">
@@ -84,18 +91,32 @@ export default function BankBrowser({ topic }: { topic: BankTopic }) {
           </span>
         </div>
 
-        <Link
-          href={`/math/problem-bank/${topic.slug}/practice`}
-          className="card-edit mt-5 p-4 flex items-center gap-3 transition-colors"
-          style={{ textDecoration: "none" }}
-        >
-          <Zap className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span className="flex-1 text-[14px]" style={{ color: "var(--fg-1)" }}>
-            Prefer instant feedback? The <b>practice set</b> quizzes one problem
-            per form and brings back a similar one whenever you miss.
-          </span>
-          <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
-        </Link>
+        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+          <Link
+            href={`/math/problem-bank/${topic.slug}/${unit.id}/practice`}
+            className="card-edit p-4 flex items-center gap-3 transition-colors"
+            style={{ textDecoration: "none" }}
+          >
+            <Zap className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+            <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
+              Prefer instant feedback? The <b>practice set</b> quizzes this
+              unit and brings back a similar problem whenever you miss.
+            </span>
+            <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+          </Link>
+          <Link
+            href={`/math/${topic.slug}/${unit.id}`}
+            className="card-edit p-4 flex items-center gap-3 transition-colors"
+            style={{ textDecoration: "none" }}
+          >
+            <BookOpen className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+            <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
+              Shaky on the ideas? <b>Review the lessons</b> for this unit in
+              the course first.
+            </span>
+            <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+          </Link>
+        </div>
 
         {([1, 2, 3] as const)
           .filter((lv) => forms.some((f) => f.level === lv))

@@ -491,7 +491,35 @@ def solve_variant(topic, form_id, v):
         p, q, ang = int(m.group(1)), int(m.group(2)), int(m.group(3))
         return ("num", sp.sqrt(sp.nsimplify(p * p + q * q - 2 * p * q * sp.cos(sp.rad(ang)))))
 
+    # New unit-specific forms carry their own independent re-solvers in the
+    # subject modules' RESOLVERS dicts (scripts/pb/<subject>.py). They receive
+    # the raw statement and return the same tagged tuples as above, plus
+    # ("opt", exact-option-string) for categorical answers.
+    if form_id in PLUGIN_RESOLVERS:
+        return PLUGIN_RESOLVERS[form_id](s)
+
     return ("no-resolver", form_id)
+
+
+def _load_plugin_resolvers():
+    import importlib.util
+    out = {}
+    pb = os.path.join(ROOT, "scripts", "pb")
+    for modname in ("algebra_1", "algebra_2", "geometry_course",
+                    "trigonometry_course", "solid_geometry"):
+        path = os.path.join(pb, modname + ".py")
+        if not os.path.exists(path):
+            continue
+        spec = importlib.util.spec_from_file_location("pbaud_" + modname, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        for fid, fn in getattr(mod, "RESOLVERS", {}).items():
+            assert fid not in out, f"duplicate plugin resolver for {fid}"
+            out[fid] = fn
+    return out
+
+
+PLUGIN_RESOLVERS = _load_plugin_resolvers()
 
 
 def solve_special_triangle(s):
@@ -549,6 +577,9 @@ def main():
                 elif kind == "assert":
                     if val is not True:
                         fail(v, "ASSERT-MISMATCH", val)
+                elif kind == "opt":
+                    if v["options"][v["correctIndex"]] != val:
+                        fail(v, "OPT-MISMATCH", val)
                 else:
                     unparsed.append((v["id"], kind, str(val)[:90]))
 

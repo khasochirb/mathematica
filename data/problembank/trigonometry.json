@@ -2,1104 +2,40 @@
   "slug": "trigonometry",
   "title": "Trigonometry",
   "titleMn": "Тригонометр",
-  "blurb": "Exact values, triangles from triples, equations on the circle, and the laws — trig in every exam costume.",
+  "blurb": "Unit-by-unit practice for the Trigonometry course — right triangles to identities and the laws.",
+  "units": [
+    {
+      "id": "right-triangle-trigonometry",
+      "title": "Right-Triangle Trigonometry",
+      "blurb": "SOH-CAH-TOA: name the sides, pick the ratio, solve for any missing side or angle — then aim it at towers, ramps, and shadows."
+    },
+    {
+      "id": "special-triangles-and-exact-values",
+      "title": "Special Triangles & Exact Values",
+      "blurb": "Half a square and half an equilateral: the two triangles behind every exact value of 30°, 45°, and 60°."
+    },
+    {
+      "id": "radians-and-the-unit-circle",
+      "title": "Radians & the Unit Circle",
+      "blurb": "Angles measured by arc, a circle where cosine and sine ARE the coordinates — and exact values in every quadrant."
+    },
+    {
+      "id": "graphs-of-trig-functions",
+      "title": "Graphs of Trig Functions",
+      "blurb": "The circle unrolled into a wave: amplitude, period, phase, midline — and tangent's wilder portrait."
+    },
+    {
+      "id": "identities-and-equations",
+      "title": "Identities & Equations",
+      "blurb": "The Pythagorean identity, sum and double-angle formulas — and solving equations whose unknown is an angle."
+    },
+    {
+      "id": "laws-of-sines-and-cosines",
+      "title": "Laws of Sines & Cosines",
+      "blurb": "Trigonometry for EVERY triangle: the sine area formula, both laws, and the strategy for solving any triangle from any three facts."
+    }
+  ],
   "forms": [
-    {
-      "id": "exact-values",
-      "title": "Exact values beyond 90°",
-      "level": 1,
-      "skill": "Reference angle + quadrant sign (ASTC).",
-      "variants": [
-        {
-          "id": "TRIG-ev-v01",
-          "statement": "Evaluate exactly: $\\sin 120°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 120° = \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "sin(rad(120)) == sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v02",
-          "statement": "Evaluate exactly: $\\cos 120°$.",
-          "options": [
-            "$\\frac{1}{2}$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 120° = - \\frac{1}{2}$.",
-          "check": [
-            "cos(rad(120)) == -1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v03",
-          "statement": "Evaluate exactly: $\\tan 120°$.",
-          "options": [
-            "$\\sqrt{3}$",
-            "$0$",
-            "$- \\sqrt{3}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 120° = - \\sqrt{3}$.",
-          "check": [
-            "tan(rad(120)) == -sqrt(3)"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v04",
-          "statement": "Evaluate exactly: $\\sin 135°$.",
-          "options": [
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{1}{2}$",
-            "$\\frac{\\sqrt{2}}{2}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 135° = \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "sin(rad(135)) == sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v05",
-          "statement": "Evaluate exactly: $\\cos 135°$.",
-          "options": [
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$\\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 135° = - \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "cos(rad(135)) == -sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v06",
-          "statement": "Evaluate exactly: $\\tan 135°$.",
-          "options": [
-            "$1$",
-            "$-1$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 135° = -1$.",
-          "check": [
-            "tan(rad(135)) == -1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v07",
-          "statement": "Evaluate exactly: $\\sin 150°$.",
-          "options": [
-            "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 150° = \\frac{1}{2}$.",
-          "check": [
-            "sin(rad(150)) == 1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v08",
-          "statement": "Evaluate exactly: $\\cos 150°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$",
-            "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 150° = - \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "cos(rad(150)) == -sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v09",
-          "statement": "Evaluate exactly: $\\tan 150°$.",
-          "options": [
-            "$- \\frac{\\sqrt{3}}{3}$",
-            "$\\frac{\\sqrt{3}}{3}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 150° = - \\frac{\\sqrt{3}}{3}$.",
-          "check": [
-            "tan(rad(150)) == -sqrt(3)/3"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v10",
-          "statement": "Evaluate exactly: $\\sin 210°$.",
-          "options": [
-            "$\\frac{1}{2}$",
-            "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 210° = - \\frac{1}{2}$.",
-          "check": [
-            "sin(rad(210)) == -1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v11",
-          "statement": "Evaluate exactly: $\\cos 210°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 210° = - \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "cos(rad(210)) == -sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v12",
-          "statement": "Evaluate exactly: $\\tan 210°$.",
-          "options": [
-            "$- \\frac{\\sqrt{3}}{3}$",
-            "$0$",
-            "$\\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{3}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 210° = \\frac{\\sqrt{3}}{3}$.",
-          "check": [
-            "tan(rad(210)) == sqrt(3)/3"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v13",
-          "statement": "Evaluate exactly: $\\sin 225°$.",
-          "options": [
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$\\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 225° = - \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "sin(rad(225)) == -sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v14",
-          "statement": "Evaluate exactly: $\\cos 225°$.",
-          "options": [
-            "$\\frac{\\sqrt{2}}{2}$",
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 225° = - \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "cos(rad(225)) == -sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v15",
-          "statement": "Evaluate exactly: $\\tan 225°$.",
-          "options": [
-            "$-1$",
-            "$0$",
-            "$1$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 225° = 1$.",
-          "check": [
-            "tan(rad(225)) == 1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v16",
-          "statement": "Evaluate exactly: $\\sin 240°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 240° = - \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "sin(rad(240)) == -sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v17",
-          "statement": "Evaluate exactly: $\\cos 240°$.",
-          "options": [
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 240° = - \\frac{1}{2}$.",
-          "check": [
-            "cos(rad(240)) == -1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v18",
-          "statement": "Evaluate exactly: $\\tan 240°$.",
-          "options": [
-            "$- \\sqrt{3}$",
-            "$\\sqrt{3}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 240° = \\sqrt{3}$.",
-          "check": [
-            "tan(rad(240)) == sqrt(3)"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v19",
-          "statement": "Evaluate exactly: $\\sin 300°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 300° = - \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "sin(rad(300)) == -sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v20",
-          "statement": "Evaluate exactly: $\\cos 300°$.",
-          "options": [
-            "$- \\frac{1}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 300° = \\frac{1}{2}$.",
-          "check": [
-            "cos(rad(300)) == 1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v21",
-          "statement": "Evaluate exactly: $\\tan 300°$.",
-          "options": [
-            "$- \\sqrt{3}$",
-            "$\\sqrt{3}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 300° = - \\sqrt{3}$.",
-          "check": [
-            "tan(rad(300)) == -sqrt(3)"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v22",
-          "statement": "Evaluate exactly: $\\sin 315°$.",
-          "options": [
-            "$\\frac{\\sqrt{2}}{2}$",
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 315° = - \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "sin(rad(315)) == -sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v23",
-          "statement": "Evaluate exactly: $\\cos 315°$.",
-          "options": [
-            "$- \\frac{\\sqrt{2}}{2}$",
-            "$0$",
-            "$\\frac{\\sqrt{2}}{2}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 315° = \\frac{\\sqrt{2}}{2}$.",
-          "check": [
-            "cos(rad(315)) == sqrt(2)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v24",
-          "statement": "Evaluate exactly: $\\tan 315°$.",
-          "options": [
-            "$1$",
-            "$0$",
-            "$\\frac{1}{2}$",
-            "$-1$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 315° = -1$.",
-          "check": [
-            "tan(rad(315)) == -1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v25",
-          "statement": "Evaluate exactly: $\\sin 330°$.",
-          "options": [
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{\\sqrt{3}}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 330° = - \\frac{1}{2}$.",
-          "check": [
-            "sin(rad(330)) == -1/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v26",
-          "statement": "Evaluate exactly: $\\cos 330°$.",
-          "options": [
-            "$- \\frac{\\sqrt{3}}{2}$",
-            "$\\frac{\\sqrt{3}}{2}$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 330° = \\frac{\\sqrt{3}}{2}$.",
-          "check": [
-            "cos(rad(330)) == sqrt(3)/2"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v27",
-          "statement": "Evaluate exactly: $\\tan 330°$.",
-          "options": [
-            "$\\frac{\\sqrt{3}}{3}$",
-            "$0$",
-            "$- \\frac{\\sqrt{3}}{3}$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 330° = - \\frac{\\sqrt{3}}{3}$.",
-          "check": [
-            "tan(rad(330)) == -sqrt(3)/3"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v28",
-          "statement": "Evaluate exactly: $\\sin 0°$.",
-          "options": [
-            "$1$",
-            "$-1$",
-            "$\\frac{1}{2}$",
-            "$0$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 0° = 0$.",
-          "check": [
-            "sin(rad(0)) == 0"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v29",
-          "statement": "Evaluate exactly: $\\cos 0°$.",
-          "options": [
-            "$1$",
-            "$-1$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 0° = 1$.",
-          "check": [
-            "cos(rad(0)) == 1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v30",
-          "statement": "Evaluate exactly: $\\tan 0°$.",
-          "options": [
-            "$\\frac{1}{2}$",
-            "$0$",
-            "$- \\frac{1}{2}$",
-            "$\\frac{\\sqrt{2}}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 0° = 0$.",
-          "check": [
-            "tan(rad(0)) == 0"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v31",
-          "statement": "Evaluate exactly: $\\sin 90°$.",
-          "options": [
-            "$-1$",
-            "$0$",
-            "$1$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 90° = 1$.",
-          "check": [
-            "sin(rad(90)) == 1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v32",
-          "statement": "Evaluate exactly: $\\cos 90°$.",
-          "options": [
-            "$1$",
-            "$-1$",
-            "$\\frac{1}{2}$",
-            "$0$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 90° = 0$.",
-          "check": [
-            "cos(rad(90)) == 0"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v33",
-          "statement": "Evaluate exactly: $\\sin 180°$.",
-          "options": [
-            "$0$",
-            "$-1$",
-            "$1$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 180° = 0$.",
-          "check": [
-            "sin(rad(180)) == 0"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v34",
-          "statement": "Evaluate exactly: $\\cos 180°$.",
-          "options": [
-            "$1$",
-            "$-1$",
-            "$0$",
-            "$\\frac{1}{2}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 180° = -1$.",
-          "check": [
-            "cos(rad(180)) == -1"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v35",
-          "statement": "Evaluate exactly: $\\tan 180°$.",
-          "options": [
-            "$\\frac{1}{2}$",
-            "$- \\frac{1}{2}$",
-            "$0$",
-            "$\\frac{\\sqrt{2}}{2}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 180° = 0$.",
-          "check": [
-            "tan(rad(180)) == 0"
-          ]
-        },
-        {
-          "id": "TRIG-ev-v36",
-          "statement": "Evaluate exactly: $\\sin 270°$.",
-          "options": [
-            "$1$",
-            "$0$",
-            "$\\frac{1}{2}$",
-            "$-1$"
-          ],
-          "correctIndex": 3,
-          "explanation": "$270°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 270° = -1$.",
-          "check": [
-            "sin(rad(270)) == -1"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "deg-rad",
-      "title": "Degrees ↔ radians",
-      "level": 1,
-      "skill": "Multiply degrees by π/180; reduce the fraction.",
-      "variants": [
-        {
-          "id": "TRIG-dr-v01",
-          "statement": "Convert $12°$ to radians.",
-          "options": [
-            "$\\dfrac{\\pi}{15}$",
-            "$\\dfrac{2\\pi}{15}$",
-            "$\\dfrac{\\pi}{30}$",
-            "$\\dfrac{\\pi}{10}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $12° = \\frac{12\\pi}{180} = \\dfrac{\\pi}{15}$.",
-          "check": [
-            "Rational(12, 180) == Rational(1, 15)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v02",
-          "statement": "Convert $15°$ to radians.",
-          "options": [
-            "$\\dfrac{\\pi}{6}$",
-            "$\\dfrac{\\pi}{12}$",
-            "$\\dfrac{\\pi}{24}$",
-            "$\\dfrac{\\pi}{8}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $15° = \\frac{15\\pi}{180} = \\dfrac{\\pi}{12}$.",
-          "check": [
-            "Rational(15, 180) == Rational(1, 12)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v03",
-          "statement": "Convert $18°$ to radians.",
-          "options": [
-            "$\\dfrac{\\pi}{5}$",
-            "$\\dfrac{\\pi}{20}$",
-            "$\\dfrac{\\pi}{10}$",
-            "$\\dfrac{3\\pi}{20}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $18° = \\frac{18\\pi}{180} = \\dfrac{\\pi}{10}$.",
-          "check": [
-            "Rational(18, 180) == Rational(1, 10)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v04",
-          "statement": "Convert $20°$ to radians.",
-          "options": [
-            "$\\dfrac{2\\pi}{9}$",
-            "$\\dfrac{\\pi}{18}$",
-            "$\\dfrac{\\pi}{6}$",
-            "$\\dfrac{\\pi}{9}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $20° = \\frac{20\\pi}{180} = \\dfrac{\\pi}{9}$.",
-          "check": [
-            "Rational(20, 180) == Rational(1, 9)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v05",
-          "statement": "Convert $24°$ to radians.",
-          "options": [
-            "$\\dfrac{2\\pi}{15}$",
-            "$\\dfrac{4\\pi}{15}$",
-            "$\\dfrac{\\pi}{15}$",
-            "$\\dfrac{\\pi}{5}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $24° = \\frac{24\\pi}{180} = \\dfrac{2\\pi}{15}$.",
-          "check": [
-            "Rational(24, 180) == Rational(2, 15)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v06",
-          "statement": "Convert $30°$ to radians.",
-          "options": [
-            "$\\dfrac{\\pi}{3}$",
-            "$\\dfrac{\\pi}{6}$",
-            "$\\dfrac{\\pi}{12}$",
-            "$\\dfrac{\\pi}{4}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $30° = \\frac{30\\pi}{180} = \\dfrac{\\pi}{6}$.",
-          "check": [
-            "Rational(30, 180) == Rational(1, 6)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v07",
-          "statement": "Convert $36°$ to radians.",
-          "options": [
-            "$\\dfrac{2\\pi}{5}$",
-            "$\\dfrac{\\pi}{10}$",
-            "$\\dfrac{\\pi}{5}$",
-            "$\\dfrac{3\\pi}{10}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $36° = \\frac{36\\pi}{180} = \\dfrac{\\pi}{5}$.",
-          "check": [
-            "Rational(36, 180) == Rational(1, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v08",
-          "statement": "Convert $40°$ to radians.",
-          "options": [
-            "$\\dfrac{4\\pi}{9}$",
-            "$\\dfrac{\\pi}{9}$",
-            "$\\dfrac{\\pi}{3}$",
-            "$\\dfrac{2\\pi}{9}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $40° = \\frac{40\\pi}{180} = \\dfrac{2\\pi}{9}$.",
-          "check": [
-            "Rational(40, 180) == Rational(2, 9)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v09",
-          "statement": "Convert $45°$ to radians.",
-          "options": [
-            "$\\dfrac{\\pi}{4}$",
-            "$\\dfrac{\\pi}{2}$",
-            "$\\dfrac{\\pi}{8}$",
-            "$\\dfrac{3\\pi}{8}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $45° = \\frac{45\\pi}{180} = \\dfrac{\\pi}{4}$.",
-          "check": [
-            "Rational(45, 180) == Rational(1, 4)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v10",
-          "statement": "Convert $50°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{9}$",
-            "$\\dfrac{5\\pi}{18}$",
-            "$\\dfrac{5\\pi}{36}$",
-            "$\\dfrac{5\\pi}{12}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $50° = \\frac{50\\pi}{180} = \\dfrac{5\\pi}{18}$.",
-          "check": [
-            "Rational(50, 180) == Rational(5, 18)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v11",
-          "statement": "Convert $54°$ to radians.",
-          "options": [
-            "$\\dfrac{3\\pi}{5}$",
-            "$\\dfrac{3\\pi}{20}$",
-            "$\\dfrac{3\\pi}{10}$",
-            "$\\dfrac{9\\pi}{20}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $54° = \\frac{54\\pi}{180} = \\dfrac{3\\pi}{10}$.",
-          "check": [
-            "Rational(54, 180) == Rational(3, 10)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v12",
-          "statement": "Convert $60°$ to radians.",
-          "options": [
-            "$\\dfrac{2\\pi}{3}$",
-            "$\\dfrac{\\pi}{6}$",
-            "$\\dfrac{\\pi}{2}$",
-            "$\\dfrac{\\pi}{3}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $60° = \\frac{60\\pi}{180} = \\dfrac{\\pi}{3}$.",
-          "check": [
-            "Rational(60, 180) == Rational(1, 3)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v13",
-          "statement": "Convert $72°$ to radians.",
-          "options": [
-            "$\\dfrac{2\\pi}{5}$",
-            "$\\dfrac{4\\pi}{5}$",
-            "$\\dfrac{\\pi}{5}$",
-            "$\\dfrac{3\\pi}{5}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $72° = \\frac{72\\pi}{180} = \\dfrac{2\\pi}{5}$.",
-          "check": [
-            "Rational(72, 180) == Rational(2, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v14",
-          "statement": "Convert $75°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{5\\pi}{12}$",
-            "$\\dfrac{5\\pi}{24}$",
-            "$\\dfrac{5\\pi}{8}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $75° = \\frac{75\\pi}{180} = \\dfrac{5\\pi}{12}$.",
-          "check": [
-            "Rational(75, 180) == Rational(5, 12)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v15",
-          "statement": "Convert $80°$ to radians.",
-          "options": [
-            "$\\dfrac{8\\pi}{9}$",
-            "$\\dfrac{2\\pi}{9}$",
-            "$\\dfrac{4\\pi}{9}$",
-            "$\\dfrac{2\\pi}{3}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $80° = \\frac{80\\pi}{180} = \\dfrac{4\\pi}{9}$.",
-          "check": [
-            "Rational(80, 180) == Rational(4, 9)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v16",
-          "statement": "Convert $90°$ to radians.",
-          "options": [
-            "$\\pi$",
-            "$\\dfrac{\\pi}{4}$",
-            "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{\\pi}{2}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $90° = \\frac{90\\pi}{180} = \\dfrac{\\pi}{2}$.",
-          "check": [
-            "Rational(90, 180) == Rational(1, 2)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v17",
-          "statement": "Convert $100°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{9}$",
-            "$\\dfrac{10\\pi}{9}$",
-            "$\\dfrac{5\\pi}{18}$",
-            "$\\dfrac{5\\pi}{6}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $100° = \\frac{100\\pi}{180} = \\dfrac{5\\pi}{9}$.",
-          "check": [
-            "Rational(100, 180) == Rational(5, 9)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v18",
-          "statement": "Convert $105°$ to radians.",
-          "options": [
-            "$\\dfrac{7\\pi}{6}$",
-            "$\\dfrac{7\\pi}{12}$",
-            "$\\dfrac{7\\pi}{24}$",
-            "$\\dfrac{7\\pi}{8}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $105° = \\frac{105\\pi}{180} = \\dfrac{7\\pi}{12}$.",
-          "check": [
-            "Rational(105, 180) == Rational(7, 12)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v19",
-          "statement": "Convert $108°$ to radians.",
-          "options": [
-            "$\\dfrac{6\\pi}{5}$",
-            "$\\dfrac{3\\pi}{10}$",
-            "$\\dfrac{3\\pi}{5}$",
-            "$\\dfrac{9\\pi}{10}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $108° = \\frac{108\\pi}{180} = \\dfrac{3\\pi}{5}$.",
-          "check": [
-            "Rational(108, 180) == Rational(3, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v20",
-          "statement": "Convert $120°$ to radians.",
-          "options": [
-            "$\\dfrac{4\\pi}{3}$",
-            "$\\dfrac{\\pi}{3}$",
-            "$\\pi$",
-            "$\\dfrac{2\\pi}{3}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $120° = \\frac{120\\pi}{180} = \\dfrac{2\\pi}{3}$.",
-          "check": [
-            "Rational(120, 180) == Rational(2, 3)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v21",
-          "statement": "Convert $135°$ to radians.",
-          "options": [
-            "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{3\\pi}{2}$",
-            "$\\dfrac{3\\pi}{8}$",
-            "$\\dfrac{9\\pi}{8}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $135° = \\frac{135\\pi}{180} = \\dfrac{3\\pi}{4}$.",
-          "check": [
-            "Rational(135, 180) == Rational(3, 4)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v22",
-          "statement": "Convert $144°$ to radians.",
-          "options": [
-            "$\\dfrac{8\\pi}{5}$",
-            "$\\dfrac{4\\pi}{5}$",
-            "$\\dfrac{2\\pi}{5}$",
-            "$\\dfrac{6\\pi}{5}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $144° = \\frac{144\\pi}{180} = \\dfrac{4\\pi}{5}$.",
-          "check": [
-            "Rational(144, 180) == Rational(4, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v23",
-          "statement": "Convert $150°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{3}$",
-            "$\\dfrac{5\\pi}{12}$",
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{5\\pi}{4}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $150° = \\frac{150\\pi}{180} = \\dfrac{5\\pi}{6}$.",
-          "check": [
-            "Rational(150, 180) == Rational(5, 6)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v24",
-          "statement": "Convert $160°$ to radians.",
-          "options": [
-            "$\\dfrac{16\\pi}{9}$",
-            "$\\dfrac{4\\pi}{9}$",
-            "$\\dfrac{4\\pi}{3}$",
-            "$\\dfrac{8\\pi}{9}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $160° = \\frac{160\\pi}{180} = \\dfrac{8\\pi}{9}$.",
-          "check": [
-            "Rational(160, 180) == Rational(8, 9)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v25",
-          "statement": "Convert $180°$ to radians.",
-          "options": [
-            "$\\pi$",
-            "$2\\pi$",
-            "$\\dfrac{\\pi}{2}$",
-            "$\\dfrac{3\\pi}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $180° = \\frac{180\\pi}{180} = \\pi$.",
-          "check": [
-            "Rational(180, 180) == Rational(1, 1)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v26",
-          "statement": "Convert $210°$ to radians.",
-          "options": [
-            "$\\dfrac{7\\pi}{3}$",
-            "$\\dfrac{7\\pi}{6}$",
-            "$\\dfrac{7\\pi}{12}$",
-            "$\\dfrac{7\\pi}{4}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $210° = \\frac{210\\pi}{180} = \\dfrac{7\\pi}{6}$.",
-          "check": [
-            "Rational(210, 180) == Rational(7, 6)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v27",
-          "statement": "Convert $216°$ to radians.",
-          "options": [
-            "$\\dfrac{12\\pi}{5}$",
-            "$\\dfrac{3\\pi}{5}$",
-            "$\\dfrac{6\\pi}{5}$",
-            "$\\dfrac{9\\pi}{5}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $216° = \\frac{216\\pi}{180} = \\dfrac{6\\pi}{5}$.",
-          "check": [
-            "Rational(216, 180) == Rational(6, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v28",
-          "statement": "Convert $225°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{2}$",
-            "$\\dfrac{5\\pi}{8}$",
-            "$\\dfrac{15\\pi}{8}$",
-            "$\\dfrac{5\\pi}{4}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $225° = \\frac{225\\pi}{180} = \\dfrac{5\\pi}{4}$.",
-          "check": [
-            "Rational(225, 180) == Rational(5, 4)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v29",
-          "statement": "Convert $240°$ to radians.",
-          "options": [
-            "$\\dfrac{4\\pi}{3}$",
-            "$\\dfrac{8\\pi}{3}$",
-            "$\\dfrac{2\\pi}{3}$",
-            "$2\\pi$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $240° = \\frac{240\\pi}{180} = \\dfrac{4\\pi}{3}$.",
-          "check": [
-            "Rational(240, 180) == Rational(4, 3)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v30",
-          "statement": "Convert $252°$ to radians.",
-          "options": [
-            "$\\dfrac{14\\pi}{5}$",
-            "$\\dfrac{7\\pi}{5}$",
-            "$\\dfrac{7\\pi}{10}$",
-            "$\\dfrac{21\\pi}{10}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $252° = \\frac{252\\pi}{180} = \\dfrac{7\\pi}{5}$.",
-          "check": [
-            "Rational(252, 180) == Rational(7, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v31",
-          "statement": "Convert $270°$ to radians.",
-          "options": [
-            "$3\\pi$",
-            "$\\dfrac{3\\pi}{4}$",
-            "$\\dfrac{3\\pi}{2}$",
-            "$\\dfrac{9\\pi}{4}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $270° = \\frac{270\\pi}{180} = \\dfrac{3\\pi}{2}$.",
-          "check": [
-            "Rational(270, 180) == Rational(3, 2)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v32",
-          "statement": "Convert $288°$ to radians.",
-          "options": [
-            "$\\dfrac{16\\pi}{5}$",
-            "$\\dfrac{4\\pi}{5}$",
-            "$\\dfrac{12\\pi}{5}$",
-            "$\\dfrac{8\\pi}{5}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $288° = \\frac{288\\pi}{180} = \\dfrac{8\\pi}{5}$.",
-          "check": [
-            "Rational(288, 180) == Rational(8, 5)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v33",
-          "statement": "Convert $300°$ to radians.",
-          "options": [
-            "$\\dfrac{5\\pi}{3}$",
-            "$\\dfrac{10\\pi}{3}$",
-            "$\\dfrac{5\\pi}{6}$",
-            "$\\dfrac{5\\pi}{2}$"
-          ],
-          "correctIndex": 0,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $300° = \\frac{300\\pi}{180} = \\dfrac{5\\pi}{3}$.",
-          "check": [
-            "Rational(300, 180) == Rational(5, 3)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v34",
-          "statement": "Convert $315°$ to radians.",
-          "options": [
-            "$\\dfrac{7\\pi}{2}$",
-            "$\\dfrac{7\\pi}{4}$",
-            "$\\dfrac{7\\pi}{8}$",
-            "$\\dfrac{21\\pi}{8}$"
-          ],
-          "correctIndex": 1,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $315° = \\frac{315\\pi}{180} = \\dfrac{7\\pi}{4}$.",
-          "check": [
-            "Rational(315, 180) == Rational(7, 4)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v35",
-          "statement": "Convert $330°$ to radians.",
-          "options": [
-            "$\\dfrac{11\\pi}{3}$",
-            "$\\dfrac{11\\pi}{12}$",
-            "$\\dfrac{11\\pi}{6}$",
-            "$\\dfrac{11\\pi}{4}$"
-          ],
-          "correctIndex": 2,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $330° = \\frac{330\\pi}{180} = \\dfrac{11\\pi}{6}$.",
-          "check": [
-            "Rational(330, 180) == Rational(11, 6)"
-          ]
-        },
-        {
-          "id": "TRIG-dr-v36",
-          "statement": "Convert $360°$ to radians.",
-          "options": [
-            "$4\\pi$",
-            "$\\pi$",
-            "$3\\pi$",
-            "$2\\pi$"
-          ],
-          "correctIndex": 3,
-          "explanation": "Multiply by $\\frac{\\pi}{180}$: $360° = \\frac{360\\pi}{180} = 2\\pi$.",
-          "check": [
-            "Rational(360, 180) == Rational(2, 1)"
-          ]
-        }
-      ]
-    },
     {
       "id": "right-triangle-side",
       "title": "Finding a side with sine",
@@ -3662,7 +2598,8 @@
             "20*cos(rad(60)) == 10"
           ]
         }
-      ]
+      ],
+      "unit": "right-triangle-trigonometry"
     },
     {
       "id": "sin-to-cos-tan",
@@ -4246,7 +3183,1655 @@
             "Rational(60,109)**2 + Rational(91,109)**2 == 1"
           ]
         }
-      ]
+      ],
+      "unit": "right-triangle-trigonometry"
+    },
+    {
+      "id": "exact-values",
+      "title": "Exact values beyond 90°",
+      "level": 1,
+      "skill": "Reference angle + quadrant sign (ASTC).",
+      "variants": [
+        {
+          "id": "TRIG-ev-v01",
+          "statement": "Evaluate exactly: $\\sin 120°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 120° = \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(120)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v02",
+          "statement": "Evaluate exactly: $\\cos 120°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 120° = - \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(120)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v03",
+          "statement": "Evaluate exactly: $\\tan 120°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$0$",
+            "$- \\sqrt{3}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$120°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 120° = - \\sqrt{3}$.",
+          "check": [
+            "tan(rad(120)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v04",
+          "statement": "Evaluate exactly: $\\sin 135°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 135° = \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(135)) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v05",
+          "statement": "Evaluate exactly: $\\cos 135°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 135° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(135)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v06",
+          "statement": "Evaluate exactly: $\\tan 135°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$135°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 135° = -1$.",
+          "check": [
+            "tan(rad(135)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v07",
+          "statement": "Evaluate exactly: $\\sin 150°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\sin 150° = \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(150)) == 1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v08",
+          "statement": "Evaluate exactly: $\\cos 150°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\cos 150° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(150)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v09",
+          "statement": "Evaluate exactly: $\\tan 150°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$150°$ lies in quadrant II (only sine positive); use the reference angle and the ASTC sign rule to get $\\tan 150° = - \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(150)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v10",
+          "statement": "Evaluate exactly: $\\sin 210°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 210° = - \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(210)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v11",
+          "statement": "Evaluate exactly: $\\cos 210°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 210° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(210)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v12",
+          "statement": "Evaluate exactly: $\\tan 210°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$210°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 210° = \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(210)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v13",
+          "statement": "Evaluate exactly: $\\sin 225°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 225° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(225)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v14",
+          "statement": "Evaluate exactly: $\\cos 225°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 225° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(225)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v15",
+          "statement": "Evaluate exactly: $\\tan 225°$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$225°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 225° = 1$.",
+          "check": [
+            "tan(rad(225)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v16",
+          "statement": "Evaluate exactly: $\\sin 240°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\sin 240° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(240)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v17",
+          "statement": "Evaluate exactly: $\\cos 240°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\cos 240° = - \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(240)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v18",
+          "statement": "Evaluate exactly: $\\tan 240°$.",
+          "options": [
+            "$- \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$240°$ lies in quadrant III (only tangent positive); use the reference angle and the ASTC sign rule to get $\\tan 240° = \\sqrt{3}$.",
+          "check": [
+            "tan(rad(240)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v19",
+          "statement": "Evaluate exactly: $\\sin 300°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 300° = - \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "sin(rad(300)) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v20",
+          "statement": "Evaluate exactly: $\\cos 300°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 300° = \\frac{1}{2}$.",
+          "check": [
+            "cos(rad(300)) == 1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v21",
+          "statement": "Evaluate exactly: $\\tan 300°$.",
+          "options": [
+            "$- \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$300°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 300° = - \\sqrt{3}$.",
+          "check": [
+            "tan(rad(300)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v22",
+          "statement": "Evaluate exactly: $\\sin 315°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 315° = - \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "sin(rad(315)) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v23",
+          "statement": "Evaluate exactly: $\\cos 315°$.",
+          "options": [
+            "$- \\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 315° = \\frac{\\sqrt{2}}{2}$.",
+          "check": [
+            "cos(rad(315)) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v24",
+          "statement": "Evaluate exactly: $\\tan 315°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$315°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 315° = -1$.",
+          "check": [
+            "tan(rad(315)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v25",
+          "statement": "Evaluate exactly: $\\sin 330°$.",
+          "options": [
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\sin 330° = - \\frac{1}{2}$.",
+          "check": [
+            "sin(rad(330)) == -1/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v26",
+          "statement": "Evaluate exactly: $\\cos 330°$.",
+          "options": [
+            "$- \\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\cos 330° = \\frac{\\sqrt{3}}{2}$.",
+          "check": [
+            "cos(rad(330)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v27",
+          "statement": "Evaluate exactly: $\\tan 330°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$0$",
+            "$- \\frac{\\sqrt{3}}{3}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$330°$ lies in quadrant IV (only cosine positive); use the reference angle and the ASTC sign rule to get $\\tan 330° = - \\frac{\\sqrt{3}}{3}$.",
+          "check": [
+            "tan(rad(330)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v28",
+          "statement": "Evaluate exactly: $\\sin 0°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 0° = 0$.",
+          "check": [
+            "sin(rad(0)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v29",
+          "statement": "Evaluate exactly: $\\cos 0°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 0° = 1$.",
+          "check": [
+            "cos(rad(0)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v30",
+          "statement": "Evaluate exactly: $\\tan 0°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$0$",
+            "$- \\frac{1}{2}$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$0°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 0° = 0$.",
+          "check": [
+            "tan(rad(0)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v31",
+          "statement": "Evaluate exactly: $\\sin 90°$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 90° = 1$.",
+          "check": [
+            "sin(rad(90)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v32",
+          "statement": "Evaluate exactly: $\\cos 90°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$90°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 90° = 0$.",
+          "check": [
+            "cos(rad(90)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v33",
+          "statement": "Evaluate exactly: $\\sin 180°$.",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 180° = 0$.",
+          "check": [
+            "sin(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v34",
+          "statement": "Evaluate exactly: $\\cos 180°$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\cos 180° = -1$.",
+          "check": [
+            "cos(rad(180)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v35",
+          "statement": "Evaluate exactly: $\\tan 180°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$- \\frac{1}{2}$",
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$180°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\tan 180° = 0$.",
+          "check": [
+            "tan(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-ev-v36",
+          "statement": "Evaluate exactly: $\\sin 270°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$270°$ lies in an axis boundary; use the reference angle and the ASTC sign rule to get $\\sin 270° = -1$.",
+          "check": [
+            "sin(rad(270)) == -1"
+          ]
+        }
+      ],
+      "unit": "special-triangles-and-exact-values"
+    },
+    {
+      "id": "deg-rad",
+      "title": "Degrees ↔ radians",
+      "level": 1,
+      "skill": "Multiply degrees by π/180; reduce the fraction.",
+      "variants": [
+        {
+          "id": "TRIG-dr-v01",
+          "statement": "Convert $12°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{15}$",
+            "$\\dfrac{2\\pi}{15}$",
+            "$\\dfrac{\\pi}{30}$",
+            "$\\dfrac{\\pi}{10}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $12° = \\frac{12\\pi}{180} = \\dfrac{\\pi}{15}$.",
+          "check": [
+            "Rational(12, 180) == Rational(1, 15)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v02",
+          "statement": "Convert $15°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{12}$",
+            "$\\dfrac{\\pi}{24}$",
+            "$\\dfrac{\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $15° = \\frac{15\\pi}{180} = \\dfrac{\\pi}{12}$.",
+          "check": [
+            "Rational(15, 180) == Rational(1, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v03",
+          "statement": "Convert $18°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{\\pi}{20}$",
+            "$\\dfrac{\\pi}{10}$",
+            "$\\dfrac{3\\pi}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $18° = \\frac{18\\pi}{180} = \\dfrac{\\pi}{10}$.",
+          "check": [
+            "Rational(18, 180) == Rational(1, 10)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v04",
+          "statement": "Convert $20°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{9}$",
+            "$\\dfrac{\\pi}{18}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $20° = \\frac{20\\pi}{180} = \\dfrac{\\pi}{9}$.",
+          "check": [
+            "Rational(20, 180) == Rational(1, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v05",
+          "statement": "Convert $24°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{15}$",
+            "$\\dfrac{4\\pi}{15}$",
+            "$\\dfrac{\\pi}{15}$",
+            "$\\dfrac{\\pi}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $24° = \\frac{24\\pi}{180} = \\dfrac{2\\pi}{15}$.",
+          "check": [
+            "Rational(24, 180) == Rational(2, 15)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v06",
+          "statement": "Convert $30°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{3}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{12}$",
+            "$\\dfrac{\\pi}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $30° = \\frac{30\\pi}{180} = \\dfrac{\\pi}{6}$.",
+          "check": [
+            "Rational(30, 180) == Rational(1, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v07",
+          "statement": "Convert $36°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{\\pi}{10}$",
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{3\\pi}{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $36° = \\frac{36\\pi}{180} = \\dfrac{\\pi}{5}$.",
+          "check": [
+            "Rational(36, 180) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v08",
+          "statement": "Convert $40°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{\\pi}{9}$",
+            "$\\dfrac{\\pi}{3}$",
+            "$\\dfrac{2\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $40° = \\frac{40\\pi}{180} = \\dfrac{2\\pi}{9}$.",
+          "check": [
+            "Rational(40, 180) == Rational(2, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v09",
+          "statement": "Convert $45°$ to radians.",
+          "options": [
+            "$\\dfrac{\\pi}{4}$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{\\pi}{8}$",
+            "$\\dfrac{3\\pi}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $45° = \\frac{45\\pi}{180} = \\dfrac{\\pi}{4}$.",
+          "check": [
+            "Rational(45, 180) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v10",
+          "statement": "Convert $50°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{9}$",
+            "$\\dfrac{5\\pi}{18}$",
+            "$\\dfrac{5\\pi}{36}$",
+            "$\\dfrac{5\\pi}{12}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $50° = \\frac{50\\pi}{180} = \\dfrac{5\\pi}{18}$.",
+          "check": [
+            "Rational(50, 180) == Rational(5, 18)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v11",
+          "statement": "Convert $54°$ to radians.",
+          "options": [
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{3\\pi}{20}$",
+            "$\\dfrac{3\\pi}{10}$",
+            "$\\dfrac{9\\pi}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $54° = \\frac{54\\pi}{180} = \\dfrac{3\\pi}{10}$.",
+          "check": [
+            "Rational(54, 180) == Rational(3, 10)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v12",
+          "statement": "Convert $60°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{3}$",
+            "$\\dfrac{\\pi}{6}$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{\\pi}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $60° = \\frac{60\\pi}{180} = \\dfrac{\\pi}{3}$.",
+          "check": [
+            "Rational(60, 180) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v13",
+          "statement": "Convert $72°$ to radians.",
+          "options": [
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{\\pi}{5}$",
+            "$\\dfrac{3\\pi}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $72° = \\frac{72\\pi}{180} = \\dfrac{2\\pi}{5}$.",
+          "check": [
+            "Rational(72, 180) == Rational(2, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v14",
+          "statement": "Convert $75°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{12}$",
+            "$\\dfrac{5\\pi}{24}$",
+            "$\\dfrac{5\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $75° = \\frac{75\\pi}{180} = \\dfrac{5\\pi}{12}$.",
+          "check": [
+            "Rational(75, 180) == Rational(5, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v15",
+          "statement": "Convert $80°$ to radians.",
+          "options": [
+            "$\\dfrac{8\\pi}{9}$",
+            "$\\dfrac{2\\pi}{9}$",
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{2\\pi}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $80° = \\frac{80\\pi}{180} = \\dfrac{4\\pi}{9}$.",
+          "check": [
+            "Rational(80, 180) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v16",
+          "statement": "Convert $90°$ to radians.",
+          "options": [
+            "$\\pi$",
+            "$\\dfrac{\\pi}{4}$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{\\pi}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $90° = \\frac{90\\pi}{180} = \\dfrac{\\pi}{2}$.",
+          "check": [
+            "Rational(90, 180) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v17",
+          "statement": "Convert $100°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{9}$",
+            "$\\dfrac{10\\pi}{9}$",
+            "$\\dfrac{5\\pi}{18}$",
+            "$\\dfrac{5\\pi}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $100° = \\frac{100\\pi}{180} = \\dfrac{5\\pi}{9}$.",
+          "check": [
+            "Rational(100, 180) == Rational(5, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v18",
+          "statement": "Convert $105°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{6}$",
+            "$\\dfrac{7\\pi}{12}$",
+            "$\\dfrac{7\\pi}{24}$",
+            "$\\dfrac{7\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $105° = \\frac{105\\pi}{180} = \\dfrac{7\\pi}{12}$.",
+          "check": [
+            "Rational(105, 180) == Rational(7, 12)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v19",
+          "statement": "Convert $108°$ to radians.",
+          "options": [
+            "$\\dfrac{6\\pi}{5}$",
+            "$\\dfrac{3\\pi}{10}$",
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{9\\pi}{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $108° = \\frac{108\\pi}{180} = \\dfrac{3\\pi}{5}$.",
+          "check": [
+            "Rational(108, 180) == Rational(3, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v20",
+          "statement": "Convert $120°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{\\pi}{3}$",
+            "$\\pi$",
+            "$\\dfrac{2\\pi}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $120° = \\frac{120\\pi}{180} = \\dfrac{2\\pi}{3}$.",
+          "check": [
+            "Rational(120, 180) == Rational(2, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v21",
+          "statement": "Convert $135°$ to radians.",
+          "options": [
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{3\\pi}{2}$",
+            "$\\dfrac{3\\pi}{8}$",
+            "$\\dfrac{9\\pi}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $135° = \\frac{135\\pi}{180} = \\dfrac{3\\pi}{4}$.",
+          "check": [
+            "Rational(135, 180) == Rational(3, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v22",
+          "statement": "Convert $144°$ to radians.",
+          "options": [
+            "$\\dfrac{8\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{2\\pi}{5}$",
+            "$\\dfrac{6\\pi}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $144° = \\frac{144\\pi}{180} = \\dfrac{4\\pi}{5}$.",
+          "check": [
+            "Rational(144, 180) == Rational(4, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v23",
+          "statement": "Convert $150°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{3}$",
+            "$\\dfrac{5\\pi}{12}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $150° = \\frac{150\\pi}{180} = \\dfrac{5\\pi}{6}$.",
+          "check": [
+            "Rational(150, 180) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v24",
+          "statement": "Convert $160°$ to radians.",
+          "options": [
+            "$\\dfrac{16\\pi}{9}$",
+            "$\\dfrac{4\\pi}{9}$",
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{8\\pi}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $160° = \\frac{160\\pi}{180} = \\dfrac{8\\pi}{9}$.",
+          "check": [
+            "Rational(160, 180) == Rational(8, 9)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v25",
+          "statement": "Convert $180°$ to radians.",
+          "options": [
+            "$\\pi$",
+            "$2\\pi$",
+            "$\\dfrac{\\pi}{2}$",
+            "$\\dfrac{3\\pi}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $180° = \\frac{180\\pi}{180} = \\pi$.",
+          "check": [
+            "Rational(180, 180) == Rational(1, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v26",
+          "statement": "Convert $210°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{3}$",
+            "$\\dfrac{7\\pi}{6}$",
+            "$\\dfrac{7\\pi}{12}$",
+            "$\\dfrac{7\\pi}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $210° = \\frac{210\\pi}{180} = \\dfrac{7\\pi}{6}$.",
+          "check": [
+            "Rational(210, 180) == Rational(7, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v27",
+          "statement": "Convert $216°$ to radians.",
+          "options": [
+            "$\\dfrac{12\\pi}{5}$",
+            "$\\dfrac{3\\pi}{5}$",
+            "$\\dfrac{6\\pi}{5}$",
+            "$\\dfrac{9\\pi}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $216° = \\frac{216\\pi}{180} = \\dfrac{6\\pi}{5}$.",
+          "check": [
+            "Rational(216, 180) == Rational(6, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v28",
+          "statement": "Convert $225°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{2}$",
+            "$\\dfrac{5\\pi}{8}$",
+            "$\\dfrac{15\\pi}{8}$",
+            "$\\dfrac{5\\pi}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $225° = \\frac{225\\pi}{180} = \\dfrac{5\\pi}{4}$.",
+          "check": [
+            "Rational(225, 180) == Rational(5, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v29",
+          "statement": "Convert $240°$ to radians.",
+          "options": [
+            "$\\dfrac{4\\pi}{3}$",
+            "$\\dfrac{8\\pi}{3}$",
+            "$\\dfrac{2\\pi}{3}$",
+            "$2\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $240° = \\frac{240\\pi}{180} = \\dfrac{4\\pi}{3}$.",
+          "check": [
+            "Rational(240, 180) == Rational(4, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v30",
+          "statement": "Convert $252°$ to radians.",
+          "options": [
+            "$\\dfrac{14\\pi}{5}$",
+            "$\\dfrac{7\\pi}{5}$",
+            "$\\dfrac{7\\pi}{10}$",
+            "$\\dfrac{21\\pi}{10}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $252° = \\frac{252\\pi}{180} = \\dfrac{7\\pi}{5}$.",
+          "check": [
+            "Rational(252, 180) == Rational(7, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v31",
+          "statement": "Convert $270°$ to radians.",
+          "options": [
+            "$3\\pi$",
+            "$\\dfrac{3\\pi}{4}$",
+            "$\\dfrac{3\\pi}{2}$",
+            "$\\dfrac{9\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $270° = \\frac{270\\pi}{180} = \\dfrac{3\\pi}{2}$.",
+          "check": [
+            "Rational(270, 180) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v32",
+          "statement": "Convert $288°$ to radians.",
+          "options": [
+            "$\\dfrac{16\\pi}{5}$",
+            "$\\dfrac{4\\pi}{5}$",
+            "$\\dfrac{12\\pi}{5}$",
+            "$\\dfrac{8\\pi}{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $288° = \\frac{288\\pi}{180} = \\dfrac{8\\pi}{5}$.",
+          "check": [
+            "Rational(288, 180) == Rational(8, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v33",
+          "statement": "Convert $300°$ to radians.",
+          "options": [
+            "$\\dfrac{5\\pi}{3}$",
+            "$\\dfrac{10\\pi}{3}$",
+            "$\\dfrac{5\\pi}{6}$",
+            "$\\dfrac{5\\pi}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $300° = \\frac{300\\pi}{180} = \\dfrac{5\\pi}{3}$.",
+          "check": [
+            "Rational(300, 180) == Rational(5, 3)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v34",
+          "statement": "Convert $315°$ to radians.",
+          "options": [
+            "$\\dfrac{7\\pi}{2}$",
+            "$\\dfrac{7\\pi}{4}$",
+            "$\\dfrac{7\\pi}{8}$",
+            "$\\dfrac{21\\pi}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $315° = \\frac{315\\pi}{180} = \\dfrac{7\\pi}{4}$.",
+          "check": [
+            "Rational(315, 180) == Rational(7, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v35",
+          "statement": "Convert $330°$ to radians.",
+          "options": [
+            "$\\dfrac{11\\pi}{3}$",
+            "$\\dfrac{11\\pi}{12}$",
+            "$\\dfrac{11\\pi}{6}$",
+            "$\\dfrac{11\\pi}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $330° = \\frac{330\\pi}{180} = \\dfrac{11\\pi}{6}$.",
+          "check": [
+            "Rational(330, 180) == Rational(11, 6)"
+          ]
+        },
+        {
+          "id": "TRIG-dr-v36",
+          "statement": "Convert $360°$ to radians.",
+          "options": [
+            "$4\\pi$",
+            "$\\pi$",
+            "$3\\pi$",
+            "$2\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply by $\\frac{\\pi}{180}$: $360° = \\frac{360\\pi}{180} = 2\\pi$.",
+          "check": [
+            "Rational(360, 180) == Rational(2, 1)"
+          ]
+        }
+      ],
+      "unit": "radians-and-the-unit-circle"
+    },
+    {
+      "id": "pythagorean-identity",
+      "title": "The Pythagorean identity",
+      "level": 2,
+      "skill": "sin² + cos² = 1, so 1 − cos² is sin².",
+      "variants": [
+        {
+          "id": "TRIG-id-v01",
+          "statement": "If $\\cos\\alpha = \\dfrac{4}{5}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{9}{25}$",
+            "$\\frac{16}{25}$",
+            "$\\frac{3}{5}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{9}{25}$.",
+          "check": [
+            "1 - Rational(4,5)**2 == Rational(9,25)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v02",
+          "statement": "If $\\sin\\alpha = \\dfrac{3}{5}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{9}{25}$",
+            "$\\frac{16}{25}$",
+            "$\\frac{4}{5}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{16}{25}$.",
+          "check": [
+            "1 - Rational(3,5)**2 == Rational(16,25)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v03",
+          "statement": "If $\\cos\\alpha = \\dfrac{12}{13}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{169}$",
+            "$\\frac{5}{13}$",
+            "$\\frac{25}{169}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{25}{169}$.",
+          "check": [
+            "1 - Rational(12,13)**2 == Rational(25,169)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v04",
+          "statement": "If $\\sin\\alpha = \\dfrac{5}{13}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{25}{169}$",
+            "$\\frac{12}{13}$",
+            "$1$",
+            "$\\frac{144}{169}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{144}{169}$.",
+          "check": [
+            "1 - Rational(5,13)**2 == Rational(144,169)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v05",
+          "statement": "If $\\cos\\alpha = \\dfrac{15}{17}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{64}{289}$",
+            "$\\frac{225}{289}$",
+            "$\\frac{8}{17}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{64}{289}$.",
+          "check": [
+            "1 - Rational(15,17)**2 == Rational(64,289)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v06",
+          "statement": "If $\\sin\\alpha = \\dfrac{8}{17}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{64}{289}$",
+            "$\\frac{225}{289}$",
+            "$\\frac{15}{17}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{225}{289}$.",
+          "check": [
+            "1 - Rational(8,17)**2 == Rational(225,289)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v07",
+          "statement": "If $\\cos\\alpha = \\dfrac{24}{25}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{576}{625}$",
+            "$\\frac{7}{25}$",
+            "$\\frac{49}{625}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{49}{625}$.",
+          "check": [
+            "1 - Rational(24,25)**2 == Rational(49,625)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v08",
+          "statement": "If $\\sin\\alpha = \\dfrac{7}{25}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{49}{625}$",
+            "$\\frac{24}{25}$",
+            "$1$",
+            "$\\frac{576}{625}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{576}{625}$.",
+          "check": [
+            "1 - Rational(7,25)**2 == Rational(576,625)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v09",
+          "statement": "If $\\cos\\alpha = \\dfrac{21}{29}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{841}$",
+            "$\\frac{441}{841}$",
+            "$\\frac{20}{29}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{841}$.",
+          "check": [
+            "1 - Rational(21,29)**2 == Rational(400,841)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v10",
+          "statement": "If $\\sin\\alpha = \\dfrac{20}{29}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{841}$",
+            "$\\frac{441}{841}$",
+            "$\\frac{21}{29}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{441}{841}$.",
+          "check": [
+            "1 - Rational(20,29)**2 == Rational(441,841)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v11",
+          "statement": "If $\\cos\\alpha = \\dfrac{40}{41}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1600}{1681}$",
+            "$\\frac{9}{41}$",
+            "$\\frac{81}{1681}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{81}{1681}$.",
+          "check": [
+            "1 - Rational(40,41)**2 == Rational(81,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v12",
+          "statement": "If $\\sin\\alpha = \\dfrac{9}{41}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{81}{1681}$",
+            "$\\frac{40}{41}$",
+            "$1$",
+            "$\\frac{1600}{1681}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1600}{1681}$.",
+          "check": [
+            "1 - Rational(9,41)**2 == Rational(1600,1681)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v13",
+          "statement": "If $\\cos\\alpha = \\dfrac{35}{37}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{1369}$",
+            "$\\frac{1225}{1369}$",
+            "$\\frac{12}{37}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{144}{1369}$.",
+          "check": [
+            "1 - Rational(35,37)**2 == Rational(144,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v14",
+          "statement": "If $\\sin\\alpha = \\dfrac{12}{37}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{144}{1369}$",
+            "$\\frac{1225}{1369}$",
+            "$\\frac{35}{37}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1225}{1369}$.",
+          "check": [
+            "1 - Rational(12,37)**2 == Rational(1225,1369)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v15",
+          "statement": "If $\\cos\\alpha = \\dfrac{60}{61}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{3600}{3721}$",
+            "$\\frac{11}{61}$",
+            "$\\frac{121}{3721}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{121}{3721}$.",
+          "check": [
+            "1 - Rational(60,61)**2 == Rational(121,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v16",
+          "statement": "If $\\sin\\alpha = \\dfrac{11}{61}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{121}{3721}$",
+            "$\\frac{60}{61}$",
+            "$1$",
+            "$\\frac{3600}{3721}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3600}{3721}$.",
+          "check": [
+            "1 - Rational(11,61)**2 == Rational(3600,3721)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v17",
+          "statement": "If $\\cos\\alpha = \\dfrac{45}{53}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{784}{2809}$",
+            "$\\frac{2025}{2809}$",
+            "$\\frac{28}{53}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{784}{2809}$.",
+          "check": [
+            "1 - Rational(45,53)**2 == Rational(784,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v18",
+          "statement": "If $\\sin\\alpha = \\dfrac{28}{53}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{784}{2809}$",
+            "$\\frac{2025}{2809}$",
+            "$\\frac{45}{53}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{2025}{2809}$.",
+          "check": [
+            "1 - Rational(28,53)**2 == Rational(2025,2809)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v19",
+          "statement": "If $\\cos\\alpha = \\dfrac{84}{85}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{7056}{7225}$",
+            "$\\frac{13}{85}$",
+            "$\\frac{169}{7225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{169}{7225}$.",
+          "check": [
+            "1 - Rational(84,85)**2 == Rational(169,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v20",
+          "statement": "If $\\sin\\alpha = \\dfrac{13}{85}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{169}{7225}$",
+            "$\\frac{84}{85}$",
+            "$1$",
+            "$\\frac{7056}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{7056}{7225}$.",
+          "check": [
+            "1 - Rational(13,85)**2 == Rational(7056,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v21",
+          "statement": "If $\\cos\\alpha = \\dfrac{56}{65}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1089}{4225}$",
+            "$\\frac{3136}{4225}$",
+            "$\\frac{33}{65}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1089}{4225}$.",
+          "check": [
+            "1 - Rational(56,65)**2 == Rational(1089,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v22",
+          "statement": "If $\\sin\\alpha = \\dfrac{33}{65}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1089}{4225}$",
+            "$\\frac{3136}{4225}$",
+            "$\\frac{56}{65}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3136}{4225}$.",
+          "check": [
+            "1 - Rational(33,65)**2 == Rational(3136,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v23",
+          "statement": "If $\\cos\\alpha = \\dfrac{63}{65}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{3969}{4225}$",
+            "$\\frac{16}{65}$",
+            "$\\frac{256}{4225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{256}{4225}$.",
+          "check": [
+            "1 - Rational(63,65)**2 == Rational(256,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v24",
+          "statement": "If $\\sin\\alpha = \\dfrac{16}{65}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{256}{4225}$",
+            "$\\frac{63}{65}$",
+            "$1$",
+            "$\\frac{3969}{4225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3969}{4225}$.",
+          "check": [
+            "1 - Rational(16,65)**2 == Rational(3969,4225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v25",
+          "statement": "If $\\cos\\alpha = \\dfrac{55}{73}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{2304}{5329}$",
+            "$\\frac{3025}{5329}$",
+            "$\\frac{48}{73}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{2304}{5329}$.",
+          "check": [
+            "1 - Rational(55,73)**2 == Rational(2304,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v26",
+          "statement": "If $\\sin\\alpha = \\dfrac{48}{73}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{2304}{5329}$",
+            "$\\frac{3025}{5329}$",
+            "$\\frac{55}{73}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3025}{5329}$.",
+          "check": [
+            "1 - Rational(48,73)**2 == Rational(3025,5329)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v27",
+          "statement": "If $\\cos\\alpha = \\dfrac{77}{85}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{5929}{7225}$",
+            "$\\frac{36}{85}$",
+            "$\\frac{1296}{7225}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1296}{7225}$.",
+          "check": [
+            "1 - Rational(77,85)**2 == Rational(1296,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v28",
+          "statement": "If $\\sin\\alpha = \\dfrac{36}{85}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1296}{7225}$",
+            "$\\frac{77}{85}$",
+            "$1$",
+            "$\\frac{5929}{7225}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5929}{7225}$.",
+          "check": [
+            "1 - Rational(36,85)**2 == Rational(5929,7225)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v29",
+          "statement": "If $\\cos\\alpha = \\dfrac{80}{89}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{1521}{7921}$",
+            "$\\frac{6400}{7921}$",
+            "$\\frac{39}{89}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1521}{7921}$.",
+          "check": [
+            "1 - Rational(80,89)**2 == Rational(1521,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v30",
+          "statement": "If $\\sin\\alpha = \\dfrac{39}{89}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{1521}{7921}$",
+            "$\\frac{6400}{7921}$",
+            "$\\frac{80}{89}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{6400}{7921}$.",
+          "check": [
+            "1 - Rational(39,89)**2 == Rational(6400,7921)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v31",
+          "statement": "If $\\cos\\alpha = \\dfrac{72}{97}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{5184}{9409}$",
+            "$\\frac{65}{97}$",
+            "$\\frac{4225}{9409}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{4225}{9409}$.",
+          "check": [
+            "1 - Rational(72,97)**2 == Rational(4225,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v32",
+          "statement": "If $\\sin\\alpha = \\dfrac{65}{97}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{4225}{9409}$",
+            "$\\frac{72}{97}$",
+            "$1$",
+            "$\\frac{5184}{9409}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5184}{9409}$.",
+          "check": [
+            "1 - Rational(65,97)**2 == Rational(5184,9409)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v33",
+          "statement": "If $\\cos\\alpha = \\dfrac{99}{101}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{10201}$",
+            "$\\frac{9801}{10201}$",
+            "$\\frac{20}{101}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{10201}$.",
+          "check": [
+            "1 - Rational(99,101)**2 == Rational(400,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v34",
+          "statement": "If $\\sin\\alpha = \\dfrac{20}{101}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{400}{10201}$",
+            "$\\frac{9801}{10201}$",
+            "$\\frac{99}{101}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{9801}{10201}$.",
+          "check": [
+            "1 - Rational(20,101)**2 == Rational(9801,10201)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v35",
+          "statement": "If $\\cos\\alpha = \\dfrac{91}{109}$, evaluate $1 - \\cos^2\\alpha$.",
+          "options": [
+            "$\\frac{8281}{11881}$",
+            "$\\frac{60}{109}$",
+            "$\\frac{3600}{11881}$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{3600}{11881}$.",
+          "check": [
+            "1 - Rational(91,109)**2 == Rational(3600,11881)"
+          ]
+        },
+        {
+          "id": "TRIG-id-v36",
+          "statement": "If $\\sin\\alpha = \\dfrac{60}{109}$, evaluate $1 - \\sin^2\\alpha$.",
+          "options": [
+            "$\\frac{3600}{11881}$",
+            "$\\frac{91}{109}$",
+            "$1$",
+            "$\\frac{8281}{11881}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{8281}{11881}$.",
+          "check": [
+            "1 - Rational(60,109)**2 == Rational(8281,11881)"
+          ]
+        }
+      ],
+      "unit": "identities-and-equations"
     },
     {
       "id": "solve-sin",
@@ -4858,555 +5443,8 @@
             "180 == 180"
           ]
         }
-      ]
-    },
-    {
-      "id": "pythagorean-identity",
-      "title": "The Pythagorean identity",
-      "level": 2,
-      "skill": "sin² + cos² = 1, so 1 − cos² is sin².",
-      "variants": [
-        {
-          "id": "TRIG-id-v01",
-          "statement": "If $\\cos\\alpha = \\dfrac{4}{5}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{9}{25}$",
-            "$\\frac{16}{25}$",
-            "$\\frac{3}{5}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{9}{25}$.",
-          "check": [
-            "1 - Rational(4,5)**2 == Rational(9,25)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v02",
-          "statement": "If $\\sin\\alpha = \\dfrac{3}{5}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{9}{25}$",
-            "$\\frac{16}{25}$",
-            "$\\frac{4}{5}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{16}{25}$.",
-          "check": [
-            "1 - Rational(3,5)**2 == Rational(16,25)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v03",
-          "statement": "If $\\cos\\alpha = \\dfrac{12}{13}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{144}{169}$",
-            "$\\frac{5}{13}$",
-            "$\\frac{25}{169}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{25}{169}$.",
-          "check": [
-            "1 - Rational(12,13)**2 == Rational(25,169)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v04",
-          "statement": "If $\\sin\\alpha = \\dfrac{5}{13}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{25}{169}$",
-            "$\\frac{12}{13}$",
-            "$1$",
-            "$\\frac{144}{169}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{144}{169}$.",
-          "check": [
-            "1 - Rational(5,13)**2 == Rational(144,169)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v05",
-          "statement": "If $\\cos\\alpha = \\dfrac{15}{17}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{64}{289}$",
-            "$\\frac{225}{289}$",
-            "$\\frac{8}{17}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{64}{289}$.",
-          "check": [
-            "1 - Rational(15,17)**2 == Rational(64,289)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v06",
-          "statement": "If $\\sin\\alpha = \\dfrac{8}{17}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{64}{289}$",
-            "$\\frac{225}{289}$",
-            "$\\frac{15}{17}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{225}{289}$.",
-          "check": [
-            "1 - Rational(8,17)**2 == Rational(225,289)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v07",
-          "statement": "If $\\cos\\alpha = \\dfrac{24}{25}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{576}{625}$",
-            "$\\frac{7}{25}$",
-            "$\\frac{49}{625}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{49}{625}$.",
-          "check": [
-            "1 - Rational(24,25)**2 == Rational(49,625)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v08",
-          "statement": "If $\\sin\\alpha = \\dfrac{7}{25}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{49}{625}$",
-            "$\\frac{24}{25}$",
-            "$1$",
-            "$\\frac{576}{625}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{576}{625}$.",
-          "check": [
-            "1 - Rational(7,25)**2 == Rational(576,625)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v09",
-          "statement": "If $\\cos\\alpha = \\dfrac{21}{29}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{400}{841}$",
-            "$\\frac{441}{841}$",
-            "$\\frac{20}{29}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{841}$.",
-          "check": [
-            "1 - Rational(21,29)**2 == Rational(400,841)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v10",
-          "statement": "If $\\sin\\alpha = \\dfrac{20}{29}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{400}{841}$",
-            "$\\frac{441}{841}$",
-            "$\\frac{21}{29}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{441}{841}$.",
-          "check": [
-            "1 - Rational(20,29)**2 == Rational(441,841)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v11",
-          "statement": "If $\\cos\\alpha = \\dfrac{40}{41}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{1600}{1681}$",
-            "$\\frac{9}{41}$",
-            "$\\frac{81}{1681}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{81}{1681}$.",
-          "check": [
-            "1 - Rational(40,41)**2 == Rational(81,1681)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v12",
-          "statement": "If $\\sin\\alpha = \\dfrac{9}{41}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{81}{1681}$",
-            "$\\frac{40}{41}$",
-            "$1$",
-            "$\\frac{1600}{1681}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1600}{1681}$.",
-          "check": [
-            "1 - Rational(9,41)**2 == Rational(1600,1681)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v13",
-          "statement": "If $\\cos\\alpha = \\dfrac{35}{37}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{144}{1369}$",
-            "$\\frac{1225}{1369}$",
-            "$\\frac{12}{37}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{144}{1369}$.",
-          "check": [
-            "1 - Rational(35,37)**2 == Rational(144,1369)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v14",
-          "statement": "If $\\sin\\alpha = \\dfrac{12}{37}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{144}{1369}$",
-            "$\\frac{1225}{1369}$",
-            "$\\frac{35}{37}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{1225}{1369}$.",
-          "check": [
-            "1 - Rational(12,37)**2 == Rational(1225,1369)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v15",
-          "statement": "If $\\cos\\alpha = \\dfrac{60}{61}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{3600}{3721}$",
-            "$\\frac{11}{61}$",
-            "$\\frac{121}{3721}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{121}{3721}$.",
-          "check": [
-            "1 - Rational(60,61)**2 == Rational(121,3721)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v16",
-          "statement": "If $\\sin\\alpha = \\dfrac{11}{61}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{121}{3721}$",
-            "$\\frac{60}{61}$",
-            "$1$",
-            "$\\frac{3600}{3721}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3600}{3721}$.",
-          "check": [
-            "1 - Rational(11,61)**2 == Rational(3600,3721)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v17",
-          "statement": "If $\\cos\\alpha = \\dfrac{45}{53}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{784}{2809}$",
-            "$\\frac{2025}{2809}$",
-            "$\\frac{28}{53}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{784}{2809}$.",
-          "check": [
-            "1 - Rational(45,53)**2 == Rational(784,2809)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v18",
-          "statement": "If $\\sin\\alpha = \\dfrac{28}{53}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{784}{2809}$",
-            "$\\frac{2025}{2809}$",
-            "$\\frac{45}{53}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{2025}{2809}$.",
-          "check": [
-            "1 - Rational(28,53)**2 == Rational(2025,2809)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v19",
-          "statement": "If $\\cos\\alpha = \\dfrac{84}{85}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{7056}{7225}$",
-            "$\\frac{13}{85}$",
-            "$\\frac{169}{7225}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{169}{7225}$.",
-          "check": [
-            "1 - Rational(84,85)**2 == Rational(169,7225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v20",
-          "statement": "If $\\sin\\alpha = \\dfrac{13}{85}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{169}{7225}$",
-            "$\\frac{84}{85}$",
-            "$1$",
-            "$\\frac{7056}{7225}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{7056}{7225}$.",
-          "check": [
-            "1 - Rational(13,85)**2 == Rational(7056,7225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v21",
-          "statement": "If $\\cos\\alpha = \\dfrac{56}{65}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{1089}{4225}$",
-            "$\\frac{3136}{4225}$",
-            "$\\frac{33}{65}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1089}{4225}$.",
-          "check": [
-            "1 - Rational(56,65)**2 == Rational(1089,4225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v22",
-          "statement": "If $\\sin\\alpha = \\dfrac{33}{65}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{1089}{4225}$",
-            "$\\frac{3136}{4225}$",
-            "$\\frac{56}{65}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3136}{4225}$.",
-          "check": [
-            "1 - Rational(33,65)**2 == Rational(3136,4225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v23",
-          "statement": "If $\\cos\\alpha = \\dfrac{63}{65}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{3969}{4225}$",
-            "$\\frac{16}{65}$",
-            "$\\frac{256}{4225}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{256}{4225}$.",
-          "check": [
-            "1 - Rational(63,65)**2 == Rational(256,4225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v24",
-          "statement": "If $\\sin\\alpha = \\dfrac{16}{65}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{256}{4225}$",
-            "$\\frac{63}{65}$",
-            "$1$",
-            "$\\frac{3969}{4225}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3969}{4225}$.",
-          "check": [
-            "1 - Rational(16,65)**2 == Rational(3969,4225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v25",
-          "statement": "If $\\cos\\alpha = \\dfrac{55}{73}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{2304}{5329}$",
-            "$\\frac{3025}{5329}$",
-            "$\\frac{48}{73}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{2304}{5329}$.",
-          "check": [
-            "1 - Rational(55,73)**2 == Rational(2304,5329)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v26",
-          "statement": "If $\\sin\\alpha = \\dfrac{48}{73}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{2304}{5329}$",
-            "$\\frac{3025}{5329}$",
-            "$\\frac{55}{73}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{3025}{5329}$.",
-          "check": [
-            "1 - Rational(48,73)**2 == Rational(3025,5329)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v27",
-          "statement": "If $\\cos\\alpha = \\dfrac{77}{85}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{5929}{7225}$",
-            "$\\frac{36}{85}$",
-            "$\\frac{1296}{7225}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1296}{7225}$.",
-          "check": [
-            "1 - Rational(77,85)**2 == Rational(1296,7225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v28",
-          "statement": "If $\\sin\\alpha = \\dfrac{36}{85}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{1296}{7225}$",
-            "$\\frac{77}{85}$",
-            "$1$",
-            "$\\frac{5929}{7225}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5929}{7225}$.",
-          "check": [
-            "1 - Rational(36,85)**2 == Rational(5929,7225)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v29",
-          "statement": "If $\\cos\\alpha = \\dfrac{80}{89}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{1521}{7921}$",
-            "$\\frac{6400}{7921}$",
-            "$\\frac{39}{89}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{1521}{7921}$.",
-          "check": [
-            "1 - Rational(80,89)**2 == Rational(1521,7921)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v30",
-          "statement": "If $\\sin\\alpha = \\dfrac{39}{89}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{1521}{7921}$",
-            "$\\frac{6400}{7921}$",
-            "$\\frac{80}{89}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{6400}{7921}$.",
-          "check": [
-            "1 - Rational(39,89)**2 == Rational(6400,7921)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v31",
-          "statement": "If $\\cos\\alpha = \\dfrac{72}{97}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{5184}{9409}$",
-            "$\\frac{65}{97}$",
-            "$\\frac{4225}{9409}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{4225}{9409}$.",
-          "check": [
-            "1 - Rational(72,97)**2 == Rational(4225,9409)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v32",
-          "statement": "If $\\sin\\alpha = \\dfrac{65}{97}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{4225}{9409}$",
-            "$\\frac{72}{97}$",
-            "$1$",
-            "$\\frac{5184}{9409}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{5184}{9409}$.",
-          "check": [
-            "1 - Rational(65,97)**2 == Rational(5184,9409)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v33",
-          "statement": "If $\\cos\\alpha = \\dfrac{99}{101}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{400}{10201}$",
-            "$\\frac{9801}{10201}$",
-            "$\\frac{20}{101}$",
-            "$1$"
-          ],
-          "correctIndex": 0,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{400}{10201}$.",
-          "check": [
-            "1 - Rational(99,101)**2 == Rational(400,10201)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v34",
-          "statement": "If $\\sin\\alpha = \\dfrac{20}{101}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{400}{10201}$",
-            "$\\frac{9801}{10201}$",
-            "$\\frac{99}{101}$",
-            "$1$"
-          ],
-          "correctIndex": 1,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{9801}{10201}$.",
-          "check": [
-            "1 - Rational(20,101)**2 == Rational(9801,10201)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v35",
-          "statement": "If $\\cos\\alpha = \\dfrac{91}{109}$, evaluate $1 - \\cos^2\\alpha$.",
-          "options": [
-            "$\\frac{8281}{11881}$",
-            "$\\frac{60}{109}$",
-            "$\\frac{3600}{11881}$",
-            "$1$"
-          ],
-          "correctIndex": 2,
-          "explanation": "By the Pythagorean identity $1 - \\cos^2\\alpha = \\sin^2\\alpha = \\frac{3600}{11881}$.",
-          "check": [
-            "1 - Rational(91,109)**2 == Rational(3600,11881)"
-          ]
-        },
-        {
-          "id": "TRIG-id-v36",
-          "statement": "If $\\sin\\alpha = \\dfrac{60}{109}$, evaluate $1 - \\sin^2\\alpha$.",
-          "options": [
-            "$\\frac{3600}{11881}$",
-            "$\\frac{91}{109}$",
-            "$1$",
-            "$\\frac{8281}{11881}$"
-          ],
-          "correctIndex": 3,
-          "explanation": "By the Pythagorean identity $1 - \\sin^2\\alpha = \\cos^2\\alpha = \\frac{8281}{11881}$.",
-          "check": [
-            "1 - Rational(60,109)**2 == Rational(8281,11881)"
-          ]
-        }
-      ]
+      ],
+      "unit": "identities-and-equations"
     },
     {
       "id": "double-angle",
@@ -5954,7 +5992,8 @@
             "Rational(91,109)**2 - Rational(60,109)**2 == Rational(4681,11881)"
           ]
         }
-      ]
+      ],
+      "unit": "identities-and-equations"
     },
     {
       "id": "law-of-cosines",
@@ -8302,7 +8341,8 @@
             "sqrt(4**2 + 8**2 - 2*4*8*cos(rad(120))) == sqrt(112)"
           ]
         }
-      ]
+      ],
+      "unit": "laws-of-sines-and-cosines"
     }
   ]
 }

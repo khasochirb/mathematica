@@ -1,10 +1,13 @@
-// The problem bank — leveled exam-form drilling with miss→similar remediation.
+// The problem bank — per-course-unit problem collections with miss→similar
+// remediation.
 //
-// Structure: a TOPIC holds FORMS (exam archetypes — "the shapes this concept
-// takes on a test"), each tagged level 1..3. A form holds ≥4 VARIANTS: the
-// same form with different numbers. Variants are the remediation currency —
-// when a student misses, the engine queues a SIBLING variant of the same form
-// so they immediately re-practice the exact move they fumbled.
+// Structure: a SUBJECT (mirrors a course: Algebra 1, Geometry, …) declares its
+// UNITS in the course spine's taught order, and holds FORMS (exam archetypes —
+// "the shapes this concept takes on a test"), each tagged with its unit and a
+// level 1..3. A form holds ≥4 VARIANTS: the same form with different numbers.
+// Variants are the remediation currency — when a student misses, the engine
+// queues a SIBLING variant of the same form so they immediately re-practice
+// the exact move they fumbled.
 //
 // The engine is pure (rng injected) so the queue logic is unit-testable; only
 // the persistence helpers touch localStorage (same account-keyed pattern as
@@ -12,12 +15,11 @@
 
 import type { GeoDiagramSpec } from "@/lib/genmath-interactive";
 
-import algebra from "@/data/problembank/algebra.json";
-import functions from "@/data/problembank/functions.json";
-import logarithms from "@/data/problembank/logarithms.json";
-import trigonometry from "@/data/problembank/trigonometry.json";
-import sequences from "@/data/problembank/sequences.json";
+import algebra1 from "@/data/problembank/algebra-1.json";
+import algebra2 from "@/data/problembank/algebra-2.json";
 import geometry from "@/data/problembank/geometry.json";
+import trigonometry from "@/data/problembank/trigonometry.json";
+import solidGeometry from "@/data/problembank/solid-geometry.json";
 
 export type BankVariant = {
   id: string;
@@ -34,24 +36,31 @@ export type BankForm = {
   title: string;
   level: 1 | 2 | 3;
   skill: string;
+  unit: string; // unit id in the subject's units[]
   variants: BankVariant[];
 };
 
+export type BankUnit = {
+  id: string; // matches the course unit slug → /math/<subject>/<unit>
+  title: string;
+  blurb?: string;
+};
+
 export type BankTopic = {
-  slug: string;
+  slug: string; // matches the course slug → /math/<subject>
   title: string;
   titleMn: string;
   blurb: string;
+  units: BankUnit[];
   forms: BankForm[];
 };
 
 const TOPICS: BankTopic[] = [
-  algebra,
-  functions,
-  logarithms,
-  trigonometry,
-  sequences,
+  algebra1,
+  algebra2,
   geometry,
+  trigonometry,
+  solidGeometry,
 ] as unknown as BankTopic[];
 
 export function getBankTopics(): BankTopic[] {
@@ -60,6 +69,26 @@ export function getBankTopics(): BankTopic[] {
 
 export function getBankTopic(slug: string): BankTopic | null {
   return TOPICS.find((t) => t.slug === slug) ?? null;
+}
+
+export function getBankUnit(topic: BankTopic, unitId: string): BankUnit | null {
+  return topic.units.find((u) => u.id === unitId) ?? null;
+}
+
+export function unitForms(topic: BankTopic, unitId: string): BankForm[] {
+  return topic.forms.filter((f) => f.unit === unitId);
+}
+
+export function unitMastery(
+  topic: BankTopic,
+  unitId: string,
+  progress: BankProgress,
+): { mastered: number; total: number } {
+  const forms = unitForms(topic, unitId);
+  return {
+    mastered: forms.filter((f) => progress.forms[f.id]?.mastered).length,
+    total: forms.length,
+  };
 }
 
 export const LEVEL_LABELS: Record<number, string> = {

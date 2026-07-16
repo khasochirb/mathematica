@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Problem-bank integrity gate.
 
-For every topic in data/problembank/*.json asserts:
-  - topic has slug/title/titleMn/blurb and >= 1 form;
-  - every form has id/title/skill, level in {1,2,3}, >= 4 variants
-    (the miss->similar mechanic needs siblings to serve);
+For every subject in data/problembank/*.json asserts:
+  - subject has slug/title/titleMn/blurb, a non-empty units[] (course spine),
+    and >= 1 form;
+  - every form has id/title/skill, level in {1,2,3}, a `unit` that exists in
+    units[], and >= 4 variants (the miss->similar mechanic needs siblings);
+  - every unit in units[] has >= 1 form and >= 24 variants (a unit page must
+    be a real collection, not a stub);
   - every variant has a unique id, statement, exactly 4 DISTINCT options,
     a valid correctIndex, a non-empty explanation, and a NON-EMPTY check[];
   - every check string sympifies to True.
@@ -34,6 +37,15 @@ for path in FILES:
     for field in ("slug", "title", "titleMn", "blurb"):
         if not t.get(field):
             failures.append(f"{slug}: missing topic field '{field}'")
+    units = t.get("units") or []
+    if not units:
+        failures.append(f"{slug}: missing units[] — subjects must mirror the course spine")
+    unit_ids = [u.get("id") for u in units]
+    for u in units:
+        if not u.get("id") or not u.get("title"):
+            failures.append(f"{slug}: unit missing id/title: {u!r}")
+    unit_variant_count = {uid: 0 for uid in unit_ids}
+    unit_form_count = {uid: 0 for uid in unit_ids}
     if not t.get("forms"):
         failures.append(f"{slug}: no forms")
         continue
@@ -45,6 +57,11 @@ for path in FILES:
                 failures.append(f"{fid}: missing form field '{field}'")
         if f.get("level") not in (1, 2, 3):
             failures.append(f"{fid}: level must be 1..3, got {f.get('level')!r}")
+        if f.get("unit") not in unit_ids:
+            failures.append(f"{fid}: unit {f.get('unit')!r} not in subject units[]")
+        else:
+            unit_form_count[f["unit"]] += 1
+            unit_variant_count[f["unit"]] += len(f.get("variants", []))
         vs = f.get("variants", [])
         if len(vs) < 4:
             failures.append(f"{fid}: needs >= 4 variants for miss->similar, has {len(vs)}")
@@ -86,8 +103,13 @@ for path in FILES:
                     ok = False
                 if not ok:
                     failures.append(f"{vid}: check is NOT True: {expr!r} -> {result!r}")
+    for uid in unit_ids:
+        if unit_form_count.get(uid, 0) == 0:
+            failures.append(f"{slug}/{uid}: unit has NO forms — every unit needs a collection")
+        elif unit_variant_count.get(uid, 0) < 24:
+            failures.append(f"{slug}/{uid}: unit has only {unit_variant_count[uid]} problems (< 24)")
 
-print(f"verify:bank — topics: {topics}, forms: {forms}, variants: {variants}, sympy checks run: {checks_run}")
+print(f"verify:bank — subjects: {topics}, forms: {forms}, variants: {variants}, sympy checks run: {checks_run}")
 if failures:
     for f in failures:
         print(f"  ✗ {f}")

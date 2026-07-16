@@ -2,6 +2,9 @@ import { describe, it, expect } from "vitest";
 import {
   getBankTopics,
   getBankTopic,
+  getBankUnit,
+  unitForms,
+  unitMastery,
   initSession,
   currentItem,
   answerCurrent,
@@ -18,14 +21,22 @@ import {
 const rng0 = () => 0;
 
 describe("problem bank data", () => {
-  it("ships 6 topics, each with level-1..3 forms and >= 4 variants per form", () => {
+  it("ships 5 subjects, each mirroring its course units, >= 4 variants per form", () => {
     const topics = getBankTopics();
-    expect(topics.length).toBe(6);
+    expect(topics.map((t) => t.slug)).toEqual([
+      "algebra-1",
+      "algebra-2",
+      "geometry",
+      "trigonometry",
+      "solid-geometry",
+    ]);
     for (const t of topics) {
-      expect(t.forms.length).toBeGreaterThanOrEqual(6);
+      expect(t.units.length).toBeGreaterThanOrEqual(6);
+      const unitIds = new Set(t.units.map((u) => u.id));
       const levels = new Set(t.forms.map((f) => f.level));
       expect(levels).toEqual(new Set([1, 2, 3]));
       for (const f of t.forms) {
+        expect(unitIds.has(f.unit), `${t.slug}/${f.id} unit ${f.unit}`).toBe(true);
         expect(f.variants.length, `${t.slug}/${f.id}`).toBeGreaterThanOrEqual(4);
         for (const v of f.variants) {
           expect(v.options.length).toBe(4);
@@ -37,18 +48,25 @@ describe("problem bank data", () => {
     }
   });
 
-  it("resolves topics and variants by id", () => {
-    const t = getBankTopic("algebra")!;
-    expect(t.title).toBe("Algebra");
+  it("resolves subjects, units, and variants by id", () => {
+    const t = getBankTopic("algebra-1")!;
+    expect(t.title).toBe("Algebra 1");
     const f = t.forms[0];
     const v = getVariant(t, f.id, f.variants[0].id);
     expect(v?.id).toBe(f.variants[0].id);
     expect(getBankTopic("nope")).toBeNull();
+    const u = getBankUnit(t, t.units[0].id)!;
+    expect(u.id).toBe(t.units[0].id);
+    expect(getBankUnit(t, "nope")).toBeNull();
+    // unit scoping: every unit form really belongs to the unit
+    for (const uf of unitForms(t, u.id)) {
+      expect(uf.unit).toBe(u.id);
+    }
   });
 });
 
 describe("session engine", () => {
-  const topic = getBankTopic("algebra")!;
+  const topic = getBankTopic("algebra-1")!;
 
   it("serves one variant per form, easier levels first", () => {
     const s = initSession(topic, 0, rng0);
@@ -141,7 +159,7 @@ describe("option shuffle", () => {
 
 describe("mastery", () => {
   it("counts mastered forms against the topic total", () => {
-    const topic = getBankTopic("sequences")!;
+    const topic = getBankTopic("algebra-2")!;
     const progress: BankProgress = {
       version: 1,
       forms: {
@@ -150,5 +168,16 @@ describe("mastery", () => {
       },
     };
     expect(topicMastery(topic, progress)).toEqual({ mastered: 1, total: topic.forms.length });
+  });
+
+  it("unit mastery counts only that unit's forms", () => {
+    const topic = getBankTopic("trigonometry")!;
+    const unit = topic.units.find((u) => unitForms(topic, u.id).length > 0)!;
+    const forms = unitForms(topic, unit.id);
+    const progress: BankProgress = {
+      version: 1,
+      forms: { [forms[0].id]: { mastered: true, attempts: 1, correct: 1, updatedAt: 1 } },
+    };
+    expect(unitMastery(topic, unit.id, progress)).toEqual({ mastered: 1, total: forms.length });
   });
 });

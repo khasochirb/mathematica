@@ -19,13 +19,22 @@ PB_DIR = os.path.join(ROOT, "scripts", "pb")
 OUT = os.path.join(ROOT, "data", "problembank")
 os.makedirs(OUT, exist_ok=True)
 
-# Fixed order = the import order in lib/problem-bank.ts (hub display order).
-TOPIC_ORDER = ["algebra", "functions", "logarithms", "trigonometry", "sequences", "geometry"]
+# Subjects mirror the course ladder: slug -> generator module in scripts/pb/.
+# Order = the import order in lib/problem-bank.ts (hub display order).
+# The old exam-topic modules (algebra.py, functions.py, ...) remain as form
+# LIBRARIES that these subject modules remap from — they are no longer topics.
+SUBJECTS = [
+    ("algebra-1", "algebra_1"),
+    ("algebra-2", "algebra_2"),
+    ("geometry", "geometry_course"),
+    ("trigonometry", "trigonometry_course"),
+    ("solid-geometry", "solid_geometry"),
+]
 
 
-def load_build(slug):
-    path = os.path.join(PB_DIR, f"{slug}.py")
-    spec = importlib.util.spec_from_file_location(f"pb_{slug}", path)
+def load_build(modname):
+    path = os.path.join(PB_DIR, f"{modname}.py")
+    spec = importlib.util.spec_from_file_location(f"pb_{modname}", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod.build
@@ -33,20 +42,24 @@ def load_build(slug):
 
 def main():
     grand_forms = grand_vars = 0
-    for slug in TOPIC_ORDER:
-        topic = load_build(slug)()
+    for slug, modname in SUBJECTS:
+        topic = load_build(modname)()
         assert topic["slug"] == slug, f"{slug}: build() returned slug {topic['slug']!r}"
         n_forms = len(topic["forms"])
         n_vars = sum(len(f["variants"]) for f in topic["forms"])
-        mn = min(len(f["variants"]) for f in topic["forms"])
+        per_unit = {u["id"]: 0 for u in topic["units"]}
+        for f in topic["forms"]:
+            per_unit[f["unit"]] += len(f["variants"])
+        empty = [u for u, n in per_unit.items() if n == 0]
         grand_forms += n_forms
         grand_vars += n_vars
         path = os.path.join(OUT, f"{slug}.json")
         with open(path, "w") as fh:
             json.dump(topic, fh, indent=2, ensure_ascii=False)
             fh.write("\n")
-        print(f"wrote {slug}.json: {n_forms} forms, {n_vars} variants (min/form {mn})")
-    print(f"TOTAL: {len(TOPIC_ORDER)} topics, {grand_forms} forms, {grand_vars} variants")
+        print(f"wrote {slug}.json: {len(topic['units'])} units, {n_forms} forms, "
+              f"{n_vars} variants" + (f"  EMPTY UNITS: {','.join(empty)}" if empty else ""))
+    print(f"TOTAL: {len(SUBJECTS)} subjects, {grand_forms} forms, {grand_vars} variants")
 
 
 if __name__ == "__main__":
