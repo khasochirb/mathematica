@@ -1181,6 +1181,4662 @@
       "unit": "functions-and-transformations"
     },
     {
+      "id": "complex-arithmetic",
+      "title": "Complex number arithmetic",
+      "level": 1,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "Multiply with i² = −1; powers of i repeat every four steps.",
+      "variants": [
+        {
+          "id": "A2-cmul-v01",
+          "statement": "Compute $(2 + 3i)(1 - 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$8$",
+            "$-4$",
+            "$-1$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $8 - i$, so the real part is $8$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-4$.",
+          "check": [
+            "re(((2) + (3)*I)*((1) + (-2)*I)) == 8"
+          ]
+        },
+        {
+          "id": "A2-cmul-v02",
+          "statement": "Compute $(2 + 4i)(3 + 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$14$",
+            "$-2$",
+            "$16$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-2 + 16i$, so the real part is $-2$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $14$.",
+          "check": [
+            "re(((2) + (4)*I)*((3) + (2)*I)) == -2"
+          ]
+        },
+        {
+          "id": "A2-cmul-v03",
+          "statement": "Compute $(2 - 5i)(2 + 3i)$. What is the REAL part of the result?",
+          "options": [
+            "$-11$",
+            "$-4$",
+            "$19$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $19 - 4i$, so the real part is $19$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-11$.",
+          "check": [
+            "re(((2) + (-5)*I)*((2) + (3)*I)) == 19"
+          ]
+        },
+        {
+          "id": "A2-cmul-v04",
+          "statement": "Compute $(2 + 5i)(1 + 4i)$. What is the REAL part of the result?",
+          "options": [
+            "$22$",
+            "$13$",
+            "$2$",
+            "$-18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-18 + 13i$, so the real part is $-18$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $22$.",
+          "check": [
+            "re(((2) + (5)*I)*((1) + (4)*I)) == -18"
+          ]
+        },
+        {
+          "id": "A2-cmul-v05",
+          "statement": "Compute $(3 + 4i)(3 + 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$1$",
+            "$17$",
+            "$18$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $1 + 18i$, so the real part is $1$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $17$.",
+          "check": [
+            "re(((3) + (4)*I)*((3) + (2)*I)) == 1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v06",
+          "statement": "Compute $(3 - 5i)(2 + 3i)$. What is the REAL part of the result?",
+          "options": [
+            "$-9$",
+            "$21$",
+            "$-1$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $21 - i$, so the real part is $21$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-9$.",
+          "check": [
+            "re(((3) + (-5)*I)*((2) + (3)*I)) == 21"
+          ]
+        },
+        {
+          "id": "A2-cmul-v07",
+          "statement": "Compute $(3 + 5i)(1 + 4i)$. What is the REAL part of the result?",
+          "options": [
+            "$23$",
+            "$17$",
+            "$-17$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-17 + 17i$, so the real part is $-17$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $23$.",
+          "check": [
+            "re(((3) + (5)*I)*((1) + (4)*I)) == -17"
+          ]
+        },
+        {
+          "id": "A2-cmul-v08",
+          "statement": "Compute $(-2 + 3i)(1 - 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$-8$",
+            "$7$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $4 + 7i$, so the real part is $4$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-8$.",
+          "check": [
+            "re(((-2) + (3)*I)*((1) + (-2)*I)) == 4"
+          ]
+        },
+        {
+          "id": "A2-cmul-v09",
+          "statement": "Compute $(-2 + 4i)(3 + 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$-14$",
+            "$2$",
+            "$8$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-14 + 8i$, so the real part is $-14$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $2$.",
+          "check": [
+            "re(((-2) + (4)*I)*((3) + (2)*I)) == -14"
+          ]
+        },
+        {
+          "id": "A2-cmul-v10",
+          "statement": "Compute $(-2 - 5i)(2 + 3i)$. What is the REAL part of the result?",
+          "options": [
+            "$-19$",
+            "$11$",
+            "$-16$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $11 - 16i$, so the real part is $11$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-19$.",
+          "check": [
+            "re(((-2) + (-5)*I)*((2) + (3)*I)) == 11"
+          ]
+        },
+        {
+          "id": "A2-cmul-v11",
+          "statement": "Compute $(-2 + 5i)(1 + 4i)$. What is the REAL part of the result?",
+          "options": [
+            "$18$",
+            "$-3$",
+            "$-22$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-22 - 3i$, so the real part is $-22$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $18$.",
+          "check": [
+            "re(((-2) + (5)*I)*((1) + (4)*I)) == -22"
+          ]
+        },
+        {
+          "id": "A2-cmul-v12",
+          "statement": "Compute $(4 + 3i)(1 - 2i)$. What is the REAL part of the result?",
+          "options": [
+            "$-2$",
+            "$-5$",
+            "$4$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $10 - 5i$, so the real part is $10$. Adding $bd$ instead of subtracting it (forgetting $i^2 = -1$) gives $-2$.",
+          "check": [
+            "re(((4) + (3)*I)*((1) + (-2)*I)) == 10"
+          ]
+        },
+        {
+          "id": "A2-cmul-v13",
+          "statement": "Compute $(2 + i)(-3 + 5i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$7$",
+            "$13$",
+            "$-11$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-11 + 7i$, so the imaginary part is $7$. A sign slip on one cross term gives $13$.",
+          "check": [
+            "im(((2) + (1)*I)*((-3) + (5)*I)) == 7"
+          ]
+        },
+        {
+          "id": "A2-cmul-v14",
+          "statement": "Compute $(2 + 2i)(-4 - i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$6$",
+            "$-10$",
+            "$-6$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-6 - 10i$, so the imaginary part is $-10$. A sign slip on one cross term gives $6$.",
+          "check": [
+            "im(((2) + (2)*I)*((-4) + (-1)*I)) == -10"
+          ]
+        },
+        {
+          "id": "A2-cmul-v15",
+          "statement": "Compute $(2 - i)(-2 - 3i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$-8$",
+            "$-7$",
+            "$-4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-7 - 4i$, so the imaginary part is $-4$. A sign slip on one cross term gives $-8$.",
+          "check": [
+            "im(((2) + (-1)*I)*((-2) + (-3)*I)) == -4"
+          ]
+        },
+        {
+          "id": "A2-cmul-v16",
+          "statement": "Compute $(3 - 2i)(2 + i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$7$",
+            "$8$",
+            "$-2$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $8 - i$, so the imaginary part is $-1$. A sign slip on one cross term gives $7$.",
+          "check": [
+            "im(((3) + (-2)*I)*((2) + (1)*I)) == -1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v17",
+          "statement": "Compute $(3 + i)(-3 + 5i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$12$",
+            "$18$",
+            "$-14$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-14 + 12i$, so the imaginary part is $12$. A sign slip on one cross term gives $18$.",
+          "check": [
+            "im(((3) + (1)*I)*((-3) + (5)*I)) == 12"
+          ]
+        },
+        {
+          "id": "A2-cmul-v18",
+          "statement": "Compute $(3 + 2i)(-4 - i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$5$",
+            "$-11$",
+            "$-10$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-10 - 11i$, so the imaginary part is $-11$. A sign slip on one cross term gives $5$.",
+          "check": [
+            "im(((3) + (2)*I)*((-4) + (-1)*I)) == -11"
+          ]
+        },
+        {
+          "id": "A2-cmul-v19",
+          "statement": "Compute $(3 - i)(-2 - 3i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$-11$",
+            "$-9$",
+            "$-7$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-9 - 7i$, so the imaginary part is $-7$. A sign slip on one cross term gives $-11$.",
+          "check": [
+            "im(((3) + (-1)*I)*((-2) + (-3)*I)) == -7"
+          ]
+        },
+        {
+          "id": "A2-cmul-v20",
+          "statement": "Compute $(-2 + i)(-3 + 5i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$-7$",
+            "$1$",
+            "$5$",
+            "$-13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $1 - 13i$, so the imaginary part is $-13$. A sign slip on one cross term gives $-7$.",
+          "check": [
+            "im(((-2) + (1)*I)*((-3) + (5)*I)) == -13"
+          ]
+        },
+        {
+          "id": "A2-cmul-v21",
+          "statement": "Compute $(-2 - i)(-2 - 3i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$8$",
+            "$4$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $1 + 8i$, so the imaginary part is $8$. A sign slip on one cross term gives $4$.",
+          "check": [
+            "im(((-2) + (-1)*I)*((-2) + (-3)*I)) == 8"
+          ]
+        },
+        {
+          "id": "A2-cmul-v22",
+          "statement": "Compute $(4 + i)(-3 + 5i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$23$",
+            "$17$",
+            "$-17$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-17 + 17i$, so the imaginary part is $17$. A sign slip on one cross term gives $23$.",
+          "check": [
+            "im(((4) + (1)*I)*((-3) + (5)*I)) == 17"
+          ]
+        },
+        {
+          "id": "A2-cmul-v23",
+          "statement": "Compute $(4 + 2i)(-4 - i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$4$",
+            "$-14$",
+            "$-12$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-14 - 12i$, so the imaginary part is $-12$. A sign slip on one cross term gives $4$.",
+          "check": [
+            "im(((4) + (2)*I)*((-4) + (-1)*I)) == -12"
+          ]
+        },
+        {
+          "id": "A2-cmul-v24",
+          "statement": "Compute $(4 - i)(-2 - 3i)$. What is the IMAGINARY part of the result?",
+          "options": [
+            "$-14$",
+            "$-11$",
+            "$3$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "FOIL and use $i^2 = -1$: the product is $-11 - 10i$, so the imaginary part is $-10$. A sign slip on one cross term gives $-14$.",
+          "check": [
+            "im(((4) + (-1)*I)*((-2) + (-3)*I)) == -10"
+          ]
+        },
+        {
+          "id": "A2-cmul-v25",
+          "statement": "Simplify $i^{5}$.",
+          "options": [
+            "$i$",
+            "$1$",
+            "$-1$",
+            "$-i$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $5 = 4 \\cdot 1 + 1$, $i^{5} = i^{1} = i$.",
+          "check": [
+            "I**5 == I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v26",
+          "statement": "Simplify $i^{6}$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$i$",
+            "$-i$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $6 = 4 \\cdot 1 + 2$, $i^{6} = i^{2} = -1$.",
+          "check": [
+            "I**6 == -1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v27",
+          "statement": "Simplify $i^{7}$.",
+          "options": [
+            "$1$",
+            "$i$",
+            "$-i$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $7 = 4 \\cdot 1 + 3$, $i^{7} = i^{3} = -i$.",
+          "check": [
+            "I**7 == -I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v28",
+          "statement": "Simplify $i^{8}$.",
+          "options": [
+            "$i$",
+            "$-1$",
+            "$-i$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $8 = 4 \\cdot 2 + 0$, $i^{8} = i^{0} = 1$.",
+          "check": [
+            "I**8 == 1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v29",
+          "statement": "Simplify $i^{10}$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$i$",
+            "$-i$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $10 = 4 \\cdot 2 + 2$, $i^{10} = i^{2} = -1$.",
+          "check": [
+            "I**10 == -1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v30",
+          "statement": "Simplify $i^{13}$.",
+          "options": [
+            "$1$",
+            "$i$",
+            "$-1$",
+            "$-i$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $13 = 4 \\cdot 3 + 1$, $i^{13} = i^{1} = i$.",
+          "check": [
+            "I**13 == I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v31",
+          "statement": "Simplify $i^{15}$.",
+          "options": [
+            "$1$",
+            "$i$",
+            "$-i$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $15 = 4 \\cdot 3 + 3$, $i^{15} = i^{3} = -i$.",
+          "check": [
+            "I**15 == -I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v32",
+          "statement": "Simplify $i^{18}$.",
+          "options": [
+            "$1$",
+            "$i$",
+            "$-i$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $18 = 4 \\cdot 4 + 2$, $i^{18} = i^{2} = -1$.",
+          "check": [
+            "I**18 == -1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v33",
+          "statement": "Simplify $i^{21}$.",
+          "options": [
+            "$i$",
+            "$1$",
+            "$-1$",
+            "$-i$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $21 = 4 \\cdot 5 + 1$, $i^{21} = i^{1} = i$.",
+          "check": [
+            "I**21 == I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v34",
+          "statement": "Simplify $i^{26}$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$i$",
+            "$-i$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $26 = 4 \\cdot 6 + 2$, $i^{26} = i^{2} = -1$.",
+          "check": [
+            "I**26 == -1"
+          ]
+        },
+        {
+          "id": "A2-cmul-v35",
+          "statement": "Simplify $i^{31}$.",
+          "options": [
+            "$1$",
+            "$i$",
+            "$-i$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $31 = 4 \\cdot 7 + 3$, $i^{31} = i^{3} = -i$.",
+          "check": [
+            "I**31 == -I"
+          ]
+        },
+        {
+          "id": "A2-cmul-v36",
+          "statement": "Simplify $i^{36}$.",
+          "options": [
+            "$i$",
+            "$-1$",
+            "$-i$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $36 = 4 \\cdot 9 + 0$, $i^{36} = i^{0} = 1$.",
+          "check": [
+            "I**36 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complex-roots",
+      "title": "Reading β from complex roots",
+      "level": 3,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "When D < 0 the roots are −p/2 ± (√|D|/2)i — halve the root of |D|.",
+      "variants": [
+        {
+          "id": "A2-croots-v01",
+          "statement": "The equation $x^2 + 2x + 5 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (2)^2 - 4 \\cdot 5 = -16 < 0$, so $x = \\frac{-2 \\pm \\sqrt{16}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{16}}{2} = 2$. Forgetting to halve $\\sqrt{16}$ gives $4$.",
+          "check": [
+            "(2)**2 - 4*(5) == -16",
+            "sqrt(16)/2 == 2",
+            "expand(((-1) + (2)*I)**2 + (2)*((-1) + (2)*I) + (5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v02",
+          "statement": "The equation $x^2 + 2x + 10 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (2)^2 - 4 \\cdot 10 = -36 < 0$, so $x = \\frac{-2 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(2)**2 - 4*(10) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((-1) + (3)*I)**2 + (2)*((-1) + (3)*I) + (10)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v03",
+          "statement": "The equation $x^2 + 2x + 17 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$8$",
+            "$1$",
+            "$4$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (2)^2 - 4 \\cdot 17 = -64 < 0$, so $x = \\frac{-2 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(2)**2 - 4*(17) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((-1) + (4)*I)**2 + (2)*((-1) + (4)*I) + (17)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v04",
+          "statement": "The equation $x^2 + 2x + 26 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$1$",
+            "$24$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (2)^2 - 4 \\cdot 26 = -100 < 0$, so $x = \\frac{-2 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(2)**2 - 4*(26) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((-1) + (5)*I)**2 + (2)*((-1) + (5)*I) + (26)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v05",
+          "statement": "The equation $x^2 + 2x + 37 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$1$",
+            "$35$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (2)^2 - 4 \\cdot 37 = -144 < 0$, so $x = \\frac{-2 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(2)**2 - 4*(37) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((-1) + (6)*I)**2 + (2)*((-1) + (6)*I) + (37)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v06",
+          "statement": "The equation $x^2 - 2x + 2 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$-1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 2 = -4 < 0$, so $x = \\frac{2 \\pm \\sqrt{4}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{4}}{2} = 1$. Forgetting to halve $\\sqrt{4}$ gives $2$.",
+          "check": [
+            "(-2)**2 - 4*(2) == -4",
+            "sqrt(4)/2 == 1",
+            "expand(((1) + (1)*I)**2 + (-2)*((1) + (1)*I) + (2)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v07",
+          "statement": "The equation $x^2 - 2x + 5 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$4$",
+            "$-1$",
+            "$2$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 5 = -16 < 0$, so $x = \\frac{2 \\pm \\sqrt{16}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{16}}{2} = 2$. Forgetting to halve $\\sqrt{16}$ gives $4$.",
+          "check": [
+            "(-2)**2 - 4*(5) == -16",
+            "sqrt(16)/2 == 2",
+            "expand(((1) + (2)*I)**2 + (-2)*((1) + (2)*I) + (5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v08",
+          "statement": "The equation $x^2 - 2x + 10 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$-1$",
+            "$12$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 10 = -36 < 0$, so $x = \\frac{2 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(-2)**2 - 4*(10) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((1) + (3)*I)**2 + (-2)*((1) + (3)*I) + (10)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v09",
+          "statement": "The equation $x^2 - 2x + 17 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$-1$",
+            "$19$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 17 = -64 < 0$, so $x = \\frac{2 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(-2)**2 - 4*(17) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((1) + (4)*I)**2 + (-2)*((1) + (4)*I) + (17)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v10",
+          "statement": "The equation $x^2 - 2x + 26 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$-1$",
+            "$28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 26 = -100 < 0$, so $x = \\frac{2 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(-2)**2 - 4*(26) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((1) + (5)*I)**2 + (-2)*((1) + (5)*I) + (26)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v11",
+          "statement": "The equation $x^2 - 2x + 37 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$12$",
+            "$-1$",
+            "$6$",
+            "$39$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (-2)^2 - 4 \\cdot 37 = -144 < 0$, so $x = \\frac{2 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(-2)**2 - 4*(37) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((1) + (6)*I)**2 + (-2)*((1) + (6)*I) + (37)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v12",
+          "statement": "The equation $x^2 + 4x + 13 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$2$",
+            "$9$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (4)^2 - 4 \\cdot 13 = -36 < 0$, so $x = \\frac{-4 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(4)**2 - 4*(13) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((-2) + (3)*I)**2 + (4)*((-2) + (3)*I) + (13)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v13",
+          "statement": "The equation $x^2 + 4x + 20 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$2$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (4)^2 - 4 \\cdot 20 = -64 < 0$, so $x = \\frac{-4 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(4)**2 - 4*(20) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((-2) + (4)*I)**2 + (4)*((-2) + (4)*I) + (20)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v14",
+          "statement": "The equation $x^2 + 4x + 29 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$2$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (4)^2 - 4 \\cdot 29 = -100 < 0$, so $x = \\frac{-4 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(4)**2 - 4*(29) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((-2) + (5)*I)**2 + (4)*((-2) + (5)*I) + (29)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v15",
+          "statement": "The equation $x^2 + 4x + 40 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$12$",
+            "$2$",
+            "$6$",
+            "$36$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (4)^2 - 4 \\cdot 40 = -144 < 0$, so $x = \\frac{-4 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(4)**2 - 4*(40) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((-2) + (6)*I)**2 + (4)*((-2) + (6)*I) + (40)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v16",
+          "statement": "The equation $x^2 - 4x + 5 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$9$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 5 = -4 < 0$, so $x = \\frac{4 \\pm \\sqrt{4}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{4}}{2} = 1$. Forgetting to halve $\\sqrt{4}$ gives $2$.",
+          "check": [
+            "(-4)**2 - 4*(5) == -4",
+            "sqrt(4)/2 == 1",
+            "expand(((2) + (1)*I)**2 + (-4)*((2) + (1)*I) + (5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v17",
+          "statement": "The equation $x^2 - 4x + 8 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$-2$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 8 = -16 < 0$, so $x = \\frac{4 \\pm \\sqrt{16}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{16}}{2} = 2$. Forgetting to halve $\\sqrt{16}$ gives $4$.",
+          "check": [
+            "(-4)**2 - 4*(8) == -16",
+            "sqrt(16)/2 == 2",
+            "expand(((2) + (2)*I)**2 + (-4)*((2) + (2)*I) + (8)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v18",
+          "statement": "The equation $x^2 - 4x + 13 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$-2$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 13 = -36 < 0$, so $x = \\frac{4 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(-4)**2 - 4*(13) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((2) + (3)*I)**2 + (-4)*((2) + (3)*I) + (13)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v19",
+          "statement": "The equation $x^2 - 4x + 20 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$8$",
+            "$-2$",
+            "$4$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 20 = -64 < 0$, so $x = \\frac{4 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(-4)**2 - 4*(20) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((2) + (4)*I)**2 + (-4)*((2) + (4)*I) + (20)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v20",
+          "statement": "The equation $x^2 - 4x + 29 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$-2$",
+            "$33$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 29 = -100 < 0$, so $x = \\frac{4 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(-4)**2 - 4*(29) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((2) + (5)*I)**2 + (-4)*((2) + (5)*I) + (29)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v21",
+          "statement": "The equation $x^2 - 4x + 40 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$-2$",
+            "$44$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (-4)^2 - 4 \\cdot 40 = -144 < 0$, so $x = \\frac{4 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(-4)**2 - 4*(40) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((2) + (6)*I)**2 + (-4)*((2) + (6)*I) + (40)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v22",
+          "statement": "The equation $x^2 + 6x + 10 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (6)^2 - 4 \\cdot 10 = -4 < 0$, so $x = \\frac{-6 \\pm \\sqrt{4}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{4}}{2} = 1$. Forgetting to halve $\\sqrt{4}$ gives $2$.",
+          "check": [
+            "(6)**2 - 4*(10) == -4",
+            "sqrt(4)/2 == 1",
+            "expand(((-3) + (1)*I)**2 + (6)*((-3) + (1)*I) + (10)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v23",
+          "statement": "The equation $x^2 + 6x + 13 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$4$",
+            "$3$",
+            "$2$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (6)^2 - 4 \\cdot 13 = -16 < 0$, so $x = \\frac{-6 \\pm \\sqrt{16}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{16}}{2} = 2$. Forgetting to halve $\\sqrt{16}$ gives $4$.",
+          "check": [
+            "(6)**2 - 4*(13) == -16",
+            "sqrt(16)/2 == 2",
+            "expand(((-3) + (2)*I)**2 + (6)*((-3) + (2)*I) + (13)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v24",
+          "statement": "The equation $x^2 + 6x + 25 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$8$",
+            "$3$",
+            "$19$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (6)^2 - 4 \\cdot 25 = -64 < 0$, so $x = \\frac{-6 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(6)**2 - 4*(25) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((-3) + (4)*I)**2 + (6)*((-3) + (4)*I) + (25)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v25",
+          "statement": "The equation $x^2 + 6x + 34 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$5$",
+            "$10$",
+            "$3$",
+            "$28$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (6)^2 - 4 \\cdot 34 = -100 < 0$, so $x = \\frac{-6 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(6)**2 - 4*(34) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((-3) + (5)*I)**2 + (6)*((-3) + (5)*I) + (34)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v26",
+          "statement": "The equation $x^2 + 6x + 45 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$12$",
+            "$6$",
+            "$3$",
+            "$39$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (6)^2 - 4 \\cdot 45 = -144 < 0$, so $x = \\frac{-6 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(6)**2 - 4*(45) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((-3) + (6)*I)**2 + (6)*((-3) + (6)*I) + (45)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v27",
+          "statement": "The equation $x^2 - 6x + 10 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$2$",
+            "$-3$",
+            "$1$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 10 = -4 < 0$, so $x = \\frac{6 \\pm \\sqrt{4}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{4}}{2} = 1$. Forgetting to halve $\\sqrt{4}$ gives $2$.",
+          "check": [
+            "(-6)**2 - 4*(10) == -4",
+            "sqrt(4)/2 == 1",
+            "expand(((3) + (1)*I)**2 + (-6)*((3) + (1)*I) + (10)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v28",
+          "statement": "The equation $x^2 - 6x + 13 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$4$",
+            "$-3$",
+            "$19$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 13 = -16 < 0$, so $x = \\frac{6 \\pm \\sqrt{16}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{16}}{2} = 2$. Forgetting to halve $\\sqrt{16}$ gives $4$.",
+          "check": [
+            "(-6)**2 - 4*(13) == -16",
+            "sqrt(16)/2 == 2",
+            "expand(((3) + (2)*I)**2 + (-6)*((3) + (2)*I) + (13)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v29",
+          "statement": "The equation $x^2 - 6x + 18 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$-3$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 18 = -36 < 0$, so $x = \\frac{6 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(-6)**2 - 4*(18) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((3) + (3)*I)**2 + (-6)*((3) + (3)*I) + (18)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v30",
+          "statement": "The equation $x^2 - 6x + 25 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$8$",
+            "$4$",
+            "$-3$",
+            "$31$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 25 = -64 < 0$, so $x = \\frac{6 \\pm \\sqrt{64}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{64}}{2} = 4$. Forgetting to halve $\\sqrt{64}$ gives $8$.",
+          "check": [
+            "(-6)**2 - 4*(25) == -64",
+            "sqrt(64)/2 == 4",
+            "expand(((3) + (4)*I)**2 + (-6)*((3) + (4)*I) + (25)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v31",
+          "statement": "The equation $x^2 - 6x + 34 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$-3$",
+            "$5$",
+            "$40$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 34 = -100 < 0$, so $x = \\frac{6 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(-6)**2 - 4*(34) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((3) + (5)*I)**2 + (-6)*((3) + (5)*I) + (34)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v32",
+          "statement": "The equation $x^2 - 6x + 45 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$12$",
+            "$-3$",
+            "$51$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (-6)^2 - 4 \\cdot 45 = -144 < 0$, so $x = \\frac{6 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(-6)**2 - 4*(45) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((3) + (6)*I)**2 + (-6)*((3) + (6)*I) + (45)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v33",
+          "statement": "The equation $x^2 + 8x + 17 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$4$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$D = (8)^2 - 4 \\cdot 17 = -4 < 0$, so $x = \\frac{-8 \\pm \\sqrt{4}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{4}}{2} = 1$. Forgetting to halve $\\sqrt{4}$ gives $2$.",
+          "check": [
+            "(8)**2 - 4*(17) == -4",
+            "sqrt(4)/2 == 1",
+            "expand(((-4) + (1)*I)**2 + (8)*((-4) + (1)*I) + (17)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v34",
+          "statement": "The equation $x^2 + 8x + 25 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$4$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$D = (8)^2 - 4 \\cdot 25 = -36 < 0$, so $x = \\frac{-8 \\pm \\sqrt{36}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{36}}{2} = 3$. Forgetting to halve $\\sqrt{36}$ gives $6$.",
+          "check": [
+            "(8)**2 - 4*(25) == -36",
+            "sqrt(36)/2 == 3",
+            "expand(((-4) + (3)*I)**2 + (8)*((-4) + (3)*I) + (25)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v35",
+          "statement": "The equation $x^2 + 8x + 41 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$10$",
+            "$4$",
+            "$5$",
+            "$33$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$D = (8)^2 - 4 \\cdot 41 = -100 < 0$, so $x = \\frac{-8 \\pm \\sqrt{100}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{100}}{2} = 5$. Forgetting to halve $\\sqrt{100}$ gives $10$.",
+          "check": [
+            "(8)**2 - 4*(41) == -100",
+            "sqrt(100)/2 == 5",
+            "expand(((-4) + (5)*I)**2 + (8)*((-4) + (5)*I) + (41)) == 0"
+          ]
+        },
+        {
+          "id": "A2-croots-v36",
+          "statement": "The equation $x^2 + 8x + 52 = 0$ has roots $x = \\alpha \\pm \\beta i$ with $\\beta > 0$. Find $\\beta$.",
+          "options": [
+            "$12$",
+            "$4$",
+            "$44$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$D = (8)^2 - 4 \\cdot 52 = -144 < 0$, so $x = \\frac{-8 \\pm \\sqrt{144}\\,i}{2}$ and $\\beta = \\frac{\\sqrt{144}}{2} = 6$. Forgetting to halve $\\sqrt{144}$ gives $12$.",
+          "check": [
+            "(8)**2 - 4*(52) == -144",
+            "sqrt(144)/2 == 6",
+            "expand(((-4) + (6)*I)**2 + (8)*((-4) + (6)*I) + (52)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "line-parabola",
+      "title": "Counting line–parabola intersections",
+      "level": 2,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "Set the curves equal and count roots with the discriminant.",
+      "variants": [
+        {
+          "id": "A2-lp-v01",
+          "statement": "How many points do the graphs of $y = x^2 - 2$ and $y = x$ share?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x - 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (-2) = 9$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-2) - (0)) == 9",
+            "(9) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v02",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = 2x + 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - 2x + 1 = 0$ has discriminant $(2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(2)**2 - 4*((2) - (1)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v03",
+          "statement": "How many points do the graphs of $y = x^2 + 1$ and $y = x$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x + 1 = 0$ has discriminant $(1)^2 - 4 \\cdot (1) = -3$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((1) - (0)) == -3",
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v04",
+          "statement": "How many points do the graphs of $y = x^2$ and $y = x + 2$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x - 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (-2) = 9$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((0) - (2)) == 9",
+            "(9) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v05",
+          "statement": "How many points do the graphs of $y = x^2 - 1$ and $y = 2x - 2$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - 2x + 1 = 0$ has discriminant $(2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(2)**2 - 4*((-1) - (-2)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v06",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = x + 1$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x + 1 = 0$ has discriminant $(1)^2 - 4 \\cdot (1) = -3$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((2) - (1)) == -3",
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v07",
+          "statement": "How many points do the graphs of $y = x^2 - 3$ and $y = x - 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x - 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (-2) = 9$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-3) - (-1)) == 9",
+            "(9) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v08",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = 2x + 3$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - 2x + 1 = 0$ has discriminant $(2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(2)**2 - 4*((4) - (3)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v09",
+          "statement": "How many points do the graphs of $y = x^2 - 2$ and $y = x - 3$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x + 1 = 0$ has discriminant $(1)^2 - 4 \\cdot (1) = -3$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-2) - (-3)) == -3",
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v10",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = x + 4$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x - 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (-2) = 9$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((2) - (4)) == 9",
+            "(9) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v11",
+          "statement": "How many points do the graphs of $y = x^2 + 1$ and $y = 2x$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - 2x + 1 = 0$ has discriminant $(2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(2)**2 - 4*((1) - (0)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v12",
+          "statement": "How many points do the graphs of $y = x^2 + 3$ and $y = x + 2$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x + 1 = 0$ has discriminant $(1)^2 - 4 \\cdot (1) = -3$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((3) - (2)) == -3",
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v13",
+          "statement": "How many points do the graphs of $y = x^2$ and $y = x$ share?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x = 0$ has discriminant $(1)^2 - 4 \\cdot (0) = 1$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((0) - (0)) == 1",
+            "(1) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v14",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = -2x + 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 + 2x + 1 = 0$ has discriminant $(-2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(-2)**2 - 4*((2) - (1)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v15",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = x$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x + 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (2) = -7$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((2) - (0)) == -7",
+            "(-7) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v16",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = x + 2$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x = 0$ has discriminant $(1)^2 - 4 \\cdot (0) = 1$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((2) - (2)) == 1",
+            "(1) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v17",
+          "statement": "How many points do the graphs of $y = x^2 - 1$ and $y = -2x - 2$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 + 2x + 1 = 0$ has discriminant $(-2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(-2)**2 - 4*((-1) - (-2)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v18",
+          "statement": "How many points do the graphs of $y = x^2 + 3$ and $y = x + 1$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x + 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (2) = -7$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((3) - (1)) == -7",
+            "(-7) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v19",
+          "statement": "How many points do the graphs of $y = x^2 - 1$ and $y = x - 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x = 0$ has discriminant $(1)^2 - 4 \\cdot (0) = 1$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-1) - (-1)) == 1",
+            "(1) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v20",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = -2x + 3$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 + 2x + 1 = 0$ has discriminant $(-2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(-2)**2 - 4*((4) - (3)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v21",
+          "statement": "How many points do the graphs of $y = x^2 - 1$ and $y = x - 3$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x + 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (2) = -7$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-1) - (-3)) == -7",
+            "(-7) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v22",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = x + 4$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x = 0$ has discriminant $(1)^2 - 4 \\cdot (0) = 1$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((4) - (4)) == 1",
+            "(1) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v23",
+          "statement": "How many points do the graphs of $y = x^2 + 1$ and $y = -2x$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 + 2x + 1 = 0$ has discriminant $(-2)^2 - 4 \\cdot (1) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(-2)**2 - 4*((1) - (0)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v24",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = x + 2$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x + 2 = 0$ has discriminant $(1)^2 - 4 \\cdot (2) = -7$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((4) - (2)) == -7",
+            "(-7) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v25",
+          "statement": "How many points do the graphs of $y = x^2 - 5$ and $y = x$ share?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x - 5 = 0$ has discriminant $(1)^2 - 4 \\cdot (-5) = 21$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-5) - (0)) == 21",
+            "(21) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v26",
+          "statement": "How many points do the graphs of $y = x^2 + 5$ and $y = 4x + 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - 4x + 4 = 0$ has discriminant $(4)^2 - 4 \\cdot (4) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(4)**2 - 4*((5) - (1)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v27",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = x$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x + 4 = 0$ has discriminant $(1)^2 - 4 \\cdot (4) = -15$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((4) - (0)) == -15",
+            "(-15) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v28",
+          "statement": "How many points do the graphs of $y = x^2 - 3$ and $y = x + 2$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x - 5 = 0$ has discriminant $(1)^2 - 4 \\cdot (-5) = 21$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-3) - (2)) == 21",
+            "(21) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v29",
+          "statement": "How many points do the graphs of $y = x^2 + 2$ and $y = 4x - 2$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - 4x + 4 = 0$ has discriminant $(4)^2 - 4 \\cdot (4) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(4)**2 - 4*((2) - (-2)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v30",
+          "statement": "How many points do the graphs of $y = x^2 + 5$ and $y = x + 1$ share?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x + 4 = 0$ has discriminant $(1)^2 - 4 \\cdot (4) = -15$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((5) - (1)) == -15",
+            "(-15) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v31",
+          "statement": "How many points do the graphs of $y = x^2 - 6$ and $y = x - 1$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - x - 5 = 0$ has discriminant $(1)^2 - 4 \\cdot (-5) = 21$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-6) - (-1)) == 21",
+            "(21) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v32",
+          "statement": "How many points do the graphs of $y = x^2 + 7$ and $y = 4x + 3$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - 4x + 4 = 0$ has discriminant $(4)^2 - 4 \\cdot (4) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(4)**2 - 4*((7) - (3)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v33",
+          "statement": "How many points do the graphs of $y = x^2 + 1$ and $y = x - 3$ share?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set them equal: $x^2 - x + 4 = 0$ has discriminant $(1)^2 - 4 \\cdot (4) = -15$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((1) - (-3)) == -15",
+            "(-15) < 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v34",
+          "statement": "How many points do the graphs of $y = x^2 - 1$ and $y = x + 4$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set them equal: $x^2 - x - 5 = 0$ has discriminant $(1)^2 - 4 \\cdot (-5) = 21$ — positive, so the graphs meet twice. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((-1) - (4)) == 21",
+            "(21) > 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v35",
+          "statement": "How many points do the graphs of $y = x^2 + 4$ and $y = 4x$ share?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set them equal: $x^2 - 4x + 4 = 0$ has discriminant $(4)^2 - 4 \\cdot (4) = 0$ — zero, so the line is tangent — exactly one shared point. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(4)**2 - 4*((4) - (0)) == 0",
+            "(0) == 0"
+          ]
+        },
+        {
+          "id": "A2-lp-v36",
+          "statement": "How many points do the graphs of $y = x^2 + 6$ and $y = x + 2$ share?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set them equal: $x^2 - x + 4 = 0$ has discriminant $(1)^2 - 4 \\cdot (4) = -15$ — negative, so the line misses the parabola. Three is impossible: a quadratic has at most two roots.",
+          "check": [
+            "(1)**2 - 4*((6) - (2)) == -15",
+            "(-15) < 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nonlinear-system",
+      "title": "Symmetric systems: x² + y²",
+      "level": 3,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "x² + y² = (x + y)² − 2xy — square the sum, subtract twice the product.",
+      "variants": [
+        {
+          "id": "A2-nls-v01",
+          "statement": "If $x + y = 5$ and $xy = 1$, find $x^2 + y^2$.",
+          "options": [
+            "$23$",
+            "$25$",
+            "$27$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (5)^2 - 2 \\cdot (1) = 23$. Forgetting to subtract $2xy$ leaves $25$.",
+          "check": [
+            "(5)**2 - 2*(1) == 23",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v02",
+          "statement": "If $x + y = 5$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$25$",
+            "$21$",
+            "$29$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (5)^2 - 2 \\cdot (2) = 21$. Forgetting to subtract $2xy$ leaves $25$.",
+          "check": [
+            "(5)**2 - 2*(2) == 21",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v03",
+          "statement": "If $x + y = -3$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$9$",
+            "$13$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-3)^2 - 2 \\cdot (2) = 5$. Forgetting to subtract $2xy$ leaves $9$.",
+          "check": [
+            "(-3)**2 - 2*(2) == 5",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v04",
+          "statement": "If $x + y = -3$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$12$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-3)^2 - 2 \\cdot (-3) = 15$. Forgetting to subtract $2xy$ leaves $9$.",
+          "check": [
+            "(-3)**2 - 2*(-3) == 15",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v05",
+          "statement": "If $x + y = 7$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$55$",
+            "$49$",
+            "$43$",
+            "$52$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (7)^2 - 2 \\cdot (-3) = 55$. Forgetting to subtract $2xy$ leaves $49$.",
+          "check": [
+            "(7)**2 - 2*(-3) == 55",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v06",
+          "statement": "If $x + y = 7$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$49$",
+            "$41$",
+            "$57$",
+            "$45$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (7)^2 - 2 \\cdot (4) = 41$. Forgetting to subtract $2xy$ leaves $49$.",
+          "check": [
+            "(7)**2 - 2*(4) == 41",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v07",
+          "statement": "If $x + y = 2$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$4$",
+            "$-6$",
+            "$14$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (2)^2 - 2 \\cdot (-5) = 14$. Forgetting to subtract $2xy$ leaves $4$.",
+          "check": [
+            "(2)**2 - 2*(-5) == 14",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v08",
+          "statement": "If $x + y = 2$ and $xy = -2$, find $x^2 + y^2$.",
+          "options": [
+            "$4$",
+            "$0$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (2)^2 - 2 \\cdot (-2) = 8$. Forgetting to subtract $2xy$ leaves $4$.",
+          "check": [
+            "(2)**2 - 2*(-2) == 8",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v09",
+          "statement": "If $x + y = -6$ and $xy = 1$, find $x^2 + y^2$.",
+          "options": [
+            "$34$",
+            "$36$",
+            "$38$",
+            "$35$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-6)^2 - 2 \\cdot (1) = 34$. Forgetting to subtract $2xy$ leaves $36$.",
+          "check": [
+            "(-6)**2 - 2*(1) == 34",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v10",
+          "statement": "If $x + y = -6$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$36$",
+            "$32$",
+            "$40$",
+            "$34$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-6)^2 - 2 \\cdot (2) = 32$. Forgetting to subtract $2xy$ leaves $36$.",
+          "check": [
+            "(-6)**2 - 2*(2) == 32",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v11",
+          "statement": "If $x + y = 9$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$81$",
+            "$85$",
+            "$77$",
+            "$79$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (9)^2 - 2 \\cdot (2) = 77$. Forgetting to subtract $2xy$ leaves $81$.",
+          "check": [
+            "(9)**2 - 2*(2) == 77",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v12",
+          "statement": "If $x + y = 9$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$81$",
+            "$75$",
+            "$84$",
+            "$87$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (9)^2 - 2 \\cdot (-3) = 87$. Forgetting to subtract $2xy$ leaves $81$.",
+          "check": [
+            "(9)**2 - 2*(-3) == 87",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v13",
+          "statement": "If $x + y = -8$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$70$",
+            "$64$",
+            "$58$",
+            "$67$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-8)^2 - 2 \\cdot (-3) = 70$. Forgetting to subtract $2xy$ leaves $64$.",
+          "check": [
+            "(-8)**2 - 2*(-3) == 70",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v14",
+          "statement": "If $x + y = -8$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$64$",
+            "$56$",
+            "$72$",
+            "$60$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-8)^2 - 2 \\cdot (4) = 56$. Forgetting to subtract $2xy$ leaves $64$.",
+          "check": [
+            "(-8)**2 - 2*(4) == 56",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v15",
+          "statement": "If $x + y = 4$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$16$",
+            "$24$",
+            "$8$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (4)^2 - 2 \\cdot (4) = 8$. Forgetting to subtract $2xy$ leaves $16$.",
+          "check": [
+            "(4)**2 - 2*(4) == 8",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v16",
+          "statement": "If $x + y = 4$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$16$",
+            "$6$",
+            "$21$",
+            "$26$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (4)^2 - 2 \\cdot (-5) = 26$. Forgetting to subtract $2xy$ leaves $16$.",
+          "check": [
+            "(4)**2 - 2*(-5) == 26",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v17",
+          "statement": "If $x + y = -1$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$7$",
+            "$1$",
+            "$-5$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-1)^2 - 2 \\cdot (-3) = 7$. Forgetting to subtract $2xy$ leaves $1$.",
+          "check": [
+            "(-1)**2 - 2*(-3) == 7",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v18",
+          "statement": "If $x + y = -1$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$1$",
+            "$11$",
+            "$-9$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-1)^2 - 2 \\cdot (-5) = 11$. Forgetting to subtract $2xy$ leaves $1$.",
+          "check": [
+            "(-1)**2 - 2*(-5) == 11",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v19",
+          "statement": "If $x + y = 6$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$36$",
+            "$40$",
+            "$32$",
+            "$34$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (6)^2 - 2 \\cdot (2) = 32$. Forgetting to subtract $2xy$ leaves $36$.",
+          "check": [
+            "(6)**2 - 2*(2) == 32",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v20",
+          "statement": "If $x + y = 6$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$36$",
+            "$30$",
+            "$39$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (6)^2 - 2 \\cdot (-3) = 42$. Forgetting to subtract $2xy$ leaves $36$.",
+          "check": [
+            "(6)**2 - 2*(-3) == 42",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v21",
+          "statement": "If $x + y = -4$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$22$",
+            "$16$",
+            "$10$",
+            "$19$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-4)^2 - 2 \\cdot (-3) = 22$. Forgetting to subtract $2xy$ leaves $16$.",
+          "check": [
+            "(-4)**2 - 2*(-3) == 22",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v22",
+          "statement": "If $x + y = -4$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$16$",
+            "$8$",
+            "$24$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-4)^2 - 2 \\cdot (4) = 8$. Forgetting to subtract $2xy$ leaves $16$.",
+          "check": [
+            "(-4)**2 - 2*(4) == 8",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v23",
+          "statement": "If $x + y = 8$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$64$",
+            "$72$",
+            "$56$",
+            "$60$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (8)^2 - 2 \\cdot (4) = 56$. Forgetting to subtract $2xy$ leaves $64$.",
+          "check": [
+            "(8)**2 - 2*(4) == 56",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v24",
+          "statement": "If $x + y = 8$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$64$",
+            "$54$",
+            "$69$",
+            "$74$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (8)^2 - 2 \\cdot (-5) = 74$. Forgetting to subtract $2xy$ leaves $64$.",
+          "check": [
+            "(8)**2 - 2*(-5) == 74",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v25",
+          "statement": "If $x + y = 3$ and $xy = 1$, find $x^2 + y^2$.",
+          "options": [
+            "$7$",
+            "$9$",
+            "$11$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (3)^2 - 2 \\cdot (1) = 7$. Forgetting to subtract $2xy$ leaves $9$.",
+          "check": [
+            "(3)**2 - 2*(1) == 7",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v26",
+          "statement": "If $x + y = 3$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$9$",
+            "$5$",
+            "$13$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (3)^2 - 2 \\cdot (2) = 5$. Forgetting to subtract $2xy$ leaves $9$.",
+          "check": [
+            "(3)**2 - 2*(2) == 5",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v27",
+          "statement": "If $x + y = -7$ and $xy = 2$, find $x^2 + y^2$.",
+          "options": [
+            "$49$",
+            "$53$",
+            "$45$",
+            "$47$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-7)^2 - 2 \\cdot (2) = 45$. Forgetting to subtract $2xy$ leaves $49$.",
+          "check": [
+            "(-7)**2 - 2*(2) == 45",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v28",
+          "statement": "If $x + y = -7$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$49$",
+            "$43$",
+            "$52$",
+            "$55$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-7)^2 - 2 \\cdot (-3) = 55$. Forgetting to subtract $2xy$ leaves $49$.",
+          "check": [
+            "(-7)**2 - 2*(-3) == 55",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v29",
+          "statement": "If $x + y = 1$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$7$",
+            "$1$",
+            "$-5$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (1)^2 - 2 \\cdot (-3) = 7$. Forgetting to subtract $2xy$ leaves $1$.",
+          "check": [
+            "(1)**2 - 2*(-3) == 7",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v30",
+          "statement": "If $x + y = 1$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$1$",
+            "$11$",
+            "$-9$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (1)^2 - 2 \\cdot (-5) = 11$. Forgetting to subtract $2xy$ leaves $1$.",
+          "check": [
+            "(1)**2 - 2*(-5) == 11",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v31",
+          "statement": "If $x + y = -5$ and $xy = 4$, find $x^2 + y^2$.",
+          "options": [
+            "$25$",
+            "$33$",
+            "$17$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-5)^2 - 2 \\cdot (4) = 17$. Forgetting to subtract $2xy$ leaves $25$.",
+          "check": [
+            "(-5)**2 - 2*(4) == 17",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v32",
+          "statement": "If $x + y = -5$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$25$",
+            "$15$",
+            "$30$",
+            "$35$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-5)^2 - 2 \\cdot (-5) = 35$. Forgetting to subtract $2xy$ leaves $25$.",
+          "check": [
+            "(-5)**2 - 2*(-5) == 35",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v33",
+          "statement": "If $x + y = -2$ and $xy = 1$, find $x^2 + y^2$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-2)^2 - 2 \\cdot (1) = 2$. Forgetting to subtract $2xy$ leaves $4$.",
+          "check": [
+            "(-2)**2 - 2*(1) == 2",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v34",
+          "statement": "If $x + y = -2$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$4$",
+            "$10$",
+            "$-2$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (-2)^2 - 2 \\cdot (-3) = 10$. Forgetting to subtract $2xy$ leaves $4$.",
+          "check": [
+            "(-2)**2 - 2*(-3) == 10",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v35",
+          "statement": "If $x + y = 0$ and $xy = -3$, find $x^2 + y^2$.",
+          "options": [
+            "$0$",
+            "$-6$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (0)^2 - 2 \\cdot (-3) = 6$. Forgetting to subtract $2xy$ leaves $0$.",
+          "check": [
+            "(0)**2 - 2*(-3) == 6",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        },
+        {
+          "id": "A2-nls-v36",
+          "statement": "If $x + y = 0$ and $xy = -5$, find $x^2 + y^2$.",
+          "options": [
+            "$0$",
+            "$-10$",
+            "$5$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square the sum: $(x + y)^2 = x^2 + 2xy + y^2$, so $x^2 + y^2 = (0)^2 - 2 \\cdot (-5) = 10$. Forgetting to subtract $2xy$ leaves $0$.",
+          "check": [
+            "(0)**2 - 2*(-5) == 10",
+            "expand((x + y)**2 - 2*x*y) == x**2 + y**2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "factored-cubic",
+      "title": "Reading a factored cubic",
+      "level": 1,
+      "unit": "polynomial-functions",
+      "skill": "Factored form hands you the roots: sum them, evaluate p(0), rank them.",
+      "variants": [
+        {
+          "id": "A2-cubic-v01",
+          "statement": "For $p(x) = (x + 6)(x + 4)(x + 3)$, find the sum of the roots.",
+          "options": [
+            "$-13$",
+            "$13$",
+            "$54$",
+            "$-72$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set each factor to zero: the roots are $-6$, $-4$ and $-3$, so their sum is $-13$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $13$.",
+          "check": [
+            "(-6) + (-4) + (-3) == -13",
+            "expand((x - (-6))*(x - (-4))*(x - (-3))) == x**3 - (-13)*x**2 + (54)*x - (-72)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v02",
+          "statement": "For $p(x) = (x - 4)(x + 6)(x + 2)$, find $p(0)$.",
+          "options": [
+            "$48$",
+            "$-48$",
+            "$-4$",
+            "$0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-4)(6)(2) = -48$. Taking the plain product of the roots, $48$, misses the three sign flips.",
+          "check": [
+            "(0 - (-6))*(0 - (-2))*(0 - (4)) == -48"
+          ]
+        },
+        {
+          "id": "A2-cubic-v03",
+          "statement": "For $p(x) = (x - 3)(x - 7)(x + 6)$, what is the largest root?",
+          "options": [
+            "$-6$",
+            "$3$",
+            "$7$",
+            "$-7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The roots are $3$, $7$ and $-6$; the largest is $7$. Careful with negatives: $-6$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-6, 3, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v04",
+          "statement": "For $p(x) = (x + 5)(x + 2)(x - 7)$, what is the largest root?",
+          "options": [
+            "$-5$",
+            "$-2$",
+            "$-7$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The roots are $-5$, $-2$ and $7$; the largest is $7$. Careful with negatives: $-5$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-5, -2, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v05",
+          "statement": "For $p(x) = (x - 3)(x + 5)(x - 1)$, find $p(0)$.",
+          "options": [
+            "$15$",
+            "$-15$",
+            "$-1$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-3)(5)(-1) = 15$. Taking the plain product of the roots, $-15$, misses the three sign flips.",
+          "check": [
+            "(0 - (-5))*(0 - (1))*(0 - (3)) == 15"
+          ]
+        },
+        {
+          "id": "A2-cubic-v06",
+          "statement": "For $p(x) = (x - 1)(x - 6)(x + 4)$, what is the largest root?",
+          "options": [
+            "$-4$",
+            "$6$",
+            "$1$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The roots are $1$, $6$ and $-4$; the largest is $6$. Careful with negatives: $-4$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-4, 1, 6) == 6"
+          ]
+        },
+        {
+          "id": "A2-cubic-v07",
+          "statement": "For $p(x) = (x + 3)(x + 1)(x - 2)$, find the sum of the roots.",
+          "options": [
+            "$2$",
+            "$-5$",
+            "$-2$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set each factor to zero: the roots are $-3$, $-1$ and $2$, so their sum is $-2$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $2$.",
+          "check": [
+            "(-3) + (-1) + (2) == -2",
+            "expand((x - (-3))*(x - (-1))*(x - (2))) == x**3 - (-2)*x**2 + (-5)*x - (6)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v08",
+          "statement": "For $p(x) = (x - 5)(x + 3)(x - 4)$, find $p(0)$.",
+          "options": [
+            "$-60$",
+            "$6$",
+            "$0$",
+            "$60$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-5)(3)(-4) = 60$. Taking the plain product of the roots, $-60$, misses the three sign flips.",
+          "check": [
+            "(0 - (-3))*(0 - (4))*(0 - (5)) == 60"
+          ]
+        },
+        {
+          "id": "A2-cubic-v09",
+          "statement": "For $p(x) = (x + 1)(x - 5)(x + 2)$, what is the largest root?",
+          "options": [
+            "$5$",
+            "$-2$",
+            "$-1$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The roots are $-1$, $5$ and $-2$; the largest is $5$. Careful with negatives: $-2$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-2, -1, 5) == 5"
+          ]
+        },
+        {
+          "id": "A2-cubic-v10",
+          "statement": "For $p(x) = (x + 1)(x - 2)(x - 4)$, find the sum of the roots.",
+          "options": [
+            "$-5$",
+            "$5$",
+            "$2$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set each factor to zero: the roots are $-1$, $2$ and $4$, so their sum is $5$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-5$.",
+          "check": [
+            "(-1) + (2) + (4) == 5",
+            "expand((x - (-1))*(x - (2))*(x - (4))) == x**3 - (5)*x**2 + (2)*x - (-8)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v11",
+          "statement": "For $p(x) = (x - 6)(x - 1)(x - 5)$, find $p(0)$.",
+          "options": [
+            "$30$",
+            "$12$",
+            "$-30$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-6)(-1)(-5) = -30$. Taking the plain product of the roots, $30$, misses the three sign flips.",
+          "check": [
+            "(0 - (1))*(0 - (5))*(0 - (6)) == -30"
+          ]
+        },
+        {
+          "id": "A2-cubic-v12",
+          "statement": "For $p(x) = (x - 6)(x - 7)(x - 5)$, what is the largest root?",
+          "options": [
+            "$5$",
+            "$6$",
+            "$-7$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The roots are $6$, $7$ and $5$; the largest is $7$. Careful with negatives: $5$ is the smallest root, not the largest.",
+          "check": [
+            "Max(5, 6, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v13",
+          "statement": "For $p(x) = (x + 6)(x + 3)(x + 2)$, find the sum of the roots.",
+          "options": [
+            "$-11$",
+            "$11$",
+            "$36$",
+            "$-36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set each factor to zero: the roots are $-6$, $-3$ and $-2$, so their sum is $-11$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $11$.",
+          "check": [
+            "(-6) + (-3) + (-2) == -11",
+            "expand((x - (-6))*(x - (-3))*(x - (-2))) == x**3 - (-11)*x**2 + (36)*x - (-36)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v14",
+          "statement": "For $p(x) = (x - 5)(x + 6)(x + 1)$, find $p(0)$.",
+          "options": [
+            "$30$",
+            "$-30$",
+            "$-2$",
+            "$0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-5)(6)(1) = -30$. Taking the plain product of the roots, $30$, misses the three sign flips.",
+          "check": [
+            "(0 - (-6))*(0 - (-1))*(0 - (5)) == -30"
+          ]
+        },
+        {
+          "id": "A2-cubic-v15",
+          "statement": "For $p(x) = (x + 3)(x - 1)(x + 5)$, what is the largest root?",
+          "options": [
+            "$-5$",
+            "$-3$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The roots are $-3$, $1$ and $-5$; the largest is $1$. Careful with negatives: $-5$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-5, -3, 1) == 1"
+          ]
+        },
+        {
+          "id": "A2-cubic-v16",
+          "statement": "For $p(x) = (x + 5)(x - 2)(x - 4)$, find the sum of the roots.",
+          "options": [
+            "$-1$",
+            "$-22$",
+            "$-40$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set each factor to zero: the roots are $-5$, $2$ and $4$, so their sum is $1$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-1$.",
+          "check": [
+            "(-5) + (2) + (4) == 1",
+            "expand((x - (-5))*(x - (2))*(x - (4))) == x**3 - (1)*x**2 + (-22)*x - (-40)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v17",
+          "statement": "For $p(x) = (x - 4)(x + 4)(x + 3)$, find $p(0)$.",
+          "options": [
+            "$-48$",
+            "$48$",
+            "$-3$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-4)(4)(3) = -48$. Taking the plain product of the roots, $48$, misses the three sign flips.",
+          "check": [
+            "(0 - (-4))*(0 - (-3))*(0 - (4)) == -48"
+          ]
+        },
+        {
+          "id": "A2-cubic-v18",
+          "statement": "For $p(x) = (x - 2)(x - 7)(x + 4)$, what is the largest root?",
+          "options": [
+            "$-4$",
+            "$7$",
+            "$2$",
+            "$-7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The roots are $2$, $7$ and $-4$; the largest is $7$. Careful with negatives: $-4$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-4, 2, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v19",
+          "statement": "For $p(x) = (x + 3)(x - 5)(x - 6)$, find the sum of the roots.",
+          "options": [
+            "$-8$",
+            "$-3$",
+            "$8$",
+            "$-90$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set each factor to zero: the roots are $-3$, $5$ and $6$, so their sum is $8$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-8$.",
+          "check": [
+            "(-3) + (5) + (6) == 8",
+            "expand((x - (-3))*(x - (5))*(x - (6))) == x**3 - (8)*x**2 + (-3)*x - (-90)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v20",
+          "statement": "For $p(x) = (x - 5)(x + 1)(x - 3)$, find $p(0)$.",
+          "options": [
+            "$-15$",
+            "$7$",
+            "$0$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-5)(1)(-3) = 15$. Taking the plain product of the roots, $-15$, misses the three sign flips.",
+          "check": [
+            "(0 - (-1))*(0 - (3))*(0 - (5)) == 15"
+          ]
+        },
+        {
+          "id": "A2-cubic-v21",
+          "statement": "For $p(x) = (x - 6)(x - 7)(x - 1)$, what is the largest root?",
+          "options": [
+            "$7$",
+            "$1$",
+            "$6$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The roots are $6$, $7$ and $1$; the largest is $7$. Careful with negatives: $1$ is the smallest root, not the largest.",
+          "check": [
+            "Max(1, 6, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v22",
+          "statement": "For $p(x) = (x - 3)(x - 4)(x - 6)$, find the sum of the roots.",
+          "options": [
+            "$-13$",
+            "$13$",
+            "$54$",
+            "$72$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set each factor to zero: the roots are $3$, $4$ and $6$, so their sum is $13$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-13$.",
+          "check": [
+            "(3) + (4) + (6) == 13",
+            "expand((x - (3))*(x - (4))*(x - (6))) == x**3 - (13)*x**2 + (54)*x - (72)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v23",
+          "statement": "For $p(x) = (x - 3)(x + 6)(x + 5)$, find $p(0)$.",
+          "options": [
+            "$90$",
+            "$-8$",
+            "$-90$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-3)(6)(5) = -90$. Taking the plain product of the roots, $90$, misses the three sign flips.",
+          "check": [
+            "(0 - (-6))*(0 - (-5))*(0 - (3)) == -90"
+          ]
+        },
+        {
+          "id": "A2-cubic-v24",
+          "statement": "For $p(x) = (x + 2)(x + 1)(x + 6)$, what is the largest root?",
+          "options": [
+            "$-6$",
+            "$-2$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The roots are $-2$, $-1$ and $-6$; the largest is $-1$. Careful with negatives: $-6$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-6, -2, -1) == -1"
+          ]
+        },
+        {
+          "id": "A2-cubic-v25",
+          "statement": "For $p(x) = (x + 5)(x + 2)(x - 2)$, find the sum of the roots.",
+          "options": [
+            "$-5$",
+            "$5$",
+            "$-4$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set each factor to zero: the roots are $-5$, $-2$ and $2$, so their sum is $-5$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $5$.",
+          "check": [
+            "(-5) + (-2) + (2) == -5",
+            "expand((x - (-5))*(x - (-2))*(x - (2))) == x**3 - (-5)*x**2 + (-4)*x - (20)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v26",
+          "statement": "For $p(x) = (x - 5)(x + 5)(x - 3)$, find $p(0)$.",
+          "options": [
+            "$-75$",
+            "$75$",
+            "$3$",
+            "$0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-5)(5)(-3) = 75$. Taking the plain product of the roots, $-75$, misses the three sign flips.",
+          "check": [
+            "(0 - (-5))*(0 - (3))*(0 - (5)) == 75"
+          ]
+        },
+        {
+          "id": "A2-cubic-v27",
+          "statement": "For $p(x) = (x + 2)(x - 5)(x + 4)$, what is the largest root?",
+          "options": [
+            "$-4$",
+            "$-2$",
+            "$5$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The roots are $-2$, $5$ and $-4$; the largest is $5$. Careful with negatives: $-4$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-4, -2, 5) == 5"
+          ]
+        },
+        {
+          "id": "A2-cubic-v28",
+          "statement": "For $p(x) = (x + 3)(x - 1)(x - 4)$, find the sum of the roots.",
+          "options": [
+            "$-2$",
+            "$-11$",
+            "$-12$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set each factor to zero: the roots are $-3$, $1$ and $4$, so their sum is $2$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-2$.",
+          "check": [
+            "(-3) + (1) + (4) == 2",
+            "expand((x - (-3))*(x - (1))*(x - (4))) == x**3 - (2)*x**2 + (-11)*x - (-12)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v29",
+          "statement": "For $p(x) = (x - 7)(x + 3)(x - 6)$, find $p(0)$.",
+          "options": [
+            "$126$",
+            "$-126$",
+            "$10$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-7)(3)(-6) = 126$. Taking the plain product of the roots, $-126$, misses the three sign flips.",
+          "check": [
+            "(0 - (-3))*(0 - (6))*(0 - (7)) == 126"
+          ]
+        },
+        {
+          "id": "A2-cubic-v30",
+          "statement": "For $p(x) = (x - 1)(x - 7)(x + 2)$, what is the largest root?",
+          "options": [
+            "$-2$",
+            "$7$",
+            "$1$",
+            "$-7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The roots are $1$, $7$ and $-2$; the largest is $7$. Careful with negatives: $-2$ is the smallest root, not the largest.",
+          "check": [
+            "Max(-2, 1, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v31",
+          "statement": "For $p(x) = (x + 1)(x - 4)(x - 6)$, find the sum of the roots.",
+          "options": [
+            "$-9$",
+            "$14$",
+            "$9$",
+            "$-24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set each factor to zero: the roots are $-1$, $4$ and $6$, so their sum is $9$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $-9$.",
+          "check": [
+            "(-1) + (4) + (6) == 9",
+            "expand((x - (-1))*(x - (4))*(x - (6))) == x**3 - (9)*x**2 + (14)*x - (-24)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v32",
+          "statement": "For $p(x) = (x - 5)(x - 1)(x - 2)$, find $p(0)$.",
+          "options": [
+            "$10$",
+            "$8$",
+            "$0$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-5)(-1)(-2) = -10$. Taking the plain product of the roots, $10$, misses the three sign flips.",
+          "check": [
+            "(0 - (1))*(0 - (2))*(0 - (5)) == -10"
+          ]
+        },
+        {
+          "id": "A2-cubic-v33",
+          "statement": "For $p(x) = (x - 5)(x - 7)(x - 3)$, what is the largest root?",
+          "options": [
+            "$7$",
+            "$3$",
+            "$5$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The roots are $5$, $7$ and $3$; the largest is $7$. Careful with negatives: $3$ is the smallest root, not the largest.",
+          "check": [
+            "Max(3, 5, 7) == 7"
+          ]
+        },
+        {
+          "id": "A2-cubic-v34",
+          "statement": "For $p(x) = (x + 6)(x + 4)(x - 4)$, find the sum of the roots.",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$-16$",
+            "$96$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set each factor to zero: the roots are $-6$, $-4$ and $4$, so their sum is $-6$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $6$.",
+          "check": [
+            "(-6) + (-4) + (4) == -6",
+            "expand((x - (-6))*(x - (-4))*(x - (4))) == x**3 - (-6)*x**2 + (-16)*x - (96)"
+          ]
+        },
+        {
+          "id": "A2-cubic-v35",
+          "statement": "For $p(x) = (x - 7)(x + 6)(x - 1)$, find $p(0)$.",
+          "options": [
+            "$-42$",
+            "$2$",
+            "$42$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 0$: each factor becomes minus its root, so $p(0) = (-7)(6)(-1) = 42$. Taking the plain product of the roots, $-42$, misses the three sign flips.",
+          "check": [
+            "(0 - (-6))*(0 - (1))*(0 - (7)) == 42"
+          ]
+        },
+        {
+          "id": "A2-cubic-v36",
+          "statement": "For $p(x) = (x + 4)(x - 7)(x + 5)$, find the sum of the roots.",
+          "options": [
+            "$2$",
+            "$-43$",
+            "$140$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set each factor to zero: the roots are $-4$, $7$ and $-5$, so their sum is $-2$. Flipping every root's sign (reading $(x - r)$ as root $-r$) gives $2$.",
+          "check": [
+            "(-5) + (-4) + (7) == -2",
+            "expand((x - (-5))*(x - (-4))*(x - (7))) == x**3 - (-2)*x**2 + (-43)*x - (140)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remainder-theorem",
+      "title": "The remainder theorem",
+      "level": 2,
+      "unit": "polynomial-functions",
+      "skill": "Dividing by (x − k) leaves remainder p(k) — just substitute.",
+      "variants": [
+        {
+          "id": "A2-rem-v01",
+          "statement": "Find the remainder when $x^3 + x^2 + 2x - 3$ is divided by $(x - 1)$.",
+          "options": [
+            "$1$",
+            "$-5$",
+            "$-3$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $1$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $-5$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (2)*x + (-3), x - (1), x) == 1",
+            "(1)**3 + (1)*(1)**2 + (2)*(1) + (-3) == 1"
+          ]
+        },
+        {
+          "id": "A2-rem-v02",
+          "statement": "Find the remainder when $x^3 - 2x^2 + 2x - 3$ is divided by $(x + 1)$.",
+          "options": [
+            "$-2$",
+            "$-8$",
+            "$-3$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $-8$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $-2$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (2)*x + (-3), x - (-1), x) == -8",
+            "(-1)**3 + (-2)*(-1)**2 + (2)*(-1) + (-3) == -8"
+          ]
+        },
+        {
+          "id": "A2-rem-v03",
+          "statement": "Find the remainder when $x^3 + 2x^2 + 2x - 3$ is divided by $(x - 2)$.",
+          "options": [
+            "$-7$",
+            "$-3$",
+            "$17$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $17$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $-7$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (2)*x + (-3), x - (2), x) == 17",
+            "(2)**3 + (2)*(2)**2 + (2)*(2) + (-3) == 17"
+          ]
+        },
+        {
+          "id": "A2-rem-v04",
+          "statement": "Find the remainder when $x^3 + x^2 + 2x - 3$ is divided by $(x + 2)$.",
+          "options": [
+            "$13$",
+            "$-3$",
+            "$5$",
+            "$-11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $-11$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $13$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (2)*x + (-3), x - (-2), x) == -11",
+            "(-2)**3 + (1)*(-2)**2 + (2)*(-2) + (-3) == -11"
+          ]
+        },
+        {
+          "id": "A2-rem-v05",
+          "statement": "Find the remainder when $x^3 + 3x^2 + 2x - 3$ is divided by $(x - 3)$.",
+          "options": [
+            "$57$",
+            "$-9$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $57$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $-9$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (2)*x + (-3), x - (3), x) == 57",
+            "(3)**3 + (3)*(3)**2 + (2)*(3) + (-3) == 57"
+          ]
+        },
+        {
+          "id": "A2-rem-v06",
+          "statement": "Find the remainder when $x^3 - 3x^2 + 2x - 3$ is divided by $(x + 3)$.",
+          "options": [
+            "$3$",
+            "$-63$",
+            "$-3$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-63$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $3$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (2)*x + (-3), x - (-3), x) == -63",
+            "(-3)**3 + (-3)*(-3)**2 + (2)*(-3) + (-3) == -63"
+          ]
+        },
+        {
+          "id": "A2-rem-v07",
+          "statement": "Find the remainder when $x^3 + x^2 - 3x + 1$ is divided by $(x - 1)$.",
+          "options": [
+            "$4$",
+            "$1$",
+            "$0$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $0$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $4$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (-3)*x + (1), x - (1), x) == 0",
+            "(1)**3 + (1)*(1)**2 + (-3)*(1) + (1) == 0"
+          ]
+        },
+        {
+          "id": "A2-rem-v08",
+          "statement": "Find the remainder when $x^3 - x^2 - 3x + 1$ is divided by $(x + 1)$.",
+          "options": [
+            "$-2$",
+            "$1$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $2$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $-2$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (-3)*x + (1), x - (-1), x) == 2",
+            "(-1)**3 + (-1)*(-1)**2 + (-3)*(-1) + (1) == 2"
+          ]
+        },
+        {
+          "id": "A2-rem-v09",
+          "statement": "Find the remainder when $x^3 + 2x^2 - 3x + 1$ is divided by $(x - 2)$.",
+          "options": [
+            "$11$",
+            "$7$",
+            "$1$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $11$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $7$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (-3)*x + (1), x - (2), x) == 11",
+            "(2)**3 + (2)*(2)**2 + (-3)*(2) + (1) == 11"
+          ]
+        },
+        {
+          "id": "A2-rem-v10",
+          "statement": "Find the remainder when $x^3 - x^2 - 3x + 1$ is divided by $(x + 2)$.",
+          "options": [
+            "$-1$",
+            "$-5$",
+            "$1$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $-5$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $-1$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (-3)*x + (1), x - (-2), x) == -5",
+            "(-2)**3 + (-1)*(-2)**2 + (-3)*(-2) + (1) == -5"
+          ]
+        },
+        {
+          "id": "A2-rem-v11",
+          "statement": "Find the remainder when $x^3 + 3x^2 - 3x + 1$ is divided by $(x - 3)$.",
+          "options": [
+            "$10$",
+            "$1$",
+            "$46$",
+            "$-8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $46$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $10$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (-3)*x + (1), x - (3), x) == 46",
+            "(3)**3 + (3)*(3)**2 + (-3)*(3) + (1) == 46"
+          ]
+        },
+        {
+          "id": "A2-rem-v12",
+          "statement": "Find the remainder when $x^3 - 3x^2 - 3x + 1$ is divided by $(x + 3)$.",
+          "options": [
+            "$-8$",
+            "$1$",
+            "$10$",
+            "$-44$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-44$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $-8$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (-3)*x + (1), x - (-3), x) == -44",
+            "(-3)**3 + (-3)*(-3)**2 + (-3)*(-3) + (1) == -44"
+          ]
+        },
+        {
+          "id": "A2-rem-v13",
+          "statement": "Find the remainder when $x^3 + x^2 + x + 4$ is divided by $(x - 1)$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $7$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $3$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (1)*x + (4), x - (1), x) == 7",
+            "(1)**3 + (1)*(1)**2 + (1)*(1) + (4) == 7"
+          ]
+        },
+        {
+          "id": "A2-rem-v14",
+          "statement": "Find the remainder when $x^3 - x^2 + x + 4$ is divided by $(x + 1)$.",
+          "options": [
+            "$5$",
+            "$1$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $1$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $5$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (1)*x + (4), x - (-1), x) == 1",
+            "(-1)**3 + (-1)*(-1)**2 + (1)*(-1) + (4) == 1"
+          ]
+        },
+        {
+          "id": "A2-rem-v15",
+          "statement": "Find the remainder when $x^3 + 2x^2 + x + 4$ is divided by $(x - 2)$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$22$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $22$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $2$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (1)*x + (4), x - (2), x) == 22",
+            "(2)**3 + (2)*(2)**2 + (1)*(2) + (4) == 22"
+          ]
+        },
+        {
+          "id": "A2-rem-v16",
+          "statement": "Find the remainder when $x^3 - x^2 + x + 4$ is divided by $(x + 2)$.",
+          "options": [
+            "$10$",
+            "$4$",
+            "$6$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $-10$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $10$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (1)*x + (4), x - (-2), x) == -10",
+            "(-2)**3 + (-1)*(-2)**2 + (1)*(-2) + (4) == -10"
+          ]
+        },
+        {
+          "id": "A2-rem-v17",
+          "statement": "Find the remainder when $x^3 + 3x^2 + x + 4$ is divided by $(x - 3)$.",
+          "options": [
+            "$61$",
+            "$1$",
+            "$4$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $61$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $1$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (1)*x + (4), x - (3), x) == 61",
+            "(3)**3 + (3)*(3)**2 + (1)*(3) + (4) == 61"
+          ]
+        },
+        {
+          "id": "A2-rem-v18",
+          "statement": "Find the remainder when $x^3 - 3x^2 + x + 4$ is divided by $(x + 3)$.",
+          "options": [
+            "$7$",
+            "$-53$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-53$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $7$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (1)*x + (4), x - (-3), x) == -53",
+            "(-3)**3 + (-3)*(-3)**2 + (1)*(-3) + (4) == -53"
+          ]
+        },
+        {
+          "id": "A2-rem-v19",
+          "statement": "Find the remainder when $x^3 - 2x^2 - 2x - 5$ is divided by $(x - 1)$.",
+          "options": [
+            "$-6$",
+            "$-5$",
+            "$-8$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $-8$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $-6$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (-2)*x + (-5), x - (1), x) == -8",
+            "(1)**3 + (-2)*(1)**2 + (-2)*(1) + (-5) == -8"
+          ]
+        },
+        {
+          "id": "A2-rem-v20",
+          "statement": "Find the remainder when $x^3 - 2x^2 - 2x - 5$ is divided by $(x + 1)$.",
+          "options": [
+            "$-8$",
+            "$-5$",
+            "$-4$",
+            "$-6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $-6$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $-8$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (-2)*x + (-5), x - (-1), x) == -6",
+            "(-1)**3 + (-2)*(-1)**2 + (-2)*(-1) + (-5) == -6"
+          ]
+        },
+        {
+          "id": "A2-rem-v21",
+          "statement": "Find the remainder when $x^3 + 2x^2 - 2x - 5$ is divided by $(x - 2)$.",
+          "options": [
+            "$7$",
+            "$-1$",
+            "$-5$",
+            "$-9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $7$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $-1$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (-2)*x + (-5), x - (2), x) == 7",
+            "(2)**3 + (2)*(2)**2 + (-2)*(2) + (-5) == 7"
+          ]
+        },
+        {
+          "id": "A2-rem-v22",
+          "statement": "Find the remainder when $x^3 + 3x^2 - 2x - 5$ is divided by $(x + 2)$.",
+          "options": [
+            "$11$",
+            "$3$",
+            "$-5$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $3$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $11$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (-2)*x + (-5), x - (-2), x) == 3",
+            "(-2)**3 + (3)*(-2)**2 + (-2)*(-2) + (-5) == 3"
+          ]
+        },
+        {
+          "id": "A2-rem-v23",
+          "statement": "Find the remainder when $x^3 + 3x^2 - 2x - 5$ is divided by $(x - 3)$.",
+          "options": [
+            "$1$",
+            "$-5$",
+            "$43$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $43$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $1$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (-2)*x + (-5), x - (3), x) == 43",
+            "(3)**3 + (3)*(3)**2 + (-2)*(3) + (-5) == 43"
+          ]
+        },
+        {
+          "id": "A2-rem-v24",
+          "statement": "Find the remainder when $x^3 - 3x^2 - 2x - 5$ is divided by $(x + 3)$.",
+          "options": [
+            "$-11$",
+            "$-5$",
+            "$1$",
+            "$-53$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-53$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $-11$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (-2)*x + (-5), x - (-3), x) == -53",
+            "(-3)**3 + (-3)*(-3)**2 + (-2)*(-3) + (-5) == -53"
+          ]
+        },
+        {
+          "id": "A2-rem-v25",
+          "statement": "Find the remainder when $x^3 + x^2 + 3x + 2$ is divided by $(x - 1)$.",
+          "options": [
+            "$7$",
+            "$-1$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $7$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $-1$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (3)*x + (2), x - (1), x) == 7",
+            "(1)**3 + (1)*(1)**2 + (3)*(1) + (2) == 7"
+          ]
+        },
+        {
+          "id": "A2-rem-v26",
+          "statement": "Find the remainder when $x^3 - 2x^2 + 3x + 2$ is divided by $(x + 1)$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $-4$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $4$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (3)*x + (2), x - (-1), x) == -4",
+            "(-1)**3 + (-2)*(-1)**2 + (3)*(-1) + (2) == -4"
+          ]
+        },
+        {
+          "id": "A2-rem-v27",
+          "statement": "Find the remainder when $x^3 + 2x^2 + 3x + 2$ is divided by $(x - 2)$.",
+          "options": [
+            "$-4$",
+            "$2$",
+            "$24$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $24$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $-4$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (3)*x + (2), x - (2), x) == 24",
+            "(2)**3 + (2)*(2)**2 + (3)*(2) + (2) == 24"
+          ]
+        },
+        {
+          "id": "A2-rem-v28",
+          "statement": "Find the remainder when $x^3 - x^2 + 3x + 2$ is divided by $(x + 2)$.",
+          "options": [
+            "$12$",
+            "$2$",
+            "$0$",
+            "$-16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $-16$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $12$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (3)*x + (2), x - (-2), x) == -16",
+            "(-2)**3 + (-1)*(-2)**2 + (3)*(-2) + (2) == -16"
+          ]
+        },
+        {
+          "id": "A2-rem-v29",
+          "statement": "Find the remainder when $x^3 + 3x^2 + 3x + 2$ is divided by $(x - 3)$.",
+          "options": [
+            "$65$",
+            "$-7$",
+            "$2$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $65$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $-7$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (3)*x + (2), x - (3), x) == 65",
+            "(3)**3 + (3)*(3)**2 + (3)*(3) + (2) == 65"
+          ]
+        },
+        {
+          "id": "A2-rem-v30",
+          "statement": "Find the remainder when $x^3 - 3x^2 + 3x + 2$ is divided by $(x + 3)$.",
+          "options": [
+            "$11$",
+            "$-61$",
+            "$2$",
+            "$-7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-61$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $11$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (3)*x + (2), x - (-3), x) == -61",
+            "(-3)**3 + (-3)*(-3)**2 + (3)*(-3) + (2) == -61"
+          ]
+        },
+        {
+          "id": "A2-rem-v31",
+          "statement": "Find the remainder when $x^3 + x^2 - 4x + 3$ is divided by $(x - 1)$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $1$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $7$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (-4)*x + (3), x - (1), x) == 1",
+            "(1)**3 + (1)*(1)**2 + (-4)*(1) + (3) == 1"
+          ]
+        },
+        {
+          "id": "A2-rem-v32",
+          "statement": "Find the remainder when $x^3 - 2x^2 - 4x + 3$ is divided by $(x + 1)$.",
+          "options": [
+            "$-2$",
+            "$3$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $4$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $-2$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (-4)*x + (3), x - (-1), x) == 4",
+            "(-1)**3 + (-2)*(-1)**2 + (-4)*(-1) + (3) == 4"
+          ]
+        },
+        {
+          "id": "A2-rem-v33",
+          "statement": "Find the remainder when $x^3 + 2x^2 - 4x + 3$ is divided by $(x - 3)$.",
+          "options": [
+            "$36$",
+            "$6$",
+            "$3$",
+            "$-18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 3)$ leaves $p(3)$; substituting gives $36$. Evaluating at $x = -3$ instead — misreading the divisor's sign — gives $6$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (-4)*x + (3), x - (3), x) == 36",
+            "(3)**3 + (2)*(3)**2 + (-4)*(3) + (3) == 36"
+          ]
+        },
+        {
+          "id": "A2-rem-v34",
+          "statement": "Find the remainder when $x^3 - x^2 - 4x + 3$ is divided by $(x + 3)$.",
+          "options": [
+            "$9$",
+            "$-21$",
+            "$3$",
+            "$33$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 3)$ leaves $p(-3)$; substituting gives $-21$. Evaluating at $x = 3$ instead — misreading the divisor's sign — gives $9$.",
+          "check": [
+            "rem(x**3 + (-1)*x**2 + (-4)*x + (3), x - (-3), x) == -21",
+            "(-3)**3 + (-1)*(-3)**2 + (-4)*(-3) + (3) == -21"
+          ]
+        },
+        {
+          "id": "A2-rem-v35",
+          "statement": "Find the remainder when $x^3 + x^2 + 2x + 5$ is divided by $(x - 1)$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$9$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem, dividing by $(x - 1)$ leaves $p(1)$; substituting gives $9$. Evaluating at $x = -1$ instead — misreading the divisor's sign — gives $3$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (2)*x + (5), x - (1), x) == 9",
+            "(1)**3 + (1)*(1)**2 + (2)*(1) + (5) == 9"
+          ]
+        },
+        {
+          "id": "A2-rem-v36",
+          "statement": "Find the remainder when $x^3 - 2x^2 + 2x + 5$ is divided by $(x + 1)$.",
+          "options": [
+            "$6$",
+            "$5$",
+            "$2$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem, dividing by $(x + 1)$ leaves $p(-1)$; substituting gives $0$. Evaluating at $x = 1$ instead — misreading the divisor's sign — gives $6$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (2)*x + (5), x - (-1), x) == 0",
+            "(-1)**3 + (-2)*(-1)**2 + (2)*(-1) + (5) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rational-exponents",
+      "title": "Evaluating rational exponents",
+      "level": 1,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "n^(p/q) = (q-th root of n)^p; a negative exponent means reciprocal.",
+      "variants": [
+        {
+          "id": "A2-rexp-v01",
+          "statement": "Evaluate $4^{3/2}$.",
+          "options": [
+            "$8$",
+            "$6$",
+            "$64$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $4^{3/2} = (\\sqrt{4})^{3} = 2^{3} = 8$. Skipping the root and computing $4^{3}$ gives $64$.",
+          "check": [
+            "Rational(4)**Rational(3, 2) == Rational(8, 1)",
+            "(2)**(2) == 4"
+          ]
+        },
+        {
+          "id": "A2-rexp-v02",
+          "statement": "Evaluate $4^{5/2}$.",
+          "options": [
+            "$10$",
+            "$32$",
+            "$1024$",
+            "$\\frac{1}{32}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Root first, then power: $4^{5/2} = (\\sqrt{4})^{5} = 2^{5} = 32$. Skipping the root and computing $4^{5}$ gives $1024$.",
+          "check": [
+            "Rational(4)**Rational(5, 2) == Rational(32, 1)",
+            "(2)**(2) == 4"
+          ]
+        },
+        {
+          "id": "A2-rexp-v03",
+          "statement": "Evaluate $4^{-1/2}$.",
+          "options": [
+            "$-2$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{2}$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $4^{-1/2} = \\frac{1}{(\\sqrt{4})^{1}} = \\frac{1}{2^{1}} = \\frac{1}{2}$. Dropping the minus gives $2$.",
+          "check": [
+            "Rational(4)**Rational(-1, 2) == Rational(1, 2)",
+            "(2)**(2) == 4"
+          ]
+        },
+        {
+          "id": "A2-rexp-v04",
+          "statement": "Evaluate $4^{-3/2}$.",
+          "options": [
+            "$-6$",
+            "$\\frac{1}{64}$",
+            "$8$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $4^{-3/2} = \\frac{1}{(\\sqrt{4})^{3}} = \\frac{1}{2^{3}} = \\frac{1}{8}$. Dropping the minus gives $8$.",
+          "check": [
+            "Rational(4)**Rational(-3, 2) == Rational(1, 8)",
+            "(2)**(2) == 4"
+          ]
+        },
+        {
+          "id": "A2-rexp-v05",
+          "statement": "Evaluate $8^{2/3}$.",
+          "options": [
+            "$4$",
+            "$\\frac{16}{3}$",
+            "$64$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $8^{2/3} = (\\sqrt[3]{8})^{2} = 2^{2} = 4$. Skipping the root and computing $8^{2}$ gives $64$.",
+          "check": [
+            "Rational(8)**Rational(2, 3) == Rational(4, 1)",
+            "(2)**(3) == 8"
+          ]
+        },
+        {
+          "id": "A2-rexp-v06",
+          "statement": "Evaluate $8^{5/3}$.",
+          "options": [
+            "$\\frac{40}{3}$",
+            "$32$",
+            "$32768$",
+            "$\\frac{1}{32}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Root first, then power: $8^{5/3} = (\\sqrt[3]{8})^{5} = 2^{5} = 32$. Skipping the root and computing $8^{5}$ gives $32768$.",
+          "check": [
+            "Rational(8)**Rational(5, 3) == Rational(32, 1)",
+            "(2)**(3) == 8"
+          ]
+        },
+        {
+          "id": "A2-rexp-v07",
+          "statement": "Evaluate $8^{-1/3}$.",
+          "options": [
+            "$-\\frac{8}{3}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{2}$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $8^{-1/3} = \\frac{1}{(\\sqrt[3]{8})^{1}} = \\frac{1}{2^{1}} = \\frac{1}{2}$. Dropping the minus gives $2$.",
+          "check": [
+            "Rational(8)**Rational(-1, 3) == Rational(1, 2)",
+            "(2)**(3) == 8"
+          ]
+        },
+        {
+          "id": "A2-rexp-v08",
+          "statement": "Evaluate $8^{-2/3}$.",
+          "options": [
+            "$-\\frac{16}{3}$",
+            "$\\frac{1}{64}$",
+            "$4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $8^{-2/3} = \\frac{1}{(\\sqrt[3]{8})^{2}} = \\frac{1}{2^{2}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(8)**Rational(-2, 3) == Rational(1, 4)",
+            "(2)**(3) == 8"
+          ]
+        },
+        {
+          "id": "A2-rexp-v09",
+          "statement": "Evaluate $16^{3/4}$.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$4096$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $16^{3/4} = (\\sqrt[4]{16})^{3} = 2^{3} = 8$. Skipping the root and computing $16^{3}$ gives $4096$.",
+          "check": [
+            "Rational(16)**Rational(3, 4) == Rational(8, 1)",
+            "(2)**(4) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v10",
+          "statement": "Evaluate $16^{-1/4}$.",
+          "options": [
+            "$-4$",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{16}$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $16^{-1/4} = \\frac{1}{(\\sqrt[4]{16})^{1}} = \\frac{1}{2^{1}} = \\frac{1}{2}$. Dropping the minus gives $2$.",
+          "check": [
+            "Rational(16)**Rational(-1, 4) == Rational(1, 2)",
+            "(2)**(4) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v11",
+          "statement": "Evaluate $16^{-3/4}$.",
+          "options": [
+            "$-12$",
+            "$\\frac{1}{4096}$",
+            "$\\frac{1}{8}$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $16^{-3/4} = \\frac{1}{(\\sqrt[4]{16})^{3}} = \\frac{1}{2^{3}} = \\frac{1}{8}$. Dropping the minus gives $8$.",
+          "check": [
+            "Rational(16)**Rational(-3, 4) == Rational(1, 8)",
+            "(2)**(4) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v12",
+          "statement": "Evaluate $32^{2/5}$.",
+          "options": [
+            "$\\frac{64}{5}$",
+            "$1024$",
+            "$\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Root first, then power: $32^{2/5} = (\\sqrt[5]{32})^{2} = 2^{2} = 4$. Skipping the root and computing $32^{2}$ gives $1024$.",
+          "check": [
+            "Rational(32)**Rational(2, 5) == Rational(4, 1)",
+            "(2)**(5) == 32"
+          ]
+        },
+        {
+          "id": "A2-rexp-v13",
+          "statement": "Evaluate $32^{3/5}$.",
+          "options": [
+            "$8$",
+            "$\\frac{96}{5}$",
+            "$32768$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $32^{3/5} = (\\sqrt[5]{32})^{3} = 2^{3} = 8$. Skipping the root and computing $32^{3}$ gives $32768$.",
+          "check": [
+            "Rational(32)**Rational(3, 5) == Rational(8, 1)",
+            "(2)**(5) == 32"
+          ]
+        },
+        {
+          "id": "A2-rexp-v14",
+          "statement": "Evaluate $32^{-1/5}$.",
+          "options": [
+            "$-\\frac{32}{5}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{32}$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $32^{-1/5} = \\frac{1}{(\\sqrt[5]{32})^{1}} = \\frac{1}{2^{1}} = \\frac{1}{2}$. Dropping the minus gives $2$.",
+          "check": [
+            "Rational(32)**Rational(-1, 5) == Rational(1, 2)",
+            "(2)**(5) == 32"
+          ]
+        },
+        {
+          "id": "A2-rexp-v15",
+          "statement": "Evaluate $32^{-2/5}$.",
+          "options": [
+            "$-\\frac{64}{5}$",
+            "$\\frac{1}{1024}$",
+            "$\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $32^{-2/5} = \\frac{1}{(\\sqrt[5]{32})^{2}} = \\frac{1}{2^{2}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(32)**Rational(-2, 5) == Rational(1, 4)",
+            "(2)**(5) == 32"
+          ]
+        },
+        {
+          "id": "A2-rexp-v16",
+          "statement": "Evaluate $32^{-3/5}$.",
+          "options": [
+            "$-\\frac{96}{5}$",
+            "$\\frac{1}{32768}$",
+            "$8$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $32^{-3/5} = \\frac{1}{(\\sqrt[5]{32})^{3}} = \\frac{1}{2^{3}} = \\frac{1}{8}$. Dropping the minus gives $8$.",
+          "check": [
+            "Rational(32)**Rational(-3, 5) == Rational(1, 8)",
+            "(2)**(5) == 32"
+          ]
+        },
+        {
+          "id": "A2-rexp-v17",
+          "statement": "Evaluate $9^{3/2}$.",
+          "options": [
+            "$27$",
+            "$\\frac{27}{2}$",
+            "$729$",
+            "$\\frac{1}{27}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $9^{3/2} = (\\sqrt{9})^{3} = 3^{3} = 27$. Skipping the root and computing $9^{3}$ gives $729$.",
+          "check": [
+            "Rational(9)**Rational(3, 2) == Rational(27, 1)",
+            "(3)**(2) == 9"
+          ]
+        },
+        {
+          "id": "A2-rexp-v18",
+          "statement": "Evaluate $9^{5/2}$.",
+          "options": [
+            "$\\frac{45}{2}$",
+            "$243$",
+            "$59049$",
+            "$\\frac{1}{243}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Root first, then power: $9^{5/2} = (\\sqrt{9})^{5} = 3^{5} = 243$. Skipping the root and computing $9^{5}$ gives $59049$.",
+          "check": [
+            "Rational(9)**Rational(5, 2) == Rational(243, 1)",
+            "(3)**(2) == 9"
+          ]
+        },
+        {
+          "id": "A2-rexp-v19",
+          "statement": "Evaluate $9^{-1/2}$.",
+          "options": [
+            "$-\\frac{9}{2}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{3}$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $9^{-1/2} = \\frac{1}{(\\sqrt{9})^{1}} = \\frac{1}{3^{1}} = \\frac{1}{3}$. Dropping the minus gives $3$.",
+          "check": [
+            "Rational(9)**Rational(-1, 2) == Rational(1, 3)",
+            "(3)**(2) == 9"
+          ]
+        },
+        {
+          "id": "A2-rexp-v20",
+          "statement": "Evaluate $9^{-3/2}$.",
+          "options": [
+            "$-\\frac{27}{2}$",
+            "$\\frac{1}{729}$",
+            "$27$",
+            "$\\frac{1}{27}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $9^{-3/2} = \\frac{1}{(\\sqrt{9})^{3}} = \\frac{1}{3^{3}} = \\frac{1}{27}$. Dropping the minus gives $27$.",
+          "check": [
+            "Rational(9)**Rational(-3, 2) == Rational(1, 27)",
+            "(3)**(2) == 9"
+          ]
+        },
+        {
+          "id": "A2-rexp-v21",
+          "statement": "Evaluate $27^{2/3}$.",
+          "options": [
+            "$9$",
+            "$18$",
+            "$729$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $27^{2/3} = (\\sqrt[3]{27})^{2} = 3^{2} = 9$. Skipping the root and computing $27^{2}$ gives $729$.",
+          "check": [
+            "Rational(27)**Rational(2, 3) == Rational(9, 1)",
+            "(3)**(3) == 27"
+          ]
+        },
+        {
+          "id": "A2-rexp-v22",
+          "statement": "Evaluate $27^{-1/3}$.",
+          "options": [
+            "$-9$",
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{27}$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $27^{-1/3} = \\frac{1}{(\\sqrt[3]{27})^{1}} = \\frac{1}{3^{1}} = \\frac{1}{3}$. Dropping the minus gives $3$.",
+          "check": [
+            "Rational(27)**Rational(-1, 3) == Rational(1, 3)",
+            "(3)**(3) == 27"
+          ]
+        },
+        {
+          "id": "A2-rexp-v23",
+          "statement": "Evaluate $27^{-2/3}$.",
+          "options": [
+            "$-18$",
+            "$\\frac{1}{729}$",
+            "$\\frac{1}{9}$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $27^{-2/3} = \\frac{1}{(\\sqrt[3]{27})^{2}} = \\frac{1}{3^{2}} = \\frac{1}{9}$. Dropping the minus gives $9$.",
+          "check": [
+            "Rational(27)**Rational(-2, 3) == Rational(1, 9)",
+            "(3)**(3) == 27"
+          ]
+        },
+        {
+          "id": "A2-rexp-v24",
+          "statement": "Evaluate $81^{-1/4}$.",
+          "options": [
+            "$-\\frac{81}{4}$",
+            "$\\frac{1}{81}$",
+            "$3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $81^{-1/4} = \\frac{1}{(\\sqrt[4]{81})^{1}} = \\frac{1}{3^{1}} = \\frac{1}{3}$. Dropping the minus gives $3$.",
+          "check": [
+            "Rational(81)**Rational(-1, 4) == Rational(1, 3)",
+            "(3)**(4) == 81"
+          ]
+        },
+        {
+          "id": "A2-rexp-v25",
+          "statement": "Evaluate $243^{2/5}$.",
+          "options": [
+            "$9$",
+            "$\\frac{486}{5}$",
+            "$59049$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Root first, then power: $243^{2/5} = (\\sqrt[5]{243})^{2} = 3^{2} = 9$. Skipping the root and computing $243^{2}$ gives $59049$.",
+          "check": [
+            "Rational(243)**Rational(2, 5) == Rational(9, 1)",
+            "(3)**(5) == 243"
+          ]
+        },
+        {
+          "id": "A2-rexp-v26",
+          "statement": "Evaluate $243^{-1/5}$.",
+          "options": [
+            "$-\\frac{243}{5}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{243}$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $243^{-1/5} = \\frac{1}{(\\sqrt[5]{243})^{1}} = \\frac{1}{3^{1}} = \\frac{1}{3}$. Dropping the minus gives $3$.",
+          "check": [
+            "Rational(243)**Rational(-1, 5) == Rational(1, 3)",
+            "(3)**(5) == 243"
+          ]
+        },
+        {
+          "id": "A2-rexp-v27",
+          "statement": "Evaluate $243^{-2/5}$.",
+          "options": [
+            "$-\\frac{486}{5}$",
+            "$\\frac{1}{59049}$",
+            "$\\frac{1}{9}$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $243^{-2/5} = \\frac{1}{(\\sqrt[5]{243})^{2}} = \\frac{1}{3^{2}} = \\frac{1}{9}$. Dropping the minus gives $9$.",
+          "check": [
+            "Rational(243)**Rational(-2, 5) == Rational(1, 9)",
+            "(3)**(5) == 243"
+          ]
+        },
+        {
+          "id": "A2-rexp-v28",
+          "statement": "Evaluate $16^{3/2}$.",
+          "options": [
+            "$24$",
+            "$4096$",
+            "$\\frac{1}{64}$",
+            "$64$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Root first, then power: $16^{3/2} = (\\sqrt{16})^{3} = 4^{3} = 64$. Skipping the root and computing $16^{3}$ gives $4096$.",
+          "check": [
+            "Rational(16)**Rational(3, 2) == Rational(64, 1)",
+            "(4)**(2) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v29",
+          "statement": "Evaluate $16^{-1/2}$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-8$",
+            "$\\frac{1}{16}$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The negative exponent flips to a reciprocal: $16^{-1/2} = \\frac{1}{(\\sqrt{16})^{1}} = \\frac{1}{4^{1}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(16)**Rational(-1, 2) == Rational(1, 4)",
+            "(4)**(2) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v30",
+          "statement": "Evaluate $16^{-3/2}$.",
+          "options": [
+            "$-24$",
+            "$\\frac{1}{64}$",
+            "$\\frac{1}{4096}$",
+            "$64$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $16^{-3/2} = \\frac{1}{(\\sqrt{16})^{3}} = \\frac{1}{4^{3}} = \\frac{1}{64}$. Dropping the minus gives $64$.",
+          "check": [
+            "Rational(16)**Rational(-3, 2) == Rational(1, 64)",
+            "(4)**(2) == 16"
+          ]
+        },
+        {
+          "id": "A2-rexp-v31",
+          "statement": "Evaluate $64^{2/3}$.",
+          "options": [
+            "$\\frac{128}{3}$",
+            "$4096$",
+            "$16$",
+            "$\\frac{1}{16}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Root first, then power: $64^{2/3} = (\\sqrt[3]{64})^{2} = 4^{2} = 16$. Skipping the root and computing $64^{2}$ gives $4096$.",
+          "check": [
+            "Rational(64)**Rational(2, 3) == Rational(16, 1)",
+            "(4)**(3) == 64"
+          ]
+        },
+        {
+          "id": "A2-rexp-v32",
+          "statement": "Evaluate $64^{-1/3}$.",
+          "options": [
+            "$-\\frac{64}{3}$",
+            "$\\frac{1}{64}$",
+            "$4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The negative exponent flips to a reciprocal: $64^{-1/3} = \\frac{1}{(\\sqrt[3]{64})^{1}} = \\frac{1}{4^{1}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(64)**Rational(-1, 3) == Rational(1, 4)",
+            "(4)**(3) == 64"
+          ]
+        },
+        {
+          "id": "A2-rexp-v33",
+          "statement": "Evaluate $64^{-2/3}$.",
+          "options": [
+            "$\\frac{1}{16}$",
+            "$-\\frac{128}{3}$",
+            "$\\frac{1}{4096}$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The negative exponent flips to a reciprocal: $64^{-2/3} = \\frac{1}{(\\sqrt[3]{64})^{2}} = \\frac{1}{4^{2}} = \\frac{1}{16}$. Dropping the minus gives $16$.",
+          "check": [
+            "Rational(64)**Rational(-2, 3) == Rational(1, 16)",
+            "(4)**(3) == 64"
+          ]
+        },
+        {
+          "id": "A2-rexp-v34",
+          "statement": "Evaluate $256^{-1/4}$.",
+          "options": [
+            "$-64$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{256}$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent flips to a reciprocal: $256^{-1/4} = \\frac{1}{(\\sqrt[4]{256})^{1}} = \\frac{1}{4^{1}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(256)**Rational(-1, 4) == Rational(1, 4)",
+            "(4)**(4) == 256"
+          ]
+        },
+        {
+          "id": "A2-rexp-v35",
+          "statement": "Evaluate $1024^{-1/5}$.",
+          "options": [
+            "$-\\frac{1024}{5}$",
+            "$\\frac{1}{1024}$",
+            "$\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent flips to a reciprocal: $1024^{-1/5} = \\frac{1}{(\\sqrt[5]{1024})^{1}} = \\frac{1}{4^{1}} = \\frac{1}{4}$. Dropping the minus gives $4$.",
+          "check": [
+            "Rational(1024)**Rational(-1, 5) == Rational(1, 4)",
+            "(4)**(5) == 1024"
+          ]
+        },
+        {
+          "id": "A2-rexp-v36",
+          "statement": "Evaluate $25^{3/2}$.",
+          "options": [
+            "$\\frac{75}{2}$",
+            "$15625$",
+            "$\\frac{1}{125}$",
+            "$125$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Root first, then power: $25^{3/2} = (\\sqrt{25})^{3} = 5^{3} = 125$. Skipping the root and computing $25^{3}$ gives $15625$.",
+          "check": [
+            "Rational(25)**Rational(3, 2) == Rational(125, 1)",
+            "(5)**(2) == 25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "simplify-radical",
+      "title": "Simplifying square roots",
+      "level": 2,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "√(a²·b) = a√b — pull the largest perfect square out of the radical.",
+      "variants": [
+        {
+          "id": "A2-rad-v01",
+          "statement": "Simplify $\\sqrt{18}$.",
+          "options": [
+            "$3\\sqrt{2}$",
+            "$2\\sqrt{3}$",
+            "$6$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$. Swapping the pieces to $2\\sqrt{3}$ is the classic slip.",
+          "check": [
+            "sqrt(18) == 3*sqrt(2)",
+            "(3)**2 * (2) == 18"
+          ]
+        },
+        {
+          "id": "A2-rad-v02",
+          "statement": "Simplify $\\sqrt{45}$.",
+          "options": [
+            "$5\\sqrt{3}$",
+            "$3\\sqrt{5}$",
+            "$15$",
+            "$\\frac{45}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{45} = \\sqrt{9 \\cdot 5} = 3\\sqrt{5}$. Swapping the pieces to $5\\sqrt{3}$ is the classic slip.",
+          "check": [
+            "sqrt(45) == 3*sqrt(5)",
+            "(3)**2 * (5) == 45"
+          ]
+        },
+        {
+          "id": "A2-rad-v03",
+          "statement": "Simplify $\\sqrt{54}$.",
+          "options": [
+            "$6\\sqrt{3}$",
+            "$18$",
+            "$3\\sqrt{6}$",
+            "$27$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{54} = \\sqrt{9 \\cdot 6} = 3\\sqrt{6}$. Swapping the pieces to $6\\sqrt{3}$ is the classic slip.",
+          "check": [
+            "sqrt(54) == 3*sqrt(6)",
+            "(3)**2 * (6) == 54"
+          ]
+        },
+        {
+          "id": "A2-rad-v04",
+          "statement": "Simplify $\\sqrt{63}$.",
+          "options": [
+            "$7\\sqrt{3}$",
+            "$21$",
+            "$\\frac{63}{2}$",
+            "$3\\sqrt{7}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{63} = \\sqrt{9 \\cdot 7} = 3\\sqrt{7}$. Swapping the pieces to $7\\sqrt{3}$ is the classic slip.",
+          "check": [
+            "sqrt(63) == 3*sqrt(7)",
+            "(3)**2 * (7) == 63"
+          ]
+        },
+        {
+          "id": "A2-rad-v05",
+          "statement": "Simplify $\\sqrt{90}$.",
+          "options": [
+            "$3\\sqrt{10}$",
+            "$10\\sqrt{3}$",
+            "$30$",
+            "$45$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{90} = \\sqrt{9 \\cdot 10} = 3\\sqrt{10}$. Swapping the pieces to $10\\sqrt{3}$ is the classic slip.",
+          "check": [
+            "sqrt(90) == 3*sqrt(10)",
+            "(3)**2 * (10) == 90"
+          ]
+        },
+        {
+          "id": "A2-rad-v06",
+          "statement": "Simplify $\\sqrt{32}$.",
+          "options": [
+            "$2\\sqrt{4}$",
+            "$4\\sqrt{2}$",
+            "$8$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{32} = \\sqrt{16 \\cdot 2} = 4\\sqrt{2}$. Swapping the pieces to $2\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(32) == 4*sqrt(2)",
+            "(4)**2 * (2) == 32"
+          ]
+        },
+        {
+          "id": "A2-rad-v07",
+          "statement": "Simplify $\\sqrt{48}$.",
+          "options": [
+            "$3\\sqrt{4}$",
+            "$12$",
+            "$4\\sqrt{3}$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt{3}$. Swapping the pieces to $3\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(48) == 4*sqrt(3)",
+            "(4)**2 * (3) == 48"
+          ]
+        },
+        {
+          "id": "A2-rad-v08",
+          "statement": "Simplify $\\sqrt{80}$.",
+          "options": [
+            "$5\\sqrt{4}$",
+            "$20$",
+            "$40$",
+            "$4\\sqrt{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{80} = \\sqrt{16 \\cdot 5} = 4\\sqrt{5}$. Swapping the pieces to $5\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(80) == 4*sqrt(5)",
+            "(4)**2 * (5) == 80"
+          ]
+        },
+        {
+          "id": "A2-rad-v09",
+          "statement": "Simplify $\\sqrt{96}$.",
+          "options": [
+            "$4\\sqrt{6}$",
+            "$6\\sqrt{4}$",
+            "$24$",
+            "$48$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{96} = \\sqrt{16 \\cdot 6} = 4\\sqrt{6}$. Swapping the pieces to $6\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(96) == 4*sqrt(6)",
+            "(4)**2 * (6) == 96"
+          ]
+        },
+        {
+          "id": "A2-rad-v10",
+          "statement": "Simplify $\\sqrt{112}$.",
+          "options": [
+            "$7\\sqrt{4}$",
+            "$4\\sqrt{7}$",
+            "$28$",
+            "$56$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{112} = \\sqrt{16 \\cdot 7} = 4\\sqrt{7}$. Swapping the pieces to $7\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(112) == 4*sqrt(7)",
+            "(4)**2 * (7) == 112"
+          ]
+        },
+        {
+          "id": "A2-rad-v11",
+          "statement": "Simplify $\\sqrt{160}$.",
+          "options": [
+            "$10\\sqrt{4}$",
+            "$40$",
+            "$4\\sqrt{10}$",
+            "$80$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{160} = \\sqrt{16 \\cdot 10} = 4\\sqrt{10}$. Swapping the pieces to $10\\sqrt{4}$ is the classic slip.",
+          "check": [
+            "sqrt(160) == 4*sqrt(10)",
+            "(4)**2 * (10) == 160"
+          ]
+        },
+        {
+          "id": "A2-rad-v12",
+          "statement": "Simplify $\\sqrt{50}$.",
+          "options": [
+            "$2\\sqrt{5}$",
+            "$10$",
+            "$25$",
+            "$5\\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$. Swapping the pieces to $2\\sqrt{5}$ is the classic slip.",
+          "check": [
+            "sqrt(50) == 5*sqrt(2)",
+            "(5)**2 * (2) == 50"
+          ]
+        },
+        {
+          "id": "A2-rad-v13",
+          "statement": "Simplify $\\sqrt{75}$.",
+          "options": [
+            "$5\\sqrt{3}$",
+            "$3\\sqrt{5}$",
+            "$15$",
+            "$\\frac{75}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{75} = \\sqrt{25 \\cdot 3} = 5\\sqrt{3}$. Swapping the pieces to $3\\sqrt{5}$ is the classic slip.",
+          "check": [
+            "sqrt(75) == 5*sqrt(3)",
+            "(5)**2 * (3) == 75"
+          ]
+        },
+        {
+          "id": "A2-rad-v14",
+          "statement": "Simplify $\\sqrt{150}$.",
+          "options": [
+            "$6\\sqrt{5}$",
+            "$5\\sqrt{6}$",
+            "$30$",
+            "$75$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{150} = \\sqrt{25 \\cdot 6} = 5\\sqrt{6}$. Swapping the pieces to $6\\sqrt{5}$ is the classic slip.",
+          "check": [
+            "sqrt(150) == 5*sqrt(6)",
+            "(5)**2 * (6) == 150"
+          ]
+        },
+        {
+          "id": "A2-rad-v15",
+          "statement": "Simplify $\\sqrt{175}$.",
+          "options": [
+            "$7\\sqrt{5}$",
+            "$35$",
+            "$5\\sqrt{7}$",
+            "$\\frac{175}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{175} = \\sqrt{25 \\cdot 7} = 5\\sqrt{7}$. Swapping the pieces to $7\\sqrt{5}$ is the classic slip.",
+          "check": [
+            "sqrt(175) == 5*sqrt(7)",
+            "(5)**2 * (7) == 175"
+          ]
+        },
+        {
+          "id": "A2-rad-v16",
+          "statement": "Simplify $\\sqrt{250}$.",
+          "options": [
+            "$10\\sqrt{5}$",
+            "$50$",
+            "$125$",
+            "$5\\sqrt{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{250} = \\sqrt{25 \\cdot 10} = 5\\sqrt{10}$. Swapping the pieces to $10\\sqrt{5}$ is the classic slip.",
+          "check": [
+            "sqrt(250) == 5*sqrt(10)",
+            "(5)**2 * (10) == 250"
+          ]
+        },
+        {
+          "id": "A2-rad-v17",
+          "statement": "Simplify $\\sqrt{72}$.",
+          "options": [
+            "$6\\sqrt{2}$",
+            "$2\\sqrt{6}$",
+            "$12$",
+            "$36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$. Swapping the pieces to $2\\sqrt{6}$ is the classic slip.",
+          "check": [
+            "sqrt(72) == 6*sqrt(2)",
+            "(6)**2 * (2) == 72"
+          ]
+        },
+        {
+          "id": "A2-rad-v18",
+          "statement": "Simplify $\\sqrt{108}$.",
+          "options": [
+            "$3\\sqrt{6}$",
+            "$6\\sqrt{3}$",
+            "$18$",
+            "$54$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{108} = \\sqrt{36 \\cdot 3} = 6\\sqrt{3}$. Swapping the pieces to $3\\sqrt{6}$ is the classic slip.",
+          "check": [
+            "sqrt(108) == 6*sqrt(3)",
+            "(6)**2 * (3) == 108"
+          ]
+        },
+        {
+          "id": "A2-rad-v19",
+          "statement": "Simplify $\\sqrt{180}$.",
+          "options": [
+            "$5\\sqrt{6}$",
+            "$30$",
+            "$6\\sqrt{5}$",
+            "$90$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{180} = \\sqrt{36 \\cdot 5} = 6\\sqrt{5}$. Swapping the pieces to $5\\sqrt{6}$ is the classic slip.",
+          "check": [
+            "sqrt(180) == 6*sqrt(5)",
+            "(6)**2 * (5) == 180"
+          ]
+        },
+        {
+          "id": "A2-rad-v20",
+          "statement": "Simplify $\\sqrt{252}$.",
+          "options": [
+            "$7\\sqrt{6}$",
+            "$42$",
+            "$126$",
+            "$6\\sqrt{7}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{252} = \\sqrt{36 \\cdot 7} = 6\\sqrt{7}$. Swapping the pieces to $7\\sqrt{6}$ is the classic slip.",
+          "check": [
+            "sqrt(252) == 6*sqrt(7)",
+            "(6)**2 * (7) == 252"
+          ]
+        },
+        {
+          "id": "A2-rad-v21",
+          "statement": "Simplify $\\sqrt{360}$.",
+          "options": [
+            "$6\\sqrt{10}$",
+            "$10\\sqrt{6}$",
+            "$60$",
+            "$180$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{360} = \\sqrt{36 \\cdot 10} = 6\\sqrt{10}$. Swapping the pieces to $10\\sqrt{6}$ is the classic slip.",
+          "check": [
+            "sqrt(360) == 6*sqrt(10)",
+            "(6)**2 * (10) == 360"
+          ]
+        },
+        {
+          "id": "A2-rad-v22",
+          "statement": "Simplify $\\sqrt{98}$.",
+          "options": [
+            "$2\\sqrt{7}$",
+            "$7\\sqrt{2}$",
+            "$14$",
+            "$49$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{98} = \\sqrt{49 \\cdot 2} = 7\\sqrt{2}$. Swapping the pieces to $2\\sqrt{7}$ is the classic slip.",
+          "check": [
+            "sqrt(98) == 7*sqrt(2)",
+            "(7)**2 * (2) == 98"
+          ]
+        },
+        {
+          "id": "A2-rad-v23",
+          "statement": "Simplify $\\sqrt{147}$.",
+          "options": [
+            "$3\\sqrt{7}$",
+            "$21$",
+            "$7\\sqrt{3}$",
+            "$\\frac{147}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{147} = \\sqrt{49 \\cdot 3} = 7\\sqrt{3}$. Swapping the pieces to $3\\sqrt{7}$ is the classic slip.",
+          "check": [
+            "sqrt(147) == 7*sqrt(3)",
+            "(7)**2 * (3) == 147"
+          ]
+        },
+        {
+          "id": "A2-rad-v24",
+          "statement": "Simplify $\\sqrt{245}$.",
+          "options": [
+            "$5\\sqrt{7}$",
+            "$35$",
+            "$\\frac{245}{2}$",
+            "$7\\sqrt{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{245} = \\sqrt{49 \\cdot 5} = 7\\sqrt{5}$. Swapping the pieces to $5\\sqrt{7}$ is the classic slip.",
+          "check": [
+            "sqrt(245) == 7*sqrt(5)",
+            "(7)**2 * (5) == 245"
+          ]
+        },
+        {
+          "id": "A2-rad-v25",
+          "statement": "Simplify $\\sqrt{294}$.",
+          "options": [
+            "$7\\sqrt{6}$",
+            "$6\\sqrt{7}$",
+            "$42$",
+            "$147$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{294} = \\sqrt{49 \\cdot 6} = 7\\sqrt{6}$. Swapping the pieces to $6\\sqrt{7}$ is the classic slip.",
+          "check": [
+            "sqrt(294) == 7*sqrt(6)",
+            "(7)**2 * (6) == 294"
+          ]
+        },
+        {
+          "id": "A2-rad-v26",
+          "statement": "Simplify $\\sqrt{490}$.",
+          "options": [
+            "$10\\sqrt{7}$",
+            "$7\\sqrt{10}$",
+            "$70$",
+            "$245$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{490} = \\sqrt{49 \\cdot 10} = 7\\sqrt{10}$. Swapping the pieces to $10\\sqrt{7}$ is the classic slip.",
+          "check": [
+            "sqrt(490) == 7*sqrt(10)",
+            "(7)**2 * (10) == 490"
+          ]
+        },
+        {
+          "id": "A2-rad-v27",
+          "statement": "Simplify $\\sqrt{128}$.",
+          "options": [
+            "$2\\sqrt{8}$",
+            "$16$",
+            "$8\\sqrt{2}$",
+            "$64$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{128} = \\sqrt{64 \\cdot 2} = 8\\sqrt{2}$. Swapping the pieces to $2\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(128) == 8*sqrt(2)",
+            "(8)**2 * (2) == 128"
+          ]
+        },
+        {
+          "id": "A2-rad-v28",
+          "statement": "Simplify $\\sqrt{192}$.",
+          "options": [
+            "$3\\sqrt{8}$",
+            "$24$",
+            "$96$",
+            "$8\\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{192} = \\sqrt{64 \\cdot 3} = 8\\sqrt{3}$. Swapping the pieces to $3\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(192) == 8*sqrt(3)",
+            "(8)**2 * (3) == 192"
+          ]
+        },
+        {
+          "id": "A2-rad-v29",
+          "statement": "Simplify $\\sqrt{320}$.",
+          "options": [
+            "$8\\sqrt{5}$",
+            "$5\\sqrt{8}$",
+            "$40$",
+            "$160$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{320} = \\sqrt{64 \\cdot 5} = 8\\sqrt{5}$. Swapping the pieces to $5\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(320) == 8*sqrt(5)",
+            "(8)**2 * (5) == 320"
+          ]
+        },
+        {
+          "id": "A2-rad-v30",
+          "statement": "Simplify $\\sqrt{384}$.",
+          "options": [
+            "$6\\sqrt{8}$",
+            "$8\\sqrt{6}$",
+            "$48$",
+            "$192$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{384} = \\sqrt{64 \\cdot 6} = 8\\sqrt{6}$. Swapping the pieces to $6\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(384) == 8*sqrt(6)",
+            "(8)**2 * (6) == 384"
+          ]
+        },
+        {
+          "id": "A2-rad-v31",
+          "statement": "Simplify $\\sqrt{448}$.",
+          "options": [
+            "$7\\sqrt{8}$",
+            "$56$",
+            "$8\\sqrt{7}$",
+            "$224$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{448} = \\sqrt{64 \\cdot 7} = 8\\sqrt{7}$. Swapping the pieces to $7\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(448) == 8*sqrt(7)",
+            "(8)**2 * (7) == 448"
+          ]
+        },
+        {
+          "id": "A2-rad-v32",
+          "statement": "Simplify $\\sqrt{640}$.",
+          "options": [
+            "$10\\sqrt{8}$",
+            "$80$",
+            "$320$",
+            "$8\\sqrt{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{640} = \\sqrt{64 \\cdot 10} = 8\\sqrt{10}$. Swapping the pieces to $10\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(640) == 8*sqrt(10)",
+            "(8)**2 * (10) == 640"
+          ]
+        },
+        {
+          "id": "A2-rad-v33",
+          "statement": "Simplify $\\sqrt{162}$.",
+          "options": [
+            "$9\\sqrt{2}$",
+            "$2\\sqrt{9}$",
+            "$18$",
+            "$81$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{162} = \\sqrt{81 \\cdot 2} = 9\\sqrt{2}$. Swapping the pieces to $2\\sqrt{9}$ is the classic slip.",
+          "check": [
+            "sqrt(162) == 9*sqrt(2)",
+            "(9)**2 * (2) == 162"
+          ]
+        },
+        {
+          "id": "A2-rad-v34",
+          "statement": "Simplify $\\sqrt{243}$.",
+          "options": [
+            "$3\\sqrt{9}$",
+            "$9\\sqrt{3}$",
+            "$27$",
+            "$\\frac{243}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{243} = \\sqrt{81 \\cdot 3} = 9\\sqrt{3}$. Swapping the pieces to $3\\sqrt{9}$ is the classic slip.",
+          "check": [
+            "sqrt(243) == 9*sqrt(3)",
+            "(9)**2 * (3) == 243"
+          ]
+        },
+        {
+          "id": "A2-rad-v35",
+          "statement": "Simplify $\\sqrt{405}$.",
+          "options": [
+            "$5\\sqrt{9}$",
+            "$45$",
+            "$9\\sqrt{5}$",
+            "$\\frac{405}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{405} = \\sqrt{81 \\cdot 5} = 9\\sqrt{5}$. Swapping the pieces to $5\\sqrt{9}$ is the classic slip.",
+          "check": [
+            "sqrt(405) == 9*sqrt(5)",
+            "(9)**2 * (5) == 405"
+          ]
+        },
+        {
+          "id": "A2-rad-v36",
+          "statement": "Simplify $\\sqrt{486}$.",
+          "options": [
+            "$6\\sqrt{9}$",
+            "$54$",
+            "$243$",
+            "$9\\sqrt{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pull out the largest perfect square: $\\sqrt{486} = \\sqrt{81 \\cdot 6} = 9\\sqrt{6}$. Swapping the pieces to $6\\sqrt{9}$ is the classic slip.",
+          "check": [
+            "sqrt(486) == 9*sqrt(6)",
+            "(9)**2 * (6) == 486"
+          ]
+        }
+      ]
+    },
+    {
       "id": "exp-equation",
       "title": "Exponential equations",
       "level": 1,
@@ -5883,6 +10539,591 @@
         }
       ],
       "unit": "exponentials-and-logarithms"
+    },
+    {
+      "id": "rational-function-features",
+      "title": "Asymptotes of rational functions",
+      "level": 2,
+      "unit": "rational-functions",
+      "skill": "Vertical: where the denominator dies. Horizontal (equal degrees): ratio of leading coefficients.",
+      "variants": [
+        {
+          "id": "A2-rfa-v01",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 4}{x - 3}$.",
+          "options": [
+            "$x = 3$",
+            "$x = -3$",
+            "$x = -4$",
+            "$x = 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -4$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (4)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v02",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 2}{x - 3}$.",
+          "options": [
+            "$x = -3$",
+            "$x = 3$",
+            "$x = -2$",
+            "$x = 2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -2$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v03",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 6}{x - 3}$.",
+          "options": [
+            "$x = -3$",
+            "$x = -6$",
+            "$x = 3$",
+            "$x = 6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -6$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (6)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v04",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x - 5}{x - 3}$.",
+          "options": [
+            "$x = -3$",
+            "$x = 5$",
+            "$x = -5$",
+            "$x = 3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = 5$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (-5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v05",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 1}{x - 3}$.",
+          "options": [
+            "$x = 3$",
+            "$x = -3$",
+            "$x = -1$",
+            "$x = 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -1$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v06",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x - 2}{x - 3}$.",
+          "options": [
+            "$x = -3$",
+            "$x = 3$",
+            "$x = 2$",
+            "$x = -2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = 2$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (-2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v07",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 5}{x - 3}$.",
+          "options": [
+            "$x = -3$",
+            "$x = -5$",
+            "$x = 3$",
+            "$x = 5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -5$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(3) + (-3) == 0",
+            "Abs((3) + (5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v08",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 4}{x + 2}$.",
+          "options": [
+            "$x = 2$",
+            "$x = -4$",
+            "$x = 4$",
+            "$x = -2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = -4$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (4)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v09",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x - 3}{x + 2}$.",
+          "options": [
+            "$x = -2$",
+            "$x = 2$",
+            "$x = 3$",
+            "$x = -3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = 3$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (-3)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v10",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 6}{x + 2}$.",
+          "options": [
+            "$x = 2$",
+            "$x = -2$",
+            "$x = -6$",
+            "$x = 6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = -6$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (6)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v11",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x - 5}{x + 2}$.",
+          "options": [
+            "$x = 2$",
+            "$x = 5$",
+            "$x = -2$",
+            "$x = -5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = 5$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (-5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v12",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 1}{x + 2}$.",
+          "options": [
+            "$x = 2$",
+            "$x = -1$",
+            "$x = 1$",
+            "$x = -2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = -1$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v13",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 5}{x + 2}$.",
+          "options": [
+            "$x = -2$",
+            "$x = 2$",
+            "$x = -5$",
+            "$x = 5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x + 2 = 0$ gives $x = -2$. The numerator's zero, $x = -5$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(-2) + (2) == 0",
+            "Abs((-2) + (5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v14",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 4}{x - 5}$.",
+          "options": [
+            "$x = -5$",
+            "$x = 5$",
+            "$x = -4$",
+            "$x = 4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 5 = 0$ gives $x = 5$. The numerator's zero, $x = -4$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(5) + (-5) == 0",
+            "Abs((5) + (4)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v15",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x - 3}{x - 5}$.",
+          "options": [
+            "$x = -5$",
+            "$x = 3$",
+            "$x = 5$",
+            "$x = -3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 5 = 0$ gives $x = 5$. The numerator's zero, $x = 3$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(5) + (-5) == 0",
+            "Abs((5) + (-3)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v16",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 2}{x - 5}$.",
+          "options": [
+            "$x = -5$",
+            "$x = -2$",
+            "$x = 2$",
+            "$x = 5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 5 = 0$ gives $x = 5$. The numerator's zero, $x = -2$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(5) + (-5) == 0",
+            "Abs((5) + (2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v17",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 6}{x - 5}$.",
+          "options": [
+            "$x = 5$",
+            "$x = -5$",
+            "$x = -6$",
+            "$x = 6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 5 = 0$ gives $x = 5$. The numerator's zero, $x = -6$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(5) + (-5) == 0",
+            "Abs((5) + (6)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v18",
+          "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 1}{x - 5}$.",
+          "options": [
+            "$x = -5$",
+            "$x = 5$",
+            "$x = -1$",
+            "$x = 1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A vertical asymptote sits where the denominator is zero: $x - 5 = 0$ gives $x = 5$. The numerator's zero, $x = -1$, is the x-intercept — not an asymptote.",
+          "check": [
+            "(5) + (-5) == 0",
+            "Abs((5) + (1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-rfa-v19",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x + 1}{2x + 3}$.",
+          "options": [
+            "$y = \\frac{1}{3}$",
+            "$y = \\frac{1}{2}$",
+            "$y = 2$",
+            "$y = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{1}{3}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (1))/((2)*x + (3)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v20",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x - 2}{2x + 5}$.",
+          "options": [
+            "$y = -\\frac{2}{5}$",
+            "$y = \\frac{1}{2}$",
+            "$y = 0$",
+            "$y = 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{-2}{5}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (-2))/((2)*x + (5)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v21",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x + 3}{2x - 4}$.",
+          "options": [
+            "$y = 2$",
+            "$y = -\\frac{3}{4}$",
+            "$y = \\frac{1}{2}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{3}{-4}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (3))/((2)*x + (-4)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v22",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x + 5}{2x + 2}$.",
+          "options": [
+            "$y = \\frac{5}{2}$",
+            "$y = 2$",
+            "$y = \\frac{1}{2}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{5}{2}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (5))/((2)*x + (2)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v23",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x - 1}{2x - 3}$.",
+          "options": [
+            "$y = \\frac{1}{3}$",
+            "$y = \\frac{1}{2}$",
+            "$y = 2$",
+            "$y = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{-1}{-3}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (-1))/((2)*x + (-3)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v24",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{4x + 2}{2x + 7}$.",
+          "options": [
+            "$y = \\frac{2}{7}$",
+            "$y = \\frac{1}{2}$",
+            "$y = 0$",
+            "$y = 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{4}{2} = 2$. Taking the ratio of the constants, $\\frac{2}{7}$, is the classic slip.",
+          "check": [
+            "Rational(4, 2) == Rational(2, 1)",
+            "limit(((4)*x + (2))/((2)*x + (7)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v25",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x + 1}{2x + 3}$.",
+          "options": [
+            "$y = \\frac{3}{2}$",
+            "$y = \\frac{1}{3}$",
+            "$y = \\frac{2}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{1}{3}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (1))/((2)*x + (3)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v26",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x - 2}{2x + 5}$.",
+          "options": [
+            "$y = -\\frac{2}{5}$",
+            "$y = \\frac{3}{2}$",
+            "$y = \\frac{2}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{-2}{5}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (-2))/((2)*x + (5)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v27",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x + 3}{2x - 4}$.",
+          "options": [
+            "$y = -\\frac{3}{4}$",
+            "$y = \\frac{2}{3}$",
+            "$y = \\frac{3}{2}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{3}{-4}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (3))/((2)*x + (-4)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v28",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x + 5}{2x + 2}$.",
+          "options": [
+            "$y = \\frac{5}{2}$",
+            "$y = \\frac{2}{3}$",
+            "$y = 0$",
+            "$y = \\frac{3}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{5}{2}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (5))/((2)*x + (2)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v29",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x - 1}{2x - 3}$.",
+          "options": [
+            "$y = \\frac{3}{2}$",
+            "$y = \\frac{1}{3}$",
+            "$y = \\frac{2}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{-1}{-3}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (-1))/((2)*x + (-3)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v30",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{3x + 2}{2x + 7}$.",
+          "options": [
+            "$y = \\frac{2}{7}$",
+            "$y = \\frac{3}{2}$",
+            "$y = \\frac{2}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{3}{2}$. Taking the ratio of the constants, $\\frac{2}{7}$, is the classic slip.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)",
+            "limit(((3)*x + (2))/((2)*x + (7)), x, oo) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v31",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{6x - 2}{2x + 5}$.",
+          "options": [
+            "$y = -\\frac{2}{5}$",
+            "$y = \\frac{1}{3}$",
+            "$y = 3$",
+            "$y = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{6}{2} = 3$. Taking the ratio of the constants, $\\frac{-2}{5}$, is the classic slip.",
+          "check": [
+            "Rational(6, 2) == Rational(3, 1)",
+            "limit(((6)*x + (-2))/((2)*x + (5)), x, oo) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v32",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{6x + 3}{2x - 4}$.",
+          "options": [
+            "$y = -\\frac{3}{4}$",
+            "$y = \\frac{1}{3}$",
+            "$y = 0$",
+            "$y = 3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{6}{2} = 3$. Taking the ratio of the constants, $\\frac{3}{-4}$, is the classic slip.",
+          "check": [
+            "Rational(6, 2) == Rational(3, 1)",
+            "limit(((6)*x + (3))/((2)*x + (-4)), x, oo) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v33",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{6x + 5}{2x + 2}$.",
+          "options": [
+            "$y = 3$",
+            "$y = \\frac{5}{2}$",
+            "$y = \\frac{1}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{6}{2} = 3$. Taking the ratio of the constants, $\\frac{5}{2}$, is the classic slip.",
+          "check": [
+            "Rational(6, 2) == Rational(3, 1)",
+            "limit(((6)*x + (5))/((2)*x + (2)), x, oo) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v34",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{6x + 2}{2x + 7}$.",
+          "options": [
+            "$y = \\frac{2}{7}$",
+            "$y = 3$",
+            "$y = \\frac{1}{3}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{6}{2} = 3$. Taking the ratio of the constants, $\\frac{2}{7}$, is the classic slip.",
+          "check": [
+            "Rational(6, 2) == Rational(3, 1)",
+            "limit(((6)*x + (2))/((2)*x + (7)), x, oo) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v35",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{5x + 1}{2x + 3}$.",
+          "options": [
+            "$y = \\frac{1}{3}$",
+            "$y = \\frac{2}{5}$",
+            "$y = \\frac{5}{2}$",
+            "$y = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{5}{2}$. Taking the ratio of the constants, $\\frac{1}{3}$, is the classic slip.",
+          "check": [
+            "Rational(5, 2) == Rational(5, 2)",
+            "limit(((5)*x + (1))/((2)*x + (3)), x, oo) == Rational(5, 2)"
+          ]
+        },
+        {
+          "id": "A2-rfa-v36",
+          "statement": "Find the horizontal asymptote of $f(x) = \\dfrac{5x - 2}{2x + 5}$.",
+          "options": [
+            "$y = -\\frac{2}{5}$",
+            "$y = \\frac{2}{5}$",
+            "$y = 0$",
+            "$y = \\frac{5}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so the horizontal asymptote is the ratio of the leading coefficients: $y = \\frac{5}{2}$. Taking the ratio of the constants, $\\frac{-2}{5}$, is the classic slip.",
+          "check": [
+            "Rational(5, 2) == Rational(5, 2)",
+            "limit(((5)*x + (-2))/((2)*x + (5)), x, oo) == Rational(5, 2)"
+          ]
+        }
+      ]
     },
     {
       "id": "arith-find-d",

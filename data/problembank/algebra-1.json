@@ -3557,6 +3557,2258 @@
       "unit": "inequalities"
     },
     {
+      "id": "evaluate-function",
+      "title": "Evaluating functions",
+      "level": 1,
+      "unit": "functions",
+      "skill": "f(c): substitute c for x and compute — powers before products, signs as written.",
+      "variants": [
+        {
+          "id": "A1-feval-v01",
+          "statement": "For $f(x) = 2x - 2$, find $f(-2)$.",
+          "options": [
+            "$-6$",
+            "$-2$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = -2$: $f(-2) = -4 - 2 = -6$. Flipping the sign of the constant gives $-2$ — keep the rule exactly as written.",
+          "check": [
+            "2*(-2) + (-2) == -6"
+          ]
+        },
+        {
+          "id": "A1-feval-v02",
+          "statement": "For $f(x) = 2x^2 - 5$, find $f(4)$.",
+          "options": [
+            "$37$",
+            "$27$",
+            "$-18$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square first: $(4)^2 = 16$, so $f(4) = 32 - 5 = 27$. Doubling instead of squaring gives $11$ — a square is not a double.",
+          "check": [
+            "2*(4)**2 + (-5) == 27"
+          ]
+        },
+        {
+          "id": "A1-feval-v03",
+          "statement": "For $f(x) = 2x - 3$, find $f(-5)$.",
+          "options": [
+            "$-7$",
+            "$17$",
+            "$-13$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -5$: $f(-5) = -10 - 3 = -13$. Flipping the sign of the constant gives $-7$ — keep the rule exactly as written.",
+          "check": [
+            "2*(-5) + (-3) == -13"
+          ]
+        },
+        {
+          "id": "A1-feval-v04",
+          "statement": "For $f(x) = 2x + 5$, find $f(2)$.",
+          "options": [
+            "$-1$",
+            "$12$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 2$: $f(2) = 4 + 5 = 9$. Flipping the sign of the constant gives $-1$ — keep the rule exactly as written.",
+          "check": [
+            "2*(2) + (5) == 9"
+          ]
+        },
+        {
+          "id": "A1-feval-v05",
+          "statement": "For $f(x) = 2x^2 - 7$, find $f(6)$.",
+          "options": [
+            "$65$",
+            "$79$",
+            "$-40$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first: $(6)^2 = 36$, so $f(6) = 72 - 7 = 65$. Doubling instead of squaring gives $17$ — a square is not a double.",
+          "check": [
+            "2*(6)**2 + (-7) == 65"
+          ]
+        },
+        {
+          "id": "A1-feval-v06",
+          "statement": "For $f(x) = 2x + 6$, find $f(-3)$.",
+          "options": [
+            "$-12$",
+            "$0$",
+            "$-16$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = -3$: $f(-3) = -6 + 6 = 0$. Flipping the sign of the constant gives $-12$ — keep the rule exactly as written.",
+          "check": [
+            "2*(-3) + (6) == 0"
+          ]
+        },
+        {
+          "id": "A1-feval-v07",
+          "statement": "For $f(x) = 2x - 7$, find $f(5)$.",
+          "options": [
+            "$17$",
+            "$-33$",
+            "$3$",
+            "$-17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 5$: $f(5) = 10 - 7 = 3$. Flipping the sign of the constant gives $17$ — keep the rule exactly as written.",
+          "check": [
+            "2*(5) + (-7) == 3"
+          ]
+        },
+        {
+          "id": "A1-feval-v08",
+          "statement": "For $f(x) = 2x^2 + 6$, find $f(-4)$.",
+          "options": [
+            "$26$",
+            "$-22$",
+            "$-10$",
+            "$38$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square first: $(-4)^2 = 16$, so $f(-4) = 32 + 6 = 38$. Doubling instead of squaring gives $-10$ — a square is not a double.",
+          "check": [
+            "2*(-4)**2 + (6) == 38"
+          ]
+        },
+        {
+          "id": "A1-feval-v09",
+          "statement": "For $f(x) = 2x + 4$, find $f(-6)$.",
+          "options": [
+            "$-8$",
+            "$-16$",
+            "$-22$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = -6$: $f(-6) = -12 + 4 = -8$. Flipping the sign of the constant gives $-16$ — keep the rule exactly as written.",
+          "check": [
+            "2*(-6) + (4) == -8"
+          ]
+        },
+        {
+          "id": "A1-feval-v10",
+          "statement": "For $f(x) = -3x + 8$, find $f(3)$.",
+          "options": [
+            "$-17$",
+            "$-1$",
+            "$21$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 3$: $f(3) = -9 + 8 = -1$. Flipping the sign of the constant gives $-17$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(3) + (8) == -1"
+          ]
+        },
+        {
+          "id": "A1-feval-v11",
+          "statement": "For $f(x) = -3x - 5$, find $f(-2)$.",
+          "options": [
+            "$11$",
+            "$7$",
+            "$1$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -2$: $f(-2) = 6 - 5 = 1$. Flipping the sign of the constant gives $11$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(-2) + (-5) == 1"
+          ]
+        },
+        {
+          "id": "A1-feval-v12",
+          "statement": "For $f(x) = -3x^2 - 8$, find $f(4)$.",
+          "options": [
+            "$-40$",
+            "$-35$",
+            "$-32$",
+            "$-56$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square first: $(4)^2 = 16$, so $f(4) = -48 - 8 = -56$. Doubling instead of squaring gives $-32$ — a square is not a double.",
+          "check": [
+            "-3*(4)**2 + (-8) == -56"
+          ]
+        },
+        {
+          "id": "A1-feval-v13",
+          "statement": "For $f(x) = -3x + 1$, find $f(-5)$.",
+          "options": [
+            "$16$",
+            "$14$",
+            "$-8$",
+            "$-14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = -5$: $f(-5) = 15 + 1 = 16$. Flipping the sign of the constant gives $14$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(-5) + (1) == 16"
+          ]
+        },
+        {
+          "id": "A1-feval-v14",
+          "statement": "For $f(x) = -3x^2 + 4$, find $f(6)$.",
+          "options": [
+            "$-112$",
+            "$-104$",
+            "$21$",
+            "$-32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square first: $(6)^2 = 36$, so $f(6) = -108 + 4 = -104$. Doubling instead of squaring gives $-32$ — a square is not a double.",
+          "check": [
+            "-3*(6)**2 + (4) == -104"
+          ]
+        },
+        {
+          "id": "A1-feval-v15",
+          "statement": "For $f(x) = -3x - 2$, find $f(-3)$.",
+          "options": [
+            "$11$",
+            "$3$",
+            "$7$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -3$: $f(-3) = 9 - 2 = 7$. Flipping the sign of the constant gives $11$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(-3) + (-2) == 7"
+          ]
+        },
+        {
+          "id": "A1-feval-v16",
+          "statement": "For $f(x) = -3x + 4$, find $f(5)$.",
+          "options": [
+            "$-19$",
+            "$17$",
+            "$19$",
+            "$-11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 5$: $f(5) = -15 + 4 = -11$. Flipping the sign of the constant gives $-19$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(5) + (4) == -11"
+          ]
+        },
+        {
+          "id": "A1-feval-v17",
+          "statement": "For $f(x) = -3x^2 - 2$, find $f(-4)$.",
+          "options": [
+            "$-50$",
+            "$-46$",
+            "$5$",
+            "$22$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first: $(-4)^2 = 16$, so $f(-4) = -48 - 2 = -50$. Doubling instead of squaring gives $22$ — a square is not a double.",
+          "check": [
+            "-3*(-4)**2 + (-2) == -50"
+          ]
+        },
+        {
+          "id": "A1-feval-v18",
+          "statement": "For $f(x) = -3x + 3$, find $f(-6)$.",
+          "options": [
+            "$15$",
+            "$21$",
+            "$-21$",
+            "$-15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = -6$: $f(-6) = 18 + 3 = 21$. Flipping the sign of the constant gives $15$ — keep the rule exactly as written.",
+          "check": [
+            "-3*(-6) + (3) == 21"
+          ]
+        },
+        {
+          "id": "A1-feval-v19",
+          "statement": "For $f(x) = 4x - 4$, find $f(3)$.",
+          "options": [
+            "$16$",
+            "$-8$",
+            "$8$",
+            "$-16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 3$: $f(3) = 12 - 4 = 8$. Flipping the sign of the constant gives $16$ — keep the rule exactly as written.",
+          "check": [
+            "4*(3) + (-4) == 8"
+          ]
+        },
+        {
+          "id": "A1-feval-v20",
+          "statement": "For $f(x) = 4x + 3$, find $f(-2)$.",
+          "options": [
+            "$-11$",
+            "$-2$",
+            "$11$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = -2$: $f(-2) = -8 + 3 = -5$. Flipping the sign of the constant gives $-11$ — keep the rule exactly as written.",
+          "check": [
+            "4*(-2) + (3) == -5"
+          ]
+        },
+        {
+          "id": "A1-feval-v21",
+          "statement": "For $f(x) = 4x^2 + 5$, find $f(4)$.",
+          "options": [
+            "$69$",
+            "$59$",
+            "$24$",
+            "$37$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first: $(4)^2 = 16$, so $f(4) = 64 + 5 = 69$. Doubling instead of squaring gives $37$ — a square is not a double.",
+          "check": [
+            "4*(4)**2 + (5) == 69"
+          ]
+        },
+        {
+          "id": "A1-feval-v22",
+          "statement": "For $f(x) = 4x - 8$, find $f(-5)$.",
+          "options": [
+            "$-12$",
+            "$-28$",
+            "$44$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = -5$: $f(-5) = -20 - 8 = -28$. Flipping the sign of the constant gives $-12$ — keep the rule exactly as written.",
+          "check": [
+            "4*(-5) + (-8) == -28"
+          ]
+        },
+        {
+          "id": "A1-feval-v23",
+          "statement": "For $f(x) = 4x + 1$, find $f(2)$.",
+          "options": [
+            "$7$",
+            "$6$",
+            "$9$",
+            "$-7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 2$: $f(2) = 8 + 1 = 9$. Flipping the sign of the constant gives $7$ — keep the rule exactly as written.",
+          "check": [
+            "4*(2) + (1) == 9"
+          ]
+        },
+        {
+          "id": "A1-feval-v24",
+          "statement": "For $f(x) = 4x^2 - 9$, find $f(6)$.",
+          "options": [
+            "$153$",
+            "$-50$",
+            "$39$",
+            "$135$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square first: $(6)^2 = 36$, so $f(6) = 144 - 9 = 135$. Doubling instead of squaring gives $39$ — a square is not a double.",
+          "check": [
+            "4*(6)**2 + (-9) == 135"
+          ]
+        },
+        {
+          "id": "A1-feval-v25",
+          "statement": "For $f(x) = 4x - 9$, find $f(5)$.",
+          "options": [
+            "$11$",
+            "$29$",
+            "$-41$",
+            "$-29$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 5$: $f(5) = 20 - 9 = 11$. Flipping the sign of the constant gives $29$ — keep the rule exactly as written.",
+          "check": [
+            "4*(5) + (-9) == 11"
+          ]
+        },
+        {
+          "id": "A1-feval-v26",
+          "statement": "For $f(x) = 4x^2 + 4$, find $f(-4)$.",
+          "options": [
+            "$60$",
+            "$68$",
+            "$-12$",
+            "$-28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square first: $(-4)^2 = 16$, so $f(-4) = 64 + 4 = 68$. Doubling instead of squaring gives $-28$ — a square is not a double.",
+          "check": [
+            "4*(-4)**2 + (4) == 68"
+          ]
+        },
+        {
+          "id": "A1-feval-v27",
+          "statement": "For $f(x) = 4x + 7$, find $f(-6)$.",
+          "options": [
+            "$-31$",
+            "$-38$",
+            "$-17$",
+            "$31$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -6$: $f(-6) = -24 + 7 = -17$. Flipping the sign of the constant gives $-31$ — keep the rule exactly as written.",
+          "check": [
+            "4*(-6) + (7) == -17"
+          ]
+        },
+        {
+          "id": "A1-feval-v28",
+          "statement": "For $f(x) = 5x + 8$, find $f(3)$.",
+          "options": [
+            "$7$",
+            "$29$",
+            "$-7$",
+            "$23$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 3$: $f(3) = 15 + 8 = 23$. Flipping the sign of the constant gives $7$ — keep the rule exactly as written.",
+          "check": [
+            "5*(3) + (8) == 23"
+          ]
+        },
+        {
+          "id": "A1-feval-v29",
+          "statement": "For $f(x) = 5x - 5$, find $f(-2)$.",
+          "options": [
+            "$-15$",
+            "$-5$",
+            "$15$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = -2$: $f(-2) = -10 - 5 = -15$. Flipping the sign of the constant gives $-5$ — keep the rule exactly as written.",
+          "check": [
+            "5*(-2) + (-5) == -15"
+          ]
+        },
+        {
+          "id": "A1-feval-v30",
+          "statement": "For $f(x) = 5x^2 - 8$, find $f(4)$.",
+          "options": [
+            "$88$",
+            "$72$",
+            "$-27$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square first: $(4)^2 = 16$, so $f(4) = 80 - 8 = 72$. Doubling instead of squaring gives $32$ — a square is not a double.",
+          "check": [
+            "5*(4)**2 + (-8) == 72"
+          ]
+        },
+        {
+          "id": "A1-feval-v31",
+          "statement": "For $f(x) = 5x + 1$, find $f(-5)$.",
+          "options": [
+            "$-26$",
+            "$0$",
+            "$-24$",
+            "$26$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -5$: $f(-5) = -25 + 1 = -24$. Flipping the sign of the constant gives $-26$ — keep the rule exactly as written.",
+          "check": [
+            "5*(-5) + (1) == -24"
+          ]
+        },
+        {
+          "id": "A1-feval-v32",
+          "statement": "For $f(x) = 5x + 9$, find $f(2)$.",
+          "options": [
+            "$1$",
+            "$23$",
+            "$-1$",
+            "$19$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 2$: $f(2) = 10 + 9 = 19$. Flipping the sign of the constant gives $1$ — keep the rule exactly as written.",
+          "check": [
+            "5*(2) + (9) == 19"
+          ]
+        },
+        {
+          "id": "A1-feval-v33",
+          "statement": "For $f(x) = 5x^2 + 4$, find $f(6)$.",
+          "options": [
+            "$184$",
+            "$176$",
+            "$29$",
+            "$64$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square first: $(6)^2 = 36$, so $f(6) = 180 + 4 = 184$. Doubling instead of squaring gives $64$ — a square is not a double.",
+          "check": [
+            "5*(6)**2 + (4) == 184"
+          ]
+        },
+        {
+          "id": "A1-feval-v34",
+          "statement": "For $f(x) = 5x - 2$, find $f(-3)$.",
+          "options": [
+            "$-13$",
+            "$-17$",
+            "$11$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = -3$: $f(-3) = -15 - 2 = -17$. Flipping the sign of the constant gives $-13$ — keep the rule exactly as written.",
+          "check": [
+            "5*(-3) + (-2) == -17"
+          ]
+        },
+        {
+          "id": "A1-feval-v35",
+          "statement": "For $f(x) = 5x + 4$, find $f(5)$.",
+          "options": [
+            "$21$",
+            "$25$",
+            "$29$",
+            "$-21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 5$: $f(5) = 25 + 4 = 29$. Flipping the sign of the constant gives $21$ — keep the rule exactly as written.",
+          "check": [
+            "5*(5) + (4) == 29"
+          ]
+        },
+        {
+          "id": "A1-feval-v36",
+          "statement": "For $f(x) = 5x^2 - 2$, find $f(-4)$.",
+          "options": [
+            "$82$",
+            "$13$",
+            "$-42$",
+            "$78$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square first: $(-4)^2 = 16$, so $f(-4) = 80 - 2 = 78$. Doubling instead of squaring gives $-42$ — a square is not a double.",
+          "check": [
+            "5*(-4)**2 + (-2) == 78"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solve-function-equation",
+      "title": "Solving f(x) = k",
+      "level": 2,
+      "unit": "functions",
+      "skill": "Set the rule equal to k, move the constant, then divide by the coefficient.",
+      "variants": [
+        {
+          "id": "A1-fsolve-v01",
+          "statement": "For $f(x) = 2x - 5$, solve $f(x) = 1$.",
+          "options": [
+            "$3$",
+            "$-2$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $1$: $2x - 5 = 1$. Move the constant to get $2x = 6$, then divide by $2$: $x = 3$. Moving the constant with the wrong sign gives $-2$.",
+          "check": [
+            "solve(2*x + (-5) - (1), x) == [3]",
+            "2*(3) + (-5) == 1"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v02",
+          "statement": "For $f(x) = 2x + 1$, solve $f(x) = -3$.",
+          "options": [
+            "$-1$",
+            "$-2$",
+            "$-4$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $-3$: $2x + 1 = -3$. Move the constant to get $2x = -4$, then divide by $2$: $x = -2$. Moving the constant with the wrong sign gives $-1$.",
+          "check": [
+            "solve(2*x + (1) - (-3), x) == [-2]",
+            "2*(-2) + (1) == -3"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v03",
+          "statement": "For $f(x) = 2x - 9$, solve $f(x) = -1$.",
+          "options": [
+            "$-5$",
+            "$8$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $-1$: $2x - 9 = -1$. Move the constant to get $2x = 8$, then divide by $2$: $x = 4$. Moving the constant with the wrong sign gives $-5$.",
+          "check": [
+            "solve(2*x + (-9) - (-1), x) == [4]",
+            "2*(4) + (-9) == -1"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v04",
+          "statement": "For $f(x) = 2x + 8$, solve $f(x) = 18$.",
+          "options": [
+            "$13$",
+            "$10$",
+            "$20$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $18$: $2x + 8 = 18$. Move the constant to get $2x = 10$, then divide by $2$: $x = 5$. Moving the constant with the wrong sign gives $13$.",
+          "check": [
+            "solve(2*x + (8) - (18), x) == [5]",
+            "2*(5) + (8) == 18"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v05",
+          "statement": "For $f(x) = 2x + 1$, solve $f(x) = -5$.",
+          "options": [
+            "$-3$",
+            "$-2$",
+            "$-6$",
+            "$-12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $-5$: $2x + 1 = -5$. Move the constant to get $2x = -6$, then divide by $2$: $x = -3$. Moving the constant with the wrong sign gives $-2$.",
+          "check": [
+            "solve(2*x + (1) - (-5), x) == [-3]",
+            "2*(-3) + (1) == -5"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v06",
+          "statement": "For $f(x) = 2x + 7$, solve $f(x) = 11$.",
+          "options": [
+            "$9$",
+            "$2$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $11$: $2x + 7 = 11$. Move the constant to get $2x = 4$, then divide by $2$: $x = 2$. Moving the constant with the wrong sign gives $9$.",
+          "check": [
+            "solve(2*x + (7) - (11), x) == [2]",
+            "2*(2) + (7) == 11"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v07",
+          "statement": "For $f(x) = 2x + 9$, solve $f(x) = 1$.",
+          "options": [
+            "$5$",
+            "$-8$",
+            "$-4$",
+            "$-16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $1$: $2x + 9 = 1$. Move the constant to get $2x = -8$, then divide by $2$: $x = -4$. Moving the constant with the wrong sign gives $5$.",
+          "check": [
+            "solve(2*x + (9) - (1), x) == [-4]",
+            "2*(-4) + (9) == 1"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v08",
+          "statement": "For $f(x) = 2x - 2$, solve $f(x) = 10$.",
+          "options": [
+            "$4$",
+            "$12$",
+            "$24$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $10$: $2x - 2 = 10$. Move the constant to get $2x = 12$, then divide by $2$: $x = 6$. Moving the constant with the wrong sign gives $4$.",
+          "check": [
+            "solve(2*x + (-2) - (10), x) == [6]",
+            "2*(6) + (-2) == 10"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v09",
+          "statement": "For $f(x) = 2x - 4$, solve $f(x) = -14$.",
+          "options": [
+            "$-5$",
+            "$-9$",
+            "$-10$",
+            "$-20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $-14$: $2x - 4 = -14$. Move the constant to get $2x = -10$, then divide by $2$: $x = -5$. Moving the constant with the wrong sign gives $-9$.",
+          "check": [
+            "solve(2*x + (-4) - (-14), x) == [-5]",
+            "2*(-5) + (-4) == -14"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v10",
+          "statement": "For $f(x) = 2x - 2$, solve $f(x) = 0$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $0$: $2x - 2 = 0$. Move the constant to get $2x = 2$, then divide by $2$: $x = 1$. Moving the constant with the wrong sign gives $-1$.",
+          "check": [
+            "solve(2*x + (-2) - (0), x) == [1]",
+            "2*(1) + (-2) == 0"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v11",
+          "statement": "For $f(x) = 3x + 1$, solve $f(x) = 10$.",
+          "options": [
+            "$\\frac{11}{3}$",
+            "$9$",
+            "$3$",
+            "$27$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $10$: $3x + 1 = 10$. Move the constant to get $3x = 9$, then divide by $3$: $x = 3$. Moving the constant with the wrong sign gives $\\frac{11}{3}$.",
+          "check": [
+            "solve(3*x + (1) - (10), x) == [3]",
+            "3*(3) + (1) == 10"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v12",
+          "statement": "For $f(x) = 3x + 9$, solve $f(x) = 3$.",
+          "options": [
+            "$4$",
+            "$-6$",
+            "$-18$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $3$: $3x + 9 = 3$. Move the constant to get $3x = -6$, then divide by $3$: $x = -2$. Moving the constant with the wrong sign gives $4$.",
+          "check": [
+            "solve(3*x + (9) - (3), x) == [-2]",
+            "3*(-2) + (9) == 3"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v13",
+          "statement": "For $f(x) = 3x + 4$, solve $f(x) = 16$.",
+          "options": [
+            "$4$",
+            "$\\frac{20}{3}$",
+            "$12$",
+            "$36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $16$: $3x + 4 = 16$. Move the constant to get $3x = 12$, then divide by $3$: $x = 4$. Moving the constant with the wrong sign gives $\\frac{20}{3}$.",
+          "check": [
+            "solve(3*x + (4) - (16), x) == [4]",
+            "3*(4) + (4) == 16"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v14",
+          "statement": "For $f(x) = 3x + 2$, solve $f(x) = 17$.",
+          "options": [
+            "$\\frac{19}{3}$",
+            "$5$",
+            "$15$",
+            "$45$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $17$: $3x + 2 = 17$. Move the constant to get $3x = 15$, then divide by $3$: $x = 5$. Moving the constant with the wrong sign gives $\\frac{19}{3}$.",
+          "check": [
+            "solve(3*x + (2) - (17), x) == [5]",
+            "3*(5) + (2) == 17"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v15",
+          "statement": "For $f(x) = 3x + 9$, solve $f(x) = 0$.",
+          "options": [
+            "$3$",
+            "$-9$",
+            "$-3$",
+            "$-27$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $0$: $3x + 9 = 0$. Move the constant to get $3x = -9$, then divide by $3$: $x = -3$. Moving the constant with the wrong sign gives $3$.",
+          "check": [
+            "solve(3*x + (9) - (0), x) == [-3]",
+            "3*(-3) + (9) == 0"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v16",
+          "statement": "For $f(x) = 3x + 3$, solve $f(x) = 9$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$18$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $9$: $3x + 3 = 9$. Move the constant to get $3x = 6$, then divide by $3$: $x = 2$. Moving the constant with the wrong sign gives $4$.",
+          "check": [
+            "solve(3*x + (3) - (9), x) == [2]",
+            "3*(2) + (3) == 9"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v17",
+          "statement": "For $f(x) = 3x - 4$, solve $f(x) = -16$.",
+          "options": [
+            "$-4$",
+            "$-\\frac{20}{3}$",
+            "$-12$",
+            "$-36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $-16$: $3x - 4 = -16$. Move the constant to get $3x = -12$, then divide by $3$: $x = -4$. Moving the constant with the wrong sign gives $-\\frac{20}{3}$.",
+          "check": [
+            "solve(3*x + (-4) - (-16), x) == [-4]",
+            "3*(-4) + (-4) == -16"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v18",
+          "statement": "For $f(x) = 3x + 7$, solve $f(x) = 25$.",
+          "options": [
+            "$\\frac{32}{3}$",
+            "$6$",
+            "$18$",
+            "$54$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $25$: $3x + 7 = 25$. Move the constant to get $3x = 18$, then divide by $3$: $x = 6$. Moving the constant with the wrong sign gives $\\frac{32}{3}$.",
+          "check": [
+            "solve(3*x + (7) - (25), x) == [6]",
+            "3*(6) + (7) == 25"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v19",
+          "statement": "For $f(x) = 3x + 8$, solve $f(x) = -7$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-15$",
+            "$-5$",
+            "$-45$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $-7$: $3x + 8 = -7$. Move the constant to get $3x = -15$, then divide by $3$: $x = -5$. Moving the constant with the wrong sign gives $\\frac{1}{3}$.",
+          "check": [
+            "solve(3*x + (8) - (-7), x) == [-5]",
+            "3*(-5) + (8) == -7"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v20",
+          "statement": "For $f(x) = 3x + 7$, solve $f(x) = 10$.",
+          "options": [
+            "$\\frac{17}{3}$",
+            "$3$",
+            "$9$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $10$: $3x + 7 = 10$. Move the constant to get $3x = 3$, then divide by $3$: $x = 1$. Moving the constant with the wrong sign gives $\\frac{17}{3}$.",
+          "check": [
+            "solve(3*x + (7) - (10), x) == [1]",
+            "3*(1) + (7) == 10"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v21",
+          "statement": "For $f(x) = 4x + 9$, solve $f(x) = 21$.",
+          "options": [
+            "$3$",
+            "$\\frac{15}{2}$",
+            "$12$",
+            "$48$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $21$: $4x + 9 = 21$. Move the constant to get $4x = 12$, then divide by $4$: $x = 3$. Moving the constant with the wrong sign gives $\\frac{15}{2}$.",
+          "check": [
+            "solve(4*x + (9) - (21), x) == [3]",
+            "4*(3) + (9) == 21"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v22",
+          "statement": "For $f(x) = 4x - 4$, solve $f(x) = -12$.",
+          "options": [
+            "$-4$",
+            "$-2$",
+            "$-8$",
+            "$-32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $-12$: $4x - 4 = -12$. Move the constant to get $4x = -8$, then divide by $4$: $x = -2$. Moving the constant with the wrong sign gives $-4$.",
+          "check": [
+            "solve(4*x + (-4) - (-12), x) == [-2]",
+            "4*(-2) + (-4) == -12"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v23",
+          "statement": "For $f(x) = 4x - 2$, solve $f(x) = 14$.",
+          "options": [
+            "$3$",
+            "$16$",
+            "$4$",
+            "$64$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $14$: $4x - 2 = 14$. Move the constant to get $4x = 16$, then divide by $4$: $x = 4$. Moving the constant with the wrong sign gives $3$.",
+          "check": [
+            "solve(4*x + (-2) - (14), x) == [4]",
+            "4*(4) + (-2) == 14"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v24",
+          "statement": "For $f(x) = 4x - 7$, solve $f(x) = 13$.",
+          "options": [
+            "$\\frac{3}{2}$",
+            "$20$",
+            "$80$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $13$: $4x - 7 = 13$. Move the constant to get $4x = 20$, then divide by $4$: $x = 5$. Moving the constant with the wrong sign gives $\\frac{3}{2}$.",
+          "check": [
+            "solve(4*x + (-7) - (13), x) == [5]",
+            "4*(5) + (-7) == 13"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v25",
+          "statement": "For $f(x) = 4x - 4$, solve $f(x) = -16$.",
+          "options": [
+            "$-3$",
+            "$-5$",
+            "$-12$",
+            "$-48$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $-16$: $4x - 4 = -16$. Move the constant to get $4x = -12$, then divide by $4$: $x = -3$. Moving the constant with the wrong sign gives $-5$.",
+          "check": [
+            "solve(4*x + (-4) - (-16), x) == [-3]",
+            "4*(-3) + (-4) == -16"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v26",
+          "statement": "For $f(x) = 4x - 5$, solve $f(x) = 3$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $3$: $4x - 5 = 3$. Move the constant to get $4x = 8$, then divide by $4$: $x = 2$. Moving the constant with the wrong sign gives $-\\frac{1}{2}$.",
+          "check": [
+            "solve(4*x + (-5) - (3), x) == [2]",
+            "4*(2) + (-5) == 3"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v27",
+          "statement": "For $f(x) = 4x + 8$, solve $f(x) = -8$.",
+          "options": [
+            "$0$",
+            "$-16$",
+            "$-4$",
+            "$-64$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $-8$: $4x + 8 = -8$. Move the constant to get $4x = -16$, then divide by $4$: $x = -4$. Moving the constant with the wrong sign gives $0$.",
+          "check": [
+            "solve(4*x + (8) - (-8), x) == [-4]",
+            "4*(-4) + (8) == -8"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v28",
+          "statement": "For $f(x) = 4x + 3$, solve $f(x) = 27$.",
+          "options": [
+            "$\\frac{15}{2}$",
+            "$24$",
+            "$96$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $27$: $4x + 3 = 27$. Move the constant to get $4x = 24$, then divide by $4$: $x = 6$. Moving the constant with the wrong sign gives $\\frac{15}{2}$.",
+          "check": [
+            "solve(4*x + (3) - (27), x) == [6]",
+            "4*(6) + (3) == 27"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v29",
+          "statement": "For $f(x) = 4x + 2$, solve $f(x) = -18$.",
+          "options": [
+            "$-5$",
+            "$-4$",
+            "$-20$",
+            "$-80$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $-18$: $4x + 2 = -18$. Move the constant to get $4x = -20$, then divide by $4$: $x = -5$. Moving the constant with the wrong sign gives $-4$.",
+          "check": [
+            "solve(4*x + (2) - (-18), x) == [-5]",
+            "4*(-5) + (2) == -18"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v30",
+          "statement": "For $f(x) = 4x + 3$, solve $f(x) = 7$.",
+          "options": [
+            "$\\frac{5}{2}$",
+            "$1$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $7$: $4x + 3 = 7$. Move the constant to get $4x = 4$, then divide by $4$: $x = 1$. Moving the constant with the wrong sign gives $\\frac{5}{2}$.",
+          "check": [
+            "solve(4*x + (3) - (7), x) == [1]",
+            "4*(1) + (3) == 7"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v31",
+          "statement": "For $f(x) = 5x - 4$, solve $f(x) = 11$.",
+          "options": [
+            "$\\frac{7}{5}$",
+            "$15$",
+            "$3$",
+            "$75$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $11$: $5x - 4 = 11$. Move the constant to get $5x = 15$, then divide by $5$: $x = 3$. Moving the constant with the wrong sign gives $\\frac{7}{5}$.",
+          "check": [
+            "solve(5*x + (-4) - (11), x) == [3]",
+            "5*(3) + (-4) == 11"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v32",
+          "statement": "For $f(x) = 5x + 8$, solve $f(x) = -2$.",
+          "options": [
+            "$\\frac{6}{5}$",
+            "$-10$",
+            "$-50$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $-2$: $5x + 8 = -2$. Move the constant to get $5x = -10$, then divide by $5$: $x = -2$. Moving the constant with the wrong sign gives $\\frac{6}{5}$.",
+          "check": [
+            "solve(5*x + (8) - (-2), x) == [-2]",
+            "5*(-2) + (8) == -2"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v33",
+          "statement": "For $f(x) = 5x + 7$, solve $f(x) = 27$.",
+          "options": [
+            "$4$",
+            "$\\frac{34}{5}$",
+            "$20$",
+            "$100$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set the rule equal to $27$: $5x + 7 = 27$. Move the constant to get $5x = 20$, then divide by $5$: $x = 4$. Moving the constant with the wrong sign gives $\\frac{34}{5}$.",
+          "check": [
+            "solve(5*x + (7) - (27), x) == [4]",
+            "5*(4) + (7) == 27"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v34",
+          "statement": "For $f(x) = 5x + 6$, solve $f(x) = 31$.",
+          "options": [
+            "$\\frac{37}{5}$",
+            "$5$",
+            "$25$",
+            "$125$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the rule equal to $31$: $5x + 6 = 31$. Move the constant to get $5x = 25$, then divide by $5$: $x = 5$. Moving the constant with the wrong sign gives $\\frac{37}{5}$.",
+          "check": [
+            "solve(5*x + (6) - (31), x) == [5]",
+            "5*(5) + (6) == 31"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v35",
+          "statement": "For $f(x) = 5x + 8$, solve $f(x) = -7$.",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$-15$",
+            "$-3$",
+            "$-75$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set the rule equal to $-7$: $5x + 8 = -7$. Move the constant to get $5x = -15$, then divide by $5$: $x = -3$. Moving the constant with the wrong sign gives $\\frac{1}{5}$.",
+          "check": [
+            "solve(5*x + (8) - (-7), x) == [-3]",
+            "5*(-3) + (8) == -7"
+          ]
+        },
+        {
+          "id": "A1-fsolve-v36",
+          "statement": "For $f(x) = 5x + 1$, solve $f(x) = 11$.",
+          "options": [
+            "$\\frac{12}{5}$",
+            "$10$",
+            "$50$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the rule equal to $11$: $5x + 1 = 11$. Move the constant to get $5x = 10$, then divide by $5$: $x = 2$. Moving the constant with the wrong sign gives $\\frac{12}{5}$.",
+          "check": [
+            "solve(5*x + (1) - (11), x) == [2]",
+            "5*(2) + (1) == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slope-two-points",
+      "title": "Slope from two points",
+      "level": 1,
+      "unit": "linear-functions",
+      "skill": "m = Δy/Δx — rise over run, both differences in the same order.",
+      "variants": [
+        {
+          "id": "A1-slope-v01",
+          "statement": "Find the slope of the line through $(1; -4)$ and $(3; 0)$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$-\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{0 - (-4)}{3 - (1)} = 2$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(0 - (-4), 3 - (1)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v02",
+          "statement": "Find the slope of the line through $(-2; 6)$ and $(1; -3)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$-3$",
+            "$3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-3 - (6)}{1 - (-2)} = -3$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-3 - (6), 1 - (-2)) == Rational(-3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v03",
+          "statement": "Find the slope of the line through $(-2; 3)$ and $(0; 6)$.",
+          "options": [
+            "$\\frac{2}{3}$",
+            "$-\\frac{3}{2}$",
+            "$\\frac{3}{2}$",
+            "$-\\frac{2}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{6 - (3)}{0 - (-2)} = \\frac{3}{2}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{2}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(6 - (3), 0 - (-2)) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A1-slope-v04",
+          "statement": "Find the slope of the line through $(3; -4)$ and $(1; -12)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$-\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-12 - (-4)}{1 - (3)} = 4$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-12 - (-4), 1 - (3)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v05",
+          "statement": "Find the slope of the line through $(0; 6)$ and $(1; 4)$.",
+          "options": [
+            "$-2$",
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{4 - (6)}{1 - (0)} = -2$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(4 - (6), 1 - (0)) == Rational(-2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v06",
+          "statement": "Find the slope of the line through $(2; 1)$ and $(0; 4)$.",
+          "options": [
+            "$-\\frac{2}{3}$",
+            "$-\\frac{3}{2}$",
+            "$\\frac{3}{2}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{4 - (1)}{0 - (2)} = -\\frac{3}{2}$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{2}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(4 - (1), 0 - (2)) == Rational(-3, 2)"
+          ]
+        },
+        {
+          "id": "A1-slope-v07",
+          "statement": "Find the slope of the line through $(2; -4)$ and $(0; -14)$.",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$-5$",
+            "$5$",
+            "$-\\frac{1}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-14 - (-4)}{0 - (2)} = 5$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-14 - (-4), 0 - (2)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v08",
+          "statement": "Find the slope of the line through $(-3; 6)$ and $(0; 15)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$-\\frac{1}{3}$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{15 - (6)}{0 - (-3)} = 3$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(15 - (6), 0 - (-3)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v09",
+          "statement": "Find the slope of the line through $(-1; 3)$ and $(2; 5)$.",
+          "options": [
+            "$\\frac{2}{3}$",
+            "$\\frac{3}{2}$",
+            "$-\\frac{2}{3}$",
+            "$-\\frac{3}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{5 - (3)}{2 - (-1)} = \\frac{2}{3}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{3}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(5 - (3), 2 - (-1)) == Rational(2, 3)"
+          ]
+        },
+        {
+          "id": "A1-slope-v10",
+          "statement": "Find the slope of the line through $(4; -4)$ and $(5; -8)$.",
+          "options": [
+            "$-\\frac{1}{4}$",
+            "$-4$",
+            "$4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-8 - (-4)}{5 - (4)} = -4$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-8 - (-4), 5 - (4)) == Rational(-4, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v11",
+          "statement": "Find the slope of the line through $(-1; 6)$ and $(2; -9)$.",
+          "options": [
+            "$-\\frac{1}{5}$",
+            "$5$",
+            "$-5$",
+            "$\\frac{1}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-9 - (6)}{2 - (-1)} = -5$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-9 - (6), 2 - (-1)) == Rational(-5, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v12",
+          "statement": "Find the slope of the line through $(-5; -4)$ and $(-7; -9)$.",
+          "options": [
+            "$\\frac{2}{5}$",
+            "$-\\frac{5}{2}$",
+            "$-\\frac{2}{5}$",
+            "$\\frac{5}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-9 - (-4)}{-7 - (-5)} = \\frac{5}{2}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{2}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-9 - (-4), -7 - (-5)) == Rational(5, 2)"
+          ]
+        },
+        {
+          "id": "A1-slope-v13",
+          "statement": "Find the slope of the line through $(5; -4)$ and $(7; 8)$.",
+          "options": [
+            "$6$",
+            "$\\frac{1}{6}$",
+            "$-6$",
+            "$-\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{8 - (-4)}{7 - (5)} = 6$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{6}$ — rise goes over run, always.",
+          "check": [
+            "Rational(8 - (-4), 7 - (5)) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v14",
+          "statement": "Find the slope of the line through $(-4; 6)$ and $(-2; -6)$.",
+          "options": [
+            "$-\\frac{1}{6}$",
+            "$-6$",
+            "$6$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-6 - (6)}{-2 - (-4)} = -6$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{6}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-6 - (6), -2 - (-4)) == Rational(-6, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v15",
+          "statement": "Find the slope of the line through $(2; 4)$ and $(5; 2)$.",
+          "options": [
+            "$-\\frac{3}{2}$",
+            "$\\frac{2}{3}$",
+            "$-\\frac{2}{3}$",
+            "$\\frac{3}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{2 - (4)}{5 - (2)} = -\\frac{2}{3}$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{3}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(2 - (4), 5 - (2)) == Rational(-2, 3)"
+          ]
+        },
+        {
+          "id": "A1-slope-v16",
+          "statement": "Find the slope of the line through $(-5; -4)$ and $(-7; -8)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$-\\frac{1}{2}$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-8 - (-4)}{-7 - (-5)} = 2$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-8 - (-4), -7 - (-5)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v17",
+          "statement": "Find the slope of the line through $(6; 6)$ and $(3; -3)$.",
+          "options": [
+            "$3$",
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$-\\frac{1}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-3 - (6)}{3 - (6)} = 3$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-3 - (6), 3 - (6)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v18",
+          "statement": "Find the slope of the line through $(3; -6)$ and $(0; -10)$.",
+          "options": [
+            "$\\frac{3}{4}$",
+            "$\\frac{4}{3}$",
+            "$-\\frac{4}{3}$",
+            "$-\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-10 - (-6)}{0 - (3)} = \\frac{4}{3}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{3}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-10 - (-6), 0 - (3)) == Rational(4, 3)"
+          ]
+        },
+        {
+          "id": "A1-slope-v19",
+          "statement": "Find the slope of the line through $(0; -4)$ and $(-1; -2)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-2 - (-4)}{-1 - (0)} = -2$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-2 - (-4), -1 - (0)) == Rational(-2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v20",
+          "statement": "Find the slope of the line through $(2; 6)$ and $(0; -2)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$-\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-2 - (6)}{0 - (2)} = 4$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-2 - (6), 0 - (2)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v21",
+          "statement": "Find the slope of the line through $(-3; 0)$ and $(-1; -5)$.",
+          "options": [
+            "$-\\frac{5}{2}$",
+            "$-\\frac{2}{5}$",
+            "$\\frac{5}{2}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-5 - (0)}{-1 - (-3)} = -\\frac{5}{2}$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{2}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-5 - (0), -1 - (-3)) == Rational(-5, 2)"
+          ]
+        },
+        {
+          "id": "A1-slope-v22",
+          "statement": "Find the slope of the line through $(1; -4)$ and $(4; 11)$.",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$5$",
+            "$-5$",
+            "$-\\frac{1}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{11 - (-4)}{4 - (1)} = 5$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(11 - (-4), 4 - (1)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v23",
+          "statement": "Find the slope of the line through $(-2; 6)$ and $(0; 0)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{0 - (6)}{0 - (-2)} = -3$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(0 - (6), 0 - (-2)) == Rational(-3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v24",
+          "statement": "Find the slope of the line through $(5; -3)$ and $(1; -6)$.",
+          "options": [
+            "$\\frac{4}{3}$",
+            "$-\\frac{3}{4}$",
+            "$-\\frac{4}{3}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-6 - (-3)}{1 - (5)} = \\frac{3}{4}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{4}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-6 - (-3), 1 - (5)) == Rational(3, 4)"
+          ]
+        },
+        {
+          "id": "A1-slope-v25",
+          "statement": "Find the slope of the line through $(3; -4)$ and $(5; 0)$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$-\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{0 - (-4)}{5 - (3)} = 2$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(0 - (-4), 5 - (3)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v26",
+          "statement": "Find the slope of the line through $(0; 6)$ and $(2; -2)$.",
+          "options": [
+            "$-\\frac{1}{4}$",
+            "$-4$",
+            "$4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-2 - (6)}{2 - (0)} = -4$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-2 - (6), 2 - (0)) == Rational(-4, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v27",
+          "statement": "Find the slope of the line through $(6; 2)$ and $(9; 7)$.",
+          "options": [
+            "$\\frac{3}{5}$",
+            "$-\\frac{5}{3}$",
+            "$\\frac{5}{3}$",
+            "$-\\frac{3}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{7 - (2)}{9 - (6)} = \\frac{5}{3}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{3}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(7 - (2), 9 - (6)) == Rational(5, 3)"
+          ]
+        },
+        {
+          "id": "A1-slope-v28",
+          "statement": "Find the slope of the line through $(2; -4)$ and $(5; 5)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$-\\frac{1}{3}$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{5 - (-4)}{5 - (2)} = 3$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(5 - (-4), 5 - (2)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v29",
+          "statement": "Find the slope of the line through $(-3; 6)$ and $(-2; 12)$.",
+          "options": [
+            "$6$",
+            "$\\frac{1}{6}$",
+            "$-6$",
+            "$-\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{12 - (6)}{-2 - (-3)} = 6$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{6}$ — rise goes over run, always.",
+          "check": [
+            "Rational(12 - (6), -2 - (-3)) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v30",
+          "statement": "Find the slope of the line through $(1; 5)$ and $(-2; 9)$.",
+          "options": [
+            "$-\\frac{3}{4}$",
+            "$-\\frac{4}{3}$",
+            "$\\frac{4}{3}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{9 - (5)}{-2 - (1)} = -\\frac{4}{3}$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{3}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(9 - (5), -2 - (1)) == Rational(-4, 3)"
+          ]
+        },
+        {
+          "id": "A1-slope-v31",
+          "statement": "Find the slope of the line through $(4; -4)$ and $(3; -2)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-2 - (-4)}{3 - (4)} = -2$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{2}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-2 - (-4), 3 - (4)) == Rational(-2, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v32",
+          "statement": "Find the slope of the line through $(-1; 6)$ and $(0; 1)$.",
+          "options": [
+            "$-\\frac{1}{5}$",
+            "$5$",
+            "$\\frac{1}{5}$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{1 - (6)}{0 - (-1)} = -5$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{5}$ — rise goes over run, always.",
+          "check": [
+            "Rational(1 - (6), 0 - (-1)) == Rational(-5, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v33",
+          "statement": "Find the slope of the line through $(0; 6)$ and $(2; 13)$.",
+          "options": [
+            "$\\frac{7}{2}$",
+            "$\\frac{2}{7}$",
+            "$-\\frac{7}{2}$",
+            "$-\\frac{2}{7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{13 - (6)}{2 - (0)} = \\frac{7}{2}$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{2}{7}$ — rise goes over run, always.",
+          "check": [
+            "Rational(13 - (6), 2 - (0)) == Rational(7, 2)"
+          ]
+        },
+        {
+          "id": "A1-slope-v34",
+          "statement": "Find the slope of the line through $(5; -4)$ and $(2; -16)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$4$",
+            "$-4$",
+            "$-\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{-16 - (-4)}{2 - (5)} = 4$. Putting $\\Delta x$ on top gives the reciprocal $\\frac{1}{4}$ — rise goes over run, always.",
+          "check": [
+            "Rational(-16 - (-4), 2 - (5)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v35",
+          "statement": "Find the slope of the line through $(-4; 6)$ and $(-3; 3)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{3 - (6)}{-3 - (-4)} = -3$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{1}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(3 - (6), -3 - (-4)) == Rational(-3, 1)"
+          ]
+        },
+        {
+          "id": "A1-slope-v36",
+          "statement": "Find the slope of the line through $(4; -1)$ and $(0; 2)$.",
+          "options": [
+            "$-\\frac{4}{3}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{4}{3}$",
+            "$-\\frac{3}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope $= \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{2 - (-1)}{0 - (4)} = -\\frac{3}{4}$. Putting $\\Delta x$ on top gives the reciprocal $-\\frac{4}{3}$ — rise goes over run, always.",
+          "check": [
+            "Rational(2 - (-1), 0 - (4)) == Rational(-3, 4)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "line-through-point",
+      "title": "Lines through a point",
+      "level": 2,
+      "unit": "linear-functions",
+      "skill": "y = mx + b: substitute what you know, solve for what you don't.",
+      "variants": [
+        {
+          "id": "A1-line-v01",
+          "statement": "A line with slope $2$ passes through $(3; 4)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-2$",
+            "$10$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 4 - (6) = -2$. Adding $mx$ instead of subtracting gives $10$.",
+          "check": [
+            "4 - (2)*(3) == -2",
+            "(2)*(3) + (-2) == 4"
+          ]
+        },
+        {
+          "id": "A1-line-v02",
+          "statement": "For the line $y = -3x - 5$, find $y$ when $x = 3$.",
+          "options": [
+            "$-4$",
+            "$-14$",
+            "$4$",
+            "$-18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 3$: $y = -9 - 5 = -14$. Subtracting the intercept instead of adding it gives $-4$.",
+          "check": [
+            "(-3)*(3) + (-5) == -14"
+          ]
+        },
+        {
+          "id": "A1-line-v03",
+          "statement": "A line with slope $-3$ passes through $(-2; -3)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$-9$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -3 - (6) = -9$. Adding $mx$ instead of subtracting gives $3$.",
+          "check": [
+            "-3 - (-3)*(-2) == -9",
+            "(-3)*(-2) + (-9) == -3"
+          ]
+        },
+        {
+          "id": "A1-line-v04",
+          "statement": "For the line $y = -2x + 3$, find $y$ when $x = -2$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$-8$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = -2$: $y = 4 + 3 = 7$. Subtracting the intercept instead of adding it gives $1$.",
+          "check": [
+            "(-2)*(-2) + (3) == 7"
+          ]
+        },
+        {
+          "id": "A1-line-v05",
+          "statement": "A line with slope $4$ passes through $(4; 5)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-11$",
+            "$21$",
+            "$16$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 5 - (16) = -11$. Adding $mx$ instead of subtracting gives $21$.",
+          "check": [
+            "5 - (4)*(4) == -11",
+            "(4)*(4) + (-11) == 5"
+          ]
+        },
+        {
+          "id": "A1-line-v06",
+          "statement": "For the line $y = 6x + 7$, find $y$ when $x = 4$.",
+          "options": [
+            "$17$",
+            "$31$",
+            "$-17$",
+            "$34$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 4$: $y = 24 + 7 = 31$. Subtracting the intercept instead of adding it gives $17$.",
+          "check": [
+            "(6)*(4) + (7) == 31"
+          ]
+        },
+        {
+          "id": "A1-line-v07",
+          "statement": "A line with slope $5$ passes through $(1; 2)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$7$",
+            "$5$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 2 - (5) = -3$. Adding $mx$ instead of subtracting gives $7$.",
+          "check": [
+            "2 - (5)*(1) == -3",
+            "(5)*(1) + (-3) == 2"
+          ]
+        },
+        {
+          "id": "A1-line-v08",
+          "statement": "A line with slope $-2$ passes through $(-5; -6)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$4$",
+            "$10$",
+            "$16$",
+            "$-16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -6 - (10) = -16$. Adding $mx$ instead of subtracting gives $4$.",
+          "check": [
+            "-6 - (-2)*(-5) == -16",
+            "(-2)*(-5) + (-16) == -6"
+          ]
+        },
+        {
+          "id": "A1-line-v09",
+          "statement": "For the line $y = -3x + 4$, find $y$ when $x = 2$.",
+          "options": [
+            "$-2$",
+            "$-10$",
+            "$10$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 2$: $y = -6 + 4 = -2$. Subtracting the intercept instead of adding it gives $-10$.",
+          "check": [
+            "(-3)*(2) + (4) == -2"
+          ]
+        },
+        {
+          "id": "A1-line-v10",
+          "statement": "A line with slope $3$ passes through $(2; 7)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$13$",
+            "$1$",
+            "$6$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 7 - (6) = 1$. Adding $mx$ instead of subtracting gives $13$.",
+          "check": [
+            "7 - (3)*(2) == 1",
+            "(3)*(2) + (1) == 7"
+          ]
+        },
+        {
+          "id": "A1-line-v11",
+          "statement": "For the line $y = 4x - 9$, find $y$ when $x = 6$.",
+          "options": [
+            "$33$",
+            "$-33$",
+            "$15$",
+            "$-50$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = 6$: $y = 24 - 9 = 15$. Subtracting the intercept instead of adding it gives $33$.",
+          "check": [
+            "(4)*(6) + (-9) == 15"
+          ]
+        },
+        {
+          "id": "A1-line-v12",
+          "statement": "A line with slope $-4$ passes through $(-3; 3)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$15$",
+            "$12$",
+            "$9$",
+            "$-9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 3 - (12) = -9$. Adding $mx$ instead of subtracting gives $15$.",
+          "check": [
+            "3 - (-4)*(-3) == -9",
+            "(-4)*(-3) + (-9) == 3"
+          ]
+        },
+        {
+          "id": "A1-line-v13",
+          "statement": "A line with slope $6$ passes through $(5; -2)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-32$",
+            "$28$",
+            "$30$",
+            "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -2 - (30) = -32$. Adding $mx$ instead of subtracting gives $28$.",
+          "check": [
+            "-2 - (6)*(5) == -32",
+            "(6)*(5) + (-32) == -2"
+          ]
+        },
+        {
+          "id": "A1-line-v14",
+          "statement": "For the line $y = -5x - 7$, find $y$ when $x = 5$.",
+          "options": [
+            "$-18$",
+            "$-32$",
+            "$18$",
+            "$-40$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 5$: $y = -25 - 7 = -32$. Subtracting the intercept instead of adding it gives $-18$.",
+          "check": [
+            "(-5)*(5) + (-7) == -32"
+          ]
+        },
+        {
+          "id": "A1-line-v15",
+          "statement": "A line with slope $-5$ passes through $(-1; 8)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$13$",
+            "$5$",
+            "$3$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 8 - (5) = 3$. Adding $mx$ instead of subtracting gives $13$.",
+          "check": [
+            "8 - (-5)*(-1) == 3",
+            "(-5)*(-1) + (3) == 8"
+          ]
+        },
+        {
+          "id": "A1-line-v16",
+          "statement": "For the line $y = -2x + 2$, find $y$ when $x = -4$.",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = -4$: $y = 8 + 2 = 10$. Subtracting the intercept instead of adding it gives $6$.",
+          "check": [
+            "(-2)*(-4) + (2) == 10"
+          ]
+        },
+        {
+          "id": "A1-line-v17",
+          "statement": "A line with slope $2$ passes through $(-4; -4)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$4$",
+            "$-12$",
+            "$-8$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -4 - (-8) = 4$. Adding $mx$ instead of subtracting gives $-12$.",
+          "check": [
+            "-4 - (2)*(-4) == 4",
+            "(2)*(-4) + (4) == -4"
+          ]
+        },
+        {
+          "id": "A1-line-v18",
+          "statement": "A line with slope $3$ passes through $(6; 1)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$19$",
+            "$-17$",
+            "$18$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 1 - (18) = -17$. Adding $mx$ instead of subtracting gives $19$.",
+          "check": [
+            "1 - (3)*(6) == -17",
+            "(3)*(6) + (-17) == 1"
+          ]
+        },
+        {
+          "id": "A1-line-v19",
+          "statement": "For the line $y = 5x - 4$, find $y$ when $x = -6$.",
+          "options": [
+            "$-26$",
+            "$26$",
+            "$-34$",
+            "$29$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -6$: $y = -30 - 4 = -34$. Subtracting the intercept instead of adding it gives $-26$.",
+          "check": [
+            "(5)*(-6) + (-4) == -34"
+          ]
+        },
+        {
+          "id": "A1-line-v20",
+          "statement": "A line with slope $-2$ passes through $(3; 6)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$0$",
+            "$-6$",
+            "$-12$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 6 - (-6) = 12$. Adding $mx$ instead of subtracting gives $0$.",
+          "check": [
+            "6 - (-2)*(3) == 12",
+            "(-2)*(3) + (12) == 6"
+          ]
+        },
+        {
+          "id": "A1-line-v21",
+          "statement": "For the line $y = -4x - 5$, find $y$ when $x = 7$.",
+          "options": [
+            "$-33$",
+            "$-23$",
+            "$23$",
+            "$-39$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 7$: $y = -28 - 5 = -33$. Subtracting the intercept instead of adding it gives $-23$.",
+          "check": [
+            "(-4)*(7) + (-5) == -33"
+          ]
+        },
+        {
+          "id": "A1-line-v22",
+          "statement": "A line with slope $4$ passes through $(-2; -7)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-15$",
+            "$1$",
+            "$-8$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -7 - (-8) = 1$. Adding $mx$ instead of subtracting gives $-15$.",
+          "check": [
+            "-7 - (4)*(-2) == 1",
+            "(4)*(-2) + (1) == -7"
+          ]
+        },
+        {
+          "id": "A1-line-v23",
+          "statement": "For the line $y = 2x + 3$, find $y$ when $x = -1$.",
+          "options": [
+            "$-5$",
+            "$5$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -1$: $y = -2 + 3 = 1$. Subtracting the intercept instead of adding it gives $-5$.",
+          "check": [
+            "(2)*(-1) + (3) == 1"
+          ]
+        },
+        {
+          "id": "A1-line-v24",
+          "statement": "A line with slope $-3$ passes through $(4; 4)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-8$",
+            "$-12$",
+            "$-16$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 4 - (-12) = 16$. Adding $mx$ instead of subtracting gives $-8$.",
+          "check": [
+            "4 - (-3)*(4) == 16",
+            "(-3)*(4) + (16) == 4"
+          ]
+        },
+        {
+          "id": "A1-line-v25",
+          "statement": "For the line $y = 4x + 7$, find $y$ when $x = 3$.",
+          "options": [
+            "$19$",
+            "$5$",
+            "$-5$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 3$: $y = 12 + 7 = 19$. Subtracting the intercept instead of adding it gives $5$.",
+          "check": [
+            "(4)*(3) + (7) == 19"
+          ]
+        },
+        {
+          "id": "A1-line-v26",
+          "statement": "A line with slope $2$ passes through $(1; -3)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-1$",
+            "$-5$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -3 - (2) = -5$. Adding $mx$ instead of subtracting gives $-1$.",
+          "check": [
+            "-3 - (2)*(1) == -5",
+            "(2)*(1) + (-5) == -3"
+          ]
+        },
+        {
+          "id": "A1-line-v27",
+          "statement": "For the line $y = -3x - 2$, find $y$ when $x = -2$.",
+          "options": [
+            "$8$",
+            "$-8$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -2$: $y = 6 - 2 = 4$. Subtracting the intercept instead of adding it gives $8$.",
+          "check": [
+            "(-3)*(-2) + (-2) == 4"
+          ]
+        },
+        {
+          "id": "A1-line-v28",
+          "statement": "A line with slope $-3$ passes through $(-5; 5)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$20$",
+            "$15$",
+            "$10$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 5 - (15) = -10$. Adding $mx$ instead of subtracting gives $20$.",
+          "check": [
+            "5 - (-3)*(-5) == -10",
+            "(-3)*(-5) + (-10) == 5"
+          ]
+        },
+        {
+          "id": "A1-line-v29",
+          "statement": "For the line $y = -2x + 4$, find $y$ when $x = 4$.",
+          "options": [
+            "$-4$",
+            "$-12$",
+            "$12$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $x = 4$: $y = -8 + 4 = -4$. Subtracting the intercept instead of adding it gives $-12$.",
+          "check": [
+            "(-2)*(4) + (4) == -4"
+          ]
+        },
+        {
+          "id": "A1-line-v30",
+          "statement": "A line with slope $4$ passes through $(2; 2)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$10$",
+            "$-6$",
+            "$8$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 2 - (8) = -6$. Adding $mx$ instead of subtracting gives $10$.",
+          "check": [
+            "2 - (4)*(2) == -6",
+            "(4)*(2) + (-6) == 2"
+          ]
+        },
+        {
+          "id": "A1-line-v31",
+          "statement": "For the line $y = 6x - 9$, find $y$ when $x = -5$.",
+          "options": [
+            "$-21$",
+            "$21$",
+            "$-39$",
+            "$51$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $x = -5$: $y = -30 - 9 = -39$. Subtracting the intercept instead of adding it gives $-21$.",
+          "check": [
+            "(6)*(-5) + (-9) == -39"
+          ]
+        },
+        {
+          "id": "A1-line-v32",
+          "statement": "A line with slope $5$ passes through $(-3; -6)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$-21$",
+            "$-15$",
+            "$-9$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = -6 - (-15) = 9$. Adding $mx$ instead of subtracting gives $-21$.",
+          "check": [
+            "-6 - (5)*(-3) == 9",
+            "(5)*(-3) + (9) == -6"
+          ]
+        },
+        {
+          "id": "A1-line-v33",
+          "statement": "A line with slope $-2$ passes through $(5; 7)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$17$",
+            "$-3$",
+            "$-10$",
+            "$-17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 7 - (-10) = 17$. Adding $mx$ instead of subtracting gives $-3$.",
+          "check": [
+            "7 - (-2)*(5) == 17",
+            "(-2)*(5) + (17) == 7"
+          ]
+        },
+        {
+          "id": "A1-line-v34",
+          "statement": "For the line $y = -3x - 7$, find $y$ when $x = 6$.",
+          "options": [
+            "$-11$",
+            "$-25$",
+            "$11$",
+            "$-45$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 6$: $y = -18 - 7 = -25$. Subtracting the intercept instead of adding it gives $-11$.",
+          "check": [
+            "(-3)*(6) + (-7) == -25"
+          ]
+        },
+        {
+          "id": "A1-line-v35",
+          "statement": "A line with slope $3$ passes through $(-1; 3)$. Find its $y$-intercept $b$.",
+          "options": [
+            "$0$",
+            "$-3$",
+            "$6$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the point into $y = mx + b$: $b = y - mx = 3 - (-3) = 6$. Adding $mx$ instead of subtracting gives $0$.",
+          "check": [
+            "3 - (3)*(-1) == 6",
+            "(3)*(-1) + (6) == 3"
+          ]
+        },
+        {
+          "id": "A1-line-v36",
+          "statement": "For the line $y = 4x + 2$, find $y$ when $x = -3$.",
+          "options": [
+            "$-14$",
+            "$14$",
+            "$-2$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = -3$: $y = -12 + 2 = -10$. Subtracting the intercept instead of adding it gives $-14$.",
+          "check": [
+            "(4)*(-3) + (2) == -10"
+          ]
+        }
+      ]
+    },
+    {
       "id": "system-2x2",
       "title": "Systems of two equations",
       "level": 2,
@@ -4797,6 +7049,1176 @@
         }
       ],
       "unit": "systems-of-equations"
+    },
+    {
+      "id": "expand-product",
+      "title": "Expanding (x + a)(x + b)",
+      "level": 1,
+      "unit": "polynomials-and-factoring",
+      "skill": "FOIL: the x-coefficient is the SUM a + b; the constant term is the PRODUCT ab.",
+      "variants": [
+        {
+          "id": "A1-expand-v01",
+          "statement": "Expand $(x + 3)(x + 4)$. What is the coefficient of $x$?",
+          "options": [
+            "$7$",
+            "$12$",
+            "$-1$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(3) + (4) = 7$ is the coefficient of $x$, while the product $(3)(4) = 12$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (3))*(x + (4))) == x**2 + (7)*x + (12)"
+          ]
+        },
+        {
+          "id": "A1-expand-v02",
+          "statement": "Expand $(x + 3)(x + 1)$. What is the constant term?",
+          "options": [
+            "$4$",
+            "$3$",
+            "$2$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(3)(1) = 3$. The sum $4$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (3))*(x + (1))) == x**2 + (4)*x + (3)"
+          ]
+        },
+        {
+          "id": "A1-expand-v03",
+          "statement": "Expand $(x + 3)(x - 6)$. What is the coefficient of $x$?",
+          "options": [
+            "$-18$",
+            "$9$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(3) + (-6) = -3$ is the coefficient of $x$, while the product $(3)(-6) = -18$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (3))*(x + (-6))) == x**2 + (-3)*x + (-18)"
+          ]
+        },
+        {
+          "id": "A1-expand-v04",
+          "statement": "Expand $(x + 3)(x + 9)$. What is the constant term?",
+          "options": [
+            "$12$",
+            "$-6$",
+            "$-27$",
+            "$27$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(3)(9) = 27$. The sum $12$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (3))*(x + (9))) == x**2 + (12)*x + (27)"
+          ]
+        },
+        {
+          "id": "A1-expand-v05",
+          "statement": "Expand $(x - 5)(x + 8)$. What is the coefficient of $x$?",
+          "options": [
+            "$3$",
+            "$-40$",
+            "$-13$",
+            "$-3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(-5) + (8) = 3$ is the coefficient of $x$, while the product $(-5)(8) = -40$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-5))*(x + (8))) == x**2 + (3)*x + (-40)"
+          ]
+        },
+        {
+          "id": "A1-expand-v06",
+          "statement": "Expand $(x - 5)(x - 3)$. What is the constant term?",
+          "options": [
+            "$-8$",
+            "$15$",
+            "$-2$",
+            "$-15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(-5)(-3) = 15$. The sum $-8$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-5))*(x + (-3))) == x**2 + (-8)*x + (15)"
+          ]
+        },
+        {
+          "id": "A1-expand-v07",
+          "statement": "Expand $(x - 5)(x - 1)$. What is the coefficient of $x$?",
+          "options": [
+            "$5$",
+            "$-4$",
+            "$-6$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(-5) + (-1) = -6$ is the coefficient of $x$, while the product $(-5)(-1) = 5$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-5))*(x + (-1))) == x**2 + (-6)*x + (5)"
+          ]
+        },
+        {
+          "id": "A1-expand-v08",
+          "statement": "Expand $(x - 5)(x + 3)$. What is the constant term?",
+          "options": [
+            "$-2$",
+            "$-8$",
+            "$15$",
+            "$-15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(-5)(3) = -15$. The sum $-2$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-5))*(x + (3))) == x**2 + (-2)*x + (-15)"
+          ]
+        },
+        {
+          "id": "A1-expand-v09",
+          "statement": "Expand $(x + 2)(x - 5)$. What is the coefficient of $x$?",
+          "options": [
+            "$-3$",
+            "$-10$",
+            "$7$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(2) + (-5) = -3$ is the coefficient of $x$, while the product $(2)(-5) = -10$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (2))*(x + (-5))) == x**2 + (-3)*x + (-10)"
+          ]
+        },
+        {
+          "id": "A1-expand-v10",
+          "statement": "Expand $(x + 2)(x + 6)$. What is the constant term?",
+          "options": [
+            "$8$",
+            "$12$",
+            "$-4$",
+            "$-12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(2)(6) = 12$. The sum $8$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (2))*(x + (6))) == x**2 + (8)*x + (12)"
+          ]
+        },
+        {
+          "id": "A1-expand-v11",
+          "statement": "Expand $(x + 2)(x + 4)$. What is the coefficient of $x$?",
+          "options": [
+            "$8$",
+            "$-2$",
+            "$6$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(2) + (4) = 6$ is the coefficient of $x$, while the product $(2)(4) = 8$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (2))*(x + (4))) == x**2 + (6)*x + (8)"
+          ]
+        },
+        {
+          "id": "A1-expand-v12",
+          "statement": "Expand $(x + 2)(x + 1)$. What is the constant term?",
+          "options": [
+            "$3$",
+            "$1$",
+            "$-2$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(2)(1) = 2$. The sum $3$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (2))*(x + (1))) == x**2 + (3)*x + (2)"
+          ]
+        },
+        {
+          "id": "A1-expand-v13",
+          "statement": "Expand $(x + 7)(x - 2)$. What is the coefficient of $x$?",
+          "options": [
+            "$5$",
+            "$-14$",
+            "$9$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(7) + (-2) = 5$ is the coefficient of $x$, while the product $(7)(-2) = -14$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (7))*(x + (-2))) == x**2 + (5)*x + (-14)"
+          ]
+        },
+        {
+          "id": "A1-expand-v14",
+          "statement": "Expand $(x + 7)(x + 5)$. What is the constant term?",
+          "options": [
+            "$12$",
+            "$35$",
+            "$2$",
+            "$-35$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(7)(5) = 35$. The sum $12$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (7))*(x + (5))) == x**2 + (12)*x + (35)"
+          ]
+        },
+        {
+          "id": "A1-expand-v15",
+          "statement": "Expand $(x + 7)(x + 8)$. What is the coefficient of $x$?",
+          "options": [
+            "$56$",
+            "$-1$",
+            "$15$",
+            "$-15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(7) + (8) = 15$ is the coefficient of $x$, while the product $(7)(8) = 56$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (7))*(x + (8))) == x**2 + (15)*x + (56)"
+          ]
+        },
+        {
+          "id": "A1-expand-v16",
+          "statement": "Expand $(x + 7)(x - 3)$. What is the constant term?",
+          "options": [
+            "$4$",
+            "$10$",
+            "$21$",
+            "$-21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(7)(-3) = -21$. The sum $4$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (7))*(x + (-3))) == x**2 + (4)*x + (-21)"
+          ]
+        },
+        {
+          "id": "A1-expand-v17",
+          "statement": "Expand $(x - 4)(x - 9)$. What is the coefficient of $x$?",
+          "options": [
+            "$-13$",
+            "$36$",
+            "$5$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(-4) + (-9) = -13$ is the coefficient of $x$, while the product $(-4)(-9) = 36$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-4))*(x + (-9))) == x**2 + (-13)*x + (36)"
+          ]
+        },
+        {
+          "id": "A1-expand-v18",
+          "statement": "Expand $(x - 4)(x + 7)$. What is the constant term?",
+          "options": [
+            "$3$",
+            "$-28$",
+            "$-11$",
+            "$28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(-4)(7) = -28$. The sum $3$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-4))*(x + (7))) == x**2 + (3)*x + (-28)"
+          ]
+        },
+        {
+          "id": "A1-expand-v19",
+          "statement": "Expand $(x - 4)(x - 5)$. What is the coefficient of $x$?",
+          "options": [
+            "$20$",
+            "$1$",
+            "$-9$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(-4) + (-5) = -9$ is the coefficient of $x$, while the product $(-4)(-5) = 20$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-4))*(x + (-5))) == x**2 + (-9)*x + (20)"
+          ]
+        },
+        {
+          "id": "A1-expand-v20",
+          "statement": "Expand $(x - 4)(x + 6)$. What is the constant term?",
+          "options": [
+            "$2$",
+            "$-10$",
+            "$24$",
+            "$-24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(-4)(6) = -24$. The sum $2$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-4))*(x + (6))) == x**2 + (2)*x + (-24)"
+          ]
+        },
+        {
+          "id": "A1-expand-v21",
+          "statement": "Expand $(x + 6)(x + 9)$. What is the coefficient of $x$?",
+          "options": [
+            "$15$",
+            "$54$",
+            "$-3$",
+            "$-15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(6) + (9) = 15$ is the coefficient of $x$, while the product $(6)(9) = 54$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (6))*(x + (9))) == x**2 + (15)*x + (54)"
+          ]
+        },
+        {
+          "id": "A1-expand-v22",
+          "statement": "Expand $(x + 6)(x - 4)$. What is the constant term?",
+          "options": [
+            "$2$",
+            "$-24$",
+            "$10$",
+            "$24$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(6)(-4) = -24$. The sum $2$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (6))*(x + (-4))) == x**2 + (2)*x + (-24)"
+          ]
+        },
+        {
+          "id": "A1-expand-v23",
+          "statement": "Expand $(x + 6)(x - 2)$. What is the coefficient of $x$?",
+          "options": [
+            "$-12$",
+            "$8$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(6) + (-2) = 4$ is the coefficient of $x$, while the product $(6)(-2) = -12$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (6))*(x + (-2))) == x**2 + (4)*x + (-12)"
+          ]
+        },
+        {
+          "id": "A1-expand-v24",
+          "statement": "Expand $(x + 6)(x + 5)$. What is the constant term?",
+          "options": [
+            "$11$",
+            "$1$",
+            "$-30$",
+            "$30$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(6)(5) = 30$. The sum $11$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (6))*(x + (5))) == x**2 + (11)*x + (30)"
+          ]
+        },
+        {
+          "id": "A1-expand-v25",
+          "statement": "Expand $(x - 8)(x + 3)$. What is the coefficient of $x$?",
+          "options": [
+            "$-5$",
+            "$-24$",
+            "$-11$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(-8) + (3) = -5$ is the coefficient of $x$, while the product $(-8)(3) = -24$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-8))*(x + (3))) == x**2 + (-5)*x + (-24)"
+          ]
+        },
+        {
+          "id": "A1-expand-v26",
+          "statement": "Expand $(x - 8)(x - 7)$. What is the constant term?",
+          "options": [
+            "$-15$",
+            "$56$",
+            "$-1$",
+            "$-56$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(-8)(-7) = 56$. The sum $-15$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-8))*(x + (-7))) == x**2 + (-15)*x + (56)"
+          ]
+        },
+        {
+          "id": "A1-expand-v27",
+          "statement": "Expand $(x - 8)(x - 9)$. What is the coefficient of $x$?",
+          "options": [
+            "$72$",
+            "$1$",
+            "$-17$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(-8) + (-9) = -17$ is the coefficient of $x$, while the product $(-8)(-9) = 72$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (-8))*(x + (-9))) == x**2 + (-17)*x + (72)"
+          ]
+        },
+        {
+          "id": "A1-expand-v28",
+          "statement": "Expand $(x - 8)(x + 7)$. What is the constant term?",
+          "options": [
+            "$-1$",
+            "$-15$",
+            "$56$",
+            "$-56$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(-8)(7) = -56$. The sum $-1$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (-8))*(x + (7))) == x**2 + (-1)*x + (-56)"
+          ]
+        },
+        {
+          "id": "A1-expand-v29",
+          "statement": "Expand $(x + 9)(x + 1)$. What is the coefficient of $x$?",
+          "options": [
+            "$10$",
+            "$9$",
+            "$8$",
+            "$-10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(9) + (1) = 10$ is the coefficient of $x$, while the product $(9)(1) = 9$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (9))*(x + (1))) == x**2 + (10)*x + (9)"
+          ]
+        },
+        {
+          "id": "A1-expand-v30",
+          "statement": "Expand $(x + 9)(x - 6)$. What is the constant term?",
+          "options": [
+            "$3$",
+            "$-54$",
+            "$15$",
+            "$54$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(9)(-6) = -54$. The sum $3$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (9))*(x + (-6))) == x**2 + (3)*x + (-54)"
+          ]
+        },
+        {
+          "id": "A1-expand-v31",
+          "statement": "Expand $(x + 9)(x + 9)$. What is the coefficient of $x$?",
+          "options": [
+            "$81$",
+            "$0$",
+            "$18$",
+            "$-18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(9) + (9) = 18$ is the coefficient of $x$, while the product $(9)(9) = 81$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (9))*(x + (9))) == x**2 + (18)*x + (81)"
+          ]
+        },
+        {
+          "id": "A1-expand-v32",
+          "statement": "Expand $(x + 9)(x - 4)$. What is the constant term?",
+          "options": [
+            "$5$",
+            "$13$",
+            "$36$",
+            "$-36$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(9)(-4) = -36$. The sum $5$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (9))*(x + (-4))) == x**2 + (5)*x + (-36)"
+          ]
+        },
+        {
+          "id": "A1-expand-v33",
+          "statement": "Expand $(x + 1)(x - 3)$. What is the coefficient of $x$?",
+          "options": [
+            "$-2$",
+            "$-3$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Outer + inner gives the middle term: $(1) + (-3) = -2$ is the coefficient of $x$, while the product $(1)(-3) = -3$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (1))*(x + (-3))) == x**2 + (-2)*x + (-3)"
+          ]
+        },
+        {
+          "id": "A1-expand-v34",
+          "statement": "Expand $(x + 1)(x - 1)$. What is the constant term?",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$2$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The constant term is the product of the two numbers: $(1)(-1) = -1$. The sum $0$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (1))*(x + (-1))) == x**2 + (0)*x + (-1)"
+          ]
+        },
+        {
+          "id": "A1-expand-v35",
+          "statement": "Expand $(x + 1)(x + 3)$. What is the coefficient of $x$?",
+          "options": [
+            "$3$",
+            "$-2$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Outer + inner gives the middle term: $(1) + (3) = 4$ is the coefficient of $x$, while the product $(1)(3) = 3$ is the constant term. Swapping sum and product is the classic mix-up.",
+          "check": [
+            "expand((x + (1))*(x + (3))) == x**2 + (4)*x + (3)"
+          ]
+        },
+        {
+          "id": "A1-expand-v36",
+          "statement": "Expand $(x + 1)(x - 7)$. What is the constant term?",
+          "options": [
+            "$-6$",
+            "$8$",
+            "$7$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The constant term is the product of the two numbers: $(1)(-7) = -7$. The sum $-6$ gives the coefficient of $x$ instead — don't swap them.",
+          "check": [
+            "expand((x + (1))*(x + (-7))) == x**2 + (-6)*x + (-7)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "factor-quadratic",
+      "title": "Solving quadratics by factoring",
+      "level": 2,
+      "unit": "polynomials-and-factoring",
+      "skill": "Two numbers with sum −b and product c are the roots of x² + bx + c = 0.",
+      "variants": [
+        {
+          "id": "A1-factor-v01",
+          "statement": "Solve by factoring: $x^2 - 7x + 10 = 0$. Find the LARGER root.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$-5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $10$ and sum $7$: that factors as $(x - 5)(x - 2) = 0$, so $x = 5$ or $x = 2$. The larger root is $5$ — picking the smaller one, $2$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-7)*x + (10), x) == [2, 5]",
+            "(5) + (2) == 7",
+            "(5)*(2) == 10"
+          ]
+        },
+        {
+          "id": "A1-factor-v02",
+          "statement": "Solve by factoring: $x^2 + x - 12 = 0$. Find the LARGER root.",
+          "options": [
+            "$-4$",
+            "$3$",
+            "$-3$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $-12$ and sum $-1$: that factors as $(x - 3)(x + 4) = 0$, so $x = 3$ or $x = -4$. The larger root is $3$ — picking the smaller one, $-4$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (1)*x + (-12), x) == [-4, 3]",
+            "(3) + (-4) == -1",
+            "(3)*(-4) == -12"
+          ]
+        },
+        {
+          "id": "A1-factor-v03",
+          "statement": "Solve by factoring: $x^2 - 8x + 7 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$-7$",
+            "$7$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $7$ and sum $8$: that factors as $(x - 7)(x - 1) = 0$, so $x = 7$ or $x = 1$. The larger root is $7$ — picking the smaller one, $1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-8)*x + (7), x) == [1, 7]",
+            "(7) + (1) == 8",
+            "(7)*(1) == 7"
+          ]
+        },
+        {
+          "id": "A1-factor-v04",
+          "statement": "Solve by factoring: $x^2 + 8x + 12 = 0$. Find the LARGER root.",
+          "options": [
+            "$-6$",
+            "$2$",
+            "$-8$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $12$ and sum $-8$: that factors as $(x + 2)(x + 6) = 0$, so $x = -2$ or $x = -6$. The larger root is $-2$ — picking the smaller one, $-6$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (8)*x + (12), x) == [-6, -2]",
+            "(-2) + (-6) == -8",
+            "(-2)*(-6) == 12"
+          ]
+        },
+        {
+          "id": "A1-factor-v05",
+          "statement": "Solve by factoring: $x^2 - x - 12 = 0$. Find the LARGER root.",
+          "options": [
+            "$4$",
+            "$-3$",
+            "$-4$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $-12$ and sum $1$: that factors as $(x - 4)(x + 3) = 0$, so $x = 4$ or $x = -3$. The larger root is $4$ — picking the smaller one, $-3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-1)*x + (-12), x) == [-3, 4]",
+            "(4) + (-3) == 1",
+            "(4)*(-3) == -12"
+          ]
+        },
+        {
+          "id": "A1-factor-v06",
+          "statement": "Solve by factoring: $x^2 - 11x + 24 = 0$. Find the LARGER root.",
+          "options": [
+            "$3$",
+            "$8$",
+            "$-8$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $24$ and sum $11$: that factors as $(x - 8)(x - 3) = 0$, so $x = 8$ or $x = 3$. The larger root is $8$ — picking the smaller one, $3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-11)*x + (24), x) == [3, 8]",
+            "(8) + (3) == 11",
+            "(8)*(3) == 24"
+          ]
+        },
+        {
+          "id": "A1-factor-v07",
+          "statement": "Solve by factoring: $x^2 + 3x - 10 = 0$. Find the LARGER root.",
+          "options": [
+            "$-5$",
+            "$-2$",
+            "$2$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $-10$ and sum $-3$: that factors as $(x - 2)(x + 5) = 0$, so $x = 2$ or $x = -5$. The larger root is $2$ — picking the smaller one, $-5$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (3)*x + (-10), x) == [-5, 2]",
+            "(2) + (-5) == -3",
+            "(2)*(-5) == -10"
+          ]
+        },
+        {
+          "id": "A1-factor-v08",
+          "statement": "Solve by factoring: $x^2 - 5x - 6 = 0$. Find the LARGER root.",
+          "options": [
+            "$-1$",
+            "$-6$",
+            "$5$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $-6$ and sum $5$: that factors as $(x - 6)(x + 1) = 0$, so $x = 6$ or $x = -1$. The larger root is $6$ — picking the smaller one, $-1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-5)*x + (-6), x) == [-1, 6]",
+            "(6) + (-1) == 5",
+            "(6)*(-1) == -6"
+          ]
+        },
+        {
+          "id": "A1-factor-v09",
+          "statement": "Solve by factoring: $x^2 - 13x + 36 = 0$. Find the LARGER root.",
+          "options": [
+            "$9$",
+            "$4$",
+            "$-9$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $36$ and sum $13$: that factors as $(x - 9)(x - 4) = 0$, so $x = 9$ or $x = 4$. The larger root is $9$ — picking the smaller one, $4$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-13)*x + (36), x) == [4, 9]",
+            "(9) + (4) == 13",
+            "(9)*(4) == 36"
+          ]
+        },
+        {
+          "id": "A1-factor-v10",
+          "statement": "Solve by factoring: $x^2 + 8x + 7 = 0$. Find the LARGER root.",
+          "options": [
+            "$-7$",
+            "$-1$",
+            "$1$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $7$ and sum $-8$: that factors as $(x + 1)(x + 7) = 0$, so $x = -1$ or $x = -7$. The larger root is $-1$ — picking the smaller one, $-7$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (8)*x + (7), x) == [-7, -1]",
+            "(-1) + (-7) == -8",
+            "(-1)*(-7) == 7"
+          ]
+        },
+        {
+          "id": "A1-factor-v11",
+          "statement": "Solve by factoring: $x^2 - 3x - 10 = 0$. Find the LARGER root.",
+          "options": [
+            "$-2$",
+            "$-5$",
+            "$5$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $-10$ and sum $3$: that factors as $(x - 5)(x + 2) = 0$, so $x = 5$ or $x = -2$. The larger root is $5$ — picking the smaller one, $-2$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-3)*x + (-10), x) == [-2, 5]",
+            "(5) + (-2) == 3",
+            "(5)*(-2) == -10"
+          ]
+        },
+        {
+          "id": "A1-factor-v12",
+          "statement": "Solve by factoring: $x^2 - 10x + 21 = 0$. Find the LARGER root.",
+          "options": [
+            "$3$",
+            "$-7$",
+            "$10$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $21$ and sum $10$: that factors as $(x - 7)(x - 3) = 0$, so $x = 7$ or $x = 3$. The larger root is $7$ — picking the smaller one, $3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-10)*x + (21), x) == [3, 7]",
+            "(7) + (3) == 10",
+            "(7)*(3) == 21"
+          ]
+        },
+        {
+          "id": "A1-factor-v13",
+          "statement": "Solve by factoring: $x^2 + 11x + 24 = 0$. Find the LARGER root.",
+          "options": [
+            "$-3$",
+            "$-8$",
+            "$3$",
+            "$-11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $24$ and sum $-11$: that factors as $(x + 3)(x + 8) = 0$, so $x = -3$ or $x = -8$. The larger root is $-3$ — picking the smaller one, $-8$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (11)*x + (24), x) == [-8, -3]",
+            "(-3) + (-8) == -11",
+            "(-3)*(-8) == 24"
+          ]
+        },
+        {
+          "id": "A1-factor-v14",
+          "statement": "Solve by factoring: $x^2 - 5x + 4 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$4$",
+            "$-4$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $4$ and sum $5$: that factors as $(x - 4)(x - 1) = 0$, so $x = 4$ or $x = 1$. The larger root is $4$ — picking the smaller one, $1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-5)*x + (4), x) == [1, 4]",
+            "(4) + (1) == 5",
+            "(4)*(1) == 4"
+          ]
+        },
+        {
+          "id": "A1-factor-v15",
+          "statement": "Solve by factoring: $x^2 - x - 30 = 0$. Find the LARGER root.",
+          "options": [
+            "$-5$",
+            "$-6$",
+            "$6$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $-30$ and sum $1$: that factors as $(x - 6)(x + 5) = 0$, so $x = 6$ or $x = -5$. The larger root is $6$ — picking the smaller one, $-5$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-1)*x + (-30), x) == [-5, 6]",
+            "(6) + (-5) == 1",
+            "(6)*(-5) == -30"
+          ]
+        },
+        {
+          "id": "A1-factor-v16",
+          "statement": "Solve by factoring: $x^2 + 7x - 18 = 0$. Find the LARGER root.",
+          "options": [
+            "$-9$",
+            "$-2$",
+            "$-7$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $-18$ and sum $-7$: that factors as $(x - 2)(x + 9) = 0$, so $x = 2$ or $x = -9$. The larger root is $2$ — picking the smaller one, $-9$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (7)*x + (-18), x) == [-9, 2]",
+            "(2) + (-9) == -7",
+            "(2)*(-9) == -18"
+          ]
+        },
+        {
+          "id": "A1-factor-v17",
+          "statement": "Solve by factoring: $x^2 - 5x - 24 = 0$. Find the LARGER root.",
+          "options": [
+            "$8$",
+            "$-3$",
+            "$-8$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $-24$ and sum $5$: that factors as $(x - 8)(x + 3) = 0$, so $x = 8$ or $x = -3$. The larger root is $8$ — picking the smaller one, $-3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-5)*x + (-24), x) == [-3, 8]",
+            "(8) + (-3) == 5",
+            "(8)*(-3) == -24"
+          ]
+        },
+        {
+          "id": "A1-factor-v18",
+          "statement": "Solve by factoring: $x^2 - 4x + 3 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$3$",
+            "$-3$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $3$ and sum $4$: that factors as $(x - 3)(x - 1) = 0$, so $x = 3$ or $x = 1$. The larger root is $3$ — picking the smaller one, $1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-4)*x + (3), x) == [1, 3]",
+            "(3) + (1) == 4",
+            "(3)*(1) == 3"
+          ]
+        },
+        {
+          "id": "A1-factor-v19",
+          "statement": "Solve by factoring: $x^2 + 11x + 18 = 0$. Find the LARGER root.",
+          "options": [
+            "$-9$",
+            "$2$",
+            "$-2$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $18$ and sum $-11$: that factors as $(x + 2)(x + 9) = 0$, so $x = -2$ or $x = -9$. The larger root is $-2$ — picking the smaller one, $-9$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (11)*x + (18), x) == [-9, -2]",
+            "(-2) + (-9) == -11",
+            "(-2)*(-9) == 18"
+          ]
+        },
+        {
+          "id": "A1-factor-v20",
+          "statement": "Solve by factoring: $x^2 - 5x - 36 = 0$. Find the LARGER root.",
+          "options": [
+            "$-4$",
+            "$-9$",
+            "$5$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $-36$ and sum $5$: that factors as $(x - 9)(x + 4) = 0$, so $x = 9$ or $x = -4$. The larger root is $9$ — picking the smaller one, $-4$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-5)*x + (-36), x) == [-4, 9]",
+            "(9) + (-4) == 5",
+            "(9)*(-4) == -36"
+          ]
+        },
+        {
+          "id": "A1-factor-v21",
+          "statement": "Solve by factoring: $x^2 - x - 42 = 0$. Find the LARGER root.",
+          "options": [
+            "$7$",
+            "$-6$",
+            "$-7$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $-42$ and sum $1$: that factors as $(x - 7)(x + 6) = 0$, so $x = 7$ or $x = -6$. The larger root is $7$ — picking the smaller one, $-6$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-1)*x + (-42), x) == [-6, 7]",
+            "(7) + (-6) == 1",
+            "(7)*(-6) == -42"
+          ]
+        },
+        {
+          "id": "A1-factor-v22",
+          "statement": "Solve by factoring: $x^2 - 8x + 15 = 0$. Find the LARGER root.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$-5$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $15$ and sum $8$: that factors as $(x - 5)(x - 3) = 0$, so $x = 5$ or $x = 3$. The larger root is $5$ — picking the smaller one, $3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-8)*x + (15), x) == [3, 5]",
+            "(5) + (3) == 8",
+            "(5)*(3) == 15"
+          ]
+        },
+        {
+          "id": "A1-factor-v23",
+          "statement": "Solve by factoring: $x^2 + 11x + 28 = 0$. Find the LARGER root.",
+          "options": [
+            "$-7$",
+            "$4$",
+            "$-4$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $28$ and sum $-11$: that factors as $(x + 4)(x + 7) = 0$, so $x = -4$ or $x = -7$. The larger root is $-4$ — picking the smaller one, $-7$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (11)*x + (28), x) == [-7, -4]",
+            "(-4) + (-7) == -11",
+            "(-4)*(-7) == 28"
+          ]
+        },
+        {
+          "id": "A1-factor-v24",
+          "statement": "Solve by factoring: $x^2 - 8x + 12 = 0$. Find the LARGER root.",
+          "options": [
+            "$2$",
+            "$-6$",
+            "$8$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $12$ and sum $8$: that factors as $(x - 6)(x - 2) = 0$, so $x = 6$ or $x = 2$. The larger root is $6$ — picking the smaller one, $2$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-8)*x + (12), x) == [2, 6]",
+            "(6) + (2) == 8",
+            "(6)*(2) == 12"
+          ]
+        },
+        {
+          "id": "A1-factor-v25",
+          "statement": "Solve by factoring: $x^2 + 7x - 8 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$-8$",
+            "$-1$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $-8$ and sum $-7$: that factors as $(x - 1)(x + 8) = 0$, so $x = 1$ or $x = -8$. The larger root is $1$ — picking the smaller one, $-8$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (7)*x + (-8), x) == [-8, 1]",
+            "(1) + (-8) == -7",
+            "(1)*(-8) == -8"
+          ]
+        },
+        {
+          "id": "A1-factor-v26",
+          "statement": "Solve by factoring: $x^2 - 13x + 40 = 0$. Find the LARGER root.",
+          "options": [
+            "$5$",
+            "$8$",
+            "$-8$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $40$ and sum $13$: that factors as $(x - 8)(x - 5) = 0$, so $x = 8$ or $x = 5$. The larger root is $8$ — picking the smaller one, $5$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-13)*x + (40), x) == [5, 8]",
+            "(8) + (5) == 13",
+            "(8)*(5) == 40"
+          ]
+        },
+        {
+          "id": "A1-factor-v27",
+          "statement": "Solve by factoring: $x^2 + 6x + 5 = 0$. Find the LARGER root.",
+          "options": [
+            "$-5$",
+            "$1$",
+            "$-1$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $5$ and sum $-6$: that factors as $(x + 1)(x + 5) = 0$, so $x = -1$ or $x = -5$. The larger root is $-1$ — picking the smaller one, $-5$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (6)*x + (5), x) == [-5, -1]",
+            "(-1) + (-5) == -6",
+            "(-1)*(-5) == 5"
+          ]
+        },
+        {
+          "id": "A1-factor-v28",
+          "statement": "Solve by factoring: $x^2 - 11x + 18 = 0$. Find the LARGER root.",
+          "options": [
+            "$2$",
+            "$-9$",
+            "$11$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $18$ and sum $11$: that factors as $(x - 9)(x - 2) = 0$, so $x = 9$ or $x = 2$. The larger root is $9$ — picking the smaller one, $2$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-11)*x + (18), x) == [2, 9]",
+            "(9) + (2) == 11",
+            "(9)*(2) == 18"
+          ]
+        },
+        {
+          "id": "A1-factor-v29",
+          "statement": "Solve by factoring: $x^2 + 5x - 36 = 0$. Find the LARGER root.",
+          "options": [
+            "$4$",
+            "$-9$",
+            "$-4$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $-36$ and sum $-5$: that factors as $(x - 4)(x + 9) = 0$, so $x = 4$ or $x = -9$. The larger root is $4$ — picking the smaller one, $-9$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (5)*x + (-36), x) == [-9, 4]",
+            "(4) + (-9) == -5",
+            "(4)*(-9) == -36"
+          ]
+        },
+        {
+          "id": "A1-factor-v30",
+          "statement": "Solve by factoring: $x^2 - 5x - 14 = 0$. Find the LARGER root.",
+          "options": [
+            "$-2$",
+            "$7$",
+            "$-7$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $-14$ and sum $5$: that factors as $(x - 7)(x + 2) = 0$, so $x = 7$ or $x = -2$. The larger root is $7$ — picking the smaller one, $-2$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-5)*x + (-14), x) == [-2, 7]",
+            "(7) + (-2) == 5",
+            "(7)*(-2) == -14"
+          ]
+        },
+        {
+          "id": "A1-factor-v31",
+          "statement": "Solve by factoring: $x^2 + 4x - 21 = 0$. Find the LARGER root.",
+          "options": [
+            "$-7$",
+            "$-3$",
+            "$3$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $-21$ and sum $-4$: that factors as $(x - 3)(x + 7) = 0$, so $x = 3$ or $x = -7$. The larger root is $3$ — picking the smaller one, $-7$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (4)*x + (-21), x) == [-7, 3]",
+            "(3) + (-7) == -4",
+            "(3)*(-7) == -21"
+          ]
+        },
+        {
+          "id": "A1-factor-v32",
+          "statement": "Solve by factoring: $x^2 - 7x + 6 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$-6$",
+            "$7$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $6$ and sum $7$: that factors as $(x - 6)(x - 1) = 0$, so $x = 6$ or $x = 1$. The larger root is $6$ — picking the smaller one, $1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-7)*x + (6), x) == [1, 6]",
+            "(6) + (1) == 7",
+            "(6)*(1) == 6"
+          ]
+        },
+        {
+          "id": "A1-factor-v33",
+          "statement": "Solve by factoring: $x^2 + 8x + 15 = 0$. Find the LARGER root.",
+          "options": [
+            "$-3$",
+            "$-5$",
+            "$3$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Look for two numbers with product $15$ and sum $-8$: that factors as $(x + 3)(x + 5) = 0$, so $x = -3$ or $x = -5$. The larger root is $-3$ — picking the smaller one, $-5$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (8)*x + (15), x) == [-5, -3]",
+            "(-3) + (-5) == -8",
+            "(-3)*(-5) == 15"
+          ]
+        },
+        {
+          "id": "A1-factor-v34",
+          "statement": "Solve by factoring: $x^2 + 3x - 40 = 0$. Find the LARGER root.",
+          "options": [
+            "$-8$",
+            "$5$",
+            "$-5$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Look for two numbers with product $-40$ and sum $-3$: that factors as $(x - 5)(x + 8) = 0$, so $x = 5$ or $x = -8$. The larger root is $5$ — picking the smaller one, $-8$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (3)*x + (-40), x) == [-8, 5]",
+            "(5) + (-8) == -3",
+            "(5)*(-8) == -40"
+          ]
+        },
+        {
+          "id": "A1-factor-v35",
+          "statement": "Solve by factoring: $x^2 - 9x + 8 = 0$. Find the LARGER root.",
+          "options": [
+            "$1$",
+            "$-8$",
+            "$8$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Look for two numbers with product $8$ and sum $9$: that factors as $(x - 8)(x - 1) = 0$, so $x = 8$ or $x = 1$. The larger root is $8$ — picking the smaller one, $1$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (-9)*x + (8), x) == [1, 8]",
+            "(8) + (1) == 9",
+            "(8)*(1) == 8"
+          ]
+        },
+        {
+          "id": "A1-factor-v36",
+          "statement": "Solve by factoring: $x^2 + x - 6 = 0$. Find the LARGER root.",
+          "options": [
+            "$-3$",
+            "$-2$",
+            "$-1$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Look for two numbers with product $-6$ and sum $-1$: that factors as $(x - 2)(x + 3) = 0$, so $x = 2$ or $x = -3$. The larger root is $2$ — picking the smaller one, $-3$, is the classic slip.",
+          "check": [
+            "solve(x**2 + (1)*x + (-6), x) == [-3, 2]",
+            "(2) + (-3) == -1",
+            "(2)*(-3) == -6"
+          ]
+        }
+      ]
     },
     {
       "id": "factored-roots",
