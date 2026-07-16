@@ -1455,6 +1455,1228 @@ RESOLVERS.update({
 })
 
 
+# ---------------------------------------------------------------------------
+# Batch 2: additional textbook-style forms (12 variants each). Everything
+# above is untouched; new_forms is extended via the wrapper at the end of
+# this block, and each batch-2 form registers its own RESOLVERS entry.
+# ---------------------------------------------------------------------------
+
+from math import tan  # noqa: E402
+
+from sympy import pi  # noqa: E402
+
+
+def _ratstr(v):
+    """Sympy-source string for an integer/rational value (for check[])."""
+    v = sympify(v)
+    if getattr(v, "q", 1) == 1:
+        return str(int(v))
+    return "Rational(%d, %d)" % (v.p, v.q)
+
+
+def piL(coef):
+    """LaTeX for coef*pi (no surrounding $); coef integer or rational."""
+    c = sympify(coef)
+    if c == 1:
+        return "\\pi"
+    if getattr(c, "q", 1) == 1:
+        return "%d\\pi" % int(c)
+    return "\\frac{%d}{%d}\\pi" % (c.p, c.q)
+
+
+# --- foundations -----------------------------------------------------------
+
+def gen2_nlmid():
+    data = [(-3, 9), (-8, 2), (5, 11), (-10, -4), (7, -1), (-6, 14),
+            (-3, 8), (2, 7), (-9, 4), (-7, -2), (1, 6), (-5, 12)]
+    out = []
+    for i, (a, b) in enumerate(data):
+        m = Rational(a + b, 2)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (L(m), m),
+            [(L(Rational(b - a, 2)), Rational(b - a, 2)),
+             (intL(a + b), a + b), (intL(b - a), b - a)],
+            pos, latex_of=L)
+        out.append({
+            "statement": "On a number line, $A = %d$ and $B = %d$. Find the "
+                         "coordinate of the midpoint of segment $AB$."
+                         % (a, b),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Average the two coordinates: "
+                           "$\\frac{(%d) + (%d)}{2} = %s$. Adding without "
+                           "dividing by $2$ — the classic slip — gives $%d$."
+                           % (a, b, L(m), a + b),
+            "check": ["Rational((%d) + (%d), 2) == %s"
+                      % (a, b, _ratstr(m))],
+        })
+    return out
+
+
+def _bis_fig(whole, given_whole):
+    wr, hr = radians(whole), radians(whole / 2.0)
+    pts = [_pt("O", 0, 0, "O"), _pt("A", 6, 0, "A"),
+           _pt("B", 6 * cos(hr), 6 * sin(hr), "B"),
+           _pt("C", 6 * cos(wr), 6 * sin(wr), "C")]
+    if given_whole:
+        arcs = [{"kind": "angle", "at": "O", "from": "A", "to": "C",
+                 "label": "%d°" % whole},
+                {"kind": "angle", "at": "O", "from": "A", "to": "B",
+                 "label": "?", "color": "accent"}]
+    else:
+        arcs = [{"kind": "angle", "at": "O", "from": "A", "to": "B",
+                 "label": "%d°" % (whole // 2)},
+                {"kind": "angle", "at": "O", "from": "A", "to": "C",
+                 "label": "?", "color": "accent"}]
+    return {"points": pts,
+            "objects": [{"kind": "ray", "from": "O", "to": "A"},
+                        {"kind": "ray", "from": "O", "to": "C"},
+                        {"kind": "ray", "from": "O", "to": "B",
+                         "dashed": True}] + arcs}
+
+
+def gen2_bis():
+    fwd = [40, 56, 68, 84, 100, 124, 148]
+    rev = [23, 37, 44, 52, 61]
+    out = []
+    idx = 0
+    for a in fwd:
+        ans = a // 2
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(a), a), (degL(2 * a), 2 * a),
+             (degL(90 - a // 2), 90 - a // 2)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "Ray $OB$ bisects $\\angle AOC$, and "
+                         "$\\angle AOC = %d°$. Find $\\angle AOB$." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "A bisector cuts the angle into two equal halves: "
+                           "$\\angle AOB = %d° / 2 = %d°$. Leaving it as "
+                           "$%d°$ forgets that $AOB$ is only half of $AOC$."
+                           % (a, ans, a),
+            "check": ["Rational(%d, 2) == %d" % (a, ans)],
+            "geoFigure": _bis_fig(a, True),
+        })
+        idx += 1
+    for h in rev:
+        ans = 2 * h
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(h), h), (L(Rational(h, 2)) + "°", Rational(h, 2)),
+             (degL(180 - h), 180 - h)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "Ray $OB$ bisects $\\angle AOC$, and "
+                         "$\\angle AOB = %d°$. Find $\\angle AOC$." % h,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The half is given, so double it for the whole: "
+                           "$\\angle AOC = 2 \\cdot %d° = %d°$. Halving "
+                           "again is the classic reversal." % (h, ans),
+            "check": ["2*%d == %d" % (h, ans)],
+            "geoFigure": _bis_fig(2 * h, False),
+        })
+        idx += 1
+    return out
+
+
+# --- reasoning-and-proof ---------------------------------------------------
+
+def gen2_around():
+    data = [(100, 110), (120, 105), (135, 95), (140, 110), (150, 90),
+            (115, 125), (160, 85), (105, 145), (95, 150), (130, 120),
+            (125, 110), (145, 105)]
+    out = []
+    for i, (a, b) in enumerate(data):
+        x = 360 - a - b
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(x), x),
+            [(intL(a + b - 180), a + b - 180), (intL(360 - a), 360 - a),
+             (intL(360 - b), 360 - b)],
+            pos, latex_of=intL)
+        ar1, ar2 = radians(a), radians(a + b)
+        fig = {
+            "points": [_pt("O", 0, 0), _pt("U", 6, 0),
+                       _pt("V", 6 * cos(ar1), 6 * sin(ar1)),
+                       _pt("W", 6 * cos(ar2), 6 * sin(ar2))],
+            "hidePoints": ["O", "U", "V", "W"],
+            "objects": [
+                {"kind": "ray", "from": "O", "to": "U"},
+                {"kind": "ray", "from": "O", "to": "V"},
+                {"kind": "ray", "from": "O", "to": "W"},
+                {"kind": "angle", "at": "O", "from": "U", "to": "V",
+                 "label": "%d°" % a},
+                {"kind": "angle", "at": "O", "from": "V", "to": "W",
+                 "label": "%d°" % b},
+                {"kind": "angle", "at": "O", "from": "W", "to": "U",
+                 "label": "?", "color": "accent"},
+            ],
+        }
+        out.append({
+            "statement": "Three angles around a point measure $%d°$, "
+                         "$%d°$, and $x°$. Find $x$." % (a, b),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Angles around a point add to $360°$: "
+                           "$x = 360 - %d - %d = %d$. Using $180°$ (angles "
+                           "on a line) — the classic slip — gives $%d$."
+                           % (a, b, x, a + b - 180),
+            "check": ["360 - %d - %d == %d" % (a, b, x)],
+            "geoFigure": fig,
+        })
+    return out
+
+
+def gen2_lps():
+    data = [(12, 24), (10, 20), (15, 30), (18, 36), (6, 12), (24, 30),
+            (33, 21), (30, 45), (14, 25), (22, 38), (16, 29), (8, 31)]
+    out = []
+    for i, (c, d) in enumerate(data):
+        total = 180 - c - d
+        assert total % 3 == 0
+        x = total // 3
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(x), x),
+            [(intL(total), total),
+             (L(Rational(total, 2)), Rational(total, 2)),
+             (intL(180 - x), 180 - x)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "The angles $(2x + %d)°$ and $(x + %d)°$ form a "
+                         "linear pair. Find $x$." % (c, d),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A linear pair is supplementary: "
+                           "$(2x + %d) + (x + %d) = 180$, so $3x = %d$ and "
+                           "$x = %d$. Dividing $%d$ by $2$ instead of $3$ is "
+                           "the classic slip." % (c, d, total, x, total),
+            "check": ["Rational(180 - %d - %d, 3) == %d" % (c, d, x),
+                      "(2*%d + %d) + (%d + %d) == 180" % (x, c, x, d)],
+        })
+    return out
+
+
+# --- parallel-and-perpendicular --------------------------------------------
+
+def _tradj_fig(a, kind):
+    ar = radians(a)
+    q2x = 3 * cos(ar) / sin(ar)
+    given = ({"kind": "angle", "at": "Q1", "from": "A2", "to": "Q2",
+              "label": "%d°" % a} if kind == "ssint" else
+             {"kind": "angle", "at": "Q1", "from": "A1", "to": "T1",
+              "label": "%d°" % a})
+    ask_pts = {"ssint": ("B2", "Q1"), "altext": ("B2", "T2"),
+               "ssext": ("B1", "T2")}[kind]
+    return {
+        "points": [
+            _pt("A1", -5, 0), _pt("A2", 7, 0),
+            _pt("B1", -5, 3), _pt("B2", 7, 3),
+            _pt("Q1", 0, 0), _pt("Q2", q2x, 3),
+            _pt("T1", -2 * cos(ar), -2 * sin(ar)),
+            _pt("T2", q2x + 2 * cos(ar), 3 + 2 * sin(ar)),
+        ],
+        "hidePoints": ["A1", "A2", "B1", "B2", "Q1", "Q2", "T1", "T2"],
+        "objects": [
+            {"kind": "line", "from": "A1", "to": "A2"},
+            {"kind": "line", "from": "B1", "to": "B2"},
+            {"kind": "line", "from": "T1", "to": "T2"},
+            given,
+            {"kind": "angle", "at": "Q2", "from": ask_pts[0],
+             "to": ask_pts[1], "label": "?", "color": "accent"},
+        ],
+    }
+
+
+def gen2_tradj():
+    pools = (("ssint", [42, 66, 108, 134]), ("altext", [38, 57, 121, 143]),
+             ("ssext", [47, 73, 112, 138]))
+    out = []
+    idx = 0
+    for kind, alist in pools:
+        for a in alist:
+            pos = idx % 4
+            slip = 90 - a if a < 90 else a - 90
+            if kind == "ssint":
+                ans = 180 - a
+                st = ("Two parallel lines are cut by a transversal. An "
+                      "interior angle at one intersection measures $%d°$. "
+                      "Find the same-side interior angle at the other "
+                      "intersection." % a)
+                ex = ("Same-side interior angles between parallel lines are "
+                      "supplementary: $180° - %d° = %d°$. Calling them "
+                      "congruent — the classic wrong move — gives $%d°$."
+                      % (a, ans, a))
+                cands = [(degL(a), a), (degL(slip), slip),
+                         (degL(360 - a), 360 - a)]
+                chk = "180 - %d == %d" % (a, ans)
+            elif kind == "altext":
+                ans = a
+                st = ("Two parallel lines are cut by a transversal. An "
+                      "exterior angle at one intersection measures $%d°$. "
+                      "Find the alternate exterior angle at the other "
+                      "intersection." % a)
+                ex = ("Alternate exterior angles on parallel lines are "
+                      "congruent, so it is $%d°$ again. Making them "
+                      "supplementary — the classic wrong move — gives $%d°$."
+                      % (a, 180 - a))
+                cands = [(degL(180 - a), 180 - a), (degL(slip), slip),
+                         (degL(360 - a), 360 - a)]
+                chk = "180 - (180 - %d) == %d" % (a, ans)
+            else:
+                ans = 180 - a
+                st = ("Two parallel lines are cut by a transversal. An "
+                      "exterior angle at one intersection measures $%d°$. "
+                      "Find the same-side exterior angle at the other "
+                      "intersection." % a)
+                ex = ("Same-side exterior angles on parallel lines are "
+                      "supplementary: $180° - %d° = %d°$. Treating them as "
+                      "congruent — the classic wrong move — gives $%d°$."
+                      % (a, ans, a))
+                cands = [(degL(a), a), (degL(slip), slip),
+                         (degL(360 - a), 360 - a)]
+                chk = "180 - %d == %d" % (a, ans)
+            opts, ci = build_latex_options((degL(ans), ans), cands, pos,
+                                           latex_of=degL)
+            out.append({"statement": st, "options": opts, "correctIndex": ci,
+                        "explanation": ex, "check": [chk],
+                        "geoFigure": _tradj_fig(a, kind)})
+            idx += 1
+    return out
+
+
+def gen2_perpc():
+    avals = [12, 18, 24, 31, 37, 43, 49, 56, 62, 68, 74, 79]
+    out = []
+    for i, a in enumerate(avals):
+        ans = 90 - a
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(180 - a), 180 - a), (intL(a), a),
+             (intL(90 + a), 90 + a)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "Lines $m$ and $n$ are perpendicular. A ray from "
+                         "their intersection splits one of the right angles "
+                         "into angles of $%d°$ and $x°$. Find $x$." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The two pieces make up a right angle: "
+                           "$x = 90 - %d = %d$. Subtracting from $180°$ — "
+                           "the classic slip — treats the right angle as a "
+                           "straight one and gives $%d$."
+                           % (a, ans, 180 - a),
+            "check": ["90 - %d == %d" % (a, ans)],
+        })
+    return out
+
+
+# --- triangles-and-congruence ----------------------------------------------
+
+def _iso_fig(vertex, mode, base_lab):
+    beta = (180 - vertex) / 2.0
+    h = 3 * tan(radians(beta))
+    s = min(1.0, 6.0 / h)
+    pts = [_pt("B", 0, 0, "B"), _pt("C", 6 * s, 0, "C"),
+           _pt("A", 3 * s, h * s, "A")]
+    objs = [
+        {"kind": "segment", "from": "A", "to": "B", "ticks": 1},
+        {"kind": "segment", "from": "A", "to": "C", "ticks": 1},
+        {"kind": "segment", "from": "B", "to": "C"},
+    ]
+    if mode == "fwd":
+        objs += [{"kind": "angle", "at": "A", "from": "B", "to": "C",
+                  "label": "%d°" % vertex},
+                 {"kind": "angle", "at": "B", "from": "A", "to": "C",
+                  "label": "?", "color": "accent"}]
+    else:
+        objs += [{"kind": "angle", "at": "B", "from": "A", "to": "C",
+                  "label": "%d°" % base_lab},
+                 {"kind": "angle", "at": "C", "from": "A", "to": "B",
+                  "label": "%d°" % base_lab},
+                 {"kind": "angle", "at": "A", "from": "B", "to": "C",
+                  "label": "?", "color": "accent"}]
+    return {"points": pts, "objects": objs}
+
+
+def gen2_iso():
+    fwd = [32, 48, 56, 70, 84, 104, 116]
+    rev = [40, 52, 64, 71, 76]
+    out = []
+    idx = 0
+    for a in fwd:
+        ans = (180 - a) // 2
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(180 - a), 180 - a), (degL(a), a),
+             (degL(a // 2), a // 2)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "An isosceles triangle has a vertex angle of "
+                         "$%d°$. Find the measure of each base angle." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The two base angles are equal and share "
+                           "$180° - %d° = %d°$, so each is $%d°$. Forgetting "
+                           "to split the remainder between TWO angles gives "
+                           "$%d°$." % (a, 180 - a, ans, 180 - a),
+            "check": ["Rational(180 - %d, 2) == %d" % (a, ans)],
+            "geoFigure": _iso_fig(a, "fwd", 0),
+        })
+        idx += 1
+    for b in rev:
+        ans = 180 - 2 * b
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(2 * b), 2 * b), (degL(b), b), (degL(90 - b), 90 - b)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "An isosceles triangle has base angles of $%d°$ "
+                         "each. Find the vertex angle." % b,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Subtract BOTH base angles from the angle sum: "
+                           "$180° - 2 \\cdot %d° = %d°$. Subtracting only "
+                           "one base angle — the classic slip — gives $%d°$."
+                           % (b, ans, 180 - b),
+            "check": ["180 - 2*%d == %d" % (b, ans)],
+            "geoFigure": _iso_fig(ans, "rev", b),
+        })
+        idx += 1
+    return out
+
+
+def gen2_congp():
+    data = [(5, 7, 9, "EF"), (6, 8, 11, "DE"), (7, 10, 12, "DF"),
+            (4, 6, 7, "EF"), (8, 9, 13, "DE"), (5, 9, 11, "DF"),
+            (6, 10, 13, "EF"), (7, 8, 10, "DE"), (9, 12, 14, "DF"),
+            (5, 6, 8, "EF"), (10, 13, 15, "DE"), (6, 9, 11, "DF")]
+    match = {"DE": ("AB", 0), "EF": ("BC", 1), "DF": ("AC", 2)}
+    out = []
+    for i, (p, q, r, asked) in enumerate(data):
+        sides = (p, q, r)
+        twin, k = match[asked]
+        ans = sides[k]
+        others = [s for j, s in enumerate(sides) if j != k]
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(others[0]), others[0]), (intL(others[1]), others[1])],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "$\\triangle ABC \\cong \\triangle DEF$, with "
+                         "$AB = %d$, $BC = %d$, and $AC = %d$. Find $%s$."
+                         % (p, q, r, asked),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Match the letters in order ($A \\to D$, "
+                           "$B \\to E$, $C \\to F$): $%s$ corresponds to "
+                           "$%s$, so $%s = %d$. Grabbing a non-corresponding "
+                           "side is the classic slip." % (asked, twin,
+                                                          asked, ans),
+            "check": ["%d + %d > %d" % (p, q, r), "%d == %d" % (ans, ans)],
+        })
+    return out
+
+
+# --- relationships-in-triangles --------------------------------------------
+
+def gen2_tsc():
+    data = [(4, 7), (5, 9), (6, 11), (3, 8), (7, 12), (8, 13),
+            (5, 14), (9, 16), (6, 10), (10, 17), (4, 12), (11, 18)]
+    out = []
+    for i, (a, b) in enumerate(data):
+        ans = 2 * a - 1
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(ans + 2), ans + 2), (intL(2 * a), 2 * a),
+             (intL(a + b - 1), a + b - 1)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "A triangle has sides of length $%d$ and $%d$. How "
+                         "many different integer lengths are possible for "
+                         "the third side?" % (a, b),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The third side is strictly between $%d - %d = "
+                           "%d$ and $%d + %d = %d$, so the integers run from "
+                           "$%d$ to $%d$ — that is $%d$ values. Allowing the "
+                           "degenerate endpoints — the classic slip — gives "
+                           "$%d$." % (b, a, b - a, a, b, a + b, b - a + 1,
+                                      a + b - 1, ans, ans + 2),
+            "check": ["(%d + %d - 1) - (%d - %d + 1) + 1 == %d"
+                      % (a, b, b, a, ans)],
+        })
+    return out
+
+
+def gen2_sao():
+    data = [(5, 9, 7), (6, 10, 8), (4, 8, 6), (7, 12, 9),
+            (5, 7, 9), (6, 8, 11), (4, 7, 9), (8, 9, 12),
+            (9, 5, 7), (11, 6, 8), (10, 7, 6), (12, 8, 9)]
+    out = []
+    for i, (p, q, r) in enumerate(data):
+        assert len({p, q, r}) == 3
+        # AB = p (opposite angle C), BC = q (opp. A), AC = r (opp. B)
+        if q > p and q > r:
+            letter, longest = "A", "BC"
+            chks = ["%d > %d" % (q, p), "%d > %d" % (q, r),
+                    "%d + %d > %d" % (p, r, q)]
+        elif r > p and r > q:
+            letter, longest = "B", "AC"
+            chks = ["%d > %d" % (r, p), "%d > %d" % (r, q),
+                    "%d + %d > %d" % (p, q, r)]
+        else:
+            letter, longest = "C", "AB"
+            chks = ["%d > %d" % (p, q), "%d > %d" % (p, r),
+                    "%d + %d > %d" % (q, r, p)]
+        pos = i % 4
+        correct = "$\\angle %s$" % letter
+        wrongs = ["$\\angle %s$" % w for w in "ABC" if w != letter]
+        wrongs.append("cannot be determined from the given information")
+        opts = wrongs[:]
+        opts.insert(pos, correct)
+        assert len(set(opts)) == 4
+        out.append({
+            "statement": "In $\\triangle ABC$, $AB = %d$, $BC = %d$, and "
+                         "$AC = %d$. Which angle of the triangle is the "
+                         "largest?" % (p, q, r),
+            "options": opts, "correctIndex": pos,
+            "explanation": "The largest angle sits OPPOSITE the longest "
+                           "side: the longest side is $%s$, and the angle "
+                           "opposite it is $\\angle %s$. Picking an angle at "
+                           "an endpoint of the longest side is the classic "
+                           "slip." % (longest, letter),
+            "check": chks,
+        })
+    return out
+
+
+# --- quadrilaterals-and-polygons -------------------------------------------
+
+def gen2_extr():
+    fwd = [24, 30, 36, 40, 45, 60]
+    rev = [24, 40, 18, 72, 30, 20]
+    out = []
+    idx = 0
+    for n in fwd:
+        ans = 360 // n
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(180 - ans), 180 - ans), (degL(2 * ans), 2 * ans),
+             (degL(360), 360)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "What is the measure of one exterior angle of a "
+                         "regular $%d$-gon?" % n,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The exterior angles of any convex polygon add "
+                           "to $360°$, so each is $\\frac{360°}{%d} = %d°$. "
+                           "$%d°$ is the interior angle — the classic swap."
+                           % (n, ans, 180 - ans),
+            "check": ["Rational(360, %d) == %d" % (n, ans)],
+        })
+        idx += 1
+    for e in rev:
+        ans = 360 // e
+        pos = idx % 4
+        cands = [(intL(e), e), (intL(2 * ans), 2 * ans)]
+        if 180 % e == 0:
+            cands.insert(0, (intL(180 // e), 180 // e))
+        opts, ci = build_latex_options((intL(ans), ans), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "Each exterior angle of a regular polygon measures "
+                         "$%d°$. How many sides does the polygon have?" % e,
+            "options": opts, "correctIndex": ci,
+            "explanation": "All $n$ exterior angles add to $360°$, so "
+                           "$n = \\frac{360}{%d} = %d$. Dividing $180$ by "
+                           "the exterior angle — the classic slip — uses the "
+                           "wrong total." % (e, ans),
+            "check": ["Rational(360, %d) == %d" % (e, ans)],
+        })
+        idx += 1
+    return out
+
+
+def gen2_q4():
+    data = [(80, 95, 110), (70, 85, 120), (65, 100, 130), (90, 105, 88),
+            (75, 110, 95), (60, 125, 105), (85, 92, 131), (78, 104, 96),
+            (55, 140, 100), (105, 115, 72), (98, 84, 113), (66, 133, 89)]
+    out = []
+    for i, (a, b, c) in enumerate(data):
+        s = a + b + c
+        assert s != 270
+        x = 360 - s
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (degL(x), x),
+            [(degL(540 - s), 540 - s), (degL(s - 180), s - 180),
+             (degL(360 - a - b), 360 - a - b)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "Three angles of a quadrilateral measure $%d°$, "
+                         "$%d°$, and $%d°$. Find the fourth angle."
+                         % (a, b, c),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A quadrilateral's angles add to $360°$: "
+                           "$360 - %d - %d - %d = %d°$. Using the triangle "
+                           "sum $180°$ — the classic slip — cannot work "
+                           "here." % (a, b, c, x),
+            "check": ["360 - %d - %d - %d == %d" % (a, b, c, x)],
+        })
+    return out
+
+
+# --- similarity -------------------------------------------------------------
+
+def gen2_perim():
+    data = [(1, 2, 9), (2, 3, 8), (3, 4, 18), (1, 3, 7), (2, 5, 12),
+            (3, 5, 27), (4, 5, 16), (1, 4, 6), (2, 7, 16), (5, 6, 25),
+            (3, 7, 9), (4, 7, 32)]
+    out = []
+    for i, (j, k, P) in enumerate(data):
+        assert P % j == 0 and P % (j * j) == 0
+        ans = P * k // j
+        area = P * k * k // (j * j)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(area), area), (intL(P), P), (intL(k * P), k * P)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "Two similar triangles have similarity ratio "
+                         "$%d : %d$ (smaller to larger). The smaller "
+                         "triangle has perimeter $%d$. Find the perimeter "
+                         "of the larger triangle." % (j, k, P),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Perimeter is a LENGTH, so it scales by the "
+                           "plain ratio: $%d \\cdot \\frac{%d}{%d} = %d$. "
+                           "Scaling by the squared ratio (giving $%d$) is "
+                           "correct for area, not perimeter — the classic "
+                           "mix-up." % (P, k, j, ans, area),
+            "check": ["Rational(%d*%d, %d) == %d" % (P, k, j, ans)],
+        })
+    return out
+
+
+def _split_fig(p, q, r, s):
+    c = 6.0 / max(p + q, r + s)
+    lb, lc = c * (p + q), c * (r + s)
+    bl, br = radians(240), radians(300)
+    ax, ay = 0.0, 6.0
+    bx, by = ax + lb * cos(bl), ay + lb * sin(bl)
+    cx, cy = ax + lc * cos(br), ay + lc * sin(br)
+    fb = p / float(p + q)
+    fc = r / float(r + s)
+    dx, dy = ax + fb * (bx - ax), ay + fb * (by - ay)
+    ex, ey = ax + fc * (cx - ax), ay + fc * (cy - ay)
+    return {
+        "points": [_pt("A", ax, ay, "A"), _pt("B", bx, by, "B"),
+                   _pt("C", cx, cy, "C"), _pt("D", dx, dy, "D"),
+                   _pt("E", ex, ey, "E")],
+        "objects": [
+            {"kind": "segment", "from": "A", "to": "D", "label": str(p)},
+            {"kind": "segment", "from": "D", "to": "B", "label": str(q)},
+            {"kind": "segment", "from": "A", "to": "E", "label": str(r)},
+            {"kind": "segment", "from": "E", "to": "C", "label": "?",
+             "color": "accent"},
+            {"kind": "segment", "from": "B", "to": "C"},
+            {"kind": "segment", "from": "D", "to": "E", "dashed": True,
+             "color": "blue"},
+        ],
+    }
+
+
+def gen2_split():
+    data = [(2, 3, 4), (3, 6, 5), (4, 2, 6), (5, 10, 4), (2, 5, 6),
+            (3, 4, 9), (6, 3, 8), (4, 6, 10), (2, 7, 4), (5, 4, 10),
+            (3, 9, 7), (4, 8, 5)]
+    out = []
+    for i, (p, q, r) in enumerate(data):
+        assert (q * r) % p == 0 and p != q
+        s = q * r // p
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(s), s),
+            [(L(Rational(p * r, q)), Rational(p * r, q)),
+             (intL(r + s), r + s), (intL(q), q)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "In $\\triangle ABC$, points $D$ and $E$ lie on "
+                         "sides $AB$ and $AC$ with $DE \\parallel BC$. If "
+                         "$AD = %d$, $DB = %d$, and $AE = %d$, find $EC$."
+                         % (p, q, r),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The parallel line splits the sides "
+                           "proportionally: $\\frac{EC}{%d} = \\frac{%d}{%d}"
+                           "$, so $EC = %d$. Inverting the proportion — the "
+                           "classic slip — gives $%s$."
+                           % (r, q, p, s, L(Rational(p * r, q))),
+            "check": ["Rational(%d*%d, %d) == %d" % (q, r, p, s)],
+            "geoFigure": _split_fig(p, q, r, s),
+        })
+    return out
+
+
+# --- right-triangles-and-trig -----------------------------------------------
+
+def gen2_pleg():
+    triples = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (7, 24, 25),
+               (9, 12, 15), (12, 16, 20), (20, 21, 29), (10, 24, 26),
+               (15, 20, 25), (9, 40, 41), (12, 35, 37)]
+    out = []
+    for i, (a, b, c) in enumerate(triples):
+        giv, ans = (a, b) if i % 2 == 0 else (b, a)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(c - giv), c - giv), (intL(c + giv), c + giv),
+             (intL(giv), giv)],
+            pos, latex_of=intL)
+        sc = 6.0 / max(giv, ans)
+        fig = {
+            "points": [_pt("P", 0, 0), _pt("Q", giv * sc, 0),
+                       _pt("R", 0, ans * sc)],
+            "hidePoints": ["P", "Q", "R"],
+            "objects": [
+                {"kind": "segment", "from": "P", "to": "Q",
+                 "label": str(giv)},
+                {"kind": "segment", "from": "P", "to": "R", "label": "?",
+                 "color": "accent"},
+                {"kind": "segment", "from": "Q", "to": "R",
+                 "label": str(c)},
+                {"kind": "angle", "at": "P", "from": "Q", "to": "R",
+                 "right": True},
+            ],
+        }
+        out.append({
+            "statement": "A right triangle has hypotenuse $%d$ and one leg "
+                         "$%d$. Find the other leg." % (c, giv),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Subtract SQUARES, then take the root: "
+                           "$\\sqrt{%d^2 - %d^2} = %d$. Subtracting the "
+                           "lengths themselves — the classic slip — gives "
+                           "$%d$." % (c, giv, ans, c - giv),
+            "check": ["sqrt(%d**2 - %d**2) == %d" % (c, giv, ans)],
+            "geoFigure": fig,
+        })
+    return out
+
+
+def gen2_trr():
+    data = [(3, 4, 5, "sin", 3), (6, 8, 10, "cos", 6), (5, 12, 13, "tan", 5),
+            (8, 15, 17, "sin", 15), (7, 24, 25, "cos", 24),
+            (20, 21, 29, "tan", 21), (9, 12, 15, "sin", 9),
+            (12, 16, 20, "cos", 12), (10, 24, 26, "tan", 24),
+            (15, 20, 25, "sin", 20), (9, 40, 41, "cos", 9),
+            (12, 35, 37, "tan", 35)]
+    words = {"sin": ("opposite leg", "hypotenuse"),
+             "cos": ("adjacent leg", "hypotenuse"),
+             "tan": ("opposite leg", "adjacent leg")}
+    out = []
+    for i, (a, b, c, fn, o) in enumerate(data):
+        adj = b if o == a else a
+        vals = {"sin": Rational(o, c), "cos": Rational(adj, c),
+                "tan": Rational(o, adj)}
+        correct = vals[fn]
+        all4 = [Rational(o, c), Rational(adj, c), Rational(o, adj),
+                Rational(adj, o)]
+        assert len(set(all4)) == 4
+        pos = i % 4
+        opts = ["$%s$" % L(v) for v in all4 if v != correct]
+        assert len(opts) == 3
+        opts.insert(pos, "$%s$" % L(correct))
+        assert len(set(opts)) == 4
+        num_w, den_w = words[fn]
+        out.append({
+            "statement": "A right triangle has legs $%d$ and $%d$ and "
+                         "hypotenuse $%d$. What is $\\%s$ of the acute "
+                         "angle opposite the side of length $%d$?"
+                         % (a, b, c, fn, o),
+            "options": opts, "correctIndex": pos,
+            "explanation": "$\\%s$ is %s over %s: $%s$. Swapping in the "
+                           "other leg (or inverting the fraction) is the "
+                           "classic mix-up." % (fn, num_w, den_w,
+                                                L(correct)),
+            "check": ["%d**2 + %d**2 == %d**2" % (a, b, c),
+                      "Rational(%d, %d) == Rational(%d, %d)"
+                      % ((o, c, correct.p, correct.q) if fn == "sin" else
+                         (adj, c, correct.p, correct.q) if fn == "cos" else
+                         (o, adj, correct.p, correct.q))],
+        })
+    return out
+
+
+# --- circles -----------------------------------------------------------------
+
+def gen2_arcd():
+    data = [(6, 60, 2), (9, 80, 4), (12, 45, 3), (15, 60, 5), (18, 50, 5),
+            (8, 90, 4), (9, 120, 6), (12, 105, 7), (20, 54, 6), (5, 144, 4),
+            (18, 110, 11), (24, 75, 10)]
+    out = []
+    for i, (r, d, k) in enumerate(data):
+        assert r * d == 180 * k and r != 2
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (piL(k), k * pi),
+            [(piL(2 * r), 2 * r * pi),
+             (piL(Rational(k, 2)), Rational(k, 2) * pi),
+             (piL(Rational(k * r, 2)), Rational(k * r, 2) * pi),
+             (piL(2 * k), 2 * k * pi),
+             (piL(k + 1), (k + 1) * pi)],
+            pos)
+        out.append({
+            "statement": "A circle has radius $%d$. Find the length of an "
+                         "arc with a central angle of $%d°$." % (r, d),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Take the fraction of the full circumference: "
+                           "$\\frac{%d}{360} \\cdot 2\\pi \\cdot %d = %s$. "
+                           "Multiplying by $\\pi r^2$ instead of $2\\pi r$ "
+                           "— the classic slip — computes a sector area, "
+                           "not a length." % (d, r, piL(k)),
+            "check": ["Rational(%d, 360)*2*pi*%d == %d*pi" % (d, r, k)],
+        })
+    return out
+
+
+def gen2_insc():
+    fwd = [44, 62, 88, 106, 134, 150, 170]
+    rev = [26, 37, 49, 58, 66]
+    out = []
+    idx = 0
+    for a in fwd:
+        ans = a // 2
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(a), a), (degL(2 * a), 2 * a), (degL(180 - a), 180 - a)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "A central angle of a circle measures $%d°$. Find "
+                         "the measure of an inscribed angle that subtends "
+                         "the same arc." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "An inscribed angle is HALF the central angle on "
+                           "the same arc: $%d° / 2 = %d°$. Keeping it equal "
+                           "at $%d°$ is the classic slip." % (a, ans, a),
+            "check": ["Rational(%d, 2) == %d" % (a, ans)],
+        })
+        idx += 1
+    for v in rev:
+        ans = 2 * v
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(v), v), (L(Rational(v, 2)) + "°", Rational(v, 2)),
+             (degL(180 - v), 180 - v)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "An inscribed angle of a circle measures $%d°$. "
+                         "Find the measure of the central angle that "
+                         "subtends the same arc." % v,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The central angle is TWICE the inscribed angle "
+                           "on the same arc: $2 \\cdot %d° = %d°$. Halving "
+                           "again is the classic reversal." % (v, ans),
+            "check": ["2*%d == %d" % (v, ans)],
+        })
+        idx += 1
+    return out
+
+
+# --- area-and-perimeter ------------------------------------------------------
+
+def gen2_parea():
+    data = [(8, 5), (9, 4), (12, 7), (10, 6), (7, 4), (14, 5), (11, 6),
+            (9, 8), (15, 4), (12, 9), (13, 6), (16, 7)]
+    out = []
+    for i, (b, h) in enumerate(data):
+        area = b * h
+        assert area != 2 * (b + h) and area % 2 == 0
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(area), area),
+            [(intL(2 * (b + h)), 2 * (b + h)),
+             (intL(area // 2), area // 2), (intL(b + h), b + h)],
+            pos, latex_of=intL)
+        sc = 6.0 / b
+        off = 0.4 * h * sc
+        fig = {
+            "points": [_pt("A", 0, 0), _pt("B", 6, 0),
+                       _pt("C", 6 + off, h * sc), _pt("D", off, h * sc),
+                       _pt("F", off, 0)],
+            "hidePoints": ["A", "B", "C", "D", "F"],
+            "objects": [
+                {"kind": "segment", "from": "A", "to": "B",
+                 "label": str(b)},
+                {"kind": "segment", "from": "B", "to": "C"},
+                {"kind": "segment", "from": "C", "to": "D"},
+                {"kind": "segment", "from": "D", "to": "A"},
+                {"kind": "segment", "from": "F", "to": "D", "dashed": True,
+                 "label": str(h), "color": "blue"},
+                {"kind": "angle", "at": "F", "from": "B", "to": "D",
+                 "right": True},
+            ],
+        }
+        out.append({
+            "statement": "A parallelogram has base $%d$ and height $%d$. "
+                         "Find its area." % (b, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Parallelogram area is base times height: "
+                           "$%d \\cdot %d = %d$. Computing $2(%d + %d) = "
+                           "%d$ — the classic slip — is a perimeter, not an "
+                           "area." % (b, h, area, b, h, 2 * (b + h)),
+            "check": ["%d*%d == %d" % (b, h, area)],
+            "geoFigure": fig,
+        })
+    return out
+
+
+def gen2_lshape():
+    data = [(10, 8, 4, 3), (12, 9, 5, 4), (9, 7, 3, 2), (14, 10, 6, 5),
+            (11, 8, 4, 2), (13, 9, 6, 3), (15, 12, 7, 4), (10, 6, 5, 2),
+            (16, 11, 8, 5), (8, 5, 2, 2), (18, 13, 9, 6), (12, 7, 4, 3)]
+    out = []
+    for i, (W, H, w, h) in enumerate(data):
+        assert w < W and h < H
+        ans = W * H - w * h
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(W * H), W * H), (intL(W * H + w * h), W * H + w * h),
+             (intL((W - w) * (H - h)), (W - w) * (H - h))],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "An L-shaped region is a $%d \\times %d$ rectangle "
+                         "with a $%d \\times %d$ rectangle removed from one "
+                         "corner. Find the area of the L-shape."
+                         % (W, H, w, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Subtract the notch from the full rectangle: "
+                           "$%d \\cdot %d - %d \\cdot %d = %d$. Forgetting "
+                           "to remove the notch — the classic slip — gives "
+                           "$%d$." % (W, H, w, h, ans, W * H),
+            "check": ["%d*%d - %d*%d == %d" % (W, H, w, h, ans)],
+        })
+    return out
+
+
+# --- transformations ---------------------------------------------------------
+
+def _rule_str(dx, dy):
+    def term(var, d):
+        return "%s %s %d" % (var, "+" if d >= 0 else "-", abs(d))
+    return "$(%s;\\ %s)$" % (term("x", dx), term("y", dy))
+
+
+def gen2_trule():
+    data = [(3, -4, 2, 5), (1, 6, 4, -3), (-2, 5, 3, -4), (-5, 2, -3, 6),
+            (4, -1, 5, 2), (0, 3, -2, -7), (6, -3, -4, 1), (-1, -6, 7, 3),
+            (2, 8, -5, 4), (-7, 1, 6, -2), (5, 5, -1, -8), (-3, -2, 4, 7)]
+    out = []
+    for i, (x1, y1, dx, dy) in enumerate(data):
+        assert dx != dy and dx != 0 and dy != 0 and dy != -dx
+        x2, y2 = x1 + dx, y1 + dy
+        pos = i % 4
+        correct = _rule_str(dx, dy)
+        wrongs = [_rule_str(-dx, -dy), _rule_str(dy, dx),
+                  _rule_str(dx, -dy)]
+        opts = wrongs[:]
+        opts.insert(pos, correct)
+        assert len(set(opts)) == 4
+        out.append({
+            "statement": "A translation maps $(%d; %d)$ to $(%d; %d)$. "
+                         "Which rule describes this translation?"
+                         % (x1, y1, x2, y2),
+            "options": opts, "correctIndex": pos,
+            "explanation": "Subtract image minus preimage: the shift is "
+                           "$(%d; %d)$, so the rule is %s. Subtracting in "
+                           "the reverse order — the classic slip — flips "
+                           "both signs." % (dx, dy, correct),
+            "check": ["(%d) + (%d) == (%d)" % (x1, dx, x2),
+                      "(%d) + (%d) == (%d)" % (y1, dy, y2)],
+        })
+    return out
+
+
+# --- coordinate-geometry -----------------------------------------------------
+
+def gen2_endp():
+    data = [(2, 3, 5, -1), (-4, 1, 0, 4), (5, -2, 1, 3), (-6, -3, -2, 2),
+            (7, 4, 3, -2), (1, -5, 4, -1), (-3, 6, 2, 1), (8, -1, 3, 4),
+            (-5, -4, -1, -1), (6, 2, -2, 5), (0, 7, 4, 3), (-8, 3, -3, -2)]
+    out = []
+    for i, (a1, a2, m1, m2) in enumerate(data):
+        bx, by = 2 * m1 - a1, 2 * m2 - a2
+        pos = i % 4
+        opts, ci = _pair_opts(
+            "endp", (bx, by),
+            [(2 * a1 - m1, 2 * a2 - m2), (m1 - a1, m2 - a2),
+             (m1 + a1, m2 + a2)], pos)
+        out.append({
+            "statement": "$M$ is the midpoint of segment $AB$. If "
+                         "$A = (%d; %d)$ and $M = (%d; %d)$, find $B$."
+                         % (a1, a2, m1, m2),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Double the midpoint, then subtract $A$: "
+                           "$B = (2 \\cdot %d - %d;\\ 2 \\cdot %d - %d) = "
+                           "(%d; %d)$. Doubling $A$ instead of $M$ is the "
+                           "classic slip." % (m1, a1, m2, a2, bx, by),
+            "check": ["Rational((%d) + (%d), 2) == (%d)" % (a1, bx, m1),
+                      "Rational((%d) + (%d), 2) == (%d)" % (a2, by, m2)],
+        })
+    return out
+
+
+NEW_FORMS_META_2 = [
+    ("number-line-midpoint", "Midpoint on a number line", 1, "GEO-nlmid",
+     "foundations", gen2_nlmid),
+    ("angle-bisector", "Angle bisectors", 1, "GEO-bis",
+     "foundations", gen2_bis),
+    ("angles-around-point", "Angles around a point", 2, "GEO-around",
+     "reasoning-and-proof", gen2_around),
+    ("linear-pair-solve", "Solving a linear pair", 2, "GEO-lps",
+     "reasoning-and-proof", gen2_lps),
+    ("transversal-adjacent", "Naming transversal angle pairs", 1,
+     "GEO-tradj", "parallel-and-perpendicular", gen2_tradj),
+    ("perpendicular-composition", "Splitting a right angle", 2, "GEO-perpc",
+     "parallel-and-perpendicular", gen2_perpc),
+    ("isosceles-angles", "Angles in an isosceles triangle", 1, "GEO-iso",
+     "triangles-and-congruence", gen2_iso),
+    ("congruent-parts", "Corresponding parts of congruent triangles", 2,
+     "GEO-congp", "triangles-and-congruence", gen2_congp),
+    ("third-side-count", "Counting possible third sides", 2, "GEO-tsc",
+     "relationships-in-triangles", gen2_tsc),
+    ("side-angle-order", "Ordering angles by opposite sides", 2, "GEO-sao",
+     "relationships-in-triangles", gen2_sao),
+    ("exterior-angle-regular", "Exterior angles of regular polygons", 1,
+     "GEO-extr", "quadrilaterals-and-polygons", gen2_extr),
+    ("quad-fourth-angle", "The fourth angle of a quadrilateral", 1, "GEO-q4",
+     "quadrilaterals-and-polygons", gen2_q4),
+    ("perimeter-ratio", "Perimeters of similar triangles", 2, "GEO-perim",
+     "similarity", gen2_perim),
+    ("side-splitter", "The side-splitter theorem", 3, "GEO-split",
+     "similarity", gen2_split),
+    ("pythagorean-leg", "Finding a leg with the Pythagorean theorem", 1,
+     "GEO-pleg", "right-triangles-and-trig", gen2_pleg),
+    ("trig-ratio-read", "Reading trig ratios from a right triangle", 2,
+     "GEO-trr", "right-triangles-and-trig", gen2_trr),
+    ("arc-length-deg", "Arc length from a degree measure", 2, "GEO-arcd",
+     "circles", gen2_arcd),
+    ("inscribed-angle", "Central and inscribed angles", 3, "GEO-insc",
+     "circles", gen2_insc),
+    ("parallelogram-area", "Parallelogram area", 1, "GEO-parea",
+     "area-and-perimeter", gen2_parea),
+    ("l-shape-area", "Area of an L-shape", 2, "GEO-lshape",
+     "area-and-perimeter", gen2_lshape),
+    ("translation-rule", "Finding the translation rule", 1, "GEO-trule",
+     "transformations", gen2_trule),
+    ("missing-endpoint", "Finding a missing endpoint", 2, "GEO-endp",
+     "coordinate-geometry", gen2_endp),
+]
+
+
+def _batch2_forms():
+    forms = []
+    for form_id, title, level, skill, unit, gen in NEW_FORMS_META_2:
+        raw = gen()
+        assert len(raw) >= 10, "%s: only %d variants" % (form_id, len(raw))
+        variants = []
+        for i, v in enumerate(raw):
+            vd = {"id": "%s-v%02d" % (skill, i + 1)}
+            vd.update(v)
+            variants.append(vd)
+        forms.append({"id": form_id, "title": title, "level": level,
+                      "skill": skill, "unit": unit, "variants": variants})
+    return forms
+
+
+_NEW_FORMS_BATCH1 = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 2 to the original set
+    """All unit-specific forms: the original batch plus batch 2 above."""
+    return _NEW_FORMS_BATCH1() + _batch2_forms()
+
+
+# --- batch-2 independent re-solvers ------------------------------------------
+
+def _r2_nlmid(s):
+    a = int(re.search(r"\$A = (-?\d+)\$", s).group(1))
+    b = int(re.search(r"\$B = (-?\d+)\$", s).group(1))
+    return ("num", Rational(a + b, 2))
+
+
+def _r2_bis(s):
+    m = re.search(r"\\angle AOC = (\d+)°", s)
+    if m:
+        return ("num", Rational(int(m.group(1)), 2))
+    h = int(re.search(r"\\angle AOB = (\d+)°", s).group(1))
+    return ("num", 2 * h)
+
+
+def _r2_around(s):
+    a, b = [int(x) for x in re.findall(r"\$(\d+)°\$", s)[:2]]
+    return ("num", 360 - a - b)
+
+
+def _r2_lps(s):
+    c = int(re.search(r"\(2x \+ (\d+)\)°", s).group(1))
+    d = int(re.search(r"\$\(x \+ (\d+)\)°", s).group(1))
+    return ("num", Rational(180 - c - d, 3))
+
+
+def _r2_tradj(s):
+    a = int(re.search(r"measures \$(\d+)°\$", s).group(1))
+    return ("num", a if "alternate exterior" in s else 180 - a)
+
+
+def _r2_perpc(s):
+    a = int(re.search(r"angles of \$(\d+)°\$ and \$x°\$", s).group(1))
+    return ("num", 90 - a)
+
+
+def _r2_iso(s):
+    m = re.search(r"vertex angle of \$(\d+)°\$", s)
+    if m:
+        return ("num", Rational(180 - int(m.group(1)), 2))
+    b = int(re.search(r"base angles of \$(\d+)°\$", s).group(1))
+    return ("num", 180 - 2 * b)
+
+
+def _r2_congp(s):
+    p = int(re.search(r"AB = (\d+)", s).group(1))
+    q = int(re.search(r"BC = (\d+)", s).group(1))
+    r = int(re.search(r"AC = (\d+)", s).group(1))
+    asked = re.search(r"Find \$([A-F]{2})\$", s).group(1)
+    return ("num", {"DE": p, "EF": q, "DF": r}[asked])
+
+
+def _r2_tsc(s):
+    a, b = [int(x) for x in
+            re.search(r"length \$(\d+)\$ and \$(\d+)\$", s).groups()]
+    return ("num", 2 * min(a, b) - 1)
+
+
+def _r2_sao(s):
+    p = int(re.search(r"AB = (\d+)", s).group(1))
+    q = int(re.search(r"BC = (\d+)", s).group(1))
+    r = int(re.search(r"AC = (\d+)", s).group(1))
+    # angle A opposite BC(q), angle B opposite AC(r), angle C opposite AB(p)
+    letter = {q: "A", r: "B", p: "C"}[max(p, q, r)]
+    return ("opt", "$\\angle %s$" % letter)
+
+
+def _r2_extr(s):
+    m = re.search(r"\$(\d+)\$-gon", s)
+    if m:
+        return ("num", Rational(360, int(m.group(1))))
+    e = int(re.search(r"measures \$(\d+)°\$", s).group(1))
+    return ("num", Rational(360, e))
+
+
+def _r2_q4(s):
+    a, b, c = [int(x) for x in re.findall(r"\$(\d+)°\$", s)]
+    return ("num", 360 - a - b - c)
+
+
+def _r2_perim(s):
+    j, k = [int(x) for x in
+            re.search(r"ratio \$(\d+) : (\d+)\$", s).groups()]
+    P = int(re.search(r"perimeter \$(\d+)\$", s).group(1))
+    return ("num", Rational(P * k, j))
+
+
+def _r2_split(s):
+    p = int(re.search(r"AD = (\d+)", s).group(1))
+    q = int(re.search(r"DB = (\d+)", s).group(1))
+    r = int(re.search(r"AE = (\d+)", s).group(1))
+    return ("num", Rational(q * r, p))
+
+
+def _r2_pleg(s):
+    c = int(re.search(r"hypotenuse \$(\d+)\$", s).group(1))
+    g = int(re.search(r"one leg \$(\d+)\$", s).group(1))
+    return ("num", sqrt(c ** 2 - g ** 2))
+
+
+def _r2_trr(s):
+    a, b = [int(x) for x in
+            re.search(r"legs \$(\d+)\$ and \$(\d+)\$", s).groups()]
+    c = int(re.search(r"hypotenuse \$(\d+)\$", s).group(1))
+    fn = re.search(r"\\(sin|cos|tan)", s).group(1)
+    o = int(re.search(r"length \$(\d+)\$", s).group(1))
+    adj = b if o == a else a
+    val = {"sin": Rational(o, c), "cos": Rational(adj, c),
+           "tan": Rational(o, adj)}[fn]
+    return ("opt", "$%s$" % L(val))
+
+
+def _r2_arcd(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    d = int(re.search(r"central angle of \$(\d+)°\$", s).group(1))
+    return ("num", Rational(d, 360) * 2 * pi * r)
+
+
+def _r2_insc(s):
+    a = int(re.search(r"measures \$(\d+)°\$", s).group(1))
+    if "Find the measure of an inscribed angle" in s:
+        return ("num", Rational(a, 2))
+    return ("num", 2 * a)
+
+
+def _r2_parea(s):
+    b = int(re.search(r"base \$(\d+)\$", s).group(1))
+    h = int(re.search(r"height \$(\d+)\$", s).group(1))
+    return ("num", b * h)
+
+
+def _r2_lshape(s):
+    (W, H), (w, h) = [(int(x), int(y)) for x, y in
+                      re.findall(r"\$(\d+) \\times (\d+)\$", s)]
+    return ("num", W * H - w * h)
+
+
+def _r2_trule(s):
+    (x1, y1), (x2, y2) = [(int(x), int(y)) for x, y in
+                          re.findall(r"\((-?\d+); (-?\d+)\)", s)]
+    return ("opt", _rule_str(x2 - x1, y2 - y1))
+
+
+def _r2_endp(s):
+    (a1, a2), (m1, m2) = [(int(x), int(y)) for x, y in
+                          re.findall(r"\((-?\d+); (-?\d+)\)", s)]
+    return ("opt", _pair_str(2 * m1 - a1, 2 * m2 - a2))
+
+
+RESOLVERS.update({
+    "number-line-midpoint": _r2_nlmid,
+    "angle-bisector": _r2_bis,
+    "angles-around-point": _r2_around,
+    "linear-pair-solve": _r2_lps,
+    "transversal-adjacent": _r2_tradj,
+    "perpendicular-composition": _r2_perpc,
+    "isosceles-angles": _r2_iso,
+    "congruent-parts": _r2_congp,
+    "third-side-count": _r2_tsc,
+    "side-angle-order": _r2_sao,
+    "exterior-angle-regular": _r2_extr,
+    "quad-fourth-angle": _r2_q4,
+    "perimeter-ratio": _r2_perim,
+    "side-splitter": _r2_split,
+    "pythagorean-leg": _r2_pleg,
+    "trig-ratio-read": _r2_trr,
+    "arc-length-deg": _r2_arcd,
+    "inscribed-angle": _r2_insc,
+    "parallelogram-area": _r2_parea,
+    "l-shape-area": _r2_lshape,
+    "translation-rule": _r2_trule,
+    "missing-endpoint": _r2_endp,
+})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = _remapped_forms() + new_forms()
