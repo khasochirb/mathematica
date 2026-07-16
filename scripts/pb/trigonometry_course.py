@@ -573,6 +573,767 @@ RESOLVERS["triangle-area-sine"] = _resolve_triangle_area_sine
 RESOLVERS["law-of-sines"] = _resolve_law_of_sines
 
 
+# ---------------------------------------------------------------------------
+# Appended forms (textbook-style exercise variety per unit)
+# ---------------------------------------------------------------------------
+
+from sympy import Symbol, tan  # noqa: E402  (appended-section imports)
+
+_X = Symbol("x")
+
+
+def _deg_kat(v):
+    return f"${v}°$"
+
+
+def _frac_kat(r):
+    """KaTeX for a reduced rational (used for cos C from three sides)."""
+    r = Rational(r)
+    if r.q == 1:
+        return f"${r.p}$"
+    if r.p < 0:
+        return f"$-\\frac{{{-r.p}}}{{{r.q}}}$"
+    return f"$\\frac{{{r.p}}}{{{r.q}}}$"
+
+
+# ---------------------------------------------------------------------------
+# Form F : find-the-angle  (unit: right-triangle-trigonometry)
+# ---------------------------------------------------------------------------
+
+# (pair, (c1, n1), (c2, n2), answer°) with side = c*sqrt(n); pair keys:
+# "oh" opposite/hypotenuse, "ah" adjacent/hypotenuse, "oa" opposite/adjacent.
+FANG = [
+    ("oh", (5, 1), (10, 1), 30),
+    ("ah", (5, 3), (10, 1), 30),
+    ("oa", (7, 1), (7, 1), 45),
+    ("oh", (4, 3), (8, 1), 60),
+    ("ah", (6, 1), (12, 1), 60),
+    ("oh", (9, 1), (9, 2), 45),
+    ("oa", (4, 1), (4, 3), 30),
+    ("oa", (6, 3), (6, 1), 60),
+    ("ah", (7, 2), (14, 1), 45),
+    ("oh", (8, 1), (16, 1), 30),
+    ("ah", (10, 1), (20, 1), 60),
+    ("oa", (11, 1), (11, 1), 45),
+]
+
+
+def _side_kat(c, n):
+    return f"{c}" if n == 1 else f"{c}\\sqrt{{{n}}}"
+
+
+def _side_py(c, n):
+    return f"{c}" if n == 1 else f"{c}*sqrt({n})"
+
+
+def build_find_the_angle():
+    variants = []
+    for i, (pair, s1, s2, ans) in enumerate(FANG):
+        k1, k2 = _side_kat(*s1), _side_kat(*s2)
+        if pair == "oh":
+            stmt = (f"In a right triangle, the side opposite angle $\\theta$ "
+                    f"has length ${k1}$ and the hypotenuse has length ${k2}$. "
+                    f"Find $\\theta$.")
+            fn, names = "sin", ("opposite", "hypotenuse")
+        elif pair == "ah":
+            stmt = (f"In a right triangle, the side adjacent to angle "
+                    f"$\\theta$ has length ${k1}$ and the hypotenuse has "
+                    f"length ${k2}$. Find $\\theta$.")
+            fn, names = "cos", ("adjacent", "hypotenuse")
+        else:
+            stmt = (f"In a right triangle, the side opposite angle $\\theta$ "
+                    f"has length ${k1}$ and the side adjacent to $\\theta$ "
+                    f"has length ${k2}$. Find $\\theta$.")
+            fn, names = "tan", ("opposite", "adjacent")
+        others = [d for d in (30, 45, 60) if d != ans]
+        distractors = [_deg_kat(others[0]), _deg_kat(others[1]),
+                       _deg_kat(90)]
+        opts, ci = place(_deg_kat(ans), distractors, i)
+        wrong_fn = {"sin": "cosine", "cos": "sine", "tan": "the inverted ratio"}[fn]
+        expl = (f"{names[0].capitalize()}/{names[1]} is $\\{fn}\\theta = "
+                f"\\frac{{{k1}}}{{{k2}}}$ — a special-triangle ratio, so "
+                f"$\\theta = {ans}°$. Reading the ratio as {wrong_fn} and "
+                f"landing on the complementary angle is the classic slip.")
+        variants.append({
+            "id": f"TRIG-fang-v{i+1:02d}",
+            "statement": stmt,
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"{fn}(rad({ans})) == ({_side_py(*s1)})/({_side_py(*s2)})"],
+        })
+    return variants
+
+
+def _resolve_find_the_angle(s):
+    vals = []
+    for c, n in re.findall(r"length \$(\d+)(?:\\sqrt\{(\d+)\})?\$", s):
+        v = Integer(int(c))
+        if n:
+            v = v * sqrt(int(n))
+        vals.append(v)
+    v1, v2 = vals
+    if "hypotenuse" in s:
+        fn = sin if "opposite" in s else cos
+    else:
+        fn = tan
+    for d in (30, 45, 60):
+        if simplify(v1 - v2 * fn(rad(d))) == 0:
+            return ("opt", _deg_kat(d))
+    raise ValueError("no special angle matches %r" % s)
+
+
+# ---------------------------------------------------------------------------
+# Form G : elevation-depression  (unit: right-triangle-trigonometry)
+# ---------------------------------------------------------------------------
+
+# (angle°, distance in m) — d divisible by 3 for 30° so the height is k√3.
+ELEV = [(30, 12), (45, 25), (60, 10), (30, 30), (45, 40), (60, 7),
+        (30, 45), (45, 60), (60, 20), (30, 9), (45, 18), (60, 15)]
+
+
+def build_elevation_depression():
+    variants = []
+    for i, (t, d) in enumerate(ELEV):
+        h = simplify(d * tan(rad(t)))
+        correct_kat = surd_kat(h)
+        if t == 30:
+            rhs = f"{d // 3}*sqrt(3)"
+        elif t == 45:
+            rhs = f"{d}"
+        else:
+            rhs = f"{d}*sqrt(3)"
+        cand_v = [simplify(d * tan(rad(90 - t))), Integer(d), Integer(2 * d),
+                  simplify(d * sin(rad(t))), simplify(d * cos(rad(t))),
+                  simplify(d * sqrt(3)), Rational(d, 2)]
+        cand = [(surd_kat(v), v) for v in cand_v]
+        distractors = pick_numeric(h, cand)
+        opts, ci = place(correct_kat, distractors, i)
+        if i % 2 == 0:
+            stmt = (f"An observer stands ${d}$ m from the base of a tower, "
+                    f"and the angle of elevation to the top of the tower is "
+                    f"${t}°$. Find the height of the tower (in m).")
+            expl = (f"Height $=$ distance $\\times \\tan\\theta = {d}\\tan "
+                    f"{t}° = {correct_kat.strip('$')}$ m, since tangent links "
+                    f"the opposite (height) to the adjacent (distance). "
+                    f"Dividing by the tangent instead of multiplying is the "
+                    f"classic slip.")
+        else:
+            stmt = (f"From the top of a cliff, the angle of depression to a "
+                    f"boat ${d}$ m from the base of the cliff is ${t}°$. "
+                    f"Find the height of the cliff (in m).")
+            expl = (f"The angle of depression equals the angle of elevation "
+                    f"from the boat (alternate angles), so height $= "
+                    f"{d}\\tan {t}° = {correct_kat.strip('$')}$ m. Dividing "
+                    f"by the tangent instead of multiplying is the classic "
+                    f"slip.")
+        variants.append({
+            "id": f"TRIG-elev-v{i+1:02d}",
+            "statement": stmt,
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"{d}*tan(rad({t})) == {rhs}"],
+        })
+    return variants
+
+
+def _resolve_elevation_depression(s):
+    d = int(re.search(r"\$(\d+)\$ m from the base", s).group(1))
+    t = int(re.search(r"is \$(\d+)°\$", s).group(1))
+    return ("num", d * tan(rad(t)))
+
+
+# ---------------------------------------------------------------------------
+# Form H : exact-value-combo  (unit: special-triangles-and-exact-values)
+# ---------------------------------------------------------------------------
+
+_HALF = Rational(1, 2)
+
+# (a, op, b, correct_kat, check_rhs, [(distractor_kat, value), ...])
+COMBO = [
+    (30, "+", 60, "$1$", "1",
+     [("$\\frac{1}{2}$", _HALF), ("$\\sqrt{3}$", sqrt(3)), ("$0$", Integer(0))]),
+    (60, "+", 30, "$\\sqrt{3}$", "sqrt(3)",
+     [("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2), ("$1$", Integer(1)),
+      ("$\\frac{3}{2}$", Rational(3, 2))]),
+    (45, "+", 45, "$\\sqrt{2}$", "sqrt(2)",
+     [("$1$", Integer(1)), ("$\\frac{\\sqrt{2}}{2}$", sqrt(2) / 2),
+      ("$2$", Integer(2))]),
+    (30, "-", 60, "$0$", "0",
+     [("$1$", Integer(1)), ("$\\frac{1}{2}$", _HALF),
+      ("$-\\frac{1}{2}$", -_HALF)]),
+    (45, "+", 30, "$\\frac{\\sqrt{2}+\\sqrt{3}}{2}$", "(sqrt(2)+sqrt(3))/2",
+     [("$\\frac{\\sqrt{2}+1}{2}$", (sqrt(2) + 1) / 2),
+      ("$\\sqrt{2}+\\sqrt{3}$", sqrt(2) + sqrt(3)),
+      ("$\\frac{\\sqrt{5}}{2}$", sqrt(5) / 2)]),
+    (30, "+", 45, "$\\frac{1+\\sqrt{2}}{2}$", "(1+sqrt(2))/2",
+     [("$\\frac{\\sqrt{3}+\\sqrt{2}}{2}$", (sqrt(3) + sqrt(2)) / 2),
+      ("$1+\\sqrt{2}$", 1 + sqrt(2)), ("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2)]),
+    (90, "+", 60, "$\\frac{3}{2}$", "Rational(3,2)",
+     [("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2), ("$1$", Integer(1)),
+      ("$\\frac{1}{2}$", _HALF)]),
+    (45, "*", 45, "$\\frac{1}{2}$", "Rational(1,2)",
+     [("$1$", Integer(1)), ("$\\frac{\\sqrt{2}}{2}$", sqrt(2) / 2),
+      ("$\\frac{1}{4}$", Rational(1, 4))]),
+    (90, "*", 30, "$\\frac{\\sqrt{3}}{2}$", "sqrt(3)/2",
+     [("$0$", Integer(0)), ("$\\frac{1}{2}$", _HALF),
+      ("$\\frac{3}{4}$", Rational(3, 4))]),
+    (60, "-", 30, "$0$", "0",
+     [("$\\sqrt{3}$", sqrt(3)), ("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2),
+      ("$1$", Integer(1))]),
+    (30, "*", 0, "$\\frac{1}{2}$", "Rational(1,2)",
+     [("$0$", Integer(0)), ("$1$", Integer(1)),
+      ("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2)]),
+    (60, "+", 45, "$\\frac{\\sqrt{3}+\\sqrt{2}}{2}$", "(sqrt(3)+sqrt(2))/2",
+     [("$\\frac{1+\\sqrt{2}}{2}$", (1 + sqrt(2)) / 2),
+      ("$\\sqrt{3}+\\sqrt{2}$", sqrt(3) + sqrt(2)),
+      ("$\\frac{\\sqrt{5}}{2}$", sqrt(5) / 2)]),
+]
+
+_SINK = {0: "0", 30: "\\frac{1}{2}", 45: "\\frac{\\sqrt{2}}{2}",
+         60: "\\frac{\\sqrt{3}}{2}", 90: "1"}
+_COSK = {0: "1", 30: "\\frac{\\sqrt{3}}{2}", 45: "\\frac{\\sqrt{2}}{2}",
+         60: "\\frac{1}{2}", 90: "0"}
+
+
+def _combo_val(a, op, b):
+    v = {"+": sin(rad(a)) + cos(rad(b)),
+         "-": sin(rad(a)) - cos(rad(b)),
+         "*": sin(rad(a)) * cos(rad(b))}[op]
+    return simplify(v)
+
+
+def build_exact_value_combo():
+    variants = []
+    for i, (a, op, b, ckat, rhs, dists) in enumerate(COMBO):
+        val = _combo_val(a, op, b)
+        for dk, dv in dists:
+            assert simplify(dv - val) != 0, (a, op, b, dk)
+        assert len({dk for dk, _ in dists}) == 3
+        opk = {"+": "+", "-": "-", "*": "\\cdot"}[op]
+        pyop = {"+": "+", "-": "-", "*": "*"}[op]
+        opname = {"+": "sum", "-": "difference", "*": "product"}[op]
+        opts, ci = place(ckat, [dk for dk, _ in dists], i)
+        stmt = f"Compute exactly: $\\sin {a}° {opk} \\cos {b}°$."
+        expl = (f"$\\sin {a}° = {_SINK[a]}$ and $\\cos {b}° = {_COSK[b]}$, "
+                f"so the {opname} is ${ckat.strip('$')}$. Swapping the sine "
+                f"and cosine columns of the special-angle table is the "
+                f"classic wrong move.")
+        variants.append({
+            "id": f"TRIG-combo-v{i+1:02d}",
+            "statement": stmt,
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"sin(rad({a})) {pyop} cos(rad({b})) == {rhs}"],
+        })
+    return variants
+
+
+def _resolve_exact_value_combo(s):
+    m = re.search(r"\\sin (\d+)° (\+|-|\\cdot) \\cos (\d+)°", s)
+    a, opk, b = int(m.group(1)), m.group(2), int(m.group(3))
+    op = "*" if opk == "\\cdot" else opk
+    return ("num", _combo_val(a, op, b))
+
+
+# ---------------------------------------------------------------------------
+# Form I : tan-exact  (unit: special-triangles-and-exact-values)
+# ---------------------------------------------------------------------------
+
+# (angle°, check-rhs string, correct KaTeX)
+TANX = [
+    (30, "sqrt(3)/3", "$\\frac{\\sqrt{3}}{3}$"),
+    (45, "1", "$1$"),
+    (60, "sqrt(3)", "$\\sqrt{3}$"),
+    (120, "-sqrt(3)", "$-\\sqrt{3}$"),
+    (135, "-1", "$-1$"),
+    (150, "-sqrt(3)/3", "$-\\frac{\\sqrt{3}}{3}$"),
+    (210, "sqrt(3)/3", "$\\frac{\\sqrt{3}}{3}$"),
+    (225, "1", "$1$"),
+    (240, "sqrt(3)", "$\\sqrt{3}$"),
+    (300, "-sqrt(3)", "$-\\sqrt{3}$"),
+    (315, "-1", "$-1$"),
+    (330, "-sqrt(3)/3", "$-\\frac{\\sqrt{3}}{3}$"),
+]
+
+_TAN_POOL = [
+    ("$\\frac{\\sqrt{3}}{3}$", sqrt(3) / 3),
+    ("$-\\frac{\\sqrt{3}}{3}$", -sqrt(3) / 3),
+    ("$1$", Integer(1)),
+    ("$-1$", Integer(-1)),
+    ("$\\sqrt{3}$", sqrt(3)),
+    ("$-\\sqrt{3}$", -sqrt(3)),
+    ("$\\frac{1}{2}$", Rational(1, 2)),
+    ("$\\frac{\\sqrt{3}}{2}$", sqrt(3) / 2),
+]
+
+
+def _tan_quadrant(a):
+    if a < 90:
+        return 1, a
+    if a < 180:
+        return 2, 180 - a
+    if a < 270:
+        return 3, a - 180
+    return 4, 360 - a
+
+
+def build_tan_exact():
+    variants = []
+    for i, (a, rhs, ckat) in enumerate(TANX):
+        val = tan(rad(a))
+        # sign-flip trap first, then the rest of the pool
+        cand = ([p for p in _TAN_POOL if simplify(p[1] + val) == 0] +
+                [p for p in _TAN_POOL if simplify(p[1] + val) != 0])
+        distractors = pick_numeric(val, cand)
+        opts, ci = place(ckat, distractors, i)
+        q, ref = _tan_quadrant(a)
+        if q == 1:
+            expl = (f"From the special triangles, $\\tan {a}° = "
+                    f"{ckat.strip('$')}$. Mixing up $\\tan 30° = "
+                    f"\\frac{{\\sqrt{{3}}}}{{3}}$ with $\\tan 60° = "
+                    f"\\sqrt{{3}}$ is the classic slip.")
+        else:
+            sign = "positive" if q == 3 else "negative"
+            expl = (f"The reference angle of ${a}°$ is ${ref}°$ and tangent "
+                    f"is {sign} in QI{'I' * (q - 1)}, so $\\tan {a}° = "
+                    f"{ckat.strip('$')}$. Dropping (or flipping) the "
+                    f"quadrant sign is the classic slip.")
+        variants.append({
+            "id": f"TRIG-tanx-v{i+1:02d}",
+            "statement": f"Evaluate exactly: $\\tan {a}°$.",
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"tan(rad({a})) == {rhs}"],
+        })
+    return variants
+
+
+def _resolve_tan_exact(s):
+    a = int(re.search(r"\\tan (\d+)°", s).group(1))
+    return ("num", tan(rad(a)))
+
+
+# ---------------------------------------------------------------------------
+# Form J : coterminal  (unit: radians-and-the-unit-circle)
+# ---------------------------------------------------------------------------
+
+COT_A = [380, 495, 750, 1000, 1230, 1500, -30, -135, -300, -450, -560, -700]
+
+
+def build_coterminal():
+    variants = []
+    for i, a in enumerate(COT_A):
+        r = a % 360
+        cand_v = [360 - r, (r + 180) % 360, a - 360, a + 360,
+                  abs(a) % 360, r + 360]
+        cand = [(_deg_kat(v), Integer(v)) for v in cand_v]
+        distractors = pick_numeric(Integer(r), cand)
+        opts, ci = place(_deg_kat(r), distractors, i)
+        k = abs((a - r) // 360)
+        if a > 0:
+            expl = (f"Subtract full turns: ${a}° - {k} \\cdot 360° = {r}°$. "
+                    f"Stopping after a single subtraction (${a - 360}°$) is "
+                    f"the classic slip.")
+        else:
+            expl = (f"Add full turns: ${a}° + {k} \\cdot 360° = {r}°$. "
+                    f"Dropping the minus sign and reducing ${-a}°$ instead "
+                    f"is the classic slip.")
+        variants.append({
+            "id": f"TRIG-cot-v{i+1:02d}",
+            "statement": (f"Which angle in $[0°, 360°)$ is coterminal "
+                          f"with ${a}°$?"),
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"Rational({a} - {r}, 360) == {(a - r) // 360}"],
+        })
+    return variants
+
+
+def _resolve_coterminal(s):
+    a = int(re.search(r"coterminal with \$(-?\d+)°\$", s).group(1))
+    return ("num", Integer(a % 360))
+
+
+# ---------------------------------------------------------------------------
+# Form K : reference-angle  (unit: radians-and-the-unit-circle)
+# ---------------------------------------------------------------------------
+
+REF_A = [120, 135, 155, 100, 200, 210, 225, 250, 300, 310, 330, 340]
+
+
+def _ref_angle(a):
+    if a < 180:
+        return 180 - a, f"180° - {a}°", f"180 - {a}"
+    if a < 270:
+        return a - 180, f"{a}° - 180°", f"{a} - 180"
+    return 360 - a, f"360° - {a}°", f"360 - {a}"
+
+
+def build_reference_angle():
+    variants = []
+    for i, a in enumerate(REF_A):
+        r, rule_kat, rule_py = _ref_angle(a)
+        q = "QII" if a < 180 else ("QIII" if a < 270 else "QIV")
+        cand_v = [360 - a, a - 180, 180 - a, a % 90, a - 90, a - 270,
+                  90 - r, a]  # last resort: the angle itself, un-referenced
+        cand = [(_deg_kat(v), Integer(v)) for v in cand_v]
+        distractors = pick_numeric(Integer(r), cand)
+        opts, ci = place(_deg_kat(r), distractors, i)
+        wrong = {"QII": f"$360° - {a}°$ (the QIV rule)",
+                 "QIII": f"$180° - {a}°$ (the QII rule)",
+                 "QIV": f"${a}° - 180°$ (the QIII rule)"}[q]
+        expl = (f"${a}°$ lies in {q}, so its reference angle — the acute "
+                f"angle to the x-axis — is ${rule_kat} = {r}°$. Using "
+                f"{wrong} is the classic slip.")
+        variants.append({
+            "id": f"TRIG-ref-v{i+1:02d}",
+            "statement": f"Find the reference angle of ${a}°$.",
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"{rule_py} == {r}"],
+        })
+    return variants
+
+
+def _resolve_reference_angle(s):
+    a = int(re.search(r"reference angle of \$(\d+)°\$", s).group(1))
+    return ("num", Integer(_ref_angle(a)[0]))
+
+
+# ---------------------------------------------------------------------------
+# Form L : midline  (unit: graphs-of-trig-functions)
+# ---------------------------------------------------------------------------
+
+# (fn, A, B, C) with A != 0, C != 0, A != C so all four options stay distinct
+MIDL = [("sin", 3, 2, 1), ("cos", 2, 1, -3), ("sin", -4, 3, 2),
+        ("cos", 5, 2, -1), ("sin", 2, 4, 5), ("cos", -3, 1, 4),
+        ("sin", 4, 2, -2), ("cos", 6, 3, 1), ("sin", -2, 1, -5),
+        ("cos", 3, 4, 2), ("sin", 7, 2, 3), ("cos", -5, 1, 2)]
+
+
+def build_midline():
+    variants = []
+    for i, (fn, A, B, C) in enumerate(MIDL):
+        assert A not in (0, C) and C != 0, (A, C)
+        correct = f"$y = {C}$"
+        distractors = [f"$y = {A}$", f"$y = {C + A}$", f"$x = {C}$"]
+        opts, ci = place(correct, distractors, i)
+        line = "peaks" if A > 0 else "troughs"
+        expl = (f"The vertical shift $C = {C}$ sets the midline $y = {C}$, "
+                f"halfway between the maximum and minimum. Answering "
+                f"$y = {C + A}$ — the line through the {line} — is the "
+                f"classic slip.")
+        variants.append({
+            "id": f"TRIG-midl-v{i+1:02d}",
+            "statement": (f"What is the MIDLINE of the graph of "
+                          f"${wave_kat(fn, A, B, C)}$?"),
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"Rational(({C}+{abs(A)}) + ({C}-{abs(A)}), 2) == {C}"],
+        })
+    return variants
+
+
+def _resolve_midline(s):
+    _A, _B, C = _parse_wave(s)
+    return ("opt", f"$y = {C}$")
+
+
+# ---------------------------------------------------------------------------
+# Form M : phase-shift  (unit: graphs-of-trig-functions)
+# ---------------------------------------------------------------------------
+
+# (fn, sign in the argument, phi KaTeX, phi in degrees)
+PHASE = [
+    ("sin", "-", "45°", 45),
+    ("sin", "+", "30°", 30),
+    ("cos", "-", "60°", 60),
+    ("cos", "+", "90°", 90),
+    ("sin", "-", "\\frac{\\pi}{4}", 45),
+    ("sin", "+", "\\frac{\\pi}{6}", 30),
+    ("cos", "-", "\\frac{\\pi}{3}", 60),
+    ("cos", "+", "\\frac{\\pi}{2}", 90),
+    ("sin", "-", "\\frac{2\\pi}{3}", 120),
+    ("cos", "-", "30°", 30),
+    ("sin", "+", "\\frac{3\\pi}{4}", 135),
+    ("cos", "+", "60°", 60),
+]
+
+
+def build_phase_shift():
+    variants = []
+    for i, (fn, sgn, kat, deg) in enumerate(PHASE):
+        right = sgn == "-"
+        correct = f"${kat}$ to the {'right' if right else 'left'}"
+        distractors = [f"${kat}$ to the {'left' if right else 'right'}",
+                       f"${kat}$ upward", f"${kat}$ downward"]
+        opts, ci = place(correct, distractors, i)
+        if right:
+            expl = (f"Replacing $x$ by $x - {kat}$ moves the graph "
+                    f"${kat}$ to the RIGHT — changes inside the argument act "
+                    f"horizontally and in reverse. Reading the minus sign as "
+                    f"a leftward shift is the classic slip.")
+            chk = f"{fn}(rad(90) - rad({deg})) == {fn}(rad({90 - deg}))"
+        else:
+            expl = (f"Replacing $x$ by $x + {kat}$ moves the graph "
+                    f"${kat}$ to the LEFT — changes inside the argument act "
+                    f"horizontally and in reverse. Reading the plus sign as "
+                    f"a rightward shift is the classic slip.")
+            chk = f"{fn}(rad(90) + rad({deg})) == {fn}(rad({90 + deg}))"
+        variants.append({
+            "id": f"TRIG-phase-v{i+1:02d}",
+            "statement": (f"The graph of $y = \\{fn}\\left(x {sgn} "
+                          f"{kat}\\right)$ is obtained from the graph of "
+                          f"$y = \\{fn} x$ by which shift?"),
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [chk],
+        })
+    return variants
+
+
+def _resolve_phase_shift(s):
+    m = re.search(r"\\left\(x (\+|-) (.+?)\\right\)", s)
+    sgn, kat = m.group(1), m.group(2)
+    return ("opt", f"${kat}$ to the {'right' if sgn == '-' else 'left'}")
+
+
+# ---------------------------------------------------------------------------
+# Form N : cofunction  (unit: identities-and-equations)
+# ---------------------------------------------------------------------------
+
+COFN_A = [10, 15, 20, 25, 35, 40, 50, 55, 65, 70, 75, 80]
+
+
+def build_cofunction():
+    variants = []
+    for i, a in enumerate(COFN_A):
+        r = 90 - a
+        cand_v = [a, 180 - a, 90 + a, abs(45 - a)]
+        cand = [(_deg_kat(v), Integer(v)) for v in cand_v]
+        distractors = pick_numeric(Integer(r), cand)
+        opts, ci = place(_deg_kat(r), distractors, i)
+        if i % 2 == 0:
+            stmt = (f"If $\\sin {a}° = \\cos x°$ with $0 < x < 90$, "
+                    f"find $x°$.")
+            expl = (f"Cofunctions of complementary angles are equal: "
+                    f"$\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - "
+                    f"{a} = {r}$. Setting $x = {a}$ — treating sine and "
+                    f"cosine as the same function — is the classic slip.")
+            chk = f"simplify(sin(rad({a})) - cos(rad({r}))) == 0"
+        else:
+            stmt = (f"If $\\tan {a}° = \\cot x°$ with $0 < x < 90$, "
+                    f"find $x°$.")
+            expl = (f"Tangent and cotangent are cofunctions: "
+                    f"$\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - "
+                    f"{a} = {r}$. Setting $x = {a}$ — treating them as the "
+                    f"same function — is the classic slip.")
+            chk = f"simplify(tan(rad({a}))*tan(rad({r})) - 1) == 0"
+        variants.append({
+            "id": f"TRIG-cofn-v{i+1:02d}",
+            "statement": stmt,
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [chk],
+        })
+    return variants
+
+
+def _resolve_cofunction(s):
+    m = re.search(r"\\(?:sin|tan) (\d+)°", s)
+    return ("num", Integer(90 - int(m.group(1))))
+
+
+# ---------------------------------------------------------------------------
+# Form O : simplify-expression  (unit: identities-and-equations)
+# ---------------------------------------------------------------------------
+
+# (lhs KaTeX, lhs python, correct KaTeX, correct python, 3 distractor KaTeX,
+#  domain clause KaTeX or None, identity named in the explanation)
+SIMP = [
+    ("\\dfrac{1 - \\cos^2 x}{\\sin x}", "(1 - cos(x)**2)/sin(x)",
+     "$\\sin x$", "sin(x)", ["$\\cos x$", "$\\tan x$", "$\\sin^2 x$"],
+     "\\sin x \\neq 0",
+     "$1 - \\cos^2 x = \\sin^2 x$, then one factor of $\\sin x$ cancels"),
+    ("\\dfrac{1 - \\sin^2 x}{\\cos x}", "(1 - sin(x)**2)/cos(x)",
+     "$\\cos x$", "cos(x)", ["$\\sin x$", "$\\tan x$", "$\\cos^2 x$"],
+     "\\cos x \\neq 0",
+     "$1 - \\sin^2 x = \\cos^2 x$, then one factor of $\\cos x$ cancels"),
+    ("\\sin^2 x - 1", "sin(x)**2 - 1",
+     "$-\\cos^2 x$", "-cos(x)**2", ["$\\cos^2 x$", "$-\\sin^2 x$", "$1$"],
+     None,
+     "$\\sin^2 x - 1 = -(1 - \\sin^2 x) = -\\cos^2 x$; dropping the minus "
+     "sign is the classic slip"),
+    ("\\cos^2 x - 1", "cos(x)**2 - 1",
+     "$-\\sin^2 x$", "-sin(x)**2", ["$\\sin^2 x$", "$-\\cos^2 x$", "$-1$"],
+     None,
+     "$\\cos^2 x - 1 = -(1 - \\cos^2 x) = -\\sin^2 x$; dropping the minus "
+     "sign is the classic slip"),
+    ("\\dfrac{\\sin x \\cos x}{\\sin x}", "(sin(x)*cos(x))/sin(x)",
+     "$\\cos x$", "cos(x)", ["$\\sin x$", "$1$", "$\\sin x \\cos x$"],
+     "\\sin x \\neq 0",
+     "the common factor $\\sin x$ cancels; cancelling the wrong factor is "
+     "the classic slip"),
+    ("\\tan x \\cos x", "tan(x)*cos(x)",
+     "$\\sin x$", "sin(x)", ["$\\cos x$", "$\\tan x$", "$1$"],
+     "\\cos x \\neq 0",
+     "$\\tan x = \\frac{\\sin x}{\\cos x}$, so the $\\cos x$ cancels"),
+    ("\\dfrac{\\sin x}{\\tan x}", "sin(x)/tan(x)",
+     "$\\cos x$", "cos(x)", ["$\\sin x$", "$1$", "$\\cos^2 x$"],
+     "\\tan x \\neq 0",
+     "dividing by $\\tan x = \\frac{\\sin x}{\\cos x}$ multiplies by "
+     "$\\frac{\\cos x}{\\sin x}$; answering $1$ from a false cancellation "
+     "is the classic slip"),
+    ("1 - \\cos^2 x", "1 - cos(x)**2",
+     "$\\sin^2 x$", "sin(x)**2", ["$\\cos^2 x$", "$\\sin x$", "$-\\cos^2 x$"],
+     None,
+     "the Pythagorean identity $\\sin^2 x + \\cos^2 x = 1$ rearranges to "
+     "$1 - \\cos^2 x = \\sin^2 x$; forgetting the square (answering "
+     "$\\sin x$) is the classic slip"),
+    ("1 - \\sin^2 x", "1 - sin(x)**2",
+     "$\\cos^2 x$", "cos(x)**2", ["$\\sin^2 x$", "$\\cos x$", "$-\\sin^2 x$"],
+     None,
+     "the Pythagorean identity rearranges to $1 - \\sin^2 x = \\cos^2 x$; "
+     "forgetting the square (answering $\\cos x$) is the classic slip"),
+    ("\\tan^2 x \\cos^2 x", "tan(x)**2*cos(x)**2",
+     "$\\sin^2 x$", "sin(x)**2", ["$\\cos^2 x$", "$\\tan^2 x$", "$1$"],
+     "\\cos x \\neq 0",
+     "$\\tan^2 x = \\frac{\\sin^2 x}{\\cos^2 x}$, so the $\\cos^2 x$ "
+     "cancels"),
+    ("\\dfrac{\\sin^2 x}{1 - \\cos^2 x}", "sin(x)**2/(1 - cos(x)**2)",
+     "$1$", "1", ["$\\sin^2 x$", "$\\cos^2 x$", "$0$"],
+     "\\sin x \\neq 0",
+     "the denominator IS $\\sin^2 x$ by the Pythagorean identity, so the "
+     "quotient is $1$"),
+    ("\\dfrac{\\cos^2 x}{1 - \\sin^2 x}", "cos(x)**2/(1 - sin(x)**2)",
+     "$1$", "1", ["$\\cos^2 x$", "$\\sin^2 x$", "$0$"],
+     "\\cos x \\neq 0",
+     "the denominator IS $\\cos^2 x$ by the Pythagorean identity, so the "
+     "quotient is $1$"),
+]
+
+
+def build_simplify_expression():
+    variants = []
+    for i, (lk, lpy, ck, cpy, dists, clause, why) in enumerate(SIMP):
+        assert ck not in dists and len(set(dists)) == 3, lk
+        opts, ci = place(ck, dists, i)
+        stmt = f"Simplify: ${lk}$"
+        stmt += f" (assume ${clause}$)." if clause else "."
+        expl = f"Here {why}, leaving ${ck.strip('$')}$."
+        variants.append({
+            "id": f"TRIG-simp-v{i+1:02d}",
+            "statement": stmt,
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"simplify(({lpy}) - ({cpy})) == 0"],
+        })
+    return variants
+
+
+_SIMP_CANDS = [
+    (sin(_X), "$\\sin x$"), (cos(_X), "$\\cos x$"), (tan(_X), "$\\tan x$"),
+    (sin(_X) ** 2, "$\\sin^2 x$"), (cos(_X) ** 2, "$\\cos^2 x$"),
+    (-sin(_X) ** 2, "$-\\sin^2 x$"), (-cos(_X) ** 2, "$-\\cos^2 x$"),
+    (Integer(1), "$1$"),
+]
+
+
+def _simp_latex_to_expr(t):
+    from sympy import sympify
+    t = t.replace("\\dfrac", "\\frac")
+    for _ in range(4):
+        t2 = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"((\1)/(\2))", t)
+        if t2 == t:
+            break
+        t = t2
+    t = re.sub(r"\\(sin|cos|tan)\^2 x", r"\1(x)**2", t)
+    t = re.sub(r"\\(sin|cos|tan) x", r"\1(x)", t)
+    t = re.sub(r"\)\s+(sin|cos|tan)", r")*\1", t)
+    t = re.sub(r"(\d)\s+(sin|cos|tan)", r"\1*\2", t)
+    return sympify(t, locals={"x": _X})
+
+
+def _resolve_simplify_expression(s):
+    lhs = _simp_latex_to_expr(re.search(r"Simplify: \$(.+?)\$", s).group(1))
+    for cand, kat in _SIMP_CANDS:
+        if simplify(lhs - cand) == 0:
+            return ("opt", kat)
+    raise ValueError("no canonical simplification matches %r" % s)
+
+
+# ---------------------------------------------------------------------------
+# Form P : cos-from-sides  (unit: laws-of-sines-and-cosines)
+# ---------------------------------------------------------------------------
+
+# side triples (a, b, c) whose (a²+b²−c²)/(2ab) reduces to a clean fraction;
+# includes obtuse cases so cos C comes out negative.
+CFS = [(5, 7, 8), (4, 5, 6), (5, 6, 7), (7, 8, 9), (3, 5, 7), (2, 3, 4),
+       (4, 7, 9), (6, 7, 8), (5, 5, 6), (3, 7, 8), (2, 4, 5), (8, 9, 10)]
+
+
+def build_cos_from_sides():
+    variants = []
+    for i, (a, b, c) in enumerate(CFS):
+        assert a + b > c and a + c > b and b + c > a, (a, b, c)
+        r = Rational(a * a + b * b - c * c, 2 * a * b)
+        correct_kat = _frac_kat(r)
+        cand_v = [-r,                                              # sign flip
+                  Rational(a * a + b * b + c * c, 2 * a * b),      # added c²
+                  Rational(b * b + c * c - a * a, 2 * b * c),      # cos A
+                  Rational(a * a + b * b - c * c, a * b),          # forgot 2
+                  Rational(a * a + c * c - b * b, 2 * a * c)]      # cos B
+        cand = [(_frac_kat(v), v) for v in cand_v]
+        distractors = pick_numeric(r, cand)
+        opts, ci = place(correct_kat, distractors, i)
+        expl = (f"Law of cosines solved for the angle: $\\cos C = "
+                f"\\frac{{a^2 + b^2 - c^2}}{{2ab}} = "
+                f"\\frac{{{a * a} + {b * b} - {c * c}}}{{{2 * a * b}}} = "
+                f"{correct_kat.strip('$')}$. Adding $c^2$ instead of "
+                f"subtracting it flips the sign — the classic slip.")
+        variants.append({
+            "id": f"TRIG-cfs-v{i+1:02d}",
+            "statement": (f"A triangle has sides $a = {a}$, $b = {b}$, and "
+                          f"$c = {c}$. Find $\\cos C$, where $C$ is the "
+                          f"angle opposite side $c$."),
+            "options": opts,
+            "correctIndex": ci,
+            "explanation": expl,
+            "check": [f"Rational({a * a + b * b - c * c}, {2 * a * b}) "
+                      f"== Rational({r.p}, {r.q})"],
+        })
+    return variants
+
+
+def _resolve_cos_from_sides(s):
+    m = re.search(r"\$a = (\d+)\$, \$b = (\d+)\$, and \$c = (\d+)\$", s)
+    a, b, c = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return ("opt", _frac_kat(Rational(a * a + b * b - c * c, 2 * a * b)))
+
+
+RESOLVERS["find-the-angle"] = _resolve_find_the_angle
+RESOLVERS["elevation-depression"] = _resolve_elevation_depression
+RESOLVERS["exact-value-combo"] = _resolve_exact_value_combo
+RESOLVERS["tan-exact"] = _resolve_tan_exact
+RESOLVERS["coterminal"] = _resolve_coterminal
+RESOLVERS["reference-angle"] = _resolve_reference_angle
+RESOLVERS["midline"] = _resolve_midline
+RESOLVERS["phase-shift"] = _resolve_phase_shift
+RESOLVERS["cofunction"] = _resolve_cofunction
+RESOLVERS["simplify-expression"] = _resolve_simplify_expression
+RESOLVERS["cos-from-sides"] = _resolve_cos_from_sides
+
+
 def new_forms():
     """Unit-specific forms authored for this subject (appended by unit)."""
     return [
@@ -596,6 +1357,50 @@ def new_forms():
          "level": 3, "skill": "b = a·sin B / sin A — match each side to its opposite angle.",
          "unit": "laws-of-sines-and-cosines",
          "variants": build_law_of_sines()},
+        {"id": "find-the-angle", "title": "Find the angle from two sides",
+         "level": 2, "skill": "Match the side pair to sin, cos, or tan and recognize the special ratio.",
+         "unit": "right-triangle-trigonometry",
+         "variants": build_find_the_angle()},
+        {"id": "elevation-depression", "title": "Angles of elevation and depression",
+         "level": 2, "skill": "height = distance × tan θ — the tangent links opposite to adjacent.",
+         "unit": "right-triangle-trigonometry",
+         "variants": build_elevation_depression()},
+        {"id": "exact-value-combo", "title": "Combining exact values",
+         "level": 2, "skill": "Evaluate each special angle first, then add, subtract, or multiply.",
+         "unit": "special-triangles-and-exact-values",
+         "variants": build_exact_value_combo()},
+        {"id": "tan-exact", "title": "Exact values of tangent",
+         "level": 1, "skill": "tan is √3/3, 1, √3 at 30°, 45°, 60° — then attach the quadrant sign.",
+         "unit": "special-triangles-and-exact-values",
+         "variants": build_tan_exact()},
+        {"id": "coterminal", "title": "Coterminal angles",
+         "level": 1, "skill": "Add or subtract 360° until the angle lands in [0°, 360°).",
+         "unit": "radians-and-the-unit-circle",
+         "variants": build_coterminal()},
+        {"id": "reference-angle", "title": "Reference angles",
+         "level": 2, "skill": "The acute angle to the x-axis: 180°−a, a−180°, or 360°−a by quadrant.",
+         "unit": "radians-and-the-unit-circle",
+         "variants": build_reference_angle()},
+        {"id": "midline", "title": "Midline of a sinusoid",
+         "level": 1, "skill": "The vertical shift C sets the midline y = C.",
+         "unit": "graphs-of-trig-functions",
+         "variants": build_midline()},
+        {"id": "phase-shift", "title": "Phase shift",
+         "level": 3, "skill": "x − φ shifts right, x + φ shifts left — inside changes act in reverse.",
+         "unit": "graphs-of-trig-functions",
+         "variants": build_phase_shift()},
+        {"id": "cofunction", "title": "Cofunction identities",
+         "level": 2, "skill": "sin θ = cos(90° − θ): cofunctions of complements are equal.",
+         "unit": "identities-and-equations",
+         "variants": build_cofunction()},
+        {"id": "simplify-expression", "title": "One-step identity simplification",
+         "level": 3, "skill": "Use sin² + cos² = 1 and tan = sin/cos to collapse the expression.",
+         "unit": "identities-and-equations",
+         "variants": build_simplify_expression()},
+        {"id": "cos-from-sides", "title": "Cosine of an angle from three sides",
+         "level": 3, "skill": "cos C = (a² + b² − c²)/(2ab) — the law of cosines solved for the angle.",
+         "unit": "laws-of-sines-and-cosines",
+         "variants": build_cos_from_sides()},
     ]
 
 
