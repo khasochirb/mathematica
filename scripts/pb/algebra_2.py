@@ -829,7 +829,7 @@ def new_forms():
          "level": 2, "unit": "rational-functions",
          "skill": "Vertical: where the denominator dies. Horizontal (equal degrees): ratio of leading coefficients.",
          "variants": _gen_rational_features()},
-    ]
+    ] + _batch2_forms()
 
 
 RESOLVERS.update({
@@ -842,6 +842,868 @@ RESOLVERS.update({
     "rational-exponents": _rs_rational_exponents,
     "simplify-radical": _rs_simplify_radical,
     "rational-function-features": _rs_rational_features,
+})
+
+
+# =========================================================================
+# Batch 2 — textbook exercise-set forms (12-variant target, floor >= 10)
+# =========================================================================
+def _mk12(vid, statement, correct, distractors, i, explanation, check):
+    """Assembler for the 12-variant batch; same discipline as _mk."""
+    opts = [correct] + list(distractors)
+    assert len(set(opts)) == 4, "%s: option collision %r" % (vid, opts)
+    options, ci = _place(correct, distractors, i)
+    return {"id": vid, "statement": statement, "options": options,
+            "correctIndex": ci, "explanation": explanation, "check": check}
+
+
+def _floor12(name, variants):
+    """Batch-2 target is ~12 variants; hard floor is 10 (check_subject)."""
+    assert len(variants) >= 10, "%s: only %d variants" % (name, len(variants))
+    return variants
+
+
+# -------------------------------------------------------------------------
+# Form: shift-vertex (functions-and-transformations, level 1)
+# -------------------------------------------------------------------------
+def _gen_shift_vertex():
+    variants = []
+    for i, (h, k) in enumerate([(2, 5), (-3, 4), (1, -6), (-4, -2), (5, 3),
+                                (-1, 7), (3, -5), (-6, 1), (4, 6), (-2, -7),
+                                (7, -1), (-5, 2)]):
+        stmt = ("The graph of $y = %s^2%s$ has its vertex at which point?"
+                % (_sf(h), _pm(k)))
+        variants.append(_mk12(
+            "A2-shift-v%02d" % (i + 1), stmt,
+            "$(%d; %d)$" % (h, k),
+            ["$(%d; %d)$" % (-h, k), "$(%d; %d)$" % (h, -k),
+             "$(%d; %d)$" % (-h, -k)], i,
+            "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — "
+            "here $(%d; %d)$. The sign trap: reading $%s$ as $x = %d$ gives "
+            "$(%d; %d)$." % (h, k, _sf(h), -h, -h, k),
+            ["((%d) - (%d))**2 + (%d) == %d" % (h, h, k, k),
+             "((%d) + 1 - (%d))**2 + (%d) > %d" % (h, h, k, k)]))
+    return _floor12("shift-vertex", variants)
+
+
+def _rs_shift_vertex(s):
+    m = _re.search(r"\(x ([+-]) (\d+)\)\^2 ([+-]) (\d+)", s)
+    h = int(m.group(2)) * (-1 if m.group(1) == "+" else 1)
+    k = int(m.group(4)) * (1 if m.group(3) == "+" else -1)
+    return ("opt", "$(%d; %d)$" % (h, k))
+
+
+# -------------------------------------------------------------------------
+# Form: inverse-of-linear (functions-and-transformations, level 2)
+# -------------------------------------------------------------------------
+def _gen_inverse_linear():
+    cands = [(2, 3, 4), (3, -2, 5), (4, 1, -3), (5, 2, 2), (2, -5, 6),
+             (-2, 3, 4), (2, 7, -3), (3, 1, 6), (4, -3, 2), (5, 3, -1),
+             (2, -1, 8), (3, 5, 3), (6, 1, 2), (3, 4, 7)]
+    variants, i = [], 0
+    for (a, b, t) in cands:
+        if len(variants) >= 12:
+            break
+        c = a * t + b
+        d1 = Fraction(a * c + b)     # applied f again instead of undoing it
+        d2 = Fraction(c + b, a)      # sign slip on b
+        d3 = Fraction(c - b)         # forgot to divide by a
+        if not _distinct([Fraction(t), d1, d2, d3]):
+            continue
+        stmt = "If $f(x) = %dx%s$, find $f^{-1}(%d)$." % (a, _pm(b), c)
+        variants.append(_mk12(
+            "A2-invf-v%02d" % (len(variants) + 1), stmt,
+            "$%d$" % t, [_fr_tex(d1), _fr_tex(d2), _fr_tex(d3)], i,
+            "Undo $f$ in reverse: $f^{-1}(%d) = \\frac{%d - (%d)}{%d} = %d$. "
+            "Plugging $%d$ into $f$ itself — the classic inverse slip — "
+            "gives $%d$." % (c, c, b, a, t, c, a * c + b),
+            ["((%d) - (%d))/(%d) == %d" % (c, b, a, t),
+             "(%d)*(%d) + (%d) == %d" % (a, t, b, c)]))
+        i += 1
+    return _floor12("inverse-of-linear", variants)
+
+
+def _rs_inverse_linear(s):
+    import sympy as sp
+    m = _re.search(r"f\(x\) = (-?\d+)x ([+-]) (\d+)", s)
+    a = int(m.group(1))
+    b = int(m.group(3)) * (1 if m.group(2) == "+" else -1)
+    c = int(_re.search(r"f\^\{-1\}\((-?\d+)\)", s).group(1))
+    return ("num", sp.Rational(c - b, a))
+
+
+# -------------------------------------------------------------------------
+# Form: transform-point-function (functions-and-transformations, level 2)
+# -------------------------------------------------------------------------
+def _gen_transform_point():
+    specs = ([("k",) + t for t in [(3, 7, 4), (-2, 5, -3), (4, -1, 6),
+                                   (-5, -3, 2)]]
+             + [("h",) + t for t in [(2, 9, 3), (-4, 1, -2), (5, -6, 4),
+                                     (1, 2, -5)]]
+             + [("neg",) + t for t in [(3, 4, 0), (-2, 7, 0), (5, -3, 0),
+                                       (-6, -1, 0)]])
+    variants = []
+    for i, (mode, p, q, t) in enumerate(specs):
+        base = "The point $(%d; %d)$ lies on the graph of $y = f(x)$. " % (p, q)
+        if mode == "k":
+            stmt = base + ("Which point must lie on the graph of "
+                           "$y = f(x)%s$?" % _pm(t))
+            correct, dis = (p, q + t), [(p + t, q), (p, q - t), (p + t, q + t)]
+            expl = ("Adding $%d$ outside $f$ slides the graph vertically, so "
+                    "only the $y$-coordinate moves: $(%d; %d)$. Shifting the "
+                    "$x$-coordinate instead gives $(%d; %d)$ — the classic "
+                    "mix-up." % (t, p, q + t, p + t, q))
+            checks = ["(%d) + (%d) == %d" % (q, t, q + t)]
+        elif mode == "h":
+            stmt = base + ("Which point must lie on the graph of "
+                           "$y = f(%s)$?" % _xpm(-t))
+            correct, dis = (p + t, q), [(p - t, q), (p, q + t), (p + t, q + t)]
+            expl = ("Replacing $x$ by $%s$ shifts the graph %d unit(s) "
+                    "%s, so the point moves to $(%d; %d)$. Sliding it the "
+                    "other way to $(%d; %d)$ is the classic backwards slip."
+                    % (_xpm(-t), abs(t), "right" if t > 0 else "left",
+                       p + t, q, p - t, q))
+            checks = ["(%d) + (%d) == %d" % (p, t, p + t)]
+        else:
+            stmt = base + "Which point must lie on the graph of $y = -f(x)$?"
+            correct, dis = (p, -q), [(-p, q), (-p, -q), (p, q)]
+            expl = ("The minus in front of $f$ reflects the graph across the "
+                    "$x$-axis, flipping only the $y$-coordinate: $(%d; %d)$. "
+                    "Reflecting across the $y$-axis instead gives $(%d; %d)$."
+                    % (p, -q, -p, q))
+            checks = ["-(%d) == %d" % (q, -q)]
+        variants.append(_mk12(
+            "A2-tpf-v%02d" % (i + 1), stmt, "$(%d; %d)$" % correct,
+            ["$(%d; %d)$" % d for d in dis], i, expl, checks))
+    return _floor12("transform-point-function", variants)
+
+
+def _rs_transform_point(s):
+    m = _re.search(r"point \$\((-?\d+); (-?\d+)\)\$", s)
+    p, q = int(m.group(1)), int(m.group(2))
+    if "-f(x)" in s:
+        np_, nq = p, -q
+    else:
+        mk = _re.search(r"y = f\(x\) ([+-]) (\d+)\$", s)
+        if mk:
+            k = int(mk.group(2)) * (1 if mk.group(1) == "+" else -1)
+            np_, nq = p, q + k
+        else:
+            mh = _re.search(r"y = f\(x ([+-]) (\d+)\)\$", s)
+            inner = int(mh.group(2)) * (1 if mh.group(1) == "+" else -1)
+            np_, nq = p - inner, q
+    return ("opt", "$(%d; %d)$" % (np_, nq))
+
+
+# -------------------------------------------------------------------------
+# Form: conjugate-product (quadratics-and-complex-numbers, level 1)
+# -------------------------------------------------------------------------
+def _gen_conjugate_product():
+    pairs = [(3, 2), (4, 1), (5, 3), (2, 5), (6, 1), (1, 4), (7, 2), (3, 5),
+             (4, 3), (5, 2), (6, 5), (2, 3)]
+    variants = []
+    for i, (a, b) in enumerate(pairs):
+        ans = a * a + b * b
+        dvals = [a * a - b * b, (a + b) ** 2, a * a]
+        assert _distinct([ans] + dvals)
+        stmt = "Compute $(%s)(%s)$." % (_ctex(a, b), _ctex(a, -b))
+        variants.append(_mk12(
+            "A2-conj-v%02d" % (i + 1), stmt, "$%d$" % ans,
+            ["$%d$" % v for v in dvals], i,
+            "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and "
+            "$-(bi)^2 = +b^2$, so $%d + %d = %d$. Treating $i^2$ as $+1$ "
+            "gives $a^2 - b^2 = %d$." % (a * a, b * b, ans, a * a - b * b),
+            ["expand(((%d) + (%d)*I)*((%d) - (%d)*I)) == %d"
+             % (a, b, a, b, ans),
+             "(%d)**2 + (%d)**2 == %d" % (a, b, ans)]))
+    return _floor12("conjugate-product", variants)
+
+
+def _rs_conjugate_product(s):
+    import sympy as sp
+    m = _re.search(r"\$\(([^()]+)\)\(([^()]+)\)\$", s)
+    z = sp.expand(_parse_ctex(m.group(1)) * _parse_ctex(m.group(2)))
+    assert sp.im(z) == 0
+    return ("num", sp.re(z))
+
+
+# -------------------------------------------------------------------------
+# Form: complex-magnitude (quadratics-and-complex-numbers, level 2)
+# -------------------------------------------------------------------------
+def _gen_complex_magnitude():
+    pairs = [(3, 4), (6, 8), (5, 12), (8, 15), (7, 24), (20, 21), (9, 12),
+             (12, 16), (-3, 4), (6, -8), (-5, 12), (8, -15)]
+    variants = []
+    for i, (a, b) in enumerate(pairs):
+        c = math.isqrt(a * a + b * b)
+        assert c * c == a * a + b * b
+        dvals = [abs(a) + abs(b), a * a + b * b, max(abs(a), abs(b))]
+        assert _distinct([c] + dvals)
+        stmt = "Compute $|%s|$." % _ctex(a, b)
+        variants.append(_mk12(
+            "A2-cmag-v%02d" % (i + 1), stmt, "$%d$" % c,
+            ["$%d$" % v for v in dvals], i,
+            "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{%d + %d} = %d$ — "
+            "a Pythagorean pair. Adding $|a| + |b| = %d$ skips the squares, "
+            "and stopping at $%d$ forgets the square root."
+            % (a * a, b * b, c, abs(a) + abs(b), a * a + b * b),
+            ["sqrt((%d)**2 + (%d)**2) == %d" % (a, b, c),
+             "Abs((%d) + (%d)*I) == %d" % (a, b, c)]))
+    return _floor12("complex-magnitude", variants)
+
+
+def _rs_complex_magnitude(s):
+    import sympy as sp
+    m = _re.search(r"\$\|([^|$]+)\|\$", s)
+    return ("num", sp.Abs(_parse_ctex(m.group(1))))
+
+
+# -------------------------------------------------------------------------
+# Form: complex-add-scale (quadratics-and-complex-numbers, level 1)
+# -------------------------------------------------------------------------
+def _gen_complex_add_scale():
+    cands = [(2, 3, 2, 3, 1, -4), (3, 1, 5, 2, 4, -2), (2, -2, 3, 4, 1, 2),
+             (3, 2, -1, 2, -3, 5), (4, 1, 2, 3, 2, -3), (2, 5, -3, 3, -1, 4),
+             (3, -4, 2, 2, 5, 1), (2, 2, 7, 5, 1, -2), (4, -1, 3, 2, 3, 2),
+             (3, 3, -2, 4, -2, 1), (2, 6, 1, 3, 2, 3), (5, 1, -2, 2, -4, 3),
+             (2, -3, 4, 3, 5, -1), (3, 4, 3, 2, 1, 6), (4, 2, -5, 3, 3, 1),
+             (2, 7, 2, 4, -1, -3)]
+    variants, i = [], 0
+    for idx, (mm, a, b, nn, c, d) in enumerate(cands):
+        if len(variants) >= 12:
+            break
+        real, imag = mm * a + nn * c, mm * b + nn * d
+        part = "imaginary" if idx % 2 == 0 else "real"
+        if part == "imaginary":
+            correct, dvals = imag, [real, mm * b - nn * d, b + d]
+        else:
+            correct, dvals = real, [imag, mm * a - nn * c, a + c]
+        if not _distinct([correct] + dvals):
+            continue
+        stmt = ("Compute $%d(%s) + %d(%s)$. What is the %s part of the "
+                "result?" % (mm, _ctex(a, b), nn, _ctex(c, d), part))
+        fn = "im" if part == "imaginary" else "re"
+        variants.append(_mk12(
+            "A2-cadd-v%02d" % (len(variants) + 1), stmt, "$%d$" % correct,
+            ["$%d$" % v for v in dvals], i,
+            "Scale both parts of each number, then add: the result is "
+            "$%s$, whose %s part is $%d$. Forgetting to multiply the inner "
+            "parts by the scalars gives $%d$."
+            % (_ctex(real, imag), part,
+               correct, (b + d) if part == "imaginary" else (a + c)),
+            ["%s((%d)*((%d) + (%d)*I) + (%d)*((%d) + (%d)*I)) == %d"
+             % (fn, mm, a, b, nn, c, d, correct)]))
+        i += 1
+    return _floor12("complex-add-scale", variants)
+
+
+def _rs_complex_add_scale(s):
+    import sympy as sp
+    m = _re.search(r"\$(\d+)\(([^()]+)\) \+ (\d+)\(([^()]+)\)\$", s)
+    z = sp.expand(int(m.group(1)) * _parse_ctex(m.group(2))
+                  + int(m.group(3)) * _parse_ctex(m.group(4)))
+    return ("num", sp.im(z) if "imaginary part" in s else sp.re(z))
+
+
+# -------------------------------------------------------------------------
+# Form: circle-line-intersections (systems-and-nonlinear-models, level 2)
+# -------------------------------------------------------------------------
+def _gen_circle_line():
+    cases = [(5, 3), (5, 5), (5, 7), (4, -2), (4, 4), (4, -6), (6, -5),
+             (6, 6), (6, 8), (3, 2), (3, -3), (7, 10)]
+    variants = []
+    for i, (r, k) in enumerate(cases):
+        r2 = r * r
+        diff = r2 - k * k
+        count = 2 if diff > 0 else (1 if diff == 0 else 0)
+        stmt = ("How many points do the circle $x^2 + y^2 = %d$ and the "
+                "line $y = %d$ have in common?" % (r2, k))
+        if count == 2:
+            tail = ("$x = \\pm\\sqrt{%d}$ — two points. Four is impossible: "
+                    "a line meets a circle at most twice." % diff)
+        elif count == 1:
+            tail = ("only $x = 0$ — the line is tangent, one point. "
+                    "Counting $\\pm 0$ as two points is the classic slip.")
+        else:
+            tail = ("no real solutions — the line misses the circle "
+                    "entirely, zero points. Forgetting to compare $|%d|$ "
+                    "with the radius $%d$ is the classic slip." % (k, r))
+        sign = ">" if diff > 0 else ("==" if diff == 0 else "<")
+        variants.append(_mk12(
+            "A2-circ-v%02d" % (i + 1), stmt, "$%d$" % count,
+            ["$%d$" % v for v in (0, 1, 2, 4) if v != count], i,
+            "Substitute $y = %d$: $x^2 = %d - %d = %d$, giving %s"
+            % (k, r2, k * k, diff, tail),
+            ["(%d) - (%d)**2 %s 0" % (r2, k, sign),
+             "(%d)**2 == %d" % (r, r2)]))
+    return _floor12("circle-line-intersections", variants)
+
+
+def _rs_circle_line(s):
+    m = _re.search(r"x\^2 \+ y\^2 = (\d+)", s)
+    r2 = int(m.group(1))
+    k = int(_re.search(r"\$y = (-?\d+)\$", s).group(1))
+    d = r2 - k * k
+    return ("opt", "$%d$" % (2 if d > 0 else (1 if d == 0 else 0)))
+
+
+# -------------------------------------------------------------------------
+# Form: substitution-nonlinear (systems-and-nonlinear-models, level 3)
+# -------------------------------------------------------------------------
+def _gen_substitution_nonlinear():
+    pairs = [(5, -2), (4, -1), (6, -3), (3, -5), (7, -2), (2, -6), (8, -3),
+             (4, -7), (6, -1), (9, -4), (5, -8), (7, -4)]
+    variants = []
+    for i, (r, s2) in enumerate(pairs):
+        a, b = r + s2, -r * s2
+        dvals = [s2, a, -r]
+        assert _distinct([r] + dvals)
+        stmt = ("The parabola $y = x^2$ and the line $y = %dx%s$ intersect "
+                "at two points. What is the larger $x$-coordinate of an "
+                "intersection point?" % (a, _pm(b)))
+        quad = "x^2" + _ctm(-a, "x") + _ctm(-b, "")
+        variants.append(_mk12(
+            "A2-subnl-v%02d" % (i + 1), stmt, "$%d$" % r,
+            ["$%d$" % v for v in dvals], i,
+            "Set $x^2 = %dx%s$ and factor: $%s = %s%s = 0$, so $x = %d$ or "
+            "$x = %d$; the larger is $%d$. Grabbing the smaller root, $%d$, "
+            "is the classic slip."
+            % (a, _pm(b), quad, _sf(r), _sf(s2), r, s2, r, s2),
+            ["(%d)**2 == (%d)*(%d) + (%d)" % (r, a, r, b),
+             "expand((x - (%d))*(x - (%d))) == x**2 - (%d)*x - (%d)"
+             % (r, s2, a, b),
+             "(%d) > (%d)" % (r, s2)]))
+    return _floor12("substitution-nonlinear", variants)
+
+
+def _rs_substitution_nonlinear(s):
+    import sympy as sp
+    m = _re.search(r"\$y = (-?\d+)x ([+-]) (\d+)\$", s)
+    a = int(m.group(1))
+    b = int(m.group(3)) * (1 if m.group(2) == "+" else -1)
+    x = sp.Symbol("x")
+    return ("num", max(sp.solve(x**2 - a * x - b, x)))
+
+
+# -------------------------------------------------------------------------
+# Form: end-behavior (polynomial-functions, level 1)
+# -------------------------------------------------------------------------
+_ENDB = {(1, 0): "Rises to the right and rises to the left",
+         (1, 1): "Rises to the right and falls to the left",
+         (-1, 1): "Falls to the right and rises to the left",
+         (-1, 0): "Falls to the right and falls to the left"}
+
+
+def _gen_end_behavior():
+    cases = [(1, 2, " - 4x + 1", " - 4*x + 1"),
+             (2, 4, " - 3x^2 + 2", " - 3*x**2 + 2"),
+             (3, 6, " + x - 5", " + x - 5"),
+             (1, 3, " - 2x + 7", " - 2*x + 7"),
+             (2, 5, " + x^2 - 3", " + x**2 - 3"),
+             (4, 3, " - x^2 + 2", " - x**2 + 2"),
+             (-1, 2, " + 5x - 2", " + 5*x - 2"),
+             (-2, 4, " + x^3 - 1", " + x**3 - 1"),
+             (-3, 6, " - 2x + 4", " - 2*x + 4"),
+             (-1, 3, " + 4x - 6", " + 4*x - 6"),
+             (-2, 5, " - x^2 + 3", " - x**2 + 3"),
+             (-5, 3, " + 2x^2 - 1", " + 2*x**2 - 1")]
+    variants = []
+    for i, (a, n, ttex, tpy) in enumerate(cases):
+        lead = ("x^%d" % n if a == 1 else
+                "-x^%d" % n if a == -1 else "%dx^%d" % (a, n))
+        key = (1 if a > 0 else -1, n % 2)
+        correct = _ENDB[key]
+        dis = [v for k2, v in sorted(_ENDB.items()) if k2 != key]
+        right = "oo" if a > 0 else "-oo"
+        left = "oo" if (a > 0) == (n % 2 == 0) else "-oo"
+        ppy = "%d*x**%d%s" % (a, n, tpy)
+        variants.append(_mk12(
+            "A2-endb-v%02d" % (i + 1),
+            "Describe the end behavior of the graph of $p(x) = %s%s$."
+            % (lead, ttex),
+            correct, dis, i,
+            "The leading term $%s$ wins for large $|x|$: %s degree with a "
+            "%s coefficient means the graph %s. Reading end behavior off "
+            "the lower-order terms — which the leading term swamps — is "
+            "the classic mistake."
+            % (lead, "even" if n % 2 == 0 else "odd",
+               "positive" if a > 0 else "negative", correct.lower()),
+            ["limit(%s, x, oo) == %s" % (ppy, right),
+             "limit(%s, x, -oo) == %s" % (ppy, left)]))
+    return _floor12("end-behavior", variants)
+
+
+def _rs_end_behavior(s):
+    m = _re.search(r"p\(x\) = (-?\d*)x\^(\d+)", s)
+    g = m.group(1)
+    a = -1 if g == "-" else (1 if g == "" else int(g))
+    n = int(m.group(2))
+    return ("opt", _ENDB[(1 if a > 0 else -1, n % 2)])
+
+
+# -------------------------------------------------------------------------
+# Form: degree-of-product (polynomial-functions, level 1)
+# -------------------------------------------------------------------------
+def _gen_degree_product():
+    dcases = [
+        (3, 4, "(x^3 + 2x - 1)(x^4 - x + 5)",
+         "(x**3 + 2*x - 1)*(x**4 - x + 5)"),
+        (2, 5, "(x^2 - 3x + 2)(x^5 + x - 4)",
+         "(x**2 - 3*x + 2)*(x**5 + x - 4)"),
+        (4, 4, "(x^4 + x^2 - 3)(x^4 - 2x + 1)",
+         "(x**4 + x**2 - 3)*(x**4 - 2*x + 1)"),
+        (2, 3, "(x^2 + 5x + 6)(x^3 - x^2 + 2)",
+         "(x**2 + 5*x + 6)*(x**3 - x**2 + 2)"),
+        (3, 5, "(x^3 - 4x + 7)(x^5 + 2x^2 - 1)",
+         "(x**3 - 4*x + 7)*(x**5 + 2*x**2 - 1)"),
+        (4, 6, "(x^4 + 3x - 2)(x^6 - x^3 + 4)",
+         "(x**4 + 3*x - 2)*(x**6 - x**3 + 4)")]
+    lcases = [(3, 4, -2, 5), (5, 2, -3, 4), (-4, 3, 2, 6), (2, 3, -5, 2),
+              (-2, 5, 7, 3), (6, 2, -3, 5)]
+    variants, i = [], 0
+    for idx in range(6):
+        mdeg, ndeg, tex, py = dcases[idx]
+        ans = mdeg + ndeg
+        dvals = [mdeg * ndeg, max(mdeg, ndeg), ans - 1]
+        assert _distinct([ans] + dvals)
+        variants.append(_mk12(
+            "A2-degp-v%02d" % (len(variants) + 1),
+            "What is the degree of the product $%s$?" % tex,
+            "$%d$" % ans, ["$%d$" % v for v in dvals], i,
+            "Degrees add under multiplication: the leading terms multiply "
+            "to $x^{%d} \\cdot x^{%d} = x^{%d}$. Multiplying the degrees "
+            "to get $%d$ is the classic slip."
+            % (mdeg, ndeg, ans, mdeg * ndeg),
+            ["degree(expand(%s), x) == %d" % (py, ans),
+             "(%d) + (%d) == %d" % (mdeg, ndeg, ans)]))
+        i += 1
+        a, mdeg2, b, ndeg2 = lcases[idx]
+        ans2 = a * b
+        dvals2 = [-ans2, a + b, mdeg2 + ndeg2]
+        assert _distinct([ans2] + dvals2)
+        variants.append(_mk12(
+            "A2-degp-v%02d" % (len(variants) + 1),
+            "What is the leading coefficient of the product "
+            "$(%dx^%d)(%dx^%d)$?" % (a, mdeg2, b, ndeg2),
+            "$%d$" % ans2, ["$%d$" % v for v in dvals2], i,
+            "Coefficients multiply and exponents add: $(%d)(%d) = %d$ on "
+            "$x^{%d}$. Adding the coefficients gives $%d$, and $%d$ is the "
+            "degree — not the coefficient."
+            % (a, b, ans2, mdeg2 + ndeg2, a + b, mdeg2 + ndeg2),
+            ["(%d)*(%d) == %d" % (a, b, ans2),
+             "expand(((%d)*x**%d)*((%d)*x**%d)) == (%d)*x**%d"
+             % (a, mdeg2, b, ndeg2, ans2, mdeg2 + ndeg2)]))
+        i += 1
+    return _floor12("degree-of-product", variants)
+
+
+def _rs_degree_product(s):
+    if "leading coefficient" in s:
+        m = _re.search(r"\((-?\d+)x\^(\d+)\)\((-?\d+)x\^(\d+)\)", s)
+        return ("num", int(m.group(1)) * int(m.group(3)))
+    exps = [int(e) for e in _re.findall(r"\(x\^(\d+)", s)]
+    assert len(exps) == 2
+    return ("num", exps[0] + exps[1])
+
+
+# -------------------------------------------------------------------------
+# Form: zeros-multiplicity (polynomial-functions, level 2)
+# -------------------------------------------------------------------------
+def _gen_zeros_multiplicity():
+    tpairs = [(3, -1), (-2, 5), (4, 1), (-5, 2), (1, -4), (6, -2)]
+    spairs = [(2, 3), (-3, 5), (4, -1), (-2, -5), (5, 2), (-4, 3)]
+    variants, i = [], 0
+    for idx in range(6):
+        a, b = tpairs[idx]
+        variants.append(_mk12(
+            "A2-mult-v%02d" % (len(variants) + 1),
+            "The graph of $p(x) = %s^2%s$ touches (without crossing) the "
+            "$x$-axis at which zero?" % (_sf(a), _sf(b)),
+            "$x = %d$" % a,
+            ["$x = %d$" % b, "$x = %d$" % (-a), "$x = 0$"], i,
+            "The squared factor makes $x = %d$ a double zero, so the graph "
+            "touches and turns there; at $x = %d$ the single factor makes "
+            "it cross. Picking the crossing zero is the classic mix-up."
+            % (a, b),
+            ["rem((x - (%d))**2*(x - (%d)), (x - (%d))**2, x) == 0"
+             % (a, b, a),
+             "Abs((%d) - (%d)) > 0" % (a, b)]))
+        i += 1
+        a2, b2 = spairs[idx]
+        ans = a2 + b2
+        dvals = [2 * a2 + b2, -(a2 + b2), a2 * b2]
+        assert _distinct([ans] + dvals)
+        variants.append(_mk12(
+            "A2-mult-v%02d" % (len(variants) + 1),
+            "Find the sum of the distinct zeros of $p(x) = %s^2%s$."
+            % (_sf(a2), _sf(b2)),
+            "$%d$" % ans, ["$%d$" % v for v in dvals], i,
+            "The distinct zeros are $%d$ and $%d$, so the sum is $%d$. "
+            "Counting the double zero twice — as if multiplicity added a "
+            "root — gives $%d$." % (a2, b2, ans, 2 * a2 + b2),
+            ["(%d) + (%d) == %d" % (a2, b2, ans),
+             "((%d) - (%d))**2*((%d) - (%d)) == 0" % (a2, a2, a2, b2)]))
+        i += 1
+    return _floor12("zeros-multiplicity", variants)
+
+
+def _rs_zeros_multiplicity(s):
+    m = _re.search(r"\(x ([+-]) (\d+)\)\^2\(x ([+-]) (\d+)\)", s)
+    a = int(m.group(2)) * (1 if m.group(1) == "-" else -1)
+    b = int(m.group(4)) * (1 if m.group(3) == "-" else -1)
+    if "touches" in s:
+        return ("opt", "$x = %d$" % a)
+    return ("num", a + b)
+
+
+# -------------------------------------------------------------------------
+# Form: add-radicals (radicals-and-rational-exponents, level 1)
+# -------------------------------------------------------------------------
+def _gen_add_radicals():
+    cases = [(5, 2, 4, 3), (4, 3, 2, 2), (6, 2, 5, 5), (7, 3, 6, 2),
+             (2, 6, 3, 7), (8, 2, 7, 6), (3, 5, 4, 10), (9, 4, 6, 3),
+             (5, 4, 3, 11), (6, 3, 7, 13), (4, 2, 3, 5), (7, 2, 5, 6)]
+    variants = []
+    for i, (a, b, c, k) in enumerate(cases):
+        m = a + b - c
+        assert m >= 2
+        variants.append(_mk12(
+            "A2-radd-v%02d" % (i + 1),
+            "Simplify $%d\\sqrt{%d} + %d\\sqrt{%d} - %d\\sqrt{%d}$."
+            % (a, k, b, k, c, k),
+            "$%d\\sqrt{%d}$" % (m, k),
+            ["$%d\\sqrt{%d}$" % (a + b + c, k), "$%d$" % m,
+             "$%d\\sqrt{%d}$" % (m, 2 * k)], i,
+            "Like radicals combine through their coefficients: "
+            "$(%d + %d - %d)\\sqrt{%d} = %d\\sqrt{%d}$. Ignoring the minus "
+            "sign gives $%d\\sqrt{%d}$, and the radical itself never "
+            "disappears." % (a, b, c, k, m, k, a + b + c, k),
+            ["%d*sqrt(%d) + %d*sqrt(%d) - %d*sqrt(%d) == %d*sqrt(%d)"
+             % (a, k, b, k, c, k, m, k)]))
+    return _floor12("add-radicals", variants)
+
+
+def _rs_add_radicals(s):
+    m = _re.search(r"\$(\d+)\\sqrt\{(\d+)\} \+ (\d+)\\sqrt\{\d+\} - "
+                   r"(\d+)\\sqrt\{\d+\}\$", s)
+    a, k, b, c = (int(m.group(1)), int(m.group(2)), int(m.group(3)),
+                  int(m.group(4)))
+    return ("opt", "$%d\\sqrt{%d}$" % (a + b - c, k))
+
+
+# -------------------------------------------------------------------------
+# Form: multiply-radicals (radicals-and-rational-exponents, level 2)
+# -------------------------------------------------------------------------
+def _split_sq(n):
+    """n -> (m, r) with n = m^2 * r and r square-free."""
+    m, d = 1, 2
+    while d * d <= n:
+        while n % (d * d) == 0:
+            n //= d * d
+            m *= d
+        d += 1
+    return m, n
+
+
+def _gen_multiply_radicals():
+    cases = [(6, 8), (2, 6), (3, 6), (5, 10), (2, 10), (6, 10), (8, 10),
+             (3, 15), (2, 8), (3, 12), (2, 18), (6, 24)]
+    variants = []
+    for i, (a, b) in enumerate(cases):
+        prod = a * b
+        mm, nn = _split_sq(prod)
+        assert mm >= 2
+        stmt = "Simplify $\\sqrt{%d} \\cdot \\sqrt{%d}$." % (a, b)
+        if nn == 1:
+            correct = "$%d$" % mm
+            dis = ["$\\sqrt{%d}$" % (a + b), "$%d$" % prod, "$%d$" % (a + b)]
+            expl = ("Multiply under one radical: $\\sqrt{%d} \\cdot "
+                    "\\sqrt{%d} = \\sqrt{%d} = %d$. Adding the radicands to "
+                    "get $\\sqrt{%d}$ is the classic slip, and $%d$ forgets "
+                    "the square root." % (a, b, prod, mm, a + b, prod))
+            checks = ["sqrt(%d)*sqrt(%d) == %d" % (a, b, mm)]
+        else:
+            correct = "$%d\\sqrt{%d}$" % (mm, nn)
+            assert mm != nn
+            dis = ["$\\sqrt{%d}$" % (a + b), "$%d$" % prod,
+                   "$%d\\sqrt{%d}$" % (nn, mm)]
+            expl = ("Multiply under one radical, then pull out the square: "
+                    "$\\sqrt{%d} = \\sqrt{%d \\cdot %d} = %d\\sqrt{%d}$. "
+                    "Adding the radicands to get $\\sqrt{%d}$ is the "
+                    "classic slip." % (prod, mm * mm, nn, mm, nn, a + b))
+            checks = ["sqrt(%d)*sqrt(%d) == %d*sqrt(%d)" % (a, b, mm, nn)]
+        variants.append(_mk12("A2-rmul-v%02d" % (i + 1), stmt, correct,
+                              dis, i, expl, checks))
+    return _floor12("multiply-radicals", variants)
+
+
+def _rs_multiply_radicals(s):
+    m = _re.search(r"\\sqrt\{(\d+)\} \\cdot \\sqrt\{(\d+)\}", s)
+    mm, nn = _split_sq(int(m.group(1)) * int(m.group(2)))
+    if nn == 1:
+        return ("opt", "$%d$" % mm)
+    return ("opt", "$%d\\sqrt{%d}$" % (mm, nn))
+
+
+# -------------------------------------------------------------------------
+# Form: solve-radical (radicals-and-rational-exponents, level 2)
+# -------------------------------------------------------------------------
+def _gen_solve_radical():
+    cands = [(5, 4), (-3, 2), (7, 3), (6, 5), (1, 4), (10, 6), (-6, 3),
+             (-8, 2), (2, 6), (11, 4), (-4, 5), (9, 2), (3, 5), (12, 4)]
+    variants, i = [], 0
+    for (a, b) in cands:
+        if len(variants) >= 12:
+            break
+        ans = b * b - a
+        dvals = [b - a, a - b * b, (b - a) ** 2]
+        if not _distinct([ans] + dvals):
+            continue
+        variants.append(_mk12(
+            "A2-rsolve-v%02d" % (len(variants) + 1),
+            "Solve $\\sqrt{%s} = %d$ for $x$." % (_xpm(a), b),
+            "$%d$" % ans, ["$%d$" % v for v in dvals], i,
+            "Square both sides: $x%s = %d$, so $x = %d - (%d) = %d$. Moving "
+            "$%d$ across without squaring first gives $%d$."
+            % (_pm(a), b * b, b * b, a, ans, a, b - a),
+            ["sqrt((%d) + (%d)) == %d" % (ans, a, b),
+             "(%d)**2 - (%d) == %d" % (b, a, ans)]))
+        i += 1
+    return _floor12("solve-radical", variants)
+
+
+def _rs_solve_radical(s):
+    m = _re.search(r"\\sqrt\{x ([+-]) (\d+)\} = (\d+)", s)
+    a = int(m.group(2)) * (1 if m.group(1) == "+" else -1)
+    b = int(m.group(3))
+    return ("num", b * b - a)
+
+
+# -------------------------------------------------------------------------
+# Form: simplify-rational (rational-functions, level 2)
+# -------------------------------------------------------------------------
+def _gen_simplify_rational():
+    cands = [(3, 5), (2, 7), (4, 6), (5, 2), (3, -2), (6, 3), (2, -5),
+             (7, 4), (4, -3), (5, 9), (8, 2), (3, 10), (2, 9), (6, -1)]
+    variants, i = [], 0
+    for (k, c) in cands:
+        if len(variants) >= 12:
+            break
+        if c == k:
+            continue
+        ans = c + k
+        dvals = [c - k, c, c * k]
+        if not _distinct([ans] + dvals):
+            continue
+        variants.append(_mk12(
+            "A2-rsimp-v%02d" % (len(variants) + 1),
+            "Simplify $\\dfrac{x^2 - %d}{x - %d}$, then evaluate the result "
+            "at $x = %d$." % (k * k, k, c),
+            "$%d$" % ans, ["$%d$" % v for v in dvals], i,
+            "Factor the difference of squares and cancel: "
+            "$\\frac{(x - %d)(x + %d)}{x - %d} = x + %d$, which at "
+            "$x = %d$ equals $%d$. Subtracting instead — as if it "
+            "simplified to $x - %d$ — gives $%d$."
+            % (k, k, k, k, c, ans, k, c - k),
+            ["((%d)**2 - %d)/((%d) - %d) == %d" % (c, k * k, c, k, ans),
+             "simplify((x**2 - %d)/(x - %d) - (x + %d)) == 0"
+             % (k * k, k, k)]))
+        i += 1
+    return _floor12("simplify-rational", variants)
+
+
+def _rs_simplify_rational(s):
+    m = _re.search(r"\\dfrac\{x\^2 - (\d+)\}\{x - (\d+)\}", s)
+    k = int(m.group(2))
+    assert k * k == int(m.group(1))
+    c = int(_re.search(r"at \$x = (-?\d+)\$", s).group(1))
+    return ("num", c + k)
+
+
+# -------------------------------------------------------------------------
+# Form: add-rational-numeric (rational-functions, level 1)
+# -------------------------------------------------------------------------
+def _gen_add_rational_numeric():
+    pairs = [(2, 3), (2, 5), (3, 4), (4, 6), (2, 7), (3, 5), (5, 6),
+             (2, 9), (4, 5), (3, 8), (6, 10), (2, 4)]
+    variants = []
+    for i, (a, b) in enumerate(pairs):
+        correct = Fraction(a + b, a * b)
+        dvals = [Fraction(2, a + b), Fraction(1, a + b), Fraction(1, a * b)]
+        assert _distinct([correct] + dvals)
+        variants.append(_mk12(
+            "A2-radd2-v%02d" % (i + 1),
+            "Compute $\\dfrac{1}{%d} + \\dfrac{1}{%d}$." % (a, b),
+            _fr_tex(correct), [_fr_tex(d) for d in dvals], i,
+            "Use the common denominator $%d$: $\\frac{%d}{%d} + "
+            "\\frac{%d}{%d} = %s$. Adding tops and bottoms separately — "
+            "$\\frac{2}{%d}$ — is the classic mistake."
+            % (a * b, b, a * b, a, a * b, _fr_core(correct), a + b),
+            ["Rational(1, %d) + Rational(1, %d) == Rational(%d, %d)"
+             % (a, b, correct.numerator, correct.denominator)]))
+    return _floor12("add-rational-numeric", variants)
+
+
+def _rs_add_rational_numeric(s):
+    m = _re.search(r"\\dfrac\{1\}\{(\d+)\} \+ \\dfrac\{1\}\{(\d+)\}", s)
+    a, b = int(m.group(1)), int(m.group(2))
+    return ("opt", _fr_tex(Fraction(a + b, a * b)))
+
+
+# -------------------------------------------------------------------------
+# Form: hole-or-asymptote (rational-functions, level 3)
+# -------------------------------------------------------------------------
+_HOLE_OPTS = ["a hole", "a vertical asymptote", "an $x$-intercept",
+              "a horizontal asymptote"]
+
+
+def _gen_hole_or_asymptote():
+    holes = [(2, -3), (-1, 4), (3, 5), (-4, -2), (5, -1), (-3, 1)]
+    vas = [(1, -2, 3), (2, 4, -1), (-3, 1, 2), (5, -2, -4), (-1, -5, 3),
+           (4, 2, 6)]
+    variants, i = [], 0
+    for idx in range(6):
+        a, b = holes[idx]
+        variants.append(_mk12(
+            "A2-hole-v%02d" % (len(variants) + 1),
+            "For $f(x) = \\dfrac{%s%s}{%s}$, what feature does the graph "
+            "have at $x = %d$?" % (_sf(a), _sf(b), _xpm(-a), a),
+            "a hole", [o for o in _HOLE_OPTS if o != "a hole"], i,
+            "The factor $%s$ cancels, so near $x = %d$ the graph is just "
+            "$y = %s$ with one point missing — a hole. Calling it a "
+            "vertical asymptote is the classic confusion: an asymptote "
+            "needs a denominator zero that does NOT cancel."
+            % (_sf(a), a, _xpm(-b)),
+            ["limit(((x - (%d))*(x - (%d)))/(x - (%d)), x, %d) == %d"
+             % (a, b, a, a, a - b),
+             "Abs((%d) - (%d)) > 0" % (a, b)]))
+        i += 1
+        a2, b2, c2 = vas[idx]
+        numv = (c2 - a2) * (c2 - b2)
+        variants.append(_mk12(
+            "A2-hole-v%02d" % (len(variants) + 1),
+            "For $f(x) = \\dfrac{%s%s}{%s}$, what feature does the graph "
+            "have at $x = %d$?" % (_sf(a2), _sf(b2), _xpm(-c2), c2),
+            "a vertical asymptote",
+            [o for o in _HOLE_OPTS if o != "a vertical asymptote"], i,
+            "At $x = %d$ the denominator vanishes while the numerator "
+            "equals $%d \\ne 0$, so $f$ blows up — a vertical asymptote. "
+            "A hole would need $%s$ to cancel with the numerator, and it "
+            "doesn't." % (c2, numv, _xpm(-c2)),
+            ["Abs(((%d) - (%d))*((%d) - (%d))) > 0" % (c2, a2, c2, b2)]))
+        i += 1
+    return _floor12("hole-or-asymptote", variants)
+
+
+def _rs_hole_or_asymptote(s):
+    m = _re.search(r"\\dfrac\{\(x ([+-]) (\d+)\)\(x ([+-]) (\d+)\)\}"
+                   r"\{x ([+-]) (\d+)\}", s)
+
+    def rt(sign, digits):
+        v = int(digits)
+        return v if sign == "-" else -v
+
+    n1, n2, dr = (rt(m.group(1), m.group(2)), rt(m.group(3), m.group(4)),
+                  rt(m.group(5), m.group(6)))
+    v = int(_re.search(r"at \$x = (-?\d+)\$", s).group(1))
+    assert v == dr
+    if dr in (n1, n2):
+        return ("opt", "a hole")
+    return ("opt", "a vertical asymptote")
+
+
+def _batch2_forms():
+    """Batch-2 unit-specific forms (the textbook exercise-set expansion)."""
+    return [
+        {"id": "shift-vertex", "title": "Vertex from vertex form",
+         "level": 1, "unit": "functions-and-transformations",
+         "skill": "y = (x - h)^2 + k has vertex (h; k) — mind the sign on h.",
+         "variants": _gen_shift_vertex()},
+        {"id": "inverse-of-linear", "title": "Evaluating a linear inverse",
+         "level": 2, "unit": "functions-and-transformations",
+         "skill": "f^{-1}(c) undoes f: subtract b first, then divide by a.",
+         "variants": _gen_inverse_linear()},
+        {"id": "transform-point-function", "title": "Tracking a point through a transformation",
+         "level": 2, "unit": "functions-and-transformations",
+         "skill": "Outside changes move y, inside changes move x (backwards), a leading minus flips y.",
+         "variants": _gen_transform_point()},
+        {"id": "conjugate-product", "title": "Multiplying complex conjugates",
+         "level": 1, "unit": "quadratics-and-complex-numbers",
+         "skill": "(a + bi)(a - bi) = a^2 + b^2 — the cross terms cancel.",
+         "variants": _gen_conjugate_product()},
+        {"id": "complex-magnitude", "title": "Magnitude of a complex number",
+         "level": 2, "unit": "quadratics-and-complex-numbers",
+         "skill": "|a + bi| = sqrt(a^2 + b^2) — Pythagoras in the complex plane.",
+         "variants": _gen_complex_magnitude()},
+        {"id": "complex-add-scale", "title": "Scaling and adding complex numbers",
+         "level": 1, "unit": "quadratics-and-complex-numbers",
+         "skill": "m(a + bi) + n(c + di): scale real and imaginary parts separately, then add.",
+         "variants": _gen_complex_add_scale()},
+        {"id": "circle-line-intersections", "title": "Circle meets horizontal line",
+         "level": 2, "unit": "systems-and-nonlinear-models",
+         "skill": "Substitute y = k into x^2 + y^2 = r^2 and count real solutions of x^2 = r^2 - k^2.",
+         "variants": _gen_circle_line()},
+        {"id": "substitution-nonlinear", "title": "Parabola meets line by substitution",
+         "level": 3, "unit": "systems-and-nonlinear-models",
+         "skill": "Set x^2 = ax + b, factor, and read off both roots before answering.",
+         "variants": _gen_substitution_nonlinear()},
+        {"id": "end-behavior", "title": "End behavior of polynomials",
+         "level": 1, "unit": "polynomial-functions",
+         "skill": "Sign and parity of the leading term decide both ends of the graph.",
+         "variants": _gen_end_behavior()},
+        {"id": "degree-of-product", "title": "Degree and leading coefficient of a product",
+         "level": 1, "unit": "polynomial-functions",
+         "skill": "Degrees add, leading coefficients multiply.",
+         "variants": _gen_degree_product()},
+        {"id": "zeros-multiplicity", "title": "Zeros with multiplicity",
+         "level": 2, "unit": "polynomial-functions",
+         "skill": "Even multiplicity touches the x-axis; odd multiplicity crosses. Distinct zeros count once.",
+         "variants": _gen_zeros_multiplicity()},
+        {"id": "add-radicals", "title": "Adding like radicals",
+         "level": 1, "unit": "radicals-and-rational-exponents",
+         "skill": "a sqrt(k) + b sqrt(k) - c sqrt(k) = (a + b - c) sqrt(k) — combine coefficients only.",
+         "variants": _gen_add_radicals()},
+        {"id": "multiply-radicals", "title": "Multiplying square roots",
+         "level": 2, "unit": "radicals-and-rational-exponents",
+         "skill": "sqrt(a) * sqrt(b) = sqrt(ab), then pull out the largest perfect square.",
+         "variants": _gen_multiply_radicals()},
+        {"id": "solve-radical", "title": "Solving a basic radical equation",
+         "level": 2, "unit": "radicals-and-rational-exponents",
+         "skill": "sqrt(x + a) = b: square both sides first, then isolate x = b^2 - a.",
+         "variants": _gen_solve_radical()},
+        {"id": "simplify-rational", "title": "Cancel, then evaluate",
+         "level": 2, "unit": "rational-functions",
+         "skill": "(x^2 - k^2)/(x - k) = x + k for x != k — factor before substituting.",
+         "variants": _gen_simplify_rational()},
+        {"id": "add-rational-numeric", "title": "Adding unit fractions",
+         "level": 1, "unit": "rational-functions",
+         "skill": "1/a + 1/b = (a + b)/(ab) — never add tops and bottoms separately.",
+         "variants": _gen_add_rational_numeric()},
+        {"id": "hole-or-asymptote", "title": "Hole or vertical asymptote?",
+         "level": 3, "unit": "rational-functions",
+         "skill": "A cancelled factor leaves a hole; an uncancelled denominator zero is a vertical asymptote.",
+         "variants": _gen_hole_or_asymptote()},
+    ]
+
+
+RESOLVERS.update({
+    "shift-vertex": _rs_shift_vertex,
+    "inverse-of-linear": _rs_inverse_linear,
+    "transform-point-function": _rs_transform_point,
+    "conjugate-product": _rs_conjugate_product,
+    "complex-magnitude": _rs_complex_magnitude,
+    "complex-add-scale": _rs_complex_add_scale,
+    "circle-line-intersections": _rs_circle_line,
+    "substitution-nonlinear": _rs_substitution_nonlinear,
+    "end-behavior": _rs_end_behavior,
+    "degree-of-product": _rs_degree_product,
+    "zeros-multiplicity": _rs_zeros_multiplicity,
+    "add-radicals": _rs_add_radicals,
+    "multiply-radicals": _rs_multiply_radicals,
+    "solve-radical": _rs_solve_radical,
+    "simplify-rational": _rs_simplify_rational,
+    "add-rational-numeric": _rs_add_rational_numeric,
+    "hole-or-asymptote": _rs_hole_or_asymptote,
 })
 
 
