@@ -783,6 +783,7 @@ def new_forms():
             variants.append(vd)
         forms.append({"id": fid, "title": title, "level": level,
                       "skill": skill, "unit": unit, "variants": variants})
+    forms.extend(_extra_new_forms())  # appended drill forms (defined below)
     return forms
 
 
@@ -893,6 +894,637 @@ RESOLVERS.update({
     "cone-slant-lateral": _r_cone,
     "sphere-surface": _r_sphere,
     "similar-solids": _r_similar_solids,
+})
+
+
+# ---------------------------------------------------------------------------
+# appended drill forms — extra distinct problem types per unit
+# (12 variants each; assembled by _extra_new_forms(), floor 10)
+# ---------------------------------------------------------------------------
+
+def _sqrtL(n):
+    """LaTeX for sqrt(n), simplified: 164 -> 2\\sqrt{41}, 144 -> 12."""
+    s = sqrt(n)
+    if s.is_Integer:
+        return intL(s)
+    c, rest = s.as_coeff_Mul()
+    return surd(int(c), int(rest ** 2))
+
+
+# --- lines-and-planes-in-space: classify a pair of cube edges ---------------
+
+CUBE_VERT_XY = {"A": (0, 0), "B": (1, 0), "C": (1, 1), "D": (0, 1)}
+
+
+def _edge_endpoints(edge):
+    """Vertices of a cube edge name like 'A_1B_1' as 3D coordinates:
+    A(0,0,0) B(1,0,0) C(1,1,0) D(0,1,0), subscript-1 vertices at z = 1."""
+    pts = []
+    for v in re.findall(r"[A-D](?:_1)?", edge):
+        x, y = CUBE_VERT_XY[v[0]]
+        pts.append((x, y, 1 if v.endswith("_1") else 0))
+    assert len(pts) == 2, edge
+    return pts
+
+
+def _edge_relation(e1, e2):
+    """Classify two cube edges by coordinates. Returns (class, cross, triple)
+    where cross = d1 x d2 and triple = (d1 x d2) . (p2 - p1)."""
+    (p1, q1), (p2, q2) = _edge_endpoints(e1), _edge_endpoints(e2)
+    d1 = tuple(q1[i] - p1[i] for i in range(3))
+    d2 = tuple(q2[i] - p2[i] for i in range(3))
+    cross = (d1[1] * d2[2] - d1[2] * d2[1],
+             d1[2] * d2[0] - d1[0] * d2[2],
+             d1[0] * d2[1] - d1[1] * d2[0])
+    w = tuple(p2[i] - p1[i] for i in range(3))
+    triple = cross[0] * w[0] + cross[1] * w[1] + cross[2] * w[2]
+    if cross == (0, 0, 0):
+        return "parallel", cross, triple
+    return ("intersecting" if triple == 0 else "skew"), cross, triple
+
+
+CLSF_PAIRS = [
+    ("AB", "C_1D_1", "parallel"),
+    ("AB", "BC", "intersecting"),
+    ("AB", "CC_1", "skew"),
+    ("BC", "A_1D_1", "parallel"),
+    ("AB", "AA_1", "intersecting"),
+    ("AB", "B_1C_1", "skew"),
+    ("AA_1", "CC_1", "parallel"),
+    ("B_1C_1", "CC_1", "intersecting"),
+    ("AA_1", "BC", "skew"),
+    ("CD", "A_1B_1", "parallel"),
+    ("DA", "DD_1", "intersecting"),
+    ("CD", "BB_1", "skew"),
+]
+
+
+def gen_classify_edge_pair():
+    out = []
+    for idx, (e1, e2, cls) in enumerate(CLSF_PAIRS):
+        pos = idx % 4
+        got, cross, triple = _edge_relation(e1, e2)
+        assert got == cls, (e1, e2, cls, got)
+        cs2 = "(%d)**2 + (%d)**2 + (%d)**2" % cross
+        if cls == "parallel":
+            others = ["intersecting", "skew", "equal and intersecting"]
+            ex = ("The direction vectors of $%s$ and $%s$ are proportional, "
+                  "so the lines are parallel. Calling them skew just because "
+                  "they lie in different faces is the classic slip."
+                  % (e1, e2))
+            chk = ["Eq(%s, 0)" % cs2]
+        elif cls == "intersecting":
+            shared = sorted(set(re.findall(r"[A-D](?:_1)?", e1))
+                            & set(re.findall(r"[A-D](?:_1)?", e2)))[0]
+            others = ["parallel", "skew", "coincident"]
+            ex = ("$%s$ and $%s$ share the vertex $%s$, so the lines meet at "
+                  "a point. Answering 'skew' because the edges point in "
+                  "different directions is the classic slip — skew lines "
+                  "must have no common point." % (e1, e2, shared))
+            chk = ["Eq(%d, 0)" % triple, "Ne(%s, 0)" % cs2]
+        else:
+            others = ["parallel", "intersecting", "equal and intersecting"]
+            ex = ("$%s$ and $%s$ are not parallel and share no vertex, so no "
+                  "plane contains both: they are skew. Trusting the flat "
+                  "drawing, where they appear to cross, is the classic "
+                  "mistake." % (e1, e2))
+            chk = ["Ne(%d, 0)" % triple]
+        opts = list(others)
+        opts.insert(pos, cls)
+        assert len(set(opts)) == 4
+        out.append({
+            "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines "
+                         "containing edges $%s$ and $%s$ positioned relative "
+                         "to each other?" % (e1, e2),
+            "options": opts, "correctIndex": pos,
+            "explanation": ex, "check": chk,
+        })
+    return out
+
+
+# --- lines-and-planes-in-space: a slanted segment & its projection ----------
+
+PROJ_FWD = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15),
+            (20, 21, 29)]
+PROJ_REV = [(4, 3, 5), (8, 6, 10), (12, 5, 13), (15, 8, 17), (12, 9, 15),
+            (24, 7, 25)]
+
+
+def _proj_fig(p, h, wl, hl, dl):
+    """True-scale extracted right triangle: foot of the perpendicular at the
+    origin, projection horizontal (label wl), height vertical (label hl,
+    blue), slanted segment as the hypotenuse (label dl, accent)."""
+    return {
+        "points": [
+            {"id": "F", "x": 0, "y": 0, "label": ""},
+            {"id": "Q", "x": p, "y": 0, "label": ""},
+            {"id": "T", "x": 0, "y": h, "label": ""},
+        ],
+        "objects": [
+            {"kind": "segment", "from": "F", "to": "Q", "label": wl},
+            {"kind": "segment", "from": "F", "to": "T", "label": hl,
+             "color": "blue"},
+            {"kind": "segment", "from": "Q", "to": "T", "label": dl,
+             "color": "accent"},
+            {"kind": "angle", "at": "F", "from": "Q", "to": "T",
+             "right": True},
+        ],
+    }
+
+
+def gen_diagonal_projection():
+    out = []
+    idx = 0
+    for fwd, rev in zip(PROJ_FWD, PROJ_REV):
+        # forward: segment + height -> projection
+        p, h, d = fwd
+        pos = idx % 4
+        cands = [(_sqrtL(d * d + h * h), sqrt(d * d + h * h)),
+                 (intL(d - h), d - h), (intL(d + h), d + h)]
+        opts, ci = build_latex_options((intL(p), p), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A segment of length $%d$ joins a point at height "
+                         "$%d$ above a plane to a point in the plane. Find "
+                         "the length of the segment's projection on the "
+                         "plane." % (d, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Segment, height and projection form a right "
+                           "triangle with the segment as hypotenuse: "
+                           "$\\sqrt{%d^2 - %d^2} = %d$. Adding the squares "
+                           "instead, $%s$, treats the projection as the "
+                           "hypotenuse — the classic slip."
+                           % (d, h, p, _sqrtL(d * d + h * h)),
+            "check": ["sqrt(%d**2 - %d**2) == %d" % (d, h, p)],
+            "geoFigure": _proj_fig(p, h, "?", str(h), str(d)),
+        })
+        idx += 1
+        # reverse: projection + height -> segment
+        p, h, d = rev
+        pos = idx % 4
+        cands = [(_sqrtL(p * p - h * h), sqrt(p * p - h * h)),
+                 (intL(p + h), p + h), (intL(p - h), p - h)]
+        opts, ci = build_latex_options((intL(d), d), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A segment joins a point at height $%d$ above a "
+                         "plane to a point in the plane; its projection on "
+                         "the plane has length $%d$. Find the length of the "
+                         "segment." % (h, p),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The segment is the hypotenuse over the legs "
+                           "$%d$ (projection) and $%d$ (height): "
+                           "$\\sqrt{%d^2 + %d^2} = %d$. Adding the legs, "
+                           "$%d + %d = %d$, skips Pythagoras — the classic "
+                           "slip." % (p, h, p, h, d, p, h, p + h),
+            "check": ["sqrt(%d**2 + %d**2) == %d" % (p, h, d)],
+            "geoFigure": _proj_fig(p, h, str(p), str(h), "?"),
+        })
+        idx += 1
+    return out
+
+
+# --- prisms-and-the-cube: cube surface area & volume ------------------------
+
+CSV_SURF = (2, 3, 4, 5)
+CSV_VOL = (7, 8, 9, 10)
+CSV_REV = (6, 11, 12, 13)
+
+
+def gen_cube_surface_volume():
+    out = []
+    idx = 0
+    for a_s, a_v, a_r in zip(CSV_SURF, CSV_VOL, CSV_REV):
+        # (a) surface area from edge
+        pos = idx % 4
+        S = 6 * a_s * a_s
+        cands = [(intL(a_s ** 3), a_s ** 3),
+                 (intL(4 * a_s * a_s), 4 * a_s * a_s),
+                 (intL(a_s * a_s), a_s * a_s),
+                 (intL(12 * a_s), 12 * a_s)]
+        opts, ci = build_latex_options((intL(S), S), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A cube has edge $%d$. Find its surface area."
+                         % a_s,
+            "options": opts, "correctIndex": ci,
+            "explanation": "All $6$ faces are $%d \\times %d$ squares: "
+                           "$S = 6a^2 = 6\\cdot %d = %d$. Counting only the "
+                           "$4$ side faces gives $%d$."
+                           % (a_s, a_s, a_s * a_s, S, 4 * a_s * a_s),
+            "check": ["6*%d**2 == %d" % (a_s, S)],
+        })
+        idx += 1
+        # (b) volume from edge
+        pos = idx % 4
+        V = a_v ** 3
+        cands = [(intL(6 * a_v * a_v), 6 * a_v * a_v),
+                 (intL(a_v * a_v), a_v * a_v),
+                 (intL(12 * a_v), 12 * a_v)]
+        opts, ci = build_latex_options((intL(V), V), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A cube has edge $%d$. Find its volume." % a_v,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = a^3 = %d^3 = %d$. $%d$ is the surface area "
+                           "$6a^2$ — the classic surface/volume mix-up."
+                           % (a_v, V, 6 * a_v * a_v),
+            "check": ["%d**3 == %d" % (a_v, V)],
+        })
+        idx += 1
+        # (c) edge back from surface area (engineered integer)
+        pos = idx % 4
+        S = 6 * a_r * a_r
+        cands = [(intL(a_r * a_r), a_r * a_r),
+                 (surd(a_r, 6), a_r * sqrt(6)),
+                 (intL(2 * a_r), 2 * a_r)]
+        opts, ci = build_latex_options((intL(a_r), a_r), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A cube has surface area $%d$. Find its edge "
+                         "length." % S,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$6a^2 = %d$ gives $a^2 = %d$, so $a = %d$. "
+                           "Dividing by $6$ but forgetting the square root "
+                           "leaves $%d$." % (S, a_r * a_r, a_r, a_r * a_r),
+            "check": ["sqrt(Rational(%d,6)) == %d" % (S, a_r)],
+        })
+        idx += 1
+    return out
+
+
+# --- prisms-and-the-cube: lateral surface of a right prism ------------------
+
+PLAT_PAIRS = [(10, 3), (12, 5), (14, 4), (16, 7), (18, 5), (20, 6),
+              (22, 3), (24, 5), (26, 4), (28, 6), (30, 7), (32, 5)]
+
+
+def gen_prism_lateral():
+    out = []
+    for idx, (P, h) in enumerate(PLAT_PAIRS):
+        pos = idx % 4
+        S = P * h
+        cands = [(intL(S // 2), S // 2), (intL(P + h), P + h),
+                 (intL(2 * S), 2 * S)]
+        opts, ci = build_latex_options((intL(S), S), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A right prism has base perimeter $%d$ and height "
+                         "$%d$. Find its lateral surface area." % (P, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Unrolled, the lateral surface is one rectangle "
+                           "$P \\times h$: $%d\\cdot %d = %d$. Halving it "
+                           "to $%d$ borrows the pyramid's $\\tfrac12$ — a "
+                           "prism has none." % (P, h, S, S // 2),
+            "check": ["%d*%d == %d" % (P, h, S)],
+        })
+    return out
+
+
+# --- pyramids: lateral surface of a regular square pyramid ------------------
+
+PYL_PAIRS = [(3, 5), (4, 5), (5, 6), (6, 5), (4, 7), (6, 7), (5, 8), (8, 5),
+             (7, 6), (6, 9), (8, 7), (9, 4)]
+
+
+def gen_pyramid_lateral():
+    out = []
+    for idx, (a, m) in enumerate(PYL_PAIRS):
+        pos = idx % 4
+        S = 2 * a * m
+        cands = [(intL(4 * a * m), 4 * a * m), (intL(a * m), a * m),
+                 (intL(a * a + 2 * a * m), a * a + 2 * a * m)]
+        opts, ci = build_latex_options((intL(S), S), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A regular square pyramid has base side $%d$ and "
+                         "slant height $%d$. Find its lateral surface area."
+                         % (a, m),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Four triangular faces of area $\\tfrac12 am$ "
+                           "each: $S = \\tfrac12\\cdot 4\\cdot %d\\cdot %d "
+                           "= %d$. Forgetting the $\\tfrac12$ gives $%d$."
+                           % (a, m, S, 4 * a * m),
+            "check": ["Rational(1,2)*4*%d*%d == %d" % (a, m, S)],
+        })
+    return out
+
+
+# --- pyramids: base side back from the volume --------------------------------
+
+PBV_PAIRS = [(2, 3), (4, 3), (3, 4), (5, 3), (6, 4), (3, 5), (6, 5), (9, 2),
+             (3, 7), (12, 4), (6, 7), (9, 5)]
+
+
+def gen_pyramid_base_side():
+    out = []
+    for idx, (a, h) in enumerate(PBV_PAIRS):
+        pos = idx % 4
+        assert (a * a * h) % 3 == 0
+        V = a * a * h // 3
+        cands = [(intL(a * a), a * a),
+                 ("\\sqrt{" + L(Rational(V, h)) + "}", sqrt(Rational(V, h))),
+                 (_sqrtL(3 * V), sqrt(3 * V))]
+        opts, ci = build_latex_options((intL(a), a), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A pyramid with a square base has volume $%d$ and "
+                         "height $%d$. Find its base side." % (V, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}"
+                           "{h} = \\frac{3\\cdot %d}{%d} = %d$, so "
+                           "$a = %d$. Stopping at $a^2 = %d$ without the "
+                           "square root is the classic slip."
+                           % (V, h, a * a, a, a * a),
+            "check": ["sqrt(Rational(3*%d,%d)) == %d" % (V, h, a)],
+        })
+    return out
+
+
+# --- cylinders-and-cones: cone volume ----------------------------------------
+
+CVOL_PAIRS = [(3, 4), (2, 3), (3, 5), (4, 3), (5, 3), (2, 6), (3, 7),
+              (6, 4), (4, 6), (3, 8), (6, 5), (5, 6)]
+
+
+def gen_cone_volume():
+    out = []
+    for idx, (r, h) in enumerate(CVOL_PAIRS):
+        pos = idx % 4
+        assert (r * r * h) % 3 == 0
+        k = r * r * h // 3
+        cands = [(piL(r * r * h), r * r * h * pi),
+                 (piL(r * h), r * h * pi),
+                 (piL(Rational(r * r * h, 2)),
+                  Rational(r * r * h, 2) * pi)] + _pi_buffer(k)
+        opts, ci = build_latex_options((piL(k), k * pi), cands, pos)
+        out.append({
+            "statement": "A cone has base radius $%d$ and height $%d$. Find "
+                         "its volume, exactly." % (r, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot "
+                           "%d\\cdot %d = %s$. Forgetting the $\\tfrac13$ "
+                           "gives the cylinder volume $%s$."
+                           % (r * r, h, piL(k), piL(r * r * h)),
+            "check": ["Rational(1,3)*pi*%d**2*%d == %d*pi" % (r, h, k)],
+        })
+    return out
+
+
+# --- cylinders-and-cones: axial sections --------------------------------------
+
+AXIAL_CYL = [(2, 5), (3, 4), (4, 3), (5, 6), (3, 7), (6, 5)]
+AXIAL_CONE = [(3, 4), (4, 5), (5, 4), (6, 7), (2, 9), (5, 8)]
+
+
+def gen_axial_section():
+    out = []
+    idx = 0
+    for (r, h), (rc, hc) in zip(AXIAL_CYL, AXIAL_CONE):
+        # cylinder: rectangle 2r x h
+        pos = idx % 4
+        S = 2 * r * h
+        cands = [(intL(r * h), r * h), (piL(r * r * h), r * r * h * pi),
+                 (intL(2 * r + h), 2 * r + h)]
+        opts, ci = build_latex_options((intL(S), S), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A cylinder has base radius $%d$ and height $%d$. "
+                         "Find the area of its axial section." % (r, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The axial section of a cylinder is a rectangle "
+                           "with sides $2r = %d$ and $h = %d$: area $%d$. "
+                           "Using the radius instead of the diameter gives "
+                           "$%d$." % (2 * r, h, S, r * h),
+            "check": ["2*%d*%d == %d" % (r, h, S)],
+        })
+        idx += 1
+        # cone: isosceles triangle, base 2r, height h
+        pos = idx % 4
+        S = rc * hc
+        cands = [(intL(2 * rc * hc), 2 * rc * hc),
+                 (piL(rc * hc), rc * hc * pi),
+                 (intL(rc + hc), rc + hc)]
+        opts, ci = build_latex_options((intL(S), S), cands, pos,
+                                       latex_of=intL)
+        out.append({
+            "statement": "A cone has base radius $%d$ and height $%d$. Find "
+                         "the area of its axial section." % (rc, hc),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The axial section of a cone is a triangle with "
+                           "base $2r = %d$ and height $%d$: $\\tfrac12\\cdot "
+                           "%d\\cdot %d = %d$. Forgetting the $\\tfrac12$ "
+                           "(treating it as a rectangle) gives $%d$."
+                           % (2 * rc, hc, 2 * rc, hc, S, 2 * rc * hc),
+            "check": ["Rational(1,2)*2*%d*%d == %d" % (rc, hc, S)],
+        })
+        idx += 1
+    return out
+
+
+# --- spheres: exact sphere volume ---------------------------------------------
+
+def gen_sphere_volume():
+    out = []
+    for idx, R in enumerate(range(2, 14)):
+        pos = idx % 4
+        k = Rational(4 * R ** 3, 3)
+        cands = [(piL(4 * R * R), 4 * R * R * pi),
+                 (piL(R ** 3), R ** 3 * pi),
+                 (piL(4 * R ** 3), 4 * R ** 3 * pi)] + _pi_buffer(k)
+        opts, ci = build_latex_options((piL(k), k * pi), cands, pos)
+        out.append({
+            "statement": "A sphere has radius $%d$. Find its volume, "
+                         "exactly." % R,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot %d "
+                           "= %s$. The classic mix-up reaches for the "
+                           "surface-area formula $4\\pi R^2$ instead of the "
+                           "volume." % (R ** 3, piL(k)),
+            "check": ["Rational(4,3)*pi*%d**3 == Rational(%d,3)*pi"
+                      % (R, 4 * R ** 3)],
+        })
+    return out
+
+
+# --- spheres: hemisphere total surface & volume --------------------------------
+
+HEMI_SURF = (2, 3, 4, 5, 6, 7)
+HEMI_VOL = (3, 6, 2, 4, 5, 9)
+
+
+def gen_hemisphere():
+    out = []
+    idx = 0
+    for R_s, R_v in zip(HEMI_SURF, HEMI_VOL):
+        # total surface = curved 2*pi*R^2 + flat disk pi*R^2
+        pos = idx % 4
+        k = 3 * R_s * R_s
+        cands = [(piL(2 * R_s * R_s), 2 * R_s * R_s * pi),
+                 (piL(4 * R_s * R_s), 4 * R_s * R_s * pi),
+                 (piL(R_s * R_s), R_s * R_s * pi)] + _pi_buffer(k)
+        opts, ci = build_latex_options((piL(k), k * pi), cands, pos)
+        out.append({
+            "statement": "A hemisphere has radius $%d$. Find its total "
+                         "surface area (curved surface plus the flat base "
+                         "disk), exactly." % R_s,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Half the sphere's surface plus the base disk: "
+                           "$2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = %s$. "
+                           "Stopping at the curved part $%s$ forgets the "
+                           "disk." % (piL(k), piL(2 * R_s * R_s)),
+            "check": ["2*pi*%d**2 + pi*%d**2 == %d*pi" % (R_s, R_s, k)],
+        })
+        idx += 1
+        # volume = half of 4/3*pi*R^3
+        pos = idx % 4
+        k = Rational(2 * R_v ** 3, 3)
+        cands = [(piL(Rational(4 * R_v ** 3, 3)),
+                  Rational(4 * R_v ** 3, 3) * pi),
+                 (piL(2 * R_v ** 3), 2 * R_v ** 3 * pi),
+                 (piL(R_v ** 3), R_v ** 3 * pi)] + _pi_buffer(k)
+        opts, ci = build_latex_options((piL(k), k * pi), cands, pos)
+        out.append({
+            "statement": "A hemisphere has radius $%d$. Find its volume, "
+                         "exactly." % R_v,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Half the sphere's volume: $\\tfrac12\\cdot"
+                           "\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot %d = "
+                           "%s$. Taking the full $\\tfrac43\\pi R^3 = %s$ "
+                           "forgets the halving."
+                           % (R_v ** 3, piL(k),
+                              piL(Rational(4 * R_v ** 3, 3))),
+            "check": ["Rational(2,3)*pi*%d**3 == Rational(%d,3)*pi"
+                      % (R_v, 2 * R_v ** 3)],
+        })
+        idx += 1
+    return out
+
+
+EXTRA_FORMS_META = [
+    ("classify-edge-pair", "Cube edges: parallel, intersecting or skew?", 1,
+     "SOLID-clsf", "lines-and-planes-in-space", "clsf",
+     gen_classify_edge_pair),
+    ("diagonal-projection", "A slanted segment & its projection", 2,
+     "SOLID-proj", "lines-and-planes-in-space", "proj",
+     gen_diagonal_projection),
+    ("cube-surface-volume", "Cube surface area & volume", 1, "SOLID-csv",
+     "prisms-and-the-cube", "csv", gen_cube_surface_volume),
+    ("prism-lateral", "Lateral surface of a right prism", 2, "SOLID-plat",
+     "prisms-and-the-cube", "plat", gen_prism_lateral),
+    ("pyramid-lateral", "Lateral surface of a regular pyramid", 2,
+     "SOLID-pyl", "pyramids", "pyl", gen_pyramid_lateral),
+    ("pyramid-base-from-volume", "Base side of a pyramid from its volume", 3,
+     "SOLID-pbv", "pyramids", "pbv", gen_pyramid_base_side),
+    ("cone-volume", "Cone volume", 1, "SOLID-cvol", "cylinders-and-cones",
+     "cvol", gen_cone_volume),
+    ("axial-section", "Axial sections of a cylinder and a cone", 2,
+     "SOLID-axial", "cylinders-and-cones", "axial", gen_axial_section),
+    ("sphere-volume-exact", "Sphere volume", 1, "SOLID-svol", "spheres",
+     "svol", gen_sphere_volume),
+    ("hemisphere", "Hemisphere: total surface & volume", 2, "SOLID-hemi",
+     "spheres", "hemi", gen_hemisphere),
+]
+
+
+def _extra_new_forms():
+    """Appended drill forms (12-variant target, floor 10)."""
+    forms = []
+    for fid, title, level, skill, unit, ab, gen in EXTRA_FORMS_META:
+        raw = gen()
+        assert len(raw) >= 10, "%s: only %d variants" % (fid, len(raw))
+        variants = []
+        for i, v in enumerate(raw):
+            vd = {"id": "SOLID-%s-v%02d" % (ab, i + 1)}
+            vd.update(v)
+            variants.append(vd)
+        forms.append({"id": fid, "title": title, "level": level,
+                      "skill": skill, "unit": unit, "variants": variants})
+    return forms
+
+
+# --- blind re-solvers for the appended drill forms ---------------------------
+
+def _r_classify_edge_pair(s):
+    m = re.search(r"edges \$([A-D](?:_1)?[A-D](?:_1)?)\$ and "
+                  r"\$([A-D](?:_1)?[A-D](?:_1)?)\$", s)
+    cls, _, _ = _edge_relation(m.group(1), m.group(2))
+    return ("opt", cls)
+
+
+def _r_diagonal_projection(s):
+    h = int(re.search(r"height \$(\d+)\$", s).group(1))
+    m = re.search(r"projection on the plane has length \$(\d+)\$", s)
+    if m:
+        p = int(m.group(1))
+        return ("num", sqrt(p * p + h * h))
+    d = int(re.search(r"segment of length \$(\d+)\$", s).group(1))
+    return ("num", sqrt(d * d - h * h))
+
+
+def _r_cube_surface_volume(s):
+    m = re.search(r"surface area \$(\d+)\$", s)
+    if m:
+        return ("num", sqrt(Rational(int(m.group(1)), 6)))
+    a = int(re.search(r"edge \$(\d+)\$", s).group(1))
+    if "volume" in s:
+        return ("num", a ** 3)
+    return ("num", 6 * a * a)
+
+
+def _r_prism_lateral(s):
+    m = re.search(r"perimeter \$(\d+)\$ and height \$(\d+)\$", s)
+    return ("num", int(m.group(1)) * int(m.group(2)))
+
+
+def _r_pyramid_lateral(s):
+    m = re.search(r"base side \$(\d+)\$ and slant height \$(\d+)\$", s)
+    return ("num", 2 * int(m.group(1)) * int(m.group(2)))
+
+
+def _r_pyramid_base_side(s):
+    m = re.search(r"volume \$(\d+)\$ and height \$(\d+)\$", s)
+    V, h = int(m.group(1)), int(m.group(2))
+    return ("num", sqrt(Rational(3 * V, h)))
+
+
+def _r_cone_volume(s):
+    m = re.search(r"radius \$(\d+)\$ and height \$(\d+)\$", s)
+    r, h = int(m.group(1)), int(m.group(2))
+    return ("num", Rational(1, 3) * pi * r * r * h)
+
+
+def _r_axial_section(s):
+    m = re.search(r"radius \$(\d+)\$ and height \$(\d+)\$", s)
+    r, h = int(m.group(1)), int(m.group(2))
+    if "cylinder" in s:
+        return ("num", 2 * r * h)
+    return ("num", r * h)
+
+
+def _r_sphere_volume(s):
+    R = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    return ("num", Rational(4, 3) * pi * R ** 3)
+
+
+def _r_hemisphere(s):
+    R = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    if "volume" in s:
+        return ("num", Rational(2, 3) * pi * R ** 3)
+    return ("num", 3 * pi * R * R)
+
+
+RESOLVERS.update({
+    "classify-edge-pair": _r_classify_edge_pair,
+    "diagonal-projection": _r_diagonal_projection,
+    "cube-surface-volume": _r_cube_surface_volume,
+    "prism-lateral": _r_prism_lateral,
+    "pyramid-lateral": _r_pyramid_lateral,
+    "pyramid-base-from-volume": _r_pyramid_base_side,
+    "cone-volume": _r_cone_volume,
+    "axial-section": _r_axial_section,
+    "sphere-volume-exact": _r_sphere_volume,
+    "hemisphere": _r_hemisphere,
 })
 
 
