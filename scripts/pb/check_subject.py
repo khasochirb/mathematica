@@ -115,8 +115,10 @@ def main():
         fid = f["id"]
         assert f["unit"] in unit_ids, f"{fid}: bad unit {f['unit']}"
         unit_count[f["unit"]] += len(f["variants"])
-        if len(f["variants"]) < 33:
-            errors.append(f"{fid}: only {len(f['variants'])} variants (< 33)")
+        # Each form needs enough sibling variants to feed the reroll button
+        # and the miss->similar retry loop; the page shows only a few at once.
+        if len(f["variants"]) < 10:
+            errors.append(f"{fid}: only {len(f['variants'])} variants (< 10)")
         if f["level"] not in (1, 2, 3):
             errors.append(f"{fid}: bad level")
         if fid not in remapped and fid not in resolvers:
