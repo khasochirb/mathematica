@@ -2602,6 +2602,384 @@
       "unit": "right-triangle-trigonometry"
     },
     {
+      "id": "elevation-depression",
+      "title": "Angles of elevation and depression",
+      "level": 2,
+      "skill": "height = distance × tan θ — the tangent links opposite to adjacent.",
+      "unit": "right-triangle-trigonometry",
+      "variants": [
+        {
+          "id": "TRIG-elev-v01",
+          "statement": "An observer stands $12$ m from the base of a tower, and the angle of elevation to the top of the tower is $30°$. Find the height of the tower (in m).",
+          "options": [
+            "$4 \\sqrt{3}$",
+            "$12 \\sqrt{3}$",
+            "$12$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 12\\tan 30° = 4 \\sqrt{3}$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "12*tan(rad(30)) == 4*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v02",
+          "statement": "From the top of a cliff, the angle of depression to a boat $25$ m from the base of the cliff is $45°$. Find the height of the cliff (in m).",
+          "options": [
+            "$50$",
+            "$25$",
+            "$\\frac{25}{2} \\sqrt{2}$",
+            "$25 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 25\\tan 45° = 25$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "25*tan(rad(45)) == 25"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v03",
+          "statement": "An observer stands $10$ m from the base of a tower, and the angle of elevation to the top of the tower is $60°$. Find the height of the tower (in m).",
+          "options": [
+            "$\\frac{10}{3} \\sqrt{3}$",
+            "$10$",
+            "$10 \\sqrt{3}$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 10\\tan 60° = 10 \\sqrt{3}$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "10*tan(rad(60)) == 10*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v04",
+          "statement": "From the top of a cliff, the angle of depression to a boat $30$ m from the base of the cliff is $30°$. Find the height of the cliff (in m).",
+          "options": [
+            "$30 \\sqrt{3}$",
+            "$30$",
+            "$60$",
+            "$10 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 30\\tan 30° = 10 \\sqrt{3}$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "30*tan(rad(30)) == 10*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v05",
+          "statement": "An observer stands $40$ m from the base of a tower, and the angle of elevation to the top of the tower is $45°$. Find the height of the tower (in m).",
+          "options": [
+            "$40$",
+            "$80$",
+            "$20 \\sqrt{2}$",
+            "$40 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 40\\tan 45° = 40$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "40*tan(rad(45)) == 40"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v06",
+          "statement": "From the top of a cliff, the angle of depression to a boat $7$ m from the base of the cliff is $60°$. Find the height of the cliff (in m).",
+          "options": [
+            "$\\frac{7}{3} \\sqrt{3}$",
+            "$7 \\sqrt{3}$",
+            "$7$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 7\\tan 60° = 7 \\sqrt{3}$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "7*tan(rad(60)) == 7*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v07",
+          "statement": "An observer stands $45$ m from the base of a tower, and the angle of elevation to the top of the tower is $30°$. Find the height of the tower (in m).",
+          "options": [
+            "$45 \\sqrt{3}$",
+            "$45$",
+            "$15 \\sqrt{3}$",
+            "$90$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 45\\tan 30° = 15 \\sqrt{3}$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "45*tan(rad(30)) == 15*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v08",
+          "statement": "From the top of a cliff, the angle of depression to a boat $60$ m from the base of the cliff is $45°$. Find the height of the cliff (in m).",
+          "options": [
+            "$120$",
+            "$30 \\sqrt{2}$",
+            "$60 \\sqrt{3}$",
+            "$60$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 60\\tan 45° = 60$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "60*tan(rad(45)) == 60"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v09",
+          "statement": "An observer stands $20$ m from the base of a tower, and the angle of elevation to the top of the tower is $60°$. Find the height of the tower (in m).",
+          "options": [
+            "$20 \\sqrt{3}$",
+            "$\\frac{20}{3} \\sqrt{3}$",
+            "$20$",
+            "$40$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 20\\tan 60° = 20 \\sqrt{3}$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "20*tan(rad(60)) == 20*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v10",
+          "statement": "From the top of a cliff, the angle of depression to a boat $9$ m from the base of the cliff is $30°$. Find the height of the cliff (in m).",
+          "options": [
+            "$9 \\sqrt{3}$",
+            "$3 \\sqrt{3}$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 9\\tan 30° = 3 \\sqrt{3}$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "9*tan(rad(30)) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v11",
+          "statement": "An observer stands $18$ m from the base of a tower, and the angle of elevation to the top of the tower is $45°$. Find the height of the tower (in m).",
+          "options": [
+            "$36$",
+            "$9 \\sqrt{2}$",
+            "$18$",
+            "$18 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Height $=$ distance $\\times \\tan\\theta = 18\\tan 45° = 18$ m, since tangent links the opposite (height) to the adjacent (distance). Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "18*tan(rad(45)) == 18"
+          ]
+        },
+        {
+          "id": "TRIG-elev-v12",
+          "statement": "From the top of a cliff, the angle of depression to a boat $15$ m from the base of the cliff is $60°$. Find the height of the cliff (in m).",
+          "options": [
+            "$5 \\sqrt{3}$",
+            "$15$",
+            "$30$",
+            "$15 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The angle of depression equals the angle of elevation from the boat (alternate angles), so height $= 15\\tan 60° = 15 \\sqrt{3}$ m. Dividing by the tangent instead of multiplying is the classic slip.",
+          "check": [
+            "15*tan(rad(60)) == 15*sqrt(3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "find-the-angle",
+      "title": "Find the angle from two sides",
+      "level": 2,
+      "skill": "Match the side pair to sin, cos, or tan and recognize the special ratio.",
+      "unit": "right-triangle-trigonometry",
+      "variants": [
+        {
+          "id": "TRIG-fang-v01",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $5$ and the hypotenuse has length $10$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$45°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Opposite/hypotenuse is $\\sin\\theta = \\frac{5}{10}$ — a special-triangle ratio, so $\\theta = 30°$. Reading the ratio as cosine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "sin(rad(30)) == (5)/(10)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v02",
+          "statement": "In a right triangle, the side adjacent to angle $\\theta$ has length $5\\sqrt{3}$ and the hypotenuse has length $10$. Find $\\theta$.",
+          "options": [
+            "$45°$",
+            "$30°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adjacent/hypotenuse is $\\cos\\theta = \\frac{5\\sqrt{3}}{10}$ — a special-triangle ratio, so $\\theta = 30°$. Reading the ratio as sine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "cos(rad(30)) == (5*sqrt(3))/(10)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v03",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $7$ and the side adjacent to $\\theta$ has length $7$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$60°$",
+            "$45°$",
+            "$90°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Opposite/adjacent is $\\tan\\theta = \\frac{7}{7}$ — a special-triangle ratio, so $\\theta = 45°$. Reading the ratio as the inverted ratio and landing on the complementary angle is the classic slip.",
+          "check": [
+            "tan(rad(45)) == (7)/(7)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v04",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $4\\sqrt{3}$ and the hypotenuse has length $8$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$45°$",
+            "$90°$",
+            "$60°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Opposite/hypotenuse is $\\sin\\theta = \\frac{4\\sqrt{3}}{8}$ — a special-triangle ratio, so $\\theta = 60°$. Reading the ratio as cosine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "sin(rad(60)) == (4*sqrt(3))/(8)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v05",
+          "statement": "In a right triangle, the side adjacent to angle $\\theta$ has length $6$ and the hypotenuse has length $12$. Find $\\theta$.",
+          "options": [
+            "$60°$",
+            "$30°$",
+            "$45°$",
+            "$90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent/hypotenuse is $\\cos\\theta = \\frac{6}{12}$ — a special-triangle ratio, so $\\theta = 60°$. Reading the ratio as sine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "cos(rad(60)) == (6)/(12)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v06",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $9$ and the hypotenuse has length $9\\sqrt{2}$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$45°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Opposite/hypotenuse is $\\sin\\theta = \\frac{9}{9\\sqrt{2}}$ — a special-triangle ratio, so $\\theta = 45°$. Reading the ratio as cosine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "sin(rad(45)) == (9)/(9*sqrt(2))"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v07",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $4$ and the side adjacent to $\\theta$ has length $4\\sqrt{3}$. Find $\\theta$.",
+          "options": [
+            "$45°$",
+            "$60°$",
+            "$30°$",
+            "$90°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Opposite/adjacent is $\\tan\\theta = \\frac{4}{4\\sqrt{3}}$ — a special-triangle ratio, so $\\theta = 30°$. Reading the ratio as the inverted ratio and landing on the complementary angle is the classic slip.",
+          "check": [
+            "tan(rad(30)) == (4)/(4*sqrt(3))"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v08",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $6\\sqrt{3}$ and the side adjacent to $\\theta$ has length $6$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$45°$",
+            "$90°$",
+            "$60°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Opposite/adjacent is $\\tan\\theta = \\frac{6\\sqrt{3}}{6}$ — a special-triangle ratio, so $\\theta = 60°$. Reading the ratio as the inverted ratio and landing on the complementary angle is the classic slip.",
+          "check": [
+            "tan(rad(60)) == (6*sqrt(3))/(6)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v09",
+          "statement": "In a right triangle, the side adjacent to angle $\\theta$ has length $7\\sqrt{2}$ and the hypotenuse has length $14$. Find $\\theta$.",
+          "options": [
+            "$45°$",
+            "$30°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent/hypotenuse is $\\cos\\theta = \\frac{7\\sqrt{2}}{14}$ — a special-triangle ratio, so $\\theta = 45°$. Reading the ratio as sine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "cos(rad(45)) == (7*sqrt(2))/(14)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v10",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $8$ and the hypotenuse has length $16$. Find $\\theta$.",
+          "options": [
+            "$45°$",
+            "$30°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Opposite/hypotenuse is $\\sin\\theta = \\frac{8}{16}$ — a special-triangle ratio, so $\\theta = 30°$. Reading the ratio as cosine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "sin(rad(30)) == (8)/(16)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v11",
+          "statement": "In a right triangle, the side adjacent to angle $\\theta$ has length $10$ and the hypotenuse has length $20$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$45°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adjacent/hypotenuse is $\\cos\\theta = \\frac{10}{20}$ — a special-triangle ratio, so $\\theta = 60°$. Reading the ratio as sine and landing on the complementary angle is the classic slip.",
+          "check": [
+            "cos(rad(60)) == (10)/(20)"
+          ]
+        },
+        {
+          "id": "TRIG-fang-v12",
+          "statement": "In a right triangle, the side opposite angle $\\theta$ has length $11$ and the side adjacent to $\\theta$ has length $11$. Find $\\theta$.",
+          "options": [
+            "$30°$",
+            "$60°$",
+            "$90°$",
+            "$45°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Opposite/adjacent is $\\tan\\theta = \\frac{11}{11}$ — a special-triangle ratio, so $\\theta = 45°$. Reading the ratio as the inverted ratio and landing on the complementary angle is the classic slip.",
+          "check": [
+            "tan(rad(45)) == (11)/(11)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sin-to-cos-tan",
       "title": "From sin to cos and tan",
       "level": 2,
@@ -3736,6 +4114,573 @@
       "unit": "special-triangles-and-exact-values"
     },
     {
+      "id": "tan-exact",
+      "title": "Exact values of tangent",
+      "level": 1,
+      "skill": "tan is √3/3, 1, √3 at 30°, 45°, 60° — then attach the quadrant sign.",
+      "unit": "special-triangles-and-exact-values",
+      "variants": [
+        {
+          "id": "TRIG-tanx-v01",
+          "statement": "Evaluate exactly: $\\tan 30°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From the special triangles, $\\tan 30° = \\frac{\\sqrt{3}}{3}$. Mixing up $\\tan 30° = \\frac{\\sqrt{3}}{3}$ with $\\tan 60° = \\sqrt{3}$ is the classic slip.",
+          "check": [
+            "tan(rad(30)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v02",
+          "statement": "Evaluate exactly: $\\tan 45°$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From the special triangles, $\\tan 45° = 1$. Mixing up $\\tan 30° = \\frac{\\sqrt{3}}{3}$ with $\\tan 60° = \\sqrt{3}$ is the classic slip.",
+          "check": [
+            "tan(rad(45)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v03",
+          "statement": "Evaluate exactly: $\\tan 60°$.",
+          "options": [
+            "$-\\sqrt{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$\\sqrt{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From the special triangles, $\\tan 60° = \\sqrt{3}$. Mixing up $\\tan 30° = \\frac{\\sqrt{3}}{3}$ with $\\tan 60° = \\sqrt{3}$ is the classic slip.",
+          "check": [
+            "tan(rad(60)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v04",
+          "statement": "Evaluate exactly: $\\tan 120°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$",
+            "$-\\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle of $120°$ is $60°$ and tangent is negative in QII, so $\\tan 120° = -\\sqrt{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(120)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v05",
+          "statement": "Evaluate exactly: $\\tan 135°$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The reference angle of $135°$ is $45°$ and tangent is negative in QII, so $\\tan 135° = -1$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(135)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v06",
+          "statement": "Evaluate exactly: $\\tan 150°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The reference angle of $150°$ is $30°$ and tangent is negative in QII, so $\\tan 150° = -\\frac{\\sqrt{3}}{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(150)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v07",
+          "statement": "Evaluate exactly: $\\tan 210°$.",
+          "options": [
+            "$-\\frac{\\sqrt{3}}{3}$",
+            "$1$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The reference angle of $210°$ is $30°$ and tangent is positive in QIII, so $\\tan 210° = \\frac{\\sqrt{3}}{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(210)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v08",
+          "statement": "Evaluate exactly: $\\tan 225°$.",
+          "options": [
+            "$-1$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle of $225°$ is $45°$ and tangent is positive in QIII, so $\\tan 225° = 1$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(225)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v09",
+          "statement": "Evaluate exactly: $\\tan 240°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$-\\sqrt{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The reference angle of $240°$ is $60°$ and tangent is positive in QIII, so $\\tan 240° = \\sqrt{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(240)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v10",
+          "statement": "Evaluate exactly: $\\tan 300°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$-\\sqrt{3}$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The reference angle of $300°$ is $60°$ and tangent is negative in QIIII, so $\\tan 300° = -\\sqrt{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(300)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v11",
+          "statement": "Evaluate exactly: $\\tan 315°$.",
+          "options": [
+            "$1$",
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$-1$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The reference angle of $315°$ is $45°$ and tangent is negative in QIIII, so $\\tan 315° = -1$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(315)) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-tanx-v12",
+          "statement": "Evaluate exactly: $\\tan 330°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{3}$",
+            "$1$",
+            "$-1$",
+            "$-\\frac{\\sqrt{3}}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle of $330°$ is $30°$ and tangent is negative in QIIII, so $\\tan 330° = -\\frac{\\sqrt{3}}{3}$. Dropping (or flipping) the quadrant sign is the classic slip.",
+          "check": [
+            "tan(rad(330)) == -sqrt(3)/3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exact-value-combo",
+      "title": "Combining exact values",
+      "level": 2,
+      "skill": "Evaluate each special angle first, then add, subtract, or multiply.",
+      "unit": "special-triangles-and-exact-values",
+      "variants": [
+        {
+          "id": "TRIG-combo-v01",
+          "statement": "Compute exactly: $\\sin 30° + \\cos 60°$.",
+          "options": [
+            "$1$",
+            "$\\frac{1}{2}$",
+            "$\\sqrt{3}$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 30° = \\frac{1}{2}$ and $\\cos 60° = \\frac{1}{2}$, so the sum is $1$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(30)) + cos(rad(60)) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v02",
+          "statement": "Compute exactly: $\\sin 60° + \\cos 30°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\sqrt{3}$",
+            "$1$",
+            "$\\frac{3}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 60° = \\frac{\\sqrt{3}}{2}$ and $\\cos 30° = \\frac{\\sqrt{3}}{2}$, so the sum is $\\sqrt{3}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(60)) + cos(rad(30)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v03",
+          "statement": "Compute exactly: $\\sin 45° + \\cos 45°$.",
+          "options": [
+            "$1$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$\\sqrt{2}$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 45° = \\frac{\\sqrt{2}}{2}$ and $\\cos 45° = \\frac{\\sqrt{2}}{2}$, so the sum is $\\sqrt{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(45)) + cos(rad(45)) == sqrt(2)"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v04",
+          "statement": "Compute exactly: $\\sin 30° - \\cos 60°$.",
+          "options": [
+            "$1$",
+            "$\\frac{1}{2}$",
+            "$-\\frac{1}{2}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 30° = \\frac{1}{2}$ and $\\cos 60° = \\frac{1}{2}$, so the difference is $0$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(30)) - cos(rad(60)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v05",
+          "statement": "Compute exactly: $\\sin 45° + \\cos 30°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}+\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{2}+1}{2}$",
+            "$\\sqrt{2}+\\sqrt{3}$",
+            "$\\frac{\\sqrt{5}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 45° = \\frac{\\sqrt{2}}{2}$ and $\\cos 30° = \\frac{\\sqrt{3}}{2}$, so the sum is $\\frac{\\sqrt{2}+\\sqrt{3}}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(45)) + cos(rad(30)) == (sqrt(2)+sqrt(3))/2"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v06",
+          "statement": "Compute exactly: $\\sin 30° + \\cos 45°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}+\\sqrt{2}}{2}$",
+            "$\\frac{1+\\sqrt{2}}{2}$",
+            "$1+\\sqrt{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 30° = \\frac{1}{2}$ and $\\cos 45° = \\frac{\\sqrt{2}}{2}$, so the sum is $\\frac{1+\\sqrt{2}}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(30)) + cos(rad(45)) == (1+sqrt(2))/2"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v07",
+          "statement": "Compute exactly: $\\sin 90° + \\cos 60°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$1$",
+            "$\\frac{3}{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 90° = 1$ and $\\cos 60° = \\frac{1}{2}$, so the sum is $\\frac{3}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(90)) + cos(rad(60)) == Rational(3,2)"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v08",
+          "statement": "Compute exactly: $\\sin 45° \\cdot \\cos 45°$.",
+          "options": [
+            "$1$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 45° = \\frac{\\sqrt{2}}{2}$ and $\\cos 45° = \\frac{\\sqrt{2}}{2}$, so the product is $\\frac{1}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(45)) * cos(rad(45)) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v09",
+          "statement": "Compute exactly: $\\sin 90° \\cdot \\cos 30°$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$0$",
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 90° = 1$ and $\\cos 30° = \\frac{\\sqrt{3}}{2}$, so the product is $\\frac{\\sqrt{3}}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(90)) * cos(rad(30)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v10",
+          "statement": "Compute exactly: $\\sin 60° - \\cos 30°$.",
+          "options": [
+            "$\\sqrt{3}$",
+            "$0$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 60° = \\frac{\\sqrt{3}}{2}$ and $\\cos 30° = \\frac{\\sqrt{3}}{2}$, so the difference is $0$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(60)) - cos(rad(30)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v11",
+          "statement": "Compute exactly: $\\sin 30° \\cdot \\cos 0°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 30° = \\frac{1}{2}$ and $\\cos 0° = 1$, so the product is $\\frac{1}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(30)) * cos(rad(0)) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "TRIG-combo-v12",
+          "statement": "Compute exactly: $\\sin 60° + \\cos 45°$.",
+          "options": [
+            "$\\frac{1+\\sqrt{2}}{2}$",
+            "$\\sqrt{3}+\\sqrt{2}$",
+            "$\\frac{\\sqrt{5}}{2}$",
+            "$\\frac{\\sqrt{3}+\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 60° = \\frac{\\sqrt{3}}{2}$ and $\\cos 45° = \\frac{\\sqrt{2}}{2}$, so the sum is $\\frac{\\sqrt{3}+\\sqrt{2}}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
+          "check": [
+            "sin(rad(60)) + cos(rad(45)) == (sqrt(3)+sqrt(2))/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coterminal",
+      "title": "Coterminal angles",
+      "level": 1,
+      "skill": "Add or subtract 360° until the angle lands in [0°, 360°).",
+      "unit": "radians-and-the-unit-circle",
+      "variants": [
+        {
+          "id": "TRIG-cot-v01",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $380°$?",
+          "options": [
+            "$20°$",
+            "$340°$",
+            "$200°$",
+            "$740°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract full turns: $380° - 1 \\cdot 360° = 20°$. Stopping after a single subtraction ($20°$) is the classic slip.",
+          "check": [
+            "Rational(380 - 20, 360) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v02",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $495°$?",
+          "options": [
+            "$225°$",
+            "$135°$",
+            "$315°$",
+            "$855°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract full turns: $495° - 1 \\cdot 360° = 135°$. Stopping after a single subtraction ($135°$) is the classic slip.",
+          "check": [
+            "Rational(495 - 135, 360) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v03",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $750°$?",
+          "options": [
+            "$330°$",
+            "$210°$",
+            "$30°$",
+            "$390°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract full turns: $750° - 2 \\cdot 360° = 30°$. Stopping after a single subtraction ($390°$) is the classic slip.",
+          "check": [
+            "Rational(750 - 30, 360) == 2"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v04",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $1000°$?",
+          "options": [
+            "$80°$",
+            "$100°$",
+            "$640°$",
+            "$280°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract full turns: $1000° - 2 \\cdot 360° = 280°$. Stopping after a single subtraction ($640°$) is the classic slip.",
+          "check": [
+            "Rational(1000 - 280, 360) == 2"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v05",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $1230°$?",
+          "options": [
+            "$150°$",
+            "$210°$",
+            "$330°$",
+            "$870°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract full turns: $1230° - 3 \\cdot 360° = 150°$. Stopping after a single subtraction ($870°$) is the classic slip.",
+          "check": [
+            "Rational(1230 - 150, 360) == 3"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v06",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $1500°$?",
+          "options": [
+            "$300°$",
+            "$60°$",
+            "$240°$",
+            "$1140°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract full turns: $1500° - 4 \\cdot 360° = 60°$. Stopping after a single subtraction ($1140°$) is the classic slip.",
+          "check": [
+            "Rational(1500 - 60, 360) == 4"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v07",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-30°$?",
+          "options": [
+            "$30°$",
+            "$150°$",
+            "$330°$",
+            "$-390°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add full turns: $-30° + 1 \\cdot 360° = 330°$. Dropping the minus sign and reducing $30°$ instead is the classic slip.",
+          "check": [
+            "Rational(-30 - 330, 360) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v08",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-135°$?",
+          "options": [
+            "$135°$",
+            "$45°$",
+            "$-495°$",
+            "$225°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add full turns: $-135° + 1 \\cdot 360° = 225°$. Dropping the minus sign and reducing $135°$ instead is the classic slip.",
+          "check": [
+            "Rational(-135 - 225, 360) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v09",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-300°$?",
+          "options": [
+            "$60°$",
+            "$300°$",
+            "$240°$",
+            "$-660°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add full turns: $-300° + 1 \\cdot 360° = 60°$. Dropping the minus sign and reducing $300°$ instead is the classic slip.",
+          "check": [
+            "Rational(-300 - 60, 360) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v10",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-450°$?",
+          "options": [
+            "$90°$",
+            "$270°$",
+            "$-810°$",
+            "$-90°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add full turns: $-450° + 2 \\cdot 360° = 270°$. Dropping the minus sign and reducing $450°$ instead is the classic slip.",
+          "check": [
+            "Rational(-450 - 270, 360) == -2"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v11",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-560°$?",
+          "options": [
+            "$200°$",
+            "$340°$",
+            "$160°$",
+            "$-920°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add full turns: $-560° + 2 \\cdot 360° = 160°$. Dropping the minus sign and reducing $560°$ instead is the classic slip.",
+          "check": [
+            "Rational(-560 - 160, 360) == -2"
+          ]
+        },
+        {
+          "id": "TRIG-cot-v12",
+          "statement": "Which angle in $[0°, 360°)$ is coterminal with $-700°$?",
+          "options": [
+            "$340°$",
+            "$200°$",
+            "$-1060°$",
+            "$20°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add full turns: $-700° + 2 \\cdot 360° = 20°$. Dropping the minus sign and reducing $700°$ instead is the classic slip.",
+          "check": [
+            "Rational(-700 - 20, 360) == -2"
+          ]
+        }
+      ]
+    },
+    {
       "id": "deg-rad",
       "title": "Degrees ↔ radians",
       "level": 1,
@@ -4834,6 +5779,195 @@
       ]
     },
     {
+      "id": "reference-angle",
+      "title": "Reference angles",
+      "level": 2,
+      "skill": "The acute angle to the x-axis: 180°−a, a−180°, or 360°−a by quadrant.",
+      "unit": "radians-and-the-unit-circle",
+      "variants": [
+        {
+          "id": "TRIG-ref-v01",
+          "statement": "Find the reference angle of $120°$.",
+          "options": [
+            "$60°$",
+            "$240°$",
+            "$-60°$",
+            "$30°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$120°$ lies in QII, so its reference angle — the acute angle to the x-axis — is $180° - 120° = 60°$. Using $360° - 120°$ (the QIV rule) is the classic slip.",
+          "check": [
+            "180 - 120 == 60"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v02",
+          "statement": "Find the reference angle of $135°$.",
+          "options": [
+            "$225°$",
+            "$45°$",
+            "$-45°$",
+            "$-135°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$135°$ lies in QII, so its reference angle — the acute angle to the x-axis — is $180° - 135° = 45°$. Using $360° - 135°$ (the QIV rule) is the classic slip.",
+          "check": [
+            "180 - 135 == 45"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v03",
+          "statement": "Find the reference angle of $155°$.",
+          "options": [
+            "$205°$",
+            "$-25°$",
+            "$25°$",
+            "$65°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$155°$ lies in QII, so its reference angle — the acute angle to the x-axis — is $180° - 155° = 25°$. Using $360° - 155°$ (the QIV rule) is the classic slip.",
+          "check": [
+            "180 - 155 == 25"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v04",
+          "statement": "Find the reference angle of $100°$.",
+          "options": [
+            "$260°$",
+            "$-80°$",
+            "$10°$",
+            "$80°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$100°$ lies in QII, so its reference angle — the acute angle to the x-axis — is $180° - 100° = 80°$. Using $360° - 100°$ (the QIV rule) is the classic slip.",
+          "check": [
+            "180 - 100 == 80"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v05",
+          "statement": "Find the reference angle of $200°$.",
+          "options": [
+            "$20°$",
+            "$160°$",
+            "$-20°$",
+            "$110°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$200°$ lies in QIII, so its reference angle — the acute angle to the x-axis — is $200° - 180° = 20°$. Using $180° - 200°$ (the QII rule) is the classic slip.",
+          "check": [
+            "200 - 180 == 20"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v06",
+          "statement": "Find the reference angle of $210°$.",
+          "options": [
+            "$150°$",
+            "$30°$",
+            "$-30°$",
+            "$120°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$210°$ lies in QIII, so its reference angle — the acute angle to the x-axis — is $210° - 180° = 30°$. Using $180° - 210°$ (the QII rule) is the classic slip.",
+          "check": [
+            "210 - 180 == 30"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v07",
+          "statement": "Find the reference angle of $225°$.",
+          "options": [
+            "$135°$",
+            "$-45°$",
+            "$45°$",
+            "$225°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$225°$ lies in QIII, so its reference angle — the acute angle to the x-axis — is $225° - 180° = 45°$. Using $180° - 225°$ (the QII rule) is the classic slip.",
+          "check": [
+            "225 - 180 == 45"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v08",
+          "statement": "Find the reference angle of $250°$.",
+          "options": [
+            "$110°$",
+            "$-70°$",
+            "$160°$",
+            "$70°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$250°$ lies in QIII, so its reference angle — the acute angle to the x-axis — is $250° - 180° = 70°$. Using $180° - 250°$ (the QII rule) is the classic slip.",
+          "check": [
+            "250 - 180 == 70"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v09",
+          "statement": "Find the reference angle of $300°$.",
+          "options": [
+            "$60°$",
+            "$120°$",
+            "$-120°$",
+            "$30°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$300°$ lies in QIV, so its reference angle — the acute angle to the x-axis — is $360° - 300° = 60°$. Using $300° - 180°$ (the QIII rule) is the classic slip.",
+          "check": [
+            "360 - 300 == 60"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v10",
+          "statement": "Find the reference angle of $310°$.",
+          "options": [
+            "$130°$",
+            "$50°$",
+            "$-130°$",
+            "$40°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$310°$ lies in QIV, so its reference angle — the acute angle to the x-axis — is $360° - 310° = 50°$. Using $310° - 180°$ (the QIII rule) is the classic slip.",
+          "check": [
+            "360 - 310 == 50"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v11",
+          "statement": "Find the reference angle of $330°$.",
+          "options": [
+            "$150°$",
+            "$-150°$",
+            "$30°$",
+            "$60°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$330°$ lies in QIV, so its reference angle — the acute angle to the x-axis — is $360° - 330° = 30°$. Using $330° - 180°$ (the QIII rule) is the classic slip.",
+          "check": [
+            "360 - 330 == 30"
+          ]
+        },
+        {
+          "id": "TRIG-ref-v12",
+          "statement": "Find the reference angle of $340°$.",
+          "options": [
+            "$160°$",
+            "$-160°$",
+            "$70°$",
+            "$20°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$340°$ lies in QIV, so its reference angle — the acute angle to the x-axis — is $360° - 340° = 20°$. Using $340° - 180°$ (the QIII rule) is the classic slip.",
+          "check": [
+            "360 - 340 == 20"
+          ]
+        }
+      ]
+    },
+    {
       "id": "amplitude-period",
       "title": "Amplitude and period from the equation",
       "level": 1,
@@ -5383,6 +6517,195 @@
       ]
     },
     {
+      "id": "midline",
+      "title": "Midline of a sinusoid",
+      "level": 1,
+      "skill": "The vertical shift C sets the midline y = C.",
+      "unit": "graphs-of-trig-functions",
+      "variants": [
+        {
+          "id": "TRIG-midl-v01",
+          "statement": "What is the MIDLINE of the graph of $y = 3\\sin\\left(2x\\right) + 1$?",
+          "options": [
+            "$y = 1$",
+            "$y = 3$",
+            "$y = 4$",
+            "$x = 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The vertical shift $C = 1$ sets the midline $y = 1$, halfway between the maximum and minimum. Answering $y = 4$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((1+3) + (1-3), 2) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v02",
+          "statement": "What is the MIDLINE of the graph of $y = 2\\cos\\left(x\\right) - 3$?",
+          "options": [
+            "$y = 2$",
+            "$y = -3$",
+            "$y = -1$",
+            "$x = -3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The vertical shift $C = -3$ sets the midline $y = -3$, halfway between the maximum and minimum. Answering $y = -1$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((-3+2) + (-3-2), 2) == -3"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v03",
+          "statement": "What is the MIDLINE of the graph of $y = -4\\sin\\left(3x\\right) + 2$?",
+          "options": [
+            "$y = -4$",
+            "$y = -2$",
+            "$y = 2$",
+            "$x = 2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The vertical shift $C = 2$ sets the midline $y = 2$, halfway between the maximum and minimum. Answering $y = -2$ — the line through the troughs — is the classic slip.",
+          "check": [
+            "Rational((2+4) + (2-4), 2) == 2"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v04",
+          "statement": "What is the MIDLINE of the graph of $y = 5\\cos\\left(2x\\right) - 1$?",
+          "options": [
+            "$y = 5$",
+            "$y = 4$",
+            "$x = -1$",
+            "$y = -1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The vertical shift $C = -1$ sets the midline $y = -1$, halfway between the maximum and minimum. Answering $y = 4$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((-1+5) + (-1-5), 2) == -1"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v05",
+          "statement": "What is the MIDLINE of the graph of $y = 2\\sin\\left(4x\\right) + 5$?",
+          "options": [
+            "$y = 5$",
+            "$y = 2$",
+            "$y = 7$",
+            "$x = 5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The vertical shift $C = 5$ sets the midline $y = 5$, halfway between the maximum and minimum. Answering $y = 7$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((5+2) + (5-2), 2) == 5"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v06",
+          "statement": "What is the MIDLINE of the graph of $y = -3\\cos\\left(x\\right) + 4$?",
+          "options": [
+            "$y = -3$",
+            "$y = 4$",
+            "$y = 1$",
+            "$x = 4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The vertical shift $C = 4$ sets the midline $y = 4$, halfway between the maximum and minimum. Answering $y = 1$ — the line through the troughs — is the classic slip.",
+          "check": [
+            "Rational((4+3) + (4-3), 2) == 4"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v07",
+          "statement": "What is the MIDLINE of the graph of $y = 4\\sin\\left(2x\\right) - 2$?",
+          "options": [
+            "$y = 4$",
+            "$y = 2$",
+            "$y = -2$",
+            "$x = -2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The vertical shift $C = -2$ sets the midline $y = -2$, halfway between the maximum and minimum. Answering $y = 2$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((-2+4) + (-2-4), 2) == -2"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v08",
+          "statement": "What is the MIDLINE of the graph of $y = 6\\cos\\left(3x\\right) + 1$?",
+          "options": [
+            "$y = 6$",
+            "$y = 7$",
+            "$x = 1$",
+            "$y = 1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The vertical shift $C = 1$ sets the midline $y = 1$, halfway between the maximum and minimum. Answering $y = 7$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((1+6) + (1-6), 2) == 1"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v09",
+          "statement": "What is the MIDLINE of the graph of $y = -2\\sin\\left(x\\right) - 5$?",
+          "options": [
+            "$y = -5$",
+            "$y = -2$",
+            "$y = -7$",
+            "$x = -5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The vertical shift $C = -5$ sets the midline $y = -5$, halfway between the maximum and minimum. Answering $y = -7$ — the line through the troughs — is the classic slip.",
+          "check": [
+            "Rational((-5+2) + (-5-2), 2) == -5"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v10",
+          "statement": "What is the MIDLINE of the graph of $y = 3\\cos\\left(4x\\right) + 2$?",
+          "options": [
+            "$y = 3$",
+            "$y = 2$",
+            "$y = 5$",
+            "$x = 2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The vertical shift $C = 2$ sets the midline $y = 2$, halfway between the maximum and minimum. Answering $y = 5$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((2+3) + (2-3), 2) == 2"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v11",
+          "statement": "What is the MIDLINE of the graph of $y = 7\\sin\\left(2x\\right) + 3$?",
+          "options": [
+            "$y = 7$",
+            "$y = 10$",
+            "$y = 3$",
+            "$x = 3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The vertical shift $C = 3$ sets the midline $y = 3$, halfway between the maximum and minimum. Answering $y = 10$ — the line through the peaks — is the classic slip.",
+          "check": [
+            "Rational((3+7) + (3-7), 2) == 3"
+          ]
+        },
+        {
+          "id": "TRIG-midl-v12",
+          "statement": "What is the MIDLINE of the graph of $y = -5\\cos\\left(x\\right) + 2$?",
+          "options": [
+            "$y = -5$",
+            "$y = -3$",
+            "$x = 2$",
+            "$y = 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The vertical shift $C = 2$ sets the midline $y = 2$, halfway between the maximum and minimum. Answering $y = -3$ — the line through the troughs — is the classic slip.",
+          "check": [
+            "Rational((2+5) + (2-5), 2) == 2"
+          ]
+        }
+      ]
+    },
+    {
       "id": "max-min-value",
       "title": "Maximum and minimum of a sinusoid",
       "level": 2,
@@ -5927,6 +7250,384 @@
           "explanation": "$\\cos$ swings between $-1$ and $1$, so $y$ ranges over $1 \\pm |-10|$ and the minimum is $1 - 10 = -9$. Using the signed $A = -10$ without absolute value gives the maximum instead — the classic slip.",
           "check": [
             "(1) - sqrt((-10)**2) == -9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-shift",
+      "title": "Phase shift",
+      "level": 3,
+      "skill": "x − φ shifts right, x + φ shifts left — inside changes act in reverse.",
+      "unit": "graphs-of-trig-functions",
+      "variants": [
+        {
+          "id": "TRIG-phase-v01",
+          "statement": "The graph of $y = \\sin\\left(x - 45°\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$45°$ to the right",
+            "$45°$ to the left",
+            "$45°$ upward",
+            "$45°$ downward"
+          ],
+          "correctIndex": 0,
+          "explanation": "Replacing $x$ by $x - 45°$ moves the graph $45°$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) - rad(45)) == sin(rad(45))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v02",
+          "statement": "The graph of $y = \\sin\\left(x + 30°\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$30°$ to the right",
+            "$30°$ to the left",
+            "$30°$ upward",
+            "$30°$ downward"
+          ],
+          "correctIndex": 1,
+          "explanation": "Replacing $x$ by $x + 30°$ moves the graph $30°$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) + rad(30)) == sin(rad(120))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v03",
+          "statement": "The graph of $y = \\cos\\left(x - 60°\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$60°$ to the left",
+            "$60°$ upward",
+            "$60°$ to the right",
+            "$60°$ downward"
+          ],
+          "correctIndex": 2,
+          "explanation": "Replacing $x$ by $x - 60°$ moves the graph $60°$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) - rad(60)) == cos(rad(30))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v04",
+          "statement": "The graph of $y = \\cos\\left(x + 90°\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$90°$ to the right",
+            "$90°$ upward",
+            "$90°$ downward",
+            "$90°$ to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "Replacing $x$ by $x + 90°$ moves the graph $90°$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) + rad(90)) == cos(rad(180))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v05",
+          "statement": "The graph of $y = \\sin\\left(x - \\frac{\\pi}{4}\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$\\frac{\\pi}{4}$ to the right",
+            "$\\frac{\\pi}{4}$ to the left",
+            "$\\frac{\\pi}{4}$ upward",
+            "$\\frac{\\pi}{4}$ downward"
+          ],
+          "correctIndex": 0,
+          "explanation": "Replacing $x$ by $x - \\frac{\\pi}{4}$ moves the graph $\\frac{\\pi}{4}$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) - rad(45)) == sin(rad(45))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v06",
+          "statement": "The graph of $y = \\sin\\left(x + \\frac{\\pi}{6}\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$\\frac{\\pi}{6}$ to the right",
+            "$\\frac{\\pi}{6}$ to the left",
+            "$\\frac{\\pi}{6}$ upward",
+            "$\\frac{\\pi}{6}$ downward"
+          ],
+          "correctIndex": 1,
+          "explanation": "Replacing $x$ by $x + \\frac{\\pi}{6}$ moves the graph $\\frac{\\pi}{6}$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) + rad(30)) == sin(rad(120))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v07",
+          "statement": "The graph of $y = \\cos\\left(x - \\frac{\\pi}{3}\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$\\frac{\\pi}{3}$ to the left",
+            "$\\frac{\\pi}{3}$ upward",
+            "$\\frac{\\pi}{3}$ to the right",
+            "$\\frac{\\pi}{3}$ downward"
+          ],
+          "correctIndex": 2,
+          "explanation": "Replacing $x$ by $x - \\frac{\\pi}{3}$ moves the graph $\\frac{\\pi}{3}$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) - rad(60)) == cos(rad(30))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v08",
+          "statement": "The graph of $y = \\cos\\left(x + \\frac{\\pi}{2}\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$\\frac{\\pi}{2}$ to the right",
+            "$\\frac{\\pi}{2}$ upward",
+            "$\\frac{\\pi}{2}$ downward",
+            "$\\frac{\\pi}{2}$ to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "Replacing $x$ by $x + \\frac{\\pi}{2}$ moves the graph $\\frac{\\pi}{2}$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) + rad(90)) == cos(rad(180))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v09",
+          "statement": "The graph of $y = \\sin\\left(x - \\frac{2\\pi}{3}\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$\\frac{2\\pi}{3}$ to the right",
+            "$\\frac{2\\pi}{3}$ to the left",
+            "$\\frac{2\\pi}{3}$ upward",
+            "$\\frac{2\\pi}{3}$ downward"
+          ],
+          "correctIndex": 0,
+          "explanation": "Replacing $x$ by $x - \\frac{2\\pi}{3}$ moves the graph $\\frac{2\\pi}{3}$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) - rad(120)) == sin(rad(-30))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v10",
+          "statement": "The graph of $y = \\cos\\left(x - 30°\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$30°$ to the left",
+            "$30°$ to the right",
+            "$30°$ upward",
+            "$30°$ downward"
+          ],
+          "correctIndex": 1,
+          "explanation": "Replacing $x$ by $x - 30°$ moves the graph $30°$ to the RIGHT — changes inside the argument act horizontally and in reverse. Reading the minus sign as a leftward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) - rad(30)) == cos(rad(60))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v11",
+          "statement": "The graph of $y = \\sin\\left(x + \\frac{3\\pi}{4}\\right)$ is obtained from the graph of $y = \\sin x$ by which shift?",
+          "options": [
+            "$\\frac{3\\pi}{4}$ to the right",
+            "$\\frac{3\\pi}{4}$ upward",
+            "$\\frac{3\\pi}{4}$ to the left",
+            "$\\frac{3\\pi}{4}$ downward"
+          ],
+          "correctIndex": 2,
+          "explanation": "Replacing $x$ by $x + \\frac{3\\pi}{4}$ moves the graph $\\frac{3\\pi}{4}$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "sin(rad(90) + rad(135)) == sin(rad(225))"
+          ]
+        },
+        {
+          "id": "TRIG-phase-v12",
+          "statement": "The graph of $y = \\cos\\left(x + 60°\\right)$ is obtained from the graph of $y = \\cos x$ by which shift?",
+          "options": [
+            "$60°$ to the right",
+            "$60°$ upward",
+            "$60°$ downward",
+            "$60°$ to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "Replacing $x$ by $x + 60°$ moves the graph $60°$ to the LEFT — changes inside the argument act horizontally and in reverse. Reading the plus sign as a rightward shift is the classic slip.",
+          "check": [
+            "cos(rad(90) + rad(60)) == cos(rad(150))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cofunction",
+      "title": "Cofunction identities",
+      "level": 2,
+      "skill": "sin θ = cos(90° − θ): cofunctions of complements are equal.",
+      "unit": "identities-and-equations",
+      "variants": [
+        {
+          "id": "TRIG-cofn-v01",
+          "statement": "If $\\sin 10° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$80°$",
+            "$10°$",
+            "$170°$",
+            "$100°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 10 = 80$. Setting $x = 10$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(10)) - cos(rad(80))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v02",
+          "statement": "If $\\tan 15° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$15°$",
+            "$75°$",
+            "$165°$",
+            "$105°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 15 = 75$. Setting $x = 15$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(15))*tan(rad(75)) - 1) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v03",
+          "statement": "If $\\sin 20° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$20°$",
+            "$160°$",
+            "$70°$",
+            "$110°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 20 = 70$. Setting $x = 20$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(20)) - cos(rad(70))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v04",
+          "statement": "If $\\tan 25° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$25°$",
+            "$155°$",
+            "$115°$",
+            "$65°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 25 = 65$. Setting $x = 25$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(25))*tan(rad(65)) - 1) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v05",
+          "statement": "If $\\sin 35° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$55°$",
+            "$35°$",
+            "$145°$",
+            "$125°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 35 = 55$. Setting $x = 35$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(35)) - cos(rad(55))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v06",
+          "statement": "If $\\tan 40° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$40°$",
+            "$50°$",
+            "$140°$",
+            "$130°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 40 = 50$. Setting $x = 40$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(40))*tan(rad(50)) - 1) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v07",
+          "statement": "If $\\sin 50° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$50°$",
+            "$130°$",
+            "$40°$",
+            "$140°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 50 = 40$. Setting $x = 50$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(50)) - cos(rad(40))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v08",
+          "statement": "If $\\tan 55° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$55°$",
+            "$125°$",
+            "$145°$",
+            "$35°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 55 = 35$. Setting $x = 55$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(55))*tan(rad(35)) - 1) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v09",
+          "statement": "If $\\sin 65° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$25°$",
+            "$65°$",
+            "$115°$",
+            "$155°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 65 = 25$. Setting $x = 65$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(65)) - cos(rad(25))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v10",
+          "statement": "If $\\tan 70° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$70°$",
+            "$20°$",
+            "$110°$",
+            "$160°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 70 = 20$. Setting $x = 70$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(70))*tan(rad(20)) - 1) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v11",
+          "statement": "If $\\sin 75° = \\cos x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$75°$",
+            "$105°$",
+            "$15°$",
+            "$165°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cofunctions of complementary angles are equal: $\\sin \\theta = \\cos(90° - \\theta)$, so $x = 90 - 75 = 15$. Setting $x = 75$ — treating sine and cosine as the same function — is the classic slip.",
+          "check": [
+            "simplify(sin(rad(75)) - cos(rad(15))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-cofn-v12",
+          "statement": "If $\\tan 80° = \\cot x°$ with $0 < x < 90$, find $x°$.",
+          "options": [
+            "$80°$",
+            "$100°$",
+            "$170°$",
+            "$10°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent and cotangent are cofunctions: $\\tan \\theta = \\cot(90° - \\theta)$, so $x = 90 - 80 = 10$. Setting $x = 80$ — treating them as the same function — is the classic slip.",
+          "check": [
+            "simplify(tan(rad(80))*tan(rad(10)) - 1) == 0"
           ]
         }
       ]
@@ -7641,6 +9342,195 @@
         }
       ],
       "unit": "identities-and-equations"
+    },
+    {
+      "id": "simplify-expression",
+      "title": "One-step identity simplification",
+      "level": 3,
+      "skill": "Use sin² + cos² = 1 and tan = sin/cos to collapse the expression.",
+      "unit": "identities-and-equations",
+      "variants": [
+        {
+          "id": "TRIG-simp-v01",
+          "statement": "Simplify: $\\dfrac{1 - \\cos^2 x}{\\sin x}$ (assume $\\sin x \\neq 0$).",
+          "options": [
+            "$\\sin x$",
+            "$\\cos x$",
+            "$\\tan x$",
+            "$\\sin^2 x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here $1 - \\cos^2 x = \\sin^2 x$, then one factor of $\\sin x$ cancels, leaving $\\sin x$.",
+          "check": [
+            "simplify(((1 - cos(x)**2)/sin(x)) - (sin(x))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v02",
+          "statement": "Simplify: $\\dfrac{1 - \\sin^2 x}{\\cos x}$ (assume $\\cos x \\neq 0$).",
+          "options": [
+            "$\\sin x$",
+            "$\\cos x$",
+            "$\\tan x$",
+            "$\\cos^2 x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here $1 - \\sin^2 x = \\cos^2 x$, then one factor of $\\cos x$ cancels, leaving $\\cos x$.",
+          "check": [
+            "simplify(((1 - sin(x)**2)/cos(x)) - (cos(x))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v03",
+          "statement": "Simplify: $\\sin^2 x - 1$.",
+          "options": [
+            "$\\cos^2 x$",
+            "$-\\sin^2 x$",
+            "$-\\cos^2 x$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here $\\sin^2 x - 1 = -(1 - \\sin^2 x) = -\\cos^2 x$; dropping the minus sign is the classic slip, leaving $-\\cos^2 x$.",
+          "check": [
+            "simplify((sin(x)**2 - 1) - (-cos(x)**2)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v04",
+          "statement": "Simplify: $\\cos^2 x - 1$.",
+          "options": [
+            "$\\sin^2 x$",
+            "$-\\cos^2 x$",
+            "$-1$",
+            "$-\\sin^2 x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here $\\cos^2 x - 1 = -(1 - \\cos^2 x) = -\\sin^2 x$; dropping the minus sign is the classic slip, leaving $-\\sin^2 x$.",
+          "check": [
+            "simplify((cos(x)**2 - 1) - (-sin(x)**2)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v05",
+          "statement": "Simplify: $\\dfrac{\\sin x \\cos x}{\\sin x}$ (assume $\\sin x \\neq 0$).",
+          "options": [
+            "$\\cos x$",
+            "$\\sin x$",
+            "$1$",
+            "$\\sin x \\cos x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here the common factor $\\sin x$ cancels; cancelling the wrong factor is the classic slip, leaving $\\cos x$.",
+          "check": [
+            "simplify(((sin(x)*cos(x))/sin(x)) - (cos(x))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v06",
+          "statement": "Simplify: $\\tan x \\cos x$ (assume $\\cos x \\neq 0$).",
+          "options": [
+            "$\\cos x$",
+            "$\\sin x$",
+            "$\\tan x$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here $\\tan x = \\frac{\\sin x}{\\cos x}$, so the $\\cos x$ cancels, leaving $\\sin x$.",
+          "check": [
+            "simplify((tan(x)*cos(x)) - (sin(x))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v07",
+          "statement": "Simplify: $\\dfrac{\\sin x}{\\tan x}$ (assume $\\tan x \\neq 0$).",
+          "options": [
+            "$\\sin x$",
+            "$1$",
+            "$\\cos x$",
+            "$\\cos^2 x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here dividing by $\\tan x = \\frac{\\sin x}{\\cos x}$ multiplies by $\\frac{\\cos x}{\\sin x}$; answering $1$ from a false cancellation is the classic slip, leaving $\\cos x$.",
+          "check": [
+            "simplify((sin(x)/tan(x)) - (cos(x))) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v08",
+          "statement": "Simplify: $1 - \\cos^2 x$.",
+          "options": [
+            "$\\cos^2 x$",
+            "$\\sin x$",
+            "$-\\cos^2 x$",
+            "$\\sin^2 x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here the Pythagorean identity $\\sin^2 x + \\cos^2 x = 1$ rearranges to $1 - \\cos^2 x = \\sin^2 x$; forgetting the square (answering $\\sin x$) is the classic slip, leaving $\\sin^2 x$.",
+          "check": [
+            "simplify((1 - cos(x)**2) - (sin(x)**2)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v09",
+          "statement": "Simplify: $1 - \\sin^2 x$.",
+          "options": [
+            "$\\cos^2 x$",
+            "$\\sin^2 x$",
+            "$\\cos x$",
+            "$-\\sin^2 x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here the Pythagorean identity rearranges to $1 - \\sin^2 x = \\cos^2 x$; forgetting the square (answering $\\cos x$) is the classic slip, leaving $\\cos^2 x$.",
+          "check": [
+            "simplify((1 - sin(x)**2) - (cos(x)**2)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v10",
+          "statement": "Simplify: $\\tan^2 x \\cos^2 x$ (assume $\\cos x \\neq 0$).",
+          "options": [
+            "$\\cos^2 x$",
+            "$\\sin^2 x$",
+            "$\\tan^2 x$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here $\\tan^2 x = \\frac{\\sin^2 x}{\\cos^2 x}$, so the $\\cos^2 x$ cancels, leaving $\\sin^2 x$.",
+          "check": [
+            "simplify((tan(x)**2*cos(x)**2) - (sin(x)**2)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v11",
+          "statement": "Simplify: $\\dfrac{\\sin^2 x}{1 - \\cos^2 x}$ (assume $\\sin x \\neq 0$).",
+          "options": [
+            "$\\sin^2 x$",
+            "$\\cos^2 x$",
+            "$1$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here the denominator IS $\\sin^2 x$ by the Pythagorean identity, so the quotient is $1$, leaving $1$.",
+          "check": [
+            "simplify((sin(x)**2/(1 - cos(x)**2)) - (1)) == 0"
+          ]
+        },
+        {
+          "id": "TRIG-simp-v12",
+          "statement": "Simplify: $\\dfrac{\\cos^2 x}{1 - \\sin^2 x}$ (assume $\\cos x \\neq 0$).",
+          "options": [
+            "$\\cos^2 x$",
+            "$\\sin^2 x$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here the denominator IS $\\cos^2 x$ by the Pythagorean identity, so the quotient is $1$, leaving $1$.",
+          "check": [
+            "simplify((cos(x)**2/(1 - sin(x)**2)) - (1)) == 0"
+          ]
+        }
+      ]
     },
     {
       "id": "triangle-area-sine",
@@ -9915,6 +11805,195 @@
           "explanation": "Area $= \\frac{1}{2}ab\\sin C = \\frac{1}{2} \\cdot 8 \\cdot 9 \\cdot \\sin 30° = 18$. Dropping the $\\frac{1}{2}$ gives $36$ — the classic slip.",
           "check": [
             "Rational(72,2)*sin(rad(30)) == 18"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cos-from-sides",
+      "title": "Cosine of an angle from three sides",
+      "level": 3,
+      "skill": "cos C = (a² + b² − c²)/(2ab) — the law of cosines solved for the angle.",
+      "unit": "laws-of-sines-and-cosines",
+      "variants": [
+        {
+          "id": "TRIG-cfs-v01",
+          "statement": "A triangle has sides $a = 5$, $b = 7$, and $c = 8$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{1}{7}$",
+            "$-\\frac{1}{7}$",
+            "$\\frac{69}{35}$",
+            "$\\frac{11}{14}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{25 + 49 - 64}{70} = \\frac{1}{7}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(10, 70) == Rational(1, 7)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v02",
+          "statement": "A triangle has sides $a = 4$, $b = 5$, and $c = 6$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{1}{8}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{77}{40}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{16 + 25 - 36}{40} = \\frac{1}{8}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(5, 40) == Rational(1, 8)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v03",
+          "statement": "A triangle has sides $a = 5$, $b = 6$, and $c = 7$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{1}{5}$",
+            "$\\frac{11}{6}$",
+            "$\\frac{1}{5}$",
+            "$\\frac{5}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{25 + 36 - 49}{60} = \\frac{1}{5}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(12, 60) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v04",
+          "statement": "A triangle has sides $a = 7$, $b = 8$, and $c = 9$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{2}{7}$",
+            "$\\frac{97}{56}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{2}{7}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{49 + 64 - 81}{112} = \\frac{2}{7}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(32, 112) == Rational(2, 7)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v05",
+          "statement": "A triangle has sides $a = 3$, $b = 5$, and $c = 7$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{83}{30}$",
+            "$\\frac{13}{14}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{9 + 25 - 49}{30} = -\\frac{1}{2}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(-15, 30) == Rational(-1, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v06",
+          "statement": "A triangle has sides $a = 2$, $b = 3$, and $c = 4$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-\\frac{1}{4}$",
+            "$\\frac{29}{12}$",
+            "$\\frac{7}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{4 + 9 - 16}{12} = -\\frac{1}{4}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(-3, 12) == Rational(-1, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v07",
+          "statement": "A triangle has sides $a = 4$, $b = 7$, and $c = 9$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{2}{7}$",
+            "$\\frac{73}{28}$",
+            "$-\\frac{2}{7}$",
+            "$\\frac{19}{21}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{16 + 49 - 81}{56} = -\\frac{2}{7}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(-16, 56) == Rational(-2, 7)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v08",
+          "statement": "A triangle has sides $a = 6$, $b = 7$, and $c = 8$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{1}{4}$",
+            "$\\frac{149}{84}$",
+            "$\\frac{11}{16}$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{36 + 49 - 64}{84} = \\frac{1}{4}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(21, 84) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v09",
+          "statement": "A triangle has sides $a = 5$, $b = 5$, and $c = 6$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{7}{25}$",
+            "$-\\frac{7}{25}$",
+            "$\\frac{43}{25}$",
+            "$\\frac{3}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{25 + 25 - 36}{50} = \\frac{7}{25}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(14, 50) == Rational(7, 25)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v10",
+          "statement": "A triangle has sides $a = 3$, $b = 7$, and $c = 8$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{1}{7}$",
+            "$-\\frac{1}{7}$",
+            "$\\frac{61}{21}$",
+            "$\\frac{13}{14}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{9 + 49 - 64}{42} = -\\frac{1}{7}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(-6, 42) == Rational(-1, 7)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v11",
+          "statement": "A triangle has sides $a = 2$, $b = 4$, and $c = 5$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$\\frac{5}{16}$",
+            "$\\frac{45}{16}$",
+            "$-\\frac{5}{16}$",
+            "$\\frac{37}{40}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{4 + 16 - 25}{16} = -\\frac{5}{16}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(-5, 16) == Rational(-5, 16)"
+          ]
+        },
+        {
+          "id": "TRIG-cfs-v12",
+          "statement": "A triangle has sides $a = 8$, $b = 9$, and $c = 10$. Find $\\cos C$, where $C$ is the angle opposite side $c$.",
+          "options": [
+            "$-\\frac{5}{16}$",
+            "$\\frac{245}{144}$",
+            "$\\frac{13}{20}$",
+            "$\\frac{5}{16}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Law of cosines solved for the angle: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{64 + 81 - 100}{144} = \\frac{5}{16}$. Adding $c^2$ instead of subtracting it flips the sign — the classic slip.",
+          "check": [
+            "Rational(45, 144) == Rational(5, 16)"
           ]
         }
       ]

@@ -596,6 +596,597 @@
       "unit": "functions-and-transformations"
     },
     {
+      "id": "shift-vertex",
+      "title": "Vertex from vertex form",
+      "level": 1,
+      "unit": "functions-and-transformations",
+      "skill": "y = (x - h)^2 + k has vertex (h; k) — mind the sign on h.",
+      "variants": [
+        {
+          "id": "A2-shift-v01",
+          "statement": "The graph of $y = (x - 2)^2 + 5$ has its vertex at which point?",
+          "options": [
+            "$(2; 5)$",
+            "$(-2; 5)$",
+            "$(2; -5)$",
+            "$(-2; -5)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(2; 5)$. The sign trap: reading $(x - 2)$ as $x = -2$ gives $(-2; 5)$.",
+          "check": [
+            "((2) - (2))**2 + (5) == 5",
+            "((2) + 1 - (2))**2 + (5) > 5"
+          ]
+        },
+        {
+          "id": "A2-shift-v02",
+          "statement": "The graph of $y = (x + 3)^2 + 4$ has its vertex at which point?",
+          "options": [
+            "$(3; 4)$",
+            "$(-3; 4)$",
+            "$(-3; -4)$",
+            "$(3; -4)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-3; 4)$. The sign trap: reading $(x + 3)$ as $x = 3$ gives $(3; 4)$.",
+          "check": [
+            "((-3) - (-3))**2 + (4) == 4",
+            "((-3) + 1 - (-3))**2 + (4) > 4"
+          ]
+        },
+        {
+          "id": "A2-shift-v03",
+          "statement": "The graph of $y = (x - 1)^2 - 6$ has its vertex at which point?",
+          "options": [
+            "$(-1; -6)$",
+            "$(1; 6)$",
+            "$(1; -6)$",
+            "$(-1; 6)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(1; -6)$. The sign trap: reading $(x - 1)$ as $x = -1$ gives $(-1; -6)$.",
+          "check": [
+            "((1) - (1))**2 + (-6) == -6",
+            "((1) + 1 - (1))**2 + (-6) > -6"
+          ]
+        },
+        {
+          "id": "A2-shift-v04",
+          "statement": "The graph of $y = (x + 4)^2 - 2$ has its vertex at which point?",
+          "options": [
+            "$(4; -2)$",
+            "$(-4; 2)$",
+            "$(4; 2)$",
+            "$(-4; -2)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-4; -2)$. The sign trap: reading $(x + 4)$ as $x = 4$ gives $(4; -2)$.",
+          "check": [
+            "((-4) - (-4))**2 + (-2) == -2",
+            "((-4) + 1 - (-4))**2 + (-2) > -2"
+          ]
+        },
+        {
+          "id": "A2-shift-v05",
+          "statement": "The graph of $y = (x - 5)^2 + 3$ has its vertex at which point?",
+          "options": [
+            "$(5; 3)$",
+            "$(-5; 3)$",
+            "$(5; -3)$",
+            "$(-5; -3)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(5; 3)$. The sign trap: reading $(x - 5)$ as $x = -5$ gives $(-5; 3)$.",
+          "check": [
+            "((5) - (5))**2 + (3) == 3",
+            "((5) + 1 - (5))**2 + (3) > 3"
+          ]
+        },
+        {
+          "id": "A2-shift-v06",
+          "statement": "The graph of $y = (x + 1)^2 + 7$ has its vertex at which point?",
+          "options": [
+            "$(1; 7)$",
+            "$(-1; 7)$",
+            "$(-1; -7)$",
+            "$(1; -7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-1; 7)$. The sign trap: reading $(x + 1)$ as $x = 1$ gives $(1; 7)$.",
+          "check": [
+            "((-1) - (-1))**2 + (7) == 7",
+            "((-1) + 1 - (-1))**2 + (7) > 7"
+          ]
+        },
+        {
+          "id": "A2-shift-v07",
+          "statement": "The graph of $y = (x - 3)^2 - 5$ has its vertex at which point?",
+          "options": [
+            "$(-3; -5)$",
+            "$(3; 5)$",
+            "$(3; -5)$",
+            "$(-3; 5)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(3; -5)$. The sign trap: reading $(x - 3)$ as $x = -3$ gives $(-3; -5)$.",
+          "check": [
+            "((3) - (3))**2 + (-5) == -5",
+            "((3) + 1 - (3))**2 + (-5) > -5"
+          ]
+        },
+        {
+          "id": "A2-shift-v08",
+          "statement": "The graph of $y = (x + 6)^2 + 1$ has its vertex at which point?",
+          "options": [
+            "$(6; 1)$",
+            "$(-6; -1)$",
+            "$(6; -1)$",
+            "$(-6; 1)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-6; 1)$. The sign trap: reading $(x + 6)$ as $x = 6$ gives $(6; 1)$.",
+          "check": [
+            "((-6) - (-6))**2 + (1) == 1",
+            "((-6) + 1 - (-6))**2 + (1) > 1"
+          ]
+        },
+        {
+          "id": "A2-shift-v09",
+          "statement": "The graph of $y = (x - 4)^2 + 6$ has its vertex at which point?",
+          "options": [
+            "$(4; 6)$",
+            "$(-4; 6)$",
+            "$(4; -6)$",
+            "$(-4; -6)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(4; 6)$. The sign trap: reading $(x - 4)$ as $x = -4$ gives $(-4; 6)$.",
+          "check": [
+            "((4) - (4))**2 + (6) == 6",
+            "((4) + 1 - (4))**2 + (6) > 6"
+          ]
+        },
+        {
+          "id": "A2-shift-v10",
+          "statement": "The graph of $y = (x + 2)^2 - 7$ has its vertex at which point?",
+          "options": [
+            "$(2; -7)$",
+            "$(-2; -7)$",
+            "$(-2; 7)$",
+            "$(2; 7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-2; -7)$. The sign trap: reading $(x + 2)$ as $x = 2$ gives $(2; -7)$.",
+          "check": [
+            "((-2) - (-2))**2 + (-7) == -7",
+            "((-2) + 1 - (-2))**2 + (-7) > -7"
+          ]
+        },
+        {
+          "id": "A2-shift-v11",
+          "statement": "The graph of $y = (x - 7)^2 - 1$ has its vertex at which point?",
+          "options": [
+            "$(-7; -1)$",
+            "$(7; 1)$",
+            "$(7; -1)$",
+            "$(-7; 1)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(7; -1)$. The sign trap: reading $(x - 7)$ as $x = -7$ gives $(-7; -1)$.",
+          "check": [
+            "((7) - (7))**2 + (-1) == -1",
+            "((7) + 1 - (7))**2 + (-1) > -1"
+          ]
+        },
+        {
+          "id": "A2-shift-v12",
+          "statement": "The graph of $y = (x + 5)^2 + 2$ has its vertex at which point?",
+          "options": [
+            "$(5; 2)$",
+            "$(-5; -2)$",
+            "$(5; -2)$",
+            "$(-5; 2)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$ — here $(-5; 2)$. The sign trap: reading $(x + 5)$ as $x = 5$ gives $(5; 2)$.",
+          "check": [
+            "((-5) - (-5))**2 + (2) == 2",
+            "((-5) + 1 - (-5))**2 + (2) > 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inverse-of-linear",
+      "title": "Evaluating a linear inverse",
+      "level": 2,
+      "unit": "functions-and-transformations",
+      "skill": "f^{-1}(c) undoes f: subtract b first, then divide by a.",
+      "variants": [
+        {
+          "id": "A2-invf-v01",
+          "statement": "If $f(x) = 2x + 3$, find $f^{-1}(11)$.",
+          "options": [
+            "$4$",
+            "$25$",
+            "$7$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(11) = \\frac{11 - (3)}{2} = 4$. Plugging $11$ into $f$ itself — the classic inverse slip — gives $25$.",
+          "check": [
+            "((11) - (3))/(2) == 4",
+            "(2)*(4) + (3) == 11"
+          ]
+        },
+        {
+          "id": "A2-invf-v02",
+          "statement": "If $f(x) = 3x - 2$, find $f^{-1}(13)$.",
+          "options": [
+            "$37$",
+            "$5$",
+            "$\\frac{11}{3}$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(13) = \\frac{13 - (-2)}{3} = 5$. Plugging $13$ into $f$ itself — the classic inverse slip — gives $37$.",
+          "check": [
+            "((13) - (-2))/(3) == 5",
+            "(3)*(5) + (-2) == 13"
+          ]
+        },
+        {
+          "id": "A2-invf-v03",
+          "statement": "If $f(x) = 4x + 1$, find $f^{-1}(-11)$.",
+          "options": [
+            "$-43$",
+            "$-\\frac{5}{2}$",
+            "$-3$",
+            "$-12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(-11) = \\frac{-11 - (1)}{4} = -3$. Plugging $-11$ into $f$ itself — the classic inverse slip — gives $-43$.",
+          "check": [
+            "((-11) - (1))/(4) == -3",
+            "(4)*(-3) + (1) == -11"
+          ]
+        },
+        {
+          "id": "A2-invf-v04",
+          "statement": "If $f(x) = 5x + 2$, find $f^{-1}(12)$.",
+          "options": [
+            "$62$",
+            "$\\frac{14}{5}$",
+            "$10$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(12) = \\frac{12 - (2)}{5} = 2$. Plugging $12$ into $f$ itself — the classic inverse slip — gives $62$.",
+          "check": [
+            "((12) - (2))/(5) == 2",
+            "(5)*(2) + (2) == 12"
+          ]
+        },
+        {
+          "id": "A2-invf-v05",
+          "statement": "If $f(x) = 2x - 5$, find $f^{-1}(7)$.",
+          "options": [
+            "$6$",
+            "$9$",
+            "$1$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(7) = \\frac{7 - (-5)}{2} = 6$. Plugging $7$ into $f$ itself — the classic inverse slip — gives $9$.",
+          "check": [
+            "((7) - (-5))/(2) == 6",
+            "(2)*(6) + (-5) == 7"
+          ]
+        },
+        {
+          "id": "A2-invf-v06",
+          "statement": "If $f(x) = -2x + 3$, find $f^{-1}(-5)$.",
+          "options": [
+            "$13$",
+            "$4$",
+            "$1$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(-5) = \\frac{-5 - (3)}{-2} = 4$. Plugging $-5$ into $f$ itself — the classic inverse slip — gives $13$.",
+          "check": [
+            "((-5) - (3))/(-2) == 4",
+            "(-2)*(4) + (3) == -5"
+          ]
+        },
+        {
+          "id": "A2-invf-v07",
+          "statement": "If $f(x) = 2x + 7$, find $f^{-1}(1)$.",
+          "options": [
+            "$9$",
+            "$4$",
+            "$-3$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(1) = \\frac{1 - (7)}{2} = -3$. Plugging $1$ into $f$ itself — the classic inverse slip — gives $9$.",
+          "check": [
+            "((1) - (7))/(2) == -3",
+            "(2)*(-3) + (7) == 1"
+          ]
+        },
+        {
+          "id": "A2-invf-v08",
+          "statement": "If $f(x) = 3x + 1$, find $f^{-1}(19)$.",
+          "options": [
+            "$58$",
+            "$\\frac{20}{3}$",
+            "$18$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(19) = \\frac{19 - (1)}{3} = 6$. Plugging $19$ into $f$ itself — the classic inverse slip — gives $58$.",
+          "check": [
+            "((19) - (1))/(3) == 6",
+            "(3)*(6) + (1) == 19"
+          ]
+        },
+        {
+          "id": "A2-invf-v09",
+          "statement": "If $f(x) = 4x - 3$, find $f^{-1}(5)$.",
+          "options": [
+            "$2$",
+            "$17$",
+            "$\\frac{1}{2}$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(5) = \\frac{5 - (-3)}{4} = 2$. Plugging $5$ into $f$ itself — the classic inverse slip — gives $17$.",
+          "check": [
+            "((5) - (-3))/(4) == 2",
+            "(4)*(2) + (-3) == 5"
+          ]
+        },
+        {
+          "id": "A2-invf-v10",
+          "statement": "If $f(x) = 5x + 3$, find $f^{-1}(-2)$.",
+          "options": [
+            "$-7$",
+            "$-1$",
+            "$\\frac{1}{5}$",
+            "$-5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(-2) = \\frac{-2 - (3)}{5} = -1$. Plugging $-2$ into $f$ itself — the classic inverse slip — gives $-7$.",
+          "check": [
+            "((-2) - (3))/(5) == -1",
+            "(5)*(-1) + (3) == -2"
+          ]
+        },
+        {
+          "id": "A2-invf-v11",
+          "statement": "If $f(x) = 2x - 1$, find $f^{-1}(15)$.",
+          "options": [
+            "$29$",
+            "$7$",
+            "$8$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(15) = \\frac{15 - (-1)}{2} = 8$. Plugging $15$ into $f$ itself — the classic inverse slip — gives $29$.",
+          "check": [
+            "((15) - (-1))/(2) == 8",
+            "(2)*(8) + (-1) == 15"
+          ]
+        },
+        {
+          "id": "A2-invf-v12",
+          "statement": "If $f(x) = 3x + 5$, find $f^{-1}(14)$.",
+          "options": [
+            "$47$",
+            "$\\frac{19}{3}$",
+            "$9$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Undo $f$ in reverse: $f^{-1}(14) = \\frac{14 - (5)}{3} = 3$. Plugging $14$ into $f$ itself — the classic inverse slip — gives $47$.",
+          "check": [
+            "((14) - (5))/(3) == 3",
+            "(3)*(3) + (5) == 14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transform-point-function",
+      "title": "Tracking a point through a transformation",
+      "level": 2,
+      "unit": "functions-and-transformations",
+      "skill": "Outside changes move y, inside changes move x (backwards), a leading minus flips y.",
+      "variants": [
+        {
+          "id": "A2-tpf-v01",
+          "statement": "The point $(3; 7)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x) + 4$?",
+          "options": [
+            "$(3; 11)$",
+            "$(7; 7)$",
+            "$(3; 3)$",
+            "$(7; 11)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding $4$ outside $f$ slides the graph vertically, so only the $y$-coordinate moves: $(3; 11)$. Shifting the $x$-coordinate instead gives $(7; 7)$ — the classic mix-up.",
+          "check": [
+            "(7) + (4) == 11"
+          ]
+        },
+        {
+          "id": "A2-tpf-v02",
+          "statement": "The point $(-2; 5)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x) - 3$?",
+          "options": [
+            "$(-5; 5)$",
+            "$(-2; 2)$",
+            "$(-2; 8)$",
+            "$(-5; 2)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding $-3$ outside $f$ slides the graph vertically, so only the $y$-coordinate moves: $(-2; 2)$. Shifting the $x$-coordinate instead gives $(-5; 5)$ — the classic mix-up.",
+          "check": [
+            "(5) + (-3) == 2"
+          ]
+        },
+        {
+          "id": "A2-tpf-v03",
+          "statement": "The point $(4; -1)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x) + 6$?",
+          "options": [
+            "$(10; -1)$",
+            "$(4; -7)$",
+            "$(4; 5)$",
+            "$(10; 5)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding $6$ outside $f$ slides the graph vertically, so only the $y$-coordinate moves: $(4; 5)$. Shifting the $x$-coordinate instead gives $(10; -1)$ — the classic mix-up.",
+          "check": [
+            "(-1) + (6) == 5"
+          ]
+        },
+        {
+          "id": "A2-tpf-v04",
+          "statement": "The point $(-5; -3)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x) + 2$?",
+          "options": [
+            "$(-3; -3)$",
+            "$(-5; -5)$",
+            "$(-3; -1)$",
+            "$(-5; -1)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding $2$ outside $f$ slides the graph vertically, so only the $y$-coordinate moves: $(-5; -1)$. Shifting the $x$-coordinate instead gives $(-3; -3)$ — the classic mix-up.",
+          "check": [
+            "(-3) + (2) == -1"
+          ]
+        },
+        {
+          "id": "A2-tpf-v05",
+          "statement": "The point $(2; 9)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x - 3)$?",
+          "options": [
+            "$(5; 9)$",
+            "$(-1; 9)$",
+            "$(2; 12)$",
+            "$(5; 12)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Replacing $x$ by $x - 3$ shifts the graph 3 unit(s) right, so the point moves to $(5; 9)$. Sliding it the other way to $(-1; 9)$ is the classic backwards slip.",
+          "check": [
+            "(2) + (3) == 5"
+          ]
+        },
+        {
+          "id": "A2-tpf-v06",
+          "statement": "The point $(-4; 1)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x + 2)$?",
+          "options": [
+            "$(-2; 1)$",
+            "$(-6; 1)$",
+            "$(-4; -1)$",
+            "$(-6; -1)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Replacing $x$ by $x + 2$ shifts the graph 2 unit(s) left, so the point moves to $(-6; 1)$. Sliding it the other way to $(-2; 1)$ is the classic backwards slip.",
+          "check": [
+            "(-4) + (-2) == -6"
+          ]
+        },
+        {
+          "id": "A2-tpf-v07",
+          "statement": "The point $(5; -6)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x - 4)$?",
+          "options": [
+            "$(1; -6)$",
+            "$(5; -2)$",
+            "$(9; -6)$",
+            "$(9; -2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Replacing $x$ by $x - 4$ shifts the graph 4 unit(s) right, so the point moves to $(9; -6)$. Sliding it the other way to $(1; -6)$ is the classic backwards slip.",
+          "check": [
+            "(5) + (4) == 9"
+          ]
+        },
+        {
+          "id": "A2-tpf-v08",
+          "statement": "The point $(1; 2)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = f(x + 5)$?",
+          "options": [
+            "$(6; 2)$",
+            "$(1; -3)$",
+            "$(-4; -3)$",
+            "$(-4; 2)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Replacing $x$ by $x + 5$ shifts the graph 5 unit(s) left, so the point moves to $(-4; 2)$. Sliding it the other way to $(6; 2)$ is the classic backwards slip.",
+          "check": [
+            "(1) + (-5) == -4"
+          ]
+        },
+        {
+          "id": "A2-tpf-v09",
+          "statement": "The point $(3; 4)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = -f(x)$?",
+          "options": [
+            "$(3; -4)$",
+            "$(-3; 4)$",
+            "$(-3; -4)$",
+            "$(3; 4)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The minus in front of $f$ reflects the graph across the $x$-axis, flipping only the $y$-coordinate: $(3; -4)$. Reflecting across the $y$-axis instead gives $(-3; 4)$.",
+          "check": [
+            "-(4) == -4"
+          ]
+        },
+        {
+          "id": "A2-tpf-v10",
+          "statement": "The point $(-2; 7)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = -f(x)$?",
+          "options": [
+            "$(2; 7)$",
+            "$(-2; -7)$",
+            "$(2; -7)$",
+            "$(-2; 7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The minus in front of $f$ reflects the graph across the $x$-axis, flipping only the $y$-coordinate: $(-2; -7)$. Reflecting across the $y$-axis instead gives $(2; 7)$.",
+          "check": [
+            "-(7) == -7"
+          ]
+        },
+        {
+          "id": "A2-tpf-v11",
+          "statement": "The point $(5; -3)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = -f(x)$?",
+          "options": [
+            "$(-5; -3)$",
+            "$(-5; 3)$",
+            "$(5; 3)$",
+            "$(5; -3)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The minus in front of $f$ reflects the graph across the $x$-axis, flipping only the $y$-coordinate: $(5; 3)$. Reflecting across the $y$-axis instead gives $(-5; -3)$.",
+          "check": [
+            "-(-3) == 3"
+          ]
+        },
+        {
+          "id": "A2-tpf-v12",
+          "statement": "The point $(-6; -1)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = -f(x)$?",
+          "options": [
+            "$(6; -1)$",
+            "$(6; 1)$",
+            "$(-6; -1)$",
+            "$(-6; 1)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The minus in front of $f$ reflects the graph across the $x$-axis, flipping only the $y$-coordinate: $(-6; 1)$. Reflecting across the $y$-axis instead gives $(6; -1)$.",
+          "check": [
+            "-(-1) == 1"
+          ]
+        }
+      ]
+    },
+    {
       "id": "inverse-value",
       "title": "Inverse function values",
       "level": 3,
@@ -1181,6 +1772,195 @@
       "unit": "functions-and-transformations"
     },
     {
+      "id": "complex-add-scale",
+      "title": "Scaling and adding complex numbers",
+      "level": 1,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "m(a + bi) + n(c + di): scale real and imaginary parts separately, then add.",
+      "variants": [
+        {
+          "id": "A2-cadd-v01",
+          "statement": "Compute $2(3 + 2i) + 3(1 - 4i)$. What is the imaginary part of the result?",
+          "options": [
+            "$-8$",
+            "$9$",
+            "$16$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale both parts of each number, then add: the result is $9 - 8i$, whose imaginary part is $-8$. Forgetting to multiply the inner parts by the scalars gives $-2$.",
+          "check": [
+            "im((2)*((3) + (2)*I) + (3)*((1) + (-4)*I)) == -8"
+          ]
+        },
+        {
+          "id": "A2-cadd-v02",
+          "statement": "Compute $2(-2 + 3i) + 4(1 + 2i)$. What is the imaginary part of the result?",
+          "options": [
+            "$0$",
+            "$14$",
+            "$-2$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale both parts of each number, then add: the result is $0 + 14i$, whose imaginary part is $14$. Forgetting to multiply the inner parts by the scalars gives $5$.",
+          "check": [
+            "im((2)*((-2) + (3)*I) + (4)*((1) + (2)*I)) == 14"
+          ]
+        },
+        {
+          "id": "A2-cadd-v03",
+          "statement": "Compute $3(2 - i) + 2(-3 + 5i)$. What is the real part of the result?",
+          "options": [
+            "$7$",
+            "$12$",
+            "$0$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale both parts of each number, then add: the result is $0 + 7i$, whose real part is $0$. Forgetting to multiply the inner parts by the scalars gives $-1$.",
+          "check": [
+            "re((3)*((2) + (-1)*I) + (2)*((-3) + (5)*I)) == 0"
+          ]
+        },
+        {
+          "id": "A2-cadd-v04",
+          "statement": "Compute $2(5 - 3i) + 3(-1 + 4i)$. What is the real part of the result?",
+          "options": [
+            "$6$",
+            "$13$",
+            "$4$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale both parts of each number, then add: the result is $7 + 6i$, whose real part is $7$. Forgetting to multiply the inner parts by the scalars gives $4$.",
+          "check": [
+            "re((2)*((5) + (-3)*I) + (3)*((-1) + (4)*I)) == 7"
+          ]
+        },
+        {
+          "id": "A2-cadd-v05",
+          "statement": "Compute $3(-4 + 2i) + 2(5 + i)$. What is the imaginary part of the result?",
+          "options": [
+            "$8$",
+            "$-2$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale both parts of each number, then add: the result is $-2 + 8i$, whose imaginary part is $8$. Forgetting to multiply the inner parts by the scalars gives $3$.",
+          "check": [
+            "im((3)*((-4) + (2)*I) + (2)*((5) + (1)*I)) == 8"
+          ]
+        },
+        {
+          "id": "A2-cadd-v06",
+          "statement": "Compute $2(2 + 7i) + 5(1 - 2i)$. What is the real part of the result?",
+          "options": [
+            "$4$",
+            "$9$",
+            "$-1$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale both parts of each number, then add: the result is $9 + 4i$, whose real part is $9$. Forgetting to multiply the inner parts by the scalars gives $3$.",
+          "check": [
+            "re((2)*((2) + (7)*I) + (5)*((1) + (-2)*I)) == 9"
+          ]
+        },
+        {
+          "id": "A2-cadd-v07",
+          "statement": "Compute $4(-1 + 3i) + 2(3 + 2i)$. What is the imaginary part of the result?",
+          "options": [
+            "$2$",
+            "$8$",
+            "$16$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale both parts of each number, then add: the result is $2 + 16i$, whose imaginary part is $16$. Forgetting to multiply the inner parts by the scalars gives $5$.",
+          "check": [
+            "im((4)*((-1) + (3)*I) + (2)*((3) + (2)*I)) == 16"
+          ]
+        },
+        {
+          "id": "A2-cadd-v08",
+          "statement": "Compute $2(6 + i) + 3(2 + 3i)$. What is the imaginary part of the result?",
+          "options": [
+            "$18$",
+            "$-7$",
+            "$4$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale both parts of each number, then add: the result is $18 + 11i$, whose imaginary part is $11$. Forgetting to multiply the inner parts by the scalars gives $4$.",
+          "check": [
+            "im((2)*((6) + (1)*I) + (3)*((2) + (3)*I)) == 11"
+          ]
+        },
+        {
+          "id": "A2-cadd-v09",
+          "statement": "Compute $2(-3 + 4i) + 3(5 - i)$. What is the imaginary part of the result?",
+          "options": [
+            "$5$",
+            "$9$",
+            "$11$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale both parts of each number, then add: the result is $9 + 5i$, whose imaginary part is $5$. Forgetting to multiply the inner parts by the scalars gives $3$.",
+          "check": [
+            "im((2)*((-3) + (4)*I) + (3)*((5) + (-1)*I)) == 5"
+          ]
+        },
+        {
+          "id": "A2-cadd-v10",
+          "statement": "Compute $3(4 + 3i) + 2(1 + 6i)$. What is the real part of the result?",
+          "options": [
+            "$21$",
+            "$14$",
+            "$10$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale both parts of each number, then add: the result is $14 + 21i$, whose real part is $14$. Forgetting to multiply the inner parts by the scalars gives $5$.",
+          "check": [
+            "re((3)*((4) + (3)*I) + (2)*((1) + (6)*I)) == 14"
+          ]
+        },
+        {
+          "id": "A2-cadd-v11",
+          "statement": "Compute $4(2 - 5i) + 3(3 + i)$. What is the imaginary part of the result?",
+          "options": [
+            "$17$",
+            "$-23$",
+            "$-17$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale both parts of each number, then add: the result is $17 - 17i$, whose imaginary part is $-17$. Forgetting to multiply the inner parts by the scalars gives $-4$.",
+          "check": [
+            "im((4)*((2) + (-5)*I) + (3)*((3) + (1)*I)) == -17"
+          ]
+        },
+        {
+          "id": "A2-cadd-v12",
+          "statement": "Compute $2(7 + 2i) + 4(-1 - 3i)$. What is the real part of the result?",
+          "options": [
+            "$-8$",
+            "$18$",
+            "$6$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale both parts of each number, then add: the result is $10 - 8i$, whose real part is $10$. Forgetting to multiply the inner parts by the scalars gives $6$.",
+          "check": [
+            "re((2)*((7) + (2)*I) + (4)*((-1) + (-3)*I)) == 10"
+          ]
+        }
+      ]
+    },
+    {
       "id": "complex-arithmetic",
       "title": "Complex number arithmetic",
       "level": 1,
@@ -1725,6 +2505,408 @@
           "explanation": "Powers of $i$ cycle with period 4: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. Since $36 = 4 \\cdot 9 + 0$, $i^{36} = i^{0} = 1$.",
           "check": [
             "I**36 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conjugate-product",
+      "title": "Multiplying complex conjugates",
+      "level": 1,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "(a + bi)(a - bi) = a^2 + b^2 — the cross terms cancel.",
+      "variants": [
+        {
+          "id": "A2-conj-v01",
+          "statement": "Compute $(3 + 2i)(3 - 2i)$.",
+          "options": [
+            "$13$",
+            "$5$",
+            "$25$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $9 + 4 = 13$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 5$.",
+          "check": [
+            "expand(((3) + (2)*I)*((3) - (2)*I)) == 13",
+            "(3)**2 + (2)**2 == 13"
+          ]
+        },
+        {
+          "id": "A2-conj-v02",
+          "statement": "Compute $(4 + i)(4 - i)$.",
+          "options": [
+            "$15$",
+            "$17$",
+            "$25$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $16 + 1 = 17$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 15$.",
+          "check": [
+            "expand(((4) + (1)*I)*((4) - (1)*I)) == 17",
+            "(4)**2 + (1)**2 == 17"
+          ]
+        },
+        {
+          "id": "A2-conj-v03",
+          "statement": "Compute $(5 + 3i)(5 - 3i)$.",
+          "options": [
+            "$16$",
+            "$64$",
+            "$34$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $25 + 9 = 34$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 16$.",
+          "check": [
+            "expand(((5) + (3)*I)*((5) - (3)*I)) == 34",
+            "(5)**2 + (3)**2 == 34"
+          ]
+        },
+        {
+          "id": "A2-conj-v04",
+          "statement": "Compute $(2 + 5i)(2 - 5i)$.",
+          "options": [
+            "$-21$",
+            "$49$",
+            "$4$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $4 + 25 = 29$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = -21$.",
+          "check": [
+            "expand(((2) + (5)*I)*((2) - (5)*I)) == 29",
+            "(2)**2 + (5)**2 == 29"
+          ]
+        },
+        {
+          "id": "A2-conj-v05",
+          "statement": "Compute $(6 + i)(6 - i)$.",
+          "options": [
+            "$37$",
+            "$35$",
+            "$49$",
+            "$36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $36 + 1 = 37$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 35$.",
+          "check": [
+            "expand(((6) + (1)*I)*((6) - (1)*I)) == 37",
+            "(6)**2 + (1)**2 == 37"
+          ]
+        },
+        {
+          "id": "A2-conj-v06",
+          "statement": "Compute $(1 + 4i)(1 - 4i)$.",
+          "options": [
+            "$-15$",
+            "$17$",
+            "$25$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $1 + 16 = 17$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = -15$.",
+          "check": [
+            "expand(((1) + (4)*I)*((1) - (4)*I)) == 17",
+            "(1)**2 + (4)**2 == 17"
+          ]
+        },
+        {
+          "id": "A2-conj-v07",
+          "statement": "Compute $(7 + 2i)(7 - 2i)$.",
+          "options": [
+            "$45$",
+            "$81$",
+            "$53$",
+            "$49$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $49 + 4 = 53$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 45$.",
+          "check": [
+            "expand(((7) + (2)*I)*((7) - (2)*I)) == 53",
+            "(7)**2 + (2)**2 == 53"
+          ]
+        },
+        {
+          "id": "A2-conj-v08",
+          "statement": "Compute $(3 + 5i)(3 - 5i)$.",
+          "options": [
+            "$-16$",
+            "$64$",
+            "$9$",
+            "$34$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $9 + 25 = 34$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = -16$.",
+          "check": [
+            "expand(((3) + (5)*I)*((3) - (5)*I)) == 34",
+            "(3)**2 + (5)**2 == 34"
+          ]
+        },
+        {
+          "id": "A2-conj-v09",
+          "statement": "Compute $(4 + 3i)(4 - 3i)$.",
+          "options": [
+            "$25$",
+            "$7$",
+            "$49$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $16 + 9 = 25$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 7$.",
+          "check": [
+            "expand(((4) + (3)*I)*((4) - (3)*I)) == 25",
+            "(4)**2 + (3)**2 == 25"
+          ]
+        },
+        {
+          "id": "A2-conj-v10",
+          "statement": "Compute $(5 + 2i)(5 - 2i)$.",
+          "options": [
+            "$21$",
+            "$29$",
+            "$49$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $25 + 4 = 29$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 21$.",
+          "check": [
+            "expand(((5) + (2)*I)*((5) - (2)*I)) == 29",
+            "(5)**2 + (2)**2 == 29"
+          ]
+        },
+        {
+          "id": "A2-conj-v11",
+          "statement": "Compute $(6 + 5i)(6 - 5i)$.",
+          "options": [
+            "$11$",
+            "$121$",
+            "$61$",
+            "$36$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $36 + 25 = 61$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = 11$.",
+          "check": [
+            "expand(((6) + (5)*I)*((6) - (5)*I)) == 61",
+            "(6)**2 + (5)**2 == 61"
+          ]
+        },
+        {
+          "id": "A2-conj-v12",
+          "statement": "Compute $(2 + 3i)(2 - 3i)$.",
+          "options": [
+            "$-5$",
+            "$25$",
+            "$4$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Conjugates multiply to $a^2 + b^2$: the cross terms cancel and $-(bi)^2 = +b^2$, so $4 + 9 = 13$. Treating $i^2$ as $+1$ gives $a^2 - b^2 = -5$.",
+          "check": [
+            "expand(((2) + (3)*I)*((2) - (3)*I)) == 13",
+            "(2)**2 + (3)**2 == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complex-magnitude",
+      "title": "Magnitude of a complex number",
+      "level": 2,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "|a + bi| = sqrt(a^2 + b^2) — Pythagoras in the complex plane.",
+      "variants": [
+        {
+          "id": "A2-cmag-v01",
+          "statement": "Compute $|3 + 4i|$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$25$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{9 + 16} = 5$ — a Pythagorean pair. Adding $|a| + |b| = 7$ skips the squares, and stopping at $25$ forgets the square root.",
+          "check": [
+            "sqrt((3)**2 + (4)**2) == 5",
+            "Abs((3) + (4)*I) == 5"
+          ]
+        },
+        {
+          "id": "A2-cmag-v02",
+          "statement": "Compute $|6 + 8i|$.",
+          "options": [
+            "$14$",
+            "$10$",
+            "$100$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{36 + 64} = 10$ — a Pythagorean pair. Adding $|a| + |b| = 14$ skips the squares, and stopping at $100$ forgets the square root.",
+          "check": [
+            "sqrt((6)**2 + (8)**2) == 10",
+            "Abs((6) + (8)*I) == 10"
+          ]
+        },
+        {
+          "id": "A2-cmag-v03",
+          "statement": "Compute $|5 + 12i|$.",
+          "options": [
+            "$17$",
+            "$169$",
+            "$13$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{25 + 144} = 13$ — a Pythagorean pair. Adding $|a| + |b| = 17$ skips the squares, and stopping at $169$ forgets the square root.",
+          "check": [
+            "sqrt((5)**2 + (12)**2) == 13",
+            "Abs((5) + (12)*I) == 13"
+          ]
+        },
+        {
+          "id": "A2-cmag-v04",
+          "statement": "Compute $|8 + 15i|$.",
+          "options": [
+            "$23$",
+            "$289$",
+            "$15$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{64 + 225} = 17$ — a Pythagorean pair. Adding $|a| + |b| = 23$ skips the squares, and stopping at $289$ forgets the square root.",
+          "check": [
+            "sqrt((8)**2 + (15)**2) == 17",
+            "Abs((8) + (15)*I) == 17"
+          ]
+        },
+        {
+          "id": "A2-cmag-v05",
+          "statement": "Compute $|7 + 24i|$.",
+          "options": [
+            "$25$",
+            "$31$",
+            "$625$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{49 + 576} = 25$ — a Pythagorean pair. Adding $|a| + |b| = 31$ skips the squares, and stopping at $625$ forgets the square root.",
+          "check": [
+            "sqrt((7)**2 + (24)**2) == 25",
+            "Abs((7) + (24)*I) == 25"
+          ]
+        },
+        {
+          "id": "A2-cmag-v06",
+          "statement": "Compute $|20 + 21i|$.",
+          "options": [
+            "$41$",
+            "$29$",
+            "$841$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{400 + 441} = 29$ — a Pythagorean pair. Adding $|a| + |b| = 41$ skips the squares, and stopping at $841$ forgets the square root.",
+          "check": [
+            "sqrt((20)**2 + (21)**2) == 29",
+            "Abs((20) + (21)*I) == 29"
+          ]
+        },
+        {
+          "id": "A2-cmag-v07",
+          "statement": "Compute $|9 + 12i|$.",
+          "options": [
+            "$21$",
+            "$225$",
+            "$15$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{81 + 144} = 15$ — a Pythagorean pair. Adding $|a| + |b| = 21$ skips the squares, and stopping at $225$ forgets the square root.",
+          "check": [
+            "sqrt((9)**2 + (12)**2) == 15",
+            "Abs((9) + (12)*I) == 15"
+          ]
+        },
+        {
+          "id": "A2-cmag-v08",
+          "statement": "Compute $|12 + 16i|$.",
+          "options": [
+            "$28$",
+            "$400$",
+            "$16$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{144 + 256} = 20$ — a Pythagorean pair. Adding $|a| + |b| = 28$ skips the squares, and stopping at $400$ forgets the square root.",
+          "check": [
+            "sqrt((12)**2 + (16)**2) == 20",
+            "Abs((12) + (16)*I) == 20"
+          ]
+        },
+        {
+          "id": "A2-cmag-v09",
+          "statement": "Compute $|-3 + 4i|$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$25$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{9 + 16} = 5$ — a Pythagorean pair. Adding $|a| + |b| = 7$ skips the squares, and stopping at $25$ forgets the square root.",
+          "check": [
+            "sqrt((-3)**2 + (4)**2) == 5",
+            "Abs((-3) + (4)*I) == 5"
+          ]
+        },
+        {
+          "id": "A2-cmag-v10",
+          "statement": "Compute $|6 - 8i|$.",
+          "options": [
+            "$14$",
+            "$10$",
+            "$100$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{36 + 64} = 10$ — a Pythagorean pair. Adding $|a| + |b| = 14$ skips the squares, and stopping at $100$ forgets the square root.",
+          "check": [
+            "sqrt((6)**2 + (-8)**2) == 10",
+            "Abs((6) + (-8)*I) == 10"
+          ]
+        },
+        {
+          "id": "A2-cmag-v11",
+          "statement": "Compute $|-5 + 12i|$.",
+          "options": [
+            "$17$",
+            "$169$",
+            "$13$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{25 + 144} = 13$ — a Pythagorean pair. Adding $|a| + |b| = 17$ skips the squares, and stopping at $169$ forgets the square root.",
+          "check": [
+            "sqrt((-5)**2 + (12)**2) == 13",
+            "Abs((-5) + (12)*I) == 13"
+          ]
+        },
+        {
+          "id": "A2-cmag-v12",
+          "statement": "Compute $|8 - 15i|$.",
+          "options": [
+            "$23$",
+            "$289$",
+            "$15$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The magnitude is $\\sqrt{a^2 + b^2} = \\sqrt{64 + 225} = 17$ — a Pythagorean pair. Adding $|a| + |b| = 23$ skips the squares, and stopping at $289$ forgets the square root.",
+          "check": [
+            "sqrt((8)**2 + (-15)**2) == 17",
+            "Abs((8) + (-15)*I) == 17"
           ]
         }
       ]
@@ -2346,6 +3528,207 @@
             "(8)**2 - 4*(52) == -144",
             "sqrt(144)/2 == 6",
             "expand(((-4) + (6)*I)**2 + (8)*((-4) + (6)*I) + (52)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "circle-line-intersections",
+      "title": "Circle meets horizontal line",
+      "level": 2,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "Substitute y = k into x^2 + y^2 = r^2 and count real solutions of x^2 = r^2 - k^2.",
+      "variants": [
+        {
+          "id": "A2-circ-v01",
+          "statement": "How many points do the circle $x^2 + y^2 = 25$ and the line $y = 3$ have in common?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $y = 3$: $x^2 = 25 - 9 = 16$, giving $x = \\pm\\sqrt{16}$ — two points. Four is impossible: a line meets a circle at most twice.",
+          "check": [
+            "(25) - (3)**2 > 0",
+            "(5)**2 == 25"
+          ]
+        },
+        {
+          "id": "A2-circ-v02",
+          "statement": "How many points do the circle $x^2 + y^2 = 25$ and the line $y = 5$ have in common?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $y = 5$: $x^2 = 25 - 25 = 0$, giving only $x = 0$ — the line is tangent, one point. Counting $\\pm 0$ as two points is the classic slip.",
+          "check": [
+            "(25) - (5)**2 == 0",
+            "(5)**2 == 25"
+          ]
+        },
+        {
+          "id": "A2-circ-v03",
+          "statement": "How many points do the circle $x^2 + y^2 = 25$ and the line $y = 7$ have in common?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $y = 7$: $x^2 = 25 - 49 = -24$, giving no real solutions — the line misses the circle entirely, zero points. Forgetting to compare $|7|$ with the radius $5$ is the classic slip.",
+          "check": [
+            "(25) - (7)**2 < 0",
+            "(5)**2 == 25"
+          ]
+        },
+        {
+          "id": "A2-circ-v04",
+          "statement": "How many points do the circle $x^2 + y^2 = 16$ and the line $y = -2$ have in common?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $y = -2$: $x^2 = 16 - 4 = 12$, giving $x = \\pm\\sqrt{12}$ — two points. Four is impossible: a line meets a circle at most twice.",
+          "check": [
+            "(16) - (-2)**2 > 0",
+            "(4)**2 == 16"
+          ]
+        },
+        {
+          "id": "A2-circ-v05",
+          "statement": "How many points do the circle $x^2 + y^2 = 16$ and the line $y = 4$ have in common?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $y = 4$: $x^2 = 16 - 16 = 0$, giving only $x = 0$ — the line is tangent, one point. Counting $\\pm 0$ as two points is the classic slip.",
+          "check": [
+            "(16) - (4)**2 == 0",
+            "(4)**2 == 16"
+          ]
+        },
+        {
+          "id": "A2-circ-v06",
+          "statement": "How many points do the circle $x^2 + y^2 = 16$ and the line $y = -6$ have in common?",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $y = -6$: $x^2 = 16 - 36 = -20$, giving no real solutions — the line misses the circle entirely, zero points. Forgetting to compare $|-6|$ with the radius $4$ is the classic slip.",
+          "check": [
+            "(16) - (-6)**2 < 0",
+            "(4)**2 == 16"
+          ]
+        },
+        {
+          "id": "A2-circ-v07",
+          "statement": "How many points do the circle $x^2 + y^2 = 36$ and the line $y = -5$ have in common?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $y = -5$: $x^2 = 36 - 25 = 11$, giving $x = \\pm\\sqrt{11}$ — two points. Four is impossible: a line meets a circle at most twice.",
+          "check": [
+            "(36) - (-5)**2 > 0",
+            "(6)**2 == 36"
+          ]
+        },
+        {
+          "id": "A2-circ-v08",
+          "statement": "How many points do the circle $x^2 + y^2 = 36$ and the line $y = 6$ have in common?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $y = 6$: $x^2 = 36 - 36 = 0$, giving only $x = 0$ — the line is tangent, one point. Counting $\\pm 0$ as two points is the classic slip.",
+          "check": [
+            "(36) - (6)**2 == 0",
+            "(6)**2 == 36"
+          ]
+        },
+        {
+          "id": "A2-circ-v09",
+          "statement": "How many points do the circle $x^2 + y^2 = 36$ and the line $y = 8$ have in common?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute $y = 8$: $x^2 = 36 - 64 = -28$, giving no real solutions — the line misses the circle entirely, zero points. Forgetting to compare $|8|$ with the radius $6$ is the classic slip.",
+          "check": [
+            "(36) - (8)**2 < 0",
+            "(6)**2 == 36"
+          ]
+        },
+        {
+          "id": "A2-circ-v10",
+          "statement": "How many points do the circle $x^2 + y^2 = 9$ and the line $y = 2$ have in common?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $y = 2$: $x^2 = 9 - 4 = 5$, giving $x = \\pm\\sqrt{5}$ — two points. Four is impossible: a line meets a circle at most twice.",
+          "check": [
+            "(9) - (2)**2 > 0",
+            "(3)**2 == 9"
+          ]
+        },
+        {
+          "id": "A2-circ-v11",
+          "statement": "How many points do the circle $x^2 + y^2 = 9$ and the line $y = -3$ have in common?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute $y = -3$: $x^2 = 9 - 9 = 0$, giving only $x = 0$ — the line is tangent, one point. Counting $\\pm 0$ as two points is the classic slip.",
+          "check": [
+            "(9) - (-3)**2 == 0",
+            "(3)**2 == 9"
+          ]
+        },
+        {
+          "id": "A2-circ-v12",
+          "statement": "How many points do the circle $x^2 + y^2 = 49$ and the line $y = 10$ have in common?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$4$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $y = 10$: $x^2 = 49 - 100 = -51$, giving no real solutions — the line misses the circle entirely, zero points. Forgetting to compare $|10|$ with the radius $7$ is the classic slip.",
+          "check": [
+            "(49) - (10)**2 < 0",
+            "(7)**2 == 49"
           ]
         }
       ]
@@ -3521,6 +4904,621 @@
       ]
     },
     {
+      "id": "substitution-nonlinear",
+      "title": "Parabola meets line by substitution",
+      "level": 3,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "Set x^2 = ax + b, factor, and read off both roots before answering.",
+      "variants": [
+        {
+          "id": "A2-subnl-v01",
+          "statement": "The parabola $y = x^2$ and the line $y = 3x + 10$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$5$",
+            "$-2$",
+            "$3$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set $x^2 = 3x + 10$ and factor: $x^2 - 3x - 10 = (x - 5)(x + 2) = 0$, so $x = 5$ or $x = -2$; the larger is $5$. Grabbing the smaller root, $-2$, is the classic slip.",
+          "check": [
+            "(5)**2 == (3)*(5) + (10)",
+            "expand((x - (5))*(x - (-2))) == x**2 - (3)*x - (10)",
+            "(5) > (-2)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v02",
+          "statement": "The parabola $y = x^2$ and the line $y = 3x + 4$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-1$",
+            "$4$",
+            "$3$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set $x^2 = 3x + 4$ and factor: $x^2 - 3x - 4 = (x - 4)(x + 1) = 0$, so $x = 4$ or $x = -1$; the larger is $4$. Grabbing the smaller root, $-1$, is the classic slip.",
+          "check": [
+            "(4)**2 == (3)*(4) + (4)",
+            "expand((x - (4))*(x - (-1))) == x**2 - (3)*x - (4)",
+            "(4) > (-1)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v03",
+          "statement": "The parabola $y = x^2$ and the line $y = 3x + 18$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-3$",
+            "$3$",
+            "$6$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set $x^2 = 3x + 18$ and factor: $x^2 - 3x - 18 = (x - 6)(x + 3) = 0$, so $x = 6$ or $x = -3$; the larger is $6$. Grabbing the smaller root, $-3$, is the classic slip.",
+          "check": [
+            "(6)**2 == (3)*(6) + (18)",
+            "expand((x - (6))*(x - (-3))) == x**2 - (3)*x - (18)",
+            "(6) > (-3)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v04",
+          "statement": "The parabola $y = x^2$ and the line $y = -2x + 15$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-5$",
+            "$-2$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set $x^2 = -2x + 15$ and factor: $x^2 + 2x - 15 = (x - 3)(x + 5) = 0$, so $x = 3$ or $x = -5$; the larger is $3$. Grabbing the smaller root, $-5$, is the classic slip.",
+          "check": [
+            "(3)**2 == (-2)*(3) + (15)",
+            "expand((x - (3))*(x - (-5))) == x**2 - (-2)*x - (15)",
+            "(3) > (-5)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v05",
+          "statement": "The parabola $y = x^2$ and the line $y = 5x + 14$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$7$",
+            "$-2$",
+            "$5$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set $x^2 = 5x + 14$ and factor: $x^2 - 5x - 14 = (x - 7)(x + 2) = 0$, so $x = 7$ or $x = -2$; the larger is $7$. Grabbing the smaller root, $-2$, is the classic slip.",
+          "check": [
+            "(7)**2 == (5)*(7) + (14)",
+            "expand((x - (7))*(x - (-2))) == x**2 - (5)*x - (14)",
+            "(7) > (-2)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v06",
+          "statement": "The parabola $y = x^2$ and the line $y = -4x + 12$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-6$",
+            "$2$",
+            "$-4$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set $x^2 = -4x + 12$ and factor: $x^2 + 4x - 12 = (x - 2)(x + 6) = 0$, so $x = 2$ or $x = -6$; the larger is $2$. Grabbing the smaller root, $-6$, is the classic slip.",
+          "check": [
+            "(2)**2 == (-4)*(2) + (12)",
+            "expand((x - (2))*(x - (-6))) == x**2 - (-4)*x - (12)",
+            "(2) > (-6)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v07",
+          "statement": "The parabola $y = x^2$ and the line $y = 5x + 24$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-3$",
+            "$5$",
+            "$8$",
+            "$-8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set $x^2 = 5x + 24$ and factor: $x^2 - 5x - 24 = (x - 8)(x + 3) = 0$, so $x = 8$ or $x = -3$; the larger is $8$. Grabbing the smaller root, $-3$, is the classic slip.",
+          "check": [
+            "(8)**2 == (5)*(8) + (24)",
+            "expand((x - (8))*(x - (-3))) == x**2 - (5)*x - (24)",
+            "(8) > (-3)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v08",
+          "statement": "The parabola $y = x^2$ and the line $y = -3x + 28$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-7$",
+            "$-3$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set $x^2 = -3x + 28$ and factor: $x^2 + 3x - 28 = (x - 4)(x + 7) = 0$, so $x = 4$ or $x = -7$; the larger is $4$. Grabbing the smaller root, $-7$, is the classic slip.",
+          "check": [
+            "(4)**2 == (-3)*(4) + (28)",
+            "expand((x - (4))*(x - (-7))) == x**2 - (-3)*x - (28)",
+            "(4) > (-7)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v09",
+          "statement": "The parabola $y = x^2$ and the line $y = 5x + 6$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$6$",
+            "$-1$",
+            "$5$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set $x^2 = 5x + 6$ and factor: $x^2 - 5x - 6 = (x - 6)(x + 1) = 0$, so $x = 6$ or $x = -1$; the larger is $6$. Grabbing the smaller root, $-1$, is the classic slip.",
+          "check": [
+            "(6)**2 == (5)*(6) + (6)",
+            "expand((x - (6))*(x - (-1))) == x**2 - (5)*x - (6)",
+            "(6) > (-1)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v10",
+          "statement": "The parabola $y = x^2$ and the line $y = 5x + 36$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-4$",
+            "$9$",
+            "$5$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set $x^2 = 5x + 36$ and factor: $x^2 - 5x - 36 = (x - 9)(x + 4) = 0$, so $x = 9$ or $x = -4$; the larger is $9$. Grabbing the smaller root, $-4$, is the classic slip.",
+          "check": [
+            "(9)**2 == (5)*(9) + (36)",
+            "expand((x - (9))*(x - (-4))) == x**2 - (5)*x - (36)",
+            "(9) > (-4)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v11",
+          "statement": "The parabola $y = x^2$ and the line $y = -3x + 40$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-8$",
+            "$-3$",
+            "$5$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set $x^2 = -3x + 40$ and factor: $x^2 + 3x - 40 = (x - 5)(x + 8) = 0$, so $x = 5$ or $x = -8$; the larger is $5$. Grabbing the smaller root, $-8$, is the classic slip.",
+          "check": [
+            "(5)**2 == (-3)*(5) + (40)",
+            "expand((x - (5))*(x - (-8))) == x**2 - (-3)*x - (40)",
+            "(5) > (-8)"
+          ]
+        },
+        {
+          "id": "A2-subnl-v12",
+          "statement": "The parabola $y = x^2$ and the line $y = 3x + 28$ intersect at two points. What is the larger $x$-coordinate of an intersection point?",
+          "options": [
+            "$-4$",
+            "$3$",
+            "$-7$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set $x^2 = 3x + 28$ and factor: $x^2 - 3x - 28 = (x - 7)(x + 4) = 0$, so $x = 7$ or $x = -4$; the larger is $7$. Grabbing the smaller root, $-4$, is the classic slip.",
+          "check": [
+            "(7)**2 == (3)*(7) + (28)",
+            "expand((x - (7))*(x - (-4))) == x**2 - (3)*x - (28)",
+            "(7) > (-4)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "degree-of-product",
+      "title": "Degree and leading coefficient of a product",
+      "level": 1,
+      "unit": "polynomial-functions",
+      "skill": "Degrees add, leading coefficients multiply.",
+      "variants": [
+        {
+          "id": "A2-degp-v01",
+          "statement": "What is the degree of the product $(x^3 + 2x - 1)(x^4 - x + 5)$?",
+          "options": [
+            "$7$",
+            "$12$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{3} \\cdot x^{4} = x^{7}$. Multiplying the degrees to get $12$ is the classic slip.",
+          "check": [
+            "degree(expand((x**3 + 2*x - 1)*(x**4 - x + 5)), x) == 7",
+            "(3) + (4) == 7"
+          ]
+        },
+        {
+          "id": "A2-degp-v02",
+          "statement": "What is the leading coefficient of the product $(3x^4)(-2x^5)$?",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Coefficients multiply and exponents add: $(3)(-2) = -6$ on $x^{9}$. Adding the coefficients gives $1$, and $9$ is the degree — not the coefficient.",
+          "check": [
+            "(3)*(-2) == -6",
+            "expand(((3)*x**4)*((-2)*x**5)) == (-6)*x**9"
+          ]
+        },
+        {
+          "id": "A2-degp-v03",
+          "statement": "What is the degree of the product $(x^2 - 3x + 2)(x^5 + x - 4)$?",
+          "options": [
+            "$10$",
+            "$5$",
+            "$7$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{2} \\cdot x^{5} = x^{7}$. Multiplying the degrees to get $10$ is the classic slip.",
+          "check": [
+            "degree(expand((x**2 - 3*x + 2)*(x**5 + x - 4)), x) == 7",
+            "(2) + (5) == 7"
+          ]
+        },
+        {
+          "id": "A2-degp-v04",
+          "statement": "What is the leading coefficient of the product $(5x^2)(-3x^4)$?",
+          "options": [
+            "$15$",
+            "$2$",
+            "$6$",
+            "$-15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Coefficients multiply and exponents add: $(5)(-3) = -15$ on $x^{6}$. Adding the coefficients gives $2$, and $6$ is the degree — not the coefficient.",
+          "check": [
+            "(5)*(-3) == -15",
+            "expand(((5)*x**2)*((-3)*x**4)) == (-15)*x**6"
+          ]
+        },
+        {
+          "id": "A2-degp-v05",
+          "statement": "What is the degree of the product $(x^4 + x^2 - 3)(x^4 - 2x + 1)$?",
+          "options": [
+            "$8$",
+            "$16$",
+            "$4$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{4} \\cdot x^{4} = x^{8}$. Multiplying the degrees to get $16$ is the classic slip.",
+          "check": [
+            "degree(expand((x**4 + x**2 - 3)*(x**4 - 2*x + 1)), x) == 8",
+            "(4) + (4) == 8"
+          ]
+        },
+        {
+          "id": "A2-degp-v06",
+          "statement": "What is the leading coefficient of the product $(-4x^3)(2x^6)$?",
+          "options": [
+            "$8$",
+            "$-8$",
+            "$-2$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Coefficients multiply and exponents add: $(-4)(2) = -8$ on $x^{9}$. Adding the coefficients gives $-2$, and $9$ is the degree — not the coefficient.",
+          "check": [
+            "(-4)*(2) == -8",
+            "expand(((-4)*x**3)*((2)*x**6)) == (-8)*x**9"
+          ]
+        },
+        {
+          "id": "A2-degp-v07",
+          "statement": "What is the degree of the product $(x^2 + 5x + 6)(x^3 - x^2 + 2)$?",
+          "options": [
+            "$6$",
+            "$3$",
+            "$5$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{2} \\cdot x^{3} = x^{5}$. Multiplying the degrees to get $6$ is the classic slip.",
+          "check": [
+            "degree(expand((x**2 + 5*x + 6)*(x**3 - x**2 + 2)), x) == 5",
+            "(2) + (3) == 5"
+          ]
+        },
+        {
+          "id": "A2-degp-v08",
+          "statement": "What is the leading coefficient of the product $(2x^3)(-5x^2)$?",
+          "options": [
+            "$10$",
+            "$-3$",
+            "$5$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Coefficients multiply and exponents add: $(2)(-5) = -10$ on $x^{5}$. Adding the coefficients gives $-3$, and $5$ is the degree — not the coefficient.",
+          "check": [
+            "(2)*(-5) == -10",
+            "expand(((2)*x**3)*((-5)*x**2)) == (-10)*x**5"
+          ]
+        },
+        {
+          "id": "A2-degp-v09",
+          "statement": "What is the degree of the product $(x^3 - 4x + 7)(x^5 + 2x^2 - 1)$?",
+          "options": [
+            "$8$",
+            "$15$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{3} \\cdot x^{5} = x^{8}$. Multiplying the degrees to get $15$ is the classic slip.",
+          "check": [
+            "degree(expand((x**3 - 4*x + 7)*(x**5 + 2*x**2 - 1)), x) == 8",
+            "(3) + (5) == 8"
+          ]
+        },
+        {
+          "id": "A2-degp-v10",
+          "statement": "What is the leading coefficient of the product $(-2x^5)(7x^3)$?",
+          "options": [
+            "$14$",
+            "$-14$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Coefficients multiply and exponents add: $(-2)(7) = -14$ on $x^{8}$. Adding the coefficients gives $5$, and $8$ is the degree — not the coefficient.",
+          "check": [
+            "(-2)*(7) == -14",
+            "expand(((-2)*x**5)*((7)*x**3)) == (-14)*x**8"
+          ]
+        },
+        {
+          "id": "A2-degp-v11",
+          "statement": "What is the degree of the product $(x^4 + 3x - 2)(x^6 - x^3 + 4)$?",
+          "options": [
+            "$24$",
+            "$6$",
+            "$10$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Degrees add under multiplication: the leading terms multiply to $x^{4} \\cdot x^{6} = x^{10}$. Multiplying the degrees to get $24$ is the classic slip.",
+          "check": [
+            "degree(expand((x**4 + 3*x - 2)*(x**6 - x**3 + 4)), x) == 10",
+            "(4) + (6) == 10"
+          ]
+        },
+        {
+          "id": "A2-degp-v12",
+          "statement": "What is the leading coefficient of the product $(6x^2)(-3x^5)$?",
+          "options": [
+            "$18$",
+            "$3$",
+            "$7$",
+            "$-18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Coefficients multiply and exponents add: $(6)(-3) = -18$ on $x^{7}$. Adding the coefficients gives $3$, and $7$ is the degree — not the coefficient.",
+          "check": [
+            "(6)*(-3) == -18",
+            "expand(((6)*x**2)*((-3)*x**5)) == (-18)*x**7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "end-behavior",
+      "title": "End behavior of polynomials",
+      "level": 1,
+      "unit": "polynomial-functions",
+      "skill": "Sign and parity of the leading term decide both ends of the graph.",
+      "variants": [
+        {
+          "id": "A2-endb-v01",
+          "statement": "Describe the end behavior of the graph of $p(x) = x^2 - 4x + 1$.",
+          "options": [
+            "Rises to the right and rises to the left",
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 0,
+          "explanation": "The leading term $x^2$ wins for large $|x|$: even degree with a positive coefficient means the graph rises to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(1*x**2 - 4*x + 1, x, oo) == oo",
+            "limit(1*x**2 - 4*x + 1, x, -oo) == oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v02",
+          "statement": "Describe the end behavior of the graph of $p(x) = 2x^4 - 3x^2 + 2$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Rises to the right and rises to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 1,
+          "explanation": "The leading term $2x^4$ wins for large $|x|$: even degree with a positive coefficient means the graph rises to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(2*x**4 - 3*x**2 + 2, x, oo) == oo",
+            "limit(2*x**4 - 3*x**2 + 2, x, -oo) == oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v03",
+          "statement": "Describe the end behavior of the graph of $p(x) = 3x^6 + x - 5$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 2,
+          "explanation": "The leading term $3x^6$ wins for large $|x|$: even degree with a positive coefficient means the graph rises to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(3*x**6 + x - 5, x, oo) == oo",
+            "limit(3*x**6 + x - 5, x, -oo) == oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v04",
+          "statement": "Describe the end behavior of the graph of $p(x) = x^3 - 2x + 7$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "The leading term $x^3$ wins for large $|x|$: odd degree with a positive coefficient means the graph rises to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(1*x**3 - 2*x + 7, x, oo) == oo",
+            "limit(1*x**3 - 2*x + 7, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v05",
+          "statement": "Describe the end behavior of the graph of $p(x) = 2x^5 + x^2 - 3$.",
+          "options": [
+            "Rises to the right and falls to the left",
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left"
+          ],
+          "correctIndex": 0,
+          "explanation": "The leading term $2x^5$ wins for large $|x|$: odd degree with a positive coefficient means the graph rises to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(2*x**5 + x**2 - 3, x, oo) == oo",
+            "limit(2*x**5 + x**2 - 3, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v06",
+          "statement": "Describe the end behavior of the graph of $p(x) = 4x^3 - x^2 + 2$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Rises to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left"
+          ],
+          "correctIndex": 1,
+          "explanation": "The leading term $4x^3$ wins for large $|x|$: odd degree with a positive coefficient means the graph rises to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(4*x**3 - x**2 + 2, x, oo) == oo",
+            "limit(4*x**3 - x**2 + 2, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v07",
+          "statement": "Describe the end behavior of the graph of $p(x) = -x^2 + 5x - 2$.",
+          "options": [
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Falls to the right and falls to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 2,
+          "explanation": "The leading term $-x^2$ wins for large $|x|$: even degree with a negative coefficient means the graph falls to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-1*x**2 + 5*x - 2, x, oo) == -oo",
+            "limit(-1*x**2 + 5*x - 2, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v08",
+          "statement": "Describe the end behavior of the graph of $p(x) = -2x^4 + x^3 - 1$.",
+          "options": [
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left",
+            "Falls to the right and falls to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "The leading term $-2x^4$ wins for large $|x|$: even degree with a negative coefficient means the graph falls to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-2*x**4 + x**3 - 1, x, oo) == -oo",
+            "limit(-2*x**4 + x**3 - 1, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v09",
+          "statement": "Describe the end behavior of the graph of $p(x) = -3x^6 - 2x + 4$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 0,
+          "explanation": "The leading term $-3x^6$ wins for large $|x|$: even degree with a negative coefficient means the graph falls to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-3*x**6 - 2*x + 4, x, oo) == -oo",
+            "limit(-3*x**6 - 2*x + 4, x, -oo) == -oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v10",
+          "statement": "Describe the end behavior of the graph of $p(x) = -x^3 + 4x - 6$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 1,
+          "explanation": "The leading term $-x^3$ wins for large $|x|$: odd degree with a negative coefficient means the graph falls to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-1*x**3 + 4*x - 6, x, oo) == -oo",
+            "limit(-1*x**3 + 4*x - 6, x, -oo) == oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v11",
+          "statement": "Describe the end behavior of the graph of $p(x) = -2x^5 - x^2 + 3$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Rises to the right and rises to the left",
+            "Falls to the right and rises to the left",
+            "Rises to the right and falls to the left"
+          ],
+          "correctIndex": 2,
+          "explanation": "The leading term $-2x^5$ wins for large $|x|$: odd degree with a negative coefficient means the graph falls to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-2*x**5 - x**2 + 3, x, oo) == -oo",
+            "limit(-2*x**5 - x**2 + 3, x, -oo) == oo"
+          ]
+        },
+        {
+          "id": "A2-endb-v12",
+          "statement": "Describe the end behavior of the graph of $p(x) = -5x^3 + 2x^2 - 1$.",
+          "options": [
+            "Falls to the right and falls to the left",
+            "Rises to the right and rises to the left",
+            "Rises to the right and falls to the left",
+            "Falls to the right and rises to the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "The leading term $-5x^3$ wins for large $|x|$: odd degree with a negative coefficient means the graph falls to the right and rises to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+          "check": [
+            "limit(-5*x**3 + 2*x**2 - 1, x, oo) == -oo",
+            "limit(-5*x**3 + 2*x**2 - 1, x, -oo) == oo"
+          ]
+        }
+      ]
+    },
+    {
       "id": "factored-cubic",
       "title": "Reading a factored cubic",
       "level": 1,
@@ -4667,6 +6665,396 @@
       ]
     },
     {
+      "id": "zeros-multiplicity",
+      "title": "Zeros with multiplicity",
+      "level": 2,
+      "unit": "polynomial-functions",
+      "skill": "Even multiplicity touches the x-axis; odd multiplicity crosses. Distinct zeros count once.",
+      "variants": [
+        {
+          "id": "A2-mult-v01",
+          "statement": "The graph of $p(x) = (x - 3)^2(x + 1)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = 3$",
+            "$x = -1$",
+            "$x = -3$",
+            "$x = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The squared factor makes $x = 3$ a double zero, so the graph touches and turns there; at $x = -1$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (3))**2*(x - (-1)), (x - (3))**2, x) == 0",
+            "Abs((3) - (-1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v02",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x - 2)^2(x - 3)$.",
+          "options": [
+            "$7$",
+            "$5$",
+            "$-5$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The distinct zeros are $2$ and $3$, so the sum is $5$. Counting the double zero twice — as if multiplicity added a root — gives $7$.",
+          "check": [
+            "(2) + (3) == 5",
+            "((2) - (2))**2*((2) - (3)) == 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v03",
+          "statement": "The graph of $p(x) = (x + 2)^2(x - 5)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = 5$",
+            "$x = 2$",
+            "$x = -2$",
+            "$x = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The squared factor makes $x = -2$ a double zero, so the graph touches and turns there; at $x = 5$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (-2))**2*(x - (5)), (x - (-2))**2, x) == 0",
+            "Abs((-2) - (5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v04",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x + 3)^2(x - 5)$.",
+          "options": [
+            "$-1$",
+            "$-2$",
+            "$-15$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The distinct zeros are $-3$ and $5$, so the sum is $2$. Counting the double zero twice — as if multiplicity added a root — gives $-1$.",
+          "check": [
+            "(-3) + (5) == 2",
+            "((-3) - (-3))**2*((-3) - (5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v05",
+          "statement": "The graph of $p(x) = (x - 4)^2(x - 1)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = 4$",
+            "$x = 1$",
+            "$x = -4$",
+            "$x = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The squared factor makes $x = 4$ a double zero, so the graph touches and turns there; at $x = 1$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (4))**2*(x - (1)), (x - (4))**2, x) == 0",
+            "Abs((4) - (1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v06",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x - 4)^2(x + 1)$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$-3$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The distinct zeros are $4$ and $-1$, so the sum is $3$. Counting the double zero twice — as if multiplicity added a root — gives $7$.",
+          "check": [
+            "(4) + (-1) == 3",
+            "((4) - (4))**2*((4) - (-1)) == 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v07",
+          "statement": "The graph of $p(x) = (x + 5)^2(x - 2)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = 2$",
+            "$x = 5$",
+            "$x = -5$",
+            "$x = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The squared factor makes $x = -5$ a double zero, so the graph touches and turns there; at $x = 2$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (-5))**2*(x - (2)), (x - (-5))**2, x) == 0",
+            "Abs((-5) - (2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v08",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x + 2)^2(x + 5)$.",
+          "options": [
+            "$-9$",
+            "$7$",
+            "$10$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The distinct zeros are $-2$ and $-5$, so the sum is $-7$. Counting the double zero twice — as if multiplicity added a root — gives $-9$.",
+          "check": [
+            "(-2) + (-5) == -7",
+            "((-2) - (-2))**2*((-2) - (-5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v09",
+          "statement": "The graph of $p(x) = (x - 1)^2(x + 4)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = 1$",
+            "$x = -4$",
+            "$x = -1$",
+            "$x = 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The squared factor makes $x = 1$ a double zero, so the graph touches and turns there; at $x = -4$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (1))**2*(x - (-4)), (x - (1))**2, x) == 0",
+            "Abs((1) - (-4)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v10",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x - 5)^2(x - 2)$.",
+          "options": [
+            "$12$",
+            "$7$",
+            "$-7$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The distinct zeros are $5$ and $2$, so the sum is $7$. Counting the double zero twice — as if multiplicity added a root — gives $12$.",
+          "check": [
+            "(5) + (2) == 7",
+            "((5) - (5))**2*((5) - (2)) == 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v11",
+          "statement": "The graph of $p(x) = (x - 6)^2(x + 2)$ touches (without crossing) the $x$-axis at which zero?",
+          "options": [
+            "$x = -2$",
+            "$x = -6$",
+            "$x = 6$",
+            "$x = 0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The squared factor makes $x = 6$ a double zero, so the graph touches and turns there; at $x = -2$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+          "check": [
+            "rem((x - (6))**2*(x - (-2)), (x - (6))**2, x) == 0",
+            "Abs((6) - (-2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-mult-v12",
+          "statement": "Find the sum of the distinct zeros of $p(x) = (x + 4)^2(x - 3)$.",
+          "options": [
+            "$-5$",
+            "$1$",
+            "$-12$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The distinct zeros are $-4$ and $3$, so the sum is $-1$. Counting the double zero twice — as if multiplicity added a root — gives $-5$.",
+          "check": [
+            "(-4) + (3) == -1",
+            "((-4) - (-4))**2*((-4) - (3)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-radicals",
+      "title": "Adding like radicals",
+      "level": 1,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "a sqrt(k) + b sqrt(k) - c sqrt(k) = (a + b - c) sqrt(k) — combine coefficients only.",
+      "variants": [
+        {
+          "id": "A2-radd-v01",
+          "statement": "Simplify $5\\sqrt{3} + 2\\sqrt{3} - 4\\sqrt{3}$.",
+          "options": [
+            "$3\\sqrt{3}$",
+            "$11\\sqrt{3}$",
+            "$3$",
+            "$3\\sqrt{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Like radicals combine through their coefficients: $(5 + 2 - 4)\\sqrt{3} = 3\\sqrt{3}$. Ignoring the minus sign gives $11\\sqrt{3}$, and the radical itself never disappears.",
+          "check": [
+            "5*sqrt(3) + 2*sqrt(3) - 4*sqrt(3) == 3*sqrt(3)"
+          ]
+        },
+        {
+          "id": "A2-radd-v02",
+          "statement": "Simplify $4\\sqrt{2} + 3\\sqrt{2} - 2\\sqrt{2}$.",
+          "options": [
+            "$9\\sqrt{2}$",
+            "$5\\sqrt{2}$",
+            "$5$",
+            "$5\\sqrt{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Like radicals combine through their coefficients: $(4 + 3 - 2)\\sqrt{2} = 5\\sqrt{2}$. Ignoring the minus sign gives $9\\sqrt{2}$, and the radical itself never disappears.",
+          "check": [
+            "4*sqrt(2) + 3*sqrt(2) - 2*sqrt(2) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "A2-radd-v03",
+          "statement": "Simplify $6\\sqrt{5} + 2\\sqrt{5} - 5\\sqrt{5}$.",
+          "options": [
+            "$13\\sqrt{5}$",
+            "$3$",
+            "$3\\sqrt{5}$",
+            "$3\\sqrt{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Like radicals combine through their coefficients: $(6 + 2 - 5)\\sqrt{5} = 3\\sqrt{5}$. Ignoring the minus sign gives $13\\sqrt{5}$, and the radical itself never disappears.",
+          "check": [
+            "6*sqrt(5) + 2*sqrt(5) - 5*sqrt(5) == 3*sqrt(5)"
+          ]
+        },
+        {
+          "id": "A2-radd-v04",
+          "statement": "Simplify $7\\sqrt{2} + 3\\sqrt{2} - 6\\sqrt{2}$.",
+          "options": [
+            "$16\\sqrt{2}$",
+            "$4$",
+            "$4\\sqrt{4}$",
+            "$4\\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Like radicals combine through their coefficients: $(7 + 3 - 6)\\sqrt{2} = 4\\sqrt{2}$. Ignoring the minus sign gives $16\\sqrt{2}$, and the radical itself never disappears.",
+          "check": [
+            "7*sqrt(2) + 3*sqrt(2) - 6*sqrt(2) == 4*sqrt(2)"
+          ]
+        },
+        {
+          "id": "A2-radd-v05",
+          "statement": "Simplify $2\\sqrt{7} + 6\\sqrt{7} - 3\\sqrt{7}$.",
+          "options": [
+            "$5\\sqrt{7}$",
+            "$11\\sqrt{7}$",
+            "$5$",
+            "$5\\sqrt{14}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Like radicals combine through their coefficients: $(2 + 6 - 3)\\sqrt{7} = 5\\sqrt{7}$. Ignoring the minus sign gives $11\\sqrt{7}$, and the radical itself never disappears.",
+          "check": [
+            "2*sqrt(7) + 6*sqrt(7) - 3*sqrt(7) == 5*sqrt(7)"
+          ]
+        },
+        {
+          "id": "A2-radd-v06",
+          "statement": "Simplify $8\\sqrt{6} + 2\\sqrt{6} - 7\\sqrt{6}$.",
+          "options": [
+            "$17\\sqrt{6}$",
+            "$3\\sqrt{6}$",
+            "$3$",
+            "$3\\sqrt{12}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Like radicals combine through their coefficients: $(8 + 2 - 7)\\sqrt{6} = 3\\sqrt{6}$. Ignoring the minus sign gives $17\\sqrt{6}$, and the radical itself never disappears.",
+          "check": [
+            "8*sqrt(6) + 2*sqrt(6) - 7*sqrt(6) == 3*sqrt(6)"
+          ]
+        },
+        {
+          "id": "A2-radd-v07",
+          "statement": "Simplify $3\\sqrt{10} + 5\\sqrt{10} - 4\\sqrt{10}$.",
+          "options": [
+            "$12\\sqrt{10}$",
+            "$4$",
+            "$4\\sqrt{10}$",
+            "$4\\sqrt{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Like radicals combine through their coefficients: $(3 + 5 - 4)\\sqrt{10} = 4\\sqrt{10}$. Ignoring the minus sign gives $12\\sqrt{10}$, and the radical itself never disappears.",
+          "check": [
+            "3*sqrt(10) + 5*sqrt(10) - 4*sqrt(10) == 4*sqrt(10)"
+          ]
+        },
+        {
+          "id": "A2-radd-v08",
+          "statement": "Simplify $9\\sqrt{3} + 4\\sqrt{3} - 6\\sqrt{3}$.",
+          "options": [
+            "$19\\sqrt{3}$",
+            "$7$",
+            "$7\\sqrt{6}$",
+            "$7\\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Like radicals combine through their coefficients: $(9 + 4 - 6)\\sqrt{3} = 7\\sqrt{3}$. Ignoring the minus sign gives $19\\sqrt{3}$, and the radical itself never disappears.",
+          "check": [
+            "9*sqrt(3) + 4*sqrt(3) - 6*sqrt(3) == 7*sqrt(3)"
+          ]
+        },
+        {
+          "id": "A2-radd-v09",
+          "statement": "Simplify $5\\sqrt{11} + 4\\sqrt{11} - 3\\sqrt{11}$.",
+          "options": [
+            "$6\\sqrt{11}$",
+            "$12\\sqrt{11}$",
+            "$6$",
+            "$6\\sqrt{22}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Like radicals combine through their coefficients: $(5 + 4 - 3)\\sqrt{11} = 6\\sqrt{11}$. Ignoring the minus sign gives $12\\sqrt{11}$, and the radical itself never disappears.",
+          "check": [
+            "5*sqrt(11) + 4*sqrt(11) - 3*sqrt(11) == 6*sqrt(11)"
+          ]
+        },
+        {
+          "id": "A2-radd-v10",
+          "statement": "Simplify $6\\sqrt{13} + 3\\sqrt{13} - 7\\sqrt{13}$.",
+          "options": [
+            "$16\\sqrt{13}$",
+            "$2\\sqrt{13}$",
+            "$2$",
+            "$2\\sqrt{26}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Like radicals combine through their coefficients: $(6 + 3 - 7)\\sqrt{13} = 2\\sqrt{13}$. Ignoring the minus sign gives $16\\sqrt{13}$, and the radical itself never disappears.",
+          "check": [
+            "6*sqrt(13) + 3*sqrt(13) - 7*sqrt(13) == 2*sqrt(13)"
+          ]
+        },
+        {
+          "id": "A2-radd-v11",
+          "statement": "Simplify $4\\sqrt{5} + 2\\sqrt{5} - 3\\sqrt{5}$.",
+          "options": [
+            "$9\\sqrt{5}$",
+            "$3$",
+            "$3\\sqrt{5}$",
+            "$3\\sqrt{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Like radicals combine through their coefficients: $(4 + 2 - 3)\\sqrt{5} = 3\\sqrt{5}$. Ignoring the minus sign gives $9\\sqrt{5}$, and the radical itself never disappears.",
+          "check": [
+            "4*sqrt(5) + 2*sqrt(5) - 3*sqrt(5) == 3*sqrt(5)"
+          ]
+        },
+        {
+          "id": "A2-radd-v12",
+          "statement": "Simplify $7\\sqrt{6} + 2\\sqrt{6} - 5\\sqrt{6}$.",
+          "options": [
+            "$14\\sqrt{6}$",
+            "$4$",
+            "$4\\sqrt{12}$",
+            "$4\\sqrt{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Like radicals combine through their coefficients: $(7 + 2 - 5)\\sqrt{6} = 4\\sqrt{6}$. Ignoring the minus sign gives $14\\sqrt{6}$, and the radical itself never disappears.",
+          "check": [
+            "7*sqrt(6) + 2*sqrt(6) - 5*sqrt(6) == 4*sqrt(6)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "rational-exponents",
       "title": "Evaluating rational exponents",
       "level": 1,
@@ -5252,6 +7640,195 @@
       ]
     },
     {
+      "id": "multiply-radicals",
+      "title": "Multiplying square roots",
+      "level": 2,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "sqrt(a) * sqrt(b) = sqrt(ab), then pull out the largest perfect square.",
+      "variants": [
+        {
+          "id": "A2-rmul-v01",
+          "statement": "Simplify $\\sqrt{6} \\cdot \\sqrt{8}$.",
+          "options": [
+            "$4\\sqrt{3}$",
+            "$\\sqrt{14}$",
+            "$48$",
+            "$3\\sqrt{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{48} = \\sqrt{16 \\cdot 3} = 4\\sqrt{3}$. Adding the radicands to get $\\sqrt{14}$ is the classic slip.",
+          "check": [
+            "sqrt(6)*sqrt(8) == 4*sqrt(3)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v02",
+          "statement": "Simplify $\\sqrt{2} \\cdot \\sqrt{6}$.",
+          "options": [
+            "$\\sqrt{8}$",
+            "$2\\sqrt{3}$",
+            "$12$",
+            "$3\\sqrt{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{12} = \\sqrt{4 \\cdot 3} = 2\\sqrt{3}$. Adding the radicands to get $\\sqrt{8}$ is the classic slip.",
+          "check": [
+            "sqrt(2)*sqrt(6) == 2*sqrt(3)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v03",
+          "statement": "Simplify $\\sqrt{3} \\cdot \\sqrt{6}$.",
+          "options": [
+            "$\\sqrt{9}$",
+            "$18$",
+            "$3\\sqrt{2}$",
+            "$2\\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{18} = \\sqrt{9 \\cdot 2} = 3\\sqrt{2}$. Adding the radicands to get $\\sqrt{9}$ is the classic slip.",
+          "check": [
+            "sqrt(3)*sqrt(6) == 3*sqrt(2)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v04",
+          "statement": "Simplify $\\sqrt{5} \\cdot \\sqrt{10}$.",
+          "options": [
+            "$\\sqrt{15}$",
+            "$50$",
+            "$2\\sqrt{5}$",
+            "$5\\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}$. Adding the radicands to get $\\sqrt{15}$ is the classic slip.",
+          "check": [
+            "sqrt(5)*sqrt(10) == 5*sqrt(2)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v05",
+          "statement": "Simplify $\\sqrt{2} \\cdot \\sqrt{10}$.",
+          "options": [
+            "$2\\sqrt{5}$",
+            "$\\sqrt{12}$",
+            "$20$",
+            "$5\\sqrt{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{20} = \\sqrt{4 \\cdot 5} = 2\\sqrt{5}$. Adding the radicands to get $\\sqrt{12}$ is the classic slip.",
+          "check": [
+            "sqrt(2)*sqrt(10) == 2*sqrt(5)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v06",
+          "statement": "Simplify $\\sqrt{6} \\cdot \\sqrt{10}$.",
+          "options": [
+            "$\\sqrt{16}$",
+            "$2\\sqrt{15}$",
+            "$60$",
+            "$15\\sqrt{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{60} = \\sqrt{4 \\cdot 15} = 2\\sqrt{15}$. Adding the radicands to get $\\sqrt{16}$ is the classic slip.",
+          "check": [
+            "sqrt(6)*sqrt(10) == 2*sqrt(15)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v07",
+          "statement": "Simplify $\\sqrt{8} \\cdot \\sqrt{10}$.",
+          "options": [
+            "$\\sqrt{18}$",
+            "$80$",
+            "$4\\sqrt{5}$",
+            "$5\\sqrt{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{80} = \\sqrt{16 \\cdot 5} = 4\\sqrt{5}$. Adding the radicands to get $\\sqrt{18}$ is the classic slip.",
+          "check": [
+            "sqrt(8)*sqrt(10) == 4*sqrt(5)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v08",
+          "statement": "Simplify $\\sqrt{3} \\cdot \\sqrt{15}$.",
+          "options": [
+            "$\\sqrt{18}$",
+            "$45$",
+            "$5\\sqrt{3}$",
+            "$3\\sqrt{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply under one radical, then pull out the square: $\\sqrt{45} = \\sqrt{9 \\cdot 5} = 3\\sqrt{5}$. Adding the radicands to get $\\sqrt{18}$ is the classic slip.",
+          "check": [
+            "sqrt(3)*sqrt(15) == 3*sqrt(5)"
+          ]
+        },
+        {
+          "id": "A2-rmul-v09",
+          "statement": "Simplify $\\sqrt{2} \\cdot \\sqrt{8}$.",
+          "options": [
+            "$4$",
+            "$\\sqrt{10}$",
+            "$16$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply under one radical: $\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{16} = 4$. Adding the radicands to get $\\sqrt{10}$ is the classic slip, and $16$ forgets the square root.",
+          "check": [
+            "sqrt(2)*sqrt(8) == 4"
+          ]
+        },
+        {
+          "id": "A2-rmul-v10",
+          "statement": "Simplify $\\sqrt{3} \\cdot \\sqrt{12}$.",
+          "options": [
+            "$\\sqrt{15}$",
+            "$6$",
+            "$36$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply under one radical: $\\sqrt{3} \\cdot \\sqrt{12} = \\sqrt{36} = 6$. Adding the radicands to get $\\sqrt{15}$ is the classic slip, and $36$ forgets the square root.",
+          "check": [
+            "sqrt(3)*sqrt(12) == 6"
+          ]
+        },
+        {
+          "id": "A2-rmul-v11",
+          "statement": "Simplify $\\sqrt{2} \\cdot \\sqrt{18}$.",
+          "options": [
+            "$\\sqrt{20}$",
+            "$36$",
+            "$6$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply under one radical: $\\sqrt{2} \\cdot \\sqrt{18} = \\sqrt{36} = 6$. Adding the radicands to get $\\sqrt{20}$ is the classic slip, and $36$ forgets the square root.",
+          "check": [
+            "sqrt(2)*sqrt(18) == 6"
+          ]
+        },
+        {
+          "id": "A2-rmul-v12",
+          "statement": "Simplify $\\sqrt{6} \\cdot \\sqrt{24}$.",
+          "options": [
+            "$\\sqrt{30}$",
+            "$144$",
+            "$30$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply under one radical: $\\sqrt{6} \\cdot \\sqrt{24} = \\sqrt{144} = 12$. Adding the radicands to get $\\sqrt{30}$ is the classic slip, and $144$ forgets the square root.",
+          "check": [
+            "sqrt(6)*sqrt(24) == 12"
+          ]
+        }
+      ]
+    },
+    {
       "id": "simplify-radical",
       "title": "Simplifying square roots",
       "level": 2,
@@ -5832,6 +8409,207 @@
           "check": [
             "sqrt(486) == 9*sqrt(6)",
             "(9)**2 * (6) == 486"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solve-radical",
+      "title": "Solving a basic radical equation",
+      "level": 2,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "sqrt(x + a) = b: square both sides first, then isolate x = b^2 - a.",
+      "variants": [
+        {
+          "id": "A2-rsolve-v01",
+          "statement": "Solve $\\sqrt{x + 5} = 4$ for $x$.",
+          "options": [
+            "$11$",
+            "$-1$",
+            "$-11$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square both sides: $x + 5 = 16$, so $x = 16 - (5) = 11$. Moving $5$ across without squaring first gives $-1$.",
+          "check": [
+            "sqrt((11) + (5)) == 4",
+            "(4)**2 - (5) == 11"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v02",
+          "statement": "Solve $\\sqrt{x - 3} = 2$ for $x$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$-7$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square both sides: $x - 3 = 4$, so $x = 4 - (-3) = 7$. Moving $-3$ across without squaring first gives $5$.",
+          "check": [
+            "sqrt((7) + (-3)) == 2",
+            "(2)**2 - (-3) == 7"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v03",
+          "statement": "Solve $\\sqrt{x + 7} = 3$ for $x$.",
+          "options": [
+            "$-4$",
+            "$-2$",
+            "$2$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square both sides: $x + 7 = 9$, so $x = 9 - (7) = 2$. Moving $7$ across without squaring first gives $-4$.",
+          "check": [
+            "sqrt((2) + (7)) == 3",
+            "(3)**2 - (7) == 2"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v04",
+          "statement": "Solve $\\sqrt{x + 6} = 5$ for $x$.",
+          "options": [
+            "$-1$",
+            "$-19$",
+            "$1$",
+            "$19$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square both sides: $x + 6 = 25$, so $x = 25 - (6) = 19$. Moving $6$ across without squaring first gives $-1$.",
+          "check": [
+            "sqrt((19) + (6)) == 5",
+            "(5)**2 - (6) == 19"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v05",
+          "statement": "Solve $\\sqrt{x + 1} = 4$ for $x$.",
+          "options": [
+            "$15$",
+            "$3$",
+            "$-15$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square both sides: $x + 1 = 16$, so $x = 16 - (1) = 15$. Moving $1$ across without squaring first gives $3$.",
+          "check": [
+            "sqrt((15) + (1)) == 4",
+            "(4)**2 - (1) == 15"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v06",
+          "statement": "Solve $\\sqrt{x + 10} = 6$ for $x$.",
+          "options": [
+            "$-4$",
+            "$26$",
+            "$-26$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square both sides: $x + 10 = 36$, so $x = 36 - (10) = 26$. Moving $10$ across without squaring first gives $-4$.",
+          "check": [
+            "sqrt((26) + (10)) == 6",
+            "(6)**2 - (10) == 26"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v07",
+          "statement": "Solve $\\sqrt{x - 6} = 3$ for $x$.",
+          "options": [
+            "$9$",
+            "$-15$",
+            "$15$",
+            "$81$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square both sides: $x - 6 = 9$, so $x = 9 - (-6) = 15$. Moving $-6$ across without squaring first gives $9$.",
+          "check": [
+            "sqrt((15) + (-6)) == 3",
+            "(3)**2 - (-6) == 15"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v08",
+          "statement": "Solve $\\sqrt{x - 8} = 2$ for $x$.",
+          "options": [
+            "$10$",
+            "$-12$",
+            "$100$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square both sides: $x - 8 = 4$, so $x = 4 - (-8) = 12$. Moving $-8$ across without squaring first gives $10$.",
+          "check": [
+            "sqrt((12) + (-8)) == 2",
+            "(2)**2 - (-8) == 12"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v09",
+          "statement": "Solve $\\sqrt{x + 2} = 6$ for $x$.",
+          "options": [
+            "$34$",
+            "$4$",
+            "$-34$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Square both sides: $x + 2 = 36$, so $x = 36 - (2) = 34$. Moving $2$ across without squaring first gives $4$.",
+          "check": [
+            "sqrt((34) + (2)) == 6",
+            "(6)**2 - (2) == 34"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v10",
+          "statement": "Solve $\\sqrt{x + 11} = 4$ for $x$.",
+          "options": [
+            "$-7$",
+            "$5$",
+            "$-5$",
+            "$49$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Square both sides: $x + 11 = 16$, so $x = 16 - (11) = 5$. Moving $11$ across without squaring first gives $-7$.",
+          "check": [
+            "sqrt((5) + (11)) == 4",
+            "(4)**2 - (11) == 5"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v11",
+          "statement": "Solve $\\sqrt{x - 4} = 5$ for $x$.",
+          "options": [
+            "$9$",
+            "$-29$",
+            "$29$",
+            "$81$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Square both sides: $x - 4 = 25$, so $x = 25 - (-4) = 29$. Moving $-4$ across without squaring first gives $9$.",
+          "check": [
+            "sqrt((29) + (-4)) == 5",
+            "(5)**2 - (-4) == 29"
+          ]
+        },
+        {
+          "id": "A2-rsolve-v12",
+          "statement": "Solve $\\sqrt{x + 9} = 2$ for $x$.",
+          "options": [
+            "$-7$",
+            "$5$",
+            "$49$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Square both sides: $x + 9 = 4$, so $x = 4 - (9) = -5$. Moving $9$ across without squaring first gives $-7$.",
+          "check": [
+            "sqrt((-5) + (9)) == 2",
+            "(2)**2 - (9) == -5"
           ]
         }
       ]
@@ -10541,6 +13319,195 @@
       "unit": "exponentials-and-logarithms"
     },
     {
+      "id": "add-rational-numeric",
+      "title": "Adding unit fractions",
+      "level": 1,
+      "unit": "rational-functions",
+      "skill": "1/a + 1/b = (a + b)/(ab) — never add tops and bottoms separately.",
+      "variants": [
+        {
+          "id": "A2-radd2-v01",
+          "statement": "Compute $\\dfrac{1}{2} + \\dfrac{1}{3}$.",
+          "options": [
+            "$\\frac{5}{6}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{1}{5}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the common denominator $6$: $\\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$. Adding tops and bottoms separately — $\\frac{2}{5}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 2) + Rational(1, 3) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v02",
+          "statement": "Compute $\\dfrac{1}{2} + \\dfrac{1}{5}$.",
+          "options": [
+            "$\\frac{2}{7}$",
+            "$\\frac{7}{10}$",
+            "$\\frac{1}{7}$",
+            "$\\frac{1}{10}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the common denominator $10$: $\\frac{5}{10} + \\frac{2}{10} = \\frac{7}{10}$. Adding tops and bottoms separately — $\\frac{2}{7}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 2) + Rational(1, 5) == Rational(7, 10)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v03",
+          "statement": "Compute $\\dfrac{1}{3} + \\dfrac{1}{4}$.",
+          "options": [
+            "$\\frac{2}{7}$",
+            "$\\frac{1}{7}$",
+            "$\\frac{7}{12}$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the common denominator $12$: $\\frac{4}{12} + \\frac{3}{12} = \\frac{7}{12}$. Adding tops and bottoms separately — $\\frac{2}{7}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 3) + Rational(1, 4) == Rational(7, 12)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v04",
+          "statement": "Compute $\\dfrac{1}{4} + \\dfrac{1}{6}$.",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$\\frac{1}{10}$",
+            "$\\frac{1}{24}$",
+            "$\\frac{5}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the common denominator $24$: $\\frac{6}{24} + \\frac{4}{24} = \\frac{5}{12}$. Adding tops and bottoms separately — $\\frac{2}{10}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 4) + Rational(1, 6) == Rational(5, 12)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v05",
+          "statement": "Compute $\\dfrac{1}{2} + \\dfrac{1}{7}$.",
+          "options": [
+            "$\\frac{9}{14}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{14}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the common denominator $14$: $\\frac{7}{14} + \\frac{2}{14} = \\frac{9}{14}$. Adding tops and bottoms separately — $\\frac{2}{9}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 2) + Rational(1, 7) == Rational(9, 14)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v06",
+          "statement": "Compute $\\dfrac{1}{3} + \\dfrac{1}{5}$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$\\frac{8}{15}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{15}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the common denominator $15$: $\\frac{5}{15} + \\frac{3}{15} = \\frac{8}{15}$. Adding tops and bottoms separately — $\\frac{2}{8}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 3) + Rational(1, 5) == Rational(8, 15)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v07",
+          "statement": "Compute $\\dfrac{1}{5} + \\dfrac{1}{6}$.",
+          "options": [
+            "$\\frac{2}{11}$",
+            "$\\frac{1}{11}$",
+            "$\\frac{11}{30}$",
+            "$\\frac{1}{30}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the common denominator $30$: $\\frac{6}{30} + \\frac{5}{30} = \\frac{11}{30}$. Adding tops and bottoms separately — $\\frac{2}{11}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 5) + Rational(1, 6) == Rational(11, 30)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v08",
+          "statement": "Compute $\\dfrac{1}{2} + \\dfrac{1}{9}$.",
+          "options": [
+            "$\\frac{2}{11}$",
+            "$\\frac{1}{11}$",
+            "$\\frac{1}{18}$",
+            "$\\frac{11}{18}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the common denominator $18$: $\\frac{9}{18} + \\frac{2}{18} = \\frac{11}{18}$. Adding tops and bottoms separately — $\\frac{2}{11}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 2) + Rational(1, 9) == Rational(11, 18)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v09",
+          "statement": "Compute $\\dfrac{1}{4} + \\dfrac{1}{5}$.",
+          "options": [
+            "$\\frac{9}{20}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{20}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Use the common denominator $20$: $\\frac{5}{20} + \\frac{4}{20} = \\frac{9}{20}$. Adding tops and bottoms separately — $\\frac{2}{9}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 4) + Rational(1, 5) == Rational(9, 20)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v10",
+          "statement": "Compute $\\dfrac{1}{3} + \\dfrac{1}{8}$.",
+          "options": [
+            "$\\frac{2}{11}$",
+            "$\\frac{11}{24}$",
+            "$\\frac{1}{11}$",
+            "$\\frac{1}{24}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Use the common denominator $24$: $\\frac{8}{24} + \\frac{3}{24} = \\frac{11}{24}$. Adding tops and bottoms separately — $\\frac{2}{11}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 3) + Rational(1, 8) == Rational(11, 24)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v11",
+          "statement": "Compute $\\dfrac{1}{6} + \\dfrac{1}{10}$.",
+          "options": [
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{16}$",
+            "$\\frac{4}{15}$",
+            "$\\frac{1}{60}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Use the common denominator $60$: $\\frac{10}{60} + \\frac{6}{60} = \\frac{4}{15}$. Adding tops and bottoms separately — $\\frac{2}{16}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 6) + Rational(1, 10) == Rational(4, 15)"
+          ]
+        },
+        {
+          "id": "A2-radd2-v12",
+          "statement": "Compute $\\dfrac{1}{2} + \\dfrac{1}{4}$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Use the common denominator $8$: $\\frac{4}{8} + \\frac{2}{8} = \\frac{3}{4}$. Adding tops and bottoms separately — $\\frac{2}{6}$ — is the classic mistake.",
+          "check": [
+            "Rational(1, 2) + Rational(1, 4) == Rational(3, 4)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "rational-function-features",
       "title": "Asymptotes of rational functions",
       "level": 2,
@@ -11121,6 +14088,402 @@
           "check": [
             "Rational(5, 2) == Rational(5, 2)",
             "limit(((5)*x + (-2))/((2)*x + (5)), x, oo) == Rational(5, 2)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "simplify-rational",
+      "title": "Cancel, then evaluate",
+      "level": 2,
+      "unit": "rational-functions",
+      "skill": "(x^2 - k^2)/(x - k) = x + k for x != k — factor before substituting.",
+      "variants": [
+        {
+          "id": "A2-rsimp-v01",
+          "statement": "Simplify $\\dfrac{x^2 - 9}{x - 3}$, then evaluate the result at $x = 5$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$5$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 3)(x + 3)}{x - 3} = x + 3$, which at $x = 5$ equals $8$. Subtracting instead — as if it simplified to $x - 3$ — gives $2$.",
+          "check": [
+            "((5)**2 - 9)/((5) - 3) == 8",
+            "simplify((x**2 - 9)/(x - 3) - (x + 3)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v02",
+          "statement": "Simplify $\\dfrac{x^2 - 4}{x - 2}$, then evaluate the result at $x = 7$.",
+          "options": [
+            "$5$",
+            "$9$",
+            "$7$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 2)(x + 2)}{x - 2} = x + 2$, which at $x = 7$ equals $9$. Subtracting instead — as if it simplified to $x - 2$ — gives $5$.",
+          "check": [
+            "((7)**2 - 4)/((7) - 2) == 9",
+            "simplify((x**2 - 4)/(x - 2) - (x + 2)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v03",
+          "statement": "Simplify $\\dfrac{x^2 - 16}{x - 4}$, then evaluate the result at $x = 6$.",
+          "options": [
+            "$2$",
+            "$6$",
+            "$10$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 4)(x + 4)}{x - 4} = x + 4$, which at $x = 6$ equals $10$. Subtracting instead — as if it simplified to $x - 4$ — gives $2$.",
+          "check": [
+            "((6)**2 - 16)/((6) - 4) == 10",
+            "simplify((x**2 - 16)/(x - 4) - (x + 4)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v04",
+          "statement": "Simplify $\\dfrac{x^2 - 25}{x - 5}$, then evaluate the result at $x = 2$.",
+          "options": [
+            "$-3$",
+            "$2$",
+            "$10$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 5)(x + 5)}{x - 5} = x + 5$, which at $x = 2$ equals $7$. Subtracting instead — as if it simplified to $x - 5$ — gives $-3$.",
+          "check": [
+            "((2)**2 - 25)/((2) - 5) == 7",
+            "simplify((x**2 - 25)/(x - 5) - (x + 5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v05",
+          "statement": "Simplify $\\dfrac{x^2 - 9}{x - 3}$, then evaluate the result at $x = -2$.",
+          "options": [
+            "$1$",
+            "$-5$",
+            "$-2$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 3)(x + 3)}{x - 3} = x + 3$, which at $x = -2$ equals $1$. Subtracting instead — as if it simplified to $x - 3$ — gives $-5$.",
+          "check": [
+            "((-2)**2 - 9)/((-2) - 3) == 1",
+            "simplify((x**2 - 9)/(x - 3) - (x + 3)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v06",
+          "statement": "Simplify $\\dfrac{x^2 - 36}{x - 6}$, then evaluate the result at $x = 3$.",
+          "options": [
+            "$-3$",
+            "$9$",
+            "$3$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 6)(x + 6)}{x - 6} = x + 6$, which at $x = 3$ equals $9$. Subtracting instead — as if it simplified to $x - 6$ — gives $-3$.",
+          "check": [
+            "((3)**2 - 36)/((3) - 6) == 9",
+            "simplify((x**2 - 36)/(x - 6) - (x + 6)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v07",
+          "statement": "Simplify $\\dfrac{x^2 - 4}{x - 2}$, then evaluate the result at $x = -5$.",
+          "options": [
+            "$-7$",
+            "$-5$",
+            "$-3$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 2)(x + 2)}{x - 2} = x + 2$, which at $x = -5$ equals $-3$. Subtracting instead — as if it simplified to $x - 2$ — gives $-7$.",
+          "check": [
+            "((-5)**2 - 4)/((-5) - 2) == -3",
+            "simplify((x**2 - 4)/(x - 2) - (x + 2)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v08",
+          "statement": "Simplify $\\dfrac{x^2 - 49}{x - 7}$, then evaluate the result at $x = 4$.",
+          "options": [
+            "$-3$",
+            "$4$",
+            "$28$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 7)(x + 7)}{x - 7} = x + 7$, which at $x = 4$ equals $11$. Subtracting instead — as if it simplified to $x - 7$ — gives $-3$.",
+          "check": [
+            "((4)**2 - 49)/((4) - 7) == 11",
+            "simplify((x**2 - 49)/(x - 7) - (x + 7)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v09",
+          "statement": "Simplify $\\dfrac{x^2 - 16}{x - 4}$, then evaluate the result at $x = -3$.",
+          "options": [
+            "$1$",
+            "$-7$",
+            "$-3$",
+            "$-12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 4)(x + 4)}{x - 4} = x + 4$, which at $x = -3$ equals $1$. Subtracting instead — as if it simplified to $x - 4$ — gives $-7$.",
+          "check": [
+            "((-3)**2 - 16)/((-3) - 4) == 1",
+            "simplify((x**2 - 16)/(x - 4) - (x + 4)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v10",
+          "statement": "Simplify $\\dfrac{x^2 - 25}{x - 5}$, then evaluate the result at $x = 9$.",
+          "options": [
+            "$4$",
+            "$14$",
+            "$9$",
+            "$45$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 5)(x + 5)}{x - 5} = x + 5$, which at $x = 9$ equals $14$. Subtracting instead — as if it simplified to $x - 5$ — gives $4$.",
+          "check": [
+            "((9)**2 - 25)/((9) - 5) == 14",
+            "simplify((x**2 - 25)/(x - 5) - (x + 5)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v11",
+          "statement": "Simplify $\\dfrac{x^2 - 64}{x - 8}$, then evaluate the result at $x = 2$.",
+          "options": [
+            "$-6$",
+            "$2$",
+            "$10$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 8)(x + 8)}{x - 8} = x + 8$, which at $x = 2$ equals $10$. Subtracting instead — as if it simplified to $x - 8$ — gives $-6$.",
+          "check": [
+            "((2)**2 - 64)/((2) - 8) == 10",
+            "simplify((x**2 - 64)/(x - 8) - (x + 8)) == 0"
+          ]
+        },
+        {
+          "id": "A2-rsimp-v12",
+          "statement": "Simplify $\\dfrac{x^2 - 9}{x - 3}$, then evaluate the result at $x = 10$.",
+          "options": [
+            "$7$",
+            "$10$",
+            "$30$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 3)(x + 3)}{x - 3} = x + 3$, which at $x = 10$ equals $13$. Subtracting instead — as if it simplified to $x - 3$ — gives $7$.",
+          "check": [
+            "((10)**2 - 9)/((10) - 3) == 13",
+            "simplify((x**2 - 9)/(x - 3) - (x + 3)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hole-or-asymptote",
+      "title": "Hole or vertical asymptote?",
+      "level": 3,
+      "unit": "rational-functions",
+      "skill": "A cancelled factor leaves a hole; an uncancelled denominator zero is a vertical asymptote.",
+      "variants": [
+        {
+          "id": "A2-hole-v01",
+          "statement": "For $f(x) = \\dfrac{(x - 2)(x + 3)}{x - 2}$, what feature does the graph have at $x = 2$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 0,
+          "explanation": "The factor $(x - 2)$ cancels, so near $x = 2$ the graph is just $y = x + 3$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (2))*(x - (-3)))/(x - (2)), x, 2) == 5",
+            "Abs((2) - (-3)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v02",
+          "statement": "For $f(x) = \\dfrac{(x - 1)(x + 2)}{x - 3}$, what feature does the graph have at $x = 3$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 1,
+          "explanation": "At $x = 3$ the denominator vanishes while the numerator equals $10 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x - 3$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((3) - (1))*((3) - (-2))) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v03",
+          "statement": "For $f(x) = \\dfrac{(x + 1)(x - 4)}{x + 1}$, what feature does the graph have at $x = -1$?",
+          "options": [
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a hole",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 2,
+          "explanation": "The factor $(x + 1)$ cancels, so near $x = -1$ the graph is just $y = x - 4$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (-1))*(x - (4)))/(x - (-1)), x, -1) == -5",
+            "Abs((-1) - (4)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v04",
+          "statement": "For $f(x) = \\dfrac{(x - 2)(x - 4)}{x + 1}$, what feature does the graph have at $x = -1$?",
+          "options": [
+            "a hole",
+            "an $x$-intercept",
+            "a horizontal asymptote",
+            "a vertical asymptote"
+          ],
+          "correctIndex": 3,
+          "explanation": "At $x = -1$ the denominator vanishes while the numerator equals $15 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x + 1$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((-1) - (2))*((-1) - (4))) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v05",
+          "statement": "For $f(x) = \\dfrac{(x - 3)(x - 5)}{x - 3}$, what feature does the graph have at $x = 3$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 0,
+          "explanation": "The factor $(x - 3)$ cancels, so near $x = 3$ the graph is just $y = x - 5$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (3))*(x - (5)))/(x - (3)), x, 3) == -2",
+            "Abs((3) - (5)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v06",
+          "statement": "For $f(x) = \\dfrac{(x + 3)(x - 1)}{x - 2}$, what feature does the graph have at $x = 2$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 1,
+          "explanation": "At $x = 2$ the denominator vanishes while the numerator equals $5 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x - 2$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((2) - (-3))*((2) - (1))) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v07",
+          "statement": "For $f(x) = \\dfrac{(x + 4)(x + 2)}{x + 4}$, what feature does the graph have at $x = -4$?",
+          "options": [
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a hole",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 2,
+          "explanation": "The factor $(x + 4)$ cancels, so near $x = -4$ the graph is just $y = x + 2$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (-4))*(x - (-2)))/(x - (-4)), x, -4) == -2",
+            "Abs((-4) - (-2)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v08",
+          "statement": "For $f(x) = \\dfrac{(x - 5)(x + 2)}{x + 4}$, what feature does the graph have at $x = -4$?",
+          "options": [
+            "a hole",
+            "an $x$-intercept",
+            "a horizontal asymptote",
+            "a vertical asymptote"
+          ],
+          "correctIndex": 3,
+          "explanation": "At $x = -4$ the denominator vanishes while the numerator equals $18 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x + 4$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((-4) - (5))*((-4) - (-2))) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v09",
+          "statement": "For $f(x) = \\dfrac{(x - 5)(x + 1)}{x - 5}$, what feature does the graph have at $x = 5$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 0,
+          "explanation": "The factor $(x - 5)$ cancels, so near $x = 5$ the graph is just $y = x + 1$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (5))*(x - (-1)))/(x - (5)), x, 5) == 6",
+            "Abs((5) - (-1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v10",
+          "statement": "For $f(x) = \\dfrac{(x + 1)(x + 5)}{x - 3}$, what feature does the graph have at $x = 3$?",
+          "options": [
+            "a hole",
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 1,
+          "explanation": "At $x = 3$ the denominator vanishes while the numerator equals $32 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x - 3$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((3) - (-1))*((3) - (-5))) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v11",
+          "statement": "For $f(x) = \\dfrac{(x + 3)(x - 1)}{x + 3}$, what feature does the graph have at $x = -3$?",
+          "options": [
+            "a vertical asymptote",
+            "an $x$-intercept",
+            "a hole",
+            "a horizontal asymptote"
+          ],
+          "correctIndex": 2,
+          "explanation": "The factor $(x + 3)$ cancels, so near $x = -3$ the graph is just $y = x - 1$ with one point missing — a hole. Calling it a vertical asymptote is the classic confusion: an asymptote needs a denominator zero that does NOT cancel.",
+          "check": [
+            "limit(((x - (-3))*(x - (1)))/(x - (-3)), x, -3) == -4",
+            "Abs((-3) - (1)) > 0"
+          ]
+        },
+        {
+          "id": "A2-hole-v12",
+          "statement": "For $f(x) = \\dfrac{(x - 4)(x - 2)}{x - 6}$, what feature does the graph have at $x = 6$?",
+          "options": [
+            "a hole",
+            "an $x$-intercept",
+            "a horizontal asymptote",
+            "a vertical asymptote"
+          ],
+          "correctIndex": 3,
+          "explanation": "At $x = 6$ the denominator vanishes while the numerator equals $8 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x - 6$ to cancel with the numerator, and it doesn't.",
+          "check": [
+            "Abs(((6) - (4))*((6) - (2))) > 0"
           ]
         }
       ]

@@ -37,6 +37,199 @@
   ],
   "forms": [
     {
+      "id": "classify-edge-pair",
+      "title": "Cube edges: parallel, intersecting or skew?",
+      "level": 1,
+      "skill": "SOLID-clsf",
+      "unit": "lines-and-planes-in-space",
+      "variants": [
+        {
+          "id": "SOLID-clsf-v01",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AB$ and $C_1D_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "intersecting",
+            "skew",
+            "equal and intersecting"
+          ],
+          "correctIndex": 0,
+          "explanation": "The direction vectors of $AB$ and $C_1D_1$ are proportional, so the lines are parallel. Calling them skew just because they lie in different faces is the classic slip.",
+          "check": [
+            "Eq((0)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v02",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AB$ and $BC$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "intersecting",
+            "skew",
+            "coincident"
+          ],
+          "correctIndex": 1,
+          "explanation": "$AB$ and $BC$ share the vertex $B$, so the lines meet at a point. Answering 'skew' because the edges point in different directions is the classic slip — skew lines must have no common point.",
+          "check": [
+            "Eq(0, 0)",
+            "Ne((0)**2 + (0)**2 + (1)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v03",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AB$ and $CC_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "intersecting",
+            "skew",
+            "equal and intersecting"
+          ],
+          "correctIndex": 2,
+          "explanation": "$AB$ and $CC_1$ are not parallel and share no vertex, so no plane contains both: they are skew. Trusting the flat drawing, where they appear to cross, is the classic mistake.",
+          "check": [
+            "Ne(-1, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v04",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $BC$ and $A_1D_1$ positioned relative to each other?",
+          "options": [
+            "intersecting",
+            "skew",
+            "equal and intersecting",
+            "parallel"
+          ],
+          "correctIndex": 3,
+          "explanation": "The direction vectors of $BC$ and $A_1D_1$ are proportional, so the lines are parallel. Calling them skew just because they lie in different faces is the classic slip.",
+          "check": [
+            "Eq((0)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v05",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AB$ and $AA_1$ positioned relative to each other?",
+          "options": [
+            "intersecting",
+            "parallel",
+            "skew",
+            "coincident"
+          ],
+          "correctIndex": 0,
+          "explanation": "$AB$ and $AA_1$ share the vertex $A$, so the lines meet at a point. Answering 'skew' because the edges point in different directions is the classic slip — skew lines must have no common point.",
+          "check": [
+            "Eq(0, 0)",
+            "Ne((0)**2 + (-1)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v06",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AB$ and $B_1C_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "skew",
+            "intersecting",
+            "equal and intersecting"
+          ],
+          "correctIndex": 1,
+          "explanation": "$AB$ and $B_1C_1$ are not parallel and share no vertex, so no plane contains both: they are skew. Trusting the flat drawing, where they appear to cross, is the classic mistake.",
+          "check": [
+            "Ne(1, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v07",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AA_1$ and $CC_1$ positioned relative to each other?",
+          "options": [
+            "intersecting",
+            "skew",
+            "parallel",
+            "equal and intersecting"
+          ],
+          "correctIndex": 2,
+          "explanation": "The direction vectors of $AA_1$ and $CC_1$ are proportional, so the lines are parallel. Calling them skew just because they lie in different faces is the classic slip.",
+          "check": [
+            "Eq((0)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v08",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $B_1C_1$ and $CC_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "skew",
+            "coincident",
+            "intersecting"
+          ],
+          "correctIndex": 3,
+          "explanation": "$B_1C_1$ and $CC_1$ share the vertex $C_1$, so the lines meet at a point. Answering 'skew' because the edges point in different directions is the classic slip — skew lines must have no common point.",
+          "check": [
+            "Eq(0, 0)",
+            "Ne((1)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v09",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $AA_1$ and $BC$ positioned relative to each other?",
+          "options": [
+            "skew",
+            "parallel",
+            "intersecting",
+            "equal and intersecting"
+          ],
+          "correctIndex": 0,
+          "explanation": "$AA_1$ and $BC$ are not parallel and share no vertex, so no plane contains both: they are skew. Trusting the flat drawing, where they appear to cross, is the classic mistake.",
+          "check": [
+            "Ne(-1, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v10",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $CD$ and $A_1B_1$ positioned relative to each other?",
+          "options": [
+            "intersecting",
+            "parallel",
+            "skew",
+            "equal and intersecting"
+          ],
+          "correctIndex": 1,
+          "explanation": "The direction vectors of $CD$ and $A_1B_1$ are proportional, so the lines are parallel. Calling them skew just because they lie in different faces is the classic slip.",
+          "check": [
+            "Eq((0)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v11",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $DA$ and $DD_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "skew",
+            "intersecting",
+            "coincident"
+          ],
+          "correctIndex": 2,
+          "explanation": "$DA$ and $DD_1$ share the vertex $D$, so the lines meet at a point. Answering 'skew' because the edges point in different directions is the classic slip — skew lines must have no common point.",
+          "check": [
+            "Eq(0, 0)",
+            "Ne((-1)**2 + (0)**2 + (0)**2, 0)"
+          ]
+        },
+        {
+          "id": "SOLID-clsf-v12",
+          "statement": "In the cube $ABCDA_1B_1C_1D_1$, how are the lines containing edges $CD$ and $BB_1$ positioned relative to each other?",
+          "options": [
+            "parallel",
+            "intersecting",
+            "equal and intersecting",
+            "skew"
+          ],
+          "correctIndex": 3,
+          "explanation": "$CD$ and $BB_1$ are not parallel and share no vertex, so no plane contains both: they are skew. Trusting the flat drawing, where they appear to cross, is the classic mistake.",
+          "check": [
+            "Ne(-1, 0)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "cube-edge-relations",
       "title": "Edges of the cube: parallel, intersecting, skew",
       "level": 1,
@@ -1135,6 +1328,807 @@
       ]
     },
     {
+      "id": "diagonal-projection",
+      "title": "A slanted segment & its projection",
+      "level": 2,
+      "skill": "SOLID-proj",
+      "unit": "lines-and-planes-in-space",
+      "variants": [
+        {
+          "id": "SOLID-proj-v01",
+          "statement": "A segment of length $5$ joins a point at height $4$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$3$",
+            "$\\sqrt{41}$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{5^2 - 4^2} = 3$. Adding the squares instead, $\\sqrt{41}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(5**2 - 4**2) == 3"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 3,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 4,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "4",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "5",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v02",
+          "statement": "A segment joins a point at height $3$ above a plane to a point in the plane; its projection on the plane has length $4$. Find the length of the segment.",
+          "options": [
+            "$\\sqrt{7}$",
+            "$5$",
+            "$7$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The segment is the hypotenuse over the legs $4$ (projection) and $3$ (height): $\\sqrt{4^2 + 3^2} = 5$. Adding the legs, $4 + 3 = 7$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(4**2 + 3**2) == 5"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 4,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 3,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "4"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "3",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v03",
+          "statement": "A segment of length $10$ joins a point at height $8$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$2\\sqrt{41}$",
+            "$2$",
+            "$6$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{10^2 - 8^2} = 6$. Adding the squares instead, $2\\sqrt{41}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(10**2 - 8**2) == 6"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 6,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "8",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "10",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v04",
+          "statement": "A segment joins a point at height $6$ above a plane to a point in the plane; its projection on the plane has length $8$. Find the length of the segment.",
+          "options": [
+            "$2\\sqrt{7}$",
+            "$14$",
+            "$2$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The segment is the hypotenuse over the legs $8$ (projection) and $6$ (height): $\\sqrt{8^2 + 6^2} = 10$. Adding the legs, $8 + 6 = 14$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(8**2 + 6**2) == 10"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 8,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 6,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "8"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "6",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v05",
+          "statement": "A segment of length $13$ joins a point at height $12$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$5$",
+            "$\\sqrt{313}$",
+            "$1$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{13^2 - 12^2} = 5$. Adding the squares instead, $\\sqrt{313}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(13**2 - 12**2) == 5"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 5,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "12",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "13",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v06",
+          "statement": "A segment joins a point at height $5$ above a plane to a point in the plane; its projection on the plane has length $12$. Find the length of the segment.",
+          "options": [
+            "$\\sqrt{119}$",
+            "$13$",
+            "$17$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The segment is the hypotenuse over the legs $12$ (projection) and $5$ (height): $\\sqrt{12^2 + 5^2} = 13$. Adding the legs, $12 + 5 = 17$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(12**2 + 5**2) == 13"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 12,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 5,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "12"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "5",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v07",
+          "statement": "A segment of length $17$ joins a point at height $15$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$\\sqrt{514}$",
+            "$2$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{17^2 - 15^2} = 8$. Adding the squares instead, $\\sqrt{514}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(17**2 - 15**2) == 8"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 8,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 15,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "15",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "17",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v08",
+          "statement": "A segment joins a point at height $8$ above a plane to a point in the plane; its projection on the plane has length $15$. Find the length of the segment.",
+          "options": [
+            "$\\sqrt{161}$",
+            "$23$",
+            "$7$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The segment is the hypotenuse over the legs $15$ (projection) and $8$ (height): $\\sqrt{15^2 + 8^2} = 17$. Adding the legs, $15 + 8 = 23$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(15**2 + 8**2) == 17"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 15,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "15"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "8",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v09",
+          "statement": "A segment of length $15$ joins a point at height $12$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$9$",
+            "$3\\sqrt{41}$",
+            "$3$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{15^2 - 12^2} = 9$. Adding the squares instead, $3\\sqrt{41}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(15**2 - 12**2) == 9"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 9,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "12",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "15",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v10",
+          "statement": "A segment joins a point at height $9$ above a plane to a point in the plane; its projection on the plane has length $12$. Find the length of the segment.",
+          "options": [
+            "$3\\sqrt{7}$",
+            "$15$",
+            "$21$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The segment is the hypotenuse over the legs $12$ (projection) and $9$ (height): $\\sqrt{12^2 + 9^2} = 15$. Adding the legs, $12 + 9 = 21$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(12**2 + 9**2) == 15"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 12,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 9,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "12"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "9",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v11",
+          "statement": "A segment of length $29$ joins a point at height $21$ above a plane to a point in the plane. Find the length of the segment's projection on the plane.",
+          "options": [
+            "$\\sqrt{1282}$",
+            "$8$",
+            "$20$",
+            "$50$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Segment, height and projection form a right triangle with the segment as hypotenuse: $\\sqrt{29^2 - 21^2} = 20$. Adding the squares instead, $\\sqrt{1282}$, treats the projection as the hypotenuse — the classic slip.",
+          "check": [
+            "sqrt(29**2 - 21**2) == 20"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 20,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 21,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "?"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "21",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "29",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "SOLID-proj-v12",
+          "statement": "A segment joins a point at height $7$ above a plane to a point in the plane; its projection on the plane has length $24$. Find the length of the segment.",
+          "options": [
+            "$\\sqrt{527}$",
+            "$31$",
+            "$17$",
+            "$25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The segment is the hypotenuse over the legs $24$ (projection) and $7$ (height): $\\sqrt{24^2 + 7^2} = 25$. Adding the legs, $24 + 7 = 31$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(24**2 + 7**2) == 25"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "F",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 24,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "T",
+                "x": 0,
+                "y": 7,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "Q",
+                "label": "24"
+              },
+              {
+                "kind": "segment",
+                "from": "F",
+                "to": "T",
+                "label": "7",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "Q",
+                "to": "T",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "F",
+                "from": "Q",
+                "to": "T",
+                "right": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "id": "cube-diagonals",
       "title": "Cube diagonals: the √2 and √3 rules",
       "level": 1,
@@ -1679,6 +2673,384 @@
           "explanation": "Divide by $\\sqrt{2}$: edge $= \\frac{13\\sqrt{2}}{\\sqrt{2}} = 13$. Multiplying by $\\sqrt{2}$ instead gives $26$ — the classic wrong direction.",
           "check": [
             "13*sqrt(2)/sqrt(2) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cube-surface-volume",
+      "title": "Cube surface area & volume",
+      "level": 1,
+      "skill": "SOLID-csv",
+      "unit": "prisms-and-the-cube",
+      "variants": [
+        {
+          "id": "SOLID-csv-v01",
+          "statement": "A cube has edge $2$. Find its surface area.",
+          "options": [
+            "$24$",
+            "$8$",
+            "$16$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "All $6$ faces are $2 \\times 2$ squares: $S = 6a^2 = 6\\cdot 4 = 24$. Counting only the $4$ side faces gives $16$.",
+          "check": [
+            "6*2**2 == 24"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v02",
+          "statement": "A cube has edge $7$. Find its volume.",
+          "options": [
+            "$294$",
+            "$343$",
+            "$49$",
+            "$84$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = a^3 = 7^3 = 343$. $294$ is the surface area $6a^2$ — the classic surface/volume mix-up.",
+          "check": [
+            "7**3 == 343"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v03",
+          "statement": "A cube has surface area $216$. Find its edge length.",
+          "options": [
+            "$36$",
+            "$6\\sqrt{6}$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$6a^2 = 216$ gives $a^2 = 36$, so $a = 6$. Dividing by $6$ but forgetting the square root leaves $36$.",
+          "check": [
+            "sqrt(Rational(216,6)) == 6"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v04",
+          "statement": "A cube has edge $3$. Find its surface area.",
+          "options": [
+            "$27$",
+            "$36$",
+            "$9$",
+            "$54$"
+          ],
+          "correctIndex": 3,
+          "explanation": "All $6$ faces are $3 \\times 3$ squares: $S = 6a^2 = 6\\cdot 9 = 54$. Counting only the $4$ side faces gives $36$.",
+          "check": [
+            "6*3**2 == 54"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v05",
+          "statement": "A cube has edge $8$. Find its volume.",
+          "options": [
+            "$512$",
+            "$384$",
+            "$64$",
+            "$96$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = a^3 = 8^3 = 512$. $384$ is the surface area $6a^2$ — the classic surface/volume mix-up.",
+          "check": [
+            "8**3 == 512"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v06",
+          "statement": "A cube has surface area $726$. Find its edge length.",
+          "options": [
+            "$121$",
+            "$11$",
+            "$11\\sqrt{6}$",
+            "$22$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$6a^2 = 726$ gives $a^2 = 121$, so $a = 11$. Dividing by $6$ but forgetting the square root leaves $121$.",
+          "check": [
+            "sqrt(Rational(726,6)) == 11"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v07",
+          "statement": "A cube has edge $4$. Find its surface area.",
+          "options": [
+            "$64$",
+            "$16$",
+            "$96$",
+            "$48$"
+          ],
+          "correctIndex": 2,
+          "explanation": "All $6$ faces are $4 \\times 4$ squares: $S = 6a^2 = 6\\cdot 16 = 96$. Counting only the $4$ side faces gives $64$.",
+          "check": [
+            "6*4**2 == 96"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v08",
+          "statement": "A cube has edge $9$. Find its volume.",
+          "options": [
+            "$486$",
+            "$81$",
+            "$108$",
+            "$729$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = a^3 = 9^3 = 729$. $486$ is the surface area $6a^2$ — the classic surface/volume mix-up.",
+          "check": [
+            "9**3 == 729"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v09",
+          "statement": "A cube has surface area $864$. Find its edge length.",
+          "options": [
+            "$12$",
+            "$144$",
+            "$12\\sqrt{6}$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$6a^2 = 864$ gives $a^2 = 144$, so $a = 12$. Dividing by $6$ but forgetting the square root leaves $144$.",
+          "check": [
+            "sqrt(Rational(864,6)) == 12"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v10",
+          "statement": "A cube has edge $5$. Find its surface area.",
+          "options": [
+            "$125$",
+            "$150$",
+            "$100$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "All $6$ faces are $5 \\times 5$ squares: $S = 6a^2 = 6\\cdot 25 = 150$. Counting only the $4$ side faces gives $100$.",
+          "check": [
+            "6*5**2 == 150"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v11",
+          "statement": "A cube has edge $10$. Find its volume.",
+          "options": [
+            "$600$",
+            "$100$",
+            "$1000$",
+            "$120$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = a^3 = 10^3 = 1000$. $600$ is the surface area $6a^2$ — the classic surface/volume mix-up.",
+          "check": [
+            "10**3 == 1000"
+          ]
+        },
+        {
+          "id": "SOLID-csv-v12",
+          "statement": "A cube has surface area $1014$. Find its edge length.",
+          "options": [
+            "$169$",
+            "$13\\sqrt{6}$",
+            "$26$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$6a^2 = 1014$ gives $a^2 = 169$, so $a = 13$. Dividing by $6$ but forgetting the square root leaves $169$.",
+          "check": [
+            "sqrt(Rational(1014,6)) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prism-lateral",
+      "title": "Lateral surface of a right prism",
+      "level": 2,
+      "skill": "SOLID-plat",
+      "unit": "prisms-and-the-cube",
+      "variants": [
+        {
+          "id": "SOLID-plat-v01",
+          "statement": "A right prism has base perimeter $10$ and height $3$. Find its lateral surface area.",
+          "options": [
+            "$30$",
+            "$15$",
+            "$13$",
+            "$60$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $10\\cdot 3 = 30$. Halving it to $15$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "10*3 == 30"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v02",
+          "statement": "A right prism has base perimeter $12$ and height $5$. Find its lateral surface area.",
+          "options": [
+            "$30$",
+            "$60$",
+            "$17$",
+            "$120$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $12\\cdot 5 = 60$. Halving it to $30$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "12*5 == 60"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v03",
+          "statement": "A right prism has base perimeter $14$ and height $4$. Find its lateral surface area.",
+          "options": [
+            "$28$",
+            "$18$",
+            "$56$",
+            "$112$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $14\\cdot 4 = 56$. Halving it to $28$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "14*4 == 56"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v04",
+          "statement": "A right prism has base perimeter $16$ and height $7$. Find its lateral surface area.",
+          "options": [
+            "$56$",
+            "$23$",
+            "$224$",
+            "$112$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $16\\cdot 7 = 112$. Halving it to $56$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "16*7 == 112"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v05",
+          "statement": "A right prism has base perimeter $18$ and height $5$. Find its lateral surface area.",
+          "options": [
+            "$90$",
+            "$45$",
+            "$23$",
+            "$180$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $18\\cdot 5 = 90$. Halving it to $45$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "18*5 == 90"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v06",
+          "statement": "A right prism has base perimeter $20$ and height $6$. Find its lateral surface area.",
+          "options": [
+            "$60$",
+            "$120$",
+            "$26$",
+            "$240$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $20\\cdot 6 = 120$. Halving it to $60$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "20*6 == 120"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v07",
+          "statement": "A right prism has base perimeter $22$ and height $3$. Find its lateral surface area.",
+          "options": [
+            "$33$",
+            "$25$",
+            "$66$",
+            "$132$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $22\\cdot 3 = 66$. Halving it to $33$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "22*3 == 66"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v08",
+          "statement": "A right prism has base perimeter $24$ and height $5$. Find its lateral surface area.",
+          "options": [
+            "$60$",
+            "$29$",
+            "$240$",
+            "$120$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $24\\cdot 5 = 120$. Halving it to $60$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "24*5 == 120"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v09",
+          "statement": "A right prism has base perimeter $26$ and height $4$. Find its lateral surface area.",
+          "options": [
+            "$104$",
+            "$52$",
+            "$30$",
+            "$208$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $26\\cdot 4 = 104$. Halving it to $52$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "26*4 == 104"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v10",
+          "statement": "A right prism has base perimeter $28$ and height $6$. Find its lateral surface area.",
+          "options": [
+            "$84$",
+            "$168$",
+            "$34$",
+            "$336$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $28\\cdot 6 = 168$. Halving it to $84$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "28*6 == 168"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v11",
+          "statement": "A right prism has base perimeter $30$ and height $7$. Find its lateral surface area.",
+          "options": [
+            "$105$",
+            "$37$",
+            "$210$",
+            "$420$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $30\\cdot 7 = 210$. Halving it to $105$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "30*7 == 210"
+          ]
+        },
+        {
+          "id": "SOLID-plat-v12",
+          "statement": "A right prism has base perimeter $32$ and height $5$. Find its lateral surface area.",
+          "options": [
+            "$80$",
+            "$37$",
+            "$320$",
+            "$160$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Unrolled, the lateral surface is one rectangle $P \\times h$: $32\\cdot 5 = 160$. Halving it to $80$ borrows the pyramid's $\\tfrac12$ — a prism has none.",
+          "check": [
+            "32*5 == 160"
           ]
         }
       ]
@@ -3326,6 +4698,195 @@
           "explanation": "$V = \\tfrac13 a^2 h = \\tfrac13\\cdot 144\\cdot 11 = 528$. Forgetting the $\\tfrac13$ gives the prism volume $1584$.",
           "check": [
             "Rational(1,3)*12**2*11 == 528"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyramid-lateral",
+      "title": "Lateral surface of a regular pyramid",
+      "level": 2,
+      "skill": "SOLID-pyl",
+      "unit": "pyramids",
+      "variants": [
+        {
+          "id": "SOLID-pyl-v01",
+          "statement": "A regular square pyramid has base side $3$ and slant height $5$. Find its lateral surface area.",
+          "options": [
+            "$30$",
+            "$60$",
+            "$15$",
+            "$39$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 3\\cdot 5 = 30$. Forgetting the $\\tfrac12$ gives $60$.",
+          "check": [
+            "Rational(1,2)*4*3*5 == 30"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v02",
+          "statement": "A regular square pyramid has base side $4$ and slant height $5$. Find its lateral surface area.",
+          "options": [
+            "$80$",
+            "$40$",
+            "$20$",
+            "$56$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 4\\cdot 5 = 40$. Forgetting the $\\tfrac12$ gives $80$.",
+          "check": [
+            "Rational(1,2)*4*4*5 == 40"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v03",
+          "statement": "A regular square pyramid has base side $5$ and slant height $6$. Find its lateral surface area.",
+          "options": [
+            "$120$",
+            "$30$",
+            "$60$",
+            "$85$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 5\\cdot 6 = 60$. Forgetting the $\\tfrac12$ gives $120$.",
+          "check": [
+            "Rational(1,2)*4*5*6 == 60"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v04",
+          "statement": "A regular square pyramid has base side $6$ and slant height $5$. Find its lateral surface area.",
+          "options": [
+            "$120$",
+            "$30$",
+            "$96$",
+            "$60$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 6\\cdot 5 = 60$. Forgetting the $\\tfrac12$ gives $120$.",
+          "check": [
+            "Rational(1,2)*4*6*5 == 60"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v05",
+          "statement": "A regular square pyramid has base side $4$ and slant height $7$. Find its lateral surface area.",
+          "options": [
+            "$56$",
+            "$112$",
+            "$28$",
+            "$72$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 4\\cdot 7 = 56$. Forgetting the $\\tfrac12$ gives $112$.",
+          "check": [
+            "Rational(1,2)*4*4*7 == 56"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v06",
+          "statement": "A regular square pyramid has base side $6$ and slant height $7$. Find its lateral surface area.",
+          "options": [
+            "$168$",
+            "$84$",
+            "$42$",
+            "$120$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 6\\cdot 7 = 84$. Forgetting the $\\tfrac12$ gives $168$.",
+          "check": [
+            "Rational(1,2)*4*6*7 == 84"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v07",
+          "statement": "A regular square pyramid has base side $5$ and slant height $8$. Find its lateral surface area.",
+          "options": [
+            "$160$",
+            "$40$",
+            "$80$",
+            "$105$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 5\\cdot 8 = 80$. Forgetting the $\\tfrac12$ gives $160$.",
+          "check": [
+            "Rational(1,2)*4*5*8 == 80"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v08",
+          "statement": "A regular square pyramid has base side $8$ and slant height $5$. Find its lateral surface area.",
+          "options": [
+            "$160$",
+            "$40$",
+            "$144$",
+            "$80$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 8\\cdot 5 = 80$. Forgetting the $\\tfrac12$ gives $160$.",
+          "check": [
+            "Rational(1,2)*4*8*5 == 80"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v09",
+          "statement": "A regular square pyramid has base side $7$ and slant height $6$. Find its lateral surface area.",
+          "options": [
+            "$84$",
+            "$168$",
+            "$42$",
+            "$133$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 7\\cdot 6 = 84$. Forgetting the $\\tfrac12$ gives $168$.",
+          "check": [
+            "Rational(1,2)*4*7*6 == 84"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v10",
+          "statement": "A regular square pyramid has base side $6$ and slant height $9$. Find its lateral surface area.",
+          "options": [
+            "$216$",
+            "$108$",
+            "$54$",
+            "$144$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 6\\cdot 9 = 108$. Forgetting the $\\tfrac12$ gives $216$.",
+          "check": [
+            "Rational(1,2)*4*6*9 == 108"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v11",
+          "statement": "A regular square pyramid has base side $8$ and slant height $7$. Find its lateral surface area.",
+          "options": [
+            "$224$",
+            "$56$",
+            "$112$",
+            "$176$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 8\\cdot 7 = 112$. Forgetting the $\\tfrac12$ gives $224$.",
+          "check": [
+            "Rational(1,2)*4*8*7 == 112"
+          ]
+        },
+        {
+          "id": "SOLID-pyl-v12",
+          "statement": "A regular square pyramid has base side $9$ and slant height $4$. Find its lateral surface area.",
+          "options": [
+            "$144$",
+            "$36$",
+            "$153$",
+            "$72$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces of area $\\tfrac12 am$ each: $S = \\tfrac12\\cdot 4\\cdot 9\\cdot 4 = 72$. Forgetting the $\\tfrac12$ gives $144$.",
+          "check": [
+            "Rational(1,2)*4*9*4 == 72"
           ]
         }
       ]
@@ -5712,6 +7273,573 @@
               }
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "pyramid-base-from-volume",
+      "title": "Base side of a pyramid from its volume",
+      "level": 3,
+      "skill": "SOLID-pbv",
+      "unit": "pyramids",
+      "variants": [
+        {
+          "id": "SOLID-pbv-v01",
+          "statement": "A pyramid with a square base has volume $4$ and height $3$. Find its base side.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$\\sqrt{\\frac{4}{3}}$",
+            "$2\\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 4}{3} = 4$, so $a = 2$. Stopping at $a^2 = 4$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*4,3)) == 2"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v02",
+          "statement": "A pyramid with a square base has volume $16$ and height $3$. Find its base side.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$\\sqrt{\\frac{16}{3}}$",
+            "$4\\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 16}{3} = 16$, so $a = 4$. Stopping at $a^2 = 16$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*16,3)) == 4"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v03",
+          "statement": "A pyramid with a square base has volume $12$ and height $4$. Find its base side.",
+          "options": [
+            "$9$",
+            "$\\sqrt{3}$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 12}{4} = 9$, so $a = 3$. Stopping at $a^2 = 9$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*12,4)) == 3"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v04",
+          "statement": "A pyramid with a square base has volume $25$ and height $3$. Find its base side.",
+          "options": [
+            "$25$",
+            "$\\sqrt{\\frac{25}{3}}$",
+            "$5\\sqrt{3}$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 25}{3} = 25$, so $a = 5$. Stopping at $a^2 = 25$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*25,3)) == 5"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v05",
+          "statement": "A pyramid with a square base has volume $48$ and height $4$. Find its base side.",
+          "options": [
+            "$6$",
+            "$36$",
+            "$\\sqrt{12}$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 48}{4} = 36$, so $a = 6$. Stopping at $a^2 = 36$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*48,4)) == 6"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v06",
+          "statement": "A pyramid with a square base has volume $15$ and height $5$. Find its base side.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$\\sqrt{3}$",
+            "$3\\sqrt{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 15}{5} = 9$, so $a = 3$. Stopping at $a^2 = 9$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*15,5)) == 3"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v07",
+          "statement": "A pyramid with a square base has volume $60$ and height $5$. Find its base side.",
+          "options": [
+            "$36$",
+            "$\\sqrt{12}$",
+            "$6$",
+            "$6\\sqrt{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 60}{5} = 36$, so $a = 6$. Stopping at $a^2 = 36$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*60,5)) == 6"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v08",
+          "statement": "A pyramid with a square base has volume $54$ and height $2$. Find its base side.",
+          "options": [
+            "$81$",
+            "$\\sqrt{27}$",
+            "$9\\sqrt{2}$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 54}{2} = 81$, so $a = 9$. Stopping at $a^2 = 81$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*54,2)) == 9"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v09",
+          "statement": "A pyramid with a square base has volume $21$ and height $7$. Find its base side.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$\\sqrt{3}$",
+            "$3\\sqrt{7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 21}{7} = 9$, so $a = 3$. Stopping at $a^2 = 9$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*21,7)) == 3"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v10",
+          "statement": "A pyramid with a square base has volume $192$ and height $4$. Find its base side.",
+          "options": [
+            "$144$",
+            "$12$",
+            "$\\sqrt{48}$",
+            "$24$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 192}{4} = 144$, so $a = 12$. Stopping at $a^2 = 144$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*192,4)) == 12"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v11",
+          "statement": "A pyramid with a square base has volume $84$ and height $7$. Find its base side.",
+          "options": [
+            "$36$",
+            "$\\sqrt{12}$",
+            "$6$",
+            "$6\\sqrt{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 84}{7} = 36$, so $a = 6$. Stopping at $a^2 = 36$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*84,7)) == 6"
+          ]
+        },
+        {
+          "id": "SOLID-pbv-v12",
+          "statement": "A pyramid with a square base has volume $135$ and height $5$. Find its base side.",
+          "options": [
+            "$81$",
+            "$\\sqrt{27}$",
+            "$9\\sqrt{5}$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $V = \\tfrac13 a^2 h$: $a^2 = \\frac{3V}{h} = \\frac{3\\cdot 135}{5} = 81$, so $a = 9$. Stopping at $a^2 = 81$ without the square root is the classic slip.",
+          "check": [
+            "sqrt(Rational(3*135,5)) == 9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cone-volume",
+      "title": "Cone volume",
+      "level": 1,
+      "skill": "SOLID-cvol",
+      "unit": "cylinders-and-cones",
+      "variants": [
+        {
+          "id": "SOLID-cvol-v01",
+          "statement": "A cone has base radius $3$ and height $4$. Find its volume, exactly.",
+          "options": [
+            "$12\\pi$",
+            "$36\\pi$",
+            "$18\\pi$",
+            "$13\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 9\\cdot 4 = 12\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $36\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*3**2*4 == 12*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v02",
+          "statement": "A cone has base radius $2$ and height $3$. Find its volume, exactly.",
+          "options": [
+            "$12\\pi$",
+            "$4\\pi$",
+            "$6\\pi$",
+            "$5\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 4\\cdot 3 = 4\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $12\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*2**2*3 == 4*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v03",
+          "statement": "A cone has base radius $3$ and height $5$. Find its volume, exactly.",
+          "options": [
+            "$45\\pi$",
+            "$\\frac{45}{2}\\pi$",
+            "$15\\pi$",
+            "$16\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 9\\cdot 5 = 15\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $45\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*3**2*5 == 15*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v04",
+          "statement": "A cone has base radius $4$ and height $3$. Find its volume, exactly.",
+          "options": [
+            "$48\\pi$",
+            "$12\\pi$",
+            "$24\\pi$",
+            "$16\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 16\\cdot 3 = 16\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $48\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*4**2*3 == 16*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v05",
+          "statement": "A cone has base radius $5$ and height $3$. Find its volume, exactly.",
+          "options": [
+            "$25\\pi$",
+            "$75\\pi$",
+            "$15\\pi$",
+            "$\\frac{75}{2}\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 25\\cdot 3 = 25\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $75\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*5**2*3 == 25*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v06",
+          "statement": "A cone has base radius $2$ and height $6$. Find its volume, exactly.",
+          "options": [
+            "$24\\pi$",
+            "$8\\pi$",
+            "$12\\pi$",
+            "$9\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 4\\cdot 6 = 8\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $24\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*2**2*6 == 8*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v07",
+          "statement": "A cone has base radius $3$ and height $7$. Find its volume, exactly.",
+          "options": [
+            "$63\\pi$",
+            "$\\frac{63}{2}\\pi$",
+            "$21\\pi$",
+            "$22\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 9\\cdot 7 = 21\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $63\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*3**2*7 == 21*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v08",
+          "statement": "A cone has base radius $6$ and height $4$. Find its volume, exactly.",
+          "options": [
+            "$144\\pi$",
+            "$24\\pi$",
+            "$72\\pi$",
+            "$48\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 36\\cdot 4 = 48\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $144\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*6**2*4 == 48*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v09",
+          "statement": "A cone has base radius $4$ and height $6$. Find its volume, exactly.",
+          "options": [
+            "$32\\pi$",
+            "$96\\pi$",
+            "$24\\pi$",
+            "$48\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 16\\cdot 6 = 32\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $96\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*4**2*6 == 32*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v10",
+          "statement": "A cone has base radius $3$ and height $8$. Find its volume, exactly.",
+          "options": [
+            "$72\\pi$",
+            "$24\\pi$",
+            "$36\\pi$",
+            "$25\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 9\\cdot 8 = 24\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $72\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*3**2*8 == 24*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v11",
+          "statement": "A cone has base radius $6$ and height $5$. Find its volume, exactly.",
+          "options": [
+            "$180\\pi$",
+            "$30\\pi$",
+            "$60\\pi$",
+            "$90\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 36\\cdot 5 = 60\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $180\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*6**2*5 == 60*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cvol-v12",
+          "statement": "A cone has base radius $5$ and height $6$. Find its volume, exactly.",
+          "options": [
+            "$150\\pi$",
+            "$30\\pi$",
+            "$75\\pi$",
+            "$50\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi\\cdot 25\\cdot 6 = 50\\pi$. Forgetting the $\\tfrac13$ gives the cylinder volume $150\\pi$.",
+          "check": [
+            "Rational(1,3)*pi*5**2*6 == 50*pi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "axial-section",
+      "title": "Axial sections of a cylinder and a cone",
+      "level": 2,
+      "skill": "SOLID-axial",
+      "unit": "cylinders-and-cones",
+      "variants": [
+        {
+          "id": "SOLID-axial-v01",
+          "statement": "A cylinder has base radius $2$ and height $5$. Find the area of its axial section.",
+          "options": [
+            "$20$",
+            "$10$",
+            "$20\\pi$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 4$ and $h = 5$: area $20$. Using the radius instead of the diameter gives $10$.",
+          "check": [
+            "2*2*5 == 20"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v02",
+          "statement": "A cone has base radius $3$ and height $4$. Find the area of its axial section.",
+          "options": [
+            "$24$",
+            "$12$",
+            "$12\\pi$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 6$ and height $4$: $\\tfrac12\\cdot 6\\cdot 4 = 12$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $24$.",
+          "check": [
+            "Rational(1,2)*2*3*4 == 12"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v03",
+          "statement": "A cylinder has base radius $3$ and height $4$. Find the area of its axial section.",
+          "options": [
+            "$12$",
+            "$36\\pi$",
+            "$24$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 6$ and $h = 4$: area $24$. Using the radius instead of the diameter gives $12$.",
+          "check": [
+            "2*3*4 == 24"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v04",
+          "statement": "A cone has base radius $4$ and height $5$. Find the area of its axial section.",
+          "options": [
+            "$40$",
+            "$20\\pi$",
+            "$9$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 8$ and height $5$: $\\tfrac12\\cdot 8\\cdot 5 = 20$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $40$.",
+          "check": [
+            "Rational(1,2)*2*4*5 == 20"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v05",
+          "statement": "A cylinder has base radius $4$ and height $3$. Find the area of its axial section.",
+          "options": [
+            "$24$",
+            "$12$",
+            "$48\\pi$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 8$ and $h = 3$: area $24$. Using the radius instead of the diameter gives $12$.",
+          "check": [
+            "2*4*3 == 24"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v06",
+          "statement": "A cone has base radius $5$ and height $4$. Find the area of its axial section.",
+          "options": [
+            "$40$",
+            "$20$",
+            "$20\\pi$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 10$ and height $4$: $\\tfrac12\\cdot 10\\cdot 4 = 20$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $40$.",
+          "check": [
+            "Rational(1,2)*2*5*4 == 20"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v07",
+          "statement": "A cylinder has base radius $5$ and height $6$. Find the area of its axial section.",
+          "options": [
+            "$30$",
+            "$150\\pi$",
+            "$60$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 10$ and $h = 6$: area $60$. Using the radius instead of the diameter gives $30$.",
+          "check": [
+            "2*5*6 == 60"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v08",
+          "statement": "A cone has base radius $6$ and height $7$. Find the area of its axial section.",
+          "options": [
+            "$84$",
+            "$42\\pi$",
+            "$13$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 12$ and height $7$: $\\tfrac12\\cdot 12\\cdot 7 = 42$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $84$.",
+          "check": [
+            "Rational(1,2)*2*6*7 == 42"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v09",
+          "statement": "A cylinder has base radius $3$ and height $7$. Find the area of its axial section.",
+          "options": [
+            "$42$",
+            "$21$",
+            "$63\\pi$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 6$ and $h = 7$: area $42$. Using the radius instead of the diameter gives $21$.",
+          "check": [
+            "2*3*7 == 42"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v10",
+          "statement": "A cone has base radius $2$ and height $9$. Find the area of its axial section.",
+          "options": [
+            "$36$",
+            "$18$",
+            "$18\\pi$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 4$ and height $9$: $\\tfrac12\\cdot 4\\cdot 9 = 18$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $36$.",
+          "check": [
+            "Rational(1,2)*2*2*9 == 18"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v11",
+          "statement": "A cylinder has base radius $6$ and height $5$. Find the area of its axial section.",
+          "options": [
+            "$30$",
+            "$180\\pi$",
+            "$60$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The axial section of a cylinder is a rectangle with sides $2r = 12$ and $h = 5$: area $60$. Using the radius instead of the diameter gives $30$.",
+          "check": [
+            "2*6*5 == 60"
+          ]
+        },
+        {
+          "id": "SOLID-axial-v12",
+          "statement": "A cone has base radius $5$ and height $8$. Find the area of its axial section.",
+          "options": [
+            "$80$",
+            "$40\\pi$",
+            "$13$",
+            "$40$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The axial section of a cone is a triangle with base $2r = 10$ and height $8$: $\\tfrac12\\cdot 10\\cdot 8 = 40$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $80$.",
+          "check": [
+            "Rational(1,2)*2*5*8 == 40"
+          ]
         }
       ]
     },
@@ -8276,6 +10404,384 @@
           "explanation": "$4\\pi R^2 = 676\\pi$ gives $R^2 = 169$, so $R = 13$. Taking $\\sqrt{676}$ without first dividing by $4$ gives $26$.",
           "check": [
             "sqrt(Rational(676,4)) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sphere-volume-exact",
+      "title": "Sphere volume",
+      "level": 1,
+      "skill": "SOLID-svol",
+      "unit": "spheres",
+      "variants": [
+        {
+          "id": "SOLID-svol-v01",
+          "statement": "A sphere has radius $2$. Find its volume, exactly.",
+          "options": [
+            "$\\frac{32}{3}\\pi$",
+            "$16\\pi$",
+            "$8\\pi$",
+            "$32\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 8 = \\frac{32}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*2**3 == Rational(32,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v02",
+          "statement": "A sphere has radius $3$. Find its volume, exactly.",
+          "options": [
+            "$27\\pi$",
+            "$36\\pi$",
+            "$108\\pi$",
+            "$37\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 27 = 36\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*3**3 == Rational(108,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v03",
+          "statement": "A sphere has radius $4$. Find its volume, exactly.",
+          "options": [
+            "$64\\pi$",
+            "$256\\pi$",
+            "$\\frac{256}{3}\\pi$",
+            "$\\frac{259}{3}\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 64 = \\frac{256}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*4**3 == Rational(256,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v04",
+          "statement": "A sphere has radius $5$. Find its volume, exactly.",
+          "options": [
+            "$100\\pi$",
+            "$125\\pi$",
+            "$500\\pi$",
+            "$\\frac{500}{3}\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 125 = \\frac{500}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*5**3 == Rational(500,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v05",
+          "statement": "A sphere has radius $6$. Find its volume, exactly.",
+          "options": [
+            "$288\\pi$",
+            "$144\\pi$",
+            "$216\\pi$",
+            "$864\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 216 = 288\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*6**3 == Rational(864,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v06",
+          "statement": "A sphere has radius $7$. Find its volume, exactly.",
+          "options": [
+            "$196\\pi$",
+            "$\\frac{1372}{3}\\pi$",
+            "$343\\pi$",
+            "$1372\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 343 = \\frac{1372}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*7**3 == Rational(1372,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v07",
+          "statement": "A sphere has radius $8$. Find its volume, exactly.",
+          "options": [
+            "$256\\pi$",
+            "$512\\pi$",
+            "$\\frac{2048}{3}\\pi$",
+            "$2048\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 512 = \\frac{2048}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*8**3 == Rational(2048,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v08",
+          "statement": "A sphere has radius $9$. Find its volume, exactly.",
+          "options": [
+            "$324\\pi$",
+            "$729\\pi$",
+            "$2916\\pi$",
+            "$972\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 729 = 972\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*9**3 == Rational(2916,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v09",
+          "statement": "A sphere has radius $10$. Find its volume, exactly.",
+          "options": [
+            "$\\frac{4000}{3}\\pi$",
+            "$400\\pi$",
+            "$1000\\pi$",
+            "$4000\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 1000 = \\frac{4000}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*10**3 == Rational(4000,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v10",
+          "statement": "A sphere has radius $11$. Find its volume, exactly.",
+          "options": [
+            "$484\\pi$",
+            "$\\frac{5324}{3}\\pi$",
+            "$1331\\pi$",
+            "$5324\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 1331 = \\frac{5324}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*11**3 == Rational(5324,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v11",
+          "statement": "A sphere has radius $12$. Find its volume, exactly.",
+          "options": [
+            "$576\\pi$",
+            "$1728\\pi$",
+            "$2304\\pi$",
+            "$6912\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 1728 = 2304\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*12**3 == Rational(6912,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-svol-v12",
+          "statement": "A sphere has radius $13$. Find its volume, exactly.",
+          "options": [
+            "$676\\pi$",
+            "$2197\\pi$",
+            "$8788\\pi$",
+            "$\\frac{8788}{3}\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3 = \\tfrac43\\pi\\cdot 2197 = \\frac{8788}{3}\\pi$. The classic mix-up reaches for the surface-area formula $4\\pi R^2$ instead of the volume.",
+          "check": [
+            "Rational(4,3)*pi*13**3 == Rational(8788,3)*pi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hemisphere",
+      "title": "Hemisphere: total surface & volume",
+      "level": 2,
+      "skill": "SOLID-hemi",
+      "unit": "spheres",
+      "variants": [
+        {
+          "id": "SOLID-hemi-v01",
+          "statement": "A hemisphere has radius $2$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$12\\pi$",
+            "$8\\pi$",
+            "$16\\pi$",
+            "$4\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 12\\pi$. Stopping at the curved part $8\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*2**2 + pi*2**2 == 12*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v02",
+          "statement": "A hemisphere has radius $3$. Find its volume, exactly.",
+          "options": [
+            "$36\\pi$",
+            "$18\\pi$",
+            "$54\\pi$",
+            "$27\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 27 = 18\\pi$. Taking the full $\\tfrac43\\pi R^3 = 36\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*3**3 == Rational(54,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v03",
+          "statement": "A hemisphere has radius $3$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$18\\pi$",
+            "$36\\pi$",
+            "$27\\pi$",
+            "$9\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 27\\pi$. Stopping at the curved part $18\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*3**2 + pi*3**2 == 27*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v04",
+          "statement": "A hemisphere has radius $6$. Find its volume, exactly.",
+          "options": [
+            "$288\\pi$",
+            "$432\\pi$",
+            "$216\\pi$",
+            "$144\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 216 = 144\\pi$. Taking the full $\\tfrac43\\pi R^3 = 288\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*6**3 == Rational(432,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v05",
+          "statement": "A hemisphere has radius $4$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$48\\pi$",
+            "$32\\pi$",
+            "$64\\pi$",
+            "$16\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 48\\pi$. Stopping at the curved part $32\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*4**2 + pi*4**2 == 48*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v06",
+          "statement": "A hemisphere has radius $2$. Find its volume, exactly.",
+          "options": [
+            "$\\frac{32}{3}\\pi$",
+            "$\\frac{16}{3}\\pi$",
+            "$16\\pi$",
+            "$8\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 8 = \\frac{16}{3}\\pi$. Taking the full $\\tfrac43\\pi R^3 = \\frac{32}{3}\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*2**3 == Rational(16,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v07",
+          "statement": "A hemisphere has radius $5$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$50\\pi$",
+            "$100\\pi$",
+            "$75\\pi$",
+            "$25\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 75\\pi$. Stopping at the curved part $50\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*5**2 + pi*5**2 == 75*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v08",
+          "statement": "A hemisphere has radius $4$. Find its volume, exactly.",
+          "options": [
+            "$\\frac{256}{3}\\pi$",
+            "$128\\pi$",
+            "$64\\pi$",
+            "$\\frac{128}{3}\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 64 = \\frac{128}{3}\\pi$. Taking the full $\\tfrac43\\pi R^3 = \\frac{256}{3}\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*4**3 == Rational(128,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v09",
+          "statement": "A hemisphere has radius $6$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$108\\pi$",
+            "$72\\pi$",
+            "$144\\pi$",
+            "$36\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 108\\pi$. Stopping at the curved part $72\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*6**2 + pi*6**2 == 108*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v10",
+          "statement": "A hemisphere has radius $5$. Find its volume, exactly.",
+          "options": [
+            "$\\frac{500}{3}\\pi$",
+            "$\\frac{250}{3}\\pi$",
+            "$250\\pi$",
+            "$125\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 125 = \\frac{250}{3}\\pi$. Taking the full $\\tfrac43\\pi R^3 = \\frac{500}{3}\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*5**3 == Rational(250,3)*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v11",
+          "statement": "A hemisphere has radius $7$. Find its total surface area (curved surface plus the flat base disk), exactly.",
+          "options": [
+            "$98\\pi$",
+            "$196\\pi$",
+            "$147\\pi$",
+            "$49\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Half the sphere's surface plus the base disk: $2\\pi R^2 + \\pi R^2 = 3\\pi R^2 = 147\\pi$. Stopping at the curved part $98\\pi$ forgets the disk.",
+          "check": [
+            "2*pi*7**2 + pi*7**2 == 147*pi"
+          ]
+        },
+        {
+          "id": "SOLID-hemi-v12",
+          "statement": "A hemisphere has radius $9$. Find its volume, exactly.",
+          "options": [
+            "$972\\pi$",
+            "$1458\\pi$",
+            "$729\\pi$",
+            "$486\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 729 = 486\\pi$. Taking the full $\\tfrac43\\pi R^3 = 972\\pi$ forgets the halving.",
+          "check": [
+            "Rational(2,3)*pi*9**3 == Rational(1458,3)*pi"
           ]
         }
       ]
