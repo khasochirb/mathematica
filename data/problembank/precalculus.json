@@ -45,5 +45,3550 @@
       "blurb": "Circles, ellipses, parabolas with foci, hyperbolas, and classifying second-degree equations."
     }
   ],
-  "forms": []
+  "forms": [
+    {
+      "id": "evaluate-composite",
+      "title": "Evaluating compositions",
+      "level": 1,
+      "unit": "functions-and-their-graphs",
+      "skill": "f(g(k)): work inside out — evaluate g first, then feed it to f.",
+      "variants": [
+        {
+          "id": "PC-comp-v01",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = x^2 + 1$, find $f(g(2))$.",
+          "options": [
+            "$13$",
+            "$50$",
+            "$35$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work inside out: $g(2) = 5$, then $f(5) = 13$. Composing in the wrong order, $g(f(2))$, gives $50$.",
+          "check": [
+            "(2)*((2)**2 + (1)) + (3) == 13"
+          ]
+        },
+        {
+          "id": "PC-comp-v02",
+          "statement": "If $f(x) = 3x + 1$ and $g(x) = x^2 + 2$, find $g(f(1))$.",
+          "options": [
+            "$10$",
+            "$18$",
+            "$12$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work inside out: $f(1) = 4$, then $g(4) = 18$. Composing in the wrong order, $f(g(1))$, gives $10$.",
+          "check": [
+            "((3)*(1) + (1))**2 + (2) == 18"
+          ]
+        },
+        {
+          "id": "PC-comp-v03",
+          "statement": "If $f(x) = 4x + 1$ and $g(x) = x^2 + 2$, find $f(g(2))$.",
+          "options": [
+            "$83$",
+            "$54$",
+            "$25$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work inside out: $g(2) = 6$, then $f(6) = 25$. Composing in the wrong order, $g(f(2))$, gives $83$.",
+          "check": [
+            "(4)*((2)**2 + (2)) + (1) == 25"
+          ]
+        },
+        {
+          "id": "PC-comp-v04",
+          "statement": "If $f(x) = 3x + 2$ and $g(x) = x^2 + 4$, find $g(f(-2))$.",
+          "options": [
+            "$26$",
+            "$-32$",
+            "$4$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work inside out: $f(-2) = -4$, then $g(-4) = 20$. Composing in the wrong order, $f(g(-2))$, gives $26$.",
+          "check": [
+            "((3)*(-2) + (2))**2 + (4) == 20"
+          ]
+        },
+        {
+          "id": "PC-comp-v05",
+          "statement": "If $f(x) = 2x + 1$ and $g(x) = x^2 + 5$, find $f(g(3))$.",
+          "options": [
+            "$29$",
+            "$54$",
+            "$98$",
+            "$21$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work inside out: $g(3) = 14$, then $f(14) = 29$. Composing in the wrong order, $g(f(3))$, gives $54$.",
+          "check": [
+            "(2)*((3)**2 + (5)) + (1) == 29"
+          ]
+        },
+        {
+          "id": "PC-comp-v06",
+          "statement": "If $f(x) = 5x + 2$ and $g(x) = x^2 + 1$, find $g(f(1))$.",
+          "options": [
+            "$12$",
+            "$50$",
+            "$14$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work inside out: $f(1) = 7$, then $g(7) = 50$. Composing in the wrong order, $f(g(1))$, gives $12$.",
+          "check": [
+            "((5)*(1) + (2))**2 + (1) == 50"
+          ]
+        },
+        {
+          "id": "PC-comp-v07",
+          "statement": "If $f(x) = 2x + 7$ and $g(x) = x^2 + 3$, find $f(g(2))$.",
+          "options": [
+            "$124$",
+            "$77$",
+            "$21$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work inside out: $g(2) = 7$, then $f(7) = 21$. Composing in the wrong order, $g(f(2))$, gives $124$.",
+          "check": [
+            "(2)*((2)**2 + (3)) + (7) == 21"
+          ]
+        },
+        {
+          "id": "PC-comp-v08",
+          "statement": "If $f(x) = 4x + 3$ and $g(x) = x^2 + 1$, find $g(f(-2))$.",
+          "options": [
+            "$23$",
+            "$-25$",
+            "$0$",
+            "$26$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work inside out: $f(-2) = -5$, then $g(-5) = 26$. Composing in the wrong order, $f(g(-2))$, gives $23$.",
+          "check": [
+            "((4)*(-2) + (3))**2 + (1) == 26"
+          ]
+        },
+        {
+          "id": "PC-comp-v09",
+          "statement": "If $f(x) = 5x + 1$ and $g(x) = x^2 + 4$, find $f(g(1))$.",
+          "options": [
+            "$26$",
+            "$40$",
+            "$30$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work inside out: $g(1) = 5$, then $f(5) = 26$. Composing in the wrong order, $g(f(1))$, gives $40$.",
+          "check": [
+            "(5)*((1)**2 + (4)) + (1) == 26"
+          ]
+        },
+        {
+          "id": "PC-comp-v10",
+          "statement": "If $f(x) = 2x + 2$ and $g(x) = x^2 + 6$, find $g(f(3))$.",
+          "options": [
+            "$32$",
+            "$70$",
+            "$120$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work inside out: $f(3) = 8$, then $g(8) = 70$. Composing in the wrong order, $f(g(3))$, gives $32$.",
+          "check": [
+            "((2)*(3) + (2))**2 + (6) == 70"
+          ]
+        },
+        {
+          "id": "PC-comp-v11",
+          "statement": "If $f(x) = 3x + 5$ and $g(x) = x^2 + 2$, find $f(g(2))$.",
+          "options": [
+            "$123$",
+            "$66$",
+            "$23$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work inside out: $g(2) = 6$, then $f(6) = 23$. Composing in the wrong order, $g(f(2))$, gives $123$.",
+          "check": [
+            "(3)*((2)**2 + (2)) + (5) == 23"
+          ]
+        },
+        {
+          "id": "PC-comp-v12",
+          "statement": "If $f(x) = 4x + 2$ and $g(x) = x^2 + 3$, find $g(f(-1))$.",
+          "options": [
+            "$18$",
+            "$-8$",
+            "$2$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work inside out: $f(-1) = -2$, then $g(-2) = 7$. Composing in the wrong order, $f(g(-1))$, gives $18$.",
+          "check": [
+            "((4)*(-1) + (2))**2 + (3) == 7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "average-rate",
+      "title": "Average rate of change",
+      "level": 2,
+      "unit": "functions-and-their-graphs",
+      "skill": "Slope of the secant: (f(q) − f(p))/(q − p) — for x² + c it collapses to p + q.",
+      "variants": [
+        {
+          "id": "PC-avg-v01",
+          "statement": "For $f(x) = x^2 + 3$, find the average rate of change of $f$ from $x = 1$ to $x = 4$.",
+          "options": [
+            "$5$",
+            "$15$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average rate is $\\frac{f(4) - f(1)}{4 - 1} = \\frac{15}{3} = 5$. Stopping at $f(4) - f(1) = 15$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((4)**2 + (3)) - ((1)**2 + (3)))/((4) - (1)) == 5",
+            "(1) + (4) == 5"
+          ]
+        },
+        {
+          "id": "PC-avg-v02",
+          "statement": "For $f(x) = x^2 - 2$, find the average rate of change of $f$ from $x = 2$ to $x = 5$.",
+          "options": [
+            "$21$",
+            "$7$",
+            "$3$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average rate is $\\frac{f(5) - f(2)}{5 - 2} = \\frac{21}{3} = 7$. Stopping at $f(5) - f(2) = 21$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((5)**2 + (-2)) - ((2)**2 + (-2)))/((5) - (2)) == 7",
+            "(2) + (5) == 7"
+          ]
+        },
+        {
+          "id": "PC-avg-v03",
+          "statement": "For $f(x) = x^2 + 5$, find the average rate of change of $f$ from $x = 1$ to $x = 3$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average rate is $\\frac{f(3) - f(1)}{3 - 1} = \\frac{8}{2} = 4$. Stopping at $f(3) - f(1) = 8$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((3)**2 + (5)) - ((1)**2 + (5)))/((3) - (1)) == 4",
+            "(1) + (3) == 4"
+          ]
+        },
+        {
+          "id": "PC-avg-v04",
+          "statement": "For $f(x) = x^2 + 1$, find the average rate of change of $f$ from $x = 2$ to $x = 6$.",
+          "options": [
+            "$32$",
+            "$4$",
+            "$12$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average rate is $\\frac{f(6) - f(2)}{6 - 2} = \\frac{32}{4} = 8$. Stopping at $f(6) - f(2) = 32$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((6)**2 + (1)) - ((2)**2 + (1)))/((6) - (2)) == 8",
+            "(2) + (6) == 8"
+          ]
+        },
+        {
+          "id": "PC-avg-v05",
+          "statement": "For $f(x) = x^2 - 4$, find the average rate of change of $f$ from $x = 3$ to $x = 5$.",
+          "options": [
+            "$8$",
+            "$16$",
+            "$2$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average rate is $\\frac{f(5) - f(3)}{5 - 3} = \\frac{16}{2} = 8$. Stopping at $f(5) - f(3) = 16$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((5)**2 + (-4)) - ((3)**2 + (-4)))/((5) - (3)) == 8",
+            "(3) + (5) == 8"
+          ]
+        },
+        {
+          "id": "PC-avg-v06",
+          "statement": "For $f(x) = x^2 + 2$, find the average rate of change of $f$ from $x = 1$ to $x = 5$.",
+          "options": [
+            "$24$",
+            "$6$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average rate is $\\frac{f(5) - f(1)}{5 - 1} = \\frac{24}{4} = 6$. Stopping at $f(5) - f(1) = 24$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((5)**2 + (2)) - ((1)**2 + (2)))/((5) - (1)) == 6",
+            "(1) + (5) == 6"
+          ]
+        },
+        {
+          "id": "PC-avg-v07",
+          "statement": "For $f(x) = x^2 - 1$, find the average rate of change of $f$ from $x = 2$ to $x = 4$.",
+          "options": [
+            "$12$",
+            "$2$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average rate is $\\frac{f(4) - f(2)}{4 - 2} = \\frac{12}{2} = 6$. Stopping at $f(4) - f(2) = 12$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((4)**2 + (-1)) - ((2)**2 + (-1)))/((4) - (2)) == 6",
+            "(2) + (4) == 6"
+          ]
+        },
+        {
+          "id": "PC-avg-v08",
+          "statement": "For $f(x) = x^2 + 4$, find the average rate of change of $f$ from $x = 3$ to $x = 7$.",
+          "options": [
+            "$40$",
+            "$4$",
+            "$21$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average rate is $\\frac{f(7) - f(3)}{7 - 3} = \\frac{40}{4} = 10$. Stopping at $f(7) - f(3) = 40$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((7)**2 + (4)) - ((3)**2 + (4)))/((7) - (3)) == 10",
+            "(3) + (7) == 10"
+          ]
+        },
+        {
+          "id": "PC-avg-v09",
+          "statement": "For $f(x) = x^2 - 3$, find the average rate of change of $f$ from $x = 1$ to $x = 6$.",
+          "options": [
+            "$7$",
+            "$35$",
+            "$5$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average rate is $\\frac{f(6) - f(1)}{6 - 1} = \\frac{35}{5} = 7$. Stopping at $f(6) - f(1) = 35$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((6)**2 + (-3)) - ((1)**2 + (-3)))/((6) - (1)) == 7",
+            "(1) + (6) == 7"
+          ]
+        },
+        {
+          "id": "PC-avg-v10",
+          "statement": "For $f(x) = x^2 + 6$, find the average rate of change of $f$ from $x = 2$ to $x = 7$.",
+          "options": [
+            "$45$",
+            "$9$",
+            "$5$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average rate is $\\frac{f(7) - f(2)}{7 - 2} = \\frac{45}{5} = 9$. Stopping at $f(7) - f(2) = 45$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((7)**2 + (6)) - ((2)**2 + (6)))/((7) - (2)) == 9",
+            "(2) + (7) == 9"
+          ]
+        },
+        {
+          "id": "PC-avg-v11",
+          "statement": "For $f(x) = x^2 - 5$, find the average rate of change of $f$ from $x = 4$ to $x = 6$.",
+          "options": [
+            "$20$",
+            "$2$",
+            "$10$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average rate is $\\frac{f(6) - f(4)}{6 - 4} = \\frac{20}{2} = 10$. Stopping at $f(6) - f(4) = 20$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((6)**2 + (-5)) - ((4)**2 + (-5)))/((6) - (4)) == 10",
+            "(4) + (6) == 10"
+          ]
+        },
+        {
+          "id": "PC-avg-v12",
+          "statement": "For $f(x) = x^2 + 7$, find the average rate of change of $f$ from $x = 3$ to $x = 8$.",
+          "options": [
+            "$55$",
+            "$5$",
+            "$24$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average rate is $\\frac{f(8) - f(3)}{8 - 3} = \\frac{55}{5} = 11$. Stopping at $f(8) - f(3) = 55$ — forgetting to divide by the run — is the classic slip.",
+          "check": [
+            "(((8)**2 + (7)) - ((3)**2 + (7)))/((8) - (3)) == 11",
+            "(3) + (8) == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "domain-combined",
+      "title": "Domains with roots and fractions",
+      "level": 2,
+      "unit": "functions-and-their-graphs",
+      "skill": "Intersect the conditions: the radicand stays ≥ 0 AND the denominator stays ≠ 0.",
+      "variants": [
+        {
+          "id": "PC-dom-v01",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 1}}{x - 4}$?",
+          "options": [
+            "$x \\ge 1,\\ x \\neq 4$",
+            "$x \\ge 1$",
+            "$x > 1,\\ x \\neq 4$",
+            "$x \\neq 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The square root needs $x - 1 \\ge 0$ and the denominator forbids $x = 4$, so $x \\ge 1$ with $x \\neq 4$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 4$.",
+          "check": [
+            "sqrt((1) - (1)) == 0",
+            "(4) > (1)"
+          ]
+        },
+        {
+          "id": "PC-dom-v02",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 2}}{x - 5}$?",
+          "options": [
+            "$x \\ge 2$",
+            "$x \\ge 2,\\ x \\neq 5$",
+            "$x > 2,\\ x \\neq 5$",
+            "$x \\neq 5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The square root needs $x - 2 \\ge 0$ and the denominator forbids $x = 5$, so $x \\ge 2$ with $x \\neq 5$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 5$.",
+          "check": [
+            "sqrt((2) - (2)) == 0",
+            "(5) > (2)"
+          ]
+        },
+        {
+          "id": "PC-dom-v03",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 3}}{x - 7}$?",
+          "options": [
+            "$x \\ge 3$",
+            "$x > 3,\\ x \\neq 7$",
+            "$x \\ge 3,\\ x \\neq 7$",
+            "$x \\neq 7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The square root needs $x - 3 \\ge 0$ and the denominator forbids $x = 7$, so $x \\ge 3$ with $x \\neq 7$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 7$.",
+          "check": [
+            "sqrt((3) - (3)) == 0",
+            "(7) > (3)"
+          ]
+        },
+        {
+          "id": "PC-dom-v04",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 2}}{x - 6}$?",
+          "options": [
+            "$x \\ge 2$",
+            "$x > 2,\\ x \\neq 6$",
+            "$x \\neq 6$",
+            "$x \\ge 2,\\ x \\neq 6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The square root needs $x - 2 \\ge 0$ and the denominator forbids $x = 6$, so $x \\ge 2$ with $x \\neq 6$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 6$.",
+          "check": [
+            "sqrt((2) - (2)) == 0",
+            "(6) > (2)"
+          ]
+        },
+        {
+          "id": "PC-dom-v05",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 1}}{x - 5}$?",
+          "options": [
+            "$x \\ge 1,\\ x \\neq 5$",
+            "$x \\ge 1$",
+            "$x > 1,\\ x \\neq 5$",
+            "$x \\neq 5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The square root needs $x - 1 \\ge 0$ and the denominator forbids $x = 5$, so $x \\ge 1$ with $x \\neq 5$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 5$.",
+          "check": [
+            "sqrt((1) - (1)) == 0",
+            "(5) > (1)"
+          ]
+        },
+        {
+          "id": "PC-dom-v06",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 4}}{x - 9}$?",
+          "options": [
+            "$x \\ge 4$",
+            "$x \\ge 4,\\ x \\neq 9$",
+            "$x > 4,\\ x \\neq 9$",
+            "$x \\neq 9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The square root needs $x - 4 \\ge 0$ and the denominator forbids $x = 9$, so $x \\ge 4$ with $x \\neq 9$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 9$.",
+          "check": [
+            "sqrt((4) - (4)) == 0",
+            "(9) > (4)"
+          ]
+        },
+        {
+          "id": "PC-dom-v07",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 3}}{x - 8}$?",
+          "options": [
+            "$x \\ge 3$",
+            "$x > 3,\\ x \\neq 8$",
+            "$x \\ge 3,\\ x \\neq 8$",
+            "$x \\neq 8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The square root needs $x - 3 \\ge 0$ and the denominator forbids $x = 8$, so $x \\ge 3$ with $x \\neq 8$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 8$.",
+          "check": [
+            "sqrt((3) - (3)) == 0",
+            "(8) > (3)"
+          ]
+        },
+        {
+          "id": "PC-dom-v08",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 5}}{x - 9}$?",
+          "options": [
+            "$x \\ge 5$",
+            "$x > 5,\\ x \\neq 9$",
+            "$x \\neq 9$",
+            "$x \\ge 5,\\ x \\neq 9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The square root needs $x - 5 \\ge 0$ and the denominator forbids $x = 9$, so $x \\ge 5$ with $x \\neq 9$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 9$.",
+          "check": [
+            "sqrt((5) - (5)) == 0",
+            "(9) > (5)"
+          ]
+        },
+        {
+          "id": "PC-dom-v09",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 2}}{x - 7}$?",
+          "options": [
+            "$x \\ge 2,\\ x \\neq 7$",
+            "$x \\ge 2$",
+            "$x > 2,\\ x \\neq 7$",
+            "$x \\neq 7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The square root needs $x - 2 \\ge 0$ and the denominator forbids $x = 7$, so $x \\ge 2$ with $x \\neq 7$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 7$.",
+          "check": [
+            "sqrt((2) - (2)) == 0",
+            "(7) > (2)"
+          ]
+        },
+        {
+          "id": "PC-dom-v10",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 1}}{x - 6}$?",
+          "options": [
+            "$x \\ge 1$",
+            "$x \\ge 1,\\ x \\neq 6$",
+            "$x > 1,\\ x \\neq 6$",
+            "$x \\neq 6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The square root needs $x - 1 \\ge 0$ and the denominator forbids $x = 6$, so $x \\ge 1$ with $x \\neq 6$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 6$.",
+          "check": [
+            "sqrt((1) - (1)) == 0",
+            "(6) > (1)"
+          ]
+        },
+        {
+          "id": "PC-dom-v11",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 4}}{x - 8}$?",
+          "options": [
+            "$x \\ge 4$",
+            "$x > 4,\\ x \\neq 8$",
+            "$x \\ge 4,\\ x \\neq 8$",
+            "$x \\neq 8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The square root needs $x - 4 \\ge 0$ and the denominator forbids $x = 8$, so $x \\ge 4$ with $x \\neq 8$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 8$.",
+          "check": [
+            "sqrt((4) - (4)) == 0",
+            "(8) > (4)"
+          ]
+        },
+        {
+          "id": "PC-dom-v12",
+          "statement": "What is the domain of $f(x) = \\dfrac{\\sqrt{x - 3}}{x - 6}$?",
+          "options": [
+            "$x \\ge 3$",
+            "$x > 3,\\ x \\neq 6$",
+            "$x \\neq 6$",
+            "$x \\ge 3,\\ x \\neq 6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The square root needs $x - 3 \\ge 0$ and the denominator forbids $x = 6$, so $x \\ge 3$ with $x \\neq 6$. Dropping the denominator condition — the classic slip — keeps the forbidden point $x = 6$.",
+          "check": [
+            "sqrt((3) - (3)) == 0",
+            "(6) > (3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "describe-transform",
+      "title": "Naming the transformation",
+      "level": 1,
+      "unit": "transformations-of-graphs",
+      "skill": "Inside the parentheses moves opposite its sign; outside moves as written; minus reflects.",
+      "variants": [
+        {
+          "id": "PC-desc-v01",
+          "statement": "How is the graph of $y = f(x - 3) + 2$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $3$ and up $2$",
+            "Shifted left $3$ and up $2$",
+            "Shifted right $3$ and down $2$",
+            "Shifted left $3$ and down $2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inside the parentheses, $x - 3$ moves the graph right $3$ (opposite the visible sign); the $+ 2$ outside moves it up $2$. Reading the inner sign literally — left $3$ — is the classic trap.",
+          "check": [
+            "(3) > 0",
+            "(2) > 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v02",
+          "statement": "How is the graph of $y = f(x + 4) + 5$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $4$ and up $5$",
+            "Shifted left $4$ and up $5$",
+            "Shifted left $4$ and down $5$",
+            "Shifted right $4$ and down $5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inside the parentheses, $x + 4$ moves the graph left $4$ (opposite the visible sign); the $+ 5$ outside moves it up $5$. Reading the inner sign literally — right $4$ — is the classic trap.",
+          "check": [
+            "(-4) < 0",
+            "(5) > 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v03",
+          "statement": "How is the graph of $y = f(x - 2) - 6$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted left $2$ and down $6$",
+            "Shifted right $2$ and up $6$",
+            "Shifted right $2$ and down $6$",
+            "Shifted left $2$ and up $6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inside the parentheses, $x - 2$ moves the graph right $2$ (opposite the visible sign); the $- 6$ outside moves it down $6$. Reading the inner sign literally — left $2$ — is the classic trap.",
+          "check": [
+            "(2) > 0",
+            "(-6) < 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v04",
+          "statement": "How is the graph of $y = f(x + 1) - 3$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $1$ and down $3$",
+            "Shifted left $1$ and up $3$",
+            "Shifted right $1$ and up $3$",
+            "Shifted left $1$ and down $3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inside the parentheses, $x + 1$ moves the graph left $1$ (opposite the visible sign); the $- 3$ outside moves it down $3$. Reading the inner sign literally — right $1$ — is the classic trap.",
+          "check": [
+            "(-1) < 0",
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v05",
+          "statement": "How is the graph of $y = f(x - 5) + 4$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $5$ and up $4$",
+            "Shifted left $5$ and up $4$",
+            "Shifted right $5$ and down $4$",
+            "Shifted left $5$ and down $4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inside the parentheses, $x - 5$ moves the graph right $5$ (opposite the visible sign); the $+ 4$ outside moves it up $4$. Reading the inner sign literally — left $5$ — is the classic trap.",
+          "check": [
+            "(5) > 0",
+            "(4) > 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v06",
+          "statement": "How is the graph of $y = f(x + 2) + 7$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $2$ and up $7$",
+            "Shifted left $2$ and up $7$",
+            "Shifted left $2$ and down $7$",
+            "Shifted right $2$ and down $7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inside the parentheses, $x + 2$ moves the graph left $2$ (opposite the visible sign); the $+ 7$ outside moves it up $7$. Reading the inner sign literally — right $2$ — is the classic trap.",
+          "check": [
+            "(-2) < 0",
+            "(7) > 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v07",
+          "statement": "How is the graph of $y = f(x - 4) - 1$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted left $4$ and down $1$",
+            "Shifted right $4$ and up $1$",
+            "Shifted right $4$ and down $1$",
+            "Shifted left $4$ and up $1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inside the parentheses, $x - 4$ moves the graph right $4$ (opposite the visible sign); the $- 1$ outside moves it down $1$. Reading the inner sign literally — left $4$ — is the classic trap.",
+          "check": [
+            "(4) > 0",
+            "(-1) < 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v08",
+          "statement": "How is the graph of $y = f(x + 6) - 2$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $6$ and down $2$",
+            "Shifted left $6$ and up $2$",
+            "Shifted right $6$ and up $2$",
+            "Shifted left $6$ and down $2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inside the parentheses, $x + 6$ moves the graph left $6$ (opposite the visible sign); the $- 2$ outside moves it down $2$. Reading the inner sign literally — right $6$ — is the classic trap.",
+          "check": [
+            "(-6) < 0",
+            "(-2) < 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v09",
+          "statement": "How is the graph of $y = f(x - 7) + 1$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $7$ and up $1$",
+            "Shifted left $7$ and up $1$",
+            "Shifted right $7$ and down $1$",
+            "Shifted left $7$ and down $1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inside the parentheses, $x - 7$ moves the graph right $7$ (opposite the visible sign); the $+ 1$ outside moves it up $1$. Reading the inner sign literally — left $7$ — is the classic trap.",
+          "check": [
+            "(7) > 0",
+            "(1) > 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v10",
+          "statement": "How is the graph of $y = f(x + 5) - 4$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Shifted right $5$ and down $4$",
+            "Shifted left $5$ and down $4$",
+            "Shifted left $5$ and up $4$",
+            "Shifted right $5$ and up $4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inside the parentheses, $x + 5$ moves the graph left $5$ (opposite the visible sign); the $- 4$ outside moves it down $4$. Reading the inner sign literally — right $5$ — is the classic trap.",
+          "check": [
+            "(-5) < 0",
+            "(-4) < 0"
+          ]
+        },
+        {
+          "id": "PC-desc-v11",
+          "statement": "How is the graph of $y = -f(x)$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Reflected across the y-axis",
+            "Rotated $180°$ about the origin",
+            "Reflected across the x-axis",
+            "Shifted down $1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The minus sign acts on the output, flipping every $y$-value: a reflection across the x-axis. Flipping across the y-axis instead would be $y = f(-x)$ — the sign acting on the input.",
+          "check": [
+            "-(x**2) == -x**2"
+          ]
+        },
+        {
+          "id": "PC-desc-v12",
+          "statement": "How is the graph of $y = f(-x)$ obtained from the graph of $y = f(x)$?",
+          "options": [
+            "Reflected across the x-axis",
+            "Rotated $180°$ about the origin",
+            "Shifted left $1$",
+            "Reflected across the y-axis"
+          ],
+          "correctIndex": 3,
+          "explanation": "The minus sign acts on the input, flipping every $x$-value: a reflection across the y-axis. Flipping across the x-axis instead would be $y = -f(x)$ — the sign acting on the output.",
+          "check": [
+            "(-x)**2 == x**2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transformed-point",
+      "title": "Tracking a point through a transform",
+      "level": 2,
+      "unit": "transformations-of-graphs",
+      "skill": "y = a·f(x − h): the x-coordinate shifts by h, the y-coordinate stretches by a.",
+      "variants": [
+        {
+          "id": "PC-tpt-v01",
+          "statement": "The point $(1; 6)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 2f(x - 3)$?",
+          "options": [
+            "$(4; 12)$",
+            "$(-2; 12)$",
+            "$(4; 3)$",
+            "$(2; 9)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inside $x - 3$ shifts $x$ by $+3$ and the outside factor $2$ stretches $y$, so $(1; 6) \\to (4; 12)$. Shifting the wrong way gives $(-2; 12)$ — the classic inner-sign slip.",
+          "check": [
+            "(1) + (3) == 4",
+            "(2)*(6) == 12"
+          ]
+        },
+        {
+          "id": "PC-tpt-v02",
+          "statement": "The point $(2; 4)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 2f(x + 3)$?",
+          "options": [
+            "$(5; 8)$",
+            "$(-1; 8)$",
+            "$(-1; 2)$",
+            "$(4; 1)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inside $x + 3$ shifts $x$ by $-3$ and the outside factor $2$ stretches $y$, so $(2; 4) \\to (-1; 8)$. Shifting the wrong way gives $(5; 8)$ — the classic inner-sign slip.",
+          "check": [
+            "(2) + (-3) == -1",
+            "(2)*(4) == 8"
+          ]
+        },
+        {
+          "id": "PC-tpt-v03",
+          "statement": "The point $(3; -6)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 3f(x - 2)$?",
+          "options": [
+            "$(1; -18)$",
+            "$(5; -2)$",
+            "$(5; -18)$",
+            "$(9; -4)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inside $x - 2$ shifts $x$ by $+2$ and the outside factor $3$ stretches $y$, so $(3; -6) \\to (5; -18)$. Shifting the wrong way gives $(1; -18)$ — the classic inner-sign slip.",
+          "check": [
+            "(3) + (2) == 5",
+            "(3)*(-6) == -18"
+          ]
+        },
+        {
+          "id": "PC-tpt-v04",
+          "statement": "The point $(-2; 8)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 4f(x - 1)$?",
+          "options": [
+            "$(-3; 32)$",
+            "$(-1; 2)$",
+            "$(-8; 9)$",
+            "$(-1; 32)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inside $x - 1$ shifts $x$ by $+1$ and the outside factor $4$ stretches $y$, so $(-2; 8) \\to (-1; 32)$. Shifting the wrong way gives $(-3; 32)$ — the classic inner-sign slip.",
+          "check": [
+            "(-2) + (1) == -1",
+            "(4)*(8) == 32"
+          ]
+        },
+        {
+          "id": "PC-tpt-v05",
+          "statement": "The point $(0; 6)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 3f(x - 4)$?",
+          "options": [
+            "$(4; 18)$",
+            "$(-4; 18)$",
+            "$(4; 2)$",
+            "$(0; 10)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inside $x - 4$ shifts $x$ by $+4$ and the outside factor $3$ stretches $y$, so $(0; 6) \\to (4; 18)$. Shifting the wrong way gives $(-4; 18)$ — the classic inner-sign slip.",
+          "check": [
+            "(0) + (4) == 4",
+            "(3)*(6) == 18"
+          ]
+        },
+        {
+          "id": "PC-tpt-v06",
+          "statement": "The point $(4; -4)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 2f(x - 5)$?",
+          "options": [
+            "$(-1; -8)$",
+            "$(9; -8)$",
+            "$(9; -2)$",
+            "$(8; 1)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inside $x - 5$ shifts $x$ by $+5$ and the outside factor $2$ stretches $y$, so $(4; -4) \\to (9; -8)$. Shifting the wrong way gives $(-1; -8)$ — the classic inner-sign slip.",
+          "check": [
+            "(4) + (5) == 9",
+            "(2)*(-4) == -8"
+          ]
+        },
+        {
+          "id": "PC-tpt-v07",
+          "statement": "The point $(-1; 9)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 3f(x + 2)$?",
+          "options": [
+            "$(1; 27)$",
+            "$(-3; 3)$",
+            "$(-3; 27)$",
+            "$(-3; 7)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inside $x + 2$ shifts $x$ by $-2$ and the outside factor $3$ stretches $y$, so $(-1; 9) \\to (-3; 27)$. Shifting the wrong way gives $(1; 27)$ — the classic inner-sign slip.",
+          "check": [
+            "(-1) + (-2) == -3",
+            "(3)*(9) == 27"
+          ]
+        },
+        {
+          "id": "PC-tpt-v08",
+          "statement": "The point $(2; 10)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 5f(x - 2)$?",
+          "options": [
+            "$(0; 50)$",
+            "$(4; 2)$",
+            "$(10; 12)$",
+            "$(4; 50)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inside $x - 2$ shifts $x$ by $+2$ and the outside factor $5$ stretches $y$, so $(2; 10) \\to (4; 50)$. Shifting the wrong way gives $(0; 50)$ — the classic inner-sign slip.",
+          "check": [
+            "(2) + (2) == 4",
+            "(5)*(10) == 50"
+          ]
+        },
+        {
+          "id": "PC-tpt-v09",
+          "statement": "The point $(-3; 6)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 2f(x + 4)$?",
+          "options": [
+            "$(-7; 12)$",
+            "$(1; 12)$",
+            "$(-7; 3)$",
+            "$(-6; 2)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inside $x + 4$ shifts $x$ by $-4$ and the outside factor $2$ stretches $y$, so $(-3; 6) \\to (-7; 12)$. Shifting the wrong way gives $(1; 12)$ — the classic inner-sign slip.",
+          "check": [
+            "(-3) + (-4) == -7",
+            "(2)*(6) == 12"
+          ]
+        },
+        {
+          "id": "PC-tpt-v10",
+          "statement": "The point $(5; -8)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 4f(x - 3)$?",
+          "options": [
+            "$(2; -32)$",
+            "$(8; -32)$",
+            "$(8; -2)$",
+            "$(20; -5)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inside $x - 3$ shifts $x$ by $+3$ and the outside factor $4$ stretches $y$, so $(5; -8) \\to (8; -32)$. Shifting the wrong way gives $(2; -32)$ — the classic inner-sign slip.",
+          "check": [
+            "(5) + (3) == 8",
+            "(4)*(-8) == -32"
+          ]
+        },
+        {
+          "id": "PC-tpt-v11",
+          "statement": "The point $(1; -10)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 5f(x + 1)$?",
+          "options": [
+            "$(2; -50)$",
+            "$(0; -2)$",
+            "$(0; -50)$",
+            "$(5; -11)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inside $x + 1$ shifts $x$ by $-1$ and the outside factor $5$ stretches $y$, so $(1; -10) \\to (0; -50)$. Shifting the wrong way gives $(2; -50)$ — the classic inner-sign slip.",
+          "check": [
+            "(1) + (-1) == 0",
+            "(5)*(-10) == -50"
+          ]
+        },
+        {
+          "id": "PC-tpt-v12",
+          "statement": "The point $(-4; 12)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = 3f(x - 5)$?",
+          "options": [
+            "$(-9; 36)$",
+            "$(1; 4)$",
+            "$(-12; 17)$",
+            "$(1; 36)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inside $x - 5$ shifts $x$ by $+5$ and the outside factor $3$ stretches $y$, so $(-4; 12) \\to (1; 36)$. Shifting the wrong way gives $(-9; 36)$ — the classic inner-sign slip.",
+          "check": [
+            "(-4) + (5) == 1",
+            "(3)*(12) == 36"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build-from-zeros",
+      "title": "Building a quadratic from its zeros",
+      "level": 2,
+      "unit": "polynomial-functions",
+      "skill": "Monic with zeros r, s: x² − (r + s)x + rs — sum with a minus, product as-is.",
+      "variants": [
+        {
+          "id": "PC-zero-v01",
+          "statement": "A monic quadratic has zeros $3$ and $-5$. What is its constant term?",
+          "options": [
+            "$-15$",
+            "$2$",
+            "$15$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$(x - (3))(x - (-5))$ multiplies out to $x^2 + 2x - 15$, so the constant term is $rs = -15$. Answering $-(r + s) = 2$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (3))*(x - (-5))) == x**2 + (2)*x + (-15)"
+          ]
+        },
+        {
+          "id": "PC-zero-v02",
+          "statement": "A monic quadratic has zeros $2$ and $7$. What is the coefficient of $x$?",
+          "options": [
+            "$14$",
+            "$-9$",
+            "$9$",
+            "$-14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$(x - (2))(x - (7))$ multiplies out to $x^2 - 9x + 14$, so the $x$-coefficient is $-(r + s) = -9$. Forgetting the minus sign gives $9$.",
+          "check": [
+            "expand((x - (2))*(x - (7))) == x**2 + (-9)*x + (14)"
+          ]
+        },
+        {
+          "id": "PC-zero-v03",
+          "statement": "A monic quadratic has zeros $-4$ and $6$. What is its constant term?",
+          "options": [
+            "$-2$",
+            "$24$",
+            "$-24$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$(x - (-4))(x - (6))$ multiplies out to $x^2 - 2x - 24$, so the constant term is $rs = -24$. Answering $-(r + s) = -2$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (-4))*(x - (6))) == x**2 + (-2)*x + (-24)"
+          ]
+        },
+        {
+          "id": "PC-zero-v04",
+          "statement": "A monic quadratic has zeros $1$ and $-8$. What is the coefficient of $x$?",
+          "options": [
+            "$-8$",
+            "$-7$",
+            "$8$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$(x - (1))(x - (-8))$ multiplies out to $x^2 + 7x - 8$, so the $x$-coefficient is $-(r + s) = 7$. Forgetting the minus sign gives $-7$.",
+          "check": [
+            "expand((x - (1))*(x - (-8))) == x**2 + (7)*x + (-8)"
+          ]
+        },
+        {
+          "id": "PC-zero-v05",
+          "statement": "A monic quadratic has zeros $5$ and $2$. What is its constant term?",
+          "options": [
+            "$10$",
+            "$-7$",
+            "$-10$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$(x - (5))(x - (2))$ multiplies out to $x^2 - 7x + 10$, so the constant term is $rs = 10$. Answering $-(r + s) = -7$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (5))*(x - (2))) == x**2 + (-7)*x + (10)"
+          ]
+        },
+        {
+          "id": "PC-zero-v06",
+          "statement": "A monic quadratic has zeros $-3$ and $-7$. What is the coefficient of $x$?",
+          "options": [
+            "$21$",
+            "$10$",
+            "$-10$",
+            "$-21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$(x - (-3))(x - (-7))$ multiplies out to $x^2 + 10x + 21$, so the $x$-coefficient is $-(r + s) = 10$. Forgetting the minus sign gives $-10$.",
+          "check": [
+            "expand((x - (-3))*(x - (-7))) == x**2 + (10)*x + (21)"
+          ]
+        },
+        {
+          "id": "PC-zero-v07",
+          "statement": "A monic quadratic has zeros $4$ and $9$. What is its constant term?",
+          "options": [
+            "$-13$",
+            "$-36$",
+            "$36$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$(x - (4))(x - (9))$ multiplies out to $x^2 - 13x + 36$, so the constant term is $rs = 36$. Answering $-(r + s) = -13$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (4))*(x - (9))) == x**2 + (-13)*x + (36)"
+          ]
+        },
+        {
+          "id": "PC-zero-v08",
+          "statement": "A monic quadratic has zeros $-2$ and $5$. What is the coefficient of $x$?",
+          "options": [
+            "$-10$",
+            "$3$",
+            "$10$",
+            "$-3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$(x - (-2))(x - (5))$ multiplies out to $x^2 - 3x - 10$, so the $x$-coefficient is $-(r + s) = -3$. Forgetting the minus sign gives $3$.",
+          "check": [
+            "expand((x - (-2))*(x - (5))) == x**2 + (-3)*x + (-10)"
+          ]
+        },
+        {
+          "id": "PC-zero-v09",
+          "statement": "A monic quadratic has zeros $6$ and $-1$. What is its constant term?",
+          "options": [
+            "$-6$",
+            "$-5$",
+            "$6$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$(x - (6))(x - (-1))$ multiplies out to $x^2 - 5x - 6$, so the constant term is $rs = -6$. Answering $-(r + s) = -5$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (6))*(x - (-1))) == x**2 + (-5)*x + (-6)"
+          ]
+        },
+        {
+          "id": "PC-zero-v10",
+          "statement": "A monic quadratic has zeros $-5$ and $8$. What is the coefficient of $x$?",
+          "options": [
+            "$-40$",
+            "$-3$",
+            "$3$",
+            "$40$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$(x - (-5))(x - (8))$ multiplies out to $x^2 - 3x - 40$, so the $x$-coefficient is $-(r + s) = -3$. Forgetting the minus sign gives $3$.",
+          "check": [
+            "expand((x - (-5))*(x - (8))) == x**2 + (-3)*x + (-40)"
+          ]
+        },
+        {
+          "id": "PC-zero-v11",
+          "statement": "A monic quadratic has zeros $7$ and $3$. What is its constant term?",
+          "options": [
+            "$-10$",
+            "$-21$",
+            "$21$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$(x - (7))(x - (3))$ multiplies out to $x^2 - 10x + 21$, so the constant term is $rs = 21$. Answering $-(r + s) = -10$ mixes it up with the $x$-coefficient.",
+          "check": [
+            "expand((x - (7))*(x - (3))) == x**2 + (-10)*x + (21)"
+          ]
+        },
+        {
+          "id": "PC-zero-v12",
+          "statement": "A monic quadratic has zeros $-6$ and $-2$. What is the coefficient of $x$?",
+          "options": [
+            "$12$",
+            "$-8$",
+            "$-12$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$(x - (-6))(x - (-2))$ multiplies out to $x^2 + 8x + 12$, so the $x$-coefficient is $-(r + s) = 8$. Forgetting the minus sign gives $-8$.",
+          "check": [
+            "expand((x - (-6))*(x - (-2))) == x**2 + (8)*x + (12)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "polynomial-division",
+      "title": "Division and the remainder",
+      "level": 3,
+      "unit": "polynomial-functions",
+      "skill": "Dividing by (x − k) leaves remainder p(k) — substitute instead of long-dividing.",
+      "variants": [
+        {
+          "id": "PC-div-v01",
+          "statement": "Divide $x^3 + 2x^2 + 12x + 15$ by $(x - 2)$. What is the remainder?",
+          "options": [
+            "$55$",
+            "$-9$",
+            "$15$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem the remainder is $p(2) = 55$ — no long division needed. Evaluating at $x = -2$ (misreading the divisor's sign) gives $-9$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (12)*x + (15), x - (2), x) == 55",
+            "(2)**3 + (2)*(2)**2 + (12)*(2) + (15) == 55"
+          ]
+        },
+        {
+          "id": "PC-div-v02",
+          "statement": "Divide $x^3 - 3x^2 + 14x - 10$ by $(x - 1)$. What is the remainder?",
+          "options": [
+            "$-28$",
+            "$2$",
+            "$-10$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem the remainder is $p(1) = 2$ — no long division needed. Evaluating at $x = -1$ (misreading the divisor's sign) gives $-28$.",
+          "check": [
+            "rem(x**3 + (-3)*x**2 + (14)*x + (-10), x - (1), x) == 2",
+            "(1)**3 + (-3)*(1)**2 + (14)*(1) + (-10) == 2"
+          ]
+        },
+        {
+          "id": "PC-div-v03",
+          "statement": "Divide $x^3 + 5x^2 - 11x + 20$ by $(x + 2)$. What is the remainder?",
+          "options": [
+            "$26$",
+            "$20$",
+            "$54$",
+            "$-17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem the remainder is $p(-2) = 54$ — no long division needed. Evaluating at $x = 2$ (misreading the divisor's sign) gives $26$.",
+          "check": [
+            "rem(x**3 + (5)*x**2 + (-11)*x + (20), x - (-2), x) == 54",
+            "(-2)**3 + (5)*(-2)**2 + (-11)*(-2) + (20) == 54"
+          ]
+        },
+        {
+          "id": "PC-div-v04",
+          "statement": "Divide $x^3 + x^2 + 10x - 12$ by $(x - 3)$. What is the remainder?",
+          "options": [
+            "$-60$",
+            "$-12$",
+            "$22$",
+            "$54$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem the remainder is $p(3) = 54$ — no long division needed. Evaluating at $x = -3$ (misreading the divisor's sign) gives $-60$.",
+          "check": [
+            "rem(x**3 + (1)*x**2 + (10)*x + (-12), x - (3), x) == 54",
+            "(3)**3 + (1)*(3)**2 + (10)*(3) + (-12) == 54"
+          ]
+        },
+        {
+          "id": "PC-div-v05",
+          "statement": "Divide $x^3 - 2x^2 + 13x + 18$ by $(x + 1)$. What is the remainder?",
+          "options": [
+            "$2$",
+            "$30$",
+            "$18$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem the remainder is $p(-1) = 2$ — no long division needed. Evaluating at $x = 1$ (misreading the divisor's sign) gives $30$.",
+          "check": [
+            "rem(x**3 + (-2)*x**2 + (13)*x + (18), x - (-1), x) == 2",
+            "(-1)**3 + (-2)*(-1)**2 + (13)*(-1) + (18) == 2"
+          ]
+        },
+        {
+          "id": "PC-div-v06",
+          "statement": "Divide $x^3 + 4x^2 - 15x + 11$ by $(x - 2)$. What is the remainder?",
+          "options": [
+            "$49$",
+            "$5$",
+            "$11$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem the remainder is $p(2) = 5$ — no long division needed. Evaluating at $x = -2$ (misreading the divisor's sign) gives $49$.",
+          "check": [
+            "rem(x**3 + (4)*x**2 + (-15)*x + (11), x - (2), x) == 5",
+            "(2)**3 + (4)*(2)**2 + (-15)*(2) + (11) == 5"
+          ]
+        },
+        {
+          "id": "PC-div-v07",
+          "statement": "Divide $x^3 + 6x^2 + 12x - 14$ by $(x + 3)$. What is the remainder?",
+          "options": [
+            "$103$",
+            "$-14$",
+            "$-23$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem the remainder is $p(-3) = -23$ — no long division needed. Evaluating at $x = 3$ (misreading the divisor's sign) gives $103$.",
+          "check": [
+            "rem(x**3 + (6)*x**2 + (12)*x + (-14), x - (-3), x) == -23",
+            "(-3)**3 + (6)*(-3)**2 + (12)*(-3) + (-14) == -23"
+          ]
+        },
+        {
+          "id": "PC-div-v08",
+          "statement": "Divide $x^3 - 4x^2 + 16x + 10$ by $(x - 1)$. What is the remainder?",
+          "options": [
+            "$-11$",
+            "$10$",
+            "$13$",
+            "$23$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem the remainder is $p(1) = 23$ — no long division needed. Evaluating at $x = -1$ (misreading the divisor's sign) gives $-11$.",
+          "check": [
+            "rem(x**3 + (-4)*x**2 + (16)*x + (10), x - (1), x) == 23",
+            "(1)**3 + (-4)*(1)**2 + (16)*(1) + (10) == 23"
+          ]
+        },
+        {
+          "id": "PC-div-v09",
+          "statement": "Divide $x^3 + 3x^2 - 13x + 25$ by $(x + 2)$. What is the remainder?",
+          "options": [
+            "$55$",
+            "$19$",
+            "$25$",
+            "$-15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "By the Remainder Theorem the remainder is $p(-2) = 55$ — no long division needed. Evaluating at $x = 2$ (misreading the divisor's sign) gives $19$.",
+          "check": [
+            "rem(x**3 + (3)*x**2 + (-13)*x + (25), x - (-2), x) == 55",
+            "(-2)**3 + (3)*(-2)**2 + (-13)*(-2) + (25) == 55"
+          ]
+        },
+        {
+          "id": "PC-div-v10",
+          "statement": "Divide $x^3 + 2x^2 + 11x - 16$ by $(x - 4)$. What is the remainder?",
+          "options": [
+            "$-92$",
+            "$124$",
+            "$-16$",
+            "$35$"
+          ],
+          "correctIndex": 1,
+          "explanation": "By the Remainder Theorem the remainder is $p(4) = 124$ — no long division needed. Evaluating at $x = -4$ (misreading the divisor's sign) gives $-92$.",
+          "check": [
+            "rem(x**3 + (2)*x**2 + (11)*x + (-16), x - (4), x) == 124",
+            "(4)**3 + (2)*(4)**2 + (11)*(4) + (-16) == 124"
+          ]
+        },
+        {
+          "id": "PC-div-v11",
+          "statement": "Divide $x^3 - 5x^2 + 18x + 12$ by $(x + 1)$. What is the remainder?",
+          "options": [
+            "$26$",
+            "$12$",
+            "$-12$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "By the Remainder Theorem the remainder is $p(-1) = -12$ — no long division needed. Evaluating at $x = 1$ (misreading the divisor's sign) gives $26$.",
+          "check": [
+            "rem(x**3 + (-5)*x**2 + (18)*x + (12), x - (-1), x) == -12",
+            "(-1)**3 + (-5)*(-1)**2 + (18)*(-1) + (12) == -12"
+          ]
+        },
+        {
+          "id": "PC-div-v12",
+          "statement": "Divide $x^3 + 7x^2 - 12x + 30$ by $(x - 2)$. What is the remainder?",
+          "options": [
+            "$74$",
+            "$30$",
+            "$6$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "By the Remainder Theorem the remainder is $p(2) = 42$ — no long division needed. Evaluating at $x = -2$ (misreading the divisor's sign) gives $74$.",
+          "check": [
+            "rem(x**3 + (7)*x**2 + (-12)*x + (30), x - (2), x) == 42",
+            "(2)**3 + (7)*(2)**2 + (-12)*(2) + (30) == 42"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rational-intercepts",
+      "title": "Intercepts of rational functions",
+      "level": 1,
+      "unit": "rational-functions",
+      "skill": "x-intercept: numerator = 0. y-intercept: plug in x = 0 and watch the signs cancel.",
+      "variants": [
+        {
+          "id": "PC-rint-v01",
+          "statement": "For $f(x) = \\dfrac{x - 3}{x - 7}$, what is the x-intercept?",
+          "options": [
+            "$x = 3$",
+            "$x = 7$",
+            "$x = -3$",
+            "$x = -7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 3$. The denominator's zero, $x = 7$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(3) - (3) == 0",
+            "Abs((3) - (7)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v02",
+          "statement": "For $f(x) = \\dfrac{x - 2}{x - 5}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{5}{2}$",
+            "$y = \\frac{2}{5}$",
+            "$y = -\\frac{2}{5}$",
+            "$y = 2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 2}{0 - 5} = \\frac{2}{5}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{2}{5}$.",
+          "check": [
+            "Rational(0 - (2), 0 - (5)) == Rational(2, 5)"
+          ]
+        },
+        {
+          "id": "PC-rint-v03",
+          "statement": "For $f(x) = \\dfrac{x - 4}{x - 9}$, what is the x-intercept?",
+          "options": [
+            "$x = 9$",
+            "$x = -4$",
+            "$x = 4$",
+            "$x = -9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 4$. The denominator's zero, $x = 9$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(4) - (4) == 0",
+            "Abs((4) - (9)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v04",
+          "statement": "For $f(x) = \\dfrac{x - 5}{x - 2}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{2}{5}$",
+            "$y = -\\frac{5}{2}$",
+            "$y = 5$",
+            "$y = \\frac{5}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 5}{0 - 2} = \\frac{5}{2}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{5}{2}$.",
+          "check": [
+            "Rational(0 - (5), 0 - (2)) == Rational(5, 2)"
+          ]
+        },
+        {
+          "id": "PC-rint-v05",
+          "statement": "For $f(x) = \\dfrac{x - 6}{x - 11}$, what is the x-intercept?",
+          "options": [
+            "$x = 6$",
+            "$x = 11$",
+            "$x = -6$",
+            "$x = -11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 6$. The denominator's zero, $x = 11$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(6) - (6) == 0",
+            "Abs((6) - (11)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v06",
+          "statement": "For $f(x) = \\dfrac{x - 7}{x - 3}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{3}{7}$",
+            "$y = \\frac{7}{3}$",
+            "$y = -\\frac{7}{3}$",
+            "$y = 7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 7}{0 - 3} = \\frac{7}{3}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{7}{3}$.",
+          "check": [
+            "Rational(0 - (7), 0 - (3)) == Rational(7, 3)"
+          ]
+        },
+        {
+          "id": "PC-rint-v07",
+          "statement": "For $f(x) = \\dfrac{x - 2}{x - 9}$, what is the x-intercept?",
+          "options": [
+            "$x = 9$",
+            "$x = -2$",
+            "$x = 2$",
+            "$x = -9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 2$. The denominator's zero, $x = 9$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(2) - (2) == 0",
+            "Abs((2) - (9)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v08",
+          "statement": "For $f(x) = \\dfrac{x - 8}{x - 3}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{3}{8}$",
+            "$y = -\\frac{8}{3}$",
+            "$y = 8$",
+            "$y = \\frac{8}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 8}{0 - 3} = \\frac{8}{3}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{8}{3}$.",
+          "check": [
+            "Rational(0 - (8), 0 - (3)) == Rational(8, 3)"
+          ]
+        },
+        {
+          "id": "PC-rint-v09",
+          "statement": "For $f(x) = \\dfrac{x - 3}{x - 10}$, what is the x-intercept?",
+          "options": [
+            "$x = 3$",
+            "$x = 10$",
+            "$x = -3$",
+            "$x = -10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 3$. The denominator's zero, $x = 10$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(3) - (3) == 0",
+            "Abs((3) - (10)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v10",
+          "statement": "For $f(x) = \\dfrac{x - 9}{x - 4}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{4}{9}$",
+            "$y = \\frac{9}{4}$",
+            "$y = -\\frac{9}{4}$",
+            "$y = 9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 9}{0 - 4} = \\frac{9}{4}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{9}{4}$.",
+          "check": [
+            "Rational(0 - (9), 0 - (4)) == Rational(9, 4)"
+          ]
+        },
+        {
+          "id": "PC-rint-v11",
+          "statement": "For $f(x) = \\dfrac{x - 5}{x - 8}$, what is the x-intercept?",
+          "options": [
+            "$x = 8$",
+            "$x = -5$",
+            "$x = 5$",
+            "$x = -8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 5$. The denominator's zero, $x = 8$, is the vertical asymptote — the classic mix-up.",
+          "check": [
+            "(5) - (5) == 0",
+            "Abs((5) - (8)) > 0"
+          ]
+        },
+        {
+          "id": "PC-rint-v12",
+          "statement": "For $f(x) = \\dfrac{x - 10}{x - 3}$, what is the y-intercept?",
+          "options": [
+            "$y = \\frac{3}{10}$",
+            "$y = -\\frac{10}{3}$",
+            "$y = 10$",
+            "$y = \\frac{10}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute $x = 0$: $f(0) = \\frac{0 - 10}{0 - 3} = \\frac{10}{3}$ — the two minus signs cancel. Keeping one of them gives $-\\frac{10}{3}$.",
+          "check": [
+            "Rational(0 - (10), 0 - (3)) == Rational(10, 3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slant-asymptote",
+      "title": "Slant asymptotes",
+      "level": 3,
+      "unit": "rational-functions",
+      "skill": "Degree over degree-minus-one: divide, keep the linear quotient, drop the remainder.",
+      "variants": [
+        {
+          "id": "PC-slant-v01",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 3x + 1}{x - 2}$.",
+          "options": [
+            "$y = x + 5$",
+            "$y = x + 3$",
+            "$y = x - 2$",
+            "$x = 2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Long division gives $f(x) = x + 5 + \\frac{11}{x - 2}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 5$. Reading the intercept straight off the numerator as $3$ skips the division. ($x = 2$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (3)*x + (1), x - (2), x) == x + (5)",
+            "rem(x**2 + (3)*x + (1), x - (2), x) == 11"
+          ]
+        },
+        {
+          "id": "PC-slant-v02",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - 2x + 4}{x - 3}$.",
+          "options": [
+            "$y = x - 2$",
+            "$y = x + 1$",
+            "$y = x - 3$",
+            "$x = 3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Long division gives $f(x) = x + 1 + \\frac{7}{x - 3}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 1$. Reading the intercept straight off the numerator as $-2$ skips the division. ($x = 3$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (-2)*x + (4), x - (3), x) == x + (1)",
+            "rem(x**2 + (-2)*x + (4), x - (3), x) == 7"
+          ]
+        },
+        {
+          "id": "PC-slant-v03",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + x - 5}{x - 4}$.",
+          "options": [
+            "$y = x + 1$",
+            "$y = x - 4$",
+            "$y = x + 5$",
+            "$x = 4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Long division gives $f(x) = x + 5 + \\frac{15}{x - 4}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 5$. Reading the intercept straight off the numerator as $1$ skips the division. ($x = 4$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (1)*x + (-5), x - (4), x) == x + (5)",
+            "rem(x**2 + (1)*x + (-5), x - (4), x) == 15"
+          ]
+        },
+        {
+          "id": "PC-slant-v04",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 5x + 2}{x + 2}$.",
+          "options": [
+            "$y = x + 5$",
+            "$y = x + 2$",
+            "$x = -2$",
+            "$y = x + 3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Long division gives $f(x) = x + 3 + \\frac{-4}{x + 2}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 3$. Reading the intercept straight off the numerator as $5$ skips the division. ($x = -2$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (5)*x + (2), x - (-2), x) == x + (3)",
+            "rem(x**2 + (5)*x + (2), x - (-2), x) == -4"
+          ]
+        },
+        {
+          "id": "PC-slant-v05",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - 4x + 3}{x - 1}$.",
+          "options": [
+            "$y = x - 3$",
+            "$y = x - 4$",
+            "$y = x - 1$",
+            "$x = 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Long division gives $f(x) = x - 3 + \\frac{0}{x - 1}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x - 3$. Reading the intercept straight off the numerator as $-4$ skips the division. ($x = 1$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (-4)*x + (3), x - (1), x) == x + (-3)",
+            "rem(x**2 + (-4)*x + (3), x - (1), x) == 0"
+          ]
+        },
+        {
+          "id": "PC-slant-v06",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 2x - 1}{x - 5}$.",
+          "options": [
+            "$y = x + 2$",
+            "$y = x + 7$",
+            "$y = x - 5$",
+            "$x = 5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Long division gives $f(x) = x + 7 + \\frac{34}{x - 5}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 7$. Reading the intercept straight off the numerator as $2$ skips the division. ($x = 5$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (2)*x + (-1), x - (5), x) == x + (7)",
+            "rem(x**2 + (2)*x + (-1), x - (5), x) == 34"
+          ]
+        },
+        {
+          "id": "PC-slant-v07",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - x + 6}{x - 2}$.",
+          "options": [
+            "$y = x - 1$",
+            "$y = x - 2$",
+            "$y = x + 1$",
+            "$x = 2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Long division gives $f(x) = x + 1 + \\frac{8}{x - 2}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 1$. Reading the intercept straight off the numerator as $-1$ skips the division. ($x = 2$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (-1)*x + (6), x - (2), x) == x + (1)",
+            "rem(x**2 + (-1)*x + (6), x - (2), x) == 8"
+          ]
+        },
+        {
+          "id": "PC-slant-v08",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 4x - 3}{x + 3}$.",
+          "options": [
+            "$y = x + 4$",
+            "$y = x + 3$",
+            "$x = -3$",
+            "$y = x + 1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Long division gives $f(x) = x + 1 + \\frac{-6}{x + 3}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 1$. Reading the intercept straight off the numerator as $4$ skips the division. ($x = -3$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (4)*x + (-3), x - (-3), x) == x + (1)",
+            "rem(x**2 + (4)*x + (-3), x - (-3), x) == -6"
+          ]
+        },
+        {
+          "id": "PC-slant-v09",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - 3x + 2}{x - 4}$.",
+          "options": [
+            "$y = x + 1$",
+            "$y = x - 3$",
+            "$y = x - 4$",
+            "$x = 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Long division gives $f(x) = x + 1 + \\frac{6}{x - 4}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 1$. Reading the intercept straight off the numerator as $-3$ skips the division. ($x = 4$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (-3)*x + (2), x - (4), x) == x + (1)",
+            "rem(x**2 + (-3)*x + (2), x - (4), x) == 6"
+          ]
+        },
+        {
+          "id": "PC-slant-v10",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 6x + 1}{x + 1}$.",
+          "options": [
+            "$y = x + 6$",
+            "$y = x + 5$",
+            "$y = x + 1$",
+            "$x = -1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Long division gives $f(x) = x + 5 + \\frac{-4}{x + 1}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x + 5$. Reading the intercept straight off the numerator as $6$ skips the division. ($x = -1$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (6)*x + (1), x - (-1), x) == x + (5)",
+            "rem(x**2 + (6)*x + (1), x - (-1), x) == -4"
+          ]
+        },
+        {
+          "id": "PC-slant-v11",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 - 5x - 2}{x - 2}$.",
+          "options": [
+            "$y = x - 5$",
+            "$y = x - 2$",
+            "$y = x - 3$",
+            "$x = 2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Long division gives $f(x) = x - 3 + \\frac{-8}{x - 2}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x - 3$. Reading the intercept straight off the numerator as $-5$ skips the division. ($x = 2$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (-5)*x + (-2), x - (2), x) == x + (-3)",
+            "rem(x**2 + (-5)*x + (-2), x - (2), x) == -8"
+          ]
+        },
+        {
+          "id": "PC-slant-v12",
+          "statement": "Find the slant asymptote of $f(x) = \\dfrac{x^2 + 2x + 5}{x + 4}$.",
+          "options": [
+            "$y = x + 2$",
+            "$y = x + 4$",
+            "$x = -4$",
+            "$y = x - 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Long division gives $f(x) = x - 2 + \\frac{13}{x + 4}$, and the fraction dies as $x \\to \\pm\\infty$, so the slant asymptote is $y = x - 2$. Reading the intercept straight off the numerator as $2$ skips the division. ($x = -4$ is the vertical asymptote.)",
+          "check": [
+            "quo(x**2 + (2)*x + (5), x - (-4), x) == x + (-2)",
+            "rem(x**2 + (2)*x + (5), x - (-4), x) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp-growth-value",
+      "title": "Evaluating exponential models",
+      "level": 2,
+      "unit": "exponentials-and-logarithms",
+      "skill": "A · b^x: exponentiate the base first, then scale by A; negative x means reciprocal.",
+      "variants": [
+        {
+          "id": "PC-exp-v01",
+          "statement": "If $f(x) = 3 \\cdot 2^x$, find $f(4)$.",
+          "options": [
+            "$48$",
+            "$24$",
+            "$16$",
+            "$162$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f(4) = 3 \\cdot 2^{4} = 3 \\cdot 16 = 48$. Multiplying instead of exponentiating — $3 \\cdot 2 \\cdot 4$ — gives $24$.",
+          "check": [
+            "(3) * Rational(2)**(4) == Rational(48, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v02",
+          "statement": "If $f(x) = 5 \\cdot 3^x$, find $f(2)$.",
+          "options": [
+            "$30$",
+            "$45$",
+            "$9$",
+            "$75$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f(2) = 5 \\cdot 3^{2} = 5 \\cdot 9 = 45$. Multiplying instead of exponentiating — $5 \\cdot 3 \\cdot 2$ — gives $30$.",
+          "check": [
+            "(5) * Rational(3)**(2) == Rational(45, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v03",
+          "statement": "If $f(x) = 4 \\cdot 3^x$, find $f(-2)$.",
+          "options": [
+            "$-24$",
+            "$\\frac{1}{9}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{3}{16}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent means a reciprocal: $f(-2) = 4 \\cdot \\frac{1}{3^{2}} = \\frac{4}{9}$. Multiplying instead of exponentiating gives $-24$.",
+          "check": [
+            "(4) * Rational(3)**(-2) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "PC-exp-v04",
+          "statement": "If $f(x) = 5 \\cdot 2^x$, find $f(3)$.",
+          "options": [
+            "$30$",
+            "$8$",
+            "$250$",
+            "$40$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f(3) = 5 \\cdot 2^{3} = 5 \\cdot 8 = 40$. Multiplying instead of exponentiating — $5 \\cdot 2 \\cdot 3$ — gives $30$.",
+          "check": [
+            "(5) * Rational(2)**(3) == Rational(40, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v05",
+          "statement": "If $f(x) = 2 \\cdot 3^x$, find $f(3)$.",
+          "options": [
+            "$54$",
+            "$18$",
+            "$27$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f(3) = 2 \\cdot 3^{3} = 2 \\cdot 27 = 54$. Multiplying instead of exponentiating — $2 \\cdot 3 \\cdot 3$ — gives $18$.",
+          "check": [
+            "(2) * Rational(3)**(3) == Rational(54, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v06",
+          "statement": "If $f(x) = 3 \\cdot 2^x$, find $f(-2)$.",
+          "options": [
+            "$-12$",
+            "$\\frac{3}{4}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{2}{9}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent means a reciprocal: $f(-2) = 3 \\cdot \\frac{1}{2^{2}} = \\frac{3}{4}$. Multiplying instead of exponentiating gives $-12$.",
+          "check": [
+            "(3) * Rational(2)**(-2) == Rational(3, 4)"
+          ]
+        },
+        {
+          "id": "PC-exp-v07",
+          "statement": "If $f(x) = 7 \\cdot 3^x$, find $f(-1)$.",
+          "options": [
+            "$-21$",
+            "$\\frac{1}{3}$",
+            "$\\frac{7}{3}$",
+            "$\\frac{3}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent means a reciprocal: $f(-1) = 7 \\cdot \\frac{1}{3^{1}} = \\frac{7}{3}$. Multiplying instead of exponentiating gives $-21$.",
+          "check": [
+            "(7) * Rational(3)**(-1) == Rational(7, 3)"
+          ]
+        },
+        {
+          "id": "PC-exp-v08",
+          "statement": "If $f(x) = 4 \\cdot 2^x$, find $f(5)$.",
+          "options": [
+            "$40$",
+            "$32$",
+            "$2048$",
+            "$128$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f(5) = 4 \\cdot 2^{5} = 4 \\cdot 32 = 128$. Multiplying instead of exponentiating — $4 \\cdot 2 \\cdot 5$ — gives $40$.",
+          "check": [
+            "(4) * Rational(2)**(5) == Rational(128, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v09",
+          "statement": "If $f(x) = 10 \\cdot 3^x$, find $f(2)$.",
+          "options": [
+            "$90$",
+            "$60$",
+            "$9$",
+            "$300$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f(2) = 10 \\cdot 3^{2} = 10 \\cdot 9 = 90$. Multiplying instead of exponentiating — $10 \\cdot 3 \\cdot 2$ — gives $60$.",
+          "check": [
+            "(10) * Rational(3)**(2) == Rational(90, 1)"
+          ]
+        },
+        {
+          "id": "PC-exp-v10",
+          "statement": "If $f(x) = 7 \\cdot 2^x$, find $f(-4)$.",
+          "options": [
+            "$-56$",
+            "$\\frac{7}{16}$",
+            "$\\frac{1}{16}$",
+            "$\\frac{2}{2401}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The negative exponent means a reciprocal: $f(-4) = 7 \\cdot \\frac{1}{2^{4}} = \\frac{7}{16}$. Multiplying instead of exponentiating gives $-56$.",
+          "check": [
+            "(7) * Rational(2)**(-4) == Rational(7, 16)"
+          ]
+        },
+        {
+          "id": "PC-exp-v11",
+          "statement": "If $f(x) = 5 \\cdot 3^x$, find $f(-3)$.",
+          "options": [
+            "$-45$",
+            "$\\frac{1}{27}$",
+            "$\\frac{5}{27}$",
+            "$\\frac{3}{125}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The negative exponent means a reciprocal: $f(-3) = 5 \\cdot \\frac{1}{3^{3}} = \\frac{5}{27}$. Multiplying instead of exponentiating gives $-45$.",
+          "check": [
+            "(5) * Rational(3)**(-3) == Rational(5, 27)"
+          ]
+        },
+        {
+          "id": "PC-exp-v12",
+          "statement": "If $f(x) = 3 \\cdot 2^x$, find $f(6)$.",
+          "options": [
+            "$36$",
+            "$64$",
+            "$1458$",
+            "$192$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f(6) = 3 \\cdot 2^{6} = 3 \\cdot 64 = 192$. Multiplying instead of exponentiating — $3 \\cdot 2 \\cdot 6$ — gives $36$.",
+          "check": [
+            "(3) * Rational(2)**(6) == Rational(192, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "log-solve-precalc",
+      "title": "Solving log equations",
+      "level": 2,
+      "unit": "exponentials-and-logarithms",
+      "skill": "log_b(inner) = c means inner = b^c — rewrite in exponential form, then isolate x.",
+      "variants": [
+        {
+          "id": "PC-log-v01",
+          "statement": "Solve for $x$: $\\log_2(x - 5) = 3$.",
+          "options": [
+            "$13$",
+            "$11$",
+            "$14$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Rewrite in exponential form: $x - 5 = 2^{3} = 8$, so $x = 13$. Multiplying base times exponent — $2 \\cdot 3 + 5$ — gives $11$.",
+          "check": [
+            "(2)**(3) + (5) == 13",
+            "((13) - (5)) == (2)**(3)"
+          ]
+        },
+        {
+          "id": "PC-log-v02",
+          "statement": "Solve for $x$: $\\log_3(x + 4) = 2$.",
+          "options": [
+            "$2$",
+            "$5$",
+            "$4$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rewrite in exponential form: $x + 4 = 3^{2} = 9$, so $x = 5$. Multiplying base times exponent — $3 \\cdot 2 - 4$ — gives $2$.",
+          "check": [
+            "(3)**(2) + (-4) == 5",
+            "((5) - (-4)) == (3)**(2)"
+          ]
+        },
+        {
+          "id": "PC-log-v03",
+          "statement": "Solve for $x$: $\\log_5(x - 1) = 2$.",
+          "options": [
+            "$11$",
+            "$33$",
+            "$26$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Rewrite in exponential form: $x - 1 = 5^{2} = 25$, so $x = 26$. Multiplying base times exponent — $5 \\cdot 2 + 1$ — gives $11$.",
+          "check": [
+            "(5)**(2) + (1) == 26",
+            "((26) - (1)) == (5)**(2)"
+          ]
+        },
+        {
+          "id": "PC-log-v04",
+          "statement": "Solve for $x$: $\\log_2(x + 3) = 5$.",
+          "options": [
+            "$7$",
+            "$22$",
+            "$35$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Rewrite in exponential form: $x + 3 = 2^{5} = 32$, so $x = 29$. Multiplying base times exponent — $2 \\cdot 5 - 3$ — gives $7$.",
+          "check": [
+            "(2)**(5) + (-3) == 29",
+            "((29) - (-3)) == (2)**(5)"
+          ]
+        },
+        {
+          "id": "PC-log-v05",
+          "statement": "Solve for $x$: $\\log_3(x - 2) = 2$.",
+          "options": [
+            "$11$",
+            "$8$",
+            "$10$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Rewrite in exponential form: $x - 2 = 3^{2} = 9$, so $x = 11$. Multiplying base times exponent — $3 \\cdot 2 + 2$ — gives $8$.",
+          "check": [
+            "(3)**(2) + (2) == 11",
+            "((11) - (2)) == (3)**(2)"
+          ]
+        },
+        {
+          "id": "PC-log-v06",
+          "statement": "Solve for $x$: $\\log_5(x + 2) = 2$.",
+          "options": [
+            "$8$",
+            "$23$",
+            "$30$",
+            "$27$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rewrite in exponential form: $x + 2 = 5^{2} = 25$, so $x = 23$. Multiplying base times exponent — $5 \\cdot 2 - 2$ — gives $8$.",
+          "check": [
+            "(5)**(2) + (-2) == 23",
+            "((23) - (-2)) == (5)**(2)"
+          ]
+        },
+        {
+          "id": "PC-log-v07",
+          "statement": "Solve for $x$: $\\log_2(x - 7) = 5$.",
+          "options": [
+            "$17$",
+            "$32$",
+            "$39$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Rewrite in exponential form: $x - 7 = 2^{5} = 32$, so $x = 39$. Multiplying base times exponent — $2 \\cdot 5 + 7$ — gives $17$.",
+          "check": [
+            "(2)**(5) + (7) == 39",
+            "((39) - (7)) == (2)**(5)"
+          ]
+        },
+        {
+          "id": "PC-log-v08",
+          "statement": "Solve for $x$: $\\log_3(x - 1) = 4$.",
+          "options": [
+            "$13$",
+            "$65$",
+            "$80$",
+            "$82$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Rewrite in exponential form: $x - 1 = 3^{4} = 81$, so $x = 82$. Multiplying base times exponent — $3 \\cdot 4 + 1$ — gives $13$.",
+          "check": [
+            "(3)**(4) + (1) == 82",
+            "((82) - (1)) == (3)**(4)"
+          ]
+        },
+        {
+          "id": "PC-log-v09",
+          "statement": "Solve for $x$: $\\log_5(x - 4) = 3$.",
+          "options": [
+            "$129$",
+            "$19$",
+            "$247$",
+            "$121$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Rewrite in exponential form: $x - 4 = 5^{3} = 125$, so $x = 129$. Multiplying base times exponent — $5 \\cdot 3 + 4$ — gives $19$.",
+          "check": [
+            "(5)**(3) + (4) == 129",
+            "((129) - (4)) == (5)**(3)"
+          ]
+        },
+        {
+          "id": "PC-log-v10",
+          "statement": "Solve for $x$: $\\log_2(x + 1) = 6$.",
+          "options": [
+            "$11$",
+            "$63$",
+            "$35$",
+            "$65$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rewrite in exponential form: $x + 1 = 2^{6} = 64$, so $x = 63$. Multiplying base times exponent — $2 \\cdot 6 - 1$ — gives $11$.",
+          "check": [
+            "(2)**(6) + (-1) == 63",
+            "((63) - (-1)) == (2)**(6)"
+          ]
+        },
+        {
+          "id": "PC-log-v11",
+          "statement": "Solve for $x$: $\\log_3(x + 5) = 2$.",
+          "options": [
+            "$1$",
+            "$3$",
+            "$4$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Rewrite in exponential form: $x + 5 = 3^{2} = 9$, so $x = 4$. Multiplying base times exponent — $3 \\cdot 2 - 5$ — gives $1$.",
+          "check": [
+            "(3)**(2) + (-5) == 4",
+            "((4) - (-5)) == (3)**(2)"
+          ]
+        },
+        {
+          "id": "PC-log-v12",
+          "statement": "Solve for $x$: $\\log_5(x - 3) = 2$.",
+          "options": [
+            "$13$",
+            "$35$",
+            "$22$",
+            "$28$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Rewrite in exponential form: $x - 3 = 5^{2} = 25$, so $x = 28$. Multiplying base times exponent — $5 \\cdot 2 + 3$ — gives $13$.",
+          "check": [
+            "(5)**(2) + (3) == 28",
+            "((28) - (3)) == (5)**(2)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radian-exact",
+      "title": "Exact values in radians",
+      "level": 1,
+      "unit": "the-unit-circle",
+      "skill": "Reference angle + quadrant sign: read sin and cos of the special angles exactly.",
+      "variants": [
+        {
+          "id": "PC-rad-v01",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{\\pi}{6}$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{\\pi}{6} = \\frac{1}{2}$. Quoting the co-function value $\\cos\\dfrac{\\pi}{6} = \\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "sin(1*pi/6) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v02",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{5\\pi}{6}$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{5\\pi}{6} = \\frac{1}{2}$. Quoting the co-function value $\\cos\\dfrac{5\\pi}{6} = -\\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "sin(5*pi/6) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v03",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{7\\pi}{6}$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{7\\pi}{6} = -\\frac{1}{2}$. Quoting the co-function value $\\cos\\dfrac{7\\pi}{6} = -\\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "sin(7*pi/6) == -1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v04",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{4\\pi}{3}$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{4\\pi}{3} = -\\frac{\\sqrt{3}}{2}$. Quoting the co-function value $\\cos\\dfrac{4\\pi}{3} = -\\frac{1}{2}$ is the classic swap.",
+          "check": [
+            "sin(4*pi/3) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v05",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{11\\pi}{6}$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{11\\pi}{6} = -\\frac{1}{2}$. Quoting the co-function value $\\cos\\dfrac{11\\pi}{6} = \\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "sin(11*pi/6) == -1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v06",
+          "statement": "Evaluate exactly: $\\sin\\dfrac{\\pi}{2}$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$0$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The reference angle and the quadrant's sign give $\\sin\\dfrac{\\pi}{2} = 1$. Quoting the co-function value $\\cos\\dfrac{\\pi}{2} = 0$ is the classic swap.",
+          "check": [
+            "sin(1*pi/2) == 1"
+          ]
+        },
+        {
+          "id": "PC-rad-v07",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{\\pi}{3}$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{\\pi}{3} = \\frac{1}{2}$. Quoting the co-function value $\\sin\\dfrac{\\pi}{3} = \\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "cos(1*pi/3) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v08",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{3\\pi}{4}$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$",
+            "$-\\frac{\\sqrt{2}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{3\\pi}{4} = -\\frac{\\sqrt{2}}{2}$. Quoting the co-function value $\\sin\\dfrac{3\\pi}{4} = \\frac{\\sqrt{2}}{2}$ is the classic swap.",
+          "check": [
+            "cos(3*pi/4) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v09",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{2\\pi}{3}$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{2\\pi}{3} = -\\frac{1}{2}$. Quoting the co-function value $\\sin\\dfrac{2\\pi}{3} = \\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "cos(2*pi/3) == -1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v10",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{5\\pi}{4}$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$-\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{5\\pi}{4} = -\\frac{\\sqrt{2}}{2}$. Quoting the co-function value $\\sin\\dfrac{5\\pi}{4} = -\\frac{\\sqrt{2}}{2}$ is the classic swap.",
+          "check": [
+            "cos(5*pi/4) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v11",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{5\\pi}{3}$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{5\\pi}{3} = \\frac{1}{2}$. Quoting the co-function value $\\sin\\dfrac{5\\pi}{3} = -\\frac{\\sqrt{3}}{2}$ is the classic swap.",
+          "check": [
+            "cos(5*pi/3) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-rad-v12",
+          "statement": "Evaluate exactly: $\\cos\\dfrac{7\\pi}{6}$.",
+          "options": [
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-\\frac{1}{2}$",
+            "$\\frac{1}{2}$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{7\\pi}{6} = -\\frac{\\sqrt{3}}{2}$. Quoting the co-function value $\\sin\\dfrac{7\\pi}{6} = -\\frac{1}{2}$ is the classic swap.",
+          "check": [
+            "cos(7*pi/6) == -sqrt(3)/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "point-on-circle",
+      "title": "Terminal points on the unit circle",
+      "level": 2,
+      "unit": "the-unit-circle",
+      "skill": "The terminal point of t is (cos t; sin t) — cosine first, signs from the quadrant.",
+      "variants": [
+        {
+          "id": "PC-pt-v01",
+          "statement": "The terminal point of $t = \\dfrac{\\pi}{6}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(1*pi/6) == sqrt(3)/2",
+            "sin(1*pi/6) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v02",
+          "statement": "The terminal point of $t = \\dfrac{5\\pi}{6}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(5*pi/6) == -sqrt(3)/2",
+            "sin(5*pi/6) == 1/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v03",
+          "statement": "The terminal point of $t = \\dfrac{7\\pi}{6}$ on the unit circle is which of the following?",
+          "options": [
+            "$(-\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(7*pi/6) == -sqrt(3)/2",
+            "sin(7*pi/6) == -1/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v04",
+          "statement": "The terminal point of $t = \\dfrac{11\\pi}{6}$ on the unit circle is which of the following?",
+          "options": [
+            "$(-\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(11*pi/6) == sqrt(3)/2",
+            "sin(11*pi/6) == -1/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v05",
+          "statement": "The terminal point of $t = \\dfrac{\\pi}{3}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(-\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(1*pi/3) == 1/2",
+            "sin(1*pi/3) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v06",
+          "statement": "The terminal point of $t = \\dfrac{2\\pi}{3}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$",
+            "$(-\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(2*pi/3) == -1/2",
+            "sin(2*pi/3) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v07",
+          "statement": "The terminal point of $t = \\dfrac{4\\pi}{3}$ on the unit circle is which of the following?",
+          "options": [
+            "$(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$",
+            "$(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
+            "$(-\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(4*pi/3) == -1/2",
+            "sin(4*pi/3) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v08",
+          "statement": "The terminal point of $t = \\dfrac{5\\pi}{3}$ on the unit circle is which of the following?",
+          "options": [
+            "$(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
+            "$(-\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{1}{2}; \\frac{\\sqrt{3}}{2})$",
+            "$(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(5*pi/3) == 1/2",
+            "sin(5*pi/3) == -sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v09",
+          "statement": "The terminal point of $t = \\dfrac{\\pi}{4}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(1*pi/4) == sqrt(2)/2",
+            "sin(1*pi/4) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v10",
+          "statement": "The terminal point of $t = \\dfrac{3\\pi}{4}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+            "$(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(3*pi/4) == -sqrt(2)/2",
+            "sin(3*pi/4) == sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v11",
+          "statement": "The terminal point of $t = \\dfrac{5\\pi}{4}$ on the unit circle is which of the following?",
+          "options": [
+            "$(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+            "$(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(5*pi/4) == -sqrt(2)/2",
+            "sin(5*pi/4) == -sqrt(2)/2"
+          ]
+        },
+        {
+          "id": "PC-pt-v12",
+          "statement": "The terminal point of $t = \\dfrac{7\\pi}{4}$ on the unit circle is which of the following?",
+          "options": [
+            "$(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+            "$(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+            "$(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+          "check": [
+            "cos(7*pi/4) == sqrt(2)/2",
+            "sin(7*pi/4) == -sqrt(2)/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-solution-form",
+      "title": "General solutions of tan x = c",
+      "level": 2,
+      "unit": "trigonometric-graphs-and-equations",
+      "skill": "Tangent's period is 180°: one family x = θ + k·180° catches every solution.",
+      "variants": [
+        {
+          "id": "PC-gen-v01",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = \\sqrt{3}$?",
+          "options": [
+            "$x = 60° + k \\cdot 180°$",
+            "$x = 60° + k \\cdot 360°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 60°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 60° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(60)) == sqrt(3)",
+            "tan(rad(240)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "PC-gen-v02",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = 1$?",
+          "options": [
+            "$x = 45° + k \\cdot 360°$",
+            "$x = 45° + k \\cdot 180°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 45°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 45° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(45)) == 1",
+            "tan(rad(225)) == 1"
+          ]
+        },
+        {
+          "id": "PC-gen-v03",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = \\frac{\\sqrt{3}}{3}$?",
+          "options": [
+            "$x = 30° + k \\cdot 360°$",
+            "$x = 60° + k \\cdot 180°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 30°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 30° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(30)) == sqrt(3)/3",
+            "tan(rad(210)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "PC-gen-v04",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = -1$?",
+          "options": [
+            "$x = 135° + k \\cdot 360°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 135°$",
+            "$x = 135° + k \\cdot 180°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 135° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(135)) == -1",
+            "tan(rad(315)) == -1"
+          ]
+        },
+        {
+          "id": "PC-gen-v05",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = -\\sqrt{3}$?",
+          "options": [
+            "$x = 120° + k \\cdot 180°$",
+            "$x = 120° + k \\cdot 360°$",
+            "$x = 150° + k \\cdot 180°$",
+            "$x = 120°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 120° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(120)) == -sqrt(3)",
+            "tan(rad(300)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "PC-gen-v06",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = -\\frac{\\sqrt{3}}{3}$?",
+          "options": [
+            "$x = 150° + k \\cdot 360°$",
+            "$x = 150° + k \\cdot 180°$",
+            "$x = 120° + k \\cdot 180°$",
+            "$x = 150°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 150° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(150)) == -sqrt(3)/3",
+            "tan(rad(330)) == -sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "PC-gen-v07",
+          "statement": "Which of the following lists ALL solutions of $\\tan x = 0$?",
+          "options": [
+            "$x = k \\cdot 360°$",
+            "$x = 90° + k \\cdot 180°$",
+            "$x = k \\cdot 180°$",
+            "$x = 0°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(0)) == 0",
+            "tan(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "PC-gen-v08",
+          "statement": "Find all solutions of $\\tan x = \\sqrt{3}$ (where $k$ is any integer).",
+          "options": [
+            "$x = 60° + k \\cdot 360°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 60°$",
+            "$x = 60° + k \\cdot 180°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 60° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(60)) == sqrt(3)",
+            "tan(rad(240)) == sqrt(3)"
+          ]
+        },
+        {
+          "id": "PC-gen-v09",
+          "statement": "Find all solutions of $\\tan x = \\frac{\\sqrt{3}}{3}$ (where $k$ is any integer).",
+          "options": [
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 30° + k \\cdot 360°$",
+            "$x = 60° + k \\cdot 180°$",
+            "$x = 30°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 30° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(30)) == sqrt(3)/3",
+            "tan(rad(210)) == sqrt(3)/3"
+          ]
+        },
+        {
+          "id": "PC-gen-v10",
+          "statement": "Find all solutions of $\\tan x = -1$ (where $k$ is any integer).",
+          "options": [
+            "$x = 135° + k \\cdot 360°$",
+            "$x = 135° + k \\cdot 180°$",
+            "$x = 30° + k \\cdot 180°$",
+            "$x = 135°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 135° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(135)) == -1",
+            "tan(rad(315)) == -1"
+          ]
+        },
+        {
+          "id": "PC-gen-v11",
+          "statement": "Find all solutions of $\\tan x = -\\sqrt{3}$ (where $k$ is any integer).",
+          "options": [
+            "$x = 120° + k \\cdot 360°$",
+            "$x = 150° + k \\cdot 180°$",
+            "$x = 120° + k \\cdot 180°$",
+            "$x = 120°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 120° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(120)) == -sqrt(3)",
+            "tan(rad(300)) == -sqrt(3)"
+          ]
+        },
+        {
+          "id": "PC-gen-v12",
+          "statement": "Find all solutions of $\\tan x = -\\frac{\\sqrt{3}}{3}$ (where $k$ is any integer).",
+          "options": [
+            "$x = 150° + k \\cdot 360°$",
+            "$x = 120° + k \\cdot 180°$",
+            "$x = 150°$",
+            "$x = 150° + k \\cdot 180°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent repeats every $180°$, so one family covers every solution: x = 150° + k \\cdot 180°. Using the period $360°$ — right for sine and cosine, wrong for tangent — misses half the answers.",
+          "check": [
+            "tan(rad(150)) == -sqrt(3)/3",
+            "tan(rad(330)) == -sqrt(3)/3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "count-solutions",
+      "title": "Counting trig solutions",
+      "level": 3,
+      "unit": "trigonometric-graphs-and-equations",
+      "skill": "On [0°, 360°): |c| < 1 gives two solutions, |c| = 1 gives one, |c| > 1 gives none.",
+      "variants": [
+        {
+          "id": "PC-cnt-v01",
+          "statement": "How many solutions does $\\sin x = 0$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$2$",
+            "$3$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\sin$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "sin(rad(0)) == 0",
+            "sin(rad(180)) == 0"
+          ]
+        },
+        {
+          "id": "PC-cnt-v02",
+          "statement": "How many solutions does $\\sin x = 1$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$2$",
+            "$1$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On $[0°, 360°)$ the graph of $\\sin$ touches this extreme value exactly once per period: the count is $1$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "sin(rad(90)) == 1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v03",
+          "statement": "How many solutions does $\\sin x = -1$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On $[0°, 360°)$ the graph of $\\sin$ touches this extreme value exactly once per period: the count is $1$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "sin(rad(270)) == -1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v04",
+          "statement": "How many solutions does $\\sin x = \\frac{1}{2}$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$3$",
+            "$1$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\sin$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "sin(rad(30)) == Rational(1,2)",
+            "sin(rad(150)) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "PC-cnt-v05",
+          "statement": "How many solutions does $\\sin x = 2$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On $[0°, 360°)$ the value lies outside $[-1, 1]$, beyond the range of $\\sin$, so there are no solutions: the count is $0$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "Abs(2) > 1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v06",
+          "statement": "How many solutions does $\\sin x = \\frac{\\sqrt{3}}{2}$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$3$",
+            "$2$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\sin$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "sin(rad(60)) == sqrt(3)/2",
+            "sin(rad(120)) == sqrt(3)/2"
+          ]
+        },
+        {
+          "id": "PC-cnt-v07",
+          "statement": "How many solutions does $\\cos x = 0$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$3$",
+            "$1$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\cos$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "cos(rad(90)) == 0",
+            "cos(rad(270)) == 0"
+          ]
+        },
+        {
+          "id": "PC-cnt-v08",
+          "statement": "How many solutions does $\\cos x = 1$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$2$",
+            "$0$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On $[0°, 360°)$ the graph of $\\cos$ touches this extreme value exactly once per period: the count is $1$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "cos(rad(0)) == 1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v09",
+          "statement": "How many solutions does $\\cos x = -1$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On $[0°, 360°)$ the graph of $\\cos$ touches this extreme value exactly once per period: the count is $1$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "cos(rad(180)) == -1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v10",
+          "statement": "How many solutions does $\\cos x = -\\frac{1}{2}$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$3$",
+            "$2$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\cos$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "cos(rad(120)) == -Rational(1,2)",
+            "cos(rad(240)) == -Rational(1,2)"
+          ]
+        },
+        {
+          "id": "PC-cnt-v11",
+          "statement": "How many solutions does $\\cos x = -2$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On $[0°, 360°)$ the value lies outside $[-1, 1]$, beyond the range of $\\cos$, so there are no solutions: the count is $0$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "Abs(-2) > 1"
+          ]
+        },
+        {
+          "id": "PC-cnt-v12",
+          "statement": "How many solutions does $\\cos x = \\frac{\\sqrt{2}}{2}$ have on the interval $[0°, 360°)$?",
+          "options": [
+            "$3$",
+            "$1$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On $[0°, 360°)$ the horizontal line cuts one full wave of $\\cos$ twice: the count is $2$. Counting an endpoint twice (or forgetting a quadrant) shifts the answer by one.",
+          "check": [
+            "cos(rad(45)) == sqrt(2)/2",
+            "cos(rad(315)) == sqrt(2)/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "circle-equation",
+      "title": "Reading circle equations",
+      "level": 1,
+      "unit": "conic-sections",
+      "skill": "(x − h)² + (y − k)² = r²: center (h; k) against the signs, radius √(right side).",
+      "variants": [
+        {
+          "id": "PC-circ-v01",
+          "statement": "The circle $(x - 2)^2 + (y + 3)^2 = 16$ has its center at which point?",
+          "options": [
+            "$(2; -3)$",
+            "$(-2; 3)$",
+            "$(-2; -3)$",
+            "$(2; 3)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(2; -3)$. Reading the written signs literally gives $(-2; 3)$ — the classic trap.",
+          "check": [
+            "((2) - (2))**2 + ((-3) - (-3))**2 == 0",
+            "(16) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v02",
+          "statement": "The circle $(x + 1)^2 + (y - 4)^2 = 49$ has its center at which point?",
+          "options": [
+            "$(1; -4)$",
+            "$(-1; 4)$",
+            "$(1; 4)$",
+            "$(-1; -4)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(-1; 4)$. Reading the written signs literally gives $(1; -4)$ — the classic trap.",
+          "check": [
+            "((-1) - (-1))**2 + ((4) - (4))**2 == 0",
+            "(49) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v03",
+          "statement": "The circle $(x - 5)^2 + (y - 2)^2 = 9$ has its center at which point?",
+          "options": [
+            "$(-5; -2)$",
+            "$(-5; 2)$",
+            "$(5; 2)$",
+            "$(5; -2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(5; 2)$. Reading the written signs literally gives $(-5; -2)$ — the classic trap.",
+          "check": [
+            "((5) - (5))**2 + ((2) - (2))**2 == 0",
+            "(9) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v04",
+          "statement": "The circle $(x + 4)^2 + (y + 6)^2 = 25$ has its center at which point?",
+          "options": [
+            "$(4; 6)$",
+            "$(4; -6)$",
+            "$(-4; 6)$",
+            "$(-4; -6)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(-4; -6)$. Reading the written signs literally gives $(4; 6)$ — the classic trap.",
+          "check": [
+            "((-4) - (-4))**2 + ((-6) - (-6))**2 == 0",
+            "(25) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v05",
+          "statement": "The circle $(x - 3)^2 + (y - 7)^2 = 36$ has its center at which point?",
+          "options": [
+            "$(3; 7)$",
+            "$(-3; -7)$",
+            "$(-3; 7)$",
+            "$(3; -7)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(3; 7)$. Reading the written signs literally gives $(-3; -7)$ — the classic trap.",
+          "check": [
+            "((3) - (3))**2 + ((7) - (7))**2 == 0",
+            "(36) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v06",
+          "statement": "The circle $(x + 2)^2 + (y - 1)^2 = 64$ has its center at which point?",
+          "options": [
+            "$(2; -1)$",
+            "$(-2; 1)$",
+            "$(2; 1)$",
+            "$(-2; -1)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The standard form $(x - h)^2 + (y - k)^2 = r^2$ hides the center behind minus signs: here $(-2; 1)$. Reading the written signs literally gives $(2; -1)$ — the classic trap.",
+          "check": [
+            "((-2) - (-2))**2 + ((1) - (1))**2 == 0",
+            "(64) > 0"
+          ]
+        },
+        {
+          "id": "PC-circ-v07",
+          "statement": "What is the radius of the circle $(x - 1)^2 + (y + 2)^2 = 49$?",
+          "options": [
+            "$49$",
+            "$14$",
+            "$7$",
+            "$42$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{49} = 7$. Answering $49$ forgets to take the square root.",
+          "check": [
+            "sqrt(49) == 7",
+            "(7)**2 == 49"
+          ]
+        },
+        {
+          "id": "PC-circ-v08",
+          "statement": "What is the radius of the circle $(x + 3)^2 + (y - 4)^2 = 25$?",
+          "options": [
+            "$25$",
+            "$10$",
+            "$20$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{25} = 5$. Answering $25$ forgets to take the square root.",
+          "check": [
+            "sqrt(25) == 5",
+            "(5)**2 == 25"
+          ]
+        },
+        {
+          "id": "PC-circ-v09",
+          "statement": "What is the radius of the circle $(x - 2)^2 + (y - 5)^2 = 16$?",
+          "options": [
+            "$4$",
+            "$16$",
+            "$8$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{16} = 4$. Answering $16$ forgets to take the square root.",
+          "check": [
+            "sqrt(16) == 4",
+            "(4)**2 == 16"
+          ]
+        },
+        {
+          "id": "PC-circ-v10",
+          "statement": "What is the radius of the circle $(x + 1)^2 + (y + 4)^2 = 36$?",
+          "options": [
+            "$36$",
+            "$6$",
+            "$12$",
+            "$30$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{36} = 6$. Answering $36$ forgets to take the square root.",
+          "check": [
+            "sqrt(36) == 6",
+            "(6)**2 == 36"
+          ]
+        },
+        {
+          "id": "PC-circ-v11",
+          "statement": "What is the radius of the circle $(x - 4)^2 + (y - 1)^2 = 64$?",
+          "options": [
+            "$64$",
+            "$16$",
+            "$8$",
+            "$56$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{64} = 8$. Answering $64$ forgets to take the square root.",
+          "check": [
+            "sqrt(64) == 8",
+            "(8)**2 == 64"
+          ]
+        },
+        {
+          "id": "PC-circ-v12",
+          "statement": "What is the radius of the circle $(x + 5)^2 + (y - 3)^2 = 100$?",
+          "options": [
+            "$100$",
+            "$20$",
+            "$90$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The right side is $r^2$, so $r = \\sqrt{100} = 10$. Answering $100$ forgets to take the square root.",
+          "check": [
+            "sqrt(100) == 10",
+            "(10)**2 == 100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parabola-vertex-conic",
+      "title": "Horizontal parabolas and foci",
+      "level": 2,
+      "unit": "conic-sections",
+      "skill": "x = ay² opens sideways with the sign of a; y² = 4px puts the focus at (p; 0).",
+      "variants": [
+        {
+          "id": "PC-parv-v01",
+          "statement": "The parabola $x = 2y^2$ opens in which direction?",
+          "options": [
+            "To the right",
+            "To the left",
+            "Upward",
+            "Downward"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $x$ expressed in terms of $y^2$ the parabola is horizontal, and the positive coefficient $2$ points it right. \"Upward/downward\" belongs to $y = ax^2$ — the classic axis mix-up.",
+          "check": [
+            "(2) > 0"
+          ]
+        },
+        {
+          "id": "PC-parv-v02",
+          "statement": "The parabola $x = -3y^2$ opens in which direction?",
+          "options": [
+            "To the right",
+            "To the left",
+            "Upward",
+            "Downward"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $x$ expressed in terms of $y^2$ the parabola is horizontal, and the negative coefficient $-3$ points it left. \"Upward/downward\" belongs to $y = ax^2$ — the classic axis mix-up.",
+          "check": [
+            "(-3) < 0"
+          ]
+        },
+        {
+          "id": "PC-parv-v03",
+          "statement": "The parabola $x = 5y^2$ opens in which direction?",
+          "options": [
+            "To the left",
+            "Upward",
+            "To the right",
+            "Downward"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $x$ expressed in terms of $y^2$ the parabola is horizontal, and the positive coefficient $5$ points it right. \"Upward/downward\" belongs to $y = ax^2$ — the classic axis mix-up.",
+          "check": [
+            "(5) > 0"
+          ]
+        },
+        {
+          "id": "PC-parv-v04",
+          "statement": "The parabola $x = -4y^2$ opens in which direction?",
+          "options": [
+            "To the right",
+            "Upward",
+            "Downward",
+            "To the left"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $x$ expressed in terms of $y^2$ the parabola is horizontal, and the negative coefficient $-4$ points it left. \"Upward/downward\" belongs to $y = ax^2$ — the classic axis mix-up.",
+          "check": [
+            "(-4) < 0"
+          ]
+        },
+        {
+          "id": "PC-parv-v05",
+          "statement": "The parabola $y^2 = 4x$ has its focus at which point?",
+          "options": [
+            "$(1; 0)$",
+            "$(4; 0)$",
+            "$(0; 1)$",
+            "$(-1; 0)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Match $y^2 = 4px$: $4p = 4$ gives $p = 1$, so the focus is $(1; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(4; 0)$.",
+          "check": [
+            "4*(1) == 4"
+          ]
+        },
+        {
+          "id": "PC-parv-v06",
+          "statement": "The parabola $y^2 = 8x$ has its focus at which point?",
+          "options": [
+            "$(8; 0)$",
+            "$(2; 0)$",
+            "$(0; 2)$",
+            "$(-2; 0)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Match $y^2 = 4px$: $4p = 8$ gives $p = 2$, so the focus is $(2; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(8; 0)$.",
+          "check": [
+            "4*(2) == 8"
+          ]
+        },
+        {
+          "id": "PC-parv-v07",
+          "statement": "The parabola $y^2 = 12x$ has its focus at which point?",
+          "options": [
+            "$(12; 0)$",
+            "$(0; 3)$",
+            "$(3; 0)$",
+            "$(-3; 0)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Match $y^2 = 4px$: $4p = 12$ gives $p = 3$, so the focus is $(3; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(12; 0)$.",
+          "check": [
+            "4*(3) == 12"
+          ]
+        },
+        {
+          "id": "PC-parv-v08",
+          "statement": "The parabola $y^2 = 16x$ has its focus at which point?",
+          "options": [
+            "$(16; 0)$",
+            "$(0; 4)$",
+            "$(-4; 0)$",
+            "$(4; 0)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Match $y^2 = 4px$: $4p = 16$ gives $p = 4$, so the focus is $(4; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(16; 0)$.",
+          "check": [
+            "4*(4) == 16"
+          ]
+        },
+        {
+          "id": "PC-parv-v09",
+          "statement": "The parabola $y^2 = 20x$ has its focus at which point?",
+          "options": [
+            "$(5; 0)$",
+            "$(20; 0)$",
+            "$(0; 5)$",
+            "$(-5; 0)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Match $y^2 = 4px$: $4p = 20$ gives $p = 5$, so the focus is $(5; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(20; 0)$.",
+          "check": [
+            "4*(5) == 20"
+          ]
+        },
+        {
+          "id": "PC-parv-v10",
+          "statement": "The parabola $y^2 = -4x$ has its focus at which point?",
+          "options": [
+            "$(-4; 0)$",
+            "$(-1; 0)$",
+            "$(0; -1)$",
+            "$(1; 0)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Match $y^2 = 4px$: $4p = -4$ gives $p = -1$, so the focus is $(-1; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(-4; 0)$.",
+          "check": [
+            "4*(-1) == -4"
+          ]
+        },
+        {
+          "id": "PC-parv-v11",
+          "statement": "The parabola $y^2 = -8x$ has its focus at which point?",
+          "options": [
+            "$(-8; 0)$",
+            "$(0; -2)$",
+            "$(-2; 0)$",
+            "$(2; 0)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Match $y^2 = 4px$: $4p = -8$ gives $p = -2$, so the focus is $(-2; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(-8; 0)$.",
+          "check": [
+            "4*(-2) == -8"
+          ]
+        },
+        {
+          "id": "PC-parv-v12",
+          "statement": "The parabola $y^2 = -12x$ has its focus at which point?",
+          "options": [
+            "$(-12; 0)$",
+            "$(0; -3)$",
+            "$(3; 0)$",
+            "$(-3; 0)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Match $y^2 = 4px$: $4p = -12$ gives $p = -3$, so the focus is $(-3; 0)$ on the axis of symmetry. Forgetting to divide by 4 puts it at $(-12; 0)$.",
+          "check": [
+            "4*(-3) == -12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ellipse-foci",
+      "title": "Foci of an ellipse",
+      "level": 3,
+      "unit": "conic-sections",
+      "skill": "c² = a² − b² for an ellipse — subtract the squares, then take the root.",
+      "variants": [
+        {
+          "id": "PC-ell-v01",
+          "statement": "For the ellipse $\\dfrac{x^2}{25} + \\dfrac{y^2}{16} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 25 - 16 = 9$, so $c = 3$. Subtracting the radii themselves, $a - b = 1$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(25 - 16) == 3",
+            "(3)**2 + (4)**2 == (5)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v02",
+          "statement": "For the ellipse $\\dfrac{x^2}{25} + \\dfrac{y^2}{9} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 25 - 9 = 16$, so $c = 4$. Subtracting the radii themselves, $a - b = 2$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(25 - 9) == 4",
+            "(4)**2 + (3)**2 == (5)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v03",
+          "statement": "For the ellipse $\\dfrac{x^2}{100} + \\dfrac{y^2}{64} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$2$",
+            "$18$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 100 - 64 = 36$, so $c = 6$. Subtracting the radii themselves, $a - b = 2$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(100 - 64) == 6",
+            "(6)**2 + (8)**2 == (10)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v04",
+          "statement": "For the ellipse $\\dfrac{x^2}{100} + \\dfrac{y^2}{36} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$4$",
+            "$16$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 100 - 36 = 64$, so $c = 8$. Subtracting the radii themselves, $a - b = 4$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(100 - 36) == 8",
+            "(8)**2 + (6)**2 == (10)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v05",
+          "statement": "For the ellipse $\\dfrac{x^2}{169} + \\dfrac{y^2}{144} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$5$",
+            "$1$",
+            "$25$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 169 - 144 = 25$, so $c = 5$. Subtracting the radii themselves, $a - b = 1$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(169 - 144) == 5",
+            "(5)**2 + (12)**2 == (13)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v06",
+          "statement": "For the ellipse $\\dfrac{x^2}{169} + \\dfrac{y^2}{25} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$18$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 169 - 25 = 144$, so $c = 12$. Subtracting the radii themselves, $a - b = 8$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(169 - 25) == 12",
+            "(12)**2 + (5)**2 == (13)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v07",
+          "statement": "For the ellipse $\\dfrac{x^2}{225} + \\dfrac{y^2}{144} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$3$",
+            "$27$",
+            "$9$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 225 - 144 = 81$, so $c = 9$. Subtracting the radii themselves, $a - b = 3$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(225 - 144) == 9",
+            "(9)**2 + (12)**2 == (15)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v08",
+          "statement": "For the ellipse $\\dfrac{x^2}{225} + \\dfrac{y^2}{81} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$6$",
+            "$24$",
+            "$9$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 225 - 81 = 144$, so $c = 12$. Subtracting the radii themselves, $a - b = 6$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(225 - 81) == 12",
+            "(12)**2 + (9)**2 == (15)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v09",
+          "statement": "For the ellipse $\\dfrac{x^2}{289} + \\dfrac{y^2}{225} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$32$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 289 - 225 = 64$, so $c = 8$. Subtracting the radii themselves, $a - b = 2$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(289 - 225) == 8",
+            "(8)**2 + (15)**2 == (17)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v10",
+          "statement": "For the ellipse $\\dfrac{x^2}{289} + \\dfrac{y^2}{64} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$9$",
+            "$15$",
+            "$25$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 289 - 64 = 225$, so $c = 15$. Subtracting the radii themselves, $a - b = 9$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(289 - 64) == 15",
+            "(15)**2 + (8)**2 == (17)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v11",
+          "statement": "For the ellipse $\\dfrac{x^2}{625} + \\dfrac{y^2}{576} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$1$",
+            "$49$",
+            "$7$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 625 - 576 = 49$, so $c = 7$. Subtracting the radii themselves, $a - b = 1$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(625 - 576) == 7",
+            "(7)**2 + (24)**2 == (25)**2"
+          ]
+        },
+        {
+          "id": "PC-ell-v12",
+          "statement": "For the ellipse $\\dfrac{x^2}{625} + \\dfrac{y^2}{49} = 1$, the foci are at $(\\pm c; 0)$. Find $c$.",
+          "options": [
+            "$18$",
+            "$32$",
+            "$7$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For an ellipse $c^2 = a^2 - b^2 = 625 - 49 = 576$, so $c = 24$. Subtracting the radii themselves, $a - b = 18$, is the classic slip — the subtraction happens on the squares.",
+          "check": [
+            "sqrt(625 - 49) == 24",
+            "(24)**2 + (7)**2 == (25)**2"
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -35,5 +35,4065 @@
       "blurb": "ad − bc, the 2×2 inverse, Cramer's rule, and matrices as transformations — the capstone."
     }
   ],
-  "forms": []
+  "forms": [
+    {
+      "id": "vector-from-points",
+      "title": "Vector between two points",
+      "level": 1,
+      "skill": "VM-from",
+      "unit": "vectors-and-coordinates",
+      "variants": [
+        {
+          "id": "VM-from-v01",
+          "statement": "The points $A = (2; 3)$ and $B = (5; -1)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(3; -4)$",
+            "$(-3; 4)$",
+            "$(7; 2)$",
+            "$(-4; 3)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (3; -4)$. Computing $A - B$ instead flips both signs to $(-3; 4)$ — the classic direction slip.",
+          "check": [
+            "(5) - (2) == 3",
+            "(-1) - (3) == -4"
+          ]
+        },
+        {
+          "id": "VM-from-v02",
+          "statement": "The points $A = (1; 2)$ and $B = (4; 7)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-3; -5)$",
+            "$(3; 5)$",
+            "$(5; 9)$",
+            "$(5; 3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (3; 5)$. Computing $A - B$ instead flips both signs to $(-3; -5)$ — the classic direction slip.",
+          "check": [
+            "(4) - (1) == 3",
+            "(7) - (2) == 5"
+          ]
+        },
+        {
+          "id": "VM-from-v03",
+          "statement": "The points $A = (-3; 4)$ and $B = (2; 1)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-5; 3)$",
+            "$(-1; 5)$",
+            "$(5; -3)$",
+            "$(-3; 5)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (5; -3)$. Computing $A - B$ instead flips both signs to $(-5; 3)$ — the classic direction slip.",
+          "check": [
+            "(2) - (-3) == 5",
+            "(1) - (4) == -3"
+          ]
+        },
+        {
+          "id": "VM-from-v04",
+          "statement": "The points $A = (5; -2)$ and $B = (1; 3)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(4; -5)$",
+            "$(6; 1)$",
+            "$(5; -4)$",
+            "$(-4; 5)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (-4; 5)$. Computing $A - B$ instead flips both signs to $(4; -5)$ — the classic direction slip.",
+          "check": [
+            "(1) - (5) == -4",
+            "(3) - (-2) == 5"
+          ]
+        },
+        {
+          "id": "VM-from-v05",
+          "statement": "The points $A = (4; 1)$ and $B = (-2; 5)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-6; 4)$",
+            "$(6; -4)$",
+            "$(2; 6)$",
+            "$(4; -6)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (-6; 4)$. Computing $A - B$ instead flips both signs to $(6; -4)$ — the classic direction slip.",
+          "check": [
+            "(-2) - (4) == -6",
+            "(5) - (1) == 4"
+          ]
+        },
+        {
+          "id": "VM-from-v06",
+          "statement": "The points $A = (-1; -3)$ and $B = (4; 3)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-5; -6)$",
+            "$(5; 6)$",
+            "$(3; 0)$",
+            "$(6; 5)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (5; 6)$. Computing $A - B$ instead flips both signs to $(-5; -6)$ — the classic direction slip.",
+          "check": [
+            "(4) - (-1) == 5",
+            "(3) - (-3) == 6"
+          ]
+        },
+        {
+          "id": "VM-from-v07",
+          "statement": "The points $A = (3; 7)$ and $B = (9; 2)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-6; 5)$",
+            "$(12; 9)$",
+            "$(6; -5)$",
+            "$(-5; 6)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (6; -5)$. Computing $A - B$ instead flips both signs to $(-6; 5)$ — the classic direction slip.",
+          "check": [
+            "(9) - (3) == 6",
+            "(2) - (7) == -5"
+          ]
+        },
+        {
+          "id": "VM-from-v08",
+          "statement": "The points $A = (-2; 5)$ and $B = (3; -4)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-5; 9)$",
+            "$(1; 1)$",
+            "$(-9; 5)$",
+            "$(5; -9)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (5; -9)$. Computing $A - B$ instead flips both signs to $(-5; 9)$ — the classic direction slip.",
+          "check": [
+            "(3) - (-2) == 5",
+            "(-4) - (5) == -9"
+          ]
+        },
+        {
+          "id": "VM-from-v09",
+          "statement": "The points $A = (6; 0)$ and $B = (2; 7)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-4; 7)$",
+            "$(4; -7)$",
+            "$(8; 7)$",
+            "$(7; -4)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (-4; 7)$. Computing $A - B$ instead flips both signs to $(4; -7)$ — the classic direction slip.",
+          "check": [
+            "(2) - (6) == -4",
+            "(7) - (0) == 7"
+          ]
+        },
+        {
+          "id": "VM-from-v10",
+          "statement": "The points $A = (-5; -1)$ and $B = (-2; 3)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-3; -4)$",
+            "$(3; 4)$",
+            "$(-7; 2)$",
+            "$(4; 3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (3; 4)$. Computing $A - B$ instead flips both signs to $(-3; -4)$ — the classic direction slip.",
+          "check": [
+            "(-2) - (-5) == 3",
+            "(3) - (-1) == 4"
+          ]
+        },
+        {
+          "id": "VM-from-v11",
+          "statement": "The points $A = (7; 2)$ and $B = (3; -3)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(4; 5)$",
+            "$(10; -1)$",
+            "$(-4; -5)$",
+            "$(-5; -4)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (-4; -5)$. Computing $A - B$ instead flips both signs to $(4; 5)$ — the classic direction slip.",
+          "check": [
+            "(3) - (7) == -4",
+            "(-3) - (2) == -5"
+          ]
+        },
+        {
+          "id": "VM-from-v12",
+          "statement": "The points $A = (0; -4)$ and $B = (6; 1)$ are given. Find the coordinates of $\\vec{AB}$.",
+          "options": [
+            "$(-6; -5)$",
+            "$(6; -3)$",
+            "$(5; 6)$",
+            "$(6; 5)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tip minus tail: $\\vec{AB} = (x_B - x_A; y_B - y_A) = (6; 5)$. Computing $A - B$ instead flips both signs to $(-6; -5)$ — the classic direction slip.",
+          "check": [
+            "(6) - (0) == 6",
+            "(1) - (-4) == 5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vector-magnitude",
+      "title": "Magnitude of a vector",
+      "level": 2,
+      "skill": "VM-mag",
+      "unit": "vectors-and-coordinates",
+      "variants": [
+        {
+          "id": "VM-mag-v01",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (3; 4)$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$25$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(3)^2 + (4)^2} = \\sqrt{25} = 5$. Adding the components' absolute values, $3 + 4 = 7$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((3)**2 + (4)**2) == 5"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 3,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 4,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "3"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "4",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v02",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (-6; 8)$.",
+          "options": [
+            "$14$",
+            "$10$",
+            "$2$",
+            "$100$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-6)^2 + (8)^2} = \\sqrt{100} = 10$. Adding the components' absolute values, $6 + 8 = 14$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((-6)**2 + (8)**2) == 10"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 6,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "8",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v03",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (5; -12)$.",
+          "options": [
+            "$17$",
+            "$-7$",
+            "$13$",
+            "$169$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(5)^2 + (-12)^2} = \\sqrt{169} = 13$. Adding the components' absolute values, $5 + 12 = 17$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((5)**2 + (-12)**2) == 13"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 5,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "5"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "12",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v04",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (-8; -15)$.",
+          "options": [
+            "$23$",
+            "$-23$",
+            "$289$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-8)^2 + (-15)^2} = \\sqrt{289} = 17$. Adding the components' absolute values, $8 + 15 = 23$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((-8)**2 + (-15)**2) == 17"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 8,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 15,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "8"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "15",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v05",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (9; 12)$.",
+          "options": [
+            "$15$",
+            "$21$",
+            "$225$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(9)^2 + (12)^2} = \\sqrt{225} = 15$. Adding the components' absolute values, $9 + 12 = 21$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((9)**2 + (12)**2) == 15"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 9,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "9"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "12",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v06",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (-7; 24)$.",
+          "options": [
+            "$31$",
+            "$25$",
+            "$17$",
+            "$625$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-7)^2 + (24)^2} = \\sqrt{625} = 25$. Adding the components' absolute values, $7 + 24 = 31$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((-7)**2 + (24)**2) == 25"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 7,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 24,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "7"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "24",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v07",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (20; -21)$.",
+          "options": [
+            "$41$",
+            "$-1$",
+            "$29$",
+            "$841$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(20)^2 + (-21)^2} = \\sqrt{841} = 29$. Adding the components' absolute values, $20 + 21 = 41$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((20)**2 + (-21)**2) == 29"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 20,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 21,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "20"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "21",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v08",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (-12; 5)$.",
+          "options": [
+            "$17$",
+            "$-7$",
+            "$169$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-12)^2 + (5)^2} = \\sqrt{169} = 13$. Adding the components' absolute values, $12 + 5 = 17$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((-12)**2 + (5)**2) == 13"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 12,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 5,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "12"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "5",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v09",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (6; -8)$.",
+          "options": [
+            "$10$",
+            "$14$",
+            "$-2$",
+            "$100$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(6)^2 + (-8)^2} = \\sqrt{100} = 10$. Adding the components' absolute values, $6 + 8 = 14$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((6)**2 + (-8)**2) == 10"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 6,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "8",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v10",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (8; 15)$.",
+          "options": [
+            "$23$",
+            "$17$",
+            "$289$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(8)^2 + (15)^2} = \\sqrt{289} = 17$. Adding the components' absolute values, $8 + 15 = 23$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((8)**2 + (15)**2) == 17"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 8,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 15,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "8"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "15",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v11",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (-20; 15)$.",
+          "options": [
+            "$35$",
+            "$-5$",
+            "$25$",
+            "$625$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-20)^2 + (15)^2} = \\sqrt{625} = 25$. Adding the components' absolute values, $20 + 15 = 35$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((-20)**2 + (15)**2) == 25"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 20,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 15,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "20"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "15",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-mag-v12",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the vector $\\vec{a} = (12; -16)$.",
+          "options": [
+            "$28$",
+            "$-4$",
+            "$400$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(12)^2 + (-16)^2} = \\sqrt{400} = 20$. Adding the components' absolute values, $12 + 16 = 28$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt((12)**2 + (-16)**2) == 20"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "A",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "B",
+                "x": 12,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "C",
+                "x": 0,
+                "y": 16,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "12"
+              },
+              {
+                "kind": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "16",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "?",
+                "color": "accent"
+              },
+              {
+                "kind": "angle",
+                "at": "A",
+                "from": "B",
+                "to": "C",
+                "right": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "vector-combine",
+      "title": "Linear combinations m·a + n·b",
+      "level": 1,
+      "skill": "VM-comb",
+      "unit": "vector-arithmetic",
+      "variants": [
+        {
+          "id": "VM-comb-v01",
+          "statement": "Given $\\vec{a} = (2; -1)$ and $\\vec{b} = (3; 4)$, find $2\\vec{a} + 3\\vec{b}$.",
+          "options": [
+            "$(13; 10)$",
+            "$(12; 5)$",
+            "$(-5; -14)$",
+            "$(5; 3)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale each vector first, then add matching components: $(13; 10)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(5; 3)$ — the classic slip.",
+          "check": [
+            "(2)*(2) + (3)*(3) == 13",
+            "(2)*(-1) + (3)*(4) == 10"
+          ]
+        },
+        {
+          "id": "VM-comb-v02",
+          "statement": "Given $\\vec{a} = (3; 5)$ and $\\vec{b} = (1; 2)$, find $\\vec{a} - 2\\vec{b}$.",
+          "options": [
+            "$(-5; -8)$",
+            "$(1; 1)$",
+            "$(5; 9)$",
+            "$(4; 7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale each vector first, then add matching components: $(1; 1)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(4; 7)$ — the classic slip.",
+          "check": [
+            "(1)*(3) + (-2)*(1) == 1",
+            "(1)*(5) + (-2)*(2) == 1"
+          ]
+        },
+        {
+          "id": "VM-comb-v03",
+          "statement": "Given $\\vec{a} = (-1; 2)$ and $\\vec{b} = (4; -3)$, find $3\\vec{a} + \\vec{b}$.",
+          "options": [
+            "$(11; -7)$",
+            "$(-7; 9)$",
+            "$(1; 3)$",
+            "$(3; -1)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale each vector first, then add matching components: $(1; 3)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(3; -1)$ — the classic slip.",
+          "check": [
+            "(3)*(-1) + (1)*(4) == 1",
+            "(3)*(2) + (1)*(-3) == 3"
+          ]
+        },
+        {
+          "id": "VM-comb-v04",
+          "statement": "Given $\\vec{a} = (5; 3)$ and $\\vec{b} = (2; -2)$, find $-\\vec{a} + 2\\vec{b}$.",
+          "options": [
+            "$(8; 8)$",
+            "$(-9; 1)$",
+            "$(7; 1)$",
+            "$(-1; -7)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale each vector first, then add matching components: $(-1; -7)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(7; 1)$ — the classic slip.",
+          "check": [
+            "(-1)*(5) + (2)*(2) == -1",
+            "(-1)*(3) + (2)*(-2) == -7"
+          ]
+        },
+        {
+          "id": "VM-comb-v05",
+          "statement": "Given $\\vec{a} = (1; 4)$ and $\\vec{b} = (-2; 1)$, find $2\\vec{a} - 3\\vec{b}$.",
+          "options": [
+            "$(8; 5)$",
+            "$(-7; -10)$",
+            "$(-4; 11)$",
+            "$(-1; 5)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale each vector first, then add matching components: $(8; 5)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(-1; 5)$ — the classic slip.",
+          "check": [
+            "(2)*(1) + (-3)*(-2) == 8",
+            "(2)*(4) + (-3)*(1) == 5"
+          ]
+        },
+        {
+          "id": "VM-comb-v06",
+          "statement": "Given $\\vec{a} = (2; 0)$ and $\\vec{b} = (-1; 5)$, find $3\\vec{a} + 2\\vec{b}$.",
+          "options": [
+            "$(1; 15)$",
+            "$(4; 10)$",
+            "$(8; -10)$",
+            "$(1; 5)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale each vector first, then add matching components: $(4; 10)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(1; 5)$ — the classic slip.",
+          "check": [
+            "(3)*(2) + (2)*(-1) == 4",
+            "(3)*(0) + (2)*(5) == 10"
+          ]
+        },
+        {
+          "id": "VM-comb-v07",
+          "statement": "Given $\\vec{a} = (-4; 2)$ and $\\vec{b} = (2; 3)$, find $\\vec{a} + 3\\vec{b}$.",
+          "options": [
+            "$(-10; 9)$",
+            "$(-10; -7)$",
+            "$(2; 11)$",
+            "$(-2; 5)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale each vector first, then add matching components: $(2; 11)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(-2; 5)$ — the classic slip.",
+          "check": [
+            "(1)*(-4) + (3)*(2) == 2",
+            "(1)*(2) + (3)*(3) == 11"
+          ]
+        },
+        {
+          "id": "VM-comb-v08",
+          "statement": "Given $\\vec{a} = (3; -2)$ and $\\vec{b} = (5; 4)$, find $-2\\vec{a} + \\vec{b}$.",
+          "options": [
+            "$(-7; -10)$",
+            "$(-11; 0)$",
+            "$(8; 2)$",
+            "$(-1; 8)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale each vector first, then add matching components: $(-1; 8)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(8; 2)$ — the classic slip.",
+          "check": [
+            "(-2)*(3) + (1)*(5) == -1",
+            "(-2)*(-2) + (1)*(4) == 8"
+          ]
+        },
+        {
+          "id": "VM-comb-v09",
+          "statement": "Given $\\vec{a} = (4; 3)$ and $\\vec{b} = (-3; 2)$, find $2\\vec{a} + \\vec{b}$.",
+          "options": [
+            "$(5; 8)$",
+            "$(-2; 7)$",
+            "$(11; 4)$",
+            "$(1; 5)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale each vector first, then add matching components: $(5; 8)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(1; 5)$ — the classic slip.",
+          "check": [
+            "(2)*(4) + (1)*(-3) == 5",
+            "(2)*(3) + (1)*(2) == 8"
+          ]
+        },
+        {
+          "id": "VM-comb-v10",
+          "statement": "Given $\\vec{a} = (1; -2)$ and $\\vec{b} = (2; -5)$, find $3\\vec{a} - \\vec{b}$.",
+          "options": [
+            "$(5; -13)$",
+            "$(1; -1)$",
+            "$(5; -11)$",
+            "$(3; -7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale each vector first, then add matching components: $(1; -1)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(3; -7)$ — the classic slip.",
+          "check": [
+            "(3)*(1) + (-1)*(2) == 1",
+            "(3)*(-2) + (-1)*(-5) == -1"
+          ]
+        },
+        {
+          "id": "VM-comb-v11",
+          "statement": "Given $\\vec{a} = (6; -3)$ and $\\vec{b} = (-2; 4)$, find $\\vec{a} + 2\\vec{b}$.",
+          "options": [
+            "$(10; -2)$",
+            "$(10; -11)$",
+            "$(2; 5)$",
+            "$(4; 1)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale each vector first, then add matching components: $(2; 5)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(4; 1)$ — the classic slip.",
+          "check": [
+            "(1)*(6) + (2)*(-2) == 2",
+            "(1)*(-3) + (2)*(4) == 5"
+          ]
+        },
+        {
+          "id": "VM-comb-v12",
+          "statement": "Given $\\vec{a} = (-1; 1)$ and $\\vec{b} = (3; 2)$, find $-3\\vec{a} + 2\\vec{b}$.",
+          "options": [
+            "$(-11; -4)$",
+            "$(-3; -7)$",
+            "$(2; 3)$",
+            "$(9; 1)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale each vector first, then add matching components: $(9; 1)$. Adding $\\vec{a} + \\vec{b}$ and forgetting the scalars gives $(2; 3)$ — the classic slip.",
+          "check": [
+            "(-3)*(-1) + (2)*(3) == 9",
+            "(-3)*(1) + (2)*(2) == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parallel-scalar",
+      "title": "Parallel vectors: find k",
+      "level": 2,
+      "skill": "VM-par",
+      "unit": "vector-arithmetic",
+      "variants": [
+        {
+          "id": "VM-par-v01",
+          "statement": "The vectors $\\vec{a} = (2; 3)$ and $\\vec{b} = (4; k)$ are parallel. Find $k$.",
+          "options": [
+            "$6$",
+            "$\\frac{3}{2}$",
+            "$5$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{4} = \\frac{3}{2}$, so $k = \\frac{3 \\cdot 4}{2} = 6$. Matching the wrong pair gives $\\frac{p\\,q}{r} = \\frac{3}{2}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((3)*(4))/(2) == 6",
+            "(2)*(6) - (3)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v02",
+          "statement": "The vectors $\\vec{a} = (3; 5)$ and $\\vec{b} = (6; k)$ are parallel. Find $k$.",
+          "options": [
+            "$\\frac{5}{2}$",
+            "$10$",
+            "$8$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{6} = \\frac{5}{3}$, so $k = \\frac{5 \\cdot 6}{3} = 10$. Matching the wrong pair gives $\\frac{p\\,q}{r} = \\frac{5}{2}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((5)*(6))/(3) == 10",
+            "(3)*(10) - (5)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v03",
+          "statement": "The vectors $\\vec{a} = (4; -3)$ and $\\vec{b} = (8; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-\\frac{3}{2}$",
+            "$1$",
+            "$-6$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{8} = \\frac{-3}{4}$, so $k = \\frac{-3 \\cdot 8}{4} = -6$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -\\frac{3}{2}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((-3)*(8))/(4) == -6",
+            "(4)*(-6) - (-3)*(8) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v04",
+          "statement": "The vectors $\\vec{a} = (5; 2)$ and $\\vec{b} = (-10; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-1$",
+            "$-13$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{-10} = \\frac{2}{5}$, so $k = \\frac{2 \\cdot -10}{5} = -4$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -1$ — the classic cross-multiplication slip.",
+          "check": [
+            "((2)*(-10))/(5) == -4",
+            "(5)*(-4) - (2)*(-10) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v05",
+          "statement": "The vectors $\\vec{a} = (2; -7)$ and $\\vec{b} = (6; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-21$",
+            "$-\\frac{7}{3}$",
+            "$-3$",
+            "$21$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{6} = \\frac{-7}{2}$, so $k = \\frac{-7 \\cdot 6}{2} = -21$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -\\frac{7}{3}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((-7)*(6))/(2) == -21",
+            "(2)*(-21) - (-7)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v06",
+          "statement": "The vectors $\\vec{a} = (3; 4)$ and $\\vec{b} = (-9; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-\\frac{4}{3}$",
+            "$-12$",
+            "$-8$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{-9} = \\frac{4}{3}$, so $k = \\frac{4 \\cdot -9}{3} = -12$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -\\frac{4}{3}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((4)*(-9))/(3) == -12",
+            "(3)*(-12) - (4)*(-9) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v07",
+          "statement": "The vectors $\\vec{a} = (6; 4)$ and $\\vec{b} = (3; k)$ are parallel. Find $k$.",
+          "options": [
+            "$8$",
+            "$1$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{3} = \\frac{4}{6}$, so $k = \\frac{4 \\cdot 3}{6} = 2$. Matching the wrong pair gives $\\frac{p\\,q}{r} = 8$ — the classic cross-multiplication slip.",
+          "check": [
+            "((4)*(3))/(6) == 2",
+            "(6)*(2) - (4)*(3) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v08",
+          "statement": "The vectors $\\vec{a} = (4; 6)$ and $\\vec{b} = (2; k)$ are parallel. Find $k$.",
+          "options": [
+            "$12$",
+            "$4$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{2} = \\frac{6}{4}$, so $k = \\frac{6 \\cdot 2}{4} = 3$. Matching the wrong pair gives $\\frac{p\\,q}{r} = 12$ — the classic cross-multiplication slip.",
+          "check": [
+            "((6)*(2))/(4) == 3",
+            "(4)*(3) - (6)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v09",
+          "statement": "The vectors $\\vec{a} = (5; -3)$ and $\\vec{b} = (10; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-6$",
+            "$-\\frac{3}{2}$",
+            "$2$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{10} = \\frac{-3}{5}$, so $k = \\frac{-3 \\cdot 10}{5} = -6$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -\\frac{3}{2}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((-3)*(10))/(5) == -6",
+            "(5)*(-6) - (-3)*(10) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v10",
+          "statement": "The vectors $\\vec{a} = (2; 5)$ and $\\vec{b} = (-8; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-\\frac{5}{4}$",
+            "$-20$",
+            "$-5$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{-8} = \\frac{5}{2}$, so $k = \\frac{5 \\cdot -8}{2} = -20$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -\\frac{5}{4}$ — the classic cross-multiplication slip.",
+          "check": [
+            "((5)*(-8))/(2) == -20",
+            "(2)*(-20) - (5)*(-8) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v11",
+          "statement": "The vectors $\\vec{a} = (7; 2)$ and $\\vec{b} = (14; k)$ are parallel. Find $k$.",
+          "options": [
+            "$1$",
+            "$9$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{14} = \\frac{2}{7}$, so $k = \\frac{2 \\cdot 14}{7} = 4$. Matching the wrong pair gives $\\frac{p\\,q}{r} = 1$ — the classic cross-multiplication slip.",
+          "check": [
+            "((2)*(14))/(7) == 4",
+            "(7)*(4) - (2)*(14) == 0"
+          ]
+        },
+        {
+          "id": "VM-par-v12",
+          "statement": "The vectors $\\vec{a} = (3; -8)$ and $\\vec{b} = (6; k)$ are parallel. Find $k$.",
+          "options": [
+            "$-4$",
+            "$-5$",
+            "$16$",
+            "$-16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel vectors have proportional coordinates: $\\frac{k}{6} = \\frac{-8}{3}$, so $k = \\frac{-8 \\cdot 6}{3} = -16$. Matching the wrong pair gives $\\frac{p\\,q}{r} = -4$ — the classic cross-multiplication slip.",
+          "check": [
+            "((-8)*(6))/(3) == -16",
+            "(3)*(-16) - (-8)*(6) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tip-to-tail",
+      "title": "Tip-to-tail: magnitude of a sum",
+      "level": 2,
+      "skill": "VM-tip",
+      "unit": "vector-arithmetic",
+      "variants": [
+        {
+          "id": "VM-tip-v01",
+          "statement": "Let $\\vec{a} = (1; 3)$ and $\\vec{b} = (2; 1)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$25$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (3; 4)$; then $\\sqrt{3^2 + 4^2} = 5$. Adding the coordinates, $3 + 4 = 7$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((1) + (2))**2 + ((3) + (1))**2) == 5"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 1,
+                "y": 3,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 3,
+                "y": 4,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v02",
+          "statement": "Let $\\vec{a} = (2; 2)$ and $\\vec{b} = (4; 6)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$14$",
+            "$10$",
+            "$100$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (6; 8)$; then $\\sqrt{6^2 + 8^2} = 10$. Adding the coordinates, $6 + 8 = 14$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((2) + (4))**2 + ((2) + (6))**2) == 10"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 2,
+                "y": 2,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 6,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v03",
+          "statement": "Let $\\vec{a} = (1; 5)$ and $\\vec{b} = (4; 7)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$17$",
+            "$169$",
+            "$13$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (5; 12)$; then $\\sqrt{5^2 + 12^2} = 13$. Adding the coordinates, $5 + 12 = 17$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((1) + (4))**2 + ((5) + (7))**2) == 13"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 1,
+                "y": 5,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 5,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v04",
+          "statement": "Let $\\vec{a} = (5; 2)$ and $\\vec{b} = (3; 4)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$14$",
+            "$100$",
+            "$12$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (8; 6)$; then $\\sqrt{8^2 + 6^2} = 10$. Adding the coordinates, $8 + 6 = 14$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((5) + (3))**2 + ((2) + (4))**2) == 10"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 5,
+                "y": 2,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 8,
+                "y": 6,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v05",
+          "statement": "Let $\\vec{a} = (7; 1)$ and $\\vec{b} = (5; 4)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$13$",
+            "$17$",
+            "$169$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (12; 5)$; then $\\sqrt{12^2 + 5^2} = 13$. Adding the coordinates, $12 + 5 = 17$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((7) + (5))**2 + ((1) + (4))**2) == 13"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 7,
+                "y": 1,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 12,
+                "y": 5,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v06",
+          "statement": "Let $\\vec{a} = (4; 5)$ and $\\vec{b} = (5; 7)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$21$",
+            "$15$",
+            "$225$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (9; 12)$; then $\\sqrt{9^2 + 12^2} = 15$. Adding the coordinates, $9 + 12 = 21$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((4) + (5))**2 + ((5) + (7))**2) == 15"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 4,
+                "y": 5,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 9,
+                "y": 12,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v07",
+          "statement": "Let $\\vec{a} = (3; 6)$ and $\\vec{b} = (5; 9)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$23$",
+            "$289$",
+            "$17$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (8; 15)$; then $\\sqrt{8^2 + 15^2} = 17$. Adding the coordinates, $8 + 15 = 23$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((3) + (5))**2 + ((6) + (9))**2) == 17"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 3,
+                "y": 6,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 8,
+                "y": 15,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v08",
+          "statement": "Let $\\vec{a} = (9; 10)$ and $\\vec{b} = (11; 11)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$41$",
+            "$841$",
+            "$31$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (20; 21)$; then $\\sqrt{20^2 + 21^2} = 29$. Adding the coordinates, $20 + 21 = 41$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((9) + (11))**2 + ((10) + (11))**2) == 29"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 9,
+                "y": 10,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 20,
+                "y": 21,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v09",
+          "statement": "Let $\\vec{a} = (3; 11)$ and $\\vec{b} = (4; 13)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$25$",
+            "$31$",
+            "$625$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (7; 24)$; then $\\sqrt{7^2 + 24^2} = 25$. Adding the coordinates, $7 + 24 = 31$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((3) + (4))**2 + ((11) + (13))**2) == 25"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 3,
+                "y": 11,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 7,
+                "y": 24,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v10",
+          "statement": "Let $\\vec{a} = (8; 3)$ and $\\vec{b} = (7; 5)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$23$",
+            "$17$",
+            "$289$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (15; 8)$; then $\\sqrt{15^2 + 8^2} = 17$. Adding the coordinates, $15 + 8 = 23$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((8) + (7))**2 + ((3) + (5))**2) == 17"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 8,
+                "y": 3,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 15,
+                "y": 8,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v11",
+          "statement": "Let $\\vec{a} = (1; 2)$ and $\\vec{b} = (3; 1)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$7$",
+            "$25$",
+            "$5$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (4; 3)$; then $\\sqrt{4^2 + 3^2} = 5$. Adding the coordinates, $4 + 3 = 7$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((1) + (3))**2 + ((2) + (1))**2) == 5"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 1,
+                "y": 2,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 4,
+                "y": 3,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "VM-tip-v12",
+          "statement": "Let $\\vec{a} = (6; 4)$ and $\\vec{b} = (6; 5)$. Find $|\\vec{a} + \\vec{b}|$.",
+          "options": [
+            "$21$",
+            "$225$",
+            "$17$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "First add tip-to-tail: $\\vec{a} + \\vec{b} = (12; 9)$; then $\\sqrt{12^2 + 9^2} = 15$. Adding the coordinates, $12 + 9 = 21$, skips Pythagoras — the classic slip.",
+          "check": [
+            "sqrt(((6) + (6))**2 + ((4) + (5))**2) == 15"
+          ],
+          "geoFigure": {
+            "points": [
+              {
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "id": "P",
+                "x": 6,
+                "y": 4,
+                "label": ""
+              },
+              {
+                "id": "Q",
+                "x": 12,
+                "y": 9,
+                "label": ""
+              }
+            ],
+            "objects": [
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "P",
+                "label": "a"
+              },
+              {
+                "kind": "segment",
+                "from": "P",
+                "to": "Q",
+                "label": "b",
+                "color": "blue"
+              },
+              {
+                "kind": "segment",
+                "from": "O",
+                "to": "Q",
+                "label": "?",
+                "color": "accent",
+                "dashed": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "dot-value",
+      "title": "Computing the dot product",
+      "level": 1,
+      "skill": "VM-dot",
+      "unit": "the-dot-product",
+      "variants": [
+        {
+          "id": "VM-dot-v01",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (2; 3)$ and $\\vec{b} = (4; 1)$.",
+          "options": [
+            "$11$",
+            "$14$",
+            "$24$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply matching components and add: $(2)(4) + (3)(1) = 11$. Crossing the components, $a_1 b_2 + a_2 b_1 = 14$, is the classic slip.",
+          "check": [
+            "(2)*(4) + (3)*(1) == 11"
+          ]
+        },
+        {
+          "id": "VM-dot-v02",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (3; -2)$ and $\\vec{b} = (5; 4)$.",
+          "options": [
+            "$2$",
+            "$7$",
+            "$16$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply matching components and add: $(3)(5) + (-2)(4) = 7$. Crossing the components, $a_1 b_2 + a_2 b_1 = 2$, is the classic slip.",
+          "check": [
+            "(3)*(5) + (-2)*(4) == 7"
+          ]
+        },
+        {
+          "id": "VM-dot-v03",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (-1; 4)$ and $\\vec{b} = (3; 2)$.",
+          "options": [
+            "$10$",
+            "$12$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply matching components and add: $(-1)(3) + (4)(2) = 5$. Crossing the components, $a_1 b_2 + a_2 b_1 = 10$, is the classic slip.",
+          "check": [
+            "(-1)*(3) + (4)*(2) == 5"
+          ]
+        },
+        {
+          "id": "VM-dot-v04",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (5; 2)$ and $\\vec{b} = (-3; 4)$.",
+          "options": [
+            "$14$",
+            "$12$",
+            "$8$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply matching components and add: $(5)(-3) + (2)(4) = -7$. Crossing the components, $a_1 b_2 + a_2 b_1 = 14$, is the classic slip.",
+          "check": [
+            "(5)*(-3) + (2)*(4) == -7"
+          ]
+        },
+        {
+          "id": "VM-dot-v05",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (2; -5)$ and $\\vec{b} = (-4; 3)$.",
+          "options": [
+            "$-23$",
+            "$26$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply matching components and add: $(2)(-4) + (-5)(3) = -23$. Crossing the components, $a_1 b_2 + a_2 b_1 = 26$, is the classic slip.",
+          "check": [
+            "(2)*(-4) + (-5)*(3) == -23"
+          ]
+        },
+        {
+          "id": "VM-dot-v06",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (4; 1)$ and $\\vec{b} = (2; 7)$.",
+          "options": [
+            "$30$",
+            "$15$",
+            "$48$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply matching components and add: $(4)(2) + (1)(7) = 15$. Crossing the components, $a_1 b_2 + a_2 b_1 = 30$, is the classic slip.",
+          "check": [
+            "(4)*(2) + (1)*(7) == 15"
+          ]
+        },
+        {
+          "id": "VM-dot-v07",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (-3; 2)$ and $\\vec{b} = (4; 5)$.",
+          "options": [
+            "$-7$",
+            "$7$",
+            "$-2$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply matching components and add: $(-3)(4) + (2)(5) = -2$. Crossing the components, $a_1 b_2 + a_2 b_1 = -7$, is the classic slip.",
+          "check": [
+            "(-3)*(4) + (2)*(5) == -2"
+          ]
+        },
+        {
+          "id": "VM-dot-v08",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (6; -1)$ and $\\vec{b} = (2; 5)$.",
+          "options": [
+            "$28$",
+            "$32$",
+            "$12$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply matching components and add: $(6)(2) + (-1)(5) = 7$. Crossing the components, $a_1 b_2 + a_2 b_1 = 28$, is the classic slip.",
+          "check": [
+            "(6)*(2) + (-1)*(5) == 7"
+          ]
+        },
+        {
+          "id": "VM-dot-v09",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (1; 7)$ and $\\vec{b} = (3; -2)$.",
+          "options": [
+            "$-11$",
+            "$19$",
+            "$20$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply matching components and add: $(1)(3) + (7)(-2) = -11$. Crossing the components, $a_1 b_2 + a_2 b_1 = 19$, is the classic slip.",
+          "check": [
+            "(1)*(3) + (7)*(-2) == -11"
+          ]
+        },
+        {
+          "id": "VM-dot-v10",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (-2; -3)$ and $\\vec{b} = (5; 1)$.",
+          "options": [
+            "$-17$",
+            "$-13$",
+            "$-6$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply matching components and add: $(-2)(5) + (-3)(1) = -13$. Crossing the components, $a_1 b_2 + a_2 b_1 = -17$, is the classic slip.",
+          "check": [
+            "(-2)*(5) + (-3)*(1) == -13"
+          ]
+        },
+        {
+          "id": "VM-dot-v11",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (3; 4)$ and $\\vec{b} = (1; -6)$.",
+          "options": [
+            "$-14$",
+            "$-8$",
+            "$-21$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply matching components and add: $(3)(1) + (4)(-6) = -21$. Crossing the components, $a_1 b_2 + a_2 b_1 = -14$, is the classic slip.",
+          "check": [
+            "(3)*(1) + (4)*(-6) == -21"
+          ]
+        },
+        {
+          "id": "VM-dot-v12",
+          "statement": "Compute the dot product $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (7; 2)$ and $\\vec{b} = (-1; 4)$.",
+          "options": [
+            "$26$",
+            "$36$",
+            "$12$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply matching components and add: $(7)(-1) + (2)(4) = 1$. Crossing the components, $a_1 b_2 + a_2 b_1 = 26$, is the classic slip.",
+          "check": [
+            "(7)*(-1) + (2)*(4) == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perpendicular-k",
+      "title": "Perpendicular vectors: find k",
+      "level": 2,
+      "skill": "VM-perp",
+      "unit": "the-dot-product",
+      "variants": [
+        {
+          "id": "VM-perp-v01",
+          "statement": "The vectors $\\vec{a} = (2; 3)$ and $\\vec{b} = (k; 4)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-6$",
+            "$6$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means zero dot product: $2 k + (3)(4) = 0$, so $k = -6$. Dropping the minus sign when solving gives $6$ — the classic slip.",
+          "check": [
+            "(2)*(-6) + (3)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v02",
+          "statement": "The vectors $\\vec{a} = (3; 2)$ and $\\vec{b} = (k; 6)$ are perpendicular. Find $k$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$11$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means zero dot product: $3 k + (2)(6) = 0$, so $k = -4$. Dropping the minus sign when solving gives $4$ — the classic slip.",
+          "check": [
+            "(3)*(-4) + (2)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v03",
+          "statement": "The vectors $\\vec{a} = (2; -5)$ and $\\vec{b} = (k; 4)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-10$",
+            "$9$",
+            "$10$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means zero dot product: $2 k + (-5)(4) = 0$, so $k = 10$. Dropping the minus sign when solving gives $-10$ — the classic slip.",
+          "check": [
+            "(2)*(10) + (-5)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v04",
+          "statement": "The vectors $\\vec{a} = (5; 4)$ and $\\vec{b} = (k; -10)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-8$",
+            "$-14$",
+            "$-1$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means zero dot product: $5 k + (4)(-10) = 0$, so $k = 8$. Dropping the minus sign when solving gives $-8$ — the classic slip.",
+          "check": [
+            "(5)*(8) + (4)*(-10) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v05",
+          "statement": "The vectors $\\vec{a} = (3; -7)$ and $\\vec{b} = (k; 6)$ are perpendicular. Find $k$.",
+          "options": [
+            "$14$",
+            "$-14$",
+            "$13$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means zero dot product: $3 k + (-7)(6) = 0$, so $k = 14$. Dropping the minus sign when solving gives $-14$ — the classic slip.",
+          "check": [
+            "(3)*(14) + (-7)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v06",
+          "statement": "The vectors $\\vec{a} = (4; 3)$ and $\\vec{b} = (k; -8)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-6$",
+            "$6$",
+            "$-11$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means zero dot product: $4 k + (3)(-8) = 0$, so $k = 6$. Dropping the minus sign when solving gives $-6$ — the classic slip.",
+          "check": [
+            "(4)*(6) + (3)*(-8) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v07",
+          "statement": "The vectors $\\vec{a} = (2; 9)$ and $\\vec{b} = (k; -4)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-18$",
+            "$-13$",
+            "$18$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means zero dot product: $2 k + (9)(-4) = 0$, so $k = 18$. Dropping the minus sign when solving gives $-18$ — the classic slip.",
+          "check": [
+            "(2)*(18) + (9)*(-4) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v08",
+          "statement": "The vectors $\\vec{a} = (6; -4)$ and $\\vec{b} = (k; 3)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-2$",
+            "$7$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means zero dot product: $6 k + (-4)(3) = 0$, so $k = 2$. Dropping the minus sign when solving gives $-2$ — the classic slip.",
+          "check": [
+            "(6)*(2) + (-4)*(3) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v09",
+          "statement": "The vectors $\\vec{a} = (7; 2)$ and $\\vec{b} = (k; -7)$ are perpendicular. Find $k$.",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$-9$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means zero dot product: $7 k + (2)(-7) = 0$, so $k = 2$. Dropping the minus sign when solving gives $-2$ — the classic slip.",
+          "check": [
+            "(7)*(2) + (2)*(-7) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v10",
+          "statement": "The vectors $\\vec{a} = (2; -3)$ and $\\vec{b} = (k; -8)$ are perpendicular. Find $k$.",
+          "options": [
+            "$12$",
+            "$-12$",
+            "$-5$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means zero dot product: $2 k + (-3)(-8) = 0$, so $k = -12$. Dropping the minus sign when solving gives $12$ — the classic slip.",
+          "check": [
+            "(2)*(-12) + (-3)*(-8) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v11",
+          "statement": "The vectors $\\vec{a} = (5; 10)$ and $\\vec{b} = (k; 2)$ are perpendicular. Find $k$.",
+          "options": [
+            "$4$",
+            "$-8$",
+            "$-4$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means zero dot product: $5 k + (10)(2) = 0$, so $k = -4$. Dropping the minus sign when solving gives $4$ — the classic slip.",
+          "check": [
+            "(5)*(-4) + (10)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-perp-v12",
+          "statement": "The vectors $\\vec{a} = (3; -2)$ and $\\vec{b} = (k; 9)$ are perpendicular. Find $k$.",
+          "options": [
+            "$-6$",
+            "$11$",
+            "$10$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means zero dot product: $3 k + (-2)(9) = 0$, so $k = 6$. Dropping the minus sign when solving gives $-6$ — the classic slip.",
+          "check": [
+            "(3)*(6) + (-2)*(9) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vector-angle-special",
+      "title": "Angle between vectors",
+      "level": 3,
+      "skill": "VM-ang",
+      "unit": "the-dot-product",
+      "variants": [
+        {
+          "id": "VM-ang-v01",
+          "statement": "Find the angle between $\\vec{a} = (2; 0)$ and $\\vec{b} = (3; 3)$.",
+          "options": [
+            "$45°$",
+            "$135°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = \\frac{\\sqrt{2}}{2}$, so $\\theta = 45°$. Reading off the supplement $135°$ (wrong sign of the cosine) is the classic slip.",
+          "check": [
+            "cos(pi*45/180) == (6)/(sqrt(4)*sqrt(18))"
+          ]
+        },
+        {
+          "id": "VM-ang-v02",
+          "statement": "Find the angle between $\\vec{a} = (4; 0)$ and $\\vec{b} = (1; 1)$.",
+          "options": [
+            "$135°$",
+            "$45°$",
+            "$60°$",
+            "$90°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = \\frac{\\sqrt{2}}{2}$, so $\\theta = 45°$. Reading off the supplement $135°$ (wrong sign of the cosine) is the classic slip.",
+          "check": [
+            "cos(pi*45/180) == (4)/(sqrt(16)*sqrt(2))"
+          ]
+        },
+        {
+          "id": "VM-ang-v03",
+          "statement": "Find the angle between $\\vec{a} = (5; 0)$ and $\\vec{b} = (2; 2)$.",
+          "options": [
+            "$135°$",
+            "$60°$",
+            "$45°$",
+            "$90°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = \\frac{\\sqrt{2}}{2}$, so $\\theta = 45°$. Reading off the supplement $135°$ (wrong sign of the cosine) is the classic slip.",
+          "check": [
+            "cos(pi*45/180) == (10)/(sqrt(25)*sqrt(8))"
+          ]
+        },
+        {
+          "id": "VM-ang-v04",
+          "statement": "Find the angle between $\\vec{a} = (3; 0)$ and $\\vec{b} = (0; 5)$.",
+          "options": [
+            "$0°$",
+            "$45°$",
+            "$180°$",
+            "$90°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = 0$, so $\\theta = 90°$. A zero dot product means perpendicular — answering $0°$ (parallel) is the classic confusion.",
+          "check": [
+            "cos(pi*90/180) == (0)/(sqrt(9)*sqrt(25))"
+          ]
+        },
+        {
+          "id": "VM-ang-v05",
+          "statement": "Find the angle between $\\vec{a} = (2; 3)$ and $\\vec{b} = (-3; 2)$.",
+          "options": [
+            "$90°$",
+            "$0°$",
+            "$45°$",
+            "$180°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = 0$, so $\\theta = 90°$. A zero dot product means perpendicular — answering $0°$ (parallel) is the classic confusion.",
+          "check": [
+            "cos(pi*90/180) == (0)/(sqrt(13)*sqrt(13))"
+          ]
+        },
+        {
+          "id": "VM-ang-v06",
+          "statement": "Find the angle between $\\vec{a} = (1; 4)$ and $\\vec{b} = (-4; 1)$.",
+          "options": [
+            "$0°$",
+            "$90°$",
+            "$45°$",
+            "$180°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = 0$, so $\\theta = 90°$. A zero dot product means perpendicular — answering $0°$ (parallel) is the classic confusion.",
+          "check": [
+            "cos(pi*90/180) == (0)/(sqrt(17)*sqrt(17))"
+          ]
+        },
+        {
+          "id": "VM-ang-v07",
+          "statement": "Find the angle between $\\vec{a} = (1; 2)$ and $\\vec{b} = (2; 4)$.",
+          "options": [
+            "$90°$",
+            "$180°$",
+            "$0°$",
+            "$45°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = 1$, so $\\theta = 0°$. Answering $180°$ ignores that the scale factor is positive — the classic direction slip.",
+          "check": [
+            "cos(pi*0/180) == (10)/(sqrt(5)*sqrt(20))"
+          ]
+        },
+        {
+          "id": "VM-ang-v08",
+          "statement": "Find the angle between $\\vec{a} = (3; 1)$ and $\\vec{b} = (6; 2)$.",
+          "options": [
+            "$90°$",
+            "$180°$",
+            "$45°$",
+            "$0°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = 1$, so $\\theta = 0°$. Answering $180°$ ignores that the scale factor is positive — the classic direction slip.",
+          "check": [
+            "cos(pi*0/180) == (20)/(sqrt(10)*sqrt(40))"
+          ]
+        },
+        {
+          "id": "VM-ang-v09",
+          "statement": "Find the angle between $\\vec{a} = (2; 1)$ and $\\vec{b} = (-4; -2)$.",
+          "options": [
+            "$180°$",
+            "$0°$",
+            "$90°$",
+            "$135°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = -1$, so $\\theta = 180°$. Answering $0°$ ignores the negative scale factor — the classic direction slip.",
+          "check": [
+            "cos(pi*180/180) == (-10)/(sqrt(5)*sqrt(20))"
+          ]
+        },
+        {
+          "id": "VM-ang-v10",
+          "statement": "Find the angle between $\\vec{a} = (1; 3)$ and $\\vec{b} = (-2; -6)$.",
+          "options": [
+            "$0°$",
+            "$180°$",
+            "$90°$",
+            "$135°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = -1$, so $\\theta = 180°$. Answering $0°$ ignores the negative scale factor — the classic direction slip.",
+          "check": [
+            "cos(pi*180/180) == (-20)/(sqrt(10)*sqrt(40))"
+          ]
+        },
+        {
+          "id": "VM-ang-v11",
+          "statement": "Find the angle between $\\vec{a} = (3; 0)$ and $\\vec{b} = (-2; 2)$.",
+          "options": [
+            "$45°$",
+            "$60°$",
+            "$135°$",
+            "$90°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = -\\frac{\\sqrt{2}}{2}$, so $\\theta = 135°$. Reading off the supplement $45°$ (wrong sign of the cosine) is the classic slip.",
+          "check": [
+            "cos(pi*135/180) == (-6)/(sqrt(9)*sqrt(8))"
+          ]
+        },
+        {
+          "id": "VM-ang-v12",
+          "statement": "Find the angle between $\\vec{a} = (1; 0)$ and $\\vec{b} = (-5; 5)$.",
+          "options": [
+            "$45°$",
+            "$60°$",
+            "$90°$",
+            "$135°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = -\\frac{\\sqrt{2}}{2}$, so $\\theta = 135°$. Reading off the supplement $45°$ (wrong sign of the cosine) is the classic slip.",
+          "check": [
+            "cos(pi*135/180) == (-5)/(sqrt(1)*sqrt(50))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "midpoint-3d",
+      "title": "Midpoint in 3D",
+      "level": 1,
+      "skill": "VM-mid3",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-mid3-v01",
+          "statement": "Find the midpoint of the segment with endpoints $A = (2; 4; 6)$ and $B = (4; 0; 2)$.",
+          "options": [
+            "$(3; 2; 4)$",
+            "$(1; -2; -2)$",
+            "$(6; 4; 8)$",
+            "$(2; 2; 4)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Average each coordinate: $\\left(\\frac{2+4}{2}; \\frac{4+0}{2}; \\frac{6+2}{2}\\right) = (3; 2; 4)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((2) + (4))/2 == 3",
+            "((4) + (0))/2 == 2",
+            "((6) + (2))/2 == 4"
+          ]
+        },
+        {
+          "id": "VM-mid3-v02",
+          "statement": "Find the midpoint of the segment with endpoints $A = (1; 3; 5)$ and $B = (3; 7; 1)$.",
+          "options": [
+            "$(1; 2; -2)$",
+            "$(2; 5; 3)$",
+            "$(4; 10; 6)$",
+            "$(1; 5; 3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Average each coordinate: $\\left(\\frac{1+3}{2}; \\frac{3+7}{2}; \\frac{5+1}{2}\\right) = (2; 5; 3)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((1) + (3))/2 == 2",
+            "((3) + (7))/2 == 5",
+            "((5) + (1))/2 == 3"
+          ]
+        },
+        {
+          "id": "VM-mid3-v03",
+          "statement": "Find the midpoint of the segment with endpoints $A = (-2; 4; 0)$ and $B = (6; -2; 8)$.",
+          "options": [
+            "$(4; -3; 4)$",
+            "$(4; 2; 8)$",
+            "$(2; 1; 4)$",
+            "$(-2; 1; 4)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Average each coordinate: $\\left(\\frac{-2+6}{2}; \\frac{4+-2}{2}; \\frac{0+8}{2}\\right) = (2; 1; 4)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((-2) + (6))/2 == 2",
+            "((4) + (-2))/2 == 1",
+            "((0) + (8))/2 == 4"
+          ]
+        },
+        {
+          "id": "VM-mid3-v04",
+          "statement": "Find the midpoint of the segment with endpoints $A = (5; -1; 3)$ and $B = (-1; 5; 7)$.",
+          "options": [
+            "$(-3; 3; 2)$",
+            "$(4; 4; 10)$",
+            "$(5; 2; 5)$",
+            "$(2; 2; 5)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Average each coordinate: $\\left(\\frac{5+-1}{2}; \\frac{-1+5}{2}; \\frac{3+7}{2}\\right) = (2; 2; 5)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((5) + (-1))/2 == 2",
+            "((-1) + (5))/2 == 2",
+            "((3) + (7))/2 == 5"
+          ]
+        },
+        {
+          "id": "VM-mid3-v05",
+          "statement": "Find the midpoint of the segment with endpoints $A = (0; 2; -4)$ and $B = (6; 4; 2)$.",
+          "options": [
+            "$(3; 3; -1)$",
+            "$(3; 1; 3)$",
+            "$(6; 6; -2)$",
+            "$(0; 3; -1)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Average each coordinate: $\\left(\\frac{0+6}{2}; \\frac{2+4}{2}; \\frac{-4+2}{2}\\right) = (3; 3; -1)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((0) + (6))/2 == 3",
+            "((2) + (4))/2 == 3",
+            "((-4) + (2))/2 == -1"
+          ]
+        },
+        {
+          "id": "VM-mid3-v06",
+          "statement": "Find the midpoint of the segment with endpoints $A = (4; 4; 2)$ and $B = (-2; 0; 6)$.",
+          "options": [
+            "$(-3; -2; 2)$",
+            "$(1; 2; 4)$",
+            "$(2; 4; 8)$",
+            "$(4; 2; 4)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Average each coordinate: $\\left(\\frac{4+-2}{2}; \\frac{4+0}{2}; \\frac{2+6}{2}\\right) = (1; 2; 4)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((4) + (-2))/2 == 1",
+            "((4) + (0))/2 == 2",
+            "((2) + (6))/2 == 4"
+          ]
+        },
+        {
+          "id": "VM-mid3-v07",
+          "statement": "Find the midpoint of the segment with endpoints $A = (-3; 1; 5)$ and $B = (7; 3; -1)$.",
+          "options": [
+            "$(5; 1; -3)$",
+            "$(4; 4; 4)$",
+            "$(2; 2; 2)$",
+            "$(-3; 2; 2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Average each coordinate: $\\left(\\frac{-3+7}{2}; \\frac{1+3}{2}; \\frac{5+-1}{2}\\right) = (2; 2; 2)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((-3) + (7))/2 == 2",
+            "((1) + (3))/2 == 2",
+            "((5) + (-1))/2 == 2"
+          ]
+        },
+        {
+          "id": "VM-mid3-v08",
+          "statement": "Find the midpoint of the segment with endpoints $A = (6; -2; 4)$ and $B = (2; 8; 0)$.",
+          "options": [
+            "$(-2; 5; -2)$",
+            "$(8; 6; 4)$",
+            "$(6; 3; 2)$",
+            "$(4; 3; 2)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Average each coordinate: $\\left(\\frac{6+2}{2}; \\frac{-2+8}{2}; \\frac{4+0}{2}\\right) = (4; 3; 2)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((6) + (2))/2 == 4",
+            "((-2) + (8))/2 == 3",
+            "((4) + (0))/2 == 2"
+          ]
+        },
+        {
+          "id": "VM-mid3-v09",
+          "statement": "Find the midpoint of the segment with endpoints $A = (1; -5; 3)$ and $B = (5; 1; -7)$.",
+          "options": [
+            "$(3; -2; -2)$",
+            "$(2; 3; -5)$",
+            "$(6; -4; -4)$",
+            "$(1; -2; -2)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Average each coordinate: $\\left(\\frac{1+5}{2}; \\frac{-5+1}{2}; \\frac{3+-7}{2}\\right) = (3; -2; -2)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((1) + (5))/2 == 3",
+            "((-5) + (1))/2 == -2",
+            "((3) + (-7))/2 == -2"
+          ]
+        },
+        {
+          "id": "VM-mid3-v10",
+          "statement": "Find the midpoint of the segment with endpoints $A = (-4; 2; 6)$ and $B = (0; 6; -2)$.",
+          "options": [
+            "$(2; 2; -4)$",
+            "$(-2; 4; 2)$",
+            "$(-4; 8; 4)$",
+            "$(-4; 4; 2)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Average each coordinate: $\\left(\\frac{-4+0}{2}; \\frac{2+6}{2}; \\frac{6+-2}{2}\\right) = (-2; 4; 2)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((-4) + (0))/2 == -2",
+            "((2) + (6))/2 == 4",
+            "((6) + (-2))/2 == 2"
+          ]
+        },
+        {
+          "id": "VM-mid3-v11",
+          "statement": "Find the midpoint of the segment with endpoints $A = (3; 3; -5)$ and $B = (7; -1; 1)$.",
+          "options": [
+            "$(2; -2; 3)$",
+            "$(10; 2; -4)$",
+            "$(5; 1; -2)$",
+            "$(3; 1; -2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Average each coordinate: $\\left(\\frac{3+7}{2}; \\frac{3+-1}{2}; \\frac{-5+1}{2}\\right) = (5; 1; -2)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((3) + (7))/2 == 5",
+            "((3) + (-1))/2 == 1",
+            "((-5) + (1))/2 == -2"
+          ]
+        },
+        {
+          "id": "VM-mid3-v12",
+          "statement": "Find the midpoint of the segment with endpoints $A = (2; 0; 8)$ and $B = (6; 4; -2)$.",
+          "options": [
+            "$(2; 2; -5)$",
+            "$(8; 4; 6)$",
+            "$(2; 2; 3)$",
+            "$(4; 2; 3)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Average each coordinate: $\\left(\\frac{2+6}{2}; \\frac{0+4}{2}; \\frac{8+-2}{2}\\right) = (4; 2; 3)$. Halving the difference $B - A$ gives half of $\\vec{AB}$, not the midpoint — the classic mix-up.",
+          "check": [
+            "((2) + (6))/2 == 4",
+            "((0) + (4))/2 == 2",
+            "((8) + (-2))/2 == 3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magnitude-3d",
+      "title": "Magnitude in 3D",
+      "level": 2,
+      "skill": "VM-m3d",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-m3d-v01",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (1; 2; 2)$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(1)^2 + (2)^2 + (2)^2} = \\sqrt{9} = 3$. Adding the components' absolute values gives $5$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((1)**2 + (2)**2 + (2)**2) == 3"
+          ]
+        },
+        {
+          "id": "VM-m3d-v02",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (2; -3; 6)$.",
+          "options": [
+            "$11$",
+            "$7$",
+            "$49$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(2)^2 + (-3)^2 + (6)^2} = \\sqrt{49} = 7$. Adding the components' absolute values gives $11$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((2)**2 + (-3)**2 + (6)**2) == 7"
+          ]
+        },
+        {
+          "id": "VM-m3d-v03",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (-1; 4; 8)$.",
+          "options": [
+            "$13$",
+            "$81$",
+            "$9$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-1)^2 + (4)^2 + (8)^2} = \\sqrt{81} = 9$. Adding the components' absolute values gives $13$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((-1)**2 + (4)**2 + (8)**2) == 9"
+          ]
+        },
+        {
+          "id": "VM-m3d-v04",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (4; -4; 7)$.",
+          "options": [
+            "$15$",
+            "$81$",
+            "$10$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(4)^2 + (-4)^2 + (7)^2} = \\sqrt{81} = 9$. Adding the components' absolute values gives $15$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((4)**2 + (-4)**2 + (7)**2) == 9"
+          ]
+        },
+        {
+          "id": "VM-m3d-v05",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (2; 6; -9)$.",
+          "options": [
+            "$11$",
+            "$17$",
+            "$121$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(2)^2 + (6)^2 + (-9)^2} = \\sqrt{121} = 11$. Adding the components' absolute values gives $17$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((2)**2 + (6)**2 + (-9)**2) == 11"
+          ]
+        },
+        {
+          "id": "VM-m3d-v06",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (-6; 6; 7)$.",
+          "options": [
+            "$19$",
+            "$11$",
+            "$121$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-6)^2 + (6)^2 + (7)^2} = \\sqrt{121} = 11$. Adding the components' absolute values gives $19$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((-6)**2 + (6)**2 + (7)**2) == 11"
+          ]
+        },
+        {
+          "id": "VM-m3d-v07",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (2; -2; 1)$.",
+          "options": [
+            "$5$",
+            "$9$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(2)^2 + (-2)^2 + (1)^2} = \\sqrt{9} = 3$. Adding the components' absolute values gives $5$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((2)**2 + (-2)**2 + (1)**2) == 3"
+          ]
+        },
+        {
+          "id": "VM-m3d-v08",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (6; -2; -3)$.",
+          "options": [
+            "$11$",
+            "$49$",
+            "$8$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(6)^2 + (-2)^2 + (-3)^2} = \\sqrt{49} = 7$. Adding the components' absolute values gives $11$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((6)**2 + (-2)**2 + (-3)**2) == 7"
+          ]
+        },
+        {
+          "id": "VM-m3d-v09",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (8; 1; -4)$.",
+          "options": [
+            "$9$",
+            "$13$",
+            "$81$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$|\\vec{a}| = \\sqrt{(8)^2 + (1)^2 + (-4)^2} = \\sqrt{81} = 9$. Adding the components' absolute values gives $13$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((8)**2 + (1)**2 + (-4)**2) == 9"
+          ]
+        },
+        {
+          "id": "VM-m3d-v10",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (-7; 4; 4)$.",
+          "options": [
+            "$15$",
+            "$9$",
+            "$81$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-7)^2 + (4)^2 + (4)^2} = \\sqrt{81} = 9$. Adding the components' absolute values gives $15$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((-7)**2 + (4)**2 + (4)**2) == 9"
+          ]
+        },
+        {
+          "id": "VM-m3d-v11",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (9; -2; 6)$.",
+          "options": [
+            "$17$",
+            "$121$",
+            "$11$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$|\\vec{a}| = \\sqrt{(9)^2 + (-2)^2 + (6)^2} = \\sqrt{121} = 11$. Adding the components' absolute values gives $17$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((9)**2 + (-2)**2 + (6)**2) == 11"
+          ]
+        },
+        {
+          "id": "VM-m3d-v12",
+          "statement": "Find the magnitude $|\\vec{a}|$ of the space vector $\\vec{a} = (-6; 7; 6)$.",
+          "options": [
+            "$19$",
+            "$121$",
+            "$12$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$|\\vec{a}| = \\sqrt{(-6)^2 + (7)^2 + (6)^2} = \\sqrt{121} = 11$. Adding the components' absolute values gives $19$ — the classic no-Pythagoras slip.",
+          "check": [
+            "sqrt((-6)**2 + (7)**2 + (6)**2) == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dot-3d",
+      "title": "Dot product in space",
+      "level": 3,
+      "skill": "VM-dot3",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-dot3-v01",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (1; 2; 3)$ and $\\vec{b} = (4; -1; 2)$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$-4$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sum all three products: $(1)(4) + (2)(-1) + (3)(2) = 8$. Dropping the $z$-term out of 2D habit gives $2$ — the classic slip.",
+          "check": [
+            "(1)*(4) + (2)*(-1) + (3)*(2) == 8"
+          ]
+        },
+        {
+          "id": "VM-dot3-v02",
+          "statement": "Find $k$ so that $\\vec{a} = (1; 2; 2)$ and $\\vec{b} = (4; 3; k)$ are perpendicular.",
+          "options": [
+            "$5$",
+            "$-5$",
+            "$10$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the dot product to zero: $(1)(4) + (2)(3) + 2 k = 0$, so $k = -5$. Flipping the sign when isolating $k$ gives $5$ — the classic slip.",
+          "check": [
+            "(1)*(4) + (2)*(3) + (2)*(-5) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v03",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (2; -3; 1)$ and $\\vec{b} = (3; 2; 5)$.",
+          "options": [
+            "$0$",
+            "$-5$",
+            "$5$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sum all three products: $(2)(3) + (-3)(2) + (1)(5) = 5$. Dropping the $z$-term out of 2D habit gives $0$ — the classic slip.",
+          "check": [
+            "(2)*(3) + (-3)*(2) + (1)*(5) == 5"
+          ]
+        },
+        {
+          "id": "VM-dot3-v04",
+          "statement": "Find $k$ so that $\\vec{a} = (2; -1; 3)$ and $\\vec{b} = (3; 0; k)$ are perpendicular.",
+          "options": [
+            "$2$",
+            "$6$",
+            "$-6$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the dot product to zero: $(2)(3) + (-1)(0) + 3 k = 0$, so $k = -2$. Flipping the sign when isolating $k$ gives $2$ — the classic slip.",
+          "check": [
+            "(2)*(3) + (-1)*(0) + (3)*(-2) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v05",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (-1; 4; 2)$ and $\\vec{b} = (5; 1; -3)$.",
+          "options": [
+            "$-7$",
+            "$-1$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sum all three products: $(-1)(5) + (4)(1) + (2)(-3) = -7$. Dropping the $z$-term out of 2D habit gives $-1$ — the classic slip.",
+          "check": [
+            "(-1)*(5) + (4)*(1) + (2)*(-3) == -7"
+          ]
+        },
+        {
+          "id": "VM-dot3-v06",
+          "statement": "Find $k$ so that $\\vec{a} = (3; 2; -4)$ and $\\vec{b} = (2; 5; k)$ are perpendicular.",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$16$",
+            "$-16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the dot product to zero: $(3)(2) + (2)(5) + -4 k = 0$, so $k = 4$. Flipping the sign when isolating $k$ gives $-4$ — the classic slip.",
+          "check": [
+            "(3)*(2) + (2)*(5) + (-4)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v07",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (3; 0; -2)$ and $\\vec{b} = (1; 6; 4)$.",
+          "options": [
+            "$3$",
+            "$11$",
+            "$-5$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sum all three products: $(3)(1) + (0)(6) + (-2)(4) = -5$. Dropping the $z$-term out of 2D habit gives $3$ — the classic slip.",
+          "check": [
+            "(3)*(1) + (0)*(6) + (-2)*(4) == -5"
+          ]
+        },
+        {
+          "id": "VM-dot3-v08",
+          "statement": "Find $k$ so that $\\vec{a} = (1; -3; 2)$ and $\\vec{b} = (5; 1; k)$ are perpendicular.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$-2$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the dot product to zero: $(1)(5) + (-3)(1) + 2 k = 0$, so $k = -1$. Flipping the sign when isolating $k$ gives $1$ — the classic slip.",
+          "check": [
+            "(1)*(5) + (-3)*(1) + (2)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v09",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (2; 5; -1)$ and $\\vec{b} = (-2; 3; 6)$.",
+          "options": [
+            "$5$",
+            "$11$",
+            "$17$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sum all three products: $(2)(-2) + (5)(3) + (-1)(6) = 5$. Dropping the $z$-term out of 2D habit gives $11$ — the classic slip.",
+          "check": [
+            "(2)*(-2) + (5)*(3) + (-1)*(6) == 5"
+          ]
+        },
+        {
+          "id": "VM-dot3-v10",
+          "statement": "Find $k$ so that $\\vec{a} = (2; 2; 5)$ and $\\vec{b} = (-3; -2; k)$ are perpendicular.",
+          "options": [
+            "$-2$",
+            "$2$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set the dot product to zero: $(2)(-3) + (2)(-2) + 5 k = 0$, so $k = 2$. Flipping the sign when isolating $k$ gives $-2$ — the classic slip.",
+          "check": [
+            "(2)*(-3) + (2)*(-2) + (5)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v11",
+          "statement": "Compute $\\vec{a} \\cdot \\vec{b}$ for $\\vec{a} = (4; -2; 3)$ and $\\vec{b} = (2; 1; -2)$.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sum all three products: $(4)(2) + (-2)(1) + (3)(-2) = 0$. Dropping the $z$-term out of 2D habit gives $6$ — the classic slip.",
+          "check": [
+            "(4)*(2) + (-2)*(1) + (3)*(-2) == 0"
+          ]
+        },
+        {
+          "id": "VM-dot3-v12",
+          "statement": "Find $k$ so that $\\vec{a} = (4; -1; -3)$ and $\\vec{b} = (2; 5; k)$ are perpendicular.",
+          "options": [
+            "$-1$",
+            "$3$",
+            "$-3$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set the dot product to zero: $(4)(2) + (-1)(5) + -3 k = 0$, so $k = 1$. Flipping the sign when isolating $k$ gives $-1$ — the classic slip.",
+          "check": [
+            "(4)*(2) + (-1)*(5) + (-3)*(1) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix-entry",
+      "title": "Entry of A + mB",
+      "level": 1,
+      "skill": "VM-ment",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-ment-v01",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 3 \\\\ 2 & 6 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$7$",
+            "$8$",
+            "$4$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 1 + 2\\cdot(3) = 7$. Reading $c_{21}$ (row 2, column 1) instead gives $8$ — the classic index swap.",
+          "check": [
+            "(1) + (2)*(3) == 7"
+          ]
+        },
+        {
+          "id": "VM-ment-v02",
+          "statement": "Let $C = A + 3B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 1 & 4 \\\\ 2 & 5 \\end{pmatrix}$ and $B = \\begin{pmatrix} 3 & -2 \\\\ 6 & 1 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$20$",
+            "$-2$",
+            "$2$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 4 + 3\\cdot(-2) = -2$. Reading $c_{21}$ (row 2, column 1) instead gives $20$ — the classic index swap.",
+          "check": [
+            "(4) + (3)*(-2) == -2"
+          ]
+        },
+        {
+          "id": "VM-ment-v03",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 3 & -2 \\\\ 1 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 5 \\\\ -3 & 1 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$-5$",
+            "$3$",
+            "$8$",
+            "$-12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = -2 + 2\\cdot(5) = 8$. Reading $c_{21}$ (row 2, column 1) instead gives $-5$ — the classic index swap.",
+          "check": [
+            "(-2) + (2)*(5) == 8"
+          ]
+        },
+        {
+          "id": "VM-ment-v04",
+          "statement": "Let $C = A + 3B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 5 & 2 \\\\ 3 & 1 \\end{pmatrix}$ and $B = \\begin{pmatrix} 1 & 4 \\\\ 2 & -2 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$9$",
+            "$6$",
+            "$-10$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 2 + 3\\cdot(4) = 14$. Reading $c_{21}$ (row 2, column 1) instead gives $9$ — the classic index swap.",
+          "check": [
+            "(2) + (3)*(4) == 14"
+          ]
+        },
+        {
+          "id": "VM-ment-v05",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 2 & 6 \\\\ -1 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} 4 & 1 \\\\ 5 & 2 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$8$",
+            "$9$",
+            "$7$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 6 + 2\\cdot(1) = 8$. Reading $c_{21}$ (row 2, column 1) instead gives $9$ — the classic index swap.",
+          "check": [
+            "(6) + (2)*(1) == 8"
+          ]
+        },
+        {
+          "id": "VM-ment-v06",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 1 & -3 \\\\ 2 & 6 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 4 \\\\ 1 & 3 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$4$",
+            "$5$",
+            "$1$",
+            "$-11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = -3 + 2\\cdot(4) = 5$. Reading $c_{21}$ (row 2, column 1) instead gives $4$ — the classic index swap.",
+          "check": [
+            "(-3) + (2)*(4) == 5"
+          ]
+        },
+        {
+          "id": "VM-ment-v07",
+          "statement": "Let $C = A + 3B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 4 & 5 \\\\ 1 & 2 \\end{pmatrix}$ and $B = \\begin{pmatrix} 3 & -1 \\\\ 6 & 4 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$19$",
+            "$4$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 5 + 3\\cdot(-1) = 2$. Reading $c_{21}$ (row 2, column 1) instead gives $19$ — the classic index swap.",
+          "check": [
+            "(5) + (3)*(-1) == 2"
+          ]
+        },
+        {
+          "id": "VM-ment-v08",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 2 & 3 \\\\ 5 & -1 \\end{pmatrix}$ and $B = \\begin{pmatrix} 1 & 6 \\\\ 3 & 4 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$11$",
+            "$9$",
+            "$-9$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 3 + 2\\cdot(6) = 15$. Reading $c_{21}$ (row 2, column 1) instead gives $11$ — the classic index swap.",
+          "check": [
+            "(3) + (2)*(6) == 15"
+          ]
+        },
+        {
+          "id": "VM-ment-v09",
+          "statement": "Let $C = A + 3B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 3 & 1 \\\\ 2 & 5 \\end{pmatrix}$ and $B = \\begin{pmatrix} -2 & 3 \\\\ 4 & 1 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$10$",
+            "$14$",
+            "$4$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 1 + 3\\cdot(3) = 10$. Reading $c_{21}$ (row 2, column 1) instead gives $14$ — the classic index swap.",
+          "check": [
+            "(1) + (3)*(3) == 10"
+          ]
+        },
+        {
+          "id": "VM-ment-v10",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 6 & -4 \\\\ 3 & 2 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 2 \\\\ -1 & 5 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$1$",
+            "$0$",
+            "$-2$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = -4 + 2\\cdot(2) = 0$. Reading $c_{21}$ (row 2, column 1) instead gives $1$ — the classic index swap.",
+          "check": [
+            "(-4) + (2)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-ment-v11",
+          "statement": "Let $C = A + 3B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 1 & 2 \\\\ 4 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & -3 \\\\ 2 & 6 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$10$",
+            "$-1$",
+            "$-7$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 2 + 3\\cdot(-3) = -7$. Reading $c_{21}$ (row 2, column 1) instead gives $10$ — the classic index swap.",
+          "check": [
+            "(2) + (3)*(-3) == -7"
+          ]
+        },
+        {
+          "id": "VM-ment-v12",
+          "statement": "Let $C = A + 2B$ for the $2\\times 2$ matrices $A = \\begin{pmatrix} 2 & 7 \\\\ 1 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 3 & 3 \\\\ 4 & -2 \\end{pmatrix}$. Find the entry $c_{12}$ (row 1, column 2).",
+          "options": [
+            "$9$",
+            "$10$",
+            "$1$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 7 + 2\\cdot(3) = 13$. Reading $c_{21}$ (row 2, column 1) instead gives $9$ — the classic index swap.",
+          "check": [
+            "(7) + (2)*(3) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix-product-entry",
+      "title": "Entry of a matrix product",
+      "level": 2,
+      "skill": "VM-mprod",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-mprod-v01",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 1 \\\\ 2 & 6 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$16$",
+            "$10$",
+            "$13$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $2\\cdot5 + 3\\cdot2 = 16$. Stopping after the first product gives $10$ — the classic slip.",
+          "check": [
+            "(2)*(5) + (3)*(2) == 16"
+          ]
+        },
+        {
+          "id": "VM-mprod-v02",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 5 \\end{pmatrix}$ and $B = \\begin{pmatrix} 4 & 2 \\\\ 1 & 3 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$4$",
+            "$6$",
+            "$8$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $1\\cdot4 + 2\\cdot1 = 6$. Stopping after the first product gives $4$ — the classic slip.",
+          "check": [
+            "(1)*(4) + (2)*(1) == 6"
+          ]
+        },
+        {
+          "id": "VM-mprod-v03",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 5 \\\\ 3 & 1 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$6$",
+            "$1$",
+            "$3$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $3\\cdot2 + -1\\cdot3 = 3$. Stopping after the first product gives $6$ — the classic slip.",
+          "check": [
+            "(3)*(2) + (-1)*(3) == 3"
+          ]
+        },
+        {
+          "id": "VM-mprod-v04",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 2 & 4 \\\\ 1 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} -1 & 2 \\\\ 5 & 3 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$-2$",
+            "$6$",
+            "$11$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $2\\cdot-1 + 4\\cdot5 = 18$. Stopping after the first product gives $-2$ — the classic slip.",
+          "check": [
+            "(2)*(-1) + (4)*(5) == 18"
+          ]
+        },
+        {
+          "id": "VM-mprod-v05",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 5 & 2 \\\\ 3 & 1 \\end{pmatrix}$ and $B = \\begin{pmatrix} 1 & 4 \\\\ 2 & 6 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$9$",
+            "$5$",
+            "$13$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $5\\cdot1 + 2\\cdot2 = 9$. Stopping after the first product gives $5$ — the classic slip.",
+          "check": [
+            "(5)*(1) + (2)*(2) == 9"
+          ]
+        },
+        {
+          "id": "VM-mprod-v06",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 1 & 3 \\\\ 2 & -2 \\end{pmatrix}$ and $B = \\begin{pmatrix} 6 & 1 \\\\ 4 & 5 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$6$",
+            "$18$",
+            "$9$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $1\\cdot6 + 3\\cdot4 = 18$. Stopping after the first product gives $6$ — the classic slip.",
+          "check": [
+            "(1)*(6) + (3)*(4) == 18"
+          ]
+        },
+        {
+          "id": "VM-mprod-v07",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 4 & 1 \\\\ 5 & 2 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 3 \\\\ 1 & 7 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$8$",
+            "$11$",
+            "$9$",
+            "$29$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $4\\cdot2 + 1\\cdot1 = 9$. Stopping after the first product gives $8$ — the classic slip.",
+          "check": [
+            "(4)*(2) + (1)*(1) == 9"
+          ]
+        },
+        {
+          "id": "VM-mprod-v08",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 2 & -3 \\\\ 4 & 1 \\end{pmatrix}$ and $B = \\begin{pmatrix} 3 & 2 \\\\ 1 & 5 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$6$",
+            "$0$",
+            "$13$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $2\\cdot3 + -3\\cdot1 = 3$. Stopping after the first product gives $6$ — the classic slip.",
+          "check": [
+            "(2)*(3) + (-3)*(1) == 3"
+          ]
+        },
+        {
+          "id": "VM-mprod-v09",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 3 & 2 \\\\ 1 & 6 \\end{pmatrix}$ and $B = \\begin{pmatrix} 4 & -1 \\\\ 2 & 3 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$16$",
+            "$12$",
+            "$10$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $3\\cdot4 + 2\\cdot2 = 16$. Stopping after the first product gives $12$ — the classic slip.",
+          "check": [
+            "(3)*(4) + (2)*(2) == 16"
+          ]
+        },
+        {
+          "id": "VM-mprod-v10",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 1 & 5 \\\\ 2 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 4 \\\\ 3 & 1 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$2$",
+            "$17$",
+            "$22$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $1\\cdot2 + 5\\cdot3 = 17$. Stopping after the first product gives $2$ — the classic slip.",
+          "check": [
+            "(1)*(2) + (5)*(3) == 17"
+          ]
+        },
+        {
+          "id": "VM-mprod-v11",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 6 & 2 \\\\ 3 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 1 & 3 \\\\ 5 & 2 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$6$",
+            "$12$",
+            "$16$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $6\\cdot1 + 2\\cdot5 = 16$. Stopping after the first product gives $6$ — the classic slip.",
+          "check": [
+            "(6)*(1) + (2)*(5) == 16"
+          ]
+        },
+        {
+          "id": "VM-mprod-v12",
+          "statement": "Let $C = AB$ for $A = \\begin{pmatrix} 2 & 3 \\\\ 5 & 1 \\end{pmatrix}$ and $B = \\begin{pmatrix} 3 & 6 \\\\ 2 & 4 \\end{pmatrix}$. Find the entry $c_{11}$ (row 1, column 1).",
+          "options": [
+            "$6$",
+            "$24$",
+            "$34$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$c_{11}$ is row 1 of $A$ times column 1 of $B$: $2\\cdot3 + 3\\cdot2 = 12$. Stopping after the first product gives $6$ — the classic slip.",
+          "check": [
+            "(2)*(3) + (3)*(2) == 12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "det-2x2",
+      "title": "The 2×2 determinant",
+      "level": 1,
+      "skill": "VM-det",
+      "unit": "determinants-and-inverses",
+      "variants": [
+        {
+          "id": "VM-det-v01",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$5$",
+            "$11$",
+            "$-10$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\det = ad - bc = 2\\cdot4 - (3)\\cdot(1) = 5$. Adding the two diagonal products instead gives $11$ — the classic sign slip.",
+          "check": [
+            "(2)*(4) - (3)*(1) == 5"
+          ]
+        },
+        {
+          "id": "VM-det-v02",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 3 & 1 \\\\ 2 & 5 \\end{pmatrix}$.",
+          "options": [
+            "$17$",
+            "$13$",
+            "$1$",
+            "$-13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\det = ad - bc = 3\\cdot5 - (1)\\cdot(2) = 13$. Adding the two diagonal products instead gives $17$ — the classic sign slip.",
+          "check": [
+            "(3)*(5) - (1)*(2) == 13"
+          ]
+        },
+        {
+          "id": "VM-det-v03",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 4 & 2 \\\\ 3 & 5 \\end{pmatrix}$.",
+          "options": [
+            "$26$",
+            "$2$",
+            "$14$",
+            "$-14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\det = ad - bc = 4\\cdot5 - (2)\\cdot(3) = 14$. Adding the two diagonal products instead gives $26$ — the classic sign slip.",
+          "check": [
+            "(4)*(5) - (2)*(3) == 14"
+          ]
+        },
+        {
+          "id": "VM-det-v04",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 1 & -2 \\\\ 3 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$-2$",
+            "$11$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\det = ad - bc = 1\\cdot4 - (-2)\\cdot(3) = 10$. Adding the two diagonal products instead gives $-2$ — the classic sign slip.",
+          "check": [
+            "(1)*(4) - (-2)*(3) == 10"
+          ]
+        },
+        {
+          "id": "VM-det-v05",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 5 & 3 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$14$",
+            "$26$",
+            "$-2$",
+            "$-14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\det = ad - bc = 5\\cdot4 - (3)\\cdot(2) = 14$. Adding the two diagonal products instead gives $26$ — the classic sign slip.",
+          "check": [
+            "(5)*(4) - (3)*(2) == 14"
+          ]
+        },
+        {
+          "id": "VM-det-v06",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 2 & -1 \\\\ 4 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$2$",
+            "$10$",
+            "$11$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\det = ad - bc = 2\\cdot3 - (-1)\\cdot(4) = 10$. Adding the two diagonal products instead gives $2$ — the classic sign slip.",
+          "check": [
+            "(2)*(3) - (-1)*(4) == 10"
+          ]
+        },
+        {
+          "id": "VM-det-v07",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 3 & 4 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$10$",
+            "$-5$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\det = ad - bc = 3\\cdot2 - (4)\\cdot(1) = 2$. Adding the two diagonal products instead gives $10$ — the classic sign slip.",
+          "check": [
+            "(3)*(2) - (4)*(1) == 2"
+          ]
+        },
+        {
+          "id": "VM-det-v08",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 6 & 2 \\\\ 5 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$16$",
+            "$28$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\det = ad - bc = 6\\cdot1 - (2)\\cdot(5) = -4$. Adding the two diagonal products instead gives $16$ — the classic sign slip.",
+          "check": [
+            "(6)*(1) - (2)*(5) == -4"
+          ]
+        },
+        {
+          "id": "VM-det-v09",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 2 & 5 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$-1$",
+            "$29$",
+            "$-29$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\det = ad - bc = 2\\cdot7 - (5)\\cdot(3) = -1$. Adding the two diagonal products instead gives $29$ — the classic sign slip.",
+          "check": [
+            "(2)*(7) - (5)*(3) == -1"
+          ]
+        },
+        {
+          "id": "VM-det-v10",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 4 & -3 \\\\ 2 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$-2$",
+            "$10$",
+            "$11$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\det = ad - bc = 4\\cdot1 - (-3)\\cdot(2) = 10$. Adding the two diagonal products instead gives $-2$ — the classic sign slip.",
+          "check": [
+            "(4)*(1) - (-3)*(2) == 10"
+          ]
+        },
+        {
+          "id": "VM-det-v11",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 1 & 6 \\\\ 2 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$15$",
+            "$-16$",
+            "$-9$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\det = ad - bc = 1\\cdot3 - (6)\\cdot(2) = -9$. Adding the two diagonal products instead gives $15$ — the classic sign slip.",
+          "check": [
+            "(1)*(3) - (6)*(2) == -9"
+          ]
+        },
+        {
+          "id": "VM-det-v12",
+          "statement": "Compute the determinant $\\det\\begin{pmatrix} 7 & 2 \\\\ 4 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$29$",
+            "$22$",
+            "$-13$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\det = ad - bc = 7\\cdot3 - (2)\\cdot(4) = 13$. Adding the two diagonal products instead gives $29$ — the classic sign slip.",
+          "check": [
+            "(7)*(3) - (2)*(4) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cramer-2x2",
+      "title": "Cramer's rule for 2×2 systems",
+      "level": 3,
+      "skill": "VM-cram",
+      "unit": "determinants-and-inverses",
+      "variants": [
+        {
+          "id": "VM-cram-v01",
+          "statement": "Solve the system by Cramer's rule: $3x + 2y = 8$, $5x - 4y = 6$. Find $x$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$-22$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{-44}{-22} = 2$. Swapping in the $y$-column determinant returns $y = 1$ — the classic Cramer column mix-up.",
+          "check": [
+            "((8)*(-4) - (2)*(6))/((3)*(-4) - (2)*(5)) == 2",
+            "(3)*(2) + (2)*(1) == 8"
+          ]
+        },
+        {
+          "id": "VM-cram-v02",
+          "statement": "Solve the system by Cramer's rule: $2x + y = 5$, $x + 3y = 0$. Find $x$.",
+          "options": [
+            "$-1$",
+            "$3$",
+            "$5$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{15}{5} = 3$. Swapping in the $y$-column determinant returns $y = -1$ — the classic Cramer column mix-up.",
+          "check": [
+            "((5)*(3) - (1)*(0))/((2)*(3) - (1)*(1)) == 3",
+            "(2)*(3) + (1)*(-1) == 5"
+          ]
+        },
+        {
+          "id": "VM-cram-v03",
+          "statement": "Solve the system by Cramer's rule: $x + 2y = 8$, $3x - y = 10$. Find $x$.",
+          "options": [
+            "$2$",
+            "$-7$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{-28}{-7} = 4$. Swapping in the $y$-column determinant returns $y = 2$ — the classic Cramer column mix-up.",
+          "check": [
+            "((8)*(-1) - (2)*(10))/((1)*(-1) - (2)*(3)) == 4",
+            "(1)*(4) + (2)*(2) == 8"
+          ]
+        },
+        {
+          "id": "VM-cram-v04",
+          "statement": "Solve the system by Cramer's rule: $4x - 3y = -2$, $2x + 5y = 12$. Find $x$.",
+          "options": [
+            "$2$",
+            "$26$",
+            "$-1$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{26}{26} = 1$. Swapping in the $y$-column determinant returns $y = 2$ — the classic Cramer column mix-up.",
+          "check": [
+            "((-2)*(5) - (-3)*(12))/((4)*(5) - (-3)*(2)) == 1",
+            "(4)*(1) + (-3)*(2) == -2"
+          ]
+        },
+        {
+          "id": "VM-cram-v05",
+          "statement": "Solve the system by Cramer's rule: $2x + 3y = 5$, $4x + y = -5$. Find $x$.",
+          "options": [
+            "$-2$",
+            "$3$",
+            "$-10$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{20}{-10} = -2$. Swapping in the $y$-column determinant returns $y = 3$ — the classic Cramer column mix-up.",
+          "check": [
+            "((5)*(1) - (3)*(-5))/((2)*(1) - (3)*(4)) == -2",
+            "(2)*(-2) + (3)*(3) == 5"
+          ]
+        },
+        {
+          "id": "VM-cram-v06",
+          "statement": "Solve the system by Cramer's rule: $5x + 2y = 4$, $3x + 4y = -6$. Find $x$.",
+          "options": [
+            "$-3$",
+            "$2$",
+            "$14$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{28}{14} = 2$. Swapping in the $y$-column determinant returns $y = -3$ — the classic Cramer column mix-up.",
+          "check": [
+            "((4)*(4) - (2)*(-6))/((5)*(4) - (2)*(3)) == 2",
+            "(5)*(2) + (2)*(-3) == 4"
+          ]
+        },
+        {
+          "id": "VM-cram-v07",
+          "statement": "Solve the system by Cramer's rule: $x + 4y = 9$, $2x + 3y = 13$. Find $x$.",
+          "options": [
+            "$1$",
+            "$-5$",
+            "$5$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{-25}{-5} = 5$. Swapping in the $y$-column determinant returns $y = 1$ — the classic Cramer column mix-up.",
+          "check": [
+            "((9)*(3) - (4)*(13))/((1)*(3) - (4)*(2)) == 5",
+            "(1)*(5) + (4)*(1) == 9"
+          ]
+        },
+        {
+          "id": "VM-cram-v08",
+          "statement": "Solve the system by Cramer's rule: $3x - 2y = 6$, $x + 4y = 16$. Find $x$.",
+          "options": [
+            "$3$",
+            "$14$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{56}{14} = 4$. Swapping in the $y$-column determinant returns $y = 3$ — the classic Cramer column mix-up.",
+          "check": [
+            "((6)*(4) - (-2)*(16))/((3)*(4) - (-2)*(1)) == 4",
+            "(3)*(4) + (-2)*(3) == 6"
+          ]
+        },
+        {
+          "id": "VM-cram-v09",
+          "statement": "Solve the system by Cramer's rule: $2x + 5y = 22$, $3x + 2y = 11$. Find $x$.",
+          "options": [
+            "$1$",
+            "$4$",
+            "$-11$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{-11}{-11} = 1$. Swapping in the $y$-column determinant returns $y = 4$ — the classic Cramer column mix-up.",
+          "check": [
+            "((22)*(2) - (5)*(11))/((2)*(2) - (5)*(3)) == 1",
+            "(2)*(1) + (5)*(4) == 22"
+          ]
+        },
+        {
+          "id": "VM-cram-v10",
+          "statement": "Solve the system by Cramer's rule: $6x + y = 17$, $2x - 3y = -11$. Find $x$.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$-20$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{-40}{-20} = 2$. Swapping in the $y$-column determinant returns $y = 5$ — the classic Cramer column mix-up.",
+          "check": [
+            "((17)*(-3) - (1)*(-11))/((6)*(-3) - (1)*(2)) == 2",
+            "(6)*(2) + (1)*(5) == 17"
+          ]
+        },
+        {
+          "id": "VM-cram-v11",
+          "statement": "Solve the system by Cramer's rule: $x + 3y = 9$, $4x + 2y = -4$. Find $x$.",
+          "options": [
+            "$4$",
+            "$-10$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{30}{-10} = -3$. Swapping in the $y$-column determinant returns $y = 4$ — the classic Cramer column mix-up.",
+          "check": [
+            "((9)*(2) - (3)*(-4))/((1)*(2) - (3)*(4)) == -3",
+            "(1)*(-3) + (3)*(4) == 9"
+          ]
+        },
+        {
+          "id": "VM-cram-v12",
+          "statement": "Solve the system by Cramer's rule: $4x + 3y = 18$, $2x + 7y = 20$. Find $x$.",
+          "options": [
+            "$2$",
+            "$22$",
+            "$-3$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$x = \\frac{\\Delta_x}{\\Delta} = \\frac{e d - b f}{a d - b c} = \\frac{66}{22} = 3$. Swapping in the $y$-column determinant returns $y = 2$ — the classic Cramer column mix-up.",
+          "check": [
+            "((18)*(7) - (3)*(20))/((4)*(7) - (3)*(2)) == 3",
+            "(4)*(3) + (3)*(2) == 18"
+          ]
+        }
+      ]
+    }
+  ]
 }

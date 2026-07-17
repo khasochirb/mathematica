@@ -65,5 +65,4578 @@
       "blurb": "Random sampling, bias, experiments vs observation, simulation-based inference, and margin of error — the capstone."
     }
   ],
-  "forms": []
+  "forms": [
+    {
+      "id": "multiplication-principle",
+      "title": "The multiplication principle",
+      "level": 1,
+      "unit": "counting-principles",
+      "skill": "Independent choices multiply: each option pairs with every other.",
+      "variants": [
+        {
+          "id": "PS-mult-v01",
+          "statement": "A menu offers $3$ soups, $4$ main dishes, and $2$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$24$",
+            "$9$",
+            "$14$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $3 \\cdot 4 \\cdot 2 = 24$. Adding $3 + 4 + 2 = 9$ counts single dishes, not full meals.",
+          "check": [
+            "3*4*2 == 24"
+          ]
+        },
+        {
+          "id": "PS-mult-v02",
+          "statement": "A menu offers $2$ soups, $5$ main dishes, and $3$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$10$",
+            "$30$",
+            "$13$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $2 \\cdot 5 \\cdot 3 = 30$. Adding $2 + 5 + 3 = 10$ counts single dishes, not full meals.",
+          "check": [
+            "2*5*3 == 30"
+          ]
+        },
+        {
+          "id": "PS-mult-v03",
+          "statement": "A menu offers $4$ soups, $3$ main dishes, and $5$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$12$",
+            "$17$",
+            "$60$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $4 \\cdot 3 \\cdot 5 = 60$. Adding $4 + 3 + 5 = 12$ counts single dishes, not full meals.",
+          "check": [
+            "4*3*5 == 60"
+          ]
+        },
+        {
+          "id": "PS-mult-v04",
+          "statement": "A menu offers $3$ soups, $5$ main dishes, and $4$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$12$",
+            "$19$",
+            "$27$",
+            "$60$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $3 \\cdot 5 \\cdot 4 = 60$. Adding $3 + 5 + 4 = 12$ counts single dishes, not full meals.",
+          "check": [
+            "3*5*4 == 60"
+          ]
+        },
+        {
+          "id": "PS-mult-v05",
+          "statement": "A menu offers $2$ soups, $6$ main dishes, and $3$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$36$",
+            "$11$",
+            "$15$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $2 \\cdot 6 \\cdot 3 = 36$. Adding $2 + 6 + 3 = 11$ counts single dishes, not full meals.",
+          "check": [
+            "2*6*3 == 36"
+          ]
+        },
+        {
+          "id": "PS-mult-v06",
+          "statement": "A menu offers $5$ soups, $4$ main dishes, and $3$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$12$",
+            "$60$",
+            "$23$",
+            "$35$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $5 \\cdot 4 \\cdot 3 = 60$. Adding $5 + 4 + 3 = 12$ counts single dishes, not full meals.",
+          "check": [
+            "5*4*3 == 60"
+          ]
+        },
+        {
+          "id": "PS-mult-v07",
+          "statement": "A menu offers $3$ soups, $6$ main dishes, and $2$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$11$",
+            "$20$",
+            "$36$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $3 \\cdot 6 \\cdot 2 = 36$. Adding $3 + 6 + 2 = 11$ counts single dishes, not full meals.",
+          "check": [
+            "3*6*2 == 36"
+          ]
+        },
+        {
+          "id": "PS-mult-v08",
+          "statement": "A menu offers $4$ soups, $5$ main dishes, and $2$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$11$",
+            "$22$",
+            "$28$",
+            "$40$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $4 \\cdot 5 \\cdot 2 = 40$. Adding $4 + 5 + 2 = 11$ counts single dishes, not full meals.",
+          "check": [
+            "4*5*2 == 40"
+          ]
+        },
+        {
+          "id": "PS-mult-v09",
+          "statement": "A menu offers $2$ soups, $4$ main dishes, and $5$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$40$",
+            "$11$",
+            "$13$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $2 \\cdot 4 \\cdot 5 = 40$. Adding $2 + 4 + 5 = 11$ counts single dishes, not full meals.",
+          "check": [
+            "2*4*5 == 40"
+          ]
+        },
+        {
+          "id": "PS-mult-v10",
+          "statement": "A menu offers $6$ soups, $3$ main dishes, and $4$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$13$",
+            "$72$",
+            "$22$",
+            "$42$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $6 \\cdot 3 \\cdot 4 = 72$. Adding $6 + 3 + 4 = 13$ counts single dishes, not full meals.",
+          "check": [
+            "6*3*4 == 72"
+          ]
+        },
+        {
+          "id": "PS-mult-v11",
+          "statement": "A menu offers $5$ soups, $3$ main dishes, and $4$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$12$",
+            "$19$",
+            "$60$",
+            "$35$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $5 \\cdot 3 \\cdot 4 = 60$. Adding $5 + 3 + 4 = 12$ counts single dishes, not full meals.",
+          "check": [
+            "5*3*4 == 60"
+          ]
+        },
+        {
+          "id": "PS-mult-v12",
+          "statement": "A menu offers $4$ soups, $6$ main dishes, and $2$ desserts. How many different three-course meals — one soup, one main, one dessert — are possible?",
+          "options": [
+            "$12$",
+            "$26$",
+            "$32$",
+            "$48$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each soup pairs with every main and every dessert, so multiply: $4 \\cdot 6 \\cdot 2 = 48$. Adding $4 + 6 + 2 = 12$ counts single dishes, not full meals.",
+          "check": [
+            "4*6*2 == 48"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "addition-or-multiplication",
+      "title": "Add or multiply?",
+      "level": 2,
+      "unit": "counting-principles",
+      "skill": "OR means add the counts; AND (one of each) means multiply.",
+      "variants": [
+        {
+          "id": "PS-aor-v01",
+          "statement": "A locker code consists of one letter chosen from $4$ letters followed by one digit chosen from $10$ digits. How many different codes are possible?",
+          "options": [
+            "$40$",
+            "$14$",
+            "$39$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $4 \\cdot 10 = 40$. Adding $4 + 10 = 14$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "4*10 == 40"
+          ]
+        },
+        {
+          "id": "PS-aor-v02",
+          "statement": "A locker code consists of one letter chosen from $5$ letters followed by one digit chosen from $6$ digits. How many different codes are possible?",
+          "options": [
+            "$11$",
+            "$30$",
+            "$29$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $5 \\cdot 6 = 30$. Adding $5 + 6 = 11$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "5*6 == 30"
+          ]
+        },
+        {
+          "id": "PS-aor-v03",
+          "statement": "A locker code consists of one letter chosen from $3$ letters followed by one digit chosen from $9$ digits. How many different codes are possible?",
+          "options": [
+            "$12$",
+            "$26$",
+            "$27$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $3 \\cdot 9 = 27$. Adding $3 + 9 = 12$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "3*9 == 27"
+          ]
+        },
+        {
+          "id": "PS-aor-v04",
+          "statement": "A locker code consists of one letter chosen from $6$ letters followed by one digit chosen from $8$ digits. How many different codes are possible?",
+          "options": [
+            "$14$",
+            "$47$",
+            "$15$",
+            "$48$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $6 \\cdot 8 = 48$. Adding $6 + 8 = 14$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "6*8 == 48"
+          ]
+        },
+        {
+          "id": "PS-aor-v05",
+          "statement": "A locker code consists of one letter chosen from $7$ letters followed by one digit chosen from $5$ digits. How many different codes are possible?",
+          "options": [
+            "$35$",
+            "$12$",
+            "$34$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $7 \\cdot 5 = 35$. Adding $7 + 5 = 12$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "7*5 == 35"
+          ]
+        },
+        {
+          "id": "PS-aor-v06",
+          "statement": "A locker code consists of one letter chosen from $8$ letters followed by one digit chosen from $4$ digits. How many different codes are possible?",
+          "options": [
+            "$12$",
+            "$32$",
+            "$31$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The code needs a letter AND a digit, so the choices multiply: $8 \\cdot 4 = 32$. Adding $8 + 4 = 12$ is the classic slip — that counts picking just one symbol.",
+          "check": [
+            "8*4 == 32"
+          ]
+        },
+        {
+          "id": "PS-aor-v07",
+          "statement": "As a prize, a student may take one book from $7$ novels or one book from $5$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$35$",
+            "$11$",
+            "$12$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "One book from either shelf means OR, so the counts add: $7 + 5 = 12$. Multiplying to get $35$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "7 + 5 == 12"
+          ]
+        },
+        {
+          "id": "PS-aor-v08",
+          "statement": "As a prize, a student may take one book from $9$ novels or one book from $4$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$36$",
+            "$12$",
+            "$14$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "One book from either shelf means OR, so the counts add: $9 + 4 = 13$. Multiplying to get $36$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "9 + 4 == 13"
+          ]
+        },
+        {
+          "id": "PS-aor-v09",
+          "statement": "As a prize, a student may take one book from $6$ novels or one book from $8$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$14$",
+            "$48$",
+            "$13$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "One book from either shelf means OR, so the counts add: $6 + 8 = 14$. Multiplying to get $48$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "6 + 8 == 14"
+          ]
+        },
+        {
+          "id": "PS-aor-v10",
+          "statement": "As a prize, a student may take one book from $12$ novels or one book from $5$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$60$",
+            "$17$",
+            "$16$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "One book from either shelf means OR, so the counts add: $12 + 5 = 17$. Multiplying to get $60$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "12 + 5 == 17"
+          ]
+        },
+        {
+          "id": "PS-aor-v11",
+          "statement": "As a prize, a student may take one book from $8$ novels or one book from $7$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$56$",
+            "$14$",
+            "$15$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "One book from either shelf means OR, so the counts add: $8 + 7 = 15$. Multiplying to get $56$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "8 + 7 == 15"
+          ]
+        },
+        {
+          "id": "PS-aor-v12",
+          "statement": "As a prize, a student may take one book from $10$ novels or one book from $6$ comics — one book in total. How many different choices are possible?",
+          "options": [
+            "$60$",
+            "$15$",
+            "$17$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "One book from either shelf means OR, so the counts add: $10 + 6 = 16$. Multiplying to get $60$ is the classic slip — that would count taking one of each.",
+          "check": [
+            "10 + 6 == 16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "npr-value",
+      "title": "Permutations nPr",
+      "level": 1,
+      "unit": "permutations",
+      "skill": "Order matters: n!/(n−r)! counts arrangements.",
+      "variants": [
+        {
+          "id": "PS-npr-v01",
+          "statement": "Compute $P(5, 2)$ — the number of ways to arrange $2$ of $5$ distinct objects in a row.",
+          "options": [
+            "$20$",
+            "$10$",
+            "$25$",
+            "$60$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$P(5, 2) = \\frac{5!}{(5 - 2)!} = 20$. Dividing by $2!$ as well gives $\\binom{5}{2} = 10$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(5)/factorial(3) == 20",
+            "binomial(5, 2)*factorial(2) == 20"
+          ]
+        },
+        {
+          "id": "PS-npr-v02",
+          "statement": "Compute $P(5, 3)$ — the number of ways to arrange $3$ of $5$ distinct objects in a row.",
+          "options": [
+            "$10$",
+            "$60$",
+            "$125$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$P(5, 3) = \\frac{5!}{(5 - 3)!} = 60$. Dividing by $3!$ as well gives $\\binom{5}{3} = 10$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(5)/factorial(2) == 60",
+            "binomial(5, 3)*factorial(3) == 60"
+          ]
+        },
+        {
+          "id": "PS-npr-v03",
+          "statement": "Compute $P(6, 2)$ — the number of ways to arrange $2$ of $6$ distinct objects in a row.",
+          "options": [
+            "$15$",
+            "$36$",
+            "$30$",
+            "$360$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$P(6, 2) = \\frac{6!}{(6 - 2)!} = 30$. Dividing by $2!$ as well gives $\\binom{6}{2} = 15$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(6)/factorial(4) == 30",
+            "binomial(6, 2)*factorial(2) == 30"
+          ]
+        },
+        {
+          "id": "PS-npr-v04",
+          "statement": "Compute $P(6, 4)$ — the number of ways to arrange $4$ of $6$ distinct objects in a row.",
+          "options": [
+            "$15$",
+            "$1296$",
+            "$30$",
+            "$360$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$P(6, 4) = \\frac{6!}{(6 - 4)!} = 360$. Dividing by $4!$ as well gives $\\binom{6}{4} = 15$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(6)/factorial(2) == 360",
+            "binomial(6, 4)*factorial(4) == 360"
+          ]
+        },
+        {
+          "id": "PS-npr-v05",
+          "statement": "Compute $P(7, 2)$ — the number of ways to arrange $2$ of $7$ distinct objects in a row.",
+          "options": [
+            "$42$",
+            "$21$",
+            "$49$",
+            "$2520$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$P(7, 2) = \\frac{7!}{(7 - 2)!} = 42$. Dividing by $2!$ as well gives $\\binom{7}{2} = 21$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(7)/factorial(5) == 42",
+            "binomial(7, 2)*factorial(2) == 42"
+          ]
+        },
+        {
+          "id": "PS-npr-v06",
+          "statement": "Compute $P(7, 3)$ — the number of ways to arrange $3$ of $7$ distinct objects in a row.",
+          "options": [
+            "$35$",
+            "$210$",
+            "$343$",
+            "$840$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$P(7, 3) = \\frac{7!}{(7 - 3)!} = 210$. Dividing by $3!$ as well gives $\\binom{7}{3} = 35$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(7)/factorial(4) == 210",
+            "binomial(7, 3)*factorial(3) == 210"
+          ]
+        },
+        {
+          "id": "PS-npr-v07",
+          "statement": "Compute $P(8, 2)$ — the number of ways to arrange $2$ of $8$ distinct objects in a row.",
+          "options": [
+            "$28$",
+            "$64$",
+            "$56$",
+            "$20160$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$P(8, 2) = \\frac{8!}{(8 - 2)!} = 56$. Dividing by $2!$ as well gives $\\binom{8}{2} = 28$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(8)/factorial(6) == 56",
+            "binomial(8, 2)*factorial(2) == 56"
+          ]
+        },
+        {
+          "id": "PS-npr-v08",
+          "statement": "Compute $P(8, 3)$ — the number of ways to arrange $3$ of $8$ distinct objects in a row.",
+          "options": [
+            "$56$",
+            "$512$",
+            "$6720$",
+            "$336$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$P(8, 3) = \\frac{8!}{(8 - 3)!} = 336$. Dividing by $3!$ as well gives $\\binom{8}{3} = 56$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(8)/factorial(5) == 336",
+            "binomial(8, 3)*factorial(3) == 336"
+          ]
+        },
+        {
+          "id": "PS-npr-v09",
+          "statement": "Compute $P(9, 2)$ — the number of ways to arrange $2$ of $9$ distinct objects in a row.",
+          "options": [
+            "$72$",
+            "$36$",
+            "$81$",
+            "$181440$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$P(9, 2) = \\frac{9!}{(9 - 2)!} = 72$. Dividing by $2!$ as well gives $\\binom{9}{2} = 36$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(9)/factorial(7) == 72",
+            "binomial(9, 2)*factorial(2) == 72"
+          ]
+        },
+        {
+          "id": "PS-npr-v10",
+          "statement": "Compute $P(9, 3)$ — the number of ways to arrange $3$ of $9$ distinct objects in a row.",
+          "options": [
+            "$84$",
+            "$504$",
+            "$729$",
+            "$60480$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$P(9, 3) = \\frac{9!}{(9 - 3)!} = 504$. Dividing by $3!$ as well gives $\\binom{9}{3} = 84$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(9)/factorial(6) == 504",
+            "binomial(9, 3)*factorial(3) == 504"
+          ]
+        },
+        {
+          "id": "PS-npr-v11",
+          "statement": "Compute $P(10, 2)$ — the number of ways to arrange $2$ of $10$ distinct objects in a row.",
+          "options": [
+            "$45$",
+            "$100$",
+            "$90$",
+            "$1814400$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$P(10, 2) = \\frac{10!}{(10 - 2)!} = 90$. Dividing by $2!$ as well gives $\\binom{10}{2} = 45$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(10)/factorial(8) == 90",
+            "binomial(10, 2)*factorial(2) == 90"
+          ]
+        },
+        {
+          "id": "PS-npr-v12",
+          "statement": "Compute $P(10, 3)$ — the number of ways to arrange $3$ of $10$ distinct objects in a row.",
+          "options": [
+            "$120$",
+            "$1000$",
+            "$604800$",
+            "$720$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$P(10, 3) = \\frac{10!}{(10 - 3)!} = 720$. Dividing by $3!$ as well gives $\\binom{10}{3} = 120$ — that counts unordered choices, not arrangements.",
+          "check": [
+            "factorial(10)/factorial(7) == 720",
+            "binomial(10, 3)*factorial(3) == 720"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrangements",
+      "title": "Arranging people in a row",
+      "level": 2,
+      "unit": "permutations",
+      "skill": "n people in a row: n!. Fixing one position leaves (n−1)!.",
+      "variants": [
+        {
+          "id": "PS-arr-v01",
+          "statement": "In how many different ways can $3$ people stand in a row for a photo?",
+          "options": [
+            "$6$",
+            "$2$",
+            "$8$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "All $3$ people are ordered, so the count is $3! = 6$. Using $(3 - 1)! = 2$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(3) == 6"
+          ]
+        },
+        {
+          "id": "PS-arr-v02",
+          "statement": "In how many different ways can $4$ people stand in a row for a photo?",
+          "options": [
+            "$6$",
+            "$24$",
+            "$16$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "All $4$ people are ordered, so the count is $4! = 24$. Using $(4 - 1)! = 6$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(4) == 24"
+          ]
+        },
+        {
+          "id": "PS-arr-v03",
+          "statement": "In how many different ways can $5$ people stand in a row for a photo?",
+          "options": [
+            "$24$",
+            "$32$",
+            "$120$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "All $5$ people are ordered, so the count is $5! = 120$. Using $(5 - 1)! = 24$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(5) == 120"
+          ]
+        },
+        {
+          "id": "PS-arr-v04",
+          "statement": "In how many different ways can $6$ people stand in a row for a photo?",
+          "options": [
+            "$120$",
+            "$64$",
+            "$36$",
+            "$720$"
+          ],
+          "correctIndex": 3,
+          "explanation": "All $6$ people are ordered, so the count is $6! = 720$. Using $(6 - 1)! = 120$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(6) == 720"
+          ]
+        },
+        {
+          "id": "PS-arr-v05",
+          "statement": "In how many different ways can $7$ people stand in a row for a photo?",
+          "options": [
+            "$5040$",
+            "$720$",
+            "$128$",
+            "$49$"
+          ],
+          "correctIndex": 0,
+          "explanation": "All $7$ people are ordered, so the count is $7! = 5040$. Using $(7 - 1)! = 720$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(7) == 5040"
+          ]
+        },
+        {
+          "id": "PS-arr-v06",
+          "statement": "In how many different ways can $8$ people stand in a row for a photo?",
+          "options": [
+            "$5040$",
+            "$40320$",
+            "$256$",
+            "$64$"
+          ],
+          "correctIndex": 1,
+          "explanation": "All $8$ people are ordered, so the count is $8! = 40320$. Using $(8 - 1)! = 5040$ is the circular-table formula — a row has no rotation to cancel.",
+          "check": [
+            "factorial(8) == 40320"
+          ]
+        },
+        {
+          "id": "PS-arr-v07",
+          "statement": "In how many different ways can $3$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$6$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The first spot is forced, so only the other $2$ people are arranged: $(3 - 1)! = 2$. Answering $3! = 6$ ignores the restriction.",
+          "check": [
+            "factorial(2) == 2"
+          ]
+        },
+        {
+          "id": "PS-arr-v08",
+          "statement": "In how many different ways can $4$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$24$",
+            "$2$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The first spot is forced, so only the other $3$ people are arranged: $(4 - 1)! = 6$. Answering $4! = 24$ ignores the restriction.",
+          "check": [
+            "factorial(3) == 6"
+          ]
+        },
+        {
+          "id": "PS-arr-v09",
+          "statement": "In how many different ways can $5$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$24$",
+            "$120$",
+            "$6$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first spot is forced, so only the other $4$ people are arranged: $(5 - 1)! = 24$. Answering $5! = 120$ ignores the restriction.",
+          "check": [
+            "factorial(4) == 24"
+          ]
+        },
+        {
+          "id": "PS-arr-v10",
+          "statement": "In how many different ways can $6$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$720$",
+            "$120$",
+            "$24$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The first spot is forced, so only the other $5$ people are arranged: $(6 - 1)! = 120$. Answering $6! = 720$ ignores the restriction.",
+          "check": [
+            "factorial(5) == 120"
+          ]
+        },
+        {
+          "id": "PS-arr-v11",
+          "statement": "In how many different ways can $7$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$5040$",
+            "$120$",
+            "$720$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The first spot is forced, so only the other $6$ people are arranged: $(7 - 1)! = 720$. Answering $7! = 5040$ ignores the restriction.",
+          "check": [
+            "factorial(6) == 720"
+          ]
+        },
+        {
+          "id": "PS-arr-v12",
+          "statement": "In how many different ways can $8$ people stand in a row for a photo if one particular person must stand first?",
+          "options": [
+            "$40320$",
+            "$720$",
+            "$8$",
+            "$5040$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The first spot is forced, so only the other $7$ people are arranged: $(8 - 1)! = 5040$. Answering $8! = 40320$ ignores the restriction.",
+          "check": [
+            "factorial(7) == 5040"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ncr-value",
+      "title": "Combinations nCr",
+      "level": 1,
+      "unit": "combinations",
+      "skill": "Order ignored: divide the arrangements by r!.",
+      "variants": [
+        {
+          "id": "PS-ncr-v01",
+          "statement": "Compute $\\binom{5}{2}$ — the number of ways to choose $2$ objects from $5$ when order does not matter.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$5$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\binom{5}{2} = \\frac{5!}{2!\\,3!} = 10$. Forgetting to divide by $2!$ gives $P(5, 2) = 20$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(5, 2) == 10"
+          ]
+        },
+        {
+          "id": "PS-ncr-v02",
+          "statement": "Compute $\\binom{6}{2}$ — the number of ways to choose $2$ objects from $6$ when order does not matter.",
+          "options": [
+            "$30$",
+            "$15$",
+            "$6$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\binom{6}{2} = \\frac{6!}{2!\\,4!} = 15$. Forgetting to divide by $2!$ gives $P(6, 2) = 30$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(6, 2) == 15"
+          ]
+        },
+        {
+          "id": "PS-ncr-v03",
+          "statement": "Compute $\\binom{6}{3}$ — the number of ways to choose $3$ objects from $6$ when order does not matter.",
+          "options": [
+            "$120$",
+            "$15$",
+            "$20$",
+            "$35$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\binom{6}{3} = \\frac{6!}{3!\\,3!} = 20$. Forgetting to divide by $3!$ gives $P(6, 3) = 120$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(6, 3) == 20"
+          ]
+        },
+        {
+          "id": "PS-ncr-v04",
+          "statement": "Compute $\\binom{7}{2}$ — the number of ways to choose $2$ objects from $7$ when order does not matter.",
+          "options": [
+            "$42$",
+            "$7$",
+            "$28$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\binom{7}{2} = \\frac{7!}{2!\\,5!} = 21$. Forgetting to divide by $2!$ gives $P(7, 2) = 42$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(7, 2) == 21"
+          ]
+        },
+        {
+          "id": "PS-ncr-v05",
+          "statement": "Compute $\\binom{7}{3}$ — the number of ways to choose $3$ objects from $7$ when order does not matter.",
+          "options": [
+            "$35$",
+            "$210$",
+            "$21$",
+            "$56$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\binom{7}{3} = \\frac{7!}{3!\\,4!} = 35$. Forgetting to divide by $3!$ gives $P(7, 3) = 210$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(7, 3) == 35"
+          ]
+        },
+        {
+          "id": "PS-ncr-v06",
+          "statement": "Compute $\\binom{8}{2}$ — the number of ways to choose $2$ objects from $8$ when order does not matter.",
+          "options": [
+            "$56$",
+            "$28$",
+            "$8$",
+            "$36$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\binom{8}{2} = \\frac{8!}{2!\\,6!} = 28$. Forgetting to divide by $2!$ gives $P(8, 2) = 56$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(8, 2) == 28"
+          ]
+        },
+        {
+          "id": "PS-ncr-v07",
+          "statement": "Compute $\\binom{8}{3}$ — the number of ways to choose $3$ objects from $8$ when order does not matter.",
+          "options": [
+            "$336$",
+            "$28$",
+            "$56$",
+            "$84$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\binom{8}{3} = \\frac{8!}{3!\\,5!} = 56$. Forgetting to divide by $3!$ gives $P(8, 3) = 336$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(8, 3) == 56"
+          ]
+        },
+        {
+          "id": "PS-ncr-v08",
+          "statement": "Compute $\\binom{9}{2}$ — the number of ways to choose $2$ objects from $9$ when order does not matter.",
+          "options": [
+            "$72$",
+            "$9$",
+            "$45$",
+            "$36$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\binom{9}{2} = \\frac{9!}{2!\\,7!} = 36$. Forgetting to divide by $2!$ gives $P(9, 2) = 72$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(9, 2) == 36"
+          ]
+        },
+        {
+          "id": "PS-ncr-v09",
+          "statement": "Compute $\\binom{9}{4}$ — the number of ways to choose $4$ objects from $9$ when order does not matter.",
+          "options": [
+            "$126$",
+            "$3024$",
+            "$84$",
+            "$210$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\binom{9}{4} = \\frac{9!}{4!\\,5!} = 126$. Forgetting to divide by $4!$ gives $P(9, 4) = 3024$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(9, 4) == 126"
+          ]
+        },
+        {
+          "id": "PS-ncr-v10",
+          "statement": "Compute $\\binom{10}{2}$ — the number of ways to choose $2$ objects from $10$ when order does not matter.",
+          "options": [
+            "$90$",
+            "$45$",
+            "$10$",
+            "$55$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\binom{10}{2} = \\frac{10!}{2!\\,8!} = 45$. Forgetting to divide by $2!$ gives $P(10, 2) = 90$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(10, 2) == 45"
+          ]
+        },
+        {
+          "id": "PS-ncr-v11",
+          "statement": "Compute $\\binom{11}{3}$ — the number of ways to choose $3$ objects from $11$ when order does not matter.",
+          "options": [
+            "$990$",
+            "$55$",
+            "$165$",
+            "$220$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\binom{11}{3} = \\frac{11!}{3!\\,8!} = 165$. Forgetting to divide by $3!$ gives $P(11, 3) = 990$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(11, 3) == 165"
+          ]
+        },
+        {
+          "id": "PS-ncr-v12",
+          "statement": "Compute $\\binom{12}{2}$ — the number of ways to choose $2$ objects from $12$ when order does not matter.",
+          "options": [
+            "$132$",
+            "$12$",
+            "$78$",
+            "$66$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\binom{12}{2} = \\frac{12!}{2!\\,10!} = 66$. Forgetting to divide by $2!$ gives $P(12, 2) = 132$ — that counts ordered picks twice-plus over.",
+          "check": [
+            "binomial(12, 2) == 66"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "committee",
+      "title": "Committees from two groups",
+      "level": 2,
+      "unit": "combinations",
+      "skill": "Choose from each group separately, then multiply the counts.",
+      "variants": [
+        {
+          "id": "PS-comm-v01",
+          "statement": "A class has $5$ boys and $6$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$200$",
+            "$462$",
+            "$30$",
+            "$2400$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{5}{2}\\binom{6}{3} = 10 \\cdot 20 = 200$. Using $\\binom{11}{5} = 462$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(5, 2)*binomial(6, 3) == 200"
+          ]
+        },
+        {
+          "id": "PS-comm-v02",
+          "statement": "A class has $6$ boys and $5$ girls. In how many ways can a committee of exactly $3$ boys and $2$ girls be chosen?",
+          "options": [
+            "$462$",
+            "$200$",
+            "$30$",
+            "$2400$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{6}{3}\\binom{5}{2} = 20 \\cdot 10 = 200$. Using $\\binom{11}{5} = 462$ ignores the exactly-$3$-boys condition.",
+          "check": [
+            "binomial(6, 3)*binomial(5, 2) == 200"
+          ]
+        },
+        {
+          "id": "PS-comm-v03",
+          "statement": "A class has $4$ boys and $5$ girls. In how many ways can a committee of exactly $2$ boys and $2$ girls be chosen?",
+          "options": [
+            "$126$",
+            "$16$",
+            "$60$",
+            "$240$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{4}{2}\\binom{5}{2} = 6 \\cdot 10 = 60$. Using $\\binom{9}{4} = 126$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(4, 2)*binomial(5, 2) == 60"
+          ]
+        },
+        {
+          "id": "PS-comm-v04",
+          "statement": "A class has $6$ boys and $7$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$1287$",
+            "$50$",
+            "$6300$",
+            "$525$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{6}{2}\\binom{7}{3} = 15 \\cdot 35 = 525$. Using $\\binom{13}{5} = 1287$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(6, 2)*binomial(7, 3) == 525"
+          ]
+        },
+        {
+          "id": "PS-comm-v05",
+          "statement": "A class has $7$ boys and $6$ girls. In how many ways can a committee of exactly $3$ boys and $2$ girls be chosen?",
+          "options": [
+            "$525$",
+            "$1287$",
+            "$50$",
+            "$6300$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{7}{3}\\binom{6}{2} = 35 \\cdot 15 = 525$. Using $\\binom{13}{5} = 1287$ ignores the exactly-$3$-boys condition.",
+          "check": [
+            "binomial(7, 3)*binomial(6, 2) == 525"
+          ]
+        },
+        {
+          "id": "PS-comm-v06",
+          "statement": "A class has $5$ boys and $5$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$252$",
+            "$100$",
+            "$20$",
+            "$1200$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{5}{2}\\binom{5}{3} = 10 \\cdot 10 = 100$. Using $\\binom{10}{5} = 252$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(5, 2)*binomial(5, 3) == 100"
+          ]
+        },
+        {
+          "id": "PS-comm-v07",
+          "statement": "A class has $7$ boys and $5$ girls. In how many ways can a committee of exactly $2$ boys and $2$ girls be chosen?",
+          "options": [
+            "$495$",
+            "$31$",
+            "$210$",
+            "$840$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{7}{2}\\binom{5}{2} = 21 \\cdot 10 = 210$. Using $\\binom{12}{4} = 495$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(7, 2)*binomial(5, 2) == 210"
+          ]
+        },
+        {
+          "id": "PS-comm-v08",
+          "statement": "A class has $6$ boys and $6$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$792$",
+            "$35$",
+            "$3600$",
+            "$300$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{6}{2}\\binom{6}{3} = 15 \\cdot 20 = 300$. Using $\\binom{12}{5} = 792$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(6, 2)*binomial(6, 3) == 300"
+          ]
+        },
+        {
+          "id": "PS-comm-v09",
+          "statement": "A class has $5$ boys and $7$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$350$",
+            "$792$",
+            "$45$",
+            "$4200$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{5}{2}\\binom{7}{3} = 10 \\cdot 35 = 350$. Using $\\binom{12}{5} = 792$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(5, 2)*binomial(7, 3) == 350"
+          ]
+        },
+        {
+          "id": "PS-comm-v10",
+          "statement": "A class has $4$ boys and $6$ girls. In how many ways can a committee of exactly $2$ boys and $3$ girls be chosen?",
+          "options": [
+            "$252$",
+            "$120$",
+            "$26$",
+            "$1440$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{4}{2}\\binom{6}{3} = 6 \\cdot 20 = 120$. Using $\\binom{10}{5} = 252$ ignores the exactly-$2$-boys condition.",
+          "check": [
+            "binomial(4, 2)*binomial(6, 3) == 120"
+          ]
+        },
+        {
+          "id": "PS-comm-v11",
+          "statement": "A class has $6$ boys and $4$ girls. In how many ways can a committee of exactly $3$ boys and $2$ girls be chosen?",
+          "options": [
+            "$252$",
+            "$26$",
+            "$120$",
+            "$1440$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{6}{3}\\binom{4}{2} = 20 \\cdot 6 = 120$. Using $\\binom{10}{5} = 252$ ignores the exactly-$3$-boys condition.",
+          "check": [
+            "binomial(6, 3)*binomial(4, 2) == 120"
+          ]
+        },
+        {
+          "id": "PS-comm-v12",
+          "statement": "A class has $7$ boys and $7$ girls. In how many ways can a committee of exactly $3$ boys and $2$ girls be chosen?",
+          "options": [
+            "$2002$",
+            "$56$",
+            "$8820$",
+            "$735$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Choose the boys and the girls separately, then multiply: $\\binom{7}{3}\\binom{7}{2} = 35 \\cdot 21 = 735$. Using $\\binom{14}{5} = 2002$ ignores the exactly-$3$-boys condition.",
+          "check": [
+            "binomial(7, 3)*binomial(7, 2) == 735"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pascal-row",
+      "title": "Reading Pascal's triangle",
+      "level": 1,
+      "unit": "binomial-theorem",
+      "skill": "Entry k of row n is C(n, k); the whole row sums to 2^n.",
+      "variants": [
+        {
+          "id": "PS-pas-v01",
+          "statement": "What is the entry in position $2$ (counting from $0$) of row $5$ of Pascal's triangle?",
+          "options": [
+            "$10$",
+            "$5$",
+            "$6$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row $5$, position $2$ is $\\binom{5}{2} = 10$. Counting positions from $1$ instead of $0$ lands on $\\binom{5}{1} = 5$.",
+          "check": [
+            "binomial(5, 2) == 10"
+          ]
+        },
+        {
+          "id": "PS-pas-v02",
+          "statement": "What is the entry in position $2$ (counting from $0$) of row $6$ of Pascal's triangle?",
+          "options": [
+            "$6$",
+            "$15$",
+            "$10$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row $6$, position $2$ is $\\binom{6}{2} = 15$. Counting positions from $1$ instead of $0$ lands on $\\binom{6}{1} = 6$.",
+          "check": [
+            "binomial(6, 2) == 15"
+          ]
+        },
+        {
+          "id": "PS-pas-v03",
+          "statement": "What is the entry in position $3$ (counting from $0$) of row $6$ of Pascal's triangle?",
+          "options": [
+            "$15$",
+            "$10$",
+            "$20$",
+            "$35$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row $6$, position $3$ is $\\binom{6}{3} = 20$. Counting positions from $1$ instead of $0$ lands on $\\binom{6}{2} = 15$.",
+          "check": [
+            "binomial(6, 3) == 20"
+          ]
+        },
+        {
+          "id": "PS-pas-v04",
+          "statement": "What is the entry in position $2$ (counting from $0$) of row $7$ of Pascal's triangle?",
+          "options": [
+            "$7$",
+            "$15$",
+            "$28$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row $7$, position $2$ is $\\binom{7}{2} = 21$. Counting positions from $1$ instead of $0$ lands on $\\binom{7}{1} = 7$.",
+          "check": [
+            "binomial(7, 2) == 21"
+          ]
+        },
+        {
+          "id": "PS-pas-v05",
+          "statement": "What is the entry in position $3$ (counting from $0$) of row $7$ of Pascal's triangle?",
+          "options": [
+            "$35$",
+            "$21$",
+            "$20$",
+            "$56$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row $7$, position $3$ is $\\binom{7}{3} = 35$. Counting positions from $1$ instead of $0$ lands on $\\binom{7}{2} = 21$.",
+          "check": [
+            "binomial(7, 3) == 35"
+          ]
+        },
+        {
+          "id": "PS-pas-v06",
+          "statement": "What is the entry in position $3$ (counting from $0$) of row $8$ of Pascal's triangle?",
+          "options": [
+            "$28$",
+            "$56$",
+            "$35$",
+            "$84$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row $8$, position $3$ is $\\binom{8}{3} = 56$. Counting positions from $1$ instead of $0$ lands on $\\binom{8}{2} = 28$.",
+          "check": [
+            "binomial(8, 3) == 56"
+          ]
+        },
+        {
+          "id": "PS-pas-v07",
+          "statement": "What is the sum of all the entries in row $5$ of Pascal's triangle?",
+          "options": [
+            "$16$",
+            "$25$",
+            "$32$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each row's entries sum to a power of two: row $5$ sums to $2^{5} = 32$. Halving to $16$ comes from using $2^{4}$ — an off-by-one on the row number.",
+          "check": [
+            "2**5 == 32"
+          ]
+        },
+        {
+          "id": "PS-pas-v08",
+          "statement": "What is the sum of all the entries in row $6$ of Pascal's triangle?",
+          "options": [
+            "$32$",
+            "$36$",
+            "$12$",
+            "$64$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each row's entries sum to a power of two: row $6$ sums to $2^{6} = 64$. Halving to $32$ comes from using $2^{5}$ — an off-by-one on the row number.",
+          "check": [
+            "2**6 == 64"
+          ]
+        },
+        {
+          "id": "PS-pas-v09",
+          "statement": "What is the sum of all the entries in row $7$ of Pascal's triangle?",
+          "options": [
+            "$128$",
+            "$64$",
+            "$49$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each row's entries sum to a power of two: row $7$ sums to $2^{7} = 128$. Halving to $64$ comes from using $2^{6}$ — an off-by-one on the row number.",
+          "check": [
+            "2**7 == 128"
+          ]
+        },
+        {
+          "id": "PS-pas-v10",
+          "statement": "What is the sum of all the entries in row $8$ of Pascal's triangle?",
+          "options": [
+            "$128$",
+            "$256$",
+            "$64$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each row's entries sum to a power of two: row $8$ sums to $2^{8} = 256$. Halving to $128$ comes from using $2^{7}$ — an off-by-one on the row number.",
+          "check": [
+            "2**8 == 256"
+          ]
+        },
+        {
+          "id": "PS-pas-v11",
+          "statement": "What is the sum of all the entries in row $9$ of Pascal's triangle?",
+          "options": [
+            "$256$",
+            "$81$",
+            "$512$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each row's entries sum to a power of two: row $9$ sums to $2^{9} = 512$. Halving to $256$ comes from using $2^{8}$ — an off-by-one on the row number.",
+          "check": [
+            "2**9 == 512"
+          ]
+        },
+        {
+          "id": "PS-pas-v12",
+          "statement": "What is the sum of all the entries in row $10$ of Pascal's triangle?",
+          "options": [
+            "$512$",
+            "$100$",
+            "$20$",
+            "$1024$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each row's entries sum to a power of two: row $10$ sums to $2^{10} = 1024$. Halving to $512$ comes from using $2^{9}$ — an off-by-one on the row number.",
+          "check": [
+            "2**10 == 1024"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "binomial-coefficient",
+      "title": "Coefficients in (x + a)^n",
+      "level": 2,
+      "unit": "binomial-theorem",
+      "skill": "The x^(n−k) term carries C(n, k)·a^k — both parts, not just one.",
+      "variants": [
+        {
+          "id": "PS-bco-v01",
+          "statement": "In the expansion of $(x + 2)^{4}$, what is the coefficient of $x^{3}$?",
+          "options": [
+            "$8$",
+            "$4$",
+            "$2$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The $x^{3}$ term is $\\binom{4}{1} x^{3} \\cdot 2^{1}$, so the coefficient is $4 \\cdot 2 = 8$. Writing only $\\binom{4}{1} = 4$ forgets the factor $2^{1}$.",
+          "check": [
+            "binomial(4, 1)*2**1 == 8"
+          ]
+        },
+        {
+          "id": "PS-bco-v02",
+          "statement": "In the expansion of $(x + 2)^{4}$, what is the coefficient of $x^{2}$?",
+          "options": [
+            "$6$",
+            "$24$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The $x^{2}$ term is $\\binom{4}{2} x^{2} \\cdot 2^{2}$, so the coefficient is $6 \\cdot 4 = 24$. Writing only $\\binom{4}{2} = 6$ forgets the factor $2^{2}$.",
+          "check": [
+            "binomial(4, 2)*2**2 == 24"
+          ]
+        },
+        {
+          "id": "PS-bco-v03",
+          "statement": "In the expansion of $(x + 3)^{4}$, what is the coefficient of $x^{3}$?",
+          "options": [
+            "$4$",
+            "$3$",
+            "$12$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The $x^{3}$ term is $\\binom{4}{1} x^{3} \\cdot 3^{1}$, so the coefficient is $4 \\cdot 3 = 12$. Writing only $\\binom{4}{1} = 4$ forgets the factor $3^{1}$.",
+          "check": [
+            "binomial(4, 1)*3**1 == 12"
+          ]
+        },
+        {
+          "id": "PS-bco-v04",
+          "statement": "In the expansion of $(x + 3)^{4}$, what is the coefficient of $x^{2}$?",
+          "options": [
+            "$6$",
+            "$9$",
+            "$12$",
+            "$54$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The $x^{2}$ term is $\\binom{4}{2} x^{2} \\cdot 3^{2}$, so the coefficient is $6 \\cdot 9 = 54$. Writing only $\\binom{4}{2} = 6$ forgets the factor $3^{2}$.",
+          "check": [
+            "binomial(4, 2)*3**2 == 54"
+          ]
+        },
+        {
+          "id": "PS-bco-v05",
+          "statement": "In the expansion of $(x + 2)^{5}$, what is the coefficient of $x^{4}$?",
+          "options": [
+            "$10$",
+            "$5$",
+            "$2$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The $x^{4}$ term is $\\binom{5}{1} x^{4} \\cdot 2^{1}$, so the coefficient is $5 \\cdot 2 = 10$. Writing only $\\binom{5}{1} = 5$ forgets the factor $2^{1}$.",
+          "check": [
+            "binomial(5, 1)*2**1 == 10"
+          ]
+        },
+        {
+          "id": "PS-bco-v06",
+          "statement": "In the expansion of $(x + 3)^{5}$, what is the coefficient of $x^{3}$?",
+          "options": [
+            "$10$",
+            "$90$",
+            "$9$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The $x^{3}$ term is $\\binom{5}{2} x^{3} \\cdot 3^{2}$, so the coefficient is $10 \\cdot 9 = 90$. Writing only $\\binom{5}{2} = 10$ forgets the factor $3^{2}$.",
+          "check": [
+            "binomial(5, 2)*3**2 == 90"
+          ]
+        },
+        {
+          "id": "PS-bco-v07",
+          "statement": "In the expansion of $(x + 2)^{5}$, what is the coefficient of $x^{2}$?",
+          "options": [
+            "$10$",
+            "$8$",
+            "$80$",
+            "$40$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The $x^{2}$ term is $\\binom{5}{3} x^{2} \\cdot 2^{3}$, so the coefficient is $10 \\cdot 8 = 80$. Writing only $\\binom{5}{3} = 10$ forgets the factor $2^{3}$.",
+          "check": [
+            "binomial(5, 3)*2**3 == 80"
+          ]
+        },
+        {
+          "id": "PS-bco-v08",
+          "statement": "In the expansion of $(x + 2)^{6}$, what is the coefficient of $x^{4}$?",
+          "options": [
+            "$15$",
+            "$4$",
+            "$12$",
+            "$60$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The $x^{4}$ term is $\\binom{6}{2} x^{4} \\cdot 2^{2}$, so the coefficient is $15 \\cdot 4 = 60$. Writing only $\\binom{6}{2} = 15$ forgets the factor $2^{2}$.",
+          "check": [
+            "binomial(6, 2)*2**2 == 60"
+          ]
+        },
+        {
+          "id": "PS-bco-v09",
+          "statement": "In the expansion of $(x + 3)^{6}$, what is the coefficient of $x^{5}$?",
+          "options": [
+            "$18$",
+            "$6$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The $x^{5}$ term is $\\binom{6}{1} x^{5} \\cdot 3^{1}$, so the coefficient is $6 \\cdot 3 = 18$. Writing only $\\binom{6}{1} = 6$ forgets the factor $3^{1}$.",
+          "check": [
+            "binomial(6, 1)*3**1 == 18"
+          ]
+        },
+        {
+          "id": "PS-bco-v10",
+          "statement": "In the expansion of $(x + 2)^{6}$, what is the coefficient of $x^{3}$?",
+          "options": [
+            "$20$",
+            "$160$",
+            "$8$",
+            "$60$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The $x^{3}$ term is $\\binom{6}{3} x^{3} \\cdot 2^{3}$, so the coefficient is $20 \\cdot 8 = 160$. Writing only $\\binom{6}{3} = 20$ forgets the factor $2^{3}$.",
+          "check": [
+            "binomial(6, 3)*2**3 == 160"
+          ]
+        },
+        {
+          "id": "PS-bco-v11",
+          "statement": "In the expansion of $(x + 3)^{6}$, what is the coefficient of $x^{4}$?",
+          "options": [
+            "$15$",
+            "$9$",
+            "$135$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The $x^{4}$ term is $\\binom{6}{2} x^{4} \\cdot 3^{2}$, so the coefficient is $15 \\cdot 9 = 135$. Writing only $\\binom{6}{2} = 15$ forgets the factor $3^{2}$.",
+          "check": [
+            "binomial(6, 2)*3**2 == 135"
+          ]
+        },
+        {
+          "id": "PS-bco-v12",
+          "statement": "In the expansion of $(x + 2)^{7}$, what is the coefficient of $x^{5}$?",
+          "options": [
+            "$21$",
+            "$4$",
+            "$14$",
+            "$84$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The $x^{5}$ term is $\\binom{7}{2} x^{5} \\cdot 2^{2}$, so the coefficient is $21 \\cdot 4 = 84$. Writing only $\\binom{7}{2} = 21$ forgets the factor $2^{2}$.",
+          "check": [
+            "binomial(7, 2)*2**2 == 84"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "single-event",
+      "title": "One draw from a bag",
+      "level": 1,
+      "unit": "probability-models",
+      "skill": "Favorable over TOTAL — the denominator counts everything in the bag.",
+      "variants": [
+        {
+          "id": "PS-sev-v01",
+          "statement": "A bag contains $3$ red and $5$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{3}{8}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{5}{8}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{3}{3 + 5} = \\frac{3}{8}$. Dividing red by blue, $\\frac{3}{5}$, gives odds — not a probability.",
+          "check": [
+            "Rational(3, 8) == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-sev-v02",
+          "statement": "A bag contains $2$ red and $7$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{2}{7}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{7}{9}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{2}{2 + 7} = \\frac{2}{9}$. Dividing red by blue, $\\frac{2}{7}$, gives odds — not a probability.",
+          "check": [
+            "Rational(2, 9) == Rational(2, 9)"
+          ]
+        },
+        {
+          "id": "PS-sev-v03",
+          "statement": "A bag contains $4$ red and $5$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{4}{5}$",
+            "$\\frac{5}{9}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{4}{4 + 5} = \\frac{4}{9}$. Dividing red by blue, $\\frac{4}{5}$, gives odds — not a probability.",
+          "check": [
+            "Rational(4, 9) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "PS-sev-v04",
+          "statement": "A bag contains $3$ red and $7$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{3}{7}$",
+            "$\\frac{7}{10}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{3}{3 + 7} = \\frac{3}{10}$. Dividing red by blue, $\\frac{3}{7}$, gives odds — not a probability.",
+          "check": [
+            "Rational(3, 10) == Rational(3, 10)"
+          ]
+        },
+        {
+          "id": "PS-sev-v05",
+          "statement": "A bag contains $5$ red and $7$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{5}{12}$",
+            "$\\frac{5}{7}$",
+            "$\\frac{7}{12}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{5}{5 + 7} = \\frac{5}{12}$. Dividing red by blue, $\\frac{5}{7}$, gives odds — not a probability.",
+          "check": [
+            "Rational(5, 12) == Rational(5, 12)"
+          ]
+        },
+        {
+          "id": "PS-sev-v06",
+          "statement": "A bag contains $2$ red and $5$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{2}{5}$",
+            "$\\frac{2}{7}$",
+            "$\\frac{5}{7}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{2}{2 + 5} = \\frac{2}{7}$. Dividing red by blue, $\\frac{2}{5}$, gives odds — not a probability.",
+          "check": [
+            "Rational(2, 7) == Rational(2, 7)"
+          ]
+        },
+        {
+          "id": "PS-sev-v07",
+          "statement": "A bag contains $5$ red and $3$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{5}{3}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{5}{8}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{5}{5 + 3} = \\frac{5}{8}$. Dividing red by blue, $\\frac{5}{3}$, gives odds — not a probability.",
+          "check": [
+            "Rational(5, 8) == Rational(5, 8)"
+          ]
+        },
+        {
+          "id": "PS-sev-v08",
+          "statement": "A bag contains $7$ red and $3$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{7}{3}$",
+            "$\\frac{3}{10}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{7}{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{7}{7 + 3} = \\frac{7}{10}$. Dividing red by blue, $\\frac{7}{3}$, gives odds — not a probability.",
+          "check": [
+            "Rational(7, 10) == Rational(7, 10)"
+          ]
+        },
+        {
+          "id": "PS-sev-v09",
+          "statement": "A bag contains $4$ red and $9$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{4}{13}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{9}{13}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{4}{4 + 9} = \\frac{4}{13}$. Dividing red by blue, $\\frac{4}{9}$, gives odds — not a probability.",
+          "check": [
+            "Rational(4, 13) == Rational(4, 13)"
+          ]
+        },
+        {
+          "id": "PS-sev-v10",
+          "statement": "A bag contains $3$ red and $4$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{3}{4}$",
+            "$\\frac{3}{7}$",
+            "$\\frac{4}{7}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{3}{3 + 4} = \\frac{3}{7}$. Dividing red by blue, $\\frac{3}{4}$, gives odds — not a probability.",
+          "check": [
+            "Rational(3, 7) == Rational(3, 7)"
+          ]
+        },
+        {
+          "id": "PS-sev-v11",
+          "statement": "A bag contains $7$ red and $5$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{7}{5}$",
+            "$\\frac{5}{12}$",
+            "$\\frac{7}{12}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{7}{7 + 5} = \\frac{7}{12}$. Dividing red by blue, $\\frac{7}{5}$, gives odds — not a probability.",
+          "check": [
+            "Rational(7, 12) == Rational(7, 12)"
+          ]
+        },
+        {
+          "id": "PS-sev-v12",
+          "statement": "A bag contains $5$ red and $9$ blue marbles. One marble is drawn at random. What is the probability that it is red?",
+          "options": [
+            "$\\frac{5}{9}$",
+            "$\\frac{9}{14}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{14}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Probability is favourable over TOTAL: $\\frac{5}{5 + 9} = \\frac{5}{14}$. Dividing red by blue, $\\frac{5}{9}$, gives odds — not a probability.",
+          "check": [
+            "Rational(5, 14) == Rational(5, 14)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complement",
+      "title": "The complement rule",
+      "level": 2,
+      "unit": "probability-models",
+      "skill": "P(not A) = 1 − P(A) — the two must add to 1.",
+      "variants": [
+        {
+          "id": "PS-comp-v01",
+          "statement": "The probability that it rains tomorrow is $\\frac{2}{5}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{3}{5}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{2}$",
+            "$\\frac{1}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{2}{5} = \\frac{3}{5}$. Answering $\\frac{2}{5}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(2, 5) == Rational(3, 5)"
+          ]
+        },
+        {
+          "id": "PS-comp-v02",
+          "statement": "The probability that it rains tomorrow is $\\frac{3}{7}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{3}{7}$",
+            "$\\frac{4}{7}$",
+            "$\\frac{7}{3}$",
+            "$\\frac{1}{7}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{3}{7} = \\frac{4}{7}$. Answering $\\frac{3}{7}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(3, 7) == Rational(4, 7)"
+          ]
+        },
+        {
+          "id": "PS-comp-v03",
+          "statement": "The probability that it rains tomorrow is $\\frac{2}{7}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{2}{7}$",
+            "$\\frac{7}{2}$",
+            "$\\frac{5}{7}$",
+            "$\\frac{1}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{2}{7} = \\frac{5}{7}$. Answering $\\frac{2}{7}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(2, 7) == Rational(5, 7)"
+          ]
+        },
+        {
+          "id": "PS-comp-v04",
+          "statement": "The probability that it rains tomorrow is $\\frac{3}{8}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{3}{8}$",
+            "$\\frac{8}{3}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{5}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{3}{8} = \\frac{5}{8}$. Answering $\\frac{3}{8}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(3, 8) == Rational(5, 8)"
+          ]
+        },
+        {
+          "id": "PS-comp-v05",
+          "statement": "The probability that it rains tomorrow is $\\frac{4}{9}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{5}{9}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{9}{4}$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{4}{9} = \\frac{5}{9}$. Answering $\\frac{4}{9}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(4, 9) == Rational(5, 9)"
+          ]
+        },
+        {
+          "id": "PS-comp-v06",
+          "statement": "The probability that it rains tomorrow is $\\frac{2}{9}$. What is the probability that it does not rain?",
+          "options": [
+            "$\\frac{2}{9}$",
+            "$\\frac{7}{9}$",
+            "$\\frac{9}{2}$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Rain and no-rain are complements, so subtract from one: $1 - \\frac{2}{9} = \\frac{7}{9}$. Answering $\\frac{2}{9}$ again forgets the complement entirely.",
+          "check": [
+            "1 - Rational(2, 9) == Rational(7, 9)"
+          ]
+        },
+        {
+          "id": "PS-comp-v07",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $1$?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Five of the six equally likely faces are not $1$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "PS-comp-v08",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $2$?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{5}{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Five of the six equally likely faces are not $2$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "PS-comp-v09",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $3$?",
+          "options": [
+            "$\\frac{5}{6}$",
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Five of the six equally likely faces are not $3$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "PS-comp-v10",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $4$?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Five of the six equally likely faces are not $4$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "PS-comp-v11",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $5$?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Five of the six equally likely faces are not $5$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        },
+        {
+          "id": "PS-comp-v12",
+          "statement": "A fair die is rolled once. What is the probability of not rolling a $6$?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{5}{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Five of the six equally likely faces are not $6$, so the probability is $1 - \\frac{1}{6} = \\frac{5}{6}$. Answering $\\frac{1}{2}$ (\"it happens or it doesn't\") ignores the six equally likely faces.",
+          "check": [
+            "1 - Rational(1, 6) == Rational(5, 6)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "independent-and",
+      "title": "Independent AND",
+      "level": 2,
+      "unit": "conditional-probability",
+      "skill": "Independent events: multiply. Adding gives OR (minus the overlap).",
+      "variants": [
+        {
+          "id": "PS-ind-v01",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{2}$ and $P(B) = \\frac{2}{3}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{7}{6}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{7}{12}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{2} \\cdot \\frac{2}{3} = \\frac{1}{3}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{5}{6}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 2)*Rational(2, 3) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "PS-ind-v02",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{3}$ and $P(B) = \\frac{3}{5}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{14}{15}$",
+            "$\\frac{1}{5}$",
+            "$\\frac{11}{15}$",
+            "$\\frac{7}{15}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{3} \\cdot \\frac{3}{5} = \\frac{1}{5}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{11}{15}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 3)*Rational(3, 5) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "PS-ind-v03",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{4}$ and $P(B) = \\frac{2}{5}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{13}{20}$",
+            "$\\frac{11}{20}$",
+            "$\\frac{1}{10}$",
+            "$\\frac{13}{40}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{4} \\cdot \\frac{2}{5} = \\frac{1}{10}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{11}{20}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 4)*Rational(2, 5) == Rational(1, 10)"
+          ]
+        },
+        {
+          "id": "PS-ind-v04",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{2}$ and $P(B) = \\frac{1}{3}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{5}{6}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{5}{12}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{2} \\cdot \\frac{1}{3} = \\frac{1}{6}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{2}{3}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 2)*Rational(1, 3) == Rational(1, 6)"
+          ]
+        },
+        {
+          "id": "PS-ind-v05",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{2}{3}$ and $P(B) = \\frac{3}{4}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$\\frac{17}{12}$",
+            "$\\frac{11}{12}$",
+            "$\\frac{17}{24}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{2}{3} \\cdot \\frac{3}{4} = \\frac{1}{2}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{11}{12}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(2, 3)*Rational(3, 4) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "PS-ind-v06",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{5}$ and $P(B) = \\frac{1}{2}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{7}{10}$",
+            "$\\frac{1}{10}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{7}{20}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{5} \\cdot \\frac{1}{2} = \\frac{1}{10}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{3}{5}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 5)*Rational(1, 2) == Rational(1, 10)"
+          ]
+        },
+        {
+          "id": "PS-ind-v07",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{2}{5}$ and $P(B) = \\frac{2}{3}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{16}{15}$",
+            "$\\frac{4}{5}$",
+            "$\\frac{4}{15}$",
+            "$\\frac{8}{15}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{2}{5} \\cdot \\frac{2}{3} = \\frac{4}{15}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{4}{5}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(2, 5)*Rational(2, 3) == Rational(4, 15)"
+          ]
+        },
+        {
+          "id": "PS-ind-v08",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{6}$ and $P(B) = \\frac{1}{2}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{2}{3}$",
+            "$\\frac{7}{12}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{6} \\cdot \\frac{1}{2} = \\frac{1}{12}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{7}{12}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 6)*Rational(1, 2) == Rational(1, 12)"
+          ]
+        },
+        {
+          "id": "PS-ind-v09",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{3}{4}$ and $P(B) = \\frac{1}{3}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$\\frac{13}{12}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{13}{24}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{3}{4} \\cdot \\frac{1}{3} = \\frac{1}{4}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{5}{6}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(3, 4)*Rational(1, 3) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "PS-ind-v10",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{2}$ and $P(B) = \\frac{3}{5}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{11}{10}$",
+            "$\\frac{3}{10}$",
+            "$\\frac{4}{5}$",
+            "$\\frac{11}{20}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{2} \\cdot \\frac{3}{5} = \\frac{3}{10}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{4}{5}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 2)*Rational(3, 5) == Rational(3, 10)"
+          ]
+        },
+        {
+          "id": "PS-ind-v11",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{1}{3}$ and $P(B) = \\frac{1}{4}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{7}{12}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{12}$",
+            "$\\frac{7}{24}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{1}{3} \\cdot \\frac{1}{4} = \\frac{1}{12}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{1}{2}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(1, 3)*Rational(1, 4) == Rational(1, 12)"
+          ]
+        },
+        {
+          "id": "PS-ind-v12",
+          "statement": "Events $A$ and $B$ are independent, with $P(A) = \\frac{2}{3}$ and $P(B) = \\frac{1}{5}$. Find $P(A \\cap B)$.",
+          "options": [
+            "$\\frac{13}{15}$",
+            "$\\frac{11}{15}$",
+            "$\\frac{13}{30}$",
+            "$\\frac{2}{15}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Independent events multiply: $P(A \\cap B) = \\frac{2}{3} \\cdot \\frac{1}{5} = \\frac{2}{15}$. The formula $P(A) + P(B) - P(A)P(B) = \\frac{11}{15}$ computes $P(A \\cup B)$ — the OR, not the AND.",
+          "check": [
+            "Rational(2, 3)*Rational(1, 5) == Rational(2, 15)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conditional-from-counts",
+      "title": "Conditional probability from counts",
+      "level": 3,
+      "unit": "conditional-probability",
+      "skill": "Given B, the denominator shrinks to B's count — not the whole group.",
+      "variants": [
+        {
+          "id": "PS-cond-v01",
+          "statement": "A school has $40$ students; $16$ of them play chess, and $6$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{3}{8}$",
+            "$\\frac{3}{20}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The draw is from the $16$ chess players only, so $P = \\frac{6}{16} = \\frac{3}{8}$. Dividing by all $40$ students, $\\frac{3}{20}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(6, 16) == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-cond-v02",
+          "statement": "A school has $60$ students; $24$ of them play chess, and $9$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{3}{20}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The draw is from the $24$ chess players only, so $P = \\frac{9}{24} = \\frac{3}{8}$. Dividing by all $60$ students, $\\frac{3}{20}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(9, 24) == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-cond-v03",
+          "statement": "A school has $30$ students; $12$ of them play chess, and $5$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{12}$",
+            "$\\frac{7}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The draw is from the $12$ chess players only, so $P = \\frac{5}{12} = \\frac{5}{12}$. Dividing by all $30$ students, $\\frac{1}{6}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(5, 12) == Rational(5, 12)"
+          ]
+        },
+        {
+          "id": "PS-cond-v04",
+          "statement": "A school has $45$ students; $15$ of them play chess, and $6$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{2}{15}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The draw is from the $15$ chess players only, so $P = \\frac{6}{15} = \\frac{2}{5}$. Dividing by all $45$ students, $\\frac{2}{15}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(6, 15) == Rational(2, 5)"
+          ]
+        },
+        {
+          "id": "PS-cond-v05",
+          "statement": "A school has $36$ students; $16$ of them play chess, and $10$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{5}{8}$",
+            "$\\frac{5}{18}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The draw is from the $16$ chess players only, so $P = \\frac{10}{16} = \\frac{5}{8}$. Dividing by all $36$ students, $\\frac{5}{18}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(10, 16) == Rational(5, 8)"
+          ]
+        },
+        {
+          "id": "PS-cond-v06",
+          "statement": "A school has $48$ students; $16$ of them play chess, and $10$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{5}{24}$",
+            "$\\frac{5}{8}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The draw is from the $16$ chess players only, so $P = \\frac{10}{16} = \\frac{5}{8}$. Dividing by all $48$ students, $\\frac{5}{24}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(10, 16) == Rational(5, 8)"
+          ]
+        },
+        {
+          "id": "PS-cond-v07",
+          "statement": "A school has $60$ students; $25$ of them play chess, and $10$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{5}{12}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{3}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The draw is from the $25$ chess players only, so $P = \\frac{10}{25} = \\frac{2}{5}$. Dividing by all $60$ students, $\\frac{1}{6}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(10, 25) == Rational(2, 5)"
+          ]
+        },
+        {
+          "id": "PS-cond-v08",
+          "statement": "A school has $80$ students; $32$ of them play chess, and $12$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{3}{20}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{8}$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The draw is from the $32$ chess players only, so $P = \\frac{12}{32} = \\frac{3}{8}$. Dividing by all $80$ students, $\\frac{3}{20}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(12, 32) == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-cond-v09",
+          "statement": "A school has $54$ students; $18$ of them play chess, and $8$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{4}{9}$",
+            "$\\frac{4}{27}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{5}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The draw is from the $18$ chess players only, so $P = \\frac{8}{18} = \\frac{4}{9}$. Dividing by all $54$ students, $\\frac{4}{27}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(8, 18) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "PS-cond-v10",
+          "statement": "A school has $42$ students; $14$ of them play chess, and $6$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{1}{7}$",
+            "$\\frac{3}{7}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{4}{7}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The draw is from the $14$ chess players only, so $P = \\frac{6}{14} = \\frac{3}{7}$. Dividing by all $42$ students, $\\frac{1}{7}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(6, 14) == Rational(3, 7)"
+          ]
+        },
+        {
+          "id": "PS-cond-v11",
+          "statement": "A school has $72$ students; $27$ of them play chess, and $12$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{1}{6}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{5}{9}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The draw is from the $27$ chess players only, so $P = \\frac{12}{27} = \\frac{4}{9}$. Dividing by all $72$ students, $\\frac{1}{6}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(12, 27) == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "PS-cond-v12",
+          "statement": "A school has $56$ students; $21$ of them play chess, and $9$ of the chess players are girls. One chess player is chosen at random. What is the probability that a girl is chosen?",
+          "options": [
+            "$\\frac{9}{56}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{4}{7}$",
+            "$\\frac{3}{7}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The draw is from the $21$ chess players only, so $P = \\frac{9}{21} = \\frac{3}{7}$. Dividing by all $56$ students, $\\frac{9}{56}$, uses the wrong total — the condition shrank the sample space.",
+          "check": [
+            "Rational(9, 21) == Rational(3, 7)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expected-value",
+      "title": "Expected value",
+      "level": 3,
+      "unit": "random-variables",
+      "skill": "E(X) = Σ value · probability — a weighted average, not a plain one.",
+      "variants": [
+        {
+          "id": "PS-ev-v01",
+          "statement": "A random variable $X$ takes the values $0$, $2$, and $5$ with probabilities $\\frac{1}{4}$, $\\frac{1}{4}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$3$",
+            "$\\frac{7}{3}$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{4} + 2 \\cdot \\frac{1}{4} + 5 \\cdot \\frac{1}{2} = 3$. Averaging the three values equally, $\\frac{7}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 4) + 2*Rational(1, 4) + 5*Rational(1, 2) == Rational(3, 1)",
+            "Rational(1, 4) + Rational(1, 4) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v02",
+          "statement": "A random variable $X$ takes the values $1$, $3$, and $6$ with probabilities $\\frac{1}{6}$, $\\frac{1}{3}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{10}{3}$",
+            "$\\frac{25}{6}$",
+            "$6$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{6} + 3 \\cdot \\frac{1}{3} + 6 \\cdot \\frac{1}{2} = \\frac{25}{6}$. Averaging the three values equally, $\\frac{10}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 6) + 3*Rational(1, 3) + 6*Rational(1, 2) == Rational(25, 6)",
+            "Rational(1, 6) + Rational(1, 3) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v03",
+          "statement": "A random variable $X$ takes the values $2$, $4$, and $7$ with probabilities $\\frac{1}{3}$, $\\frac{1}{2}$, and $\\frac{1}{6}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{13}{3}$",
+            "$7$",
+            "$\\frac{23}{6}$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{1}{3} + 4 \\cdot \\frac{1}{2} + 7 \\cdot \\frac{1}{6} = \\frac{23}{6}$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(1, 3) + 4*Rational(1, 2) + 7*Rational(1, 6) == Rational(23, 6)",
+            "Rational(1, 3) + Rational(1, 2) + Rational(1, 6) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v04",
+          "statement": "A random variable $X$ takes the values $1$, $5$, and $10$ with probabilities $\\frac{1}{2}$, $\\frac{1}{6}$, and $\\frac{1}{3}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{16}{3}$",
+            "$10$",
+            "$16$",
+            "$\\frac{14}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{2} + 5 \\cdot \\frac{1}{6} + 10 \\cdot \\frac{1}{3} = \\frac{14}{3}$. Averaging the three values equally, $\\frac{16}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 2) + 5*Rational(1, 6) + 10*Rational(1, 3) == Rational(14, 3)",
+            "Rational(1, 2) + Rational(1, 6) + Rational(1, 3) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v05",
+          "statement": "A random variable $X$ takes the values $0$, $3$, and $8$ with probabilities $\\frac{1}{8}$, $\\frac{3}{8}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{41}{8}$",
+            "$\\frac{11}{3}$",
+            "$8$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{8} + 3 \\cdot \\frac{3}{8} + 8 \\cdot \\frac{1}{2} = \\frac{41}{8}$. Averaging the three values equally, $\\frac{11}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 8) + 3*Rational(3, 8) + 8*Rational(1, 2) == Rational(41, 8)",
+            "Rational(1, 8) + Rational(3, 8) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v06",
+          "statement": "A random variable $X$ takes the values $2$, $5$, and $9$ with probabilities $\\frac{1}{4}$, $\\frac{1}{8}$, and $\\frac{5}{8}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{16}{3}$",
+            "$\\frac{27}{4}$",
+            "$9$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{1}{4} + 5 \\cdot \\frac{1}{8} + 9 \\cdot \\frac{5}{8} = \\frac{27}{4}$. Averaging the three values equally, $\\frac{16}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(1, 4) + 5*Rational(1, 8) + 9*Rational(5, 8) == Rational(27, 4)",
+            "Rational(1, 4) + Rational(1, 8) + Rational(5, 8) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v07",
+          "statement": "A random variable $X$ takes the values $1$, $4$, and $8$ with probabilities $\\frac{3}{8}$, $\\frac{1}{2}$, and $\\frac{1}{8}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{13}{3}$",
+            "$8$",
+            "$\\frac{27}{8}$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{3}{8} + 4 \\cdot \\frac{1}{2} + 8 \\cdot \\frac{1}{8} = \\frac{27}{8}$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(3, 8) + 4*Rational(1, 2) + 8*Rational(1, 8) == Rational(27, 8)",
+            "Rational(3, 8) + Rational(1, 2) + Rational(1, 8) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v08",
+          "statement": "A random variable $X$ takes the values $3$, $5$, and $10$ with probabilities $\\frac{1}{10}$, $\\frac{2}{5}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$6$",
+            "$10$",
+            "$18$",
+            "$\\frac{73}{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 3 \\cdot \\frac{1}{10} + 5 \\cdot \\frac{2}{5} + 10 \\cdot \\frac{1}{2} = \\frac{73}{10}$. Averaging the three values equally, $6$, ignores the weights.",
+          "check": [
+            "3*Rational(1, 10) + 5*Rational(2, 5) + 10*Rational(1, 2) == Rational(73, 10)",
+            "Rational(1, 10) + Rational(2, 5) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v09",
+          "statement": "A random variable $X$ takes the values $0$, $4$, and $9$ with probabilities $\\frac{1}{5}$, $\\frac{3}{10}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{57}{10}$",
+            "$\\frac{13}{3}$",
+            "$9$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{5} + 4 \\cdot \\frac{3}{10} + 9 \\cdot \\frac{1}{2} = \\frac{57}{10}$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 5) + 4*Rational(3, 10) + 9*Rational(1, 2) == Rational(57, 10)",
+            "Rational(1, 5) + Rational(3, 10) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v10",
+          "statement": "A random variable $X$ takes the values $2$, $6$, and $11$ with probabilities $\\frac{1}{5}$, $\\frac{1}{5}$, and $\\frac{3}{5}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{19}{3}$",
+            "$\\frac{41}{5}$",
+            "$11$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{1}{5} + 6 \\cdot \\frac{1}{5} + 11 \\cdot \\frac{3}{5} = \\frac{41}{5}$. Averaging the three values equally, $\\frac{19}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(1, 5) + 6*Rational(1, 5) + 11*Rational(3, 5) == Rational(41, 5)",
+            "Rational(1, 5) + Rational(1, 5) + Rational(3, 5) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v11",
+          "statement": "A random variable $X$ takes the values $1$, $2$, and $5$ with probabilities $\\frac{2}{5}$, $\\frac{1}{5}$, and $\\frac{2}{5}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{8}{3}$",
+            "$5$",
+            "$\\frac{14}{5}$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{2}{5} + 2 \\cdot \\frac{1}{5} + 5 \\cdot \\frac{2}{5} = \\frac{14}{5}$. Averaging the three values equally, $\\frac{8}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(2, 5) + 2*Rational(1, 5) + 5*Rational(2, 5) == Rational(14, 5)",
+            "Rational(2, 5) + Rational(1, 5) + Rational(2, 5) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v12",
+          "statement": "A random variable $X$ takes the values $1$, $2$, and $3$ with probabilities $\\frac{1}{4}$, $\\frac{1}{4}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$6$",
+            "$\\frac{9}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{4} + 2 \\cdot \\frac{1}{4} + 3 \\cdot \\frac{1}{2} = \\frac{9}{4}$. Averaging the three values equally, $2$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 4) + 2*Rational(1, 4) + 3*Rational(1, 2) == Rational(9, 4)",
+            "Rational(1, 4) + Rational(1, 4) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v13",
+          "statement": "A random variable $X$ takes the values $0$, $2$, and $5$ with probabilities $\\frac{1}{6}$, $\\frac{1}{3}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{19}{6}$",
+            "$\\frac{7}{3}$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{6} + 2 \\cdot \\frac{1}{3} + 5 \\cdot \\frac{1}{2} = \\frac{19}{6}$. Averaging the three values equally, $\\frac{7}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 6) + 2*Rational(1, 3) + 5*Rational(1, 2) == Rational(19, 6)",
+            "Rational(1, 6) + Rational(1, 3) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v14",
+          "statement": "A random variable $X$ takes the values $1$, $3$, and $6$ with probabilities $\\frac{1}{3}$, $\\frac{1}{2}$, and $\\frac{1}{6}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{10}{3}$",
+            "$\\frac{17}{6}$",
+            "$6$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{3} + 3 \\cdot \\frac{1}{2} + 6 \\cdot \\frac{1}{6} = \\frac{17}{6}$. Averaging the three values equally, $\\frac{10}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 3) + 3*Rational(1, 2) + 6*Rational(1, 6) == Rational(17, 6)",
+            "Rational(1, 3) + Rational(1, 2) + Rational(1, 6) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v15",
+          "statement": "A random variable $X$ takes the values $2$, $4$, and $7$ with probabilities $\\frac{1}{2}$, $\\frac{1}{6}$, and $\\frac{1}{3}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{13}{3}$",
+            "$7$",
+            "$4$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{1}{2} + 4 \\cdot \\frac{1}{6} + 7 \\cdot \\frac{1}{3} = 4$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(1, 2) + 4*Rational(1, 6) + 7*Rational(1, 3) == Rational(4, 1)",
+            "Rational(1, 2) + Rational(1, 6) + Rational(1, 3) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v16",
+          "statement": "A random variable $X$ takes the values $1$, $5$, and $10$ with probabilities $\\frac{1}{8}$, $\\frac{3}{8}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{16}{3}$",
+            "$10$",
+            "$16$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{8} + 5 \\cdot \\frac{3}{8} + 10 \\cdot \\frac{1}{2} = 7$. Averaging the three values equally, $\\frac{16}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 8) + 5*Rational(3, 8) + 10*Rational(1, 2) == Rational(7, 1)",
+            "Rational(1, 8) + Rational(3, 8) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v17",
+          "statement": "A random variable $X$ takes the values $0$, $3$, and $8$ with probabilities $\\frac{1}{4}$, $\\frac{1}{8}$, and $\\frac{5}{8}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{43}{8}$",
+            "$\\frac{11}{3}$",
+            "$8$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{4} + 3 \\cdot \\frac{1}{8} + 8 \\cdot \\frac{5}{8} = \\frac{43}{8}$. Averaging the three values equally, $\\frac{11}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 4) + 3*Rational(1, 8) + 8*Rational(5, 8) == Rational(43, 8)",
+            "Rational(1, 4) + Rational(1, 8) + Rational(5, 8) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v18",
+          "statement": "A random variable $X$ takes the values $2$, $5$, and $9$ with probabilities $\\frac{3}{8}$, $\\frac{1}{2}$, and $\\frac{1}{8}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{16}{3}$",
+            "$\\frac{35}{8}$",
+            "$9$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{3}{8} + 5 \\cdot \\frac{1}{2} + 9 \\cdot \\frac{1}{8} = \\frac{35}{8}$. Averaging the three values equally, $\\frac{16}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(3, 8) + 5*Rational(1, 2) + 9*Rational(1, 8) == Rational(35, 8)",
+            "Rational(3, 8) + Rational(1, 2) + Rational(1, 8) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v19",
+          "statement": "A random variable $X$ takes the values $1$, $4$, and $8$ with probabilities $\\frac{1}{10}$, $\\frac{2}{5}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{13}{3}$",
+            "$8$",
+            "$\\frac{57}{10}$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{10} + 4 \\cdot \\frac{2}{5} + 8 \\cdot \\frac{1}{2} = \\frac{57}{10}$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 10) + 4*Rational(2, 5) + 8*Rational(1, 2) == Rational(57, 10)",
+            "Rational(1, 10) + Rational(2, 5) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v20",
+          "statement": "A random variable $X$ takes the values $3$, $5$, and $10$ with probabilities $\\frac{1}{5}$, $\\frac{3}{10}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$6$",
+            "$10$",
+            "$18$",
+            "$\\frac{71}{10}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 3 \\cdot \\frac{1}{5} + 5 \\cdot \\frac{3}{10} + 10 \\cdot \\frac{1}{2} = \\frac{71}{10}$. Averaging the three values equally, $6$, ignores the weights.",
+          "check": [
+            "3*Rational(1, 5) + 5*Rational(3, 10) + 10*Rational(1, 2) == Rational(71, 10)",
+            "Rational(1, 5) + Rational(3, 10) + Rational(1, 2) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v21",
+          "statement": "A random variable $X$ takes the values $0$, $4$, and $9$ with probabilities $\\frac{1}{5}$, $\\frac{1}{5}$, and $\\frac{3}{5}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{31}{5}$",
+            "$\\frac{13}{3}$",
+            "$9$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each value by its probability: $E(X) = 0 \\cdot \\frac{1}{5} + 4 \\cdot \\frac{1}{5} + 9 \\cdot \\frac{3}{5} = \\frac{31}{5}$. Averaging the three values equally, $\\frac{13}{3}$, ignores the weights.",
+          "check": [
+            "0*Rational(1, 5) + 4*Rational(1, 5) + 9*Rational(3, 5) == Rational(31, 5)",
+            "Rational(1, 5) + Rational(1, 5) + Rational(3, 5) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v22",
+          "statement": "A random variable $X$ takes the values $2$, $6$, and $11$ with probabilities $\\frac{2}{5}$, $\\frac{1}{5}$, and $\\frac{2}{5}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{19}{3}$",
+            "$\\frac{32}{5}$",
+            "$11$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each value by its probability: $E(X) = 2 \\cdot \\frac{2}{5} + 6 \\cdot \\frac{1}{5} + 11 \\cdot \\frac{2}{5} = \\frac{32}{5}$. Averaging the three values equally, $\\frac{19}{3}$, ignores the weights.",
+          "check": [
+            "2*Rational(2, 5) + 6*Rational(1, 5) + 11*Rational(2, 5) == Rational(32, 5)",
+            "Rational(2, 5) + Rational(1, 5) + Rational(2, 5) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v23",
+          "statement": "A random variable $X$ takes the values $1$, $2$, and $5$ with probabilities $\\frac{1}{4}$, $\\frac{1}{2}$, and $\\frac{1}{4}$ respectively. Find $E(X)$.",
+          "options": [
+            "$\\frac{8}{3}$",
+            "$5$",
+            "$\\frac{5}{2}$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{4} + 2 \\cdot \\frac{1}{2} + 5 \\cdot \\frac{1}{4} = \\frac{5}{2}$. Averaging the three values equally, $\\frac{8}{3}$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 4) + 2*Rational(1, 2) + 5*Rational(1, 4) == Rational(5, 2)",
+            "Rational(1, 4) + Rational(1, 2) + Rational(1, 4) == 1"
+          ]
+        },
+        {
+          "id": "PS-ev-v24",
+          "statement": "A random variable $X$ takes the values $1$, $2$, and $3$ with probabilities $\\frac{1}{6}$, $\\frac{1}{3}$, and $\\frac{1}{2}$ respectively. Find $E(X)$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$6$",
+            "$\\frac{7}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each value by its probability: $E(X) = 1 \\cdot \\frac{1}{6} + 2 \\cdot \\frac{1}{3} + 3 \\cdot \\frac{1}{2} = \\frac{7}{3}$. Averaging the three values equally, $2$, ignores the weights.",
+          "check": [
+            "1*Rational(1, 6) + 2*Rational(1, 3) + 3*Rational(1, 2) == Rational(7, 3)",
+            "Rational(1, 6) + Rational(1, 3) + Rational(1, 2) == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "binomial-exact",
+      "title": "Exactly k successes",
+      "level": 3,
+      "unit": "binomial-distribution",
+      "skill": "P = C(n,k) p^k (1−p)^(n−k) — the C(n,k) counts the orders.",
+      "variants": [
+        {
+          "id": "PS-bin-v01",
+          "statement": "A fair coin is flipped $3$ times. What is the probability of getting exactly $1$ heads?",
+          "options": [
+            "$\\frac{3}{8}$",
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{3}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "There are $\\binom{3}{1} = 3$ orders for the heads among $2^{3} = 8$ equally likely outcomes, so $P = \\frac{3}{8}$. Answering $\\frac{1}{8}$ forgets the $\\binom{3}{1}$ orderings.",
+          "check": [
+            "binomial(3, 1)*Rational(1, 2)**3 == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-bin-v02",
+          "statement": "A fair coin is flipped $3$ times. What is the probability of getting exactly $2$ heads?",
+          "options": [
+            "$\\frac{1}{8}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{2}{3}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "There are $\\binom{3}{2} = 3$ orders for the heads among $2^{3} = 8$ equally likely outcomes, so $P = \\frac{3}{8}$. Answering $\\frac{1}{8}$ forgets the $\\binom{3}{2}$ orderings.",
+          "check": [
+            "binomial(3, 2)*Rational(1, 2)**3 == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-bin-v03",
+          "statement": "A fair coin is flipped $4$ times. What is the probability of getting exactly $1$ heads?",
+          "options": [
+            "$\\frac{1}{16}$",
+            "$1$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "There are $\\binom{4}{1} = 4$ orders for the heads among $2^{4} = 16$ equally likely outcomes, so $P = \\frac{1}{4}$. Answering $\\frac{1}{16}$ forgets the $\\binom{4}{1}$ orderings.",
+          "check": [
+            "binomial(4, 1)*Rational(1, 2)**4 == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "PS-bin-v04",
+          "statement": "A fair coin is flipped $4$ times. What is the probability of getting exactly $2$ heads?",
+          "options": [
+            "$\\frac{1}{16}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{2}$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "There are $\\binom{4}{2} = 6$ orders for the heads among $2^{4} = 16$ equally likely outcomes, so $P = \\frac{3}{8}$. Answering $\\frac{1}{16}$ forgets the $\\binom{4}{2}$ orderings.",
+          "check": [
+            "binomial(4, 2)*Rational(1, 2)**4 == Rational(3, 8)"
+          ]
+        },
+        {
+          "id": "PS-bin-v05",
+          "statement": "A fair coin is flipped $4$ times. What is the probability of getting exactly $3$ heads?",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{16}$",
+            "$\\frac{3}{4}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "There are $\\binom{4}{3} = 4$ orders for the heads among $2^{4} = 16$ equally likely outcomes, so $P = \\frac{1}{4}$. Answering $\\frac{1}{16}$ forgets the $\\binom{4}{3}$ orderings.",
+          "check": [
+            "binomial(4, 3)*Rational(1, 2)**4 == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "PS-bin-v06",
+          "statement": "A fair coin is flipped $5$ times. What is the probability of getting exactly $1$ heads?",
+          "options": [
+            "$\\frac{1}{32}$",
+            "$\\frac{5}{32}$",
+            "$\\frac{1}{5}$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "There are $\\binom{5}{1} = 5$ orders for the heads among $2^{5} = 32$ equally likely outcomes, so $P = \\frac{5}{32}$. Answering $\\frac{1}{32}$ forgets the $\\binom{5}{1}$ orderings.",
+          "check": [
+            "binomial(5, 1)*Rational(1, 2)**5 == Rational(5, 32)"
+          ]
+        },
+        {
+          "id": "PS-bin-v07",
+          "statement": "A fair coin is flipped $5$ times. What is the probability of getting exactly $2$ heads?",
+          "options": [
+            "$\\frac{1}{32}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{16}$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "There are $\\binom{5}{2} = 10$ orders for the heads among $2^{5} = 32$ equally likely outcomes, so $P = \\frac{5}{16}$. Answering $\\frac{1}{32}$ forgets the $\\binom{5}{2}$ orderings.",
+          "check": [
+            "binomial(5, 2)*Rational(1, 2)**5 == Rational(5, 16)"
+          ]
+        },
+        {
+          "id": "PS-bin-v08",
+          "statement": "A fair coin is flipped $5$ times. What is the probability of getting exactly $3$ heads?",
+          "options": [
+            "$\\frac{1}{32}$",
+            "$\\frac{3}{5}$",
+            "$2$",
+            "$\\frac{5}{16}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "There are $\\binom{5}{3} = 10$ orders for the heads among $2^{5} = 32$ equally likely outcomes, so $P = \\frac{5}{16}$. Answering $\\frac{1}{32}$ forgets the $\\binom{5}{3}$ orderings.",
+          "check": [
+            "binomial(5, 3)*Rational(1, 2)**5 == Rational(5, 16)"
+          ]
+        },
+        {
+          "id": "PS-bin-v09",
+          "statement": "A fair coin is flipped $5$ times. What is the probability of getting exactly $4$ heads?",
+          "options": [
+            "$\\frac{5}{32}$",
+            "$\\frac{1}{32}$",
+            "$\\frac{4}{5}$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "There are $\\binom{5}{4} = 5$ orders for the heads among $2^{5} = 32$ equally likely outcomes, so $P = \\frac{5}{32}$. Answering $\\frac{1}{32}$ forgets the $\\binom{5}{4}$ orderings.",
+          "check": [
+            "binomial(5, 4)*Rational(1, 2)**5 == Rational(5, 32)"
+          ]
+        },
+        {
+          "id": "PS-bin-v10",
+          "statement": "A fair coin is flipped $6$ times. What is the probability of getting exactly $2$ heads?",
+          "options": [
+            "$\\frac{1}{64}$",
+            "$\\frac{15}{64}$",
+            "$\\frac{1}{3}$",
+            "$\\frac{5}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "There are $\\binom{6}{2} = 15$ orders for the heads among $2^{6} = 64$ equally likely outcomes, so $P = \\frac{15}{64}$. Answering $\\frac{1}{64}$ forgets the $\\binom{6}{2}$ orderings.",
+          "check": [
+            "binomial(6, 2)*Rational(1, 2)**6 == Rational(15, 64)"
+          ]
+        },
+        {
+          "id": "PS-bin-v11",
+          "statement": "A fair coin is flipped $6$ times. What is the probability of getting exactly $3$ heads?",
+          "options": [
+            "$\\frac{1}{64}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{16}$",
+            "$\\frac{10}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "There are $\\binom{6}{3} = 20$ orders for the heads among $2^{6} = 64$ equally likely outcomes, so $P = \\frac{5}{16}$. Answering $\\frac{1}{64}$ forgets the $\\binom{6}{3}$ orderings.",
+          "check": [
+            "binomial(6, 3)*Rational(1, 2)**6 == Rational(5, 16)"
+          ]
+        },
+        {
+          "id": "PS-bin-v12",
+          "statement": "A fair coin is flipped $6$ times. What is the probability of getting exactly $4$ heads?",
+          "options": [
+            "$\\frac{1}{64}$",
+            "$\\frac{2}{3}$",
+            "$\\frac{5}{2}$",
+            "$\\frac{15}{64}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "There are $\\binom{6}{4} = 15$ orders for the heads among $2^{6} = 64$ equally likely outcomes, so $P = \\frac{15}{64}$. Answering $\\frac{1}{64}$ forgets the $\\binom{6}{4}$ orderings.",
+          "check": [
+            "binomial(6, 4)*Rational(1, 2)**6 == Rational(15, 64)"
+          ]
+        },
+        {
+          "id": "PS-bin-v13",
+          "statement": "A fair die is rolled $3$ times. What is the probability that it shows a five or a six on exactly $1$ of the rolls?",
+          "options": [
+            "$\\frac{4}{9}$",
+            "$\\frac{4}{27}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{3}{1}\\left(\\frac{1}{3}\\right)^{1}\\left(\\frac{2}{3}\\right)^{2} = \\frac{4}{9}$. Swapping the exponents gives $\\frac{2}{9}$ — success and failure traded places.",
+          "check": [
+            "binomial(3, 1)*Rational(1, 3)**1*Rational(2, 3)**2 == Rational(4, 9)"
+          ]
+        },
+        {
+          "id": "PS-bin-v14",
+          "statement": "A fair die is rolled $3$ times. What is the probability that it shows a five or a six on exactly $2$ of the rolls?",
+          "options": [
+            "$\\frac{2}{27}$",
+            "$\\frac{2}{9}$",
+            "$\\frac{4}{9}$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{3}{2}\\left(\\frac{1}{3}\\right)^{2}\\left(\\frac{2}{3}\\right)^{1} = \\frac{2}{9}$. Swapping the exponents gives $\\frac{4}{9}$ — success and failure traded places.",
+          "check": [
+            "binomial(3, 2)*Rational(1, 3)**2*Rational(2, 3)**1 == Rational(2, 9)"
+          ]
+        },
+        {
+          "id": "PS-bin-v15",
+          "statement": "A fair die is rolled $4$ times. What is the probability that it shows a five or a six on exactly $1$ of the rolls?",
+          "options": [
+            "$\\frac{8}{81}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{32}{81}$",
+            "$\\frac{4}{81}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{4}{1}\\left(\\frac{1}{3}\\right)^{1}\\left(\\frac{2}{3}\\right)^{3} = \\frac{32}{81}$. Swapping the exponents gives $\\frac{8}{81}$ — success and failure traded places.",
+          "check": [
+            "binomial(4, 1)*Rational(1, 3)**1*Rational(2, 3)**3 == Rational(32, 81)"
+          ]
+        },
+        {
+          "id": "PS-bin-v16",
+          "statement": "A fair die is rolled $4$ times. What is the probability that it shows a five or a six on exactly $2$ of the rolls?",
+          "options": [
+            "$\\frac{4}{81}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{27}$",
+            "$\\frac{8}{27}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{4}{2}\\left(\\frac{1}{3}\\right)^{2}\\left(\\frac{2}{3}\\right)^{2} = \\frac{8}{27}$. Swapping the exponents gives $\\frac{8}{27}$ — success and failure traded places.",
+          "check": [
+            "binomial(4, 2)*Rational(1, 3)**2*Rational(2, 3)**2 == Rational(8, 27)"
+          ]
+        },
+        {
+          "id": "PS-bin-v17",
+          "statement": "A fair die is rolled $4$ times. What is the probability that it shows a five or a six on exactly $3$ of the rolls?",
+          "options": [
+            "$\\frac{8}{81}$",
+            "$\\frac{2}{81}$",
+            "$\\frac{32}{81}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{4}{3}\\left(\\frac{1}{3}\\right)^{3}\\left(\\frac{2}{3}\\right)^{1} = \\frac{8}{81}$. Swapping the exponents gives $\\frac{32}{81}$ — success and failure traded places.",
+          "check": [
+            "binomial(4, 3)*Rational(1, 3)**3*Rational(2, 3)**1 == Rational(8, 81)"
+          ]
+        },
+        {
+          "id": "PS-bin-v18",
+          "statement": "A fair die is rolled $5$ times. What is the probability that it shows a five or a six on exactly $1$ of the rolls?",
+          "options": [
+            "$\\frac{16}{243}$",
+            "$\\frac{80}{243}$",
+            "$\\frac{10}{243}$",
+            "$\\frac{1}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{5}{1}\\left(\\frac{1}{3}\\right)^{1}\\left(\\frac{2}{3}\\right)^{4} = \\frac{80}{243}$. Swapping the exponents gives $\\frac{10}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(5, 1)*Rational(1, 3)**1*Rational(2, 3)**4 == Rational(80, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v19",
+          "statement": "A fair die is rolled $5$ times. What is the probability that it shows a five or a six on exactly $2$ of the rolls?",
+          "options": [
+            "$\\frac{8}{243}$",
+            "$\\frac{40}{243}$",
+            "$\\frac{80}{243}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{5}{2}\\left(\\frac{1}{3}\\right)^{2}\\left(\\frac{2}{3}\\right)^{3} = \\frac{80}{243}$. Swapping the exponents gives $\\frac{40}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(5, 2)*Rational(1, 3)**2*Rational(2, 3)**3 == Rational(80, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v20",
+          "statement": "A fair die is rolled $5$ times. What is the probability that it shows a five or a six on exactly $3$ of the rolls?",
+          "options": [
+            "$\\frac{4}{243}$",
+            "$\\frac{80}{243}$",
+            "$\\frac{3}{5}$",
+            "$\\frac{40}{243}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{5}{3}\\left(\\frac{1}{3}\\right)^{3}\\left(\\frac{2}{3}\\right)^{2} = \\frac{40}{243}$. Swapping the exponents gives $\\frac{80}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(5, 3)*Rational(1, 3)**3*Rational(2, 3)**2 == Rational(40, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v21",
+          "statement": "A fair die is rolled $5$ times. What is the probability that it shows a five or a six on exactly $4$ of the rolls?",
+          "options": [
+            "$\\frac{10}{243}$",
+            "$\\frac{2}{243}$",
+            "$\\frac{80}{243}$",
+            "$\\frac{4}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{5}{4}\\left(\\frac{1}{3}\\right)^{4}\\left(\\frac{2}{3}\\right)^{1} = \\frac{10}{243}$. Swapping the exponents gives $\\frac{80}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(5, 4)*Rational(1, 3)**4*Rational(2, 3)**1 == Rational(10, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v22",
+          "statement": "A fair die is rolled $6$ times. What is the probability that it shows a five or a six on exactly $1$ of the rolls?",
+          "options": [
+            "$\\frac{32}{729}$",
+            "$\\frac{64}{243}$",
+            "$\\frac{4}{243}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{6}{1}\\left(\\frac{1}{3}\\right)^{1}\\left(\\frac{2}{3}\\right)^{5} = \\frac{64}{243}$. Swapping the exponents gives $\\frac{4}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(6, 1)*Rational(1, 3)**1*Rational(2, 3)**5 == Rational(64, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v23",
+          "statement": "A fair die is rolled $6$ times. What is the probability that it shows a five or a six on exactly $2$ of the rolls?",
+          "options": [
+            "$\\frac{16}{729}$",
+            "$\\frac{20}{243}$",
+            "$\\frac{80}{243}$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{6}{2}\\left(\\frac{1}{3}\\right)^{2}\\left(\\frac{2}{3}\\right)^{4} = \\frac{80}{243}$. Swapping the exponents gives $\\frac{20}{243}$ — success and failure traded places.",
+          "check": [
+            "binomial(6, 2)*Rational(1, 3)**2*Rational(2, 3)**4 == Rational(80, 243)"
+          ]
+        },
+        {
+          "id": "PS-bin-v24",
+          "statement": "A fair die is rolled $6$ times. What is the probability that it shows a five or a six on exactly $3$ of the rolls?",
+          "options": [
+            "$\\frac{8}{729}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{20}{729}$",
+            "$\\frac{160}{729}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each roll succeeds with $p = \\frac{2}{6} = \\frac{1}{3}$, so $P = \\binom{6}{3}\\left(\\frac{1}{3}\\right)^{3}\\left(\\frac{2}{3}\\right)^{3} = \\frac{160}{729}$. Swapping the exponents gives $\\frac{160}{729}$ — success and failure traded places.",
+          "check": [
+            "binomial(6, 3)*Rational(1, 3)**3*Rational(2, 3)**3 == Rational(160, 729)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mean-median",
+      "title": "Mean and median",
+      "level": 1,
+      "unit": "describing-data",
+      "skill": "Mean: sum ÷ count. Median: middle of the SORTED list.",
+      "variants": [
+        {
+          "id": "PS-mm-v01",
+          "statement": "Find the mean of the data set: $7$, $2$, $9$, $4$, $3$.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$9$",
+            "$\\frac{11}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add and divide by the count: $\\frac{7 + 2 + 9 + 4 + 3}{5} = 5$. The middle value of the sorted list, $4$, is the median — a different statistic.",
+          "check": [
+            "Rational(7 + 2 + 9 + 4 + 3, 5) == 5"
+          ]
+        },
+        {
+          "id": "PS-mm-v02",
+          "statement": "Find the mean of the data set: $12$, $3$, $9$, $5$, $1$.",
+          "options": [
+            "$5$",
+            "$6$",
+            "$9$",
+            "$\\frac{13}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add and divide by the count: $\\frac{12 + 3 + 9 + 5 + 1}{5} = 6$. The middle value of the sorted list, $5$, is the median — a different statistic.",
+          "check": [
+            "Rational(12 + 3 + 9 + 5 + 1, 5) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v03",
+          "statement": "Find the mean of the data set: $4$, $11$, $2$, $8$, $5$.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$6$",
+            "$\\frac{13}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add and divide by the count: $\\frac{4 + 11 + 2 + 8 + 5}{5} = 6$. The middle value of the sorted list, $5$, is the median — a different statistic.",
+          "check": [
+            "Rational(4 + 11 + 2 + 8 + 5, 5) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v04",
+          "statement": "Find the mean of the data set: $10$, $1$, $7$, $3$, $4$.",
+          "options": [
+            "$4$",
+            "$7$",
+            "$\\frac{11}{2}$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add and divide by the count: $\\frac{10 + 1 + 7 + 3 + 4}{5} = 5$. The middle value of the sorted list, $4$, is the median — a different statistic.",
+          "check": [
+            "Rational(10 + 1 + 7 + 3 + 4, 5) == 5"
+          ]
+        },
+        {
+          "id": "PS-mm-v05",
+          "statement": "Find the mean of the data set: $6$, $13$, $2$, $9$, $5$.",
+          "options": [
+            "$7$",
+            "$6$",
+            "$2$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add and divide by the count: $\\frac{6 + 13 + 2 + 9 + 5}{5} = 7$. The middle value of the sorted list, $6$, is the median — a different statistic.",
+          "check": [
+            "Rational(6 + 13 + 2 + 9 + 5, 5) == 7"
+          ]
+        },
+        {
+          "id": "PS-mm-v06",
+          "statement": "Find the mean of the data set: $8$, $1$, $12$, $5$, $4$.",
+          "options": [
+            "$5$",
+            "$6$",
+            "$12$",
+            "$\\frac{13}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add and divide by the count: $\\frac{8 + 1 + 12 + 5 + 4}{5} = 6$. The middle value of the sorted list, $5$, is the median — a different statistic.",
+          "check": [
+            "Rational(8 + 1 + 12 + 5 + 4, 5) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v07",
+          "statement": "Find the median of the data set: $9$, $2$, $4$, $6$, $13$.",
+          "options": [
+            "$\\frac{34}{5}$",
+            "$4$",
+            "$6$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sort first: $2$, $4$, $6$, $9$, $13$ — the middle value is $6$. Taking the middle of the UNSORTED list, $4$, is the classic trap.",
+          "check": [
+            "Max(2, 4, 6) == 6",
+            "Min(6, 9, 13) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v08",
+          "statement": "Find the median of the data set: $3$, $10$, $8$, $1$, $6$.",
+          "options": [
+            "$\\frac{28}{5}$",
+            "$8$",
+            "$\\frac{11}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Sort first: $1$, $3$, $6$, $8$, $10$ — the middle value is $6$. Taking the middle of the UNSORTED list, $8$, is the classic trap.",
+          "check": [
+            "Max(1, 3, 6) == 6",
+            "Min(6, 8, 10) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v09",
+          "statement": "Find the median of the data set: $11$, $5$, $2$, $8$, $3$.",
+          "options": [
+            "$5$",
+            "$\\frac{29}{5}$",
+            "$2$",
+            "$\\frac{13}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sort first: $2$, $3$, $5$, $8$, $11$ — the middle value is $5$. Taking the middle of the UNSORTED list, $2$, is the classic trap.",
+          "check": [
+            "Max(2, 3, 5) == 5",
+            "Min(5, 8, 11) == 5"
+          ]
+        },
+        {
+          "id": "PS-mm-v10",
+          "statement": "Find the median of the data set: $8$, $12$, $4$, $9$, $3$.",
+          "options": [
+            "$\\frac{36}{5}$",
+            "$8$",
+            "$4$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Sort first: $3$, $4$, $8$, $9$, $12$ — the middle value is $8$. Taking the middle of the UNSORTED list, $4$, is the classic trap.",
+          "check": [
+            "Max(3, 4, 8) == 8",
+            "Min(8, 9, 12) == 8"
+          ]
+        },
+        {
+          "id": "PS-mm-v11",
+          "statement": "Find the median of the data set: $14$, $3$, $10$, $6$, $1$.",
+          "options": [
+            "$\\frac{34}{5}$",
+            "$10$",
+            "$6$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Sort first: $1$, $3$, $6$, $10$, $14$ — the middle value is $6$. Taking the middle of the UNSORTED list, $10$, is the classic trap.",
+          "check": [
+            "Max(1, 3, 6) == 6",
+            "Min(6, 10, 14) == 6"
+          ]
+        },
+        {
+          "id": "PS-mm-v12",
+          "statement": "Find the median of the data set: $5$, $1$, $9$, $12$, $3$.",
+          "options": [
+            "$6$",
+            "$9$",
+            "$\\frac{13}{2}$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Sort first: $1$, $3$, $5$, $9$, $12$ — the middle value is $5$. Taking the middle of the UNSORTED list, $9$, is the classic trap.",
+          "check": [
+            "Max(1, 3, 5) == 5",
+            "Min(5, 9, 12) == 5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-a-value",
+      "title": "How a new value moves the mean",
+      "level": 2,
+      "unit": "describing-data",
+      "skill": "New mean = (old sum + new value) ÷ (n + 1).",
+      "variants": [
+        {
+          "id": "PS-add-v01",
+          "statement": "The mean of $4$ numbers is $10$. After one more number, $20$, is added to the list, what is the new mean?",
+          "options": [
+            "$12$",
+            "$15$",
+            "$10$",
+            "$60$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The old numbers total $4 \\cdot 10 = 40$, so the new mean is $\\frac{40 + 20}{5} = 12$. Averaging just $10$ and $20$ pretends the list held a single number.",
+          "check": [
+            "Rational(4*10 + 20, 5) == 12"
+          ]
+        },
+        {
+          "id": "PS-add-v02",
+          "statement": "The mean of $5$ numbers is $8$. After one more number, $14$, is added to the list, what is the new mean?",
+          "options": [
+            "$11$",
+            "$9$",
+            "$8$",
+            "$54$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The old numbers total $5 \\cdot 8 = 40$, so the new mean is $\\frac{40 + 14}{6} = 9$. Averaging just $8$ and $14$ pretends the list held a single number.",
+          "check": [
+            "Rational(5*8 + 14, 6) == 9"
+          ]
+        },
+        {
+          "id": "PS-add-v03",
+          "statement": "The mean of $3$ numbers is $6$. After one more number, $14$, is added to the list, what is the new mean?",
+          "options": [
+            "$10$",
+            "$6$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The old numbers total $3 \\cdot 6 = 18$, so the new mean is $\\frac{18 + 14}{4} = 8$. Averaging just $6$ and $14$ pretends the list held a single number.",
+          "check": [
+            "Rational(3*6 + 14, 4) == 8"
+          ]
+        },
+        {
+          "id": "PS-add-v04",
+          "statement": "The mean of $6$ numbers is $12$. After one more number, $5$, is added to the list, what is the new mean?",
+          "options": [
+            "$\\frac{17}{2}$",
+            "$12$",
+            "$77$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The old numbers total $6 \\cdot 12 = 72$, so the new mean is $\\frac{72 + 5}{7} = 11$. Averaging just $12$ and $5$ pretends the list held a single number.",
+          "check": [
+            "Rational(6*12 + 5, 7) == 11"
+          ]
+        },
+        {
+          "id": "PS-add-v05",
+          "statement": "The mean of $4$ numbers is $7$. After one more number, $17$, is added to the list, what is the new mean?",
+          "options": [
+            "$9$",
+            "$12$",
+            "$7$",
+            "$45$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The old numbers total $4 \\cdot 7 = 28$, so the new mean is $\\frac{28 + 17}{5} = 9$. Averaging just $7$ and $17$ pretends the list held a single number.",
+          "check": [
+            "Rational(4*7 + 17, 5) == 9"
+          ]
+        },
+        {
+          "id": "PS-add-v06",
+          "statement": "The mean of $5$ numbers is $10$. After one more number, $22$, is added to the list, what is the new mean?",
+          "options": [
+            "$16$",
+            "$12$",
+            "$10$",
+            "$72$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The old numbers total $5 \\cdot 10 = 50$, so the new mean is $\\frac{50 + 22}{6} = 12$. Averaging just $10$ and $22$ pretends the list held a single number.",
+          "check": [
+            "Rational(5*10 + 22, 6) == 12"
+          ]
+        },
+        {
+          "id": "PS-add-v07",
+          "statement": "The mean of $7$ numbers is $9$. After one more number, $17$, is added to the list, what is the new mean?",
+          "options": [
+            "$13$",
+            "$9$",
+            "$10$",
+            "$80$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The old numbers total $7 \\cdot 9 = 63$, so the new mean is $\\frac{63 + 17}{8} = 10$. Averaging just $9$ and $17$ pretends the list held a single number.",
+          "check": [
+            "Rational(7*9 + 17, 8) == 10"
+          ]
+        },
+        {
+          "id": "PS-add-v08",
+          "statement": "The mean of $3$ numbers is $14$. After one more number, $6$, is added to the list, what is the new mean?",
+          "options": [
+            "$10$",
+            "$14$",
+            "$48$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The old numbers total $3 \\cdot 14 = 42$, so the new mean is $\\frac{42 + 6}{4} = 12$. Averaging just $14$ and $6$ pretends the list held a single number.",
+          "check": [
+            "Rational(3*14 + 6, 4) == 12"
+          ]
+        },
+        {
+          "id": "PS-add-v09",
+          "statement": "The mean of $9$ numbers is $5$. After one more number, $15$, is added to the list, what is the new mean?",
+          "options": [
+            "$6$",
+            "$10$",
+            "$5$",
+            "$60$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The old numbers total $9 \\cdot 5 = 45$, so the new mean is $\\frac{45 + 15}{10} = 6$. Averaging just $5$ and $15$ pretends the list held a single number.",
+          "check": [
+            "Rational(9*5 + 15, 10) == 6"
+          ]
+        },
+        {
+          "id": "PS-add-v10",
+          "statement": "The mean of $4$ numbers is $20$. After one more number, $10$, is added to the list, what is the new mean?",
+          "options": [
+            "$15$",
+            "$18$",
+            "$20$",
+            "$90$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The old numbers total $4 \\cdot 20 = 80$, so the new mean is $\\frac{80 + 10}{5} = 18$. Averaging just $20$ and $10$ pretends the list held a single number.",
+          "check": [
+            "Rational(4*20 + 10, 5) == 18"
+          ]
+        },
+        {
+          "id": "PS-add-v11",
+          "statement": "The mean of $6$ numbers is $7$. After one more number, $14$, is added to the list, what is the new mean?",
+          "options": [
+            "$\\frac{21}{2}$",
+            "$7$",
+            "$8$",
+            "$56$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The old numbers total $6 \\cdot 7 = 42$, so the new mean is $\\frac{42 + 14}{7} = 8$. Averaging just $7$ and $14$ pretends the list held a single number.",
+          "check": [
+            "Rational(6*7 + 14, 7) == 8"
+          ]
+        },
+        {
+          "id": "PS-add-v12",
+          "statement": "The mean of $8$ numbers is $15$. After one more number, $6$, is added to the list, what is the new mean?",
+          "options": [
+            "$\\frac{21}{2}$",
+            "$15$",
+            "$126$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The old numbers total $8 \\cdot 15 = 120$, so the new mean is $\\frac{120 + 6}{9} = 14$. Averaging just $15$ and $6$ pretends the list held a single number.",
+          "check": [
+            "Rational(8*15 + 6, 9) == 14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "range-iqr-position",
+      "title": "Range and quartile position",
+      "level": 1,
+      "unit": "distributions-and-position",
+      "skill": "Range = max − min; Q1 is the median of the lower half.",
+      "variants": [
+        {
+          "id": "PS-rng-v01",
+          "statement": "Find the range of the data set: $12$, $3$, $7$, $18$, $5$.",
+          "options": [
+            "$15$",
+            "$18$",
+            "$16$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is largest minus smallest: $18 - 3 = 15$. Reporting the maximum $18$ alone confuses the spread with the biggest value.",
+          "check": [
+            "18 - 3 == 15",
+            "Max(12, 3, 7, 18, 5) == 18"
+          ]
+        },
+        {
+          "id": "PS-rng-v02",
+          "statement": "Find the range of the data set: $21$, $6$, $14$, $9$, $2$.",
+          "options": [
+            "$21$",
+            "$19$",
+            "$20$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is largest minus smallest: $21 - 2 = 19$. Reporting the maximum $21$ alone confuses the spread with the biggest value.",
+          "check": [
+            "21 - 2 == 19",
+            "Max(21, 6, 14, 9, 2) == 21"
+          ]
+        },
+        {
+          "id": "PS-rng-v03",
+          "statement": "Find the range of the data set: $8$, $15$, $3$, $11$, $6$.",
+          "options": [
+            "$15$",
+            "$13$",
+            "$12$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is largest minus smallest: $15 - 3 = 12$. Reporting the maximum $15$ alone confuses the spread with the biggest value.",
+          "check": [
+            "15 - 3 == 12",
+            "Max(8, 15, 3, 11, 6) == 15"
+          ]
+        },
+        {
+          "id": "PS-rng-v04",
+          "statement": "Find the range of the data set: $17$, $4$, $9$, $13$, $6$.",
+          "options": [
+            "$17$",
+            "$14$",
+            "$9$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Range is largest minus smallest: $17 - 4 = 13$. Reporting the maximum $17$ alone confuses the spread with the biggest value.",
+          "check": [
+            "17 - 4 == 13",
+            "Max(17, 4, 9, 13, 6) == 17"
+          ]
+        },
+        {
+          "id": "PS-rng-v05",
+          "statement": "Find the range of the data set: $25$, $10$, $16$, $7$, $13$.",
+          "options": [
+            "$18$",
+            "$25$",
+            "$19$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is largest minus smallest: $25 - 7 = 18$. Reporting the maximum $25$ alone confuses the spread with the biggest value.",
+          "check": [
+            "25 - 7 == 18",
+            "Max(25, 10, 16, 7, 13) == 25"
+          ]
+        },
+        {
+          "id": "PS-rng-v06",
+          "statement": "Find the range of the data set: $5$, $19$, $11$, $2$, $8$.",
+          "options": [
+            "$19$",
+            "$17$",
+            "$18$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is largest minus smallest: $19 - 2 = 17$. Reporting the maximum $19$ alone confuses the spread with the biggest value.",
+          "check": [
+            "19 - 2 == 17",
+            "Max(5, 19, 11, 2, 8) == 19"
+          ]
+        },
+        {
+          "id": "PS-rng-v07",
+          "statement": "The data set $2$, $5$, $7$, $9$, $12$, $15$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$8$",
+            "$7$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The lower half is $2$, $5$, $7$, and its middle value is $5$. The value $8$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(2, 5) == 5",
+            "Min(5, 7) == 5"
+          ]
+        },
+        {
+          "id": "PS-rng-v08",
+          "statement": "The data set $1$, $4$, $6$, $10$, $13$, $17$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$8$",
+            "$6$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lower half is $1$, $4$, $6$, and its middle value is $4$. The value $8$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(1, 4) == 4",
+            "Min(4, 6) == 4"
+          ]
+        },
+        {
+          "id": "PS-rng-v09",
+          "statement": "The data set $3$, $6$, $8$, $11$, $14$, $20$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$6$",
+            "$\\frac{19}{2}$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The lower half is $3$, $6$, $8$, and its middle value is $6$. The value $\\frac{19}{2}$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(3, 6) == 6",
+            "Min(6, 8) == 6"
+          ]
+        },
+        {
+          "id": "PS-rng-v10",
+          "statement": "The data set $2$, $4$, $9$, $13$, $16$, $21$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$11$",
+            "$4$",
+            "$9$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lower half is $2$, $4$, $9$, and its middle value is $4$. The value $11$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(2, 4) == 4",
+            "Min(4, 9) == 4"
+          ]
+        },
+        {
+          "id": "PS-rng-v11",
+          "statement": "The data set $5$, $8$, $10$, $14$, $18$, $22$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$12$",
+            "$10$",
+            "$8$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The lower half is $5$, $8$, $10$, and its middle value is $8$. The value $12$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(5, 8) == 8",
+            "Min(8, 10) == 8"
+          ]
+        },
+        {
+          "id": "PS-rng-v12",
+          "statement": "The data set $1$, $3$, $7$, $11$, $15$, $19$ is already sorted. Find $Q_1$, the median of the lower half.",
+          "options": [
+            "$9$",
+            "$7$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lower half is $1$, $3$, $7$, and its middle value is $3$. The value $9$ is the median of the WHOLE set, not $Q_1$.",
+          "check": [
+            "Max(1, 3) == 3",
+            "Min(3, 7) == 3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frequency-mean",
+      "title": "Mean from a frequency table",
+      "level": 2,
+      "unit": "distributions-and-position",
+      "skill": "Weight each value by its frequency before dividing.",
+      "variants": [
+        {
+          "id": "PS-freq-v01",
+          "statement": "On a quiz, $3$ students scored $5$ points, $5$ students scored $7$ points, and $2$ students scored $10$ points. Find the mean score.",
+          "options": [
+            "$7$",
+            "$\\frac{22}{3}$",
+            "$\\frac{10}{3}$",
+            "$70$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each score by how many students earned it: $\\frac{3 \\cdot 5 + 5 \\cdot 7 + 2 \\cdot 10}{10} = 7$. Averaging just the three score values, $\\frac{22}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(3*5 + 5*7 + 2*10, 10) == 7"
+          ]
+        },
+        {
+          "id": "PS-freq-v02",
+          "statement": "On a quiz, $4$ students scored $3$ points, $3$ students scored $6$ points, and $3$ students scored $10$ points. Find the mean score.",
+          "options": [
+            "$\\frac{19}{3}$",
+            "$6$",
+            "$\\frac{10}{3}$",
+            "$60$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each score by how many students earned it: $\\frac{4 \\cdot 3 + 3 \\cdot 6 + 3 \\cdot 10}{10} = 6$. Averaging just the three score values, $\\frac{19}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(4*3 + 3*6 + 3*10, 10) == 6"
+          ]
+        },
+        {
+          "id": "PS-freq-v03",
+          "statement": "On a quiz, $2$ students scored $5$ points, $5$ students scored $8$ points, and $3$ students scored $10$ points. Find the mean score.",
+          "options": [
+            "$\\frac{23}{3}$",
+            "$\\frac{10}{3}$",
+            "$8$",
+            "$80$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each score by how many students earned it: $\\frac{2 \\cdot 5 + 5 \\cdot 8 + 3 \\cdot 10}{10} = 8$. Averaging just the three score values, $\\frac{23}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(2*5 + 5*8 + 3*10, 10) == 8"
+          ]
+        },
+        {
+          "id": "PS-freq-v04",
+          "statement": "On a quiz, $5$ students scored $2$ points, $3$ students scored $6$ points, and $2$ students scored $11$ points. Find the mean score.",
+          "options": [
+            "$\\frac{19}{3}$",
+            "$\\frac{10}{3}$",
+            "$50$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each score by how many students earned it: $\\frac{5 \\cdot 2 + 3 \\cdot 6 + 2 \\cdot 11}{10} = 5$. Averaging just the three score values, $\\frac{19}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(5*2 + 3*6 + 2*11, 10) == 5"
+          ]
+        },
+        {
+          "id": "PS-freq-v05",
+          "statement": "On a quiz, $5$ students scored $4$ points, $2$ students scored $7$ points, and $3$ students scored $12$ points. Find the mean score.",
+          "options": [
+            "$7$",
+            "$\\frac{23}{3}$",
+            "$\\frac{10}{3}$",
+            "$70$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each score by how many students earned it: $\\frac{5 \\cdot 4 + 2 \\cdot 7 + 3 \\cdot 12}{10} = 7$. Averaging just the three score values, $\\frac{23}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(5*4 + 2*7 + 3*12, 10) == 7"
+          ]
+        },
+        {
+          "id": "PS-freq-v06",
+          "statement": "On a quiz, $2$ students scored $3$ points, $3$ students scored $8$ points, and $5$ students scored $12$ points. Find the mean score.",
+          "options": [
+            "$\\frac{23}{3}$",
+            "$9$",
+            "$\\frac{10}{3}$",
+            "$90$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each score by how many students earned it: $\\frac{2 \\cdot 3 + 3 \\cdot 8 + 5 \\cdot 12}{10} = 9$. Averaging just the three score values, $\\frac{23}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(2*3 + 3*8 + 5*12, 10) == 9"
+          ]
+        },
+        {
+          "id": "PS-freq-v07",
+          "statement": "On a quiz, $3$ students scored $4$ points, $3$ students scored $6$ points, and $4$ students scored $10$ points. Find the mean score.",
+          "options": [
+            "$\\frac{20}{3}$",
+            "$\\frac{10}{3}$",
+            "$7$",
+            "$70$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each score by how many students earned it: $\\frac{3 \\cdot 4 + 3 \\cdot 6 + 4 \\cdot 10}{10} = 7$. Averaging just the three score values, $\\frac{20}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(3*4 + 3*6 + 4*10, 10) == 7"
+          ]
+        },
+        {
+          "id": "PS-freq-v08",
+          "statement": "On a quiz, $2$ students scored $4$ points, $3$ students scored $9$ points, and $5$ students scored $11$ points. Find the mean score.",
+          "options": [
+            "$8$",
+            "$\\frac{10}{3}$",
+            "$90$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each score by how many students earned it: $\\frac{2 \\cdot 4 + 3 \\cdot 9 + 5 \\cdot 11}{10} = 9$. Averaging just the three score values, $8$, ignores the frequencies.",
+          "check": [
+            "Rational(2*4 + 3*9 + 5*11, 10) == 9"
+          ]
+        },
+        {
+          "id": "PS-freq-v09",
+          "statement": "On a quiz, $2$ students scored $3$ points, $4$ students scored $5$ points, and $4$ students scored $11$ points. Find the mean score.",
+          "options": [
+            "$7$",
+            "$\\frac{19}{3}$",
+            "$\\frac{10}{3}$",
+            "$70$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Weight each score by how many students earned it: $\\frac{2 \\cdot 3 + 4 \\cdot 5 + 4 \\cdot 11}{10} = 7$. Averaging just the three score values, $\\frac{19}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(2*3 + 4*5 + 4*11, 10) == 7"
+          ]
+        },
+        {
+          "id": "PS-freq-v10",
+          "statement": "On a quiz, $4$ students scored $5$ points, $4$ students scored $9$ points, and $2$ students scored $12$ points. Find the mean score.",
+          "options": [
+            "$\\frac{26}{3}$",
+            "$8$",
+            "$\\frac{10}{3}$",
+            "$80$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Weight each score by how many students earned it: $\\frac{4 \\cdot 5 + 4 \\cdot 9 + 2 \\cdot 12}{10} = 8$. Averaging just the three score values, $\\frac{26}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(4*5 + 4*9 + 2*12, 10) == 8"
+          ]
+        },
+        {
+          "id": "PS-freq-v11",
+          "statement": "On a quiz, $5$ students scored $2$ points, $2$ students scored $7$ points, and $3$ students scored $12$ points. Find the mean score.",
+          "options": [
+            "$7$",
+            "$\\frac{10}{3}$",
+            "$6$",
+            "$60$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Weight each score by how many students earned it: $\\frac{5 \\cdot 2 + 2 \\cdot 7 + 3 \\cdot 12}{10} = 6$. Averaging just the three score values, $7$, ignores the frequencies.",
+          "check": [
+            "Rational(5*2 + 2*7 + 3*12, 10) == 6"
+          ]
+        },
+        {
+          "id": "PS-freq-v12",
+          "statement": "On a quiz, $1$ students scored $4$ points, $3$ students scored $6$ points, and $6$ students scored $13$ points. Find the mean score.",
+          "options": [
+            "$\\frac{23}{3}$",
+            "$\\frac{10}{3}$",
+            "$100$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Weight each score by how many students earned it: $\\frac{1 \\cdot 4 + 3 \\cdot 6 + 6 \\cdot 13}{10} = 10$. Averaging just the three score values, $\\frac{23}{3}$, ignores the frequencies.",
+          "check": [
+            "Rational(1*4 + 3*6 + 6*13, 10) == 10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scatterplot-association",
+      "title": "Reading a scatterplot's trend",
+      "level": 1,
+      "unit": "two-variable-data",
+      "skill": "Upward cloud → positive; downward → negative; no slope → none.",
+      "variants": [
+        {
+          "id": "PS-assoc-v01",
+          "statement": "A scatterplot compares hours a student studies ($x$) with the score they earn on the exam ($y$). As $x$ increases, $y$ tends to INCREASE. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "A negative association",
+            "No association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here both variables rise together, so the cloud of points slopes upward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "0 == 0"
+          ]
+        },
+        {
+          "id": "PS-assoc-v02",
+          "statement": "A scatterplot compares a car's age in years ($x$) with its resale value ($y$). As $x$ increases, $y$ tends to DECREASE. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "A negative association",
+            "No association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here $y$ falls as $x$ rises, so the cloud of points slopes downward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "PS-assoc-v03",
+          "statement": "A scatterplot compares a student's shoe size ($x$) with their score on a history quiz ($y$). As $x$ increases, $y$ shows NO CLEAR PATTERN. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "A negative association",
+            "No association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here knowing $x$ tells you nothing about $y$; the points form no sloped cloud. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "2 == 2"
+          ]
+        },
+        {
+          "id": "PS-assoc-v04",
+          "statement": "A scatterplot compares daily temperature ($x$) with the number of visitors at a swimming pool ($y$). As $x$ increases, $y$ tends to INCREASE. Which best describes the association?",
+          "options": [
+            "A negative association",
+            "No association",
+            "A perfect linear relationship",
+            "A positive association"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here both variables rise together, so the cloud of points slopes upward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "PS-assoc-v05",
+          "statement": "A scatterplot compares the altitude of a hiking trail ($x$) with the air temperature along it ($y$). As $x$ increases, $y$ tends to DECREASE. Which best describes the association?",
+          "options": [
+            "A negative association",
+            "A positive association",
+            "No association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here $y$ falls as $x$ rises, so the cloud of points slopes downward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "PS-assoc-v06",
+          "statement": "A scatterplot compares the last digit of a phone number ($x$) with the owner's monthly rent ($y$). As $x$ increases, $y$ shows NO CLEAR PATTERN. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "No association",
+            "A negative association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here knowing $x$ tells you nothing about $y$; the points form no sloped cloud. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "5 == 5"
+          ]
+        },
+        {
+          "id": "PS-assoc-v07",
+          "statement": "A scatterplot compares the number of practice free throws taken ($x$) with the number made in a game ($y$). As $x$ increases, $y$ tends to INCREASE. Which best describes the association?",
+          "options": [
+            "A negative association",
+            "No association",
+            "A positive association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here both variables rise together, so the cloud of points slopes upward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "6 == 6"
+          ]
+        },
+        {
+          "id": "PS-assoc-v08",
+          "statement": "A scatterplot compares the number of absences a student has ($x$) with their course grade ($y$). As $x$ increases, $y$ tends to DECREASE. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "No association",
+            "A perfect linear relationship",
+            "A negative association"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here $y$ falls as $x$ rises, so the cloud of points slopes downward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "7 == 7"
+          ]
+        },
+        {
+          "id": "PS-assoc-v09",
+          "statement": "A scatterplot compares a person's house number ($x$) with the number of pets they own ($y$). As $x$ increases, $y$ shows NO CLEAR PATTERN. Which best describes the association?",
+          "options": [
+            "No association",
+            "A positive association",
+            "A negative association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here knowing $x$ tells you nothing about $y$; the points form no sloped cloud. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "8 == 8"
+          ]
+        },
+        {
+          "id": "PS-assoc-v10",
+          "statement": "A scatterplot compares the size of an engine ($x$) with the fuel it burns per kilometer ($y$). As $x$ increases, $y$ tends to INCREASE. Which best describes the association?",
+          "options": [
+            "A negative association",
+            "A positive association",
+            "No association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here both variables rise together, so the cloud of points slopes upward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "9 == 9"
+          ]
+        },
+        {
+          "id": "PS-assoc-v11",
+          "statement": "A scatterplot compares the price of a concert ticket ($x$) with the number of tickets sold ($y$). As $x$ increases, $y$ tends to DECREASE. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "No association",
+            "A negative association",
+            "A perfect linear relationship"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here $y$ falls as $x$ rises, so the cloud of points slopes downward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "10 == 10"
+          ]
+        },
+        {
+          "id": "PS-assoc-v12",
+          "statement": "A scatterplot compares the length of a family's surname ($x$) with their weekly grocery bill ($y$). As $x$ increases, $y$ shows NO CLEAR PATTERN. Which best describes the association?",
+          "options": [
+            "A positive association",
+            "A negative association",
+            "A perfect linear relationship",
+            "No association"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here knowing $x$ tells you nothing about $y$; the points form no sloped cloud. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+          "check": [
+            "11 == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "line-of-fit",
+      "title": "Predicting with a fitted line",
+      "level": 2,
+      "unit": "two-variable-data",
+      "skill": "Substitute x into ŷ = ax + b — slope times x, plus the intercept once.",
+      "variants": [
+        {
+          "id": "PS-fit-v01",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 3x + 4$. Predict $\\hat{y}$ when $x = 5$.",
+          "options": [
+            "$19$",
+            "$23$",
+            "$17$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the $x$-value into the line: $3 \\cdot 5 + 4 = 19$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "3*5 + (4) == 19"
+          ]
+        },
+        {
+          "id": "PS-fit-v02",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 2x + 7$. Predict $\\hat{y}$ when $x = 6$.",
+          "options": [
+            "$44$",
+            "$19$",
+            "$20$",
+            "$26$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the $x$-value into the line: $2 \\cdot 6 + 7 = 19$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "2*6 + (7) == 19"
+          ]
+        },
+        {
+          "id": "PS-fit-v03",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 4x - 3$. Predict $\\hat{y}$ when $x = 3$.",
+          "options": [
+            "$-5$",
+            "$-9$",
+            "$9$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the $x$-value into the line: $4 \\cdot 3 - 3 = 9$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "4*3 + (-3) == 9"
+          ]
+        },
+        {
+          "id": "PS-fit-v04",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 5x + 2$. Predict $\\hat{y}$ when $x = 4$.",
+          "options": [
+            "$13$",
+            "$14$",
+            "$30$",
+            "$22$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the $x$-value into the line: $5 \\cdot 4 + 2 = 22$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "5*4 + (2) == 22"
+          ]
+        },
+        {
+          "id": "PS-fit-v05",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 2x + 9$. Predict $\\hat{y}$ when $x = 8$.",
+          "options": [
+            "$25$",
+            "$74$",
+            "$26$",
+            "$34$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the $x$-value into the line: $2 \\cdot 8 + 9 = 25$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "2*8 + (9) == 25"
+          ]
+        },
+        {
+          "id": "PS-fit-v06",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 3x - 5$. Predict $\\hat{y}$ when $x = 7$.",
+          "options": [
+            "$-32$",
+            "$16$",
+            "$-8$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the $x$-value into the line: $3 \\cdot 7 - 5 = 16$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "3*7 + (-5) == 16"
+          ]
+        },
+        {
+          "id": "PS-fit-v07",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 6x - 1$. Predict $\\hat{y}$ when $x = 4$.",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$23$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the $x$-value into the line: $6 \\cdot 4 - 1 = 23$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "6*4 + (-1) == 23"
+          ]
+        },
+        {
+          "id": "PS-fit-v08",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 4x + 5$. Predict $\\hat{y}$ when $x = 6$.",
+          "options": [
+            "$34$",
+            "$26$",
+            "$44$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the $x$-value into the line: $4 \\cdot 6 + 5 = 29$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "4*6 + (5) == 29"
+          ]
+        },
+        {
+          "id": "PS-fit-v09",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 2x - 4$. Predict $\\hat{y}$ when $x = 9$.",
+          "options": [
+            "$14$",
+            "$-34$",
+            "$1$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Substitute the $x$-value into the line: $2 \\cdot 9 - 4 = 14$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "2*9 + (-4) == 14"
+          ]
+        },
+        {
+          "id": "PS-fit-v10",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 5x + 8$. Predict $\\hat{y}$ when $x = 2$.",
+          "options": [
+            "$21$",
+            "$18$",
+            "$42$",
+            "$50$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Substitute the $x$-value into the line: $5 \\cdot 2 + 8 = 18$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "5*2 + (8) == 18"
+          ]
+        },
+        {
+          "id": "PS-fit-v11",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 3x + 7$. Predict $\\hat{y}$ when $x = 5$.",
+          "options": [
+            "$38$",
+            "$26$",
+            "$22$",
+            "$36$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Substitute the $x$-value into the line: $3 \\cdot 5 + 7 = 22$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "3*5 + (7) == 22"
+          ]
+        },
+        {
+          "id": "PS-fit-v12",
+          "statement": "A line of best fit for a scatterplot is $\\hat{y} = 7x + 2$. Predict $\\hat{y}$ when $x = 4$.",
+          "options": [
+            "$15$",
+            "$18$",
+            "$42$",
+            "$30$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Substitute the $x$-value into the line: $7 \\cdot 4 + 2 = 30$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+          "check": [
+            "7*4 + (2) == 30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study-type",
+      "title": "What kind of study is this?",
+      "level": 1,
+      "unit": "inference-and-studies",
+      "skill": "Assigning → experiment; watching → observational; everyone → census; a subset → sample survey.",
+      "variants": [
+        {
+          "id": "PS-study-v01",
+          "statement": "A researcher randomly ASSIGNS half of 60 plants to a new fertilizer and half to none, then compares growth. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here the researcher ASSIGNS the treatment — that active assignment is exactly what makes it an experiment. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "0 == 0"
+          ]
+        },
+        {
+          "id": "PS-study-v02",
+          "statement": "A doctor reviews EXISTING hospital records to compare recovery times of two treatments patients already chose. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here no treatment is assigned; existing behavior is only watched or looked up. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "PS-study-v03",
+          "statement": "The school asks EVERY SINGLE student in the building which lunch option they prefer. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here EVERY member of the group is measured, not a subset. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "2 == 2"
+          ]
+        },
+        {
+          "id": "PS-study-v04",
+          "statement": "A pollster RANDOMLY SELECTS 400 of a city's voters and asks whom they support. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here a random SUBSET of the population answers — a sample standing in for the whole. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "PS-study-v05",
+          "statement": "A lab randomly ASSIGNS volunteers to sleep 6 or 8 hours, then measures reaction time. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here the researcher ASSIGNS the treatment — that active assignment is exactly what makes it an experiment. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "PS-study-v06",
+          "statement": "A biologist WATCHES wild birds and records their feeding habits without interfering. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here no treatment is assigned; existing behavior is only watched or looked up. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "5 == 5"
+          ]
+        },
+        {
+          "id": "PS-study-v07",
+          "statement": "The census bureau contacts EVERY SINGLE household in the district to count residents. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here EVERY member of the group is measured, not a subset. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "6 == 6"
+          ]
+        },
+        {
+          "id": "PS-study-v08",
+          "statement": "A store RANDOMLY SELECTS 150 of its customers and asks them to rate the service. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here a random SUBSET of the population answers — a sample standing in for the whole. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "7 == 7"
+          ]
+        },
+        {
+          "id": "PS-study-v09",
+          "statement": "Students are randomly ASSIGNED to two teaching methods and take the same test afterward. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 0,
+          "explanation": "Here the researcher ASSIGNS the treatment — that active assignment is exactly what makes it an experiment. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "8 == 8"
+          ]
+        },
+        {
+          "id": "PS-study-v10",
+          "statement": "A nutritionist compares the EXISTING diets that two groups of runners already follow. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 1,
+          "explanation": "Here no treatment is assigned; existing behavior is only watched or looked up. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "9 == 9"
+          ]
+        },
+        {
+          "id": "PS-study-v11",
+          "statement": "The teacher polls EVERY SINGLE member of the class about the trip date. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 2,
+          "explanation": "Here EVERY member of the group is measured, not a subset. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "10 == 10"
+          ]
+        },
+        {
+          "id": "PS-study-v12",
+          "statement": "A news site RANDOMLY SELECTS 1000 of the country's adults and asks one question. This is best described as…",
+          "options": [
+            "an experiment",
+            "an observational study",
+            "a census",
+            "a sample survey"
+          ],
+          "correctIndex": 3,
+          "explanation": "Here a random SUBSET of the population answers — a sample standing in for the whole. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+          "check": [
+            "11 == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sample-vs-population",
+      "title": "From sample to population",
+      "level": 2,
+      "unit": "inference-and-studies",
+      "skill": "Scale the sample proportion up to the population size.",
+      "variants": [
+        {
+          "id": "PS-pop-v01",
+          "statement": "A city has $12000$ residents. In a random sample of $200$ residents, $45$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$2700$",
+            "$45$",
+            "$9000$",
+            "$11955$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale the sample rate up to the population: $\\frac{45}{200} \\cdot 12000 = 2700$. The raw count $45$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(45, 200)*12000 == 2700"
+          ]
+        },
+        {
+          "id": "PS-pop-v02",
+          "statement": "A city has $30000$ residents. In a random sample of $300$ residents, $120$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$120$",
+            "$12000$",
+            "$36000$",
+            "$29880$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale the sample rate up to the population: $\\frac{120}{300} \\cdot 30000 = 12000$. The raw count $120$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(120, 300)*30000 == 12000"
+          ]
+        },
+        {
+          "id": "PS-pop-v03",
+          "statement": "A city has $8000$ residents. In a random sample of $100$ residents, $35$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$35$",
+            "$3500$",
+            "$2800$",
+            "$7965$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale the sample rate up to the population: $\\frac{35}{100} \\cdot 8000 = 2800$. The raw count $35$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(35, 100)*8000 == 2800"
+          ]
+        },
+        {
+          "id": "PS-pop-v04",
+          "statement": "A city has $24000$ residents. In a random sample of $400$ residents, $150$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$150$",
+            "$60000$",
+            "$23850$",
+            "$9000$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale the sample rate up to the population: $\\frac{150}{400} \\cdot 24000 = 9000$. The raw count $150$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(150, 400)*24000 == 9000"
+          ]
+        },
+        {
+          "id": "PS-pop-v05",
+          "statement": "A city has $15000$ residents. In a random sample of $250$ residents, $90$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$5400$",
+            "$90$",
+            "$22500$",
+            "$14910$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale the sample rate up to the population: $\\frac{90}{250} \\cdot 15000 = 5400$. The raw count $90$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(90, 250)*15000 == 5400"
+          ]
+        },
+        {
+          "id": "PS-pop-v06",
+          "statement": "A city has $40000$ residents. In a random sample of $500$ residents, $210$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$210$",
+            "$16800$",
+            "$105000$",
+            "$39790$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale the sample rate up to the population: $\\frac{210}{500} \\cdot 40000 = 16800$. The raw count $210$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(210, 500)*40000 == 16800"
+          ]
+        },
+        {
+          "id": "PS-pop-v07",
+          "statement": "A city has $9000$ residents. In a random sample of $150$ residents, $60$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$60$",
+            "$9000$",
+            "$3600$",
+            "$8940$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale the sample rate up to the population: $\\frac{60}{150} \\cdot 9000 = 3600$. The raw count $60$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(60, 150)*9000 == 3600"
+          ]
+        },
+        {
+          "id": "PS-pop-v08",
+          "statement": "A city has $18000$ residents. In a random sample of $300$ residents, $75$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$75$",
+            "$22500$",
+            "$17925$",
+            "$4500$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale the sample rate up to the population: $\\frac{75}{300} \\cdot 18000 = 4500$. The raw count $75$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(75, 300)*18000 == 4500"
+          ]
+        },
+        {
+          "id": "PS-pop-v09",
+          "statement": "A city has $20000$ residents. In a random sample of $200$ residents, $88$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$8800$",
+            "$88$",
+            "$17600$",
+            "$19912$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scale the sample rate up to the population: $\\frac{88}{200} \\cdot 20000 = 8800$. The raw count $88$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(88, 200)*20000 == 8800"
+          ]
+        },
+        {
+          "id": "PS-pop-v10",
+          "statement": "A city has $36000$ residents. In a random sample of $600$ residents, $260$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$260$",
+            "$15600$",
+            "$156000$",
+            "$35740$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scale the sample rate up to the population: $\\frac{260}{600} \\cdot 36000 = 15600$. The raw count $260$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(260, 600)*36000 == 15600"
+          ]
+        },
+        {
+          "id": "PS-pop-v11",
+          "statement": "A city has $10000$ residents. In a random sample of $125$ residents, $40$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$40$",
+            "$5000$",
+            "$3200$",
+            "$9960$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scale the sample rate up to the population: $\\frac{40}{125} \\cdot 10000 = 3200$. The raw count $40$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(40, 125)*10000 == 3200"
+          ]
+        },
+        {
+          "id": "PS-pop-v12",
+          "statement": "A city has $28000$ residents. In a random sample of $350$ residents, $140$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+          "options": [
+            "$140$",
+            "$49000$",
+            "$27860$",
+            "$11200$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scale the sample rate up to the population: $\\frac{140}{350} \\cdot 28000 = 11200$. The raw count $140$ describes only the sample, not the whole city.",
+          "check": [
+            "Rational(140, 350)*28000 == 11200"
+          ]
+        }
+      ]
+    }
+  ]
 }

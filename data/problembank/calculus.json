@@ -35,5 +35,3262 @@
       "blurb": "Areas between curves, motion recovered from velocity, average values — and a capstone running the whole course in one arc."
     }
   ],
-  "forms": []
+  "forms": [
+    {
+      "id": "limit-substitution",
+      "title": "Limits by direct substitution",
+      "level": 1,
+      "unit": "limits-and-continuity",
+      "skill": "Polynomials are continuous — the limit is just the value at the point.",
+      "variants": [
+        {
+          "id": "CAL-lsub-v01",
+          "statement": "Evaluate $\\lim_{x \\to 2}(2x^2 + 3x - 5)$.",
+          "options": [
+            "$9$",
+            "$-3$",
+            "$14$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 2$: substituting gives $9$. Plugging in $x = -2$ instead — a sign slip on the limit point — gives $-3$.",
+          "check": [
+            "limit((2)*x**2 + (3)*x + (-5), x, (2)) == 9"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v02",
+          "statement": "Evaluate $\\lim_{x \\to 1}(3x^2 - 2x + 4)$.",
+          "options": [
+            "$9$",
+            "$5$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 1$: substituting gives $5$. Plugging in $x = -1$ instead — a sign slip on the limit point — gives $9$.",
+          "check": [
+            "limit((3)*x**2 + (-2)*x + (4), x, (1)) == 5"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v03",
+          "statement": "Evaluate $\\lim_{x \\to 3}(x^2 + 4x - 3)$.",
+          "options": [
+            "$-6$",
+            "$21$",
+            "$18$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 3$: substituting gives $18$. Plugging in $x = -3$ instead — a sign slip on the limit point — gives $-6$.",
+          "check": [
+            "limit((1)*x**2 + (4)*x + (-3), x, (3)) == 18"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v04",
+          "statement": "Evaluate $\\lim_{x \\to 2}(2x^2 - 5x + 3)$.",
+          "options": [
+            "$21$",
+            "$-2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 2$: substituting gives $1$. Plugging in $x = -2$ instead — a sign slip on the limit point — gives $21$.",
+          "check": [
+            "limit((2)*x**2 + (-5)*x + (3), x, (2)) == 1"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v05",
+          "statement": "Evaluate $\\lim_{x \\to -1}(3x^2 + 2x - 7)$.",
+          "options": [
+            "$-6$",
+            "$-2$",
+            "$1$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = -1$: substituting gives $-6$. Plugging in $x = 1$ instead — a sign slip on the limit point — gives $-2$.",
+          "check": [
+            "limit((3)*x**2 + (2)*x + (-7), x, (-1)) == -6"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v06",
+          "statement": "Evaluate $\\lim_{x \\to 4}(x^2 - 3x + 5)$.",
+          "options": [
+            "$33$",
+            "$9$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 4$: substituting gives $9$. Plugging in $x = -4$ instead — a sign slip on the limit point — gives $33$.",
+          "check": [
+            "limit((1)*x**2 + (-3)*x + (5), x, (4)) == 9"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v07",
+          "statement": "Evaluate $\\lim_{x \\to 1}(2x^2 + 7x - 1)$.",
+          "options": [
+            "$-6$",
+            "$9$",
+            "$8$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 1$: substituting gives $8$. Plugging in $x = -1$ instead — a sign slip on the limit point — gives $-6$.",
+          "check": [
+            "limit((2)*x**2 + (7)*x + (-1), x, (1)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v08",
+          "statement": "Evaluate $\\lim_{x \\to 2}(4x^2 - x + 6)$.",
+          "options": [
+            "$24$",
+            "$14$",
+            "$15$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 2$: substituting gives $20$. Plugging in $x = -2$ instead — a sign slip on the limit point — gives $24$.",
+          "check": [
+            "limit((4)*x**2 + (-1)*x + (6), x, (2)) == 20"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v09",
+          "statement": "Evaluate $\\lim_{x \\to -2}(x^2 + 5x - 2)$.",
+          "options": [
+            "$-8$",
+            "$12$",
+            "$-6$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = -2$: substituting gives $-8$. Plugging in $x = 2$ instead — a sign slip on the limit point — gives $12$.",
+          "check": [
+            "limit((1)*x**2 + (5)*x + (-2), x, (-2)) == -8"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v10",
+          "statement": "Evaluate $\\lim_{x \\to 3}(3x^2 - 4x + 2)$.",
+          "options": [
+            "$41$",
+            "$17$",
+            "$15$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 3$: substituting gives $17$. Plugging in $x = -3$ instead — a sign slip on the limit point — gives $41$.",
+          "check": [
+            "limit((3)*x**2 + (-4)*x + (2), x, (3)) == 17"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v11",
+          "statement": "Evaluate $\\lim_{x \\to 3}(2x^2 + x - 9)$.",
+          "options": [
+            "$6$",
+            "$21$",
+            "$12$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = 3$: substituting gives $12$. Plugging in $x = -3$ instead — a sign slip on the limit point — gives $6$.",
+          "check": [
+            "limit((2)*x**2 + (1)*x + (-9), x, (3)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-lsub-v12",
+          "statement": "Evaluate $\\lim_{x \\to -3}(x^2 + 6x + 4)$.",
+          "options": [
+            "$31$",
+            "$-9$",
+            "$0$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A polynomial is continuous, so the limit is just the value at $x = -3$: substituting gives $-5$. Plugging in $x = 3$ instead — a sign slip on the limit point — gives $31$.",
+          "check": [
+            "limit((1)*x**2 + (6)*x + (4), x, (-3)) == -5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limit-factor-cancel",
+      "title": "0/0 limits: factor and cancel",
+      "level": 2,
+      "unit": "limits-and-continuity",
+      "skill": "Factor the numerator, cancel the vanishing factor, then substitute.",
+      "variants": [
+        {
+          "id": "CAL-lfac-v01",
+          "statement": "Evaluate $\\lim_{x \\to 3}\\frac{x^2 - 9}{x - 3}$.",
+          "options": [
+            "$6$",
+            "$0$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Factor $x^2 - 9 = (x - 3)(x + 3)$, cancel the common factor, and substitute: $x + 3 \\to 6$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (9))/(x - (3)), x, (3)) == 6"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v02",
+          "statement": "Evaluate $\\lim_{x \\to 4}\\frac{x^2 - 16}{x - 4}$.",
+          "options": [
+            "$0$",
+            "$8$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Factor $x^2 - 16 = (x - 4)(x + 4)$, cancel the common factor, and substitute: $x + 4 \\to 8$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (16))/(x - (4)), x, (4)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v03",
+          "statement": "Evaluate $\\lim_{x \\to 5}\\frac{x^2 - 25}{x - 5}$.",
+          "options": [
+            "$0$",
+            "$5$",
+            "$10$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Factor $x^2 - 25 = (x - 5)(x + 5)$, cancel the common factor, and substitute: $x + 5 \\to 10$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (25))/(x - (5)), x, (5)) == 10"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v04",
+          "statement": "Evaluate $\\lim_{x \\to 6}\\frac{x^2 - 36}{x - 6}$.",
+          "options": [
+            "$0$",
+            "$6$",
+            "$36$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Factor $x^2 - 36 = (x - 6)(x + 6)$, cancel the common factor, and substitute: $x + 6 \\to 12$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (36))/(x - (6)), x, (6)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v05",
+          "statement": "Evaluate $\\lim_{x \\to 7}\\frac{x^2 - 49}{x - 7}$.",
+          "options": [
+            "$14$",
+            "$0$",
+            "$7$",
+            "$49$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Factor $x^2 - 49 = (x - 7)(x + 7)$, cancel the common factor, and substitute: $x + 7 \\to 14$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (49))/(x - (7)), x, (7)) == 14"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v06",
+          "statement": "Evaluate $\\lim_{x \\to -2}\\frac{x^2 - 4}{x + 2}$.",
+          "options": [
+            "$0$",
+            "$-4$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Factor $x^2 - 4 = (x + 2)(x - 2)$, cancel the common factor, and substitute to get $-4$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (4))/(x - (-2)), x, (-2)) == -4"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v07",
+          "statement": "Evaluate $\\lim_{x \\to -3}\\frac{x^2 - 9}{x + 3}$.",
+          "options": [
+            "$0$",
+            "$-3$",
+            "$-6$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Factor $x^2 - 9 = (x + 3)(x - 3)$, cancel the common factor, and substitute to get $-6$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (9))/(x - (-3)), x, (-3)) == -6"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v08",
+          "statement": "Evaluate $\\lim_{x \\to -4}\\frac{x^2 - 16}{x + 4}$.",
+          "options": [
+            "$0$",
+            "$-4$",
+            "$16$",
+            "$-8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Factor $x^2 - 16 = (x + 4)(x - 4)$, cancel the common factor, and substitute to get $-8$. Reading the $\\frac{0}{0}$ form as an answer of $0$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (16))/(x - (-4)), x, (-4)) == -8"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v09",
+          "statement": "Evaluate $\\lim_{x \\to 5}\\frac{x^2 - 7x + 10}{x - 5}$.",
+          "options": [
+            "$3$",
+            "$0$",
+            "$5$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The numerator factors as $(x - 5)(x - 2)$; cancel $x - 5$ and substitute $x = 5$ into the other factor to get $3$. Answering $0$ from the $\\frac{0}{0}$ form is the classic slip.",
+          "check": [
+            "limit((x**2 + (-7)*x + (10))/(x - (5)), x, (5)) == 3"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v10",
+          "statement": "Evaluate $\\lim_{x \\to 3}\\frac{x^2 - 2x - 3}{x - 3}$.",
+          "options": [
+            "$0$",
+            "$4$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The numerator factors as $(x - 3)(x + 1)$; cancel $x - 3$ and substitute $x = 3$ into the other factor to get $4$. Answering $0$ from the $\\frac{0}{0}$ form is the classic slip.",
+          "check": [
+            "limit((x**2 + (-2)*x + (-3))/(x - (3)), x, (3)) == 4"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v11",
+          "statement": "Evaluate $\\lim_{x \\to 2}\\frac{x^2 + 2x - 8}{x - 2}$.",
+          "options": [
+            "$0$",
+            "$2$",
+            "$6$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The numerator factors as $(x - 2)(x + 4)$; cancel $x - 2$ and substitute $x = 2$ into the other factor to get $6$. Answering $0$ from the $\\frac{0}{0}$ form is the classic slip.",
+          "check": [
+            "limit((x**2 + (2)*x + (-8))/(x - (2)), x, (2)) == 6"
+          ]
+        },
+        {
+          "id": "CAL-lfac-v12",
+          "statement": "Evaluate $\\lim_{x \\to -2}\\frac{x^2 - x - 6}{x + 2}$.",
+          "options": [
+            "$0$",
+            "$-2$",
+            "$1$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The numerator factors as $(x + 2)(x - 3)$; cancel $x + 2$ and substitute $x = -2$ into the other factor to get $-5$. Answering $0$ from the $\\frac{0}{0}$ form is the classic slip.",
+          "check": [
+            "limit((x**2 + (-1)*x + (-6))/(x - (-2)), x, (-2)) == -5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limit-infinity",
+      "title": "Limits at infinity",
+      "level": 2,
+      "unit": "limits-and-continuity",
+      "skill": "Equal degrees: ratio of leading coefficients. Bigger denominator degree: 0.",
+      "variants": [
+        {
+          "id": "CAL-linf-v01",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{6x^2 - x + 2}{3x^2 + 4x + 5}$.",
+          "options": [
+            "$2$",
+            "$\\frac{2}{5}$",
+            "$\\infty$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{6}{3} = 2$. Taking the ratio of the constant terms, $\\frac{2}{5}$, is the classic slip.",
+          "check": [
+            "limit(((6)*x**2 + (-1)*x + (2))/((3)*x**2 + (4)*x + (5)), x, oo) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v02",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{2x^2 + 3x + 1}{4x^2 - x + 3}$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{2}$",
+            "$\\infty$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{2}{4} = \\frac{1}{2}$. Taking the ratio of the constant terms, $\\frac{1}{3}$, is the classic slip.",
+          "check": [
+            "limit(((2)*x**2 + (3)*x + (1))/((4)*x**2 + (-1)*x + (3)), x, oo) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v03",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{5x^2 + 2x - 3}{2x^2 + x + 4}$.",
+          "options": [
+            "$-\\frac{3}{4}$",
+            "$\\infty$",
+            "$\\frac{5}{2}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{5}{2} = \\frac{5}{2}$. Taking the ratio of the constant terms, $-\\frac{3}{4}$, is the classic slip.",
+          "check": [
+            "limit(((5)*x**2 + (2)*x + (-3))/((2)*x**2 + (1)*x + (4)), x, oo) == Rational(5, 2)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v04",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{3x^2 - 4x + 2}{6x^2 + x + 5}$.",
+          "options": [
+            "$\\frac{2}{5}$",
+            "$\\infty$",
+            "$2$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{3}{6} = \\frac{1}{2}$. Taking the ratio of the constant terms, $\\frac{2}{5}$, is the classic slip.",
+          "check": [
+            "limit(((3)*x**2 + (-4)*x + (2))/((6)*x**2 + (1)*x + (5)), x, oo) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v05",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{8x^2 + x + 3}{2x^2 - 5x + 6}$.",
+          "options": [
+            "$4$",
+            "$\\frac{1}{2}$",
+            "$\\infty$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{8}{2} = 4$. Taking the ratio of the constant terms, $\\frac{1}{2}$, is the classic slip.",
+          "check": [
+            "limit(((8)*x**2 + (1)*x + (3))/((2)*x**2 + (-5)*x + (6)), x, oo) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v06",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{4x^2 + 5x - 2}{3x^2 + 2x + 7}$.",
+          "options": [
+            "$-\\frac{2}{7}$",
+            "$\\frac{4}{3}$",
+            "$\\infty$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{4}{3} = \\frac{4}{3}$. Taking the ratio of the constant terms, $-\\frac{2}{7}$, is the classic slip.",
+          "check": [
+            "limit(((4)*x**2 + (5)*x + (-2))/((3)*x**2 + (2)*x + (7)), x, oo) == Rational(4, 3)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v07",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{7x^2 - 2x + 1}{2x^2 + 3x + 4}$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$\\infty$",
+            "$\\frac{7}{2}$",
+            "$\\frac{2}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{7}{2} = \\frac{7}{2}$. Taking the ratio of the constant terms, $\\frac{1}{4}$, is the classic slip.",
+          "check": [
+            "limit(((7)*x**2 + (-2)*x + (1))/((2)*x**2 + (3)*x + (4)), x, oo) == Rational(7, 2)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v08",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{9x^2 + 2x - 4}{3x^2 - x + 2}$.",
+          "options": [
+            "$-2$",
+            "$\\infty$",
+            "$\\frac{1}{3}$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The degrees match, so only the leading terms survive as $x \\to \\infty$: the limit is $\\frac{9}{3} = 3$. Taking the ratio of the constant terms, $-2$, is the classic slip.",
+          "check": [
+            "limit(((9)*x**2 + (2)*x + (-4))/((3)*x**2 + (-1)*x + (2)), x, oo) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "CAL-linf-v09",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{3x + 2}{4x^2 - x + 5}$.",
+          "options": [
+            "$0$",
+            "$\\frac{3}{4}$",
+            "$\\infty$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The denominator's degree is higher, so it grows faster and the ratio dies to $0$. Taking the ratio of the leading coefficients, $\\frac{3}{4}$, ignores the degree mismatch — that rule only applies when the degrees are equal.",
+          "check": [
+            "limit(((3)*x + (2))/((4)*x**2 + (-1)*x + (5)), x, oo) == 0"
+          ]
+        },
+        {
+          "id": "CAL-linf-v10",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{2x - 3}{5x^2 + x + 4}$.",
+          "options": [
+            "$\\frac{2}{5}$",
+            "$0$",
+            "$\\infty$",
+            "$-\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The denominator's degree is higher, so it grows faster and the ratio dies to $0$. Taking the ratio of the leading coefficients, $\\frac{2}{5}$, ignores the degree mismatch — that rule only applies when the degrees are equal.",
+          "check": [
+            "limit(((2)*x + (-3))/((5)*x**2 + (1)*x + (4)), x, oo) == 0"
+          ]
+        },
+        {
+          "id": "CAL-linf-v11",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{5x + 1}{2x^2 + 3x - 4}$.",
+          "options": [
+            "$\\frac{5}{2}$",
+            "$\\infty$",
+            "$0$",
+            "$-\\frac{1}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The denominator's degree is higher, so it grows faster and the ratio dies to $0$. Taking the ratio of the leading coefficients, $\\frac{5}{2}$, ignores the degree mismatch — that rule only applies when the degrees are equal.",
+          "check": [
+            "limit(((5)*x + (1))/((2)*x**2 + (3)*x + (-4)), x, oo) == 0"
+          ]
+        },
+        {
+          "id": "CAL-linf-v12",
+          "statement": "Evaluate $\\lim_{x \\to \\infty}\\frac{4x - 1}{3x^2 + 2x + 6}$.",
+          "options": [
+            "$\\frac{4}{3}$",
+            "$\\infty$",
+            "$-\\frac{1}{6}$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The denominator's degree is higher, so it grows faster and the ratio dies to $0$. Taking the ratio of the leading coefficients, $\\frac{4}{3}$, ignores the degree mismatch — that rule only applies when the degrees are equal.",
+          "check": [
+            "limit(((4)*x + (-1))/((3)*x**2 + (2)*x + (6)), x, oo) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "continuity-value",
+      "title": "Choosing c for continuity",
+      "level": 3,
+      "unit": "limits-and-continuity",
+      "skill": "Continuity at the hole forces f(k) to equal the limit — cancel and substitute.",
+      "variants": [
+        {
+          "id": "CAL-cont-v01",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 9}{x - 3}$ for $x \\neq 3$ and $f(3) = c$?",
+          "options": [
+            "$6$",
+            "$0$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 3} f(x)$; cancel the factor $x - 3$ so the limit is $x + 3 \\to 6$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (9))/(x - (3)), x, (3)) == 6"
+          ]
+        },
+        {
+          "id": "CAL-cont-v02",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 16}{x - 4}$ for $x \\neq 4$ and $f(4) = c$?",
+          "options": [
+            "$0$",
+            "$8$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 4} f(x)$; cancel the factor $x - 4$ so the limit is $x + 4 \\to 8$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (16))/(x - (4)), x, (4)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-cont-v03",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 25}{x - 5}$ for $x \\neq 5$ and $f(5) = c$?",
+          "options": [
+            "$0$",
+            "$5$",
+            "$10$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 5} f(x)$; cancel the factor $x - 5$ so the limit is $x + 5 \\to 10$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (25))/(x - (5)), x, (5)) == 10"
+          ]
+        },
+        {
+          "id": "CAL-cont-v04",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 36}{x - 6}$ for $x \\neq 6$ and $f(6) = c$?",
+          "options": [
+            "$0$",
+            "$6$",
+            "$36$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 6} f(x)$; cancel the factor $x - 6$ so the limit is $x + 6 \\to 12$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (36))/(x - (6)), x, (6)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-cont-v05",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 49}{x - 7}$ for $x \\neq 7$ and $f(7) = c$?",
+          "options": [
+            "$14$",
+            "$0$",
+            "$7$",
+            "$49$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 7} f(x)$; cancel the factor $x - 7$ so the limit is $x + 7 \\to 14$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (49))/(x - (7)), x, (7)) == 14"
+          ]
+        },
+        {
+          "id": "CAL-cont-v06",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 64}{x - 8}$ for $x \\neq 8$ and $f(8) = c$?",
+          "options": [
+            "$0$",
+            "$16$",
+            "$8$",
+            "$64$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Continuity forces $c = \\lim_{x \\to 8} f(x)$; cancel the factor $x - 8$ so the limit is $x + 8 \\to 16$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (64))/(x - (8)), x, (8)) == 16"
+          ]
+        },
+        {
+          "id": "CAL-cont-v07",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 4}{x + 2}$ for $x \\neq -2$ and $f(-2) = c$?",
+          "options": [
+            "$0$",
+            "$-2$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -2} f(x)$; cancel the factor $x + 2$ and substitute to get $-4$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (4))/(x - (-2)), x, (-2)) == -4"
+          ]
+        },
+        {
+          "id": "CAL-cont-v08",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 9}{x + 3}$ for $x \\neq -3$ and $f(-3) = c$?",
+          "options": [
+            "$0$",
+            "$-3$",
+            "$9$",
+            "$-6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -3} f(x)$; cancel the factor $x + 3$ and substitute to get $-6$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (9))/(x - (-3)), x, (-3)) == -6"
+          ]
+        },
+        {
+          "id": "CAL-cont-v09",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 16}{x + 4}$ for $x \\neq -4$ and $f(-4) = c$?",
+          "options": [
+            "$-8$",
+            "$0$",
+            "$-4$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -4} f(x)$; cancel the factor $x + 4$ and substitute to get $-8$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (16))/(x - (-4)), x, (-4)) == -8"
+          ]
+        },
+        {
+          "id": "CAL-cont-v10",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 25}{x + 5}$ for $x \\neq -5$ and $f(-5) = c$?",
+          "options": [
+            "$0$",
+            "$-10$",
+            "$-5$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -5} f(x)$; cancel the factor $x + 5$ and substitute to get $-10$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (25))/(x - (-5)), x, (-5)) == -10"
+          ]
+        },
+        {
+          "id": "CAL-cont-v11",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 36}{x + 6}$ for $x \\neq -6$ and $f(-6) = c$?",
+          "options": [
+            "$0$",
+            "$-6$",
+            "$-12$",
+            "$36$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -6} f(x)$; cancel the factor $x + 6$ and substitute to get $-12$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (36))/(x - (-6)), x, (-6)) == -12"
+          ]
+        },
+        {
+          "id": "CAL-cont-v12",
+          "statement": "For what value of $c$ is $f$ continuous, where $f(x) = \\frac{x^2 - 49}{x + 7}$ for $x \\neq -7$ and $f(-7) = c$?",
+          "options": [
+            "$0$",
+            "$-7$",
+            "$49$",
+            "$-14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Continuity forces $c = \\lim_{x \\to -7} f(x)$; cancel the factor $x + 7$ and substitute to get $-14$. Choosing $c = 0$ because the raw formula looks like $\\frac{0}{0}$ is the classic slip.",
+          "check": [
+            "limit((x**2 - (49))/(x - (-7)), x, (-7)) == -14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "derivative-function",
+      "title": "The derivative as a function",
+      "level": 1,
+      "unit": "the-derivative",
+      "skill": "Differentiate term by term: multiply by the exponent, drop it by one, kill constants.",
+      "variants": [
+        {
+          "id": "CAL-dfn-v01",
+          "statement": "If $f(x) = 2x^3 + 3x^2 - 4x + 5$, what is $f'(x)$?",
+          "options": [
+            "$6x^2 + 6x - 4$",
+            "$6x^2 + 6x + 1$",
+            "$6x^3 + 6x^2 - 4x$",
+            "$2x^2 + 3x - 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $5$ differentiates to zero. Leaving the coefficients un-multiplied, as in $2x^2 + 3x - 4$, is the classic slip.",
+          "check": [
+            "diff((2)*x**3 + (3)*x**2 + (-4)*x + (5), x) == (6)*x**2 + (6)*x + (-4)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v02",
+          "statement": "If $f(x) = x^3 - 2x^2 + 3x - 6$, what is $f'(x)$?",
+          "options": [
+            "$3x^2 - 4x - 3$",
+            "$3x^2 - 4x + 3$",
+            "$3x^3 - 4x^2 + 3x$",
+            "$x^2 - 2x + 3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $-6$ differentiates to zero. Leaving the coefficients un-multiplied, as in $x^2 - 2x + 3$, is the classic slip.",
+          "check": [
+            "diff((1)*x**3 + (-2)*x**2 + (3)*x + (-6), x) == (3)*x**2 + (-4)*x + (3)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v03",
+          "statement": "If $f(x) = 3x^3 + x^2 + 2x - 4$, what is $f'(x)$?",
+          "options": [
+            "$9x^2 + 2x - 2$",
+            "$9x^3 + 2x^2 + 2x$",
+            "$9x^2 + 2x + 2$",
+            "$3x^2 + x + 2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $-4$ differentiates to zero. Leaving the coefficients un-multiplied, as in $3x^2 + x + 2$, is the classic slip.",
+          "check": [
+            "diff((3)*x**3 + (1)*x**2 + (2)*x + (-4), x) == (9)*x**2 + (2)*x + (2)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v04",
+          "statement": "If $f(x) = 2x^3 - 5x^2 + x + 3$, what is $f'(x)$?",
+          "options": [
+            "$6x^2 - 10x + 4$",
+            "$6x^3 - 10x^2 + x$",
+            "$2x^2 - 5x + 1$",
+            "$6x^2 - 10x + 1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $3$ differentiates to zero. Leaving the coefficients un-multiplied, as in $2x^2 - 5x + 1$, is the classic slip.",
+          "check": [
+            "diff((2)*x**3 + (-5)*x**2 + (1)*x + (3), x) == (6)*x**2 + (-10)*x + (1)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v05",
+          "statement": "If $f(x) = x^3 + 4x^2 - 2x + 7$, what is $f'(x)$?",
+          "options": [
+            "$3x^2 + 8x - 2$",
+            "$3x^2 + 8x + 5$",
+            "$3x^3 + 8x^2 - 2x$",
+            "$x^2 + 4x - 2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $7$ differentiates to zero. Leaving the coefficients un-multiplied, as in $x^2 + 4x - 2$, is the classic slip.",
+          "check": [
+            "diff((1)*x**3 + (4)*x**2 + (-2)*x + (7), x) == (3)*x**2 + (8)*x + (-2)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v06",
+          "statement": "If $f(x) = 4x^3 - x^2 + 5x + 2$, what is $f'(x)$?",
+          "options": [
+            "$12x^2 - 2x + 7$",
+            "$12x^2 - 2x + 5$",
+            "$12x^3 - 2x^2 + 5x$",
+            "$4x^2 - x + 5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $2$ differentiates to zero. Leaving the coefficients un-multiplied, as in $4x^2 - x + 5$, is the classic slip.",
+          "check": [
+            "diff((4)*x**3 + (-1)*x**2 + (5)*x + (2), x) == (12)*x**2 + (-2)*x + (5)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v07",
+          "statement": "If $f(x) = 2x^3 + 2x^2 - 3x - 1$, what is $f'(x)$?",
+          "options": [
+            "$6x^2 + 4x - 4$",
+            "$6x^3 + 4x^2 - 3x$",
+            "$6x^2 + 4x - 3$",
+            "$2x^2 + 2x - 3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $-1$ differentiates to zero. Leaving the coefficients un-multiplied, as in $2x^2 + 2x - 3$, is the classic slip.",
+          "check": [
+            "diff((2)*x**3 + (2)*x**2 + (-3)*x + (-1), x) == (6)*x**2 + (4)*x + (-3)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v08",
+          "statement": "If $f(x) = 3x^3 - 4x^2 - 2x + 6$, what is $f'(x)$?",
+          "options": [
+            "$9x^2 - 8x + 4$",
+            "$9x^3 - 8x^2 - 2x$",
+            "$3x^2 - 4x - 2$",
+            "$9x^2 - 8x - 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $6$ differentiates to zero. Leaving the coefficients un-multiplied, as in $3x^2 - 4x - 2$, is the classic slip.",
+          "check": [
+            "diff((3)*x**3 + (-4)*x**2 + (-2)*x + (6), x) == (9)*x**2 + (-8)*x + (-2)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v09",
+          "statement": "If $f(x) = x^3 - 3x^2 + 4x + 2$, what is $f'(x)$?",
+          "options": [
+            "$3x^2 - 6x + 4$",
+            "$3x^2 - 6x + 6$",
+            "$3x^3 - 6x^2 + 4x$",
+            "$x^2 - 3x + 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $2$ differentiates to zero. Leaving the coefficients un-multiplied, as in $x^2 - 3x + 4$, is the classic slip.",
+          "check": [
+            "diff((1)*x**3 + (-3)*x**2 + (4)*x + (2), x) == (3)*x**2 + (-6)*x + (4)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v10",
+          "statement": "If $f(x) = 5x^3 + 2x^2 - x - 3$, what is $f'(x)$?",
+          "options": [
+            "$15x^2 + 4x - 4$",
+            "$15x^2 + 4x - 1$",
+            "$15x^3 + 4x^2 - x$",
+            "$5x^2 + 2x - 1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $-3$ differentiates to zero. Leaving the coefficients un-multiplied, as in $5x^2 + 2x - 1$, is the classic slip.",
+          "check": [
+            "diff((5)*x**3 + (2)*x**2 + (-1)*x + (-3), x) == (15)*x**2 + (4)*x + (-1)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v11",
+          "statement": "If $f(x) = 2x^3 + x^2 + 6x - 2$, what is $f'(x)$?",
+          "options": [
+            "$6x^2 + 2x + 4$",
+            "$6x^3 + 2x^2 + 6x$",
+            "$6x^2 + 2x + 6$",
+            "$2x^2 + x + 6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $-2$ differentiates to zero. Leaving the coefficients un-multiplied, as in $2x^2 + x + 6$, is the classic slip.",
+          "check": [
+            "diff((2)*x**3 + (1)*x**2 + (6)*x + (-2), x) == (6)*x**2 + (2)*x + (6)"
+          ]
+        },
+        {
+          "id": "CAL-dfn-v12",
+          "statement": "If $f(x) = 3x^3 + 3x^2 - 5x + 4$, what is $f'(x)$?",
+          "options": [
+            "$9x^2 + 6x - 1$",
+            "$9x^3 + 6x^2 - 5x$",
+            "$3x^2 + 3x - 5$",
+            "$9x^2 + 6x - 5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Bring each exponent down as a factor and lower it by one; the constant $4$ differentiates to zero. Leaving the coefficients un-multiplied, as in $3x^2 + 3x - 5$, is the classic slip.",
+          "check": [
+            "diff((3)*x**3 + (3)*x**2 + (-5)*x + (4), x) == (9)*x**2 + (6)*x + (-5)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "power-rule-at-point",
+      "title": "Power rule at a point",
+      "level": 1,
+      "unit": "the-derivative",
+      "skill": "Bring the exponent down, lower it by one, then substitute the point.",
+      "variants": [
+        {
+          "id": "CAL-pow-v01",
+          "statement": "If $f(x) = 2x^2 + 3x$, find $f'(2)$.",
+          "options": [
+            "$11$",
+            "$14$",
+            "$16$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Power rule: $f'(x) = 4x + 3$, so $f'(2) = 11$. Computing the function value $f(2) = 14$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((2)*x**2 + (3)*x, x).subs(x, (2)) == 11"
+          ]
+        },
+        {
+          "id": "CAL-pow-v02",
+          "statement": "If $f(x) = 3x^2 - 4x$, find $f'(2)$.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$24$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Power rule: $f'(x) = 6x - 4$, so $f'(2) = 8$. Computing the function value $f(2) = 4$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((3)*x**2 + (-4)*x, x).subs(x, (2)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-pow-v03",
+          "statement": "If $f(x) = 2x^3 + 5x$, find $f'(2)$.",
+          "options": [
+            "$26$",
+            "$48$",
+            "$29$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Power rule: $f'(x) = 6x^2 + 5$, so $f'(2) = 29$. Computing the function value $f(2) = 26$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((2)*x**3 + (5)*x, x).subs(x, (2)) == 29"
+          ]
+        },
+        {
+          "id": "CAL-pow-v04",
+          "statement": "If $f(x) = 4x^2 - 3x$, find $f'(3)$.",
+          "options": [
+            "$27$",
+            "$72$",
+            "$9$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Power rule: $f'(x) = 8x - 3$, so $f'(3) = 21$. Computing the function value $f(3) = 27$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((4)*x**2 + (-3)*x, x).subs(x, (3)) == 21"
+          ]
+        },
+        {
+          "id": "CAL-pow-v05",
+          "statement": "If $f(x) = 2x^2 - 5x$, find $f'(3)$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$36$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Power rule: $f'(x) = 4x - 5$, so $f'(3) = 7$. Computing the function value $f(3) = 3$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((2)*x**2 + (-5)*x, x).subs(x, (3)) == 7"
+          ]
+        },
+        {
+          "id": "CAL-pow-v06",
+          "statement": "If $f(x) = 3x^3 + 2x$, find $f'(2)$.",
+          "options": [
+            "$28$",
+            "$38$",
+            "$72$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Power rule: $f'(x) = 9x^2 + 2$, so $f'(2) = 38$. Computing the function value $f(2) = 28$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((3)*x**3 + (2)*x, x).subs(x, (2)) == 38"
+          ]
+        },
+        {
+          "id": "CAL-pow-v07",
+          "statement": "If $f(x) = 5x^2 + 4x$, find $f'(2)$.",
+          "options": [
+            "$28$",
+            "$40$",
+            "$24$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Power rule: $f'(x) = 10x + 4$, so $f'(2) = 24$. Computing the function value $f(2) = 28$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((5)*x**2 + (4)*x, x).subs(x, (2)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-pow-v08",
+          "statement": "If $f(x) = 2x^3 - x$, find $f'(3)$.",
+          "options": [
+            "$51$",
+            "$162$",
+            "$17$",
+            "$53$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Power rule: $f'(x) = 6x^2 - 1$, so $f'(3) = 53$. Computing the function value $f(3) = 51$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((2)*x**3 + (-1)*x, x).subs(x, (3)) == 53"
+          ]
+        },
+        {
+          "id": "CAL-pow-v09",
+          "statement": "If $f(x) = 3x^2 + 5x$, find $f'(-2)$.",
+          "options": [
+            "$-7$",
+            "$2$",
+            "$24$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Power rule: $f'(x) = 6x + 5$, so $f'(-2) = -7$. Computing the function value $f(-2) = 2$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((3)*x**2 + (5)*x, x).subs(x, (-2)) == -7"
+          ]
+        },
+        {
+          "id": "CAL-pow-v10",
+          "statement": "If $f(x) = 4x^2 + x$, find $f'(2)$.",
+          "options": [
+            "$18$",
+            "$17$",
+            "$32$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Power rule: $f'(x) = 8x + 1$, so $f'(2) = 17$. Computing the function value $f(2) = 18$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((4)*x**2 + (1)*x, x).subs(x, (2)) == 17"
+          ]
+        },
+        {
+          "id": "CAL-pow-v11",
+          "statement": "If $f(x) = 2x^2 + 7x$, find $f'(4)$.",
+          "options": [
+            "$60$",
+            "$64$",
+            "$23$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Power rule: $f'(x) = 4x + 7$, so $f'(4) = 23$. Computing the function value $f(4) = 60$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((2)*x**2 + (7)*x, x).subs(x, (4)) == 23"
+          ]
+        },
+        {
+          "id": "CAL-pow-v12",
+          "statement": "If $f(x) = 3x^2 - 2x$, find $f'(4)$.",
+          "options": [
+            "$40$",
+            "$96$",
+            "$10$",
+            "$22$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Power rule: $f'(x) = 6x - 2$, so $f'(4) = 22$. Computing the function value $f(4) = 40$ instead of the derivative is the classic mix-up.",
+          "check": [
+            "diff((3)*x**2 + (-2)*x, x).subs(x, (4)) == 22"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tangent-slope",
+      "title": "Slope of the tangent line",
+      "level": 2,
+      "unit": "the-derivative",
+      "skill": "The tangent's slope is the derivative evaluated at the point — not the y-value.",
+      "variants": [
+        {
+          "id": "CAL-tan-v01",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 4x + 1$ at $x = 2$?",
+          "options": [
+            "$8$",
+            "$13$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 4$, so at $x = 2$ the slope is $8$. Reporting the $y$-value $13$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (4)*x + (1), x).subs(x, (2)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-tan-v02",
+          "statement": "What is the slope of the tangent line to $y = x^2 - 3x + 2$ at $x = 4$?",
+          "options": [
+            "$6$",
+            "$5$",
+            "$8$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x - 3$, so at $x = 4$ the slope is $5$. Reporting the $y$-value $6$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-3)*x + (2), x).subs(x, (4)) == 5"
+          ]
+        },
+        {
+          "id": "CAL-tan-v03",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 5x - 2$ at $x = 1$?",
+          "options": [
+            "$4$",
+            "$2$",
+            "$7$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 5$, so at $x = 1$ the slope is $7$. Reporting the $y$-value $4$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (5)*x + (-2), x).subs(x, (1)) == 7"
+          ]
+        },
+        {
+          "id": "CAL-tan-v04",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 2x - 6$ at $x = 3$?",
+          "options": [
+            "$9$",
+            "$6$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 2$, so at $x = 3$ the slope is $8$. Reporting the $y$-value $9$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (2)*x + (-6), x).subs(x, (3)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-tan-v05",
+          "statement": "What is the slope of the tangent line to $y = x^2 - 4x + 3$ at $x = 2$?",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$4$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x - 4$, so at $x = 2$ the slope is $0$. Reporting the $y$-value $-1$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-4)*x + (3), x).subs(x, (2)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-tan-v06",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 6x - 1$ at $x = 1$?",
+          "options": [
+            "$6$",
+            "$8$",
+            "$2$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 6$, so at $x = 1$ the slope is $8$. Reporting the $y$-value $6$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (6)*x + (-1), x).subs(x, (1)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-tan-v07",
+          "statement": "What is the slope of the tangent line to $y = x^2 - 2x + 5$ at $x = 3$?",
+          "options": [
+            "$8$",
+            "$6$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x - 2$, so at $x = 3$ the slope is $4$. Reporting the $y$-value $8$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-2)*x + (5), x).subs(x, (3)) == 4"
+          ]
+        },
+        {
+          "id": "CAL-tan-v08",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 3x + 2$ at $x = -2$?",
+          "options": [
+            "$0$",
+            "$-4$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 3$, so at $x = -2$ the slope is $-1$. Reporting the $y$-value $0$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (3)*x + (2), x).subs(x, (-2)) == -1"
+          ]
+        },
+        {
+          "id": "CAL-tan-v09",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 7x - 3$ at $x = 1$?",
+          "options": [
+            "$9$",
+            "$5$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 7$, so at $x = 1$ the slope is $9$. Reporting the $y$-value $5$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (7)*x + (-3), x).subs(x, (1)) == 9"
+          ]
+        },
+        {
+          "id": "CAL-tan-v10",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 4x - 7$ at $x = 2$?",
+          "options": [
+            "$5$",
+            "$8$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 4$, so at $x = 2$ the slope is $8$. Reporting the $y$-value $5$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (4)*x + (-7), x).subs(x, (2)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-tan-v11",
+          "statement": "What is the slope of the tangent line to $y = x^2 + 2x + 3$ at $x = -1$?",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x + 2$, so at $x = -1$ the slope is $0$. Reporting the $y$-value $2$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (2)*x + (3), x).subs(x, (-1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-tan-v12",
+          "statement": "What is the slope of the tangent line to $y = x^2 - 6x + 2$ at $x = 4$?",
+          "options": [
+            "$-6$",
+            "$8$",
+            "$-2$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent is the derivative: $y' = 2x - 6$, so at $x = 4$ the slope is $2$. Reporting the $y$-value $-6$ instead of the derivative is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-6)*x + (2), x).subs(x, (4)) == 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chain-rule-power",
+      "title": "Chain rule on a power",
+      "level": 2,
+      "unit": "differentiation-techniques",
+      "skill": "Differentiate the outside, then multiply by the inner derivative.",
+      "variants": [
+        {
+          "id": "CAL-chn-v01",
+          "statement": "If $f(x) = (2x + 1)^2$, find $f'(1)$.",
+          "options": [
+            "$12$",
+            "$6$",
+            "$36$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chain rule: $f'(x) = 2(2x + 1)^{1} \\cdot 2$, and the inner value at $x = 1$ is $3$, so $f'(1) = 2 \\cdot 3^{1} \\cdot 2 = 12$. Forgetting the inner derivative $2$ gives $6$.",
+          "check": [
+            "diff(((2)*x + (1))**2, x).subs(x, (1)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-chn-v02",
+          "statement": "If $f(x) = (3x - 2)^2$, find $f'(2)$.",
+          "options": [
+            "$8$",
+            "$24$",
+            "$96$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Chain rule: $f'(x) = 2(3x - 2)^{1} \\cdot 3$, and the inner value at $x = 2$ is $4$, so $f'(2) = 2 \\cdot 4^{1} \\cdot 3 = 24$. Forgetting the inner derivative $3$ gives $8$.",
+          "check": [
+            "diff(((3)*x + (-2))**2, x).subs(x, (2)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-chn-v03",
+          "statement": "If $f(x) = (2x + 3)^2$, find $f'(1)$.",
+          "options": [
+            "$10$",
+            "$100$",
+            "$20$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Chain rule: $f'(x) = 2(2x + 3)^{1} \\cdot 2$, and the inner value at $x = 1$ is $5$, so $f'(1) = 2 \\cdot 5^{1} \\cdot 2 = 20$. Forgetting the inner derivative $2$ gives $10$.",
+          "check": [
+            "diff(((2)*x + (3))**2, x).subs(x, (1)) == 20"
+          ]
+        },
+        {
+          "id": "CAL-chn-v04",
+          "statement": "If $f(x) = (3x + 1)^2$, find $f'(1)$.",
+          "options": [
+            "$8$",
+            "$96$",
+            "$16$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Chain rule: $f'(x) = 2(3x + 1)^{1} \\cdot 3$, and the inner value at $x = 1$ is $4$, so $f'(1) = 2 \\cdot 4^{1} \\cdot 3 = 24$. Forgetting the inner derivative $3$ gives $8$.",
+          "check": [
+            "diff(((3)*x + (1))**2, x).subs(x, (1)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-chn-v05",
+          "statement": "If $f(x) = (2x - 5)^2$, find $f'(4)$.",
+          "options": [
+            "$12$",
+            "$6$",
+            "$36$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chain rule: $f'(x) = 2(2x - 5)^{1} \\cdot 2$, and the inner value at $x = 4$ is $3$, so $f'(4) = 2 \\cdot 3^{1} \\cdot 2 = 12$. Forgetting the inner derivative $2$ gives $6$.",
+          "check": [
+            "diff(((2)*x + (-5))**2, x).subs(x, (4)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-chn-v06",
+          "statement": "If $f(x) = (4x - 3)^2$, find $f'(2)$.",
+          "options": [
+            "$10$",
+            "$40$",
+            "$200$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Chain rule: $f'(x) = 2(4x - 3)^{1} \\cdot 4$, and the inner value at $x = 2$ is $5$, so $f'(2) = 2 \\cdot 5^{1} \\cdot 4 = 40$. Forgetting the inner derivative $4$ gives $10$.",
+          "check": [
+            "diff(((4)*x + (-3))**2, x).subs(x, (2)) == 40"
+          ]
+        },
+        {
+          "id": "CAL-chn-v07",
+          "statement": "If $f(x) = (3x - 4)^3$, find $f'(2)$.",
+          "options": [
+            "$12$",
+            "$72$",
+            "$36$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Chain rule: $f'(x) = 3(3x - 4)^{2} \\cdot 3$, and the inner value at $x = 2$ is $2$, so $f'(2) = 3 \\cdot 2^{2} \\cdot 3 = 36$. Forgetting the inner derivative $3$ gives $12$.",
+          "check": [
+            "diff(((3)*x + (-4))**3, x).subs(x, (2)) == 36"
+          ]
+        },
+        {
+          "id": "CAL-chn-v08",
+          "statement": "If $f(x) = (2x - 1)^3$, find $f'(3)$.",
+          "options": [
+            "$75$",
+            "$750$",
+            "$125$",
+            "$150$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Chain rule: $f'(x) = 3(2x - 1)^{2} \\cdot 2$, and the inner value at $x = 3$ is $5$, so $f'(3) = 3 \\cdot 5^{2} \\cdot 2 = 150$. Forgetting the inner derivative $2$ gives $75$.",
+          "check": [
+            "diff(((2)*x + (-1))**3, x).subs(x, (3)) == 150"
+          ]
+        },
+        {
+          "id": "CAL-chn-v09",
+          "statement": "If $f(x) = (5x + 2)^2$, find $f'(1)$.",
+          "options": [
+            "$70$",
+            "$14$",
+            "$490$",
+            "$49$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chain rule: $f'(x) = 2(5x + 2)^{1} \\cdot 5$, and the inner value at $x = 1$ is $7$, so $f'(1) = 2 \\cdot 7^{1} \\cdot 5 = 70$. Forgetting the inner derivative $5$ gives $14$.",
+          "check": [
+            "diff(((5)*x + (2))**2, x).subs(x, (1)) == 70"
+          ]
+        },
+        {
+          "id": "CAL-chn-v10",
+          "statement": "If $f(x) = (3x + 2)^2$, find $f'(-1)$.",
+          "options": [
+            "$-2$",
+            "$-6$",
+            "$6$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Chain rule: $f'(x) = 2(3x + 2)^{1} \\cdot 3$, and the inner value at $x = -1$ is $-1$, so $f'(-1) = 2 \\cdot -1^{1} \\cdot 3 = -6$. Forgetting the inner derivative $3$ gives $-2$.",
+          "check": [
+            "diff(((3)*x + (2))**2, x).subs(x, (-1)) == -6"
+          ]
+        },
+        {
+          "id": "CAL-chn-v11",
+          "statement": "If $f(x) = (2x - 4)^3$, find $f'(3)$.",
+          "options": [
+            "$12$",
+            "$48$",
+            "$24$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Chain rule: $f'(x) = 3(2x - 4)^{2} \\cdot 2$, and the inner value at $x = 3$ is $2$, so $f'(3) = 3 \\cdot 2^{2} \\cdot 2 = 24$. Forgetting the inner derivative $2$ gives $12$.",
+          "check": [
+            "diff(((2)*x + (-4))**3, x).subs(x, (3)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-chn-v12",
+          "statement": "If $f(x) = (2x + 7)^2$, find $f'(-2)$.",
+          "options": [
+            "$6$",
+            "$36$",
+            "$9$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Chain rule: $f'(x) = 2(2x + 7)^{1} \\cdot 2$, and the inner value at $x = -2$ is $3$, so $f'(-2) = 2 \\cdot 3^{1} \\cdot 2 = 12$. Forgetting the inner derivative $2$ gives $6$.",
+          "check": [
+            "diff(((2)*x + (7))**2, x).subs(x, (-2)) == 12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "second-derivative",
+      "title": "Acceleration: the second derivative",
+      "level": 2,
+      "unit": "differentiation-techniques",
+      "skill": "Acceleration is s'' — differentiate the position twice, then substitute.",
+      "variants": [
+        {
+          "id": "CAL-sec-v01",
+          "statement": "A particle's position is $s(t) = t^3 + 2t^2 - 5t$. Find the acceleration $s''(1)$.",
+          "options": [
+            "$10$",
+            "$2$",
+            "$-2$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 4$, so $s''(1) = 10$. Stopping after one derivative — the velocity $s'(1) = 2$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (2)*t**2 + (-5)*t, t, 2).subs(t, (1)) == 10"
+          ]
+        },
+        {
+          "id": "CAL-sec-v02",
+          "statement": "A particle's position is $s(t) = t^3 - 3t^2 + 2t$. Find the acceleration $s''(2)$.",
+          "options": [
+            "$2$",
+            "$6$",
+            "$0$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Differentiate twice: $s''(t) = 6t - 6$, so $s''(2) = 6$. Stopping after one derivative — the velocity $s'(2) = 2$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (-3)*t**2 + (2)*t, t, 2).subs(t, (2)) == 6"
+          ]
+        },
+        {
+          "id": "CAL-sec-v03",
+          "statement": "A particle's position is $s(t) = t^3 + t^2 - 6t$. Find the acceleration $s''(2)$.",
+          "options": [
+            "$10$",
+            "$0$",
+            "$14$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 2$, so $s''(2) = 14$. Stopping after one derivative — the velocity $s'(2) = 10$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (1)*t**2 + (-6)*t, t, 2).subs(t, (2)) == 14"
+          ]
+        },
+        {
+          "id": "CAL-sec-v04",
+          "statement": "A particle's position is $s(t) = t^3 + 4t^2 - 2t$. Find the acceleration $s''(1)$.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$6$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 8$, so $s''(1) = 14$. Stopping after one derivative — the velocity $s'(1) = 9$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (4)*t**2 + (-2)*t, t, 2).subs(t, (1)) == 14"
+          ]
+        },
+        {
+          "id": "CAL-sec-v05",
+          "statement": "A particle's position is $s(t) = t^3 + 2t^2 + 3t$. Find the acceleration $s''(2)$.",
+          "options": [
+            "$16$",
+            "$23$",
+            "$22$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 4$, so $s''(2) = 16$. Stopping after one derivative — the velocity $s'(2) = 23$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (2)*t**2 + (3)*t, t, 2).subs(t, (2)) == 16"
+          ]
+        },
+        {
+          "id": "CAL-sec-v06",
+          "statement": "A particle's position is $s(t) = t^3 - 2t^2 + 5t$. Find the acceleration $s''(3)$.",
+          "options": [
+            "$20$",
+            "$14$",
+            "$24$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Differentiate twice: $s''(t) = 6t - 4$, so $s''(3) = 14$. Stopping after one derivative — the velocity $s'(3) = 20$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (-2)*t**2 + (5)*t, t, 2).subs(t, (3)) == 14"
+          ]
+        },
+        {
+          "id": "CAL-sec-v07",
+          "statement": "A particle's position is $s(t) = t^3 + 3t^2 + 2t$. Find the acceleration $s''(3)$.",
+          "options": [
+            "$47$",
+            "$60$",
+            "$24$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 6$, so $s''(3) = 24$. Stopping after one derivative — the velocity $s'(3) = 47$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (3)*t**2 + (2)*t, t, 2).subs(t, (3)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-sec-v08",
+          "statement": "A particle's position is $s(t) = t^3 - 4t^2 + t$. Find the acceleration $s''(3)$.",
+          "options": [
+            "$4$",
+            "$-6$",
+            "$18$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Differentiate twice: $s''(t) = 6t - 8$, so $s''(3) = 10$. Stopping after one derivative — the velocity $s'(3) = 4$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (-4)*t**2 + (1)*t, t, 2).subs(t, (3)) == 10"
+          ]
+        },
+        {
+          "id": "CAL-sec-v09",
+          "statement": "A particle's position is $s(t) = t^3 + 5t^2 - 3t$. Find the acceleration $s''(1)$.",
+          "options": [
+            "$16$",
+            "$10$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 10$, so $s''(1) = 16$. Stopping after one derivative — the velocity $s'(1) = 10$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (5)*t**2 + (-3)*t, t, 2).subs(t, (1)) == 16"
+          ]
+        },
+        {
+          "id": "CAL-sec-v10",
+          "statement": "A particle's position is $s(t) = t^3 + 2t^2 - 7t$. Find the acceleration $s''(3)$.",
+          "options": [
+            "$32$",
+            "$22$",
+            "$24$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Differentiate twice: $s''(t) = 6t + 4$, so $s''(3) = 22$. Stopping after one derivative — the velocity $s'(3) = 32$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (2)*t**2 + (-7)*t, t, 2).subs(t, (3)) == 22"
+          ]
+        },
+        {
+          "id": "CAL-sec-v11",
+          "statement": "A particle's position is $s(t) = t^3 - t^2 + 6t$. Find the acceleration $s''(2)$.",
+          "options": [
+            "$14$",
+            "$16$",
+            "$10$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Differentiate twice: $s''(t) = 6t - 2$, so $s''(2) = 10$. Stopping after one derivative — the velocity $s'(2) = 14$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (-1)*t**2 + (6)*t, t, 2).subs(t, (2)) == 10"
+          ]
+        },
+        {
+          "id": "CAL-sec-v12",
+          "statement": "A particle's position is $s(t) = t^3 - 5t^2 + 4t$. Find the acceleration $s''(4)$.",
+          "options": [
+            "$12$",
+            "$0$",
+            "$24$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Differentiate twice: $s''(t) = 6t - 10$, so $s''(4) = 14$. Stopping after one derivative — the velocity $s'(4) = 12$ — is the classic slip.",
+          "check": [
+            "diff((1)*t**3 + (-5)*t**2 + (4)*t, t, 2).subs(t, (4)) == 14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-rule-value",
+      "title": "Product rule from a table",
+      "level": 3,
+      "unit": "differentiation-techniques",
+      "skill": "(fg)' = f'g + fg' — never the product of the derivatives.",
+      "variants": [
+        {
+          "id": "CAL-prod-v01",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(1) = 2$, $f'(1) = 3$, $g(1) = 4$, $g'(1) = 5$, find $h'(1)$.",
+          "options": [
+            "$22$",
+            "$15$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Product rule: $h'(1) = f'(1)g(1) + f(1)g'(1) = (3)(4) + (2)(5) = 22$. Multiplying the two derivatives, $(3)(5) = 15$, is the classic wrong move.",
+          "check": [
+            "(3)*(4) + (2)*(5) == 22"
+          ]
+        },
+        {
+          "id": "CAL-prod-v02",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(2) = 3$, $f'(2) = -1$, $g(2) = 2$, $g'(2) = 4$, find $h'(2)$.",
+          "options": [
+            "$-4$",
+            "$10$",
+            "$6$",
+            "$-14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Product rule: $h'(2) = f'(2)g(2) + f(2)g'(2) = (-1)(2) + (3)(4) = 10$. Multiplying the two derivatives, $(-1)(4) = -4$, is the classic wrong move.",
+          "check": [
+            "(-1)*(2) + (3)*(4) == 10"
+          ]
+        },
+        {
+          "id": "CAL-prod-v03",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(3) = 4$, $f'(3) = 2$, $g(3) = -3$, $g'(3) = 1$, find $h'(3)$.",
+          "options": [
+            "$2$",
+            "$-12$",
+            "$-2$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Product rule: $h'(3) = f'(3)g(3) + f(3)g'(3) = (2)(-3) + (4)(1) = -2$. Multiplying the two derivatives, $(2)(1) = 2$, is the classic wrong move.",
+          "check": [
+            "(2)*(-3) + (4)*(1) == -2"
+          ]
+        },
+        {
+          "id": "CAL-prod-v04",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(0) = -2$, $f'(0) = 5$, $g(0) = 3$, $g'(0) = 1$, find $h'(0)$.",
+          "options": [
+            "$5$",
+            "$-6$",
+            "$17$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Product rule: $h'(0) = f'(0)g(0) + f(0)g'(0) = (5)(3) + (-2)(1) = 13$. Multiplying the two derivatives, $(5)(1) = 5$, is the classic wrong move.",
+          "check": [
+            "(5)*(3) + (-2)*(1) == 13"
+          ]
+        },
+        {
+          "id": "CAL-prod-v05",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(2) = 5$, $f'(2) = -3$, $g(2) = 2$, $g'(2) = -1$, find $h'(2)$.",
+          "options": [
+            "$-11$",
+            "$3$",
+            "$10$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Product rule: $h'(2) = f'(2)g(2) + f(2)g'(2) = (-3)(2) + (5)(-1) = -11$. Multiplying the two derivatives, $(-3)(-1) = 3$, is the classic wrong move.",
+          "check": [
+            "(-3)*(2) + (5)*(-1) == -11"
+          ]
+        },
+        {
+          "id": "CAL-prod-v06",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(1) = -3$, $f'(1) = 2$, $g(1) = 4$, $g'(1) = 2$, find $h'(1)$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$-12$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Product rule: $h'(1) = f'(1)g(1) + f(1)g'(1) = (2)(4) + (-3)(2) = 2$. Multiplying the two derivatives, $(2)(2) = 4$, is the classic wrong move.",
+          "check": [
+            "(2)*(4) + (-3)*(2) == 2"
+          ]
+        },
+        {
+          "id": "CAL-prod-v07",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(4) = 1$, $f'(4) = 6$, $g(4) = 2$, $g'(4) = -3$, find $h'(4)$.",
+          "options": [
+            "$-18$",
+            "$2$",
+            "$9$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Product rule: $h'(4) = f'(4)g(4) + f(4)g'(4) = (6)(2) + (1)(-3) = 9$. Multiplying the two derivatives, $(6)(-3) = -18$, is the classic wrong move.",
+          "check": [
+            "(6)*(2) + (1)*(-3) == 9"
+          ]
+        },
+        {
+          "id": "CAL-prod-v08",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(2) = -4$, $f'(2) = 1$, $g(2) = 5$, $g'(2) = 3$, find $h'(2)$.",
+          "options": [
+            "$3$",
+            "$-20$",
+            "$17$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Product rule: $h'(2) = f'(2)g(2) + f(2)g'(2) = (1)(5) + (-4)(3) = -7$. Multiplying the two derivatives, $(1)(3) = 3$, is the classic wrong move.",
+          "check": [
+            "(1)*(5) + (-4)*(3) == -7"
+          ]
+        },
+        {
+          "id": "CAL-prod-v09",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(3) = 6$, $f'(3) = -2$, $g(3) = 1$, $g'(3) = 4$, find $h'(3)$.",
+          "options": [
+            "$22$",
+            "$-8$",
+            "$6$",
+            "$-26$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Product rule: $h'(3) = f'(3)g(3) + f(3)g'(3) = (-2)(1) + (6)(4) = 22$. Multiplying the two derivatives, $(-2)(4) = -8$, is the classic wrong move.",
+          "check": [
+            "(-2)*(1) + (6)*(4) == 22"
+          ]
+        },
+        {
+          "id": "CAL-prod-v10",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(1) = 7$, $f'(1) = 3$, $g(1) = -2$, $g'(1) = 1$, find $h'(1)$.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$-14$",
+            "$-13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Product rule: $h'(1) = f'(1)g(1) + f(1)g'(1) = (3)(-2) + (7)(1) = 1$. Multiplying the two derivatives, $(3)(1) = 3$, is the classic wrong move.",
+          "check": [
+            "(3)*(-2) + (7)*(1) == 1"
+          ]
+        },
+        {
+          "id": "CAL-prod-v11",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(2) = -1$, $f'(2) = 4$, $g(2) = 3$, $g'(2) = 5$, find $h'(2)$.",
+          "options": [
+            "$20$",
+            "$-3$",
+            "$7$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Product rule: $h'(2) = f'(2)g(2) + f(2)g'(2) = (4)(3) + (-1)(5) = 7$. Multiplying the two derivatives, $(4)(5) = 20$, is the classic wrong move.",
+          "check": [
+            "(4)*(3) + (-1)*(5) == 7"
+          ]
+        },
+        {
+          "id": "CAL-prod-v12",
+          "statement": "Let $h(x) = f(x)\\,g(x)$. Given $f(5) = 2$, $f'(5) = -3$, $g(5) = 4$, $g'(5) = 1$, find $h'(5)$.",
+          "options": [
+            "$-3$",
+            "$8$",
+            "$-14$",
+            "$-10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Product rule: $h'(5) = f'(5)g(5) + f(5)g'(5) = (-3)(4) + (2)(1) = -10$. Multiplying the two derivatives, $(-3)(1) = -3$, is the classic wrong move.",
+          "check": [
+            "(-3)*(4) + (2)*(1) == -10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "critical-point",
+      "title": "Locating critical points",
+      "level": 2,
+      "unit": "applications-of-derivatives",
+      "skill": "Set f'(x) = 0 and solve; the second derivative certifies a minimum.",
+      "variants": [
+        {
+          "id": "CAL-crit-v01",
+          "statement": "For $f(x) = x^2 - 6x + 5$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$5$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set $f'(x) = 2x - 6 = 0$ to get $x = 3$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = -3$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-6)*x + (5), x).subs(x, (3)) == 0",
+            "diff((1)*x**2 + (-6)*x + (5), x, 2).subs(x, (3)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v02",
+          "statement": "For $f(x) = x^2 + 4x + 7$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$7$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set $f'(x) = 2x + 4 = 0$ to get $x = -2$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = 2$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (4)*x + (7), x).subs(x, (-2)) == 0",
+            "diff((1)*x**2 + (4)*x + (7), x, 2).subs(x, (-2)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v03",
+          "statement": "For $f(x) = x^2 - 8x - 3$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$-4$",
+            "$-3$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Set $f'(x) = 2x - 8 = 0$ to get $x = 4$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = -4$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-8)*x + (-3), x).subs(x, (4)) == 0",
+            "diff((1)*x**2 + (-8)*x + (-3), x, 2).subs(x, (4)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v04",
+          "statement": "For $f(x) = x^2 + 10x + 2$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$5$",
+            "$2$",
+            "$-10$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Set $f'(x) = 2x + 10 = 0$ to get $x = -5$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = 5$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (10)*x + (2), x).subs(x, (-5)) == 0",
+            "diff((1)*x**2 + (10)*x + (2), x, 2).subs(x, (-5)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v05",
+          "statement": "For $f(x) = x^2 - 2x - 6$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$-6$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Set $f'(x) = 2x - 2 = 0$ to get $x = 1$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = -1$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-2)*x + (-6), x).subs(x, (1)) == 0",
+            "diff((1)*x**2 + (-2)*x + (-6), x, 2).subs(x, (1)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v06",
+          "statement": "For $f(x) = x^2 - 12x - 1$, at which value of $x$ does $f$ reach its minimum?",
+          "options": [
+            "$-6$",
+            "$6$",
+            "$-1$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Set $f'(x) = 2x - 12 = 0$ to get $x = 6$; $f''(x) = 2 > 0$ confirms a minimum. Flipping the sign to $x = -6$ — misreading the middle coefficient — is the classic slip.",
+          "check": [
+            "diff((1)*x**2 + (-12)*x + (-1), x).subs(x, (6)) == 0",
+            "diff((1)*x**2 + (-12)*x + (-1), x, 2).subs(x, (6)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v07",
+          "statement": "The function $f(x) = x^3 - 3x$ has two critical points. What is the positive one?",
+          "options": [
+            "$-1$",
+            "$3$",
+            "$1$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Solve $f'(x) = 3x^2 - 3 = 0$: $x^2 = 1$, so $x = \\pm 1$ and the positive one is $1$. Answering $-1$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (3)*x, x).subs(x, (1)) == 0",
+            "diff(x**3 - (3)*x, x, 2).subs(x, (1)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v08",
+          "statement": "The function $f(x) = x^3 - 12x$ has two critical points. What is the positive one?",
+          "options": [
+            "$-2$",
+            "$12$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Solve $f'(x) = 3x^2 - 12 = 0$: $x^2 = 4$, so $x = \\pm 2$ and the positive one is $2$. Answering $-2$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (12)*x, x).subs(x, (2)) == 0",
+            "diff(x**3 - (12)*x, x, 2).subs(x, (2)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v09",
+          "statement": "The function $f(x) = x^3 - 27x$ has two critical points. What is the positive one?",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$27$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Solve $f'(x) = 3x^2 - 27 = 0$: $x^2 = 9$, so $x = \\pm 3$ and the positive one is $3$. Answering $-3$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (27)*x, x).subs(x, (3)) == 0",
+            "diff(x**3 - (27)*x, x, 2).subs(x, (3)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v10",
+          "statement": "The function $f(x) = x^3 - 48x$ has two critical points. What is the positive one?",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$48$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Solve $f'(x) = 3x^2 - 48 = 0$: $x^2 = 16$, so $x = \\pm 4$ and the positive one is $4$. Answering $-4$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (48)*x, x).subs(x, (4)) == 0",
+            "diff(x**3 - (48)*x, x, 2).subs(x, (4)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v11",
+          "statement": "The function $f(x) = x^3 - 75x$ has two critical points. What is the positive one?",
+          "options": [
+            "$-5$",
+            "$75$",
+            "$5$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Solve $f'(x) = 3x^2 - 75 = 0$: $x^2 = 25$, so $x = \\pm 5$ and the positive one is $5$. Answering $-5$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (75)*x, x).subs(x, (5)) == 0",
+            "diff(x**3 - (75)*x, x, 2).subs(x, (5)) > 0"
+          ]
+        },
+        {
+          "id": "CAL-crit-v12",
+          "statement": "The function $f(x) = x^3 - 108x$ has two critical points. What is the positive one?",
+          "options": [
+            "$-6$",
+            "$108$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Solve $f'(x) = 3x^2 - 108 = 0$: $x^2 = 36$, so $x = \\pm 6$ and the positive one is $6$. Answering $-6$ — the other critical point — misses the word positive.",
+          "check": [
+            "diff(x**3 - (108)*x, x).subs(x, (6)) == 0",
+            "diff(x**3 - (108)*x, x, 2).subs(x, (6)) > 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "increasing-interval",
+      "title": "Where the function decreases",
+      "level": 3,
+      "unit": "applications-of-derivatives",
+      "skill": "f decreases exactly where f' < 0 — between the roots of f'.",
+      "variants": [
+        {
+          "id": "CAL-incr-v01",
+          "statement": "On which interval is $f(x) = x^3 - 12x$ decreasing?",
+          "options": [
+            "$(-2;\\ 2)$",
+            "$(-\\infty;\\ -2)$",
+            "$(2;\\ \\infty)$",
+            "$(-4;\\ 4)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 3x^2 - 12 = 3(x - 2)(x + 2)$ is negative exactly between the roots, so $f$ decreases on $(-2;\\ 2)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (12)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (12)*x, x).subs(x, (2)) == 0",
+            "diff(x**3 - (12)*x, x).subs(x, (-2)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v02",
+          "statement": "On which interval is $f(x) = x^3 - 27x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -3)$",
+            "$(-3;\\ 3)$",
+            "$(3;\\ \\infty)$",
+            "$(-9;\\ 9)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 3x^2 - 27 = 3(x - 3)(x + 3)$ is negative exactly between the roots, so $f$ decreases on $(-3;\\ 3)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (27)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (27)*x, x).subs(x, (3)) == 0",
+            "diff(x**3 - (27)*x, x).subs(x, (-3)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v03",
+          "statement": "On which interval is $f(x) = x^3 - 48x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -4)$",
+            "$(4;\\ \\infty)$",
+            "$(-4;\\ 4)$",
+            "$(-16;\\ 16)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 3x^2 - 48 = 3(x - 4)(x + 4)$ is negative exactly between the roots, so $f$ decreases on $(-4;\\ 4)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (48)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (48)*x, x).subs(x, (4)) == 0",
+            "diff(x**3 - (48)*x, x).subs(x, (-4)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v04",
+          "statement": "On which interval is $f(x) = x^3 - 75x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -5)$",
+            "$(5;\\ \\infty)$",
+            "$(-25;\\ 25)$",
+            "$(-5;\\ 5)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 3x^2 - 75 = 3(x - 5)(x + 5)$ is negative exactly between the roots, so $f$ decreases on $(-5;\\ 5)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (75)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (75)*x, x).subs(x, (5)) == 0",
+            "diff(x**3 - (75)*x, x).subs(x, (-5)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v05",
+          "statement": "On which interval is $f(x) = x^3 - 108x$ decreasing?",
+          "options": [
+            "$(-6;\\ 6)$",
+            "$(-\\infty;\\ -6)$",
+            "$(6;\\ \\infty)$",
+            "$(-36;\\ 36)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 3x^2 - 108 = 3(x - 6)(x + 6)$ is negative exactly between the roots, so $f$ decreases on $(-6;\\ 6)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (108)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (108)*x, x).subs(x, (6)) == 0",
+            "diff(x**3 - (108)*x, x).subs(x, (-6)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v06",
+          "statement": "On which interval is $f(x) = x^3 - 147x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -7)$",
+            "$(-7;\\ 7)$",
+            "$(7;\\ \\infty)$",
+            "$(-49;\\ 49)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 3x^2 - 147 = 3(x - 7)(x + 7)$ is negative exactly between the roots, so $f$ decreases on $(-7;\\ 7)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (147)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (147)*x, x).subs(x, (7)) == 0",
+            "diff(x**3 - (147)*x, x).subs(x, (-7)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v07",
+          "statement": "On which interval is $f(x) = x^3 - 192x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -8)$",
+            "$(8;\\ \\infty)$",
+            "$(-8;\\ 8)$",
+            "$(-64;\\ 64)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 3x^2 - 192 = 3(x - 8)(x + 8)$ is negative exactly between the roots, so $f$ decreases on $(-8;\\ 8)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (192)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (192)*x, x).subs(x, (8)) == 0",
+            "diff(x**3 - (192)*x, x).subs(x, (-8)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v08",
+          "statement": "On which interval is $f(x) = x^3 - 243x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -9)$",
+            "$(9;\\ \\infty)$",
+            "$(-81;\\ 81)$",
+            "$(-9;\\ 9)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 3x^2 - 243 = 3(x - 9)(x + 9)$ is negative exactly between the roots, so $f$ decreases on $(-9;\\ 9)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (243)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (243)*x, x).subs(x, (9)) == 0",
+            "diff(x**3 - (243)*x, x).subs(x, (-9)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v09",
+          "statement": "On which interval is $f(x) = x^3 - 300x$ decreasing?",
+          "options": [
+            "$(-10;\\ 10)$",
+            "$(-\\infty;\\ -10)$",
+            "$(10;\\ \\infty)$",
+            "$(-100;\\ 100)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 3x^2 - 300 = 3(x - 10)(x + 10)$ is negative exactly between the roots, so $f$ decreases on $(-10;\\ 10)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (300)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (300)*x, x).subs(x, (10)) == 0",
+            "diff(x**3 - (300)*x, x).subs(x, (-10)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v10",
+          "statement": "On which interval is $f(x) = x^3 - 363x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -11)$",
+            "$(-11;\\ 11)$",
+            "$(11;\\ \\infty)$",
+            "$(-121;\\ 121)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 3x^2 - 363 = 3(x - 11)(x + 11)$ is negative exactly between the roots, so $f$ decreases on $(-11;\\ 11)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (363)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (363)*x, x).subs(x, (11)) == 0",
+            "diff(x**3 - (363)*x, x).subs(x, (-11)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v11",
+          "statement": "On which interval is $f(x) = x^3 - 432x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -12)$",
+            "$(12;\\ \\infty)$",
+            "$(-12;\\ 12)$",
+            "$(-144;\\ 144)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 3x^2 - 432 = 3(x - 12)(x + 12)$ is negative exactly between the roots, so $f$ decreases on $(-12;\\ 12)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (432)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (432)*x, x).subs(x, (12)) == 0",
+            "diff(x**3 - (432)*x, x).subs(x, (-12)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-incr-v12",
+          "statement": "On which interval is $f(x) = x^3 - 507x$ decreasing?",
+          "options": [
+            "$(-\\infty;\\ -13)$",
+            "$(13;\\ \\infty)$",
+            "$(-169;\\ 169)$",
+            "$(-13;\\ 13)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 3x^2 - 507 = 3(x - 13)(x + 13)$ is negative exactly between the roots, so $f$ decreases on $(-13;\\ 13)$. The outer intervals are where $f'$ is positive — where $f$ increases.",
+          "check": [
+            "diff(x**3 - (507)*x, x).subs(x, 0) < 0",
+            "diff(x**3 - (507)*x, x).subs(x, (13)) == 0",
+            "diff(x**3 - (507)*x, x).subs(x, (-13)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tangent-line-y",
+      "title": "Where the tangent meets the y-axis",
+      "level": 3,
+      "unit": "applications-of-derivatives",
+      "skill": "Build the tangent line y = f'(p)(x − p) + f(p), then set x = 0.",
+      "variants": [
+        {
+          "id": "CAL-tany-v01",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 1$ crosses the $y$-axis.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$0$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent at $x = 1$ is $y = 2(x - (1)) + 1$; setting $x = 0$ gives $y = -1$. Answering $1$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (1))*(0 - (1)) + (1)**2 == (-1)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v02",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 3$ crosses the $y$-axis.",
+          "options": [
+            "$9$",
+            "$-9$",
+            "$0$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent at $x = 3$ is $y = 6(x - (3)) + 9$; setting $x = 0$ gives $y = -9$. Answering $9$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (3))*(0 - (3)) + (3)**2 == (-9)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v03",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 4$ crosses the $y$-axis.",
+          "options": [
+            "$16$",
+            "$0$",
+            "$-16$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent at $x = 4$ is $y = 8(x - (4)) + 16$; setting $x = 0$ gives $y = -16$. Answering $16$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (4))*(0 - (4)) + (4)**2 == (-16)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v04",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 5$ crosses the $y$-axis.",
+          "options": [
+            "$25$",
+            "$0$",
+            "$10$",
+            "$-25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent at $x = 5$ is $y = 10(x - (5)) + 25$; setting $x = 0$ gives $y = -25$. Answering $25$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (5))*(0 - (5)) + (5)**2 == (-25)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v05",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 6$ crosses the $y$-axis.",
+          "options": [
+            "$-36$",
+            "$36$",
+            "$0$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent at $x = 6$ is $y = 12(x - (6)) + 36$; setting $x = 0$ gives $y = -36$. Answering $36$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (6))*(0 - (6)) + (6)**2 == (-36)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v06",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = 7$ crosses the $y$-axis.",
+          "options": [
+            "$49$",
+            "$-49$",
+            "$0$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent at $x = 7$ is $y = 14(x - (7)) + 49$; setting $x = 0$ gives $y = -49$. Answering $49$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (7))*(0 - (7)) + (7)**2 == (-49)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v07",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -1$ crosses the $y$-axis.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$-1$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent at $x = -1$ is $y = -2(x - (-1)) + 1$; setting $x = 0$ gives $y = -1$. Answering $1$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-1))*(0 - (-1)) + (-1)**2 == (-1)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v08",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -3$ crosses the $y$-axis.",
+          "options": [
+            "$9$",
+            "$0$",
+            "$-6$",
+            "$-9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent at $x = -3$ is $y = -6(x - (-3)) + 9$; setting $x = 0$ gives $y = -9$. Answering $9$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-3))*(0 - (-3)) + (-3)**2 == (-9)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v09",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -4$ crosses the $y$-axis.",
+          "options": [
+            "$-16$",
+            "$16$",
+            "$0$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent at $x = -4$ is $y = -8(x - (-4)) + 16$; setting $x = 0$ gives $y = -16$. Answering $16$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-4))*(0 - (-4)) + (-4)**2 == (-16)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v10",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -5$ crosses the $y$-axis.",
+          "options": [
+            "$25$",
+            "$-25$",
+            "$0$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent at $x = -5$ is $y = -10(x - (-5)) + 25$; setting $x = 0$ gives $y = -25$. Answering $25$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-5))*(0 - (-5)) + (-5)**2 == (-25)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v11",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -6$ crosses the $y$-axis.",
+          "options": [
+            "$36$",
+            "$0$",
+            "$-36$",
+            "$-12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent at $x = -6$ is $y = -12(x - (-6)) + 36$; setting $x = 0$ gives $y = -36$. Answering $36$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-6))*(0 - (-6)) + (-6)**2 == (-36)"
+          ]
+        },
+        {
+          "id": "CAL-tany-v12",
+          "statement": "Find the $y$-coordinate of the point where the tangent line to $y = x^2$ at $x = -7$ crosses the $y$-axis.",
+          "options": [
+            "$49$",
+            "$0$",
+            "$-14$",
+            "$-49$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent at $x = -7$ is $y = -14(x - (-7)) + 49$; setting $x = 0$ gives $y = -49$. Answering $49$ — the height of the point of tangency — is the classic slip.",
+          "check": [
+            "diff(x**2, x).subs(x, (-7))*(0 - (-7)) + (-7)**2 == (-49)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antiderivative",
+      "title": "Picking the antiderivative",
+      "level": 1,
+      "unit": "integrals",
+      "skill": "Raise the exponent by one and divide by it — differentiate to verify.",
+      "variants": [
+        {
+          "id": "CAL-anti-v01",
+          "statement": "Which of the following is an antiderivative of $f(x) = 6x^2 + 5$?",
+          "options": [
+            "$2x^3 + 5x$",
+            "$12x$",
+            "$6x^3 + 5x$",
+            "$2x^3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{6}{3}x^3 + 5x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $12x$.",
+          "check": [
+            "diff((2)*x**3 + (5)*x, x) == (6)*x**2 + (5)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v02",
+          "statement": "Which of the following is an antiderivative of $f(x) = 3x^2 - 4$?",
+          "options": [
+            "$6x$",
+            "$x^3 - 4x$",
+            "$3x^3 - 4x$",
+            "$x^3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{3}{3}x^3 - 4x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $6x$.",
+          "check": [
+            "diff((1)*x**3 + (-4)*x, x) == (3)*x**2 + (-4)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v03",
+          "statement": "Which of the following is an antiderivative of $f(x) = 9x^2 + 2$?",
+          "options": [
+            "$18x$",
+            "$9x^3 + 2x$",
+            "$3x^3 + 2x$",
+            "$3x^3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{9}{3}x^3 + 2x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $18x$.",
+          "check": [
+            "diff((3)*x**3 + (2)*x, x) == (9)*x**2 + (2)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v04",
+          "statement": "Which of the following is an antiderivative of $f(x) = 12x^2 - 1$?",
+          "options": [
+            "$24x$",
+            "$12x^3 - x$",
+            "$4x^3$",
+            "$4x^3 - x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{12}{3}x^3 - x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $24x$.",
+          "check": [
+            "diff((4)*x**3 + (-1)*x, x) == (12)*x**2 + (-1)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v05",
+          "statement": "Which of the following is an antiderivative of $f(x) = 4x^3 + 3$?",
+          "options": [
+            "$x^4 + 3x$",
+            "$12x^2$",
+            "$4x^4 + 3x$",
+            "$x^4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{4}{4}x^4 + 3x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $12x^2$.",
+          "check": [
+            "diff((1)*x**4 + (3)*x, x) == (4)*x**3 + (3)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v06",
+          "statement": "Which of the following is an antiderivative of $f(x) = 8x^3 - 5$?",
+          "options": [
+            "$24x^2$",
+            "$2x^4 - 5x$",
+            "$8x^4 - 5x$",
+            "$2x^4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{8}{4}x^4 - 5x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $24x^2$.",
+          "check": [
+            "diff((2)*x**4 + (-5)*x, x) == (8)*x**3 + (-5)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v07",
+          "statement": "Which of the following is an antiderivative of $f(x) = 12x^3 + 2$?",
+          "options": [
+            "$36x^2$",
+            "$12x^4 + 2x$",
+            "$3x^4 + 2x$",
+            "$3x^4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{12}{4}x^4 + 2x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $36x^2$.",
+          "check": [
+            "diff((3)*x**4 + (2)*x, x) == (12)*x**3 + (2)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v08",
+          "statement": "Which of the following is an antiderivative of $f(x) = 6x^2 - 7$?",
+          "options": [
+            "$12x$",
+            "$6x^3 - 7x$",
+            "$2x^3$",
+            "$2x^3 - 7x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{6}{3}x^3 - 7x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $12x$.",
+          "check": [
+            "diff((2)*x**3 + (-7)*x, x) == (6)*x**2 + (-7)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v09",
+          "statement": "Which of the following is an antiderivative of $f(x) = 9x^2 - 3$?",
+          "options": [
+            "$3x^3 - 3x$",
+            "$18x$",
+            "$9x^3 - 3x$",
+            "$3x^3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{9}{3}x^3 - 3x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $18x$.",
+          "check": [
+            "diff((3)*x**3 + (-3)*x, x) == (9)*x**2 + (-3)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v10",
+          "statement": "Which of the following is an antiderivative of $f(x) = 3x^2 + 7$?",
+          "options": [
+            "$6x$",
+            "$x^3 + 7x$",
+            "$3x^3 + 7x$",
+            "$x^3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{3}{3}x^3 + 7x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $6x$.",
+          "check": [
+            "diff((1)*x**3 + (7)*x, x) == (3)*x**2 + (7)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v11",
+          "statement": "Which of the following is an antiderivative of $f(x) = 4x^3 - 2$?",
+          "options": [
+            "$12x^2$",
+            "$4x^4 - 2x$",
+            "$x^4 - 2x$",
+            "$x^4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{4}{4}x^4 - 2x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $12x^2$.",
+          "check": [
+            "diff((1)*x**4 + (-2)*x, x) == (4)*x**3 + (-2)"
+          ]
+        },
+        {
+          "id": "CAL-anti-v12",
+          "statement": "Which of the following is an antiderivative of $f(x) = 8x^3 + 1$?",
+          "options": [
+            "$24x^2$",
+            "$8x^4 + x$",
+            "$2x^4$",
+            "$2x^4 + x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Raise each exponent by one and divide by the new exponent: $\\frac{8}{4}x^4 + x$ differentiates back to $f(x)$. Differentiating instead of integrating — the classic reversal — gives $24x^2$.",
+          "check": [
+            "diff((2)*x**4 + (1)*x, x) == (8)*x**3 + (1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "definite-integral",
+      "title": "Definite integrals of linear functions",
+      "level": 2,
+      "unit": "integrals",
+      "skill": "Antidifferentiate, then compute F(k) − F(0) — the Fundamental Theorem.",
+      "variants": [
+        {
+          "id": "CAL-defint-v01",
+          "statement": "Evaluate $\\int_0^4 (2x + 3)\\,dx$.",
+          "options": [
+            "$28$",
+            "$11$",
+            "$44$",
+            "$-28$"
+          ],
+          "correctIndex": 0,
+          "explanation": "An antiderivative is $F(x) = x^2 + 3x$, so the integral is $F(4) - F(0) = 28$. Forgetting to halve the $x^2$ term gives $44$.",
+          "check": [
+            "integrate((2)*x + (3), (x, 0, (4))) == 28"
+          ]
+        },
+        {
+          "id": "CAL-defint-v02",
+          "statement": "Evaluate $\\int_0^3 (4x - 2)\\,dx$.",
+          "options": [
+            "$10$",
+            "$12$",
+            "$30$",
+            "$-12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "An antiderivative is $F(x) = 2x^2 - 2x$, so the integral is $F(3) - F(0) = 12$. Forgetting to halve the $x^2$ term gives $30$.",
+          "check": [
+            "integrate((4)*x + (-2), (x, 0, (3))) == 12"
+          ]
+        },
+        {
+          "id": "CAL-defint-v03",
+          "statement": "Evaluate $\\int_0^3 (2x + 5)\\,dx$.",
+          "options": [
+            "$11$",
+            "$33$",
+            "$24$",
+            "$-24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "An antiderivative is $F(x) = x^2 + 5x$, so the integral is $F(3) - F(0) = 24$. Forgetting to halve the $x^2$ term gives $33$.",
+          "check": [
+            "integrate((2)*x + (5), (x, 0, (3))) == 24"
+          ]
+        },
+        {
+          "id": "CAL-defint-v04",
+          "statement": "Evaluate $\\int_0^2 (6x - 1)\\,dx$.",
+          "options": [
+            "$11$",
+            "$22$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "An antiderivative is $F(x) = 3x^2 - x$, so the integral is $F(2) - F(0) = 10$. Forgetting to halve the $x^2$ term gives $22$.",
+          "check": [
+            "integrate((6)*x + (-1), (x, 0, (2))) == 10"
+          ]
+        },
+        {
+          "id": "CAL-defint-v05",
+          "statement": "Evaluate $\\int_0^4 (3x + 2)\\,dx$.",
+          "options": [
+            "$32$",
+            "$14$",
+            "$56$",
+            "$-32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "An antiderivative is $F(x) = \\frac{3}{2}x^2 + 2x$, so the integral is $F(4) - F(0) = 32$. Forgetting to halve the $x^2$ term gives $56$.",
+          "check": [
+            "integrate((3)*x + (2), (x, 0, (4))) == 32"
+          ]
+        },
+        {
+          "id": "CAL-defint-v06",
+          "statement": "Evaluate $\\int_0^5 (2x - 3)\\,dx$.",
+          "options": [
+            "$7$",
+            "$10$",
+            "$35$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "An antiderivative is $F(x) = x^2 - 3x$, so the integral is $F(5) - F(0) = 10$. Forgetting to halve the $x^2$ term gives $35$.",
+          "check": [
+            "integrate((2)*x + (-3), (x, 0, (5))) == 10"
+          ]
+        },
+        {
+          "id": "CAL-defint-v07",
+          "statement": "Evaluate $\\int_0^2 (4x + 1)\\,dx$.",
+          "options": [
+            "$9$",
+            "$18$",
+            "$10$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "An antiderivative is $F(x) = 2x^2 + x$, so the integral is $F(2) - F(0) = 10$. Forgetting to halve the $x^2$ term gives $18$.",
+          "check": [
+            "integrate((4)*x + (1), (x, 0, (2))) == 10"
+          ]
+        },
+        {
+          "id": "CAL-defint-v08",
+          "statement": "Evaluate $\\int_0^2 (2x + 7)\\,dx$.",
+          "options": [
+            "$11$",
+            "$22$",
+            "$-18$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "An antiderivative is $F(x) = x^2 + 7x$, so the integral is $F(2) - F(0) = 18$. Forgetting to halve the $x^2$ term gives $22$.",
+          "check": [
+            "integrate((2)*x + (7), (x, 0, (2))) == 18"
+          ]
+        },
+        {
+          "id": "CAL-defint-v09",
+          "statement": "Evaluate $\\int_0^2 (5x + 4)\\,dx$.",
+          "options": [
+            "$18$",
+            "$14$",
+            "$28$",
+            "$-18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "An antiderivative is $F(x) = \\frac{5}{2}x^2 + 4x$, so the integral is $F(2) - F(0) = 18$. Forgetting to halve the $x^2$ term gives $28$.",
+          "check": [
+            "integrate((5)*x + (4), (x, 0, (2))) == 18"
+          ]
+        },
+        {
+          "id": "CAL-defint-v10",
+          "statement": "Evaluate $\\int_0^2 (3x - 2)\\,dx$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$8$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "An antiderivative is $F(x) = \\frac{3}{2}x^2 - 2x$, so the integral is $F(2) - F(0) = 2$. Forgetting to halve the $x^2$ term gives $8$.",
+          "check": [
+            "integrate((3)*x + (-2), (x, 0, (2))) == 2"
+          ]
+        },
+        {
+          "id": "CAL-defint-v11",
+          "statement": "Evaluate $\\int_0^6 (2x + 1)\\,dx$.",
+          "options": [
+            "$13$",
+            "$78$",
+            "$42$",
+            "$-42$"
+          ],
+          "correctIndex": 2,
+          "explanation": "An antiderivative is $F(x) = x^2 + x$, so the integral is $F(6) - F(0) = 42$. Forgetting to halve the $x^2$ term gives $78$.",
+          "check": [
+            "integrate((2)*x + (1), (x, 0, (6))) == 42"
+          ]
+        },
+        {
+          "id": "CAL-defint-v12",
+          "statement": "Evaluate $\\int_0^3 (6x + 5)\\,dx$.",
+          "options": [
+            "$23$",
+            "$69$",
+            "$-42$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "An antiderivative is $F(x) = 3x^2 + 5x$, so the integral is $F(3) - F(0) = 42$. Forgetting to halve the $x^2$ term gives $69$.",
+          "check": [
+            "integrate((6)*x + (5), (x, 0, (3))) == 42"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "area-under-line",
+      "title": "Area under a graph",
+      "level": 2,
+      "unit": "applications-of-integrals",
+      "skill": "Area under y = mx is a triangle (½·k·mk) — the integral agrees; under x² it is k³/3.",
+      "variants": [
+        {
+          "id": "CAL-area-v01",
+          "statement": "Find the area under the line $y = 2x$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$36$",
+            "$12$",
+            "$72$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The region is a triangle with base $6$ and height $2 \\cdot 6 = 12$, so the area is $\\frac{1}{2} \\cdot 6 \\cdot 12 = 36$ — exactly what $\\int_0^6 2x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $72$.",
+          "check": [
+            "integrate((2)*x, (x, 0, (6))) == 36",
+            "Rational(1, 2)*(6)*((2)*(6)) == 36"
+          ]
+        },
+        {
+          "id": "CAL-area-v02",
+          "statement": "Find the area under the line $y = 2x$ from $x = 0$ to $x = 8$.",
+          "options": [
+            "$16$",
+            "$64$",
+            "$128$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The region is a triangle with base $8$ and height $2 \\cdot 8 = 16$, so the area is $\\frac{1}{2} \\cdot 8 \\cdot 16 = 64$ — exactly what $\\int_0^8 2x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $128$.",
+          "check": [
+            "integrate((2)*x, (x, 0, (8))) == 64",
+            "Rational(1, 2)*(8)*((2)*(8)) == 64"
+          ]
+        },
+        {
+          "id": "CAL-area-v03",
+          "statement": "Find the area under the line $y = 3x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$12$",
+            "$48$",
+            "$24$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The region is a triangle with base $4$ and height $3 \\cdot 4 = 12$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 12 = 24$ — exactly what $\\int_0^4 3x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $48$.",
+          "check": [
+            "integrate((3)*x, (x, 0, (4))) == 24",
+            "Rational(1, 2)*(4)*((3)*(4)) == 24"
+          ]
+        },
+        {
+          "id": "CAL-area-v04",
+          "statement": "Find the area under the line $y = 3x$ from $x = 0$ to $x = 8$.",
+          "options": [
+            "$24$",
+            "$192$",
+            "$32$",
+            "$96$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The region is a triangle with base $8$ and height $3 \\cdot 8 = 24$, so the area is $\\frac{1}{2} \\cdot 8 \\cdot 24 = 96$ — exactly what $\\int_0^8 3x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $192$.",
+          "check": [
+            "integrate((3)*x, (x, 0, (8))) == 96",
+            "Rational(1, 2)*(8)*((3)*(8)) == 96"
+          ]
+        },
+        {
+          "id": "CAL-area-v05",
+          "statement": "Find the area under the line $y = 4x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$32$",
+            "$16$",
+            "$64$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The region is a triangle with base $4$ and height $4 \\cdot 4 = 16$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 16 = 32$ — exactly what $\\int_0^4 4x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $64$.",
+          "check": [
+            "integrate((4)*x, (x, 0, (4))) == 32",
+            "Rational(1, 2)*(4)*((4)*(4)) == 32"
+          ]
+        },
+        {
+          "id": "CAL-area-v06",
+          "statement": "Find the area under the line $y = 4x$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$24$",
+            "$72$",
+            "$144$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The region is a triangle with base $6$ and height $4 \\cdot 6 = 24$, so the area is $\\frac{1}{2} \\cdot 6 \\cdot 24 = 72$ — exactly what $\\int_0^6 4x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $144$.",
+          "check": [
+            "integrate((4)*x, (x, 0, (6))) == 72",
+            "Rational(1, 2)*(6)*((4)*(6)) == 72"
+          ]
+        },
+        {
+          "id": "CAL-area-v07",
+          "statement": "Find the area under the line $y = 5x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$20$",
+            "$80$",
+            "$40$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The region is a triangle with base $4$ and height $5 \\cdot 4 = 20$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 20 = 40$ — exactly what $\\int_0^4 5x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $80$.",
+          "check": [
+            "integrate((5)*x, (x, 0, (4))) == 40",
+            "Rational(1, 2)*(4)*((5)*(4)) == 40"
+          ]
+        },
+        {
+          "id": "CAL-area-v08",
+          "statement": "Find the area under the line $y = 5x$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$30$",
+            "$180$",
+            "$18$",
+            "$90$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The region is a triangle with base $6$ and height $5 \\cdot 6 = 30$, so the area is $\\frac{1}{2} \\cdot 6 \\cdot 30 = 90$ — exactly what $\\int_0^6 5x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $180$.",
+          "check": [
+            "integrate((5)*x, (x, 0, (6))) == 90",
+            "Rational(1, 2)*(6)*((5)*(6)) == 90"
+          ]
+        },
+        {
+          "id": "CAL-area-v09",
+          "statement": "Find the area under the line $y = 5x$ from $x = 0$ to $x = 8$.",
+          "options": [
+            "$160$",
+            "$40$",
+            "$320$",
+            "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The region is a triangle with base $8$ and height $5 \\cdot 8 = 40$, so the area is $\\frac{1}{2} \\cdot 8 \\cdot 40 = 160$ — exactly what $\\int_0^8 5x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $320$.",
+          "check": [
+            "integrate((5)*x, (x, 0, (8))) == 160",
+            "Rational(1, 2)*(8)*((5)*(8)) == 160"
+          ]
+        },
+        {
+          "id": "CAL-area-v10",
+          "statement": "Find the area under the line $y = 6x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$24$",
+            "$48$",
+            "$96$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The region is a triangle with base $4$ and height $6 \\cdot 4 = 24$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 24 = 48$ — exactly what $\\int_0^4 6x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $96$.",
+          "check": [
+            "integrate((6)*x, (x, 0, (4))) == 48",
+            "Rational(1, 2)*(4)*((6)*(4)) == 48"
+          ]
+        },
+        {
+          "id": "CAL-area-v11",
+          "statement": "Find the area under the line $y = 6x$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$36$",
+            "$216$",
+            "$108$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The region is a triangle with base $6$ and height $6 \\cdot 6 = 36$, so the area is $\\frac{1}{2} \\cdot 6 \\cdot 36 = 108$ — exactly what $\\int_0^6 6x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $216$.",
+          "check": [
+            "integrate((6)*x, (x, 0, (6))) == 108",
+            "Rational(1, 2)*(6)*((6)*(6)) == 108"
+          ]
+        },
+        {
+          "id": "CAL-area-v12",
+          "statement": "Find the area under the line $y = 6x$ from $x = 0$ to $x = 8$.",
+          "options": [
+            "$48$",
+            "$384$",
+            "$32$",
+            "$192$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The region is a triangle with base $8$ and height $6 \\cdot 8 = 48$, so the area is $\\frac{1}{2} \\cdot 8 \\cdot 48 = 192$ — exactly what $\\int_0^8 6x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $384$.",
+          "check": [
+            "integrate((6)*x, (x, 0, (8))) == 192",
+            "Rational(1, 2)*(8)*((6)*(8)) == 192"
+          ]
+        },
+        {
+          "id": "CAL-area-v13",
+          "statement": "Find the area under the line $y = 7x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$56$",
+            "$28$",
+            "$112$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The region is a triangle with base $4$ and height $7 \\cdot 4 = 28$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 28 = 56$ — exactly what $\\int_0^4 7x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $112$.",
+          "check": [
+            "integrate((7)*x, (x, 0, (4))) == 56",
+            "Rational(1, 2)*(4)*((7)*(4)) == 56"
+          ]
+        },
+        {
+          "id": "CAL-area-v14",
+          "statement": "Find the area under the line $y = 7x$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$42$",
+            "$126$",
+            "$252$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The region is a triangle with base $6$ and height $7 \\cdot 6 = 42$, so the area is $\\frac{1}{2} \\cdot 6 \\cdot 42 = 126$ — exactly what $\\int_0^6 7x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $252$.",
+          "check": [
+            "integrate((7)*x, (x, 0, (6))) == 126",
+            "Rational(1, 2)*(6)*((7)*(6)) == 126"
+          ]
+        },
+        {
+          "id": "CAL-area-v15",
+          "statement": "Find the area under the line $y = 7x$ from $x = 0$ to $x = 8$.",
+          "options": [
+            "$56$",
+            "$448$",
+            "$224$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The region is a triangle with base $8$ and height $7 \\cdot 8 = 56$, so the area is $\\frac{1}{2} \\cdot 8 \\cdot 56 = 224$ — exactly what $\\int_0^8 7x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $448$.",
+          "check": [
+            "integrate((7)*x, (x, 0, (8))) == 224",
+            "Rational(1, 2)*(8)*((7)*(8)) == 224"
+          ]
+        },
+        {
+          "id": "CAL-area-v16",
+          "statement": "Find the area under the line $y = 8x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$32$",
+            "$128$",
+            "$8$",
+            "$64$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The region is a triangle with base $4$ and height $8 \\cdot 4 = 32$, so the area is $\\frac{1}{2} \\cdot 4 \\cdot 32 = 64$ — exactly what $\\int_0^4 8x\\,dx$ gives. Forgetting the $\\frac{1}{2}$ gives $128$.",
+          "check": [
+            "integrate((8)*x, (x, 0, (4))) == 64",
+            "Rational(1, 2)*(4)*((8)*(4)) == 64"
+          ]
+        },
+        {
+          "id": "CAL-area-v17",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 1$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$1$",
+            "$\\frac{1}{4}$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\int_0^1 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^1 = \\frac{1}{3}$. Forgetting to divide by $3$ gives $1$.",
+          "check": [
+            "integrate(x**2, (x, 0, (1))) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "CAL-area-v18",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$8$",
+            "$\\frac{8}{3}$",
+            "$4$",
+            "$24$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\int_0^2 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^2 = \\frac{8}{3}$. Forgetting to divide by $3$ gives $8$.",
+          "check": [
+            "integrate(x**2, (x, 0, (2))) == Rational(8, 3)"
+          ]
+        },
+        {
+          "id": "CAL-area-v19",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 3$.",
+          "options": [
+            "$27$",
+            "$\\frac{81}{4}$",
+            "$9$",
+            "$81$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\int_0^3 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^3 = 9$. Forgetting to divide by $3$ gives $27$.",
+          "check": [
+            "integrate(x**2, (x, 0, (3))) == Rational(9, 1)"
+          ]
+        },
+        {
+          "id": "CAL-area-v20",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 5$.",
+          "options": [
+            "$125$",
+            "$\\frac{625}{4}$",
+            "$375$",
+            "$\\frac{125}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\int_0^5 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^5 = \\frac{125}{3}$. Forgetting to divide by $3$ gives $125$.",
+          "check": [
+            "integrate(x**2, (x, 0, (5))) == Rational(125, 3)"
+          ]
+        },
+        {
+          "id": "CAL-area-v21",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 6$.",
+          "options": [
+            "$72$",
+            "$216$",
+            "$324$",
+            "$648$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\int_0^6 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^6 = 72$. Forgetting to divide by $3$ gives $216$.",
+          "check": [
+            "integrate(x**2, (x, 0, (6))) == Rational(72, 1)"
+          ]
+        },
+        {
+          "id": "CAL-area-v22",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 7$.",
+          "options": [
+            "$343$",
+            "$\\frac{343}{3}$",
+            "$\\frac{2401}{4}$",
+            "$1029$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\int_0^7 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^7 = \\frac{343}{3}$. Forgetting to divide by $3$ gives $343$.",
+          "check": [
+            "integrate(x**2, (x, 0, (7))) == Rational(343, 3)"
+          ]
+        },
+        {
+          "id": "CAL-area-v23",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 9$.",
+          "options": [
+            "$729$",
+            "$\\frac{6561}{4}$",
+            "$243$",
+            "$2187$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\int_0^9 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^9 = 243$. Forgetting to divide by $3$ gives $729$.",
+          "check": [
+            "integrate(x**2, (x, 0, (9))) == Rational(243, 1)"
+          ]
+        },
+        {
+          "id": "CAL-area-v24",
+          "statement": "Find the area under the parabola $y = x^2$ from $x = 0$ to $x = 10$.",
+          "options": [
+            "$1000$",
+            "$2500$",
+            "$3000$",
+            "$\\frac{1000}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\int_0^10 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^10 = \\frac{1000}{3}$. Forgetting to divide by $3$ gives $1000$.",
+          "check": [
+            "integrate(x**2, (x, 0, (10))) == Rational(1000, 3)"
+          ]
+        }
+      ]
+    }
+  ]
 }
