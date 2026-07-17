@@ -29,6 +29,10 @@ SUBJECTS = [
     ("geometry", "geometry_course"),
     ("trigonometry", "trigonometry_course"),
     ("solid-geometry", "solid_geometry"),
+    ("prob-stats", "prob_stats"),
+    ("precalculus", "precalculus"),
+    ("calculus", "calculus"),
+    ("vectors-matrices", "vectors_matrices"),
 ]
 
 

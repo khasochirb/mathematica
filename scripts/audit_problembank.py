@@ -506,7 +506,9 @@ def _load_plugin_resolvers():
     out = {}
     pb = os.path.join(ROOT, "scripts", "pb")
     for modname in ("algebra_1", "algebra_2", "geometry_course",
-                    "trigonometry_course", "solid_geometry"):
+                    "trigonometry_course", "solid_geometry",
+                    "prob_stats", "precalculus", "calculus",
+                    "vectors_matrices"):
         path = os.path.join(pb, modname + ".py")
         if not os.path.exists(path):
             continue

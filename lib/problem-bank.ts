@@ -20,6 +20,10 @@ import algebra2 from "@/data/problembank/algebra-2.json";
 import geometry from "@/data/problembank/geometry.json";
 import trigonometry from "@/data/problembank/trigonometry.json";
 import solidGeometry from "@/data/problembank/solid-geometry.json";
+import probStats from "@/data/problembank/prob-stats.json";
+import precalculus from "@/data/problembank/precalculus.json";
+import calculus from "@/data/problembank/calculus.json";
+import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 
 export type BankVariant = {
   id: string;
@@ -61,6 +65,10 @@ const TOPICS: BankTopic[] = [
   geometry,
   trigonometry,
   solidGeometry,
+  probStats,
+  precalculus,
+  calculus,
+  vectorsMatrices,
 ] as unknown as BankTopic[];
 
 export function getBankTopics(): BankTopic[] {

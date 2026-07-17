@@ -21,7 +21,7 @@ import {
 const rng0 = () => 0;
 
 describe("problem bank data", () => {
-  it("ships 5 subjects, each mirroring its course units, >= 4 variants per form", () => {
+  it("ships 9 subjects, each mirroring its course units, >= 4 variants per form", () => {
     const topics = getBankTopics();
     expect(topics.map((t) => t.slug)).toEqual([
       "algebra-1",
@@ -29,6 +29,10 @@ describe("problem bank data", () => {
       "geometry",
       "trigonometry",
       "solid-geometry",
+      "prob-stats",
+      "precalculus",
+      "calculus",
+      "vectors-matrices",
     ]);
     for (const t of topics) {
       expect(t.units.length).toBeGreaterThanOrEqual(6);
