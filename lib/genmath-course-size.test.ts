@@ -24,6 +24,7 @@ describe("courseTotalLessons", () => {
     "course:calculus",
     "course:trigonometry",
     "course:solid-geometry",
+    "course:ib-sl",
   ];
 
   it("resolves every course context to a positive lesson total", () => {

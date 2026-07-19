@@ -1,0 +1,2717 @@
+#!/usr/bin/env python3
+"""IB Mathematics: Analysis & Approaches SL — Unit 1 (Topic 1: Number & Algebra).
+
+Builds data/genmath/ib-sl/number-and-algebra.json: nine lessons, one per
+official syllabus subtopic SL 1.1–1.9, each with the paced interactive
+experience, exam-format worked examples carrying M/A/R markscheme lines AND a
+narrative layer, formula-booklet flags on every fact, and sympy check[] on
+every answer. Unit practice/testYourself banks are tagged with the official
+IB codes (ib-aa-sl-1.x) via badges.
+
+Run: python3 scripts/ib/build_sl_unit1.py   (then npm run verify:genmath)
+"""
+import json
+import os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT = os.path.join(ROOT, "data", "genmath", "ib-sl", "number-and-algebra.json")
+
+
+def code_badge(code, marks=None, paper=None):
+    b = [{"text": code, "mono": True}]
+    if marks:
+        b.append({"text": f"[{marks} marks]"})
+    if paper:
+        b.append({"text": paper})
+    return b
+
+
+# ===========================================================================
+# Lesson 1 — SL 1.1: Operations with numbers in the form a × 10^k
+# ===========================================================================
+def lesson_standard_form():
+    return {
+        "slug": "standard-form",
+        "title": "Standard Form (a × 10^k)",
+        "concreteComparison": (
+            "A red blood cell is about $0.000007$ m wide; the Earth-Sun distance is about "
+            "$149{,}600{,}000{,}000$ m. Counting zeros is how errors are born — standard form "
+            "writes both as $7 \\times 10^{-6}$ and $1.496 \\times 10^{11}$, and suddenly you "
+            "can multiply them in your head."
+        ),
+        "objective": (
+            "Write any number in the form $a \\times 10^k$ with $1 \\le a < 10$, $k \\in \\mathbb{Z}$, "
+            "and add, subtract, multiply and divide such numbers with and without a GDC."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.1.** Operations with numbers in the form $a \\times 10^k$ where "
+            "$1 \\le a < 10$ and $k$ is an integer. Appears on **Paper 1 (no calculator) and Paper 2** "
+            "at both SL and HL. Typical weight: 4–6 marks, often inside a larger question. "
+            "Prerequisite for: logarithms (SL 1.5), and every science IA you will ever write.",
+            "The contract of standard form is strict: the front number $a$ must satisfy "
+            "$1 \\le a < 10$. So $42 \\times 10^5$ is NOT standard form — slide the decimal one "
+            "place left and pay for it with one more power: $4.2 \\times 10^6$. Every slide of the "
+            "decimal point is a trade with the exponent, one-for-one.",
+            "To multiply, deal with the fronts and the powers separately: "
+            "$(3 \\times 10^5)(2 \\times 10^{-2}) = (3 \\cdot 2) \\times 10^{5 + (-2)} = 6 \\times 10^3$. "
+            "To divide, divide the fronts and subtract the exponents. The only trap: if the front "
+            "leaves $[1, 10)$, re-normalize — $(8 \\times 10^4)(5 \\times 10^3) = 40 \\times 10^7 = 4 \\times 10^8$.",
+            "To add or subtract, the exponents must MATCH first (like units): "
+            "$2.5 \\times 10^4 + 3.1 \\times 10^3 = 25 \\times 10^3 + 3.1 \\times 10^3 = 28.1 \\times 10^3 "
+            "= 2.81 \\times 10^4$. On Paper 2 your GDC does this in EE/EXP notation — but Paper 1 "
+            "expects the by-hand trade, so own both methods.",
+        ],
+        "keyIdea": (
+            "Standard form is a number wearing a size tag: $a$ tells you the digits, $10^k$ tells "
+            "you how big. Move the decimal, and the exponent pays the difference."
+        ),
+        "facts": [
+            {
+                "title": "Standard form",
+                "latex": "a \\times 10^k, \\quad 1 \\le a < 10, \\; k \\in \\mathbb{Z}",
+                "explanation": (
+                    "The IB writes 'numbers in the form a × 10^k'. NOT in the formula booklet — "
+                    "the definition is assumed. Both papers use it; Paper 1 tests it by hand."
+                ),
+            },
+            {
+                "title": "Multiply / divide",
+                "latex": "(a \\times 10^m)(b \\times 10^n) = ab \\times 10^{m+n}",
+                "explanation": (
+                    "Fronts together, exponents added (subtracted for division). Re-normalize if "
+                    "the front leaves $[1, 10)$. Not in the booklet — it is just the exponent laws."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-11-we1",
+                "statement": (
+                    "**(a)** Write $0.00042$ in the form $a \\times 10^k$ where $1 \\le a < 10$, "
+                    "$k \\in \\mathbb{Z}$. **[1]**  \n"
+                    "**(b)** Hence find $\\dfrac{0.00042}{6 \\times 10^{-8}}$, giving your answer "
+                    "in the form $a \\times 10^k$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $0.00042 = 4.2 \\times 10^{-4}$ — the decimal slides 4 places right, "
+                    "so the exponent is $-4$. *(A1)*  \n"
+                    "**(b)** $\\dfrac{4.2 \\times 10^{-4}}{6 \\times 10^{-8}} = \\dfrac{4.2}{6} \\times "
+                    "10^{-4-(-8)}$ *(M1 for separating fronts and powers)* $= 0.7 \\times 10^{4}$ *(A1)*. "
+                    "Re-normalize: $0.7 \\times 10^4 = 7 \\times 10^3$ *(A1)*.  \n"
+                    "**Narrative:** 'Hence' is a contract — part (b) must USE part (a)'s form, not "
+                    "restart from $0.00042$. The [3] in (b) promises three scoring lines: separate, "
+                    "compute, re-normalize. An answer left as $0.7 \\times 10^4$ loses the final A1 "
+                    "because the front breaks the $1 \\le a < 10$ contract."
+                ),
+                "check": [
+                    "Rational(42, 100000) == Rational(42, 10)*10**(-4)",
+                    "Rational(42, 100000) / (6*10**(-8)) == 7000",
+                    "7 * 10**3 == 7000",
+                ],
+            },
+            {
+                "id": "ibsl-11-we2",
+                "statement": (
+                    "Light travels at $3 \\times 10^8$ m s$^{-1}$. The Sun is $1.5 \\times 10^{11}$ m "
+                    "from Earth. **Calculate** the time light takes to reach Earth, in seconds, "
+                    "giving your answer in the form $a \\times 10^k$. **[3]**"
+                ),
+                "solution": (
+                    "$t = \\dfrac{d}{v} = \\dfrac{1.5 \\times 10^{11}}{3 \\times 10^8}$ *(M1 for "
+                    "dividing distance by speed)* $= \\dfrac{1.5}{3} \\times 10^{11-8} = 0.5 \\times 10^3$ "
+                    "*(A1)* $= 5 \\times 10^2$ s *(A1)* — about 8 minutes 20 seconds.  \n"
+                    "**Narrative:** 'Calculate' means show the computation. The re-normalization "
+                    "step is where the last mark lives: $0.5$ is not in $[1, 10)$."
+                ),
+                "check": [
+                    "(Rational(15,10)*10**11) / (3*10**8) == 500",
+                    "5*10**2 == 500",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Writing $42 \\times 10^5$ and calling it standard form — the front must satisfy $1 \\le a < 10$.",
+                "correction": "$42 \\times 10^5 = 4.2 \\times 10^6$: decimal one place left, exponent one up.",
+                "authored": True,
+            },
+            {
+                "text": "Adding $2.5 \\times 10^4 + 3.1 \\times 10^3$ front-to-front to get $5.6 \\times 10^{\\text{something}}$.",
+                "correction": "Match exponents first: $25 \\times 10^3 + 3.1 \\times 10^3 = 28.1 \\times 10^3 = 2.81 \\times 10^4$.",
+                "authored": True,
+            },
+            {
+                "text": "On 'hence' parts, restarting from the original decimal instead of using part (a)'s form — method marks vanish.",
+                "correction": "'Hence' means the previous part IS your starting point. Use it visibly.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-11-t1",
+                "statement": (
+                    "Write $(4 \\times 10^6)(2.1 \\times 10^{-2})$ in the form $a \\times 10^k$, "
+                    "$1 \\le a < 10$. **[2]**"
+                ),
+                "solution": (
+                    "$4 \\cdot 2.1 = 8.4$ and $10^{6+(-2)} = 10^4$ *(M1)*, so the product is "
+                    "$8.4 \\times 10^4$ *(A1)*. The front already sits in $[1, 10)$ — no trade needed."
+                ),
+                "check": ["4*Rational(21,10) == Rational(84,10)", "(4*10**6)*(Rational(21,10)*10**(-2)) == 84000"],
+            },
+            {
+                "id": "ibsl-11-t2",
+                "statement": (
+                    "The mass of one hydrogen atom is $1.67 \\times 10^{-27}$ kg. **Find** the mass "
+                    "of $2 \\times 10^{30}$ hydrogen atoms, in the form $a \\times 10^k$. **[2]**"
+                ),
+                "solution": (
+                    "$(1.67 \\times 10^{-27})(2 \\times 10^{30}) = 3.34 \\times 10^{3}$ kg *(M1 A1)* — "
+                    "about the mass of a small car. Fronts: $1.67 \\cdot 2 = 3.34$; powers: $-27 + 30 = 3$."
+                ),
+                "check": ["Rational(167,100)*2 == Rational(334,100)", "-27 + 30 == 3"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.1 · Paper 1 & 2",
+                    "title": "Numbers with a size tag",
+                    "body": (
+                        "Astronomy and biochemistry use the same arithmetic — only the exponent "
+                        "changes. Standard form $a \\times 10^k$ (with $1 \\le a < 10$) splits every "
+                        "number into digits ($a$) and size ($10^k$). This subtopic is pure Paper 1 "
+                        "territory: no calculator, just exponent discipline."
+                    ),
+                },
+                {
+                    "kind": "exponentBuilder",
+                    "eyebrow": "Feel the scale",
+                    "title": "Powers of ten, one tap at a time",
+                    "teach": (
+                        "Step the exponent and watch the value explode or shrink. Each $+1$ on the "
+                        "exponent is one decimal-place slide — that one-for-one trade is the whole "
+                        "of standard form."
+                    ),
+                    "config": {"base": 10, "exp": 3, "minBase": 10, "maxBase": 10, "minExp": -4, "maxExp": 8},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The contract",
+                    "title": "1 ≤ a < 10, no exceptions",
+                    "beats": [
+                        "$0.00042 \\to 4.2 \\times 10^{-4}$: slide the decimal 4 right, exponent $-4$.",
+                        "$149{,}600{,}000{,}000 \\to 1.496 \\times 10^{11}$: slide 11 left, exponent $+11$.",
+                        "$42 \\times 10^5$ breaks the contract — re-normalize to $4.2 \\times 10^6$.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Write, then 'hence' divide", "problemId": "ibsl-11-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Check yourself",
+                    "title": "Spot the standard form",
+                    "prompt": "Which of these is written in standard form?",
+                    "options": [
+                        "$3.07 \\times 10^{-5}$",
+                        "$42 \\times 10^{3}$",
+                        "$0.9 \\times 10^{6}$",
+                        "$10.2 \\times 10^{-1}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Only $3.07$ sits in $[1, 10)$. $42$ is too big, $0.9$ too small, $10.2$ too "
+                        "big — each needs one decimal-slide and an exponent trade."
+                    ),
+                    "check": ["1 <= Rational(307,100)", "Rational(307,100) < 10", "42 >= 10", "Rational(9,10) < 1"],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Paper 1 speed",
+                    "title": "Divide the tags",
+                    "prompt": "$\\dfrac{8 \\times 10^{7}}{4 \\times 10^{3}} =$",
+                    "options": [
+                        "$2 \\times 10^{4}$",
+                        "$2 \\times 10^{10}$",
+                        "$4 \\times 10^{4}$",
+                        "$2 \\times 10^{2.33}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Fronts: $8 / 4 = 2$. Powers: $10^{7-3} = 10^4$. Dividing SUBTRACTS "
+                        "exponents — adding them (option B) is the classic slip."
+                    ),
+                    "check": ["(8*10**7)/(4*10**3) == 2*10**4"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Light from the Sun", "problemId": "ibsl-11-we2"},
+                {
+                    "kind": "tip",
+                    "eyebrow": "Command terms",
+                    "title": "'Write down' vs 'Calculate' vs 'Hence'",
+                    "body": (
+                        "**Write down** = no working expected (1 mark, just the answer). "
+                        "**Calculate/Find** = show the computation. **Hence** = you MUST use the "
+                        "previous part; ignoring it forfeits method marks even if your answer is "
+                        "right. These three words run the whole IB exam."
+                    ),
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The addition trap",
+                    "title": "Match before you add",
+                    "prompt": "$2.5 \\times 10^{4} + 3.1 \\times 10^{3} =$",
+                    "options": [
+                        "$2.81 \\times 10^{4}$",
+                        "$5.6 \\times 10^{4}$",
+                        "$5.6 \\times 10^{7}$",
+                        "$2.81 \\times 10^{3}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Exponents must match first: $25 \\times 10^3 + 3.1 \\times 10^3 = 28.1 "
+                        "\\times 10^3 = 2.81 \\times 10^4$. Adding fronts across different "
+                        "exponents (option B) adds meters to kilometers."
+                    ),
+                    "check": ["Rational(25,10)*10**4 + Rational(31,10)*10**3 == Rational(281,10)*10**3"],
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Multiply the tags", "problemId": "ibsl-11-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "A star's worth of atoms", "problemId": "ibsl-11-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.1 in four lines",
+                    "points": [
+                        "Standard form: $a \\times 10^k$ with $1 \\le a < 10$ — re-normalize whenever the front escapes.",
+                        "Multiply/divide: fronts together, exponents add/subtract.",
+                        "Add/subtract: make the exponents match first.",
+                        "Paper 1 does this by hand; 'hence' means use the previous part.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 2 — SL 1.2: Arithmetic sequences & series, sigma notation
+# ===========================================================================
+def lesson_arithmetic():
+    return {
+        "slug": "arithmetic-sequences-and-series",
+        "title": "Arithmetic Sequences & Series",
+        "concreteComparison": (
+            "A theater's first row has 14 seats, and every row behind adds 2 more. Row 20 has "
+            "$14 + 19 \\cdot 2 = 52$ seats — and the whole theater seats $\\frac{20}{2}(14 + 52) = 660$. "
+            "Two formulas, both in your formula booklet, run every 'constant step' problem the IB owns."
+        ),
+        "objective": (
+            "Use $u_n = u_1 + (n-1)d$ and both sum formulas, read and write sigma notation, and "
+            "solve exam problems that mix them — including finding $n$ from a given sum."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.2.** Arithmetic sequences and series; sum of finite arithmetic "
+            "series; sigma notation; applications (simple interest is officially named). Appears on "
+            "**Papers 1 and 2**, SL and HL. One of the most-assessed codes in Topic 1 — a short "
+            "question most years, often paired with SL 1.3 in a two-family question.",
+            "An arithmetic sequence climbs by a constant difference $d$: each term is "
+            "$u_n = u_1 + (n-1)d$. The $(n-1)$ is load-bearing — term 1 has taken ZERO steps, term "
+            "20 has taken 19. Both booklet formulas live or die on that count.",
+            "Two equivalent sum formulas: $S_n = \\frac{n}{2}\\left(2u_1 + (n-1)d\\right)$ when you "
+            "know the difference, and $S_n = \\frac{n}{2}(u_1 + u_n)$ when you know the last term — "
+            "the second is Gauss's trick: pair first with last, and every pair totals the same.",
+            "Sigma notation compresses a series: $\\sum_{r=1}^{20} (3r + 1)$ means 'evaluate "
+            "$3r + 1$ at $r = 1, 2, \\ldots, 20$ and add'. Read the three parts: the counter, its "
+            "range, the recipe. Any linear recipe $ar + b$ is arithmetic with $d = a$, so the "
+            "booklet sum formulas apply directly.",
+        ],
+        "keyIdea": (
+            "Term $n$ has taken $n - 1$ steps. Every arithmetic-sequence error traces back to "
+            "forgetting that single subtraction."
+        ),
+        "facts": [
+            {
+                "title": "The nth term",
+                "latex": "u_n = u_1 + (n-1)d",
+                "explanation": "IN the formula booklet (SL 1.2). $n - 1$ steps to reach term $n$.",
+            },
+            {
+                "title": "Sum of n terms",
+                "latex": "S_n = \\tfrac{n}{2}\\left(2u_1 + (n-1)d\\right) = \\tfrac{n}{2}(u_1 + u_n)",
+                "explanation": (
+                    "Both forms IN the formula booklet (SL 1.2). Use the second when the last term "
+                    "is known — it is Gauss's first-plus-last pairing."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-12-we1",
+                "statement": (
+                    "An arithmetic sequence has $u_3 = 11$ and $u_8 = 26$.  \n"
+                    "**(a)** Find the common difference $d$ and the first term $u_1$. **[3]**  \n"
+                    "**(b)** Hence find $S_{20}$, the sum of the first 20 terms. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** From term 3 to term 8 is 5 steps: $26 - 11 = 5d$ *(M1)*, so $d = 3$ "
+                    "*(A1)*. Then $u_1 = u_3 - 2d = 11 - 6 = 5$ *(A1)*.  \n"
+                    "**(b)** $S_{20} = \\frac{20}{2}\\left(2 \\cdot 5 + 19 \\cdot 3\\right) = "
+                    "10 \\cdot 67 = 670$ *(M1 A1)*.  \n"
+                    "**Narrative:** two given terms = two equations, but the fast route counts "
+                    "steps BETWEEN terms: 8 − 3 = 5 hops. In (b), 'hence' says: use YOUR $u_1$ and "
+                    "$d$ — follow-through (FT) marks protect (b) even if (a) slipped, as long as "
+                    "the method is visible."
+                ),
+                "check": [
+                    "solve(11 + 5*d - 26, d) == [3]",
+                    "11 - 2*3 == 5",
+                    "Rational(20,2)*(2*5 + 19*3) == 670",
+                ],
+            },
+            {
+                "id": "ibsl-12-we2",
+                "statement": (
+                    "The sum of the first $n$ terms of the arithmetic series $4 + 10 + 16 + \\cdots$ "
+                    "is $520$. **Find** $n$. **[4]**"
+                ),
+                "solution": (
+                    "$u_1 = 4$, $d = 6$. Set up: $\\frac{n}{2}\\left(2 \\cdot 4 + (n-1) \\cdot 6\\right) "
+                    "= 520$ *(M1)*. Simplify: $\\frac{n}{2}(6n + 2) = 520 \\Rightarrow 3n^2 + n - 520 "
+                    "= 0$ *(A1)*. Quadratic formula: $n = \\dfrac{-1 \\pm \\sqrt{1 + 6240}}{6} = "
+                    "\\dfrac{-1 \\pm 79}{6}$ *(A1)*, so $n = 13$ or $n = -\\frac{40}{3}$. Since $n$ "
+                    "must be a positive integer, $n = 13$ *(A1)*.  \n"
+                    "**Narrative:** [4] promises four scoring lines — equation, quadratic, roots, "
+                    "selection WITH the reason. The R-line '$n$ is a positive integer' is a real "
+                    "mark: an unexplained rejection of $-\\frac{40}{3}$ scores 3/4. Check: "
+                    "$S_{13} = \\frac{13}{2}(4 + 76) = 520$. ✓"
+                ),
+                "check": [
+                    "Rational(13,2)*(2*4 + 12*6) == 520",
+                    "solve(3*n**2 + n - 520, n) == [Rational(-40, 3), 13]",
+                    "sqrt(1 + 4*3*520) == 79",
+                    "4 + 12*6 == 76",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Using $n$ steps instead of $n - 1$: writing $u_{30} = u_1 + 30d$.",
+                "correction": "Term 30 has taken 29 steps: $u_{30} = u_1 + 29d$.",
+                "authored": True,
+            },
+            {
+                "text": "Rejecting the negative root when solving $S_n = k$ WITHOUT saying why — R-marks die silently.",
+                "correction": "State it: '$n$ must be a positive integer, so $n = 14$.' The examiner wants the reason.",
+                "authored": True,
+            },
+            {
+                "text": "Reading $\\sum_{r=1}^{10} (2r+3)$ as '10 terms starting at $2 \\cdot 0 + 3$'.",
+                "correction": "The counter starts at $r = 1$: first term $5$, last term $23$, ten terms.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-12-t1",
+                "statement": (
+                    "For the sequence $2, 9, 16, 23, \\ldots$ **(a)** write down $d$; **(b)** find "
+                    "$u_{15}$; **(c)** find $S_{15}$. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $d = 7$ *(A1)*. **(b)** $u_{15} = 2 + 14 \\cdot 7 = 100$ *(A1)*. "
+                    "**(c)** $S_{15} = \\frac{15}{2}(2 + 100) = \\frac{15}{2} \\cdot 102 = 765$ "
+                    "*(M1 A1)* — first-plus-last, since $u_{15}$ was just earned in (b)."
+                ),
+                "check": ["2 + 14*7 == 100", "Rational(15,2)*(2 + 100) == 765"],
+            },
+            {
+                "id": "ibsl-12-t2",
+                "statement": "Evaluate $\\displaystyle\\sum_{r=1}^{20} (3r + 1)$. **[3]**",
+                "solution": (
+                    "First term ($r=1$): $4$. Last term ($r=20$): $61$. Twenty terms: "
+                    "$S_{20} = \\frac{20}{2}(4 + 61) = 10 \\cdot 65 = 650$ *(M1 A1 A1)*. Sigma is "
+                    "just a series in uniform: unpack the first and last, then Gauss it."
+                ),
+                "check": ["3*1 + 1 == 4", "3*20 + 1 == 61", "Rational(20,2)*(4 + 61) == 650", "Sum(3*r + 1, (r, 1, 20)).doit() == 650"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.2 · Papers 1 & 2",
+                    "title": "Constant steps, closed formulas",
+                    "body": (
+                        "Theater rows, staircase heights, simple-interest balances — anything that "
+                        "grows by the SAME amount each step is arithmetic. Two booklet formulas "
+                        "(the $n$th term and the sum) turn 'add it up forever' into one line of "
+                        "algebra. This code shows up nearly every exam year."
+                    ),
+                },
+                {
+                    "kind": "patternGrow",
+                    "eyebrow": "See the steps",
+                    "title": "A sequence you can watch grow",
+                    "teach": (
+                        "The odd numbers $1, 3, 5, 7, \\ldots$ are arithmetic with $d = 2$. Step "
+                        "the pattern and watch each stage add the same-sized layer — the constant "
+                        "difference made visible. (Bonus: the running TOTALS build perfect squares "
+                        "— that's $S_n$ having a personality.)"
+                    ),
+                    "config": {"pattern": "odds", "maxSteps": 6},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The formulas",
+                    "title": "n − 1 steps, and Gauss's pairing",
+                    "beats": [
+                        "$u_n = u_1 + (n-1)d$ — term $n$ has taken $n-1$ steps. Booklet.",
+                        "$S_n = \\frac{n}{2}(2u_1 + (n-1)d)$ — when you know $d$. Booklet.",
+                        "$S_n = \\frac{n}{2}(u_1 + u_n)$ — when you know the last term: pair first with last. Booklet.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Two terms given, sum demanded", "problemId": "ibsl-12-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Check the count",
+                    "title": "How many hops?",
+                    "prompt": "In $4, 10, 16, 22, \\ldots$, $u_{30} =$",
+                    "options": ["$178$", "$184$", "$180$", "$174$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$u_{30} = 4 + 29 \\cdot 6 = 178$. Option B uses 30 hops — but term 1 has "
+                        "taken zero."
+                    ),
+                    "check": ["4 + 29*6 == 178", "4 + 30*6 == 184"],
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Sigma notation",
+                    "title": "A series in uniform",
+                    "body": (
+                        "$\\sum_{r=1}^{20}(3r+1)$ reads: counter $r$ runs 1 to 20; evaluate "
+                        "$3r + 1$ each time; add the lot. Unpack the first term ($4$), the last "
+                        "($61$), count the terms ($20$) — then it's Gauss again: "
+                        "$\\frac{20}{2}(4 + 61) = 650$. Every linear recipe is arithmetic."
+                    ),
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Sigma fluency",
+                    "title": "Unpack the uniform",
+                    "prompt": "$\\displaystyle\\sum_{r=1}^{12} (5r - 2) =$",
+                    "options": ["$366$", "$390$", "$354$", "$378$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "First term $3$, last term $58$, twelve terms: $\\frac{12}{2}(3 + 58) = "
+                        "6 \\cdot 61 = 366$."
+                    ),
+                    "check": ["5*1 - 2 == 3", "5*12 - 2 == 58", "6*(3 + 58) == 366", "Sum(5*r - 2, (r, 1, 12)).doit() == 366"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Given the sum, find n", "problemId": "ibsl-12-we2"},
+                {
+                    "kind": "tip",
+                    "eyebrow": "Markscheme wisdom",
+                    "title": "Where the marks live",
+                    "body": (
+                        "A [4]-mark 'find $n$ from $S_n$' splits as: M1 set the sum formula equal, "
+                        "A1 reach the quadratic, A1 solve it, A1 select the positive integer WITH "
+                        "the reason. Skipping the reason ('$n > 0$, integer') is how a perfect "
+                        "solution scores 3/4."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three parts, booklet open", "problemId": "ibsl-12-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Sigma, unpacked", "problemId": "ibsl-12-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.2 in four lines",
+                    "points": [
+                        "$u_n = u_1 + (n-1)d$: term $n$ has taken $n-1$ steps.",
+                        "Two sum formulas in the booklet — pick by what you know ($d$ or $u_n$).",
+                        "Sigma: unpack first term, last term, count — then sum as usual.",
+                        "Solving $S_n = k$ gives a quadratic in $n$: keep the positive integer, SAY why.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 3 — SL 1.3: Geometric sequences & series
+# ===========================================================================
+def lesson_geometric():
+    return {
+        "slug": "geometric-sequences-and-series",
+        "title": "Geometric Sequences & Series",
+        "concreteComparison": (
+            "Fold a sheet of paper 42 times and its thickness passes the Moon: $0.1$ mm times "
+            "$2^{42}$ is about $440{,}000$ km. Multiplying by the same ratio each step is how "
+            "populations grow, savings compound, and rumors spread — the geometric sequence."
+        ),
+        "objective": (
+            "Use $u_n = u_1 r^{n-1}$ and $S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$, recognize geometric "
+            "structure in applications, and solve for any of $u_1$, $r$, $n$."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.3.** Geometric sequences and series; use of the formulae for "
+            "the $n$th term and the sum of the first $n$ terms; applications (compound interest and "
+            "population growth are officially named). **Papers 1 and 2**, SL and HL. Almost always "
+            "examined — frequently as a sequence question that pivots into SL 1.4 money or SL 1.8 "
+            "infinite sums.",
+            "A geometric sequence multiplies by a constant ratio $r$: $u_n = u_1 r^{n-1}$. The "
+            "exponent is $n - 1$ for the same reason as arithmetic's $(n-1)d$ — term 1 has taken "
+            "zero multiplications. Find $r$ by dividing ANY term by the one before it.",
+            "The sum formula $S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$ (valid for $r \\ne 1$) comes from "
+            "one beautiful cancellation: write $S_n$, multiply by $r$, subtract — every middle term "
+            "dies. The booklet also prints the equivalent $\\dfrac{u_1(1 - r^n)}{1 - r}$: use "
+            "whichever keeps things positive.",
+            "Two terms pin down a geometric sequence: dividing $u_5$ by $u_2$ gives $r^3$ directly, "
+            "because three multiplications separate them. This 'divide to isolate $r$' move opens "
+            "most exam questions on this code.",
+        ],
+        "keyIdea": (
+            "Arithmetic ADDS the same step; geometric MULTIPLIES by the same ratio. Divide "
+            "neighboring terms and the ratio confesses."
+        ),
+        "facts": [
+            {
+                "title": "The nth term",
+                "latex": "u_n = u_1 r^{n-1}",
+                "explanation": "IN the formula booklet (SL 1.3). $n - 1$ multiplications to reach term $n$.",
+            },
+            {
+                "title": "Sum of n terms",
+                "latex": "S_n = \\frac{u_1(r^n - 1)}{r - 1} = \\frac{u_1(1 - r^n)}{1 - r}, \\quad r \\ne 1",
+                "explanation": (
+                    "IN the formula booklet (SL 1.3). Both prints are the same formula; the second "
+                    "avoids negative numerators when $|r| < 1$."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-13-we1",
+                "statement": (
+                    "A geometric sequence has $u_2 = 6$ and $u_5 = 48$.  \n"
+                    "**(a)** Find the common ratio $r$. **[2]**  \n"
+                    "**(b)** Find $u_1$. **[1]**  \n"
+                    "**(c)** Find $S_{8}$, the sum of the first 8 terms. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\dfrac{u_5}{u_2} = r^3 = \\dfrac{48}{6} = 8$ *(M1)*, so $r = 2$ *(A1)*.  \n"
+                    "**(b)** $u_1 = \\dfrac{u_2}{r} = 3$ *(A1)*.  \n"
+                    "**(c)** $S_8 = \\dfrac{3(2^8 - 1)}{2 - 1} = 3 \\cdot 255 = 765$ *(M1 A1)*.  \n"
+                    "**Narrative:** three multiplications separate $u_2$ and $u_5$, so dividing "
+                    "exposes $r^3$ — no simultaneous equations needed. That one division IS the "
+                    "method mark in (a)."
+                ),
+                "check": [
+                    "Rational(48, 6) == 8",
+                    "solve(r**3 - 8, r)[0] == 2",
+                    "Rational(6, 2) == 3",
+                    "3*(2**8 - 1)/(2 - 1) == 765",
+                ],
+            },
+            {
+                "id": "ibsl-13-we2",
+                "statement": (
+                    "A ball is dropped from $8$ m and each bounce reaches $\\frac{3}{4}$ of the "
+                    "previous height.  \n"
+                    "**(a)** Find the height after the 4th bounce. **[2]**  \n"
+                    "**(b)** Find the smallest $n$ for which the $n$th bounce height is below "
+                    "$1$ m. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** Heights form a geometric sequence with $u_1 = 8 \\cdot \\frac{3}{4} = 6$ "
+                    "(first BOUNCE) and $r = \\frac{3}{4}$: 4th bounce $= 6 \\left(\\frac{3}{4}\\right)^3 "
+                    "= \\frac{81}{32} \\approx 2.53$ m *(M1 A1)*.  \n"
+                    "**(b)** Solve $6(0.75)^{n-1} < 1$ *(M1)*: $(0.75)^{n-1} < \\frac{1}{6}$. Testing "
+                    "(or logs, after SL 1.7): $(0.75)^6 \\approx 0.178 > \\frac{1}{6}$, "
+                    "$(0.75)^7 \\approx 0.133 < \\frac{1}{6}$ *(A1)*, so $n - 1 = 7$, $n = 8$ *(A1)*.  \n"
+                    "**Narrative:** applications hide the sequence — your first job is naming $u_1$ "
+                    "and $r$. Note the trap: is the drop height a term? Here the FIRST BOUNCE is "
+                    "term 1. Exam questions reward writing that decision down."
+                ),
+                "check": [
+                    "8*Rational(3,4) == 6",
+                    "6*Rational(3,4)**3 == Rational(81, 32)",
+                    "6*Rational(3,4)**7 < 1",
+                    "6*Rational(3,4)**6 > 1",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Using $r^n$ instead of $r^{n-1}$ for the $n$th term.",
+                "correction": "Term $n$ has been multiplied $n-1$ times: $u_n = u_1 r^{n-1}$.",
+                "authored": True,
+            },
+            {
+                "text": "Finding $r^3 = 8$ from two terms and then writing $r = 8/3$.",
+                "correction": "Undo a CUBE with a cube root: $r = \\sqrt[3]{8} = 2$.",
+                "authored": True,
+            },
+            {
+                "text": "In word problems, mis-picking term 1 (drop height vs first bounce) and being one power off everywhere.",
+                "correction": "Write 'let $u_1 = $ (first bounce)' explicitly before computing — the examiner marks your definition kindly.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-13-t1",
+                "statement": (
+                    "For the geometric sequence $5, 15, 45, \\ldots$ **(a)** write down $r$; "
+                    "**(b)** find $u_7$; **(c)** find $S_7$. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $r = 3$ *(A1)*. **(b)** $u_7 = 5 \\cdot 3^6 = 3645$ *(A1)*. "
+                    "**(c)** $S_7 = \\dfrac{5(3^7 - 1)}{3 - 1} = \\dfrac{5 \\cdot 2186}{2} = 5465$ "
+                    "*(M1 A1)*."
+                ),
+                "check": ["Rational(15,5) == 3", "5*3**6 == 3645", "5*(3**7 - 1)/(3 - 1) == 5465"],
+            },
+            {
+                "id": "ibsl-13-t2",
+                "statement": (
+                    "A geometric series has $u_1 = 4$ and $r = \\frac{1}{2}$. **Find** $S_6$, giving "
+                    "your answer as a fraction. **[3]**"
+                ),
+                "solution": (
+                    "$S_6 = \\dfrac{4\\left(1 - (1/2)^6\\right)}{1 - 1/2}$ *(M1)* $= "
+                    "\\dfrac{4 \\cdot \\frac{63}{64}}{\\frac{1}{2}} = 8 \\cdot \\frac{63}{64} = "
+                    "\\dfrac{63}{8}$ *(A1 A1)*. The $\\frac{u_1(1-r^n)}{1-r}$ print keeps every "
+                    "quantity positive when $|r| < 1$."
+                ),
+                "check": ["4*(1 - Rational(1,2)**6)/(1 - Rational(1,2)) == Rational(63, 8)"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.3 · Papers 1 & 2",
+                    "title": "Multiply, don't add",
+                    "body": (
+                        "Populations, compound interest, radioactive decay, paper-folding — "
+                        "processes that scale by the same FACTOR each step. Where arithmetic climbs "
+                        "a staircase, geometric rides an exponential curve. Two booklet formulas "
+                        "run everything."
+                    ),
+                },
+                {
+                    "kind": "expGraph",
+                    "eyebrow": "See the curve",
+                    "title": "The geometric sequence, drawn",
+                    "teach": (
+                        "This is $u_n = a \\cdot b^{n}$ as a graph — each step multiplies the "
+                        "height by the base. Step the base and watch doubling ($b = 2$) versus "
+                        "tripling ($b = 3$): the ratio is the personality of the curve."
+                    ),
+                    "config": {"mode": "growth", "a": 3, "b": 2, "interactive": True},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The formulas",
+                    "title": "n − 1 multiplications, one great cancellation",
+                    "beats": [
+                        "$u_n = u_1 r^{n-1}$ — term $n$ has been multiplied $n-1$ times. Booklet.",
+                        "$S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$, $r \\ne 1$ — from the subtract-and-cancel trick. Booklet.",
+                        "Two terms given? DIVIDE them: $u_5 / u_2 = r^3$ — the ratio confesses.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Two terms pin it down", "problemId": "ibsl-13-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Check the exponent",
+                    "title": "Count the multiplications",
+                    "prompt": "In $2, 6, 18, 54, \\ldots$, $u_{6} =$",
+                    "options": ["$486$", "$1458$", "$162$", "$729$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$u_6 = 2 \\cdot 3^5 = 486$. Option B uses $3^6$ — six multiplications, "
+                        "but term 6 has only taken five."
+                    ),
+                    "check": ["2*3**5 == 486", "2*3**6 == 1458"],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Ratio hunting",
+                    "title": "Divide to expose r",
+                    "prompt": "A geometric sequence has $u_3 = 12$ and $u_6 = 96$. Then $r =$",
+                    "options": ["$2$", "$8$", "$\\frac{8}{3}$", "$4$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\dfrac{u_6}{u_3} = r^3 = 8$, so $r = \\sqrt[3]{8} = 2$. Dividing 8 by 3 "
+                        "(option C) treats a cube like a product."
+                    ),
+                    "check": ["Rational(96, 12) == 8", "2**3 == 8"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "The bouncing ball", "problemId": "ibsl-13-we2"},
+                {
+                    "kind": "tip",
+                    "eyebrow": "Paper 2 wisdom",
+                    "title": "Name the sequence before you compute",
+                    "body": (
+                        "Application questions score the SETUP: write 'geometric, $u_1 = \\ldots$, "
+                        "$r = \\ldots$' before any formula. If the story is off-by-one (drop vs "
+                        "first bounce), your stated definition earns follow-through marks even "
+                        "when the offset bites."
+                    ),
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Sum check",
+                    "title": "The cancellation formula",
+                    "prompt": "$3 + 6 + 12 + \\cdots$ for 6 terms: $S_6 =$",
+                    "options": ["$189$", "$192$", "$186$", "$96$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$S_6 = \\dfrac{3(2^6 - 1)}{2 - 1} = 3 \\cdot 63 = 189$. Option B is "
+                        "$3 \\cdot 2^6$ — the sum is one less than the next term, never equal to it."
+                    ),
+                    "check": ["3*(2**6 - 1) == 189"],
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three parts, booklet open", "problemId": "ibsl-13-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "A shrinking ratio", "problemId": "ibsl-13-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.3 in four lines",
+                    "points": [
+                        "$u_n = u_1 r^{n-1}$: $n-1$ multiplications.",
+                        "$S_n = \\frac{u_1(r^n-1)}{r-1}$, $r \\ne 1$ — both prints in the booklet.",
+                        "Two terms? Divide them: $u_m/u_k = r^{m-k}$.",
+                        "Applications: name $u_1$ and $r$ in writing before computing.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 4 — SL 1.4: Financial applications — compound interest, depreciation
+# ===========================================================================
+def lesson_financial():
+    return {
+        "slug": "financial-applications",
+        "title": "Financial Applications: Compound Interest & Depreciation",
+        "concreteComparison": (
+            "₮1,000,000 at 12% per year, compounded monthly, is NOT ₮1,120,000 after a year — "
+            "it's $1{,}000{,}000\\left(1 + \\frac{12}{100 \\cdot 12}\\right)^{12} \\approx "
+            "₮1{,}126{,}825$. The extra ₮6,825 is interest earning interest — the whole reason "
+            "banks exist, and officially syllabus code SL 1.4."
+        ),
+        "objective": (
+            "Use $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ for compound interest with any "
+            "compounding frequency, model depreciation with a ratio below 1, and answer 'how long "
+            "until…' questions."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.4.** Financial applications of geometric sequences and series: "
+            "compound interest and annual depreciation. Mostly **Paper 2** (calculator) territory, "
+            "SL and HL. The GDC's finance solver (TVM) is an accepted method — but the formula "
+            "must also be usable by hand for clean numbers.",
+            "Compound interest is a geometric sequence wearing a suit: each period multiplies the "
+            "balance by $\\left(1 + \\frac{r}{100k}\\right)$, where $r$ is the ANNUAL rate percent "
+            "and $k$ is the number of compounding periods per year. After $n$ years — that's $kn$ "
+            "periods — the future value is $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$.",
+            "Depreciation is the same machine with the ratio below 1: a car losing 15% a year "
+            "keeps 85%, so $FV = PV(1 - 0.15)^n$. The booklet prints the interest version; "
+            "depreciation just flips the sign inside the bracket.",
+            "'How many years until the investment doubles?' is a geometric inequality: "
+            "$\\left(1.005\\right)^{12n} \\ge 2$. On Paper 2, table/solver hunting on the GDC is a "
+            "legitimate method; after SL 1.7 you can also take logarithms. Either way, the "
+            "markscheme wants the SETUP line first."
+        ],
+        "keyIdea": (
+            "Money under compound interest is a geometric sequence: same multiplier every period. "
+            "Split the annual rate by $k$, count periods as $kn$ — the formula does the rest."
+        ),
+        "facts": [
+            {
+                "title": "Compound interest",
+                "latex": "FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}",
+                "explanation": (
+                    "IN the formula booklet (SL 1.4): $FV$ future value, $PV$ present value, $r$ "
+                    "annual rate %, $k$ compounding periods per year, $n$ years."
+                ),
+            },
+            {
+                "title": "Depreciation",
+                "latex": "FV = PV\\left(1 - \\frac{r}{100}\\right)^{n}",
+                "explanation": (
+                    "Annual depreciation at $r\\%$ — the compound formula with the sign flipped, "
+                    "$k = 1$. This flipped form is NOT printed in the booklet; know the flip."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-14-we1",
+                "statement": (
+                    "Sarnai invests ₮$2{,}000{,}000$ at a nominal annual rate of $6\\%$, compounded "
+                    "**quarterly**.  \n"
+                    "**(a)** Find the value after 5 years. **[3]**  \n"
+                    "**(b)** Write down the value of one quarter's multiplier. **[1]**"
+                ),
+                "solution": (
+                    "**(a)** $r = 6$, $k = 4$, $n = 5$: $FV = 2{,}000{,}000\\left(1 + "
+                    "\\frac{6}{100 \\cdot 4}\\right)^{4 \\cdot 5}$ *(M1 for correct substitution)* "
+                    "$= 2{,}000{,}000(1.015)^{20}$ *(A1)* $\\approx ₮2{,}693{,}710$ *(A1)*.  \n"
+                    "**(b)** $1.015$ *(A1)* — each quarter multiplies the balance by this.  \n"
+                    "**Narrative:** the only decisions are $k = 4$ (quarterly) and the exponent "
+                    "$kn = 20$. The substitution line IS the method mark — write it before "
+                    "touching the calculator, so a keying slip still scores M1."
+                ),
+                "check": [
+                    "1 + Rational(6, 100*4) == Rational(1015, 1000)",
+                    "4*5 == 20",
+                    "floor(2000000*Rational(1015,1000)**20) == 2693710",
+                ],
+            },
+            {
+                "id": "ibsl-14-we2",
+                "statement": (
+                    "A machine bought for \\$$40{,}000$ depreciates at $12.5\\%$ per year.  \n"
+                    "**(a)** Find its value after 4 years. **[2]**  \n"
+                    "**(b)** Find the smallest whole number of years until its value first drops "
+                    "below \\$$15{,}000$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $FV = 40{,}000(1 - 0.125)^4 = 40{,}000(0.875)^4 \\approx \\$23{,}447$ "
+                    "*(M1 A1)*.  \n"
+                    "**(b)** Solve $40{,}000(0.875)^n < 15{,}000$, i.e. $(0.875)^n < 0.375$ *(M1)*. "
+                    "Testing: $(0.875)^7 \\approx 0.393 > 0.375$; $(0.875)^8 \\approx 0.344 < 0.375$ "
+                    "*(A1)*. Smallest $n = 8$ years *(A1)*.  \n"
+                    "**Narrative:** depreciation keeps $87.5\\%$ each year — the multiplier is what "
+                    "REMAINS, not what leaves. Part (b) is the standard 'first time below' pattern: "
+                    "set the inequality, trap the crossing between consecutive integers, state both "
+                    "sides of the trap."
+                ),
+                "check": [
+                    "1 - Rational(125, 1000) == Rational(875, 1000)",
+                    "floor(40000*Rational(875,1000)**4) == 23447",
+                    "40000*Rational(875,1000)**8 < 15000",
+                    "40000*Rational(875,1000)**7 > 15000",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Using the annual rate per period: $2{,}000{,}000(1.06)^{20}$ for quarterly compounding.",
+                "correction": "Split the rate by $k$: quarterly at 6% annual means $1.015$ per quarter, $(1.015)^{4n}$.",
+                "authored": True,
+            },
+            {
+                "text": "Depreciating by multiplying by the loss: $40{,}000(0.125)^4$.",
+                "correction": "Multiply by what REMAINS: $40{,}000(0.875)^4$. The value keeps 87.5% each year.",
+                "authored": True,
+            },
+            {
+                "text": "Rounding money mid-calculation and drifting off the accepted answer.",
+                "correction": "Keep full GDC precision until the final line; round once, and only to what the question demands.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-14-t1",
+                "statement": (
+                    "\\$$5{,}000$ is invested at $4\\%$ compounded **semi-annually** ($k = 2$). "
+                    "**Find** the value after 3 years. **[2]**"
+                ),
+                "solution": (
+                    "$FV = 5000\\left(1 + \\frac{4}{200}\\right)^{6} = 5000(1.02)^6 \\approx "
+                    "\\$5{,}630.81$ *(M1 A1)*. Six half-year periods, each multiplying by $1.02$."
+                ),
+                "check": [
+                    "1 + Rational(4, 100*2) == Rational(102, 100)",
+                    "floor(5000*Rational(102,100)**6 * 100) == 563081",
+                ],
+            },
+            {
+                "id": "ibsl-14-t2",
+                "statement": (
+                    "A phone worth \\$$1{,}200$ loses $25\\%$ of its value each year. **Find** its "
+                    "value after 3 years. **[2]**"
+                ),
+                "solution": (
+                    "Keeps $75\\%$ each year: $1200(0.75)^3 = 1200 \\cdot \\frac{27}{64} = "
+                    "\\$506.25$ *(M1 A1)*."
+                ),
+                "check": ["1200*Rational(3,4)**3 == Rational(2025, 4)", "Rational(2025, 4)*4 == 2025"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.4 · mostly Paper 2",
+                    "title": "Geometric sequences with a currency sign",
+                    "body": (
+                        "Compound interest is SL 1.3 applied to money: every period multiplies the "
+                        "balance by the same factor. The exam's favorite twists: compounding more "
+                        "often than yearly (split the rate!), and depreciation (the ratio drops "
+                        "below 1)."
+                    ),
+                },
+                {
+                    "kind": "expGraph",
+                    "eyebrow": "Watch money grow",
+                    "title": "Compound interest, drawn",
+                    "teach": (
+                        "Principal $1000$ at 10% per year. The curve bends UP because each year's "
+                        "interest itself earns interest — the balance rides $1000(1.1)^t$. Simple "
+                        "interest would be a straight line; the gap between line and curve is "
+                        "interest-on-interest."
+                    ),
+                    "config": {"mode": "compound", "p": 1000, "r": 0.1, "years": 10},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The formula",
+                    "title": "Split the rate, count the periods",
+                    "beats": [
+                        "$FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ — booklet. $r$ = annual %, $k$ = periods/year, $n$ = years.",
+                        "Quarterly at 6%: each quarter multiplies by $1 + \\frac{6}{400} = 1.015$; 5 years = 20 quarters.",
+                        "Depreciation at $r\\%$: multiply by $\\left(1 - \\frac{r}{100}\\right)$ each year — what REMAINS.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Quarterly compounding", "problemId": "ibsl-14-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Check the split",
+                    "title": "Monthly means twelve",
+                    "prompt": "₮$100{,}000$ at $12\\%$ annual, compounded monthly, for 2 years. The correct expression is:",
+                    "options": [
+                        "$100{,}000(1.01)^{24}$",
+                        "$100{,}000(1.12)^{2}$",
+                        "$100{,}000(1.12)^{24}$",
+                        "$100{,}000(1.01)^{2}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Monthly: rate per period $\\frac{12}{100 \\cdot 12} = 0.01$, periods "
+                        "$12 \\cdot 2 = 24$. Option B is annual compounding — a different (smaller) "
+                        "answer."
+                    ),
+                    "check": ["Rational(12, 100*12) == Rational(1, 100)", "12*2 == 24"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "The depreciating machine", "problemId": "ibsl-14-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Depreciation direction",
+                    "title": "Keep, don't lose",
+                    "prompt": "A \\$800 laptop loses $30\\%$ per year. After 2 years it is worth:",
+                    "options": ["$\\$392$", "$\\$560$", "$\\$72$", "$\\$240$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Keeps 70%: $800(0.7)^2 = 392$. Option B applies one year only; option C "
+                        "multiplies by the LOSS $(0.3)^2$ — the classic flip error."
+                    ),
+                    "check": ["800*Rational(7,10)**2 == 392", "800*Rational(3,10)**2 == 72"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "GDC + markscheme",
+                    "title": "Write the substitution, then press buttons",
+                    "body": (
+                        "Paper 2 accepts TVM-solver answers — but a bare number can score 0 if "
+                        "it's wrong. Write $FV = 2{,}000{,}000(1.015)^{20}$ FIRST: that line is "
+                        "the M1, and it survives any keying slip. IB answers default to exact OR "
+                        "3 significant figures; money is usually 2 d.p. — read the question's "
+                        "demand."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Semi-annual compounding", "problemId": "ibsl-14-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "A fading phone", "problemId": "ibsl-14-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.4 in four lines",
+                    "points": [
+                        "$FV = PV(1 + \\frac{r}{100k})^{kn}$ — booklet; $k$ splits the rate, $kn$ counts periods.",
+                        "Depreciation: multiply by what remains, $(1 - \\frac{r}{100})^n$.",
+                        "'First time below/above' → inequality, trap the crossing between consecutive integers.",
+                        "Write the substitution line before the GDC; round money once, at the end.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 5 — SL 1.5: Laws of exponents (integer); introduction to logarithms
+# ===========================================================================
+def lesson_exponents_logs():
+    return {
+        "slug": "exponents-and-introducing-logarithms",
+        "title": "Exponent Laws & Introducing Logarithms",
+        "concreteComparison": (
+            "'$2$ to what power gives $32$?' Your brain answers $5$ instantly — congratulations, "
+            "you just computed $\\log_2 32$. A logarithm is nothing more exotic than an exponent "
+            "hunted in reverse, and SL 1.5 makes the hunt official."
+        ),
+        "objective": (
+            "Apply the integer-exponent laws fluently, convert between $a^x = b$ and "
+            "$x = \\log_a b$, and evaluate logarithms with and without technology."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.5.** Laws of exponents with integer exponents; introduction to "
+            "logarithms with base 10 and $e$; numerical evaluation of logarithms using technology. "
+            "**Papers 1 and 2**, SL and HL. The definition $a^x = b \\Leftrightarrow x = \\log_a b$ "
+            "IS in the booklet; the exponent laws are NOT — they must live in your hands.",
+            "Three laws run everything: $a^m \\cdot a^n = a^{m+n}$ (same base, add), "
+            "$\\frac{a^m}{a^n} = a^{m-n}$ (same base, subtract), $(a^m)^n = a^{mn}$ (power of a "
+            "power, multiply). Plus the two conventions they force: $a^0 = 1$ and "
+            "$a^{-n} = \\frac{1}{a^n}$ — both provable by subtracting exponents.",
+            "A logarithm answers 'what exponent?': $\\log_2 32 = 5$ because $2^5 = 32$. The "
+            "equivalence $a^x = b \\Leftrightarrow x = \\log_a b$ (for $a > 0$, $a \\ne 1$, "
+            "$b > 0$) is the single most-used line in the booklet. Two bases get shorthand: "
+            "$\\log x$ means $\\log_{10} x$, and $\\ln x$ means $\\log_e x$ where "
+            "$e \\approx 2.718$ — the natural base you will meet properly in Topic 5.",
+            "Because a log IS an exponent, log outputs can be negative or zero ($\\log 1 = 0$, "
+            "$\\log_2 \\frac{1}{8} = -3$) — but the INPUT must be positive: no exponent on a "
+            "positive base ever produces $0$ or a negative number. That domain fact returns as "
+            "an R-mark generator all the way into HL."
+        ],
+        "keyIdea": (
+            "A logarithm is an exponent with a search warrant: $\\log_a b$ asks 'what power of "
+            "$a$ makes $b$?' Convert to exponential form and the mystery usually dissolves."
+        ),
+        "facts": [
+            {
+                "title": "Exponent laws",
+                "latex": "a^m a^n = a^{m+n}, \\quad \\frac{a^m}{a^n} = a^{m-n}, \\quad (a^m)^n = a^{mn}",
+                "explanation": (
+                    "NOT in the formula booklet — memorize. With the conventions $a^0 = 1$ and "
+                    "$a^{-n} = 1/a^n$ they close the integer-exponent world."
+                ),
+            },
+            {
+                "title": "The log–exponent bridge",
+                "latex": "a^x = b \\iff x = \\log_a b, \\quad a, b > 0, \; a \\ne 1",
+                "explanation": (
+                    "IN the formula booklet (SL 1.5). $\\log x := \\log_{10} x$; "
+                    "$\\ln x := \\log_e x$. Crossing this bridge is usually the first mark of any "
+                    "log question."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-15-we1",
+                "statement": (
+                    "**(a)** Simplify $\\dfrac{(2^3)^4 \\cdot 2^{-5}}{2^4}$, giving your answer as "
+                    "$2^k$. **[3]**  \n"
+                    "**(b)** Hence write down $\\log_2\\left(\\dfrac{(2^3)^4 \\cdot 2^{-5}}{2^4}\\right)$. "
+                    "**[1]**"
+                ),
+                "solution": (
+                    "**(a)** Power of a power: $(2^3)^4 = 2^{12}$ *(M1)*. Numerator: "
+                    "$2^{12} \\cdot 2^{-5} = 2^{7}$ *(A1)*. Divide: $2^{7-4} = 2^3$ *(A1)*.  \n"
+                    "**(b)** $\\log_2 2^3 = 3$ *(A1)* — the log just reads the exponent off.  \n"
+                    "**Narrative:** part (b) is a gift for anyone who trusts the definition: no "
+                    "computation, the answer IS the exponent from (a). 'Write down' confirms it — "
+                    "one mark, no working expected."
+                ),
+                "check": [
+                    "(2**3)**4 == 2**12",
+                    "2**12 * 2**(-5) == 2**7",
+                    "Rational(2**7, 2**4) == 2**3",
+                    "log(2**3, 2) == 3",
+                ],
+            },
+            {
+                "id": "ibsl-15-we2",
+                "statement": (
+                    "**(a)** Find the exact value of $\\log_3 81 + \\log_5 \\dfrac{1}{25} + \\log 1000$. "
+                    "**[3]**  \n"
+                    "**(b)** Given $\\ln x = 2$, find $x$ exactly. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\log_3 81 = 4$ (since $3^4 = 81$); $\\log_5 \\frac{1}{25} = -2$ "
+                    "(since $5^{-2} = \\frac{1}{25}$); $\\log 1000 = 3$ (base 10). Total: "
+                    "$4 - 2 + 3 = 5$ *(A1 A1 A1)*.  \n"
+                    "**(b)** Cross the bridge: $\\ln x = 2 \\iff x = e^2$ *(M1 A1)*. 'Exactly' "
+                    "means STOP at $e^2$ — the decimal $7.389\\ldots$ is a worse answer.  \n"
+                    "**Narrative:** each log evaluates by asking 'what exponent?'. Negative "
+                    "answers are healthy (the input was below 1); an exact answer keeps $e^2$ as a "
+                    "symbol."
+                ),
+                "check": [
+                    "3**4 == 81",
+                    "5**(-2) == Rational(1, 25)",
+                    "10**3 == 1000",
+                    "4 - 2 + 3 == 5",
+                    "log(exp(2)) == 2",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Multiplying exponents when multiplying powers: $2^3 \\cdot 2^4 = 2^{12}$.",
+                "correction": "Same base multiplied → ADD: $2^3 \\cdot 2^4 = 2^7$. Multiply exponents only for a power OF a power.",
+                "authored": True,
+            },
+            {
+                "text": "Claiming $\\log(-100)$ or $\\log 0$ has a value 'because the calculator shows an error, so it's 0'.",
+                "correction": "No exponent on a positive base gives $0$ or a negative — such logs are UNDEFINED, and saying so earns the mark.",
+                "authored": True,
+            },
+            {
+                "text": "Giving $e^2 \\approx 7.39$ when the question says 'exact'.",
+                "correction": "'Exact' means the symbol stays: $x = e^2$. Decimalizing an exact demand loses the final A1.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-15-t1",
+                "statement": "Simplify $\\dfrac{3^5 \\cdot 3^{-2}}{3^{-1}}$, giving your answer as a power of 3, then evaluate it. **[3]**",
+                "solution": (
+                    "Numerator: $3^{5+(-2)} = 3^3$. Divide: $3^{3-(-1)} = 3^4 = 81$ *(M1 A1 A1)*. "
+                    "Subtracting a negative exponent ADDS."
+                ),
+                "check": ["3**5 * 3**(-2) == 3**3", "Rational(3**3, 3**(-1)) == 3**4", "3**4 == 81"],
+            },
+            {
+                "id": "ibsl-15-t2",
+                "statement": (
+                    "**Write down** the exact values: **(a)** $\\log_4 64$; **(b)** $\\log_2 \\dfrac{1}{16}$; "
+                    "**(c)** $\\ln e^5$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $4^3 = 64 \\Rightarrow 3$. **(b)** $2^{-4} = \\frac{1}{16} \\Rightarrow -4$. "
+                    "**(c)** $\\ln e^5 = 5$ — the natural log reads the exponent off $e$. "
+                    "*(A1 A1 A1)*"
+                ),
+                "check": ["4**3 == 64", "2**(-4) == Rational(1,16)", "log(exp(5)) == 5"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.5 · Papers 1 & 2",
+                    "title": "Exponents forward, logarithms backward",
+                    "body": (
+                        "You've multiplied powers since Grade 8 — the IB now runs the machine in "
+                        "reverse. A logarithm answers one question: 'what exponent?'. Master the "
+                        "three laws forward, and the backward direction is the same road."
+                    ),
+                },
+                {
+                    "kind": "exponentBuilder",
+                    "eyebrow": "The forward machine",
+                    "title": "Build powers, feel the laws",
+                    "teach": (
+                        "Step the exponent up and down — including through zero into negatives. "
+                        "Each step multiplies (or divides) by the base once: that's WHY same-base "
+                        "multiplication adds exponents, and why $a^0 = 1$ sits exactly between "
+                        "growing and shrinking."
+                    ),
+                    "config": {"base": 2, "exp": 3, "minBase": 2, "maxBase": 5, "minExp": -3, "maxExp": 6},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The three laws",
+                    "title": "Add, subtract, multiply",
+                    "beats": [
+                        "$a^m \\cdot a^n = a^{m+n}$ — same base multiplied: ADD. Not in the booklet.",
+                        "$\\dfrac{a^m}{a^n} = a^{m-n}$ — same base divided: SUBTRACT. Forces $a^0 = 1$, $a^{-n} = \\frac{1}{a^n}$.",
+                        "$(a^m)^n = a^{mn}$ — power of a power: MULTIPLY.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Simplify, then read the log off", "problemId": "ibsl-15-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Law check",
+                    "title": "Add or multiply?",
+                    "prompt": "$\\dfrac{5^7 \\cdot 5^{-3}}{5^2} =$",
+                    "options": ["$5^2$", "$5^{12}$", "$5^{-42}$", "$5^8$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Top: $5^{7-3} = 5^4$. Divide: $5^{4-2} = 5^2$. Option B multiplied the "
+                        "outer exponents — that move belongs to $(a^m)^n$ only."
+                    ),
+                    "check": ["5**7 * 5**(-3) == 5**4", "Rational(5**4, 5**2) == 5**2"],
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The bridge",
+                    "title": "a^x = b ⇔ x = log_a b",
+                    "body": (
+                        "This equivalence is IN your booklet, and it is the whole theory: "
+                        "$\\log_2 32 = 5$ because $2^5 = 32$; $\\log_5 \\frac{1}{25} = -2$ because "
+                        "$5^{-2} = \\frac{1}{25}$. Special shorthands: $\\log$ = base 10, $\\ln$ = "
+                        "base $e \\approx 2.718$. Inputs must be POSITIVE — no power of a positive "
+                        "base lands on zero or below."
+                    ),
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Cross the bridge",
+                    "title": "What exponent?",
+                    "prompt": "$\\log_3 \\dfrac{1}{81} =$",
+                    "options": ["$-4$", "$4$", "$\\frac{1}{4}$", "$-27$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$3^{-4} = \\frac{1}{81}$, so the log is $-4$. A fraction input below 1 "
+                        "means a NEGATIVE exponent — not a reciprocal answer."
+                    ),
+                    "check": ["3**(-4) == Rational(1, 81)"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Exact log evaluation", "problemId": "ibsl-15-we2"},
+                {
+                    "kind": "tip",
+                    "eyebrow": "Booklet + GDC",
+                    "title": "What's given, what's yours",
+                    "body": (
+                        "The booklet gives you the BRIDGE ($a^x = b \\Leftrightarrow x = \\log_a b$); "
+                        "the exponent laws are yours to carry. Your GDC evaluates $\\log$ and $\\ln$ "
+                        "directly (SL 1.5 says 'numerical evaluation using technology') — but "
+                        "Paper 1 will pick numbers where the bridge alone suffices."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three laws, one line", "problemId": "ibsl-15-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Read the exponent off", "problemId": "ibsl-15-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.5 in four lines",
+                    "points": [
+                        "Multiply powers → add; divide → subtract; power of power → multiply. (Yours to memorize.)",
+                        "$a^0 = 1$, $a^{-n} = 1/a^n$ — forced by the subtract law.",
+                        "$a^x = b \\iff x = \\log_a b$ — in the booklet; $\\log$ = base 10, $\\ln$ = base $e$.",
+                        "Log inputs must be positive; log outputs can be anything.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 6 — SL 1.6: Simple deductive proof
+# ===========================================================================
+def lesson_proof():
+    return {
+        "slug": "simple-deductive-proof",
+        "title": "Simple Deductive Proof",
+        "concreteComparison": (
+            "Try it: pick any two odd numbers and add them — 7 + 11, 23 + 5, 999 + 1001. Even, "
+            "every time. But a thousand examples prove nothing; ONE line of algebra proves it "
+            "forever: $(2m+1) + (2n+1) = 2(m+n+1)$. That upgrade — from 'always seems to' to "
+            "'must' — is what SL 1.6 teaches."
+        ),
+        "objective": (
+            "Write LHS-to-RHS proofs of algebraic identities, represent integers symbolically "
+            "(even $= 2n$, odd $= 2n+1$, consecutive $= n, n+1$), and know what a proof must "
+            "contain to earn its marks."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.6.** Simple deductive proof, numerical and algebraic; how to "
+            "lay out a left-hand side to right-hand side (LHS–RHS) proof. The symbols and notation "
+            "of equality and identity. **Paper 1 favorite** at SL; the foundation for HL's "
+            "contradiction and induction (AHL 1.15). 'Show that' questions across ALL topics use "
+            "this discipline — the marks here pay compound interest.",
+            "An identity holds for ALL values ($\\equiv$), unlike an equation, which holds for "
+            "some. To prove an identity, START from one side (usually the messier one) and "
+            "transform it, line by justified line, into the other. Never work on both sides at "
+            "once — that assumes what you're proving.",
+            "The vocabulary of integers: any even number is $2n$; any odd is $2n + 1$; "
+            "consecutive integers are $n$, $n+1$, $n+2$; a multiple of 3 is $3n$ — each for "
+            "SOME integer $n$. Crucially, DIFFERENT unknowns need DIFFERENT letters: 'two odd "
+            "numbers' are $2m+1$ and $2n+1$, not $2n+1$ twice (that would prove it only for "
+            "equal numbers).",
+            "The last line matters: after the algebra, SAY what it shows — '$= 2(m+n+1)$, which "
+            "is even since $m+n+1 \\in \\mathbb{Z}$'. That closing sentence is a real mark (R1). "
+            "A proof is an argument, not a calculation: the examiner reads your reasons, not "
+            "just your arithmetic."
+        ],
+        "keyIdea": (
+            "Examples suggest; algebra proves. Represent the ARBITRARY case with letters, "
+            "transform one side only, and close with the sentence that says what you showed."
+        ),
+        "facts": [
+            {
+                "title": "Integer vocabulary",
+                "latex": "\\text{even} = 2n, \\quad \\text{odd} = 2n+1, \\quad \\text{consecutive: } n,\\, n+1",
+                "explanation": (
+                    "For some integer $n$. NOT in the booklet — this is language, not formula. "
+                    "Different quantities take different letters ($m$ and $n$)."
+                ),
+            },
+            {
+                "title": "Identity vs equation",
+                "latex": "(x+1)^2 \\equiv x^2 + 2x + 1 \\quad \\text{vs} \\quad x + 1 = 3",
+                "explanation": (
+                    "$\\equiv$ holds for ALL $x$; $=$ holds for some. Proving an identity means "
+                    "transforming one side into the other — never solving."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-16-we1",
+                "statement": (
+                    "**Show that** $(2n - 1)^2 + (2n + 1)^2 = 8n^2 + 2$ for all integers $n$. **[3]**"
+                ),
+                "solution": (
+                    "Start from the LHS and expand each square:  \n"
+                    "$\\text{LHS} = (4n^2 - 4n + 1) + (4n^2 + 4n + 1)$ *(M1 A1 — both expansions "
+                    "correct)*  \n"
+                    "$= 8n^2 + 2 = \\text{RHS}$ ✓ *(A1)*  \n"
+                    "**Narrative:** 'Show that' hands you the destination — your job is the "
+                    "journey, with every line visible. The $\\pm 4n$ terms canceling is the "
+                    "point of the question; skipping the middle line skips the mark. Note the "
+                    "one-side discipline: we never touched the RHS."
+                ),
+                "check": [
+                    "expand((2*n - 1)**2 + (2*n + 1)**2) == 8*n**2 + 2",
+                    "expand((2*n - 1)**2) == 4*n**2 - 4*n + 1",
+                ],
+            },
+            {
+                "id": "ibsl-16-we2",
+                "statement": (
+                    "**Prove** that the sum of any two odd integers is even. **[4]**"
+                ),
+                "solution": (
+                    "Let the odd integers be $2m + 1$ and $2n + 1$, where $m, n \\in \\mathbb{Z}$ "
+                    "*(M1 — different letters is the mark)*.  \n"
+                    "Sum $= (2m + 1) + (2n + 1) = 2m + 2n + 2$ *(A1)* $= 2(m + n + 1)$ *(A1)*.  \n"
+                    "Since $m + n + 1 \\in \\mathbb{Z}$, the sum is a multiple of 2, i.e. even. "
+                    "$\\blacksquare$ *(R1)*  \n"
+                    "**Narrative:** the two most-lost marks in IB proof: using ONE letter for two "
+                    "independent numbers (proves only the equal case), and stopping at "
+                    "$2(m+n+1)$ without the closing sentence. The factor-of-2 display plus the "
+                    "sentence naming it even — that pair is the proof."
+                ),
+                "check": [
+                    "expand((2*m + 1) + (2*n + 1)) == 2*m + 2*n + 2",
+                    "expand(2*(m + n + 1)) == 2*m + 2*n + 2",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Verifying with numbers ('7 + 9 = 16, even ✓') and calling it a proof.",
+                "correction": "Examples earn zero proof marks. The arbitrary case needs letters: $2m+1$, $2n+1$.",
+                "authored": True,
+            },
+            {
+                "text": "Using the same letter twice: 'two odds are $2n+1$ and $2n+1$'.",
+                "correction": "That's the SAME number twice. Independent numbers get independent letters, $m$ and $n$.",
+                "authored": True,
+            },
+            {
+                "text": "Working on both sides at once until they meet in the middle.",
+                "correction": "Pick one side (the messier), transform it into the other. Both-sides work assumes the conclusion.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-16-t1",
+                "statement": (
+                    "**Show that** $(n + 3)^2 - (n - 1)^2 = 8(n + 1)$ for all $n$. **[3]**"
+                ),
+                "solution": (
+                    "LHS $= (n^2 + 6n + 9) - (n^2 - 2n + 1)$ *(M1 A1)* $= 8n + 8 = 8(n + 1)$ = "
+                    "RHS ✓ *(A1)*. (Or: difference of squares, $(a-b)(a+b) = 4(2n+2)$.) Every "
+                    "line shown, one side only."
+                ),
+                "check": [
+                    "expand((n + 3)**2 - (n - 1)**2) == 8*n + 8",
+                    "expand(8*(n + 1)) == 8*n + 8",
+                ],
+            },
+            {
+                "id": "ibsl-16-t2",
+                "statement": (
+                    "**Prove** that the sum of any three consecutive integers is a multiple of 3. **[3]**"
+                ),
+                "solution": (
+                    "Let the integers be $n$, $n+1$, $n+2$ *(M1)*. Sum $= 3n + 3 = 3(n + 1)$ "
+                    "*(A1)*. Since $n + 1 \\in \\mathbb{Z}$, the sum is a multiple of 3. "
+                    "$\\blacksquare$ *(R1)* — consecutive means ONE letter generates all three."
+                ),
+                "check": ["expand(n + (n+1) + (n+2)) == 3*n + 3", "expand(3*(n+1)) == 3*n + 3"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.6 · Paper 1 favorite",
+                    "title": "From 'always seems to' to 'must'",
+                    "body": (
+                        "Mathematics is the only subject where 'always' can be EARNED. A million "
+                        "examples can't do it; three lines of algebra can. This lesson teaches "
+                        "the layout the IB pays marks for — and the discipline behind every "
+                        "'show that' you'll meet for two years."
+                    ),
+                },
+                {
+                    "kind": "conjectureTest",
+                    "eyebrow": "Test a claim",
+                    "title": "Odd + odd: hunt for a counterexample",
+                    "teach": (
+                        "A conjecture survives only until one counterexample. Tap the candidates: "
+                        "does 'odd + odd is even' ever fail? It won't — but notice the feeling "
+                        "that testing can never CLOSE the question. That itch is why proof exists."
+                    ),
+                    "config": {
+                        "conjecture": "The sum of any two odd numbers is even.",
+                        "items": [
+                            {"label": "3 + 5 = 8", "holds": True, "note": "Even ✓ — but one case proves one case."},
+                            {"label": "7 + 11 = 18", "holds": True, "note": "Even ✓ — still just evidence."},
+                            {"label": "23 + 1 = 24", "holds": True, "note": "Even ✓ — the pattern holds…"},
+                            {"label": "999 + 1001 = 2000", "holds": True, "note": "Even ✓ — no counterexample exists: algebra will show WHY."},
+                        ],
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The vocabulary",
+                    "title": "Letters for the arbitrary case",
+                    "beats": [
+                        "Even $= 2n$; odd $= 2n + 1$; consecutive $= n, n+1, n+2$ — for some integer $n$.",
+                        "TWO independent numbers need TWO letters: $2m+1$ and $2n+1$.",
+                        "To prove: transform ONE side into the other, every line shown, then SAY what it proves.",
+                    ],
+                },
+                {
+                    "kind": "stepProof",
+                    "eyebrow": "The layout",
+                    "title": "Odd + odd, as the examiner wants it",
+                    "teach": (
+                        "Step through the proof line by line — each statement carries its reason. "
+                        "This two-column discipline is exactly what 'show that' pays for."
+                    ),
+                    "config": {
+                        "given": "$a$ and $b$ are odd integers",
+                        "prove": "$a + b$ is even",
+                        "rows": [
+                            {"statement": "$a = 2m + 1$, $b = 2n + 1$ for some $m, n \\in \\mathbb{Z}$", "reason": "Definition of odd — different letters for different numbers"},
+                            {"statement": "$a + b = 2m + 2n + 2$", "reason": "Add and collect"},
+                            {"statement": "$a + b = 2(m + n + 1)$", "reason": "Factor out 2"},
+                            {"statement": "$m + n + 1 \\in \\mathbb{Z}$, so $a + b$ is even", "reason": "Definition of even — the closing sentence IS a mark"},
+                        ],
+                    },
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "'Show that' an identity holds", "problemId": "ibsl-16-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Spot the flaw",
+                    "title": "Why is this NOT a proof?",
+                    "prompt": "'Claim: the product of two odds is odd. Proof: $3 \\times 5 = 15$, odd. $7 \\times 9 = 63$, odd. QED.' The flaw is:",
+                    "options": [
+                        "Examples only cover two cases, not all",
+                        "The arithmetic is wrong",
+                        "The claim itself is false",
+                        "It should have used even numbers too",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The claim is true and the arithmetic fine — but examples can never cover "
+                        "'ALL odds'. The proof needs $(2m+1)(2n+1) = 2(2mn+m+n) + 1$: visibly odd."
+                    ),
+                    "check": ["3*5 == 15", "expand((2*m+1)*(2*n+1)) == 4*m*n + 2*m + 2*n + 1"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "A full 4-mark proof", "problemId": "ibsl-16-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Letter discipline",
+                    "title": "One letter or two?",
+                    "prompt": "To prove a statement about ANY two even numbers, represent them as:",
+                    "options": [
+                        "$2m$ and $2n$",
+                        "$2n$ and $2n$",
+                        "$n$ and $n + 2$",
+                        "$2n$ and $2n + 2$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Independent numbers, independent letters. $2n$ twice is one number; "
+                        "$2n$ and $2n+2$ are CONSECUTIVE evens — a smaller claim than 'any two'."
+                    ),
+                    "check": ["1 == 1"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Markscheme wisdom",
+                    "title": "Where proof marks die",
+                    "body": (
+                        "Three graves: (1) numbers instead of letters — 0 marks; (2) one letter "
+                        "for two numbers — proves a special case, capped marks; (3) no closing "
+                        "sentence — the final R1 dies. Write '… which is even/a multiple of 3, "
+                        "since (integer reason)' and sign off. $\\blacksquare$ is optional; "
+                        "the sentence is not."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Difference of squares identity", "problemId": "ibsl-16-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three in a row", "problemId": "ibsl-16-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.6 in four lines",
+                    "points": [
+                        "Examples suggest; only algebra on the ARBITRARY case proves.",
+                        "Even $2n$, odd $2n+1$, consecutive $n, n+1$ — different numbers, different letters.",
+                        "Transform one side only, every line visible.",
+                        "Close with the sentence that names what you showed — it carries a mark.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 7 — SL 1.7: Rational exponents; laws of logarithms; change of base
+# ===========================================================================
+def lesson_log_laws():
+    return {
+        "slug": "log-laws-and-rational-exponents",
+        "title": "Log Laws, Rational Exponents & Solving Exponential Equations",
+        "concreteComparison": (
+            "How long until a population of 1,000 bacteria doubling every hour passes a million? "
+            "You need $x$ in $2^x = 1000$ — an exponent trapped in an equation. Logarithm laws "
+            "are the crowbar: $x = \\frac{\\log 1000}{\\log 2} \\approx 9.97$ hours. Before this "
+            "lesson you could only guess-and-check; after it, you solve."
+        ),
+        "objective": (
+            "Extend exponent laws to rational exponents, wield the three log laws and the "
+            "change-of-base formula, and solve $a^x = b$ exactly and numerically."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.7.** Laws of exponents with RATIONAL exponents; laws of "
+            "logarithms ($\\log_a xy$, $\\log_a \\frac{x}{y}$, $\\log_a x^m$); change of base; "
+            "solving exponential equations, including with logarithms. **Papers 1 and 2**, SL "
+            "and HL. All three log laws AND change of base are IN the booklet — this code is "
+            "about using them cleanly, not memorizing.",
+            "Rational exponents extend the old laws without new rules: $a^{1/n} = \\sqrt[n]{a}$ "
+            "and $a^{m/n} = \\left(\\sqrt[n]{a}\\right)^m$. So $27^{2/3} = (\\sqrt[3]{27})^2 = 9$ "
+            "— root first (smaller numbers), power second. Everything you know about adding and "
+            "multiplying exponents survives unchanged.",
+            "The three log laws are the exponent laws read backward: logs turn products into "
+            "SUMS ($\\log_a xy = \\log_a x + \\log_a y$), quotients into DIFFERENCES, and powers "
+            "into MULTIPLES ($\\log_a x^m = m\\log_a x$). The third law is the exam's favorite: "
+            "it drags the unknown DOWN from the exponent.",
+            "Change of base, $\\log_b a = \\dfrac{\\log_c a}{\\log_c b}$, lets your GDC (which "
+            "speaks base 10 and $e$) evaluate any base — and lets you solve $a^x = b$ in one "
+            "motion: $x = \\log_a b = \\frac{\\ln b}{\\ln a}$. Exact answer first, then the 3 "
+            "significant figure decimal: that order is IB house style."
+        ],
+        "keyIdea": (
+            "Logs turn multiplication into addition and drag exponents down to ground level — "
+            "which is exactly where you can solve for them."
+        ),
+        "facts": [
+            {
+                "title": "The three log laws",
+                "latex": "\\log_a xy = \\log_a x + \\log_a y, \\quad \\log_a \\tfrac{x}{y} = \\log_a x - \\log_a y, \\quad \\log_a x^m = m\\log_a x",
+                "explanation": "IN the formula booklet (SL 1.7). Products→sums, quotients→differences, powers→multiples.",
+            },
+            {
+                "title": "Change of base",
+                "latex": "\\log_b a = \\frac{\\log_c a}{\\log_c b}",
+                "explanation": (
+                    "IN the formula booklet (SL 1.7). Any new base $c$ — in practice base 10 or "
+                    "$e$, because that's what calculators speak."
+                ),
+            },
+            {
+                "title": "Rational exponents",
+                "latex": "a^{m/n} = \\sqrt[n]{a^m} = \\left(\\sqrt[n]{a}\\right)^m",
+                "explanation": "NOT in the booklet. Root first keeps numbers small: $27^{2/3} = 3^2 = 9$.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-17-we1",
+                "statement": (
+                    "**(a)** Evaluate $16^{3/4}$ and $8^{-2/3}$ exactly. **[2]**  \n"
+                    "**(b)** Write $\\log 50 + 2\\log 2 - \\log 8$ as a single logarithm, and "
+                    "evaluate it. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $16^{3/4} = (\\sqrt[4]{16})^3 = 2^3 = 8$; "
+                    "$8^{-2/3} = \\dfrac{1}{(\\sqrt[3]{8})^2} = \\dfrac{1}{4}$ *(A1 A1)*.  \n"
+                    "**(b)** Power law first: $2\\log 2 = \\log 4$ *(M1)*. Then combine: "
+                    "$\\log 50 + \\log 4 - \\log 8 = \\log \\dfrac{50 \\cdot 4}{8}$ *(M1)* "
+                    "$= \\log 25$ *(A1)* $= \\log_{10} 5^2 = 2\\log_{10} 5$… evaluate: "
+                    "$\\log 25 \\approx 1.40$, but EXACTLY: $\\log 25$. Since $25 = 10^{?}$ has no "
+                    "nice exponent, the single-log form $\\log 25$ IS the answer; as a decimal, "
+                    "$1.40$ (3 s.f.) *(A1)*.  \n"
+                    "**Narrative:** the power law must fire BEFORE combining — $2\\log 2$ is "
+                    "$\\log 4$, not $\\log 2^{\\,2\\text{ terms}}$. Single-log form is the exact "
+                    "answer; the decimal is a bonus reading."
+                ),
+                "check": [
+                    "16**Rational(3,4) == 8",
+                    "8**Rational(-2,3) == Rational(1,4)",
+                    "Rational(50*4, 8) == 25",
+                    "simplify(log(50) + 2*log(2) - log(8) - log(25)) == 0",
+                ],
+            },
+            {
+                "id": "ibsl-17-we2",
+                "statement": (
+                    "A population doubles every hour, starting at $1000$.  \n"
+                    "**(a)** Write down an expression for the population after $x$ hours. **[1]**  \n"
+                    "**(b)** **Find** the exact time at which the population reaches one million, "
+                    "and evaluate it to 3 significant figures. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $P = 1000 \\cdot 2^x$ *(A1)*.  \n"
+                    "**(b)** Solve $1000 \\cdot 2^x = 10^6$: $2^x = 1000$ *(M1)*. Take logs: "
+                    "$x \\log 2 = \\log 1000 = 3$ *(M1 — the power law drags $x$ down)*, so "
+                    "$x = \\dfrac{3}{\\log 2}$ exactly *(A1)* $\\approx 9.97$ hours *(A1)*.  \n"
+                    "**Narrative:** notice base 10 was the smart lens because $\\log 1000 = 3$ is "
+                    "exact. 'Find the exact time' + 'evaluate' is the IB's standard double demand: "
+                    "symbol first, 3 s.f. second. Never round to 10."
+                ),
+                "check": [
+                    "log(1000, 10) == 3",
+                    "log(1000, 10) == 3",
+                    "Abs(3/(log(2)/log(10)) - 9.9658) < 0.001",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Expanding $\\log(x + y)$ into $\\log x + \\log y$.",
+                "correction": "The law is for PRODUCTS: $\\log(xy) = \\log x + \\log y$. $\\log$ of a sum does not split.",
+                "authored": True,
+            },
+            {
+                "text": "Writing $\\dfrac{\\log 1000}{\\log 2}$ as $\\log 500$ — 'canceling' the logs.",
+                "correction": "A quotient OF logs is change of base ($= \\log_2 1000$), not a log of a quotient.",
+                "authored": True,
+            },
+            {
+                "text": "Computing $27^{2/3}$ as $27^2 / 27^3$ or squaring first into huge numbers.",
+                "correction": "$27^{2/3} = (\\sqrt[3]{27})^2 = 3^2 = 9$ — root first, always.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-17-t1",
+                "statement": (
+                    "Write $\\log_3 36 - \\log_3 4 + 2\\log_3 3$ as a single value. **[3]**"
+                ),
+                "solution": (
+                    "$\\log_3 36 - \\log_3 4 = \\log_3 9 = 2$ *(M1 A1)*; $2\\log_3 3 = 2$. Total "
+                    "$= 4$ *(A1)*. Quotient law first, then read exponents off base 3."
+                ),
+                "check": ["Rational(36, 4) == 9", "log(9, 3) == 2", "2 + 2 == 4"],
+            },
+            {
+                "id": "ibsl-17-t2",
+                "statement": (
+                    "**Solve** $5^x = 40$, giving your answer exactly and to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "$x = \\log_5 40 = \\dfrac{\\ln 40}{\\ln 5}$ *(M1 A1 — bridge, then change "
+                    "of base)* $\\approx 2.29$ *(A1)*. Both forms scored: the exact quotient AND "
+                    "the 3 s.f. decimal."
+                ),
+                "check": ["Abs(log(40)/log(5) - 2.2920) < 0.001", "5**2 < 40", "40 < 5**3"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.7 · Papers 1 & 2",
+                    "title": "The crowbar for trapped exponents",
+                    "body": (
+                        "SL 1.5 built the bridge between exponents and logs; this code arms it. "
+                        "Three laws (all in your booklet) turn products into sums and drag "
+                        "unknowns down from exponents — after this lesson, $a^x = b$ is a "
+                        "one-line solve, not a guessing game."
+                    ),
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Rational exponents",
+                    "title": "Roots are exponents too",
+                    "beats": [
+                        "$a^{1/n} = \\sqrt[n]{a}$: the exponent that, applied $n$ times, rebuilds $a$.",
+                        "$a^{m/n} = (\\sqrt[n]{a})^m$ — ROOT FIRST: $27^{2/3} = 3^2 = 9$, no big numbers.",
+                        "All old laws survive: $a^{1/2} \\cdot a^{1/2} = a^1$ — a square root squared.",
+                    ],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Fraction power",
+                    "title": "Root first",
+                    "prompt": "$32^{3/5} =$",
+                    "options": ["$8$", "$\\frac{96}{5}$", "$2^{15}$", "$6$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\sqrt[5]{32} = 2$, then $2^3 = 8$. Option B multiplied $32 \\cdot "
+                        "\\frac{3}{5}$ — exponents are not coefficients."
+                    ),
+                    "check": ["32**Rational(3,5) == 8", "2**5 == 32"],
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The three laws",
+                    "title": "Products → sums, powers → multiples",
+                    "body": (
+                        "Because logs ARE exponents, multiplying numbers adds their logs: "
+                        "$\\log_a xy = \\log_a x + \\log_a y$, "
+                        "$\\log_a \\frac{x}{y} = \\log_a x - \\log_a y$, and the star of every "
+                        "exam: $\\log_a x^m = m \\log_a x$. All three sit in your booklet — the "
+                        "skill is choosing the order to apply them (power law first when "
+                        "combining, power law LAST when expanding)."
+                    ),
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Combine into one log", "problemId": "ibsl-17-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Law check",
+                    "title": "Combine carefully",
+                    "prompt": "$\\log 6 + \\log 5 - \\log 3 =$",
+                    "options": ["$\\log 10$", "$\\log 8$", "$\\log \\frac{11}{3}$", "$\\log 30 - 3$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\log \\frac{6 \\cdot 5}{3} = \\log 10$ (which is exactly 1 in base 10). "
+                        "Option C subtracted inside — the quotient law divides ARGUMENTS, it "
+                        "doesn't subtract them."
+                    ),
+                    "check": ["Rational(6*5, 3) == 10", "simplify(log(6) + log(5) - log(3) - log(10)) == 0"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Doubling to a million", "problemId": "ibsl-17-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Change of base",
+                    "title": "Speak calculator",
+                    "prompt": "$\\log_7 100$ equals which of these?",
+                    "options": [
+                        "$\\dfrac{2}{\\log 7}$",
+                        "$\\dfrac{\\log 7}{2}$",
+                        "$\\log \\dfrac{100}{7}$",
+                        "$100 \\log 7$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\log_7 100 = \\dfrac{\\log 100}{\\log 7} = \\dfrac{2}{\\log 7}$, since "
+                        "$\\log 100 = 2$. New number UP TOP — the base goes to the bottom."
+                    ),
+                    "check": ["log(100, 10) == 2"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "IB house style",
+                    "title": "Exact first, 3 s.f. second",
+                    "body": (
+                        "When a question says 'exact', the quotient of logs IS the answer: "
+                        "$x = \\frac{\\ln 40}{\\ln 5}$. The decimal $2.29$ answers 'evaluate' or "
+                        "'to 3 significant figures'. IB default accuracy is exact or 3 s.f. — "
+                        "and premature rounding upstream poisons every mark downstream."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three laws in one line", "problemId": "ibsl-17-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Solve for the exponent", "problemId": "ibsl-17-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.7 in four lines",
+                    "points": [
+                        "$a^{m/n} = (\\sqrt[n]{a})^m$ — root first.",
+                        "Three log laws (booklet): products→sums, quotients→differences, powers→multiples.",
+                        "Change of base (booklet): $\\log_b a = \\frac{\\log a}{\\log b}$ — how calculators do every base.",
+                        "$a^x = b$: take logs, drag $x$ down, divide. Exact form first, then 3 s.f.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 8 — SL 1.8: Sum of infinite convergent geometric sequences
+# ===========================================================================
+def lesson_infinite_series():
+    return {
+        "slug": "infinite-geometric-series",
+        "title": "Infinite Geometric Series",
+        "concreteComparison": (
+            "Walk half the distance to a wall, then half of what's left, then half again — "
+            "forever. Infinitely many steps, yet you never pass the wall: "
+            "$\\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\cdots = 1$ exactly. Some infinite "
+            "sums are finite numbers, and one booklet formula tells you which, and what they equal."
+        ),
+        "objective": (
+            "Decide when an infinite geometric series converges ($|r| < 1$), compute "
+            "$S_\\infty = \\frac{u_1}{1 - r}$, and convert recurring decimals to exact fractions."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.8.** Sum of infinite convergent geometric sequences. "
+            "**Papers 1 and 2**, SL and HL. A short-question staple, and the convergence "
+            "CONDITION is a favorite R-mark: quote $|r| < 1$ or lose a mark you knew.",
+            "Watch $S_n = \\dfrac{u_1(1 - r^n)}{1 - r}$ as $n$ grows. If $|r| < 1$, the term "
+            "$r^n$ dies — halving, halving, halving toward zero — and the sum settles at "
+            "$S_\\infty = \\dfrac{u_1}{1 - r}$. If $|r| \\ge 1$, the terms never shrink and the "
+            "sum runs away: no $S_\\infty$ exists. The formula is IN the booklet; the CONDITION "
+            "is the part examiners test.",
+            "Recurring decimals are infinite geometric series in disguise: "
+            "$0.\\overline{36} = 0.36 + 0.0036 + \\cdots$ with $u_1 = 0.36$, $r = 0.01$. So "
+            "$0.\\overline{36} = \\frac{0.36}{0.99} = \\frac{36}{99} = \\frac{4}{11}$ — an exact "
+            "fraction recovered from an endless decimal. This conversion is the classic Paper 1 "
+            "appearance of SL 1.8.",
+            "Exam questions run the formula both ways: given $u_1$ and $r$, find $S_\\infty$; "
+            "or given $S_\\infty$ and one of them, solve back for the other — one linear "
+            "equation. Always check the recovered $r$ satisfies $|r| < 1$, and SAY so."
+        ],
+        "keyIdea": (
+            "An infinite geometric sum exists exactly when $|r| < 1$ — then "
+            "$S_\\infty = \\frac{u_1}{1-r}$: the $r^n$ in the finite formula simply dies."
+        ),
+        "facts": [
+            {
+                "title": "Infinite sum",
+                "latex": "S_\\infty = \\frac{u_1}{1 - r}, \\quad |r| < 1",
+                "explanation": (
+                    "IN the formula booklet (SL 1.8) WITH the condition attached. Quoting "
+                    "$|r| < 1$ when you use it is a mark, not a courtesy."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-18-we1",
+                "statement": (
+                    "An infinite geometric series has first term $18$ and sum to infinity $24$.  \n"
+                    "**(a)** Find the common ratio $r$. **[3]**  \n"
+                    "**(b)** Find $u_3$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\dfrac{18}{1 - r} = 24$ *(M1 — booklet formula set equal)*. So "
+                    "$1 - r = \\dfrac{18}{24} = \\dfrac{3}{4}$ *(A1)*, giving $r = \\dfrac{1}{4}$; "
+                    "note $|r| < 1$ ✓ so the series does converge *(A1)*.  \n"
+                    "**(b)** $u_3 = 18 \\left(\\tfrac{1}{4}\\right)^2 = \\dfrac{18}{16} = "
+                    "\\dfrac{9}{8}$ *(M1 A1)*.  \n"
+                    "**Narrative:** solving BACK through the formula is one linear step — but the "
+                    "convergence check in (a) is a scoring line. Fractions stay exact on Paper 1: "
+                    "$\\frac{9}{8}$, not $1.125$… though here both are exact, the fraction is the "
+                    "cleaner citizen."
+                ),
+                "check": [
+                    "solve(18/(1 - r) - 24, r) == [Rational(1, 4)]",
+                    "Abs(Rational(1,4)) < 1",
+                    "18*Rational(1,4)**2 == Rational(9, 8)",
+                ],
+            },
+            {
+                "id": "ibsl-18-we2",
+                "statement": (
+                    "**Show that** the recurring decimal $0.\\overline{36} = 0.363636\\ldots$ "
+                    "equals $\\dfrac{4}{11}$. **[4]**"
+                ),
+                "solution": (
+                    "$0.\\overline{36} = 0.36 + 0.0036 + 0.000036 + \\cdots$ — geometric with "
+                    "$u_1 = 0.36$ and $r = 0.01$ *(M1 A1 — naming both)*. Since $|r| < 1$, "
+                    "$S_\\infty = \\dfrac{0.36}{1 - 0.01} = \\dfrac{0.36}{0.99}$ *(M1)* "
+                    "$= \\dfrac{36}{99} = \\dfrac{4}{11}$ ✓ *(A1)*.  \n"
+                    "**Narrative:** 'show that' with the target visible — your job is the "
+                    "journey: series form, $u_1$ and $r$ named, condition noted, formula, "
+                    "simplify. Every recurring block of length $k$ has $r = 10^{-k}$."
+                ),
+                "check": [
+                    "Rational(36,100)/(1 - Rational(1,100)) == Rational(4, 11)",
+                    "Rational(36, 99) == Rational(4, 11)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Applying $S_\\infty$ to a series with $r = 1.2$ 'because the formula gives a number'.",
+                "correction": "The formula's precondition is $|r| < 1$. With $|r| \\ge 1$ the sum diverges — no $S_\\infty$ exists.",
+                "authored": True,
+            },
+            {
+                "text": "Forgetting the negative case: thinking $r = -\\frac{1}{2}$ can't converge.",
+                "correction": "$|r| < 1$ includes negatives: $8 - 4 + 2 - 1 + \\cdots = \\frac{8}{1-(-1/2)} = \\frac{16}{3}$.",
+                "authored": True,
+            },
+            {
+                "text": "Writing $0.\\overline{36} = \\frac{36}{100}$ — reading one block as the whole tail.",
+                "correction": "The tail repeats forever: $\\frac{0.36}{1 - 0.01} = \\frac{36}{99}$. Denominator 99, not 100.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-18-t1",
+                "statement": "**Find** the exact value of $12 + 6 + 3 + 1.5 + \\cdots$ **[2]**",
+                "solution": (
+                    "$r = \\frac{1}{2}$, $|r| < 1$: $S_\\infty = \\dfrac{12}{1 - \\frac{1}{2}} = 24$ "
+                    "*(M1 A1)*. The whole infinite tail equals just one more first term, doubled."
+                ),
+                "check": ["Rational(6,12) == Rational(1,2)", "12/(1 - Rational(1,2)) == 24"],
+            },
+            {
+                "id": "ibsl-18-t2",
+                "statement": (
+                    "An infinite geometric series has $S_\\infty = 20$ and $u_1 = 15$. **Find** "
+                    "$r$, justifying that the series converges. **[3]**"
+                ),
+                "solution": (
+                    "$\\dfrac{15}{1-r} = 20 \\Rightarrow 1 - r = \\dfrac{3}{4} \\Rightarrow "
+                    "r = \\dfrac{1}{4}$ *(M1 A1)*. Since $\\left|\\frac{1}{4}\\right| < 1$, the "
+                    "series converges ✓ *(R1)* — the justification line carries its own mark."
+                ),
+                "check": ["solve(15/(1 - r) - 20, r) == [Rational(1, 4)]", "Abs(Rational(1,4)) < 1"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.8 · Papers 1 & 2",
+                    "title": "When forever adds up to a number",
+                    "body": (
+                        "Add infinitely many positive numbers and get… 24? If each term is a "
+                        "fixed FRACTION of the last, the leftovers shrink to nothing and the sum "
+                        "parks at a limit. One booklet formula — and one condition the examiner "
+                        "always probes."
+                    ),
+                },
+                {
+                    "kind": "expGraph",
+                    "eyebrow": "Watch the terms die",
+                    "title": "Decay: the engine of convergence",
+                    "teach": (
+                        "Step the base below 1 and the curve collapses toward zero — these are "
+                        "the TERMS $u_1 r^n$ of a converging series. Because they die fast "
+                        "enough, their running total can't escape: that's why $|r| < 1$ is the "
+                        "price of admission for $S_\\infty$."
+                    ),
+                    "config": {"mode": "growth", "a": 12, "b": 0.5, "interactive": True},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The formula",
+                    "title": "Kill the rⁿ",
+                    "beats": [
+                        "Finite: $S_n = \\frac{u_1(1 - r^n)}{1 - r}$. If $|r| < 1$, then $r^n \\to 0$ as $n \\to \\infty$.",
+                        "So $S_\\infty = \\dfrac{u_1}{1 - r}$, valid ONLY for $|r| < 1$. Booklet — condition included.",
+                        "$|r| \\ge 1$: terms never fade, sum runs away, $S_\\infty$ does not exist.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Solving backward through S∞", "problemId": "ibsl-18-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Convergence check",
+                    "title": "Who has an S∞?",
+                    "prompt": "Which series has a sum to infinity?",
+                    "options": [
+                        "$9 - 6 + 4 - \\frac{8}{3} + \\cdots$",
+                        "$1 + 1.1 + 1.21 + \\cdots$",
+                        "$2 + 2 + 2 + \\cdots$",
+                        "$1 - 1 + 1 - 1 + \\cdots$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Its ratio is $-\\frac{2}{3}$, and $\\left|-\\frac{2}{3}\\right| < 1$ ✓. "
+                        "The others have $r = 1.1$, $r = 1$, $r = -1$ — all $|r| \\ge 1$, all "
+                        "divergent (the last one oscillates forever)."
+                    ),
+                    "check": ["Abs(Rational(-6, 9)) < 1", "Rational(-6,9) == Rational(-2,3)", "Abs(Rational(11,10)) >= 1"],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Compute one",
+                    "title": "The halving series",
+                    "prompt": "$12 + 6 + 3 + \\cdots$ sums to:",
+                    "options": ["$24$", "$21$", "$\\infty$", "$23.9$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$S_\\infty = \\frac{12}{1 - 1/2} = 24$ exactly — not 'almost 24'. The "
+                        "limit IS the value of the infinite sum."
+                    ),
+                    "check": ["12/(1 - Rational(1,2)) == 24"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "A recurring decimal, captured", "problemId": "ibsl-18-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Decimal to fraction",
+                    "title": "Capture 0.777…",
+                    "prompt": "$0.\\overline{7} = 0.777\\ldots$ equals:",
+                    "options": ["$\\frac{7}{9}$", "$\\frac{7}{10}$", "$\\frac{7}{11}$", "$\\frac{77}{100}$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$u_1 = 0.7$, $r = 0.1$: $S_\\infty = \\frac{0.7}{0.9} = \\frac{7}{9}$. "
+                        "One-digit blocks always land on ninths."
+                    ),
+                    "check": ["Rational(7,10)/(1 - Rational(1,10)) == Rational(7, 9)"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Markscheme wisdom",
+                    "title": "The condition is a mark",
+                    "body": (
+                        "Whenever you invoke $S_\\infty$, write '$|r| < 1$, so the series "
+                        "converges'. When you SOLVE for $r$, verify the recovered value obeys it. "
+                        "This one sentence is among the cheapest marks in Topic 1 — and among "
+                        "the most-dropped."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Sum the halvings", "problemId": "ibsl-18-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Recover the ratio", "problemId": "ibsl-18-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.8 in four lines",
+                    "points": [
+                        "$S_\\infty = \\frac{u_1}{1-r}$, ONLY for $|r| < 1$ — formula and condition travel together.",
+                        "$|r| \\ge 1$: divergent, no sum — say so and stop.",
+                        "Recurring decimals: block of length $k$ → geometric with $r = 10^{-k}$ → exact fraction.",
+                        "Solving backward for $r$: one linear equation, then CHECK $|r| < 1$ aloud.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 9 — SL 1.9: The binomial theorem
+# ===========================================================================
+def lesson_binomial():
+    return {
+        "slug": "the-binomial-theorem",
+        "title": "The Binomial Theorem",
+        "concreteComparison": (
+            "Expanding $(x + 2)^8$ by multiplying eight brackets takes a page and one slip ruins "
+            "it. The binomial theorem reads any term straight off: the $x^5$ term is "
+            "$\\binom{8}{3} x^5 2^3 = 56 \\cdot 8 \\, x^5 = 448x^5$ — no page, no slips. "
+            "Pascal's triangle and $\\binom{n}{r}$ are the machine behind it."
+        ),
+        "objective": (
+            "Expand $(a + b)^n$ for $n \\in \\mathbb{N}$, compute $\\binom{n}{r}$ by formula, "
+            "Pascal's triangle or GDC, and extract a specific term without expanding everything."
+        ),
+        "concept": [
+            "**Syllabus card — SL 1.9.** The binomial theorem: expansion of $(a + b)^n$, "
+            "$n \\in \\mathbb{N}$; use of Pascal's triangle and $\\binom{n}{r}$. **Papers 1 and "
+            "2**, SL and HL (HL extends to fractional/negative $n$ in AHL 1.10). The general "
+            "term is the exam's workhorse: most questions ask for ONE coefficient, not the "
+            "whole expansion.",
+            "The theorem: $(a+b)^n = a^n + \\binom{n}{1}a^{n-1}b + \\binom{n}{2}a^{n-2}b^2 + "
+            "\\cdots + b^n$ — in the booklet. Each term $\\binom{n}{r} a^{n-r} b^{r}$ answers a "
+            "counting question: choosing $b$ from $r$ of the $n$ brackets can happen "
+            "$\\binom{n}{r}$ ways. The exponents always total $n$.",
+            "$\\binom{n}{r} = \\dfrac{n!}{r!(n-r)!}$ (booklet, printed in SL 1.9's row) — or row "
+            "$n$ of Pascal's triangle, where each entry is the sum of the two above. Symmetry "
+            "$\\binom{n}{r} = \\binom{n}{n-r}$ halves your work; your GDC's nCr button is legal "
+            "on Paper 2.",
+            "For a specific power, set up the general term and solve for $r$: in "
+            "$(2x - 3)^5$, the $x^3$ term needs $r = 2$, giving $\\binom{5}{2}(2x)^3(-3)^2 = "
+            "10 \\cdot 8x^3 \\cdot 9 = 720x^3$. The most-dropped marks in this code: forgetting "
+            "the coefficient INSIDE the bracket ($2^3$), and losing the SIGN of a negative $b$."
+        ],
+        "keyIdea": (
+            "One term of $(a+b)^n$ is $\\binom{n}{r} a^{n-r} b^r$ — count the ways, keep the "
+            "whole bracket (coefficient, sign and all) under each exponent."
+        ),
+        "facts": [
+            {
+                "title": "Binomial theorem",
+                "latex": "(a+b)^n = a^n + \\binom{n}{1}a^{n-1}b + \\cdots + \\binom{n}{r}a^{n-r}b^r + \\cdots + b^n",
+                "explanation": "IN the formula booklet (SL 1.9). Exponents in each term sum to $n$.",
+            },
+            {
+                "title": "The binomial coefficient",
+                "latex": "\\binom{n}{r} = \\frac{n!}{r!(n-r)!}",
+                "explanation": (
+                    "IN the formula booklet. Equivalent reads: row $n$ of Pascal's triangle; "
+                    "nCr on the GDC; symmetric, $\\binom{n}{r} = \\binom{n}{n-r}$."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-19-we1",
+                "statement": (
+                    "**(a)** Write down the row of Pascal's triangle for $n = 4$. **[1]**  \n"
+                    "**(b)** Hence expand $(x + 2)^4$, simplifying each term. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $1, 4, 6, 4, 1$ *(A1)*.  \n"
+                    "**(b)** $(x+2)^4 = x^4 + 4x^3(2) + 6x^2(2^2) + 4x(2^3) + 2^4$ *(M1 — "
+                    "powers of 2 rising as powers of $x$ fall)* $= x^4 + 8x^3 + 24x^2 + 32x + 16$ "
+                    "*(A2 — one mark lost per error)*.  \n"
+                    "**Narrative:** the Pascal row supplies the counts; the powers of $2$ do the "
+                    "rest. Check the sanity anchors: first term $x^4$, last term $2^4 = 16$, and "
+                    "at $x = 1$ the whole thing must equal $3^4 = 81$: "
+                    "$1 + 8 + 24 + 32 + 16 = 81$ ✓."
+                ),
+                "check": [
+                    "binomial(4,0) == 1", "binomial(4,1) == 4", "binomial(4,2) == 6",
+                    "expand((x + 2)**4) == x**4 + 8*x**3 + 24*x**2 + 32*x + 16",
+                    "1 + 8 + 24 + 32 + 16 == 81",
+                ],
+            },
+            {
+                "id": "ibsl-19-we2",
+                "statement": (
+                    "**Find** the coefficient of $x^3$ in the expansion of $(2x - 3)^5$. **[4]**"
+                ),
+                "solution": (
+                    "General term: $\\binom{5}{r}(2x)^{5-r}(-3)^r$ *(M1)*. For $x^3$: "
+                    "$5 - r = 3 \\Rightarrow r = 2$ *(A1)*. Term: $\\binom{5}{2}(2x)^3(-3)^2 = "
+                    "10 \\cdot 8x^3 \\cdot 9$ *(A1)* $= 720x^3$, so the coefficient is $720$ "
+                    "*(A1)*.  \n"
+                    "**Narrative:** three separate factors, three separate slips available: the "
+                    "count ($10$), the bracket's own power ($2^3 = 8$ — most-forgotten), the "
+                    "sign ($(-3)^2 = +9$ — here friendly, next time it won't be). Write all "
+                    "three before multiplying."
+                ),
+                "check": [
+                    "binomial(5, 2) == 10",
+                    "2**3 == 8",
+                    "(-3)**2 == 9",
+                    "expand((2*x - 3)**5).coeff(x, 3) == 720",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Expanding $(2x + 5)^4$ with plain $x$ powers: writing $\\binom{4}{1} x^3 \\cdot 5$.",
+                "correction": "The WHOLE bracket takes the power: $\\binom{4}{1}(2x)^3(5) = 4 \\cdot 8x^3 \\cdot 5 = 160x^3$.",
+                "authored": True,
+            },
+            {
+                "text": "Dropping the sign of a negative second term: the $x^2$ term of $(x - 2)^5$ as $+40x^2$.",
+                "correction": "$\\binom{5}{3}x^2(-2)^3 = 10 \\cdot (-8) x^2 = -80x^2$. Odd powers of a minus stay minus.",
+                "authored": True,
+            },
+            {
+                "text": "Answering with the full TERM ($720x^3$) when asked for the COEFFICIENT.",
+                "correction": "Coefficient = the number only: $720$. Read the demand word.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-19-t1",
+                "statement": "**Expand** $(x - 1)^5$, simplifying each term. **[3]**",
+                "solution": (
+                    "Row 5: $1,5,10,10,5,1$ with alternating signs from $(-1)^r$: "
+                    "$x^5 - 5x^4 + 10x^3 - 10x^2 + 5x - 1$ *(M1 A2)*. Sanity: at $x = 1$ the "
+                    "expansion gives $0 = (1-1)^5$ ✓."
+                ),
+                "check": [
+                    "expand((x - 1)**5) == x**5 - 5*x**4 + 10*x**3 - 10*x**2 + 5*x - 1",
+                    "1 - 5 + 10 - 10 + 5 - 1 == 0",
+                ],
+            },
+            {
+                "id": "ibsl-19-t2",
+                "statement": (
+                    "**Find** the term in $x^2$ in the expansion of $(3x + 1)^6$. **[3]**"
+                ),
+                "solution": (
+                    "$x^2$ needs $r = 4$: $\\binom{6}{4}(3x)^2(1)^4 = 15 \\cdot 9x^2 = 135x^2$ "
+                    "*(M1 A1 A1)*. 'The term' means the whole thing, $135x^2$ — not just $135$."
+                ),
+                "check": ["binomial(6, 4) == 15", "3**2 == 9", "expand((3*x + 1)**6).coeff(x, 2) == 135"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 1.9 · Papers 1 & 2",
+                    "title": "Expansion without the agony",
+                    "body": (
+                        "Eight brackets multiplied by hand is an accident report. The binomial "
+                        "theorem turns expansion into READING: a counting number from Pascal's "
+                        "triangle, falling powers of $a$, rising powers of $b$. Topic 1's "
+                        "capstone — and a bridge to the probability you'll meet in Topic 4."
+                    ),
+                },
+                {
+                    "kind": "pascalTriangle",
+                    "eyebrow": "The machine",
+                    "title": "Pascal's triangle, tap by tap",
+                    "teach": (
+                        "Each entry is the sum of the two above — build it, then flip modes to "
+                        "see the same numbers as $\\binom{n}{r}$ counts and as expansion "
+                        "coefficients. One triangle, three costumes."
+                    ),
+                    "config": {"mode": "expansion", "rows": 6},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The theorem",
+                    "title": "Read any term directly",
+                    "beats": [
+                        "$(a+b)^n = \\sum \\binom{n}{r} a^{n-r} b^r$ — booklet. Exponents always total $n$.",
+                        "$\\binom{n}{r} = \\frac{n!}{r!(n-r)!}$ — booklet; or Pascal row $n$; or GDC nCr.",
+                        "Why counts? Each term collects the ways of choosing $b$ from exactly $r$ brackets.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Pascal row, then expand", "problemId": "ibsl-19-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Coefficient fluency",
+                    "title": "Read the triangle",
+                    "prompt": "$\\binom{6}{2} =$",
+                    "options": ["$15$", "$30$", "$12$", "$20$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\frac{6!}{2! \\, 4!} = \\frac{6 \\cdot 5}{2} = 15$ — also row 6, entry "
+                        "2 of the triangle, and the same as $\\binom{6}{4}$ by symmetry."
+                    ),
+                    "check": ["binomial(6, 2) == 15", "binomial(6, 4) == 15"],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Whole-bracket discipline",
+                    "title": "The inside coefficient",
+                    "prompt": "The $x^2$ term of $(2x + 1)^4$ is:",
+                    "options": ["$24x^2$", "$6x^2$", "$12x^2$", "$8x^2$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\binom{4}{2}(2x)^2(1)^2 = 6 \\cdot 4x^2 = 24x^2$. Option B forgot "
+                        "that the 2 inside the bracket gets squared too."
+                    ),
+                    "check": ["binomial(4,2) == 6", "expand((2*x + 1)**4).coeff(x, 2) == 24"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "One coefficient, no full expansion", "problemId": "ibsl-19-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Sign discipline",
+                    "title": "Minus to an odd power",
+                    "prompt": "The coefficient of $x^4$ in $(x - 2)^5$ is:",
+                    "options": ["$-10$", "$10$", "$-5$", "$80$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$r = 1$: $\\binom{5}{1}x^4(-2)^1 = -10x^4$. The single factor of $-2$ "
+                        "keeps its sign — dropping it is the most common slip in this code."
+                    ),
+                    "check": ["expand((x - 2)**5).coeff(x, 4) == -10"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Three factors, written before multiplied",
+                    "body": (
+                        "For any single-term question write the general term "
+                        "$\\binom{n}{r}(ax)^{n-r}(b)^r$, solve the exponent equation for $r$, "
+                        "THEN evaluate the three factors on separate lines: count, bracket-power, "
+                        "sign-carrying power. The markscheme awards them separately — so earn "
+                        "them separately. Sanity check any full expansion at $x = 1$."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Alternating signs", "problemId": "ibsl-19-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "One term only", "problemId": "ibsl-19-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 1.9 in four lines",
+                    "points": [
+                        "$(a+b)^n$: term $r$ is $\\binom{n}{r}a^{n-r}b^r$ — exponents total $n$. Booklet.",
+                        "$\\binom{n}{r}$: factorial formula (booklet), Pascal row, or GDC — all the same number.",
+                        "Whole bracket to the power: $(2x)^3 = 8x^3$; signs ride with $b$.",
+                        "'Coefficient' = number only; 'term' = number times power. Read the demand.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Unit practice bank — 2 per subtopic, tagged with official IB codes
+# ===========================================================================
+def practice_bank():
+    return [
+        {
+            "id": "ibsl-na-p01",
+            "statement": "Write $\\dfrac{(3 \\times 10^4)(8 \\times 10^{-9})}{6 \\times 10^{-2}}$ in the form $a \\times 10^k$, $1 \\le a < 10$. **[3]**",
+            "solution": (
+                "Fronts: $\\frac{3 \\cdot 8}{6} = 4$ *(M1)*. Powers: $10^{4 + (-9) - (-2)} = 10^{-3}$ "
+                "*(A1)*. Answer: $4 \\times 10^{-3}$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.1", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(3*8, 6) == 4", "4 + (-9) - (-2) == -3"],
+        },
+        {
+            "id": "ibsl-na-p02",
+            "statement": "The Earth's mass is $5.97 \\times 10^{24}$ kg; the Moon's is $7.35 \\times 10^{22}$ kg. **Find** how many times heavier the Earth is, to 3 s.f. **[2]**",
+            "solution": (
+                "$\\dfrac{5.97 \\times 10^{24}}{7.35 \\times 10^{22}} = \\dfrac{5.97}{7.35} \\times 10^2 "
+                "\\approx 0.812 \\times 10^2 = 81.2$ times *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.1", "mono": True}, {"text": "P2"}],
+            "check": ["Abs(Rational(597, 735)*100 - 81.2) < 0.05"],
+        },
+        {
+            "id": "ibsl-na-p03",
+            "statement": "An arithmetic sequence has $u_1 = 7$ and $d = 4$. **(a)** Find $u_{25}$. **(b)** Find $S_{25}$. **[4]**",
+            "solution": (
+                "**(a)** $u_{25} = 7 + 24 \\cdot 4 = 103$ *(M1 A1)*. **(b)** $S_{25} = "
+                "\\frac{25}{2}(7 + 103) = \\frac{25}{2} \\cdot 110 = 1375$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.2", "mono": True}, {"text": "P1"}],
+            "check": ["7 + 24*4 == 103", "Rational(25,2)*(7 + 103) == 1375"],
+        },
+        {
+            "id": "ibsl-na-p04",
+            "statement": "In an arithmetic sequence, $u_5 = 20$ and $u_{12} = 41$. **Find** $S_{10}$. **[5]**",
+            "solution": (
+                "$u_{12} - u_5 = 7d = 21 \\Rightarrow d = 3$ *(M1 A1)*. $u_1 = 20 - 4 \\cdot 3 = 8$ "
+                "*(A1)*. $S_{10} = \\frac{10}{2}(2 \\cdot 8 + 9 \\cdot 3) = 5 \\cdot 43 = 215$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.2", "mono": True}, {"text": "P1"}],
+            "check": ["solve(20 + 7*d - 41, d) == [3]", "20 - 4*3 == 8", "5*(16 + 27) == 215"],
+        },
+        {
+            "id": "ibsl-na-p05",
+            "statement": "A geometric sequence has $u_1 = 200$ and $r = \\frac{1}{2}$. **Find** the exact value of $S_6$. **[3]**",
+            "solution": (
+                "$S_6 = \\dfrac{200\\left(1 - (1/2)^6\\right)}{1 - 1/2} = 400 \\cdot \\dfrac{63}{64} = "
+                "\\dfrac{1575}{4}$ *(M1 A1 A1)* — i.e. $393.75$."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.3", "mono": True}, {"text": "P1"}],
+            "check": ["200*(1 - Rational(1,2)**6)/(1 - Rational(1,2)) == Rational(1575, 4)"],
+        },
+        {
+            "id": "ibsl-na-p06",
+            "statement": "A geometric sequence has $u_2 = 12$ and $u_4 = 48$, with $r > 0$. **Find** $u_1$ and $S_5$. **[5]**",
+            "solution": (
+                "$\\frac{u_4}{u_2} = r^2 = 4 \\Rightarrow r = 2$ (given $r > 0$) *(M1 A1)*. "
+                "$u_1 = \\frac{12}{2} = 6$ *(A1)*. $S_5 = \\frac{6(2^5 - 1)}{2 - 1} = 186$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.3", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(48,12) == 4", "6*(2**5 - 1) == 186"],
+        },
+        {
+            "id": "ibsl-na-p07",
+            "statement": "₮$500{,}000$ is invested at $8\\%$ per year, compounded **monthly**. **Find** the value after 3 years, to the nearest tögrög. **[3]**",
+            "solution": (
+                "$FV = 500{,}000\\left(1 + \\frac{8}{1200}\\right)^{36}$ *(M1 A1)* "
+                "$\\approx ₮635{,}119$ *(A1)*. Per-month multiplier $1 + \\frac{0.08}{12}$, 36 months."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.4", "mono": True}, {"text": "P2"}],
+            "check": ["1 + Rational(8, 1200) == Rational(151, 150)", "floor(500000*Rational(151,150)**36) == 635118"],
+        },
+        {
+            "id": "ibsl-na-p08",
+            "statement": "A car bought for \\$$25{,}000$ depreciates at $18\\%$ per year. **Find** the first year at the end of which its value is below half the purchase price. **[4]**",
+            "solution": (
+                "Solve $(0.82)^n < 0.5$ *(M1)*. $(0.82)^3 \\approx 0.551 > 0.5$; $(0.82)^4 \\approx "
+                "0.452 < 0.5$ *(A1 A1)*. First time below half: end of year $4$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.4", "mono": True}, {"text": "P2"}],
+            "check": ["Rational(82,100)**4 < Rational(1,2)", "Rational(82,100)**3 > Rational(1,2)"],
+        },
+        {
+            "id": "ibsl-na-p09",
+            "statement": "Simplify $\\dfrac{(3^4)^2 \\cdot 3^{-3}}{3^2}$, giving your answer as $3^k$, and **write down** $\\log_3$ of your answer. **[4]**",
+            "solution": (
+                "$(3^4)^2 = 3^8$; numerator $3^{8-3} = 3^5$; divide: $3^{5-2} = 3^3$ *(M1 A1 A1)*. "
+                "$\\log_3 3^3 = 3$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.5", "mono": True}, {"text": "P1"}],
+            "check": ["(3**4)**2 == 3**8", "Rational(3**8 * 3**(-3), 3**2) == 3**3", "log(3**3, 3) == 3"],
+        },
+        {
+            "id": "ibsl-na-p10",
+            "statement": "**Write down** the exact values of $\\log_2 64$, $\\log_5 \\dfrac{1}{125}$, and $\\ln \\dfrac{1}{e}$. **[3]**",
+            "solution": (
+                "$2^6 = 64 \\Rightarrow 6$; $5^{-3} = \\frac{1}{125} \\Rightarrow -3$; "
+                "$\\ln e^{-1} = -1$ *(A1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.5", "mono": True}, {"text": "P1"}],
+            "check": ["2**6 == 64", "5**(-3) == Rational(1,125)", "log(exp(-1)) == -1"],
+        },
+        {
+            "id": "ibsl-na-p11",
+            "statement": "**Show that** the sum of any two consecutive odd numbers is a multiple of 4. **[4]**",
+            "solution": (
+                "Consecutive odds: $2n + 1$ and $2n + 3$ *(M1)*. Sum $= 4n + 4$ *(A1)* "
+                "$= 4(n + 1)$ *(A1)*. Since $n + 1 \\in \\mathbb{Z}$, the sum is a multiple of 4. "
+                "$\\blacksquare$ *(R1)*"
+            ),
+            "badges": [{"text": "ib-aa-sl-1.6", "mono": True}, {"text": "P1"}],
+            "check": ["expand((2*n + 1) + (2*n + 3)) == 4*n + 4", "expand(4*(n + 1)) == 4*n + 4"],
+        },
+        {
+            "id": "ibsl-na-p12",
+            "statement": "**Show that** $(n + 5)^2 - (n + 1)^2 = 8(n + 3)$ for all $n$. **[3]**",
+            "solution": (
+                "LHS $= (n^2 + 10n + 25) - (n^2 + 2n + 1)$ *(M1 A1)* $= 8n + 24 = 8(n + 3)$ = RHS ✓ "
+                "*(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.6", "mono": True}, {"text": "P1"}],
+            "check": ["expand((n + 5)**2 - (n + 1)**2) == 8*n + 24"],
+        },
+        {
+            "id": "ibsl-na-p13",
+            "statement": "Evaluate $64^{2/3} \\cdot 9^{-1/2}$ exactly. **[3]**",
+            "solution": (
+                "$64^{2/3} = (\\sqrt[3]{64})^2 = 16$ *(A1)*; $9^{-1/2} = \\frac{1}{3}$ *(A1)*. "
+                "Product: $\\frac{16}{3}$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.7", "mono": True}, {"text": "P1"}],
+            "check": ["64**Rational(2,3) == 16", "9**Rational(-1,2) == Rational(1,3)", "16*Rational(1,3) == Rational(16,3)"],
+        },
+        {
+            "id": "ibsl-na-p14",
+            "statement": "**Solve** $3^{2x-1} = 20$, giving $x$ exactly and to 3 s.f. **[4]**",
+            "solution": (
+                "Take logs: $(2x - 1)\\ln 3 = \\ln 20$ *(M1)*. $2x - 1 = \\frac{\\ln 20}{\\ln 3}$ "
+                "*(A1)*. $x = \\frac{1}{2}\\left(1 + \\frac{\\ln 20}{\\ln 3}\\right)$ *(A1)* "
+                "$\\approx 1.86$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.7", "mono": True}, {"text": "P1"}],
+            "check": ["Abs((1 + log(20)/log(3))/2 - 1.8633) < 0.001"],
+        },
+        {
+            "id": "ibsl-na-p15",
+            "statement": "An infinite geometric series has $u_1 = 24$ and $S_\\infty = 32$. **Find** $r$ and $u_2$. **[4]**",
+            "solution": (
+                "$\\frac{24}{1-r} = 32 \\Rightarrow 1 - r = \\frac{3}{4} \\Rightarrow r = \\frac{1}{4}$ "
+                "*(M1 A1)*, $|r| < 1$ ✓. $u_2 = 24 \\cdot \\frac{1}{4} = 6$ *(A1)*. (R1 for the "
+                "convergence remark.)"
+            ),
+            "badges": [{"text": "ib-aa-sl-1.8", "mono": True}, {"text": "P1"}],
+            "check": ["solve(24/(1 - r) - 32, r) == [Rational(1,4)]", "24*Rational(1,4) == 6"],
+        },
+        {
+            "id": "ibsl-na-p16",
+            "statement": "Express $0.\\overline{45} = 0.4545\\ldots$ as a fraction in lowest terms. **[3]**",
+            "solution": (
+                "$u_1 = 0.45$, $r = 0.01$, $|r| < 1$ *(M1)*: $S_\\infty = \\frac{45/100}{99/100} = "
+                "\\frac{45}{99}$ *(A1)* $= \\frac{5}{11}$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.8", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(45,100)/(1 - Rational(1,100)) == Rational(5, 11)"],
+        },
+        {
+            "id": "ibsl-na-p17",
+            "statement": "**Expand** $(2x + 1)^4$, simplifying each term. **[3]**",
+            "solution": (
+                "$\\binom{4}{r}(2x)^{4-r}$: $16x^4 + 32x^3 + 24x^2 + 8x + 1$ *(M1 A2)*. Check at "
+                "$x = 1$: $16+32+24+8+1 = 81 = 3^4$ ✓."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.9", "mono": True}, {"text": "P1"}],
+            "check": [
+                "expand((2*x + 1)**4) == 16*x**4 + 32*x**3 + 24*x**2 + 8*x + 1",
+                "16 + 32 + 24 + 8 + 1 == 81",
+            ],
+        },
+        {
+            "id": "ibsl-na-p18",
+            "statement": "**Find** the coefficient of $x^2$ in the expansion of $(3x - 2)^5$. **[4]**",
+            "solution": (
+                "General term $\\binom{5}{r}(3x)^{5-r}(-2)^r$; $x^2$ needs $r = 3$ *(M1 A1)*: "
+                "$\\binom{5}{3}(3x)^2(-2)^3 = 10 \\cdot 9x^2 \\cdot (-8) = -720x^2$ *(A1)*. "
+                "Coefficient: $-720$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.9", "mono": True}, {"text": "P1"}],
+            "check": ["binomial(5,3) == 10", "expand((3*x - 2)**5).coeff(x, 2) == -720"],
+        },
+    ]
+
+
+# ===========================================================================
+# Test-yourself bank — one exam-style question per subtopic
+# ===========================================================================
+def test_bank():
+    return [
+        {
+            "id": "ibsl-na-q01",
+            "statement": "Give $\\left(5 \\times 10^{-3}\\right)^2$ in the form $a \\times 10^k$, $1 \\le a < 10$. **[3]**",
+            "solution": (
+                "$(5 \\times 10^{-3})^2 = 25 \\times 10^{-6}$ *(M1 A1)* $= 2.5 \\times 10^{-5}$ "
+                "*(A1)* — re-normalize: 25 is out of range."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.1", "mono": True}],
+            "check": ["(5*10**(-3))**2 == 25*10**(-6)", "25*10**(-6) == Rational(25, 1000000)"],
+        },
+        {
+            "id": "ibsl-na-q02",
+            "statement": "The 4th term of an arithmetic sequence is $18$ and the 9th term is $43$. **Find** the first term and common difference, and evaluate $\\displaystyle\\sum_{r=1}^{15} u_r$. **[6]**",
+            "solution": (
+                "$5d = 25 \\Rightarrow d = 5$ *(M1 A1)*; $u_1 = 18 - 3 \\cdot 5 = 3$ *(A1)*. "
+                "$S_{15} = \\frac{15}{2}(2 \\cdot 3 + 14 \\cdot 5) = \\frac{15}{2} \\cdot 76 = 570$ "
+                "*(M1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.2", "mono": True}],
+            "check": ["solve(18 + 5*d - 43, d) == [5]", "18 - 3*5 == 3", "Rational(15,2)*(6 + 70) == 570"],
+        },
+        {
+            "id": "ibsl-na-q03",
+            "statement": "The 2nd term of a geometric sequence is $10$ and the 5th is $80$. **Find** $r$, $u_1$, and the smallest $n$ with $u_n > 1000$. **[6]**",
+            "solution": (
+                "$r^3 = 8 \\Rightarrow r = 2$ *(M1 A1)*; $u_1 = 5$ *(A1)*. $5 \\cdot 2^{n-1} > 1000 "
+                "\\Rightarrow 2^{n-1} > 200$ *(M1)*: $2^7 = 128$, $2^8 = 256$ *(A1)*, so $n - 1 = 8$, "
+                "$n = 9$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.3", "mono": True}],
+            "check": ["Rational(80,10) == 8", "5*2**8 > 1000", "5*2**7 < 1000"],
+        },
+        {
+            "id": "ibsl-na-q04",
+            "statement": "Which is worth more after 10 years: \\$$1000$ at $6\\%$ compounded yearly, or \\$$1000$ at $5.9\\%$ compounded monthly? **[4]**",
+            "solution": (
+                "Yearly: $1000(1.06)^{10} \\approx \\$1790.85$ *(M1 A1)*. Monthly: "
+                "$1000\\left(1 + \\frac{5.9}{1200}\\right)^{120} \\approx \\$1801.38$ *(A1)*. The "
+                "monthly option wins — frequency beats the small rate gap *(R1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.4", "mono": True}],
+            "check": [
+                "floor(1000*Rational(106,100)**10) == 1790",
+                "floor(1000*(1 + Rational(59, 12000))**120) == 1801",
+                "1000*(1 + Rational(59, 12000))**120 > 1000*Rational(106,100)**10",
+            ],
+        },
+        {
+            "id": "ibsl-na-q05",
+            "statement": "Given $2^a = 10$ and $\\log_2 5 = b$, **show that** $a = b + 1$. **[3]**",
+            "solution": (
+                "$a = \\log_2 10 = \\log_2 (5 \\cdot 2)$ *(M1)* $= \\log_2 5 + \\log_2 2$ *(A1)* "
+                "$= b + 1$ ✓ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.5", "mono": True}],
+            "check": ["simplify(log(10, 2) - (log(5, 2) + 1)) == 0"],
+        },
+        {
+            "id": "ibsl-na-q06",
+            "statement": "**Prove** that the product of any two even integers is a multiple of 4. **[4]**",
+            "solution": (
+                "Let the evens be $2m$ and $2n$, $m, n \\in \\mathbb{Z}$ *(M1)*. Product "
+                "$= 4mn$ *(A1 A1)*. Since $mn \\in \\mathbb{Z}$, the product is a multiple of 4. "
+                "$\\blacksquare$ *(R1)*"
+            ),
+            "badges": [{"text": "ib-aa-sl-1.6", "mono": True}],
+            "check": ["expand((2*m)*(2*n)) == 4*m*n"],
+        },
+        {
+            "id": "ibsl-na-q07",
+            "statement": "**Solve** $\\log_2 x + \\log_2 (x - 6) = 4$. **[5]**",
+            "solution": (
+                "Combine: $\\log_2 x(x-6) = 4$ *(M1)*, so $x^2 - 6x = 16$ *(A1)*, "
+                "$x^2 - 6x - 16 = 0$, $(x-8)(x+2) = 0$ *(A1)*: $x = 8$ or $x = -2$. Log inputs "
+                "must be positive: $x = -2$ makes $\\log_2 x$ undefined — reject *(R1)*. "
+                "$x = 8$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.7", "mono": True}],
+            "check": [
+                "solve(x**2 - 6*x - 16, x) == [-2, 8]",
+                "8*(8 - 6) == 16",
+                "2**4 == 16",
+            ],
+        },
+        {
+            "id": "ibsl-na-q08",
+            "statement": "The sum of an infinite geometric series is three times its first term. **Find** the common ratio. **[3]**",
+            "solution": (
+                "$\\frac{u_1}{1 - r} = 3u_1$ *(M1)*: $1 - r = \\frac{1}{3}$, so $r = \\frac{2}{3}$ "
+                "*(A1)*, and $\\left|\\frac{2}{3}\\right| < 1$ ✓ converges *(R1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.8", "mono": True}],
+            "check": ["solve(1/(1 - r) - 3, r) == [Rational(2, 3)]", "Abs(Rational(2,3)) < 1"],
+        },
+        {
+            "id": "ibsl-na-q09",
+            "statement": "**Find** the term independent of $x$ in the expansion of $\\left(x + \\dfrac{2}{x}\\right)^6$. **[5]**",
+            "solution": (
+                "General term: $\\binom{6}{r} x^{6-r} \\left(\\frac{2}{x}\\right)^r = \\binom{6}{r} "
+                "2^r x^{6-2r}$ *(M1 A1)*. Independent of $x$: $6 - 2r = 0 \\Rightarrow r = 3$ *(A1)*. "
+                "Term: $\\binom{6}{3} 2^3 = 20 \\cdot 8 = 160$ *(A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-1.9", "mono": True}],
+            "check": [
+                "solve(6 - 2*r, r) == [3]",
+                "binomial(6,3)*2**3 == 160",
+                "expand((x + 2/x)**6).coeff(x, 0) == 160",
+            ],
+        },
+    ]
+
+
+# ===========================================================================
+# Assembly
+# ===========================================================================
+def build():
+    lessons = [
+        lesson_standard_form(),
+        lesson_arithmetic(),
+        lesson_geometric(),
+        lesson_financial(),
+        lesson_exponents_logs(),
+        lesson_proof(),
+        lesson_log_laws(),
+        lesson_infinite_series(),
+        lesson_binomial(),
+    ]
+    unit = {
+        "slug": "number-and-algebra",
+        "title": "Number & Algebra",
+        "unit": 1,
+        "status": "published",
+        "blurb": (
+            "IB Topic 1, complete: standard form, arithmetic and geometric sequences, the "
+            "mathematics of money, exponents and logarithms, deductive proof, infinite series, "
+            "and the binomial theorem — every subtopic code from SL 1.1 to SL 1.9, taught to "
+            "markscheme standard."
+        ),
+        "buildsOn": (
+            "GCSE/MYP algebra: exponent basics, solving linear and quadratic equations, and "
+            "comfort with fractions. Every formula you're entitled to is flagged 'booklet' or "
+            "'memorize' as it appears."
+        ),
+        "lessons": lessons,
+        "practice": practice_bank(),
+        "testYourself": test_bank(),
+    }
+    return unit
+
+
+def selfcheck(unit):
+    from sympy import sympify
+    n_checks = 0
+    problems = []
+    for les in unit["lessons"]:
+        problems += les["workedExamples"] + les["tryIt"]
+        ids = {p["id"] for p in les["workedExamples"] + les["tryIt"]}
+        for step in les["interactive"]["steps"]:
+            if step["kind"] in ("worked", "tryIt"):
+                assert step["problemId"] in ids, f"{les['slug']}: dangling problemId {step['problemId']}"
+            if step["kind"] == "tapQuestion":
+                assert len(step["options"]) == len(set(step["options"])), f"{les['slug']}: dup options"
+                for c in step["check"]:
+                    assert bool(sympify(c)) is True, f"{les['slug']} tapQ: {c}"
+                    n_checks += 1
+    problems += unit["practice"] + unit["testYourself"]
+    ids = [p["id"] for p in problems]
+    assert len(ids) == len(set(ids)), "duplicate problem ids"
+    for p in problems:
+        for c in p["check"]:
+            assert bool(sympify(c)) is True, f"{p['id']}: NOT TRUE: {c}"
+            n_checks += 1
+    return len(problems), n_checks
+
+
+def main():
+    unit = build()
+    n_problems, n_checks = selfcheck(unit)
+    with open(OUT, "w") as fh:
+        json.dump(unit, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    n_steps = sum(len(l["interactive"]["steps"]) for l in unit["lessons"])
+    print(f"wrote {os.path.relpath(OUT, ROOT)}: {len(unit['lessons'])} lessons, "
+          f"{n_steps} interactive steps, {n_problems} problems, {n_checks} sympy checks OK")
+
+
+if __name__ == "__main__":
+    main()

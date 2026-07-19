@@ -203,6 +203,7 @@ import trigCircle from "@/data/genmath/trigonometry/radians-and-the-unit-circle.
 import trigGraphs from "@/data/genmath/trigonometry/graphs-of-trig-functions.json";
 import trigIdent from "@/data/genmath/trigonometry/identities-and-equations.json";
 import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json";
+import ibSlNumberAlgebra from "@/data/genmath/ib-sl/number-and-algebra.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1645,6 +1646,76 @@ export function getSolidGeoLesson(
 }
 
 // ---------------------------------------------------------------------------
+// IB Mathematics: Analysis & Approaches SL — /math/ib-sl
+// The IB course lives in the IB hub (/practice/ib) but rides the same course
+// machinery as the topic ladder. Units are the five official syllabus topics;
+// lessons are the official subtopic codes (SL 1.1–1.9 etc.), taught to
+// markscheme standard with formula-booklet flags. English-only by policy
+// (exam realism), like the SAT hub.
+// ---------------------------------------------------------------------------
+
+export const IB_SL_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "number-and-algebra",
+    title: "Number & Algebra",
+    blurb: "Standard form, sequences and series, money mathematics, exponents and logarithms, proof, infinite sums, and the binomial theorem — SL 1.1 to 1.9.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "functions",
+    title: "Functions",
+    blurb: "Function notation and graphs, transformations, quadratics, rationals, exponentials and logs as models — SL 2.1 to 2.11.",
+    buildsOn: "Topic 1's exponent and log machinery.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "geometry-and-trigonometry",
+    title: "Geometry & Trigonometry",
+    blurb: "3D geometry, the unit circle, identities, trig equations and graphs, sine and cosine rules — SL 3.1 to 3.8.",
+    buildsOn: "Functions and their transformations from Topic 2.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "statistics-and-probability",
+    title: "Statistics & Probability",
+    blurb: "Sampling, presenting data, correlation, probability laws, discrete and normal distributions — SL 4.1 to 4.12.",
+    buildsOn: "Counting ideas from the binomial theorem (SL 1.9).",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "calculus",
+    title: "Calculus",
+    blurb: "Limits, differentiation, tangents and optimization, integration and areas — SL 5.1 to 5.11.",
+    buildsOn: "Everything: functions, trig, and algebraic fluency.",
+    live: false,
+  },
+];
+
+const ibSlUnits: CourseUnit[] = [ibSlNumberAlgebra as unknown as CourseUnit];
+
+export function getIbSlSpine(): GeometrySpineEntry[] {
+  return IB_SL_SPINE;
+}
+
+export function getIbSlUnit(unitSlug: string): CourseUnit | null {
+  return ibSlUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getIbSlLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getIbSlUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Course size — total lessons per performance context. The DENOMINATOR of the
 // dashboard's per-course progress bar. Every authored lesson carries a
 // tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
@@ -1676,6 +1747,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
   "course:trigonometry": { spine: getTrigSpine, unit: getTrigUnit },
   "course:solid-geometry": { spine: getSolidGeoSpine, unit: getSolidGeoUnit },
+  "course:ib-sl": { spine: getIbSlSpine, unit: getIbSlUnit },
 };
 
 export function courseTotalLessons(context: string): number | null {
