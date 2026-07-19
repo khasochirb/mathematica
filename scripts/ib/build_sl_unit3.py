@@ -1,0 +1,2381 @@
+#!/usr/bin/env python3
+"""IB Mathematics: Analysis & Approaches SL — Unit 3 (Topic 3: Geometry & Trigonometry).
+
+Builds data/genmath/ib-sl/geometry-and-trigonometry.json: eight lessons, one
+per official subtopic code SL 3.1–3.8, same anatomy as Units 1–2 (syllabus
+cards, booklet flags, M/A/R markscheme + narrative solutions, interactive
+widgets, sympy check[] everywhere). Banks tagged ib-aa-sl-3.x.
+
+Run: python3 scripts/ib/build_sl_unit3.py   (then npm run verify:genmath)
+"""
+import json
+import os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT = os.path.join(ROOT, "data", "genmath", "ib-sl", "geometry-and-trigonometry.json")
+
+
+# ===========================================================================
+# Lesson 1 — SL 3.1: 3D distance/midpoint; volumes & surface areas; angles
+# ===========================================================================
+def lesson_3d_geometry():
+    return {
+        "slug": "three-dimensional-geometry",
+        "title": "3D Geometry: Distance, Solids & Angles",
+        "concreteComparison": (
+            "A drone at $(5, 7, 2)$ and its pilot at $(1, 4, -10)$ — how far apart? Pythagoras, "
+            "run twice, says exactly $13$ m: the 2D distance formula grows one more square and "
+            "handles all of space."
+        ),
+        "objective": (
+            "Compute distances and midpoints in three dimensions, use the booklet's volume and "
+            "surface-area formulas for pyramids, cones, spheres and combinations, and find the "
+            "angle between a line and a plane."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.1.** The distance between two points in 3D and their "
+            "midpoint; volume and surface area of right pyramids, right cones, spheres, "
+            "hemispheres, and COMBINATIONS of solids; the angle between two intersecting lines "
+            "or between a line and a plane. **Papers 1 and 2**. All the solid formulas are IN "
+            "the booklet — the skill is picking the right one and the right triangle.",
+            "Distance in 3D is Pythagoras twice: $d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + "
+            "(z_2-z_1)^2}$ — in the booklet. The midpoint averages each coordinate separately. "
+            "Nothing about the third dimension changes the logic; it just adds a term.",
+            "The solid library (booklet, SL 3.1): pyramid $V = \\frac{1}{3}Ah$ ($A$ = base "
+            "area); cone $V = \\frac{1}{3}\\pi r^2 h$, curved surface $\\pi r l$ ($l$ = slant); "
+            "sphere $V = \\frac{4}{3}\\pi r^3$, surface $4\\pi r^2$. Combination solids "
+            "(hemisphere on a cylinder, cone in a cube) decompose into these — add volumes, but "
+            "be careful with surface areas: glued faces disappear.",
+            "The angle between a line and a plane is measured to the line's PROJECTION onto the "
+            "plane — in practice: drop a perpendicular, build the right triangle, use "
+            "$\\tan\\theta = \\frac{\\text{height}}{\\text{footprint}}$. In a pyramid, the "
+            "classic triangle runs apex → base-centre → base-corner, and its horizontal leg is "
+            "the HALF-DIAGONAL, not the half-side. Identifying that triangle IS the method mark."
+        ],
+        "keyIdea": (
+            "3D questions are 2D questions wearing one more coordinate: find the right "
+            "right-triangle, and every angle and length falls to Pythagoras and SOH-CAH-TOA."
+        ),
+        "facts": [
+            {
+                "title": "Distance & midpoint in 3D",
+                "latex": "d = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}",
+                "explanation": "IN the booklet (SL 3.1). Midpoint: average each coordinate.",
+            },
+            {
+                "title": "The solid library",
+                "latex": "V_{pyr} = \\tfrac{1}{3}Ah, \\quad V_{cone} = \\tfrac{1}{3}\\pi r^2 h, \\quad A_{cone} = \\pi r l, \\quad V_{sph} = \\tfrac{4}{3}\\pi r^3, \\quad A_{sph} = 4\\pi r^2",
+                "explanation": "ALL in the booklet (SL 3.1). Combinations: add volumes; glued faces leave the surface count.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-31-we1",
+                "statement": (
+                    "Points $A(1, 4, -10)$ and $B(5, 7, 2)$ are given.  \n"
+                    "**(a)** Find the distance $AB$. **[2]**  \n"
+                    "**(b)** Find the coordinates of the midpoint of $[AB]$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $AB = \\sqrt{4^2 + 3^2 + 12^2} = \\sqrt{169} = 13$ *(M1 A1)*.  \n"
+                    "**(b)** Average each coordinate: $\\left(3, \\dfrac{11}{2}, -4\\right)$ "
+                    "*(M1 A1)*.  \n"
+                    "**Narrative:** the differences $4, 3, 12$ form a Pythagorean quadruple — "
+                    "the IB loves clean numbers, so a whole-number distance is a good omen, not "
+                    "a coincidence. Midpoints never need the distance; don't compute what the "
+                    "question didn't ask."
+                ),
+                "check": [
+                    "sqrt((5-1)**2 + (7-4)**2 + (2-(-10))**2) == 13",
+                    "Rational(1 + 5, 2) == 3",
+                    "Rational(4 + 7, 2) == Rational(11, 2)",
+                    "Rational(-10 + 2, 2) == -4",
+                ],
+            },
+            {
+                "id": "ibsl-31-we2",
+                "statement": (
+                    "A right pyramid has a square base of side $6$ cm and height $7$ cm.  \n"
+                    "**(a)** Find its volume. **[2]**  \n"
+                    "**(b)** Find the angle between a slant edge and the base, to the nearest "
+                    "$0.1°$. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $V = \\frac{1}{3} \\cdot 6^2 \\cdot 7 = 84$ cm³ *(M1 A1)*.  \n"
+                    "**(b)** The right triangle: apex $\\to$ base-centre $\\to$ base-corner. "
+                    "Horizontal leg = half the base DIAGONAL: $\\frac{1}{2}\\sqrt{6^2 + 6^2} = "
+                    "3\\sqrt{2}$ *(M1 A1)*. Then $\\tan\\theta = \\dfrac{7}{3\\sqrt{2}}$ *(M1)*, "
+                    "so $\\theta = \\arctan\\dfrac{7}{3\\sqrt{2}} \\approx 58.8°$ *(A1)*.  \n"
+                    "**Narrative:** the trap is using the half-SIDE (3) instead of the "
+                    "half-diagonal ($3\\sqrt{2} \\approx 4.24$) — that's the angle to the "
+                    "slant FACE, a different question. Name your triangle's three corners "
+                    "before computing and the examiner follows you."
+                ),
+                "check": [
+                    "Rational(1,3)*6**2*7 == 84",
+                    "sqrt(6**2 + 6**2)/2 == 3*sqrt(2)",
+                    "Abs(atan(7/(3*sqrt(2))) - 1.02593) < 0.001",
+                    "Abs(deg(atan(7/(3*sqrt(2)))) - 58.78) < 0.05",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Pyramid volume without the $\\frac{1}{3}$: $V = Ah$.",
+                "correction": "A pyramid is a third of its prism: $V = \\frac{1}{3}Ah$. The formula is in the booklet — copy it.",
+                "authored": True,
+            },
+            {
+                "text": "Using the half-side instead of the half-diagonal for a slant-EDGE angle.",
+                "correction": "Slant edge → corner → the horizontal run is half the DIAGONAL, $\\frac{s\\sqrt{2}}{2}$. Half-side pairs with the slant face.",
+                "authored": True,
+            },
+            {
+                "text": "Adding full surface areas of glued solids (hemisphere on cylinder) and double-counting the joint.",
+                "correction": "Glued faces vanish from the outside: count only exposed surfaces.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-31-t1",
+                "statement": (
+                    "Find the exact volume and surface area of a sphere of radius $3$ cm. **[3]**"
+                ),
+                "solution": (
+                    "$V = \\frac{4}{3}\\pi \\cdot 27 = 36\\pi$ cm³ *(M1 A1)*; "
+                    "$A = 4\\pi \\cdot 9 = 36\\pi$ cm² *(A1)*. (Radius 3 is the one sphere where "
+                    "the two numbers coincide — a favorite IB curiosity.)"
+                ),
+                "check": ["Rational(4,3)*3**3 == 36", "4*3**2 == 36"],
+            },
+            {
+                "id": "ibsl-31-t2",
+                "statement": (
+                    "A cone has radius $3$ cm and height $4$ cm. Find its slant height, exact "
+                    "volume, and exact curved surface area. **[4]**"
+                ),
+                "solution": (
+                    "Slant: $l = \\sqrt{9 + 16} = 5$ *(A1)*. $V = \\frac{1}{3}\\pi \\cdot 9 "
+                    "\\cdot 4 = 12\\pi$ cm³ *(M1 A1)*. Curved surface: $\\pi r l = 15\\pi$ cm² "
+                    "*(A1)*."
+                ),
+                "check": ["sqrt(3**2 + 4**2) == 5", "Rational(1,3)*9*4 == 12", "3*5 == 15"],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.1 · Papers 1 & 2",
+                    "title": "Space is Pythagoras, twice",
+                    "body": (
+                        "Topic 3 opens in full 3D: distances between space coordinates, the "
+                        "volumes the booklet hands you, and the angles hiding inside solids. "
+                        "Every hard-looking 3D question collapses to one well-chosen right "
+                        "triangle."
+                    ),
+                },
+                {
+                    "kind": "solid3d",
+                    "eyebrow": "Meet the solid",
+                    "title": "A pyramid you can measure",
+                    "teach": (
+                        "A right pyramid: square base, apex above the centre. The exam's "
+                        "favorite triangle runs apex → centre → corner — its legs are the "
+                        "HEIGHT and the HALF-DIAGONAL. Find it here before you meet it on "
+                        "paper."
+                    ),
+                    "config": {"solid": "pyramid", "base": 6, "h": 7},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The library",
+                    "title": "What the booklet hands you",
+                    "beats": [
+                        "3D distance $\\sqrt{\\Delta x^2 + \\Delta y^2 + \\Delta z^2}$; midpoint = coordinate averages.",
+                        "Pyramid $\\frac{1}{3}Ah$ · cone $\\frac{1}{3}\\pi r^2 h$, curved $\\pi r l$ · sphere $\\frac{4}{3}\\pi r^3$, surface $4\\pi r^2$ — all printed.",
+                        "Combinations: volumes ADD; glued faces leave the surface tally.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Distance and midpoint in space", "problemId": "ibsl-31-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Distance check",
+                    "title": "One more square",
+                    "prompt": "The distance from $(0, 0, 0)$ to $(2, 3, 6)$ is:",
+                    "options": ["$7$", "$11$", "$\\sqrt{13}$", "$5$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$. Option C forgot the $z$-term — "
+                        "the 2D reflex is the error to unlearn."
+                    ),
+                    "check": ["sqrt(2**2 + 3**2 + 6**2) == 7"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Volume, then the slant-edge angle", "problemId": "ibsl-31-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Solid fluency",
+                    "title": "The hemisphere bowl",
+                    "prompt": "A hemisphere has radius $6$. Its volume is:",
+                    "options": ["$144\\pi$", "$288\\pi$", "$72\\pi$", "$36\\pi$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Half a sphere: $\\frac{1}{2} \\cdot \\frac{4}{3}\\pi \\cdot 216 = "
+                        "144\\pi$. Option B forgot to halve."
+                    ),
+                    "check": ["Rational(1,2)*Rational(4,3)*6**3 == 144"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Method habit",
+                    "title": "Name the triangle",
+                    "body": (
+                        "Every 3D angle question: write the three points of your right triangle "
+                        "('apex $V$, centre $O$, corner $A$'), state which legs are which, THEN "
+                        "compute. The naming line is where the method mark lives — and where "
+                        "half-side/half-diagonal confusions die before they cost you."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "The 36π sphere", "problemId": "ibsl-31-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "A 3-4-5 cone", "problemId": "ibsl-31-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.1 in four lines",
+                    "points": [
+                        "3D distance: Pythagoras with three squares. Midpoint: average everything.",
+                        "Pyramid/cone carry $\\frac{1}{3}$; sphere formulas are printed — copy, don't recall.",
+                        "Combination solids: add volumes, drop glued faces from surface area.",
+                        "Angles in solids: name the right triangle first (edge ↔ half-diagonal!).",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 2 — SL 3.2: Right-triangle trig; sine rule, cosine rule, area
+# ===========================================================================
+def lesson_triangle_rules():
+    return {
+        "slug": "triangle-trigonometry-and-the-rules",
+        "title": "Triangle Trig: SOH-CAH-TOA, Sine & Cosine Rules",
+        "concreteComparison": (
+            "Surveyors never climb the mountain: one baseline, two angles, and the sine rule "
+            "hands them the height. Three formulas — sine rule, cosine rule, area rule — "
+            "solve EVERY triangle that can be solved, and all three are printed in your booklet."
+        ),
+        "objective": (
+            "Solve right triangles with the three ratios; solve any triangle with the sine and "
+            "cosine rules; compute areas with $\\frac{1}{2}ab\\sin C$; choose the right tool "
+            "from the given information."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.2.** Use of sine, cosine and tangent ratios to find sides "
+            "and angles of right-angled triangles; the sine rule $\\frac{a}{\\sin A} = "
+            "\\frac{b}{\\sin B} = \\frac{c}{\\sin C}$; the cosine rule $c^2 = a^2 + b^2 - "
+            "2ab\\cos C$; area $= \\frac{1}{2}ab\\sin C$. All three IN the booklet. **Papers 1 "
+            "and 2** — a near-certain appearance every session.",
+            "Right triangles first: label sides RELATIVE TO the angle (opposite, adjacent, "
+            "hypotenuse) and pick the ratio containing your two named sides — SOH-CAH-TOA. "
+            "Finding an angle runs the ratio backward through $\\sin^{-1}, \\cos^{-1}, "
+            "\\tan^{-1}$.",
+            "General triangles: the naming convention is side $a$ OPPOSITE angle $A$. The SINE "
+            "rule pairs opposites — use it when you own a complete opposite pair (side + its "
+            "angle). The COSINE rule owns the other cases: two sides with the INCLUDED angle "
+            "(find the third side), or all three sides (find any angle, via the rearranged "
+            "$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$, also printed).",
+            "Area $= \\frac{1}{2}ab\\sin C$ needs two sides and the INCLUDED angle — the "
+            "$\\sin C$ is what shrinks the parallelogram $ab$ down to the true area. Tool "
+            "choice in one line: opposite pair ⇒ sine rule; two-sides-plus-included or "
+            "three-sides ⇒ cosine rule; area ⇒ the half-absinC."
+        ],
+        "keyIdea": (
+            "Match the tool to the given data: an opposite side–angle pair calls the sine "
+            "rule; SAS or SSS calls the cosine rule; SAS wanting area calls "
+            "$\\frac{1}{2}ab\\sin C$."
+        ),
+        "facts": [
+            {
+                "title": "Sine rule",
+                "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+                "explanation": "IN the booklet (SL 3.2). Pairs each side with its OPPOSITE angle.",
+            },
+            {
+                "title": "Cosine rule",
+                "latex": "c^2 = a^2 + b^2 - 2ab\\cos C \\quad\\iff\\quad \\cos C = \\frac{a^2 + b^2 - c^2}{2ab}",
+                "explanation": "Both directions IN the booklet. SAS finds the side; SSS finds the angle.",
+            },
+            {
+                "title": "Area of any triangle",
+                "latex": "A = \\tfrac{1}{2}ab\\sin C",
+                "explanation": "IN the booklet. Two sides and the INCLUDED angle between them.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-32-we1",
+                "statement": (
+                    "In triangle $PQR$, $PQ = 5$, $QR = 8$, and the included angle "
+                    "$\\hat{Q} = 60°$.  \n"
+                    "**(a)** Find $PR$. **[3]**  \n"
+                    "**(b)** Find the exact area of the triangle. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Two sides + included angle ⇒ cosine rule *(the choice is M1)*: "
+                    "$PR^2 = 5^2 + 8^2 - 2(5)(8)\\cos 60° = 25 + 64 - 80 \\cdot \\frac{1}{2} = "
+                    "49$ *(A1)*, so $PR = 7$ *(A1)*.  \n"
+                    "**(b)** $A = \\frac{1}{2}(5)(8)\\sin 60° = 20 \\cdot \\frac{\\sqrt{3}}{2} "
+                    "= 10\\sqrt{3}$ *(M1 A1)*.  \n"
+                    "**Narrative:** $\\cos 60° = \\frac{1}{2}$ keeps everything exact — Paper 1 "
+                    "picks angles from the exact-value table on purpose. 'Exact' in (b) forbids "
+                    "$17.3$: the $\\sqrt{3}$ stays."
+                ),
+                "check": [
+                    "5**2 + 8**2 - 2*5*8*cos(pi/3) == 49",
+                    "sqrt(49) == 7",
+                    "Rational(1,2)*5*8*sin(pi/3) == 10*sqrt(3)",
+                ],
+            },
+            {
+                "id": "ibsl-32-we2",
+                "statement": (
+                    "In triangle $ABC$, $\\hat{A} = 40°$, $\\hat{B} = 75°$, and $a = 8$ cm.  \n"
+                    "**(a)** **Write down** $\\hat{C}$. **[1]**  \n"
+                    "**(b)** Find $b$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $\\hat{C} = 180° - 40° - 75° = 65°$ *(A1)*.  \n"
+                    "**(b)** Opposite pair $(a, A)$ is complete ⇒ sine rule *(M1)*: "
+                    "$\\dfrac{b}{\\sin 75°} = \\dfrac{8}{\\sin 40°}$ *(A1)*, so "
+                    "$b = \\dfrac{8\\sin 75°}{\\sin 40°} \\approx 12.0$ cm *(A1)*.  \n"
+                    "**Narrative:** the sine rule is a proportion — write it with the unknown "
+                    "top-left and one multiplication finishes it. Degrees mode on the GDC: the "
+                    "silent killer of correct methods."
+                ),
+                "check": [
+                    "180 - 40 - 75 == 65",
+                    "Abs(8*sin(rad(75))/sin(rad(40)) - 12.021) < 0.01",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Using the cosine rule with a NON-included angle in the $-2ab\\cos C$ slot.",
+                "correction": "The angle in the cosine rule sits BETWEEN the two sides — and opposite the side you're finding.",
+                "authored": True,
+            },
+            {
+                "text": "Area $\\frac{1}{2}ab\\sin C$ with any convenient angle.",
+                "correction": "The angle must be INCLUDED between the two sides used. Wrong angle, wrong parallelogram.",
+                "authored": True,
+            },
+            {
+                "text": "GDC in radians mode while typing degrees.",
+                "correction": "Check the mode indicator before the first trig key of every paper. $\\sin 40$ in radians is nonsense here.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-32-t1",
+                "statement": (
+                    "A ladder leans at $70°$ to the ground, reaching a wall $8$ m up. Find the "
+                    "ladder's length to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "Opposite (8) and hypotenuse (L) relative to $70°$: $\\sin 70° = \\frac{8}{L}$ "
+                    "*(M1 A1)*, so $L = \\frac{8}{\\sin 70°} \\approx 8.51$ m *(A1)*."
+                ),
+                "check": ["Abs(8/sin(rad(70)) - 8.513) < 0.005"],
+            },
+            {
+                "id": "ibsl-32-t2",
+                "statement": (
+                    "A triangle has sides $5$, $6$, $7$. Find the largest angle, to the nearest "
+                    "$0.1°$. **[4]**"
+                ),
+                "solution": (
+                    "Largest angle faces the longest side (7) *(R1)*. Cosine rule rearranged: "
+                    "$\\cos\\theta = \\dfrac{5^2 + 6^2 - 7^2}{2 \\cdot 5 \\cdot 6} = "
+                    "\\dfrac{12}{60} = \\dfrac{1}{5}$ *(M1 A1)*. $\\theta = \\cos^{-1}(0.2) "
+                    "\\approx 78.5°$ *(A1)*."
+                ),
+                "check": [
+                    "Rational(5**2 + 6**2 - 7**2, 2*5*6) == Rational(1, 5)",
+                    "Abs(deg(acos(Rational(1,5))) - 78.46) < 0.05",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.2 · Papers 1 & 2",
+                    "title": "Three formulas solve every triangle",
+                    "body": (
+                        "Right triangles yield to SOH-CAH-TOA; every other triangle yields to "
+                        "the sine rule, the cosine rule, or both. All printed in your booklet — "
+                        "the exam tests the CHOICE, not the memory."
+                    ),
+                },
+                {
+                    "kind": "trigRatios",
+                    "eyebrow": "The ratios, live",
+                    "title": "SOH-CAH-TOA on a steerable triangle",
+                    "teach": (
+                        "Step the angle θ and watch all three ratios update. Opposite and "
+                        "adjacent are ROLES relative to θ, not fixed sides — steer and see "
+                        "them trade places as the triangle reshapes."
+                    ),
+                    "config": {"start": 35},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Tool choice",
+                    "title": "Read the givens, pick the rule",
+                    "beats": [
+                        "Complete OPPOSITE pair (side + its angle)? Sine rule: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B}$.",
+                        "Two sides + INCLUDED angle, or three sides? Cosine rule (forward for the side, rearranged for the angle).",
+                        "Area from SAS: $\\frac{1}{2}ab\\sin C$ — included angle only.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Cosine rule, then exact area", "problemId": "ibsl-32-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Tool check",
+                    "title": "Which rule fires?",
+                    "prompt": "Given $\\hat{A} = 50°$, $a = 9$, $b = 7$, to find $\\hat{B}$ you should use:",
+                    "options": ["The sine rule", "The cosine rule", "SOH-CAH-TOA", "The area formula"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The opposite pair $(a, A)$ is complete and $b$ faces the target angle "
+                        "— a pure sine-rule setup: $\\frac{\\sin B}{7} = \\frac{\\sin 50°}{9}$."
+                    ),
+                    "check": ["Abs(deg(asin(7*sin(rad(50))/9)) - 36.6) < 0.1"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Sine rule from two angles", "problemId": "ibsl-32-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Exact-area fluency",
+                    "title": "The included angle at work",
+                    "prompt": "A triangle has sides $6$ and $10$ with included angle $30°$. Its area is:",
+                    "options": ["$15$", "$30$", "$15\\sqrt{3}$", "$60$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\frac{1}{2}(6)(10)\\sin 30° = 30 \\cdot \\frac{1}{2} = 15$. "
+                        "$\\sin 30° = \\frac{1}{2}$ — exact-value table, no calculator needed."
+                    ),
+                    "check": ["Rational(1,2)*6*10*sin(pi/6) == 15"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Draw, label, mode-check",
+                    "body": (
+                        "Three habits worth a mark a question: sketch the triangle and LABEL "
+                        "sides opposite their angles ($a$ faces $A$); write the rule you chose "
+                        "before substituting; glance at the GDC's degree/radian indicator. "
+                        "Longest side faces largest angle — use it to sanity-check every answer."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "The leaning ladder", "problemId": "ibsl-32-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Largest angle of 5-6-7", "problemId": "ibsl-32-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.2 in four lines",
+                    "points": [
+                        "Right triangle: SOH-CAH-TOA, sides named relative to the angle.",
+                        "Opposite pair known ⇒ sine rule. SAS/SSS ⇒ cosine rule. All in the booklet.",
+                        "Area $= \\frac{1}{2}ab\\sin C$ — included angle only.",
+                        "Sketch, label, and check the degree mode before anything else.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 3 — SL 3.3: Applications: elevation, depression, bearings
+# ===========================================================================
+def lesson_applications():
+    return {
+        "slug": "elevation-depression-and-bearings",
+        "title": "Applications: Elevation, Depression & Bearings",
+        "concreteComparison": (
+            "A pilot reports 'bearing 070°, then 160°' — two legs of a journey that happen to "
+            "meet at a perfect right angle ($160° - 70° = 90°$). Real IB trig lives in these "
+            "stories: your first job is never the formula, it's the DIAGRAM."
+        ),
+        "objective": (
+            "Translate word problems into labelled diagrams; use angles of elevation and "
+            "depression; work with three-figure bearings; then apply the Topic 3.2 toolkit."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.3.** Applications of right and non-right angled "
+            "trigonometry: angles of elevation and depression, and the construction of labelled "
+            "diagrams from written statements. **Mostly Paper 2.** The markscheme routinely "
+            "reserves a mark for the correct diagram — drawing IS mathematics here.",
+            "ELEVATION is measured UP from the horizontal; DEPRESSION is measured DOWN from the "
+            "horizontal. Because the two horizontals are parallel, the angle of depression from "
+            "the cliff-top equals the angle of elevation from the boat — alternate angles. Both "
+            "always attach to the HORIZONTAL, never to the wall or the slope.",
+            "BEARINGS are three-figure clockwise-from-north angles: $070°$, not $70°$; north is "
+            "$000°$. To diagram a bearing journey: draw a north arrow at EVERY vertex, measure "
+            "clockwise, and hunt the triangle's interior angles using parallel north lines "
+            "(co-interior angles summing to $180°$ do most of the work).",
+            "The solution pipeline for every SL 3.3 question: (1) draw and label the diagram "
+            "from the words; (2) identify the triangle and what's known; (3) choose the tool "
+            "(SOH-CAH-TOA / sine rule / cosine rule); (4) compute; (5) answer the actual "
+            "question asked — often a bearing or a distance, in context, with units."
+        ],
+        "keyIdea": (
+            "Diagram first, formula second. Elevation/depression attach to the horizontal; "
+            "bearings are three digits clockwise from a north arrow you must draw at every "
+            "vertex."
+        ),
+        "facts": [
+            {
+                "title": "Elevation & depression",
+                "latex": "\\text{both measured from the HORIZONTAL; depression down} = \\text{elevation up (alternate angles)}",
+                "explanation": "NOT in the booklet — a diagram convention. The horizontal line is always part of the picture.",
+            },
+            {
+                "title": "Bearings",
+                "latex": "\\text{three figures, clockwise from north: } 070°, \\; 160°, \\; 305°",
+                "explanation": "NOT in the booklet. North arrow at every vertex; parallel norths give co-interior angles.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-33-we1",
+                "statement": (
+                    "From a point $50$ m from the base of a tower, on level ground, the angle "
+                    "of elevation of the top is $32°$.  \n"
+                    "**(a)** Find the height of the tower, to 3 s.f. **[3]**  \n"
+                    "**(b)** From the TOP of the tower, **write down** the angle of depression "
+                    "of the point. **[1]**"
+                ),
+                "solution": (
+                    "**(a)** Right triangle: opposite $h$, adjacent $50$: $\\tan 32° = "
+                    "\\frac{h}{50}$ *(M1 A1)*, so $h = 50\\tan 32° \\approx 31.2$ m *(A1)*.  \n"
+                    "**(b)** $32°$ *(A1)* — alternate angles between the two horizontals.  \n"
+                    "**Narrative:** (b) is a one-mark gift for knowing the convention: "
+                    "depression from the top = elevation from the bottom, ALWAYS. No "
+                    "computation, just the parallel-lines picture."
+                ),
+                "check": [
+                    "Abs(50*tan(rad(32)) - 31.24) < 0.01",
+                    "32 == 32",
+                ],
+            },
+            {
+                "id": "ibsl-33-we2",
+                "statement": (
+                    "A ship sails $10$ km from port $O$ on a bearing of $070°$, then $8$ km on "
+                    "a bearing of $160°$ to reach point $B$.  \n"
+                    "**(a)** Show that the angle between the two legs of the journey is "
+                    "$90°$. **[2]**  \n"
+                    "**(b)** Find the distance $OB$. **[2]**  \n"
+                    "**(c)** Find the bearing of $B$ from $O$, to the nearest degree. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** At the turning point the north lines are parallel: the back-"
+                    "bearing of the first leg is $250°$, and $250° - 160° = 90°$ ✓ *(M1 A1 — "
+                    "or via co-interior angles: $180° - 70° = 110°$ inside, $360° - 110° - "
+                    "160° = 90°$)*.  \n"
+                    "**(b)** Right triangle: $OB = \\sqrt{10^2 + 8^2} = \\sqrt{164} = "
+                    "2\\sqrt{41} \\approx 12.8$ km *(M1 A1)*.  \n"
+                    "**(c)** Angle at $O$ between leg one and $OB$: $\\tan\\alpha = "
+                    "\\frac{8}{10}$, $\\alpha \\approx 38.66°$ *(M1 A1)*. Bearing $= 070° + "
+                    "38.66° \\approx 109°$ *(A1)*.  \n"
+                    "**Narrative:** every mark in this question is diagram-dependent — north "
+                    "arrows at $O$ AND the turn are what make (a) visible. The bearing in (c) "
+                    "ADDS to $070°$ because $B$ lies clockwise of the first leg."
+                ),
+                "check": [
+                    "250 - 160 == 90",
+                    "sqrt(10**2 + 8**2) == 2*sqrt(41)",
+                    "Abs(2*sqrt(41) - 12.81) < 0.01",
+                    "Abs(deg(atan(Rational(8, 10))) - 38.66) < 0.01",
+                    "Abs(70 + deg(atan(Rational(8, 10))) - 108.66) < 0.01",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Measuring elevation from the wall or the slope instead of the horizontal.",
+                "correction": "Both elevation and depression attach to the HORIZONTAL — draw that line first, every time.",
+                "authored": True,
+            },
+            {
+                "text": "Writing bearings as two digits ($70°$) or measuring anticlockwise.",
+                "correction": "Three figures, clockwise from north: $070°$. The convention is part of the answer.",
+                "authored": True,
+            },
+            {
+                "text": "Skipping the diagram and 'seeing' the wrong triangle.",
+                "correction": "The diagram often carries its own mark — and every later mark leans on it. Draw, label, THEN compute.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-33-t1",
+                "statement": (
+                    "From the top of an $80$ m cliff, the angle of depression of a boat is "
+                    "$12°$. Find the boat's distance from the base of the cliff, to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "Alternate angles put $12°$ at the boat *(M1)*. $\\tan 12° = \\frac{80}{d}$ "
+                    "so $d = \\frac{80}{\\tan 12°} \\approx 376$ m *(A1 A1)*."
+                ),
+                "check": ["Abs(80/tan(rad(12)) - 376.4) < 0.5"],
+            },
+            {
+                "id": "ibsl-33-t2",
+                "statement": (
+                    "A hiker walks $5$ km due north, then $12$ km due east. Find how far she is "
+                    "from her start, and the bearing she must walk to return, to the nearest "
+                    "degree. **[4]**"
+                ),
+                "solution": (
+                    "Distance: $\\sqrt{25 + 144} = 13$ km *(M1 A1)*. Bearing OUT from start: "
+                    "$\\tan^{-1}\\frac{12}{5} \\approx 67°$, i.e. $067°$; to RETURN she walks "
+                    "the back-bearing: $67° + 180° = 247°$ *(M1 A1)*."
+                ),
+                "check": [
+                    "sqrt(5**2 + 12**2) == 13",
+                    "Abs(deg(atan(Rational(12, 5))) - 67.38) < 0.01",
+                    "67 + 180 == 247",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.3 · mostly Paper 2",
+                    "title": "Trig with a story attached",
+                    "body": (
+                        "Towers, cliffs, ships, drones — SL 3.3 is Topic 3.2's toolkit applied "
+                        "to words. The examined skill is TRANSLATION: story → labelled diagram "
+                        "→ the right triangle → the right rule. The diagram itself often "
+                        "carries a mark."
+                    ),
+                },
+                {
+                    "kind": "trigRatios",
+                    "eyebrow": "Elevation, embodied",
+                    "title": "θ as an angle of elevation",
+                    "teach": (
+                        "Read this triangle as an observer at the left vertex looking up at "
+                        "θ: the OPPOSITE side is the tower's height, the ADJACENT is the "
+                        "ground distance. Step θ and watch $\\tan\\theta$ — height per metre "
+                        "of ground — grow with the angle."
+                    ),
+                    "config": {"start": 32},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The conventions",
+                    "title": "Horizontal lines and north arrows",
+                    "beats": [
+                        "Elevation: up from horizontal. Depression: down from horizontal. They EQUAL each other across the parallel horizontals.",
+                        "Bearings: three figures, clockwise from north — $070°$, never $70°$.",
+                        "Diagram recipe: north arrow at every vertex; co-interior angles between parallel norths sum to $180°$.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Tower up, boat down", "problemId": "ibsl-33-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Convention check",
+                    "title": "Read the bearing",
+                    "prompt": "A point due WEST of you has bearing:",
+                    "options": ["$270°$", "$090°$", "$180°$", "$W90°$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Clockwise from north: east $090°$, south $180°$, west $270°$. "
+                        "Compass-quadrant notation like 'W90°' is not IB language."
+                    ),
+                    "check": ["90 + 90 + 90 == 270"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "The two-leg voyage", "problemId": "ibsl-33-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Diagram thinking",
+                    "title": "The interior angle",
+                    "prompt": "A walker goes out on bearing $040°$, then turns to bearing $130°$. The angle between the two legs is:",
+                    "options": ["$90°$", "$170°$", "$40°$", "$130°$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Back-bearing of the first leg is $220°$; $220° - 130° = 90°$. "
+                        "Bearing differences of $90°$ are the IB's way of gifting you "
+                        "Pythagoras."
+                    ),
+                    "check": ["40 + 180 == 220", "220 - 130 == 90"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Paper 2 wisdom",
+                    "title": "The five-step pipeline",
+                    "body": (
+                        "(1) Draw and label from the words. (2) Mark north arrows / "
+                        "horizontals. (3) Choose the tool from what's known. (4) Compute with "
+                        "full precision. (5) Answer in context — units, three figures for "
+                        "bearings, and the actual thing asked. Most lost marks die at steps "
+                        "1 and 5, not in the trigonometry."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Cliff and boat", "problemId": "ibsl-33-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "North, east, and home", "problemId": "ibsl-33-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.3 in four lines",
+                    "points": [
+                        "Diagram first — it often carries its own mark.",
+                        "Elevation/depression: from the horizontal; equal by alternate angles.",
+                        "Bearings: three figures clockwise from north; north arrow at every vertex.",
+                        "Finish in context: units, bearings as $0xy°$, the question actually asked.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 4 — SL 3.4: Radians; arc length; sector area
+# ===========================================================================
+def lesson_radians():
+    return {
+        "slug": "radians-arcs-and-sectors",
+        "title": "Radians, Arc Length & Sector Area",
+        "concreteComparison": (
+            "Wrap a circle's own radius along its rim: the angle you sweep is ONE RADIAN — "
+            "about $57.3°$. Measure angles in radius-lengths and the circle's formulas collapse "
+            "to almost nothing: arc $= r\\theta$, sector $= \\frac{1}{2}r^2\\theta$."
+        ),
+        "objective": (
+            "Convert between degrees and radians, know the standard angles in both, and use "
+            "$l = r\\theta$ and $A = \\frac{1}{2}r^2\\theta$ for arcs and sectors."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.4.** The circle: radian measure of angles; length of an "
+            "arc; area of a sector. Both formulas IN the booklet — valid in RADIANS ONLY. "
+            "**Papers 1 and 2**; from here on, calculus (Topic 5) speaks radians exclusively, "
+            "so this code is a gateway, not a garnish.",
+            "A radian is the angle whose arc equals the radius. The full circle's rim is "
+            "$2\\pi r$ — that's $2\\pi$ radius-lengths, so $360° = 2\\pi$ radians and "
+            "$180° = \\pi$. Convert by the proportion: degrees $\\times \\frac{\\pi}{180}$ → "
+            "radians; radians $\\times \\frac{180}{\\pi}$ → degrees.",
+            "The standard angles deserve fluency in BOTH languages: $30° = \\frac{\\pi}{6}$, "
+            "$45° = \\frac{\\pi}{4}$, $60° = \\frac{\\pi}{3}$, $90° = \\frac{\\pi}{2}$, "
+            "$180° = \\pi$. Exam answers in radians stay as exact multiples of $\\pi$ — "
+            "'$2.09$' where '$\\frac{2\\pi}{3}$' belongs loses the exactness mark.",
+            "With $\\theta$ in radians: arc length $l = r\\theta$ and sector area "
+            "$A = \\frac{1}{2}r^2\\theta$ — both are just fractions of the full rim "
+            "($2\\pi r$) and disc ($\\pi r^2$), with the messy $\\frac{\\theta}{360}$ business "
+            "gone. Feed them a degree value and they output nonsense: the number-one error of "
+            "this code."
+        ],
+        "keyIdea": (
+            "Radians measure angles in radius-lengths — then arc $= r\\theta$ and sector "
+            "$= \\frac{1}{2}r^2\\theta$. Degrees must convert BEFORE the formulas fire."
+        ),
+        "facts": [
+            {
+                "title": "Degree–radian bridge",
+                "latex": "180° = \\pi \\text{ rad}: \\quad \\times \\tfrac{\\pi}{180} \\to \\text{rad}, \\quad \\times \\tfrac{180}{\\pi} \\to \\text{deg}",
+                "explanation": "NOT printed as a formula — carried knowledge. The standard-angle table should be reflex.",
+            },
+            {
+                "title": "Arc & sector (radians!)",
+                "latex": "l = r\\theta, \\qquad A = \\tfrac{1}{2}r^2\\theta",
+                "explanation": "IN the booklet (SL 3.4), with θ in radians. In degrees these formulas are simply false.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-34-we1",
+                "statement": (
+                    "A sector has radius $6$ cm and central angle $\\dfrac{2\\pi}{3}$.  \n"
+                    "**(a)** Find the exact arc length. **[2]**  \n"
+                    "**(b)** Find the exact area of the sector. **[2]**  \n"
+                    "**(c)** Find the exact perimeter of the sector. **[1]**"
+                ),
+                "solution": (
+                    "**(a)** $l = r\\theta = 6 \\cdot \\dfrac{2\\pi}{3} = 4\\pi$ cm *(M1 A1)*.  \n"
+                    "**(b)** $A = \\dfrac{1}{2} \\cdot 36 \\cdot \\dfrac{2\\pi}{3} = 12\\pi$ "
+                    "cm² *(M1 A1)*.  \n"
+                    "**(c)** Perimeter $=$ arc $+$ two radii $= 4\\pi + 12$ cm *(A1)*.  \n"
+                    "**Narrative:** everything stays exact — $\\pi$ is a symbol, not $3.14$. "
+                    "The perimeter trap in (c): the two straight radii are part of the "
+                    "boundary; forgetting them is the classic half-mark."
+                ),
+                "check": [
+                    "6*2*pi/3 == 4*pi",
+                    "Rational(1,2)*36*2*pi/3 == 12*pi",
+                    "4*pi + 12 == 4*pi + 12",
+                ],
+            },
+            {
+                "id": "ibsl-34-we2",
+                "statement": (
+                    "A sector of radius $4$ cm has arc length $10$ cm.  \n"
+                    "**(a)** Find the central angle in radians. **[2]**  \n"
+                    "**(b)** Find the area of the sector. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\theta = \\dfrac{l}{r} = \\dfrac{10}{4} = 2.5$ rad *(M1 A1)*.  \n"
+                    "**(b)** $A = \\dfrac{1}{2} \\cdot 16 \\cdot 2.5 = 20$ cm² *(M1 A1)*.  \n"
+                    "**Narrative:** radians can be plain numbers — $2.5$ rad needs no $\\pi$ "
+                    "costume. Running $l = r\\theta$ backward is half of what exams do with it; "
+                    "note the angle exceeds $\\frac{\\pi}{2} \\approx 1.57$: a wide sector, "
+                    "consistent with an arc longer than two radii."
+                ),
+                "check": [
+                    "Rational(10, 4) == Rational(5, 2)",
+                    "Rational(1,2)*16*Rational(5,2) == 20",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Feeding degrees into $l = r\\theta$: arc $= 6 \\cdot 120 = 720$.",
+                "correction": "Convert first: $120° = \\frac{2\\pi}{3}$. The booklet formulas are radian-only machines.",
+                "authored": True,
+            },
+            {
+                "text": "Sector perimeter = arc length alone.",
+                "correction": "The boundary includes the two radii: $P = r\\theta + 2r$.",
+                "authored": True,
+            },
+            {
+                "text": "Decimalizing exact radian answers: writing $2.09$ for $\\frac{2\\pi}{3}$.",
+                "correction": "Exact means the $\\pi$ survives. Decimals only when the question asks for them.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-34-t1",
+                "statement": (
+                    "Convert $150°$ to radians (exact), and find the exact arc length it "
+                    "subtends on a circle of radius $12$. **[3]**"
+                ),
+                "solution": (
+                    "$150° = 150 \\cdot \\frac{\\pi}{180} = \\frac{5\\pi}{6}$ *(M1 A1)*. "
+                    "Arc $= 12 \\cdot \\frac{5\\pi}{6} = 10\\pi$ *(A1)*."
+                ),
+                "check": ["Rational(150, 180)*pi == 5*pi/6", "12*5*pi/6 == 10*pi"],
+            },
+            {
+                "id": "ibsl-34-t2",
+                "statement": (
+                    "A sector of radius $9$ has area $27\\pi$. Find its central angle "
+                    "(exact) and its arc length (exact). **[4]**"
+                ),
+                "solution": (
+                    "$\\frac{1}{2} \\cdot 81 \\cdot \\theta = 27\\pi \\Rightarrow \\theta = "
+                    "\\frac{54\\pi}{81} = \\frac{2\\pi}{3}$ *(M1 A1)*. Arc $= 9 \\cdot "
+                    "\\frac{2\\pi}{3} = 6\\pi$ *(M1 A1)*."
+                ),
+                "check": [
+                    "solve(Eq(Rational(1,2)*81*t, 27*pi), t) == [2*pi/3]",
+                    "9*2*pi/3 == 6*pi",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.4 · the gateway code",
+                    "title": "Measure angles in radius-lengths",
+                    "body": (
+                        "Degrees are a Babylonian habit; radians are the circle's own units. "
+                        "Pay the small price of conversion and the arc and sector formulas "
+                        "shrink to $r\\theta$ and $\\frac{1}{2}r^2\\theta$ — and all of Topic "
+                        "5's calculus becomes possible."
+                    ),
+                },
+                {
+                    "kind": "unitCircle",
+                    "eyebrow": "See one radian",
+                    "title": "Radius-arcs wrap the rim",
+                    "teach": (
+                        "Watch radius-lengths bend around the circle: one radian, two, three… "
+                        "and $\\pi \\approx 3.14$ of them make half the rim. That's why "
+                        "$180° = \\pi$ — the conversion isn't a rule, it's geometry."
+                    ),
+                    "config": {"mode": "radians"},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The formulas",
+                    "title": "Fractions of rim and disc",
+                    "beats": [
+                        "$180° = \\pi$: convert with $\\times\\frac{\\pi}{180}$ or $\\times\\frac{180}{\\pi}$.",
+                        "Arc $l = r\\theta$; sector $A = \\frac{1}{2}r^2\\theta$ — booklet, radians only.",
+                        "Standard table: $30° = \\frac{\\pi}{6}$, $45° = \\frac{\\pi}{4}$, $60° = \\frac{\\pi}{3}$, $90° = \\frac{\\pi}{2}$.",
+                    ],
+                },
+                {
+                    "kind": "arcSector",
+                    "eyebrow": "Steer a sector",
+                    "title": "Angle up, arc and area follow",
+                    "teach": (
+                        "Step the central angle and watch the arc and sector grow in "
+                        "proportion — $l$ linearly, $A$ with the same $\\theta$ but scaled by "
+                        "$\\frac{1}{2}r^2$. The formulas are this picture written down."
+                    ),
+                    "config": {"start": 120, "radius": 6},
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Arc, area, perimeter — exact", "problemId": "ibsl-34-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Conversion fluency",
+                    "title": "Degrees to radians",
+                    "prompt": "$135°$ in radians is:",
+                    "options": ["$\\dfrac{3\\pi}{4}$", "$\\dfrac{\\pi}{4}$", "$\\dfrac{4\\pi}{3}$", "$2.36\\pi$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$135 \\cdot \\frac{\\pi}{180} = \\frac{3\\pi}{4}$. Simplify the "
+                        "fraction $\\frac{135}{180} = \\frac{3}{4}$ and attach $\\pi$."
+                    ),
+                    "check": ["Rational(135, 180) == Rational(3, 4)"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Backward through l = rθ", "problemId": "ibsl-34-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Formula discipline",
+                    "title": "Catch the error",
+                    "prompt": "A student computes a $60°$ sector's arc on radius 5 as $l = 5 \\times 60 = 300$. The fix is:",
+                    "options": [
+                        "Convert first: $l = 5 \\cdot \\frac{\\pi}{3} = \\frac{5\\pi}{3}$",
+                        "Divide by 2: $l = 150$",
+                        "Use $A = \\frac{1}{2}r^2\\theta$ instead",
+                        "Nothing — 300 is correct",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$l = r\\theta$ eats radians only: $60° = \\frac{\\pi}{3}$, so "
+                        "$l = \\frac{5\\pi}{3} \\approx 5.24$ — a sensible arc for a "
+                        "60° slice, unlike 300."
+                    ),
+                    "check": ["Rational(60, 180)*pi == pi/3", "Abs(5*pi/3 - 5.236) < 0.001"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Mode, exactness, boundary",
+                    "body": (
+                        "Three habits: set the GDC to radian mode the moment a question speaks "
+                        "radians; keep $\\pi$ symbolic until a decimal is demanded; and for "
+                        "perimeters, walk the full boundary — arc plus both radii. Sanity "
+                        "gauge: $1$ rad $\\approx 57°$, so a $2.5$ rad sector is wide."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "150° on a big circle", "problemId": "ibsl-34-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "From area back to angle", "problemId": "ibsl-34-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.4 in four lines",
+                    "points": [
+                        "$180° = \\pi$ — the whole conversion table hangs off this.",
+                        "Arc $= r\\theta$, sector $= \\frac{1}{2}r^2\\theta$: booklet, radians only.",
+                        "Perimeter of a sector = arc + $2r$.",
+                        "Exact answers keep their $\\pi$; the GDC keeps its mode honest.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 5 — SL 3.5: The unit circle; exact values; the ambiguous case
+# ===========================================================================
+def lesson_unit_circle():
+    return {
+        "slug": "the-unit-circle-and-exact-values",
+        "title": "The Unit Circle & Exact Values",
+        "concreteComparison": (
+            "What is $\\sin 150°$, with no triangle in sight? Put a point on the unit circle "
+            "at $150°$ and READ ITS HEIGHT: $\\frac{1}{2}$. The unit circle upgrades sine and "
+            "cosine from triangle ratios to coordinates — defined for every angle, sign "
+            "included."
+        ),
+        "objective": (
+            "Use the unit-circle definitions $\\cos\\theta = x$, $\\sin\\theta = y$, "
+            "$\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$; command the exact-value "
+            "table and its multiples in all quadrants; handle the ambiguous case of the sine "
+            "rule."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.5.** Definition of $\\cos\\theta$ and $\\sin\\theta$ in "
+            "terms of the unit circle; $\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$; "
+            "exact values of trig ratios of $0, \\frac{\\pi}{6}, \\frac{\\pi}{4}, "
+            "\\frac{\\pi}{3}, \\frac{\\pi}{2}$ and their multiples; the ambiguous case of the "
+            "sine rule. **Paper 1's favorite hunting ground** — exact values are non-"
+            "calculator by design.",
+            "The definition: walk angle $\\theta$ anticlockwise from $(1, 0)$ around the "
+            "circle of radius 1. The point you reach IS the trigonometry: $x = \\cos\\theta$, "
+            "$y = \\sin\\theta$. Right-triangle SOH-CAH-TOA becomes the special case of the "
+            "first quadrant; the circle extends both functions to ALL angles and hands each "
+            "quadrant its signs: All-Sin-Tan-Cos positive, quadrants I-II-III-IV.",
+            "The exact-value table is five numbers you already own from the special triangles "
+            "($45$-$45$-$90$ and $30$-$60$-$90$): $\\sin$ runs $0, \\frac{1}{2}, "
+            "\\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}, 1$ across $0, \\frac{\\pi}{6}, "
+            "\\frac{\\pi}{4}, \\frac{\\pi}{3}, \\frac{\\pi}{2}$; cosine runs the same list "
+            "backward. Multiples beyond $90°$: find the REFERENCE angle (acute distance to "
+            "the $x$-axis), take its exact value, apply the quadrant's sign.",
+            "The AMBIGUOUS CASE: when the sine rule finds an angle, $\\sin B = k$ has TWO "
+            "candidates in $(0°, 180°)$ — $B$ and $180° - B$ — because sine is positive in "
+            "both quadrants I and II. Check each against the triangle's angle sum; when both "
+            "survive, two different triangles exist and the exam expects BOTH answers. This "
+            "is the unit circle's symmetry showing up in a triangle problem."
+        ],
+        "keyIdea": (
+            "$(\\cos\\theta, \\sin\\theta)$ IS the point at angle $\\theta$ on the unit "
+            "circle. Reference angle + quadrant sign unlocks every exact value; sine's "
+            "two-quadrant positivity creates the ambiguous case."
+        ),
+        "facts": [
+            {
+                "title": "Unit-circle definition",
+                "latex": "P(\\theta) = (\\cos\\theta, \\sin\\theta), \\qquad \\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}",
+                "explanation": "The syllabus's own definition (SL 3.5). Signs by quadrant: A-S-T-C.",
+            },
+            {
+                "title": "The exact-value table",
+                "latex": "\\sin: 0, \\tfrac{1}{2}, \\tfrac{\\sqrt{2}}{2}, \\tfrac{\\sqrt{3}}{2}, 1 \;\\text{ at }\; 0, \\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}, \\tfrac{\\pi}{2}",
+                "explanation": (
+                    "NOT in the booklet — memorized (cosine is the same row reversed). Beyond "
+                    "90°: reference angle + quadrant sign."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-35-we1",
+                "statement": (
+                    "**Find** the exact values of  \n"
+                    "**(a)** $\\sin\\dfrac{2\\pi}{3}$; **(b)** $\\cos\\dfrac{5\\pi}{6}$; "
+                    "**(c)** $\\tan\\dfrac{7\\pi}{4}$. **[6]**"
+                ),
+                "solution": (
+                    "**(a)** $\\frac{2\\pi}{3}$ is in QII, reference angle $\\pi - "
+                    "\\frac{2\\pi}{3} = \\frac{\\pi}{3}$; sine is positive there: "
+                    "$\\sin\\frac{2\\pi}{3} = \\frac{\\sqrt{3}}{2}$ *(M1 A1)*.  \n"
+                    "**(b)** QII, reference $\\frac{\\pi}{6}$; cosine negative: "
+                    "$\\cos\\frac{5\\pi}{6} = -\\frac{\\sqrt{3}}{2}$ *(A1 A1)*.  \n"
+                    "**(c)** QIV, reference $\\frac{\\pi}{4}$; tangent negative: "
+                    "$\\tan\\frac{7\\pi}{4} = -1$ *(A1 A1)*.  \n"
+                    "**Narrative:** one algorithm three times — locate the quadrant, find the "
+                    "reference angle, table value, quadrant sign. Write those three steps and "
+                    "the marks follow even under exam adrenaline."
+                ),
+                "check": [
+                    "sin(2*pi/3) == sqrt(3)/2",
+                    "cos(5*pi/6) == -sqrt(3)/2",
+                    "tan(7*pi/4) == -1",
+                    "pi - 2*pi/3 == pi/3",
+                ],
+            },
+            {
+                "id": "ibsl-35-we2",
+                "statement": (
+                    "In triangle $ABC$, $a = 7$, $b = 9$ and $\\hat{A} = 40°$. **Find** the "
+                    "two possible values of $\\hat{B}$, to 1 d.p., and explain why both are "
+                    "valid. **[5]**"
+                ),
+                "solution": (
+                    "Sine rule: $\\dfrac{\\sin B}{9} = \\dfrac{\\sin 40°}{7}$ *(M1)*: "
+                    "$\\sin B = \\dfrac{9\\sin 40°}{7} \\approx 0.8264$ *(A1)*. Two candidates: "
+                    "$B \\approx 55.7°$ or $B \\approx 180° - 55.7° = 124.3°$ *(A1 A1)*. Both "
+                    "leave room for $\\hat{C}$: $40° + 55.7° < 180°$ ✓ and $40° + 124.3° = "
+                    "164.3° < 180°$ ✓ — so two distinct triangles exist *(R1)*.  \n"
+                    "**Narrative:** the ambiguous case fires when the KNOWN angle's side is "
+                    "shorter than the other given side ($a < b$ here) — the swinging side can "
+                    "land twice. The R-mark is the angle-sum check, written out."
+                ),
+                "check": [
+                    "Abs(9*sin(rad(40))/7 - 0.8264) < 0.001",
+                    "Abs(deg(asin(9*sin(rad(40))/7)) - 55.75) < 0.05",
+                    "Abs(180 - 55.75 - 124.25) < 0.01",
+                    "40 + 124.3 < 180",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Assigning signs by guesswork instead of quadrant.",
+                "correction": "A-S-T-C anticlockwise from QI: All, Sine, Tangent, Cosine positive. Locate first, sign second.",
+                "authored": True,
+            },
+            {
+                "text": "In the ambiguous case, reporting only the acute angle the calculator returns.",
+                "correction": "$\\sin^{-1}$ only speaks QI. The QII candidate $180° - B$ must be tested — and often survives.",
+                "authored": True,
+            },
+            {
+                "text": "Confusing the reference angle with the angle itself: $\\sin\\frac{5\\pi}{6} = \\sin\\frac{5\\pi}{6}$… evaluated as if in QI.",
+                "correction": "Reference angle = acute distance to the $x$-axis: for $\\frac{5\\pi}{6}$ it's $\\frac{\\pi}{6}$, then apply QII's sign.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-35-t1",
+                "statement": (
+                    "**Write down** the exact values of $\\cos\\dfrac{3\\pi}{4}$, "
+                    "$\\sin\\dfrac{7\\pi}{6}$, and $\\tan\\dfrac{5\\pi}{3}$. **[3]**"
+                ),
+                "solution": (
+                    "QII: $\\cos\\frac{3\\pi}{4} = -\\frac{\\sqrt{2}}{2}$. QIII: "
+                    "$\\sin\\frac{7\\pi}{6} = -\\frac{1}{2}$. QIV: $\\tan\\frac{5\\pi}{3} = "
+                    "-\\sqrt{3}$ *(A1 A1 A1)*."
+                ),
+                "check": [
+                    "cos(3*pi/4) == -sqrt(2)/2",
+                    "sin(7*pi/6) == Rational(-1, 2)",
+                    "tan(5*pi/3) == -sqrt(3)",
+                ],
+            },
+            {
+                "id": "ibsl-35-t2",
+                "statement": (
+                    "The point $P\\left(-\\dfrac{4}{5}, -\\dfrac{3}{5}\\right)$ lies on the "
+                    "unit circle at angle $\\theta$. **Write down** $\\cos\\theta$, "
+                    "$\\sin\\theta$ and $\\tan\\theta$. **[3]**"
+                ),
+                "solution": (
+                    "Coordinates ARE the values: $\\cos\\theta = -\\frac{4}{5}$, "
+                    "$\\sin\\theta = -\\frac{3}{5}$ *(A1 A1)*; $\\tan\\theta = "
+                    "\\frac{-3/5}{-4/5} = \\frac{3}{4}$ *(A1)* — positive, as QIII demands "
+                    "(T in A-S-T-C)."
+                ),
+                "check": [
+                    "(Rational(-4,5))**2 + (Rational(-3,5))**2 == 1",
+                    "Rational(-3,5)/Rational(-4,5) == Rational(3,4)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.5 · Paper 1's hunting ground",
+                    "title": "Trigonometry becomes coordinates",
+                    "body": (
+                        "The unit circle redefines sine and cosine as the $y$ and $x$ of a "
+                        "point walking the rim — every angle now has values, signs included. "
+                        "Five memorized numbers plus quadrant logic generate every exact "
+                        "value the IB can ask."
+                    ),
+                },
+                {
+                    "kind": "unitCircle",
+                    "eyebrow": "The definition, live",
+                    "title": "Walk the rim, read the coordinates",
+                    "teach": (
+                        "Step the angle and watch the point's coordinates — they ARE "
+                        "$(\\cos\\theta, \\sin\\theta)$. Cross into QII and watch $x$ go "
+                        "negative while $y$ stays positive: the sign rules aren't rules, "
+                        "they're geography."
+                    ),
+                    "config": {"mode": "explore", "start": 30},
+                },
+                {
+                    "kind": "specialTriangle",
+                    "eyebrow": "Where the table comes from",
+                    "title": "The 30-60-90 source triangle",
+                    "teach": (
+                        "Halve an equilateral triangle and the exact values fall out: sides "
+                        "$x, x\\sqrt{3}, 2x$ give $\\sin 30° = \\frac{1}{2}$ and "
+                        "$\\sin 60° = \\frac{\\sqrt{3}}{2}$. The table is this triangle "
+                        "(plus its 45-45-90 sibling), memorized."
+                    ),
+                    "config": {"type": "30-60-90", "start": 4},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The algorithm",
+                    "title": "Reference angle + quadrant sign",
+                    "beats": [
+                        "Locate the quadrant; signs run A-S-T-C (All, Sin, Tan, Cos) from QI anticlockwise.",
+                        "Reference angle = acute distance to the $x$-axis: $\\pi - \\theta$, $\\theta - \\pi$, or $2\\pi - \\theta$.",
+                        "Table value of the reference angle, then the quadrant's sign. Done.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Three exact values, one algorithm", "problemId": "ibsl-35-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Exact-value speed",
+                    "title": "No calculator needed",
+                    "prompt": "$\\cos\\dfrac{2\\pi}{3} =$",
+                    "options": ["$-\\dfrac{1}{2}$", "$\\dfrac{1}{2}$", "$-\\dfrac{\\sqrt{3}}{2}$", "$\\dfrac{\\sqrt{3}}{2}$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "QII, reference $\\frac{\\pi}{3}$: table gives $\\frac{1}{2}$, QII "
+                        "makes cosine negative. Option C mixed up which table value pairs "
+                        "with $\\frac{\\pi}{3}$'s cosine."
+                    ),
+                    "check": ["cos(2*pi/3) == Rational(-1, 2)"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "The ambiguous case, both answers", "problemId": "ibsl-35-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Ambiguity radar",
+                    "title": "One triangle or two?",
+                    "prompt": "The sine rule gives $\\sin B = 0.6$ with $\\hat{A} = 100°$. How many valid triangles?",
+                    "options": ["$1$", "$2$", "$0$", "Cannot tell"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Candidates: $B \\approx 36.9°$ or $143.1°$. The second gives "
+                        "$100° + 143.1° > 180°$ — impossible. Only the acute survives: the "
+                        "angle-sum check kills the ambiguity here."
+                    ),
+                    "check": ["Abs(deg(asin(Rational(3,5))) - 36.87) < 0.01", "100 + 143.1 > 180"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Paper 1 wisdom",
+                    "title": "Five numbers, owned cold",
+                    "body": (
+                        "The exact table is five values; cosine reads it backward; tangent "
+                        "divides them. Everything else is quadrant geography. Two minutes of "
+                        "drilling per day for a week and Paper 1's exact-value questions "
+                        "become transcription."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Three quadrants, three signs", "problemId": "ibsl-35-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Coordinates are the answer", "problemId": "ibsl-35-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.5 in four lines",
+                    "points": [
+                        "$(\\cos\\theta, \\sin\\theta)$ = the point at angle $\\theta$; $\\tan = \\frac{\\sin}{\\cos}$.",
+                        "Signs: A-S-T-C by quadrant. Values: reference angle + the five-number table.",
+                        "$\\sin^{-1}$ answers only QI — the QII twin $180° - B$ needs a hearing.",
+                        "Ambiguous case verdicts come from the angle sum, stated in writing.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 6 — SL 3.6: Identities: Pythagorean and double angle
+# ===========================================================================
+def lesson_identities():
+    return {
+        "slug": "trigonometric-identities",
+        "title": "Trig Identities: Pythagorean & Double Angle",
+        "concreteComparison": (
+            "Know one coordinate of a point on the unit circle and Pythagoras hands you the "
+            "other: that's all $\\cos^2\\theta + \\sin^2\\theta = 1$ says. From that single "
+            "circle fact plus the double-angle pair, the IB builds every identity question it "
+            "owns."
+        ),
+        "objective": (
+            "Use $\\cos^2\\theta + \\sin^2\\theta = 1$ and the double-angle identities for "
+            "sine and cosine; find exact trig values from one given ratio with quadrant "
+            "reasoning; prove simple identities LHS-to-RHS."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.6.** The Pythagorean identity $\\cos^2\\theta + "
+            "\\sin^2\\theta = 1$; double-angle identities for sine and cosine; the "
+            "relationship between trigonometric ratios. Identities IN the booklet. **Papers 1 "
+            "and 2** — 'given $\\sin\\theta$, find $\\cos 2\\theta$ exactly' is a Paper 1 "
+            "regular.",
+            "The Pythagorean identity is the unit circle's equation $x^2 + y^2 = 1$ wearing "
+            "trig clothes. Its exam job: convert one known ratio into the others — "
+            "$\\cos\\theta = \\pm\\sqrt{1 - \\sin^2\\theta}$, with the QUADRANT deciding the "
+            "sign. The quadrant reasoning is a mark, not a footnote.",
+            "Double angles: $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$, and $\\cos 2\\theta$ "
+            "in THREE printed costumes — $\\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - "
+            "1 = 1 - 2\\sin^2\\theta$. Choose the costume matching what you know: own "
+            "$\\sin\\theta$ alone? Use $1 - 2\\sin^2\\theta$ and skip finding cosine "
+            "entirely.",
+            "Identity proofs follow SL 1.6 discipline: start from one side (the messier), "
+            "transform with known identities, land on the other, never cross the equals sign. "
+            "Factoring $\\cos^2 - \\sin^2 = (\\cos - \\sin)(\\cos + \\sin)$ — a difference of "
+            "squares — unlocks half of them."
+        ],
+        "keyIdea": (
+            "One circle equation and two double-angle formulas run the whole code. Pick the "
+            "$\\cos 2\\theta$ costume that matches your known ratio, and let the quadrant "
+            "sign the answer."
+        ),
+        "facts": [
+            {
+                "title": "Pythagorean identity",
+                "latex": "\\cos^2\\theta + \\sin^2\\theta = 1",
+                "explanation": "IN the booklet (SL 3.6). The unit circle's own equation.",
+            },
+            {
+                "title": "Double angles",
+                "latex": "\\sin 2\\theta = 2\\sin\\theta\\cos\\theta, \\quad \\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta",
+                "explanation": "IN the booklet — all three cosine forms. Match the form to the known ratio.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-36-we1",
+                "statement": (
+                    "Given $\\sin\\theta = \\dfrac{3}{5}$ where $\\dfrac{\\pi}{2} < \\theta < "
+                    "\\pi$, find the exact values of  \n"
+                    "**(a)** $\\cos\\theta$; **[2]**  \n"
+                    "**(b)** $\\sin 2\\theta$; **[2]**  \n"
+                    "**(c)** $\\cos 2\\theta$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\cos^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$; θ is in "
+                    "QII where cosine is NEGATIVE: $\\cos\\theta = -\\frac{4}{5}$ *(M1 A1 — "
+                    "the sign carries the second mark)*.  \n"
+                    "**(b)** $\\sin 2\\theta = 2 \\cdot \\frac{3}{5} \\cdot \\left(-\\frac{4}"
+                    "{5}\\right) = -\\frac{24}{25}$ *(M1 A1)*.  \n"
+                    "**(c)** $\\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - \\frac{18}{25} = "
+                    "\\frac{7}{25}$ *(M1 A1)*.  \n"
+                    "**Narrative:** (c) never needed part (a) — the $1 - 2\\sin^2$ costume "
+                    "runs on $\\sin\\theta$ alone. Choosing it is the efficient road; the "
+                    "markscheme pays either route, but only one of them invites sign "
+                    "accidents."
+                ),
+                "check": [
+                    "1 - Rational(9, 25) == Rational(16, 25)",
+                    "2*Rational(3,5)*Rational(-4,5) == Rational(-24, 25)",
+                    "1 - 2*Rational(9, 25) == Rational(7, 25)",
+                    "Rational(-24,25)**2 + Rational(7,25)**2 == 1",
+                ],
+            },
+            {
+                "id": "ibsl-36-we2",
+                "statement": (
+                    "**Show that** $\\dfrac{\\cos 2\\theta}{\\cos\\theta + \\sin\\theta} = "
+                    "\\cos\\theta - \\sin\\theta$, for $\\cos\\theta + \\sin\\theta \\ne 0$. "
+                    "**[3]**"
+                ),
+                "solution": (
+                    "Start from the LHS. $\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$ "
+                    "*(M1 — choosing the difference-of-squares costume)* "
+                    "$= (\\cos\\theta - \\sin\\theta)(\\cos\\theta + \\sin\\theta)$ *(A1)*. "
+                    "Cancel the nonzero factor: LHS $= \\cos\\theta - \\sin\\theta = $ RHS ✓ "
+                    "*(A1)*.  \n"
+                    "**Narrative:** the whole proof is recognizing $\\cos^2 - \\sin^2$ as a "
+                    "difference of squares. The '$\\ne 0$' condition in the question is what "
+                    "licenses the cancellation — quote it as you cancel."
+                ),
+                "check": [
+                    "simplify(cos(2*x)/(cos(x) + sin(x)) - (cos(x) - sin(x))) == 0",
+                    "expand((cos(x) - sin(x))*(cos(x) + sin(x))) == cos(x)**2 - sin(x)**2",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Taking $\\cos\\theta = +\\sqrt{1 - \\sin^2\\theta}$ on autopilot.",
+                "correction": "The square root releases both signs; the QUADRANT (given in the question) picks one. QII: cosine negative.",
+                "authored": True,
+            },
+            {
+                "text": "Writing $\\sin 2\\theta = 2\\sin\\theta$.",
+                "correction": "$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$ — the cosine factor is the whole point. (Test: $\\theta = 30°$: $\\sin 60° = \\frac{\\sqrt 3}{2} \\ne 1$.)",
+                "authored": True,
+            },
+            {
+                "text": "Proving identities by working both sides toward the middle.",
+                "correction": "One side only, transformed by known identities — the SL 1.6 rule applies to trig proofs verbatim.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-36-t1",
+                "statement": (
+                    "Given $\\cos\\theta = \\dfrac{5}{13}$ with $\\dfrac{3\\pi}{2} < \\theta "
+                    "< 2\\pi$, find the exact values of $\\sin\\theta$ and $\\sin 2\\theta$. "
+                    "**[4]**"
+                ),
+                "solution": (
+                    "$\\sin^2\\theta = 1 - \\frac{25}{169} = \\frac{144}{169}$; QIV makes sine "
+                    "negative: $\\sin\\theta = -\\frac{12}{13}$ *(M1 A1)*. "
+                    "$\\sin 2\\theta = 2 \\cdot \\left(-\\frac{12}{13}\\right) \\cdot "
+                    "\\frac{5}{13} = -\\frac{120}{169}$ *(M1 A1)*."
+                ),
+                "check": [
+                    "1 - Rational(25, 169) == Rational(144, 169)",
+                    "2*Rational(-12,13)*Rational(5,13) == Rational(-120, 169)",
+                ],
+            },
+            {
+                "id": "ibsl-36-t2",
+                "statement": (
+                    "**Show that** $(\\sin\\theta + \\cos\\theta)^2 = 1 + \\sin 2\\theta$. "
+                    "**[3]**"
+                ),
+                "solution": (
+                    "LHS $= \\sin^2\\theta + 2\\sin\\theta\\cos\\theta + \\cos^2\\theta$ "
+                    "*(M1 A1)* $= 1 + 2\\sin\\theta\\cos\\theta = 1 + \\sin 2\\theta$ = RHS ✓ "
+                    "*(A1)* — the Pythagorean identity and the sine double angle, one each."
+                ),
+                "check": [
+                    "simplify((sin(x) + cos(x))**2 - (1 + sin(2*x))) == 0",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.6 · Papers 1 & 2",
+                    "title": "One circle fact, three costumes",
+                    "body": (
+                        "$\\cos^2 + \\sin^2 = 1$ is the unit circle's equation; the double "
+                        "angles are its first children. Every identity question on the SL "
+                        "paper is these formulas plus quadrant discipline — all printed in "
+                        "your booklet."
+                    ),
+                },
+                {
+                    "kind": "unitCircle",
+                    "eyebrow": "See the identity",
+                    "title": "The radius that never changes",
+                    "teach": (
+                        "Steer the point: $x^2 + y^2$ is ALWAYS 1 — that's the Pythagorean "
+                        "identity holding at every angle. Given one coordinate, the circle "
+                        "forces the other up to sign… and the quadrant settles the sign."
+                    ),
+                    "config": {"mode": "explore", "start": 143},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The toolkit",
+                    "title": "Match the costume to the known",
+                    "beats": [
+                        "$\\cos^2\\theta + \\sin^2\\theta = 1$: one ratio in, the other out — sign by quadrant.",
+                        "$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$ — needs BOTH ratios.",
+                        "$\\cos 2\\theta$: three booklet forms — $1 - 2\\sin^2\\theta$ runs on sine alone, $2\\cos^2\\theta - 1$ on cosine alone.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "From sin θ to everything", "problemId": "ibsl-36-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Costume choice",
+                    "title": "The efficient road",
+                    "prompt": "Given only $\\cos\\theta = \\dfrac{1}{3}$, the fastest exact route to $\\cos 2\\theta$ is:",
+                    "options": [
+                        "$2\\cos^2\\theta - 1 = -\\dfrac{7}{9}$",
+                        "$\\cos^2\\theta - \\sin^2\\theta$, after finding $\\sin\\theta$",
+                        "$1 - 2\\sin^2\\theta$, after finding $\\sin\\theta$",
+                        "$2\\sin\\theta\\cos\\theta$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$2 \\cdot \\frac{1}{9} - 1 = -\\frac{7}{9}$ — no sine needed, no "
+                        "quadrant risk. The cosine-only costume exists exactly for this."
+                    ),
+                    "check": ["2*Rational(1,9) - 1 == Rational(-7,9)"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "A three-line identity proof", "problemId": "ibsl-36-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Sign discipline",
+                    "title": "Quadrant verdict",
+                    "prompt": "$\\sin\\theta = \\dfrac{1}{2}$ and $\\theta$ is obtuse. Then $\\cos\\theta =$",
+                    "options": [
+                        "$-\\dfrac{\\sqrt{3}}{2}$",
+                        "$\\dfrac{\\sqrt{3}}{2}$",
+                        "$-\\dfrac{1}{2}$",
+                        "$\\dfrac{3}{4}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\cos^2\\theta = 1 - \\frac{1}{4} = \\frac{3}{4}$, and obtuse (QII) "
+                        "forces the minus: $-\\frac{\\sqrt{3}}{2}$. (Recognize θ = 150°.)"
+                    ),
+                    "check": ["cos(5*pi/6) == -sqrt(3)/2", "1 - Rational(1,4) == Rational(3,4)"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Markscheme wisdom",
+                    "title": "Say the sign's reason",
+                    "body": (
+                        "Whenever a square root appears, the markscheme wants the quadrant "
+                        "sentence: 'θ in QII, so cos θ < 0'. One line, one mark, every time. "
+                        "And in proofs: name the identity as you use it — transformations "
+                        "with reasons is what 'show that' buys."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "A 5-12-13 circle point", "problemId": "ibsl-36-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Expand and recognize", "problemId": "ibsl-36-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.6 in four lines",
+                    "points": [
+                        "$\\cos^2 + \\sin^2 = 1$ — the circle's equation; signs by quadrant, stated aloud.",
+                        "$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$; $\\cos 2\\theta$ wears three booklet costumes.",
+                        "Pick the costume that runs on what you already know.",
+                        "Proofs: one side, known identities, named steps — SL 1.6 rules.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 7 — SL 3.7: Circular functions: graphs and models
+# ===========================================================================
+def lesson_trig_graphs():
+    return {
+        "slug": "trigonometric-graphs-and-models",
+        "title": "Trig Graphs & Real-World Models",
+        "concreteComparison": (
+            "A Ferris wheel's height, a tide's rise, a heartbeat's trace — anything that "
+            "repeats rides a sine wave. Four numbers pin the wave down: how high it swings "
+            "(amplitude), how long a lap takes (period), where its middle sits (midline), and "
+            "where it starts (phase)."
+        ),
+        "objective": (
+            "Read and write $y = a\\sin(b(x - c)) + d$ and its cosine twin: amplitude $|a|$, "
+            "period $\\frac{2\\pi}{b}$, midline $y = d$, phase shift $c$; sketch the graphs "
+            "including $\\tan x$; build and use sinusoidal models."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.7.** The circular functions $\\sin x$, $\\cos x$, "
+            "$\\tan x$: amplitude, their periodic nature, and their graphs; composite "
+            "functions of the form $f(x) = a\\sin(b(x + c)) + d$; transformations; real-life "
+            "contexts (height of tide, Ferris wheel). **Papers 1 and 2**; the modelling "
+            "version is a Paper 2 fixture.",
+            "The reading rules (SL 2.11's transformations, specialized): $|a|$ = AMPLITUDE, "
+            "the half-height of the swing; $d$ = MIDLINE, the centre value, with "
+            "max $= d + |a|$ and min $= d - |a|$; $b$ compresses the wave so PERIOD "
+            "$= \\frac{2\\pi}{b}$; $c$ slides it horizontally (phase). Sine starts at its "
+            "midline going up; cosine starts at its maximum — choose whichever matches the "
+            "story and save yourself a phase shift.",
+            "$\\tan x = \\frac{\\sin x}{\\cos x}$ breaks wherever cosine dies: vertical "
+            "asymptotes at $x = \\frac{\\pi}{2} + k\\pi$, period $\\pi$ (not $2\\pi$), no "
+            "amplitude. Its graph is the repeating climb between asymptotes.",
+            "Modelling runs the reading rules backward: max and min give $d = \\frac{\\max + "
+            "\\min}{2}$ and $|a| = \\frac{\\max - \\min}{2}$; the repeat time gives "
+            "$b = \\frac{2\\pi}{\\text{period}}$; the starting position picks sine or cosine "
+            "(with a sign). A Ferris wheel boarding at the BOTTOM is $-\\cos$: minimum at "
+            "$t = 0$, no phase shift needed."
+        ],
+        "keyIdea": (
+            "Four dials — $a$ swing, $b$ speed, $c$ slide, $d$ centre. Models: midline from "
+            "max/min average, amplitude from their gap, $b$ from the period, the function "
+            "from the starting position."
+        ),
+        "facts": [
+            {
+                "title": "Reading y = a sin(b(x−c)) + d",
+                "latex": "\\text{amplitude} = |a|, \\quad \\text{period} = \\tfrac{2\\pi}{b}, \\quad \\text{midline } y = d",
+                "explanation": (
+                    "The period formula is the one to carry (NOT in the booklet). Max "
+                    "$= d + |a|$, min $= d - |a|$."
+                ),
+            },
+            {
+                "title": "The tangent graph",
+                "latex": "\\tan x: \\text{ period } \\pi, \\text{ asymptotes } x = \\tfrac{\\pi}{2} + k\\pi",
+                "explanation": "No amplitude — the graph runs to ±∞ between asymptotes.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-37-we1",
+                "statement": (
+                    "Let $f(x) = 3\\sin(2x) + 1$.  \n"
+                    "**(a)** **Write down** the amplitude, the period, and the equation of "
+                    "the midline. **[3]**  \n"
+                    "**(b)** **Write down** the maximum and minimum values of $f$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Amplitude $3$; period $\\frac{2\\pi}{2} = \\pi$; midline "
+                    "$y = 1$ *(A1 A1 A1)*.  \n"
+                    "**(b)** Max $= 1 + 3 = 4$; min $= 1 - 3 = -2$ *(A1 A1)*.  \n"
+                    "**Narrative:** five write-down marks from four dials. The only "
+                    "computation is the period — $b = 2$ means the wave laps TWICE as fast, "
+                    "so the period HALVES. Faster wave, shorter lap: the division is the "
+                    "right instinct."
+                ),
+                "check": [
+                    "2*pi/2 == pi",
+                    "1 + 3 == 4",
+                    "1 - 3 == -2",
+                ],
+            },
+            {
+                "id": "ibsl-37-we2",
+                "statement": (
+                    "A Ferris wheel of radius $8$ m turns once every $30$ s; its lowest point "
+                    "is $2$ m above the ground, and a passenger boards there at $t = 0$. The "
+                    "height is modelled by $h(t) = 10 - 8\\cos\\left(\\dfrac{\\pi t}{15}"
+                    "\\right)$.  \n"
+                    "**(a)** Verify the model gives the correct boarding height and the "
+                    "correct height at $t = 15$. **[2]**  \n"
+                    "**(b)** **Write down** the period of the model. **[1]**  \n"
+                    "**(c)** Find the first time the passenger reaches a height of $14$ m. "
+                    "**[3]**"
+                ),
+                "solution": (
+                    "**(a)** $h(0) = 10 - 8\\cos 0 = 2$ ✓ (boarding, the minimum); "
+                    "$h(15) = 10 - 8\\cos\\pi = 18$ ✓ (the top: $2 + 2 \\cdot 8$) *(A1 A1)*.  \n"
+                    "**(b)** Period $= \\frac{2\\pi}{\\pi/15} = 30$ s ✓ *(A1)*.  \n"
+                    "**(c)** $10 - 8\\cos\\frac{\\pi t}{15} = 14 \\Rightarrow "
+                    "\\cos\\frac{\\pi t}{15} = -\\frac{1}{2}$ *(M1)*. First solution: "
+                    "$\\frac{\\pi t}{15} = \\frac{2\\pi}{3}$ *(A1)*, so $t = 10$ s *(A1)*.  \n"
+                    "**Narrative:** the $-\\cos$ shape is the modeller's friend — boarding at "
+                    "the bottom means START AT MINIMUM, which is exactly what $-\\cos$ does "
+                    "with zero phase shift. In (c) the exact value $\\cos^{-1}(-\\frac{1}{2}) "
+                    "= \\frac{2\\pi}{3}$ comes straight from the SL 3.5 table."
+                ),
+                "check": [
+                    "10 - 8*cos(0) == 2",
+                    "10 - 8*cos(pi) == 18",
+                    "2*pi/(pi/15) == 30",
+                    "10 - 8*cos(pi*10/15) == 14",
+                    "cos(2*pi/3) == Rational(-1,2)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Reading the amplitude as the max value.",
+                "correction": "Amplitude is the swing from the MIDLINE: $|a| = \\frac{\\max - \\min}{2}$. Max is $d + |a|$.",
+                "authored": True,
+            },
+            {
+                "text": "Period $= b$: reading $y = \\sin 2x$ as period 2.",
+                "correction": "$b$ is speed; period $= \\frac{2\\pi}{b}$. Bigger $b$, SHORTER lap: $\\sin 2x$ has period $\\pi$.",
+                "authored": True,
+            },
+            {
+                "text": "Modelling a bottom-boarding wheel with $+\\cos$ and wondering why heights invert.",
+                "correction": "$+\\cos$ starts at max, $-\\cos$ at min, $\\sin$ at the midline going up. Pick the starter that matches $t = 0$.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-37-t1",
+                "statement": (
+                    "**Write down** the amplitude, period, midline, maximum and minimum of "
+                    "$y = 5\\cos(3x) - 2$. **[5]**"
+                ),
+                "solution": (
+                    "Amplitude $5$; period $\\frac{2\\pi}{3}$; midline $y = -2$; max $3$; "
+                    "min $-7$ *(A1 ×5)*."
+                ),
+                "check": ["-2 + 5 == 3", "-2 - 5 == -7"],
+            },
+            {
+                "id": "ibsl-37-t2",
+                "statement": (
+                    "A tide is modelled by $h(t) = 4\\sin\\left(\\dfrac{\\pi t}{6}\\right) + "
+                    "7$ metres, $t$ in hours. **Write down** the maximum depth and the "
+                    "period, and find the first time the maximum occurs. **[4]**"
+                ),
+                "solution": (
+                    "Max $= 7 + 4 = 11$ m *(A1)*; period $= \\frac{2\\pi}{\\pi/6} = 12$ h "
+                    "*(A1)*. Sine peaks a quarter-lap in: $t = 3$ h — check "
+                    "$\\sin\\frac{\\pi}{2} = 1$ gives $h = 11$ ✓ *(M1 A1)*."
+                ),
+                "check": [
+                    "7 + 4 == 11",
+                    "2*pi/(pi/6) == 12",
+                    "4*sin(pi*3/6) + 7 == 11",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.7 · Paper 2's modelling engine",
+                    "title": "Everything that repeats is a wave",
+                    "body": (
+                        "Tides, wheels, seasons, sound — periodic stories all wear "
+                        "$a\\sin(b(x - c)) + d$. Four dials control the costume; reading them "
+                        "off a formula and fitting them to a story are the two halves of "
+                        "this code."
+                    ),
+                },
+                {
+                    "kind": "unitCircle",
+                    "eyebrow": "Where the wave comes from",
+                    "title": "The circle unrolls into sine",
+                    "teach": (
+                        "Watch the orbiting point's HEIGHT trace onto the scroll: the sine "
+                        "wave is circular motion reported over time. One lap of the circle = "
+                        "one period of the wave — that's why period and $b$ live on the same "
+                        "dial."
+                    ),
+                    "config": {"mode": "wave"},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The four dials",
+                    "title": "Read any wave in ten seconds",
+                    "beats": [
+                        "$|a|$ amplitude (half the swing); $d$ midline; max $= d + |a|$, min $= d - |a|$.",
+                        "Period $= \\frac{2\\pi}{b}$ — bigger $b$, faster wave, shorter lap.",
+                        "Starters: $\\sin$ from the midline going up; $\\cos$ from the max; $-\\cos$ from the min.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Five write-down marks", "problemId": "ibsl-37-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Dial reading",
+                    "title": "Period check",
+                    "prompt": "The period of $y = 2\\sin\\left(\\dfrac{x}{3}\\right)$ is:",
+                    "options": ["$6\\pi$", "$\\dfrac{2\\pi}{3}$", "$3$", "$\\dfrac{\\pi}{3}$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$b = \\frac{1}{3}$: period $= \\frac{2\\pi}{1/3} = 6\\pi$. A "
+                        "fractional $b$ SLOWS the wave — the lap stretches."
+                    ),
+                    "check": ["2*pi/Rational(1,3) == 6*pi"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "The Ferris wheel, end to end", "problemId": "ibsl-37-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Model building",
+                    "title": "Reverse the dials",
+                    "prompt": "A wave has maximum $9$ and minimum $1$. Its amplitude and midline are:",
+                    "options": [
+                        "$a = 4$, $y = 5$",
+                        "$a = 8$, $y = 5$",
+                        "$a = 4$, $y = 4$",
+                        "$a = 9$, $y = 1$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Midline = average $= \\frac{9 + 1}{2} = 5$; amplitude = half the "
+                        "gap $= \\frac{9 - 1}{2} = 4$. The two formulas that start every "
+                        "modelling question."
+                    ),
+                    "check": ["Rational(9 + 1, 2) == 5", "Rational(9 - 1, 2) == 4"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Paper 2 wisdom",
+                    "title": "Verify the model at t = 0",
+                    "body": (
+                        "Before using any model — yours or the question's — evaluate it at "
+                        "$t = 0$ and at a quarter or half period, and match against the "
+                        "story. Two substitutions catch sign and phase errors that would "
+                        "poison every later part. (And 'write down the period' means no "
+                        "working: $\\frac{2\\pi}{b}$, done.)"
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Five dials off one cosine", "problemId": "ibsl-37-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Read the tide", "problemId": "ibsl-37-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.7 in four lines",
+                    "points": [
+                        "$y = a\\sin(b(x-c)) + d$: swing, speed, slide, centre.",
+                        "Period $= \\frac{2\\pi}{b}$; max/min $= d \\pm |a|$.",
+                        "Models: midline = average, amplitude = half-gap, starter by the $t=0$ position.",
+                        "$\\tan$: period $\\pi$, asymptotes where cosine dies, no amplitude.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 8 — SL 3.8: Solving trigonometric equations
+# ===========================================================================
+def lesson_trig_equations():
+    return {
+        "slug": "solving-trigonometric-equations",
+        "title": "Solving Trig Equations",
+        "concreteComparison": (
+            "'When is the Ferris wheel at 14 m?' has TWO answers per revolution — once going "
+            "up, once coming down. Trig equations always multiply their answers this way, and "
+            "the unit circle tells you exactly where every solution hides."
+        ),
+        "objective": (
+            "Solve $\\sin x = k$, $\\cos x = k$, $\\tan x = k$ in a given interval, "
+            "analytically (exact values) and graphically; solve equations reducing to "
+            "quadratics in a trig ratio."
+        ),
+        "concept": [
+            "**Syllabus card — SL 3.8.** Solving trigonometric equations in a finite "
+            "interval, both graphically and analytically; equations leading to quadratic "
+            "equations in $\\sin x$, $\\cos x$ or $\\tan x$. **Papers 1 and 2** — Paper 1 "
+            "with exact values, Paper 2 with the GDC.",
+            "The engine is unit-circle symmetry. $\\sin x = k$: two solutions per lap, $x$ "
+            "and $\\pi - x$ (same height, mirrored across the $y$-axis). $\\cos x = k$: $x$ "
+            "and $2\\pi - x$ (same $x$-coordinate, mirrored across the $x$-axis). "
+            "$\\tan x = k$: one per HALF-lap — add $\\pi$. Find the reference solution from "
+            "the exact table (or $\\sin^{-1}$), then generate the partners.",
+            "The INTERVAL is part of the question: $0 \\le x \\le 2\\pi$ wants all lap "
+            "solutions; $0 \\le x \\le \\pi$ may kill one; a two-lap interval doubles them. "
+            "Count before you finish — a $\\sin$ equation on one lap owes two answers unless "
+            "$k = \\pm 1$.",
+            "Quadratic types: $2\\sin^2 x - \\sin x - 1 = 0$ is SL 2.10's hidden quadratic "
+            "with $u = \\sin x$: factor to $(2u + 1)(u - 1) = 0$, so $\\sin x = 1$ or "
+            "$-\\frac{1}{2}$, then solve EACH as its own circle problem. Discard any "
+            "candidate with $|u| > 1$ — sine and cosine can't reach it — and say why: "
+            "that's an R-mark."
+        ],
+        "keyIdea": (
+            "Reference solution + circle symmetry: sine partners with $\\pi - x$, cosine "
+            "with $2\\pi - x$, tangent repeats every $\\pi$. Count the solutions the "
+            "interval owes you."
+        ),
+        "facts": [
+            {
+                "title": "Partner rules per lap",
+                "latex": "\\sin: x, \; \\pi - x \\qquad \\cos: x, \; 2\\pi - x \\qquad \\tan: x, \; x + \\pi",
+                "explanation": (
+                    "NOT in the booklet — the unit circle's symmetry, memorized as three "
+                    "partner rules."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibsl-38-we1",
+                "statement": (
+                    "**Solve** $2\\sin x = 1$ for $0 \\le x \\le 2\\pi$, exactly. **[4]**"
+                ),
+                "solution": (
+                    "$\\sin x = \\frac{1}{2}$ *(M1)*. Reference: $x = \\frac{\\pi}{6}$ (the "
+                    "table) *(A1)*. Sine's partner: $\\pi - \\frac{\\pi}{6} = "
+                    "\\frac{5\\pi}{6}$ *(A1)*. Solutions: $x = \\frac{\\pi}{6}, "
+                    "\\frac{5\\pi}{6}$ *(A1)*.  \n"
+                    "**Narrative:** two answers, as one lap of sine owes. The classic loss "
+                    "is stopping at $\\frac{\\pi}{6}$ — the calculator's answer is HALF the "
+                    "answer. Sketch the wave crossing the line $y = \\frac{1}{2}$ twice if "
+                    "you want the count made visible."
+                ),
+                "check": [
+                    "solve(Eq(sin(x), Rational(1,2)), x) == [pi/6, 5*pi/6]",
+                    "sin(5*pi/6) == Rational(1,2)",
+                ],
+            },
+            {
+                "id": "ibsl-38-we2",
+                "statement": (
+                    "**Solve** $2\\sin^2 x - \\sin x - 1 = 0$ for $0 \\le x \\le 2\\pi$, "
+                    "exactly. **[6]**"
+                ),
+                "solution": (
+                    "Let $u = \\sin x$: $2u^2 - u - 1 = (2u + 1)(u - 1) = 0$ *(M1 A1)*, so "
+                    "$\\sin x = -\\frac{1}{2}$ or $\\sin x = 1$ *(A1)*.  \n"
+                    "$\\sin x = 1$: $x = \\frac{\\pi}{2}$ *(A1)*.  \n"
+                    "$\\sin x = -\\frac{1}{2}$: reference $\\frac{\\pi}{6}$, negative sine "
+                    "lives in QIII and QIV: $x = \\pi + \\frac{\\pi}{6} = \\frac{7\\pi}{6}$ "
+                    "and $x = 2\\pi - \\frac{\\pi}{6} = \\frac{11\\pi}{6}$ *(A1 A1)*.  \n"
+                    "Three solutions: $\\frac{\\pi}{2}, \\frac{7\\pi}{6}, \\frac{11\\pi}{6}$.  \n"
+                    "**Narrative:** SL 2.10's substitution plus SL 3.5's circle, chained. "
+                    "$\\sin x = 1$ gives only ONE solution — the peak touches once per lap. "
+                    "Counting expected answers per branch is the self-audit."
+                ),
+                "check": [
+                    "solve(2*u**2 - u - 1, u) == [Rational(-1,2), 1]",
+                    "sin(pi/2) == 1",
+                    "sin(7*pi/6) == Rational(-1,2)",
+                    "sin(11*pi/6) == Rational(-1,2)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Reporting only the calculator's one solution.",
+                "correction": "Per lap: sine owes two ($x$, $\\pi - x$), cosine two ($x$, $2\\pi - x$), tangent two ($x$, $x + \\pi$). Generate the partners.",
+                "authored": True,
+            },
+            {
+                "text": "Dividing both sides by $\\cos x$ in equations like $\\sin x = \\cos x \\cdot k$… and losing the $\\cos x = 0$ roots.",
+                "correction": "Factor instead of dividing by anything that can be zero — the SL 2.10 rule, again.",
+                "authored": True,
+            },
+            {
+                "text": "Accepting $\\sin x = \\frac{3}{2}$ as a valid branch of a quadratic.",
+                "correction": "Sine and cosine live in $[-1, 1]$: discard the impossible branch AND write the reason — it's a mark.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibsl-38-t1",
+                "statement": "**Solve** $\\cos x = -\\dfrac{1}{2}$ for $0 \\le x \\le 2\\pi$, exactly. **[3]**",
+                "solution": (
+                    "Reference $\\frac{\\pi}{3}$; negative cosine lives in QII and QIII: "
+                    "$x = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$ and $x = \\pi + "
+                    "\\frac{\\pi}{3} = \\frac{4\\pi}{3}$ *(M1 A1 A1)*."
+                ),
+                "check": [
+                    "cos(2*pi/3) == Rational(-1,2)",
+                    "cos(4*pi/3) == Rational(-1,2)",
+                ],
+            },
+            {
+                "id": "ibsl-38-t2",
+                "statement": (
+                    "**Solve** $2\\cos^2 x + \\cos x - 1 = 0$ for $0 \\le x \\le 2\\pi$, "
+                    "exactly. **[5]**"
+                ),
+                "solution": (
+                    "$(2\\cos x - 1)(\\cos x + 1) = 0$ *(M1 A1)*: $\\cos x = \\frac{1}{2}$ "
+                    "gives $x = \\frac{\\pi}{3}, \\frac{5\\pi}{3}$; $\\cos x = -1$ gives "
+                    "$x = \\pi$ *(A1 A1 A1)*. Three solutions — the $\\cos x = -1$ branch "
+                    "touches only once."
+                ),
+                "check": [
+                    "solve(2*u**2 + u - 1, u) == [-1, Rational(1,2)]",
+                    "cos(pi/3) == Rational(1,2)",
+                    "cos(5*pi/3) == Rational(1,2)",
+                    "cos(pi) == -1",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "SL 3.8 · the topic's capstone",
+                    "title": "Equations with a lap counter",
+                    "body": (
+                        "Everything converges here: exact values (3.5), identities (3.6), "
+                        "wave graphs (3.7), and the substitution trick (2.10). A trig "
+                        "equation is an ordinary equation whose answers repeat around the "
+                        "circle — your job is finding ALL of them in the given window."
+                    ),
+                },
+                {
+                    "kind": "unitCircle",
+                    "eyebrow": "See the partners",
+                    "title": "Same height, two angles",
+                    "teach": (
+                        "Steer to $30°$ and note the height $\\frac{1}{2}$ — now steer to "
+                        "$150°$: same height. Every horizontal line through the circle cuts "
+                        "it twice; that's WHY $\\sin x = k$ owes two answers per lap, at $x$ "
+                        "and $\\pi - x$."
+                    ),
+                    "config": {"mode": "explore", "start": 30},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "The method",
+                    "title": "Reference, partners, count",
+                    "beats": [
+                        "Isolate the ratio; find the reference solution from the exact table.",
+                        "Partners per lap — $\\sin$: $\\pi - x$; $\\cos$: $2\\pi - x$; $\\tan$: $+\\pi$. Negative values: pick the two quadrants with that sign.",
+                        "Count what the interval owes; a one-lap sine equation ending with one answer is unfinished.",
+                    ],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "Two answers from one equation", "problemId": "ibsl-38-we1"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Partner fluency",
+                    "title": "Complete the pair",
+                    "prompt": "One solution of $\\tan x = 1$ on $[0, 2\\pi]$ is $x = \\dfrac{\\pi}{4}$. The other is:",
+                    "options": ["$\\dfrac{5\\pi}{4}$", "$\\dfrac{3\\pi}{4}$", "$\\dfrac{7\\pi}{4}$", "$\\dfrac{\\pi}{2}$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Tangent repeats every $\\pi$: $\\frac{\\pi}{4} + \\pi = "
+                        "\\frac{5\\pi}{4}$ (QIII, where tangent is also positive — T in "
+                        "A-S-T-C)."
+                    ),
+                    "check": ["tan(5*pi/4) == 1", "pi/4 + pi == 5*pi/4"],
+                },
+                {"kind": "worked", "eyebrow": "Exam format", "title": "A quadratic in sin x", "problemId": "ibsl-38-we2"},
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Branch audit",
+                    "title": "Which branch dies?",
+                    "prompt": "Solving gives $\\cos x = \\dfrac{1}{3}$ or $\\cos x = \\dfrac{3}{2}$. On $[0, 2\\pi]$ the equation has:",
+                    "options": [
+                        "$2$ solutions — the second branch is impossible",
+                        "$4$ solutions",
+                        "$3$ solutions",
+                        "$0$ solutions",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\cos x$ never exceeds 1, so $\\frac{3}{2}$ is unreachable — say "
+                        "so for the mark. The living branch gives the usual pair."
+                    ),
+                    "check": ["Rational(3,2) > 1"],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "The wave sketch as solution counter",
+                    "body": (
+                        "A five-second sketch of the wave with the horizontal line $y = k$ "
+                        "SHOWS how many solutions the interval holds and roughly where. On "
+                        "Paper 2 the GDC intersect does the same officially. Either way: "
+                        "count first, then solve — and never divide away a trig factor "
+                        "that could be zero."
+                    ),
+                },
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Negative cosine, two quadrants", "problemId": "ibsl-38-t1"},
+                {"kind": "tryIt", "eyebrow": "Your turn", "title": "Factor, then solve twice", "problemId": "ibsl-38-t2"},
+                {
+                    "kind": "recap",
+                    "title": "SL 3.8 in four lines",
+                    "points": [
+                        "Isolate the ratio, find the reference, generate the partners.",
+                        "$\\sin$: $\\pi - x$ · $\\cos$: $2\\pi - x$ · $\\tan$: $+\\pi$.",
+                        "Quadratic types: substitute, factor, solve each branch on the circle.",
+                        "Discard $|k| > 1$ branches WITH the reason; count what the interval owes.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Unit practice bank — 2 per subtopic, tagged ib-aa-sl-3.x
+# ===========================================================================
+def practice_bank():
+    return [
+        {
+            "id": "ibsl-gt-p01",
+            "statement": "Find the distance between $(2, -1, 3)$ and $(4, 5, 6)$, and the midpoint of the segment joining them. **[4]**",
+            "solution": (
+                "$d = \\sqrt{4 + 36 + 9} = 7$ *(M1 A1)*. Midpoint $\\left(3, 2, \\frac{9}{2}"
+                "\\right)$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.1", "mono": True}, {"text": "P1"}],
+            "check": ["sqrt((4-2)**2 + (5-(-1))**2 + (6-3)**2) == 7", "Rational(3 + 6, 2) == Rational(9, 2)"],
+        },
+        {
+            "id": "ibsl-gt-p02",
+            "statement": "A hemisphere has radius $6$ cm. Find its exact volume and its exact TOTAL surface area (including the flat face). **[4]**",
+            "solution": (
+                "$V = \\frac{2}{3}\\pi \\cdot 216 = 144\\pi$ cm³ *(M1 A1)*. Surface: curved "
+                "$2\\pi r^2 = 72\\pi$ plus disc $\\pi r^2 = 36\\pi$: total $108\\pi$ cm² *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.1", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(2,3)*6**3 == 144", "2*6**2 + 6**2 == 108"],
+        },
+        {
+            "id": "ibsl-gt-p03",
+            "statement": "In triangle $ABC$, $a = 5$, $b = 8$ and $\\hat{C} = 60°$. Find $c$ exactly. **[3]**",
+            "solution": (
+                "$c^2 = 25 + 64 - 2(5)(8)\\cos 60° = 89 - 40 = 49$ *(M1 A1)*, so $c = 7$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.2", "mono": True}, {"text": "P1"}],
+            "check": ["25 + 64 - 2*5*8*cos(pi/3) == 49"],
+        },
+        {
+            "id": "ibsl-gt-p04",
+            "statement": "In triangle $ABC$, $\\hat{A} = 30°$, $\\hat{B} = 45°$ and $a = 6$. Find $b$ exactly. **[3]**",
+            "solution": (
+                "Sine rule: $b = \\dfrac{6\\sin 45°}{\\sin 30°} = \\dfrac{6 \\cdot \\frac{\\sqrt 2}{2}}"
+                "{\\frac{1}{2}} = 6\\sqrt{2}$ *(M1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.2", "mono": True}, {"text": "P1"}],
+            "check": ["6*sin(pi/4)/sin(pi/6) == 6*sqrt(2)"],
+        },
+        {
+            "id": "ibsl-gt-p05",
+            "statement": "A vertical pole casts a $20$ m shadow when the sun's elevation is $55°$. Find the pole's height, to 3 s.f. **[3]**",
+            "solution": "$h = 20\\tan 55° \\approx 28.6$ m *(M1 A1 A1)*.",
+            "badges": [{"text": "ib-aa-sl-3.3", "mono": True}, {"text": "P2"}],
+            "check": ["Abs(20*tan(rad(55)) - 28.56) < 0.01"],
+        },
+        {
+            "id": "ibsl-gt-p06",
+            "statement": "A drone flies $5$ km north, then $12$ km east. Find its distance from the start and its bearing from the start, to the nearest degree. **[4]**",
+            "solution": (
+                "$d = \\sqrt{25 + 144} = 13$ km *(M1 A1)*. Bearing $= \\tan^{-1}\\frac{12}{5} "
+                "\\approx 67°$, written $067°$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.3", "mono": True}, {"text": "P2"}],
+            "check": ["sqrt(5**2 + 12**2) == 13", "Abs(deg(atan(Rational(12,5))) - 67.38) < 0.01"],
+        },
+        {
+            "id": "ibsl-gt-p07",
+            "statement": "A sector has radius $10$ cm and central angle $0.8$ radians. Find its arc length and area. **[4]**",
+            "solution": (
+                "$l = 10 \\cdot 0.8 = 8$ cm *(M1 A1)*. $A = \\frac{1}{2} \\cdot 100 \\cdot 0.8 "
+                "= 40$ cm² *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.4", "mono": True}, {"text": "P1"}],
+            "check": ["10*Rational(8,10) == 8", "Rational(1,2)*100*Rational(8,10) == 40"],
+        },
+        {
+            "id": "ibsl-gt-p08",
+            "statement": "Convert $150°$ to radians exactly, and find the exact arc it subtends on a circle of radius $12$ cm. **[3]**",
+            "solution": (
+                "$150° = \\frac{5\\pi}{6}$ *(A1)*. Arc $= 12 \\cdot \\frac{5\\pi}{6} = 10\\pi$ "
+                "cm *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.4", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(150,180)*pi == 5*pi/6", "12*5*pi/6 == 10*pi"],
+        },
+        {
+            "id": "ibsl-gt-p09",
+            "statement": "**Write down** the exact values of $\\sin\\dfrac{2\\pi}{3}$, $\\cos\\dfrac{5\\pi}{6}$, and $\\tan\\dfrac{3\\pi}{4}$. **[3]**",
+            "solution": (
+                "$\\frac{\\sqrt 3}{2}$; $-\\frac{\\sqrt 3}{2}$; $-1$ *(A1 A1 A1)* — QII "
+                "reference angles $\\frac{\\pi}{3}, \\frac{\\pi}{6}, \\frac{\\pi}{4}$."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.5", "mono": True}, {"text": "P1"}],
+            "check": ["sin(2*pi/3) == sqrt(3)/2", "cos(5*pi/6) == -sqrt(3)/2", "tan(3*pi/4) == -1"],
+        },
+        {
+            "id": "ibsl-gt-p10",
+            "statement": "The point $P\\left(-\\dfrac{4}{5}, -\\dfrac{3}{5}\\right)$ lies on the unit circle at angle $\\theta$. **Write down** $\\sin\\theta$ and $\\tan\\theta$. **[2]**",
+            "solution": (
+                "$\\sin\\theta = -\\frac{3}{5}$; $\\tan\\theta = \\frac{3}{4}$ *(A1 A1)* — "
+                "QIII, tangent positive."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.5", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(-3,5)/Rational(-4,5) == Rational(3,4)", "Rational(16,25) + Rational(9,25) == 1"],
+        },
+        {
+            "id": "ibsl-gt-p11",
+            "statement": "Given $\\cos\\theta = \\dfrac{5}{13}$ with $\\theta$ in the fourth quadrant, find $\\sin\\theta$ and $\\sin 2\\theta$ exactly. **[4]**",
+            "solution": (
+                "$\\sin\\theta = -\\frac{12}{13}$ (QIV) *(M1 A1)*. $\\sin 2\\theta = "
+                "2\\left(-\\frac{12}{13}\\right)\\frac{5}{13} = -\\frac{120}{169}$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.6", "mono": True}, {"text": "P1"}],
+            "check": ["1 - Rational(25,169) == Rational(144,169)", "2*Rational(-12,13)*Rational(5,13) == Rational(-120,169)"],
+        },
+        {
+            "id": "ibsl-gt-p12",
+            "statement": "**Show that** $(\\sin\\theta + \\cos\\theta)^2 = 1 + \\sin 2\\theta$. **[3]**",
+            "solution": (
+                "Expand: $\\sin^2 + 2\\sin\\cos + \\cos^2$ *(M1 A1)* $= 1 + \\sin 2\\theta$ ✓ "
+                "*(A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.6", "mono": True}, {"text": "P1"}],
+            "check": ["simplify((sin(x) + cos(x))**2 - 1 - sin(2*x)) == 0"],
+        },
+        {
+            "id": "ibsl-gt-p13",
+            "statement": "**Write down** the amplitude, period, midline, maximum and minimum of $y = 5\\cos(3x) - 2$. **[5]**",
+            "solution": (
+                "Amplitude 5; period $\\frac{2\\pi}{3}$; midline $y = -2$; max 3; min $-7$ "
+                "*(A1 ×5)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.7", "mono": True}, {"text": "P1"}],
+            "check": ["-2 + 5 == 3", "-2 - 5 == -7", "2*pi/3 == 2*pi/3"],
+        },
+        {
+            "id": "ibsl-gt-p14",
+            "statement": "A tide is $h(t) = 4\\sin\\left(\\dfrac{\\pi t}{6}\\right) + 7$ m. **Write down** the maximum depth and period, and verify $h(3)$ is the maximum. **[4]**",
+            "solution": (
+                "Max $11$ m; period $12$ h *(A1 A1)*. $h(3) = 4\\sin\\frac{\\pi}{2} + 7 = 11$ ✓ "
+                "*(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.7", "mono": True}, {"text": "P2"}],
+            "check": ["4*sin(pi/2) + 7 == 11", "2*pi/(pi/6) == 12"],
+        },
+        {
+            "id": "ibsl-gt-p15",
+            "statement": "**Solve** $\\cos x = -\\dfrac{1}{2}$ for $0 \\le x \\le 2\\pi$, exactly. **[3]**",
+            "solution": (
+                "Reference $\\frac{\\pi}{3}$; QII and QIII: $x = \\frac{2\\pi}{3}, "
+                "\\frac{4\\pi}{3}$ *(M1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.8", "mono": True}, {"text": "P1"}],
+            "check": ["cos(2*pi/3) == Rational(-1,2)", "cos(4*pi/3) == Rational(-1,2)"],
+        },
+        {
+            "id": "ibsl-gt-p16",
+            "statement": "**Solve** $2\\cos^2 x + \\cos x - 1 = 0$ for $0 \\le x \\le 2\\pi$, exactly. **[5]**",
+            "solution": (
+                "$(2\\cos x - 1)(\\cos x + 1) = 0$ *(M1 A1)*: $x = \\frac{\\pi}{3}, "
+                "\\frac{5\\pi}{3}$ (from $\\cos x = \\frac{1}{2}$) and $x = \\pi$ (from "
+                "$\\cos x = -1$) *(A1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.8", "mono": True}, {"text": "P1"}],
+            "check": ["solve(2*u**2 + u - 1, u) == [-1, Rational(1,2)]", "cos(5*pi/3) == Rational(1,2)", "cos(pi) == -1"],
+        },
+    ]
+
+
+# ===========================================================================
+# Test-yourself bank — one exam-style question per subtopic
+# ===========================================================================
+def test_bank():
+    return [
+        {
+            "id": "ibsl-gt-q01",
+            "statement": "A cone has radius $5$ cm and height $12$ cm. Find its slant height, exact volume, and exact curved surface area. **[5]**",
+            "solution": (
+                "$l = \\sqrt{25 + 144} = 13$ *(A1)*. $V = \\frac{1}{3}\\pi \\cdot 25 \\cdot 12 "
+                "= 100\\pi$ cm³ *(M1 A1)*. Curved: $\\pi r l = 65\\pi$ cm² *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.1", "mono": True}],
+            "check": ["sqrt(25 + 144) == 13", "Rational(1,3)*25*12 == 100", "5*13 == 65"],
+        },
+        {
+            "id": "ibsl-gt-q02",
+            "statement": "A triangle has sides $7$ and $10$ with included angle $30°$. Find its exact area. **[2]**",
+            "solution": "$A = \\frac{1}{2}(7)(10)\\sin 30° = 35 \\cdot \\frac{1}{2} = \\frac{35}{2}$ *(M1 A1)* — i.e. $17.5$.",
+            "badges": [{"text": "ib-aa-sl-3.2", "mono": True}],
+            "check": ["Rational(1,2)*7*10*sin(pi/6) == Rational(35,2)"],
+        },
+        {
+            "id": "ibsl-gt-q03",
+            "statement": "From the top of an $80$ m cliff the angle of depression of a buoy is $12°$. Find the buoy's distance from the cliff base, to 3 s.f. **[3]**",
+            "solution": "Alternate angles: elevation $12°$ at the buoy. $d = \\frac{80}{\\tan 12°} \\approx 376$ m *(M1 A1 A1)*.",
+            "badges": [{"text": "ib-aa-sl-3.3", "mono": True}],
+            "check": ["Abs(80/tan(rad(12)) - 376.4) < 0.5"],
+        },
+        {
+            "id": "ibsl-gt-q04",
+            "statement": "A sector of radius $9$ cm has area $27\\pi$ cm². Find its central angle exactly, and its arc length exactly. **[4]**",
+            "solution": (
+                "$\\frac{1}{2}(81)\\theta = 27\\pi \\Rightarrow \\theta = \\frac{2\\pi}{3}$ "
+                "*(M1 A1)*. Arc $= 9 \\cdot \\frac{2\\pi}{3} = 6\\pi$ cm *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.4", "mono": True}],
+            "check": ["solve(Eq(Rational(81,2)*t, 27*pi), t) == [2*pi/3]", "9*2*pi/3 == 6*pi"],
+        },
+        {
+            "id": "ibsl-gt-q05",
+            "statement": "In triangle $ABC$, $a = 7$, $b = 10$, $\\hat{A} = 35°$. **Find** both possible values of $\\hat{B}$, to 1 d.p. **[4]**",
+            "solution": (
+                "$\\sin B = \\frac{10\\sin 35°}{7} \\approx 0.8194$ *(M1 A1)*: $B \\approx "
+                "55.0°$ or $125.0°$; both pass the angle-sum test with $\\hat{A} = 35°$ "
+                "*(A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.5", "mono": True}],
+            "check": [
+                "Abs(10*sin(rad(35))/7 - 0.8194) < 0.001",
+                "Abs(deg(asin(10*sin(rad(35))/7)) - 55.03) < 0.05",
+                "35 + 125 < 180",
+            ],
+        },
+        {
+            "id": "ibsl-gt-q06",
+            "statement": "Given $\\tan\\theta = 2$ with $\\pi < \\theta < \\dfrac{3\\pi}{2}$, find the exact values of $\\sin\\theta$, $\\cos\\theta$ and $\\sin 2\\theta$. **[5]**",
+            "solution": (
+                "QIII: both negative. From a 1-2-$\\sqrt 5$ triangle: $\\sin\\theta = "
+                "-\\frac{2}{\\sqrt 5}$, $\\cos\\theta = -\\frac{1}{\\sqrt 5}$ *(M1 A1 A1)*. "
+                "$\\sin 2\\theta = 2 \\cdot \\frac{2}{5} = \\frac{4}{5}$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.6", "mono": True}],
+            "check": [
+                "(-2/sqrt(5))**2 + (-1/sqrt(5))**2 == 1",
+                "simplify(2*(-2/sqrt(5))*(-1/sqrt(5)) - Rational(4,5)) == 0",
+            ],
+        },
+        {
+            "id": "ibsl-gt-q07",
+            "statement": "A sinusoid has maximum $9$, minimum $1$, and period $8$. **Find** a model of the form $y = a\\sin(bt) + d$ with $a, b, d > 0$. **[4]**",
+            "solution": (
+                "$d = \\frac{9+1}{2} = 5$; $a = \\frac{9-1}{2} = 4$ *(A1 A1)*. "
+                "$b = \\frac{2\\pi}{8} = \\frac{\\pi}{4}$ *(M1 A1)*: $y = 4\\sin\\frac{\\pi t}"
+                "{4} + 5$."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.7", "mono": True}],
+            "check": ["Rational(9+1,2) == 5", "Rational(9-1,2) == 4", "2*pi/8 == pi/4"],
+        },
+        {
+            "id": "ibsl-gt-q08",
+            "statement": "**Solve** $2\\sin^2 x - \\sin x - 1 = 0$ for $0 \\le x \\le 2\\pi$, exactly. **[6]**",
+            "solution": (
+                "$(2\\sin x + 1)(\\sin x - 1) = 0$ *(M1 A1)*: $\\sin x = 1 \\Rightarrow "
+                "x = \\frac{\\pi}{2}$; $\\sin x = -\\frac{1}{2} \\Rightarrow x = "
+                "\\frac{7\\pi}{6}, \\frac{11\\pi}{6}$ *(A1 A1 A1 A1)*."
+            ),
+            "badges": [{"text": "ib-aa-sl-3.8", "mono": True}],
+            "check": [
+                "solve(2*u**2 - u - 1, u) == [Rational(-1,2), 1]",
+                "sin(7*pi/6) == Rational(-1,2)",
+                "sin(11*pi/6) == Rational(-1,2)",
+            ],
+        },
+    ]
+
+
+# ===========================================================================
+# Assembly
+# ===========================================================================
+def build():
+    lessons = [
+        lesson_3d_geometry(),
+        lesson_triangle_rules(),
+        lesson_applications(),
+        lesson_radians(),
+        lesson_unit_circle(),
+        lesson_identities(),
+        lesson_trig_graphs(),
+        lesson_trig_equations(),
+    ]
+    unit = {
+        "slug": "geometry-and-trigonometry",
+        "title": "Geometry & Trigonometry",
+        "unit": 3,
+        "status": "published",
+        "blurb": (
+            "IB Topic 3, complete: 3D geometry and the booklet's solids, right-triangle trig "
+            "with the sine and cosine rules, elevation/depression and bearings, radian "
+            "measure with arcs and sectors, the unit circle and exact values, the Pythagorean "
+            "and double-angle identities, sinusoidal graphs and models, and trig equations — "
+            "SL 3.1 to 3.8, taught to markscheme standard."
+        ),
+        "buildsOn": (
+            "Topic 2's transformations power the wave graphs (SL 3.7 is SL 2.11 with a "
+            "circle attached), and Topic 2's hidden-quadratic trick returns in SL 3.8."
+        ),
+        "lessons": lessons,
+        "practice": practice_bank(),
+        "testYourself": test_bank(),
+    }
+    return unit
+
+
+def selfcheck(unit):
+    from sympy import sympify
+    n_checks = 0
+    problems = []
+    for les in unit["lessons"]:
+        problems += les["workedExamples"] + les["tryIt"]
+        ids = {p["id"] for p in les["workedExamples"] + les["tryIt"]}
+        for step in les["interactive"]["steps"]:
+            if step["kind"] in ("worked", "tryIt"):
+                assert step["problemId"] in ids, f"{les['slug']}: dangling problemId {step['problemId']}"
+            if step["kind"] == "tapQuestion":
+                assert len(step["options"]) == len(set(step["options"])), f"{les['slug']}: dup options"
+                for c in step["check"]:
+                    assert bool(sympify(c)) is True, f"{les['slug']} tapQ: {c}"
+                    n_checks += 1
+    problems += unit["practice"] + unit["testYourself"]
+    ids = [p["id"] for p in problems]
+    assert len(ids) == len(set(ids)), "duplicate problem ids"
+    for p in problems:
+        for c in p["check"]:
+            assert bool(sympify(c)) is True, f"{p['id']}: NOT TRUE: {c}"
+            n_checks += 1
+    return len(problems), n_checks
+
+
+def main():
+    unit = build()
+    n_problems, n_checks = selfcheck(unit)
+    with open(OUT, "w") as fh:
+        json.dump(unit, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    n_steps = sum(len(l["interactive"]["steps"]) for l in unit["lessons"])
+    print(f"wrote {os.path.relpath(OUT, ROOT)}: {len(unit['lessons'])} lessons, "
+          f"{n_steps} interactive steps, {n_problems} problems, {n_checks} sympy checks OK")
+
+
+if __name__ == "__main__":
+    main()

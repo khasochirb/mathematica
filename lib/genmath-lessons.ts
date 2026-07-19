@@ -205,6 +205,7 @@ import trigIdent from "@/data/genmath/trigonometry/identities-and-equations.json
 import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json";
 import ibSlNumberAlgebra from "@/data/genmath/ib-sl/number-and-algebra.json";
 import ibSlFunctions from "@/data/genmath/ib-sl/functions.json";
+import ibSlGeoTrig from "@/data/genmath/ib-sl/geometry-and-trigonometry.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1677,7 +1678,7 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
     title: "Geometry & Trigonometry",
     blurb: "3D geometry, the unit circle, identities, trig equations and graphs, sine and cosine rules — SL 3.1 to 3.8.",
     buildsOn: "Functions and their transformations from Topic 2.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -1700,6 +1701,7 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
 const ibSlUnits: CourseUnit[] = [
   ibSlNumberAlgebra as unknown as CourseUnit,
   ibSlFunctions as unknown as CourseUnit,
+  ibSlGeoTrig as unknown as CourseUnit,
 ];
 
 export function getIbSlSpine(): GeometrySpineEntry[] {
