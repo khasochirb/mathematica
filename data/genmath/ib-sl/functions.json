@@ -1,0 +1,2725 @@
+{
+  "slug": "functions",
+  "title": "Functions",
+  "unit": 2,
+  "status": "published",
+  "blurb": "IB Topic 2, complete: straight lines, the function concept, graphs and their key features, composite and inverse functions, quadratics from every angle, the discriminant, rational functions, exponential and logarithmic graphs, equation-solving strategy, and graph transformations — SL 2.1 to 2.11, taught to markscheme standard.",
+  "buildsOn": "Topic 1's exponent and logarithm machinery (SL 1.5, 1.7) powers the exponential lessons; everything else needs only solid GCSE/MYP algebra.",
+  "lessons": [
+    {
+      "slug": "straight-lines-and-gradients",
+      "title": "Straight Lines & Gradients",
+      "concreteComparison": "A taxi charges a ₮5,000 flag-fall plus ₮2,000 per km: cost $= 2000d + 5000$. Every 'fixed amount plus a constant rate' story in the world is a straight line — and the IB wants you fluent in three different outfits the same line can wear.",
+      "objective": "Move between $y = mx + c$, $ax + by + d = 0$, and point–gradient form; compute gradients from two points; and use the parallel and perpendicular gradient conditions.",
+      "concept": [
+        "**Syllabus card — SL 2.1.** Different forms of the equation of a straight line; gradient and intercepts; parallel lines $m_1 = m_2$; perpendicular lines $m_1 m_2 = -1$. **Papers 1 and 2**, SL and HL. Rarely a whole question on its own — instead it AMBUSHES you inside calculus (tangent lines), statistics (regression), and geometry (perpendicular bisectors). Foundation, not decoration.",
+        "The gradient measures steepness as rise over run: $m = \\dfrac{y_2 - y_1}{x_2 - x_1}$ — in the booklet. Gradient–intercept form $y = mx + c$ reads the slope and $y$-intercept directly; general form $ax + by + d = 0$ hides them (solve for $y$ to expose $m = -\\frac{a}{b}$); point–gradient form $y - y_1 = m(x - x_1)$ is the fastest to WRITE when you know one point and the slope — which is exactly the situation tangent-line questions hand you.",
+        "Parallel lines share a gradient: $m_1 = m_2$. Perpendicular gradients multiply to $-1$: $m_1 m_2 = -1$, i.e. the perpendicular gradient is the NEGATIVE RECIPROCAL — flip the fraction, flip the sign. A line of gradient $\\frac{3}{4}$ meets gradient $-\\frac{4}{3}$ at right angles.",
+        "Exam craft: answers are accepted in any correct form unless the question names one ('give your answer in the form $ax + by + d = 0$ where $a, b, d \\in \\mathbb{Z}$' is a common demand — clear the fractions and move everything left)."
+      ],
+      "keyIdea": "One line, three outfits: $y = mx + c$ to READ the slope, $y - y_1 = m(x - x_1)$ to WRITE from a point, $ax + by + d = 0$ when the exam demands integers.",
+      "facts": [
+        {
+          "title": "Gradient between two points",
+          "latex": "m = \\frac{y_2 - y_1}{x_2 - x_1}",
+          "explanation": "IN the formula booklet (SL 2.1). Rise over run, in that order — subtract consistently."
+        },
+        {
+          "title": "Parallel / perpendicular",
+          "latex": "m_1 = m_2 \\quad\\text{(parallel)}, \\qquad m_1 m_2 = -1 \\quad\\text{(perpendicular)}",
+          "explanation": "NOT printed as formulas in the booklet — the syllabus expects them known. Perpendicular = negative reciprocal: flip and negate."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-21-we1",
+          "statement": "Line $L$ passes through $A(2, 5)$ and $B(6, 13)$.  \n**(a)** Find the gradient of $L$. **[2]**  \n**(b)** Find the equation of $L$ in the form $y = mx + c$. **[2]**  \n**(c)** **Write down** the gradient of a line perpendicular to $L$. **[1]**",
+          "solution": "**(a)** $m = \\dfrac{13 - 5}{6 - 2} = \\dfrac{8}{4} = 2$ *(M1 A1)*.  \n**(b)** Point–gradient with $A$: $y - 5 = 2(x - 2)$ *(M1)*, so $y = 2x + 1$ *(A1)*.  \n**(c)** $-\\dfrac{1}{2}$ *(A1)* — flip $2 = \\frac{2}{1}$ and negate.  \n**Narrative:** the M1 in (b) is the point–gradient SETUP, not the algebra. Check the answer with the unused point: $2(6) + 1 = 13$ ✓ — ten free seconds of certainty.",
+          "check": [
+            "Rational(13 - 5, 6 - 2) == 2",
+            "2*2 + 1 == 5",
+            "2*6 + 1 == 13",
+            "2*Rational(-1, 2) == -1"
+          ]
+        },
+        {
+          "id": "ibsl-21-we2",
+          "statement": "Line $L_1$ has equation $3x + 4y = 12$.  \n**(a)** Find the gradient of $L_1$. **[2]**  \n**(b)** Line $L_2$ is perpendicular to $L_1$ and passes through $(3, 1)$. Find the equation of $L_2$ in the form $ax + by + d = 0$, where $a, b, d \\in \\mathbb{Z}$. **[3]**",
+          "solution": "**(a)** Solve for $y$: $y = -\\dfrac{3}{4}x + 3$, so $m_1 = -\\dfrac{3}{4}$ *(M1 A1)*.  \n**(b)** Perpendicular gradient: $m_2 = \\dfrac{4}{3}$ *(A1)*. Point–gradient: $y - 1 = \\dfrac{4}{3}(x - 3)$ *(M1)*. Clear fractions: $3y - 3 = 4x - 12$, i.e. $4x - 3y - 9 = 0$ *(A1)*.  \n**Narrative:** the demanded form does real work — integer coefficients, everything on one side. Verify with the point: $4(3) - 3(1) - 9 = 0$ ✓. And $m_1 m_2 = -\\frac{3}{4} \\cdot \\frac{4}{3} = -1$ ✓.",
+          "check": [
+            "solve(3*x + 4*y - 12, y) == [3 - Rational(3,4)*x]",
+            "Rational(-3,4)*Rational(4,3) == -1",
+            "4*3 - 3*1 - 9 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Mixing subtraction order in the gradient: $\\frac{y_2 - y_1}{x_1 - x_2}$.",
+          "correction": "Same order top and bottom: $(y_2 - y_1)/(x_2 - x_1)$. Mixing flips the sign of every gradient.",
+          "authored": true
+        },
+        {
+          "text": "Perpendicular = 'just flip the sign': gradient $\\frac{3}{4}$ → $-\\frac{3}{4}$.",
+          "correction": "Flip AND reciprocate: $\\frac{3}{4} \\to -\\frac{4}{3}$. Check: their product must be $-1$.",
+          "authored": true
+        },
+        {
+          "text": "Reading the gradient of $3x + 4y = 12$ as $3$ (the $x$-coefficient).",
+          "correction": "Only $y = mx + c$ shows the gradient directly. Rearrange first: $m = -\\frac{3}{4}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-21-t1",
+          "statement": "Find the equation of the line through $(-1, 4)$ and $(3, -4)$, in the form $y = mx + c$. **[3]**",
+          "solution": "$m = \\dfrac{-4 - 4}{3 - (-1)} = \\dfrac{-8}{4} = -2$ *(M1 A1)*. Through $(3, -4)$: $y + 4 = -2(x - 3) \\Rightarrow y = -2x + 2$ *(A1)*. Check with the other point: $-2(-1) + 2 = 4$ ✓.",
+          "check": [
+            "Rational(-4 - 4, 3 + 1) == -2",
+            "-2*3 + 2 == -4",
+            "-2*(-1) + 2 == 4"
+          ]
+        },
+        {
+          "id": "ibsl-21-t2",
+          "statement": "Line $L$ has equation $y = \\dfrac{2}{5}x - 1$. **Write down** the gradient of a line **(a)** parallel to $L$; **(b)** perpendicular to $L$. **[2]**",
+          "solution": "**(a)** $\\dfrac{2}{5}$ — parallel lines copy the gradient. **(b)** $-\\dfrac{5}{2}$ — flip and negate; product check: $\\frac{2}{5} \\cdot \\left(-\\frac{5}{2}\\right) = -1$ ✓. *(A1 A1)*",
+          "check": [
+            "Rational(2,5)*Rational(-5,2) == -1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.1 · Papers 1 & 2",
+            "title": "The line beneath everything",
+            "body": "Tangent lines in calculus, regression lines in statistics, perpendicular bisectors in geometry — Topic 2 opens with the object they all lean on. Three forms of one equation, one gradient formula, two right-angle rules."
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Feel the gradient",
+            "title": "Two lines, one grid",
+            "teach": "Steer the second line's gradient and intercept. Match the gradients and the lines run parallel — no intersection. The verdict updates live: gradient IS the geometry.",
+            "config": {
+              "m1": 2,
+              "b1": 1,
+              "m2": -1,
+              "b2": 4,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The toolkit",
+            "title": "Three outfits, two rules",
+            "beats": [
+              "$m = \\frac{y_2 - y_1}{x_2 - x_1}$ — booklet. Same subtraction order, top and bottom.",
+              "$y = mx + c$ reads the slope; $y - y_1 = m(x - x_1)$ writes from a point; $ax + by + d = 0$ for integer demands.",
+              "Parallel: $m_1 = m_2$. Perpendicular: $m_1 m_2 = -1$ — flip and negate."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Two points to an equation",
+            "problemId": "ibsl-21-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Gradient check",
+            "title": "Rise over run",
+            "prompt": "The gradient of the line through $(1, 7)$ and $(5, -1)$ is:",
+            "options": [
+              "$-2$",
+              "$2$",
+              "$-\\dfrac{1}{2}$",
+              "$\\dfrac{3}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$m = \\dfrac{-1 - 7}{5 - 1} = \\dfrac{-8}{4} = -2$. Option B forgot the sign; option C flipped rise and run.",
+            "check": [
+              "Rational(-1 - 7, 5 - 1) == -2"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Right angles",
+            "title": "The negative reciprocal",
+            "prompt": "A line has gradient $-\\dfrac{2}{3}$. A perpendicular line has gradient:",
+            "options": [
+              "$\\dfrac{3}{2}$",
+              "$\\dfrac{2}{3}$",
+              "$-\\dfrac{3}{2}$",
+              "$-\\dfrac{2}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flip and negate: $-\\frac{2}{3} \\to +\\frac{3}{2}$. Product check: $-\\frac{2}{3} \\cdot \\frac{3}{2} = -1$ ✓.",
+            "check": [
+              "Rational(-2,3)*Rational(3,2) == -1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Perpendicular, integer form",
+            "problemId": "ibsl-21-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The free verification",
+            "body": "Every line question carries its own answer key: substitute a point you did NOT use to build the equation. Ten seconds, and an A-mark slip surfaces before the examiner ever sees it. In 'form $ax + by + d = 0$' demands, integers only — clear every fraction."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two points, one line",
+            "problemId": "ibsl-21-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Parallel and perpendicular",
+            "problemId": "ibsl-21-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.1 in four lines",
+            "points": [
+              "$m = \\frac{y_2-y_1}{x_2-x_1}$ (booklet) — consistent order.",
+              "Know a point + slope? $y - y_1 = m(x - x_1)$, instantly.",
+              "Parallel: equal gradients. Perpendicular: product $-1$.",
+              "Check with an unused point; obey the demanded form."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-function-concept",
+      "title": "Functions, Domain & Range",
+      "concreteComparison": "A vending machine that sometimes gives cola and sometimes water for the same button would be useless. A FUNCTION is the reliable machine: one input, exactly one output, every time. All of Topic 2 — and most of the IB — is the study of such machines.",
+      "objective": "Use function notation fluently, determine domains and ranges (including natural domains of formulas), and read whether a graph or mapping is a function.",
+      "concept": [
+        "**Syllabus card — SL 2.2.** Concept of a function, domain, range and graph; function notation $f(x)$; the concept of an inverse function as a reverse process. **Papers 1 and 2**. The vocabulary lesson of the whole course — misread 'domain' and every later mark leaks away.",
+        "A function assigns each input EXACTLY ONE output. On a graph, that's the vertical line test: no vertical line may cross twice. $f(x) = x^2$ is a function (each $x$ has one square); $x = y^2$ is not (input 4 offers outputs $\\pm 2$).",
+        "The DOMAIN is the set of allowed inputs; the RANGE is the set of achieved outputs. When a formula arrives without a stated domain, take the NATURAL domain — everything that doesn't break mathematics: denominators $\\ne 0$, arguments of even roots $\\ge 0$, log inputs $> 0$. For $g(x) = \\sqrt{x - 3}$: domain $x \\ge 3$, and since square roots return only $\\ge 0$ values, range $g(x) \\ge 0$.",
+        "Notation is a contract: $f(4)$ means 'run 4 through the machine'; solving $f(x) = 13$ means 'which input produced 13?' — the reverse question. That reverse process, formalized, is the inverse function $f^{-1}$ you'll construct analytically in SL 2.5. IB set language: domains are written like $\\{x \\in \\mathbb{R} : x \\ge 3\\}$ or interval notation $[3, \\infty)$ — read both."
+      ],
+      "keyIdea": "One input, one output — that's the whole definition. Domain: what may go in. Range: what actually comes out.",
+      "facts": [
+        {
+          "title": "Natural domain rules",
+          "latex": "\\frac{1}{u}: u \\ne 0, \\qquad \\sqrt{u}: u \\ge 0, \\qquad \\log u: u > 0",
+          "explanation": "NOT in the booklet — these are the three ways a formula breaks. The natural domain is everything else."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-22-we1",
+          "statement": "Let $f(x) = 3x - 2$.  \n**(a)** Find $f(4)$. **[1]**  \n**(b)** Solve $f(x) = 13$. **[2]**  \n**(c)** Find $f(2a) - f(a)$ in terms of $a$, simplifying your answer. **[2]**",
+          "solution": "**(a)** $f(4) = 3(4) - 2 = 10$ *(A1)*.  \n**(b)** $3x - 2 = 13 \\Rightarrow 3x = 15 \\Rightarrow x = 5$ *(M1 A1)*.  \n**(c)** $f(2a) - f(a) = (6a - 2) - (3a - 2) = 3a$ *(M1 A1)*.  \n**Narrative:** (a) runs the machine forward; (b) runs it backward — that asymmetry is the seed of inverse functions. In (c), substitute the WHOLE input: $f(2a)$ means $3(2a) - 2$, brackets and all.",
+          "check": [
+            "3*4 - 2 == 10",
+            "solve(3*x - 2 - 13, x) == [5]",
+            "expand((6*a - 2) - (3*a - 2)) == 3*a"
+          ]
+        },
+        {
+          "id": "ibsl-22-we2",
+          "statement": "Let $g(x) = \\sqrt{2x - 8}$.  \n**(a)** Find the largest possible domain of $g$. **[2]**  \n**(b)** **Write down** the range of $g$. **[1]**  \n**(c)** Find $g(12)$. **[1]**",
+          "solution": "**(a)** Need $2x - 8 \\ge 0$ *(M1)*, so $x \\ge 4$ *(A1)*.  \n**(b)** $g(x) \\ge 0$ *(A1)* — the square-root symbol returns only the non-negative root.  \n**(c)** $g(12) = \\sqrt{16} = 4$ *(A1)*.  \n**Narrative:** domain questions are inequality questions in disguise — write the 'don't break' condition, then solve it. The range follows from what the outer operation can produce, not from the domain's endpoints alone.",
+          "check": [
+            "solve(2*x - 8, x) == [4]",
+            "sqrt(2*12 - 8) == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Confusing domain and range — answering 'inputs' when asked for outputs.",
+          "correction": "Domain = allowed $x$ (inputs). Range = achieved $y$ (outputs). Read the demand twice.",
+          "authored": true
+        },
+        {
+          "text": "For $\\sqrt{2x-8}$, writing domain $x > 4$ (strict).",
+          "correction": "$\\sqrt{0} = 0$ is fine — the boundary belongs: $x \\ge 4$. Strict only for division and logs.",
+          "authored": true
+        },
+        {
+          "text": "Substituting half the input: $f(2a) = 2 \\cdot f(a)$.",
+          "correction": "Functions are not distributive: $f(2a) = 3(2a) - 2 = 6a - 2$, not $2(3a - 2)$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-22-t1",
+          "statement": "Let $h(x) = \\dfrac{6}{x - 2} + 1$. **(a)** Write down the largest possible domain of $h$. **(b)** Find $h(5)$. **(c)** Solve $h(x) = 4$. **[4]**",
+          "solution": "**(a)** $x \\ne 2$ *(A1)* — division is the only danger. **(b)** $h(5) = \\frac{6}{3} + 1 = 3$ *(A1)*. **(c)** $\\frac{6}{x-2} = 3 \\Rightarrow x - 2 = 2 \\Rightarrow x = 4$ *(M1 A1)*.",
+          "check": [
+            "Rational(6, 5 - 2) + 1 == 3",
+            "solve(6/(x - 2) + 1 - 4, x) == [4]"
+          ]
+        },
+        {
+          "id": "ibsl-22-t2",
+          "statement": "The function $f$ is defined by $f(x) = x^2 + 1$ for $x \\in \\mathbb{R}$. **Write down** the range of $f$, and find both solutions of $f(x) = 10$. **[3]**",
+          "solution": "Range: $f(x) \\ge 1$ *(A1)* — a square is $\\ge 0$, plus one. $x^2 = 9 \\Rightarrow x = \\pm 3$ *(M1 A1)* — both roots; a function may hit one output from two inputs (that's why THIS $f$ has no inverse without a domain restriction — foreshadowing SL 2.5).",
+          "check": [
+            "solve(x**2 + 1 - 10, x) == [-3, 3]",
+            "Min(0) + 1 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.2 · Papers 1 & 2",
+            "title": "The reliable machine",
+            "body": "A function is a promise: one input, exactly one output, every time. Domain is what the machine accepts; range is what it can produce. This vocabulary runs the next two years — including the exact set language the IB writes answers in."
+          },
+          {
+            "kind": "evaluator",
+            "eyebrow": "Run the machine",
+            "title": "f(x) = 3x − 2, live",
+            "teach": "Feed the machine inputs and watch outputs. Notice: each input gives ONE output — but some outputs might be reachable from only one input, and asking 'which input made 13?' is running the machine in reverse.",
+            "config": {
+              "a": 3,
+              "b": -2,
+              "varName": "x",
+              "min": -4,
+              "max": 6,
+              "start": 4
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules",
+            "title": "What breaks a formula",
+            "beats": [
+              "Denominator $= 0$ → forbidden. $\\frac{6}{x-2}$: domain $x \\ne 2$.",
+              "Even root of a negative → forbidden. $\\sqrt{2x-8}$: domain $x \\ge 4$ (zero is fine).",
+              "Log of $\\le 0$ → forbidden (from SL 1.5). $\\ln x$: domain $x > 0$ (zero is NOT fine)."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Forward, backward, in terms of a",
+            "problemId": "ibsl-22-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Vertical line test",
+            "title": "Function or not?",
+            "prompt": "Which of these does NOT define $y$ as a function of $x$?",
+            "options": [
+              "$x = y^2$",
+              "$y = x^2$",
+              "$y = \\sqrt{x}$",
+              "$y = 3x - 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x = y^2$ gives input $x = 4$ two outputs, $y = \\pm 2$ — a vertical line crosses twice. ($y = \\sqrt{x}$ is fine: the symbol means the non-negative root only.)",
+            "check": [
+              "2**2 == 4",
+              "(-2)**2 == 4"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Domain and range of a root",
+            "problemId": "ibsl-22-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Domain hunting",
+            "title": "Where does it live?",
+            "prompt": "The largest possible domain of $f(x) = \\dfrac{1}{\\sqrt{x - 5}}$ is:",
+            "options": [
+              "$x > 5$",
+              "$x \\ge 5$",
+              "$x \\ne 5$",
+              "$x < 5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two conditions stack: the root needs $x - 5 \\ge 0$, the division needs $x - 5 \\ne 0$. Together: strictly greater. Boundary cases decide marks.",
+            "check": [
+              "5 + 1 > 5"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "IB notation",
+            "title": "Say it in set language",
+            "body": "The IB writes domains as $\\{x \\in \\mathbb{R} : x \\ge 4\\}$ or $[4, \\infty)$, and ranges as $g(x) \\ge 0$ or $y \\ge 0$. Any correct notation scores — but 'all numbers bigger than about 4' does not. Precision is the product here."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A machine with a hole",
+            "problemId": "ibsl-22-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two inputs, one output",
+            "problemId": "ibsl-22-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.2 in four lines",
+            "points": [
+              "Function: each input → exactly one output (vertical line test).",
+              "Domain = allowed inputs; range = achieved outputs. Never swap them.",
+              "Natural domain: no zero denominators, no negative even roots, no logs of $\\le 0$.",
+              "Boundary discipline: $\\ge$ for roots, strict for division and logs."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphs-and-sketching",
+      "title": "Graphs & Sketching",
+      "concreteComparison": "'Sketch the graph' is not an art request. It's a data request: shape, intercepts, turning points, asymptotes — labelled. A wobbly curve with the right features scores full marks; a beautiful curve with none of them scores zero.",
+      "objective": "Create sketches from key features and from your GDC, label what the markscheme pays for, and choose sensible viewing windows on technology.",
+      "concept": [
+        "**Syllabus card — SL 2.3.** The graph of a function; creating a sketch from given information or a context, including transferring a graph from GDC to paper. **Paper 2 leans on the GDC**; Paper 1 expects clean hand sketches of the standard shapes. 'Sketch' is an official command term: show shape and KEY FEATURES; exact plotting is not required.",
+        "The sketch checklist the markscheme actually pays for: (1) correct general shape, (2) $x$- and $y$-intercepts marked with coordinates, (3) turning points marked, (4) asymptotes drawn dashed and labelled with equations, (5) domain endpoints respected. Five features, roughly one mark each in a typical [3]–[4] sketch.",
+        "On the GDC, the window is the skill: if the vertex sits at $(20, -400)$, the standard $\\pm 10$ window shows you nothing. Read the function first — intercepts and vertex tell you where the action lives — then set the window to contain it.",
+        "Transferring GDC to paper: copy the FEATURES, not the pixels. Trace intercepts and turning points with their coordinate readouts, then connect with the right shape. The examiner reads your labels, not your artistry."
+      ],
+      "keyIdea": "A sketch is a labelled feature list wearing a curve. Shape + intercepts + turning points + asymptotes = the marks.",
+      "facts": [
+        {
+          "title": "The sketch checklist",
+          "latex": "\\text{shape} + \\text{intercepts} + \\text{turning points} + \\text{asymptotes}",
+          "explanation": "Not a booklet formula — a markscheme habit. Label coordinates on everything you mark; dashed lines for asymptotes."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-23-we1",
+          "statement": "Let $f(x) = x^2 - 4x + 3$.  \n**(a)** Find the coordinates of the $y$-intercept. **[1]**  \n**(b)** Find the $x$-intercepts. **[2]**  \n**(c)** Find the coordinates of the vertex, and hence **sketch** the graph, showing all these features. **[3]**",
+          "solution": "**(a)** $f(0) = 3$: the point $(0, 3)$ *(A1)*.  \n**(b)** $x^2 - 4x + 3 = (x-1)(x-3) = 0$: $x = 1$ and $x = 3$ *(M1 A1)*.  \n**(c)** Axis of symmetry midway between the roots: $x = 2$, and $f(2) = 4 - 8 + 3 = -1$ — vertex $(2, -1)$ *(A1)*. Sketch: upward parabola through $(1,0)$, $(3,0)$, $(0,3)$, bottoming at $(2,-1)$, symmetric about $x = 2$ *(A1 shape, A1 labels)*.  \n**Narrative:** the sketch marks are the LABELS. Four coordinates and a U-shape — that's the whole deliverable. Symmetry is your error alarm: the vertex $x$ must sit exactly between the roots.",
+          "check": [
+            "0**2 - 4*0 + 3 == 3",
+            "solve(x**2 - 4*x + 3, x) == [1, 3]",
+            "Rational(1 + 3, 2) == 2",
+            "2**2 - 4*2 + 3 == -1"
+          ]
+        },
+        {
+          "id": "ibsl-23-we2",
+          "statement": "A ball's height is $h(t) = 20t - 5t^2$ metres after $t$ seconds.  \n**(a)** **Write down** a suitable domain for the model. **[1]**  \n**(b)** Find the maximum height and when it occurs. **[2]**  \n**(c)** State a suitable GDC viewing window for this graph. **[1]**",
+          "solution": "**(a)** $0 \\le t \\le 4$ *(A1)* — from launch to landing ($20t - 5t^2 = 5t(4 - t) = 0$ at $t = 0, 4$); negative time and underground heights are outside the story.  \n**(b)** Vertex midway: $t = 2$, $h(2) = 40 - 20 = 20$ m *(M1 A1)*.  \n**(c)** Window: $0 \\le t \\le 4$, $0 \\le h \\le 22$ (a little headroom above 20) *(A1)*.  \n**Narrative:** models bring DOMAINS from context, not from algebra — the formula happily computes $h(-3)$; the story forbids it. Window choice is (b)'s answer wearing margins.",
+          "check": [
+            "solve(20*t - 5*t**2, t) == [0, 4]",
+            "20*2 - 5*2**2 == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Sketching a perfect curve with no labels — and scoring 1/4.",
+          "correction": "Mark coordinates on intercepts, turning points, endpoints. The labels ARE the marks.",
+          "authored": true
+        },
+        {
+          "text": "Trusting the GDC's default window and reporting 'no intercepts'.",
+          "correction": "The window is a camera, not the truth. Locate features algebraically first, then aim the camera.",
+          "authored": true
+        },
+        {
+          "text": "Extending a model's graph beyond its story (negative time, negative height).",
+          "correction": "Context sets the domain: draw the arch from $t=0$ to $t=4$ and stop.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-23-t1",
+          "statement": "For $g(x) = 9 - x^2$: find the intercepts and the maximum point, then list what a full-marks sketch must show. **[4]**",
+          "solution": "$y$-intercept $(0, 9)$; $x$-intercepts $x = \\pm 3$ *(A1 A1)*; maximum at $(0, 9)$ (downward parabola, vertex on the axis) *(A1)*. The sketch: ∩-shape, three labelled points, symmetric about $x = 0$ *(A1)*.",
+          "check": [
+            "solve(9 - x**2, x) == [-3, 3]",
+            "9 - 0**2 == 9"
+          ]
+        },
+        {
+          "id": "ibsl-23-t2",
+          "statement": "A GDC shows $f(x) = x^2 - 30x + 200$ as an empty screen on the standard $-10 \\le x \\le 10$ window. Find the vertex and propose a window that shows both intercepts and the vertex. **[3]**",
+          "solution": "Roots: $(x-10)(x-20) = 0$ → $x = 10, 20$; vertex at $x = 15$, $f(15) = 225 - 450 + 200 = -25$ *(M1 A1)*. Window: $5 \\le x \\le 25$, $-30 \\le y \\le 60$ (say) *(A1)* — contain the action, add margins.",
+          "check": [
+            "solve(x**2 - 30*x + 200, x) == [10, 20]",
+            "15**2 - 30*15 + 200 == -25"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.3 · 'Sketch' is a command term",
+            "title": "Data, drawn",
+            "body": "'Sketch' asks for shape plus key features, labelled — not beauty. This lesson turns the vague instruction into a five-item checklist the markscheme literally pays out on."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Watch features move",
+            "title": "b and c steer the parabola",
+            "teach": "This is $y = x^2 + bx + c$ with live steppers. Watch the intercepts and vertex relocate as you steer — every position is a different sketch, same checklist: shape, intercepts, vertex.",
+            "config": {
+              "mode": "standard",
+              "b": -4,
+              "c": 3,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The checklist",
+            "title": "What a sketch must show",
+            "beats": [
+              "Shape (right curve family, right orientation) + $y$-intercept with coordinates.",
+              "$x$-intercepts and turning points, each with coordinates.",
+              "Asymptotes: dashed lines labelled with their equations (when the family has them)."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Feature hunt, then sketch",
+            "problemId": "ibsl-23-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Symmetry alarm",
+            "title": "Where's the vertex?",
+            "prompt": "A parabola crosses the $x$-axis at $x = -2$ and $x = 6$. Its axis of symmetry is:",
+            "options": [
+              "$x = 2$",
+              "$x = 4$",
+              "$x = -2$",
+              "$x = 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Midway between the roots: $\\frac{-2 + 6}{2} = 2$. The vertex must sit on this line — a sketch that violates it is self-reporting an error.",
+            "check": [
+              "Rational(-2 + 6, 2) == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A model with a window",
+            "problemId": "ibsl-23-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "GDC craft",
+            "title": "Aim the camera",
+            "prompt": "$f(x) = (x - 50)^2 + 10$ shows nothing on a $\\pm 10$ window because:",
+            "options": [
+              "All the action is near $x = 50$, outside the window",
+              "The function is undefined for $|x| < 10$",
+              "The GDC cannot plot squares",
+              "The graph has no features to show"
+            ],
+            "correctIndex": 0,
+            "explanation": "Vertex $(50, 10)$: the camera points at empty space. Locate features first, then window around them — here $40 \\le x \\le 60$ works.",
+            "check": [
+              "(50 - 50)**2 + 10 == 10"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Paper 2 wisdom",
+            "title": "GDC to paper, features first",
+            "body": "Copy coordinates, not pixels: trace each intercept and turning point on the GDC, write the numbers on your sketch, connect with the right shape. And in models, clip the domain to the story — arcs don't go underground."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Checklist a parabola",
+            "problemId": "ibsl-23-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Rescue an empty screen",
+            "problemId": "ibsl-23-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.3 in four lines",
+            "points": [
+              "Sketch = shape + labelled features, never art.",
+              "Checklist: intercepts, turning points, asymptotes, domain endpoints.",
+              "Vertex sits midway between roots — use symmetry as an alarm.",
+              "GDC windows: find the action algebraically, then aim the camera."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "key-features-and-intersections",
+      "title": "Key Features & Intersections",
+      "concreteComparison": "Two companies' profit curves cross twice a year — and those crossing points decide which to invest in. Maxima, minima, zeros, asymptotes, intersections: the IB calls them 'key features', and Paper 2's favorite verb is 'use your GDC to find' them.",
+      "objective": "Identify maxima, minima, intercepts, symmetry and asymptotes; find intersections of two graphs both algebraically and with technology.",
+      "concept": [
+        "**Syllabus card — SL 2.4.** Determine key features of graphs: maximum and minimum values, intercepts, symmetry, vertex, zeros or roots, asymptotes; finding the point of intersection of two curves or lines using technology. **Papers 1 and 2** — with P2 explicitly licensing the GDC's Min/Max/Zero/Intersect tools as METHODS.",
+        "The vocabulary is precise: a ZERO (or root) of $f$ is an input with $f(x) = 0$ — it appears on the graph as an $x$-intercept. The maximum VALUE is the $y$-coordinate of the highest point; the maximizing INPUT is its $x$-coordinate. 'Find the maximum value of $f$' wants the $y$ — answering with $x$ costs the mark.",
+        "Intersections of $y = f(x)$ and $y = g(x)$ solve $f(x) = g(x)$. Algebraically: set equal, solve, substitute back for $y$ (both coordinates are usually demanded). On the GDC: graph both, Intersect. The equation $f(x) = g(x)$ having two solutions IS the picture of two crossing points — equation and geometry are the same fact.",
+        "Symmetry pays marks quietly: even-shaped graphs (like parabolas) mirror about a vertical axis, so features come in pairs. Spot the symmetry and half the work disappears — and the examiner sees a student who reads graphs, not just plots them."
+      ],
+      "keyIdea": "Every 'key feature' is an equation in disguise: zeros solve $f(x)=0$, intersections solve $f(x)=g(x)$, and the GDC's menu is just those equations with buttons.",
+      "facts": [
+        {
+          "title": "Intersection principle",
+          "latex": "y = f(x) \\text{ meets } y = g(x) \\iff f(x) = g(x)",
+          "explanation": "NOT a booklet formula — a principle. Solve for $x$, then substitute for $y$: intersections are POINTS, so give both coordinates."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-24-we1",
+          "statement": "Let $f(x) = (x - 1)^2 - 4$.  \n**(a)** **Write down** the coordinates of the vertex and the equation of the axis of symmetry. **[2]**  \n**(b)** Find the zeros of $f$. **[2]**  \n**(c)** **Write down** the minimum value of $f$. **[1]**",
+          "solution": "**(a)** Vertex $(1, -4)$; axis $x = 1$ *(A1 A1)* — vertex form hands them over.  \n**(b)** $(x-1)^2 = 4 \\Rightarrow x - 1 = \\pm 2 \\Rightarrow x = -1, 3$ *(M1 A1)*.  \n**(c)** $-4$ *(A1)* — the minimum VALUE is the $y$-coordinate alone.  \n**Narrative:** three demand words, three precisions: 'coordinates' wants a pair, 'zeros' wants inputs, 'minimum value' wants one output. The $\\pm$ in (b) is where the second zero lives — dropping it is the classic slip.",
+          "check": [
+            "(1 - 1)**2 - 4 == -4",
+            "solve((x - 1)**2 - 4, x) == [-1, 3]",
+            "Rational(-1 + 3, 2) == 1"
+          ]
+        },
+        {
+          "id": "ibsl-24-we2",
+          "statement": "Find the coordinates of the points where $y = x^2$ intersects $y = x + 2$. **[4]**",
+          "solution": "Set equal: $x^2 = x + 2$ *(M1)*. Rearrange: $x^2 - x - 2 = (x-2)(x+1) = 0$ *(A1)*, so $x = -1$ or $x = 2$. Substitute (the line is easier): $x = -1 \\Rightarrow y = 1$; $x = 2 \\Rightarrow y = 4$. Points: $(-1, 1)$ and $(2, 4)$ *(A1 A1)*.  \n**Narrative:** 'coordinates of the points' = four numbers, not two. On Paper 2 the GDC's Intersect tool earns the same marks — but write the setup line $x^2 = x + 2$ first, so the method survives a keying slip.",
+          "check": [
+            "solve(x**2 - x - 2, x) == [-1, 2]",
+            "(-1)**2 == -1 + 2",
+            "2**2 == 2 + 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering a 'maximum value' question with the $x$-coordinate of the maximum point.",
+          "correction": "Value = output = $y$. 'Find where the maximum occurs' = input = $x$. Two different questions.",
+          "authored": true
+        },
+        {
+          "text": "Giving intersection answers as bare $x$-values.",
+          "correction": "Intersections are points: substitute back and report $(x, y)$ pairs.",
+          "authored": true
+        },
+        {
+          "text": "Solving $(x-1)^2 = 4$ as $x - 1 = 2$ only.",
+          "correction": "Undoing a square releases BOTH signs: $x - 1 = \\pm 2$. One equation, two zeros.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-24-t1",
+          "statement": "Let $g(x) = 8 - (x + 2)^2$. **Write down** the coordinates of the maximum point, the maximum value of $g$, and the equation of the axis of symmetry. **[3]**",
+          "solution": "Maximum point $(-2, 8)$; maximum value $8$; axis $x = -2$ *(A1 A1 A1)*. The $-$ in front of the square flips the parabola: vertex becomes the top.",
+          "check": [
+            "8 - (-2 + 2)**2 == 8"
+          ]
+        },
+        {
+          "id": "ibsl-24-t2",
+          "statement": "Find the coordinates of the points where the line $y = 2x + 3$ meets the curve $y = x^2 - 2x + 3$. **[4]**",
+          "solution": "$x^2 - 2x + 3 = 2x + 3 \\Rightarrow x^2 - 4x = 0 \\Rightarrow x(x - 4) = 0$ *(M1 A1)*: $x = 0, 4$. Points: $(0, 3)$ and $(4, 11)$ *(A1 A1)*.",
+          "check": [
+            "solve(x**2 - 2*x + 3 - (2*x + 3), x) == [0, 4]",
+            "2*4 + 3 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.4 · GDC-licensed",
+            "title": "Features are equations with pictures",
+            "body": "Zeros solve $f(x) = 0$; intersections solve $f(x) = g(x)$; maxima and minima are the turning points between them. Paper 2 gives you buttons for all of these — this lesson makes sure you know what the buttons MEAN."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "The feature dashboard",
+            "title": "Vertex form, live",
+            "teach": "This parabola is $y = (x - h)^2 + k$ with steppers on $h$ and $k$. Watch the vertex — the graph's headquarters — carry the axis of symmetry and the minimum value with it wherever it goes.",
+            "config": {
+              "mode": "vertex",
+              "h": 1,
+              "k": -4,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Vertex, zeros, minimum value",
+            "problemId": "ibsl-24-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Demand words",
+            "title": "Value or location?",
+            "prompt": "$f(x) = (x - 3)^2 + 5$. The minimum VALUE of $f$ is:",
+            "options": [
+              "$5$",
+              "$3$",
+              "$(3, 5)$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The minimum value is the smallest OUTPUT: $5$, achieved at $x = 3$. Option C answers a different question ('minimum point').",
+            "check": [
+              "(3 - 3)**2 + 5 == 5"
+            ]
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Crossings",
+            "title": "Intersection = shared point",
+            "teach": "Steer line 2 and watch the intersection point slide — every position solves the pair of equations simultaneously. Two curves crossing IS the equation $f(x) = g(x)$ having a solution.",
+            "config": {
+              "m1": 1,
+              "b1": 2,
+              "m2": -1,
+              "b2": 6,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Line meets parabola",
+            "problemId": "ibsl-24-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Count before solving",
+            "title": "How many crossings?",
+            "prompt": "$y = x^2 + 1$ and $y = x$: how many intersection points?",
+            "options": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "Cannot tell"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^2 + 1 = x \\Rightarrow x^2 - x + 1 = 0$, discriminant $1 - 4 = -3 < 0$: no real solutions, no crossings — the parabola floats above the line. (Discriminant details: next lessons.)",
+            "check": [
+              "1 - 4 == -3",
+              "(-3) < 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Paper 2 wisdom",
+            "title": "Buttons + a written setup",
+            "body": "GDC Min/Max/Zero/Intersect answers earn full marks — WHEN the setup line is on paper ('solving $x^2 = x + 2$'). No setup, wrong keystroke, zero marks. One written line insures the whole question."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A flipped parabola's features",
+            "problemId": "ibsl-24-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Find both crossings",
+            "problemId": "ibsl-24-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.4 in four lines",
+            "points": [
+              "Zeros: solve $f(x)=0$. Intersections: solve $f(x)=g(x)$, then substitute for $y$.",
+              "Maximum VALUE is a $y$; where it occurs is an $x$. Read the demand.",
+              "Intersections are points — report both coordinates.",
+              "GDC tools are legal methods; the written setup line is their insurance."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composite-and-inverse-functions",
+      "title": "Composite & Inverse Functions",
+      "concreteComparison": "Currency exchange then commission: tögrög → dollars, then dollars minus the fee. Two machines chained — and the ORDER matters brutally. Chain them backward and you get a different number; run the chain in reverse and you've built the inverse.",
+      "objective": "Compute composite functions $(f \\circ g)(x) = f(g(x))$, find inverse functions analytically, and use the reflection in $y = x$ and the identity $f(f^{-1}(x)) = x$.",
+      "concept": [
+        "**Syllabus card — SL 2.5.** Composite functions $(f \\circ g)(x) = f(g(x))$; identity function; finding the inverse function $f^{-1}(x)$, including domain restriction; the graph of $f^{-1}$ as a reflection of $f$ in $y = x$. **Papers 1 and 2** — among the most reliable short questions on the SL paper.",
+        "$(f \\circ g)(x)$ means $g$ FIRST, then $f$: the notation reads right-to-left, like putting on socks before shoes. With $f(x) = 2x + 3$ and $g(x) = x^2$: $(f \\circ g)(x) = f(x^2) = 2x^2 + 3$, but $(g \\circ f)(x) = (2x + 3)^2$. Different machines — evaluate both at $x = 1$ and watch: $5$ versus $25$.",
+        "The inverse $f^{-1}$ undoes $f$: if $f$ sends $3 \\mapsto 11$, then $f^{-1}$ sends $11 \\mapsto 3$. To find it analytically: write $y = f(x)$, SWAP $x$ and $y$, solve for $y$. The swap is why the graph of $f^{-1}$ is the reflection of $f$ in the line $y = x$ — inputs and outputs literally trade places, so domain and range trade places too.",
+        "The identity function $\\mathrm{id}(x) = x$ is the do-nothing machine, and it's the certificate of inversehood: $f(f^{-1}(x)) = f^{-1}(f(x)) = x$. Only one-to-one functions have inverses — $f(x) = x^2$ needs its domain restricted to $x \\ge 0$ first, which is exactly why the exam says 'for $x \\ge 0$' in such questions."
+      ],
+      "keyIdea": "Composition chains machines (right-to-left); inversion reverses one. Swap $x$ and $y$, solve — and check with $f(f^{-1}(x)) = x$.",
+      "facts": [
+        {
+          "title": "Composition",
+          "latex": "(f \\circ g)(x) = f(g(x))",
+          "explanation": "IN the booklet's notation list. $g$ acts first — read right-to-left."
+        },
+        {
+          "title": "Inverse relations",
+          "latex": "f(f^{-1}(x)) = x, \\qquad \\text{graph of } f^{-1} = \\text{reflection of } f \\text{ in } y = x",
+          "explanation": "The identity check is NOT in the booklet — carry it. Domain of $f^{-1}$ = range of $f$, and vice versa."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-25-we1",
+          "statement": "Let $f(x) = 2x + 3$ and $g(x) = x^2$.  \n**(a)** Find $(f \\circ g)(x)$ and $(g \\circ f)(x)$. **[3]**  \n**(b)** Solve $(f \\circ g)(x) = 21$. **[2]**",
+          "solution": "**(a)** $(f \\circ g)(x) = f(x^2) = 2x^2 + 3$ *(M1 A1)*; $(g \\circ f)(x) = (2x + 3)^2$ *(A1)*. Different functions — order matters.  \n**(b)** $2x^2 + 3 = 21 \\Rightarrow x^2 = 9 \\Rightarrow x = \\pm 3$ *(M1 A1)*.  \n**Narrative:** the M1 in (a) is substituting the WHOLE inner function into $f$'s slot. And (b)'s $\\pm$: undoing a square always releases both signs — the same discipline as SL 2.4.",
+          "check": [
+            "expand(2*x**2 + 3) == 2*x**2 + 3",
+            "expand((2*x + 3)**2) == 4*x**2 + 12*x + 9",
+            "solve(2*x**2 + 3 - 21, x) == [-3, 3]"
+          ]
+        },
+        {
+          "id": "ibsl-25-we2",
+          "statement": "Let $f(x) = \\dfrac{3x - 1}{2}$.  \n**(a)** Find $f^{-1}(x)$. **[3]**  \n**(b)** Verify that $f(f^{-1}(x)) = x$. **[2]**",
+          "solution": "**(a)** Write $y = \\dfrac{3x-1}{2}$, swap: $x = \\dfrac{3y-1}{2}$ *(M1)*. Solve: $2x = 3y - 1 \\Rightarrow y = \\dfrac{2x + 1}{3}$ *(A1)*. So $f^{-1}(x) = \\dfrac{2x+1}{3}$ *(A1)*.  \n**(b)** $f\\left(\\dfrac{2x+1}{3}\\right) = \\dfrac{3 \\cdot \\frac{2x+1}{3} - 1}{2} = \\dfrac{2x + 1 - 1}{2} = x$ ✓ *(M1 A1)*.  \n**Narrative:** swap–solve is the whole method; the verification in (b) is the identity function appearing as promised. On the exam, a quick numeric check ($f(1) = 1 \\Rightarrow f^{-1}(1) = 1$) buys the same confidence in five seconds.",
+          "check": [
+            "simplify(solve(Eq(x, (3*y - 1)/2), y)[0] - (2*x + 1)/3) == 0",
+            "simplify((3*((2*x + 1)/3) - 1)/2 - x) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $(f \\circ g)$ left-to-right and computing $g(f(x))$.",
+          "correction": "$(f \\circ g)(x) = f(g(x))$ — the function NEAREST $x$ fires first. Right-to-left, always.",
+          "authored": true
+        },
+        {
+          "text": "Writing $f^{-1}(x) = \\dfrac{1}{f(x)}$.",
+          "correction": "The $-1$ is inverse-notation, not an exponent: $f^{-1}$ undoes $f$. The reciprocal is a different object.",
+          "authored": true
+        },
+        {
+          "text": "Composing with only part of the inner function: $f(g(x))$ with just $g$'s $x$-term.",
+          "correction": "The WHOLE of $g(x)$ — brackets included — enters $f$'s slot.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-25-t1",
+          "statement": "Let $f(x) = x - 4$ and $g(x) = 3x$. Find $(f \\circ g)(2)$, $(g \\circ f)(2)$, and $(f \\circ f)(2)$. **[3]**",
+          "solution": "$(f \\circ g)(2) = f(6) = 2$; $(g \\circ f)(2) = g(-2) = -6$; $(f \\circ f)(2) = f(-2) = -6$ *(A1 A1 A1)*. Same numbers, three different chains.",
+          "check": [
+            "3*2 - 4 == 2",
+            "3*(2 - 4) == -6",
+            "(2 - 4) - 4 == -6"
+          ]
+        },
+        {
+          "id": "ibsl-25-t2",
+          "statement": "Find $f^{-1}(x)$ for $f(x) = 5x - 4$, and hence find $f^{-1}(11)$. **[3]**",
+          "solution": "Swap and solve: $x = 5y - 4 \\Rightarrow y = \\dfrac{x + 4}{5}$ *(M1 A1)*. $f^{-1}(11) = \\dfrac{15}{5} = 3$ *(A1)* — and indeed $f(3) = 11$ ✓.",
+          "check": [
+            "simplify(solve(Eq(x, 5*y - 4), y)[0] - (x + 4)/5) == 0",
+            "Rational(11 + 4, 5) == 3",
+            "5*3 - 4 == 11"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.5 · Papers 1 & 2",
+            "title": "Chains and reversals",
+            "body": "Two machines in a row make a new machine; one machine run backward makes its inverse. This lesson is pure technique — swap–solve for inverses, right-to-left for composites — and it shows up nearly every exam session."
+          },
+          {
+            "kind": "evaluator",
+            "eyebrow": "One machine",
+            "title": "f(x) = 2x + 3 — now imagine reversing it",
+            "teach": "Run inputs through. To UNDO this machine you'd subtract 3 then halve — in the reverse order of what it did (×2 then +3). Inverses always unwind operations last-in, first-out.",
+            "config": {
+              "a": 2,
+              "b": 3,
+              "varName": "x",
+              "min": -5,
+              "max": 5,
+              "start": 1
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two techniques",
+            "title": "Right-to-left; swap and solve",
+            "beats": [
+              "$(f \\circ g)(x) = f(g(x))$: the whole of $g(x)$ enters $f$'s slot. Order matters.",
+              "Inverse: $y = f(x)$ → swap $x \\leftrightarrow y$ → solve for $y$. That's $f^{-1}$.",
+              "Certificate: $f(f^{-1}(x)) = x$. Graphically: reflection in $y = x$; domain ↔ range."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Both orders, then solve",
+            "problemId": "ibsl-25-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Order check",
+            "title": "Socks before shoes",
+            "prompt": "$f(x) = x^2$, $g(x) = x + 5$. Then $(f \\circ g)(1) =$",
+            "options": [
+              "$36$",
+              "$6$",
+              "$26$",
+              "$12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$g$ first: $g(1) = 6$; then $f(6) = 36$. Option C computed $(g \\circ f)(1) = 1 + 25 = 26$ — the other order, the other answer.",
+            "check": [
+              "(1 + 5)**2 == 36",
+              "1**2 + 5 == 6"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Swap, solve, verify",
+            "problemId": "ibsl-25-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Inverse fluency",
+            "title": "Undo the machine",
+            "prompt": "$f(x) = \\dfrac{x}{4} + 2$. Then $f^{-1}(x) =$",
+            "options": [
+              "$4(x - 2)$",
+              "$4x - 2$",
+              "$\\dfrac{4}{x} - 2$",
+              "$\\dfrac{x - 2}{4}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Swap: $x = \\frac{y}{4} + 2 \\Rightarrow y = 4(x - 2)$. Sanity: $f(4) = 3$, and $4(3 - 2) = 4$ ✓ — the inverse sends 3 back to 4.",
+            "check": [
+              "solve(Eq(x, y/4 + 2), y) == [4*x - 8]",
+              "Rational(4,4) + 2 == 3",
+              "4*(3 - 2) == 4"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reading the reflection",
+            "title": "Point hopping",
+            "prompt": "The point $(2, 7)$ lies on $y = f(x)$. Which point must lie on $y = f^{-1}(x)$?",
+            "options": [
+              "$(7, 2)$",
+              "$(2, 7)$",
+              "$(-2, -7)$",
+              "$\\left(2, \\frac{1}{7}\\right)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inverses swap inputs and outputs: $f: 2 \\mapsto 7$ means $f^{-1}: 7 \\mapsto 2$. On the graph, reflection in $y = x$.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The five-second inverse check",
+            "body": "After finding $f^{-1}$, push one number through both: pick easy $x$, compute $f(x)$, feed the result to your $f^{-1}$ — it must return $x$. This catches swap-and-solve algebra slips before the examiner does. Also remember: only one-to-one functions invert; that's why quadratic inverses arrive with '$x \\ge 0$' attached."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Three chains",
+            "problemId": "ibsl-25-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Build and use an inverse",
+            "problemId": "ibsl-25-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.5 in four lines",
+            "points": [
+              "$(f \\circ g)(x) = f(g(x))$ — nearest function fires first.",
+              "Inverse: swap $x$ and $y$, solve. Domain and range trade places.",
+              "$f(f^{-1}(x)) = x$ — the identity is the certificate.",
+              "$f^{-1} \\ne \\frac{1}{f}$. Ever."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-quadratic-function",
+      "title": "The Quadratic Function: Three Forms",
+      "concreteComparison": "The same parabola can introduce itself three ways: $2x^2 - 8x + 6$ (shows the $y$-intercept), $2(x-2)^2 - 2$ (shows the vertex), $2(x-1)(x-3)$ (shows the roots). Exam questions are mostly translation exercises between these three business cards.",
+      "objective": "Read features from standard, vertex and factored forms; convert between them; and reconstruct a quadratic from given features.",
+      "concept": [
+        "**Syllabus card — SL 2.6.** The quadratic function $f(x) = ax^2 + bx + c$: graph, $y$-intercept $(0, c)$, axis of symmetry $x = -\\frac{b}{2a}$ (IN the booklet); factored form $f(x) = a(x - p)(x - q)$ with $x$-intercepts $p, q$; vertex form $f(x) = a(x - h)^2 + k$ with vertex $(h, k)$. **Papers 1 and 2**, heavily assessed.",
+        "Each form is a feature viewer. STANDARD $ax^2 + bx + c$: reads the $y$-intercept $c$ and (via booklet) the axis $x = -\\frac{b}{2a}$. FACTORED $a(x-p)(x-q)$: reads the roots. VERTEX $a(x-h)^2 + k$: reads the turning point. The $a$ is the same in all three — it carries the width and the up/down orientation.",
+        "Converting: expand to go toward standard form; complete the square (or use the axis formula then evaluate) to reach vertex form; factor to reach factored form. The axis shortcut: the vertex sits at $x = -\\frac{b}{2a}$, so $k = f\\left(-\\frac{b}{2a}\\right)$ — often faster than completing the square.",
+        "Reconstruction runs the machine backward: 'roots $-2$ and $5$, passes through $(0, -20)$' means $f(x) = a(x+2)(x-5)$ with $f(0) = -10a = -20$, so $a = 2$. The unknown $a$ is ALWAYS there — forgetting it (assuming $a = 1$) is the top mark-loser in reconstruction questions."
+      ],
+      "keyIdea": "Three forms, three windows: $c$ shows the $y$-intercept, $(p, q)$ the roots, $(h, k)$ the vertex — and $a$ rides along in all of them.",
+      "facts": [
+        {
+          "title": "Axis of symmetry",
+          "latex": "x = -\\frac{b}{2a}",
+          "explanation": "IN the formula booklet (SL 2.6). The vertex's $x$; midway between any root pair."
+        },
+        {
+          "title": "The three forms",
+          "latex": "ax^2 + bx + c = a(x - p)(x - q) = a(x - h)^2 + k",
+          "explanation": "Standard / factored / vertex. NOT separately in the booklet (only the axis is) — the translations between them are the examined skill."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-26-we1",
+          "statement": "Let $f(x) = 2x^2 - 8x + 6$.  \n**(a)** **Write down** the $y$-intercept. **[1]**  \n**(b)** Find the equation of the axis of symmetry and the coordinates of the vertex. **[3]**  \n**(c)** Express $f(x)$ in the form $a(x - p)(x - q)$. **[2]**",
+          "solution": "**(a)** $(0, 6)$ *(A1)*.  \n**(b)** $x = -\\dfrac{-8}{2 \\cdot 2} = 2$ *(M1 A1)*; $f(2) = 8 - 16 + 6 = -2$: vertex $(2, -2)$ *(A1)*.  \n**(c)** $2(x^2 - 4x + 3) = 2(x - 1)(x - 3)$ *(M1 A1)*.  \n**Narrative:** the booklet's axis formula plus one evaluation beats completing the square for speed. In (c), factor the 2 OUT FIRST — hunting factors of $2x^2 - 8x + 6$ directly invites errors. Cross-check: roots 1 and 3 straddle the axis $x = 2$ symmetrically ✓.",
+          "check": [
+            "2*0**2 - 8*0 + 6 == 6",
+            "Rational(8, 4) == 2",
+            "2*2**2 - 8*2 + 6 == -2",
+            "expand(2*(x - 1)*(x - 3)) == 2*x**2 - 8*x + 6"
+          ]
+        },
+        {
+          "id": "ibsl-26-we2",
+          "statement": "A quadratic function has $x$-intercepts at $-2$ and $5$, and passes through $(0, -20)$. **Find** the function in the form $f(x) = ax^2 + bx + c$. **[4]**",
+          "solution": "Factored skeleton: $f(x) = a(x + 2)(x - 5)$ *(M1)*. Use the point: $f(0) = a(2)(-5) = -10a = -20$, so $a = 2$ *(M1 A1)*. Expand: $f(x) = 2(x^2 - 3x - 10) = 2x^2 - 6x - 20$ *(A1)*.  \n**Narrative:** roots give the skeleton, the extra point pins the $a$. Assuming $a = 1$ produces $(0, -10)$ — visibly wrong against the given point, which is your built-in alarm.",
+          "check": [
+            "solve(Eq(a*2*(-5), -20), a) == [2]",
+            "expand(2*(x + 2)*(x - 5)) == 2*x**2 - 6*x - 20",
+            "2*0**2 - 6*0 - 20 == -20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading roots from factored form with the wrong sign: $a(x + 2)(x - 5)$ has 'roots $2$ and $-5$'.",
+          "correction": "Each factor vanishes at its OPPOSITE: $x + 2 = 0$ at $x = -2$; $x - 5 = 0$ at $x = 5$.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the sign in the axis formula: $x = \\frac{b}{2a}$.",
+          "correction": "$x = -\\frac{b}{2a}$ — it's printed in the booklet; copy it, don't recall it.",
+          "authored": true
+        },
+        {
+          "text": "Reconstructing from roots with $a = 1$ by default.",
+          "correction": "The skeleton is $a(x-p)(x-q)$ — always solve for $a$ with the extra point.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-26-t1",
+          "statement": "Express $f(x) = x^2 + 6x + 5$ in vertex form, and **write down** the coordinates of the vertex. **[3]**",
+          "solution": "Axis: $x = -3$; $f(-3) = 9 - 18 + 5 = -4$ *(M1 A1)*. Vertex form: $(x + 3)^2 - 4$; vertex $(-3, -4)$ *(A1)*. (Completing the square lands the same place: $x^2 + 6x + 5 = (x+3)^2 - 9 + 5$.)",
+          "check": [
+            "Rational(-6, 2) == -3",
+            "(-3)**2 + 6*(-3) + 5 == -4",
+            "expand((x + 3)**2 - 4) == x**2 + 6*x + 5"
+          ]
+        },
+        {
+          "id": "ibsl-26-t2",
+          "statement": "A parabola has vertex $(3, -8)$ and passes through $(5, 0)$. **Find** its equation in vertex form. **[3]**",
+          "solution": "Skeleton: $f(x) = a(x - 3)^2 - 8$ *(M1)*. Point: $0 = a(4) - 8 \\Rightarrow a = 2$ *(A1)*. $f(x) = 2(x - 3)^2 - 8$ *(A1)*.",
+          "check": [
+            "solve(Eq(a*(5 - 3)**2 - 8, 0), a) == [2]",
+            "2*(5 - 3)**2 - 8 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.6 · Papers 1 & 2",
+            "title": "Three business cards, one parabola",
+            "body": "Standard form shows the $y$-intercept, factored form shows the roots, vertex form shows the turning point. Exam questions hand you one card and demand another — this lesson is the translation office."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Vertex form, live",
+            "title": "h and k ARE the vertex",
+            "teach": "This is $y = a(x - h)^2 + k$. Step $h$ and $k$ and watch the vertex obey — the form's parameters are literally the turning point's coordinates. That immediacy is why vertex form exists.",
+            "config": {
+              "mode": "vertex",
+              "h": 2,
+              "k": -2,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dictionary",
+            "title": "Which form shows what",
+            "beats": [
+              "$ax^2 + bx + c$: $y$-intercept $c$; axis $x = -\\frac{b}{2a}$ (booklet).",
+              "$a(x - p)(x - q)$: roots $p$ and $q$ — each factor dies at its opposite sign.",
+              "$a(x - h)^2 + k$: vertex $(h, k)$. Same $a$ everywhere: width + orientation."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "All three forms of one function",
+            "problemId": "ibsl-26-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Form reading",
+            "title": "Instant features",
+            "prompt": "**Write down** the vertex of $y = 3(x + 4)^2 - 7$.",
+            "options": [
+              "$(-4, -7)$",
+              "$(4, -7)$",
+              "$(-4, 7)$",
+              "$(3, -7)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(x + 4)$ is $(x - (-4))$: the $h$ hides behind a sign flip, the $k$ doesn't. Vertex $(-4, -7)$.",
+            "check": [
+              "3*(-4 + 4)**2 - 7 == -7"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Axis speed",
+            "title": "Booklet formula, ten seconds",
+            "prompt": "The axis of symmetry of $y = 3x^2 + 12x - 5$ is:",
+            "options": [
+              "$x = -2$",
+              "$x = 2$",
+              "$x = -12$",
+              "$x = -\\dfrac{5}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x = -\\dfrac{12}{2 \\cdot 3} = -2$. Sign included — it's printed in the booklet.",
+            "check": [
+              "Rational(-12, 6) == -2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Rebuild from the roots",
+            "problemId": "ibsl-26-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The a is never optional",
+            "body": "Every reconstruction starts with $a$ in the skeleton — roots or vertex alone determine a FAMILY of parabolas, and the extra point picks yours. Cross-check every conversion by expanding back: ten seconds, and the three forms must agree on the $y$-intercept."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "To vertex form",
+            "problemId": "ibsl-26-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "From vertex and a point",
+            "problemId": "ibsl-26-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.6 in four lines",
+            "points": [
+              "Standard: $c$ = $y$-intercept, axis $x = -\\frac{b}{2a}$ (booklet).",
+              "Factored: roots at opposite signs of the factors.",
+              "Vertex: $(h, k)$ read directly — watch the $h$ sign flip.",
+              "Rebuilding? Skeleton with $a$, then solve for $a$ with the given point."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "quadratic-equations-and-the-discriminant",
+      "title": "Quadratic Equations & the Discriminant",
+      "concreteComparison": "Will the ball reach 25 m? That's asking whether $20t - 5t^2 = 25$ has a real solution — and one number answers before you solve anything: the discriminant $b^2 - 4ac$. Negative? The ball never gets there. The IB loves this 'answer without solving' move.",
+      "objective": "Solve quadratics by factoring, the formula and technology; use the discriminant to count roots and to find unknown coefficients; solve quadratic inequalities.",
+      "concept": [
+        "**Syllabus card — SL 2.7.** Solution of quadratic equations and inequalities; the quadratic formula; the discriminant $\\Delta = b^2 - 4ac$ and the nature of the roots. Both the formula AND $\\Delta$ are **in the booklet**. **Papers 1 and 2**; 'find $k$ so that the equation has two equal roots' is one of the most recycled IB questions in existence.",
+        "The formula $x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$ solves everything; factoring is faster when it's visible. Under the root sits the DISCRIMINANT: $\\Delta > 0$ → two distinct real roots; $\\Delta = 0$ → two equal roots (the parabola kisses the axis); $\\Delta < 0$ → no real roots (it floats clear).",
+        "The discriminant's exam job is REVERSE: 'has equal roots' translates to $\\Delta = 0$, an equation in the unknown coefficient. 'Two distinct roots' → $\\Delta > 0$, an inequality. You answer questions about roots without ever finding them.",
+        "Quadratic inequalities are graph questions: to solve $x^2 - x - 6 > 0$, find the roots ($-2$ and $3$), picture the upward parabola, and read where it's ABOVE the axis: $x < -2$ or $x > 3$. Between the roots for $<$, outside for $>$ (when $a > 0$). Sketch first, always — sign errors die on contact with a picture."
+      ],
+      "keyIdea": "$\\Delta = b^2 - 4ac$ counts the roots before you find them: positive-two, zero-one(kiss), negative-none. Inequalities: roots + sketch, then read the region.",
+      "facts": [
+        {
+          "title": "Quadratic formula",
+          "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+          "explanation": "IN the formula booklet (SL 2.7). Copy it fresh every time — no recall errors."
+        },
+        {
+          "title": "The discriminant",
+          "latex": "\\Delta = b^2 - 4ac: \\quad \\Delta > 0 \\text{ two roots}, \\; \\Delta = 0 \\text{ equal roots}, \\; \\Delta < 0 \\text{ none real}",
+          "explanation": "IN the booklet (SL 2.7). The nature-of-roots dictionary — the exam's favorite reverse gear."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-27-we1",
+          "statement": "**(a)** Solve $2x^2 - 5x - 3 = 0$. **[3]**  \n**(b)** **Write down** the value of the discriminant, and state what it tells you about the graph of $y = 2x^2 - 5x - 3$. **[2]**",
+          "solution": "**(a)** Formula with $a = 2, b = -5, c = -3$: $x = \\dfrac{5 \\pm \\sqrt{25 + 24}}{4} = \\dfrac{5 \\pm 7}{4}$ *(M1 A1)*: $x = 3$ or $x = -\\dfrac{1}{2}$ *(A1)*. (Factored: $(2x + 1)(x - 3)$.)  \n**(b)** $\\Delta = 49 > 0$ *(A1)*: two distinct real roots — the parabola crosses the $x$-axis twice *(R1)*.  \n**Narrative:** $\\Delta = 49$, a perfect square, is also the formula's way of whispering 'this factors'. The R-mark in (b) is the SENTENCE connecting number to graph — write it.",
+          "check": [
+            "(-5)**2 - 4*2*(-3) == 49",
+            "solve(2*x**2 - 5*x - 3, x) == [Rational(-1, 2), 3]",
+            "expand((2*x + 1)*(x - 3)) == 2*x**2 - 5*x - 3"
+          ]
+        },
+        {
+          "id": "ibsl-27-we2",
+          "statement": "The equation $x^2 + kx + 9 = 0$ has two equal roots. **Find** the possible values of $k$. **[4]**",
+          "solution": "Equal roots $\\iff \\Delta = 0$ *(M1 — the translation is the method)*: $k^2 - 4(1)(9) = 0$ *(A1)*, so $k^2 = 36$, $k = \\pm 6$ *(A1 A1)*.  \n**Narrative:** never touches the roots themselves. The plural 'valueS' is a hint printed in the question: $k^2 = 36$ has two answers, and dropping $k = -6$ costs the final mark. (Check: $k = 6$ gives $(x+3)^2$; $k = -6$ gives $(x-3)^2$ — both perfect squares, as promised.)",
+          "check": [
+            "solve(k**2 - 36, k) == [-6, 6]",
+            "expand((x + 3)**2) == x**2 + 6*x + 9",
+            "expand((x - 3)**2) == x**2 - 6*x + 9"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Solving $x^2 - x - 6 > 0$ as '$x > -2$ and $x > 3$' by treating it like a linear inequality.",
+          "correction": "Sketch: upward parabola above the axis OUTSIDE the roots — $x < -2$ OR $x > 3$.",
+          "authored": true
+        },
+        {
+          "text": "In discriminant-of-$k$ questions, finding $k^2 = 36$ and answering $k = 6$ only.",
+          "correction": "$k = \\pm 6$ — the question said 'values'. Both square roots exist.",
+          "authored": true
+        },
+        {
+          "text": "Formula slip: $-b \\pm \\sqrt{b^2 - 4ac}$ all over $2$, forgetting the $a$.",
+          "correction": "Denominator $2a$. It's in the booklet — copy, don't recall.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-27-t1",
+          "statement": "Without solving, determine the nature of the roots of **(a)** $3x^2 - 2x + 5 = 0$; **(b)** $4x^2 - 12x + 9 = 0$. **[4]**",
+          "solution": "**(a)** $\\Delta = 4 - 60 = -56 < 0$: no real roots *(A1 A1)*. **(b)** $\\Delta = 144 - 144 = 0$: two equal roots (the graph touches the axis) *(A1 A1)*. Two conclusions, zero solving.",
+          "check": [
+            "(-2)**2 - 4*3*5 == -56",
+            "(-12)**2 - 4*4*9 == 0"
+          ]
+        },
+        {
+          "id": "ibsl-27-t2",
+          "statement": "**Solve** the inequality $x^2 - x - 6 \\le 0$. **[3]**",
+          "solution": "Roots: $(x - 3)(x + 2) = 0$ at $x = -2, 3$ *(M1 A1)*. Upward parabola BELOW (or on) the axis between the roots: $-2 \\le x \\le 3$ *(A1)*.",
+          "check": [
+            "solve(x**2 - x - 6, x) == [-2, 3]",
+            "0**2 - 0 - 6 <= 0",
+            "(-3)**2 - (-3) - 6 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.7 · Papers 1 & 2",
+            "title": "Count the roots before finding them",
+            "body": "One number under the square root — $b^2 - 4ac$ — decides whether a quadratic has two roots, one, or none. The IB's favorite trick is running this backward: give the root count, demand the coefficient."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Watch Δ work",
+            "title": "Slide k: two roots, one, none",
+            "teach": "This parabola is $y = (x - 1)^2 + k$. Step $k$: below zero the graph crosses twice ($\\Delta > 0$); at zero it kisses the axis ($\\Delta = 0$); above, it floats free ($\\Delta < 0$). The discriminant is this picture as a number.",
+            "config": {
+              "mode": "roots",
+              "h": 1,
+              "k": -4,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dictionary",
+            "title": "Δ translates English to algebra",
+            "beats": [
+              "'Two distinct real roots' $\\iff \\Delta > 0$ — crosses twice.",
+              "'Equal roots' / 'touches the axis' / 'tangent' $\\iff \\Delta = 0$.",
+              "'No real roots' / 'never meets the axis' $\\iff \\Delta < 0$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Solve, then read Δ",
+            "problemId": "ibsl-27-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Nature check",
+            "title": "Roots, counted",
+            "prompt": "How many real roots does $x^2 + 4x + 7 = 0$ have?",
+            "options": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "$3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\Delta = 16 - 28 = -12 < 0$: none. The parabola's vertex $(-2, 3)$ sits above the axis and opens up — it never comes down to cross.",
+            "check": [
+              "4**2 - 4*1*7 == -12",
+              "(-2)**2 + 4*(-2) + 7 == 3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The classic: find k",
+            "problemId": "ibsl-27-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reverse gear",
+            "title": "Tangent line condition",
+            "prompt": "$x^2 + 6x + c = 0$ has equal roots when $c =$",
+            "options": [
+              "$9$",
+              "$-9$",
+              "$36$",
+              "$3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\Delta = 36 - 4c = 0 \\Rightarrow c = 9$ — making the perfect square $(x + 3)^2$.",
+            "check": [
+              "solve(36 - 4*c, c) == [9]",
+              "expand((x + 3)**2) == x**2 + 6*x + 9"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Inequality regions",
+            "title": "Inside or outside?",
+            "prompt": "The solution of $(x - 1)(x - 5) < 0$ is:",
+            "options": [
+              "$1 < x < 5$",
+              "$x < 1$ or $x > 5$",
+              "$x < 5$",
+              "$1 \\le x \\le 5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Upward parabola, roots 1 and 5: NEGATIVE between them. Strict inequality keeps the endpoints out. Sketch first, read second.",
+            "check": [
+              "(3 - 1)*(3 - 5) < 0",
+              "(0 - 1)*(0 - 5) > 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Markscheme wisdom",
+            "title": "The translation line is the method mark",
+            "body": "In every discriminant question, write the translation explicitly: 'equal roots $\\Rightarrow b^2 - 4ac = 0$'. That single line is M1 — and it survives any arithmetic that follows. For inequalities, a two-second parabola sketch in the margin earns nothing directly but protects everything."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Nature without solving",
+            "problemId": "ibsl-27-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "An inequality, sketched",
+            "problemId": "ibsl-27-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.7 in four lines",
+            "points": [
+              "Formula and $\\Delta = b^2 - 4ac$: both in the booklet.",
+              "$\\Delta$: $> 0$ two roots, $= 0$ equal (touch), $< 0$ none.",
+              "'Find $k$' questions: translate the root condition into a $\\Delta$ equation.",
+              "Inequalities: roots + sketch → between ($<$) or outside ($>$), for $a > 0$."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rational-functions",
+      "title": "Rational Functions & Asymptotes",
+      "concreteComparison": "Average cost per unit is $C(x) = \\frac{5000 + 20x}{x}$: make more units and the cost-per-unit slides toward ₮20 — but never reaches it. That unreachable line is a horizontal asymptote, and the function that owns it is rational.",
+      "objective": "Graph the reciprocal function and $f(x) = \\dfrac{ax + b}{cx + d}$, find vertical and horizontal asymptotes, intercepts, and solve rational equations.",
+      "concept": [
+        "**Syllabus card — SL 2.8.** The reciprocal function $f(x) = \\frac{1}{x}$ (self-inverse); rational functions of the form $f(x) = \\dfrac{ax + b}{cx + d}$ and their graphs; equations of vertical and horizontal asymptotes. **Papers 1 and 2**. Asymptote equations are pure 'write down' marks — among the cheapest on the paper if you know the two rules.",
+        "The VERTICAL asymptote lives where the denominator dies: $cx + d = 0$, i.e. $x = -\\frac{d}{c}$. Near it, outputs explode toward $\\pm\\infty$. The HORIZONTAL asymptote is the far-field limit: for huge $|x|$ the small constants stop mattering and $f(x) \\approx \\frac{ax}{cx} = \\frac{a}{c}$ — so $y = \\frac{a}{c}$. Leading coefficients top and bottom, nothing else.",
+        "The reciprocal $f(x) = \\frac{1}{x}$ is the family's ancestor: asymptotes ARE the axes, two branches in opposite quadrants, and it is its own inverse — $f(f(x)) = x$. Every $\\frac{ax+b}{cx+d}$ graph is this shape, relocated so its asymptote crosshairs sit at $\\left(-\\frac{d}{c}, \\frac{a}{c}\\right)$.",
+        "A full sketch: both asymptotes dashed and labelled, both intercepts ($x$-intercept where the NUMERATOR dies, $y$-intercept at $f(0) = \\frac{b}{d}$), branches hugging the asymptotes. Rational equations: multiply both sides by the denominator, solve, and reject any 'solution' that lands ON the vertical asymptote."
+      ],
+      "keyIdea": "Vertical asymptote: denominator $= 0$. Horizontal: $y = \\frac{a}{c}$, the ratio of leading coefficients. The graph is $\\frac{1}{x}$ with relocated crosshairs.",
+      "facts": [
+        {
+          "title": "Asymptotes of (ax+b)/(cx+d)",
+          "latex": "x = -\\frac{d}{c} \\quad\\text{(vertical)}, \\qquad y = \\frac{a}{c} \\quad\\text{(horizontal)}",
+          "explanation": "NOT in the booklet — two rules to carry: denominator's zero, and the ratio of $x$-coefficients."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-28-we1",
+          "statement": "Let $f(x) = \\dfrac{2x + 1}{x - 3}$, $x \\ne 3$.  \n**(a)** **Write down** the equations of the vertical and horizontal asymptotes. **[2]**  \n**(b)** Find the $x$- and $y$-intercepts of the graph. **[2]**",
+          "solution": "**(a)** Vertical: $x = 3$ (denominator zero); horizontal: $y = 2$ (ratio $\\frac{2}{1}$) *(A1 A1)*.  \n**(b)** $x$-intercept: numerator zero, $2x + 1 = 0 \\Rightarrow \\left(-\\frac{1}{2}, 0\\right)$; $y$-intercept: $f(0) = \\frac{1}{-3} = -\\frac{1}{3}$, so $\\left(0, -\\frac{1}{3}\\right)$ *(A1 A1)*.  \n**Narrative:** four features, four marks, no algebra heavier than one-step equations. Asymptotes are EQUATIONS ('$x = 3$', '$y = 2$'), not numbers — writing bare '3' where a line is demanded drops the mark.",
+          "check": [
+            "solve(x - 3, x) == [3]",
+            "Rational(2, 1) == 2",
+            "solve(2*x + 1, x) == [Rational(-1, 2)]",
+            "Rational(2*0 + 1, 0 - 3) == Rational(-1, 3)"
+          ]
+        },
+        {
+          "id": "ibsl-28-we2",
+          "statement": "**Solve** $\\dfrac{2x + 1}{x - 3} = 5$. **[3]**",
+          "solution": "Multiply by $(x - 3)$: $2x + 1 = 5(x - 3)$ *(M1)*. Then $2x + 1 = 5x - 15 \\Rightarrow 16 = 3x \\Rightarrow x = \\dfrac{16}{3}$ *(A1)*. Check it isn't the forbidden input: $\\frac{16}{3} \\ne 3$ ✓ *(R1)*.  \n**Narrative:** the horizontal asymptote $y = 2$ says the function CAN equal 5 (it takes every value except 2 exactly once) — and the final legality check guards against 'solutions' that sit on the vertical asymptote.",
+          "check": [
+            "solve(Eq((2*x + 1)/(x - 3), 5), x) == [Rational(16, 3)]",
+            "Rational(2*16, 3) + 1 - 5*(Rational(16,3) - 3) == 1 - 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the horizontal asymptote from the constants: $y = \\frac{b}{d}$.",
+          "correction": "Far away, the $x$-terms dominate: $y = \\frac{a}{c}$, the LEADING coefficients. ($\\frac{b}{d}$ is the $y$-intercept's recipe instead.)",
+          "authored": true
+        },
+        {
+          "text": "Writing asymptotes as numbers ('vertical asymptote: 3').",
+          "correction": "An asymptote is a line: '$x = 3$'. The equation form is the mark.",
+          "authored": true
+        },
+        {
+          "text": "Believing the graph never crosses ANY asymptote, so refusing $f(x) = 5$ solutions.",
+          "correction": "These graphs never CROSS their asymptotes — but they take every OTHER value: $f(x) = 5$ has exactly one solution; only $f(x) = 2$ (the HA value) has none.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-28-t1",
+          "statement": "**Write down** the equations of the asymptotes of $g(x) = \\dfrac{3x - 6}{x + 2}$, and find its $x$-intercept. **[3]**",
+          "solution": "Vertical $x = -2$; horizontal $y = 3$ *(A1 A1)*. Numerator zero: $3x - 6 = 0 \\Rightarrow (2, 0)$ *(A1)*.",
+          "check": [
+            "solve(x + 2, x) == [-2]",
+            "solve(3*x - 6, x) == [2]"
+          ]
+        },
+        {
+          "id": "ibsl-28-t2",
+          "statement": "**Solve** $\\dfrac{4}{x - 1} = x$, giving both solutions. **[3]**",
+          "solution": "$4 = x(x - 1) \\Rightarrow x^2 - x - 4 = 0$ *(M1)*. Formula: $x = \\dfrac{1 \\pm \\sqrt{17}}{2}$ *(A1 A1)* — both legal (neither equals 1). Rational equations can hide quadratics.",
+          "check": [
+            "solve(x**2 - x - 4, x) == [Rational(1,2) - sqrt(17)/2, Rational(1,2) + sqrt(17)/2]"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.8 · Papers 1 & 2",
+            "title": "The graph with forbidden lines",
+            "body": "Divide by $x$ and geometry changes character: the graph shatters into two branches separated by lines it may approach but never touch. Two rules find those lines in seconds — and the marks are mostly 'write down'."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "Near the wall",
+            "title": "Outputs exploding at a forbidden input",
+            "teach": "Walk the dots toward the forbidden $x$-value: outputs blow up toward $\\pm\\infty$ — one branch up, one down. This is what a vertical asymptote DOES; the dashed line is just its address.",
+            "config": {
+              "mode": "infinite"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The two rules",
+            "title": "Find the crosshairs",
+            "beats": [
+              "Vertical asymptote: the denominator's zero — $x = -\\frac{d}{c}$.",
+              "Horizontal asymptote: leading coefficients' ratio — $y = \\frac{a}{c}$ (constants stop mattering far away).",
+              "Intercepts: numerator's zero (for $x$), $f(0) = \\frac{b}{d}$ (for $y$). Four features = a full sketch."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Four features, four marks",
+            "problemId": "ibsl-28-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Asymptote speed",
+            "title": "Write them down",
+            "prompt": "The asymptotes of $y = \\dfrac{5x - 2}{x + 4}$ are:",
+            "options": [
+              "$x = -4$, $y = 5$",
+              "$x = 4$, $y = 5$",
+              "$x = -4$, $y = -\\dfrac{1}{2}$",
+              "$x = 5$, $y = -4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Denominator dies at $x = -4$; far field ratio $\\frac{5}{1} = 5$. Option C used $\\frac{b}{d}$ — that recipe belongs to the $y$-intercept.",
+            "check": [
+              "solve(x + 4, x) == [-4]",
+              "Rational(5,1) == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A rational equation",
+            "problemId": "ibsl-28-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The unreachable value",
+            "title": "Which equation has NO solution?",
+            "prompt": "For $f(x) = \\dfrac{2x + 1}{x - 3}$, which has no solution?",
+            "options": [
+              "$f(x) = 2$",
+              "$f(x) = 5$",
+              "$f(x) = 0$",
+              "$f(x) = -1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$y = 2$ is the horizontal asymptote — the one output the function never produces. (Try it: $2x + 1 = 2x - 6$ collapses to $1 = -6$.)",
+            "check": [
+              "1 != -6"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Sketch craft",
+            "title": "Crosshairs first, branches second",
+            "body": "Draw both asymptotes dashed, label their equations, mark both intercepts — THEN sweep the two branches hugging the lines. The branches live in opposite corners of the crosshairs; the intercepts tell you which pair of corners."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Asymptotes and intercept",
+            "problemId": "ibsl-28-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A hidden quadratic",
+            "problemId": "ibsl-28-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.8 in four lines",
+            "points": [
+              "Vertical asymptote: denominator $= 0$. Horizontal: $y = \\frac{a}{c}$.",
+              "Asymptotes are EQUATIONS of lines, not numbers.",
+              "$\\frac{1}{x}$ is the ancestor — self-inverse, axes as asymptotes.",
+              "Rational equations: clear the denominator, solve, reject the forbidden input."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "exponential-and-logarithmic-graphs",
+      "title": "Exponential & Logarithmic Graphs",
+      "concreteComparison": "Fold-the-paper growth ($y = 2^x$) and its mirror question 'how many folds to reach this thickness?' ($y = \\log_2 x$) are one relationship read in two directions — and their graphs are literal mirror images across $y = x$.",
+      "objective": "Sketch $y = a^x$ and $y = \\log_a x$ (including base $e$), state domains, ranges and asymptotes, and connect the pair as inverse functions.",
+      "concept": [
+        "**Syllabus card — SL 2.9.** Exponential functions and their graphs: $f(x) = a^x$, $a > 0$, and $f(x) = e^x$; logarithmic functions and their graphs: $f(x) = \\log_a x$, $x > 0$, and $f(x) = \\ln x$. **Papers 1 and 2**; the graphs and their asymptotes are 'write down' territory, and $e$ makes its official debut.",
+        "Every $y = a^x$ (with $a > 1$) shares one silhouette: passes $(0, 1)$ (anything to the zeroth power), climbs through $(1, a)$, hugs the NEGATIVE $x$-axis — horizontal asymptote $y = 0$ — and never, ever outputs zero or below. Domain $\\mathbb{R}$, range $y > 0$. For $0 < a < 1$ the picture mirrors: decay.",
+        "The number $e \\approx 2.71828$ is the calculus-native base — Topic 5 explains why it's special; for now, $y = e^x$ is just $y = a^x$ with $a$ between 2 and 3. Same silhouette, same asymptote, same range.",
+        "$y = \\log_a x$ is the inverse of $y = a^x$, so its graph is the reflection in $y = x$: through $(1, 0)$ and $(a, 1)$, VERTICAL asymptote $x = 0$, domain $x > 0$, range all of $\\mathbb{R}$. Domain and range swap — exactly as SL 2.5 promised for every inverse pair. Exam sketches: the asymptote (dashed, labelled) plus the anchor point $(0,1)$ or $(1,0)$ carry most of the marks."
+      ],
+      "keyIdea": "$a^x$ and $\\log_a x$ are mirror twins across $y = x$: asymptotes $y = 0$ and $x = 0$, anchors $(0,1)$ and $(1,0)$, domain and range swapped.",
+      "facts": [
+        {
+          "title": "The exponential graph",
+          "latex": "y = a^x: \\;\\text{through } (0,1), \\; \\text{asymptote } y = 0, \\; \\text{range } y > 0",
+          "explanation": "NOT in the booklet — the silhouette to know cold, including $y = e^x$."
+        },
+        {
+          "title": "The logarithmic graph",
+          "latex": "y = \\log_a x: \\;\\text{through } (1,0), \\; \\text{asymptote } x = 0, \\; \\text{domain } x > 0",
+          "explanation": "The reflection of $y = a^x$ in $y = x$ — inverse pair, features swapped."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-29-we1",
+          "statement": "Let $f(x) = 3^x$.  \n**(a)** **Write down** the coordinates of the $y$-intercept, the equation of the asymptote, and the range of $f$. **[3]**  \n**(b)** The graph of $g$ is the reflection of the graph of $f$ in the line $y = x$. **Write down** $g(x)$, its domain, and the equation of ITS asymptote. **[3]**",
+          "solution": "**(a)** $(0, 1)$; asymptote $y = 0$; range $f(x) > 0$ *(A1 A1 A1)*.  \n**(b)** $g(x) = \\log_3 x$ *(A1)*; domain $x > 0$ *(A1)*; asymptote $x = 0$ *(A1)*.  \n**Narrative:** six 'write down' marks, zero computation — the whole question is the mirror. Every feature of $g$ is a feature of $f$ with $x$ and $y$ swapped: range $y > 0$ became domain $x > 0$; asymptote $y = 0$ became $x = 0$.",
+          "check": [
+            "3**0 == 1",
+            "3**1 == 3",
+            "log(3, 3) == 1",
+            "log(1, 3) == 0"
+          ]
+        },
+        {
+          "id": "ibsl-29-we2",
+          "statement": "A population is modelled by $P(t) = 50e^{0.2t}$, $t \\ge 0$ in years.  \n**(a)** **Write down** the initial population. **[1]**  \n**(b)** Find the population after 5 years, to 3 s.f. **[2]**  \n**(c)** Find the exact time when the population reaches $100$. **[3]**",
+          "solution": "**(a)** $P(0) = 50e^0 = 50$ *(A1)*.  \n**(b)** $P(5) = 50e^{1} \\approx 136$ *(M1 A1)*.  \n**(c)** $50e^{0.2t} = 100 \\Rightarrow e^{0.2t} = 2$ *(M1)*. Take $\\ln$: $0.2t = \\ln 2$ *(A1)*, so $t = 5\\ln 2$ years exactly *(A1)* ($\\approx 3.47$).  \n**Narrative:** the SL 1.7 log machinery meets its natural habitat. 'Exact' means $5\\ln 2$ stays symbolic — and note (b): $e$ enters through the $e^x$ button, never as '2.72'.",
+          "check": [
+            "50*exp(0) == 50",
+            "floor(50*exp(1)) == 135",
+            "solve(Eq(exp(Rational(1,5)*t), 2), t) == [log(32)]",
+            "simplify(log(32) - 5*log(2)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Sketching $y = 2^x$ through the origin.",
+          "correction": "$2^0 = 1$: the anchor is $(0, 1)$. Exponentials never touch zero — the axis is their asymptote.",
+          "authored": true
+        },
+        {
+          "text": "Giving $\\log$ graphs the domain 'all reals'.",
+          "correction": "Log inputs must be positive (SL 1.5): domain $x > 0$, vertical asymptote $x = 0$.",
+          "authored": true
+        },
+        {
+          "text": "Replacing $e$ with $2.72$ mid-working.",
+          "correction": "$e$ is a symbol until the final decimal is demanded — premature rounding poisons 3 s.f. answers.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-29-t1",
+          "statement": "**Write down** the asymptote, $y$-intercept and range of $y = e^x + 3$. **[3]**",
+          "solution": "The $+3$ lifts everything: asymptote $y = 3$; $y$-intercept $(0, 4)$; range $y > 3$ *(A1 A1 A1)*. (A preview of SL 2.11: vertical translation moves the asymptote too.)",
+          "check": [
+            "exp(0) + 3 == 4"
+          ]
+        },
+        {
+          "id": "ibsl-29-t2",
+          "statement": "The point $(2, 9)$ lies on $y = a^x$. **Find** $a$, and **write down** the coordinates of the corresponding point on $y = \\log_a x$. **[3]**",
+          "solution": "$a^2 = 9 \\Rightarrow a = 3$ (bases are positive) *(M1 A1)*. Mirror point: $(9, 2)$ *(A1)* — inverses swap coordinates.",
+          "check": [
+            "solve(Eq(a**2, 9), a) == [-3, 3]",
+            "3**2 == 9",
+            "log(9, 3) == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.9 · Papers 1 & 2",
+            "title": "The curve that outruns every line",
+            "body": "Exponential growth beats any straight line eventually — and its mirror twin, the logarithm, grows slower than everything. Two silhouettes, two asymptotes, one reflection. Plus the official arrival of $e$."
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "The race",
+            "title": "Exponential vs straight line",
+            "teach": "A line with slope 3 sprints ahead early — but $y = 2^x$ doubles every step, and doubling always wins. Watch the overtake: that inevitability is what 'exponential growth' means.",
+            "config": {
+              "mode": "race",
+              "b": 2,
+              "m": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The silhouettes",
+            "title": "Anchors and asymptotes",
+            "beats": [
+              "$y = a^x$: through $(0,1)$ and $(1,a)$; asymptote $y = 0$; range $y > 0$. ($e \\approx 2.718$ is just a special $a$.)",
+              "$y = \\log_a x$: through $(1,0)$ and $(a,1)$; asymptote $x = 0$; domain $x > 0$.",
+              "Each is the other's reflection in $y = x$ — domain and range swap."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Six write-down marks",
+            "problemId": "ibsl-29-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Anchor check",
+            "title": "Where must it pass?",
+            "prompt": "Every graph $y = a^x$ (for any $a > 0$, $a \\ne 1$) passes through:",
+            "options": [
+              "$(0, 1)$",
+              "$(1, 1)$",
+              "$(0, 0)$",
+              "$(1, 0)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$a^0 = 1$ for every base — the one point the whole family shares. $(1, 0)$ belongs to the LOG family instead.",
+            "check": [
+              "2**0 == 1",
+              "5**0 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "An e-powered model",
+            "problemId": "ibsl-29-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Mirror reading",
+            "title": "Features, swapped",
+            "prompt": "The graph of $y = \\ln x$ has:",
+            "options": [
+              "Vertical asymptote $x = 0$, domain $x > 0$",
+              "Horizontal asymptote $y = 0$, domain $x > 0$",
+              "Vertical asymptote $x = 0$, domain $\\mathbb{R}$",
+              "No asymptote"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\ln$ mirrors $e^x$: the exponential's horizontal asymptote $y = 0$ reflects into the log's vertical asymptote $x = 0$, and range $y > 0$ reflects into domain $x > 0$.",
+            "check": [
+              "log(exp(1)) == 1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Sketch craft",
+            "title": "Two marks per curve, most days",
+            "body": "IB exponential/log sketches usually pay: correct silhouette (A1) + asymptote drawn dashed and labelled (A1), with the anchor point labelled. Know both silhouettes cold and these are the fastest marks on the paper."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A lifted exponential",
+            "problemId": "ibsl-29-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Find the base, mirror the point",
+            "problemId": "ibsl-29-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.9 in four lines",
+            "points": [
+              "$y = a^x$: anchor $(0,1)$, asymptote $y = 0$, range $y > 0$.",
+              "$y = \\log_a x$: anchor $(1,0)$, asymptote $x = 0$, domain $x > 0$.",
+              "Mirror twins across $y = x$ — inverse functions in picture form.",
+              "$e \\approx 2.718$: the calculus-native base, kept symbolic until the end."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-equations",
+      "title": "Solving Equations: Every Tool at Once",
+      "concreteComparison": "Break-even analysis is one equation: costs $= 500 + 20x$ meet revenue $= 45x$ where $500 + 20x = 45x$. Some equations yield to algebra, some only to a graph — the IB examines knowing WHICH, and SL 2.10 is where the toolbox gets organized.",
+      "objective": "Choose between analytic and graphical solving, handle hidden quadratics and exponential equations, and use GDC intersections as a licensed method.",
+      "concept": [
+        "**Syllabus card — SL 2.10.** Solving equations both graphically and analytically; use of technology; applications in context. **Paper 2's bread and butter** — many P2 equations have no clean algebraic route, and the GDC graph-intersect method IS the intended solution.",
+        "The analytic toolbox so far: linear rearrangement, quadratic factoring/formula (SL 2.7), clearing rational denominators (SL 2.8), logs for trapped exponents (SL 1.7). New move: SUBSTITUTION for hidden quadratics — $x^4 - 13x^2 + 36 = 0$ becomes $u^2 - 13u + 36 = 0$ with $u = x^2$; solve for $u$, then undo the substitution (both signs!).",
+        "The graphical method solves ANYTHING: plot $y = $ LHS and $y = $ RHS, intersect. Or plot $y = $ LHS $-$ RHS and find zeros. Same answer, two framings — and on Paper 2, 'solve $e^x = 3 - x$' expects exactly this, because no algebra on Earth isolates that $x$.",
+        "Applications translate stories to equations first: break-even (cost = revenue), model-hits-threshold ($P(t) = 1000$), curve-meets-curve. The markscheme's first line is always the SETUP equation — write it before touching any tool, analytic or electronic."
+      ],
+      "keyIdea": "Match the tool to the equation: algebra when the structure allows, substitution when a quadratic hides inside, the GDC when nothing isolates $x$ — and always write the setup line first.",
+      "facts": [
+        {
+          "title": "Hidden quadratic",
+          "latex": "x^4 - 13x^2 + 36 = 0 \\xrightarrow{\\;u = x^2\\;} u^2 - 13u + 36 = 0",
+          "explanation": "NOT a booklet formula — a pattern. Also appears as $2^{2x} - 5 \\cdot 2^x + 4 = 0$ with $u = 2^x$. Undo the substitution at the end."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-210-we1",
+          "statement": "**Solve** $x^4 - 13x^2 + 36 = 0$. **[4]**",
+          "solution": "Let $u = x^2$: $u^2 - 13u + 36 = 0$ *(M1)*. Factor: $(u - 4)(u - 9) = 0$, so $u = 4$ or $u = 9$ *(A1)*. Undo: $x^2 = 4 \\Rightarrow x = \\pm 2$; $x^2 = 9 \\Rightarrow x = \\pm 3$ *(A1 A1)*. Four solutions.  \n**Narrative:** the M1 is SEEING the quadratic in disguise. The most-dropped marks are the negative roots at the undo step — a degree-4 equation earning four roots is the sanity check.",
+          "check": [
+            "solve(u**2 - 13*u + 36, u) == [4, 9]",
+            "solve(x**4 - 13*x**2 + 36, x) == [-3, -2, 2, 3]"
+          ]
+        },
+        {
+          "id": "ibsl-210-we2",
+          "statement": "A start-up's weekly cost is $C(x) = 500 + 20x$ and revenue is $R(x) = 45x$, for $x$ units.  \n**(a)** Find the break-even point. **[3]**  \n**(b)** **Write down** the profit when 30 units are sold. **[2]**",
+          "solution": "**(a)** Break-even: $C(x) = R(x)$ *(M1 — the setup line)*: $500 + 20x = 45x \\Rightarrow 500 = 25x \\Rightarrow x = 20$ units *(A1 A1)*.  \n**(b)** Profit $= R(30) - C(30) = 1350 - 1100 = 250$ *(M1 A1)*.  \n**Narrative:** the entire intelligence of the question is the translation 'break-even means cost equals revenue'. On a GDC: plot both lines, Intersect — $(20, 900)$, same marks, IF the setup line is on paper.",
+          "check": [
+            "solve(Eq(500 + 20*x, 45*x), x) == [20]",
+            "45*20 == 900",
+            "45*30 - (500 + 20*30) == 250"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping at $u = 4, 9$ — answering in the substitute variable.",
+          "correction": "The question asked for $x$: undo the substitution, keeping both signs. Four roots, not two.",
+          "authored": true
+        },
+        {
+          "text": "Dividing both sides by $x$ and losing the root $x = 0$.",
+          "correction": "Never divide by the variable — factor it out: $x(x - 4) = 0$ keeps both roots.",
+          "authored": true
+        },
+        {
+          "text": "GDC-solving with no written equation — full risk, zero insurance.",
+          "correction": "One line — 'solving $500 + 20x = 45x$' — turns any keying slip from 0 marks into M1.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-210-t1",
+          "statement": "**Solve** $2^{2x} - 5 \\cdot 2^x + 4 = 0$. **[4]**",
+          "solution": "Let $u = 2^x$: $u^2 - 5u + 4 = (u-1)(u-4) = 0$ *(M1 A1)*, so $u = 1$ or $u = 4$. Undo: $2^x = 1 \\Rightarrow x = 0$; $2^x = 4 \\Rightarrow x = 2$ *(A1 A1)*. (Note $2^{2x} = (2^x)^2$ — that's the hidden square.)",
+          "check": [
+            "solve(u**2 - 5*u + 4, u) == [1, 4]",
+            "2**0 == 1",
+            "2**2 == 4"
+          ]
+        },
+        {
+          "id": "ibsl-210-t2",
+          "statement": "**Solve** $e^{x} = 7$ exactly, and state which solving TOOL the equation $e^x = 3 - x$ requires instead, and why. **[3]**",
+          "solution": "$x = \\ln 7$ *(A1)* — the log bridge. For $e^x = 3 - x$: the unknown sits both inside and outside the exponential; no algebraic isolation exists — graph both sides and intersect on the GDC *(A1 R1)*. Knowing WHICH tool is the examined skill.",
+          "check": [
+            "log(exp(7)) == 7",
+            "exp(0) == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.10 · Paper 2's engine room",
+            "title": "The toolbox, organized",
+            "body": "You now own five solving tools: rearrange, factor/formula, clear denominators, take logs, substitute. This lesson adds the master rule — match the tool to the equation's structure — and the licensed escape hatch: the GDC intersect."
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "The graphical method",
+            "title": "Solving = intersecting",
+            "teach": "Any equation LHS $=$ RHS is two graphs crossing. Steer the second line and watch the solution point move — when algebra runs out, this picture is the method, and the GDC automates it.",
+            "config": {
+              "m1": 20,
+              "b1": 500,
+              "m2": 45,
+              "b2": 0,
+              "interactive": true,
+              "min": 0,
+              "max": 40
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The decision tree",
+            "title": "Which tool, when",
+            "beats": [
+              "Quadratic shape (even in disguise)? Substitute $u$, factor or formula, UNDO at the end.",
+              "Unknown trapped in an exponent alone? Logs (SL 1.7).",
+              "Unknown inside AND outside ($e^x = 3 - x$)? No algebra exists — GDC intersect."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A quartic in disguise",
+            "problemId": "ibsl-210-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Spot the disguise",
+            "title": "What substitution?",
+            "prompt": "To solve $9^x - 10 \\cdot 3^x + 9 = 0$, the right substitution is:",
+            "options": [
+              "$u = 3^x$",
+              "$u = 9^x$",
+              "$u = x^3$",
+              "$u = \\log_3 x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$9^x = (3^x)^2$, so $u = 3^x$ gives $u^2 - 10u + 9 = 0$: $u = 1, 9$, hence $x = 0, 2$. The square hides in the bigger base.",
+            "check": [
+              "solve(u**2 - 10*u + 9, u) == [1, 9]",
+              "3**2 == 9"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Break-even",
+            "problemId": "ibsl-210-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Tool choice",
+            "title": "Algebra or GDC?",
+            "prompt": "Which equation REQUIRES a graphical/numerical method?",
+            "options": [
+              "$\\ln x = 4 - x$",
+              "$x^2 - 7x + 12 = 0$",
+              "$5^x = 11$",
+              "$\\dfrac{x + 1}{x - 2} = 3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The unknown lives inside the log AND outside it — no algebraic isolation. The others yield to factoring, logs, and clearing the denominator respectively.",
+            "check": [
+              "solve(x**2 - 7*x + 12, x) == [3, 4]"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Paper 2 wisdom",
+            "title": "Setup line + degree count",
+            "body": "Two habits close most solving questions: write the equation being solved BEFORE any tool touches it (the M1 that survives everything), and count expected solutions — a degree-4 equation owes you up to four; finding two should feel unfinished."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Exponential in disguise",
+            "problemId": "ibsl-210-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Choose the tool",
+            "problemId": "ibsl-210-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.10 in four lines",
+            "points": [
+              "Match tool to structure: factor, formula, clear, log, substitute.",
+              "Hidden quadratics: substitute, solve, UNDO with both signs.",
+              "Unknown inside and outside? GDC intersect — a licensed method.",
+              "Setup line first, always; count the roots you're owed."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "transformations-of-graphs",
+      "title": "Transformations of Graphs",
+      "concreteComparison": "One parabola, memorized, becomes every parabola: $y = 2(x - 3)^2 + 1$ is just $y = x^2$ picked up, slid 3 right, stretched double-tall, lifted 1. Four moves generate the whole zoo — and the IB asks you to name each move like a referee.",
+      "objective": "Apply and describe translations $y = f(x) + b$ and $y = f(x - a)$, reflections $y = -f(x)$ and $y = f(-x)$, stretches $y = p f(x)$ and $y = f(qx)$, and composite transformations; track individual points through them.",
+      "concept": [
+        "**Syllabus card — SL 2.11.** Transformations of graphs: translations, reflections in both axes, vertical stretch with scale factor $p$, horizontal stretch with scale factor $\\frac{1}{q}$; composite transformations. **Papers 1 and 2**; 'describe the transformation' demands exact vocabulary — direction, axis, and scale factor, every time.",
+        "OUTSIDE the function acts on $y$, honestly: $f(x) + b$ shifts UP $b$; $p f(x)$ stretches vertically by factor $p$; $-f(x)$ reflects in the $x$-axis. INSIDE acts on $x$, backwards: $f(x - a)$ shifts RIGHT $a$ (not left!); $f(qx)$ compresses horizontally by factor $\\frac{1}{q}$; $f(-x)$ reflects in the $y$-axis. Inside moves are counter-intuitive because they change which input reaches the old machine.",
+        "Point-tracking makes every question mechanical: under $y = 2f(x - 3) + 1$, a point $(x_0, y_0)$ on $f$ moves to $(x_0 + 3, \\, 2y_0 + 1)$ — inside moves adjust $x$ (backwards), outside moves adjust $y$ (honestly). Exam questions asking 'the image of the point $(2, 5)$' want exactly this arithmetic.",
+        "Composite ORDER matters only within an axis: for $y = 2f(x) + 1$, stretch THEN translate (following the order of operations applied to $y_0$: multiply by 2, then add 1). Doing it backwards gives $2(y_0 + 1) = 2y_0 + 2$ — a different graph. The IB convention: describe transformations in an order that actually produces the target."
+      ],
+      "keyIdea": "Outside the brackets: acts on $y$, honestly. Inside the brackets: acts on $x$, backwards. Track a point and no transformation can lie to you.",
+      "facts": [
+        {
+          "title": "The transformation dictionary",
+          "latex": "f(x) + b \\uparrow b, \\quad f(x - a) \\to a, \\quad pf(x) \\text{ v-stretch } p, \\quad f(qx) \\text{ h-stretch } \\tfrac{1}{q}",
+          "explanation": "IN the syllabus wording (SL 2.11); the point-image rules are yours to carry: $(x_0, y_0) \\mapsto (x_0 + a, \\, p y_0 + b)$ etc."
+        },
+        {
+          "title": "Reflections",
+          "latex": "-f(x): \\text{ in the } x\\text{-axis}, \\qquad f(-x): \\text{ in the } y\\text{-axis}",
+          "explanation": "Outside minus flips outputs (over the $x$-axis); inside minus flips inputs (over the $y$-axis)."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-211-we1",
+          "statement": "The graph of $y = x^2$ is transformed into $y = 2(x - 3)^2 + 1$.  \n**(a)** **Describe** fully a sequence of transformations that achieves this. **[3]**  \n**(b)** Find the image of the point $(1, 1)$ under this sequence. **[2]**",
+          "solution": "**(a)** Translation 3 units right; vertical stretch, scale factor 2; translation 1 unit up *(A1 A1 A1 — each names direction/factor exactly)*.  \n**(b)** Track the point: inside first, $x: 1 \\to 4$; then $y: 1 \\to 2(1) + 1 = 3$. Image: $(4, 3)$ *(M1 A1)*. Check on the formula: $2(4-3)^2 + 1 = 3$ ✓.  \n**Narrative:** 'describe fully' is a vocabulary exam: 'translation' + direction + amount; 'stretch' + axis + factor. 'Moved' and 'flipped' don't score. The formula-check in (b) is your free verification.",
+          "check": [
+            "2*(4 - 3)**2 + 1 == 3",
+            "2*1 + 1 == 3",
+            "1 + 3 == 4"
+          ]
+        },
+        {
+          "id": "ibsl-211-we2",
+          "statement": "Let $f(x) = \\sqrt{x}$ and $g(x) = f(2x)$.  \n**(a)** **Describe** the transformation mapping the graph of $f$ to the graph of $g$. **[2]**  \n**(b)** The point $(16, 4)$ lies on $f$. **Write down** the corresponding point on $g$. **[1]**  \n**(c)** Verify your answer by evaluating $g$ at that point. **[1]**",
+          "solution": "**(a)** Horizontal stretch, scale factor $\\frac{1}{2}$ (a compression toward the $y$-axis) *(A1 A1)*.  \n**(b)** Inside acts backwards: $(16, 4) \\mapsto (8, 4)$ *(A1)*.  \n**(c)** $g(8) = \\sqrt{16} = 4$ ✓ *(A1)*.  \n**Narrative:** $f(2x)$ reaches input $16$ when $x = 8$ — the graph achieves everything at HALF the old $x$. That's why the factor is $\\frac{1}{q}$, the syllabus's exact phrasing.",
+          "check": [
+            "sqrt(16) == 4",
+            "sqrt(2*8) == 4",
+            "Rational(16, 2) == 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading $f(x - 3)$ as a shift 3 LEFT ('minus means left').",
+          "correction": "Inside is backwards: $f(x-3)$ needs bigger inputs to feel the same — shift RIGHT 3.",
+          "authored": true
+        },
+        {
+          "text": "Describing $f(2x)$ as 'stretched by 2'.",
+          "correction": "Horizontal stretch, scale factor $\\frac{1}{2}$ — the graph compresses. Factor $\\frac{1}{q}$, per the syllabus.",
+          "authored": true
+        },
+        {
+          "text": "In $2f(x) + 1$, adding first: $(y_0 + 1) \\cdot 2$.",
+          "correction": "Follow the expression's order of operations on $y_0$: multiply by 2, THEN add 1.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-211-t1",
+          "statement": "**Describe** fully the transformations mapping $y = x^2$ to $y = -(x + 2)^2 + 5$, and **write down** the image of the vertex. **[4]**",
+          "solution": "Translation 2 left; reflection in the $x$-axis; translation 5 up *(A1 A1 A1)*. Vertex: $(0,0) \\mapsto (-2, 5)$ *(A1)* — check: the new vertex form reads it directly.",
+          "check": [
+            "-(-2 + 2)**2 + 5 == 5"
+          ]
+        },
+        {
+          "id": "ibsl-211-t2",
+          "statement": "The point $(4, 6)$ lies on $y = f(x)$. **Find** the corresponding point on $y = 2f(x - 1) + 3$. **[2]**",
+          "solution": "Inside: $x: 4 \\to 5$. Outside: $y: 6 \\to 2(6) + 3 = 15$. Point $(5, 15)$ *(M1 A1)*.",
+          "check": [
+            "4 + 1 == 5",
+            "2*6 + 3 == 15"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 2.11 · Papers 1 & 2",
+            "title": "Four moves generate everything",
+            "body": "Slide, flip, stretch — applied inside or outside the function. Learn the four moves and one memorized curve becomes an entire family. The catch: inside moves act BACKWARDS, and the exam knows you know that."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Translations, live",
+            "title": "h slides, k lifts",
+            "teach": "$y = (x - h)^2 + k$: step $h$ and the parabola slides HORIZONTALLY (note: increasing $h$ — 'minus $h$' inside — moves it RIGHT); step $k$ and it rides up and down honestly. Inside backwards, outside honest — visible here.",
+            "config": {
+              "mode": "vertex",
+              "h": 0,
+              "k": 0,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Stretches & flips, live",
+            "title": "The a-dial",
+            "teach": "Now step $a$ in $y = ax^2$: bigger $|a|$ stretches the parabola taller (vertical stretch factor $a$); negative $a$ flips it over the $x$-axis. One dial, two transformation types.",
+            "config": {
+              "mode": "shape",
+              "a": 1,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dictionary",
+            "title": "Inside backwards, outside honest",
+            "beats": [
+              "$f(x) + b$: up $b$. $\\;pf(x)$: vertical stretch factor $p$. $\\;-f(x)$: flip over $x$-axis. (Outside → $y$, honest.)",
+              "$f(x - a)$: RIGHT $a$. $\\;f(qx)$: horizontal stretch factor $\\frac{1}{q}$. $\\;f(-x)$: flip over $y$-axis. (Inside → $x$, backwards.)",
+              "Point rule: $(x_0, y_0) \\mapsto \\left(\\frac{x_0}{q} + a, \\; p y_0 + b\\right)$ for $y = pf(q(x - a)) + b$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Describe, then track a point",
+            "problemId": "ibsl-211-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Direction check",
+            "title": "Which way does it slide?",
+            "prompt": "The graph of $y = f(x + 4)$ is the graph of $f$ translated:",
+            "options": [
+              "$4$ units left",
+              "$4$ units right",
+              "$4$ units up",
+              "$4$ units down"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside is backwards: $x + 4$ reaches any old input 4 EARLIER — the whole picture arrives shifted left. ($f(x) + 4$ would be 'up 4'.)",
+            "check": [
+              "(-4) + 4 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The half-speed stretch",
+            "problemId": "ibsl-211-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Point tracking",
+            "title": "Send the point through",
+            "prompt": "$(2, 8)$ lies on $y = f(x)$. On $y = 3f(x) - 5$ the corresponding point is:",
+            "options": [
+              "$(2, 19)$",
+              "$(2, 9)$",
+              "$(6, 3)$",
+              "$(5, 24)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Nothing inside changed, so $x$ stays 2. Outside: $3(8) - 5 = 19$. Multiply THEN subtract — the expression's own order.",
+            "check": [
+              "3*8 - 5 == 19"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reflection sorting",
+            "title": "Which axis?",
+            "prompt": "$y = f(-x)$ reflects the graph of $f$ in:",
+            "options": [
+              "the $y$-axis",
+              "the $x$-axis",
+              "the line $y = x$",
+              "the origin"
+            ],
+            "correctIndex": 0,
+            "explanation": "Inside minus flips INPUTS: left and right trade places — a $y$-axis mirror. Outside minus ($-f(x)$) would flip outputs over the $x$-axis; $y = x$ reflection belongs to inverses (SL 2.5).",
+            "check": [
+              "(-1)**2 == 1**2"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The referee's vocabulary",
+            "body": "'Describe fully' scores on three words: TYPE (translation / reflection / stretch), SPECIFICS (direction and units, or axis, or scale factor), and — for composites — a WORKING ORDER. Then verify by tracking one easy point through your own description and the target formula: they must agree."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Three moves, named",
+            "problemId": "ibsl-211-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A point through the machine",
+            "problemId": "ibsl-211-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 2.11 in four lines",
+            "points": [
+              "Outside → $y$, honest. Inside → $x$, backwards.",
+              "$f(qx)$: horizontal stretch factor $\\frac{1}{q}$ — the syllabus's own phrasing.",
+              "Track points: inside adjusts $x$, outside adjusts $y$ in expression order.",
+              "Describe = type + specifics + order. Verify with one tracked point."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ibsl-fn-p01",
+      "statement": "Find the equation of the line through $(1, 2)$ and $(4, 11)$ in the form $y = mx + c$, and **write down** the gradient of a perpendicular line. **[4]**",
+      "solution": "$m = \\frac{11 - 2}{4 - 1} = 3$ *(M1 A1)*; $y = 3x - 1$ *(A1)*. Perpendicular: $-\\frac{1}{3}$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.1",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Rational(11 - 2, 4 - 1) == 3",
+        "3*1 - 1 == 2",
+        "3*4 - 1 == 11",
+        "3*Rational(-1,3) == -1"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p02",
+      "statement": "Line $L_1$: $2x + 5y = 10$. Find the equation of the line parallel to $L_1$ through $(5, 1)$, in the form $ax + by = d$. **[4]**",
+      "solution": "$m = -\\frac{2}{5}$ *(M1 A1)*. Through $(5,1)$: $y - 1 = -\\frac{2}{5}(x - 5)$ → $2x + 5y = 15$ *(M1 A1)*. Check: $2(5) + 5(1) = 15$ ✓.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.1",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(2*x + 5*y - 10, y) == [2 - Rational(2,5)*x]",
+        "2*5 + 5*1 == 15"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p03",
+      "statement": "Let $g(x) = \\sqrt{10 - 2x}$. Find the largest possible domain of $g$, and evaluate $g(3)$. **[3]**",
+      "solution": "$10 - 2x \\ge 0 \\Rightarrow x \\le 5$ *(M1 A1)*. $g(3) = \\sqrt{4} = 2$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.2",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(10 - 2*x, x) == [5]",
+        "sqrt(10 - 2*3) == 2"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p04",
+      "statement": "Let $f(x) = x^2 - 3$. Find $f(5)$, and solve $f(x) = 61$. **[3]**",
+      "solution": "$f(5) = 22$ *(A1)*. $x^2 = 64 \\Rightarrow x = \\pm 8$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.2",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "5**2 - 3 == 22",
+        "solve(x**2 - 3 - 61, x) == [-8, 8]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p05",
+      "statement": "For $f(x) = x^2 - 6x + 8$: find the intercepts and the vertex — everything a full sketch must label. **[4]**",
+      "solution": "Roots: $(x-2)(x-4)$ → $x = 2, 4$ *(A1)*; $y$-intercept $(0, 8)$ *(A1)*; axis $x = 3$, vertex $(3, -1)$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.3",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(x**2 - 6*x + 8, x) == [2, 4]",
+        "3**2 - 6*3 + 8 == -1"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p06",
+      "statement": "A rocket's height is $h(t) = 30t - 5t^2$. **Write down** a suitable domain, and find the maximum height. **[3]**",
+      "solution": "$h = 5t(6 - t) = 0$ at $t = 0, 6$: domain $0 \\le t \\le 6$ *(A1)*. Max at $t = 3$: $h(3) = 45$ m *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.3",
+          "mono": true
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "solve(30*t - 5*t**2, t) == [0, 6]",
+        "30*3 - 5*9 == 45"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p07",
+      "statement": "For $f(x) = (x + 3)^2 - 7$: **write down** the minimum point, and find the exact zeros. **[4]**",
+      "solution": "Minimum $(-3, -7)$ *(A1 A1)*. $(x+3)^2 = 7 \\Rightarrow x = -3 \\pm \\sqrt{7}$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.4",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve((x + 3)**2 - 7, x) == [-3 - sqrt(7), -3 + sqrt(7)]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p08",
+      "statement": "Find the coordinates of the intersections of $y = x^2 - 3x$ and $y = x - 3$. **[4]**",
+      "solution": "$x^2 - 3x = x - 3 \\Rightarrow x^2 - 4x + 3 = 0 \\Rightarrow x = 1, 3$ *(M1 A1)*. Points $(1, -2)$ and $(3, 0)$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.4",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(x**2 - 4*x + 3, x) == [1, 3]",
+        "1 - 3 == -2",
+        "3 - 3 == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p09",
+      "statement": "Let $f(x) = 3x - 1$ and $g(x) = x + 4$. Find $(f \\circ g)(x)$, $(g \\circ f)(x)$, and $(f \\circ g)(2)$. **[4]**",
+      "solution": "$(f \\circ g)(x) = 3(x + 4) - 1 = 3x + 11$ *(M1 A1)*; $(g \\circ f)(x) = 3x + 3$ *(A1)*; $(f \\circ g)(2) = 17$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.5",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "expand(3*(x + 4) - 1) == 3*x + 11",
+        "expand((3*x - 1) + 4) == 3*x + 3",
+        "3*2 + 11 == 17"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p10",
+      "statement": "Find $f^{-1}(x)$ for $f(x) = \\dfrac{x + 5}{2}$, and evaluate $f^{-1}(6)$. **[3]**",
+      "solution": "Swap–solve: $x = \\frac{y + 5}{2} \\Rightarrow y = 2x - 5$ *(M1 A1)*. $f^{-1}(6) = 7$ *(A1)*; check $f(7) = 6$ ✓.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.5",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(Eq(x, (y + 5)/2), y) == [2*x - 5]",
+        "2*6 - 5 == 7",
+        "Rational(7 + 5, 2) == 6"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p11",
+      "statement": "Express $f(x) = x^2 - 10x + 21$ in factored form and vertex form. **[4]**",
+      "solution": "$(x - 3)(x - 7)$ *(M1 A1)*. Axis $x = 5$, $f(5) = -4$: $(x - 5)^2 - 4$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.6",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "expand((x - 3)*(x - 7)) == x**2 - 10*x + 21",
+        "expand((x - 5)**2 - 4) == x**2 - 10*x + 21"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p12",
+      "statement": "A parabola has vertex $(-1, 6)$ and passes through $(1, -2)$. **Find** its equation in vertex form. **[3]**",
+      "solution": "$f(x) = a(x + 1)^2 + 6$; $-2 = 4a + 6 \\Rightarrow a = -2$ *(M1 A1)*. $f(x) = -2(x + 1)^2 + 6$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.6",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(Eq(a*(1 + 1)**2 + 6, -2), a) == [-2]",
+        "-2*(1 + 1)**2 + 6 == -2"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p13",
+      "statement": "Without solving, determine the nature of the roots of $5x^2 - 3x + 1 = 0$. **[2]**",
+      "solution": "$\\Delta = 9 - 20 = -11 < 0$ *(A1)*: no real roots *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.7",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "(-3)**2 - 4*5*1 == -11"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p14",
+      "statement": "The equation $kx^2 - 4x + 1 = 0$ ($k \\ne 0$) has two equal roots. **Find** $k$. **[3]**",
+      "solution": "$\\Delta = 16 - 4k = 0$ *(M1 A1)* $\\Rightarrow k = 4$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.7",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(16 - 4*k, k) == [4]",
+        "expand((2*x - 1)**2) == 4*x**2 - 4*x + 1"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p15",
+      "statement": "**Write down** the equations of the asymptotes of $f(x) = \\dfrac{4x + 1}{2x - 6}$, and find the $y$-intercept. **[3]**",
+      "solution": "Vertical $x = 3$; horizontal $y = 2$ *(A1 A1)*. $f(0) = \\frac{1}{-6} = -\\frac{1}{6}$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.8",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(2*x - 6, x) == [3]",
+        "Rational(4, 2) == 2",
+        "Rational(1, -6) == Rational(-1, 6)"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p16",
+      "statement": "**Solve** $\\dfrac{3x}{x + 2} = 6$. **[3]**",
+      "solution": "$3x = 6x + 12 \\Rightarrow x = -4$ *(M1 A1)*; $-4 \\ne -2$ so it's legal *(R1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.8",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(Eq(3*x, 6*(x + 2)), x) == [-4]",
+        "Rational(3*(-4), -4 + 2) == 6"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p17",
+      "statement": "For $y = 2^x - 8$: **write down** the equation of the asymptote, and find both intercepts. **[4]**",
+      "solution": "Asymptote $y = -8$ *(A1)*. $y$-intercept: $(0, -7)$ *(A1)*. $x$-intercept: $2^x = 8 \\Rightarrow x = 3$: $(3, 0)$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.9",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "2**0 - 8 == -7",
+        "2**3 - 8 == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p18",
+      "statement": "A culture grows as $P(t) = 200e^{0.1t}$. **Write down** $P(0)$, and find the exact time when $P = 400$. **[4]**",
+      "solution": "$P(0) = 200$ *(A1)*. $e^{0.1t} = 2 \\Rightarrow 0.1t = \\ln 2$ *(M1 A1)* $\\Rightarrow t = 10\\ln 2$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.9",
+          "mono": true
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "200*exp(0) == 200",
+        "solve(Eq(exp(Rational(1,10)*t), 2), t) == [log(1024)]",
+        "simplify(log(1024) - 10*log(2)) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p19",
+      "statement": "**Solve** $x^4 - 13x^2 + 36 = 0$. **[4]**",
+      "solution": "$u = x^2$: $(u - 4)(u - 9) = 0$ *(M1 A1)*; $x = \\pm 2, \\pm 3$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.10",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(x**4 - 13*x**2 + 36, x) == [-3, -2, 2, 3]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p20",
+      "statement": "A firm's cost is $C(x) = 500 + 20x$; revenue is $R(x) = 45x$. Find the break-even quantity, and the profit at $x = 40$. **[4]**",
+      "solution": "$500 + 20x = 45x \\Rightarrow x = 20$ *(M1 A1)*. Profit$(40) = 1800 - 1300 = 500$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.10",
+          "mono": true
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "solve(Eq(500 + 20*x, 45*x), x) == [20]",
+        "45*40 - (500 + 20*40) == 500"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p21",
+      "statement": "**Describe** fully the transformations mapping $y = x^2$ to $y = 3(x + 2)^2 - 5$, and **write down** the new vertex. **[4]**",
+      "solution": "Translation 2 left; vertical stretch factor 3; translation 5 down *(A1 A1 A1)*. Vertex $(-2, -5)$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.11",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "3*(-2 + 2)**2 - 5 == -5"
+      ]
+    },
+    {
+      "id": "ibsl-fn-p22",
+      "statement": "The point $(4, 6)$ lies on $y = f(x)$. **Find** the corresponding point on $y = 2f(x - 1) + 3$. **[2]**",
+      "solution": "$x: 4 \\to 5$; $y: 2(6) + 3 = 15$. Point $(5, 15)$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.11",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "4 + 1 == 5",
+        "2*6 + 3 == 15"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ibsl-fn-q01",
+      "statement": "Find the equation of the line perpendicular to $y = \\dfrac{1}{2}x + 3$ through $(2, -1)$, in the form $ax + by + d = 0$. **[4]**",
+      "solution": "$m = -2$ *(M1 A1)*; $y + 1 = -2(x - 2) \\Rightarrow 2x + y - 3 = 0$ *(M1 A1)*. Check: $2(2) + (-1) - 3 = 0$ ✓.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.1",
+          "mono": true
+        }
+      ],
+      "check": [
+        "Rational(1,2)*(-2) == -1",
+        "2*2 + (-1) - 3 == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q02",
+      "statement": "**Write down** the largest possible domain of $f(x) = \\dfrac{1}{x^2 - 9}$. **[2]**",
+      "solution": "$x^2 - 9 = 0$ at $x = \\pm 3$: domain $x \\ne 3$, $x \\ne -3$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.2",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(x**2 - 9, x) == [-3, 3]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q03",
+      "statement": "**Sketch** $f(x) = x^2 - 2x - 8$: find every feature the sketch must label. **[4]**",
+      "solution": "Roots: $(x - 4)(x + 2)$ → $x = -2, 4$ *(A1)*; $y$-intercept $(0, -8)$ *(A1)*; axis $x = 1$, vertex $(1, -9)$ *(M1 A1)*. Upward parabola through all four labels.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.3",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(x**2 - 2*x - 8, x) == [-2, 4]",
+        "1 - 2 - 8 == -9"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q04",
+      "statement": "Find the coordinates of the points where $y = 2x + 1$ meets $y = x^2 - 2$. **[4]**",
+      "solution": "$x^2 - 2 = 2x + 1 \\Rightarrow x^2 - 2x - 3 = 0 \\Rightarrow x = -1, 3$ *(M1 A1)*. Points $(-1, -1)$, $(3, 7)$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.4",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(x**2 - 2*x - 3, x) == [-1, 3]",
+        "2*3 + 1 == 7",
+        "2*(-1) + 1 == -1"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q05",
+      "statement": "Let $f(x) = 2x - 3$. Find $(f \\circ f)(x)$ and $f^{-1}(x)$, and verify $f(f^{-1}(x)) = x$. **[5]**",
+      "solution": "$(f \\circ f)(x) = 2(2x - 3) - 3 = 4x - 9$ *(M1 A1)*. Swap–solve: $f^{-1}(x) = \\frac{x + 3}{2}$ *(A1)*. $f\\left(\\frac{x+3}{2}\\right) = x + 3 - 3 = x$ ✓ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.5",
+          "mono": true
+        }
+      ],
+      "check": [
+        "expand(2*(2*x - 3) - 3) == 4*x - 9",
+        "solve(Eq(x, 2*y - 3), y) == [Rational(1,2)*x + Rational(3,2)]",
+        "simplify(2*((x + 3)/2) - 3 - x) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q06",
+      "statement": "A quadratic has roots $-1$ and $3$ and passes through $(2, -6)$. **Find** it in the form $ax^2 + bx + c$. **[4]**",
+      "solution": "$f(x) = a(x + 1)(x - 3)$ *(M1)*; $f(2) = -3a = -6 \\Rightarrow a = 2$ *(A1)*. $f(x) = 2x^2 - 4x - 6$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.6",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(Eq(a*(2 + 1)*(2 - 3), -6), a) == [2]",
+        "expand(2*(x + 1)*(x - 3)) == 2*x**2 - 4*x - 6"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q07",
+      "statement": "The equation $x^2 + (k - 1)x + 4 = 0$ has two equal roots. **Find** the possible values of $k$. **[4]**",
+      "solution": "$(k - 1)^2 - 16 = 0$ *(M1 A1)*: $k - 1 = \\pm 4$, so $k = 5$ or $k = -3$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.7",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve((k - 1)**2 - 16, k) == [-3, 5]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q08",
+      "statement": "For $f(x) = \\dfrac{x - 4}{x + 1}$: **write down** the asymptotes, and solve $f(x) = 3$. **[5]**",
+      "solution": "$x = -1$, $y = 1$ *(A1 A1)*. $x - 4 = 3x + 3 \\Rightarrow x = -\\dfrac{7}{2}$ *(M1 A1)*; legal since $-\\frac{7}{2} \\ne -1$ *(R1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.8",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(Eq(x - 4, 3*(x + 1)), x) == [Rational(-7, 2)]"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q09",
+      "statement": "**Solve** $4e^{0.5t} = 12$, giving $t$ exactly. **[3]**",
+      "solution": "$e^{0.5t} = 3$ *(M1)*; $0.5t = \\ln 3$ *(A1)*; $t = 2\\ln 3$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.9",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(Eq(exp(Rational(1,2)*t), 3), t) == [log(9)]",
+        "simplify(log(9) - 2*log(3)) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q10",
+      "statement": "**Solve** $2^{2x} - 5 \\cdot 2^x + 4 = 0$. **[5]**",
+      "solution": "$u = 2^x$: $u^2 - 5u + 4 = 0 \\Rightarrow u = 1, 4$ *(M1 A1 A1)*. $x = 0$ or $x = 2$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.10",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(u**2 - 5*u + 4, u) == [1, 4]",
+        "2**0 == 1",
+        "2**2 == 4"
+      ]
+    },
+    {
+      "id": "ibsl-fn-q11",
+      "statement": "The point $(3, 5)$ lies on $y = f(x)$. **Describe** the transformations in $y = -f(x) + 2$, and find the image of the point. **[4]**",
+      "solution": "Reflection in the $x$-axis, then translation 2 up *(A1 A1)*. $y: 5 \\to -5 \\to -3$: image $(3, -3)$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-2.11",
+          "mono": true
+        }
+      ],
+      "check": [
+        "-5 + 2 == -3"
+      ]
+    }
+  ]
+}

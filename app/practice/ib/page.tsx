@@ -40,9 +40,9 @@ export default function IbHubPage() {
                   Live
                 </span>
                 <span className="block text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>
-                  All five syllabus topics, one lesson per subtopic code. Topic 1:
-                  Number &amp; Algebra is open — SL 1.1 through 1.9, with interactive
-                  graphs, proofs, and Pascal&apos;s triangle you can tap.
+                  All five syllabus topics, one lesson per subtopic code. Topics 1
+                  and 2 are open — Number &amp; Algebra and Functions, SL 1.1 through
+                  2.11, with interactive graphs, proofs, and parabolas you can steer.
                 </span>
               </span>
             </span>

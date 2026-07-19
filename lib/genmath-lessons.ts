@@ -204,6 +204,7 @@ import trigGraphs from "@/data/genmath/trigonometry/graphs-of-trig-functions.jso
 import trigIdent from "@/data/genmath/trigonometry/identities-and-equations.json";
 import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json";
 import ibSlNumberAlgebra from "@/data/genmath/ib-sl/number-and-algebra.json";
+import ibSlFunctions from "@/data/genmath/ib-sl/functions.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1666,9 +1667,9 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
     unit: 2,
     slug: "functions",
     title: "Functions",
-    blurb: "Function notation and graphs, transformations, quadratics, rationals, exponentials and logs as models — SL 2.1 to 2.11.",
+    blurb: "Straight lines, the function machine, graphs and key features, composites and inverses, quadratics, the discriminant, rationals, exponential and log graphs, solving strategy, and transformations — SL 2.1 to 2.11.",
     buildsOn: "Topic 1's exponent and log machinery.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -1696,7 +1697,10 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
   },
 ];
 
-const ibSlUnits: CourseUnit[] = [ibSlNumberAlgebra as unknown as CourseUnit];
+const ibSlUnits: CourseUnit[] = [
+  ibSlNumberAlgebra as unknown as CourseUnit,
+  ibSlFunctions as unknown as CourseUnit,
+];
 
 export function getIbSlSpine(): GeometrySpineEntry[] {
   return IB_SL_SPINE;
