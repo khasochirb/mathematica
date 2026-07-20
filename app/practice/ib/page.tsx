@@ -41,9 +41,9 @@ export default function IbHubPage() {
                 </span>
                 <span className="block text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>
                   All five syllabus topics, one lesson per subtopic code. Topics
-                  1–3 are open — Number &amp; Algebra, Functions, and Geometry &amp;
-                  Trigonometry — with interactive graphs, a walkable unit circle,
-                  and parabolas you can steer.
+                  1–4 are open — through Statistics &amp; Probability — with
+                  interactive graphs, a walkable unit circle, steerable binomial
+                  and normal distributions, and parabolas you can drive.
                 </span>
               </span>
             </span>

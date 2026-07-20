@@ -206,6 +206,7 @@ import trigLaws from "@/data/genmath/trigonometry/laws-of-sines-and-cosines.json
 import ibSlNumberAlgebra from "@/data/genmath/ib-sl/number-and-algebra.json";
 import ibSlFunctions from "@/data/genmath/ib-sl/functions.json";
 import ibSlGeoTrig from "@/data/genmath/ib-sl/geometry-and-trigonometry.json";
+import ibSlStatsProb from "@/data/genmath/ib-sl/statistics-and-probability.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1686,7 +1687,7 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
     title: "Statistics & Probability",
     blurb: "Sampling, presenting data, correlation, probability laws, discrete and normal distributions — SL 4.1 to 4.12.",
     buildsOn: "Counting ideas from the binomial theorem (SL 1.9).",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -1702,6 +1703,7 @@ const ibSlUnits: CourseUnit[] = [
   ibSlNumberAlgebra as unknown as CourseUnit,
   ibSlFunctions as unknown as CourseUnit,
   ibSlGeoTrig as unknown as CourseUnit,
+  ibSlStatsProb as unknown as CourseUnit,
 ];
 
 export function getIbSlSpine(): GeometrySpineEntry[] {
