@@ -1,0 +1,848 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 2,
+    "testId": "ib-practice-1",
+    "label": "AA SL Practice Paper 2",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P2-T1-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "compound_interest",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of the investment after 6 years.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $FV = PV\\left(1 + \\dfrac{r}{100k}\\right)^{kn}$ with $r = 4.2$, $k = 12$, $n = 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "correct substitution: $5000(1.0035)^{72}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 6430.15$ dollars"
+            }
+          ],
+          "answer": "$6430.15$ dollars",
+          "solution": "**Plan:** compound interest with monthly compounding (booklet formula).$$FV = 5000\\left(1 + \\frac{4.2}{100 \\times 12}\\right)^{12 \\times 6} = 5000(1.0035)^{72}$$$$= 6430.15 \\text{ dollars (2 dp)}$$Using the GDC finance app or direct computation gives the same value.",
+          "verify": [
+            "Abs(5000*(1 + Rational(7, 2000))**72 - 6430.15) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the minimum number of whole years needed for the value of the investment to become greater than 10000 dollars.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $5000(1.0035)^{12n} > 10000$, e.g. GDC table/graph or logarithms"
+            },
+            {
+              "mark": "A1",
+              "note": "$n = 17$ years"
+            }
+          ],
+          "answer": "17 years",
+          "solution": "**Plan:** the value doubles when $(1.0035)^{12n} = 2$.$$12n\\,\\ln(1.0035) = \\ln 2 \\Rightarrow n = \\frac{\\ln 2}{12\\ln(1.0035)} \\approx 16.5$$After 16 whole years the value is still below 10000 dollars; after 17 years it is above. The minimum number of whole years is $n = 17$.",
+          "verify": [
+            "(1 + Rational(7, 2000))**(12*16) < 2",
+            "(1 + Rational(7, 2000))**(12*17) > 2"
+          ]
+        }
+      ],
+      "contextIntro": "Bolor invests 5000 dollars in a savings account that pays an annual interest rate of 4.2%, compounded monthly. No further deposits or withdrawals are made."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "exponential_model",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the number of fish when the lake was first stocked.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(0) = 800$"
+            }
+          ],
+          "answer": "800 fish",
+          "solution": "At $t = 0$: $P(0) = 800\\,e^{0} = 800$ fish.",
+          "verify": [
+            "Eq(800*exp(0), 800)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the number of fish after 5 years.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(5) = 800\\,e^{0.12 \\times 5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 1460$ fish (accept $1457.70$)"
+            }
+          ],
+          "answer": "$1460$ fish (3 sf)",
+          "solution": "**Plan:** substitute $t = 5$.$$P(5) = 800\\,e^{0.6} = 1457.70\\ldots$$To 3 sf the model predicts $1460$ fish.",
+          "verify": [
+            "Abs(800*exp(Rational(3, 5)) - 1460) < 5.1",
+            "Abs(800*exp(Rational(3, 5)) - 1457.70) < 0.005"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the value of $t$ when the population first reaches 2000.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set up $800\\,e^{0.12t} = 2000$, so $e^{0.12t} = 2.5$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve with the GDC (graph/solver) or logarithms: $t = \\dfrac{\\ln 2.5}{0.12}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t \\approx 7.64$ years (accept $7.63576$)"
+            }
+          ],
+          "answer": "$t = 7.64$ years (3 sf)",
+          "solution": "**Plan:** isolate the exponential, then take logarithms (or intersect the two graphs on the GDC).$$800\\,e^{0.12t} = 2000 \\Rightarrow e^{0.12t} = 2.5$$$$t = \\frac{\\ln 2.5}{0.12} = 7.63576\\ldots \\approx 7.64 \\text{ years}$$",
+          "verify": [
+            "Abs(log(Rational(5, 2))/Rational(3, 25) - 7.64) < 0.0051",
+            "Abs(800*exp(Rational(3, 25)*7.6357561) - 2000) < 0.01"
+          ]
+        }
+      ],
+      "contextIntro": "The number of fish in a lake is modelled by $P(t) = 800\\,e^{0.12t}$, where $t$ is the time in years after the lake was first stocked."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "cosine_rule_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $BC$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule: $BC^2 = 7.2^2 + 9.5^2 - 2(7.2)(9.5)\\cos 38^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC^2 = 34.2901\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC \\approx 5.86$ cm (accept $5.85578$)"
+            }
+          ],
+          "answer": "$BC = 5.86$ cm (3 sf)",
+          "solution": "**Plan:** two sides and the included angle — cosine rule (booklet).$$BC^2 = 7.2^2 + 9.5^2 - 2(7.2)(9.5)\\cos 38^{\\circ} = 34.2901\\ldots$$$$BC = 5.85578\\ldots \\approx 5.86 \\text{ cm}$$",
+          "verify": [
+            "Abs(sqrt(Rational(36, 5)**2 + Rational(19, 2)**2 - 2*Rational(36, 5)*Rational(19, 2)*cos(19*pi/90)) - 5.86) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $ABC$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\dfrac{1}{2}(7.2)(9.5)\\sin 38^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 21.0556\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $\\approx 21.1$ cm$^2$"
+            }
+          ],
+          "answer": "$21.1$ cm$^2$ (3 sf)",
+          "solution": "**Plan:** the included angle is known, so use $\\dfrac{1}{2}bc\\sin A$.$$\\text{area} = \\frac{1}{2}(7.2)(9.5)\\sin 38^{\\circ} = 21.0556\\ldots \\approx 21.1 \\text{ cm}^2$$",
+          "verify": [
+            "Abs(Rational(1, 2)*Rational(36, 5)*Rational(19, 2)*sin(19*pi/90) - 21.1) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 7.2$ cm, $AC = 9.5$ cm and $B\\hat{A}C = 38^{\\circ}$."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "geometry_trig",
+      "skill_tag": "radian_sector_segment",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of the arc $AB$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "arc length $= r\\theta = 6.4 \\times 1.35$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 8.64$ cm"
+            }
+          ],
+          "answer": "$8.64$ cm",
+          "solution": "**Plan:** radian arc-length formula (booklet).$$l = r\\theta = 6.4 \\times 1.35 = 8.64 \\text{ cm}$$(exact — no rounding needed).",
+          "verify": [
+            "Eq(Rational(32, 5)*Rational(27, 20), Rational(216, 25))",
+            "Eq(Rational(216, 25), 8.64)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of the sector $AOB$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sector area $= \\dfrac{1}{2}r^2\\theta = \\dfrac{1}{2}(6.4^2)(1.35)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 27.648 \\approx 27.6$ cm$^2$"
+            }
+          ],
+          "answer": "$27.6$ cm$^2$ (3 sf); exact value $27.648$",
+          "solution": "**Plan:** radian sector-area formula (booklet).$$A = \\frac{1}{2}r^2\\theta = \\frac{1}{2}(40.96)(1.35) = 27.648 \\approx 27.6 \\text{ cm}^2$$",
+          "verify": [
+            "Eq(Rational(1, 2)*Rational(32, 5)**2*Rational(27, 20), Rational(3456, 125))",
+            "Abs(Rational(3456, 125) - 27.6) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the area of the shaded region.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "segment $=$ sector $-$ triangle: $\\dfrac{1}{2}r^2\\theta - \\dfrac{1}{2}r^2\\sin\\theta$"
+            },
+            {
+              "mark": "A1",
+              "note": "triangle area $= \\dfrac{1}{2}(6.4^2)\\sin 1.35 = 19.9828\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "shaded area $\\approx 7.67$ cm$^2$ (accept $7.66519$)"
+            }
+          ],
+          "answer": "$7.67$ cm$^2$ (3 sf)",
+          "solution": "**Plan:** the segment is the sector minus the isosceles triangle $AOB$.$$\\text{segment} = \\frac{1}{2}r^2(\\theta - \\sin\\theta) = \\frac{1}{2}(40.96)(1.35 - \\sin 1.35)$$$$= 27.648 - 19.9828\\ldots = 7.66519\\ldots \\approx 7.67 \\text{ cm}^2$$Remember: 1.35 is in **radians** — a GDC left in degree mode gives a wrong answer here.",
+          "verify": [
+            "Abs(Rational(1, 2)*Rational(32, 5)**2*(Rational(27, 20) - sin(Rational(27, 20))) - 7.67) < 0.0051",
+            "Abs(Rational(1, 2)*Rational(32, 5)**2*sin(Rational(27, 20)) - 19.9828) < 0.005"
+          ]
+        }
+      ],
+      "contextIntro": "The diagram shows a circle with centre $O$ and radius 6.4 cm. Points $A$ and $B$ lie on the circle and $A\\hat{O}B = 1.35$ radians. The region between the chord $[AB]$ and the arc $AB$ is shaded.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t1-q4.png",
+        "width": 777,
+        "height": 748,
+        "alt_en": "Circle with centre O and radius 6.4 cm; radii OA and OB make an angle of 1.35 radians; the segment between chord AB and the minor arc AB is shaded."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down $P(X < 160)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(X < 160) = 0.5$ (the mean is the centre of symmetry)"
+            }
+          ],
+          "answer": "$0.5$",
+          "solution": "The normal curve is symmetric about its mean, so exactly half the distribution lies below 160 g: $P(X < 160) = 0.5$.",
+          "verify": [
+            "Eq((1 + erf(0))/2, Rational(1, 2))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X < 148)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise or use the GDC: $z = \\dfrac{148 - 160}{12} = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X < 148) \\approx 0.159$ (accept $0.1587$)"
+            }
+          ],
+          "answer": "$0.159$ (3 sf)",
+          "solution": "**Plan:** 148 g is exactly one standard deviation below the mean.$$z = \\frac{148 - 160}{12} = -1$$$$P(X < 148) = P(Z < -1) = 0.1587\\ldots \\approx 0.159$$",
+          "verify": [
+            "Abs((1 + erf(-1/sqrt(2)))/2 - 0.159) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(150 < X < 175)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "GDC normal cdf between 150 and 175 (or standardise both bounds)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(150 < X < 175) \\approx 0.692$ (accept $0.6920$)"
+            }
+          ],
+          "answer": "$0.692$ (3 sf)",
+          "solution": "**Plan:** GDC normal cdf with lower 150, upper 175, $\\mu = 160$, $\\sigma = 12$.$$P(150 < X < 175) = 0.6920\\ldots \\approx 0.692$$",
+          "verify": [
+            "Abs((erf(Rational(15, 12)/sqrt(2)) - erf(Rational(-10, 12)/sqrt(2)))/2 - 0.692) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "20% of the apples have mass greater than $k$ grams. Find $k$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X > k) = 0.2$, so $P(X < k) = 0.8$ — inverse normal"
+            },
+            {
+              "mark": "A1",
+              "note": "$z = 0.8416$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k \\approx 170$ g (accept $170.10$)"
+            }
+          ],
+          "answer": "$k = 170$ g (3 sf)",
+          "solution": "**Plan:** inverse normal on the GDC with area 0.8.$$P(X < k) = 0.8 \\Rightarrow z = 0.8416\\ldots$$$$k = 160 + 12(0.8416\\ldots) = 170.10\\ldots \\approx 170 \\text{ g}$$",
+          "verify": [
+            "Abs((1 + erf((170.09945 - 160)/(12*sqrt(2))))/2 - Rational(4, 5)) < 0.0005",
+            "Abs(sqrt(2)*erfinv(Rational(3, 5)) - 0.8416) < 0.0005"
+          ]
+        }
+      ],
+      "contextIntro": "The masses of apples from an orchard are normally distributed with mean 160 g and standard deviation 12 g. An apple is chosen at random. Let $X$ be its mass in grams, so $X \\sim N(160,\\ 12^2)$."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "geometric_series",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $u_{10}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$u_{10} = 200 \\times 1.1^{9}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 472$ (accept $471.590$)"
+            }
+          ],
+          "answer": "$u_{10} = 472$ (3 sf)",
+          "solution": "**Plan:** $u_n = u_1 r^{n-1}$ (booklet).$$u_{10} = 200 \\times 1.1^{9} = 471.590\\ldots \\approx 472$$",
+          "verify": [
+            "Abs(200*Rational(11, 10)**9 - 472) < 0.51"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the sum of the first 10 terms.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$S_{10} = \\dfrac{200(1.1^{10} - 1)}{1.1 - 1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 3190$ (accept $3187.48$)"
+            }
+          ],
+          "answer": "$S_{10} = 3190$ (3 sf)",
+          "solution": "**Plan:** geometric series formula (booklet).$$S_{10} = \\frac{200(1.1^{10} - 1)}{0.1} = 3187.48\\ldots \\approx 3190$$",
+          "verify": [
+            "Abs(200*(Rational(11, 10)**10 - 1)/(Rational(11, 10) - 1) - 3190) < 5.1"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the least value of $n$ such that $S_n > 5000$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set up $\\dfrac{200(1.1^{n} - 1)}{0.1} > 5000$"
+            },
+            {
+              "mark": "A1",
+              "note": "simplify to $1.1^{n} > 3.5$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve with logarithms or a GDC table: $n > \\dfrac{\\ln 3.5}{\\ln 1.1} \\approx 13.1$"
+            },
+            {
+              "mark": "A1",
+              "note": "least $n = 14$"
+            }
+          ],
+          "answer": "$n = 14$",
+          "solution": "**Plan:** solve the inequality for $n$, then round UP to a whole term.$$2000(1.1^{n} - 1) > 5000 \\Rightarrow 1.1^{n} > 3.5$$$$n > \\frac{\\ln 3.5}{\\ln 1.1} = 13.14\\ldots$$A GDC table confirms $S_{13} \\approx 4905 < 5000$ and $S_{14} \\approx 5595 > 5000$. The least value is $n = 14$.",
+          "verify": [
+            "Rational(11, 10)**13 < Rational(7, 2)",
+            "Rational(11, 10)**14 > Rational(7, 2)",
+            "Abs(log(Rational(7, 2))/log(Rational(11, 10)) - 13.14) < 0.005"
+          ]
+        }
+      ],
+      "contextIntro": "A geometric sequence has first term $u_1 = 200$ and common ratio $r = 1.1$."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "functions",
+      "skill_tag": "quadratic_model",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the height of the platform.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$h(0) = 1.2$ m"
+            }
+          ],
+          "answer": "$1.2$ m",
+          "solution": "The launch height is the value at $t = 0$: $h(0) = 1.2$ m.",
+          "verify": [
+            "Eq(Rational(-49, 10)*0**2 + 18*0 + Rational(6, 5), Rational(6, 5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the maximum height of the ball and the time at which it occurs.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "vertex: $t = \\dfrac{-18}{2(-4.9)}$ (or GDC maximum)"
+            },
+            {
+              "mark": "A1",
+              "note": "$t \\approx 1.84$ s (accept $1.8367$)"
+            },
+            {
+              "mark": "A1",
+              "note": "maximum height $\\approx 17.7$ m (accept $17.731$)"
+            }
+          ],
+          "answer": "$t = 1.84$ s, maximum height $17.7$ m (3 sf)",
+          "solution": "**Plan:** the vertex of the parabola (GDC maximum, or $t = -b/2a$).$$t = \\frac{-18}{2(-4.9)} = 1.8367\\ldots \\approx 1.84 \\text{ s}$$$$h(1.8367\\ldots) = 17.731\\ldots \\approx 17.7 \\text{ m}$$",
+          "verify": [
+            "Abs(Rational(90, 49) - 1.84) < 0.0051",
+            "Abs(Rational(4344, 245) - 17.7) < 0.051000000000000004",
+            "Eq(-18/(2*Rational(-49, 10)), Rational(90, 49))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the time at which the ball hits the ground.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $h(t) = 0$ with the GDC (or quadratic formula)"
+            },
+            {
+              "mark": "A1",
+              "note": "$t \\approx 3.74$ s (accept $3.7390$)"
+            },
+            {
+              "mark": "R1",
+              "note": "the negative root $t \\approx -0.0655$ is rejected (time cannot be negative)"
+            }
+          ],
+          "answer": "$t = 3.74$ s (3 sf)",
+          "solution": "**Plan:** the ball lands when $h(t) = 0$.$$-4.9t^2 + 18t + 1.2 = 0$$The GDC gives $t = -0.0655$ or $t = 3.7390\\ldots$. Time is non-negative, so the ball hits the ground at $t \\approx 3.74$ s.",
+          "verify": [
+            "Abs((-18 - sqrt(Rational(8688, 25)))/(2*Rational(-49, 10)) - 3.74) < 0.0051",
+            "Rational(8688, 25) > 0",
+            "Abs(Rational(-49, 10)*3.7389682**2 + 18*3.7389682 + Rational(6, 5)) < 0.001"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the length of time for which the ball is at least 10 m above the ground.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $h(t) = 10$: $-4.9t^2 + 18t - 8.8 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 0.581$ and $t = 3.09$ (accept $0.58068$, $3.0928$)"
+            },
+            {
+              "mark": "M1",
+              "note": "length of time = difference of the roots"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 2.51$ s (accept $2.5121$)"
+            }
+          ],
+          "answer": "$2.51$ s (3 sf)",
+          "solution": "**Plan:** the ball is at least 10 m up between the two solutions of $h(t) = 10$.$$-4.9t^2 + 18t + 1.2 = 10 \\Rightarrow -4.9t^2 + 18t - 8.8 = 0$$GDC: $t = 0.58068\\ldots$ and $t = 3.0928\\ldots$$$\\Delta t = 3.0928 - 0.58068 = 2.5121\\ldots \\approx 2.51 \\text{ s}$$",
+          "verify": [
+            "Abs((-18 + sqrt(Rational(3788, 25)))/(2*Rational(-49, 10)) - 0.581) < 0.00051",
+            "Abs((-18 - sqrt(Rational(3788, 25)))/(2*Rational(-49, 10)) - 3.09) < 0.0051",
+            "Abs(sqrt(Rational(3788, 25))/Rational(49, 10) - 2.51) < 0.0051"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Write down the domain of the model.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$0 \\le t \\le 3.74$ (FT from part (c))"
+            }
+          ],
+          "answer": "$0 \\le t \\le 3.74$",
+          "solution": "The model applies from launch until the ball lands, so $0 \\le t \\le 3.74$ (using the landing time from part (c)).",
+          "verify": [
+            "3.74 > 0"
+          ]
+        }
+      ],
+      "contextIntro": "A ball is launched upwards from a platform. Its height above the ground is modelled by $h(t) = -4.9t^2 + 18t + 1.2$, where $h$ is in metres and $t \\ge 0$ is the time in seconds after launch."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "stats_probability",
+      "skill_tag": "binomial_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the expected number of successful throws.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X) = np = 12 \\times 0.6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 7.2$"
+            }
+          ],
+          "answer": "$E(X) = 7.2$",
+          "solution": "**Plan:** binomial mean $E(X) = np$ (booklet).$$E(X) = 12 \\times 0.6 = 7.2$$",
+          "verify": [
+            "Eq(12*Rational(3, 5), Rational(36, 5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X = 7)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial pdf: $\\dbinom{12}{7}(0.6)^7(0.4)^5$ (GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 7) \\approx 0.227$ (accept $0.2270$)"
+            }
+          ],
+          "answer": "$0.227$ (3 sf)",
+          "solution": "**Plan:** binomial probability with the GDC (binompdf).$$P(X = 7) = \\binom{12}{7}(0.6)^7(0.4)^5 = 0.2270\\ldots \\approx 0.227$$",
+          "verify": [
+            "Abs(binomial(12, 7)*Rational(3, 5)**7*Rational(2, 5)**5 - 0.227) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(X \\ge 9)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X \\ge 9) = 1 - P(X \\le 8)$ (GDC binomcdf)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\le 8) \\approx 0.7747$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 9) \\approx 0.225$ (accept $0.2253$)"
+            }
+          ],
+          "answer": "$0.225$ (3 sf)",
+          "solution": "**Plan:** complement with the cumulative binomial.$$P(X \\ge 9) = 1 - P(X \\le 8) = 1 - 0.7747\\ldots = 0.2253\\ldots \\approx 0.225$$",
+          "verify": [
+            "Abs(Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 9, 12)).doit() - 0.225) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Given that Sarnai makes at least 7 successful throws, find the probability that she makes at least 9.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "conditional probability: $\\dfrac{P(X \\ge 9)}{P(X \\ge 7)}$ (since $X \\ge 9 \\Rightarrow X \\ge 7$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 7) \\approx 0.665$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 9 \\mid X \\ge 7) \\approx 0.339$ (accept $0.3387$)"
+            }
+          ],
+          "answer": "$0.339$ (3 sf)",
+          "solution": "**Plan:** the event $X \\ge 9$ is inside $X \\ge 7$, so$$P(X \\ge 9 \\mid X \\ge 7) = \\frac{P(X \\ge 9)}{P(X \\ge 7)} = \\frac{0.2253\\ldots}{0.6652\\ldots} = 0.3387\\ldots \\approx 0.339$$",
+          "verify": [
+            "Abs(Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 7, 12)).doit() - 0.665) < 0.00051",
+            "Abs(Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 9, 12)).doit() / Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 7, 12)).doit() - 0.339) < 0.00051"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Sarnai plays three such games, independently. Find the probability that she makes at least 9 successful throws in exactly two of the three games.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "let $Y$ = number of games with at least 9 throws: $Y \\sim B(3,\\ 0.2253\\ldots)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(Y = 2) = 3q^2(1 - q)$ with $q \\approx 0.2253$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 0.118$ (accept $0.1180$)"
+            }
+          ],
+          "answer": "$0.118$ (3 sf)",
+          "solution": "**Plan:** each game is a fresh trial whose success probability is the answer to part (c).$$q = P(X \\ge 9) = 0.2253\\ldots$$$$P(Y = 2) = \\binom{3}{2}q^2(1 - q) = 3(0.2253\\ldots)^2(1 - 0.2253\\ldots) = 0.1180\\ldots \\approx 0.118$$Using the ROUNDED 0.225 here instead of the full GDC value changes the third significant figure — keep the unrounded value in the calculator.",
+          "verify": [
+            "Abs(3*(Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 9, 12)).doit())**2*(1 - Sum(binomial(12, k)*Rational(3, 5)**k*Rational(2, 5)**(12 - k), (k, 9, 12)).doit()) - 0.118) < 0.00051"
+          ]
+        }
+      ],
+      "contextIntro": "Sarnai is a basketball player. Each free throw she attempts is successful with probability 0.6, independently of all other attempts. In one training game she attempts 12 free throws. Let $X$ be the number of successful throws, so $X \\sim B(12,\\ 0.6)$."
+    },
+    {
+      "source": "IB-AASL-P2-T1-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "exp_curve_analysis",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down $f(0)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$f(0) = 0$"
+            }
+          ],
+          "answer": "$f(0) = 0$",
+          "solution": "$f(0) = 0 \\times e^{0} = 0$.",
+          "verify": [
+            "Eq(0*exp(0), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that $f'(x) = (1 - 0.4x)\\,e^{-0.4x}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "product rule: $f'(x) = (1)\\,e^{-0.4x} + x(-0.4)\\,e^{-0.4x}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= e^{-0.4x} - 0.4x\\,e^{-0.4x}$"
+            },
+            {
+              "mark": "AG",
+              "note": "$f'(x) = (1 - 0.4x)\\,e^{-0.4x}$"
+            }
+          ],
+          "answer": "$f'(x) = (1 - 0.4x)\\,e^{-0.4x}$ (shown)",
+          "solution": "**Plan:** product rule with $u = x$, $v = e^{-0.4x}$.$$f'(x) = 1 \\cdot e^{-0.4x} + x \\cdot (-0.4)e^{-0.4x}$$$$= e^{-0.4x}(1 - 0.4x)$$as required.",
+          "verify": [
+            "Eq(simplify(diff(x*exp(-2*x/5), x) - (1 - Rational(2, 5)*x)*exp(-2*x/5)), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the coordinates of the maximum point of the graph.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$: $1 - 0.4x = 0$ (the exponential is never zero)"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 2.5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = 2.5\\,e^{-1} \\approx 0.920$ — maximum at $(2.5,\\ 0.920)$"
+            }
+          ],
+          "answer": "$(2.5,\\ 0.920)$ (y to 3 sf)",
+          "solution": "**Plan:** use the derivative from part (b).$$f'(x) = (1 - 0.4x)e^{-0.4x} = 0 \\Rightarrow x = 2.5$$$$f(2.5) = 2.5\\,e^{-1} = 0.91970\\ldots \\approx 0.920$$The maximum point is $(2.5,\\ 0.920)$.",
+          "verify": [
+            "solve((1 - Rational(2, 5)*x)*exp(-2*x/5), x) == [Rational(5, 2)]",
+            "Abs(Rational(5, 2)*exp(-1) - 0.920) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the $x$-coordinate of the point of inflexion of the graph.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate $f'$ again (product rule on $(1 - 0.4x)e^{-0.4x}$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(x) = (0.16x - 0.8)\\,e^{-0.4x}$"
+            },
+            {
+              "mark": "M1",
+              "note": "set $f''(x) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 5$"
+            }
+          ],
+          "answer": "$x = 5$",
+          "solution": "**Plan:** the inflexion is where $f''$ changes sign.$$f''(x) = -0.4e^{-0.4x} + (1 - 0.4x)(-0.4)e^{-0.4x} = e^{-0.4x}(0.16x - 0.8)$$$$f''(x) = 0 \\Rightarrow 0.16x = 0.8 \\Rightarrow x = 5$$($f''$ changes from negative to positive there, confirming an inflexion).",
+          "verify": [
+            "solve(diff(x*exp(-2*x/5), x, 2), x) == [5]",
+            "Eq(simplify(diff(x*exp(-2*x/5), x, 2) - (Rational(4, 25)*x - Rational(4, 5))*exp(-2*x/5)), 0)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the area of the shaded region.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\displaystyle\\int_0^5 x\\,e^{-0.4x}\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "GDC numerical integral set up correctly"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 3.7125\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $\\approx 3.71$ (accept $3.7125$)"
+            }
+          ],
+          "answer": "$3.71$ square units (3 sf)",
+          "solution": "**Plan:** on this GDC paper, evaluate $\\displaystyle\\int_0^5 x\\,e^{-0.4x}\\,dx$ numerically.$$\\int_0^5 x\\,e^{-0.4x}\\,dx = 3.7125\\ldots \\approx 3.71$$(The exact value, via integration by parts, is $\\dfrac{25}{4} - \\dfrac{75}{4}e^{-2}$ — a good check.)",
+          "verify": [
+            "Abs(integrate(x*exp(-2*x/5), (x, 0, 5)) - 3.71) < 0.0051",
+            "Eq(integrate(x*exp(-2*x/5), (x, 0, 5)), Rational(25, 4) - Rational(75, 4)*exp(-2))"
+          ]
+        }
+      ],
+      "contextIntro": "Let $f(x) = x\\,e^{-0.4x}$ for $x \\ge 0$. The diagram shows the graph of $y = f(x)$, and the shaded region is enclosed by the curve, the $x$-axis and the line $x = 5$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t1-q9.png",
+        "width": 1012,
+        "height": 674,
+        "alt_en": "Curve y = x times e to the minus 0.4 x rising from the origin to a single maximum then decaying; the region under the curve from x = 0 to the dashed line x = 5 is shaded."
+      }
+    }
+  ]
+}

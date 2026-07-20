@@ -1,0 +1,830 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 1,
+    "testId": "ib-practice-1",
+    "label": "AA SL Practice Paper 1",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P1-T1-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "arithmetic_sequences",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the common difference $d$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "attempt to use $u_4 = u_1 + 3d$, i.e. $19 = 7 + 3d$"
+            },
+            {
+              "mark": "A1",
+              "note": "$d = 4$"
+            }
+          ],
+          "answer": "$d = 4$",
+          "solution": "**Plan:** the fourth term is three steps beyond the first.$$u_4 = u_1 + 3d \\Rightarrow 19 = 7 + 3d$$$$3d = 12 \\Rightarrow d = 4$$So the common difference is $d = 4$.",
+          "verify": [
+            "Eq(7 + 3*4, 19)",
+            "Eq(Rational(19 - 7, 3), 4)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $S_{12}$, the sum of the first 12 terms.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute into $S_n = \\dfrac{n}{2}\\left(2u_1 + (n-1)d\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_{12} = 6(14 + 44)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_{12} = 348$"
+            }
+          ],
+          "answer": "$S_{12} = 348$",
+          "solution": "**Plan:** use the arithmetic series formula (booklet).$$S_{12} = \\frac{12}{2}\\left(2(7) + 11(4)\\right) = 6(14 + 44)$$$$= 6 \\times 58 = 348$$So $S_{12} = 348$.",
+          "verify": [
+            "Eq(Rational(12, 2)*(2*7 + (12 - 1)*4), 348)",
+            "Eq(Sum(7 + 4*(k - 1), (k, 1, 12)).doit(), 348)"
+          ]
+        }
+      ],
+      "contextIntro": "An arithmetic sequence has first term $u_1 = 7$ and fourth term $u_4 = 19$."
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "stats_probability",
+      "skill_tag": "independent_events",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(A \\cap B)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use independence: $P(A \\cap B) = P(A)\\,P(B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\cap B) = \\dfrac{1}{12}$"
+            }
+          ],
+          "answer": "$P(A \\cap B) = \\dfrac{1}{12}$",
+          "solution": "**Plan:** for independent events the joint probability is the product.$$P(A \\cap B) = P(A)\\,P(B) = \\frac{1}{3} \\times \\frac{1}{4} = \\frac{1}{12}$$So $P(A \\cap B) = \\dfrac{1}{12}$.",
+          "verify": [
+            "Eq(Rational(1, 3)*Rational(1, 4), Rational(1, 12))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(A \\cup B)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\cup B) = \\dfrac{1}{2}$"
+            }
+          ],
+          "answer": "$P(A \\cup B) = \\dfrac{1}{2}$",
+          "solution": "**Plan:** apply the addition rule (booklet).$$P(A \\cup B) = \\frac{1}{3} + \\frac{1}{4} - \\frac{1}{12} = \\frac{4 + 3 - 1}{12} = \\frac{6}{12} = \\frac{1}{2}$$So $P(A \\cup B) = \\dfrac{1}{2}$.",
+          "verify": [
+            "Eq(Rational(1, 3) + Rational(1, 4) - Rational(1, 12), Rational(1, 2))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Write down $P(A \\mid B)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(A \\mid B) = P(A) = \\dfrac{1}{3}$ (independence)"
+            }
+          ],
+          "answer": "$P(A \\mid B) = \\dfrac{1}{3}$",
+          "solution": "Because $A$ and $B$ are independent, knowing $B$ has occurred does not change the probability of $A$:$$P(A \\mid B) = P(A) = \\frac{1}{3}$$",
+          "verify": [
+            "Eq(Rational(1, 12)/Rational(1, 4), Rational(1, 3))"
+          ]
+        }
+      ],
+      "contextIntro": "Events $A$ and $B$ are independent, with $P(A) = \\dfrac{1}{3}$ and $P(B) = \\dfrac{1}{4}$."
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "trig_equations",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $2\\sin^2 x + \\sin x - 1 = (2\\sin x - 1)(\\sin x + 1)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "expand the right-hand side: $2\\sin^2 x + 2\\sin x - \\sin x - 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= 2\\sin^2 x + \\sin x - 1$"
+            }
+          ],
+          "answer": "$(2\\sin x - 1)(\\sin x + 1) = 2\\sin^2 x + \\sin x - 1$",
+          "solution": "**Plan:** expand the product and collect like terms.$$(2\\sin x - 1)(\\sin x + 1) = 2\\sin^2 x + 2\\sin x - \\sin x - 1$$$$= 2\\sin^2 x + \\sin x - 1$$which is the required expression.",
+          "verify": [
+            "Eq(expand((2*sin(x) - 1)*(sin(x) + 1)), 2*sin(x)**2 + sin(x) - 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence solve $2\\sin^2 x + \\sin x - 1 = 0$ for $0 \\le x < 2\\pi$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\sin x = \\dfrac{1}{2}$ or $\\sin x = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{5\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{3\\pi}{2}$"
+            }
+          ],
+          "answer": "$x = \\dfrac{\\pi}{6},\\ \\dfrac{5\\pi}{6},\\ \\dfrac{3\\pi}{2}$",
+          "solution": "**Plan:** use the factorisation from part (a).$$(2\\sin x - 1)(\\sin x + 1) = 0 \\Rightarrow \\sin x = \\frac{1}{2} \\text{ or } \\sin x = -1$$For $\\sin x = \\dfrac{1}{2}$ on $0 \\le x < 2\\pi$: $x = \\dfrac{\\pi}{6}$ and $x = \\pi - \\dfrac{\\pi}{6} = \\dfrac{5\\pi}{6}$. For $\\sin x = -1$: $x = \\dfrac{3\\pi}{2}$. The three solutions are $x = \\dfrac{\\pi}{6},\\ \\dfrac{5\\pi}{6},\\ \\dfrac{3\\pi}{2}$.",
+          "verify": [
+            "Eq(sin(pi/6), Rational(1, 2))",
+            "Eq(sin(5*pi/6), Rational(1, 2))",
+            "Eq(sin(3*pi/2), -1)",
+            "Eq(2*sin(pi/6)**2 + sin(pi/6) - 1, 0)",
+            "Eq(2*sin(3*pi/2)**2 + sin(3*pi/2) - 1, 0)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "inverse_composite",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the equation of the vertical asymptote of the graph of $f$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$x = 1$"
+            }
+          ],
+          "answer": "$x = 1$",
+          "solution": "The denominator is zero when $x - 1 = 0$, so the vertical asymptote is $x = 1$.",
+          "verify": [
+            "solve(x - 1, x) == [1]"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $(f \\circ g)(2)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$g(2) = 4$"
+            },
+            {
+              "mark": "M1",
+              "note": "substitute into $f$: $f(4) = \\dfrac{2(4) + 3}{4 - 1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(f \\circ g)(2) = \\dfrac{11}{3}$"
+            }
+          ],
+          "answer": "$(f \\circ g)(2) = \\dfrac{11}{3}$",
+          "solution": "**Plan:** work inside-out.$$g(2) = 2 + 2 = 4$$$$f(4) = \\frac{2(4) + 3}{4 - 1} = \\frac{11}{3}$$So $(f \\circ g)(2) = \\dfrac{11}{3}$.",
+          "verify": [
+            "Eq(2 + 2, 4)",
+            "Eq(Rational(2*4 + 3, 4 - 1), Rational(11, 3))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $f^{-1}(x)$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $y = \\dfrac{2x + 3}{x - 1}$ and interchange the roles of $x$ and $y$"
+            },
+            {
+              "mark": "M1",
+              "note": "collect the $x$ terms: $xy - y = 2x + 3 \\Rightarrow x(y - 2) = y + 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{y + 3}{y - 2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f^{-1}(x) = \\dfrac{x + 3}{x - 2}$"
+            }
+          ],
+          "answer": "$f^{-1}(x) = \\dfrac{x + 3}{x - 2},\\ x \\ne 2$",
+          "solution": "**Plan:** solve $y = f(x)$ for $x$.$$y = \\frac{2x + 3}{x - 1} \\Rightarrow y(x - 1) = 2x + 3$$$$xy - y = 2x + 3 \\Rightarrow xy - 2x = y + 3$$$$x(y - 2) = y + 3 \\Rightarrow x = \\frac{y + 3}{y - 2}$$Interchanging the variables, $f^{-1}(x) = \\dfrac{x + 3}{x - 2}$ (with $x \\ne 2$).",
+          "verify": [
+            "Eq(simplify((2*((x + 3)/(x - 2)) + 3)/(((x + 3)/(x - 2)) - 1) - x), 0)",
+            "Eq(simplify(((2*x + 3)/(x - 1) + 3)/((2*x + 3)/(x - 1) - 2) - x), 0)"
+          ]
+        }
+      ],
+      "contextIntro": "Let $f(x) = \\dfrac{2x + 3}{x - 1}$ for $x \\ne 1$, and $g(x) = x + 2$."
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "logs_exponents",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Solve $\\log_3 x + \\log_3(x - 2) = 1$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "combine the logarithms: $\\log_3\\big(x(x - 2)\\big) = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^2 - 2x - 3 = 0$"
+            },
+            {
+              "mark": "M1",
+              "note": "factorise: $(x - 3)(x + 1) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 3$ or $x = -1$"
+            },
+            {
+              "mark": "R1",
+              "note": "reject $x = -1$ (logarithm of a negative number is undefined); $x = 3$"
+            }
+          ],
+          "answer": "$x = 3$",
+          "solution": "**Plan:** combine the logs, solve the quadratic, then check the domain.$$\\log_3\\big(x(x - 2)\\big) = 1 \\Rightarrow x(x - 2) = 3$$$$x^2 - 2x - 3 = 0 \\Rightarrow (x - 3)(x + 1) = 0$$so $x = 3$ or $x = -1$. The original equation needs $x > 2$ for both logarithms to exist, so $x = -1$ is rejected. The solution is $x = 3$. Forgetting the domain check and giving both roots loses the final mark.",
+          "verify": [
+            "solve(x**2 - 2*x - 3, x) == [-1, 3]",
+            "Eq(3*(3 - 2), 3)",
+            "Eq(log(3*(3 - 2), 3), 1)",
+            "Eq(expand((x - 3)*(x + 1)), x**2 - 2*x - 3)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Solve $4^x = 8^{\\,x - 1}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "express both sides in base 2: $2^{2x} = 2^{3(x - 1)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2x = 3x - 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 3$"
+            }
+          ],
+          "answer": "$x = 3$",
+          "solution": "**Plan:** write both powers with base 2.$$4^x = (2^2)^x = 2^{2x}, \\qquad 8^{x-1} = (2^3)^{x-1} = 2^{3x - 3}$$Equating the exponents:$$2x = 3x - 3 \\Rightarrow x = 3$$Check: $4^3 = 64 = 8^2$. So $x = 3$.",
+          "verify": [
+            "Eq(4**3, 8**(3 - 1))",
+            "solve(Eq(2*x, 3*x - 3), x) == [3]"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "stationary_points",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = 3x^2 - 6x - 9$"
+            }
+          ],
+          "answer": "$f'(x) = 3x^2 - 6x - 9$",
+          "solution": "Differentiate each power of $x$:$$f'(x) = 3x^2 - 6x - 9$$",
+          "verify": [
+            "Eq(diff(x**3 - 3*x**2 - 9*x + 5, x), 3*x**2 - 6*x - 9)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the $x$-coordinates of the stationary points of the graph of $f$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3(x - 3)(x + 1) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = -1$ and $x = 3$"
+            }
+          ],
+          "answer": "$x = -1$ and $x = 3$",
+          "solution": "**Plan:** stationary points occur where $f'(x) = 0$.$$3x^2 - 6x - 9 = 0 \\Rightarrow 3(x^2 - 2x - 3) = 0$$$$3(x - 3)(x + 1) = 0 \\Rightarrow x = -1 \\text{ or } x = 3$$",
+          "verify": [
+            "solve(3*x**2 - 6*x - 9, x) == [-1, 3]",
+            "Eq(expand(3*(x - 3)*(x + 1)), 3*x**2 - 6*x - 9)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Use the second derivative to determine the nature of the stationary point at $x = -1$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$f''(x) = 6x - 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(-1) = -12$"
+            },
+            {
+              "mark": "R1",
+              "note": "$f''(-1) < 0$, so the point at $x = -1$ is a local maximum"
+            }
+          ],
+          "answer": "$f''(-1) = -12 < 0$, so $x = -1$ gives a local maximum.",
+          "solution": "**Plan:** apply the second-derivative test.$$f''(x) = 6x - 6$$$$f''(-1) = 6(-1) - 6 = -12$$Since $f''(-1) = -12 < 0$, the graph is concave-down there, so the stationary point at $x = -1$ is a **local maximum**.",
+          "verify": [
+            "Eq(expand(diff(x**3 - 3*x**2 - 9*x + 5, x, 2)), 6*x - 6)",
+            "Eq(6*(-1) - 6, -12)",
+            "-12 < 0"
+          ]
+        }
+      ],
+      "contextIntro": "Let $f(x) = x^3 - 3x^2 - 9x + 5$."
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "geometry_trig",
+      "skill_tag": "triangle_and_sector",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the area of triangle $ABC$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\dfrac{1}{2}(8)(5)\\sin\\dfrac{\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 10\\sqrt{3}$ cm$^2$"
+            }
+          ],
+          "answer": "$10\\sqrt{3}$ cm$^2$",
+          "solution": "**Plan:** use the area formula $\\dfrac{1}{2}bc\\sin A$ (booklet).$$\\text{area} = \\frac{1}{2}(8)(5)\\sin\\frac{\\pi}{3} = 20 \\times \\frac{\\sqrt{3}}{2} = 10\\sqrt{3}$$The area is $10\\sqrt{3}$ cm$^2$.",
+          "verify": [
+            "Eq(Rational(1, 2)*8*5*sin(pi/3), 10*sqrt(3))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that $BC = 7$ cm.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule: $BC^2 = 8^2 + 5^2 - 2(8)(5)\\cos\\dfrac{\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC^2 = 64 + 25 - 40 = 49$"
+            },
+            {
+              "mark": "AG",
+              "note": "$BC = 7$ cm"
+            }
+          ],
+          "answer": "$BC = 7$ cm (shown)",
+          "solution": "**Plan:** apply the cosine rule at the known angle $A$.$$BC^2 = 8^2 + 5^2 - 2(8)(5)\\cos\\frac{\\pi}{3} = 64 + 25 - 80 \\times \\frac{1}{2}$$$$BC^2 = 89 - 40 = 49 \\Rightarrow BC = 7$$as required.",
+          "verify": [
+            "Eq(8**2 + 5**2 - 2*8*5*cos(pi/3), 49)",
+            "Eq(sqrt(49), 7)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\sin(A\\hat{B}C)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sine rule: $\\dfrac{\\sin B}{AC} = \\dfrac{\\sin A}{BC}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin B = \\dfrac{5\\sin(\\pi/3)}{7}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin(A\\hat{B}C) = \\dfrac{5\\sqrt{3}}{14}$"
+            }
+          ],
+          "answer": "$\\sin(A\\hat{B}C) = \\dfrac{5\\sqrt{3}}{14}$",
+          "solution": "**Plan:** sine rule with the side found in part (b).$$\\frac{\\sin B}{5} = \\frac{\\sin(\\pi/3)}{7}$$$$\\sin B = \\frac{5}{7} \\times \\frac{\\sqrt{3}}{2} = \\frac{5\\sqrt{3}}{14}$$",
+          "verify": [
+            "Eq(5*sin(pi/3)/7, 5*sqrt(3)/14)",
+            "5*sqrt(3)/14 < 1"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the length of the arc from $D$ to $C$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "arc length $= r\\theta = 5 \\times \\dfrac{\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\dfrac{5\\pi}{3}$ cm"
+            }
+          ],
+          "answer": "$\\dfrac{5\\pi}{3}$ cm",
+          "solution": "**Plan:** arc length in radians is $l = r\\theta$ (booklet).$$l = 5 \\times \\frac{\\pi}{3} = \\frac{5\\pi}{3} \\approx 5.24 \\text{ cm}$$",
+          "verify": [
+            "Abs(5*pi/3 - 5.236) < 0.001"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the area of the region inside the triangle but outside the sector.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sector area $= \\dfrac{1}{2}(5^2)\\dfrac{\\pi}{3} = \\dfrac{25\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "required area $= 10\\sqrt{3} - \\dfrac{25\\pi}{6}$ cm$^2$"
+            }
+          ],
+          "answer": "$10\\sqrt{3} - \\dfrac{25\\pi}{6}$ cm$^2$",
+          "solution": "**Plan:** subtract the sector from the triangle (part (a)).$$\\text{sector} = \\frac{1}{2}r^2\\theta = \\frac{1}{2}(25)\\frac{\\pi}{3} = \\frac{25\\pi}{6}$$$$\\text{required area} = 10\\sqrt{3} - \\frac{25\\pi}{6} \\approx 4.23 \\text{ cm}^2$$",
+          "verify": [
+            "Eq(Rational(1, 2)*5**2*(pi/3), 25*pi/6)",
+            "10*sqrt(3) - 25*pi/6 > 0",
+            "Abs(10*sqrt(3) - 25*pi/6 - 4.2305) < 0.001"
+          ]
+        }
+      ],
+      "contextIntro": "The triangle $ABC$ has $AB = 8$ cm, $AC = 5$ cm and $B\\hat{A}C = \\dfrac{\\pi}{3}$. The point $D$ lies on $[AB]$ with $AD = 5$ cm. The region bounded by $[AD]$, $[AC]$ and the arc from $D$ to $C$ is a sector of a circle with centre $A$ and radius 5 cm, as shown.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t1-q7.png",
+        "width": 1031,
+        "height": 674,
+        "alt_en": "Triangle ABC with AB = 8 cm, AC = 5 cm and angle A = pi/3; a sector of radius 5 centred at A, bounded by AD and AC with arc DC, is shaded inside the triangle. Diagram not to scale."
+      }
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "stats_probability",
+      "skill_tag": "discrete_random_variable",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $k = \\dfrac{1}{10}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "total probability is 1: $k + 2k + 3k + 4k = 1$, so $10k = 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$k = \\dfrac{1}{10}$"
+            }
+          ],
+          "answer": "$k = \\dfrac{1}{10}$ (shown)",
+          "solution": "The probabilities must sum to 1:$$k + 2k + 3k + 4k = 10k = 1 \\Rightarrow k = \\frac{1}{10}$$as required.",
+          "verify": [
+            "Eq(1 + 2 + 3 + 4, 10)",
+            "Eq(Rational(1, 10)*(1 + 2 + 3 + 4), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X \\ge 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X \\ge 2) = P(X = 2) + P(X = 3) = \\dfrac{3}{10} + \\dfrac{4}{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 2) = \\dfrac{7}{10}$"
+            }
+          ],
+          "answer": "$P(X \\ge 2) = \\dfrac{7}{10}$",
+          "solution": "$$P(X \\ge 2) = P(X = 2) + P(X = 3) = \\frac{3}{10} + \\frac{4}{10} = \\frac{7}{10}$$",
+          "verify": [
+            "Eq(Rational(3, 10) + Rational(4, 10), Rational(7, 10))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(X = 3 \\mid X \\ge 2)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "conditional probability: $\\dfrac{P(X = 3)}{P(X \\ge 2)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\dfrac{4/10}{7/10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 3 \\mid X \\ge 2) = \\dfrac{4}{7}$"
+            }
+          ],
+          "answer": "$P(X = 3 \\mid X \\ge 2) = \\dfrac{4}{7}$",
+          "solution": "**Plan:** condition on the event from part (b). Since $\\{X = 3\\} \\subset \\{X \\ge 2\\}$:$$P(X = 3 \\mid X \\ge 2) = \\frac{P(X = 3)}{P(X \\ge 2)} = \\frac{4/10}{7/10} = \\frac{4}{7}$$",
+          "verify": [
+            "Eq(Rational(4, 10)/Rational(7, 10), Rational(4, 7))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $E(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X) = \\sum x\\,P(X = x)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 0\\cdot\\dfrac{1}{10} + 1\\cdot\\dfrac{2}{10} + 2\\cdot\\dfrac{3}{10} + 3\\cdot\\dfrac{4}{10} = \\dfrac{20}{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 2$"
+            }
+          ],
+          "answer": "$E(X) = 2$",
+          "solution": "**Plan:** weight each value by its probability (booklet).$$E(X) = 0\\left(\\tfrac{1}{10}\\right) + 1\\left(\\tfrac{2}{10}\\right) + 2\\left(\\tfrac{3}{10}\\right) + 3\\left(\\tfrac{4}{10}\\right)$$$$= \\frac{0 + 2 + 6 + 12}{10} = \\frac{20}{10} = 2$$",
+          "verify": [
+            "Eq(0*Rational(1, 10) + 1*Rational(2, 10) + 2*Rational(3, 10) + 3*Rational(4, 10), 2)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find $\\mathrm{Var}(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X^2) = \\sum x^2\\,P(X = x)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X^2) = \\dfrac{0 + 2 + 12 + 36}{10} = 5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathrm{Var}(X) = 5 - 2^2 = 1$"
+            }
+          ],
+          "answer": "$\\mathrm{Var}(X) = 1$",
+          "solution": "**Plan:** use $\\mathrm{Var}(X) = E(X^2) - \\big(E(X)\\big)^2$ with $E(X) = 2$ from part (d).$$E(X^2) = 0\\left(\\tfrac{1}{10}\\right) + 1\\left(\\tfrac{2}{10}\\right) + 4\\left(\\tfrac{3}{10}\\right) + 9\\left(\\tfrac{4}{10}\\right) = \\frac{50}{10} = 5$$$$\\mathrm{Var}(X) = 5 - 2^2 = 1$$",
+          "verify": [
+            "Eq(0*Rational(1, 10) + 1*Rational(2, 10) + 4*Rational(3, 10) + 9*Rational(4, 10), 5)",
+            "Eq(5 - 2**2, 1)"
+          ]
+        }
+      ],
+      "contextIntro": "A discrete random variable $X$ takes the values 0, 1, 2, 3 with $P(X = 0) = k$, $P(X = 1) = 2k$, $P(X = 2) = 3k$ and $P(X = 3) = 4k$, where $k$ is a constant."
+    },
+    {
+      "source": "IB-AASL-P1-T1-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "curve_tangent_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $\\dfrac{dy}{dx}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{dy}{dx} = 3x^2 - 12x + 9$"
+            }
+          ],
+          "answer": "$\\dfrac{dy}{dx} = 3x^2 - 12x + 9$",
+          "solution": "$$\\frac{dy}{dx} = 3x^2 - 12x + 9$$",
+          "verify": [
+            "Eq(diff(x**3 - 6*x**2 + 9*x, x), 3*x**2 - 12*x + 9)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the two stationary points of $C$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $\\dfrac{dy}{dx} = 0$: $3(x - 1)(x - 3) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$ and $x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(1, 4)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(3, 0)$"
+            }
+          ],
+          "answer": "$(1, 4)$ and $(3, 0)$",
+          "solution": "**Plan:** solve $\\dfrac{dy}{dx} = 0$, then substitute back.$$3x^2 - 12x + 9 = 3(x - 1)(x - 3) = 0 \\Rightarrow x = 1 \\text{ or } x = 3$$$$y(1) = 1 - 6 + 9 = 4, \\qquad y(3) = 27 - 54 + 27 = 0$$The stationary points are $(1, 4)$ and $(3, 0)$.",
+          "verify": [
+            "solve(3*x**2 - 12*x + 9, x) == [1, 3]",
+            "Eq(1 - 6 + 9, 4)",
+            "Eq(27 - 54 + 27, 0)",
+            "Eq(expand(3*(x - 3)*(x - 1)), 3*x**2 - 12*x + 9)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the values of $x$ for which $y$ is decreasing.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$y$ decreases where $\\dfrac{dy}{dx} < 0$, i.e. between the stationary points"
+            },
+            {
+              "mark": "A1",
+              "note": "$1 < x < 3$"
+            }
+          ],
+          "answer": "$1 < x < 3$",
+          "solution": "The derivative $3(x - 1)(x - 3)$ is negative exactly between its roots, so $y$ is decreasing for$$1 < x < 3$$(check: at $x = 2$, $\\dfrac{dy}{dx} = 12 - 24 + 9 = -3 < 0$).",
+          "verify": [
+            "3*2**2 - 12*2 + 9 < 0",
+            "Eq(expand(3*(x - 3)*(x - 1)), 3*x**2 - 12*x + 9)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the equation of the tangent to $C$ at the origin.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "gradient $= \\dfrac{dy}{dx}$ at $x = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "gradient $= 9$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = 9x$"
+            }
+          ],
+          "answer": "$y = 9x$",
+          "solution": "**Plan:** the tangent passes through $(0, 0)$ with gradient $y'(0)$.$$\\left.\\frac{dy}{dx}\\right|_{x = 0} = 3(0)^2 - 12(0) + 9 = 9$$Through the origin: $y = 9x$.",
+          "verify": [
+            "Eq(3*0**2 - 12*0 + 9, 9)",
+            "Eq(0**3 - 6*0**2 + 9*0, 0)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the area of $R$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\displaystyle\\int_0^3 (x^3 - 6x^2 + 9x)\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $\\dfrac{x^4}{4} - 2x^3 + \\dfrac{9x^2}{2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "substitute the limits: $\\dfrac{81}{4} - 54 + \\dfrac{81}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= \\dfrac{27}{4}$"
+            }
+          ],
+          "answer": "Area of $R$ = $\\dfrac{27}{4}$",
+          "solution": "**Plan:** the curve factorises as $y = x(x - 3)^2 \\ge 0$ on $[0, 3]$, so the area is the integral itself.$$\\int_0^3 (x^3 - 6x^2 + 9x)\\,dx = \\left[\\frac{x^4}{4} - 2x^3 + \\frac{9x^2}{2}\\right]_0^3$$$$= \\frac{81}{4} - 54 + \\frac{81}{2} = \\frac{81 - 216 + 162}{4} = \\frac{27}{4}$$The area of $R$ is $\\dfrac{27}{4}$ square units.",
+          "verify": [
+            "Eq(integrate(x**3 - 6*x**2 + 9*x, (x, 0, 3)), Rational(27, 4))",
+            "Eq(expand(x*(x - 3)**2), x**3 - 6*x**2 + 9*x)"
+          ]
+        }
+      ],
+      "contextIntro": "The curve $C$ has equation $y = x^3 - 6x^2 + 9x$. The region $R$, shaded in the diagram, is enclosed by $C$ and the $x$-axis.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t1-q9.png",
+        "width": 980,
+        "height": 735,
+        "alt_en": "Curve y = x cubed minus 6 x squared plus 9 x rising from the origin to a local maximum, dipping to touch the x-axis, with the region R between the curve and the x-axis shaded."
+      }
+    }
+  ]
+}
