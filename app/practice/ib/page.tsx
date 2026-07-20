@@ -40,10 +40,10 @@ export default function IbHubPage() {
                   Live
                 </span>
                 <span className="block text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>
-                  All five syllabus topics, one lesson per subtopic code. Topics
-                  1–4 are open — through Statistics &amp; Probability — with
-                  interactive graphs, a walkable unit circle, steerable binomial
-                  and normal distributions, and parabolas you can drive.
+                  The COMPLETE SL syllabus — all five topics, one lesson per
+                  subtopic code, SL 1.1 through 5.11: interactive graphs, a
+                  walkable unit circle, steerable distributions, and calculus
+                  you can watch converge.
                 </span>
               </span>
             </span>

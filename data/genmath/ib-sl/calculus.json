@@ -1,0 +1,2616 @@
+{
+  "slug": "calculus",
+  "title": "Calculus",
+  "unit": 5,
+  "status": "published",
+  "blurb": "IB Topic 5, complete: limits and the derivative idea, increasing/decreasing analysis, the power rule, tangents and normals, integration as anti-differentiation, the chain/product/quotient rules, the second derivative and concavity, optimisation, kinematics, integration techniques, and definite integrals with areas — SL 5.1 to 5.11, taught to markscheme standard. The SL spine's finale.",
+  "buildsOn": "Everything: SL 2.1's lines power tangents, SL 3.4's radians power trig calculus, SL 2.10's equation craft returns throughout. The capstone topic.",
+  "lessons": [
+    {
+      "slug": "limits-and-the-derivative-idea",
+      "title": "Limits & the Idea of the Derivative",
+      "concreteComparison": "A speed camera can't measure speed AT an instant — it measures over a stretch and shrinks the stretch. Average speed over $0.1$ s, over $0.01$ s, over $0.001$ s… the numbers settle on one value. That settling value is a LIMIT, and the instantaneous speed it defines is the derivative.",
+      "objective": "Estimate limits numerically and read them from graphs; understand the derivative as the limit of gradients of secants — both a gradient function and a rate of change.",
+      "concept": [
+        "**Syllabus card — SL 5.1.** Introduction to the concept of a limit; the derivative interpreted as a gradient function and as a rate of change. **Papers 1 and 2** — usually examined through everything that follows, but 'estimate the limit' and 'interpret the derivative in context' appear directly too.",
+        "A LIMIT is the value a function's outputs approach as the inputs approach a target — whether or not the function ever gets there. $f(x) = \\frac{x^2 - 9}{x - 3}$ is undefined AT $x = 3$, yet as $x \\to 3$ its outputs settle on $6$: the graph is the line $y = x + 3$ wearing a hole, and the limit fills what the formula can't.",
+        "The derivative is a limit with a job. The gradient of the SECANT through $x$ and $x + h$ is $\\frac{f(x+h) - f(x)}{h}$; as $h \\to 0$ the secant collapses onto the TANGENT, and the settling value is $f'(x)$ — the gradient of the curve at a point. Collected over all points, $f'$ is a FUNCTION: the gradient function.",
+        "The second reading: $f'$ is a RATE OF CHANGE — units of output per unit of input. If $C(t)$ is bacteria count at time $t$ hours, $C'(2) = 150$ means 'growing at 150 bacteria per hour at $t = 2$'. Interpretation sentences with UNITS are how this code earns marks in context questions."
+      ],
+      "keyIdea": "A limit is where outputs settle; the derivative is the limit of secant gradients — read it as the tangent's slope or as a rate of change, with units.",
+      "facts": [
+        {
+          "title": "The derivative as a limit",
+          "latex": "f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}",
+          "explanation": "IN the booklet (SL 5.1 area). The secant's gradient, with the gap sent to zero."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-51-we1",
+          "statement": "Let $f(x) = \\dfrac{x^2 - 9}{x - 3}$, $x \\ne 3$.  \n**(a)** Evaluate $f(2.9)$, $f(2.99)$ and $f(3.01)$. **[2]**  \n**(b)** **Write down** $\\lim_{x \\to 3} f(x)$, and explain why the limit exists although $f(3)$ does not. **[2]**",
+          "solution": "**(a)** $f(2.9) = 5.9$, $f(2.99) = 5.99$, $f(3.01) = 6.01$ *(A1 A1)* — since $f(x) = x + 3$ for every $x \\ne 3$.  \n**(b)** The outputs settle on $6$ from both sides: $\\lim_{x \\to 3} f(x) = 6$ *(A1)*. The limit describes the APPROACH, not the arrival — $f$ has a hole at $x = 3$, but its neighbours all crowd around $6$ *(R1)*.  \n**Narrative:** factor first: $\\frac{(x-3)(x+3)}{x-3} = x + 3$ away from the hole. Limits ignore the single missing point — that distinction IS this subtopic.",
+          "check": [
+            "limit((x**2 - 9)/(x - 3), x, 3) == 6",
+            "Rational(29,10) + 3 == Rational(59,10)",
+            "simplify((x**2 - 9)/(x - 3) - (x + 3)) == 0"
+          ]
+        },
+        {
+          "id": "ibsl-51-we2",
+          "statement": "Let $f(x) = x^2$.  \n**(a)** Find the average rate of change of $f$ between $x = 3$ and $x = 3.1$. **[2]**  \n**(b)** The gradients of secants from $x = 3$ over shrinking intervals approach a value. **Write down** this value and state what it represents. **[2]**",
+          "solution": "**(a)** $\\dfrac{f(3.1) - f(3)}{0.1} = \\dfrac{9.61 - 9}{0.1} = 6.1$ *(M1 A1)*.  \n**(b)** The secant gradients ($6.1, 6.01, 6.001, \\ldots$) settle on $6$ — the gradient of the TANGENT at $x = 3$, i.e. $f'(3)$ *(A1 R1)*.  \n**Narrative:** one shrinking-interval table IS the definition of the derivative, experienced numerically. (Foreshadowing SL 5.3: $f'(x) = 2x$ gives $f'(3) = 6$ in one line.)",
+          "check": [
+            "(Rational(31,10)**2 - 9)/Rational(1,10) == Rational(61,10)",
+            "limit(((3 + h)**2 - 9)/h, h, 0) == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Claiming the limit doesn't exist because $f(3)$ is undefined.",
+          "correction": "Limits describe the approach, not the arrival — a hole doesn't stop the neighbours settling.",
+          "authored": true
+        },
+        {
+          "text": "Interpreting $f'(2) = 150$ without units or context.",
+          "correction": "A rate needs units: '150 bacteria per hour, at $t = 2$'. The sentence is the mark.",
+          "authored": true
+        },
+        {
+          "text": "Treating the derivative at a point and the gradient function as different objects.",
+          "correction": "$f'(3)$ is one value OF the function $f'$ — the same idea evaluated vs collected.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-51-t1",
+          "statement": "**Write down** $\\lim_{x \\to 2} \\dfrac{x^2 - 4}{x - 2}$, after simplifying the expression. **[2]**",
+          "solution": "$\\frac{(x-2)(x+2)}{x-2} = x + 2$ for $x \\ne 2$ *(M1)*: the limit is $4$ *(A1)*.",
+          "check": [
+            "limit((x**2 - 4)/(x - 2), x, 2) == 4"
+          ]
+        },
+        {
+          "id": "ibsl-51-t2",
+          "statement": "The temperature of a cooling drink is $T(t)$ °C after $t$ minutes, and $T'(5) = -2.4$. **Interpret** this value in context. **[2]**",
+          "solution": "At $t = 5$ minutes the drink is COOLING at $2.4$ °C per minute — temperature decreasing (negative rate), units stated *(A1 R1)*.",
+          "check": [
+            "-2.4 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.1 · the gateway",
+            "title": "Where outputs settle",
+            "body": "Calculus begins with one move: watch what outputs DO as inputs close in on a target. That settling value — the limit — defines instantaneous rates, tangent slopes, and everything in the six lessons ahead."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "The squeeze",
+            "title": "Two dots close in",
+            "teach": "Walk the dots toward the target from both sides and watch the outputs converge. The limit is the meeting value — reached by approach, not by arrival.",
+            "config": {
+              "mode": "approach"
+            }
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "The hole",
+            "title": "A limit without a value",
+            "teach": "This function has a hole at the target — undefined THERE, yet the neighbours still settle. The limit exists where the value doesn't: the distinction the exam probes.",
+            "config": {
+              "mode": "hole"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The hole at x = 3",
+            "problemId": "ibsl-51-we1"
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The derivative is born",
+            "title": "Secant collapses onto tangent",
+            "teach": "Step $h$ smaller and the secant line pivots onto the tangent — its gradient readout settling on one value. That value is $f'(x)$: the definition, drawn.",
+            "config": {
+              "mode": "secant"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Shrinking intervals",
+            "problemId": "ibsl-51-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Limit reading",
+            "title": "Approach vs arrival",
+            "prompt": "$g(x) = \\dfrac{x^2 - 25}{x - 5}$ for $x \\ne 5$. Then $\\lim_{x \\to 5} g(x) =$",
+            "options": [
+              "$10$",
+              "Does not exist",
+              "$5$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$g(x) = x + 5$ away from the hole, so outputs settle on $10$. The undefined point never blocks the limit.",
+            "check": [
+              "limit((x**2 - 25)/(x - 5), x, 5) == 10"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Rate reading",
+            "title": "Units make the meaning",
+            "prompt": "$V(t)$ litres of water in a tank after $t$ min, with $V'(10) = -3$. This means:",
+            "options": [
+              "At $t = 10$, water is draining at 3 litres/min",
+              "The tank holds $-3$ litres at $t = 10$",
+              "The tank empties after 3 minutes",
+              "Water flows in at 3 litres/min"
+            ],
+            "correctIndex": 0,
+            "explanation": "$V'$ is a RATE: litres per minute, negative meaning outflow. Rate sentences = value + units + direction.",
+            "check": [
+              "-3 < 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The interpretation template",
+            "body": "'Interpret $f'(a) = k$': one sentence with all three parts — WHEN (at $x = a$), WHAT (the quantity is increasing/decreasing), HOW FAST ($|k|$ with units of output per input). Miss the units and the mark walks."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Simplify, then read the limit",
+            "problemId": "ibsl-51-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A cooling drink",
+            "problemId": "ibsl-51-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.1 in four lines",
+            "points": [
+              "Limit = where outputs settle as inputs approach — arrival not required.",
+              "$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$: secants collapsing onto the tangent.",
+              "$f'$ is a FUNCTION (gradient function) and a RATE (with units).",
+              "Interpretation sentences: when + direction + how fast + units."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "increasing-and-decreasing-functions",
+      "title": "Increasing & Decreasing: Reading f′",
+      "concreteComparison": "A hiker's altitude graph climbs, flattens, falls. You could SEE that — or you could read it from the slope alone: positive slope climbing, zero at the crest, negative descending. The derivative's SIGN is the terrain report, and the IB reads it constantly.",
+      "objective": "Connect the sign of $f'$ to the behaviour of $f$; find intervals of increase and decrease via sign diagrams; translate between the graphs of $f$ and $f'$.",
+      "concept": [
+        "**Syllabus card — SL 5.2.** Increasing and decreasing functions; the graphical interpretation of $f'(x) > 0$, $f'(x) = 0$, $f'(x) < 0$. **Papers 1 and 2**; 'the graph of $f'$ is shown — describe $f$' is a beloved (and much-failed) question type.",
+        "The dictionary: $f'(x) > 0$ on an interval $\\iff f$ is INCREASING there; $f'(x) < 0 \\iff$ decreasing; $f'(x) = 0$ at STATIONARY points — crests, troughs, or rare flat shelves. The derivative's sign is the function's direction.",
+        "The working tool is the SIGN DIAGRAM: find where $f' = 0$, mark those roots on a number line, test one point per interval, record the signs. For $f(x) = x^3 - 3x$: $f'(x) = 3x^2 - 3 = 3(x-1)(x+1)$, roots $\\pm 1$; signs $+, -, +$ — so $f$ rises, falls between $-1$ and $1$, rises again.",
+        "Graph translation runs BOTH ways, and the exam tests the hard way: given the graph OF $f'$, describe $f$. Where $f'$ sits ABOVE the axis (whatever its shape), $f$ climbs; where $f'$ CROSSES the axis, $f$ has a stationary point. Height of $f'$ = steepness of $f$. Students who read $f'$'s graph as if it were $f$ lose every mark in the question — the axis crossing is everything."
+      ],
+      "keyIdea": "The sign of $f'$ is the direction of $f$: above the axis climbing, below falling, crossing = stationary. Sign diagrams make it mechanical.",
+      "facts": [
+        {
+          "title": "The direction dictionary",
+          "latex": "f' > 0 \\iff f \\nearrow, \\qquad f' < 0 \\iff f \\searrow, \\qquad f' = 0: \\text{ stationary}",
+          "explanation": "The syllabus's own statement (SL 5.2). Applied via sign diagrams on $f'$'s roots."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-52-we1",
+          "statement": "Let $f(x) = x^3 - 3x$.  \n**(a)** Find $f'(x)$ and the values where $f'(x) = 0$. **[3]**  \n**(b)** Find the intervals on which $f$ is increasing. **[2]**",
+          "solution": "**(a)** $f'(x) = 3x^2 - 3$ *(A1)* $= 3(x - 1)(x + 1) = 0$ at $x = \\pm 1$ *(M1 A1)*.  \n**(b)** Sign diagram: test $x = -2$: $f'(-2) = 9 > 0$; test $x = 0$: $f'(0) = -3 < 0$; test $x = 2$: $9 > 0$. Increasing for $x < -1$ and $x > 1$ *(M1 A1)*.  \n**Narrative:** the tested points are the evidence the markscheme wants VISIBLE — a sign diagram with values beats an unexplained answer. Between its two stationary points the cubic slides downhill.",
+          "check": [
+            "diff(x**3 - 3*x, x) == 3*x**2 - 3",
+            "solve(3*x**2 - 3, x) == [-1, 1]",
+            "3*(-2)**2 - 3 == 9",
+            "3*0**2 - 3 == -3"
+          ]
+        },
+        {
+          "id": "ibsl-52-we2",
+          "statement": "The graph of the DERIVATIVE $f'$ of a function is a parabola opening upward with zeros at $x = 0$ and $x = 4$, negative between them.  \n**(a)** State the intervals where $f$ is decreasing. **[1]**  \n**(b)** State the $x$-values of the stationary points of $f$, and classify each. **[3]**",
+          "solution": "**(a)** Where $f' < 0$: $0 < x < 4$ *(A1)*.  \n**(b)** Stationary where $f'$ crosses zero: $x = 0$ and $x = 4$ *(A1)*. At $x = 0$, $f'$ goes $+ \\to -$: local MAXIMUM; at $x = 4$, $- \\to +$: local MINIMUM *(A1 A1)*.  \n**Narrative:** every fact about $f$ was read off $f'$'s graph — without ever knowing a formula. The sign CHANGE, not the zero itself, does the classifying — the logic SL 5.8 will formalize.",
+          "check": [
+            "solve(x*(x - 4), x) == [0, 4]",
+            "1*(1 - 4) < 0",
+            "(-1)*(-1 - 4) > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the graph of $f'$ as if it were $f$ — 'f decreases where the shown curve decreases'.",
+          "correction": "The shown curve's HEIGHT (above/below the axis) is what matters, not its direction. Check which graph the question drew.",
+          "authored": true
+        },
+        {
+          "text": "Answering increase/decrease questions without testing points.",
+          "correction": "Roots of $f'$ split the line; one tested value per interval, shown, is the method mark.",
+          "authored": true
+        },
+        {
+          "text": "Calling every $f' = 0$ point a max or a min.",
+          "correction": "Only if the sign CHANGES. Same sign both sides (like $x^3$ at 0) = a stationary point of inflexion.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-52-t1",
+          "statement": "Find the interval on which $f(x) = x^2 - 6x + 1$ is decreasing. **[3]**",
+          "solution": "$f'(x) = 2x - 6 = 0$ at $x = 3$ *(M1 A1)*; $f' < 0$ for $x < 3$: decreasing on $x < 3$ *(A1)* — downhill into the vertex, uphill out.",
+          "check": [
+            "diff(x**2 - 6*x + 1, x) == 2*x - 6",
+            "solve(2*x - 6, x) == [3]",
+            "2*1 - 6 < 0"
+          ]
+        },
+        {
+          "id": "ibsl-52-t2",
+          "statement": "Show that $f(x) = x^3 + 2x + 7$ is increasing for ALL $x$. **[2]**",
+          "solution": "$f'(x) = 3x^2 + 2$ *(A1)*. Since $3x^2 \\ge 0$, $f'(x) \\ge 2 > 0$ for every $x$ — always climbing *(R1)*. A sign diagram with no roots needs only the argument.",
+          "check": [
+            "diff(x**3 + 2*x + 7, x) == 3*x**2 + 2",
+            "3*0**2 + 2 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.2 · Papers 1 & 2",
+            "title": "Direction from sign",
+            "body": "One glance at $f'$'s sign tells you which way $f$ is heading — no plotting required. This code is the dictionary between the two graphs, and the exam's favourite way to test whether you truly know which curve is which."
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "Feel the sign",
+            "title": "Slide the tangent point",
+            "teach": "Drag the touch point along the curve: the slope readout runs negative downhill, hits zero at the bottom, turns positive uphill. The derivative's sign IS the terrain.",
+            "config": {
+              "mode": "tangent"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The method",
+            "title": "Sign diagrams in three moves",
+            "beats": [
+              "Solve $f'(x) = 0$ — the roots split the number line.",
+              "Test ONE value per interval; write the sign each time.",
+              "Read: $+$ climbing, $-$ falling; a sign CHANGE at a root = crest or trough."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A cubic's terrain",
+            "problemId": "ibsl-52-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Dictionary check",
+            "title": "Which way is f heading?",
+            "prompt": "$f'(x) = (x - 2)^2$. On which intervals is $f$ increasing?",
+            "options": [
+              "All $x$ (except momentarily flat at $x = 2$)",
+              "$x > 2$ only",
+              "$x < 2$ only",
+              "Nowhere"
+            ],
+            "correctIndex": 0,
+            "explanation": "A square is never negative: $f' \\ge 0$ everywhere, zero only at $x = 2$ with NO sign change — $f$ climbs, pauses flat for an instant, climbs on.",
+            "check": [
+              "(0 - 2)**2 > 0",
+              "(3 - 2)**2 > 0",
+              "(2 - 2)**2 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Reading the graph OF f′",
+            "problemId": "ibsl-52-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The hard direction",
+            "title": "f′ shown, f asked",
+            "prompt": "The graph of $f'$ is positive for $x < 1$ and negative for $x > 1$. At $x = 1$, $f$ has:",
+            "options": [
+              "A local maximum",
+              "A local minimum",
+              "An asymptote",
+              "A zero"
+            ],
+            "correctIndex": 0,
+            "explanation": "Climbing then falling — a crest. The $+ \\to -$ sign change is the whole diagnosis; $f$'s actual VALUE at $x = 1$ was never needed.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "Label which graph you're reading",
+            "body": "When a question shows a graph, write '$f'$ shown' or '$f$ shown' at the top before answering anything. The single most common calculus-graph error is answering about the wrong curve — one label prevents it."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A parabola's downhill",
+            "problemId": "ibsl-52-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Always climbing",
+            "problemId": "ibsl-52-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.2 in four lines",
+            "points": [
+              "$f' > 0$: climbing. $f' < 0$: falling. $f' = 0$: stationary.",
+              "Sign diagram: roots, one test point per interval, signs shown.",
+              "Sign CHANGE classifies: $+\\to-$ max, $-\\to+$ min, no change = shelf.",
+              "Given $f'$'s graph: height above/below the axis is all that matters."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-power-rule",
+      "title": "The Power Rule",
+      "concreteComparison": "SL 5.1 computed one derivative with a table of shrinking secants. The power rule replaces the whole table with a flick: exponent down front, exponent drops by one — $x^3 \\to 3x^2$, term by term, for any polynomial and any rational power.",
+      "objective": "Differentiate $x^n$ for rational $n$; handle sums, differences and constant multiples; rewrite roots and reciprocals as powers before differentiating; evaluate gradients at points.",
+      "concept": [
+        "**Syllabus card — SL 5.3.** Derivative of $f(x) = ax^n$, $n \\in \\mathbb{Q}$: $f'(x) = anx^{n-1}$ (IN the booklet); the derivative of a sum and of a constant multiple. **Papers 1 and 2** — the workhorse rule of the entire topic.",
+        "The rule: $\\frac{d}{dx}(x^n) = nx^{n-1}$ — the exponent steps down front as a factor and drops by one. Constants differentiate to ZERO (flat lines have no slope) and coefficients ride along: $\\frac{d}{dx}(4x^3) = 12x^2$. Sums differentiate term by term.",
+        "The exam's favourite disguises: roots and reciprocals. Rewrite BEFORE differentiating — $\\sqrt{x} = x^{1/2}$, $\\frac{3}{x^2} = 3x^{-2}$, $\\frac{1}{\\sqrt{x}} = x^{-1/2}$ — then the power rule fires normally: $\\frac{d}{dx}\\sqrt{x} = \\frac{1}{2}x^{-1/2} = \\frac{1}{2\\sqrt{x}}$. Negative exponents drop FURTHER negative: $\\frac{d}{dx}(3x^{-2}) = -6x^{-3}$.",
+        "Everything from SL 5.1–5.2 now runs analytically: $f'(a)$ evaluates the gradient at a point; solving $f'(x) = k$ finds where the curve has a given steepness; $f'(x) = 0$ locates the stationary points. One rule, the whole toolkit."
+      ],
+      "keyIdea": "$\\frac{d}{dx}(ax^n) = anx^{n-1}$, term by term. Rewrite roots and reciprocals as powers FIRST — then everything is the same flick.",
+      "facts": [
+        {
+          "title": "The power rule",
+          "latex": "f(x) = ax^n \\Rightarrow f'(x) = anx^{n-1}, \\quad n \\in \\mathbb{Q}",
+          "explanation": "IN the booklet (SL 5.3). Constants → 0; sums term by term."
+        },
+        {
+          "title": "The rewrite dictionary",
+          "latex": "\\sqrt{x} = x^{1/2}, \\qquad \\frac{k}{x^m} = kx^{-m}, \\qquad \\frac{1}{\\sqrt{x}} = x^{-1/2}",
+          "explanation": "NOT in the booklet — the pre-processing step the exam loves to force."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-53-we1",
+          "statement": "Let $f(x) = 4x^3 - 6x^2 + 2x - 5$.  \n**(a)** Find $f'(x)$. **[2]**  \n**(b)** Find the gradient of the curve at $x = 2$. **[1]**  \n**(c)** Find the $x$-coordinates of the points where the gradient is $2$. **[2]**",
+          "solution": "**(a)** $f'(x) = 12x^2 - 12x + 2$ *(A1 A1)* — term by term, the constant vanishing.  \n**(b)** $f'(2) = 48 - 24 + 2 = 26$ *(A1)*.  \n**(c)** $12x^2 - 12x + 2 = 2 \\Rightarrow 12x(x - 1) = 0$: $x = 0$ or $x = 1$ *(M1 A1)*.  \n**Narrative:** three question styles off one derivative: build $f'$, evaluate it, solve with it. Part (c) is an ordinary quadratic wearing calculus clothes.",
+          "check": [
+            "diff(4*x**3 - 6*x**2 + 2*x - 5, x) == 12*x**2 - 12*x + 2",
+            "12*4 - 12*2 + 2 == 26",
+            "solve(12*x**2 - 12*x, x) == [0, 1]"
+          ]
+        },
+        {
+          "id": "ibsl-53-we2",
+          "statement": "Let $y = \\sqrt{x} + \\dfrac{3}{x^2}$.  \n**(a)** Write $y$ in the form $x^a + 3x^b$. **[1]**  \n**(b)** Find $\\dfrac{dy}{dx}$. **[2]**  \n**(c)** Evaluate the gradient at $x = 4$, exactly. **[2]**",
+          "solution": "**(a)** $y = x^{1/2} + 3x^{-2}$ *(A1)*.  \n**(b)** $\\dfrac{dy}{dx} = \\dfrac{1}{2}x^{-1/2} - 6x^{-3}$ *(A1 A1)*.  \n**(c)** At $x = 4$: $\\dfrac{1}{2 \\cdot 2} - \\dfrac{6}{64} = \\dfrac{1}{4} - \\dfrac{3}{32} = \\dfrac{5}{32}$ *(M1 A1)*.  \n**Narrative:** the rewrite in (a) is where the marks are protected — differentiate the disguised form and both exponents go wrong. Note $-2$ drops to $-3$: DOWN means more negative.",
+          "check": [
+            "diff(sqrt(x) + 3/x**2, x) == 1/(2*sqrt(x)) - 6/x**3",
+            "Rational(1,4) - Rational(6, 64) == Rational(5, 32)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Differentiating $\\frac{3}{x^2}$ as $\\frac{3}{2x}$.",
+          "correction": "Rewrite first: $3x^{-2} \\to -6x^{-3} = -\\frac{6}{x^3}$. No rewrite, no rule.",
+          "authored": true
+        },
+        {
+          "text": "Dropping negative exponents the wrong way: $x^{-2} \\to x^{-1}$.",
+          "correction": "Down one means MORE negative: $-2 \\to -3$. The exponent always decreases.",
+          "authored": true
+        },
+        {
+          "text": "Keeping the constant: $\\frac{d}{dx}(2x - 5) = 2 - 5$.",
+          "correction": "Constants are flat — derivative 0. The $-5$ vanishes entirely.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-53-t1",
+          "statement": "Find $f'(x)$ for $f(x) = 2x^4 - 5x^2 + 7x - 3$, and evaluate $f'(1)$. **[3]**",
+          "solution": "$f'(x) = 8x^3 - 10x + 7$ *(A1 A1)*; $f'(1) = 8 - 10 + 7 = 5$ *(A1)*.",
+          "check": [
+            "diff(2*x**4 - 5*x**2 + 7*x - 3, x) == 8*x**3 - 10*x + 7",
+            "8 - 10 + 7 == 5"
+          ]
+        },
+        {
+          "id": "ibsl-53-t2",
+          "statement": "Find $\\dfrac{dy}{dx}$ for $y = \\dfrac{4}{x} - 2\\sqrt{x}$, and evaluate it at $x = 1$. **[3]**",
+          "solution": "$y = 4x^{-1} - 2x^{1/2}$: $\\dfrac{dy}{dx} = -4x^{-2} - x^{-1/2}$ *(M1 A1)*. At $x = 1$: $-4 - 1 = -5$ *(A1)*.",
+          "check": [
+            "diff(4/x - 2*sqrt(x), x) == -4/x**2 - 1/sqrt(x)",
+            "-4 - 1 == -5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.3 · the workhorse",
+            "title": "The table becomes a flick",
+            "body": "No more shrinking secants: exponent down front, exponent drops one. One rule differentiates every polynomial — and, after a rewrite, every root and reciprocal the exam can dress up."
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "See the rule",
+            "title": "f and f′ share the grid",
+            "teach": "The curve and its gradient function drawn together: at each $x$, the lower graph's HEIGHT equals the upper graph's SLOPE. The power rule is the formula for that lower graph.",
+            "config": {
+              "mode": "slopeCurve"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rule + the rewrites",
+            "title": "Down in front, down by one",
+            "beats": [
+              "$ax^n \\to anx^{n-1}$ (booklet); constants → 0; sums term by term.",
+              "Rewrite first: $\\sqrt{x} = x^{1/2}$, $\\frac{k}{x^m} = kx^{-m}$.",
+              "Negative exponents drop FURTHER negative: $x^{-2} \\to -2x^{-3}$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Build, evaluate, solve",
+            "problemId": "ibsl-53-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Rule fluency",
+            "title": "Term by term",
+            "prompt": "$f(x) = 5x^4 - 3x^2 + 8$. Then $f'(x) =$",
+            "options": [
+              "$20x^3 - 6x$",
+              "$20x^3 - 6x + 8$",
+              "$5x^3 - 3x$",
+              "$20x^4 - 6x^2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each term flicks down; the constant 8 vanishes. Option B kept the constant — the most common one-mark leak in Topic 5.",
+            "check": [
+              "diff(5*x**4 - 3*x**2 + 8, x) == 20*x**3 - 6*x"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Roots and reciprocals",
+            "problemId": "ibsl-53-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Rewrite discipline",
+            "title": "The disguised power",
+            "prompt": "$\\dfrac{d}{dx}\\left(\\dfrac{1}{x}\\right) =$",
+            "options": [
+              "$-\\dfrac{1}{x^2}$",
+              "$\\dfrac{1}{x^2}$",
+              "$\\ln x$",
+              "$-\\dfrac{1}{x}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$x^{-1} \\to -1 \\cdot x^{-2}$. (Option C confuses differentiation with INTEGRATION — that pairing arrives in SL 5.10.)",
+            "check": [
+              "diff(1/x, x) == -1/x**2"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "Rewrite, differentiate, tidy",
+            "body": "Three-line discipline for every disguised power: (1) rewrite in $x^n$ form; (2) apply the rule; (3) tidy back to root/fraction form if the answer wants it. Each line is visible work — and line (1) is where accuracy marks survive."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A quartic, flicked",
+            "problemId": "ibsl-53-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two disguises at once",
+            "problemId": "ibsl-53-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.3 in four lines",
+            "points": [
+              "$ax^n \\to anx^{n-1}$ — booklet; term by term; constants die.",
+              "Roots and reciprocals: rewrite as powers BEFORE the rule.",
+              "Negative exponents drop more negative.",
+              "$f'(a)$ = gradient at a point; $f'(x) = k$ = where that steepness lives."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tangents-and-normals",
+      "title": "Tangents & Normals",
+      "concreteComparison": "Zoom far enough into any smooth curve and it looks straight — the tangent IS that straight look, written as an equation. Its perpendicular partner, the normal, comes free via SL 2.1's negative reciprocal. Curve + point + derivative = both lines, every time.",
+      "objective": "Find equations of tangents and normals at a given point, analytically and with technology; run the process backward from a given gradient.",
+      "concept": [
+        "**Syllabus card — SL 5.4.** Tangents and normals at a given point, and their equations, found analytically AND using technology. **Papers 1 and 2** — among the most-recycled question shapes in Topic 5, and the direct payoff of SL 2.1's line toolkit.",
+        "The recipe: (1) $y$-coordinate — evaluate $f(a)$; (2) gradient — evaluate $f'(a)$; (3) line — point–gradient form $y - f(a) = f'(a)(x - a)$. Three evaluations, one line equation. The tangent touches the curve at the point and copies its direction.",
+        "The NORMAL is perpendicular to the tangent at the same point: its gradient is $-\\frac{1}{f'(a)}$ — flip and negate, exactly as in SL 2.1. Same point, negative-reciprocal slope, same point–gradient form.",
+        "Backward versions are exam favourites: 'find where the tangent is parallel to $y = 5x$' means solve $f'(x) = 5$; 'the tangent at $P$ is horizontal' means $f'(a) = 0$ (a stationary point wearing tangent clothing). On Paper 2, the GDC draws tangents and reads their equations — quote the setup line first, as always."
+      ],
+      "keyIdea": "Tangent: through $(a, f(a))$ with slope $f'(a)$. Normal: same point, slope $-\\frac{1}{f'(a)}$. Parallel-to demands solve $f'(x) = m$.",
+      "facts": [
+        {
+          "title": "The tangent recipe",
+          "latex": "y - f(a) = f'(a)\\,(x - a)",
+          "explanation": "Point–gradient form (SL 2.1) fed by two evaluations. Normal: replace the slope with $-1/f'(a)$."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-54-we1",
+          "statement": "Let $f(x) = x^2 - 3x$.  \n**(a)** Find the equation of the tangent to the curve at $x = 2$, in the form $y = mx + c$. **[4]**  \n**(b)** Find the equation of the normal at the same point. **[2]**",
+          "solution": "**(a)** Point: $f(2) = 4 - 6 = -2$, so $(2, -2)$ *(A1)*. Gradient: $f'(x) = 2x - 3$, $f'(2) = 1$ *(A1)*. Line: $y + 2 = 1(x - 2)$ *(M1)*, so $y = x - 4$ *(A1)*.  \n**(b)** Normal gradient $= -1$: $y + 2 = -(x - 2)$, so $y = -x$ *(M1 A1)*.  \n**Narrative:** three ingredients — point, slope, line form — each worth its own mark. The normal costs almost nothing extra: one flip-and-negate and the same recipe.",
+          "check": [
+            "2**2 - 3*2 == -2",
+            "diff(x**2 - 3*x, x) == 2*x - 3",
+            "2*2 - 3 == 1",
+            "2 - 4 == -2",
+            "-(2) == -2"
+          ]
+        },
+        {
+          "id": "ibsl-54-we2",
+          "statement": "Let $f(x) = x^2 + x$. **Find** the coordinates of the point on the curve where the tangent is parallel to the line $y = 5x - 3$. **[4]**",
+          "solution": "Parallel means equal gradients: $f'(x) = 5$ *(M1 — the translation)*. $2x + 1 = 5 \\Rightarrow x = 2$ *(A1)*. Then $f(2) = 6$: the point is $(2, 6)$ *(M1 A1)*.  \n**Narrative:** the derivative runs backward — given the slope, find the place. 'Coordinates' demands both numbers; stopping at $x = 2$ leaves a mark on the table.",
+          "check": [
+            "solve(2*x + 1 - 5, x) == [2]",
+            "2**2 + 2 == 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using $f'(x)$ (the formula) as the tangent's gradient instead of the NUMBER $f'(a)$.",
+          "correction": "A line has one slope: evaluate the derivative AT the point before writing the line.",
+          "authored": true
+        },
+        {
+          "text": "Normal gradient as $-f'(a)$ (negate only).",
+          "correction": "Flip AND negate: $-\\frac{1}{f'(a)}$. Check: product of the two slopes must be $-1$.",
+          "authored": true
+        },
+        {
+          "text": "In parallel-tangent problems, reporting only the $x$-value.",
+          "correction": "'Coordinates of the point' = both numbers — substitute back into $f$, not $f'$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-54-t1",
+          "statement": "Find the equation of the tangent to $y = x^3$ at $x = 1$, in the form $y = mx + c$. **[3]**",
+          "solution": "Point $(1, 1)$; gradient $3x^2$ at 1 gives $3$ *(A1 A1)*. $y - 1 = 3(x - 1) \\Rightarrow y = 3x - 2$ *(A1)*.",
+          "check": [
+            "diff(x**3, x) == 3*x**2",
+            "3*1 - 2 == 1"
+          ]
+        },
+        {
+          "id": "ibsl-54-t2",
+          "statement": "Find the equation of the normal to $f(x) = \\dfrac{4}{x}$ at $x = 2$. **[4]**",
+          "solution": "Point: $f(2) = 2$. $f'(x) = -4x^{-2}$: $f'(2) = -1$ *(A1 A1)*. Normal gradient $= +1$: $y - 2 = x - 2$, so $y = x$ *(M1 A1)* — the flip-and-negate of $-1$ is $1$.",
+          "check": [
+            "Rational(4, 2) == 2",
+            "diff(4/x, x) == -4/x**2",
+            "Rational(-4, 4) == -1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.4 · Papers 1 & 2",
+            "title": "The straight look, written down",
+            "body": "SL 2.1 built lines from a point and a slope; SL 5.3 computes slopes anywhere on a curve. Put together: the tangent and normal at any point, in four short steps. This question shape appears nearly every session."
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "Touch and copy",
+            "title": "The tangent, live",
+            "teach": "Slide the touch point: the tangent line pivots to copy the curve's direction at each spot, its slope readout tracking $f'(a)$. The normal (not drawn) stands perpendicular at the same point.",
+            "config": {
+              "mode": "tangent"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The recipe",
+            "title": "Point, slope, line",
+            "beats": [
+              "$y$-coordinate: $f(a)$. Gradient: $f'(a)$ — a NUMBER, not a formula.",
+              "Tangent: $y - f(a) = f'(a)(x - a)$. Normal: slope $-\\frac{1}{f'(a)}$, same point.",
+              "Backward: 'parallel to slope $m$' ⇒ solve $f'(x) = m$; 'horizontal tangent' ⇒ $f'(x) = 0$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Tangent and normal at x = 2",
+            "problemId": "ibsl-54-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Recipe check",
+            "title": "Gradient first",
+            "prompt": "The tangent to $y = x^2$ at $x = 3$ has equation:",
+            "options": [
+              "$y = 6x - 9$",
+              "$y = 2x + 3$",
+              "$y = 6x + 9$",
+              "$y = 9x - 6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Point $(3, 9)$, slope $2(3) = 6$: $y - 9 = 6(x - 3)$ gives $y = 6x - 9$. Check: at $x = 3$ it passes through 9 ✓.",
+            "check": [
+              "6*3 - 9 == 9",
+              "diff(x**2, x) == 2*x"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Parallel tangent, found",
+            "problemId": "ibsl-54-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Normal fluency",
+            "title": "Flip and negate",
+            "prompt": "At a point, $f'(a) = \\dfrac{2}{3}$. The normal there has gradient:",
+            "options": [
+              "$-\\dfrac{3}{2}$",
+              "$\\dfrac{3}{2}$",
+              "$-\\dfrac{2}{3}$",
+              "$\\dfrac{2}{3}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Perpendicular slopes multiply to $-1$: $\\frac{2}{3} \\cdot \\left(-\\frac{3}{2}\\right) = -1$ ✓ — SL 2.1's rule, recycled.",
+            "check": [
+              "Rational(2,3)*Rational(-3,2) == -1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "The free verification, again",
+            "body": "Substitute the point of tangency into your final line — it MUST satisfy the equation. Ten seconds, and slope-vs-value mix-ups die on the page. On Paper 2, the GDC's draw-tangent tool earns the marks too, with the setup line written."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Tangent to a cubic",
+            "problemId": "ibsl-54-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A normal with slope one",
+            "problemId": "ibsl-54-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.4 in four lines",
+            "points": [
+              "Tangent: point $(a, f(a))$ + slope $f'(a)$ + point–gradient form.",
+              "Normal: same point, slope $-\\frac{1}{f'(a)}$.",
+              "'Parallel to' ⇒ solve $f'(x) = m$; then report BOTH coordinates.",
+              "Verify by substituting the touch point into the final line."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "introduction-to-integration",
+      "title": "Integration: Differentiation in Reverse",
+      "concreteComparison": "You know a car's speed at every instant — can you recover the distance travelled? Running differentiation BACKWARD does exactly that. The only catch: reversing loses one piece of information (where you started), and the famous $+C$ is its receipt.",
+      "objective": "Anti-differentiate powers of $x$ (with $+C$); use a boundary condition to find $C$; evaluate definite integrals with technology; find areas under positive curves.",
+      "concept": [
+        "**Syllabus card — SL 5.5.** Introduction to integration as anti-differentiation of functions of the form $f(x) = ax^n + bx^{n-1} + \\ldots$, $n \\in \\mathbb{Q}$, $n \\ne -1$; anti-differentiation with a boundary condition to determine the constant term; definite integrals using TECHNOLOGY; areas between a curve and the $x$-axis where $f(x) > 0$. **Papers 1 and 2**.",
+        "Anti-differentiation reverses the power rule: exponent UP one, divide by the new exponent — $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$ (booklet; $n \\ne -1$ because dividing by zero is not a plan — that case waits for SL 5.10). The $+C$ is mandatory: every vertical shift of an antiderivative has the same derivative, so the reversal recovers a FAMILY.",
+        "A BOUNDARY CONDITION picks the family member: given $f'(x) = 6x^2 - 4$ and $f(1) = 3$, anti-differentiate to $f(x) = 2x^3 - 4x + C$, substitute the known point, solve for $C$. 'Find $f$' questions are exactly this two-step.",
+        "The DEFINITE integral $\\int_a^b f(x)\\,dx$ is a number, and for a curve ABOVE the axis it equals the area between curve and axis from $a$ to $b$. At this stage the GDC computes it — write the integral statement, then quote the value. (WHY area and antiderivatives are the same machine — the fundamental theorem — unfolds in SL 5.11.)"
+      ],
+      "keyIdea": "Up one, divide, $+C$ — and a boundary condition pins the $C$. Definite integrals are numbers (areas, for positive curves), GDC-computed for now.",
+      "facts": [
+        {
+          "title": "The reverse power rule",
+          "latex": "\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C, \\quad n \\ne -1",
+          "explanation": "IN the booklet (SL 5.5). The $+C$ is part of the answer — omitting it costs a mark."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-55-we1",
+          "statement": "The gradient function of a curve is $f'(x) = 6x^2 - 4$, and the curve passes through $(1, 3)$.  \n**(a)** Find $f(x)$. **[4]**",
+          "solution": "Anti-differentiate: $f(x) = 2x^3 - 4x + C$ *(M1 A1 — the $+C$ carries a mark)*. Boundary: $f(1) = 2 - 4 + C = 3 \\Rightarrow C = 5$ *(M1)*. So $f(x) = 2x^3 - 4x + 5$ *(A1)*.  \n**Narrative:** verify by differentiating BACK: $\\frac{d}{dx}(2x^3 - 4x + 5) = 6x^2 - 4$ ✓ — the free check every integration question carries. The boundary condition is what turns a family into a curve.",
+          "check": [
+            "diff(2*x**3 - 4*x + 5, x) == 6*x**2 - 4",
+            "solve(Eq(2 - 4 + c, 3), c) == [5]",
+            "2*1 - 4*1 + 5 == 3"
+          ]
+        },
+        {
+          "id": "ibsl-55-we2",
+          "statement": "Let $f(x) = x^2$, for $0 \\le x \\le 2$.  \n**(a)** Write down a definite integral representing the area between the curve and the $x$-axis on this interval. **[1]**  \n**(b)** Find this area. **[2]**",
+          "solution": "**(a)** $\\displaystyle\\int_0^2 x^2 \\, dx$ *(A1)*.  \n**(b)** By GDC (or the antiderivative $\\frac{x^3}{3}$): $\\frac{8}{3} \\approx 2.67$ *(M1 A1)*.  \n**Narrative:** the curve sits above the axis on $[0, 2]$, so the integral IS the area — no adjustments. The written integral statement in (a) is the M-mark that survives any button slip; the sanity check is the bounding rectangle: area < $2 \\times 4 = 8$ ✓.",
+          "check": [
+            "integrate(x**2, (x, 0, 2)) == Rational(8, 3)",
+            "Rational(8,3) < 8"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dropping the $+C$ in indefinite integrals.",
+          "correction": "The reversal recovers a family — the $+C$ is the family, and the markscheme prices it.",
+          "authored": true
+        },
+        {
+          "text": "Reversing the power rule the wrong way: $\\int x^3 dx = 3x^2$.",
+          "correction": "That's differentiation. Integration goes UP one and divides: $\\frac{x^4}{4} + C$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to divide by the new exponent.",
+          "correction": "$\\int x^4 dx = \\frac{x^5}{5}$, not $x^5$. Differentiate back to check — it takes five seconds.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-55-t1",
+          "statement": "Find $\\displaystyle\\int \\left(3x^2 - 8x + 5\\right) dx$. **[3]**",
+          "solution": "$x^3 - 4x^2 + 5x + C$ *(A1 A1 A1)* — each term up-and-divided, one $+C$ for the whole answer.",
+          "check": [
+            "diff(x**3 - 4*x**2 + 5*x, x) == 3*x**2 - 8*x + 5"
+          ]
+        },
+        {
+          "id": "ibsl-55-t2",
+          "statement": "A curve has $\\dfrac{dy}{dx} = 4x - 6$ and passes through $(2, 1)$. **Find** its equation. **[4]**",
+          "solution": "$y = 2x^2 - 6x + C$ *(M1 A1)*; at $(2, 1)$: $8 - 12 + C = 1 \\Rightarrow C = 5$ *(M1)*: $y = 2x^2 - 6x + 5$ *(A1)*.",
+          "check": [
+            "diff(2*x**2 - 6*x + 5, x) == 4*x - 6",
+            "2*4 - 12 + 5 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.5 · Papers 1 & 2",
+            "title": "The reverse gear",
+            "body": "Differentiation has an inverse, and it answers a new kind of question: given the RATE, recover the QUANTITY. One reversed rule, one mandatory $+C$, and — through the definite integral — the first taste of area under a curve."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Area accumulates",
+            "title": "Watch the integral fill",
+            "teach": "The sweep fills area behind a moving edge, and the running total $A(x)$ grows as a FUNCTION of where you've swept to. That accumulation is what the integral sign measures — and why (SL 5.11 spoiler) its rate of growth is the curve itself.",
+            "config": {
+              "mode": "accumulate"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The rules",
+            "title": "Up one, divide, plus C",
+            "beats": [
+              "$\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$ ($n \\ne -1$) — booklet; term by term.",
+              "Boundary condition: substitute the known point, solve for $C$.",
+              "$\\int_a^b f\\,dx$: a NUMBER — the area, when $f > 0$; GDC-computed for now."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "From gradient to curve",
+            "problemId": "ibsl-55-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Reverse fluency",
+            "title": "Up and divide",
+            "prompt": "$\\displaystyle\\int 6x^2 \\, dx =$",
+            "options": [
+              "$2x^3 + C$",
+              "$12x + C$",
+              "$6x^3 + C$",
+              "$3x^3 + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Up to $x^3$, divide by 3: $\\frac{6x^3}{3} = 2x^3$, plus $C$. Option B differentiated instead — the direction check (differentiate your answer!) catches it instantly.",
+            "check": [
+              "diff(2*x**3, x) == 6*x**2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "First area under a curve",
+            "problemId": "ibsl-55-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The constant's job",
+            "title": "Why +C matters",
+            "prompt": "$f'(x) = 2x$ and $f(3) = 10$. Then $f(x) =$",
+            "options": [
+              "$x^2 + 1$",
+              "$x^2$",
+              "$x^2 + 10$",
+              "$2x + 4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$f(x) = x^2 + C$; $9 + C = 10$ gives $C = 1$. Without the boundary step, options B and C are indistinguishable guesses.",
+            "check": [
+              "solve(Eq(9 + c, 10), c) == [1]",
+              "3**2 + 1 == 10"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "Differentiate to verify",
+            "body": "Every antiderivative carries a free proof: differentiate it and the original must reappear. Five seconds per question, and up-vs-down direction errors never reach the examiner. And write the $+C$ before you even think — it's a mark."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Term by term, reversed",
+            "problemId": "ibsl-55-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Pin the constant",
+            "problemId": "ibsl-55-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.5 in four lines",
+            "points": [
+              "$\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$ — up one, divide, plus C. Booklet.",
+              "Boundary condition: substitute, solve for $C$.",
+              "Definite integral = number = area (curve above axis); GDC for now.",
+              "Verify every antiderivative by differentiating it back."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "derivative-rules-and-new-functions",
+      "title": "Chain, Product & Quotient Rules",
+      "concreteComparison": "The power rule can't touch $e^{3x^2}$ or $x^2 \\sin x$ — functions built by COMPOSING and MULTIPLYING. Three rules complete the toolkit, and four new derivatives ($\\sin, \\cos, e^x, \\ln x$) join the table. After this lesson, everything on the SL paper differentiates.",
+      "objective": "Use the derivatives of $\\sin x$, $\\cos x$, $e^x$ and $\\ln x$; apply the chain, product and quotient rules, alone and in combination.",
+      "concept": [
+        "**Syllabus card — SL 5.6.** Derivatives of $x^n$, $\\sin x$, $\\cos x$, $e^x$ and $\\ln x$; the chain rule for composite functions; the product and quotient rules. ALL in the booklet. **Papers 1 and 2** — the technical heart of SL calculus. ($x$ in RADIANS for all trig calculus — the SL 3.4 gateway pays off here.)",
+        "The new table entries: $\\sin x \\to \\cos x$; $\\cos x \\to -\\sin x$ (the minus lives on cosine's derivative); $e^x \\to e^x$ (its own derivative — growth proportional to size); $\\ln x \\to \\frac{1}{x}$.",
+        "CHAIN rule, for compositions: $\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}$ — differentiate the OUTER function (leaving the inside alone), then multiply by the inside's derivative. $e^{3x^2} \\to e^{3x^2} \\cdot 6x$; $\\sin(5x) \\to 5\\cos(5x)$; $(2x+1)^7 \\to 7(2x+1)^6 \\cdot 2$.",
+        "PRODUCT rule: $(uv)' = u'v + uv'$ — each factor takes its turn being differentiated. QUOTIENT rule: $\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}$ — order matters in the numerator (top-prime first). Recognizing WHICH rule a function needs — composition, product, or quotient — is the skill the exam actually tests; many functions need two rules at once."
+      ],
+      "keyIdea": "Four new table entries, three combination rules. Diagnose the structure first: inside-outside → chain; times → product; over → quotient.",
+      "facts": [
+        {
+          "title": "The new derivatives",
+          "latex": "\\sin x \\to \\cos x, \\quad \\cos x \\to -\\sin x, \\quad e^x \\to e^x, \\quad \\ln x \\to \\tfrac{1}{x}",
+          "explanation": "IN the booklet (SL 5.6). Radians only for the trig entries."
+        },
+        {
+          "title": "The three rules",
+          "latex": "\\text{chain: } \\frac{dy}{du}\\frac{du}{dx}, \\quad (uv)' = u'v + uv', \\quad \\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2}",
+          "explanation": "ALL in the booklet — copy them fresh; the quotient's numerator ORDER matters."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-56-we1",
+          "statement": "Differentiate:  \n**(a)** $y = e^{3x^2}$ **[2]**  \n**(b)** $y = \\ln(2x + 1)$ **[2]**  \n**(c)** $y = \\sin(5x)$ **[1]**",
+          "solution": "**(a)** Chain: outer $e^u \\to e^u$, inner $3x^2 \\to 6x$: $\\dfrac{dy}{dx} = 6x\\,e^{3x^2}$ *(M1 A1)*.  \n**(b)** Outer $\\ln u \\to \\frac{1}{u}$, inner $\\to 2$: $\\dfrac{dy}{dx} = \\dfrac{2}{2x + 1}$ *(M1 A1)*.  \n**(c)** $\\dfrac{dy}{dx} = 5\\cos(5x)$ *(A1)*.  \n**Narrative:** the chain rule is one move repeated: outer's derivative WITH the inside untouched, times the inside's derivative. Forgetting the inner factor ($6x$, $2$, $5$) is the single most common slip in SL calculus.",
+          "check": [
+            "diff(exp(3*x**2), x) == 6*x*exp(3*x**2)",
+            "diff(log(2*x + 1), x) == 2/(2*x + 1)",
+            "diff(sin(5*x), x) == 5*cos(5*x)"
+          ]
+        },
+        {
+          "id": "ibsl-56-we2",
+          "statement": "**(a)** Differentiate $y = x^2 \\sin x$. **[3]**  \n**(b)** Differentiate $y = \\dfrac{e^x}{x}$, simplifying your answer. **[3]**",
+          "solution": "**(a)** Product with $u = x^2$, $v = \\sin x$: $y' = 2x\\sin x + x^2\\cos x$ *(M1 A1 A1)*.  \n**(b)** Quotient with $u = e^x$, $v = x$: $y' = \\dfrac{e^x \\cdot x - e^x \\cdot 1}{x^2} = \\dfrac{e^x(x - 1)}{x^2}$ *(M1 A1 A1)*.  \n**Narrative:** name $u$ and $v$ BEFORE differentiating — the markscheme awards the substitution into the printed rule. In (b) the factored form is the 'simplified' the question wants, and it exposes the stationary point at $x = 1$ for free.",
+          "check": [
+            "diff(x**2*sin(x), x) == 2*x*sin(x) + x**2*cos(x)",
+            "simplify(diff(exp(x)/x, x) - exp(x)*(x - 1)/x**2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Chain rule without the inner derivative: $e^{3x^2} \\to e^{3x^2}$.",
+          "correction": "The inside must report its own derivative: $\\times 6x$. Ask 'what's inside?' before finishing.",
+          "authored": true
+        },
+        {
+          "text": "Differentiating a product factor-by-factor: $(x^2 \\sin x)' = 2x \\cos x$.",
+          "correction": "Products need the rule: $u'v + uv'$ — each factor takes a turn. The shortcut is simply false.",
+          "authored": true
+        },
+        {
+          "text": "Quotient rule with the numerator reversed: $\\frac{uv' - u'v}{v^2}$.",
+          "correction": "TOP-prime first: $\\frac{u'v - uv'}{v^2}$. It's printed in the booklet — copy, don't recall.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-56-t1",
+          "statement": "Differentiate $y = (2x + 1)^7$ and $y = \\cos(3x)$. **[3]**",
+          "solution": "Chain: $7(2x+1)^6 \\cdot 2 = 14(2x+1)^6$ *(M1 A1)*; $-3\\sin(3x)$ *(A1)* — cosine brings the minus, the inside brings the 3.",
+          "check": [
+            "diff((2*x + 1)**7, x) == 14*(2*x + 1)**6",
+            "diff(cos(3*x), x) == -3*sin(3*x)"
+          ]
+        },
+        {
+          "id": "ibsl-56-t2",
+          "statement": "Let $f(x) = x\\ln x$. Find $f'(x)$, and hence find $f'(e)$. **[3]**",
+          "solution": "Product: $f'(x) = 1 \\cdot \\ln x + x \\cdot \\frac{1}{x} = \\ln x + 1$ *(M1 A1)*. $f'(e) = 1 + 1 = 2$ *(A1)*.",
+          "check": [
+            "diff(x*log(x), x) == log(x) + 1",
+            "log(exp(1)) + 1 == 2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.6 · the technical heart",
+            "title": "Completing the toolkit",
+            "body": "Four new table entries and three combination rules — after this, every function on the SL paper differentiates. The examined skill is DIAGNOSIS: spot whether a function is a composition, a product, or a quotient before touching any rule."
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "The self-derivative",
+            "title": "Why e is special",
+            "teach": "For $y = e^x$, the slope at every point EQUALS the height at that point — growth proportional to size. That self-derivative property is why $e$ (not 2, not 10) is calculus's native base.",
+            "config": {
+              "mode": "growth",
+              "a": 1,
+              "b": 2.718,
+              "interactive": false
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The toolkit",
+            "title": "Table + three rules",
+            "beats": [
+              "$\\sin \\to \\cos$, $\\cos \\to -\\sin$, $e^x \\to e^x$, $\\ln x \\to \\frac{1}{x}$ — booklet, radians.",
+              "Chain (inside-outside): outer's derivative with inside intact, × inside's derivative.",
+              "Product: $u'v + uv'$. Quotient: $\\frac{u'v - uv'}{v^2}$ — top-prime first."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Three chains",
+            "problemId": "ibsl-56-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Diagnosis",
+            "title": "Which rule fires?",
+            "prompt": "To differentiate $y = x^3 e^x$, you need:",
+            "options": [
+              "The product rule",
+              "The chain rule",
+              "The quotient rule",
+              "Only the power rule"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two functions MULTIPLIED: $u = x^3$, $v = e^x$, so $y' = 3x^2 e^x + x^3 e^x$. Structure first, rule second.",
+            "check": [
+              "simplify(diff(x**3*exp(x), x) - (3*x**2*exp(x) + x**3*exp(x))) == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Product and quotient",
+            "problemId": "ibsl-56-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Chain discipline",
+            "title": "The inner factor",
+            "prompt": "$\\dfrac{d}{dx}\\left(\\cos(x^2)\\right) =$",
+            "options": [
+              "$-2x\\sin(x^2)$",
+              "$-\\sin(x^2)$",
+              "$2x\\sin(x^2)$",
+              "$-2x\\cos(x^2)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Outer: $\\cos u \\to -\\sin u$ (inside intact); inner: $x^2 \\to 2x$. Option B forgot the inner factor — THE slip of SL 5.6.",
+            "check": [
+              "diff(cos(x**2), x) == -2*x*sin(x**2)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Markscheme wisdom",
+            "title": "Name u and v on paper",
+            "body": "For products and quotients, write '$u = \\ldots$, $v = \\ldots$, $u' = \\ldots$, $v' = \\ldots$' then substitute into the booklet's printed rule. Four short lines, and the method mark is locked in before any algebra can spoil it. For chains: circle the inside, differentiate it LAST."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two chains",
+            "problemId": "ibsl-56-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A product with ln",
+            "problemId": "ibsl-56-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.6 in four lines",
+            "points": [
+              "Table: $\\sin \\to \\cos$, $\\cos \\to -\\sin$, $e^x \\to e^x$, $\\ln x \\to \\frac{1}{x}$.",
+              "Chain: outer (inside intact) × inner's derivative — never skip the inner factor.",
+              "Product $u'v + uv'$; quotient $\\frac{u'v - uv'}{v^2}$, order fixed.",
+              "Diagnose structure first; name $u$, $v$ in writing."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-second-derivative-and-concavity",
+      "title": "The Second Derivative & Concavity",
+      "concreteComparison": "Two roads can both climb — one easing off, one steepening. The first derivative says 'climbing'; the SECOND derivative says which kind: is the slope itself rising or falling? That bend direction is concavity, and the point where it flips is an inflexion.",
+      "objective": "Compute second derivatives; connect the sign of $f''$ to concavity; locate points of inflexion (where $f''$ changes sign); relate the graphs of $f$, $f'$ and $f''$.",
+      "concept": [
+        "**Syllabus card — SL 5.7.** The second derivative; graphical behaviour of functions, including the relationship between the graphs of $f$, $f'$ and $f''$; concavity; points of inflexion. **Papers 1 and 2**.",
+        "$f''$ is the derivative OF the derivative — differentiate twice. It measures how the SLOPE is changing: $f'' > 0$ means the slope is increasing, so the curve bends upward (CONCAVE UP, holds water); $f'' < 0$ means concave down (sheds water). A climbing curve can do either — direction and bend are independent dials.",
+        "A POINT OF INFLEXION is where concavity flips — where $f''$ CHANGES SIGN. Solving $f''(x) = 0$ finds the candidates; the sign change confirms them (like SL 5.2's stationary logic, one storey up). Inflexions can occur with any gradient: zero-gradient inflexions (like $x^3$ at 0) or sloped ones.",
+        "The three-graph relationship in one breath: $f'$ records $f$'s slopes; $f''$ records $f'$'s slopes. Where $f$ has an inflexion, $f'$ has a max or min, and $f''$ crosses zero — one event, three appearances. Exam questions hand you one graph and ask about the others; the chain above answers all of them."
+      ],
+      "keyIdea": "$f''$ is the bend dial: positive = concave up, negative = concave down, sign change = inflexion. $f''$ does to $f'$ exactly what $f'$ does to $f$.",
+      "facts": [
+        {
+          "title": "Concavity dictionary",
+          "latex": "f'' > 0: \\text{concave up}, \\qquad f'' < 0: \\text{concave down}, \\qquad \\text{sign change: inflexion}",
+          "explanation": "The syllabus's statement (SL 5.7). $f''(x) = 0$ alone is only a CANDIDATE — the sign must flip."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-57-we1",
+          "statement": "Let $f(x) = x^3 - 6x^2 + 9x$.  \n**(a)** Find $f'(x)$ and $f''(x)$. **[2]**  \n**(b)** Find the coordinates of the point of inflexion. **[3]**  \n**(c)** State the interval on which the graph is concave down. **[1]**",
+          "solution": "**(a)** $f'(x) = 3x^2 - 12x + 9$; $f''(x) = 6x - 12$ *(A1 A1)*.  \n**(b)** $f''(x) = 0$ at $x = 2$ *(M1)*; sign check: $f''(1) = -6 < 0$, $f''(3) = 6 > 0$ — sign flips ✓. $f(2) = 8 - 24 + 18 = 2$: inflexion at $(2, 2)$ *(A1 A1)*.  \n**(c)** Concave down where $f'' < 0$: $x < 2$ *(A1)*.  \n**Narrative:** the sign check in (b) is not decoration — $f''(x) = 0$ without a flip is no inflexion (think $f(x) = x^4$ at 0). Candidates confirmed, then coordinates.",
+          "check": [
+            "expand(diff(x**3 - 6*x**2 + 9*x, x, 2)) == 6*x - 12",
+            "solve(6*x - 12, x) == [2]",
+            "6*1 - 12 == -6",
+            "2**3 - 6*4 + 18 == 2"
+          ]
+        },
+        {
+          "id": "ibsl-57-we2",
+          "statement": "Let $g(x) = x^4$.  \n**(a)** Show that $g''(0) = 0$. **[2]**  \n**(b)** Explain why $x = 0$ is NOT a point of inflexion of $g$. **[2]**",
+          "solution": "**(a)** $g'(x) = 4x^3$, $g''(x) = 12x^2$; $g''(0) = 0$ ✓ *(M1 A1)*.  \n**(b)** $g''(x) = 12x^2 \\ge 0$ on BOTH sides of 0 — no sign change, so the concavity never flips: the curve is concave up throughout ($x = 0$ is in fact its minimum) *(M1 R1)*.  \n**Narrative:** the counterexample that guards the definition. '$f'' = 0$' finds candidates; 'sign change' crowns them. The R-mark is the both-sides sentence.",
+          "check": [
+            "expand(diff(x**4, x, 2)) == 12*x**2",
+            "12*0**2 == 0",
+            "12*1**2 > 0",
+            "12*(-1)**2 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Declaring an inflexion wherever $f''(x) = 0$.",
+          "correction": "The sign must CHANGE — check both sides ($x^4$ at 0 is the standing counterexample).",
+          "authored": true
+        },
+        {
+          "text": "Conflating concave down with decreasing.",
+          "correction": "Direction is $f'$'s job, bend is $f''$'s. A curve can climb while concave down (easing off).",
+          "authored": true
+        },
+        {
+          "text": "Answering about $f$ when the question shows $f'$ (again, one storey up).",
+          "correction": "Label the given graph. $f'$ decreasing = $f''< 0$ = $f$ concave down — walk the chain explicitly.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-57-t1",
+          "statement": "Find the point of inflexion of $f(x) = x^3 + 3x^2 - 1$, verifying the sign change. **[4]**",
+          "solution": "$f''(x) = 6x + 6 = 0$ at $x = -1$ *(M1 A1)*; $f''(-2) = -6 < 0$, $f''(0) = 6 > 0$ ✓. $f(-1) = -1 + 3 - 1 = 1$: inflexion $(-1, 1)$ *(A1 A1)*.",
+          "check": [
+            "expand(diff(x**3 + 3*x**2 - 1, x, 2)) == 6*x + 6",
+            "solve(6*x + 6, x) == [-1]",
+            "(-1)**3 + 3*1 - 1 == 1"
+          ]
+        },
+        {
+          "id": "ibsl-57-t2",
+          "statement": "For $f(x) = x^3 - 6x^2 + 9x$: at the inflexion $x = 2$, compute $f'(2)$ and interpret what happens to the GRADIENT there. **[2]**",
+          "solution": "$f'(2) = 12 - 24 + 9 = -3$ *(A1)*. The gradient reaches its MINIMUM value at the inflexion — the curve is falling most steeply exactly where the bend flips *(R1)*. ($f$'s inflexion = $f'$'s minimum.)",
+          "check": [
+            "3*4 - 12*2 + 9 == -3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.7 · Papers 1 & 2",
+            "title": "The bend dial",
+            "body": "Differentiate twice and you're measuring how the SLOPE changes — the curve's bend. Concave up holds water, concave down sheds it, and the flip between them is the point of inflexion."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "Pure concavity",
+            "title": "The a-dial is the bend",
+            "teach": "Step $a$ through zero: positive $a$ bends the parabola upward ($f'' = 2a > 0$ everywhere), negative bends it down. A parabola never flips bend mid-curve — that takes a cubic, where the inflexion lives.",
+            "config": {
+              "mode": "shape",
+              "a": 1,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The chain of graphs",
+            "title": "One event, three appearances",
+            "beats": [
+              "$f'' > 0$: concave up. $f'' < 0$: concave down. Sign flip: inflexion.",
+              "$f''$ does to $f'$ what $f'$ does to $f$ — the same dictionary, one storey up.",
+              "$f$'s inflexion $=$ $f'$'s max/min $=$ $f''$'s zero crossing."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Find and confirm the inflexion",
+            "problemId": "ibsl-57-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Dictionary check",
+            "title": "Bend from sign",
+            "prompt": "$f''(x) = 6x - 12$. The graph of $f$ is concave up when:",
+            "options": [
+              "$x > 2$",
+              "$x < 2$",
+              "All $x$",
+              "$x > 0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6x - 12 > 0 \\iff x > 2$. To the left it sheds water, to the right it holds it — the flip at $x = 2$ is the inflexion.",
+            "check": [
+              "solve(6*x - 12, x) == [2]",
+              "6*3 - 12 > 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The x⁴ counterexample",
+            "problemId": "ibsl-57-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Independent dials",
+            "title": "Climb + bend",
+            "prompt": "A curve has $f'(x) > 0$ and $f''(x) < 0$ on an interval. There, the curve is:",
+            "options": [
+              "Increasing, but ever more slowly",
+              "Decreasing, ever faster",
+              "Increasing, ever faster",
+              "At a maximum"
+            ],
+            "correctIndex": 0,
+            "explanation": "Positive slope = climbing; negative bend = the slope itself shrinking. The classic 'levelling off' shape — growth losing steam.",
+            "check": [
+              "1 == 1"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "Candidates, then coronation",
+            "body": "Inflexion questions have a fixed two-beat: solve $f''(x) = 0$ (candidates), then SHOW the sign change with a value on each side (coronation). Write both beats — the second is a mark, and skipping it fails on $x^4$-style traps."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Inflexion with a check",
+            "problemId": "ibsl-57-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The gradient at the flip",
+            "problemId": "ibsl-57-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.7 in four lines",
+            "points": [
+              "$f''$ = derivative of the derivative = the bend dial.",
+              "Concave up / down by $f''$'s sign; inflexion at the sign FLIP.",
+              "$f'' = 0$ is a candidate, not a verdict — test both sides.",
+              "Direction ($f'$) and bend ($f''$) are independent dials."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "maxima-minima-and-optimisation",
+      "title": "Maxima, Minima & Optimisation",
+      "concreteComparison": "A farmer with 40 m of fence wants the biggest rectangular pen. Try a few shapes and you'll get close; set the derivative of the area to zero and you get THE answer: the 10×10 square. Optimisation is calculus earning its keep in the real world.",
+      "objective": "Locate and classify stationary points with first- and second-derivative tests; solve optimisation problems (model, differentiate, solve, justify, answer in context).",
+      "concept": [
+        "**Syllabus card — SL 5.8.** Local maximum and minimum points; testing for max/min using the first or second derivative; optimisation; points of inflexion with zero and non-zero gradient. **Papers 1 and 2** — the optimisation word problem is Section B royalty.",
+        "Stationary points solve $f'(x) = 0$. Classification, two ways: the FIRST-derivative test reads the sign change ($+\\to-$ max, $-\\to+$ min, no change = stationary inflexion); the SECOND-derivative test evaluates $f''$ there ($f'' < 0$: max — concave down at a flat spot; $f'' > 0$: min; $f'' = 0$: inconclusive, fall back to the first test).",
+        "The optimisation pipeline: (1) MODEL — name the variable, write the quantity to optimise as a function of ONE variable (use the constraint to eliminate others); (2) state the domain from context; (3) solve $f' = 0$; (4) JUSTIFY max/min with a test; (5) answer the actual question, units included.",
+        "Steps (1) and (4) are where marks concentrate: the modelling M-marks reward the constraint substitution ('$y = 20 - x$, so $A = x(20 - x)$'), and the justification R-mark rewards the test ('$A'' = -2 < 0$, hence maximum'). An unjustified maximum scores as a guess."
+      ],
+      "keyIdea": "Stationary: $f' = 0$. Classify by sign change or by $f''$'s sign. Optimisation = model to one variable → differentiate → solve → justify → answer with units.",
+      "facts": [
+        {
+          "title": "The second-derivative test",
+          "latex": "f'(a) = 0: \\quad f''(a) < 0 \\Rightarrow \\text{max}, \\quad f''(a) > 0 \\Rightarrow \\text{min}",
+          "explanation": "$f''(a) = 0$ decides nothing — revert to the sign-change test."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-58-we1",
+          "statement": "Let $f(x) = x^3 - 3x^2 - 9x + 5$.  \n**(a)** Find the coordinates of the stationary points. **[4]**  \n**(b)** Use the second derivative to classify each. **[3]**",
+          "solution": "**(a)** $f'(x) = 3x^2 - 6x - 9 = 3(x - 3)(x + 1) = 0$: $x = -1, 3$ *(M1 A1)*. $f(-1) = 10$, $f(3) = -22$: points $(-1, 10)$ and $(3, -22)$ *(A1 A1)*.  \n**(b)** $f''(x) = 6x - 6$: $f''(-1) = -12 < 0$ — local MAXIMUM at $(-1, 10)$; $f''(3) = 12 > 0$ — local MINIMUM at $(3, -22)$ *(M1 A1 A1)*.  \n**Narrative:** the classification sentence quotes the number AND the sign AND the verdict — all three, each time. A cubic's max-then-min shape confirms the geometry.",
+          "check": [
+            "diff(x**3 - 3*x**2 - 9*x + 5, x) == 3*x**2 - 6*x - 9",
+            "solve(3*x**2 - 6*x - 9, x) == [-1, 3]",
+            "(-1)**3 - 3*1 + 9 + 5 == 10",
+            "27 - 27 - 27 + 5 == -22",
+            "6*(-1) - 6 == -12",
+            "6*3 - 6 == 12"
+          ]
+        },
+        {
+          "id": "ibsl-58-we2",
+          "statement": "A farmer has $40$ m of fencing for a rectangular pen.  \n**(a)** Writing the width as $x$, show that the area is $A = x(20 - x)$. **[2]**  \n**(b)** Find the dimensions that maximise the area, justifying that it is a maximum, and state the maximum area. **[4]**",
+          "solution": "**(a)** Perimeter: $2x + 2y = 40 \\Rightarrow y = 20 - x$ *(M1)*; $A = xy = x(20 - x)$ ✓ *(A1)*.  \n**(b)** $A = 20x - x^2$: $A' = 20 - 2x = 0 \\Rightarrow x = 10$ *(M1 A1)*. $A'' = -2 < 0$: a maximum *(R1)*. Dimensions $10 \\times 10$ m; $A_{max} = 100$ m² *(A1)*.  \n**Narrative:** the constraint substitution in (a) is THE optimisation move — one variable in, calculus can fire. The square beating every rectangle is the classic conclusion; the $A'' < 0$ line is what turns it from guess to proof.",
+          "check": [
+            "solve(Eq(2*x + 2*y, 40), y) == [20 - x]",
+            "solve(20 - 2*x, x) == [10]",
+            "expand(diff(20*x - x**2, x, 2)) == -2",
+            "10*(20 - 10) == 100"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting a maximum without any test.",
+          "correction": "Justify or it's a guess: quote $f''$'s sign (or the sign change) and the verdict. The R-mark is real.",
+          "authored": true
+        },
+        {
+          "text": "Optimising a formula still containing two variables.",
+          "correction": "Use the constraint to eliminate one FIRST — calculus needs a single-variable function.",
+          "authored": true
+        },
+        {
+          "text": "Answering the wrong question: giving $x = 10$ when the ask was the maximum AREA.",
+          "correction": "Re-read the demand: dimensions, or value, or both — with units.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-58-t1",
+          "statement": "Find and classify the stationary point of $f(x) = x^2 - 8x + 3$ using the second derivative. **[4]**",
+          "solution": "$f'(x) = 2x - 8 = 0$ at $x = 4$; $f(4) = -13$ *(M1 A1)*. $f'' = 2 > 0$: local (indeed global) MINIMUM at $(4, -13)$ *(M1 R1)*.",
+          "check": [
+            "solve(2*x - 8, x) == [4]",
+            "16 - 32 + 3 == -13",
+            "expand(diff(x**2 - 8*x + 3, x, 2)) == 2"
+          ]
+        },
+        {
+          "id": "ibsl-58-t2",
+          "statement": "The product of two positive numbers is to be maximised given their SUM is $16$. **Find** the numbers and the maximum product, with justification. **[4]**",
+          "solution": "Numbers $x$ and $16 - x$: $P = x(16 - x) = 16x - x^2$ *(M1)*. $P' = 16 - 2x = 0$: $x = 8$ *(A1)*; $P'' = -2 < 0$: maximum *(R1)*. Numbers $8$ and $8$; $P_{max} = 64$ *(A1)*.",
+          "check": [
+            "solve(16 - 2*x, x) == [8]",
+            "8*(16 - 8) == 64",
+            "expand(diff(16*x - x**2, x, 2)) == -2"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.8 · Section B royalty",
+            "title": "The best of all possible values",
+            "body": "Everything so far converges here: stationary points found ($f' = 0$), classified ($f''$ or sign change), and deployed on real quantities — biggest area, cheapest can, fastest route. The pipeline is fixed; the marks are predictable."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "The flat spot",
+            "title": "Vertex = zero gradient",
+            "teach": "Steer the vertex around: wherever it lands, the tangent there is horizontal — $f' = 0$ IS the summit condition. Concave down at a flat spot makes it a peak; that's the second-derivative test in one look.",
+            "config": {
+              "mode": "vertex",
+              "h": 10,
+              "k": 100,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The pipeline",
+            "title": "Five steps, every time",
+            "beats": [
+              "Model to ONE variable (constraint eliminates the rest); state the domain.",
+              "Solve $f'(x) = 0$; classify via $f''$'s sign or the sign change.",
+              "Answer the ACTUAL question — dimensions, value, or both, with units."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A cubic, fully classified",
+            "problemId": "ibsl-58-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Test fluency",
+            "title": "Read the verdict",
+            "prompt": "$f'(2) = 0$ and $f''(2) = -5$. At $x = 2$, $f$ has:",
+            "options": [
+              "A local maximum",
+              "A local minimum",
+              "A point of inflexion",
+              "Nothing special"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flat spot + concave down = peak. The two numbers answer it completely — no graph needed.",
+            "check": [
+              "-5 < 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The farmer's pen",
+            "problemId": "ibsl-58-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Modelling move",
+            "title": "Eliminate first",
+            "prompt": "Two numbers satisfy $x + y = 30$; maximise $xy$. The one-variable function to differentiate is:",
+            "options": [
+              "$P = x(30 - x)$",
+              "$P = xy$",
+              "$P = 30x$",
+              "$P = x + (30 - x)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The constraint gives $y = 30 - x$; substitute BEFORE differentiating. (Answer: $15 \\times 15 = 225$ — the split is always even.)",
+            "check": [
+              "solve(30 - 2*x, x) == [15]",
+              "15*15 == 225"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Markscheme wisdom",
+            "title": "The justification line",
+            "body": "Every optimisation answer carries the same insurance line: '$f''(a) = \\ldots < 0$, hence maximum' (or the sign-change table). One line, one R-mark, and your conclusion stops being a guess. Then answer in the question's own words and units."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Classify with f″",
+            "problemId": "ibsl-58-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Split sixteen",
+            "problemId": "ibsl-58-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.8 in four lines",
+            "points": [
+              "Stationary: $f' = 0$; classify by $f''$'s sign or the sign change.",
+              "$f'' = 0$ decides nothing — fall back to the first test.",
+              "Optimisation: constraint eliminates a variable BEFORE differentiating.",
+              "Justify (R-mark) and answer in context with units."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "kinematics",
+      "title": "Kinematics: Motion Under the Derivative",
+      "concreteComparison": "A ball thrown straight up is a calculus story: its height's derivative is velocity (zero at the top!), velocity's derivative is acceleration (constant $-10$, gravity's signature). Two differentiations tell the whole flight — and integration runs the story backward.",
+      "objective": "Use $v = s'$ and $a = v' = s''$; distinguish displacement from distance and velocity from speed; find when a particle is at rest or changes direction; integrate to recover displacement.",
+      "concept": [
+        "**Syllabus card — SL 5.9.** Kinematic problems involving displacement $s$, velocity $v$, acceleration $a$; the chain $v = \\frac{ds}{dt}$, $a = \\frac{dv}{dt} = \\frac{d^2s}{dt^2}$; distance travelled vs displacement; speed $= |v|$. **Papers 1 and 2** — calculus wearing a physics costume, and a fixture of Section B.",
+        "The ladder: differentiate to climb $s \\to v \\to a$; integrate to descend. DISPLACEMENT is position relative to the origin (signed); VELOCITY is its rate (signed — direction lives in the sign); SPEED is $|v|$, always $\\ge 0$. 'At rest' means $v = 0$; 'changes direction' means $v$ CHANGES SIGN there.",
+        "Distance vs displacement is the examined subtlety: displacement over $[a, b]$ is $s(b) - s(a)$ — net change; DISTANCE adds up every leg of the journey without cancellation. If the particle turns around mid-interval, split at the turning times ($v = 0$) and sum the absolute leg lengths.",
+        "The standard Section B walk: given $s(t)$ (or $v(t)$), find $v$ and $a$; find rest times; describe the motion at an instant (moving which way? speeding up or slowing?); compute distance over an interval. Speeding up $\\iff v$ and $a$ share a sign — a particle can slow down while accelerating positively."
+      ],
+      "keyIdea": "Differentiate up the ladder $s \\to v \\to a$; integrate back down. Rest: $v = 0$; direction change: $v$ flips sign; distance: split the journey at the turns.",
+      "facts": [
+        {
+          "title": "The kinematics ladder",
+          "latex": "v = \\frac{ds}{dt}, \\qquad a = \\frac{dv}{dt} = \\frac{d^2s}{dt^2}, \\qquad \\text{speed} = |v|",
+          "explanation": "IN the booklet (SL 5.9). Signs carry direction; speed drops the sign."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-59-we1",
+          "statement": "A particle moves along a line with displacement $s(t) = t^3 - 6t^2 + 9t$ metres after $t$ seconds, $t \\ge 0$.  \n**(a)** Find $v(t)$ and $a(t)$. **[2]**  \n**(b)** Find the times when the particle is at rest. **[2]**  \n**(c)** Find the DISTANCE travelled in the first $2$ seconds. **[3]**",
+          "solution": "**(a)** $v(t) = 3t^2 - 12t + 9$; $a(t) = 6t - 12$ *(A1 A1)*.  \n**(b)** $v = 3(t - 1)(t - 3) = 0$: $t = 1$ and $t = 3$ s *(M1 A1)*.  \n**(c)** The particle turns at $t = 1$ (inside the interval): split. $s(0) = 0$, $s(1) = 4$, $s(2) = 2$ *(M1)*. Legs: $|4 - 0| + |2 - 4| = 4 + 2 = 6$ m *(A1 A1)*.  \n**Narrative:** displacement over the same interval is $s(2) - s(0) = 2$ m — the difference between 6 and 2 IS the turnaround. Rest times are exactly where distance calculations must split; that's why (b) precedes (c).",
+          "check": [
+            "diff(t**3 - 6*t**2 + 9*t, t) == 3*t**2 - 12*t + 9",
+            "solve(3*t**2 - 12*t + 9, t) == [1, 3]",
+            "1 - 6 + 9 == 4",
+            "8 - 24 + 18 == 2",
+            "Abs(4 - 0) + Abs(2 - 4) == 6"
+          ]
+        },
+        {
+          "id": "ibsl-59-we2",
+          "statement": "A ball's height is $h(t) = 20t - 5t^2$ metres, $0 \\le t \\le 4$.  \n**(a)** Find the velocity $v(t)$ and **write down** the acceleration. **[2]**  \n**(b)** Find the maximum height. **[2]**  \n**(c)** Find the speed with which the ball lands. **[2]**",
+          "solution": "**(a)** $v(t) = 20 - 10t$; $a = -10$ m s⁻² throughout — gravity *(A1 A1)*.  \n**(b)** $v = 0$ at $t = 2$: $h(2) = 40 - 20 = 20$ m *(M1 A1)*.  \n**(c)** Lands at $t = 4$: $v(4) = -20$ m s⁻¹; SPEED $= 20$ m s⁻¹ *(M1 A1)*.  \n**Narrative:** the peak is a $v = 0$ event (SL 5.8's maximum in motion clothing), and the landing velocity's minus sign means 'downward' — the speed answer drops it. Symmetry note: landing speed equals launch speed.",
+          "check": [
+            "diff(20*t - 5*t**2, t) == 20 - 10*t",
+            "solve(20 - 10*t, t) == [2]",
+            "20*2 - 5*4 == 20",
+            "20 - 10*4 == -20",
+            "Abs(-20) == 20"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing distance as $s(b) - s(a)$ when the particle turns around inside the interval.",
+          "correction": "That's DISPLACEMENT. For distance, split at every $v = 0$ time and add absolute leg lengths.",
+          "authored": true
+        },
+        {
+          "text": "Reporting a landing speed of $-20$ m/s.",
+          "correction": "Speed is $|v|$ — magnitude only. The sign belongs to velocity (direction).",
+          "authored": true
+        },
+        {
+          "text": "'Accelerating means speeding up.'",
+          "correction": "Speeding up needs $v$ and $a$ to SHARE a sign. A rising ball with $a = -10$ is slowing; falling, it speeds up.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-59-t1",
+          "statement": "$s(t) = t^2 - 8t + 3$. **Find** when the particle is at rest, and its acceleration. **[3]**",
+          "solution": "$v = 2t - 8 = 0$ at $t = 4$ s *(M1 A1)*; $a = 2$ m s⁻² constant *(A1)*.",
+          "check": [
+            "solve(2*t - 8, t) == [4]",
+            "expand(diff(t**2 - 8*t + 3, t, 2)) == 2"
+          ]
+        },
+        {
+          "id": "ibsl-59-t2",
+          "statement": "A particle has $v(t) = 6t^2 - 4t$ m s⁻¹ and $s(0) = 5$ m. **Find** $s(t)$. **[3]**",
+          "solution": "Integrate: $s = 2t^3 - 2t^2 + C$ *(M1 A1)*; $s(0) = C = 5$: $s(t) = 2t^3 - 2t^2 + 5$ *(A1)* — SL 5.5's boundary condition, in motion.",
+          "check": [
+            "diff(2*t**3 - 2*t**2 + 5, t) == 6*t**2 - 4*t",
+            "2*0 - 2*0 + 5 == 5"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.9 · Section B fixture",
+            "title": "Calculus in a physics costume",
+            "body": "Position, velocity, acceleration — one ladder, climbed by differentiating and descended by integrating. The exam adds two twists: distance vs displacement, and speed vs velocity. Signs carry the story."
+          },
+          {
+            "kind": "parabolaGraph",
+            "eyebrow": "The flight",
+            "title": "h = 20t − 5t², live",
+            "teach": "The projectile arch: launched at $20$ m s⁻¹, velocity bleeding to ZERO at the top ($t = 2$, $h = 20$), then negative on the way down. The peak is $v = 0$ — a maximum problem in flight.",
+            "config": {
+              "mode": "projectile",
+              "v0": 20
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The ladder + the twists",
+            "title": "Signs carry direction",
+            "beats": [
+              "$s \\xrightarrow{d/dt} v \\xrightarrow{d/dt} a$; integrate to descend (boundary conditions pin the constants).",
+              "Rest: $v = 0$. Direction change: $v$ flips sign. Speed $= |v|$.",
+              "Distance ≠ displacement when the particle turns: split at $v = 0$, add $|$legs$|$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Rest times and true distance",
+            "problemId": "ibsl-59-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The subtlety",
+            "title": "Distance vs displacement",
+            "prompt": "A particle goes from $s = 0$ out to $s = 4$, then back to $s = 2$. Distance travelled and displacement are:",
+            "options": [
+              "$6$ and $2$",
+              "$2$ and $6$",
+              "$6$ and $6$",
+              "$2$ and $2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Distance adds the legs: $4 + 2 = 6$. Displacement nets them: $2 - 0 = 2$. The turnaround is the whole difference.",
+            "check": [
+              "4 + 2 == 6",
+              "2 - 0 == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The thrown ball",
+            "problemId": "ibsl-59-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Sign reading",
+            "title": "Speeding up or slowing?",
+            "prompt": "At an instant, $v = -6$ m/s and $a = -2$ m/s². The particle is:",
+            "options": [
+              "Moving backward, speeding up",
+              "Moving backward, slowing down",
+              "Moving forward, slowing down",
+              "At rest"
+            ],
+            "correctIndex": 0,
+            "explanation": "Same sign = speed growing: the backward motion is getting faster. Speeding up is about $v$ and $a$ AGREEING, not about $a$'s sign alone.",
+            "check": [
+              "(-6)*(-2) > 0"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "Timeline before arithmetic",
+            "body": "For any distance question, draw a tiny timeline: mark the rest times, compute $s$ at every marked instant, then add absolute differences leg by leg. The timeline is thirty seconds and makes the split impossible to forget."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Rest and acceleration",
+            "problemId": "ibsl-59-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Velocity back to position",
+            "problemId": "ibsl-59-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.9 in four lines",
+            "points": [
+              "$v = s'$, $a = v' = s''$ — booklet; integrate to descend the ladder.",
+              "Rest: $v = 0$; direction change: sign flip; speed $= |v|$.",
+              "Distance: split at the turns, add absolute legs.",
+              "Speeding up $\\iff v$ and $a$ share a sign."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "integration-techniques",
+      "title": "Integration Techniques",
+      "concreteComparison": "Differentiation is mechanical; integration is recognition. $\\int 2x(x^2+1)^3 dx$ looks hard until you SEE the chain rule's fingerprints — the $2x$ is exactly the inside's derivative — and the answer writes itself: $\\frac{(x^2+1)^4}{4} + C$.",
+      "objective": "Integrate the standard table ($x^n$, $\\sin$, $\\cos$, $e^x$, $\\frac{1}{x}$); handle linear insides $f(ax + b)$ by dividing by $a$; integrate by inspection (reverse chain) and by substitution.",
+      "concept": [
+        "**Syllabus card — SL 5.10.** Indefinite integrals of $x^n$ ($n \\in \\mathbb{Q}$), $\\sin x$, $\\cos x$, $\\frac{1}{x}$ and $e^x$; composites of these with the LINEAR function $ax + b$; integration by inspection (reverse chain rule) or by substitution for expressions of the form $\\int k g'(x) f(g(x)) dx$. Table entries IN the booklet. **Papers 1 and 2**.",
+        "The table, reversed from SL 5.6: $\\int \\sin x \\, dx = -\\cos x + C$ (the minus moves to SINE's integral); $\\int \\cos x \\, dx = \\sin x + C$; $\\int e^x dx = e^x + C$; and the missing power-rule case lands: $\\int \\frac{1}{x} dx = \\ln|x| + C$.",
+        "LINEAR insides cost a division: $\\int f(ax + b) \\, dx = \\frac{F(ax + b)}{a} + C$ — because differentiating back multiplies by $a$ (chain rule), integrating must divide by it. $\\int e^{2x} dx = \\frac{e^{2x}}{2} + C$; $\\int \\cos(3x - 1) dx = \\frac{\\sin(3x - 1)}{3} + C$. Divide by the INSIDE's coefficient only — this shortcut is for LINEAR insides alone.",
+        "For nonlinear insides, look for the chain rule's fingerprints: in $\\int 2x(x^2 + 1)^3 dx$ the factor $2x$ IS the derivative of the inside $x^2 + 1$ — so the integral is $\\frac{(x^2+1)^4}{4} + C$ by inspection (or formally, substitution $u = x^2 + 1$). No matching fingerprint (up to a constant), no technique — SL doesn't integrate those. As always: differentiate your answer to verify."
+      ],
+      "keyIdea": "Reverse the table; linear insides divide by $a$; nonlinear insides need the inside's derivative standing beside them (inspection/substitution). Differentiate back to check.",
+      "facts": [
+        {
+          "title": "The integral table",
+          "latex": "\\int \\sin x = -\\cos x, \\quad \\int \\cos x = \\sin x, \\quad \\int e^x = e^x, \\quad \\int \\tfrac{1}{x} = \\ln|x| \\;\\; (+C)",
+          "explanation": "IN the booklet (SL 5.10). The minus sits on SINE's integral (and on cosine's derivative)."
+        },
+        {
+          "title": "Linear inside",
+          "latex": "\\int f(ax + b)\\,dx = \\frac{F(ax + b)}{a} + C",
+          "explanation": "Divide by the inside's coefficient — linear insides only."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-510-we1",
+          "statement": "Find:  \n**(a)** $\\displaystyle\\int e^{2x} \\, dx$ **[2]**  \n**(b)** $\\displaystyle\\int \\cos(3x - 1) \\, dx$ **[2]**  \n**(c)** $\\displaystyle\\int (2x + 5)^4 \\, dx$ **[2]**",
+          "solution": "**(a)** $\\dfrac{e^{2x}}{2} + C$ *(M1 A1)*.  \n**(b)** $\\dfrac{\\sin(3x - 1)}{3} + C$ *(M1 A1)*.  \n**(c)** Power rule up one, then divide by the inside's 2: $\\dfrac{(2x + 5)^5}{10} + C$ *(M1 A1)*.  \n**Narrative:** one move three times — integrate the outer shape, divide by the linear inside's coefficient. Verify (c): differentiating gives $\\frac{5(2x+5)^4 \\cdot 2}{10} = (2x+5)^4$ ✓.",
+          "check": [
+            "diff(exp(2*x)/2, x) == exp(2*x)",
+            "diff(sin(3*x - 1)/3, x) == cos(3*x - 1)",
+            "simplify(diff((2*x + 5)**5/10, x) - (2*x + 5)**4) == 0"
+          ]
+        },
+        {
+          "id": "ibsl-510-we2",
+          "statement": "**(a)** Find $\\displaystyle\\int 2x\\,(x^2 + 1)^3 \\, dx$. **[3]**  \n**(b)** Find $\\displaystyle\\int \\dfrac{6x^2}{x^3 + 4} \\, dx$. **[3]**",
+          "solution": "**(a)** The factor $2x$ is the derivative of the inside $x^2 + 1$ *(M1 — spotting the fingerprint)*: by inspection (or $u = x^2 + 1$), $\\dfrac{(x^2 + 1)^4}{4} + C$ *(A1 A1)*.  \n**(b)** The top $6x^2$ is $2 \\times$ the derivative of the bottom $x^3 + 4$: $\\displaystyle\\int \\frac{2 \\cdot 3x^2}{x^3 + 4} dx = 2\\ln|x^3 + 4| + C$ *(M1 A1 A1)*.  \n**Narrative:** both are $\\int k\\,g'(x) f(g(x))\\,dx$ — the syllabus's exact phrase. The skill is FINDING $g$ and checking its derivative sits beside it (constants adjustable). Derivative-over-function integrals always land on $\\ln$.",
+          "check": [
+            "simplify(diff((x**2 + 1)**4/4, x) - 2*x*(x**2 + 1)**3) == 0",
+            "simplify(diff(2*log(x**3 + 4), x) - 6*x**2/(x**3 + 4)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to divide by the linear coefficient: $\\int e^{2x} = e^{2x} + C$.",
+          "correction": "Differentiating back gives $2e^{2x}$ — too big. Divide by the inside's $a$: $\\frac{e^{2x}}{2}$.",
+          "authored": true
+        },
+        {
+          "text": "Using the divide-by-a shortcut on NONLINEAR insides: $\\int e^{x^2} dx = \\frac{e^{x^2}}{2x}$.",
+          "correction": "The shortcut is linear-only (dividing by a function is not a thing). $e^{x^2}$ has no SL antiderivative at all.",
+          "authored": true
+        },
+        {
+          "text": "Sign slip on the trig pair: $\\int \\sin x = \\cos x$.",
+          "correction": "The minus rides sine's INTEGRAL: $-\\cos x + C$. (Check by differentiating: $-(-\\sin x) = \\sin x$ ✓.)",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-510-t1",
+          "statement": "Find $\\displaystyle\\int \\left(\\sin(2x) + e^{5x}\\right) dx$. **[3]**",
+          "solution": "$-\\dfrac{\\cos(2x)}{2} + \\dfrac{e^{5x}}{5} + C$ *(A1 A1 A1)* — table entries with their linear divisions.",
+          "check": [
+            "diff(-cos(2*x)/2 + exp(5*x)/5, x) == sin(2*x) + exp(5*x)"
+          ]
+        },
+        {
+          "id": "ibsl-510-t2",
+          "statement": "Find $\\displaystyle\\int 3x^2 (x^3 + 1)^5 \\, dx$. **[3]**",
+          "solution": "$3x^2$ is exactly the inside's derivative *(M1)*: $\\dfrac{(x^3 + 1)^6}{6} + C$ *(A1 A1)*.",
+          "check": [
+            "simplify(diff((x**3 + 1)**6/6, x) - 3*x**2*(x**3 + 1)**5) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.10 · Papers 1 & 2",
+            "title": "Integration is recognition",
+            "body": "Three tiers: table entries (reversed from SL 5.6), linear insides (divide by $a$), and chain-rule fingerprints (inspection/substitution). Learn to SEE which tier a problem belongs to and the writing takes seconds."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The table + the shortcut",
+            "title": "Reversed, with one division",
+            "beats": [
+              "$\\int \\sin = -\\cos$, $\\int \\cos = \\sin$, $\\int e^x = e^x$, $\\int \\frac{1}{x} = \\ln|x|$ — all $+C$, all booklet.",
+              "Linear inside $ax + b$: integrate the shape, DIVIDE by $a$.",
+              "Nonlinear inside: only if its derivative stands beside it — $\\int k g' f(g)$."
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Three linear insides",
+            "problemId": "ibsl-510-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Divide check",
+            "title": "The linear toll",
+            "prompt": "$\\displaystyle\\int \\sin(4x)\\,dx =$",
+            "options": [
+              "$-\\dfrac{\\cos(4x)}{4} + C$",
+              "$-4\\cos(4x) + C$",
+              "$\\dfrac{\\cos(4x)}{4} + C$",
+              "$-\\cos(4x) + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sine's integral brings the minus; the inside's 4 demands division. Differentiate back: $-\\frac{-4\\sin(4x)}{4} = \\sin(4x)$ ✓.",
+            "check": [
+              "diff(-cos(4*x)/4, x) == sin(4*x)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Fingerprint hunting",
+            "problemId": "ibsl-510-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Fingerprint check",
+            "title": "Can inspection fire?",
+            "prompt": "Which integral yields to inspection (reverse chain rule)?",
+            "options": [
+              "$\\displaystyle\\int 4x^3 \\cos(x^4)\\,dx$",
+              "$\\displaystyle\\int \\cos(x^4)\\,dx$",
+              "$\\displaystyle\\int x \\cos(x^4)\\,dx$",
+              "$\\displaystyle\\int \\cos^4 x \\,dx$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$4x^3$ is exactly $(x^4)'$ — answer $\\sin(x^4) + C$. The others lack the matching fingerprint (and sit beyond SL).",
+            "check": [
+              "diff(sin(x**4), x) == 4*x**3*cos(x**4)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam craft",
+            "title": "u-substitution as bookkeeping",
+            "body": "When inspection feels risky, write it out: $u = g(x)$, $du = g'(x)dx$, swap, integrate in $u$, swap back. Same answer, visible method marks. And ALWAYS differentiate the final answer — integration's built-in answer key."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Table + toll",
+            "problemId": "ibsl-510-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A perfect fingerprint",
+            "problemId": "ibsl-510-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.10 in four lines",
+            "points": [
+              "Table (booklet): $-\\cos, \\sin, e^x, \\ln|x|$ — the minus on sine's integral.",
+              "Linear inside: divide by $a$. Linear ONLY.",
+              "Nonlinear: need $g'$ standing beside $f(g)$ — inspection or substitution.",
+              "Differentiate every answer back. Free proof, every time."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "definite-integrals-and-areas",
+      "title": "Definite Integrals & Areas",
+      "concreteComparison": "Slice the region under a curve into skinny rectangles and add them: as the slices shrink, the staircase melts into the exact area — and the Fundamental Theorem says an antiderivative computes it in two substitutions. The SL course ends where Newton started.",
+      "objective": "Evaluate definite integrals analytically via the Fundamental Theorem; find areas between a curve and the $x$-axis (including where $f$ is negative) and between two curves.",
+      "concept": [
+        "**Syllabus card — SL 5.11.** Definite integrals, including the analytical approach $\\int_a^b f(x)dx = F(b) - F(a)$; areas of a region enclosed by a curve and the $x$-axis WHERE $f$ CAN BE NEGATIVE; areas between two curves. **Papers 1 and 2** — the topic's capstone, and Section B's favourite finale.",
+        "The FUNDAMENTAL THEOREM: $\\int_a^b f(x)\\,dx = F(b) - F(a)$, any antiderivative $F$ (the $+C$ cancels in the subtraction — drop it). Bracket notation shows the work: $\\int_1^3 (2x + 1)dx = \\left[x^2 + x\\right]_1^3 = 12 - 2 = 10$.",
+        "Where the curve dips BELOW the axis, the integral counts that region NEGATIVE — so 'the integral' and 'the area' part company. For area: find where $f$ crosses the axis inside the interval, split there, and add ABSOLUTE values of the pieces — the same split-at-the-turns discipline as kinematics' distance. (Equivalently: area $= \\int |f|$.)",
+        "Between two curves: area $= \\int_a^b (\\text{top} - \\text{bottom})\\,dx$ — top minus bottom keeps the integrand positive wherever the order holds. Limits usually come from solving top $=$ bottom (SL 2.4's intersections). The full Section B arc: find intersections, set up the integral with the order stated, evaluate by FTC or GDC."
+      ],
+      "keyIdea": "$\\int_a^b f = F(b) - F(a)$. Integral ≠ area when $f$ dips negative — split at the crossings, add absolute pieces. Between curves: $\\int(\\text{top} - \\text{bottom})$ between intersections.",
+      "facts": [
+        {
+          "title": "The Fundamental Theorem",
+          "latex": "\\int_a^b f(x)\\,dx = F(b) - F(a)",
+          "explanation": "IN the booklet (SL 5.11). Bracket notation $[F(x)]_a^b$ shows the method."
+        },
+        {
+          "title": "Area recipes",
+          "latex": "\\text{axis: split at crossings, add } |\\text{pieces}|; \\qquad \\text{two curves: } \\int (\\text{top} - \\text{bottom})",
+          "explanation": "The syllabus's explicit 'f can be negative' warning is the exam's favourite trap."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibsl-511-we1",
+          "statement": "**(a)** Evaluate $\\displaystyle\\int_0^2 x^3 \\, dx$ exactly. **[3]**  \n**(b)** The region between $y = x^2 - 4$ and the $x$-axis from $x = 0$ to $x = 2$ lies below the axis. Find its AREA. **[3]**",
+          "solution": "**(a)** $\\left[\\dfrac{x^4}{4}\\right]_0^2 = 4 - 0 = 4$ *(M1 A1 A1)*.  \n**(b)** $\\displaystyle\\int_0^2 (x^2 - 4)dx = \\left[\\dfrac{x^3}{3} - 4x\\right]_0^2 = \\dfrac{8}{3} - 8 = -\\dfrac{16}{3}$ *(M1 A1)*. The region sits below the axis, so AREA $= \\left|-\\dfrac{16}{3}\\right| = \\dfrac{16}{3}$ *(A1)*.  \n**Narrative:** the negative integral is CORRECT as an integral — the absolute value step is the area conversion, and stating why ('region below the axis') is the R-flavoured part of the final mark.",
+          "check": [
+            "integrate(x**3, (x, 0, 2)) == 4",
+            "integrate(x**2 - 4, (x, 0, 2)) == Rational(-16, 3)",
+            "Abs(Rational(-16, 3)) == Rational(16, 3)"
+          ]
+        },
+        {
+          "id": "ibsl-511-we2",
+          "statement": "**(a)** Find the $x$-coordinates of the intersections of $y = x$ and $y = x^2$. **[2]**  \n**(b)** Find the exact area of the region enclosed between the two curves. **[4]**",
+          "solution": "**(a)** $x = x^2 \\Rightarrow x(1 - x) = 0$: $x = 0, 1$ *(M1 A1)*.  \n**(b)** On $[0, 1]$ the line sits ABOVE the parabola (test $x = \\frac{1}{2}$: $\\frac{1}{2} > \\frac{1}{4}$): area $= \\displaystyle\\int_0^1 (x - x^2)dx$ *(M1 A1)* $= \\left[\\dfrac{x^2}{2} - \\dfrac{x^3}{3}\\right]_0^1 = \\dfrac{1}{2} - \\dfrac{1}{3} = \\dfrac{1}{6}$ *(A1 A1)*.  \n**Narrative:** the full arc — intersect (SL 2.4), order the curves (one test point), integrate top-minus-bottom (FTC). The order test is one line and prevents the classic negative-area surprise.",
+          "check": [
+            "solve(x - x**2, x) == [0, 1]",
+            "integrate(x - x**2, (x, 0, 1)) == Rational(1, 6)",
+            "Rational(1,2) > Rational(1,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting a negative 'area'.",
+          "correction": "Integrals can be negative; areas cannot. Below-axis regions convert via absolute value — with the reason stated.",
+          "authored": true
+        },
+        {
+          "text": "Integrating straight across an axis crossing: $\\int_{-2}^{2}$ of an odd-ish function and calling the 0 an area.",
+          "correction": "Find the crossings inside the interval, split there, add $|$pieces$|$. Cancellation is the trap.",
+          "authored": true
+        },
+        {
+          "text": "Between curves: subtracting in the wrong order and shrugging at the minus.",
+          "correction": "Test one point to establish top vs bottom BEFORE integrating; state the order.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibsl-511-t1",
+          "statement": "Evaluate $\\displaystyle\\int_1^3 (2x + 1)\\,dx$ exactly, using bracket notation. **[3]**",
+          "solution": "$\\left[x^2 + x\\right]_1^3 = (9 + 3) - (1 + 1) = 10$ *(M1 A1 A1)*.",
+          "check": [
+            "integrate(2*x + 1, (x, 1, 3)) == 10"
+          ]
+        },
+        {
+          "id": "ibsl-511-t2",
+          "statement": "Find the exact area enclosed by $y = 4 - x^2$ and the $x$-axis. **[4]**",
+          "solution": "Crossings: $x = \\pm 2$ *(A1)*. The arch sits above the axis: area $= \\displaystyle\\int_{-2}^{2}(4 - x^2)dx = \\left[4x - \\dfrac{x^3}{3}\\right]_{-2}^{2} = \\dfrac{16}{3} + \\dfrac{16}{3} = \\dfrac{32}{3}$ *(M1 A1 A1)*.",
+          "check": [
+            "solve(4 - x**2, x) == [-2, 2]",
+            "integrate(4 - x**2, (x, -2, 2)) == Rational(32, 3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "SL 5.11 · the capstone",
+            "title": "Where the staircase melts",
+            "body": "The definite integral is the limit of rectangle sums — and the Fundamental Theorem computes it with one antiderivative and two substitutions. The SL course's final code, and Section B's favourite ending."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "The definition",
+            "title": "Rectangles chase the area",
+            "teach": "Step $n$ upward: the staircase of rectangles hugs the curve tighter and its total chases $\\frac{8}{3}$. The integral IS this limit — the melting made precise.",
+            "config": {
+              "mode": "riemann"
+            }
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "The miracle",
+            "title": "Why antiderivatives measure area",
+            "teach": "Geometry (the triangle's area) and the antiderivative agree at every stopping point — that agreement is the Fundamental Theorem. Slicing and anti-differentiating are the same machine.",
+            "config": {
+              "mode": "ftc"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "FTC, then a below-axis area",
+            "problemId": "ibsl-511-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "FTC fluency",
+            "title": "Bracket and subtract",
+            "prompt": "$\\displaystyle\\int_0^3 2x\\,dx =$",
+            "options": [
+              "$9$",
+              "$6$",
+              "$18$",
+              "$3$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$[x^2]_0^3 = 9 - 0$. (Geometry agrees: a triangle of base 3 and height 6.)",
+            "check": [
+              "integrate(2*x, (x, 0, 3)) == 9"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The trap",
+            "title": "Integral vs area",
+            "prompt": "$\\displaystyle\\int_{-1}^{1} x^3 dx = 0$. The AREA between $y = x^3$ and the axis on $[-1, 1]$ is:",
+            "options": [
+              "$\\dfrac{1}{2}$",
+              "$0$",
+              "$1$",
+              "$\\dfrac{1}{4}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The two lobes cancel in the integral but both COUNT as area: $2 \\times \\int_0^1 x^3 dx = 2 \\times \\frac{1}{4} = \\frac{1}{2}$. Split at the crossing, always.",
+            "check": [
+              "integrate(x**3, (x, -1, 1)) == 0",
+              "2*integrate(x**3, (x, 0, 1)) == Rational(1, 2)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Between the line and the parabola",
+            "problemId": "ibsl-511-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Section B wisdom",
+            "title": "The three-line setup",
+            "body": "Every area question: (1) crossings/intersections found and stated; (2) the integral WRITTEN with correct limits and order (top − bottom, or split pieces); (3) evaluation by FTC brackets or GDC. Lines 1 and 2 are method marks that survive any arithmetic weather. Sketch if unsure — thirty seconds, every trap visible."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Brackets, subtracted",
+            "problemId": "ibsl-511-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The parabolic arch",
+            "problemId": "ibsl-511-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "SL 5.11 in four lines",
+            "points": [
+              "$\\int_a^b f = F(b) - F(a)$ — booklet; brackets show the method.",
+              "Below the axis, integrals go negative; areas never do — split and absolute.",
+              "Two curves: intersections for limits, top − bottom for the integrand.",
+              "Sketch first; write the integral before evaluating anything."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ibsl-ca-p01",
+      "statement": "**Write down** $\\lim_{x \\to 4} \\dfrac{x^2 - 16}{x - 4}$, after simplifying. **[2]**",
+      "solution": "$\\frac{(x-4)(x+4)}{x-4} = x + 4$ away from the hole: limit $= 8$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.1",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "limit((x**2 - 16)/(x - 4), x, 4) == 8"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p02",
+      "statement": "$P(t)$ is a town's population after $t$ years, with $P'(3) = 120$. **Interpret** this value. **[2]**",
+      "solution": "At $t = 3$ years the population is GROWING at 120 people per year *(A1 R1)* — direction, rate, units.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.1",
+          "mono": true
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "120 > 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p03",
+      "statement": "Find the intervals on which $f(x) = x^3 - 12x$ is increasing. **[4]**",
+      "solution": "$f' = 3x^2 - 12 = 3(x-2)(x+2)$: roots $\\pm 2$ *(M1 A1)*; signs $+,-,+$: increasing $x < -2$ and $x > 2$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.2",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(3*x**2 - 12, x) == [-2, 2]",
+        "3*9 - 12 > 0",
+        "3*0 - 12 < 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p04",
+      "statement": "$f'(x) = (x - 1)(x - 5)$. **State** the interval on which $f$ is decreasing, and classify the stationary point at $x = 1$. **[3]**",
+      "solution": "$f' < 0$ between the roots: $1 < x < 5$ *(A1)*. At $x = 1$ the sign flips $+ \\to -$: local maximum *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.2",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "(2 - 1)*(2 - 5) < 0",
+        "(0 - 1)*(0 - 5) > 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p05",
+      "statement": "Find $f'(x)$ for $f(x) = 3x^4 - 2x^2 + 7x$, and evaluate $f'(1)$. **[3]**",
+      "solution": "$f' = 12x^3 - 4x + 7$ *(A1 A1)*; $f'(1) = 15$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.3",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(3*x**4 - 2*x**2 + 7*x, x) == 12*x**3 - 4*x + 7",
+        "12 - 4 + 7 == 15"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p06",
+      "statement": "Find $\\dfrac{dy}{dx}$ for $y = 5\\sqrt{x} - \\dfrac{2}{x}$, and evaluate it at $x = 1$. **[4]**",
+      "solution": "$y = 5x^{1/2} - 2x^{-1}$: $y' = \\frac{5}{2\\sqrt{x}} + \\frac{2}{x^2}$ *(M1 A1 A1)*. At 1: $\\frac{5}{2} + 2 = \\frac{9}{2}$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.3",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(5*sqrt(x) - 2/x, x) == 5/(2*sqrt(x)) + 2/x**2",
+        "Rational(5,2) + 2 == Rational(9,2)"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p07",
+      "statement": "Find the equation of the tangent to $y = x^2 + 2x$ at $x = 1$, in the form $y = mx + c$. **[4]**",
+      "solution": "Point $(1, 3)$; slope $2x + 2 \\to 4$ *(A1 A1)*. $y - 3 = 4(x - 1)$: $y = 4x - 1$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.4",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "1 + 2 == 3",
+        "diff(x**2 + 2*x, x) == 2*x + 2",
+        "4*1 - 1 == 3"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p08",
+      "statement": "Find the equation of the NORMAL to $y = x^3 - 2x$ at $x = 1$. **[4]**",
+      "solution": "Point $(1, -1)$; $f' = 3x^2 - 2 \\to 1$ *(A1 A1)*. Normal slope $-1$: $y + 1 = -(x - 1)$, so $y = -x$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.4",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "1 - 2 == -1",
+        "3 - 2 == 1",
+        "-(1) == -1"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p09",
+      "statement": "Find $\\displaystyle\\int (4x^3 - 6x + 1)\\,dx$. **[3]**",
+      "solution": "$x^4 - 3x^2 + x + C$ *(A1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.5",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(x**4 - 3*x**2 + x, x) == 4*x**3 - 6*x + 1"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p10",
+      "statement": "$f'(x) = 3x^2 + 2$ and $f(2) = 15$. **Find** $f(x)$. **[4]**",
+      "solution": "$f = x^3 + 2x + C$ *(M1 A1)*; $8 + 4 + C = 15 \\Rightarrow C = 3$ *(M1)*: $f = x^3 + 2x + 3$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.5",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(x**3 + 2*x + 3, x) == 3*x**2 + 2",
+        "8 + 4 + 3 == 15"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p11",
+      "statement": "Differentiate $y = x e^x$, simplifying your answer. **[3]**",
+      "solution": "Product: $y' = e^x + x e^x = e^x(1 + x)$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.6",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "simplify(diff(x*exp(x), x) - exp(x)*(1 + x)) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p12",
+      "statement": "Differentiate $y = \\sin(2x) + \\ln(3x)$. **[3]**",
+      "solution": "$y' = 2\\cos(2x) + \\frac{1}{x}$ *(A1 A1 A1)* — note $\\frac{3}{3x} = \\frac{1}{x}$.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.6",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(sin(2*x) + log(3*x), x) == 2*cos(2*x) + 1/x"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p13",
+      "statement": "Find the coordinates of the point of inflexion of $f(x) = x^3 - 9x^2 + 5$. **[4]**",
+      "solution": "$f'' = 6x - 18 = 0$ at $x = 3$ *(M1 A1)*; sign flips ✓; $f(3) = 27 - 81 + 5 = -49$: $(3, -49)$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.7",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "expand(diff(x**3 - 9*x**2 + 5, x, 2)) == 6*x - 18",
+        "27 - 81 + 5 == -49"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p14",
+      "statement": "**Find** the interval on which $f(x) = x^4 - 6x^2$ is concave down. **[3]**",
+      "solution": "$f'' = 12x^2 - 12 < 0$ for $-1 < x < 1$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.7",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "expand(diff(x**4 - 6*x**2, x, 2)) == 12*x**2 - 12",
+        "12*0 - 12 < 0",
+        "solve(12*x**2 - 12, x) == [-1, 1]"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p15",
+      "statement": "Find and classify the stationary points of $f(x) = 2x^3 - 9x^2 + 12x$. **[6]**",
+      "solution": "$f' = 6x^2 - 18x + 12 = 6(x-1)(x-2)$: $x = 1, 2$ *(M1 A1)*. $f(1) = 5$, $f(2) = 4$ *(A1)*. $f'' = 12x - 18$: $f''(1) = -6 < 0$ max at $(1, 5)$; $f''(2) = 6 > 0$ min at $(2, 4)$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.8",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(6*x**2 - 18*x + 12, x) == [1, 2]",
+        "2 - 9 + 12 == 5",
+        "16 - 36 + 24 == 4",
+        "12*1 - 18 == -6"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p16",
+      "statement": "Two positive numbers sum to $20$. **Find** the numbers maximising their product, with justification. **[4]**",
+      "solution": "$P = x(20 - x)$: $P' = 20 - 2x = 0$ at $x = 10$ *(M1 A1)*; $P'' = -2 < 0$: maximum *(R1)*. $10$ and $10$, $P = 100$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.8",
+          "mono": true
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "solve(20 - 2*x, x) == [10]",
+        "10*10 == 100"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p17",
+      "statement": "$s(t) = t^3 - 9t^2 + 24t$ m. **Find** the times when the particle is at rest, and its acceleration at $t = 2$. **[4]**",
+      "solution": "$v = 3t^2 - 18t + 24 = 3(t-2)(t-4)$: rest at $t = 2, 4$ s *(M1 A1)*. $a = 6t - 18$: $a(2) = -6$ m s⁻² *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.9",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "solve(3*t**2 - 18*t + 24, t) == [2, 4]",
+        "6*2 - 18 == -6"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p18",
+      "statement": "$v(t) = 10 - 2t$ m s⁻¹ and $s(0) = 3$ m. **Find** $s(t)$, and the time at which the particle is at rest. **[4]**",
+      "solution": "$s = 10t - t^2 + C$; $C = 3$ *(M1 A1)*: $s = 10t - t^2 + 3$. Rest: $v = 0$ at $t = 5$ s *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.9",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(10*t - t**2 + 3, t) == 10 - 2*t",
+        "solve(10 - 2*t, t) == [5]"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p19",
+      "statement": "Find $\\displaystyle\\int e^{4x}\\,dx$ and $\\displaystyle\\int \\sin(2x)\\,dx$. **[4]**",
+      "solution": "$\\frac{e^{4x}}{4} + C$ *(A1 A1)*; $-\\frac{\\cos(2x)}{2} + C$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.10",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "diff(exp(4*x)/4, x) == exp(4*x)",
+        "diff(-cos(2*x)/2, x) == sin(2*x)"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p20",
+      "statement": "Find $\\displaystyle\\int 3x^2 (x^3 + 1)^5\\,dx$. **[3]**",
+      "solution": "$3x^2 = (x^3 + 1)'$: by inspection $\\frac{(x^3+1)^6}{6} + C$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.10",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "simplify(diff((x**3 + 1)**6/6, x) - 3*x**2*(x**3 + 1)**5) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p21",
+      "statement": "Evaluate $\\displaystyle\\int_1^3 (2x + 1)\\,dx$ exactly. **[3]**",
+      "solution": "$[x^2 + x]_1^3 = 12 - 2 = 10$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.11",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "integrate(2*x + 1, (x, 1, 3)) == 10"
+      ]
+    },
+    {
+      "id": "ibsl-ca-p22",
+      "statement": "Find the exact area enclosed by $y = 4 - x^2$ and the $x$-axis. **[4]**",
+      "solution": "Crossings $\\pm 2$ *(A1)*; arch above the axis: $\\int_{-2}^2 (4 - x^2)dx = \\frac{32}{3}$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.11",
+          "mono": true
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "integrate(4 - x**2, (x, -2, 2)) == Rational(32, 3)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ibsl-ca-q01",
+      "statement": "**Write down** $\\lim_{x \\to 1} \\dfrac{x^2 - 1}{x - 1}$. **[2]**",
+      "solution": "Simplifies to $x + 1$ away from the hole: limit $= 2$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.1",
+          "mono": true
+        }
+      ],
+      "check": [
+        "limit((x**2 - 1)/(x - 1), x, 1) == 2"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q02",
+      "statement": "Find the interval(s) on which $f(x) = x^3 - 27x$ is decreasing. **[4]**",
+      "solution": "$f' = 3x^2 - 27 = 3(x-3)(x+3) < 0$ between the roots: $-3 < x < 3$ *(M1 A1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.2",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(3*x**2 - 27, x) == [-3, 3]",
+        "3*0 - 27 < 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q03",
+      "statement": "Find $\\dfrac{dy}{dx}$ for $y = \\dfrac{2}{x^3} + \\sqrt{x}$. **[3]**",
+      "solution": "$y = 2x^{-3} + x^{1/2}$: $y' = -6x^{-4} + \\frac{1}{2\\sqrt{x}}$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.3",
+          "mono": true
+        }
+      ],
+      "check": [
+        "diff(2/x**3 + sqrt(x), x) == -6/x**4 + 1/(2*sqrt(x))"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q04",
+      "statement": "Find the equation of the tangent to $y = x^2 - 4x$ at $x = 3$, and the coordinates where the tangent is horizontal. **[5]**",
+      "solution": "Point $(3, -3)$; slope $2x - 4 \\to 2$: $y = 2x - 9$ *(A1 A1 A1)*. Horizontal: $2x - 4 = 0$ at $x = 2$: $(2, -4)$ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.4",
+          "mono": true
+        }
+      ],
+      "check": [
+        "9 - 12 == -3",
+        "2*3 - 9 == -3",
+        "solve(2*x - 4, x) == [2]",
+        "4 - 8 == -4"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q05",
+      "statement": "$f'(x) = 6x - 5$ and $f(1) = 2$. **Find** $f(x)$. **[4]**",
+      "solution": "$f = 3x^2 - 5x + C$ *(M1 A1)*; $3 - 5 + C = 2 \\Rightarrow C = 4$ *(M1)*: $f = 3x^2 - 5x + 4$ *(A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.5",
+          "mono": true
+        }
+      ],
+      "check": [
+        "diff(3*x**2 - 5*x + 4, x) == 6*x - 5",
+        "3 - 5 + 4 == 2"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q06",
+      "statement": "Differentiate $y = \\dfrac{x^2}{x + 1}$, simplifying your answer. **[4]**",
+      "solution": "Quotient: $y' = \\dfrac{2x(x+1) - x^2}{(x+1)^2} = \\dfrac{x^2 + 2x}{(x+1)^2} = \\dfrac{x(x + 2)}{(x+1)^2}$ *(M1 A1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.6",
+          "mono": true
+        }
+      ],
+      "check": [
+        "simplify(diff(x**2/(x + 1), x) - x*(x + 2)/(x + 1)**2) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q07",
+      "statement": "Find the point of inflexion of $f(x) = x^3 + 6x^2$, verifying the sign change. **[4]**",
+      "solution": "$f'' = 6x + 12 = 0$ at $x = -2$ *(M1 A1)*; signs flip ✓; $f(-2) = -8 + 24 = 16$: $(-2, 16)$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.7",
+          "mono": true
+        }
+      ],
+      "check": [
+        "expand(diff(x**3 + 6*x**2, x, 2)) == 6*x + 12",
+        "-8 + 24 == 16"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q08",
+      "statement": "For $x > 0$, minimise $f(x) = x + \\dfrac{16}{x}$, justifying the minimum. **[5]**",
+      "solution": "$f' = 1 - \\frac{16}{x^2} = 0 \\Rightarrow x = 4$ (positive root) *(M1 A1)*. $f'' = \\frac{32}{x^3} > 0$: minimum *(R1)*. $f(4) = 8$ *(A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.8",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(1 - 16/x**2, x) == [-4, 4]",
+        "4 + 4 == 8",
+        "Rational(32, 64) > 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q09",
+      "statement": "$h(t) = 30t - 5t^2$ m. **Find** the maximum height, and the SPEED at landing ($t = 6$). **[4]**",
+      "solution": "$v = 30 - 10t = 0$ at $t = 3$: $h(3) = 45$ m *(M1 A1)*. $v(6) = -30$: speed $30$ m s⁻¹ *(M1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.9",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(30 - 10*t, t) == [3]",
+        "30*3 - 5*9 == 45",
+        "Abs(30 - 10*6) == 30"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q10",
+      "statement": "Find $\\displaystyle\\int \\cos(3x)\\,dx$ and $\\displaystyle\\int (2x + 1)^3\\,dx$. **[4]**",
+      "solution": "$\\frac{\\sin(3x)}{3} + C$ *(A1 A1)*; $\\frac{(2x+1)^4}{8} + C$ *(M1 A1)* — up one, divide by 4, divide by the inside's 2.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.10",
+          "mono": true
+        }
+      ],
+      "check": [
+        "diff(sin(3*x)/3, x) == cos(3*x)",
+        "simplify(diff((2*x + 1)**4/8, x) - (2*x + 1)**3) == 0"
+      ]
+    },
+    {
+      "id": "ibsl-ca-q11",
+      "statement": "Find the exact area of the region enclosed between $y = x$ and $y = x^2$. **[5]**",
+      "solution": "Intersections $x = 0, 1$ *(M1 A1)*; line above: $\\int_0^1 (x - x^2)dx = \\frac{1}{2} - \\frac{1}{3} = \\frac{1}{6}$ *(M1 A1 A1)*.",
+      "badges": [
+        {
+          "text": "ib-aa-sl-5.11",
+          "mono": true
+        }
+      ],
+      "check": [
+        "solve(x - x**2, x) == [0, 1]",
+        "integrate(x - x**2, (x, 0, 1)) == Rational(1, 6)"
+      ]
+    }
+  ]
+}

@@ -34,8 +34,8 @@ export default function IbSlCoursePage() {
           marks it: method, accuracy, and reasoning.
         </p>
         <p className="mb-8 text-[13px]" style={{ color: "var(--fg-3)", maxWidth: "56ch" }}>
-          English-only, like the real exam. HL — which contains everything
-          here plus its extension codes — opens after the SL topics land.
+          English-only, like the real exam. All five SL topics are open.
+          HL — everything here plus its extension codes — is next.
         </p>
 
         {/* The spine */}

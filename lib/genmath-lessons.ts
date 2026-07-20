@@ -207,6 +207,7 @@ import ibSlNumberAlgebra from "@/data/genmath/ib-sl/number-and-algebra.json";
 import ibSlFunctions from "@/data/genmath/ib-sl/functions.json";
 import ibSlGeoTrig from "@/data/genmath/ib-sl/geometry-and-trigonometry.json";
 import ibSlStatsProb from "@/data/genmath/ib-sl/statistics-and-probability.json";
+import ibSlCalculus from "@/data/genmath/ib-sl/calculus.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1695,7 +1696,7 @@ export const IB_SL_SPINE: GeometrySpineEntry[] = [
     title: "Calculus",
     blurb: "Limits, differentiation, tangents and optimization, integration and areas — SL 5.1 to 5.11.",
     buildsOn: "Everything: functions, trig, and algebraic fluency.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -1704,6 +1705,7 @@ const ibSlUnits: CourseUnit[] = [
   ibSlFunctions as unknown as CourseUnit,
   ibSlGeoTrig as unknown as CourseUnit,
   ibSlStatsProb as unknown as CourseUnit,
+  ibSlCalculus as unknown as CourseUnit,
 ];
 
 export function getIbSlSpine(): GeometrySpineEntry[] {
