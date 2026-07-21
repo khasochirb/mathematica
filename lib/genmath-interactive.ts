@@ -797,6 +797,22 @@ export interface UnitCircleConfig {
   start?: number; // explore: initial angle in degrees
 }
 
+// The complex-numbers workbench (HL). plot: z = a + bi as an Argand arrow
+// with |z|, arg z, and the conjugate mirrored in the real axis; powers: the
+// De Moivre spiral (moduli multiply, arguments add), |z| stepper crossing 1;
+// roots: the n-th roots of a unit-modulus target as a regular n-gon whose
+// first vertex sits at (arg w)/n.
+export interface ArgandPlotConfig {
+  mode: "plot" | "powers" | "roots";
+  a?: number; // plot: initial Re(z)
+  b?: number; // plot: initial Im(z)
+  r?: number; // powers: base modulus (0.85 | 1 | 1.1 look best)
+  thetaDeg?: number; // powers: base argument in degrees
+  n?: number; // powers: initial power; roots: initial n
+  targetDeg?: number; // roots: argument of the target w
+  showConjugate?: boolean; // plot: mirror z̄ below the real axis
+}
+
 // The limits workbench: two dots close in on a target x from both sides.
 // approach: the squeeze finds the limit; hole: the limit exists where the
 // value doesn't; jump: one-sided limits disagree (DNE); infinite: outputs
@@ -1199,6 +1215,7 @@ export type InteractiveStep =
   | { kind: "expGraph"; eyebrow?: string; title: string; teach: string; config: ExpGraphConfig }
   | { kind: "polyGraph"; eyebrow?: string; title: string; teach: string; config: PolyGraphConfig }
   | { kind: "unitCircle"; eyebrow?: string; title: string; teach: string; config: UnitCircleConfig }
+  | { kind: "argandPlot"; eyebrow?: string; title: string; teach: string; config: ArgandPlotConfig }
   | { kind: "limitGraph"; eyebrow?: string; title: string; teach: string; config: LimitGraphConfig }
   | { kind: "tangentGraph"; eyebrow?: string; title: string; teach: string; config: TangentGraphConfig }
   | { kind: "areaGraph"; eyebrow?: string; title: string; teach: string; config: AreaGraphConfig }

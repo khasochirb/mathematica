@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookOpen, Clock, FileText } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, FileText } from "lucide-react";
 import { listIbPapers } from "@/lib/ib-test";
 
 export const metadata = { title: "IB Math Hub" };
@@ -50,22 +50,30 @@ export default function IbHubPage() {
             </span>
             <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
           </Link>
-          <div className="card-edit p-5" style={{ borderStyle: "dashed", opacity: 0.65 }}>
+          <Link
+            href="/math/ib-hl"
+            className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
+            style={{ display: "flex" }}
+          >
             <span className="inline-flex items-start gap-2.5" style={{ color: "var(--fg-1)" }}>
-              <Clock className="h-4 w-4 mt-1" style={{ color: "var(--fg-2)" }} />
+              <BookOpen className="h-4 w-4 mt-1" style={{ color: "var(--accent)" }} />
               <span>
-                <span className="serif" style={{ fontSize: 20 }}>Higher Level (HL)</span>
-                <span className="mono text-[10px] uppercase ml-2 px-1.5 py-0.5 rounded" style={{ color: "var(--fg-3)", border: "1px solid var(--line)", letterSpacing: "0.08em" }}>
-                  Coming
+                <span className="serif" style={{ fontSize: 20, color: "var(--fg)" }}>
+                  Higher Level (HL)
+                </span>
+                <span className="mono text-[10px] uppercase ml-2 px-1.5 py-0.5 rounded" style={{ color: "var(--accent)", border: "1px solid var(--accent-line)", letterSpacing: "0.08em" }}>
+                  Live
                 </span>
                 <span className="block text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>
-                  Every SL lesson plus the AHL extension codes — proof by induction
-                  and contradiction, complex numbers, deeper calculus. Opens after
-                  the SL topics are complete.
+                  The AHL extension codes on top of the SL course — proof by
+                  induction and contradiction, complex numbers to De Moivre,
+                  vectors in space, deeper calculus. Topic 1 is open; the rest
+                  land in syllabus order.
                 </span>
               </span>
             </span>
-          </div>
+            <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
+          </Link>
         </div>
 
         <div className="eyebrow mt-10 mb-3">Practice papers — AA SL</div>

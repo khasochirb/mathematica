@@ -86,6 +86,7 @@ import ParabolaGraph from "@/components/genmath/interactive/ParabolaGraph";
 import ExpGraph from "@/components/genmath/interactive/ExpGraph";
 import PolyGraph from "@/components/genmath/interactive/PolyGraph";
 import UnitCircle from "@/components/genmath/interactive/UnitCircle";
+import ArgandPlot from "@/components/genmath/interactive/ArgandPlot";
 import LimitGraph from "@/components/genmath/interactive/LimitGraph";
 import TangentGraph from "@/components/genmath/interactive/TangentGraph";
 import AreaGraph from "@/components/genmath/interactive/AreaGraph";
@@ -1121,6 +1122,16 @@ function StepBody({
         <>
           <StepHeader eyebrow={step.eyebrow} title={step.title} />
           <UnitCircle config={step.config} />
+          <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
+            <MathText text={step.teach} />
+          </p>
+        </>
+      );
+    case "argandPlot":
+      return (
+        <>
+          <StepHeader eyebrow={step.eyebrow} title={step.title} />
+          <ArgandPlot config={step.config} />
           <p className="font-sans mt-4" style={{ fontSize: 15, lineHeight: 1.55, color: "var(--fg-2)" }}>
             <MathText text={step.teach} />
           </p>

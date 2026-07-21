@@ -208,6 +208,7 @@ import ibSlFunctions from "@/data/genmath/ib-sl/functions.json";
 import ibSlGeoTrig from "@/data/genmath/ib-sl/geometry-and-trigonometry.json";
 import ibSlStatsProb from "@/data/genmath/ib-sl/statistics-and-probability.json";
 import ibSlCalculus from "@/data/genmath/ib-sl/calculus.json";
+import ibHlNumberAlgebra from "@/data/genmath/ib-hl/number-and-algebra.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1726,6 +1727,78 @@ export function getIbSlLesson(
 }
 
 // ---------------------------------------------------------------------------
+// IB Mathematics: Analysis & Approaches HL — /math/ib-hl
+// HL = the SL course PLUS the Additional Higher Level (AHL) extension codes.
+// This course teaches ONLY the AHL codes — the shared SL foundation lives at
+// /math/ib-sl and every HL unit's buildsOn points the student there first.
+// Same English-only policy and markscheme discipline as SL.
+// ---------------------------------------------------------------------------
+
+export const IB_HL_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "number-and-algebra",
+    title: "Number & Algebra (AHL)",
+    blurb: "Permutations and the extended binomial theorem, partial fractions, complex numbers from Cartesian to Euler form, De Moivre with powers and roots, proof by induction and contradiction, and 3×3 systems — AHL 1.10 to 1.16.",
+    buildsOn: "The whole of SL Topic 1 — sequences, exponents, logarithms, binomial theorem.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "functions",
+    title: "Functions (AHL)",
+    blurb: "Factor and remainder theorems, sums and products of roots, rational functions with oblique asymptotes, self-inverse and even/odd structure, modulus equations and inequalities, and the |f|, 1/f, f(|x|) graph family — AHL 2.12 to 2.16.",
+    buildsOn: "SL Topic 2's function machinery and transformations.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "geometry-and-trigonometry",
+    title: "Geometry & Trigonometry (AHL)",
+    blurb: "Reciprocal and inverse trig, compound angles, and the whole vector toolkit: scalar and vector products, lines and planes in space, intersections and angles — AHL 3.9 to 3.18.",
+    buildsOn: "SL Topic 3's unit circle and identities.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "statistics-and-probability",
+    title: "Statistics & Probability (AHL)",
+    blurb: "Bayes' theorem, and continuous random variables with probability density functions — mode, median, mean and variance from integrals — AHL 4.13 to 4.14.",
+    buildsOn: "SL Topic 4's probability laws and distributions.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "calculus",
+    title: "Calculus (AHL)",
+    blurb: "First principles and l'Hôpital, implicit differentiation and related rates, the full derivative library, integration by substitution and parts, volumes of revolution, differential equations, and Maclaurin series — AHL 5.12 to 5.19.",
+    buildsOn: "Everything — SL Topic 5 end to end.",
+    live: false,
+  },
+];
+
+const ibHlUnits: CourseUnit[] = [
+  ibHlNumberAlgebra as unknown as CourseUnit,
+];
+
+export function getIbHlSpine(): GeometrySpineEntry[] {
+  return IB_HL_SPINE;
+}
+
+export function getIbHlUnit(unitSlug: string): CourseUnit | null {
+  return ibHlUnits.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getIbHlLesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getIbHlUnit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Course size — total lessons per performance context. The DENOMINATOR of the
 // dashboard's per-course progress bar. Every authored lesson carries a
 // tapQuestion (the LessonPlayer's first-attempt recorder), so this count is
@@ -1758,6 +1831,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:trigonometry": { spine: getTrigSpine, unit: getTrigUnit },
   "course:solid-geometry": { spine: getSolidGeoSpine, unit: getSolidGeoUnit },
   "course:ib-sl": { spine: getIbSlSpine, unit: getIbSlUnit },
+  "course:ib-hl": { spine: getIbHlSpine, unit: getIbHlUnit },
 };
 
 export function courseTotalLessons(context: string): number | null {
