@@ -3,7 +3,7 @@
 // The 2K-style attribute card: one overall score, eight attribute rows.
 // Strictly presentational — all math lives in lib/ratings.ts.
 
-import { ATTRIBUTES, BAND_LABELS, type Band, type RatingsProfile } from "@/lib/ratings";
+import { ATTRIBUTES, BAND_LABELS, UNRATED_LABEL, type Band, type RatingsProfile } from "@/lib/ratings";
 import { useLang } from "@/lib/lang-context";
 
 const BAND_COLOR: Record<Band, string> = {
@@ -19,8 +19,8 @@ const i18n = {
   provisional: { en: "provisional", mn: "урьдчилсан" },
   units: { en: "units", mn: "нэгж" },
   hint: {
-    en: "Earned from lessons, unit tests, the problem bank, and exam practice. 100 means mastery — it is meant to be hard to reach.",
-    mn: "Хичээл, нэгжийн тест, бодлогын сан, шалгалтын дадлагаас тооцно. 100 гэдэг бүрэн эзэмшсэн гэсэн үг — амархан хүрэхээргүй зохиосон.",
+    en: "Rated skills run 40–100 — everyone starts at 40, and 100 means mastery, earned through lessons, unit tests, the problem bank, and exams. \"—\" means not rated yet: take a test or a placement to rate it.",
+    mn: "Үнэлгээ 40–100 хооронд — хүн бүр 40-өөс эхэлнэ, 100 гэдэг нь хичээл, нэгжийн тест, бодлогын сан, шалгалтаар бүрэн эзэмшснийг илтгэнэ. \"—\" гэдэг нь хараахан үнэлэгдээгүй — тест эсвэл түвшин тогтоох тест өгч үнэлүүлээрэй.",
   },
 };
 
@@ -61,7 +61,7 @@ export default function RatingsPanel({ profile }: { profile: RatingsProfile }) {
       <div className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
         {ATTRIBUTES.map((info) => {
           const a = profile.attributes.find((x) => x.key === info.key)!;
-          const color = BAND_COLOR[a.band];
+          const color = a.rated ? BAND_COLOR[a.band] : "var(--fg-3)";
           return (
             <div key={info.key}>
               <div className="flex items-baseline justify-between gap-2">
@@ -69,8 +69,8 @@ export default function RatingsPanel({ profile }: { profile: RatingsProfile }) {
                   {info[L]}
                 </span>
                 <span className="mono tabular text-[13px]" style={{ color }}>
-                  {a.score}
-                  {a.provisional && (
+                  {a.rated ? a.score : "—"}
+                  {a.rated && a.provisional && (
                     <span className="ml-1 text-[10px]" style={{ color: "var(--fg-3)" }}>
                       ({t("provisional")})
                     </span>
@@ -81,14 +81,16 @@ export default function RatingsPanel({ profile }: { profile: RatingsProfile }) {
                 className="h-[5px] rounded-full overflow-hidden mt-1"
                 style={{ background: "var(--bg-2)" }}
               >
-                <div
-                  className="h-full rounded-full"
-                  style={{ width: `${a.score}%`, background: color }}
-                />
+                {a.rated && (
+                  <div
+                    className="h-full rounded-full"
+                    style={{ width: `${a.score}%`, background: color }}
+                  />
+                )}
               </div>
               <div className="flex items-center justify-between mt-0.5">
                 <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
-                  {BAND_LABELS[a.band][L]}
+                  {a.rated ? BAND_LABELS[a.band][L] : UNRATED_LABEL[L]}
                 </span>
                 <span className="mono tabular text-[10px]" style={{ color: "var(--fg-3)" }}>
                   {a.unitsTouched}/{a.unitsTotal} {t("units")}

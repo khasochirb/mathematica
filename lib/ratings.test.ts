@@ -16,6 +16,7 @@ import {
 
 const NOW = 1_750_000_000_000;
 const DAY = 24 * 60 * 60 * 1000;
+const FLOOR = RATING_CONSTANTS.RATING_FLOOR;
 
 // Evidence generators — perfect (or fixed-accuracy) records for a unit.
 function lessonAttempts(
@@ -89,7 +90,7 @@ function unitScore(profile: RatingsProfile, context: string, slug: string): numb
   return u!.score;
 }
 
-function attrScore(profile: RatingsProfile, key: string) {
+function attr(profile: RatingsProfile, key: string) {
   return profile.attributes.find((a) => a.key === key)!;
 }
 
@@ -115,38 +116,41 @@ describe("ratings map", () => {
   });
 });
 
-describe("computeRatings — strictness fixtures", () => {
-  it("empty profile: zero everywhere, no recommendation", () => {
+describe("computeRatings — the 40–100 scale", () => {
+  it("empty profile: everything unrated at the floor, no recommendation", () => {
     const p = computeRatings({ attempts: [], now: NOW });
-    expect(p.overall).toBe(0);
+    expect(p.overall).toBe(FLOOR);
     expect(p.hasAnyEvidence).toBe(false);
-    for (const a of p.attributes) expect(a.score).toBe(0);
+    for (const a of p.attributes) {
+      expect(a.rated).toBe(false);
+      expect(a.score).toBe(FLOOR);
+    }
     expect(recommendedCourse(p)).toBeNull();
   });
 
-  it("lesson grinder: perfect lessons alone cap a unit at 35", () => {
+  it("lesson grinder: perfect lessons alone cap a unit at 61", () => {
     const p = computeRatings({
       attempts: lessonAttempts("course:geometry", "foundations", 50),
       now: NOW,
     });
-    // W_LESSON = 0.35 and nothing else — grinding lessons cannot pass 35.
-    expect(unitScore(p, "course:geometry", "foundations")).toBe(35);
+    // W_LESSON = 0.35 of the 60-point range above the floor: 40 + 21 = 61.
+    // Grinding lessons cannot make a unit look Strong.
+    expect(unitScore(p, "course:geometry", "foundations")).toBe(61);
   });
 
-  it("no unit test caps a unit at 60 even with lessons + full bank", () => {
+  it("no unit test caps a unit at 69 even with lessons + full bank", () => {
     const p = computeRatings({
       attempts: lessonAttempts("course:geometry", "foundations", 50),
       bank: { "course:geometry/foundations": { mastered: 6, attempted: 6 } },
       now: NOW,
     });
-    // 35 (lessons) + 20 (bank) = 55 raw — under the 60 cap by construction,
-    // which is the design: without a unit test you cannot look "solid".
+    // raw 40 + 60·0.55 = 73 → capped at 69: without the unit test you top
+    // out in Developing, never Strong.
     const s = unitScore(p, "course:geometry", "foundations");
-    expect(s).toBe(55);
-    expect(s).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_UNIT_TEST);
+    expect(s).toBe(RATING_CONSTANTS.CAP_NO_UNIT_TEST);
   });
 
-  it("sub-elite test record caps a unit at 84; elite unlocks the top", () => {
+  it("sub-elite test record caps a unit at 84; elite unlocks 100", () => {
     const base = {
       attempts: [
         ...lessonAttempts("course:geometry", "circles", 12),
@@ -157,7 +161,7 @@ describe("computeRatings — strictness fixtures", () => {
       now: NOW,
     };
     const p = computeRatings(base);
-    // raw = 35 + 45·0.875 + 20 ≈ 94 → capped at 84.
+    // raw ≈ 40 + 60·0.93 ≈ 96 → capped below the Near-mastery band.
     expect(unitScore(p, "course:geometry", "circles")).toBe(RATING_CONSTANTS.CAP_NOT_ELITE);
 
     const elite = computeRatings({
@@ -173,8 +177,9 @@ describe("computeRatings — strictness fixtures", () => {
   it("diligent-no-exam: perfect across every unit still caps the attribute at 84", () => {
     const { attempts, bank } = perfectAttributeEvidence("linear");
     const p = computeRatings({ attempts, bank, now: NOW });
-    const a = attrScore(p, "linear");
-    expect(a.coverage).toBe(100);
+    const a = attr(p, "linear");
+    expect(a.rated).toBe(true);
+    expect(a.coverage).toBeCloseTo(1, 5);
     expect(a.score).toBe(RATING_CONSTANTS.CAP_NO_EXAM);
     expect(a.band).toBe("strong");
   });
@@ -183,37 +188,96 @@ describe("computeRatings — strictness fixtures", () => {
     const { attempts, bank } = perfectAttributeEvidence("linear");
     attempts.push(...eshAttempts("linear_algebra", 30, 30));
     const p = computeRatings({ attempts, bank, now: NOW });
-    const a = attrScore(p, "linear");
+    const a = attr(p, "linear");
     expect(a.score).toBe(100);
     expect(a.band).toBe("mastery");
-    // Breadth-weighting: one mastered attribute barely moves the overall.
-    expect(p.overall).toBeGreaterThan(0);
-    expect(p.overall).toBeLessThan(20);
+    // Breadth-weighting with unrated at the floor: one mastered attribute
+    // lifts the overall a little above 40, never into fake territory.
+    expect(p.overall).toBeGreaterThan(FLOOR);
+    expect(p.overall).toBeLessThan(55);
   });
 
-  it("decay: the same mastery evidence a year old collapses", () => {
-    const { attempts, bank } = perfectAttributeEvidence("linear", 365);
+  it("decay: the same mastery evidence a year old collapses toward the floor", () => {
+    const { attempts } = perfectAttributeEvidence("linear", 365);
     attempts.push(...eshAttempts("linear_algebra", 30, 30, 365));
-    // Bank mastery has no timestamps, so leave it out of the decay fixture.
-    void bank;
     const p = computeRatings({ attempts, now: NOW });
-    const a = attrScore(p, "linear");
-    expect(a.score).toBeLessThan(20);
+    const a = attr(p, "linear");
+    expect(a.rated).toBe(true);
+    expect(a.score).toBeLessThan(55);
     expect(a.band).toBe("beginner");
   });
 
-  it("exam-only evidence cannot pass the no-unit-test attribute cap", () => {
+  it("exam-only evidence rates an attribute, capped at 69 until units are proven", () => {
     const p = computeRatings({
       attempts: eshAttempts("trigonometry", 40, 40),
       now: NOW,
     });
-    const a = attrScore(p, "trigonometry");
-    // coverage 0 → 0.3·exam ≤ 30, and the 69 cap is armed anyway.
-    expect(a.score).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_TEST_ATTR);
+    const a = attr(p, "trigonometry");
+    expect(a.rated).toBe(true);
+    // Perfect sustained exam record with zero unit tests: exactly the cap —
+    // the exams carry you to the top of Developing, courses unlock Strong.
+    expect(a.score).toBe(RATING_CONSTANTS.CAP_NO_TEST_ATTR);
     expect(a.hasUnitTest).toBe(false);
   });
 
-  it("placement alone seeds a provisional score ≤ 40", () => {
+  it("a handful of exam questions is NOT enough to rate an attribute", () => {
+    const p = computeRatings({
+      attempts: eshAttempts("set_theory", 3, 0),
+      now: NOW,
+    });
+    // 0/3 on a rarely-tested topic: below MIN_EXAM_RATE_N → unrated, not 40.
+    expect(attr(p, "numbers").rated).toBe(false);
+    expect(attr(p, "numbers").score).toBe(FLOOR);
+  });
+
+  it("the owner's scenario: two ЭЕШ tests (94% and 16%) — no Grade-6 insult", () => {
+    // Roughly two 36-question mocks spread over the common topics: one aced,
+    // one bombed. Arithmetic/set-theory barely appear (like real papers).
+    const seed = (accHigh: number, accLow: number, perTopic: Record<string, number>) => {
+      const rows: RatingAttempt[] = [];
+      for (const [topic, n] of Object.entries(perTopic)) {
+        rows.push(...eshAttempts(topic, n, Math.round(n * accHigh), 1));
+        rows.push(...eshAttempts(topic, n, Math.round(n * accLow), 2));
+      }
+      return rows;
+    };
+    const p = computeRatings({
+      attempts: seed(0.94, 0.16, {
+        algebra: 8,
+        geometry: 6,
+        trigonometry: 5,
+        functions: 5,
+        probability: 4,
+        calculus: 4,
+        sequences: 3,
+      }),
+      now: NOW,
+    });
+
+    // Attributes with real exam volume are rated in the Developing range.
+    for (const key of ["algebra", "geometry", "trigonometry", "probstats", "calculus"]) {
+      const a = attr(p, key);
+      expect(a.rated, key).toBe(true);
+      expect(a.score, key).toBeGreaterThanOrEqual(FLOOR);
+      expect(a.score, key).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_TEST_ATTR);
+    }
+    // Numbers & linear algebra never appeared → UNRATED, not 0.
+    expect(attr(p, "numbers").rated).toBe(false);
+    expect(attr(p, "linear").rated).toBe(false);
+
+    // Overall looks like a real rookie rating, not a 5.
+    expect(p.overall).toBeGreaterThanOrEqual(42);
+    expect(p.overall).toBeLessThan(70);
+
+    // The recommendation targets a RATED weakness — never Grade 6 off a blank.
+    const rec = recommendedCourse(p);
+    expect(rec).not.toBeNull();
+    expect(rec!.attribute).not.toBe("numbers");
+    expect(rec!.courseContext).not.toBe("course:grade-6");
+    expect(rec!.explanationEn).toContain("lowest rated");
+  });
+
+  it("placement alone seeds a provisional rating between 40 and 60", () => {
     const p = computeRatings({
       attempts: [],
       placements: [
@@ -228,14 +292,15 @@ describe("computeRatings — strictness fixtures", () => {
       ],
       now: NOW,
     });
-    const a = attrScore(p, "geometry");
+    const a = attr(p, "geometry");
+    expect(a.rated).toBe(true);
     expect(a.provisional).toBe(true);
-    // 7/8 accuracy → 40·0.875 = 35.
-    expect(a.score).toBe(35);
+    // 7/8 accuracy → 40 + 20·0.875 ≈ 58.
+    expect(a.score).toBe(58);
     expect(a.score).toBeLessThanOrEqual(RATING_CONSTANTS.PLACEMENT_SEED_MAX);
     expect(p.hasAnyEvidence).toBe(true);
     // Real evidence replaces the seed: one wrong lesson answer in a geometry
-    // unit and the attribute is earned (near zero), not seeded.
+    // unit and the attribute is earned (at the floor), not seeded.
     const p2 = computeRatings({
       attempts: [
         { context: "course:geometry", topic: "foundations", isCorrect: false, timestamp: NOW - DAY, source: "lesson" },
@@ -245,18 +310,13 @@ describe("computeRatings — strictness fixtures", () => {
       ],
       now: NOW,
     });
-    expect(attrScore(p2, "geometry").provisional).toBe(false);
+    expect(attr(p2, "geometry").provisional).toBe(false);
+    expect(attr(p2, "geometry").score).toBe(FLOOR);
   });
 });
 
 describe("recommendations", () => {
-  it("recommends the lowest attribute's course with an owner's-voice explanation", () => {
-    // Some geometry work at a beginner level; everything else untouched —
-    // ties at 0 exist, so assert shape rather than a specific winner among
-    // the zeros... give every OTHER attribute a tiny placement seed so
-    // geometry (earned, low) still isn't the lowest — instead pin the target:
-    // make geometry the ONLY zero-ish attribute with evidence and drag the
-    // rest up via seeds.
+  it("recommends the lowest RATED attribute with an owner's-voice explanation", () => {
     const placements = [
       {
         namespace: "grade12",
@@ -279,8 +339,8 @@ describe("recommendations", () => {
     });
     const rec = recommendedCourse(p);
     expect(rec).not.toBeNull();
-    // The lowest attribute is one of the untouched zeros or geometry; either
-    // way the recommendation must point at a real course with both languages.
+    // Only rated attributes may be recommended.
+    expect(attr(p, rec!.attribute).rated).toBe(true);
     expect(rec!.courseHref.startsWith("/math")).toBe(true);
     expect(rec!.explanationEn).toContain(`is ${rec!.score}`);
     expect(rec!.explanationMn).toContain("үнэлгээ");
@@ -288,23 +348,14 @@ describe("recommendations", () => {
   });
 
   it("strong band climbs the ladder to the second course", () => {
-    // Elite-complete geometry coverage (no exam) → 84 = strong → the
-    // geometry ladder should recommend Solid Geometry, not Geometry 1.
     const { attempts, bank } = perfectAttributeEvidence("geometry");
-    // Drag every other attribute above zero is unnecessary — force the
-    // check directly on the ladder rung logic by making geometry lowest
-    // impossible; instead check via a profile where geometry IS lowest:
-    // strip to only geometry evidence and give others exam mastery is
-    // complex — simpler: geometry at 84 with everything else at 0 makes
-    // some other attribute the recommendation. So test the rung through a
-    // synthetic profile object instead.
     const p = computeRatings({ attempts, bank, now: NOW });
-    const geo = attrScore(p, "geometry");
+    const geo = attr(p, "geometry");
     expect(geo.band).toBe("strong");
     const synthetic: RatingsProfile = {
       ...p,
       attributes: p.attributes.map((a) =>
-        a.key === "geometry" ? a : { ...a, score: 90, band: band(90) },
+        a.key === "geometry" ? a : { ...a, rated: true, score: 90, band: band(90) },
       ),
     };
     const rec = recommendedCourse(synthetic);
@@ -330,13 +381,12 @@ describe("recommendations", () => {
     const rec = recommendedUnits(p, "course:geometry");
     // Unit 1 proven → the course starts at unit 2 for this student.
     expect(rec.canStartAtUnit).toBe(2);
-    // Unit 2 sits at 55 (35 lessons + 20 bank, capped by no-test) — the
-    // first not-yet-solid unit in spine order.
+    // Unit 2 sits at 69 (capped by no-test) — the first not-yet-solid unit.
     expect(rec.startHere?.slug).toBe("reasoning-and-proof");
     expect(rec.pinned.map((u) => u.slug)).toContain("triangles-and-congruence");
     expect(rec.solid.map((u) => u.slug)).toContain("foundations");
     // Good-looking but unproven → prompted to take the unit test; the truly
-    // weak unit (score < 40) is NOT — it needs lessons first.
+    // weak unit (Beginner) is NOT — it needs lessons first.
     expect(rec.needsUnitTest.map((u) => u.slug)).toContain("reasoning-and-proof");
     expect(rec.needsUnitTest.map((u) => u.slug)).not.toContain("foundations");
     expect(rec.needsUnitTest.map((u) => u.slug)).not.toContain("triangles-and-congruence");
@@ -344,7 +394,7 @@ describe("recommendations", () => {
 });
 
 describe("eshSeverity", () => {
-  it("needs a minimum sample and then bands", () => {
+  it("needs a minimum sample and then bands on raw accuracy", () => {
     expect(eshSeverity(20, 2)).toBeNull();
     expect(eshSeverity(20, 5)).toBe("beginner");
     expect(eshSeverity(55, 5)).toBe("developing");

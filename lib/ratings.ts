@@ -1,11 +1,14 @@
-// The ratings system — every student carries 8 attribute scores (0–100), one
-// per math domain, NBA-2K style. 100 means mastery and must be EARNED: the
-// formula is deliberately strict, with confidence ramps (thin evidence can't
-// score high), recency decay (old evidence fades), and hard caps (no unit
-// tests → capped, no exam evidence → capped, no near-perfect test record →
-// no elite scores). The overall score is the breadth-weighted mean across all
-// 8 attributes, so leaving a domain untouched drags the profile down — the
-// point is a single number a student wants to raise the honest way.
+// The ratings system — every student carries 8 attribute ratings, one per
+// math domain, NBA-2K style: rated attributes live on 40–100 (40 is the
+// floor every rated player stands on; 100 means mastery and must be EARNED),
+// and attributes with no evidence are UNRATED ("—"), never 0 — no data is
+// not the same as weak. The strictness lives in confidence ramps (thin
+// evidence can't score high), recency decay (old evidence fades), and hard
+// caps that define the climb: exams alone reach Developing (≤69), completing
+// units + unit tests unlocks Strong (70–84), and elite test records plus
+// exam evidence unlock Near-mastery (85–100). The overall is the breadth-
+// weighted mean with unrated attributes at the floor — a single number a
+// student raises the honest way, without ever looking like a "5".
 //
 // This module is PURE — no React, no storage. Evidence comes in as plain
 // data (attempts, bank mastery, placement results); lib/use-ratings.ts does
@@ -277,18 +280,23 @@ export const RATING_CONSTANTS = {
   N_BANK_FORMS: 6, // bank forms attempted for full bank confidence
   N_EXAM: 24, // exam attempts (per attribute) for full exam confidence
   MIN_EXAM_N: 8, // below this, exam evidence doesn't unlock the 85+ range
+  MIN_EXAM_RATE_N: 5, // exam attempts needed for exams ALONE to rate an attribute
   W_LESSON: 0.35,
   W_TEST: 0.45,
   W_BANK: 0.2,
-  CAP_NO_UNIT_TEST: 60, // a unit without unit-test evidence caps here
-  CAP_NOT_ELITE: 84, // a unit caps here unless the test record is elite
+  // The 2K-style scale: anything RATED lives on 40–100. 40 = the floor every
+  // rated player stands on; 100 = full mastery, still earned the hard way.
+  // No evidence at all → UNRATED ("—"), never 0.
+  RATING_FLOOR: 40,
+  CAP_NO_UNIT_TEST: 69, // without unit tests a unit tops out in Developing
+  CAP_NOT_ELITE: 84, // a unit caps below Near-mastery unless tests are elite
   ELITE_TEST_ACC: 0.9, // elite gate: ≥90% test accuracy...
   ELITE_TEST_N: 6, // ...across ≥6 (decayed) test attempts
-  CAP_NO_TEST_ATTR: 69, // an attribute with zero unit-test evidence caps here
-  CAP_NO_EXAM: 84, // an attribute without exam evidence caps here
+  CAP_NO_TEST_ATTR: 69, // exams alone carry an attribute to 69, never Strong
+  CAP_NO_EXAM: 84, // course work alone caps below Near-mastery — prove it in exams
   W_COVERAGE: 0.7,
   W_EXAM: 0.3,
-  PLACEMENT_SEED_MAX: 40, // a placement test alone can seed at most this
+  PLACEMENT_SEED_MAX: 60, // a placement alone seeds a provisional 40–60 rating
 } as const;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -303,8 +311,11 @@ function conf(n: number, target: number): number {
 
 export type Band = "beginner" | "developing" | "strong" | "mastery";
 
+// Bands on the 40–100 rating scale: 40–54 Beginner, 55–69 Developing,
+// 70–84 Strong, 85+ Near-mastery. Strong requires unit tests; Near-mastery
+// requires elite tests AND exam evidence (the caps enforce both).
 export function band(score: number): Band {
-  if (score < 40) return "beginner";
+  if (score < 55) return "beginner";
   if (score < 70) return "developing";
   if (score < 85) return "strong";
   return "mastery";
@@ -316,6 +327,8 @@ export const BAND_LABELS: Record<Band, { en: string; mn: string }> = {
   strong: { en: "Strong", mn: "Сайн" },
   mastery: { en: "Near mastery", mn: "Мастерт ойрхон" },
 };
+
+export const UNRATED_LABEL = { en: "Unrated", mn: "Үнэлгээгүй" };
 
 // ---------------------------------------------------------------------------
 // Inputs
@@ -361,7 +374,7 @@ export function placementNamespaceToContext(namespace: string): string {
 // ---------------------------------------------------------------------------
 
 export interface UnitRating extends RatedUnit {
-  score: number; // 0–100, strict
+  score: number; // 40–100 when touched, 0 when untouched (UI shows "—")
   band: Band;
   touched: boolean;
   hasTest: boolean; // any unit-test evidence
@@ -375,19 +388,20 @@ export interface UnitRating extends RatedUnit {
 
 export interface AttributeRating {
   key: AttributeKey;
-  score: number; // 0–100
+  rated: boolean; // false = no evidence at all — display "—", never 0
+  score: number; // 40–100; RATING_FLOOR when unrated (a floor, not a verdict)
   band: Band;
   provisional: boolean; // true when the score is a placement seed
   unitsTotal: number;
   unitsTouched: number;
-  coverage: number; // C in the formula, 0–100
+  coverage: number; // course-coverage mastery, 0..1 (untouched units count 0)
   examAcc: number; // 0..1, decayed
   examN: number; // decayed count
   hasUnitTest: boolean;
 }
 
 export interface RatingsProfile {
-  overall: number; // 0–100, breadth-weighted across all 8 attributes
+  overall: number; // 40–100, breadth-weighted; unrated attributes sit at the floor
   attributes: AttributeRating[]; // always all 8, ATTRIBUTES order
   units: UnitRating[]; // every rated unit, spine order
   hasAnyEvidence: boolean;
@@ -459,30 +473,37 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   }
 
   // -- pass 2: score every unit --------------------------------------------
+  // A touched unit's mastery fraction m (0..1) maps onto the rating scale as
+  // floor + (100 - floor)·m; caps then pull it down. An untouched unit has no
+  // rating (score 0, touched false — the UI shows "—").
+  const RANGE = 100 - C.RATING_FLOOR;
   const units: UnitRating[] = allRatedUnits().map((u) => {
     const key = `${u.context}/${u.slug}`;
     const lesson = tally(unitLesson.get(key));
     const test = tally(unitTest.get(key));
     const b = bank[key] ?? { mastered: 0, attempted: 0 };
     const bankMastery = b.attempted > 0 ? b.mastered / b.attempted : 0;
+    const touched = lesson.n > 0 || test.n > 0 || b.attempted > 0;
 
-    let score =
-      100 *
-      (C.W_LESSON * lesson.acc * conf(lesson.n, C.N_LESSON) +
-        C.W_TEST * test.acc * conf(test.n, C.N_TEST) +
-        C.W_BANK * bankMastery * conf(b.attempted, C.N_BANK_FORMS));
+    const m =
+      C.W_LESSON * lesson.acc * conf(lesson.n, C.N_LESSON) +
+      C.W_TEST * test.acc * conf(test.n, C.N_TEST) +
+      C.W_BANK * bankMastery * conf(b.attempted, C.N_BANK_FORMS);
 
+    let score = touched ? C.RATING_FLOOR + RANGE * m : 0;
     const hasTest = test.n > 0;
-    if (!hasTest) score = Math.min(score, C.CAP_NO_UNIT_TEST);
-    const elite = test.acc >= C.ELITE_TEST_ACC && test.n >= C.ELITE_TEST_N;
-    if (!elite) score = Math.min(score, C.CAP_NOT_ELITE);
+    if (touched) {
+      if (!hasTest) score = Math.min(score, C.CAP_NO_UNIT_TEST);
+      const elite = test.acc >= C.ELITE_TEST_ACC && test.n >= C.ELITE_TEST_N;
+      if (!elite) score = Math.min(score, C.CAP_NOT_ELITE);
+    }
 
     const rounded = Math.round(score);
     return {
       ...u,
       score: rounded,
       band: band(rounded),
-      touched: lesson.n > 0 || test.n > 0 || b.attempted > 0,
+      touched,
       hasTest,
       lessonAcc: lesson.acc,
       lessonN: lesson.n,
@@ -511,44 +532,67 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   }
 
   // -- pass 3: score every attribute ----------------------------------------
+  // An attribute is RATED only when real evidence exists: any course work in
+  // its units, enough exam attempts (≥ MIN_EXAM_RATE_N), or a placement.
+  // Rated → 40–100. Not rated → "—", never a punitive 0.
+  //
+  // The blend normalizes over the evidence that EXISTS: exam-only students
+  // are scored on their exams (capped at 69 until they prove units), course
+  // -only students on their coverage (capped at 84 until they prove exams).
   const attributes: AttributeRating[] = ATTRIBUTES.map((info) => {
     const mine = units.filter((u) => u.attribute === info.key);
     const unitsTotal = mine.length;
     const unitsTouched = mine.filter((u) => u.touched).length;
-    const coverage =
-      unitsTotal > 0 ? mine.reduce((s, u) => s + u.score, 0) / unitsTotal : 0;
+    // Coverage as a mastery fraction: each touched unit contributes its
+    // above-floor share; untouched units contribute 0 — breadth stays strict.
+    const coverageM =
+      unitsTotal > 0
+        ? mine.reduce(
+            (s, u) => s + (u.touched ? (u.score - C.RATING_FLOOR) / RANGE : 0),
+            0,
+          ) / unitsTotal
+        : 0;
     const exam = tally(examByAttr.get(info.key));
     const hasUnitTest = mine.some((u) => u.hasTest);
+    const examM = exam.acc * conf(exam.n, C.N_EXAM);
 
-    let score: number;
-    if (exam.n < C.MIN_EXAM_N) {
-      score = Math.min(coverage, C.CAP_NO_EXAM);
-    } else {
-      score = Math.min(
-        100,
-        C.W_COVERAGE * coverage + C.W_EXAM * 100 * exam.acc * conf(exam.n, C.N_EXAM),
-      );
-    }
-    if (!hasUnitTest) score = Math.min(score, C.CAP_NO_TEST_ATTR);
+    const hasCourse = unitsTouched > 0;
+    const hasExam = exam.n >= C.MIN_EXAM_RATE_N;
+    const seed = placementByAttr.get(info.key);
+    const hasSeed = !!seed && seed.seen > 0;
 
+    let rated = hasCourse || hasExam;
     let provisional = false;
-    if (unitsTouched === 0 && exam.n === 0) {
-      const seed = placementByAttr.get(info.key);
-      if (seed && seed.seen > 0) {
-        score = Math.min(C.PLACEMENT_SEED_MAX, C.PLACEMENT_SEED_MAX * (seed.correct / seed.seen));
-        provisional = true;
-      }
+    let score: number;
+
+    if (rated) {
+      const wC = hasCourse ? C.W_COVERAGE : 0;
+      const wE = exam.n > 0 ? C.W_EXAM : 0;
+      const m = (wC * coverageM + wE * examM) / (wC + wE);
+      score = C.RATING_FLOOR + RANGE * m;
+      if (!hasUnitTest) score = Math.min(score, C.CAP_NO_TEST_ATTR);
+      if (exam.n < C.MIN_EXAM_N) score = Math.min(score, C.CAP_NO_EXAM);
+    } else if (hasSeed) {
+      // A placement alone rates the attribute provisionally, low in the range.
+      score =
+        C.RATING_FLOOR +
+        (C.PLACEMENT_SEED_MAX - C.RATING_FLOOR) * (seed.correct / seed.seen);
+      rated = true;
+      provisional = true;
+    } else {
+      score = C.RATING_FLOOR; // the floor everyone stands on — shown as "—"
     }
 
     const rounded = Math.round(score);
     return {
       key: info.key,
+      rated,
       score: rounded,
       band: band(rounded),
       provisional,
       unitsTotal,
       unitsTouched,
-      coverage: Math.round(coverage),
+      coverage: coverageM,
       examAcc: exam.acc,
       examN: exam.n,
       hasUnitTest,
@@ -556,14 +600,15 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   });
 
   // -- overall ---------------------------------------------------------------
-  // Breadth-weighted: each attribute weighs in proportion to how much live
-  // content it represents. Untouched attributes count as their score (0 or a
-  // provisional seed) — breadth is the point.
+  // Breadth-weighted like a 2K overall: each attribute weighs in proportion
+  // to how much live content it represents, and unrated attributes sit at
+  // the 40 floor — they hold the overall down gently instead of nuking it
+  // to single digits. Raising the overall means rating and raising breadth.
   const totalUnits = attributes.reduce((s, a) => s + a.unitsTotal, 0);
   const overall =
     totalUnits > 0
       ? Math.round(attributes.reduce((s, a) => s + a.score * a.unitsTotal, 0) / totalUnits)
-      : 0;
+      : C.RATING_FLOOR;
 
   const hasAnyEvidence =
     units.some((u) => u.touched) ||
@@ -632,15 +677,18 @@ export interface CourseRecommendation {
   explanationMn: string;
 }
 
-// The pinned "start here" card: the lowest attribute, and the rung of its
-// course ladder that matches the student's band. Null when there is no
-// evidence at all — the UI shows a placement CTA instead of guessing.
+// The pinned "start here" card: the lowest RATED attribute, and the rung of
+// its course ladder that matches the student's band. Unrated attributes are
+// never recommended — no evidence is not the same as weak (that's what sent
+// a 94% ЭЕШ scorer to Grade 6). Null when nothing is rated yet.
 export function recommendedCourse(profile: RatingsProfile): CourseRecommendation | null {
   if (!profile.hasAnyEvidence) return null;
+  const rated = profile.attributes.filter((a) => a.rated);
+  if (rated.length === 0) return null;
 
   // Lowest score first; break ties toward the attribute with more live
   // content (more room to grow the overall).
-  const sorted = [...profile.attributes].sort(
+  const sorted = [...rated].sort(
     (a, b) => a.score - b.score || b.unitsTotal - a.unitsTotal,
   );
   const target = sorted[0];
@@ -659,11 +707,11 @@ export function recommendedCourse(profile: RatingsProfile): CourseRecommendation
   const courseTitleMn = COURSE_TITLES_MN[courseContext] ?? courseContext;
 
   const explanationEn = target.provisional
-    ? `Your ${info.en} attribute is provisionally ${target.score} from your placement test — your lowest. It is recommended you start from ${courseTitleEn}.`
-    : `Your ${info.en} attribute is ${target.score} — your lowest. It is recommended you start from ${courseTitleEn}.`;
+    ? `Your ${info.en} rating is provisionally ${target.score} from your placement test — your lowest rated attribute. It is recommended you start from ${courseTitleEn}.`
+    : `Your ${info.en} rating is ${target.score} — your lowest rated attribute. It is recommended you start from ${courseTitleEn}.`;
   const explanationMn = target.provisional
-    ? `Таны ${info.mnGenitive} үнэлгээ түвшин тогтоох тестээр урьдчилсан ${target.score} байна — хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`
-    : `Таны ${info.mnGenitive} үнэлгээ ${target.score} — хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`;
+    ? `Таны ${info.mnGenitive} үнэлгээ түвшин тогтоох тестээр урьдчилсан ${target.score} байна — үнэлэгдсэн чадваруудаас хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`
+    : `Таны ${info.mnGenitive} үнэлгээ ${target.score} — үнэлэгдсэн чадваруудаас хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`;
 
   return {
     attribute: target.key,
@@ -702,7 +750,9 @@ export function recommendedUnits(profile: RatingsProfile, context: string): Unit
     .sort((a, b) => a.score - b.score)
     .slice(0, 3);
   const solid = mine.filter((u) => u.score >= SOLID);
-  const needsUnitTest = mine.filter((u) => u.touched && !u.hasTest && u.score >= 40);
+  // "Looks good but unproven": Developing-or-better without a unit test —
+  // the test is exactly what unlocks Strong (70+) on this scale.
+  const needsUnitTest = mine.filter((u) => u.touched && !u.hasTest && u.score >= 55);
 
   // Count solid leading units — if the student has already proven the first
   // k units, the course can start at unit k+1.
@@ -717,12 +767,16 @@ export function recommendedUnits(profile: RatingsProfile, context: string): Unit
 }
 
 // ---------------------------------------------------------------------------
-// ЭЕШ severity — "how much help do you need on this topic?" Bands share the
-// attribute scale so the vocabulary is consistent everywhere. Returns null
-// below the minimum sample (one bad question is noise, not a diagnosis).
+// ЭЕШ severity — "how much help do you need on this topic?" Judged on raw
+// exam ACCURACY (its own thresholds — the 40–100 rating scale does not
+// apply to accuracy percentages). Returns null below the minimum sample
+// (one bad question is noise, not a diagnosis).
 // ---------------------------------------------------------------------------
 
 export function eshSeverity(accuracyPct: number, total: number): Band | null {
   if (total < 3) return null;
-  return band(accuracyPct);
+  if (accuracyPct < 40) return "beginner";
+  if (accuracyPct < 70) return "developing";
+  if (accuracyPct < 85) return "strong";
+  return "mastery";
 }

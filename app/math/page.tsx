@@ -145,13 +145,14 @@ export default function MathLandingPage() {
   const { profile } = useRatings();
   const { lang } = useLang();
   const rec = recommendedCourse(profile);
-  // The student's attribute score behind each course card ("your rating on
-  // this course's domain"), shown once any evidence exists.
+  // The student's attribute rating behind each course card ("your rating on
+  // this course's domain") — only for RATED attributes; unrated shows nothing.
   const courseChip = (href: string) => {
     if (!profile.hasAnyEvidence) return null;
     const attrKey = COURSE_DEFAULT_ATTRIBUTE[`course:${href.slice("/math/".length)}`];
     if (!attrKey) return null;
     const a = profile.attributes.find((x) => x.key === attrKey)!;
+    if (!a.rated) return null;
     return { info: attributeInfo(attrKey), score: a.score, band: a.band, provisional: a.provisional };
   };
 
