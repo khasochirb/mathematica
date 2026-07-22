@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getSolidGeoSpine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Solid Geometry (stereometry) course hub — Geometry 2: lines & planes
 // in space, then the five solid families (prism, pyramid, cylinder, cone,
@@ -35,6 +36,12 @@ export default function SolidGeoCoursePage() {
           problem hides a flat right triangle; this course teaches you to
           find it, with a diagram at nearly every step.
         </p>
+
+        <CoursePlacementCta
+          namespace="solid-geometry"
+          href="/math/solid-geometry/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:solid-geometry" />
 

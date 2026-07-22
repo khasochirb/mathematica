@@ -6,6 +6,7 @@
 // 2x+3=11 (hard, two-step).
 
 import { getGrade6Topics, getGeometrySpine, getGrade7Spine, getGrade8Spine, getGrade9Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+import { getBankTopic } from "@/lib/problem-bank";
 
 export type PlacementQuestion = {
   id: string;
@@ -487,4 +488,46 @@ export function placementTopics(bank = getPlacementBank()): { slug: string; titl
     else map.set(q.topicSlug, { slug: q.topicSlug, title: q.topicTitle, count: 1 });
   }
   return Array.from(map.values());
+}
+
+// ---------------------------------------------------------------------------
+// Named-course placement banks, HARVESTED from the problem bank: for every
+// unit, one form per level (1/2/3), first variant. Bank variants are real
+// MCQs with computed answers (sympy-gated at authoring), which makes them the
+// right placement currency — unlike testYourself problems, which have no
+// options. Variants that need a figure are skipped (the placement runner
+// renders text + math only).
+// ---------------------------------------------------------------------------
+
+const courseCache = new Map<string, PlacementQuestion[]>();
+
+export function getCoursePlacementBank(courseSlug: string): PlacementQuestion[] {
+  const cached = courseCache.get(courseSlug);
+  if (cached) return cached;
+  const topic = getBankTopic(courseSlug);
+  if (!topic) return [];
+
+  const titleByUnit = new Map(topic.units.map((u) => [u.id, u.title]));
+  const bank: PlacementQuestion[] = [];
+  for (const unit of topic.units) {
+    for (const level of [1, 2, 3] as const) {
+      const form = topic.forms.find(
+        (f) => f.unit === unit.id && f.level === level && f.variants.some((v) => !v.geoFigure),
+      );
+      if (!form) continue;
+      const v = form.variants.find((x) => !x.geoFigure)!;
+      bank.push({
+        id: `${unit.id}:d${level}`,
+        topicSlug: unit.id,
+        topicTitle: titleByUnit.get(unit.id) ?? unit.id,
+        difficulty: level,
+        prompt: v.statement,
+        options: v.options,
+        correctIndex: v.correctIndex,
+        explanation: v.explanation,
+      });
+    }
+  }
+  courseCache.set(courseSlug, bank);
+  return bank;
 }

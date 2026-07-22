@@ -29,6 +29,14 @@ export const RATING_PLACEMENT_NAMESPACES = [
   "grade11",
   "grade12",
   "geometry",
+  "algebra-1",
+  "algebra-2",
+  "trigonometry",
+  "solid-geometry",
+  "prob-stats",
+  "precalculus",
+  "calculus",
+  "vectors-matrices",
 ] as const;
 
 export default function useRatings(): {

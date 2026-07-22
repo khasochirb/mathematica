@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getVecMatSpine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Vectors & Matrices course hub — arrows first, then grids: vectors in
 // the plane and in space, then the matrix algebra that moves them.
@@ -30,6 +31,12 @@ export default function VecMatCoursePage() {
           determinants, and inverses, ending where transformations begin. Taught
           from zero, no prior experience assumed.
         </p>
+
+        <CoursePlacementCta
+          namespace="vectors-matrices"
+          href="/math/vectors-matrices/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:vectors-matrices" />
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getAlg2Spine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Algebra 2 course hub — the complete first-algebra sequence, from
 // expressions and equations through functions, lines, systems, and quadratics.
@@ -30,6 +31,12 @@ export default function Alg2CoursePage() {
           functions, radicals, exponentials and logarithms, and sequences —
           every family taught with a live graph in your hands.
         </p>
+
+        <CoursePlacementCta
+          namespace="algebra-2"
+          href="/math/algebra-2/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:algebra-2" />
 

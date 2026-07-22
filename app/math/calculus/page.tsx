@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getCalcSpine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Calculus course hub — the capstone of the topic ladder: limits,
 // derivatives and their applications, integrals and theirs, ending at the
@@ -32,6 +33,12 @@ export default function CalcCoursePage() {
           areas can do. Secants collapse onto tangents and staircases melt
           into exact areas — every big idea arrives as a moving picture.
         </p>
+
+        <CoursePlacementCta
+          namespace="calculus"
+          href="/math/calculus/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:calculus" />
 

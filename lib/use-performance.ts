@@ -600,9 +600,12 @@ export default function usePerformance() {
       .sort((a, b) => a.accuracy - b.accuracy);
   }, [attempts]);
 
+  // Minimum sample of 3 — one or two missed questions is noise, not a weak
+  // topic (mirrors eshSeverity in lib/ratings.ts). Falls back to the lowest-
+  // accuracy topics when nothing clears the bar.
   const getWeakTopics = useCallback((): string[] => {
     const stats = getTopicStats();
-    const weak = stats.filter((s) => s.accuracy < 70 && s.total >= 1);
+    const weak = stats.filter((s) => s.accuracy < 70 && s.total >= 3);
     if (weak.length > 0) return weak.map((s) => s.topic);
     return stats.slice(0, 2).map((s) => s.topic);
   }, [getTopicStats]);

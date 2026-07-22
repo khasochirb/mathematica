@@ -16,6 +16,14 @@ import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import { TOPIC_LABELS, getTestInfo } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
 import { getSkillStudyTarget } from "@/lib/skill-study-map";
+import { eshSeverity, BAND_LABELS, type Band } from "@/lib/ratings";
+
+const BAND_COLOR: Record<Band, string> = {
+  beginner: "var(--danger)",
+  developing: "var(--warn)",
+  strong: "var(--accent)",
+  mastery: "var(--accent)",
+};
 
 export default function ProgressPage() {
   const [mounted, setMounted] = useState(false);
@@ -192,24 +200,65 @@ export default function ProgressPage() {
                     {/* Weak topic → the course material that repairs it.
                         This link-out is the whole point of the topic courses:
                         test result → labeled topic → exact units to study. */}
+                    {/* Severity-graded routing: how weak decides WHERE to go.
+                        Beginner → the course from its start; developing → the
+                        exact units; strong → problem bank + unit tests;
+                        near-mastery → just take more mock tests. */}
                     <div className="mt-3 space-y-2">
                       {progress.weakTopics.slice(0, 3).map((t) => {
                         const target = getStudyTarget(t);
                         if (!target) return null;
+                        const stat = topicStats.find((s) => s.topic === t);
+                        const sev = stat ? eshSeverity(stat.accuracy, stat.total) : null;
                         return (
                           <div key={t} className="text-[12px]" style={{ color: "var(--fg-2)" }}>
-                            <span style={{ color: "var(--fg-1)" }}>{TOPIC_LABELS[t] || t}:</span>{" "}
-                            <Link href={target.primary.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
-                              {target.primary.label}
-                            </Link>
-                            {target.links.slice(0, 2).map((l) => (
-                              <span key={l.href}>
-                                {" · "}
-                                <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
-                                  {l.label}
-                                </Link>
+                            <span style={{ color: "var(--fg-1)" }}>{TOPIC_LABELS[t] || t}</span>
+                            {sev && (
+                              <span
+                                className="mono ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]"
+                                style={{ border: "1px solid var(--line)", color: BAND_COLOR[sev] }}
+                              >
+                                {BAND_LABELS[sev].mn}
+                                {stat && <span className="tabular"> · {stat.accuracy}%</span>}
                               </span>
-                            ))}
+                            )}
+                            {": "}
+                            {sev === "beginner" ? (
+                              <>
+                                Суурийг нь курсээс эхлээрэй —{" "}
+                                <Link href={target.primary.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  {target.primary.label}
+                                </Link>
+                              </>
+                            ) : sev === "strong" ? (
+                              <>
+                                Бага зэрэг дутуу байна — Бодлогын сангийн Level 2–3 болон нэгжийн тестээр батжуулаарай:{" "}
+                                <Link href="/math/problem-bank" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  Бодлогын сан
+                                </Link>
+                              </>
+                            ) : sev === "mastery" ? (
+                              <>
+                                Бараг эзэмшсэн — дахиад нэг ЭЕШ тест бодоорой:{" "}
+                                <Link href="/practice/esh/test?type=previous" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  Тест сонгох
+                                </Link>
+                              </>
+                            ) : (
+                              <>
+                                <Link href={target.primary.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                  {target.primary.label}
+                                </Link>
+                                {target.links.slice(0, 2).map((l) => (
+                                  <span key={l.href}>
+                                    {" · "}
+                                    <Link href={l.href} className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
+                                      {l.label}
+                                    </Link>
+                                  </span>
+                                ))}
+                              </>
+                            )}
                           </div>
                         );
                       })}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getTrigSpine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Trigonometry course hub — the most figure-rich course on the ladder:
 // right triangles, the special pair, radians and the unit circle, the wave
@@ -33,6 +34,12 @@ export default function TrigCoursePage() {
           and the laws of sines and cosines that solve ANY triangle. Nearly
           every step comes with a diagram you can read the answer from.
         </p>
+
+        <CoursePlacementCta
+          namespace="trigonometry"
+          href="/math/trigonometry/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:trigonometry" />
 

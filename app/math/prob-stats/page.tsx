@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getProbStatSpine } from "@/lib/genmath-lessons";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
+import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Combinatorics, Probability & Statistics course hub — one continuous
 // spine: count first, then chance, then data. Live units link in; the rest
@@ -31,6 +32,12 @@ export default function ProbStatCoursePage() {
           DATA honestly (statistics). Each act powers the next — taught from zero,
           no prior experience assumed.
         </p>
+
+        <CoursePlacementCta
+          namespace="prob-stats"
+          href="/math/prob-stats/placement"
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
 
         <CoursePersonalization context="course:prob-stats" />
 

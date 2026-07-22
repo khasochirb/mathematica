@@ -8,6 +8,50 @@ import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
+import { getStudyTarget } from "@/lib/exam-study-map";
+import { eshSeverity, BAND_LABELS, type Band } from "@/lib/ratings";
+
+const SEVERITY_COLOR: Record<Band, string> = {
+  beginner: "var(--danger)",
+  developing: "var(--warn)",
+  strong: "var(--accent)",
+  mastery: "var(--accent)",
+};
+
+// Band → the destination that matches how much help is needed. Beginner
+// gets the course from its start; developing keeps the drill/learn flow;
+// strong proves it in the problem bank; near-mastery just needs more mocks.
+function severityDestination(
+  topic: string,
+  sev: Band | null,
+  langKey: "en" | "mn",
+): { href: string; label: string } {
+  if (sev === "beginner") {
+    const target = getStudyTarget(topic);
+    if (target) {
+      return {
+        href: target.primary.href,
+        label: langKey === "mn" ? "Курсээс эхлэх" : "Start the course",
+      };
+    }
+  }
+  if (sev === "strong") {
+    return {
+      href: "/math/problem-bank",
+      label: langKey === "mn" ? "Бодлогын сан" : "Problem bank",
+    };
+  }
+  if (sev === "mastery") {
+    return {
+      href: "/practice/esh/test?type=previous",
+      label: langKey === "mn" ? "Тест бодох" : "Take a test",
+    };
+  }
+  return {
+    href: `/practice/esh/learn/${topic}`,
+    label: langKey === "mn" ? "Дадлага" : "Practice",
+  };
+}
 
 type Lang = "mn" | "en";
 
@@ -560,31 +604,45 @@ export default function AnalyticsPage() {
                         : t("rec_pacing")}
                   </p>
                   <div className="grid gap-2">
-                    {weakTopics.slice(0, 3).map((t) => (
-                      <div
-                        key={t.topic}
-                        className="grid items-center gap-3 px-3 py-2.5 rounded-lg text-[13px]"
-                        style={{
-                          background: "var(--bg-1)",
-                          border: "1px solid var(--line)",
-                          gridTemplateColumns: "1fr auto",
-                        }}
-                      >
-                        <div>
-                          <div style={{ color: "var(--fg)" }}>{TOPIC_LABELS[t.topic] || t.label}</div>
-                          <div className="eyebrow" style={{ fontSize: 10 }}>
-                            {t.accuracy}% · {t.total} {i18n.rec_attempt[langKey]}{langKey === "en" && t.total !== 1 ? "s" : ""}
-                          </div>
-                        </div>
-                        <Link
-                          href={`/practice/esh/learn/${t.topic}`}
-                          className="btn btn-line"
-                          style={{ fontSize: 12, padding: "7px 12px" }}
+                    {weakTopics.slice(0, 3).map((t) => {
+                      const sev = eshSeverity(t.accuracy, t.total);
+                      const dest = severityDestination(t.topic, sev, langKey);
+                      return (
+                        <div
+                          key={t.topic}
+                          className="grid items-center gap-3 px-3 py-2.5 rounded-lg text-[13px]"
+                          style={{
+                            background: "var(--bg-1)",
+                            border: "1px solid var(--line)",
+                            gridTemplateColumns: "1fr auto",
+                          }}
                         >
-                          {i18n.rec_practice[langKey]}
-                        </Link>
-                      </div>
-                    ))}
+                          <div>
+                            <div style={{ color: "var(--fg)" }}>
+                              {TOPIC_LABELS[t.topic] || t.label}
+                              {sev && (
+                                <span
+                                  className="mono ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]"
+                                  style={{ border: "1px solid var(--line)", color: SEVERITY_COLOR[sev] }}
+                                >
+                                  {BAND_LABELS[sev][langKey]}
+                                </span>
+                              )}
+                            </div>
+                            <div className="eyebrow" style={{ fontSize: 10 }}>
+                              {t.accuracy}% · {t.total} {i18n.rec_attempt[langKey]}{langKey === "en" && t.total !== 1 ? "s" : ""}
+                            </div>
+                          </div>
+                          <Link
+                            href={dest.href}
+                            className="btn btn-line"
+                            style={{ fontSize: 12, padding: "7px 12px" }}
+                          >
+                            {dest.label}
+                          </Link>
+                        </div>
+                      );
+                    })}
                     {weakTopics.length === 0 && (
                       <Link
                         href="/practice/esh/test?type=previous"

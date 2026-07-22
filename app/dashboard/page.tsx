@@ -80,6 +80,14 @@ const PLACEMENT_NAMESPACES: { namespace: string; href: string; en: string; mn: s
   { namespace: "grade11", href: "/math/11", en: "Grade 11", mn: "11-р анги" },
   { namespace: "grade12", href: "/math/12", en: "Grade 12", mn: "12-р анги" },
   { namespace: "geometry", href: "/math/geometry", en: "Geometry", mn: "Геометр" },
+  { namespace: "algebra-1", href: "/math/algebra-1", en: "Algebra 1", mn: "Алгебр 1" },
+  { namespace: "algebra-2", href: "/math/algebra-2", en: "Algebra 2", mn: "Алгебр 2" },
+  { namespace: "trigonometry", href: "/math/trigonometry", en: "Trigonometry", mn: "Тригонометр" },
+  { namespace: "solid-geometry", href: "/math/solid-geometry", en: "Solid Geometry", mn: "Огторгуйн геометр" },
+  { namespace: "prob-stats", href: "/math/prob-stats", en: "Probability & Statistics", mn: "Магадлал ба Статистик" },
+  { namespace: "precalculus", href: "/math/precalculus", en: "Precalculus", mn: "Прекалькулюс" },
+  { namespace: "calculus", href: "/math/calculus", en: "Calculus", mn: "Математик анализ" },
+  { namespace: "vectors-matrices", href: "/math/vectors-matrices", en: "Vectors & Matrices", mn: "Вектор ба Матриц" },
 ];
 
 // Unit slugs read as titles: "probability-models" → "Probability models".
