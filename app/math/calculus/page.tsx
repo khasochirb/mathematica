@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getCalcSpine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The Calculus course hub — the capstone of the topic ladder: limits,
 // derivatives and their applications, integrals and theirs, ending at the
@@ -31,6 +32,8 @@ export default function CalcCoursePage() {
           areas can do. Secants collapse onto tangents and staircases melt
           into exact areas — every big idea arrives as a moving picture.
         </p>
+
+        <CoursePersonalization context="course:calculus" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 6 units, in order</div>

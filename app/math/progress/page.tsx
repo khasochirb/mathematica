@@ -9,12 +9,22 @@ import usePerformance from "@/lib/use-performance";
 import { contextHref, contextLabel } from "@/lib/perf-context";
 import { courseTotalLessons } from "@/lib/genmath-lessons";
 import { useLang } from "@/lib/lang-context";
+import useRatings from "@/lib/use-ratings";
+import { BAND_LABELS, type Band } from "@/lib/ratings";
+
+const BAND_COLOR: Record<Band, string> = {
+  beginner: "var(--danger)",
+  developing: "var(--warn)",
+  strong: "var(--accent)",
+  mastery: "var(--accent)",
+};
 
 const i18n = {
   eyebrow: { en: "Progress", mn: "Прогресс" },
   stat_lessons: { en: "Lessons", mn: "Хичээл" },
   stat_checks: { en: "Lesson checks", mn: "Хичээлийн даалгавар" },
   stat_accuracy: { en: "Accuracy", mn: "Зөв хариулсан хувь" },
+  rating: { en: "rating", mn: "үнэлгээ" },
   units_eyebrow: { en: "By unit", mn: "Нэгжээр" },
   open_course: { en: "Open the course", mn: "Курс руу очих" },
   empty_h: { en: "No practice data yet.", mn: "Одоогоор мэдээлэл алга." },
@@ -45,8 +55,13 @@ function CourseProgress() {
   const slug = params.get("course") ?? "";
   const context = `course:${slug}`;
   const perf = usePerformance();
+  const { profile } = useRatings();
   const { lang } = useLang();
   const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
+  // Strict 0–100 unit ratings (lessons + unit tests + bank, decayed) — a
+  // different instrument than raw check accuracy, shown side by side.
+  const unitRating = (slug: string) =>
+    profile.units.find((u) => u.context === context && u.slug === slug);
 
   const courseHome = contextHref(context);
   if (!slug || !courseHome) {
@@ -151,6 +166,15 @@ function CourseProgress() {
                         {humanizeSlug(u.topic)}
                       </Link>
                       <span className="mono tabular" style={{ color: "var(--fg-3)", fontSize: 12 }}>
+                        {(() => {
+                          const r = unitRating(u.topic);
+                          if (!r || !r.touched) return null;
+                          return (
+                            <span title={BAND_LABELS[r.band][lang === "mn" ? "mn" : "en"]} style={{ color: BAND_COLOR[r.band] }}>
+                              {r.score} {t("rating")} ·{" "}
+                            </span>
+                          );
+                        })()}
                         {u.correct}/{u.total} · {u.accuracy}%
                       </span>
                     </div>

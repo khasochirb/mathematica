@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getAlg2Spine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The Algebra 2 course hub — the complete first-algebra sequence, from
 // expressions and equations through functions, lines, systems, and quadratics.
@@ -29,6 +30,8 @@ export default function Alg2CoursePage() {
           functions, radicals, exponentials and logarithms, and sequences —
           every family taught with a live graph in your hands.
         </p>
+
+        <CoursePersonalization context="course:algebra-2" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 8 units, in order</div>

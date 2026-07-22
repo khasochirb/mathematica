@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getIbSlSpine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The IB Mathematics SL course hub — Analysis & Approaches, taught by the
 // official syllabus: five topics, each lesson one subtopic code (SL 1.1,
@@ -37,6 +38,8 @@ export default function IbSlCoursePage() {
           English-only, like the real exam. All five SL topics are open.
           HL — everything here plus its extension codes — is next.
         </p>
+
+        <CoursePersonalization context="course:ib-sl" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 5 topics, in syllabus order</div>

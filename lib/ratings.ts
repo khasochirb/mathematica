@@ -362,6 +362,7 @@ export function placementNamespaceToContext(namespace: string): string {
 
 export interface UnitRating extends RatedUnit {
   score: number; // 0–100, strict
+  band: Band;
   touched: boolean;
   hasTest: boolean; // any unit-test evidence
   lessonAcc: number;
@@ -476,9 +477,11 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     const elite = test.acc >= C.ELITE_TEST_ACC && test.n >= C.ELITE_TEST_N;
     if (!elite) score = Math.min(score, C.CAP_NOT_ELITE);
 
+    const rounded = Math.round(score);
     return {
       ...u,
-      score: Math.round(score),
+      score: rounded,
+      band: band(rounded),
       touched: lesson.n > 0 || test.n > 0 || b.attempted > 0,
       hasTest,
       lessonAcc: lesson.acc,

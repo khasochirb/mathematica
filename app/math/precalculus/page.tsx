@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getPrecalcSpine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The Precalculus course hub — the bridge to calculus, taught graph-first:
 // function anatomy, transformations, polynomial and rational graphs,
@@ -30,6 +31,8 @@ export default function PrecalcCoursePage() {
           logarithms, the unit circle and trig waves — ending at the conic
           sections. Every big idea arrives as a picture you can play with.
         </p>
+
+        <CoursePersonalization context="course:precalculus" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 8 units, in order</div>

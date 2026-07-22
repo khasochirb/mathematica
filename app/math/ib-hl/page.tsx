@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getIbHlSpine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The IB Mathematics HL course hub — the Additional Higher Level (AHL)
 // extension codes of Analysis & Approaches, taught one code per lesson
@@ -43,6 +44,8 @@ export default function IbHlCoursePage() {
           — an HL student works both. English-only, like the real exam.
           Topics open in syllabus order.
         </p>
+
+        <CoursePersonalization context="course:ib-hl" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 5 topics, in syllabus order</div>

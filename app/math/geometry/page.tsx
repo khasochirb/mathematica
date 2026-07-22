@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getGeometrySpine } from "@/lib/genmath-lessons";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The Geometry course hub — one continuous spine, taught from absolute zero.
 // Live units link in; the rest show the road ahead.
@@ -75,6 +76,8 @@ export default function GeometryCoursePage() {
             <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           </Link>
         )}
+
+        <CoursePersonalization context="course:geometry" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 13 units, in order</div>

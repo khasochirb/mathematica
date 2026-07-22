@@ -2,6 +2,22 @@
 
 import Link from "next/link";
 import { listGrades, getGrade6Topics, getGrade7Spine, getGrade8Spine, getGrade9Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+import useRatings from "@/lib/use-ratings";
+import {
+  COURSE_DEFAULT_ATTRIBUTE,
+  attributeInfo,
+  recommendedCourse,
+  type Band,
+} from "@/lib/ratings";
+import RecommendedNextCard from "@/components/ratings/RecommendedNextCard";
+import { useLang } from "@/lib/lang-context";
+
+const BAND_COLOR: Record<Band, string> = {
+  beginner: "var(--danger)",
+  developing: "var(--warn)",
+  strong: "var(--accent)",
+  mastery: "var(--accent)",
+};
 
 const TOPIC_COUNTS: Record<number, number> = {
   6: getGrade6Topics().length,
@@ -126,6 +142,18 @@ const cardHover = {
 
 export default function MathLandingPage() {
   const grades = listGrades();
+  const { profile } = useRatings();
+  const { lang } = useLang();
+  const rec = recommendedCourse(profile);
+  // The student's attribute score behind each course card ("your rating on
+  // this course's domain"), shown once any evidence exists.
+  const courseChip = (href: string) => {
+    if (!profile.hasAnyEvidence) return null;
+    const attrKey = COURSE_DEFAULT_ATTRIBUTE[`course:${href.slice("/math/".length)}`];
+    if (!attrKey) return null;
+    const a = profile.attributes.find((x) => x.key === attrKey)!;
+    return { info: attributeInfo(attrKey), score: a.score, band: a.band, provisional: a.provisional };
+  };
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -152,6 +180,15 @@ export default function MathLandingPage() {
           (the same courses that prepare you for ЭЕШ, SAT, and IB), or follow your{" "}
           <strong>school grade</strong> from Grade 6 through 12.
         </p>
+
+        {/* Pinned course recommendation from the ratings profile — the same
+            owner's-voice card as the dashboard, so "where do I start?" is
+            answered before the catalog. */}
+        {rec && (
+          <div className="mb-6">
+            <RecommendedNextCard rec={rec} />
+          </div>
+        )}
 
         {/* Problem Bank — leveled drilling with miss→similar remediation */}
         <Link
@@ -199,7 +236,26 @@ export default function MathLandingPage() {
                   >
                     {c.isNew ? "New · " : ""}Level {c.level} · {c.units} units
                   </span>
-                  <span className="ml-auto flex gap-1.5">
+                  <span className="ml-auto flex gap-1.5 items-center">
+                    {(() => {
+                      const chip = courseChip(c.href);
+                      if (!chip) return null;
+                      return (
+                        <span
+                          className="mono tabular rounded-full px-2 py-0.5 text-[10px]"
+                          title={lang === "mn" ? chip.info.mn : chip.info.en}
+                          style={{
+                            background: "var(--bg-2)",
+                            border: "1px solid var(--line)",
+                            color: BAND_COLOR[chip.band],
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          {lang === "mn" ? "Таны үнэлгээ" : "You"} {chip.score}
+                          {chip.provisional ? "*" : ""}
+                        </span>
+                      );
+                    })()}
                     {c.exams.map((x) => (
                       <span
                         key={x}

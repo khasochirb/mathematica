@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getAlg1Spine } from "@/lib/genmath-lessons";
+import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The Algebra 1 course hub — the complete first-algebra sequence, from
 // expressions and equations through functions, lines, systems, and quadratics.
@@ -29,6 +30,8 @@ export default function Alg1CoursePage() {
           polynomials and factoring — ending at quadratic equations. Taught from
           zero, one interactive idea at a time.
         </p>
+
+        <CoursePersonalization context="course:algebra-1" />
 
         {/* The spine */}
         <div className="eyebrow mb-4">The course — 8 units, in order</div>
