@@ -1,0 +1,1906 @@
+#!/usr/bin/env python3
+"""IB Mathematics: Analysis & Approaches HL — Unit 2 (Topic 2: Functions, AHL).
+
+Builds data/genmath/ib-hl/functions.json: five lessons, one per official AHL
+subtopic code 2.12–2.16 — the factor and remainder theorems with Vieta's sum
+and product of roots, rational functions with oblique asymptotes, odd/even
+functions and inverses with domain restriction (including self-inverse),
+polynomial and rational inequalities, and the modulus family |f(x)|, f(|x|),
+1/f(x). HL depth throughout; every numeric claim sympy-checked; banks tagged
+ib-aa-hl-2.x.
+
+Run: python3 scripts/ib/build_hl_unit2.py   (then npm run verify:genmath)
+"""
+import json
+import os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT = os.path.join(ROOT, "data", "genmath", "ib-hl", "functions.json")
+
+
+def code_badge(code, marks=None, paper=None):
+    b = [{"text": code, "mono": True}]
+    if marks:
+        b.append({"text": f"[{marks} marks]"})
+    if paper:
+        b.append({"text": paper})
+    return b
+
+
+# ===========================================================================
+# Lesson 1 — AHL 2.12: Factor & remainder theorems; sum & product of roots
+# ===========================================================================
+def lesson_polynomials_vieta():
+    return {
+        "slug": "polynomials-factors-and-vieta",
+        "title": "Polynomials: Factors, Remainders & Vieta",
+        "concreteComparison": (
+            "You can learn a lot about people from their handshakes — and everything about a "
+            "polynomial from single substitutions. $P(2) = 0$? Then $(x-2)$ divides $P$, no long "
+            "division needed. And without finding a single root you can still say what they all "
+            "ADD to and MULTIPLY to — straight off the coefficients."
+        ),
+        "objective": (
+            "Use the remainder and factor theorems to find unknown coefficients and factorise "
+            "cubics, and read the sum and product of roots directly from a polynomial's "
+            "coefficients."
+        ),
+        "concept": [
+            "**Syllabus card — AHL 2.12.** Polynomial functions, their graphs and equations; zeros, "
+            "roots and factors; the factor and remainder theorems; sum and product of the roots of "
+            "polynomial equations. Papers 1 and 2. Weight: 5–8 marks. Partner code: the conjugate "
+            "root theorem (AHL 1.14) — complex roots of these same polynomials.",
+            "**The remainder theorem.** Dividing $P(x)$ by $(x - a)$ leaves remainder $P(a)$ — "
+            "because $P(x) = (x-a)Q(x) + r$ collapses to $r = P(a)$ at $x = a$. One substitution "
+            "replaces a whole long division. The **factor theorem** is its zero case: "
+            "$(x - a)$ is a factor $\\iff P(a) = 0$.",
+            "**Factorising a cubic, the exam way.** Find one root by testing divisors of the "
+            "constant term; extract the linear factor (by inspection or division); finish the "
+            "remaining quadratic by factorising or the formula. $2x^3 - 3x^2 - 5x + 6$: test "
+            "$P(2) = 0$ ✓, so $2x^3 - 3x^2 - 5x + 6 = (x-2)(2x^2 + x - 3) = (x-2)(2x+3)(x-1)$.",
+            "**Vieta's shortcuts.** For $ax^n + bx^{n-1} + \\cdots + \\text{constant} = 0$: "
+            "$$\\sum \\text{roots} = -\\frac{b}{a}, \\qquad \\prod \\text{roots} = "
+            "(-1)^n\\,\\frac{\\text{constant}}{a}.$$ For our cubic: sum $= \\frac{3}{2}$ (check: "
+            "$2 + 1 - \\frac{3}{2}$ ✓), product $= (-1)^3\\frac{6}{2} = -3$ (check: $2 \\cdot 1 "
+            "\\cdot (-\\frac{3}{2})$ ✓). No roots required — the coefficients already know.",
+            "**The symmetric-function game.** With $\\alpha + \\beta$ and $\\alpha\\beta$ in hand, "
+            "you can evaluate ANY symmetric expression without solving: $\\alpha^2 + \\beta^2 = "
+            "(\\alpha+\\beta)^2 - 2\\alpha\\beta$, $\\frac{1}{\\alpha} + \\frac{1}{\\beta} = "
+            "\\frac{\\alpha+\\beta}{\\alpha\\beta}$ — and you can BUILD new equations with "
+            "transformed roots. HL Paper 1 asks this every other year.",
+        ],
+        "keyIdea": (
+            "$P(a)$ is the remainder on dividing by $(x-a)$; zero remainder means factor. "
+            "Coefficients broadcast the roots' sum ($-b/a$) and product ($(-1)^n\\,c/a$) — "
+            "symmetric questions never need the actual roots."
+        ),
+        "facts": [
+            {
+                "title": "Remainder & factor theorems",
+                "latex": "P(x) = (x-a)Q(x) + P(a); \\qquad P(a) = 0 \\iff (x-a) \\mid P(x)",
+                "explanation": (
+                    "NOT in the booklet — memorize. One substitution does a division's work; the "
+                    "factor theorem is the remainder theorem with remainder zero."
+                ),
+            },
+            {
+                "title": "Sum & product of roots",
+                "latex": "\\sum \\alpha_i = -\\frac{a_{n-1}}{a_n}, \\qquad \\prod \\alpha_i = (-1)^n\\,\\frac{a_0}{a_n}",
+                "explanation": (
+                    "IN the HL booklet (Topic 2 HL section), for $P(x) = a_nx^n + \\cdots + a_0$. "
+                    "The $(-1)^n$ is the classic slip — even degree keeps the sign, odd flips it."
+                ),
+            },
+            {
+                "title": "Symmetric workhorse",
+                "latex": "\\alpha^2 + \\beta^2 = (\\alpha + \\beta)^2 - 2\\alpha\\beta",
+                "explanation": (
+                    "NOT in the booklet. The identity that converts almost every 'without solving, "
+                    "find…' question into two substitutions."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibhl-212-we1",
+                "statement": (
+                    "The polynomial $P(x) = 2x^3 + ax^2 - 5x + 6$ has $(x - 2)$ as a factor.  \n"
+                    "**(a)** Show that $a = -3$. **[2]**  \n"
+                    "**(b)** Hence factorise $P(x)$ completely and state all roots of "
+                    "$P(x) = 0$. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** Factor theorem: $P(2) = 0$ *(M1)*: $16 + 4a - 10 + 6 = 4a + 12 = 0$, "
+                    "so $a = -3$ *(AG)*.  \n"
+                    "**(b)** Extract the known factor *(M1)*: $2x^3 - 3x^2 - 5x + 6 = "
+                    "(x - 2)(2x^2 + x - 3)$ *(A1 — by inspection: the quadratic must start $2x^2$ "
+                    "and end $-3$)*. Factorise the quadratic *(A1)*: $2x^2 + x - 3 = (2x + 3)(x - 1)$.  \n"
+                    "$$P(x) = (x-2)(2x+3)(x-1), \\qquad x = 2,\\ 1,\\ -\\tfrac{3}{2} \\;(A1)$$  \n"
+                    "**Narrative:** verify the inspection step by expanding back — ten seconds, and "
+                    "it catches the classic middle-coefficient slip. Vieta double-check: sum "
+                    "$= 2 + 1 - \\frac{3}{2} = \\frac{3}{2} = -\\frac{(-3)}{2}$ ✓."
+                ),
+                "check": [
+                    "Eq(16 + 4*(-3) - 10 + 6, 0)",
+                    "Eq(expand((x - 2)*(2*x**2 + x - 3)), 2*x**3 - 3*x**2 - 5*x + 6)",
+                    "Eq(expand((2*x + 3)*(x - 1)), 2*x**2 + x - 3)",
+                    "Eq(2*2**3 - 3*2**2 - 5*2 + 6, 0)",
+                    "Eq(2*1**3 - 3*1**2 - 5*1 + 6, 0)",
+                    "Eq(2*Rational(-3, 2)**3 - 3*Rational(-3, 2)**2 - 5*Rational(-3, 2) + 6, 0)",
+                    "Eq(2 + 1 + Rational(-3, 2), Rational(3, 2))",
+                ],
+            },
+            {
+                "id": "ibhl-212-we2",
+                "statement": (
+                    "The roots of $x^2 - 5x + 3 = 0$ are $\\alpha$ and $\\beta$. **Without "
+                    "solving the equation**,  \n"
+                    "**(a)** find $\\alpha^2 + \\beta^2$; **[3]**  \n"
+                    "**(b)** find a quadratic equation with integer coefficients whose roots are "
+                    "$\\alpha^2$ and $\\beta^2$. **[3]**"
+                ),
+                "solution": (
+                    "Vieta: $\\alpha + \\beta = 5$, $\\alpha\\beta = 3$ *(A1 — both)*.  \n"
+                    "**(a)** $\\alpha^2 + \\beta^2 = (\\alpha + \\beta)^2 - 2\\alpha\\beta$ *(M1)* "
+                    "$= 25 - 6 = 19$ *(A1)*.  \n"
+                    "**(b)** New sum $= \\alpha^2 + \\beta^2 = 19$; new product $= "
+                    "(\\alpha\\beta)^2 = 9$ *(M1 A1)*. Equation: $x^2 - (\\text{sum})x + "
+                    "(\\text{product}) = 0$:  \n"
+                    "$$x^2 - 19x + 9 = 0 \\;(A1)$$  \n"
+                    "**Narrative:** the whole question runs on two numbers. Solving for "
+                    "$\\alpha = \\frac{5 + \\sqrt{13}}{2}$ and squaring is legal but slow and "
+                    "surd-infested — 'without solving' is a hint, not a handcuff."
+                ),
+                "check": [
+                    "Eq(5**2 - 2*3, 19)",
+                    "Eq(3**2, 9)",
+                    "Eq(expand((x - (5 + sqrt(13))/2)*(x - (5 - sqrt(13))/2)), x**2 - 5*x + 3)",
+                    "Eq(simplify(((5 + sqrt(13))/2)**2 + ((5 - sqrt(13))/2)**2), 19)",
+                    "Eq(simplify((((5 + sqrt(13))/2)*((5 - sqrt(13))/2))**2), 9)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Dividing by $(x - a)$ to find a remainder the theorem hands you for free.",
+                "correction": "Remainder on dividing by $(x-a)$ IS $P(a)$ — substitute, don't divide. Long division is for extracting the quotient, not the remainder.",
+                "authored": True,
+            },
+            {
+                "text": "Product of roots of a CUBIC read as $+\\frac{a_0}{a_n}$ — the $(-1)^n$ forgotten.",
+                "correction": "Odd degree flips: for $2x^3 - 3x^2 - 5x + 6$, product $= (-1)^3\\cdot\\frac{6}{2} = -3$.",
+                "authored": True,
+            },
+            {
+                "text": "Building the new equation in (b) but leaving fractional coefficients when the question says integer.",
+                "correction": "Multiply through by the common denominator at the end — 'integer coefficients' is part of the answer, and an A mark.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibhl-212-t1",
+                "statement": (
+                    "When $P(x) = x^3 - 4x^2 + kx + 8$ is divided by $(x - 3)$, the remainder is "
+                    "$2$. Find $k$. **[3]**"
+                ),
+                "solution": (
+                    "Remainder theorem *(M1)*: $P(3) = 27 - 36 + 3k + 8 = 3k - 1$ *(A1)*. Set "
+                    "$3k - 1 = 2$: $k = 1$ *(A1)*. No division anywhere — one substitution and a "
+                    "linear equation."
+                ),
+                "check": [
+                    "Eq(27 - 36 + 3*1 + 8, 2)",
+                    "solve(Eq(3*k - 1, 2), k) == [1]",
+                ],
+            },
+            {
+                "id": "ibhl-212-t2",
+                "statement": (
+                    "A cubic equation with leading coefficient 1 has roots $1$, $-2$ and $4$. "
+                    "Write the equation in the form $x^3 + bx^2 + cx + d = 0$, and verify Vieta's "
+                    "sum and product on it. **[4]**"
+                ),
+                "solution": (
+                    "$(x-1)(x+2)(x-4) = x^3 - 3x^2 - 6x + 8$ *(M1 A1)*. Vieta: sum $= 1 - 2 + 4 "
+                    "= 3 = -\\frac{-3}{1}$ ✓ *(A1)*; product $= 1(-2)(4) = -8 = (-1)^3 \\cdot "
+                    "\\frac{8}{1}$ ✓ *(A1)*. The middle coefficient $-6$ is the pair-sum "
+                    "$\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = -2 - 8 + 4 = -6$ — Vieta's "
+                    "third, quieter identity."
+                ),
+                "check": [
+                    "Eq(expand((x - 1)*(x + 2)*(x - 4)), x**3 - 3*x**2 - 6*x + 8)",
+                    "Eq(1 - 2 + 4, 3)",
+                    "Eq(1*(-2)*4, -8)",
+                    "Eq(1*(-2) + (-2)*4 + 4*1, -6)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AHL 2.12 · Papers 1 & 2",
+                    "title": "One substitution beats a division",
+                    "body": (
+                        "Write $P(x) = (x-a)Q(x) + r$ and set $x = a$: everything with the factor "
+                        "dies, leaving $r = P(a)$. That single line is the remainder theorem, the "
+                        "factor theorem ($r = 0$), and the engine of every 'find the unknown "
+                        "coefficient' question on the paper."
+                    ),
+                },
+                {
+                    "kind": "polyGraph",
+                    "eyebrow": "Roots, drawn",
+                    "title": "A cubic wears its factors",
+                    "teach": (
+                        "Each zero of the graph is a linear factor $(x - a)$ of the polynomial — "
+                        "steer the third root and watch the cubic re-shape around it. The factor "
+                        "theorem is this picture read algebraically: crossing at $a$ $\\iff$ "
+                        "$P(a) = 0$ $\\iff$ $(x-a)$ divides $P$."
+                    ),
+                    "config": {"mode": "zeros", "zeros": [-2, 1, 3]},
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Check yourself",
+                    "title": "Remainder without dividing",
+                    "prompt": "The remainder when $x^3 + 2x - 5$ is divided by $(x + 1)$ is:",
+                    "options": ["$-8$", "$-2$", "$2$", "$-4$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Divide by $(x+1)$ → substitute $x = -1$: $(-1)^3 + 2(-1) - 5 = -1 - 2 - 5 "
+                        "= -8$. The trap is substituting $+1$ — the root of $(x+1)$ is $-1$."
+                    ),
+                    "check": [
+                        "Eq((-1)**3 + 2*(-1) - 5, -8)",
+                        "Eq(1**3 + 2*1 - 5, -2)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Find a, then factorise fully",
+                    "problemId": "ibhl-212-we1",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "One remainder, one unknown",
+                    "problemId": "ibhl-212-t1",
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Vieta",
+                    "title": "The coefficients already know",
+                    "body": (
+                        "Expand $(x - \\alpha)(x - \\beta)$ and stare: $x^2 - (\\alpha+\\beta)x + "
+                        "\\alpha\\beta$. The coefficients ARE the sum and product, sign-flipped. "
+                        "Scaled and generalised: sum $= -a_{n-1}/a_n$, product $= (-1)^n a_0/a_n$ "
+                        "(booklet). So 'find $\\alpha^2 + \\beta^2$ without solving' is not a "
+                        "riddle — it is two lookups and one identity."
+                    ),
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Vieta speed round",
+                    "title": "Sum and product, read off",
+                    "prompt": "For $3x^2 + 12x - 7 = 0$, the sum and product of the roots are:",
+                    "options": [
+                        "sum $-4$, product $-\\dfrac{7}{3}$",
+                        "sum $4$, product $\\dfrac{7}{3}$",
+                        "sum $-12$, product $-7$",
+                        "sum $-4$, product $\\dfrac{7}{3}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Sum $= -\\frac{12}{3} = -4$; product $= (-1)^2\\frac{-7}{3} = "
+                        "-\\frac{7}{3}$. Forgetting to divide by the leading 3 gives the $-12, -7$ "
+                        "trap."
+                    ),
+                    "check": [
+                        "Eq(Rational(-12, 3), -4)",
+                        "Eq(Rational(-7, 3), -Rational(7, 3))",
+                        "Eq(simplify((-2 + sqrt(Rational(57, 9)))*(-2 - sqrt(Rational(57, 9)))), -Rational(7, 3))",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Symmetric functions, no solving",
+                    "problemId": "ibhl-212-we2",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "Build a cubic from its roots",
+                    "problemId": "ibhl-212-t2",
+                },
+                {
+                    "kind": "recap",
+                    "title": "AHL 2.12 in four lines",
+                    "points": [
+                        "Remainder on $\\div(x-a)$ is $P(a)$; $P(a) = 0$ ⟺ $(x-a)$ is a factor.",
+                        "Cubic routine: test a root, extract the linear factor, finish the quadratic.",
+                        "Vieta (booklet): sum $= -a_{n-1}/a_n$, product $= (-1)^n a_0/a_n$.",
+                        "Symmetric expressions: $(\\alpha+\\beta)^2 - 2\\alpha\\beta$ and friends — never solve first.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 2 — AHL 2.13: Rational functions with oblique asymptotes
+# ===========================================================================
+def lesson_rational_oblique():
+    return {
+        "slug": "rational-functions-and-oblique-asymptotes",
+        "title": "Rational Functions & Oblique Asymptotes",
+        "concreteComparison": (
+            "Far from its vertical asymptote, $\\dfrac{x^2 - 2x + 4}{x - 1}$ stops looking like a "
+            "fraction at all — divide it out and it is $x - 1 + \\dfrac{3}{x-1}$: a LINE plus a "
+            "vanishing correction. The graph hugs that slanted line the way SL curves hugged "
+            "horizontal ones."
+        ),
+        "objective": (
+            "Analyse rational functions of the forms $\\frac{ax+b}{cx^2+dx+e}$ and "
+            "$\\frac{ax^2+bx+c}{dx+e}$: intercepts, vertical asymptotes, horizontal or oblique "
+            "asymptotes (by division), and stationary points."
+        ),
+        "concept": [
+            "**Syllabus card — AHL 2.13.** Rational functions $f(x) = \\dfrac{ax+b}{cx^2+dx+e}$ "
+            "and $f(x) = \\dfrac{ax^2+bx+c}{dx+e}$, and their graphs. Papers 1 and 2. Weight: 5–8 "
+            "marks. Extends SL 2.8's $\\frac{ax+b}{cx+d}$ — the new events are TWO vertical "
+            "asymptotes, and the oblique asymptote.",
+            "**Linear over quadratic.** $\\dfrac{ax+b}{cx^2+dx+e}$: vertical asymptotes at each "
+            "real root of the denominator (up to two); as $x \\to \\pm\\infty$ the bottom wins, so "
+            "the horizontal asymptote is $y = 0$. Example: $g(x) = \\dfrac{3x+2}{(x+2)(x-1)}$ — "
+            "verticals $x = -2$ and $x = 1$, horizontal $y = 0$, crossing it once at "
+            "$x = -\\frac{2}{3}$.",
+            "**Quadratic over linear: divide first.** Degree(top) $=$ degree(bottom)$+1$, so long "
+            "division writes $f(x) = (\\text{line}) + \\dfrac{r}{dx+e}$. The line is the OBLIQUE "
+            "asymptote — the correction $\\frac{r}{dx+e} \\to 0$ at both ends. "
+            "$\\dfrac{x^2-2x+4}{x-1} = (x-1) + \\dfrac{3}{x-1}$: oblique $y = x - 1$, vertical "
+            "$x = 1$.",
+            "**Stationary points come free.** With $t = x - 1$ the same function is "
+            "$t + \\frac{3}{t}$ — differentiate: $1 - \\frac{3}{t^2} = 0$ at $t = \\pm\\sqrt{3}$, "
+            "i.e. $x = 1 \\pm \\sqrt{3}$, with values $\\pm 2\\sqrt{3}$. So the curve's two "
+            "branches never enter the band $-2\\sqrt{3} < y < 2\\sqrt{3}$ — a rational function's "
+            "RANGE, read from its turning points.",
+            "**Sketch discipline (exam):** label BOTH asymptotes with equations, mark intercepts "
+            "with coordinates, and draw each branch approaching its asymptotes without touching. "
+            "An unlabelled dashed line earns nothing; 'sketch' pays for features, not artistry.",
+        ],
+        "keyIdea": (
+            "Bottom-heavy → horizontal asymptote $y = 0$. Top-heavy by one degree → divide: "
+            "line + vanishing remainder, and the line is the oblique asymptote."
+        ),
+        "facts": [
+            {
+                "title": "Oblique asymptote by division",
+                "latex": "\\frac{ax^2+bx+c}{dx+e} = (px + q) + \\frac{r}{dx+e} \\;\\Rightarrow\\; y = px + q",
+                "explanation": (
+                    "NOT in the booklet — the method is the content. The remainder term dies as "
+                    "$x \\to \\pm\\infty$; what survives is the asymptote."
+                ),
+            },
+            {
+                "title": "Vertical asymptotes",
+                "latex": "cx^2 + dx + e = 0 \\;\\Rightarrow\\; \\text{up to two verticals}",
+                "explanation": (
+                    "Each real root of the denominator (that doesn't cancel) is a vertical "
+                    "asymptote. Factorise the bottom before anything else."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibhl-213-we1",
+                "statement": (
+                    "Let $f(x) = \\dfrac{x^2 - 2x + 4}{x - 1}$, $x \\ne 1$.  \n"
+                    "**(a)** Show that $f(x) = x - 1 + \\dfrac{3}{x-1}$. **[2]**  \n"
+                    "**(b)** Write down the equations of the two asymptotes of the graph. **[2]**  \n"
+                    "**(c)** Find the coordinates of the two stationary points, and hence state "
+                    "the range of $f$. **[5]**"
+                ),
+                "solution": (
+                    "**(a)** Divide (or note $x^2 - 2x + 4 = (x-1)^2 + 3$, since $(x-1)^2 = "
+                    "x^2 - 2x + 1$) *(M1)*: $f(x) = \\dfrac{(x-1)^2 + 3}{x-1} = x - 1 + "
+                    "\\dfrac{3}{x-1}$ *(AG)*.  \n"
+                    "**(b)** Vertical $x = 1$; oblique $y = x - 1$ *(A1 A1)*.  \n"
+                    "**(c)** $f'(x) = 1 - \\dfrac{3}{(x-1)^2} = 0 \\Rightarrow (x-1)^2 = 3 "
+                    "\\Rightarrow x = 1 \\pm \\sqrt{3}$ *(M1 A1)*. Values: at $x = 1 + \\sqrt3$, "
+                    "$f = \\sqrt3 + \\frac{3}{\\sqrt3} = 2\\sqrt{3}$; at $x = 1 - \\sqrt3$, "
+                    "$f = -2\\sqrt{3}$ *(A1 A1)*. The upper branch has minimum $2\\sqrt3$, the "
+                    "lower branch maximum $-2\\sqrt3$, so  \n"
+                    "$$\\text{range: } y \\le -2\\sqrt{3} \\;\\text{ or }\\; y \\ge 2\\sqrt{3} \\;(A1)$$  \n"
+                    "**Narrative:** the substitution $t = x-1$ turns everything into "
+                    "$t + \\frac{3}{t}$ — the cleanest 'line plus correction' there is. HL "
+                    "examiners love asking for the range precisely because it falls out of the "
+                    "stationary VALUES, not the $x$-coordinates."
+                ),
+                "check": [
+                    "Eq(expand((x - 1)**2 + 3), x**2 - 2*x + 4)",
+                    "Eq(simplify((x**2 - 2*x + 4)/(x - 1) - (x - 1 + 3/(x - 1))), 0)",
+                    "Eq(simplify(diff((x**2 - 2*x + 4)/(x - 1), x).subs(x, 1 + sqrt(3))), 0)",
+                    "Eq(simplify(diff((x**2 - 2*x + 4)/(x - 1), x).subs(x, 1 - sqrt(3))), 0)",
+                    "Eq(simplify(((1 + sqrt(3))**2 - 2*(1 + sqrt(3)) + 4)/(1 + sqrt(3) - 1)), 2*sqrt(3))",
+                    "Eq(simplify(((1 - sqrt(3))**2 - 2*(1 - sqrt(3)) + 4)/(1 - sqrt(3) - 1)), -2*sqrt(3))",
+                ],
+            },
+            {
+                "id": "ibhl-213-we2",
+                "statement": (
+                    "Let $g(x) = \\dfrac{3x+2}{x^2+x-2}$.  \n"
+                    "**(a)** Write down the equations of the three asymptotes of the graph of "
+                    "$g$. **[3]**  \n"
+                    "**(b)** Find the coordinates of the points where the graph crosses the "
+                    "axes. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Factorise the denominator *(M1)*: $x^2 + x - 2 = (x+2)(x-1)$ — "
+                    "verticals $x = -2$ and $x = 1$; degree(top) $<$ degree(bottom) → horizontal "
+                    "$y = 0$ *(A1 for verticals, A1 for horizontal)*.  \n"
+                    "**(b)** $x$-intercept where the NUMERATOR vanishes: $3x + 2 = 0 \\Rightarrow "
+                    "\\left(-\\tfrac{2}{3}, 0\\right)$ *(A1)*. $y$-intercept: $g(0) = "
+                    "\\dfrac{2}{-2} = -1$: $(0, -1)$ *(A1)*.  \n"
+                    "**Narrative:** unlike SL's one-vertical rationals, this graph has THREE "
+                    "branches — and it crosses its own horizontal asymptote at $x = -\\frac{2}{3}$. "
+                    "'The graph never touches an asymptote' is folklore, not mathematics: only the "
+                    "far tails are forbidden from touching."
+                ),
+                "check": [
+                    "Eq(expand((x + 2)*(x - 1)), x**2 + x - 2)",
+                    "solve(3*x + 2, x) == [Rational(-2, 3)]",
+                    "Eq(Rational(2, -2), -1)",
+                    "Eq(3*Rational(-2, 3) + 2, 0)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Hunting the $x$-intercept in the denominator (or asymptotes in the numerator).",
+                "correction": "Zeros of the TOP are intercepts; zeros of the BOTTOM are vertical asymptotes. Factorise both, keep them apart.",
+                "authored": True,
+            },
+            {
+                "text": "Claiming a horizontal asymptote for $\\frac{x^2 - 2x + 4}{x-1}$ because 'rationals have horizontals'.",
+                "correction": "Compare degrees: top one higher → divide, and the quotient LINE $y = px + q$ is the asymptote. Horizontal $y=0$ needs a bottom-heavy fraction.",
+                "authored": True,
+            },
+            {
+                "text": "Sketching branches that cross the vertical asymptote, or leaving asymptotes unlabelled.",
+                "correction": "Branches approach verticals, never cross; every dashed line carries its equation. The labels are the marks.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibhl-213-t1",
+                "statement": (
+                    "Find the equations of the asymptotes of $y = \\dfrac{x^2 + 3x - 1}{x + 2}$. **[4]**"
+                ),
+                "solution": (
+                    "Divide *(M1)*: $x^2 + 3x - 1 = (x+2)(x+1) - 3$ *(A1)*, so "
+                    "$y = x + 1 - \\dfrac{3}{x+2}$. Asymptotes: vertical $x = -2$, oblique "
+                    "$y = x + 1$ *(A1 A1)*. Check the division by expanding back: "
+                    "$(x+2)(x+1) - 3 = x^2 + 3x + 2 - 3$ ✓."
+                ),
+                "check": [
+                    "Eq(expand((x + 2)*(x + 1) - 3), x**2 + 3*x - 1)",
+                    "Eq(simplify((x**2 + 3*x - 1)/(x + 2) - (x + 1 - 3/(x + 2))), 0)",
+                ],
+            },
+            {
+                "id": "ibhl-213-t2",
+                "statement": (
+                    "Let $h(x) = \\dfrac{2x - 3}{x^2 - 9}$. State the equations of all "
+                    "asymptotes, and find where the graph crosses the $x$-axis. **[4]**"
+                ),
+                "solution": (
+                    "$x^2 - 9 = (x-3)(x+3)$ *(M1)*: verticals $x = 3$ and $x = -3$; bottom-heavy "
+                    "→ horizontal $y = 0$ *(A1)*. $x$-axis crossing: $2x - 3 = 0 \\Rightarrow "
+                    "x = \\tfrac{3}{2}$ *(A1)*, i.e. $\\left(\\tfrac{3}{2}, 0\\right)$ *(A1)*. "
+                    "(Note $\\frac{3}{2}$ is NOT a root of the bottom — no cancellation, no hole.)"
+                ),
+                "check": [
+                    "Eq(expand((x - 3)*(x + 3)), x**2 - 9)",
+                    "solve(2*x - 3, x) == [Rational(3, 2)]",
+                    "Eq(Rational(3, 2)**2 - 9, -Rational(27, 4))",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AHL 2.13 · Papers 1 & 2",
+                    "title": "Two new shapes of rational",
+                    "body": (
+                        "SL's rationals had one vertical and one horizontal asymptote. HL adds two "
+                        "shapes: linear-over-quadratic (up to TWO verticals, horizontal $y = 0$, "
+                        "three branches) and quadratic-over-linear (one vertical plus a SLANTED "
+                        "asymptote you find by dividing). Degree comparison decides which world "
+                        "you're in."
+                    ),
+                },
+                {
+                    "kind": "limitGraph",
+                    "eyebrow": "At the wall",
+                    "title": "Vertical asymptote, up close",
+                    "teach": (
+                        "Near a root of the denominator the outputs blow up — one side to "
+                        "$+\\infty$, the other to $-\\infty$. With a quadratic downstairs this "
+                        "happens at up to two walls, cutting the graph into three branches. Far "
+                        "from the walls, the degree comparison takes over: that's where the "
+                        "horizontal or oblique asymptote lives."
+                    ),
+                    "config": {"mode": "infinite"},
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Degree check",
+                    "title": "Which one has an oblique asymptote?",
+                    "prompt": "Exactly one of these graphs has an oblique (slant) asymptote:",
+                    "options": [
+                        "$y = \\dfrac{x^2 - 5x + 1}{x + 3}$",
+                        "$y = \\dfrac{2x + 7}{x^2 - 4}$",
+                        "$y = \\dfrac{3x - 1}{2x + 5}$",
+                        "$y = \\dfrac{x^2 + 1}{x^2 - 1}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Oblique needs degree(top) $=$ degree(bottom) $+ 1$: only the first "
+                        "qualifies. Bottom-heavy → $y = 0$; equal degrees → horizontal at the "
+                        "leading-coefficient ratio ($y = \\frac{3}{2}$, $y = 1$)."
+                    ),
+                    "check": [
+                        "Eq(2 - 1, 1)",
+                        "Eq(Rational(3, 2), Rational(3, 2))",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Divide, then read the range off the turning points",
+                    "problemId": "ibhl-213-we1",
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Three branches, three asymptotes",
+                    "problemId": "ibhl-213-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Crossing the uncrossable",
+                    "title": "Can a graph touch its asymptote?",
+                    "prompt": (
+                        "The graph of $g(x) = \\dfrac{3x+2}{x^2+x-2}$ and its horizontal "
+                        "asymptote $y = 0$:"
+                    ),
+                    "options": [
+                        "cross once, at $x = -\\tfrac{2}{3}$ — asymptotes only bind the far tails",
+                        "never meet — graphs cannot touch asymptotes",
+                        "cross at $x = -2$ and $x = 1$",
+                        "coincide for large $x$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$g(x) = 0$ exactly where the numerator dies: $x = -\\frac{2}{3}$. The "
+                        "asymptote promises behaviour as $x \\to \\pm\\infty$ — it says nothing "
+                        "about the middle of the graph."
+                    ),
+                    "check": [
+                        "Eq(3*Rational(-2, 3) + 2, 0)",
+                    ],
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "Find the slant",
+                    "problemId": "ibhl-213-t1",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "Two walls and a crossing",
+                    "problemId": "ibhl-213-t2",
+                },
+                {
+                    "kind": "recap",
+                    "title": "AHL 2.13 in four lines",
+                    "points": [
+                        "Factorise the bottom: each surviving root is a vertical asymptote.",
+                        "Bottom-heavy → $y = 0$; top-heavy by one → divide, quotient line = oblique asymptote.",
+                        "Stationary values of $t + \\frac{r}{t}$ shapes give the range: $\\pm 2\\sqrt{r}$ pattern.",
+                        "Sketches score on labelled asymptotes + intercept coordinates, nothing else.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 3 — AHL 2.14: Odd & even functions, inverses, self-inverse
+# ===========================================================================
+def lesson_odd_even_inverse():
+    return {
+        "slug": "odd-even-and-self-inverse",
+        "title": "Odd & Even, Inverses & Self-Inverse",
+        "concreteComparison": (
+            "Some functions have a mirror in them: $x^4 - 3x^2$ reads the same left of the "
+            "$y$-axis as right ($f(-x) = f(x)$); $x^3 - 5x$ flips sign perfectly ($f(-x) = "
+            "-f(x)$). And a few rare ones are their OWN inverse — run them twice and you're home: "
+            "$f(f(x)) = x$."
+        ),
+        "objective": (
+            "Classify functions as odd, even or neither; construct inverses of non-one-to-one "
+            "functions by restricting the domain; verify and exploit self-inverse functions."
+        ),
+        "concept": [
+            "**Syllabus card — AHL 2.14.** Odd and even functions; finding the inverse function "
+            "$f^{-1}$ including domain restriction; self-inverse functions. Papers 1 and 2. "
+            "Weight: 4–7 marks. Builds on SL 2.5's inverse machinery — HL adds the symmetry "
+            "vocabulary and the restriction step.",
+            "**Odd and even are ALGEBRAIC tests.** Even: $f(-x) = f(x)$ — graph symmetric in the "
+            "$y$-axis. Odd: $f(-x) = -f(x)$ — symmetric through the origin ($180°$ rotation). "
+            "Test by substituting $-x$ and simplifying fully; 'neither' is the default verdict "
+            "and needs only ONE failing value. $h(x) = x^2 + x$: $h(1) = 2$ but $h(-1) = 0$ — "
+            "neither, done.",
+            "**Why restrict a domain?** $f(x) = x^2 - 6x + 11$ fails the horizontal line test — "
+            "two inputs share most outputs, so no inverse exists. Complete the square: "
+            "$(x-3)^2 + 2$. Cut the domain at the vertex — keep $x \\ge 3$ — and $f$ becomes "
+            "one-to-one. Now invert: $x = 3 + \\sqrt{y - 2}$, so $f^{-1}(x) = 3 + \\sqrt{x-2}$ "
+            "with domain $x \\ge 2$ (the old RANGE). The branch sign follows the kept half: "
+            "$x \\ge 3$ keeps $+\\sqrt{\\ }$; $x \\le 3$ would keep $-\\sqrt{\\ }$.",
+            "**Domain and range swap.** Always: domain of $f^{-1}$ = range of $f$, range of "
+            "$f^{-1}$ = (restricted) domain of $f$. Writing the inverse without its domain is a "
+            "dropped A mark at HL — the domain is PART of the function.",
+            "**Self-inverse.** $f$ is self-inverse when $f(f(x)) = x$ — i.e. $f^{-1} = f$, and "
+            "the graph is symmetric about $y = x$. The family $f(x) = \\dfrac{ax + b}{x - a}$ is "
+            "the exam's favourite: composing it with itself really does cancel back to $x$. "
+            "Recognising self-inverse saves you an entire swap-and-solve computation — and the "
+            "verification IS the exam question.",
+        ],
+        "keyIdea": (
+            "Substitute $-x$ to classify. Restrict at the vertex to invert a quadratic — branch "
+            "sign follows the kept half; domains swap with ranges. $f(f(x)) = x$ certifies "
+            "self-inverse."
+        ),
+        "facts": [
+            {
+                "title": "Odd / even tests",
+                "latex": "f(-x) = f(x) \\;\\text{(even)}, \\qquad f(-x) = -f(x) \\;\\text{(odd)}",
+                "explanation": (
+                    "NOT in the booklet. Even → $y$-axis mirror; odd → origin rotation. One "
+                    "failing value proves 'neither'."
+                ),
+            },
+            {
+                "title": "Inverse domains",
+                "latex": "\\mathrm{dom}\\,f^{-1} = \\mathrm{ran}\\,f, \\qquad \\mathrm{ran}\\,f^{-1} = \\mathrm{dom}\\,f",
+                "explanation": (
+                    "The swap is the whole story. State the inverse's domain every time — it is "
+                    "part of the answer, not decoration."
+                ),
+            },
+            {
+                "title": "Self-inverse certificate",
+                "latex": "f(f(x)) = x \\;\\iff\\; f^{-1} = f",
+                "explanation": (
+                    "Graph symmetric about $y = x$. The family $\\frac{ax+b}{x-a}$ is "
+                    "self-inverse for all $a, b$ — the standard exam specimen."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibhl-214-we1",
+                "statement": (
+                    "Determine whether each function is odd, even, or neither:  \n"
+                    "**(a)** $f(x) = x^4 - 3x^2$; **(b)** $g(x) = x^3 - 5x$; "
+                    "**(c)** $h(x) = x^2 + x$. **[6]**"
+                ),
+                "solution": (
+                    "**(a)** $f(-x) = (-x)^4 - 3(-x)^2 = x^4 - 3x^2 = f(x)$: EVEN *(M1 A1)*.  \n"
+                    "**(b)** $g(-x) = -x^3 + 5x = -(x^3 - 5x) = -g(x)$: ODD *(M1 A1)*.  \n"
+                    "**(c)** $h(-1) = 1 - 1 = 0$ but $h(1) = 2$: since $h(-1) \\ne h(1)$ and "
+                    "$h(-1) \\ne -h(1)$, NEITHER *(M1 A1)*.  \n"
+                    "**Narrative:** (a) and (b) follow the parity of the exponents — all-even "
+                    "powers make even functions, all-odd make odd (the names are not a "
+                    "coincidence). Mixing parities, as in (c), breaks both symmetries; one "
+                    "numeric counterexample is a complete, full-marks justification."
+                ),
+                "check": [
+                    "Eq((-x)**4 - 3*(-x)**2, x**4 - 3*x**2)",
+                    "Eq(simplify(((-x)**3 - 5*(-x)) + (x**3 - 5*x)), 0)",
+                    "Eq((-1)**2 + (-1), 0)",
+                    "Eq(1**2 + 1, 2)",
+                    "0 != 2",
+                    "0 != -2",
+                ],
+            },
+            {
+                "id": "ibhl-214-we2",
+                "statement": (
+                    "Let $f(x) = x^2 - 6x + 11$ for $x \\ge 3$.  \n"
+                    "**(a)** Write $f(x)$ in the form $(x - h)^2 + k$. **[2]**  \n"
+                    "**(b)** Find $f^{-1}(x)$, stating its domain. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $f(x) = (x-3)^2 + 2$ *(M1 A1)*.  \n"
+                    "**(b)** Set $y = (x-3)^2 + 2$ and solve for $x$ *(M1)*: $(x-3)^2 = y - 2$, "
+                    "so $x = 3 \\pm \\sqrt{y-2}$. The domain $x \\ge 3$ selects the PLUS branch "
+                    "*(R1)*:  \n"
+                    "$$f^{-1}(x) = 3 + \\sqrt{x - 2}, \\qquad x \\ge 2 \\;(A1\\ A1)$$  \n"
+                    "the domain being the range of $f$ (vertex value $2$, opening upward).  \n"
+                    "**Narrative:** check by composing: $f(3 + \\sqrt{x-2}) = (\\sqrt{x-2})^2 + 2 "
+                    "= x$ ✓. The branch decision is the R mark — with domain $x \\le 3$ the SAME "
+                    "algebra would produce $3 - \\sqrt{x-2}$, a different function."
+                ),
+                "check": [
+                    "Eq(expand((x - 3)**2 + 2), x**2 - 6*x + 11)",
+                    "Eq(simplify((3 + sqrt(x - 2))**2 - 6*(3 + sqrt(x - 2)) + 11 - x), 0)",
+                    "Eq(3**2 - 6*3 + 11, 2)",
+                ],
+            },
+            {
+                "id": "ibhl-214-we3",
+                "statement": (
+                    "Let $f(x) = \\dfrac{3x + 5}{x - 3}$, $x \\ne 3$. Show that $f$ is "
+                    "self-inverse. **[4]**"
+                ),
+                "solution": (
+                    "Compose $f$ with itself *(M1)*:  \n"
+                    "$$f(f(x)) = \\frac{3 \\cdot \\frac{3x+5}{x-3} + 5}{\\frac{3x+5}{x-3} - 3} "
+                    "= \\frac{\\frac{9x + 15 + 5x - 15}{x-3}}{\\frac{3x + 5 - 3x + 9}{x-3}} \\;(A1)$$"
+                    "$$= \\frac{14x}{14} = x \\;(A1)$$  \n"
+                    "Since $f(f(x)) = x$ for all $x$ in the domain, $f^{-1} = f$: self-inverse "
+                    "*(R1 — the concluding sentence)*.  \n"
+                    "**Narrative:** the $(x-3)$ denominators cancel between top and bottom — "
+                    "multiply through rather than wading into nested fractions. Geometrically the "
+                    "graph is symmetric about $y = x$; notice its asymptotes $x = 3$ and $y = 3$ "
+                    "are mirror images of each other, as self-inverse demands."
+                ),
+                "check": [
+                    "Eq(simplify((3*((3*x + 5)/(x - 3)) + 5)/(((3*x + 5)/(x - 3)) - 3) - x), 0)",
+                    "Eq(expand(3*(3*x + 5) + 5*(x - 3)), 14*x)",
+                    "Eq(expand((3*x + 5) - 3*(x - 3)), 14)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Calling $x^2 + x$ 'even' because it contains $x^2$, or 'odd' because it contains $x$.",
+                "correction": "Parity belongs to the WHOLE function: substitute $-x$ and compare. Mixed powers almost always mean neither.",
+                "authored": True,
+            },
+            {
+                "text": "Writing $f^{-1}(x) = 3 \\pm \\sqrt{x-2}$ — an inverse cannot be two-valued.",
+                "correction": "The restriction chose a branch: $x \\ge 3$ keeps $+$, $x \\le 3$ keeps $-$. One domain, one sign, one function.",
+                "authored": True,
+            },
+            {
+                "text": "Presenting an inverse with no domain.",
+                "correction": "dom $f^{-1}$ = ran $f$ — compute it (vertex value for quadratics) and write it next to the formula. It carries its own mark.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibhl-214-t1",
+                "statement": (
+                    "Show that $g(x) = \\dfrac{x}{x^2 + 1}$ is an odd function. **[3]**"
+                ),
+                "solution": (
+                    "$g(-x) = \\dfrac{-x}{(-x)^2 + 1} = \\dfrac{-x}{x^2+1}$ *(M1 A1)* "
+                    "$= -g(x)$ for all $x$ *(A1)* — odd. (The graph rotates onto itself through "
+                    "the origin; its two humps are point-symmetric twins.)"
+                ),
+                "check": [
+                    "Eq(simplify((-x)/((-x)**2 + 1) + x/(x**2 + 1)), 0)",
+                    "Eq(Rational(1, 2), Rational(1, 1**2 + 1))",
+                ],
+            },
+            {
+                "id": "ibhl-214-t2",
+                "statement": (
+                    "Let $f(x) = (x - 1)^2 - 4$ for $x \\le 1$. Find $f^{-1}(x)$, stating its "
+                    "domain. **[4]**"
+                ),
+                "solution": (
+                    "$y = (x-1)^2 - 4 \\Rightarrow (x-1)^2 = y + 4 \\Rightarrow x = 1 \\pm "
+                    "\\sqrt{y+4}$ *(M1 A1)*. The domain $x \\le 1$ selects the MINUS branch "
+                    "*(R1)*: $f^{-1}(x) = 1 - \\sqrt{x + 4}$, domain $x \\ge -4$ (the range of "
+                    "$f$: vertex value $-4$ upward) *(A1)*. Compose to check: "
+                    "$(1 - \\sqrt{x+4} - 1)^2 - 4 = (x + 4) - 4 = x$ ✓."
+                ),
+                "check": [
+                    "Eq(simplify((1 - sqrt(x + 4) - 1)**2 - 4 - x), 0)",
+                    "Eq((1 - 1)**2 - 4, -4)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AHL 2.14 · Papers 1 & 2",
+                    "title": "Symmetries you can compute",
+                    "body": (
+                        "Even, odd, self-inverse — three symmetries, three algebraic "
+                        "certificates: $f(-x) = f(x)$, $f(-x) = -f(x)$, $f(f(x)) = x$. Each is a "
+                        "one-line test you RUN, not a property you eyeball. The graphs (mirror, "
+                        "rotation, $y = x$ reflection) are the pictures of those certificates."
+                    ),
+                },
+                {
+                    "kind": "parabolaGraph",
+                    "eyebrow": "Why restriction",
+                    "title": "A parabola fails the line test",
+                    "teach": (
+                        "Slide the vertex: every horizontal line above it cuts the parabola "
+                        "TWICE — two inputs, one output, no inverse. Cutting the domain at the "
+                        "vertex keeps exactly one arm, and that arm passes the test. The kept "
+                        "arm also decides the $\\pm$ branch of the inverse's square root."
+                    ),
+                    "config": {"mode": "vertex", "h": 3, "k": 2, "interactive": True},
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Classify fast",
+                    "title": "Odd, even, or neither?",
+                    "prompt": "Which function is EVEN?",
+                    "options": [
+                        "$f(x) = |x| + \\cos x$",
+                        "$f(x) = x^3 + x$",
+                        "$f(x) = x^2 + x$",
+                        "$f(x) = x + 1$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$|-x| = |x|$ and $\\cos(-x) = \\cos x$ — a sum of evens is even. "
+                        "$x^3 + x$ is odd (both powers odd); the last two mix parities: neither."
+                    ),
+                    "check": [
+                        "Eq(Abs(-2), Abs(2))",
+                        "Eq(cos(-1), cos(1))",
+                        "Eq(simplify(((-x)**3 + (-x)) + (x**3 + x)), 0)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Three verdicts, three justifications",
+                    "problemId": "ibhl-214-we1",
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Restrict, invert, choose the branch",
+                    "problemId": "ibhl-214-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Branch logic",
+                    "title": "Which sign survives?",
+                    "prompt": (
+                        "$f(x) = (x+2)^2$ restricted to $x \\le -2$. Its inverse is:"
+                    ),
+                    "options": [
+                        "$f^{-1}(x) = -2 - \\sqrt{x}$, $x \\ge 0$",
+                        "$f^{-1}(x) = -2 + \\sqrt{x}$, $x \\ge 0$",
+                        "$f^{-1}(x) = -2 \\pm \\sqrt{x}$",
+                        "$f^{-1}(x) = 2 - \\sqrt{x}$, $x \\ge 0$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Outputs of $f^{-1}$ must land back in $x \\le -2$: from $x = -2 \\pm "
+                        "\\sqrt{y}$, only the minus branch stays below $-2$. Check: "
+                        "$f(-5) = 9$, and $-2 - \\sqrt{9} = -5$ ✓."
+                    ),
+                    "check": [
+                        "Eq((-5 + 2)**2, 9)",
+                        "Eq(-2 - sqrt(9), -5)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A function that is its own inverse",
+                    "problemId": "ibhl-214-we3",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "Certify an odd function",
+                    "problemId": "ibhl-214-t1",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn — harder",
+                    "title": "The minus branch this time",
+                    "problemId": "ibhl-214-t2",
+                },
+                {
+                    "kind": "recap",
+                    "title": "AHL 2.14 in four lines",
+                    "points": [
+                        "Even: $f(-x) = f(x)$; odd: $f(-x) = -f(x)$; one failing value proves neither.",
+                        "Invert a quadratic: restrict at the vertex; the kept arm fixes the $\\pm$ branch.",
+                        "dom $f^{-1}$ = ran $f$ — state it, always.",
+                        "Self-inverse: verify $f(f(x)) = x$; graph symmetric about $y = x$; $\\frac{ax+b}{x-a}$ family.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 4 — AHL 2.15: Solutions of g(x) >= f(x)
+# ===========================================================================
+def lesson_inequalities():
+    return {
+        "slug": "polynomial-and-rational-inequalities",
+        "title": "Inequalities: Where One Graph Beats Another",
+        "concreteComparison": (
+            "'Solve $g(x) \\ge f(x)$' is a race question: on which stretches of road is car $g$ "
+            "ahead of car $f$? The lead can only change where the graphs CROSS or where one "
+            "hits a vertical asymptote — find those posts, test one point per stretch, done."
+        ),
+        "objective": (
+            "Solve polynomial and rational inequalities analytically (zero-and-pole sign "
+            "analysis) and graphically, without ever multiplying by an expression of unknown "
+            "sign."
+        ),
+        "concept": [
+            "**Syllabus card — AHL 2.15.** Solutions of $g(x) \\ge f(x)$, both graphical and "
+            "analytic. Papers 1 and 2. Weight: 4–7 marks — and the technique underwrites domain "
+            "questions across the whole HL course (where is a square root defined? a log "
+            "positive?).",
+            "**The master move: everything to one side.** Rewrite as $g(x) - f(x) \\ge 0$ and "
+            "study ONE expression's sign. Its sign can only change at its ZEROS and its POLES "
+            "(vertical asymptotes) — mark them on a number line, test one point per interval, "
+            "read off the answer.",
+            "**The forbidden move.** Never multiply or divide an inequality by an expression "
+            "whose sign you don't know. $\\frac{x+3}{x-1} \\le 2$ multiplied by $(x-1)$ splits "
+            "into two universes ($x > 1$, $x < 1$) — the one-sided rewrite "
+            "$\\frac{5-x}{x-1} \\le 0$ avoids the case split entirely and is the examiner's "
+            "preferred method line.",
+            "**Boundary etiquette.** Zeros of the expression join the solution when the "
+            "inequality is $\\ge$ or $\\le$; POLES never do — the function does not exist there. "
+            "$\\frac{5-x}{x-1} \\le 0$ includes $x = 5$ but excludes $x = 1$: the answer is "
+            "$x < 1$ or $x \\ge 5$, mixed brackets and all.",
+            "**Graphically:** sketch both curves; the solution is the set of $x$ where $g$ sits "
+            "on or above $f$, with crossing points found exactly. On a GDC paper this is a "
+            "full-marks route — but Paper 1 wants the sign analysis, so own both.",
+        ],
+        "keyIdea": (
+            "One side, one expression: sign changes only at zeros and poles. Test each "
+            "interval; include zeros for $\\ge$, never include poles."
+        ),
+        "facts": [
+            {
+                "title": "Sign-change posts",
+                "latex": "\\frac{p(x)}{q(x)} \\text{ changes sign only at } p(x) = 0 \\text{ or } q(x) = 0",
+                "explanation": (
+                    "NOT in the booklet — the method is the content. Between consecutive posts "
+                    "the sign is constant: one test point per interval settles it."
+                ),
+            },
+            {
+                "title": "The rewrite",
+                "latex": "g(x) \\ge f(x) \\iff g(x) - f(x) \\ge 0",
+                "explanation": (
+                    "Subtracting is always legal; multiplying by unknown-sign expressions never "
+                    "is. Combine into a single fraction over a common denominator."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibhl-215-we1",
+                "statement": (
+                    "Solve $\\dfrac{x+3}{x-1} \\le 2$. **[5]**"
+                ),
+                "solution": (
+                    "Bring everything to one side — do NOT multiply by $(x-1)$ *(M1)*:  \n"
+                    "$$\\frac{x+3}{x-1} - 2 = \\frac{x + 3 - 2(x-1)}{x-1} = \\frac{5 - x}{x - 1} "
+                    "\\le 0 \\;(A1)$$  \n"
+                    "Posts: zero at $x = 5$, pole at $x = 1$ *(A1)*. Test each interval: "
+                    "$x = 0$: $\\frac{5}{-1} < 0$ ✓; $x = 2$: $\\frac{3}{1} > 0$ ✗; $x = 6$: "
+                    "$\\frac{-1}{5} < 0$ ✓ *(M1)*.  \n"
+                    "$$x < 1 \\;\\text{ or }\\; x \\ge 5 \\;(A1)$$  \n"
+                    "($x = 5$ included: the expression is zero there; $x = 1$ excluded: pole.)  \n"
+                    "**Narrative:** multiplying by $(x-1)$ silently assumes its sign and loses "
+                    "the entire $x < 1$ half of the answer — the single most common lost mark on "
+                    "this question type. The one-sided fraction never has to ask."
+                ),
+                "check": [
+                    "Eq(simplify((x + 3)/(x - 1) - 2 - (5 - x)/(x - 1)), 0)",
+                    "Rational(0 + 3, 0 - 1) <= 2",
+                    "Eq(Rational(5 + 3, 5 - 1), 2)",
+                    "Rational(2 + 3, 2 - 1) > 2",
+                    "Rational(6 + 3, 6 - 1) <= 2",
+                ],
+            },
+            {
+                "id": "ibhl-215-we2",
+                "statement": (
+                    "Solve $x^3 - 3x^2 < x - 3$. **[6]**"
+                ),
+                "solution": (
+                    "One side *(M1)*: $x^3 - 3x^2 - x + 3 < 0$. Factor by grouping *(M1)*:  \n"
+                    "$$x^2(x - 3) - (x - 3) = (x - 3)(x^2 - 1) = (x-3)(x-1)(x+1) \\;(A1)$$  \n"
+                    "Posts at $-1, 1, 3$. Sign of the product on the four intervals *(M1)*: "
+                    "$x = -2$: $(-)(-)(-) < 0$ ✓; $x = 0$: $(-)(-)(+) > 0$ ✗; $x = 2$: "
+                    "$(-)(+)(+) < 0$ ✓; $x = 4$: $(+)(+)(+) > 0$ ✗ *(A1)*.  \n"
+                    "$$x < -1 \\;\\text{ or }\\; 1 < x < 3 \\;(A1)$$  \n"
+                    "**Narrative:** strict inequality → all three posts excluded. The sign "
+                    "pattern $-,+,-,+$ alternates because every root is simple; a squared factor "
+                    "would REFUSE to flip, which is exactly what the sign test detects."
+                ),
+                "check": [
+                    "Eq(expand((x - 3)*(x - 1)*(x + 1)), x**3 - 3*x**2 - x + 3)",
+                    "(-2)**3 - 3*(-2)**2 < -2 - 3",
+                    "0**3 - 3*0**2 > 0 - 3",
+                    "2**3 - 3*2**2 < 2 - 3",
+                    "4**3 - 3*4**2 > 4 - 3",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Multiplying $\\frac{x+3}{x-1} \\le 2$ by $(x-1)$ — and losing the whole $x < 1$ branch of the answer.",
+                "correction": "Subtract instead: single fraction $\\le 0$, then sign-post analysis. If you MUST multiply, split into the two sign cases explicitly.",
+                "authored": True,
+            },
+            {
+                "text": "Including a pole in the solution because the inequality is $\\le$.",
+                "correction": "$\\ge/\\le$ admits ZEROS, never poles — the function is undefined there. $x < 1$ or $x \\ge 5$: strict at the pole, closed at the zero.",
+                "authored": True,
+            },
+            {
+                "text": "Solving $x^3 < x$ by 'dividing by $x$' to get $x^2 < 1$.",
+                "correction": "That divides by an unknown sign AND deletes the root $x = 0$. Factor instead: $x(x-1)(x+1) < 0$ → $x < -1$ or $0 < x < 1$.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibhl-215-t1",
+                "statement": (
+                    "Solve $\\dfrac{2x - 1}{x + 2} > 1$. **[4]**"
+                ),
+                "solution": (
+                    "One side *(M1)*: $\\dfrac{2x - 1 - (x+2)}{x+2} = \\dfrac{x - 3}{x + 2} > 0$ "
+                    "*(A1)*. Positive when both parts share a sign: $x > 3$ (both $+$) or "
+                    "$x < -2$ (both $-$) *(A1)*: $x < -2$ or $x > 3$ *(A1)*. Strict throughout — "
+                    "the zero is excluded by $>$, the pole by existence."
+                ),
+                "check": [
+                    "Eq(simplify((2*x - 1)/(x + 2) - 1 - (x - 3)/(x + 2)), 0)",
+                    "Rational(2*4 - 1, 4 + 2) > 1",
+                    "Rational(2*(-3) - 1, -3 + 2) > 1",
+                    "Rational(2*0 - 1, 0 + 2) < 1",
+                ],
+            },
+            {
+                "id": "ibhl-215-t2",
+                "statement": (
+                    "Solve $x^4 \\le 4x^2$. **[4]**"
+                ),
+                "solution": (
+                    "One side and factor *(M1)*: $x^4 - 4x^2 = x^2(x-2)(x+2) \\le 0$ *(A1)*. "
+                    "The $x^2$ factor is never negative, so the sign is carried by "
+                    "$(x-2)(x+2)$: non-positive for $-2 \\le x \\le 2$ *(A1)*, and $x = 0$ "
+                    "already satisfies ($0 \\le 0$). Solution: $-2 \\le x \\le 2$ *(A1)*. Note "
+                    "the squared factor does NOT create a sign change at 0 — it just touches."
+                ),
+                "check": [
+                    "Eq(expand(x**2*(x - 2)*(x + 2)), x**4 - 4*x**2)",
+                    "1**4 <= 4*1**2",
+                    "3**4 > 4*3**2",
+                    "(-3)**4 > 4*(-3)**2",
+                    "Eq(0**4, 4*0**2)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AHL 2.15 · Papers 1 & 2",
+                    "title": "The race-track reading",
+                    "body": (
+                        "$g(x) \\ge f(x)$ asks WHERE one graph rides above the other. The lead "
+                        "changes only at crossings (zeros of $g - f$) and at vertical asymptotes "
+                        "(poles). Everything in this lesson is finding those posts and testing "
+                        "the stretches between them."
+                    ),
+                },
+                {
+                    "kind": "systemGraph",
+                    "eyebrow": "See the stretches",
+                    "title": "Above or below, live",
+                    "teach": (
+                        "Steer the second line and watch the crossing move: on one side of it, "
+                        "line 2 is above; on the other, below. With curves instead of lines the "
+                        "same logic holds — more crossings, more stretches, but the lead still "
+                        "changes only at meeting points (and at poles, where a graph vanishes to "
+                        "infinity mid-race)."
+                    ),
+                    "config": {"m1": 1, "b1": -1, "m2": -1, "b2": 3, "interactive": True},
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The forbidden move",
+                    "title": "Why not just multiply?",
+                    "prompt": (
+                        "Multiplying $\\dfrac{x+3}{x-1} \\le 2$ through by $(x - 1)$ is unsafe "
+                        "because:"
+                    ),
+                    "options": [
+                        "$(x-1)$ may be negative — the inequality would flip only sometimes",
+                        "fractions can never be multiplied out",
+                        "$(x-1)$ could be zero, and only that case fails",
+                        "the 2 must be moved first",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "For $x > 1$ the direction survives; for $x < 1$ it flips. One "
+                        "multiplication, two contradictory universes — unless you split cases. "
+                        "The one-sided fraction $\\frac{5-x}{x-1} \\le 0$ needs no cases at all."
+                    ),
+                    "check": [
+                        "-1 < 0",
+                        "Rational(1, 2) > 0",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A rational inequality, no case split",
+                    "problemId": "ibhl-215-we1",
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Cubic vs line: group, factor, test",
+                    "problemId": "ibhl-215-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Boundary etiquette",
+                    "title": "Closed or open?",
+                    "prompt": (
+                        "In the solution of $\\dfrac{5-x}{x-1} \\le 0$, the points $x = 5$ and "
+                        "$x = 1$ are respectively:"
+                    ),
+                    "options": [
+                        "included; excluded",
+                        "both included",
+                        "excluded; included",
+                        "both excluded",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$x = 5$ makes the expression ZERO — and $\\le$ admits zero. $x = 1$ is "
+                        "a POLE: the expression does not exist there, so no inequality can admit "
+                        "it. Zero in, pole out — every time."
+                    ),
+                    "check": [
+                        "Eq(Rational(5 - 5, 5 - 1), 0)",
+                        "Eq(1 - 1, 0)",
+                    ],
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "Same-sign hunting",
+                    "problemId": "ibhl-215-t1",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn — harder",
+                    "title": "A square that refuses to flip",
+                    "problemId": "ibhl-215-t2",
+                },
+                {
+                    "kind": "recap",
+                    "title": "AHL 2.15 in four lines",
+                    "points": [
+                        "Rewrite as one expression $\\ge 0$; NEVER multiply by unknown-sign factors.",
+                        "Sign posts: zeros of the top, poles from the bottom; test one point per interval.",
+                        "$\\ge/\\le$ includes zeros, never poles; squared factors touch without flipping.",
+                        "Graph reading: solution = stretches where one curve rides above the other.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 5 — AHL 2.16: Modulus equations and the graph family
+# ===========================================================================
+def lesson_modulus_family():
+    return {
+        "slug": "modulus-equations-and-graph-family",
+        "title": "The Modulus Family: |f(x)|, f(|x|), 1/f",
+        "concreteComparison": (
+            "$|f(x)|$ takes the graph of $f$ and folds everything below the $x$-axis UP, like "
+            "closing a mirror along the axis. $f(|x|)$ throws away the left half and mirrors the "
+            "right. $1/f$ turns zeros into vertical asymptotes and giants into whispers. Three "
+            "machines, one input graph."
+        ),
+        "objective": (
+            "Solve modulus equations and inequalities (case analysis and squaring), and sketch "
+            "$|f(x)|$, $f(|x|)$, $\\frac{1}{f(x)}$ and $[f(x)]^2$ from the graph of $f$."
+        ),
+        "concept": [
+            "**Syllabus card — AHL 2.16.** Solutions of modulus equations and inequalities; "
+            "graphs of $|f(x)|$, $f(|x|)$, $\\dfrac{1}{f(x)}$, $f(ax+b)$ and $[f(x)]^2$ from a "
+            "given graph of $f$. Papers 1 and 2. Weight: 5–8 marks. The transformation grammar "
+            "of SL 2.11, upgraded with folds.",
+            "**$|A| = |B|$: two clean routes.** Cases: $A = B$ or $A = -B$ — two linear "
+            "equations. Or square both sides (always legal for $|\\cdot| = |\\cdot|$): "
+            "$A^2 = B^2 \\Rightarrow (A-B)(A+B) = 0$, the same two equations wearing algebra. "
+            "$|2x-1| = |x+4|$: $x = 5$ or $x = -1$; substitute BOTH back — checking is part of "
+            "the method.",
+            "**Mixed inequalities need care.** $|x - 2| < 2x + 1$: squaring is only legal if "
+            "both sides are non-negative, and $2x+1$ isn't always. Safest: case-split the "
+            "modulus ($x - 2 < 2x+1$ AND $-(x-2) < 2x+1$), intersect, and remember the hidden "
+            "requirement $2x + 1 > 0$. Result: $x > \\tfrac{1}{3}$. For $|A| \\ge k|B|$ with "
+            "both sides absolute, squaring is safe and fast.",
+            "**The graph machines.** $|f|$: keep the parts with $f \\ge 0$, reflect the rest up "
+            "— corners appear at the zeros. $f(|x|)$: delete $x < 0$, mirror $x > 0$ leftward — "
+            "the result is always EVEN. $1/f$: zeros of $f$ become vertical asymptotes, "
+            "asymptotes of $f$ become zeros-in-the-limit, sign is preserved, and $f = \\pm 1$ "
+            "are fixed points. $[f]^2$: everything non-negative, zeros stay zeros (but touch), "
+            "and $[f]^2 = k$ unwinds as $f = \\pm\\sqrt{k}$.",
+            "**Solving from graphs.** 'How many solutions does $|f(x)| = k$ have?' — draw the "
+            "horizontal line $y = k$ across the FOLDED graph and count hits. The fold doubles "
+            "solutions wherever the original dipped below the axis. This counting question is "
+            "an HL Paper 1 staple.",
+        ],
+        "keyIdea": (
+            "$|A| = |B|$ ⟺ $A = \\pm B$ (or square it). Graphs: $|f|$ folds up, $f(|x|)$ "
+            "mirrors the right half, $1/f$ swaps zeros and asymptotes."
+        ),
+        "facts": [
+            {
+                "title": "Modulus equation",
+                "latex": "|A| = |B| \\iff A = B \\;\\text{or}\\; A = -B \\iff A^2 = B^2",
+                "explanation": (
+                    "NOT in the booklet. Squaring is always legal when BOTH sides are absolute "
+                    "values; with a bare side, confirm it's non-negative first."
+                ),
+            },
+            {
+                "title": "The 1/f dictionary",
+                "latex": "f = 0 \\rightsquigarrow \\text{vertical asymptote}; \\quad f \\to \\pm\\infty \\rightsquigarrow \\tfrac{1}{f} \\to 0; \\quad f = \\pm 1 \\text{ fixed}",
+                "explanation": (
+                    "Sign is preserved; big becomes small and small becomes big. Local max of "
+                    "$f$ (nonzero) ↔ local min of $1/f$."
+                ),
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "ibhl-216-we1",
+                "statement": (
+                    "Solve $|2x - 1| = |x + 4|$. **[4]**"
+                ),
+                "solution": (
+                    "Two cases *(M1)*: $2x - 1 = x + 4 \\Rightarrow x = 5$ *(A1)*; "
+                    "$2x - 1 = -(x + 4) \\Rightarrow 3x = -3 \\Rightarrow x = -1$ *(A1)*.  \n"
+                    "Check both: $|9| = |9|$ ✓ and $|-3| = |3|$ ✓ *(A1)*.  \n"
+                    "**Narrative:** the squaring route lands identically: $(2x-1)^2 = (x+4)^2 "
+                    "\\Rightarrow 3x^2 - 12x - 15 = 0 \\Rightarrow 3(x-5)(x+1) = 0$. Same roots, "
+                    "one quadratic — choose whichever your algebra likes, but CHECK by "
+                    "substitution either way."
+                ),
+                "check": [
+                    "Eq(Abs(2*5 - 1), Abs(5 + 4))",
+                    "Eq(Abs(2*(-1) - 1), Abs(-1 + 4))",
+                    "Eq(expand((2*x - 1)**2 - (x + 4)**2), 3*x**2 - 12*x - 15)",
+                    "Eq(expand(3*(x - 5)*(x + 1)), 3*x**2 - 12*x - 15)",
+                ],
+            },
+            {
+                "id": "ibhl-216-we2",
+                "statement": (
+                    "Solve $|x - 2| < 2x + 1$. **[5]**"
+                ),
+                "solution": (
+                    "The right side must be positive for any solution *(R1)*: $2x + 1 > 0$.  \n"
+                    "Case split *(M1)*: $x - 2 < 2x + 1 \\Rightarrow x > -3$ *(A1)*; "
+                    "$-(x - 2) < 2x + 1 \\Rightarrow 2 - x < 2x + 1 \\Rightarrow x > \\tfrac{1}{3}$ "
+                    "*(A1)*.  \n"
+                    "Intersect all three: $x > \\tfrac{1}{3}$ *(A1)*.  \n"
+                    "**Narrative:** check the boundary: at $x = \\tfrac{1}{3}$, "
+                    "$|{-\\tfrac{5}{3}}| = \\tfrac{5}{3}$ and $2x+1 = \\tfrac{5}{3}$ — equal, "
+                    "not less, so the endpoint is rightly excluded. And a sanity point: $x = 1$ "
+                    "gives $1 < 3$ ✓. Squaring here would be ILLEGAL until you've argued "
+                    "$2x + 1 \\ge 0$ — the R mark exists precisely for that sentence."
+                ),
+                "check": [
+                    "Eq(Abs(Rational(1, 3) - 2), Rational(5, 3))",
+                    "Eq(2*Rational(1, 3) + 1, Rational(5, 3))",
+                    "Abs(1 - 2) < 2*1 + 1",
+                    "Abs(0 - 2) > 2*0 + 1",
+                    "solve(Eq(2 - x, 2*x + 1), x) == [Rational(1, 3)]",
+                ],
+            },
+            {
+                "id": "ibhl-216-we3",
+                "statement": (
+                    "Let $f(x) = x^2 - 4x + 3$.  \n"
+                    "**(a)** Write down the equations of the vertical asymptotes of "
+                    "$y = \\dfrac{1}{f(x)}$. **[2]**  \n"
+                    "**(b)** Solve $[f(x)]^2 = 9$. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $f(x) = (x-1)(x-3)$: zeros of $f$ become the verticals of $1/f$: "
+                    "$x = 1$ and $x = 3$ *(A1 A1)*.  \n"
+                    "**(b)** $[f]^2 = 9 \\iff f = 3$ or $f = -3$ *(M1)*.  \n"
+                    "$f = 3$: $x^2 - 4x = 0 \\Rightarrow x = 0, 4$ *(A1)*.  \n"
+                    "$f = -3$: $x^2 - 4x + 6 = 0$, discriminant $16 - 24 = -8 < 0$: no real "
+                    "roots *(A1)*.  \n"
+                    "$$x = 0 \\;\\text{ or }\\; x = 4 \\;(A1)$$  \n"
+                    "**Narrative:** the vertex of $f$ sits at $(2, -1)$, so $f$ never reaches "
+                    "$-3$ — the dead branch was predictable from the range $f \\ge -1$. Reading "
+                    "ranges before solving branches is the HL reflex this question rewards."
+                ),
+                "check": [
+                    "Eq(expand((x - 1)*(x - 3)), x**2 - 4*x + 3)",
+                    "Eq((0**2 - 4*0 + 3)**2, 9)",
+                    "Eq((4**2 - 4*4 + 3)**2, 9)",
+                    "Eq(16 - 24, -8)",
+                    "Eq(2**2 - 4*2 + 3, -1)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Squaring $|x-2| < 2x+1$ immediately — for $x < -\\tfrac{1}{2}$ the right side is negative and squaring reverses nothing it should.",
+                "correction": "Squaring an inequality needs BOTH sides non-negative. Case-split the modulus instead, or first restrict to $2x+1 > 0$.",
+                "authored": True,
+            },
+            {
+                "text": "Confusing $|f(x)|$ with $f(|x|)$ — folding up versus mirroring the right half.",
+                "correction": "$|f|$ edits OUTPUTS (nothing stays negative); $f(|x|)$ edits INPUTS (the left half becomes a copy of the right, result always even).",
+                "authored": True,
+            },
+            {
+                "text": "Answering $[f(x)]^2 = 9$ with only the $f = 3$ branch.",
+                "correction": "Unwind squares to $\\pm$: $f = 3$ OR $f = -3$ — then kill a branch only with a reason (range/discriminant), stated in writing.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "ibhl-216-t1",
+                "statement": (
+                    "Solve $|3x - 2| = 7$. **[3]**"
+                ),
+                "solution": (
+                    "$3x - 2 = 7 \\Rightarrow x = 3$ *(A1)*; $3x - 2 = -7 \\Rightarrow x = "
+                    "-\\tfrac{5}{3}$ *(A1)*. Both check: $|7| = 7$, $|-7| = 7$ ✓ *(A1)*. A "
+                    "modulus equalling a positive constant always splits into exactly two "
+                    "linear equations."
+                ),
+                "check": [
+                    "Eq(Abs(3*3 - 2), 7)",
+                    "Eq(Abs(3*Rational(-5, 3) - 2), 7)",
+                ],
+            },
+            {
+                "id": "ibhl-216-t2",
+                "statement": (
+                    "Solve $|x + 1| \\ge 2|x - 2|$. **[5]**"
+                ),
+                "solution": (
+                    "Both sides are absolute values — squaring is safe *(R1)*:  \n"
+                    "$(x+1)^2 \\ge 4(x-2)^2$ *(M1)*, i.e. $0 \\ge 3x^2 - 18x + 15 = "
+                    "3(x-1)(x-5)$ *(A1)*. The parabola opens up, so it is $\\le 0$ BETWEEN its "
+                    "roots: $1 \\le x \\le 5$ *(A1 A1)*. Boundary check: $x=1$: $2 = 2$ ✓; "
+                    "$x=5$: $6 = 6$ ✓."
+                ),
+                "check": [
+                    "Eq(expand(4*(x - 2)**2 - (x + 1)**2), 3*x**2 - 18*x + 15)",
+                    "Eq(expand(3*(x - 1)*(x - 5)), 3*x**2 - 18*x + 15)",
+                    "Eq(Abs(1 + 1), 2*Abs(1 - 2))",
+                    "Eq(Abs(5 + 1), 2*Abs(5 - 2))",
+                    "Abs(3 + 1) >= 2*Abs(3 - 2)",
+                    "Abs(0 + 1) < 2*Abs(0 - 2)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AHL 2.16 · Papers 1 & 2",
+                    "title": "Three machines on one graph",
+                    "body": (
+                        "Take any graph of $f$. FOLD the below-axis parts up: that's $|f(x)|$. "
+                        "MIRROR the right half leftward: $f(|x|)$. INVERT pointwise — zeros "
+                        "become walls, giants become whispers: $1/f$. Every HL sketch question "
+                        "in this code is one of these machines applied to a given picture."
+                    ),
+                },
+                {
+                    "kind": "parabolaGraph",
+                    "eyebrow": "The fold, staged",
+                    "title": "Watch where the fold will bite",
+                    "teach": (
+                        "Steer this parabola's vertex below the axis: the stretch between the "
+                        "roots is what $|f|$ would fold UP, creating corners at the crossings. "
+                        "Every horizontal line $y = k$ that used to miss the dip will hit the "
+                        "folded copy twice — which is exactly why $|f(x)| = k$ gains solutions."
+                    ),
+                    "config": {"mode": "roots", "h": 2, "k": -1, "interactive": True},
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Machine check",
+                    "title": "|f| or f(|x|)?",
+                    "prompt": (
+                        "Which statement is TRUE for every function $f$?"
+                    ),
+                    "options": [
+                        "$f(|x|)$ is always an even function",
+                        "$|f(x)|$ is always an even function",
+                        "$|f(x)|$ and $f(|x|)$ are always equal",
+                        "$f(|x|)$ is never negative",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$f(|{-x}|) = f(|x|)$ — the input edit forces mirror symmetry. $|f|$ "
+                        "edits outputs: non-negative, but with no symmetry promise. And "
+                        "$f(|x|)$ CAN be negative — it just inherits whatever the right half "
+                        "of $f$ does."
+                    ),
+                    "check": [
+                        "Eq(Abs(-3), Abs(3))",
+                        "Eq((-2)**2 - 4*Abs(-2) + 3, 2**2 - 4*Abs(2) + 3)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Two moduli, two routes",
+                    "problemId": "ibhl-216-we1",
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A modulus against a bare side",
+                    "problemId": "ibhl-216-we2",
+                },
+                {
+                    "kind": "limitGraph",
+                    "eyebrow": "The third machine",
+                    "title": "1/f: zeros become walls",
+                    "teach": (
+                        "Where a function crosses zero, its reciprocal explodes — the crossing "
+                        "point becomes a vertical asymptote, one branch to $+\\infty$, one to "
+                        "$-\\infty$, sign faithfully preserved on each side. Run the dictionary "
+                        "both ways: $f$'s asymptotes become $1/f$'s limits-to-zero."
+                    ),
+                    "config": {"mode": "infinite"},
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "1/f asymptotes and a square unwound",
+                    "problemId": "ibhl-216-we3",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn",
+                    "title": "The two-case classic",
+                    "problemId": "ibhl-216-t1",
+                },
+                {
+                    "kind": "tryIt",
+                    "eyebrow": "Your turn — harder",
+                    "title": "Square both sides, legally",
+                    "problemId": "ibhl-216-t2",
+                },
+                {
+                    "kind": "recap",
+                    "title": "AHL 2.16 in four lines",
+                    "points": [
+                        "$|A| = |B|$: cases $A = \\pm B$, or square (legal when both sides absolute).",
+                        "Modulus vs bare side: case-split; squaring needs both sides non-negative (R mark).",
+                        "$|f|$ folds up (corners at zeros); $f(|x|)$ mirrors right half (always even); $1/f$ swaps zeros ↔ asymptotes.",
+                        "$[f]^2 = k$: unwind to $f = \\pm\\sqrt{k}$, then kill dead branches WITH a reason.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Unit banks — HL practice + test-yourself, tagged with official AHL codes
+# ===========================================================================
+def practice_bank():
+    return [
+        {
+            "id": "ibhl-fn-p01",
+            "statement": (
+                "$(x + 1)$ is a factor of $P(x) = 2x^3 + x^2 - 5x + k$. Find $k$. **[3]**"
+            ),
+            "solution": (
+                "Factor theorem *(M1)*: $P(-1) = -2 + 1 + 5 + k = 4 + k$ *(A1)*. Setting "
+                "$P(-1) = 0$: $k = -4$ *(A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.12", 3, "P1"),
+            "check": [
+                "Eq(2*(-1)**3 + (-1)**2 - 5*(-1) + (-4), 0)",
+                "solve(Eq(4 + k, 0), k) == [-4]",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p02",
+            "statement": (
+                "The roots of $x^2 - 7x + 4 = 0$ are $\\alpha$ and $\\beta$. Without solving, "
+                "find **(a)** $\\alpha^2 + \\beta^2$ and **(b)** $(\\alpha - \\beta)^2$. **[4]**"
+            ),
+            "solution": (
+                "$\\alpha + \\beta = 7$, $\\alpha\\beta = 4$ *(A1)*. **(a)** $(\\alpha+\\beta)^2 "
+                "- 2\\alpha\\beta = 49 - 8 = 41$ *(M1 A1)*. **(b)** $(\\alpha-\\beta)^2 = "
+                "(\\alpha+\\beta)^2 - 4\\alpha\\beta = 49 - 16 = 33$ *(A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.12", 4, "P1"),
+            "check": [
+                "Eq(7**2 - 2*4, 41)",
+                "Eq(7**2 - 4*4, 33)",
+                "Eq(simplify(((7 + sqrt(33))/2)**2 + ((7 - sqrt(33))/2)**2), 41)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p03",
+            "statement": (
+                "Find the equations of the asymptotes of $y = \\dfrac{2x^2 - x + 3}{x - 1}$. **[4]**"
+            ),
+            "solution": (
+                "Divide *(M1)*: $2x^2 - x + 3 = (x-1)(2x+1) + 4$ *(A1)*, so $y = 2x + 1 + "
+                "\\dfrac{4}{x-1}$. Asymptotes: vertical $x = 1$, oblique $y = 2x + 1$ *(A1 A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.13", 4, "P1"),
+            "check": [
+                "Eq(expand((x - 1)*(2*x + 1) + 4), 2*x**2 - x + 3)",
+                "Eq(simplify((2*x**2 - x + 3)/(x - 1) - (2*x + 1 + 4/(x - 1))), 0)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p04",
+            "statement": (
+                "State the equations of all asymptotes of $y = \\dfrac{5x - 1}{x^2 - x - 6}$, "
+                "and give the coordinates of the $x$-intercept. **[4]**"
+            ),
+            "solution": (
+                "$x^2 - x - 6 = (x-3)(x+2)$ *(M1)*: verticals $x = 3$, $x = -2$ *(A1)*; "
+                "bottom-heavy → horizontal $y = 0$ *(A1)*. $x$-intercept from the numerator: "
+                "$x = \\tfrac{1}{5}$, i.e. $\\left(\\tfrac{1}{5}, 0\\right)$ *(A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.13", 4, "P1"),
+            "check": [
+                "Eq(expand((x - 3)*(x + 2)), x**2 - x - 6)",
+                "solve(5*x - 1, x) == [Rational(1, 5)]",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p05",
+            "statement": (
+                "Show that $f(x) = \\dfrac{2x + 7}{x - 2}$, $x \\ne 2$, is self-inverse. **[4]**"
+            ),
+            "solution": (
+                "$f(f(x)) = \\dfrac{2\\cdot\\frac{2x+7}{x-2} + 7}{\\frac{2x+7}{x-2} - 2}$ "
+                "*(M1)* $= \\dfrac{4x + 14 + 7x - 14}{2x + 7 - 2x + 4}$ *(A1)* $= "
+                "\\dfrac{11x}{11} = x$ *(A1)*. Hence $f^{-1} = f$ *(R1)* — the $\\frac{ax+b}{x-a}$ "
+                "pattern with $a = 2$, $b = 7$."
+            ),
+            "badges": code_badge("ib-aa-hl-2.14", 4, "P1"),
+            "check": [
+                "Eq(simplify((2*((2*x + 7)/(x - 2)) + 7)/(((2*x + 7)/(x - 2)) - 2) - x), 0)",
+                "Eq(expand(2*(2*x + 7) + 7*(x - 2)), 11*x)",
+                "Eq(expand((2*x + 7) - 2*(x - 2)), 11)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p06",
+            "statement": (
+                "Let $f(x) = \\sqrt{x - 3} + 2$ for $x \\ge 3$. Find $f^{-1}(x)$, stating its "
+                "domain. **[4]**"
+            ),
+            "solution": (
+                "$y = \\sqrt{x-3} + 2 \\Rightarrow \\sqrt{x-3} = y - 2 \\Rightarrow x = "
+                "(y-2)^2 + 3$ *(M1 A1)*. So $f^{-1}(x) = (x-2)^2 + 3$ with domain $x \\ge 2$ "
+                "(the range of $f$: square roots start at 0, so $f \\ge 2$) *(A1 A1)*. Check: "
+                "$f(7) = 4$ and $f^{-1}(4) = 7$ ✓."
+            ),
+            "badges": code_badge("ib-aa-hl-2.14", 4, "P1"),
+            "check": [
+                "Eq(sqrt(7 - 3) + 2, 4)",
+                "Eq((4 - 2)**2 + 3, 7)",
+                "Eq(sqrt(3 - 3) + 2, 2)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p07",
+            "statement": (
+                "Solve $x^2 > 5x - 6$. **[3]**"
+            ),
+            "solution": (
+                "One side *(M1)*: $x^2 - 5x + 6 = (x-2)(x-3) > 0$ *(A1)*. Upward parabola, "
+                "positive OUTSIDE the roots: $x < 2$ or $x > 3$ *(A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.15", 3, "P1"),
+            "check": [
+                "Eq(expand((x - 2)*(x - 3)), x**2 - 5*x + 6)",
+                "0**2 > 5*0 - 6",
+                "Rational(5, 2)**2 < 5*Rational(5, 2) - 6",
+                "4**2 > 5*4 - 6",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p08",
+            "statement": (
+                "Solve $|3x - 2| = 7$. **[3]**"
+            ),
+            "solution": (
+                "$3x - 2 = \\pm 7$ *(M1)*: $x = 3$ or $x = -\\tfrac{5}{3}$ *(A1 A1)*. Both "
+                "substitute back to $7$."
+            ),
+            "badges": code_badge("ib-aa-hl-2.16", 3, "P1"),
+            "check": [
+                "Eq(Abs(3*3 - 2), 7)",
+                "Eq(Abs(3*Rational(-5, 3) - 2), 7)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-p09",
+            "statement": (
+                "Solve $|x - 1| \\le 3$, and interpret the answer as a distance statement. **[3]**"
+            ),
+            "solution": (
+                "$-3 \\le x - 1 \\le 3$ *(M1)*, so $-2 \\le x \\le 4$ *(A1)*. Interpretation: "
+                "the points within distance 3 of $1$ on the number line *(A1)* — modulus IS "
+                "distance, which is why single-modulus inequalities are always intervals."
+            ),
+            "badges": code_badge("ib-aa-hl-2.16", 3, "P1"),
+            "check": [
+                "Eq(Abs(-2 - 1), 3)",
+                "Eq(Abs(4 - 1), 3)",
+                "Abs(0 - 1) <= 3",
+                "Abs(5 - 1) > 3",
+            ],
+        },
+    ]
+
+
+def test_bank():
+    return [
+        {
+            "id": "ibhl-fn-q01",
+            "statement": (
+                "$P(x) = x^3 + ax^2 + bx - 6$ has factors $(x - 1)$ and $(x + 2)$.  \n"
+                "**(a)** Find $a$ and $b$. **[4]**  \n"
+                "**(b)** Find the third root of $P(x) = 0$. **[2]**"
+            ),
+            "solution": (
+                "**(a)** $P(1) = 0$: $1 + a + b - 6 = 0 \\Rightarrow a + b = 5$ *(M1 A1)*. "
+                "$P(-2) = 0$: $-8 + 4a - 2b - 6 = 0 \\Rightarrow 2a - b = 7$ *(A1)*. Adding: "
+                "$3a = 12 \\Rightarrow a = 4,\\ b = 1$ *(A1)*.  \n"
+                "**(b)** $x^3 + 4x^2 + x - 6 = (x-1)(x+2)(x+3)$ — constants: $1 \\times (-2) "
+                "\\times c = -6 \\Rightarrow c$... product of roots $= (-1)^3(-6) = 6 = "
+                "1 \\cdot (-2) \\cdot r \\Rightarrow r = -3$ *(M1 A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.12", 6, "P1"),
+            "check": [
+                "solve([Eq(a + b, 5), Eq(2*a - b, 7)], [a, b]) == {a: 4, b: 1}",
+                "Eq(expand((x - 1)*(x + 2)*(x + 3)), x**3 + 4*x**2 + x - 6)",
+                "Eq(1**3 + 4*1**2 + 1 - 6, 0)",
+                "Eq((-2)**3 + 4*(-2)**2 + (-2) - 6, 0)",
+                "Eq((-3)**3 + 4*(-3)**2 + (-3) - 6, 0)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-q02",
+            "statement": (
+                "Let $f(x) = \\dfrac{x^2 - 4x + 7}{x - 2}$, $x \\ne 2$.  \n"
+                "**(a)** Show that $f(x) = x - 2 + \\dfrac{3}{x - 2}$, and state the equations "
+                "of both asymptotes. **[4]**  \n"
+                "**(b)** Find the coordinates of the two stationary points. **[4]**"
+            ),
+            "solution": (
+                "**(a)** $x^2 - 4x + 7 = (x-2)^2 + 3$ *(M1)*, so $f(x) = x - 2 + "
+                "\\frac{3}{x-2}$ *(AG)*. Vertical $x = 2$; oblique $y = x - 2$ *(A1 A1, method "
+                "A1)*.  \n"
+                "**(b)** $f'(x) = 1 - \\frac{3}{(x-2)^2} = 0 \\Rightarrow x = 2 \\pm \\sqrt3$ "
+                "*(M1 A1)*. Values $\\pm 2\\sqrt3$: points $(2 + \\sqrt3,\\ 2\\sqrt3)$ and "
+                "$(2 - \\sqrt3,\\ -2\\sqrt3)$ *(A1 A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.13", 8, "P1"),
+            "check": [
+                "Eq(expand((x - 2)**2 + 3), x**2 - 4*x + 7)",
+                "Eq(simplify(diff((x**2 - 4*x + 7)/(x - 2), x).subs(x, 2 + sqrt(3))), 0)",
+                "Eq(simplify(((2 + sqrt(3))**2 - 4*(2 + sqrt(3)) + 7)/(sqrt(3))), 2*sqrt(3))",
+                "Eq(simplify(((2 - sqrt(3))**2 - 4*(2 - sqrt(3)) + 7)/(-sqrt(3))), -2*sqrt(3))",
+            ],
+        },
+        {
+            "id": "ibhl-fn-q03",
+            "statement": (
+                "**(a)** Determine, with justification, whether $f(x) = x^2\\sin x$ is odd, "
+                "even, or neither. **[3]**  \n"
+                "**(b)** Show that $g(x) = \\dfrac{x + 6}{x - 1}$ is self-inverse. **[3]**"
+            ),
+            "solution": (
+                "**(a)** $f(-x) = (-x)^2\\sin(-x) = -x^2\\sin x = -f(x)$ *(M1 A1)*: ODD "
+                "*(A1)* — even times odd is odd.  \n"
+                "**(b)** $g(g(x)) = \\dfrac{\\frac{x+6}{x-1} + 6}{\\frac{x+6}{x-1} - 1} = "
+                "\\dfrac{x + 6 + 6x - 6}{x + 6 - x + 1} = \\dfrac{7x}{7} = x$ *(M1 A1)*, so "
+                "$g^{-1} = g$ *(R1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.14", 6, "P1"),
+            "check": [
+                "Eq(simplify((-x)**2*sin(-x) + x**2*sin(x)), 0)",
+                "Eq(simplify(((x + 6)/(x - 1) + 6)/((x + 6)/(x - 1) - 1) - x), 0)",
+                "Eq(expand((x + 6) + 6*(x - 1)), 7*x)",
+                "Eq(expand((x + 6) - (x - 1)), 7)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-q04",
+            "statement": (
+                "Solve $\\dfrac{x^2 - 9}{x - 1} < 0$. **[5]**"
+            ),
+            "solution": (
+                "Factor *(M1)*: $\\dfrac{(x-3)(x+3)}{x-1} < 0$. Posts: $-3, 1, 3$ *(A1)*. "
+                "Signs: $x = -4$: $\\frac{(-)(-)}{(-)} < 0$ ✓; $x = 0$: $\\frac{(-)(+)}{(-)} > "
+                "0$ ✗; $x = 2$: $\\frac{(-)(+)}{(+)} < 0$ ✓; $x = 4$: $> 0$ ✗ *(M1 A1)*.  \n"
+                "$$x < -3 \\;\\text{ or }\\; 1 < x < 3 \\;(A1)$$ All posts excluded: two are "
+                "zeros under a STRICT inequality, one is a pole."
+            ),
+            "badges": code_badge("ib-aa-hl-2.15", 5, "P1"),
+            "check": [
+                "Eq(expand((x - 3)*(x + 3)), x**2 - 9)",
+                "Rational((-4)**2 - 9, -4 - 1) < 0",
+                "Rational(0**2 - 9, 0 - 1) > 0",
+                "Rational(2**2 - 9, 2 - 1) < 0",
+                "Rational(4**2 - 9, 4 - 1) > 0",
+            ],
+        },
+        {
+            "id": "ibhl-fn-q05",
+            "statement": (
+                "Solve $|2x + 1| < |x - 3|$. **[5]**"
+            ),
+            "solution": (
+                "Both sides absolute — square *(M1)*: $(2x+1)^2 < (x-3)^2$, i.e. "
+                "$3x^2 + 10x - 8 < 0$ *(A1)*, which factorises as $(3x - 2)(x + 4) < 0$ "
+                "*(A1)*. Upward parabola, negative between its roots:  \n"
+                "$$-4 < x < \\tfrac{2}{3} \\;(A2)$$  \n"
+                "Spot-check $x = 0$: $1 < 3$ ✓; $x = 1$: $3 < 2$ ✗ ✓ excluded."
+            ),
+            "badges": code_badge("ib-aa-hl-2.16", 5, "P1"),
+            "check": [
+                "Eq(expand((2*x + 1)**2 - (x - 3)**2), 3*x**2 + 10*x - 8)",
+                "Eq(expand((3*x - 2)*(x + 4)), 3*x**2 + 10*x - 8)",
+                "Abs(2*0 + 1) < Abs(0 - 3)",
+                "Abs(2*1 + 1) > Abs(1 - 3)",
+                "Abs(2*(-5) + 1) > Abs(-5 - 3)",
+            ],
+        },
+        {
+            "id": "ibhl-fn-q06",
+            "statement": (
+                "Let $f(x) = x^2 - 4x + 3$.  \n"
+                "**(a)** Write down the equations of the vertical asymptotes of "
+                "$y = \\dfrac{1}{f(x)}$, and the value of $\\displaystyle\\lim_{x\\to\\infty} "
+                "\\dfrac{1}{f(x)}$. **[3]**  \n"
+                "**(b)** Solve $[f(x)]^2 = 9$. **[4]**"
+            ),
+            "solution": (
+                "**(a)** $f = (x-1)(x-3)$: verticals $x = 1$, $x = 3$ *(A1 A1)*; as $f \\to "
+                "\\infty$, $\\frac{1}{f} \\to 0$ *(A1)*.  \n"
+                "**(b)** $f = \\pm 3$ *(M1)*. $f = 3$: $x^2 - 4x = 0 \\Rightarrow x = 0, 4$ "
+                "*(A1)*. $f = -3$: discriminant $16 - 24 < 0$, no real roots *(A1)*. Solution "
+                "$x = 0$ or $x = 4$ *(A1)*."
+            ),
+            "badges": code_badge("ib-aa-hl-2.16", 7, "P1"),
+            "check": [
+                "Eq(expand((x - 1)*(x - 3)), x**2 - 4*x + 3)",
+                "Eq(limit(1/(x**2 - 4*x + 3), x, oo), 0)",
+                "Eq((0**2 - 4*0 + 3)**2, 9)",
+                "Eq((4**2 - 4*4 + 3)**2, 9)",
+                "Eq(16 - 24, -8)",
+            ],
+        },
+    ]
+
+
+# ===========================================================================
+def build():
+    lessons = [
+        lesson_polynomials_vieta(),
+        lesson_rational_oblique(),
+        lesson_odd_even_inverse(),
+        lesson_inequalities(),
+        lesson_modulus_family(),
+    ]
+    unit = {
+        "slug": "functions",
+        "title": "Functions (AHL)",
+        "unit": 2,
+        "status": "published",
+        "blurb": (
+            "The HL extension of Topic 2, complete: the factor and remainder theorems with "
+            "Vieta's sum and product of roots, rational functions with oblique asymptotes, odd "
+            "and even functions, inverses with domain restriction and self-inverse functions, "
+            "polynomial and rational inequalities, and the modulus family |f(x)|, f(|x|), "
+            "1/f(x) — every subtopic code from AHL 2.12 to AHL 2.16."
+        ),
+        "buildsOn": (
+            "SL Topic 2 end to end — the function machine, quadratics, SL rationals, and the "
+            "transformation grammar. HL sharpens each into exam chains: divide, restrict, "
+            "sign-analyse, fold."
+        ),
+        "lessons": lessons,
+        "practice": practice_bank(),
+        "testYourself": test_bank(),
+    }
+    return unit
+
+
+def selfcheck(unit):
+    from sympy import sympify
+    n_checks = 0
+    problems = []
+    for les in unit["lessons"]:
+        problems += les["workedExamples"] + les["tryIt"]
+        ids = {p["id"] for p in les["workedExamples"] + les["tryIt"]}
+        for step in les["interactive"]["steps"]:
+            if step["kind"] in ("worked", "tryIt"):
+                assert step["problemId"] in ids, f"{les['slug']}: dangling problemId {step['problemId']}"
+            if step["kind"] == "tapQuestion":
+                assert len(step["options"]) == len(set(step["options"])), f"{les['slug']}: dup options"
+                for c in step["check"]:
+                    assert bool(sympify(c)) is True, f"{les['slug']} tapQ: {c}"
+                    n_checks += 1
+    problems += unit["practice"] + unit["testYourself"]
+    ids = [p["id"] for p in problems]
+    assert len(ids) == len(set(ids)), "duplicate problem ids"
+    for p in problems:
+        for c in p["check"]:
+            assert bool(sympify(c)) is True, f"{p['id']}: NOT TRUE: {c}"
+            n_checks += 1
+    return len(problems), n_checks
+
+
+def main():
+    unit = build()
+    n_problems, n_checks = selfcheck(unit)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w") as fh:
+        json.dump(unit, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    n_steps = sum(len(l["interactive"]["steps"]) for l in unit["lessons"])
+    print(f"wrote {os.path.relpath(OUT, ROOT)}: {len(unit['lessons'])} lessons, "
+          f"{n_steps} interactive steps, {n_problems} problems, {n_checks} sympy checks OK")
+
+
+if __name__ == "__main__":
+    main()

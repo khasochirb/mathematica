@@ -209,6 +209,7 @@ import ibSlGeoTrig from "@/data/genmath/ib-sl/geometry-and-trigonometry.json";
 import ibSlStatsProb from "@/data/genmath/ib-sl/statistics-and-probability.json";
 import ibSlCalculus from "@/data/genmath/ib-sl/calculus.json";
 import ibHlNumberAlgebra from "@/data/genmath/ib-hl/number-and-algebra.json";
+import ibHlFunctions from "@/data/genmath/ib-hl/functions.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1749,7 +1750,7 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
     title: "Functions (AHL)",
     blurb: "Factor and remainder theorems, sums and products of roots, rational functions with oblique asymptotes, self-inverse and even/odd structure, modulus equations and inequalities, and the |f|, 1/f, f(|x|) graph family — AHL 2.12 to 2.16.",
     buildsOn: "SL Topic 2's function machinery and transformations.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -1779,6 +1780,7 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
 
 const ibHlUnits: CourseUnit[] = [
   ibHlNumberAlgebra as unknown as CourseUnit,
+  ibHlFunctions as unknown as CourseUnit,
 ];
 
 export function getIbHlSpine(): GeometrySpineEntry[] {
