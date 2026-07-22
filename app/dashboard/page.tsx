@@ -12,6 +12,10 @@ import { useLang } from "@/lib/lang-context";
 import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
 import { getAllQuestions } from "@/lib/esh-questions";
 import { courseTotalLessons } from "@/lib/genmath-lessons";
+import useRatings from "@/lib/use-ratings";
+import { recommendedCourse } from "@/lib/ratings";
+import RatingsPanel from "@/components/ratings/RatingsPanel";
+import RecommendedNextCard from "@/components/ratings/RecommendedNextCard";
 
 const i18n = {
   eyebrow_dashboard: { en: "Dashboard", mn: "Хяналтын самбар" },
@@ -131,6 +135,11 @@ export default function DashboardPage() {
       }),
     );
   }, [user?.id]);
+  // The 2K-style ratings profile — attempts + bank mastery + placements in,
+  // 8 strict attribute scores out. The pinned recommendation targets the
+  // lowest attribute.
+  const { profile } = useRatings();
+  const ratingsRec = recommendedCourse(profile);
   // Server-derived test sessions (cross-device-safe). Replaces the previous
   // local-only ts.getCompletedSessions() for stats display so a fresh-device
   // login still shows the correct "Tests completed" count and latest test.
@@ -255,6 +264,16 @@ export default function DashboardPage() {
             </div>
           )}
         </section>
+
+        {/* Ratings + pinned recommendation — shown as soon as ANY evidence
+            exists (a placement test alone is enough for a provisional
+            profile, even before the first synced attempt). */}
+        {profile.hasAnyEvidence && (
+          <div className="mt-8 space-y-4">
+            {ratingsRec && <RecommendedNextCard rec={ratingsRec} />}
+            <RatingsPanel profile={profile} />
+          </div>
+        )}
 
         {!hasData ? (
           // Empty state
