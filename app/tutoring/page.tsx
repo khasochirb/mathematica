@@ -10,7 +10,6 @@
 // faithful translation, Mongolian mode shows the parents' original words.
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { Facebook, MessageCircle, Phone, Mail, Check } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 
@@ -181,13 +180,14 @@ export default function TutoringPage() {
             >
               <Facebook className="h-4 w-4" /> {L(i18n.ctaFb)}
             </a>
-            <Link
-              href="#contact"
+            <button
+              type="button"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })}
               className="btn btn-line w-full sm:w-auto"
               style={{ padding: "12px 22px", fontSize: 14 }}
             >
               {L(i18n.ctaReach)}
-            </Link>
+            </button>
           </div>
         </div>
       </section>

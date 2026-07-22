@@ -276,16 +276,26 @@ export default function AnalyticsPage() {
         }}
       >
         <h5 className="eyebrow mb-2.5 px-2">{t("nav_sections")}</h5>
+        {/* Menu order mirrors the on-page section order exactly, and the
+            links scroll WITHOUT touching the URL or history — hash anchors
+            were stacking a history entry per click, so the browser back
+            button replayed every scroll jump before leaving the page. */}
         {[
-          { label: t("nav_overview"), href: "#overview" },
-          { label: t("nav_topic"), href: "#topic-mastery" },
-          { label: t("nav_history"), href: "#test-history" },
-          { label: t("nav_recent"), href: "#recent-attempts" },
-          { label: t("nav_mistakes"), href: "#mistakes" },
+          { label: t("nav_overview"), id: "overview" },
+          { label: t("nav_history"), id: "test-history" },
+          { label: t("nav_topic"), id: "topic-mastery" },
+          { label: t("nav_recent"), id: "recent-attempts" },
+          { label: t("nav_mistakes"), id: "mistakes" },
         ].map((s) => (
-          <a key={s.href} href={s.href} className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            className="block w-full text-left px-2.5 py-2 text-[13px] rounded-md"
+            style={{ color: "var(--fg-1)" }}
+          >
             {s.label}
-          </a>
+          </button>
         ))}
 
         <h5 className="eyebrow mb-2.5 px-2 mt-5">{t("nav_actions")}</h5>
@@ -309,7 +319,7 @@ export default function AnalyticsPage() {
           <BackButton fallback="/dashboard" className="gm-press p-2 rounded-md" label="Буцах" />
         </div>
         {/* Head */}
-        <div id="overview" className="flex items-end justify-between flex-wrap gap-6 pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div id="overview" className="flex items-end justify-between flex-wrap gap-6 pb-7" style={{ borderBottom: "1px solid var(--line)", scrollMarginTop: 80 }}>
           <div>
             <div className="eyebrow">{t("head_eyebrow")}</div>
             <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 5vw, 56px)", letterSpacing: "-0.03em", margin: "8px 0 0", lineHeight: 1, color: "var(--fg)" }}>
@@ -451,7 +461,7 @@ export default function AnalyticsPage() {
             {/* Row 1: Score trajectory + Recommendations — stacks on mobile/tablet,
                  side-by-side on desktop. */}
             <div className="grid gap-5 mt-5 grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-              <div id="test-history" className="card-edit overflow-hidden">
+              <div id="test-history" className="card-edit overflow-hidden" style={{ scrollMarginTop: 80 }}>
                 <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                   <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                     {t("traj_h")} · {trajectory.length} {langKey === "mn" ? "тест" : (trajectory.length === 1 ? "test" : "tests")}
@@ -590,7 +600,7 @@ export default function AnalyticsPage() {
             </div>
 
             {/* Row 2: Topic mastery */}
-            <div id="topic-mastery" className="card-edit overflow-hidden mt-5">
+            <div id="topic-mastery" className="card-edit overflow-hidden mt-5" style={{ scrollMarginTop: 80 }}>
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   {t("tm_h")} · {displayTopics.length} {t("tm_tracked")}
@@ -661,7 +671,7 @@ export default function AnalyticsPage() {
             </div>
 
             {/* Row 3: Recent test history */}
-            <div id="recent-attempts" className="card-edit overflow-hidden mt-5">
+            <div id="recent-attempts" className="card-edit overflow-hidden mt-5" style={{ scrollMarginTop: 80 }}>
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   {t("recent_h")}
@@ -730,7 +740,7 @@ export default function AnalyticsPage() {
             </div>
 
             {/* Mistake library */}
-            <div id="mistakes" className="card-edit overflow-hidden mt-5">
+            <div id="mistakes" className="card-edit overflow-hidden mt-5" style={{ scrollMarginTop: 80 }}>
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid var(--line)" }}>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   {t("mist_h")} · {incorrectAttempts.length}

@@ -13,7 +13,7 @@ import useESHProgress from "@/lib/use-esh-progress";
 import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
-import { TOPIC_LABELS } from "@/lib/esh-questions";
+import { TOPIC_LABELS, getTestInfo } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
 import { getSkillStudyTarget } from "@/lib/skill-study-map";
 
@@ -86,7 +86,7 @@ export default function ProgressPage() {
               Тест бодож эсвэл дадлага хийж эхлэхэд таны прогресс энд харагдана.
             </p>
             <div className="flex gap-2 justify-center">
-              <Link href="/practice/esh/test" className="btn btn-primary">
+              <Link href="/practice/esh/test?type=previous" className="btn btn-primary">
                 Тест бодох
               </Link>
               <Link href="/practice/esh/practice" className="btn btn-line">
@@ -296,7 +296,7 @@ export default function ProgressPage() {
               </p>
               {progress.suggestedNextTest && (
                 <Link
-                  href="/practice/esh/test"
+                  href={`/practice/esh/test?type=${getTestInfo(progress.suggestedNextTest)?.isPremium ? "premium" : "previous"}`}
                   className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"
                   style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
                 >

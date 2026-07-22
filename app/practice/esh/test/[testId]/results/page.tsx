@@ -58,6 +58,11 @@ export default function TestResultsPage() {
 
   const session = mounted ? testSession.getSession(sessionId) : undefined;
   const testInfo = getTestInfo(testKey);
+  // Exits return to the chooser filtered to this test's family — the
+  // bare URL shows the combined list (see runner page note).
+  const chooserHref = testInfo
+    ? `/practice/esh/test?type=${testInfo.isPremium ? "premium" : "previous"}`
+    : "/practice/esh/test";
   const questions: Question[] = useMemo(() => getTestQuestions(testKey), [testKey]);
 
   // §3a auto-trigger: pick the single weakest Section-1 skill worth a loop.
@@ -87,9 +92,9 @@ export default function TestResultsPage() {
 
   useEffect(() => {
     if (mounted && (!session || session.status !== "completed")) {
-      router.replace("/practice/esh/test");
+      router.replace(chooserHref);
     }
-  }, [mounted, session, router]);
+  }, [mounted, session, router, chooserHref]);
 
   const topicStats = useMemo(() => {
     if (!session) return [];
@@ -237,7 +242,7 @@ export default function TestResultsPage() {
         <div className="flex items-center gap-3 mb-6">
           {/* History-back: results are reached from the test list, analytics
               review links, and the runner — back returns to the actual origin. */}
-          <BackButton fallback="/practice/esh/test" className="gm-press p-2 rounded-md" label="Буцах" />
+          <BackButton fallback={chooserHref} className="gm-press p-2 rounded-md" label="Буцах" />
           <div>
             <div className="eyebrow">{testInfo?.label || testKey} · Үр дүн</div>
             <p className="mono text-[10px] mt-0.5 uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>

@@ -56,6 +56,13 @@ export default function TestRunnerPage() {
   useEffect(() => setMounted(true), []);
 
   const testInfo = getTestInfo(testKey);
+  // Every exit from the runner returns to the chooser FILTERED to this
+  // test's own family (premium practice vs previous-year) — the bare
+  // /practice/esh/test URL shows the combined list, which reads as a
+  // page the student never visited.
+  const chooserHref = testInfo
+    ? `/practice/esh/test?type=${testInfo.isPremium ? "premium" : "previous"}`
+    : "/practice/esh/test";
   const questions: Question[] = useMemo(
     () => getTestQuestions(testKey),
     [testKey],
@@ -70,9 +77,9 @@ export default function TestRunnerPage() {
 
   useEffect(() => {
     if (mounted && !session) {
-      router.replace("/practice/esh/test");
+      router.replace(chooserHref);
     }
-  }, [mounted, session, router]);
+  }, [mounted, session, router, chooserHref]);
 
   // Guard against URL-bypass of the Premium gate.
   useEffect(() => {
@@ -84,9 +91,9 @@ export default function TestRunnerPage() {
         description:
           "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
       });
-      router.replace("/practice/esh/test");
+      router.replace(chooserHref);
     }
-  }, [mounted, authLoading, testInfo, isSubscribed, upgrade, router]);
+  }, [mounted, authLoading, testInfo, isSubscribed, upgrade, router, chooserHref]);
 
   const totalMcq = questions.length;
 
@@ -553,7 +560,7 @@ export default function TestRunnerPage() {
               <button
                 onClick={() => {
                   setShowQuitModal(false);
-                  router.push("/practice/esh/test");
+                  router.push(chooserHref);
                 }}
                 className="btn flex-1"
                 style={{
