@@ -4,15 +4,18 @@
 // "5"), and a strong performer rises freely toward 100. Attributes with no
 // evidence are UNRATED ("—"), never 0 — no data is not the same as weak.
 //
-// A rating is primarily a PLACEMENT signal: take a few tests and your rating
-// becomes your difficulty-weighted score. Exam difficulty is the strictness
-// dial — the same accuracy is worth more on a harder exam, so a 100% on the
-// easy SAT tops out at 80 while a 100% on ЭЕШ/IB (the hard pair, treated the
-// same) can reach 100. Course work is a second path, capped below Near-mastery
-// until proven on a real exam. Recency decay fades old evidence; confidence
-// keeps thin evidence provisional until ~a placement of tests firms it up.
-// The overall is the breadth-weighted mean, with unrated attributes at the
-// floor — a number a student raises honestly by testing and studying.
+// A rating is a PLACEMENT signal, and it's the niche feature that must be
+// accurate — so a skill is only shown (RATED) once there's enough to grade it
+// fairly: ~five full mock tests of a topic, OR one completed adaptive placement
+// test (which starts easy and goes deeper to pinpoint the level). Until then
+// it's "—" and the rest of the dashboard carries the analysis. Exam difficulty
+// is the strictness dial — the same accuracy is worth more on a harder exam, so
+// a 100% on the easy SAT tops out at 80 while a 100% on ЭЕШ/IB (the hard pair,
+// treated the same) can reach 100. Every attribute also carries a ranked,
+// personalized "how to raise this" — each step re-scored against this formula
+// so the "+N points" is honest, pointing only at the units the student actually
+// missed. The overall is the breadth-weighted mean, unrated attributes at the
+// floor.
 //
 // This module is PURE — no React, no storage. Evidence comes in as plain
 // data (attempts, bank mastery, placement results); lib/use-ratings.ts does
@@ -282,30 +285,39 @@ export const RATING_CONSTANTS = {
   N_LESSON: 10, // lesson-check attempts for full lesson confidence
   N_TEST: 8, // unit-test attempts for full test confidence
   N_BANK_FORMS: 6, // bank forms attempted for full bank confidence
-  N_EXAM_FULL: 15, // exam questions (per attribute) for full exam confidence —
-  // ~a placement of a few tests; below it the rating is provisional and damped
-  // toward the floor, above it the rating IS your difficulty-weighted score.
-  MIN_EXAM_RATE_N: 5, // exam questions needed for exams to rate an attribute
-  PROVISIONAL_CONF: 0.6, // below this combined confidence, flag "(provisional)"
+  // Attributes are the niche, must-be-accurate feature: a skill is only shown
+  // (RATED) once there is enough evidence to grade it fairly — roughly five
+  // full mock tests' worth of questions, OR one completed adaptive placement
+  // test (which pinpoints the level fast). Below that it stays "—" and the
+  // rest of the dashboard (predicted score, trend, mistakes, weak topics)
+  // carries the analysis.
+  N_EXAM_FULL: 30, // exam questions (per attribute) for full exam confidence —
+  // ≈ five full tests of a commonly-tested topic.
+  N_PLACEMENT_FULL: 8, // a completed adaptive placement → full confidence
+  RATED_CONF: 0.75, // combined confidence needed before a skill shows a number
+  PROVISIONAL_CONF: 0.9, // between RATED_CONF and this, flag "(provisional)"
   W_LESSON: 0.35,
   W_TEST: 0.45,
   W_BANK: 0.2,
   // The 2K-style scale: anything RATED lives on 40–100. 40 is the floor a
-  // rated attribute can't drop below (a measured-but-weak skill, so the
-  // overall never reads like a "5"); strong performance rises freely toward
-  // 100. No evidence at all → UNRATED ("—"), never 0.
+  // rated-but-weak skill can't drop below; strong performance rises freely
+  // toward 100. No / insufficient evidence → UNRATED ("—"), never 0.
   RATING_FLOOR: 40,
   CAP_NO_UNIT_TEST: 69, // without unit tests a UNIT tops out in Developing
   CAP_NOT_ELITE: 84, // a UNIT caps below Near-mastery unless tests are elite
   ELITE_TEST_ACC: 0.9, // elite gate: ≥90% test accuracy...
   ELITE_TEST_N: 6, // ...across ≥6 (decayed) test attempts
-  CAP_NO_EXAM: 84, // course work alone caps below Near-mastery — prove it on a
-  // real exam. Exam performance is NOT capped this way: difficulty (below) is
-  // what limits it, so a strong test-taker earns a high rating from tests.
-  W_EXAM: 0.6, // blend weight: real exam performance (the placement signal)
-  W_COVERAGE: 0.4, // blend weight: course work
-  PLACEMENT_SEED_MAX: 70, // a dedicated placement alone seeds a provisional
-  // 40–70 rating (real exams drive higher).
+  CAP_NO_EXAM: 84, // pure course work (no test of any kind) caps below
+  // Near-mastery. A real exam or a placement lifts the cap; difficulty then
+  // governs the ceiling.
+  // Blend weights across the three evidence streams. Real exams are the gold
+  // standard; the adaptive placement is the accurate fast path; course work
+  // is practice.
+  W_EXAM: 0.5,
+  W_PLACEMENT: 0.35,
+  W_COURSE: 0.15,
+  PLACEMENT_DIFF: 0.9, // a placement is adaptive/accurate but not ЭЕШ-hard:
+  // a perfect placement rates ~90, leaving the top reserved for real exams.
 } as const;
 
 // Exam difficulty — the same accuracy is worth more on a harder exam, so the
@@ -406,18 +418,34 @@ export interface UnitRating extends RatedUnit {
   bankAttempted: number;
 }
 
+// One concrete, accurate next action for raising an attribute — with the
+// score it would move you to (simulated against the real formula, so the
+// "+N points" is honest). Only ever points at units/topics the student has
+// actually missed or left unproven — never a random course.
+export interface ImprovementStep {
+  kind: "placement" | "master-unit" | "unit-test" | "mock-exam";
+  href: string;
+  labelEn: string;
+  labelMn: string;
+  unitSlug?: string;
+  projectedScore?: number; // attribute score after this action
+  delta?: number; // projectedScore − current (omitted for "get rated" steps)
+}
+
 export interface AttributeRating {
   key: AttributeKey;
-  rated: boolean; // false = no evidence at all — display "—", never 0
+  rated: boolean; // false = not enough evidence yet — display "—", never 0
   score: number; // 40–100; RATING_FLOOR when unrated (a floor, not a verdict)
   band: Band;
-  provisional: boolean; // true when the score is a placement seed
+  provisional: boolean; // true when the rating is still firming up
   unitsTotal: number;
   unitsTouched: number;
   coverage: number; // course-coverage mastery, 0..1 (untouched units count 0)
   examAcc: number; // 0..1, decayed
   examN: number; // decayed count
   hasUnitTest: boolean;
+  // Ranked, personalized "how to raise this" — most impactful first.
+  improvements: ImprovementStep[];
 }
 
 export interface RatingsProfile {
@@ -540,7 +568,8 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
 
   // -- placement seeds ------------------------------------------------------
   // A placement test alone gives a PROVISIONAL attribute score, capped low —
-  // it routes the student, it doesn't award mastery.
+  // it starts easy and goes deeper, so a completed placement is a first-class,
+  // accurate signal that rates an attribute on its own.
   const placementByAttr = new Map<AttributeKey, { seen: number; correct: number }>();
   for (const p of placements) {
     const ctx = placementNamespaceToContext(p.namespace);
@@ -556,93 +585,166 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   }
 
   // -- pass 3: score every attribute ----------------------------------------
-  // An attribute is RATED only when real evidence exists: any course work in
-  // its units, enough exam questions (≥ MIN_EXAM_RATE_N), or a placement.
-  // Rated → 40–100. No evidence → "—", never a punitive 0.
-  //
-  // Two evidence streams each produce a PERFORMANCE rating and a confidence:
-  //   • exams → 100·(accuracy·difficulty), so a strong test-taker's rating is
-  //     essentially their difficulty-weighted score (SAT scaled to 0.8, ЭЕШ/IB
-  //     to 1.0). Confidence ramps to full over ~a placement of tests.
-  //   • courses → 40 + 60·(mastery of the units you've touched), confidence =
-  //     how much of the course you've covered.
-  // They blend by evidence weight; a single combined confidence then decides
-  // how far the score sits above the floor. Strong performance rises freely;
-  // thin or weak evidence stays near 40.
-  const attributes: AttributeRating[] = ATTRIBUTES.map((info) => {
-    const mine = units.filter((u) => u.attribute === info.key);
-    const unitsTotal = mine.length;
-    const touchedUnits = mine.filter((u) => u.touched);
-    const unitsTouched = touchedUnits.length;
-    const hasUnitTest = mine.some((u) => u.hasTest);
-
-    // Course stream: mastery of the units actually worked (not diluted by
-    // untouched units — those lower confidence, not performance).
+  // Three evidence streams, each a PERFORMANCE rating + a confidence:
+  //   • real exams → 100·(accuracy·difficulty); the gold standard, but it takes
+  //     ~five full tests of a topic to fully trust it (N_EXAM_FULL).
+  //   • a completed adaptive placement → 100·(accuracy·0.9); accurate fast path.
+  //   • course work → 40 + 60·(mastery of units worked); practice.
+  // They blend by evidence weight; a combined confidence (probabilistic OR)
+  // sets how far above the floor the score sits. A skill is RATED — shown as a
+  // number rather than "—" — only once that confidence clears RATED_CONF.
+  type ExamAgg = { weight: number; correct: number; diffWeight: number };
+  const scoreAttr = (
+    attrUnits: UnitRating[],
+    examAgg: ExamAgg | undefined,
+    placeAgg: { seen: number; correct: number } | undefined,
+  ) => {
+    const unitsTotal = attrUnits.length;
+    const touched = attrUnits.filter((u) => u.touched);
+    const unitsTouched = touched.length;
+    const hasUnitTest = attrUnits.some((u) => u.hasTest);
     const courseMastery =
       unitsTouched > 0
-        ? touchedUnits.reduce((s, u) => s + (u.score - C.RATING_FLOOR) / RANGE, 0) / unitsTouched
+        ? touched.reduce((s, u) => s + (u.score - C.RATING_FLOOR) / RANGE, 0) / unitsTouched
         : 0;
     const courseConf = unitsTotal > 0 ? unitsTouched / unitsTotal : 0;
-    const hasCourse = unitsTouched > 0;
 
-    // Exam stream: difficulty-weighted accuracy.
-    const ex = examByAttr.get(info.key);
-    const examN = ex && ex.weight > 0 ? ex.weight : 0;
-    const examAcc = examN > 0 ? ex!.correct / examN : 0;
-    const examDiff = examN > 0 ? ex!.diffWeight / examN : 0; // attempt-weighted difficulty
-    const examPerf = examAcc * examDiff; // 0..1, ceilinged by difficulty
-    const examConf = conf(examN, C.N_EXAM_FULL);
-    const hasExam = examN >= C.MIN_EXAM_RATE_N;
+    const en = examAgg && examAgg.weight > 0 ? examAgg.weight : 0;
+    const ea = en > 0 ? examAgg!.correct / en : 0;
+    const eD = en > 0 ? examAgg!.diffWeight / en : 0; // attempt-weighted difficulty
+    const examConf = conf(en, C.N_EXAM_FULL);
 
-    const seed = placementByAttr.get(info.key);
-    const hasSeed = !!seed && seed.seen > 0;
+    const pn = placeAgg && placeAgg.seen > 0 ? placeAgg.seen : 0;
+    const pAcc = pn > 0 ? placeAgg!.correct / pn : 0;
+    const placeConf = conf(pn, C.N_PLACEMENT_FULL);
 
-    let rated = hasCourse || hasExam;
-    let provisional = false;
-    let score: number;
+    const streams: { perf: number; conf: number; w: number }[] = [];
+    if (en > 0) streams.push({ perf: 100 * ea * eD, conf: examConf, w: C.W_EXAM });
+    if (pn > 0) streams.push({ perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, w: C.W_PLACEMENT });
+    if (unitsTouched > 0) streams.push({ perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, w: C.W_COURSE });
 
-    if (rated) {
-      const perfExam = 100 * examPerf; // exam performance rating (may be < floor)
-      const perfCourse = C.RATING_FLOOR + RANGE * courseMastery; // 40..100
-      const ewExam = hasExam ? examConf * C.W_EXAM : 0;
-      const ewCourse = hasCourse ? courseConf * C.W_COVERAGE : 0;
-      const ewTotal = ewExam + ewCourse;
-      const perf = ewTotal > 0 ? (perfExam * ewExam + perfCourse * ewCourse) / ewTotal : C.RATING_FLOOR;
-      // Combined confidence RISES as evidence accumulates (probabilistic OR),
-      // so adding a second stream never lowers it.
-      const cExam = hasExam ? examConf : 0;
-      const cCourse = hasCourse ? courseConf : 0;
-      const combinedConf = 1 - (1 - cExam) * (1 - cCourse);
-      score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
-      // Course work alone can't reach Near-mastery until proven on a real
-      // exam; exam performance is limited by difficulty, not this cap.
-      if (!hasExam) score = Math.min(score, C.CAP_NO_EXAM);
-      provisional = combinedConf < C.PROVISIONAL_CONF;
-    } else if (hasSeed) {
-      // A dedicated placement alone rates the attribute provisionally.
-      score =
-        C.RATING_FLOOR +
-        (C.PLACEMENT_SEED_MAX - C.RATING_FLOOR) * (seed.correct / seed.seen);
-      rated = true;
-      provisional = true;
-    } else {
-      score = C.RATING_FLOOR; // the floor — shown as "—" (unrated)
-    }
-
+    const ewTot = streams.reduce((s, x) => s + x.conf * x.w, 0);
+    const perf = ewTot > 0 ? streams.reduce((s, x) => s + x.perf * x.conf * x.w, 0) / ewTot : C.RATING_FLOOR;
+    const combinedConf = 1 - streams.reduce((prod, x) => prod * (1 - x.conf), 1);
+    let score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
+    // Pure course work (no test of any kind) caps below Near-mastery.
+    if (en === 0 && pn === 0 && unitsTouched > 0) score = Math.min(score, C.CAP_NO_EXAM);
     score = Math.max(C.RATING_FLOOR, Math.min(100, score));
-    const rounded = Math.round(score);
+    return {
+      score,
+      rated: streams.length > 0 && combinedConf >= C.RATED_CONF,
+      combinedConf,
+      unitsTotal,
+      unitsTouched,
+      hasUnitTest,
+      courseMastery,
+      examAcc: ea,
+      examN: en,
+    };
+  };
+
+  // The attribute's primary course placement — the accurate way to get rated.
+  const placementStepFor = (attrKey: AttributeKey): ImprovementStep => {
+    const ctx = ATTRIBUTE_COURSE_LADDER[attrKey][0];
+    const base = contextHref(ctx) ?? "/math";
+    return {
+      kind: "placement",
+      href: `${base}/placement`,
+      labelEn: `Take the ${COURSE_TITLES_EN[ctx] ?? ctx} placement test to rate this skill`,
+      labelMn: `${COURSE_TITLES_MN[ctx] ?? ctx} хичээлийн түвшин тогтоох тест өгч энэ чадвараа үнэлүүлээрэй`,
+    };
+  };
+
+  // Simulated, personalized "how to raise this" — each action re-scored
+  // against the real formula so the "+N" is honest, and only ever pointing at
+  // units the student has actually left weak or unproven.
+  const improvementsFor = (
+    attrKey: AttributeKey,
+    attrUnits: UnitRating[],
+    examAgg: ExamAgg | undefined,
+    placeAgg: { seen: number; correct: number } | undefined,
+    current: number,
+    rated: boolean,
+    provisional: boolean,
+  ): ImprovementStep[] => {
+    if (!rated) return [placementStepFor(attrKey)];
+
+    const steps: ImprovementStep[] = [];
+    // Raising a weak/unproven unit to elite.
+    for (const u of attrUnits) {
+      const elite = u.score >= 85 && u.hasTest;
+      if (!u.touched || elite) continue;
+      const simUnits = attrUnits.map((x) =>
+        x.slug === u.slug && x.context === u.context
+          ? { ...x, score: 100, band: band(100), touched: true, hasTest: true }
+          : x,
+      );
+      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);
+      const delta = proj - current;
+      if (delta < 1) continue;
+      const base = contextHref(u.context) ?? "/math";
+      const needsTest = !u.hasTest && u.score >= 55;
+      steps.push({
+        kind: needsTest ? "unit-test" : "master-unit",
+        unitSlug: u.slug,
+        href: needsTest ? `${base}/${u.slug}/test` : `${base}/${u.slug}`,
+        labelEn: needsTest ? `Pass the ${u.title} unit test` : `Master ${u.title}`,
+        labelMn: needsTest ? `${u.title} нэгжийн тестийг давах` : `${u.title}-ийг эзэмших`,
+        projectedScore: proj,
+        delta,
+      });
+    }
+    // Proving course work on a real exam (breaks the course-only 84 cap).
+    if (examAgg === undefined || examAgg.weight === 0) {
+      const mock: ExamAgg = {
+        weight: C.N_EXAM_FULL,
+        correct: C.N_EXAM_FULL * 0.9,
+        diffWeight: C.N_EXAM_FULL * 1.0,
+      };
+      const proj = Math.round(scoreAttr(attrUnits, mock, placeAgg).score);
+      const delta = proj - current;
+      if (delta >= 1) {
+        steps.push({
+          kind: "mock-exam",
+          href: "/practice/esh/test?type=previous",
+          labelEn: "Sit a full mock exam to prove it",
+          labelMn: "Бүтэн шалгалт өгч баталгаажуулаарай",
+          projectedScore: proj,
+          delta,
+        });
+      }
+    }
+    steps.sort((a, b) => (b.delta ?? 0) - (a.delta ?? 0));
+    const top = steps.slice(0, 3);
+    // If we can't point at specific units yet (e.g. rated on exams alone, with
+    // no course work), or the rating is still firming up, the accurate next
+    // step is the adaptive placement — it names the exact weak units.
+    if ((top.length === 0 || provisional) && placeAgg === undefined) {
+      top.push(placementStepFor(attrKey));
+    }
+    return top;
+  };
+
+  const attributes: AttributeRating[] = ATTRIBUTES.map((info) => {
+    const mine = units.filter((u) => u.attribute === info.key);
+    const examAgg = examByAttr.get(info.key);
+    const placeAgg = placementByAttr.get(info.key);
+    const r = scoreAttr(mine, examAgg, placeAgg);
+    const rounded = Math.round(r.score);
+    const provisional = r.rated && r.combinedConf < C.PROVISIONAL_CONF;
     return {
       key: info.key,
-      rated,
+      rated: r.rated,
       score: rounded,
       band: band(rounded),
       provisional,
-      unitsTotal,
-      unitsTouched,
-      coverage: courseMastery,
-      examAcc,
-      examN,
-      hasUnitTest,
+      unitsTotal: r.unitsTotal,
+      unitsTouched: r.unitsTouched,
+      coverage: r.courseMastery,
+      examAcc: r.examAcc,
+      examN: r.examN,
+      hasUnitTest: r.hasUnitTest,
+      improvements: improvementsFor(info.key, mine, examAgg, placeAgg, rounded, r.rated, provisional),
     };
   });
 
@@ -659,7 +761,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
 
   const hasAnyEvidence =
     units.some((u) => u.touched) ||
-    attributes.some((a) => a.examN > 0 || a.provisional);
+    attributes.some((a) => a.examN > 0 || a.rated);
 
   return { overall, attributes, units, hasAnyEvidence, computedAt: now };
 }
@@ -716,34 +818,46 @@ export interface CourseRecommendation {
   score: number;
   band: Band;
   provisional: boolean;
+  needsPlacement: boolean; // true when the focus isn't confidently rated yet —
+  // the accurate next step is the placement test, not diving into a course.
   courseContext: string;
   courseHref: string;
   courseTitleEn: string;
   courseTitleMn: string;
+  placementHref: string; // the focus attribute's adaptive placement test
   explanationEn: string;
   explanationMn: string;
+  // Ranked, personalized next actions for the focus attribute (with honest
+  // projected "+N" deltas). Only ever the topics the student actually missed.
+  improvements: ImprovementStep[];
 }
 
-// The pinned "start here" card: the lowest RATED attribute, and the rung of
-// its course ladder that matches the student's band. Unrated attributes are
-// never recommended — no evidence is not the same as weak (that's what sent
-// a 94% ЭЕШ scorer to Grade 6). Null when nothing is rated yet.
+// The pinned "start here" card. Prefers the lowest RATED attribute; if nothing
+// is rated yet but there's a weakness signal (exam misses on a topic), it
+// still surfaces that topic and routes to its adaptive placement test — the
+// accurate way to pin down the level. Never recommends a course off no data.
 export function recommendedCourse(profile: RatingsProfile): CourseRecommendation | null {
   if (!profile.hasAnyEvidence) return null;
-  const rated = profile.attributes.filter((a) => a.rated);
-  if (rated.length === 0) return null;
 
-  // Lowest score first; break ties toward the attribute with more live
-  // content (more room to grow the overall).
-  const sorted = [...rated].sort(
-    (a, b) => a.score - b.score || b.unitsTotal - a.unitsTotal,
-  );
-  const target = sorted[0];
+  const rated = profile.attributes.filter((a) => a.rated);
+  let target: AttributeRating | undefined;
+  let needsPlacement = false;
+
+  if (rated.length > 0) {
+    // Lowest rated first; ties toward the attribute with more live content.
+    target = [...rated].sort((a, b) => a.score - b.score || b.unitsTotal - a.unitsTotal)[0];
+    needsPlacement = target.provisional;
+  } else {
+    // Nothing rated yet — find the clearest weakness signal (an attribute with
+    // real exam evidence and the lowest accuracy) and route to its placement.
+    const withExam = profile.attributes.filter((a) => a.examN > 0);
+    if (withExam.length === 0) return null;
+    target = [...withExam].sort((a, b) => a.examAcc - b.examAcc)[0];
+    needsPlacement = true;
+  }
+
   const info = attributeInfo(target.key);
   const ladder = ATTRIBUTE_COURSE_LADDER[target.key];
-
-  // Beginner/developing start at the ladder's first course (unit-level
-  // recommendations handle skipping ahead); strong+ start at the next rung.
   const rung =
     target.band === "strong" || target.band === "mastery"
       ? Math.min(1, ladder.length - 1)
@@ -752,25 +866,35 @@ export function recommendedCourse(profile: RatingsProfile): CourseRecommendation
   const courseHref = contextHref(courseContext) ?? "/math";
   const courseTitleEn = COURSE_TITLES_EN[courseContext] ?? courseContext;
   const courseTitleMn = COURSE_TITLES_MN[courseContext] ?? courseContext;
+  const placementHref = `${contextHref(ladder[0]) ?? "/math"}/placement`;
 
-  const explanationEn = target.provisional
-    ? `Your ${info.en} rating is provisionally ${target.score} from your placement test — your lowest rated attribute. It is recommended you start from ${courseTitleEn}.`
-    : `Your ${info.en} rating is ${target.score} — your lowest rated attribute. It is recommended you start from ${courseTitleEn}.`;
-  const explanationMn = target.provisional
-    ? `Таны ${info.mnGenitive} үнэлгээ түвшин тогтоох тестээр урьдчилсан ${target.score} байна — үнэлэгдсэн чадваруудаас хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`
-    : `Таны ${info.mnGenitive} үнэлгээ ${target.score} — үнэлэгдсэн чадваруудаас хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`;
+  let explanationEn: string;
+  let explanationMn: string;
+  if (needsPlacement) {
+    // We see a soft spot but don't have enough to grade it — get an accurate
+    // read first. (A miss can be a blank, a slip, or a real gap; the adaptive
+    // test tells them apart.)
+    explanationEn = `${info.en} looks like your weakest area, but we need a clean read to grade it. Take the ${courseTitleEn} placement test — it starts easy and goes deeper to pinpoint exactly where you are.`;
+    explanationMn = `${info.mnGenitive} чадвар хамгийн сул харагдаж байгаа ч үнэлэхэд хангалттай мэдээлэл алга. ${courseTitleMn} хичээлийн түвшин тогтоох тест өгөөрэй — амархнаас эхэлж, гүнзгийрэн таны түвшинг яг тодорхойлно.`;
+  } else {
+    explanationEn = `Your ${info.en} rating is ${target.score} — your lowest rated attribute. It is recommended you start from ${courseTitleEn}.`;
+    explanationMn = `Таны ${info.mnGenitive} үнэлгээ ${target.score} — үнэлэгдсэн чадваруудаас хамгийн бага нь. ${courseTitleMn} хичээлээс эхлэхийг зөвлөж байна.`;
+  }
 
   return {
     attribute: target.key,
     score: target.score,
     band: target.band,
     provisional: target.provisional,
+    needsPlacement,
     courseContext,
     courseHref,
     courseTitleEn,
     courseTitleMn,
+    placementHref,
     explanationEn,
     explanationMn,
+    improvements: target.improvements,
   };
 }
 

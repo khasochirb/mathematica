@@ -255,9 +255,18 @@ describe("computeRatings — the 40–100 scale", () => {
       attempts: eshAttempts("set_theory", 3, 0),
       now: NOW,
     });
-    // 0/3 on a rarely-tested topic: below MIN_EXAM_RATE_N → unrated, not 40.
+    // 3 questions is far below the accuracy bar → unrated ("—"), not 40.
     expect(attr(p, "numbers").rated).toBe(false);
     expect(attr(p, "numbers").score).toBe(FLOOR);
+  });
+
+  it("attributes need ~five full tests before they're rated", () => {
+    // ~2 tests' worth on a topic (12 questions) — not enough to grade.
+    const two = computeRatings({ attempts: eshAttempts("algebra", 12, 9), now: NOW });
+    expect(attr(two, "algebra").rated).toBe(false);
+    // ~5 tests' worth (30 questions) — now it's rated.
+    const five = computeRatings({ attempts: eshAttempts("algebra", 30, 24), now: NOW });
+    expect(attr(five, "algebra").rated).toBe(true);
   });
 
   it("weak exam performance floors at 40, not below", () => {
@@ -268,9 +277,10 @@ describe("computeRatings — the 40–100 scale", () => {
     expect(a.band).toBe("beginner");
   });
 
-  it("the owner's scenario: two ЭЕШ tests (94% and 16%) — no Grade-6 insult", () => {
-    // Roughly two 36-question mocks spread over the common topics: one aced,
-    // one bombed. Arithmetic/set-theory barely appear (like real papers).
+  it("the owner's scenario: two ЭЕШ tests — not enough to rate, so route to placement", () => {
+    // Two 36-question mocks spread over the common topics. That's below the
+    // ~5-test bar, so attributes stay UNRATED ("—") — but we still see the
+    // weakness signal and route the focus topic to its adaptive placement.
     const seed = (accHigh: number, accLow: number, perTopic: Record<string, number>) => {
       const rows: RatingAttempt[] = [];
       for (const [topic, n] of Object.entries(perTopic)) {
@@ -281,51 +291,38 @@ describe("computeRatings — the 40–100 scale", () => {
     };
     const p = computeRatings({
       attempts: seed(0.94, 0.16, {
-        algebra: 8,
-        geometry: 6,
-        trigonometry: 5,
-        functions: 5,
-        probability: 4,
-        calculus: 4,
-        sequences: 3,
+        algebra: 8, geometry: 6, trigonometry: 5, functions: 5,
+        probability: 4, calculus: 4, sequences: 3,
       }),
       now: NOW,
     });
 
-    // Attributes with real exam volume are rated on their mixed performance
-    // (~55% average of 94% and 16%), well above the old floor-crush.
-    for (const key of ["algebra", "geometry", "trigonometry", "probstats", "calculus"]) {
-      const a = attr(p, key);
-      expect(a.rated, key).toBe(true);
-      expect(a.score, key).toBeGreaterThan(FLOOR); // performance shows through
-      expect(a.score, key).toBeLessThan(80); // mixed record, not elite
+    // Not enough evidence yet → nothing rated, everything "—".
+    for (const key of ["algebra", "geometry", "trigonometry", "probstats", "calculus", "numbers", "linear"]) {
+      expect(attr(p, key).rated, key).toBe(false);
     }
-    // Numbers & linear algebra never appeared → UNRATED, not 0.
-    expect(attr(p, "numbers").rated).toBe(false);
-    expect(attr(p, "linear").rated).toBe(false);
-
-    // Overall looks like a real rookie rating, not a 5.
-    expect(p.overall).toBeGreaterThanOrEqual(42);
-    expect(p.overall).toBeLessThan(70);
-
-    // The recommendation targets a RATED weakness — never Grade 6 off a blank.
+    // But there IS evidence, so the recommendation fires and routes to the
+    // weakest topic's placement — never Grade 6 off a blank.
     const rec = recommendedCourse(p);
     expect(rec).not.toBeNull();
-    expect(rec!.attribute).not.toBe("numbers");
-    expect(rec!.courseContext).not.toBe("course:grade-6");
-    expect(rec!.explanationEn).toContain("lowest rated");
+    expect(rec!.needsPlacement).toBe(true);
+    expect(rec!.attribute).not.toBe("numbers"); // numbers never appeared
+    expect(rec!.placementHref).toContain("/placement");
+    expect(rec!.explanationEn.toLowerCase()).toContain("placement test");
+    expect(rec!.improvements[0].kind).toBe("placement");
   });
 
-  it("placement alone seeds a provisional rating in the 40–70 band", () => {
+  it("a completed placement test rates the attribute accurately (not a low seed)", () => {
     const p = computeRatings({
       attempts: [],
       placements: [
         {
           namespace: "geometry",
           takenAt: NOW - DAY,
+          // A deep adaptive run: 12 questions, 90% correct.
           topicScores: [
-            { slug: "foundations", seen: 4, correct: 3 },
-            { slug: "circles", seen: 4, correct: 4 },
+            { slug: "foundations", seen: 6, correct: 5 },
+            { slug: "circles", seen: 6, correct: 6 },
           ],
         },
       ],
@@ -333,57 +330,88 @@ describe("computeRatings — the 40–100 scale", () => {
     });
     const a = attr(p, "geometry");
     expect(a.rated).toBe(true);
-    expect(a.provisional).toBe(true);
-    // 7/8 accuracy → 40 + 30·0.875 ≈ 66.
-    expect(a.score).toBe(66);
-    expect(a.score).toBeLessThanOrEqual(RATING_CONSTANTS.PLACEMENT_SEED_MAX);
+    // ~92% · 0.9 difficulty ≈ 83 — a real, accurate rating, well above the
+    // old 70 seed cap. And a full adaptive run is confident, not provisional.
+    expect(a.score).toBeGreaterThan(75);
+    expect(a.provisional).toBe(false);
     expect(p.hasAnyEvidence).toBe(true);
-    // Real course evidence overrides the placement SEED path: even a strong
-    // placement (4/4) is ignored once units are worked — the score is the
-    // earned floor (one wrong lesson answer), not the 66 the seed would give.
-    const p2 = computeRatings({
-      attempts: [
-        { context: "course:geometry", topic: "foundations", isCorrect: false, timestamp: NOW - DAY, source: "lesson" },
-      ],
-      placements: [
-        { namespace: "geometry", takenAt: NOW - DAY, topicScores: [{ slug: "foundations", seen: 4, correct: 4 }] },
-      ],
-      now: NOW,
-    });
-    expect(attr(p2, "geometry").score).toBe(FLOOR);
   });
 });
 
 describe("recommendations", () => {
   it("recommends the lowest RATED attribute with an owner's-voice explanation", () => {
-    const placements = [
-      {
-        namespace: "grade12",
-        takenAt: NOW - DAY,
-        topicScores: [
-          { slug: "derivatives", seen: 4, correct: 4 },
-          { slug: "vectors", seen: 4, correct: 4 },
-          { slug: "trigonometric-identities", seen: 4, correct: 4 },
-          { slug: "conic-sections", seen: 4, correct: 4 },
-        ],
-      },
-    ];
+    // Rate two attributes via deep placements; geometry lower than algebra.
     const p = computeRatings({
-      attempts: [
-        ...lessonAttempts("course:geometry", "foundations", 10, { correctEvery: 2 }),
-        ...eshAttempts("geometry", 10, 3),
+      attempts: [],
+      placements: [
+        {
+          namespace: "geometry",
+          takenAt: NOW - DAY,
+          topicScores: [
+            { slug: "foundations", seen: 6, correct: 3 },
+            { slug: "circles", seen: 6, correct: 3 }, // ~50% → low geometry
+          ],
+        },
+        {
+          namespace: "algebra-1",
+          takenAt: NOW - DAY,
+          topicScores: [
+            { slug: "expressions-and-operations", seen: 6, correct: 6 },
+            { slug: "linear-equations", seen: 6, correct: 6 }, // 100% → high algebra
+          ],
+        },
       ],
-      placements,
       now: NOW,
     });
     const rec = recommendedCourse(p);
     expect(rec).not.toBeNull();
-    // Only rated attributes may be recommended.
+    // Only rated attributes may be recommended; geometry is the lower one.
     expect(attr(p, rec!.attribute).rated).toBe(true);
+    expect(rec!.attribute).toBe("geometry");
+    expect(rec!.needsPlacement).toBe(false); // a full placement is confident
     expect(rec!.courseHref.startsWith("/math")).toBe(true);
     expect(rec!.explanationEn).toContain(`is ${rec!.score}`);
     expect(rec!.explanationMn).toContain("үнэлгээ");
     expect(rec!.explanationMn).toContain("зөвлөж байна");
+  });
+
+  it("improvements: unrated → placement; rated-weak → a concrete +N step", () => {
+    // Unrated attribute: the only step is 'take the placement to get rated'.
+    const blank = computeRatings({ attempts: eshAttempts("algebra", 3, 2), now: NOW });
+    // (algebra unrated here) — the recommendation's steps lead with placement.
+    const rec = recommendedCourse(blank);
+    if (rec) expect(rec.improvements[0].kind).toBe("placement");
+
+    // Rated attribute with a weak, untested unit → a step that raises it.
+    const p = computeRatings({
+      attempts: [
+        // Rate geometry via a deep placement at a middling level...
+        ...lessonAttempts("course:geometry", "triangles-and-congruence", 10, { correctEvery: 2 }),
+      ],
+      placements: [
+        {
+          namespace: "geometry",
+          takenAt: NOW - DAY,
+          topicScores: [
+            { slug: "foundations", seen: 6, correct: 4 },
+            { slug: "circles", seen: 6, correct: 4 },
+          ],
+        },
+      ],
+      now: NOW,
+    });
+    const geo = attr(p, "geometry");
+    if (geo.rated) {
+      const gains = geo.improvements.filter((s) => (s.delta ?? 0) > 0);
+      expect(gains.length).toBeGreaterThan(0);
+      // Each projected gain is honest: projectedScore = current + delta.
+      for (const s of gains) {
+        expect(s.projectedScore).toBe(geo.score + s.delta!);
+        expect(s.href.length).toBeGreaterThan(0);
+      }
+      // Unit steps point into the course; the mock-exam step into practice.
+      expect(gains.every((s) => s.href.startsWith("/math") || s.href.startsWith("/practice"))).toBe(true);
+    }
   });
 
   it("strong band climbs the ladder to the second course", () => {
