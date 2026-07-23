@@ -60,7 +60,7 @@ def module1() -> list[dict]:
         r"If $5(x - 2) = 35$, what is the value of $x$?",
         r"Divide both sides by 5, then add 2:"
         r" $$x - 2 = 7 \;\Rightarrow\; x = 9.$$"
-        r" Choice A stops at $x - 2 = 7$; choice C distributes to"
+        r" Choice A stops at $x - 2 = 7$; choice B distributes to"
         r" $5x - 2 = 35$, dropping the factor on the 2."
         r" The correct answer is **B**.",
         ["Eq(5*(9 - 2), 35)", "Eq(35/5 + 2, 9)"],
@@ -78,7 +78,7 @@ def module1() -> list[dict]:
         r" was open over the four days?",
         r"Add the four values:"
         r" $$6 + 9 + 7 + 12 = 34.$$"
-        r" Choice B leaves out Thursday; choice D adds an extra 12."
+        r" Choice A leaves out Thursday; choice D adds an extra 12."
         r" The correct answer is **C**.",
         ["Eq(6 + 9 + 7 + 12, 34)"],
         total, {22: "dropped Thursday", 28: "dropped Tuesday",
@@ -97,7 +97,7 @@ def module1() -> list[dict]:
         r" What is the value of $x$?",
         r"The two angles form a straight line, so they are supplementary:"
         r" $$x + 115 = 180 \;\Rightarrow\; x = 65.$$"
-        r" Choice C treats them as equal; choice B uses $90°$ instead of"
+        r" Choice D treats them as equal; choice A uses $90°$ instead of"
         r" $180°$."
         r" The correct answer is **A**.",
         ["Eq(180 - 115, 65)"],
@@ -167,7 +167,7 @@ def module1() -> list[dict]:
         r" increase?",
         r"A 12\% increase multiplies by 1.12:"
         r" $$250 \times 1.12 = 280.$$"
-        r" Equivalently, add $0.12 \times 250 = 30$ to 250. Choice C is"
+        r" Equivalently, add $0.12 \times 250 = 30$ to 250. Choice A is"
         r" only the increase itself; choice B forgets to add it back."
         r" The correct answer is **A**.",
         ["Eq(250 + Rational(12, 100)*250, 280)",
@@ -223,8 +223,8 @@ def module1() -> list[dict]:
         r" 100. What is the population at $x = 3$?",
         r"Three hours is three doublings:"
         r" $$100 \to 200 \to 400 \to 800.$$"
-        r" Equivalently $100 \cdot 2^3 = 800$. Choice C stops after two"
-        r" doublings (hour 2); choice A multiplies $100 \cdot 3 \cdot 2$."
+        r" Equivalently $100 \cdot 2^3 = 800$. Choice B stops after two"
+        r" doublings (hour 2); choice C multiplies $100 \cdot 3 \cdot 2$."
         r" The correct answer is **D**.",
         ["Eq(100*2**3, 800)", "Eq(100*2**2, 400)"],
         800, {300: "linear guess", 600: "100*3*2", 400: "hour 2"},
@@ -245,7 +245,7 @@ def module1() -> list[dict]:
         r" weeks?",
         r"Substitute $x = 10$ into the line of best fit:"
         r" $$y = 2(10) + 6 = 26.$$"
-        r" Choice A forgets the intercept ($2 \times 10$); choice D uses"
+        r" Choice B forgets the intercept ($2 \times 10$); choice D uses"
         r" the slope and intercept swapped ($6 \times 10 + 2$)."
         r" The correct answer is **B**.",
         ["Eq(2*10 + 6, 26)"],
@@ -366,7 +366,7 @@ def module1() -> list[dict]:
         r"The seniors-who-prefer-tea cell holds 18 students out of the 60"
         r" surveyed:"
         r" $$P = \frac{18}{60} = \frac{3}{10}.$$"
-        r" Choice C divides 18 by the 30 seniors (that is the CONDITIONAL"
+        r" Choice D divides 18 by the 30 seniors (that is the CONDITIONAL"
         r" probability given senior, a different question)."
         r" The correct answer is **A**.",
         ["Eq(Rational(18, 60), Rational(3, 10))",
@@ -435,7 +435,7 @@ def module1() -> list[dict]:
         r"The arc is the fraction $\frac{40}{360} = \frac{1}{9}$ of the"
         r" full circumference $2\pi r = 18\pi$:"
         r" $$\text{arc} = \frac{1}{9} \cdot 18\pi = 2\pi.$$"
-        r" Choice C uses the radius 9 as the circumference; choice A"
+        r" Choice C uses $36°$ instead of $40°$ for the central angle; choice A"
         r" halves the correct value."
         r" The correct answer is **D**.",
         ["Eq(Rational(40, 360)*2*9, 2)", "Eq(Rational(40, 360), Rational(1, 9))"]))
@@ -467,7 +467,7 @@ def module1() -> list[dict]:
         r"Substitute the point and solve for $b$:"
         r" $$1 = 3(2) + b \;\Rightarrow\; 1 = 6 + b \;\Rightarrow\;"
         r" b = -5.$$"
-        r" Choice C adds instead of subtracts ($1 + 6$); choice A"
+        r" Choice D adds instead of subtracts ($1 + 6$); choice B"
         r" forgets the slope factor ($1 - 2$)."
         r" The correct answer is **B**.",
         ["Eq(3*2 + (-5), 1)"],
@@ -491,7 +491,7 @@ def module2_easy() -> list[dict]:
         r"If $3x - 4 = 14$, what is the value of $x$?",
         r"Add 4, then divide by 3:"
         r" $$3x = 18 \;\Rightarrow\; x = 6.$$"
-        r" Choice B subtracts 4 instead of adding; choice D divides 14 by"
+        r" Choice A subtracts 4 instead of adding; choice B divides 14 by"
         r" 3 first."
         r" The correct answer is **C**.",
         ["Eq(3*6 - 4, 14)"],
@@ -511,7 +511,7 @@ def module2_easy() -> list[dict]:
         r"Same-side interior angles between parallel lines are"
         r" SUPPLEMENTARY:"
         r" $$x + 68 = 180 \;\Rightarrow\; x = 112.$$"
-        r" Choice B treats them as equal (that is the corresponding-angle"
+        r" Choice C treats them as equal (that is the corresponding-angle"
         r" rule, not same-side interior); choice A uses $90 - 68$."
         r" The correct answer is **D**.",
         ["Eq(180 - 68, 112)"],
@@ -615,7 +615,7 @@ def module2_easy() -> list[dict]:
         r"Volume of a rectangular prism is length times width times"
         r" height:"
         r" $$V = 5 \times 4 \times 3 = 60.$$"
-        r" Choice A is the sum of the edges' product for one face; choice"
+        r" Choice A adds the three dimensions ($5 + 4 + 3$); choice"
         r" D is the surface area."
         r" The correct answer is **C**.",
         ["Eq(5*4*3, 60)"],
@@ -634,7 +634,7 @@ def module2_easy() -> list[dict]:
         r"Add the two equations to eliminate $y$:"
         r" $$(3x + 2y) + (3x - 2y) = 12 + 0 \;\Rightarrow\; 6x = 12"
         r" \;\Rightarrow\; x = 2.$$"
-        r" Choice C is the value of $y$; choice D is the sum $x + y$."
+        r" Choice B is the value of $y$; choice D is the sum $x + y$."
         r" The correct answer is **A**.",
         ["Eq(3*2 + 2*3, 12)", "Eq(3*2 - 2*3, 0)"],
         2, {3: "value of y", 4: "6x=12 mis", 5: "x + y"}))
@@ -754,7 +754,7 @@ def module2_easy() -> list[dict]:
         r" when $x = 5$. What is the constant of proportionality?",
         r"Direct proportion means $y = kx$, so"
         r" $$k = \frac{y}{x} = \frac{20}{5} = 4.$$"
-        r" Choice A inverts the ratio; choice C subtracts."
+        r" Choice A inverts the ratio; choice D subtracts ($20 - 5$)."
         r" The correct answer is **D**.",
         ["Eq(Rational(20, 5), 4)"],
         int(k_val), {Fraction(1, 4): "inverted", 3: "5 - 2? no", 15: "20 - 5"},
@@ -770,7 +770,7 @@ def module2_easy() -> list[dict]:
         r" length 5. What is the value of $\sin \theta$?",
         r"Sine is opposite over hypotenuse:"
         r" $$\sin \theta = \frac{3}{5}.$$"
-        r" Choice B is $\cos \theta$ (adjacent over hypotenuse); choice C"
+        r" Choice C is $\cos \theta$ (adjacent over hypotenuse); choice B"
         r" is $\tan \theta$."
         r" The correct answer is **A**.",
         ["Eq(3**2 + 4**2, 5**2)", "Rational(3, 5) < Rational(3, 4)"],
@@ -793,7 +793,7 @@ def module2_easy() -> list[dict]:
         r"Each year the count is MULTIPLIED by 1.25, which is a growth"
         r" factor of $1 + 0.25$:"
         r" $$1.25 - 1 = 0.25 = 25\%.$$"
-        r" Choice C reads 1.25 as 125\% growth; choice A misplaces the"
+        r" Choice D reads 1.25 as 125\% growth; choice A misplaces the"
         r" decimal."
         r" The correct answer is **B**.",
         ["Eq(Rational(125, 100) - 1, Rational(25, 100))"],
@@ -895,7 +895,7 @@ def module2_hard() -> list[dict]:
         r"If $7x - 9 = 2x + 16$, what is the value of $x$?",
         r"Collect the $x$-terms and constants:"
         r" $$5x = 25 \;\Rightarrow\; x = 5.$$"
-        r" Choice C adds the $x$-terms ($9x = 25$); choice D forgets to"
+        r" Choice C keeps $16 - 9 = 7$ without dividing; choice D forgets to"
         r" divide."
         r" The correct answer is **B**.",
         ["Eq(7*5 - 9, 2*5 + 16)"],
@@ -915,7 +915,7 @@ def module2_hard() -> list[dict]:
         r"Same-side interior angles are supplementary:"
         r" $$2x + 130 = 180 \;\Rightarrow\; 2x = 50 \;\Rightarrow\;"
         r" x = 25.$$"
-        r" Choice C forgets to divide by 2; choice B halves $130$ as if"
+        r" Choice B forgets to divide by 2; choice C halves $130$ as if"
         r" the angles were equal."
         r" The correct answer is **A**.",
         ["Eq(Rational(180 - 130, 2), 25)", "Eq(2*25 + 130, 180)"],
@@ -974,7 +974,7 @@ def module2_hard() -> list[dict]:
         r"Vertex form $y = (x - h)^2 + k$ has vertex $(h, k)$. Here"
         r" $(x + 2) = (x - (-2))$, so $h = -2$:"
         r" $$\text{vertex } (-2, -3).$$"
-        r" Choice C reads the sign of the shift wrong ($+2$); choice B is"
+        r" Choice C reads the sign of the shift wrong ($+2$); choice A is"
         r" the $y$-coordinate."
         r" The correct answer is **A**.",
         ["Eq((-2 + 2)**2 - 3, -3)"],
@@ -992,7 +992,7 @@ def module2_hard() -> list[dict]:
         r" What is the value of $a$?",
         r"On the $x$-axis, $y = 0$:"
         r" $$5a - 2(0) = 20 \;\Rightarrow\; a = 4.$$"
-        r" Choice D is the $y$-intercept ($-10$, from $x = 0$); choice C"
+        r" Choice A is the $y$-intercept ($-10$, from $x = 0$); choice D"
         r" divides 20 by 2 instead of 5."
         r" The correct answer is **B**.",
         ["Eq(5*4 - 2*0, 20)", "Eq(Rational(20, 5), 4)"],
@@ -1027,8 +1027,8 @@ def module2_hard() -> list[dict]:
         r"A 20\% discount leaves 80\% of the original price, so 48 is 80\%"
         r" of the original $p$:"
         r" $$0.80\,p = 48 \;\Rightarrow\; p = \frac{48}{0.80} = 60.$$"
-        r" Choice B adds 20\% of 48 back ($48 \times 1.2$), which is not"
-        r" the same as reversing a 20\% cut; choice A is 48 plus a flat"
+        r" Choice A adds 20\% of 48 back ($48 \times 1.2$), which is not"
+        r" the same as reversing a 20\% cut; choice C is 48 plus a flat"
         r" \$20."
         r" The correct answer is **C**.",
         ["Eq(Rational(48)/Rational(80, 100), 60)",
@@ -1090,7 +1090,7 @@ def module2_hard() -> list[dict]:
         r"The outputs are symmetric about $x = 3$ (equal at 2 and 4, and"
         r" at 1 and 5), so the turning point is at $x = 3$, where"
         r" $h(3) = -4$. The minimum VALUE is that output $-4$, not the"
-        r" input 3 (choice D)."
+        r" input 3 (choice C)."
         r" The correct answer is **A**.",
         ["Eq(2*(3 - 3)**2 - 4, -4)", "Eq(2*(2 - 3)**2 - 4, 2*(4 - 3)**2 - 4)"],
         -4, {-2: "neighbor output", 4: "endpoint", 3: "x of min"},
@@ -1190,7 +1190,7 @@ def module2_hard() -> list[dict]:
         r"The slope is $\frac{13 - 7}{4 - 2} = 3$. Using $y = 3x + b$ with"
         r" the point $(2, 7)$:"
         r" $$7 = 3(2) + b \;\Rightarrow\; b = 1.$$"
-        r" Choice A is the slope itself; choice D is one of the given"
+        r" Choice C is the slope itself; choice D is one of the given"
         r" $y$-values."
         r" The correct answer is **B**.",
         ["Eq(Rational(13 - 7, 4 - 2), 3)", "Eq(7 - 3*2, 1)"],
@@ -1211,7 +1211,7 @@ def module2_hard() -> list[dict]:
         r" \frac{16}{AB} = \frac{8}{17}.$$"
         r" Since 16 is twice 8, the hypotenuse is twice 17:"
         r" $$AB = 34.$$"
-        r" Choice B doubles the leg; choice A reads 17 straight off the"
+        r" Choice C doubles the leg; choice A reads 17 straight off the"
         r" ratio."
         r" The correct answer is **D**.",
         ["Eq(16*Rational(17, 8), 34)", "Eq(Rational(16, 34), Rational(8, 17))"],
@@ -1274,7 +1274,7 @@ def module2_hard() -> list[dict]:
         r"An inscribed angle is HALF the central angle subtending the same"
         r" arc:"
         r" $$\angle ACB = \frac{70}{2} = 35.$$"
-        r" Choice C treats them as equal; choice D doubles instead of"
+        r" Choice B treats them as equal; choice D doubles instead of"
         r" halving."
         r" The correct answer is **A**.",
         ["Eq(Rational(70, 2), 35)"],

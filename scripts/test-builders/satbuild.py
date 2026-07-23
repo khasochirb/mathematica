@@ -28,6 +28,7 @@ Rules of the road: .claude/skills/practice-test-authoring/SKILL.md.
 """
 
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -80,6 +81,10 @@ def mcq_numeric(qid, module, qnum, domain, skill, difficulty, body, solution,
     if expect_letter:
         assert answer == expect_letter, \
             f"{qid}: answer letter {answer} != blueprint {expect_letter}"
+    # The answer letter is DERIVED from the ascending sort, so the solution's
+    # closing line can never be trusted to a hand-typed letter — rewrite it.
+    solution = re.sub(r"correct answer is \*\*[A-D]\*\*",
+                      f"correct answer is **{answer}**", solution)
     assert_verified(qid, verify)
     q = {"source": qid, "module": module, "questionNumber": qnum,
          "format": "mcq", "domain": domain, "skill_tag": skill,
@@ -98,6 +103,9 @@ def mcq_listed(qid, module, qnum, domain, skill, difficulty, body, options,
     assert sorted(options) == list("ABCD"), f"{qid}: options must be A-D"
     assert len(set(options.values())) == 4, f"{qid}: duplicate option text"
     assert answer in options, f"{qid}: answer {answer} not an option"
+    m = re.search(r"correct answer is \*\*([A-D])\*\*", solution)
+    assert not m or m.group(1) == answer, \
+        f"{qid}: solution names **{m.group(1)}** but the answer is {answer}"
     assert_verified(qid, verify)
     q = {"source": qid, "module": module, "questionNumber": qnum,
          "format": "mcq", "domain": domain, "skill_tag": skill,
