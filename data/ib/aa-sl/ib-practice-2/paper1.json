@@ -1,0 +1,776 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 1,
+    "testId": "ib-practice-2",
+    "label": "AA SL Practice Paper 1",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P1-T2-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "geometric_sequences",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the common ratio $r$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "attempt to use $u_3 = u_1 r^2$, i.e. $12 = 3r^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$r = 2$"
+            }
+          ],
+          "answer": "$r = 2$",
+          "solution": "**Plan:** the third term is two ratio-steps beyond the first. $$u_3 = u_1 r^2 \\Rightarrow 12 = 3r^2$$$$r^2 = 4 \\Rightarrow r = 2 \\;(r > 0)$$",
+          "verify": [
+            "Eq(3*2**2, 12)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the fifth term $u_5$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$u_5 = 48$"
+            }
+          ],
+          "answer": "$u_5 = 48$",
+          "solution": "$$u_5 = u_1 r^4 = 3 \\cdot 2^4 = 3 \\cdot 16 = 48$$",
+          "verify": [
+            "Eq(3*2**4, 48)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the sum of the first six terms, $S_6$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "attempt to use $S_n = \\dfrac{u_1(r^n - 1)}{r - 1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_6 = 189$"
+            }
+          ],
+          "answer": "$S_6 = 189$",
+          "solution": "$$S_6 = \\frac{u_1(r^6 - 1)}{r - 1} = \\frac{3(2^6 - 1)}{2 - 1} = 3(63) = 189$$",
+          "verify": [
+            "Eq(3*(2**6 - 1)/(2 - 1), 189)"
+          ]
+        }
+      ],
+      "contextIntro": "A geometric sequence has first term $u_1 = 3$ and third term $u_3 = 12$, with a positive common ratio $r$."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "stats_probability",
+      "skill_tag": "probability_basics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(A \\cap B)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use independence: $P(A \\cap B) = P(A)\\,P(B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\cap B) = \\dfrac{1}{5}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{5}$",
+          "solution": "For independent events the intersection is the product:$$P(A \\cap B) = \\tfrac{1}{2} \\cdot \\tfrac{2}{5} = \\tfrac{1}{5}$$",
+          "verify": [
+            "Eq(Rational(1,2)*Rational(2,5), Rational(1,5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(A \\cup B)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2} + \\tfrac{2}{5} - \\tfrac{1}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\cup B) = \\dfrac{7}{10}$"
+            }
+          ],
+          "answer": "$\\dfrac{7}{10}$",
+          "solution": "Apply the addition rule:$$P(A \\cup B) = \\tfrac{1}{2} + \\tfrac{2}{5} - \\tfrac{1}{5} = \\tfrac{5}{10} + \\tfrac{4}{10} - \\tfrac{2}{10} = \\tfrac{7}{10}$$",
+          "verify": [
+            "Eq(Rational(1,2)+Rational(2,5)-Rational(1,5), Rational(7,10))"
+          ]
+        }
+      ],
+      "contextIntro": "Two events $A$ and $B$ are independent, with $P(A) = \\dfrac{1}{2}$ and $P(B) = \\dfrac{2}{5}$."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "trig_identities",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the exact value of $\\cos\\theta$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\sin^2\\theta + \\cos^2\\theta = 1$ or a 3-4-5 triangle"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos^2\\theta = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos\\theta = \\dfrac{4}{5}$ (positive, $\\theta$ acute)"
+            }
+          ],
+          "answer": "$\\cos\\theta = \\dfrac{4}{5}$",
+          "solution": "**Plan:** use the Pythagorean identity.$$\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$$Since $\\theta$ is acute, $\\cos\\theta > 0$, so $\\cos\\theta = \\tfrac{4}{5}$.",
+          "verify": [
+            "Eq(sqrt(1 - Rational(3,5)**2), Rational(4,5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence find the exact value of $\\sin 2\\theta$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2 \\cdot \\tfrac{3}{5} \\cdot \\tfrac{4}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin 2\\theta = \\dfrac{24}{25}$"
+            }
+          ],
+          "answer": "$\\sin 2\\theta = \\dfrac{24}{25}$",
+          "solution": "Use the double-angle identity with the values above:$$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta = 2 \\cdot \\tfrac{3}{5} \\cdot \\tfrac{4}{5} = \\tfrac{24}{25}$$",
+          "verify": [
+            "Eq(2*Rational(3,5)*Rational(4,5), Rational(24,25))"
+          ]
+        }
+      ],
+      "contextIntro": "The angle $\\theta$ is acute and $\\sin\\theta = \\dfrac{3}{5}$."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "quadratic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the coordinates of the points where the graph of $f$ crosses the $x$-axis.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f(x) = 0$ and factorise: $(x - 1)(x - 5) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 5$, giving $(1, 0)$ and $(5, 0)$"
+            }
+          ],
+          "answer": "$(1, 0)$ and $(5, 0)$",
+          "solution": "**Plan:** the $x$-intercepts occur where $f(x) = 0$.$$x^2 - 6x + 5 = (x - 1)(x - 5) = 0$$So $x = 1$ or $x = 5$; the graph crosses at $(1, 0)$ and $(5, 0)$.",
+          "verify": [
+            "Eq(expand((x - 1)*(x - 5)), x**2 - 6*x + 5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Write $f(x)$ in the form $(x - h)^2 + k$ and hence state the minimum value of $f$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "complete the square: half of $-6$ is $-3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(x) = (x - 3)^2 - 4$"
+            },
+            {
+              "mark": "A1",
+              "note": "minimum value $-4$ (at $x = 3$)"
+            }
+          ],
+          "answer": "$f(x) = (x - 3)^2 - 4$; minimum value $-4$",
+          "solution": "Complete the square:$$f(x) = (x^2 - 6x + 9) - 9 + 5 = (x - 3)^2 - 4$$The square is never negative, so the least value is $-4$, attained at $x = 3$.",
+          "verify": [
+            "Eq(expand((x - 3)**2 - 4), x**2 - 6*x + 5)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is given by $f(x) = x^2 - 6x + 5$."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "exponents_logs",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of $\\log_2 16$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write $16$ as a power of $2$: $16 = 2^4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_2 16 = 4$"
+            }
+          ],
+          "answer": "$4$",
+          "solution": "Since $16 = 2^4$,$$\\log_2 16 = \\log_2 2^4 = 4.$$",
+          "verify": [
+            "Eq(log(16, 2), 4)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Solve $3^{2x} = 27$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write both sides with base 3: $27 = 3^3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{3}{2}$"
+            }
+          ],
+          "answer": "$x = \\dfrac{3}{2}$",
+          "solution": "Express $27$ as a power of $3$ and equate exponents:$$3^{2x} = 3^3 \\Rightarrow 2x = 3 \\Rightarrow x = \\tfrac{3}{2}.$$",
+          "verify": [
+            "Eq(3**(2*Rational(3,2)), 27)",
+            "Eq(2*Rational(3,2), 3)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Given that $\\log_a 2 = p$ and $\\log_a 3 = q$, express $\\log_a 18$ in terms of $p$ and $q$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "factorise $18 = 2 \\cdot 3^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_a 18 = \\log_a 2 + 2\\log_a 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_a 18 = p + 2q$"
+            }
+          ],
+          "answer": "$p + 2q$",
+          "solution": "Write $18 = 2 \\cdot 3^2$ and use the log laws:$$\\log_a 18 = \\log_a 2 + \\log_a 3^2 = \\log_a 2 + 2\\log_a 3 = p + 2q.$$",
+          "verify": [
+            "Eq(2*3**2, 18)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 10,
+      "topic": "calculus",
+      "skill_tag": "differentiation_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = 3x^2 - 6x$"
+            }
+          ],
+          "answer": "$f'(x) = 3x^2 - 6x$",
+          "solution": "$$f'(x) = 3x^2 - 6x$$",
+          "verify": [
+            "Eq(diff(x**3 - 3*x**2 + 2, x), 3*x**2 - 6*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the two stationary points of the graph of $f$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$: $3x(x - 2) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0$ and $x = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(0, 2)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(2, -2)$"
+            }
+          ],
+          "answer": "$(0, 2)$ and $(2, -2)$",
+          "solution": "**Plan:** stationary points occur where $f'(x) = 0$.$$3x^2 - 6x = 3x(x - 2) = 0 \\Rightarrow x = 0 \\text{ or } x = 2$$Then $f(0) = 2$ and $f(2) = 8 - 12 + 2 = -2$, giving $(0, 2)$ and $(2, -2)$.",
+          "verify": [
+            "Eq(0**3 - 3*0**2 + 2, 2)",
+            "Eq(2**3 - 3*2**2 + 2, -2)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Determine the nature of each stationary point.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "find the second derivative $f''(x) = 6x - 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(0) = -6 < 0$"
+            },
+            {
+              "mark": "R1",
+              "note": "so $(0, 2)$ is a local maximum"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(2) = 6 > 0$, so $(2, -2)$ is a local minimum"
+            }
+          ],
+          "answer": "$(0, 2)$ is a maximum; $(2, -2)$ is a minimum",
+          "solution": "Use the second derivative $f''(x) = 6x - 6$.$$f''(0) = -6 < 0 \\Rightarrow \\text{local maximum at } (0, 2)$$$$f''(2) = 6 > 0 \\Rightarrow \\text{local minimum at } (2, -2)$$",
+          "verify": [
+            "Eq(expand(diff(x**3 - 3*x**2 + 2, x, 2)), 6*x - 6)",
+            "Eq((6*x - 6).subs(x, 0), -6)",
+            "Eq((6*x - 6).subs(x, 2), 6)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x^3 - 3x^2 + 2$."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "geometry_trig",
+      "skill_tag": "non_right_triangles",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $BC$, giving your answer in the form $a\\sqrt{b}$ where $a, b \\in \\mathbb{Z}^+$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the cosine rule $BC^2 = AB^2 + AC^2 - 2\\,AB\\,AC\\cos A$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC^2 = 100 + 36 - 120\\cos\\tfrac{\\pi}{3} = 76$"
+            },
+            {
+              "mark": "M1",
+              "note": "$BC = \\sqrt{76} = \\sqrt{4 \\cdot 19}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC = 2\\sqrt{19}$ cm"
+            }
+          ],
+          "answer": "$BC = 2\\sqrt{19}$ cm",
+          "solution": "**Plan:** two sides and the included angle → cosine rule.$$BC^2 = 10^2 + 6^2 - 2(10)(6)\\cos\\tfrac{\\pi}{3} = 136 - 120 \\cdot \\tfrac{1}{2} = 76$$$$BC = \\sqrt{76} = \\sqrt{4 \\cdot 19} = 2\\sqrt{19}$$",
+          "verify": [
+            "Eq(10**2 + 6**2 - 2*10*6*cos(pi/3), 76)",
+            "Eq(sqrt(76), 2*sqrt(19))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $ABC$, giving your answer in the form $c\\sqrt{d}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use area $= \\tfrac{1}{2}\\,AB\\,AC\\sin A$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}(10)(6)\\sin\\tfrac{\\pi}{3} = 30 \\cdot \\tfrac{\\sqrt3}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 15\\sqrt{3}$ cm$^2$"
+            }
+          ],
+          "answer": "$15\\sqrt{3}$ cm$^2$",
+          "solution": "$$\\text{Area} = \\tfrac{1}{2}\\,AB\\,AC\\sin A = \\tfrac{1}{2}(10)(6)\\sin\\tfrac{\\pi}{3} = 30 \\cdot \\tfrac{\\sqrt3}{2} = 15\\sqrt{3}$$",
+          "verify": [
+            "Eq(Rational(1,2)*10*6*sin(pi/3), 15*sqrt(3))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the area of the shaded sector.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use sector area $= \\tfrac{1}{2}r^2\\theta$ with $r = 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}(36)\\cdot\\tfrac{\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 6\\pi$ cm$^2$"
+            }
+          ],
+          "answer": "$6\\pi$ cm$^2$",
+          "solution": "$$\\text{Sector} = \\tfrac{1}{2}r^2\\theta = \\tfrac{1}{2}(6)^2 \\cdot \\tfrac{\\pi}{3} = \\tfrac{36\\pi}{6} = 6\\pi$$",
+          "verify": [
+            "Eq(Rational(1,2)*6**2*(pi/3), 6*pi)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the area of the region inside the triangle but outside the sector.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "subtract the sector from the triangle"
+            },
+            {
+              "mark": "A1",
+              "note": "$15\\sqrt{3} - 6\\pi$"
+            },
+            {
+              "mark": "A1",
+              "note": "accept exact form (cm$^2$)"
+            }
+          ],
+          "answer": "$(15\\sqrt{3} - 6\\pi)$ cm$^2$",
+          "solution": "The required region is the triangle with the sector removed:$$15\\sqrt{3} - 6\\pi \\text{ cm}^2.$$",
+          "verify": [
+            "Eq(15*sqrt(3) - 6*pi, 15*sqrt(3) - 6*pi)",
+            "15*sqrt(3) - 6*pi > 0"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 10$ cm, $AC = 6$ cm and the angle at $A$ is $\\dfrac{\\pi}{3}$. A sector of a circle with centre $A$ and radius $6$ cm is drawn inside the triangle, as shown.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t2-q7.png",
+        "width": 1031,
+        "height": 649,
+        "alt_en": "Triangle ABC with AB = 10 cm along the base, AC = 6 cm, and angle A = pi/3; a shaded circular sector of centre A and radius 6 cm fills the angle at A."
+      }
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "discrete_random_variables",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $k = \\dfrac{1}{10}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\sum P(X = x) = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k(1 + 2 + 3 + 4) = 10k = 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$k = \\tfrac{1}{10}$"
+            }
+          ],
+          "answer": "$k = \\dfrac{1}{10}$",
+          "solution": "**Plan:** the probabilities must sum to 1.$$\\sum_{x=1}^{4} kx = k(1 + 2 + 3 + 4) = 10k = 1$$$$\\Rightarrow k = \\tfrac{1}{10}$$",
+          "verify": [
+            "Eq(10*Rational(1,10), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $E(X)$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $E(X) = \\sum x\\,P(X = x)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sum x \\cdot \\tfrac{x}{10} = \\tfrac{1 + 4 + 9 + 16}{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\tfrac{30}{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 3$"
+            }
+          ],
+          "answer": "$E(X) = 3$",
+          "solution": "$$E(X) = \\sum x P(X = x) = \\frac{1(1) + 2(2) + 3(3) + 4(4)}{10} = \\frac{30}{10} = 3$$",
+          "verify": [
+            "Eq((1*1 + 2*2 + 3*3 + 4*4)*Rational(1,10), 3)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(X > 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X > 2) = P(X = 3) + P(X = 4)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\tfrac{3}{10} + \\tfrac{4}{10} = \\dfrac{7}{10}$"
+            }
+          ],
+          "answer": "$\\dfrac{7}{10}$",
+          "solution": "$$P(X > 2) = P(3) + P(4) = \\tfrac{3}{10} + \\tfrac{4}{10} = \\tfrac{7}{10}$$",
+          "verify": [
+            "Eq((3 + 4)*Rational(1,10), Rational(7,10))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Two independent observations of $X$ are made. Find the probability that both equal $4$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X = 4) = \\tfrac{4}{10}$"
+            },
+            {
+              "mark": "M1",
+              "note": "square it by independence"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\left(\\tfrac{4}{10}\\right)^2 = \\dfrac{4}{25}$"
+            }
+          ],
+          "answer": "$\\dfrac{4}{25}$",
+          "solution": "$P(X = 4) = \\tfrac{4}{10} = \\tfrac{2}{5}$. For two independent observations,$$P(\\text{both } 4) = \\left(\\tfrac{2}{5}\\right)^2 = \\tfrac{4}{25}.$$",
+          "verify": [
+            "Eq((4*Rational(1,10))**2, Rational(4,25))"
+          ]
+        }
+      ],
+      "contextIntro": "A discrete random variable $X$ has probability distribution $P(X = x) = kx$ for $x = 1, 2, 3, 4$, where $k$ is a constant."
+    },
+    {
+      "source": "IB-AASL-P1-T2-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "integration_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $\\dfrac{dy}{dx}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{dy}{dx} = 3x^2 - 12x + 9$"
+            }
+          ],
+          "answer": "$\\dfrac{dy}{dx} = 3x^2 - 12x + 9$",
+          "solution": "$$\\frac{dy}{dx} = 3x^2 - 12x + 9$$",
+          "verify": [
+            "Eq(diff(x**3 - 6*x**2 + 9*x, x), 3*x**2 - 12*x + 9)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the local maximum of $C$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $\\tfrac{dy}{dx} = 0$: $3(x - 1)(x - 3) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$ or $x = 3$"
+            },
+            {
+              "mark": "R1",
+              "note": "the local maximum is at the smaller root $x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(1, 4)$"
+            }
+          ],
+          "answer": "$(1, 4)$",
+          "solution": "**Plan:** stationary points where the derivative is 0.$$3x^2 - 12x + 9 = 3(x - 1)(x - 3) = 0 \\Rightarrow x = 1 \\text{ or } x = 3$$The cubic rises then falls then rises, so the local maximum is at $x = 1$: $y = 1 - 6 + 9 = 4$, giving $(1, 4)$.",
+          "verify": [
+            "Eq(3*1**2 - 12*1 + 9, 0)",
+            "Eq(1**3 - 6*1**2 + 9*1, 4)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Show that the area of the region $R$ is $\\dfrac{27}{4}$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set up the integral $\\int_0^3 (x^3 - 6x^2 + 9x)\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $\\tfrac{x^4}{4} - 2x^3 + \\tfrac{9x^2}{2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate at the limits $0$ and $3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{81}{4} - 54 + \\tfrac{81}{2}$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= \\tfrac{27}{4}$"
+            }
+          ],
+          "answer": "area $= \\dfrac{27}{4}$",
+          "solution": "The curve is above the axis on $[0, 3]$, so$$\\int_0^3 (x^3 - 6x^2 + 9x)\\,dx = \\left[\\tfrac{x^4}{4} - 2x^3 + \\tfrac{9x^2}{2}\\right]_0^3$$$$= \\tfrac{81}{4} - 54 + \\tfrac{81}{2} = \\tfrac{81 - 216 + 162}{4} = \\tfrac{27}{4}.$$",
+          "verify": [
+            "Eq(integrate(x**3 - 6*x**2 + 9*x, (x, 0, 3)), Rational(27,4))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the equation of the tangent to $C$ at the point where $x = 2$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "find the gradient $\\tfrac{dy}{dx}$ at $x = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "gradient $= 3(4) - 24 + 9 = -3$; point $(2, 2)$"
+            },
+            {
+              "mark": "M1",
+              "note": "use $y - y_1 = m(x - x_1)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -3x + 8$"
+            }
+          ],
+          "answer": "$y = -3x + 8$",
+          "solution": "At $x = 2$: $y = 8 - 24 + 18 = 2$ and the gradient is $\\tfrac{dy}{dx} = 3(2)^2 - 12(2) + 9 = -3$. The tangent is$$y - 2 = -3(x - 2) \\Rightarrow y = -3x + 8.$$",
+          "verify": [
+            "Eq(1*2**3 - 6*2**2 + 9*2, 2)",
+            "Eq(3*2**2 - 12*2 + 9, -3)"
+          ]
+        }
+      ],
+      "contextIntro": "The curve $C$ has equation $y = x^3 - 6x^2 + 9x$. The region $R$ is bounded by $C$ and the $x$-axis between $x = 0$ and $x = 3$, as shaded.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t2-q9.png",
+        "width": 980,
+        "height": 735,
+        "alt_en": "Cubic curve y = x^3 - 6x^2 + 9x with a local maximum near (1, 4); the region R between the curve and the x-axis on 0 <= x <= 3 is shaded."
+      }
+    }
+  ]
+}

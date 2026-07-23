@@ -1,0 +1,753 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 2,
+    "testId": "ib-practice-2",
+    "label": "AA SL Practice Paper 2",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P2-T2-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "quadratic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f(2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $x = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(2) = -5$"
+            }
+          ],
+          "answer": "$f(2) = -5$",
+          "solution": "$$f(2) = 3(2)^2 - 12(2) + 7 = 12 - 24 + 7 = -5$$",
+          "verify": [
+            "Eq(3*2**2 - 12*2 + 7, -5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the two values of $x$ for which $f(x) = 0$, giving your answers to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $3x^2 - 12x + 7 = 0$ (GDC or quadratic formula)"
+            },
+            {
+              "mark": "A1",
+              "note": "discriminant $144 - 84 = 60$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x \\approx 0.709$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x \\approx 3.29$"
+            }
+          ],
+          "answer": "$x \\approx 0.709$ or $x \\approx 3.29$",
+          "solution": "**Plan:** solve the quadratic with the GDC (or formula).$$x = \\frac{12 \\pm \\sqrt{144 - 84}}{6} = \\frac{12 \\pm \\sqrt{60}}{6} = 2 \\pm \\frac{\\sqrt{15}}{3}$$$$x \\approx 0.709 \\text{ or } x \\approx 3.29$$",
+          "verify": [
+            "Abs(2 - sqrt(15)/3 - 0.709) < 0.00051",
+            "Abs(2 + sqrt(15)/3 - 3.29) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is given by $f(x) = 3x^2 - 12x + 7$."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "stats_probability",
+      "skill_tag": "binomial_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(X = 3)$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial: $\\binom{10}{3}(0.3)^3(0.7)^7$ (or GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 120 \\cdot 0.027 \\cdot 0.0823\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 3) \\approx 0.267$"
+            }
+          ],
+          "answer": "$0.267$ (3 sf)",
+          "solution": "**Plan:** binomial probability with $n = 10$, $p = 0.3$.$$P(X = 3) = \\binom{10}{3}(0.3)^3(0.7)^7 = 0.2668\\ldots \\approx 0.267$$",
+          "verify": [
+            "Abs(binomial(10, 3)*Rational(3, 10)**3*Rational(7, 10)**7 - 0.267) < 0.00051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X \\ge 1)$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the complement $P(X \\ge 1) = 1 - P(X = 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 0) = (0.7)^{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 1) \\approx 0.972$"
+            }
+          ],
+          "answer": "$0.972$ (3 sf)",
+          "solution": "The complement of \"at least one\" is \"none\":$$P(X \\ge 1) = 1 - (0.7)^{10} = 0.9718\\ldots \\approx 0.972$$",
+          "verify": [
+            "Abs(1 - Rational(7, 10)**10 - 0.972) < 0.00051"
+          ]
+        }
+      ],
+      "contextIntro": "A biased coin lands heads with probability $0.3$. It is tossed 10 times. Let $X$ be the number of heads, so $X \\sim B(10,\\ 0.3)$."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "non_right_triangles",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $PR$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule $PR^2 = PQ^2 + QR^2 - 2\\,PQ\\,QR\\cos Q$"
+            },
+            {
+              "mark": "A1",
+              "note": "$PR^2 = 64 + 49 - 112\\cos 112° = 155\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$PR \\approx 12.4$ cm"
+            }
+          ],
+          "answer": "$PR \\approx 12.4$ cm (3 sf)",
+          "solution": "**Plan:** two sides and the included angle → cosine rule.$$PR^2 = 8^2 + 7^2 - 2(8)(7)\\cos 112° = 154.96\\ldots$$$$PR \\approx 12.4 \\text{ cm}$$",
+          "verify": [
+            "Abs(sqrt(64 + 49 - 2*8*7*cos(28*pi/45)) - 12.4) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $PQR$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use area $= \\tfrac{1}{2}\\,PQ\\,QR\\sin Q$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}(8)(7)\\sin 112°$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $\\approx 26.0$ cm$^2$"
+            }
+          ],
+          "answer": "$26.0$ cm$^2$ (3 sf)",
+          "solution": "$$\\text{Area} = \\tfrac{1}{2}(8)(7)\\sin 112° = 25.96\\ldots \\approx 26.0 \\text{ cm}^2$$",
+          "verify": [
+            "Abs(Rational(1, 2)*8*7*sin(28*pi/45) - 26.0) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $PQR$, $PQ = 8$ cm, $QR = 7$ cm and the angle $P\\hat{Q}R = 112°$, as shown.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t2-q3.png",
+        "width": 938,
+        "height": 663,
+        "alt_en": "Triangle PQR with PQ = 8 cm along the base, QR = 7 cm, and the angle at Q equal to 112 degrees."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "number_algebra",
+      "skill_tag": "finance",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of the investment after 6 years, giving your answer to two decimal places.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $A = 4000(1.05)^6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$4000(1.05)^6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx \\$5360.38$"
+            }
+          ],
+          "answer": "$\\$5360.38$",
+          "solution": "**Plan:** compound-interest formula.$$A = 4000(1.05)^6 = 5360.38\\ldots \\approx \\$5360.38$$",
+          "verify": [
+            "Abs(4000*Rational(21, 20)**6 - 5360.38) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the least number of complete years for the investment to first exceed \\$6000.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $4000(1.05)^n > 6000$, i.e. $(1.05)^n > 1.5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(1.05)^8 \\approx 1.477 < 1.5 < 1.551 \\approx (1.05)^9$"
+            },
+            {
+              "mark": "A1",
+              "note": "least $n = 9$ years"
+            }
+          ],
+          "answer": "$9$ years",
+          "solution": "**Plan:** find when the multiplier exceeds $\\tfrac{6000}{4000} = 1.5$.$$(1.05)^8 \\approx 1.477, \\quad (1.05)^9 \\approx 1.551$$The value first exceeds \\$6000 after $9$ complete years.",
+          "verify": [
+            "(Rational(21, 20))**8 < Rational(3, 2)",
+            "(Rational(21, 20))**9 > Rational(3, 2)"
+          ]
+        }
+      ],
+      "contextIntro": "An amount of \\$4000 is invested at a nominal annual interest rate of 5\\%, compounded annually."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "exponential_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the initial population.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(0) = 500$"
+            }
+          ],
+          "answer": "$500$",
+          "solution": "At $t = 0$, $P(0) = 500 e^{0} = 500$.",
+          "verify": [
+            "Eq(500*exp(0), 500)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the population after 10 hours, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $t = 10$: $500 e^{0.8}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$500 e^{0.8}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 1110$"
+            }
+          ],
+          "answer": "$1110$ (3 sf)",
+          "solution": "$$P(10) = 500 e^{0.08 \\times 10} = 500 e^{0.8} = 1112.8\\ldots \\approx 1110$$",
+          "verify": [
+            "Abs(500*exp(Rational(8, 10)) - 1110) < 5.1"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the time taken for the population to reach 2000, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $500 e^{0.08t} = 2000$"
+            },
+            {
+              "mark": "A1",
+              "note": "$e^{0.08t} = 4$"
+            },
+            {
+              "mark": "M1",
+              "note": "take logarithms: $0.08t = \\ln 4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t \\approx 17.3$ hours"
+            }
+          ],
+          "answer": "$t \\approx 17.3$ hours (3 sf)",
+          "solution": "**Plan:** solve for $t$ with logarithms.$$500 e^{0.08t} = 2000 \\Rightarrow e^{0.08t} = 4$$$$0.08t = \\ln 4 \\Rightarrow t = \\frac{\\ln 4}{0.08} = 17.329\\ldots \\approx 17.3$$",
+          "verify": [
+            "Abs(25*log(4)/2 - 17.3) < 0.051000000000000004",
+            "Eq(500*exp(Rational(8, 100)*(25*log(4)/2)), 2000)"
+          ]
+        }
+      ],
+      "contextIntro": "The population of a colony of bacteria is modelled by $P(t) = 500\\,e^{0.08t}$, where $t$ is the time in hours after the colony is first observed."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "kinematics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the times at which the particle is instantaneously at rest.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $v(t) = 0$: $3(t - 1)(t - 3) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 3$ (seconds)"
+            }
+          ],
+          "answer": "$t = 1$ s and $t = 3$ s",
+          "solution": "**Plan:** the particle is at rest when $v = 0$.$$3t^2 - 12t + 9 = 3(t - 1)(t - 3) = 0 \\Rightarrow t = 1 \\text{ or } t = 3$$",
+          "verify": [
+            "Eq(3*1**2 - 12*1 + 9, 0)",
+            "Eq(3*3**2 - 12*3 + 9, 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the displacement of the particle from its starting position after 4 seconds.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "displacement $= \\int_0^4 v(t)\\,dt$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $t^3 - 6t^2 + 9t$"
+            },
+            {
+              "mark": "A1",
+              "note": "evaluate at $t = 4$: $64 - 96 + 36$"
+            },
+            {
+              "mark": "M1",
+              "note": "subtract the value at $t = 0$ (which is 0)"
+            },
+            {
+              "mark": "A1",
+              "note": "displacement $= 4$ m"
+            }
+          ],
+          "answer": "$4$ m",
+          "solution": "Displacement is the integral of velocity:$$\\int_0^4 (3t^2 - 12t + 9)\\,dt = \\left[t^3 - 6t^2 + 9t\\right]_0^4$$$$= (64 - 96 + 36) - 0 = 4 \\text{ m}$$",
+          "verify": [
+            "Eq(integrate(3*t**2 - 12*t + 9, (t, 0, 4)), 4)"
+          ]
+        }
+      ],
+      "contextIntro": "A particle moves in a straight line. Its velocity, in metres per second, at time $t$ seconds is $v(t) = 3t^2 - 12t + 9$ for $t \\ge 0$."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "functions",
+      "skill_tag": "trig_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the depth of the water at midday.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$h(0) = 6$ m"
+            }
+          ],
+          "answer": "$6$ m",
+          "solution": "At $t = 0$, $\\sin 0 = 0$, so $h(0) = 6$ m.",
+          "verify": [
+            "Eq(6 + 4*sin(0), 6)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the maximum depth of the water and the time at which it first occurs.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the sine reaches its maximum 1 when $\\tfrac{\\pi t}{6} = \\tfrac{\\pi}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "maximum depth $6 + 4 = 10$ m"
+            },
+            {
+              "mark": "A1",
+              "note": "first at $t = 3$ hours"
+            }
+          ],
+          "answer": "maximum depth $10$ m at $t = 3$ hours",
+          "solution": "**Plan:** the maximum of $\\sin$ is 1.$$\\frac{\\pi t}{6} = \\frac{\\pi}{2} \\Rightarrow t = 3$$$$h(3) = 6 + 4(1) = 10 \\text{ m}$$",
+          "verify": [
+            "Eq(6 + 4*sin(pi*3/6), 10)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the first time after midday when the depth is exactly 8 m.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $h(t) = 8$: $\\sin\\!\\left(\\tfrac{\\pi t}{6}\\right) = \\tfrac{1}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{\\pi t}{6} = \\tfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "first time is $t = 1$ hour after midday"
+            }
+          ],
+          "answer": "$t = 1$ hour",
+          "solution": "**Plan:** solve $h(t) = 8$ for the first positive $t$.$$6 + 4\\sin\\!\\left(\\tfrac{\\pi t}{6}\\right) = 8 \\Rightarrow \\sin\\!\\left(\\tfrac{\\pi t}{6}\\right) = \\tfrac{1}{2}$$$$\\frac{\\pi t}{6} = \\frac{\\pi}{6} \\Rightarrow t = 1$$",
+          "verify": [
+            "Eq(6 + 4*sin(pi*1/6), 8)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the rate of change of the depth, in metres per hour, at $t = 2$, giving your answer to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate: $h'(t) = \\tfrac{2\\pi}{3}\\cos\\!\\left(\\tfrac{\\pi t}{6}\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$h'(t) = \\tfrac{2\\pi}{3}\\cos\\!\\left(\\tfrac{\\pi t}{6}\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "at $t = 2$: $\\cos\\tfrac{\\pi}{3} = \\tfrac{1}{2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$h'(2) = \\tfrac{2\\pi}{3}\\cdot\\tfrac{1}{2} = \\tfrac{\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 1.05$ m per hour"
+            }
+          ],
+          "answer": "$h'(2) = \\dfrac{\\pi}{3} \\approx 1.05$ m/h",
+          "solution": "Differentiate with the chain rule:$$h'(t) = 4 \\cdot \\frac{\\pi}{6}\\cos\\!\\left(\\frac{\\pi t}{6}\\right) = \\frac{2\\pi}{3}\\cos\\!\\left(\\frac{\\pi t}{6}\\right)$$At $t = 2$, $\\cos\\tfrac{\\pi}{3} = \\tfrac{1}{2}$, so$$h'(2) = \\frac{2\\pi}{3}\\cdot\\frac{1}{2} = \\frac{\\pi}{3} \\approx 1.05$$",
+          "verify": [
+            "Eq(simplify(diff(6 + 4*sin(pi*t/6), t) - (2*pi/3)*cos(pi*t/6)), 0)",
+            "Abs((2*pi/3)*cos(pi/3) - 1.05) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "The depth of water in a harbour is modelled by $h(t) = 6 + 4\\sin\\!\\left(\\dfrac{\\pi t}{6}\\right)$, where $h$ is the depth in metres and $t$ is the time in hours after midday, for $0 \\le t \\le 12$."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down $P(X < 50)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(X < 50) = 0.5$ (mean is the centre of symmetry)"
+            }
+          ],
+          "answer": "$0.5$",
+          "solution": "The normal curve is symmetric about its mean, so $P(X < 50) = 0.5$.",
+          "verify": [
+            "Eq((1 + erf(0))/2, Rational(1, 2))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X < 45)$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise or use the GDC: $z = \\tfrac{45 - 50}{4} = -1.25$"
+            },
+            {
+              "mark": "A1",
+              "note": "normal cdf with upper 45"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X < 45) \\approx 0.106$"
+            }
+          ],
+          "answer": "$0.106$ (3 sf)",
+          "solution": "**Plan:** GDC normal cdf, or standardise to $z = -1.25$.$$P(X < 45) = 0.1056\\ldots \\approx 0.106$$",
+          "verify": [
+            "Abs((1 + erf(Rational(-5, 4)/sqrt(2)))/2 - 0.106) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(46 < X < 54)$, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "GDC normal cdf between 46 and 54"
+            },
+            {
+              "mark": "A1",
+              "note": "standardised bounds $z = \\pm 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 0.6827\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 0.683$"
+            }
+          ],
+          "answer": "$0.683$ (3 sf)",
+          "solution": "**Plan:** the interval is $\\mu \\pm 1\\sigma$.$$P(46 < X < 54) = 0.6827\\ldots \\approx 0.683$$",
+          "verify": [
+            "Abs((erf(1/sqrt(2)) - erf(-1/sqrt(2)))/2 - 0.683) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the time $k$ such that 90\\% of students finish in less than $k$ seconds, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X < k) = 0.9$ — inverse normal"
+            },
+            {
+              "mark": "A1",
+              "note": "$z \\approx 1.282$"
+            },
+            {
+              "mark": "M1",
+              "note": "$k = 50 + 4z$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k \\approx 55.1$ seconds"
+            }
+          ],
+          "answer": "$k \\approx 55.1$ s (3 sf)",
+          "solution": "**Plan:** inverse normal with area 0.9.$$z = 1.282\\ldots \\Rightarrow k = 50 + 4(1.282\\ldots) = 55.126\\ldots \\approx 55.1$$",
+          "verify": [
+            "Abs((1 + erf((55.126206 - 50)/(4*sqrt(2))))/2 - Rational(9, 10)) < 0.0005",
+            "Abs(sqrt(2)*erfinv(Rational(4, 5)) - 1.282) < 0.0005"
+          ]
+        }
+      ],
+      "contextIntro": "The times taken by students to complete a puzzle are normally distributed with mean 50 seconds and standard deviation 4 seconds. Let $X$ be the time in seconds, so $X \\sim N(50,\\ 4^2)$."
+    },
+    {
+      "source": "IB-AASL-P2-T2-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "integration_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the product rule to $x \\cdot e^{-0.5x}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = e^{-0.5x} + x\\left(-\\tfrac{1}{2}e^{-0.5x}\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = e^{-0.5x}(1 - 0.5x)$"
+            }
+          ],
+          "answer": "$f'(x) = e^{-0.5x}(1 - 0.5x)$",
+          "solution": "**Plan:** product rule with $u = x$, $v = e^{-0.5x}$.$$f'(x) = (1)e^{-0.5x} + x\\left(-\\tfrac{1}{2}e^{-0.5x}\\right) = e^{-0.5x}\\left(1 - \\tfrac{x}{2}\\right)$$",
+          "verify": [
+            "Eq(simplify(diff(x*exp(-x/2), x) - exp(-x/2)*(1 - x/2)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the $x$-coordinate of the local maximum of the graph of $f$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$; since $e^{-0.5x} \\ne 0$, need $1 - 0.5x = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 2$"
+            },
+            {
+              "mark": "R1",
+              "note": "this is a maximum (the curve rises then falls)"
+            }
+          ],
+          "answer": "$x = 2$",
+          "solution": "**Plan:** stationary point where $f'(x) = 0$.$$e^{-0.5x}(1 - 0.5x) = 0 \\Rightarrow 1 - 0.5x = 0 \\Rightarrow x = 2$$For $x < 2$, $f' > 0$ and for $x > 2$, $f' < 0$, so $x = 2$ gives the local maximum.",
+          "verify": [
+            "Eq((exp(-x/2)*(1 - x/2)).subs(x, 2), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the area of the region $R$, giving your answer to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\int_0^4 x\\,e^{-0.5x}\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "integrate by parts: $\\left[-2x\\,e^{-0.5x}\\right]_0^4 + \\int_0^4 2e^{-0.5x}\\,dx$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate the exact value $4 - 12e^{-2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 2.376\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $\\approx 2.38$"
+            }
+          ],
+          "answer": "$2.38$ (3 sf)",
+          "solution": "**Plan:** integrate by parts (or use the GDC).$$\\int_0^4 x e^{-0.5x}\\,dx = \\left[-2x e^{-0.5x}\\right]_0^4 + \\int_0^4 2 e^{-0.5x}\\,dx$$$$= -8e^{-2} + \\left[-4e^{-0.5x}\\right]_0^4 = 4 - 12e^{-2} = 2.376\\ldots \\approx 2.38$$",
+          "verify": [
+            "Eq(integrate(x*exp(-x/2), (x, 0, 4)), 4 - 12*exp(-2))",
+            "Abs(4 - 12*exp(-2) - 2.38) < 0.0051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the equation of the tangent to the graph of $f$ at the origin.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "evaluate $f(0)$ and the gradient $f'(0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(0) = 0$ and $f'(0) = e^{0}(1 - 0) = 1$"
+            },
+            {
+              "mark": "M1",
+              "note": "tangent $y - 0 = 1(x - 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = x$"
+            }
+          ],
+          "answer": "$y = x$",
+          "solution": "At the origin $f(0) = 0$, and the gradient is$$f'(0) = e^{0}(1 - 0) = 1.$$So the tangent is $y - 0 = 1(x - 0)$, i.e. $y = x$.",
+          "verify": [
+            "Eq((x*exp(-x/2)).subs(x, 0), 0)",
+            "Eq((exp(-x/2)*(1 - x/2)).subs(x, 0), 1)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x\\,e^{-0.5x}$ for $x \\ge 0$. The region $R$ is bounded by the graph of $f$, the $x$-axis and the line $x = 4$, as shaded.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t2-q9.png",
+        "width": 1012,
+        "height": 674,
+        "alt_en": "Curve y = x e^{-0.5x} rising to a peak near x = 2 then decaying; the region R between the curve and the x-axis on 0 <= x <= 4 is shaded, with a dashed vertical line at x = 4."
+      }
+    }
+  ]
+}
