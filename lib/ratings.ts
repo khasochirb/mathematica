@@ -1,14 +1,18 @@
 // The ratings system — every student carries 8 attribute ratings, one per
-// math domain, NBA-2K style: rated attributes live on 40–100 (40 is the
-// floor every rated player stands on; 100 means mastery and must be EARNED),
-// and attributes with no evidence are UNRATED ("—"), never 0 — no data is
-// not the same as weak. The strictness lives in confidence ramps (thin
-// evidence can't score high), recency decay (old evidence fades), and hard
-// caps that define the climb: exams alone reach Developing (≤69), completing
-// units + unit tests unlocks Strong (70–84), and elite test records plus
-// exam evidence unlock Near-mastery (85–100). The overall is the breadth-
-// weighted mean with unrated attributes at the floor — a single number a
-// student raises the honest way, without ever looking like a "5".
+// math domain, NBA-2K style. Rated attributes live on 40–100: 40 is the floor
+// a rated-but-weak skill can't drop below (so the overall never reads like a
+// "5"), and a strong performer rises freely toward 100. Attributes with no
+// evidence are UNRATED ("—"), never 0 — no data is not the same as weak.
+//
+// A rating is primarily a PLACEMENT signal: take a few tests and your rating
+// becomes your difficulty-weighted score. Exam difficulty is the strictness
+// dial — the same accuracy is worth more on a harder exam, so a 100% on the
+// easy SAT tops out at 80 while a 100% on ЭЕШ/IB (the hard pair, treated the
+// same) can reach 100. Course work is a second path, capped below Near-mastery
+// until proven on a real exam. Recency decay fades old evidence; confidence
+// keeps thin evidence provisional until ~a placement of tests firms it up.
+// The overall is the breadth-weighted mean, with unrated attributes at the
+// floor — a number a student raises honestly by testing and studying.
 //
 // This module is PURE — no React, no storage. Evidence comes in as plain
 // data (attempts, bank mastery, placement results); lib/use-ratings.ts does
@@ -278,26 +282,42 @@ export const RATING_CONSTANTS = {
   N_LESSON: 10, // lesson-check attempts for full lesson confidence
   N_TEST: 8, // unit-test attempts for full test confidence
   N_BANK_FORMS: 6, // bank forms attempted for full bank confidence
-  N_EXAM: 24, // exam attempts (per attribute) for full exam confidence
-  MIN_EXAM_N: 8, // below this, exam evidence doesn't unlock the 85+ range
-  MIN_EXAM_RATE_N: 5, // exam attempts needed for exams ALONE to rate an attribute
+  N_EXAM_FULL: 15, // exam questions (per attribute) for full exam confidence —
+  // ~a placement of a few tests; below it the rating is provisional and damped
+  // toward the floor, above it the rating IS your difficulty-weighted score.
+  MIN_EXAM_RATE_N: 5, // exam questions needed for exams to rate an attribute
+  PROVISIONAL_CONF: 0.6, // below this combined confidence, flag "(provisional)"
   W_LESSON: 0.35,
   W_TEST: 0.45,
   W_BANK: 0.2,
-  // The 2K-style scale: anything RATED lives on 40–100. 40 = the floor every
-  // rated player stands on; 100 = full mastery, still earned the hard way.
-  // No evidence at all → UNRATED ("—"), never 0.
+  // The 2K-style scale: anything RATED lives on 40–100. 40 is the floor a
+  // rated attribute can't drop below (a measured-but-weak skill, so the
+  // overall never reads like a "5"); strong performance rises freely toward
+  // 100. No evidence at all → UNRATED ("—"), never 0.
   RATING_FLOOR: 40,
-  CAP_NO_UNIT_TEST: 69, // without unit tests a unit tops out in Developing
-  CAP_NOT_ELITE: 84, // a unit caps below Near-mastery unless tests are elite
+  CAP_NO_UNIT_TEST: 69, // without unit tests a UNIT tops out in Developing
+  CAP_NOT_ELITE: 84, // a UNIT caps below Near-mastery unless tests are elite
   ELITE_TEST_ACC: 0.9, // elite gate: ≥90% test accuracy...
   ELITE_TEST_N: 6, // ...across ≥6 (decayed) test attempts
-  CAP_NO_TEST_ATTR: 69, // exams alone carry an attribute to 69, never Strong
-  CAP_NO_EXAM: 84, // course work alone caps below Near-mastery — prove it in exams
-  W_COVERAGE: 0.7,
-  W_EXAM: 0.3,
-  PLACEMENT_SEED_MAX: 60, // a placement alone seeds a provisional 40–60 rating
+  CAP_NO_EXAM: 84, // course work alone caps below Near-mastery — prove it on a
+  // real exam. Exam performance is NOT capped this way: difficulty (below) is
+  // what limits it, so a strong test-taker earns a high rating from tests.
+  W_EXAM: 0.6, // blend weight: real exam performance (the placement signal)
+  W_COVERAGE: 0.4, // blend weight: course work
+  PLACEMENT_SEED_MAX: 70, // a dedicated placement alone seeds a provisional
+  // 40–70 rating (real exams drive higher).
 } as const;
+
+// Exam difficulty — the same accuracy is worth more on a harder exam, so the
+// rating a test yields is scaled by its difficulty. ЭЕШ and IB are the hard
+// pair (a perfect paper can reach 100); the Digital SAT is the easiest, so
+// even a 100% SAT tops out at 80. This is the "sat is easiest, so 100 on sat
+// should rate lower; eysh and IB should be treated similarly" dial.
+export const EXAM_DIFFICULTY: Record<string, number> = {
+  esh: 1.0,
+  ib: 1.0,
+  sat: 0.8,
+};
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -435,7 +455,9 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   // attempts land on their attribute (exam evidence). Everything decays.
   const unitLesson = new Map<string, DecayedTally>();
   const unitTest = new Map<string, DecayedTally>();
-  const examByAttr = new Map<AttributeKey, DecayedTally>();
+  // Exams also track a difficulty-weighted sum so the attribute score reflects
+  // WHICH exam the evidence came from (ЭЕШ/IB harder than SAT).
+  const examByAttr = new Map<AttributeKey, { weight: number; correct: number; diffWeight: number }>();
 
   const bump = (map: Map<string, DecayedTally>, key: string, w: number, correct: boolean) => {
     const t = map.get(key) ?? { weight: 0, correct: 0 };
@@ -466,9 +488,11 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     else if (ctx === "sat") attr = SAT_DOMAIN_ATTRIBUTE[a.topic];
     else if (ctx === "ib") attr = a.subtopic ? IB_TOPIC_ATTRIBUTE[a.subtopic] : undefined;
     if (!attr) continue;
-    const t = examByAttr.get(attr) ?? { weight: 0, correct: 0 };
+    const D = EXAM_DIFFICULTY[ctx] ?? 0.8;
+    const t = examByAttr.get(attr) ?? { weight: 0, correct: 0, diffWeight: 0 };
     t.weight += w;
     if (a.isCorrect) t.correct += w;
+    t.diffWeight += w * D;
     examByAttr.set(attr, t);
   }
 
@@ -533,31 +557,43 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
 
   // -- pass 3: score every attribute ----------------------------------------
   // An attribute is RATED only when real evidence exists: any course work in
-  // its units, enough exam attempts (≥ MIN_EXAM_RATE_N), or a placement.
-  // Rated → 40–100. Not rated → "—", never a punitive 0.
+  // its units, enough exam questions (≥ MIN_EXAM_RATE_N), or a placement.
+  // Rated → 40–100. No evidence → "—", never a punitive 0.
   //
-  // The blend normalizes over the evidence that EXISTS: exam-only students
-  // are scored on their exams (capped at 69 until they prove units), course
-  // -only students on their coverage (capped at 84 until they prove exams).
+  // Two evidence streams each produce a PERFORMANCE rating and a confidence:
+  //   • exams → 100·(accuracy·difficulty), so a strong test-taker's rating is
+  //     essentially their difficulty-weighted score (SAT scaled to 0.8, ЭЕШ/IB
+  //     to 1.0). Confidence ramps to full over ~a placement of tests.
+  //   • courses → 40 + 60·(mastery of the units you've touched), confidence =
+  //     how much of the course you've covered.
+  // They blend by evidence weight; a single combined confidence then decides
+  // how far the score sits above the floor. Strong performance rises freely;
+  // thin or weak evidence stays near 40.
   const attributes: AttributeRating[] = ATTRIBUTES.map((info) => {
     const mine = units.filter((u) => u.attribute === info.key);
     const unitsTotal = mine.length;
-    const unitsTouched = mine.filter((u) => u.touched).length;
-    // Coverage as a mastery fraction: each touched unit contributes its
-    // above-floor share; untouched units contribute 0 — breadth stays strict.
-    const coverageM =
-      unitsTotal > 0
-        ? mine.reduce(
-            (s, u) => s + (u.touched ? (u.score - C.RATING_FLOOR) / RANGE : 0),
-            0,
-          ) / unitsTotal
-        : 0;
-    const exam = tally(examByAttr.get(info.key));
+    const touchedUnits = mine.filter((u) => u.touched);
+    const unitsTouched = touchedUnits.length;
     const hasUnitTest = mine.some((u) => u.hasTest);
-    const examM = exam.acc * conf(exam.n, C.N_EXAM);
 
+    // Course stream: mastery of the units actually worked (not diluted by
+    // untouched units — those lower confidence, not performance).
+    const courseMastery =
+      unitsTouched > 0
+        ? touchedUnits.reduce((s, u) => s + (u.score - C.RATING_FLOOR) / RANGE, 0) / unitsTouched
+        : 0;
+    const courseConf = unitsTotal > 0 ? unitsTouched / unitsTotal : 0;
     const hasCourse = unitsTouched > 0;
-    const hasExam = exam.n >= C.MIN_EXAM_RATE_N;
+
+    // Exam stream: difficulty-weighted accuracy.
+    const ex = examByAttr.get(info.key);
+    const examN = ex && ex.weight > 0 ? ex.weight : 0;
+    const examAcc = examN > 0 ? ex!.correct / examN : 0;
+    const examDiff = examN > 0 ? ex!.diffWeight / examN : 0; // attempt-weighted difficulty
+    const examPerf = examAcc * examDiff; // 0..1, ceilinged by difficulty
+    const examConf = conf(examN, C.N_EXAM_FULL);
+    const hasExam = examN >= C.MIN_EXAM_RATE_N;
+
     const seed = placementByAttr.get(info.key);
     const hasSeed = !!seed && seed.seen > 0;
 
@@ -566,23 +602,34 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     let score: number;
 
     if (rated) {
-      const wC = hasCourse ? C.W_COVERAGE : 0;
-      const wE = exam.n > 0 ? C.W_EXAM : 0;
-      const m = (wC * coverageM + wE * examM) / (wC + wE);
-      score = C.RATING_FLOOR + RANGE * m;
-      if (!hasUnitTest) score = Math.min(score, C.CAP_NO_TEST_ATTR);
-      if (exam.n < C.MIN_EXAM_N) score = Math.min(score, C.CAP_NO_EXAM);
+      const perfExam = 100 * examPerf; // exam performance rating (may be < floor)
+      const perfCourse = C.RATING_FLOOR + RANGE * courseMastery; // 40..100
+      const ewExam = hasExam ? examConf * C.W_EXAM : 0;
+      const ewCourse = hasCourse ? courseConf * C.W_COVERAGE : 0;
+      const ewTotal = ewExam + ewCourse;
+      const perf = ewTotal > 0 ? (perfExam * ewExam + perfCourse * ewCourse) / ewTotal : C.RATING_FLOOR;
+      // Combined confidence RISES as evidence accumulates (probabilistic OR),
+      // so adding a second stream never lowers it.
+      const cExam = hasExam ? examConf : 0;
+      const cCourse = hasCourse ? courseConf : 0;
+      const combinedConf = 1 - (1 - cExam) * (1 - cCourse);
+      score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
+      // Course work alone can't reach Near-mastery until proven on a real
+      // exam; exam performance is limited by difficulty, not this cap.
+      if (!hasExam) score = Math.min(score, C.CAP_NO_EXAM);
+      provisional = combinedConf < C.PROVISIONAL_CONF;
     } else if (hasSeed) {
-      // A placement alone rates the attribute provisionally, low in the range.
+      // A dedicated placement alone rates the attribute provisionally.
       score =
         C.RATING_FLOOR +
         (C.PLACEMENT_SEED_MAX - C.RATING_FLOOR) * (seed.correct / seed.seen);
       rated = true;
       provisional = true;
     } else {
-      score = C.RATING_FLOOR; // the floor everyone stands on — shown as "—"
+      score = C.RATING_FLOOR; // the floor — shown as "—" (unrated)
     }
 
+    score = Math.max(C.RATING_FLOOR, Math.min(100, score));
     const rounded = Math.round(score);
     return {
       key: info.key,
@@ -592,9 +639,9 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       provisional,
       unitsTotal,
       unitsTouched,
-      coverage: coverageM,
-      examAcc: exam.acc,
-      examN: exam.n,
+      coverage: courseMastery,
+      examAcc,
+      examN,
       hasUnitTest,
     };
   });

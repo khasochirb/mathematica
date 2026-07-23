@@ -207,17 +207,47 @@ describe("computeRatings — the 40–100 scale", () => {
     expect(a.band).toBe("beginner");
   });
 
-  it("exam-only evidence rates an attribute, capped at 69 until units are proven", () => {
+  it("exam performance drives the rating: a strong ЭЕШ record earns a high number", () => {
+    // Perfect, well-sampled ЭЕШ record on one attribute — the placement is in.
     const p = computeRatings({
       attempts: eshAttempts("trigonometry", 40, 40),
       now: NOW,
     });
     const a = attr(p, "trigonometry");
     expect(a.rated).toBe(true);
-    // Perfect sustained exam record with zero unit tests: exactly the cap —
-    // the exams carry you to the top of Developing, courses unlock Strong.
-    expect(a.score).toBe(RATING_CONSTANTS.CAP_NO_TEST_ATTR);
     expect(a.hasUnitTest).toBe(false);
+    // ЭЕШ difficulty 1.0, full confidence → rating ≈ the score itself (100),
+    // NOT stuck at a Developing cap. This is the whole point of the change.
+    expect(a.score).toBe(100);
+    expect(a.band).toBe("mastery");
+  });
+
+  it("exam difficulty: 100% SAT tops out at 80; ЭЕШ and IB reach 100 and match", () => {
+    // Compare the SAME attribute (algebra) across the three hubs, since every
+    // hub tags algebra the same (SAT 'algebra', ЭЕШ 'algebra', IB
+    // 'number_algebra' → algebra).
+    const sat = computeRatings({
+      attempts: Array.from({ length: 40 }, () => ({
+        topic: "algebra", subtopic: "misc", isCorrect: true,
+        timestamp: NOW - DAY, source: "test", context: "sat",
+      })),
+      now: NOW,
+    });
+    expect(attr(sat, "algebra").score).toBe(80); // 100% · 0.8 difficulty
+
+    const esh = computeRatings({ attempts: eshAttempts("algebra", 40, 40), now: NOW });
+    const ib = computeRatings({
+      attempts: Array.from({ length: 40 }, () => ({
+        topic: "aa-paper-1", subtopic: "number_algebra", isCorrect: true,
+        timestamp: NOW - DAY, source: "test", context: "ib",
+      })),
+      now: NOW,
+    });
+    // ЭЕШ and IB are the hard pair — same difficulty, same rating.
+    expect(attr(esh, "algebra").score).toBe(100);
+    expect(attr(ib, "algebra").score).toBe(100);
+    // And a 100% SAT rates strictly below a 100% ЭЕШ.
+    expect(attr(sat, "algebra").score).toBeLessThan(attr(esh, "algebra").score);
   });
 
   it("a handful of exam questions is NOT enough to rate an attribute", () => {
@@ -228,6 +258,14 @@ describe("computeRatings — the 40–100 scale", () => {
     // 0/3 on a rarely-tested topic: below MIN_EXAM_RATE_N → unrated, not 40.
     expect(attr(p, "numbers").rated).toBe(false);
     expect(attr(p, "numbers").score).toBe(FLOOR);
+  });
+
+  it("weak exam performance floors at 40, not below", () => {
+    const p = computeRatings({ attempts: eshAttempts("trigonometry", 40, 6), now: NOW });
+    const a = attr(p, "trigonometry"); // 15% on ЭЕШ
+    expect(a.rated).toBe(true);
+    expect(a.score).toBe(FLOOR);
+    expect(a.band).toBe("beginner");
   });
 
   it("the owner's scenario: two ЭЕШ tests (94% and 16%) — no Grade-6 insult", () => {
@@ -254,12 +292,13 @@ describe("computeRatings — the 40–100 scale", () => {
       now: NOW,
     });
 
-    // Attributes with real exam volume are rated in the Developing range.
+    // Attributes with real exam volume are rated on their mixed performance
+    // (~55% average of 94% and 16%), well above the old floor-crush.
     for (const key of ["algebra", "geometry", "trigonometry", "probstats", "calculus"]) {
       const a = attr(p, key);
       expect(a.rated, key).toBe(true);
-      expect(a.score, key).toBeGreaterThanOrEqual(FLOOR);
-      expect(a.score, key).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_TEST_ATTR);
+      expect(a.score, key).toBeGreaterThan(FLOOR); // performance shows through
+      expect(a.score, key).toBeLessThan(80); // mixed record, not elite
     }
     // Numbers & linear algebra never appeared → UNRATED, not 0.
     expect(attr(p, "numbers").rated).toBe(false);
@@ -277,7 +316,7 @@ describe("computeRatings — the 40–100 scale", () => {
     expect(rec!.explanationEn).toContain("lowest rated");
   });
 
-  it("placement alone seeds a provisional rating between 40 and 60", () => {
+  it("placement alone seeds a provisional rating in the 40–70 band", () => {
     const p = computeRatings({
       attempts: [],
       placements: [
@@ -295,12 +334,13 @@ describe("computeRatings — the 40–100 scale", () => {
     const a = attr(p, "geometry");
     expect(a.rated).toBe(true);
     expect(a.provisional).toBe(true);
-    // 7/8 accuracy → 40 + 20·0.875 ≈ 58.
-    expect(a.score).toBe(58);
+    // 7/8 accuracy → 40 + 30·0.875 ≈ 66.
+    expect(a.score).toBe(66);
     expect(a.score).toBeLessThanOrEqual(RATING_CONSTANTS.PLACEMENT_SEED_MAX);
     expect(p.hasAnyEvidence).toBe(true);
-    // Real evidence replaces the seed: one wrong lesson answer in a geometry
-    // unit and the attribute is earned (at the floor), not seeded.
+    // Real course evidence overrides the placement SEED path: even a strong
+    // placement (4/4) is ignored once units are worked — the score is the
+    // earned floor (one wrong lesson answer), not the 66 the seed would give.
     const p2 = computeRatings({
       attempts: [
         { context: "course:geometry", topic: "foundations", isCorrect: false, timestamp: NOW - DAY, source: "lesson" },
@@ -310,7 +350,6 @@ describe("computeRatings — the 40–100 scale", () => {
       ],
       now: NOW,
     });
-    expect(attr(p2, "geometry").provisional).toBe(false);
     expect(attr(p2, "geometry").score).toBe(FLOOR);
   });
 });

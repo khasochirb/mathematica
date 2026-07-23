@@ -19,8 +19,8 @@ const i18n = {
   provisional: { en: "provisional", mn: "урьдчилсан" },
   units: { en: "units", mn: "нэгж" },
   hint: {
-    en: "Rated skills run 40–100 — everyone starts at 40, and 100 means mastery, earned through lessons, unit tests, the problem bank, and exams. \"—\" means not rated yet: take a test or a placement to rate it.",
-    mn: "Үнэлгээ 40–100 хооронд — хүн бүр 40-өөс эхэлнэ, 100 гэдэг нь хичээл, нэгжийн тест, бодлогын сан, шалгалтаар бүрэн эзэмшснийг илтгэнэ. \"—\" гэдэг нь хараахан үнэлэгдээгүй — тест эсвэл түвшин тогтоох тест өгч үнэлүүлээрэй.",
+    en: "Rated skills run 40–100. Take a few tests and your rating becomes your score — harder exams count for more (a 100% on ЭЕШ or IB outranks a 100% on the easier SAT). \"—\" means not rated yet: take a test or a placement to rate it.",
+    mn: "Үнэлгээ 40–100 хооронд. Хэдэн тест өгмөгц үнэлгээ тань онооных чинь дагуу тогтоно — хүнд шалгалт илүү үнэ цэнэтэй (ЭЕШ эсвэл IB-д 100% авах нь илүү хялбар SAT-д 100% авахаас дээгүүр). \"—\" гэдэг нь хараахан үнэлэгдээгүй — тест эсвэл түвшин тогтоох тест өгч үнэлүүлээрэй.",
   },
 };
 
