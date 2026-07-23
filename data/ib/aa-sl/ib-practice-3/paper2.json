@@ -1,0 +1,808 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 2,
+    "testId": "ib-practice-3",
+    "label": "AA SL Practice Paper 2",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P2-T3-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "quadratic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f(3)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(3) = 2$"
+            }
+          ],
+          "answer": "$f(3) = 2$",
+          "solution": "$$f(3) = 2(9) - 15 - 1 = 2$$",
+          "verify": [
+            "Eq(2*3**2 - 5*3 - 1, 2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Solve $f(x) = 0$, giving your answers to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the GDC (or the quadratic formula)"
+            },
+            {
+              "mark": "A1",
+              "note": "discriminant $25 + 8 = 33$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x \\approx -0.186$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x \\approx 2.69$"
+            }
+          ],
+          "answer": "$x \\approx -0.186$ or $x \\approx 2.69$",
+          "solution": "$$x = \\frac{5 \\pm \\sqrt{25 + 8}}{4} = \\frac{5 \\pm \\sqrt{33}}{4}$$$$x \\approx -0.186 \\text{ or } 2.69$$",
+          "verify": [
+            "Abs((5 - sqrt(33))/4 - (-0.186)) < 0.00051",
+            "Abs((5 + sqrt(33))/4 - 2.69) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is given by $f(x) = 2x^2 - 5x - 1$."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "stats_probability",
+      "skill_tag": "regression",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Use your GDC to find the equation of the regression line of $y$ on $x$, in the form $y = ax + b$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "enter the data and use linear regression on the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "$a = 1.3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$b = 2.1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = 1.3x + 2.1$"
+            }
+          ],
+          "answer": "$y = 1.3x + 2.1$",
+          "solution": "**Plan:** GDC linear regression on the five pairs.$$a = \\frac{n\\sum xy - \\sum x \\sum y}{n\\sum x^2 - (\\sum x)^2} = \\frac{515 - 450}{275 - 225} = 1.3$$$$b = \\bar{y} - a\\bar{x} = 6 - 1.3(3) = 2.1$$",
+          "verify": [
+            "Eq(Rational(5*103 - 15*30, 5*55 - 15**2), Rational(13, 10))",
+            "Eq(Rational(30, 5) - Rational(13, 10)*Rational(15, 5), Rational(21, 10))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Use your regression line to estimate the quiz score of a student who revised for 6 hours.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $x = 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = 1.3(6) + 2.1 = 9.9$"
+            }
+          ],
+          "answer": "$9.9$",
+          "solution": "$$y = 1.3(6) + 2.1 = 9.9$$(A slight extrapolation beyond the data — acceptable this close to the range.)",
+          "verify": [
+            "Eq(Rational(13, 10)*6 + Rational(21, 10), Rational(99, 10))"
+          ]
+        }
+      ],
+      "contextIntro": "The table shows the number of hours $x$ that five students revised and their quiz scores $y$: $(1, 3)$, $(2, 5)$, $(3, 6)$, $(4, 8)$, $(5, 8)$."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "three_d_trig",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of the edge $VA$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "half-diagonal of the base: $\\sqrt{4^2 + 3^2} = 5$"
+            },
+            {
+              "mark": "M1",
+              "note": "right triangle with the height: $VA = \\sqrt{5^2 + 10^2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$VA \\approx 11.2$ cm"
+            }
+          ],
+          "answer": "$VA \\approx 11.2$ cm (3 sf)",
+          "solution": "**Plan:** the centre of the base is a half-diagonal from $A$.$$\\tfrac{1}{2}AC = \\sqrt{4^2 + 3^2} = 5$$$$VA = \\sqrt{5^2 + 10^2} = \\sqrt{125} = 11.180\\ldots \\approx 11.2$$",
+          "verify": [
+            "Eq(sqrt(4**2 + 3**2), 5)",
+            "Abs(sqrt(125) - 11.2) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the angle that the edge $VA$ makes with the base, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "right triangle: opposite 10, adjacent 5"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\tan\\theta = \\tfrac{10}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\theta \\approx 63.4°$"
+            }
+          ],
+          "answer": "$\\theta \\approx 63.4°$ (3 sf)",
+          "solution": "The angle sits between $VA$ and its projection (the half-diagonal):$$\\tan\\theta = \\frac{10}{5} = 2 \\Rightarrow \\theta = 63.435\\ldots° \\approx 63.4°$$",
+          "verify": [
+            "Abs(deg(atan(2)) - 63.4) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "The solid shown is a pyramid with a rectangular base $ABCD$, where $AB = 8$ cm and $BC = 6$ cm. The vertex $V$ is directly above the centre of the base, at a height of $10$ cm.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t3-q3.png",
+        "width": 784,
+        "height": 572,
+        "alt_en": "Pyramid with rectangular base ABCD, 8 cm by 6 cm, and apex V directly above the centre of the base at height 10 cm; hidden edges dashed."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "number_algebra",
+      "skill_tag": "sequences_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the salary in the 5th year under each offer, giving the Offer B amount to the nearest cent.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "Offer A is arithmetic: $30000 + 4(1200)$"
+            },
+            {
+              "mark": "A1",
+              "note": "Offer A: \\$34{,}800"
+            },
+            {
+              "mark": "M1",
+              "note": "Offer B is geometric: $28000(1.05)^4$"
+            },
+            {
+              "mark": "A1",
+              "note": "Offer B: $\\$34034.18$"
+            }
+          ],
+          "answer": "A: \\$34{,}800; B: \\$34034.18$",
+          "solution": "Year 5 is four steps beyond year 1.$$A_5 = 30000 + 4(1200) = 34800$$$$B_5 = 28000(1.05)^4 = 34034.18$$",
+          "verify": [
+            "Eq(30000 + 4*1200, 34800)",
+            "Abs(28000*Rational(105, 100)**4 - 34034.18) < 0.005"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "State which offer gives the higher salary in the 5th year, and by approximately how much.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "compare the two amounts: Offer A is higher"
+            },
+            {
+              "mark": "A1",
+              "note": "by about \\$766 (accept \\$765–\\$770)"
+            }
+          ],
+          "answer": "Offer A, by about \\$766",
+          "solution": "$$34800 - 34034.18 \\approx 766$$Offer A is higher in year 5 by roughly \\$766.",
+          "verify": [
+            "34800 > 28000*Rational(105, 100)**4",
+            "Abs(34800 - 28000*Rational(105, 100)**4 - 766) < 1"
+          ]
+        }
+      ],
+      "contextIntro": "Two salary offers both run for several years. Offer A starts at \\$30{,}000 with a raise of \\$1{,}200 each year. Offer B starts at \\$28{,}000 and increases by 5\\% each year."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "rational_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the equations of the vertical and horizontal asymptotes of the graph of $f$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "vertical: $x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "horizontal: $y = 2$"
+            }
+          ],
+          "answer": "$x = 3$ and $y = 2$",
+          "solution": "The denominator vanishes at $x = 3$ (vertical asymptote), and for large $|x|$ the ratio of leading coefficients gives $y = 2$.",
+          "verify": [
+            "Eq(Rational(2, 1), 2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $f(5)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $x = 5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(5) = \\dfrac{11}{2} = 5.5$"
+            }
+          ],
+          "answer": "$5.5$",
+          "solution": "$$f(5) = \\frac{11}{2} = 5.5$$",
+          "verify": [
+            "Eq(Rational(2*5 + 1, 5 - 3), Rational(11, 2))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Solve $f(x) = 4$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "multiply up: $2x + 1 = 4(x - 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$13 = 2x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 6.5$"
+            }
+          ],
+          "answer": "$x = 6.5$",
+          "solution": "$$2x + 1 = 4x - 12 \\Rightarrow x = \\frac{13}{2} = 6.5$$",
+          "verify": [
+            "Eq(Rational(2*Rational(13, 2) + 1, Rational(13, 2) - 3), 4)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Write down the value that $f(x)$ can never take.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$y = 2$ (the horizontal asymptote value)"
+            }
+          ],
+          "answer": "$2$",
+          "solution": "The graph approaches but never reaches its horizontal asymptote, so $f(x) \\ne 2$.",
+          "verify": [
+            "Eq(2, 2)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = \\dfrac{2x + 1}{x - 3}$ for $x \\ne 3$."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "optimisation",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $V = 4x^3 - 80x^2 + 400x$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "expand $(20 - 2x)^2 = 400 - 80x + 4x^2$ and multiply by $x$"
+            },
+            {
+              "mark": "AG",
+              "note": "$V = 4x^3 - 80x^2 + 400x$"
+            }
+          ],
+          "answer": "$V = 4x^3 - 80x^2 + 400x$",
+          "solution": "$$(20 - 2x)^2 = 400 - 80x + 4x^2$$$$V = x(400 - 80x + 4x^2) = 4x^3 - 80x^2 + 400x$$",
+          "verify": [
+            "Eq(expand(x*(20 - 2*x)**2), 4*x**3 - 80*x**2 + 400*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $\\dfrac{dV}{dx}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{dV}{dx} = 12x^2 - 160x + 400$"
+            }
+          ],
+          "answer": "$\\dfrac{dV}{dx} = 12x^2 - 160x + 400$",
+          "solution": "$$\\frac{dV}{dx} = 12x^2 - 160x + 400$$",
+          "verify": [
+            "Eq(expand(diff(x*(20 - 2*x)**2, x)), 12*x**2 - 160*x + 400)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the value of $x$ that gives the maximum volume, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $\\tfrac{dV}{dx} = 0$: $4(3x - 10)(x - 10) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\tfrac{10}{3}$ or $x = 10$ (rejected: $V = 0$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\tfrac{10}{3} \\approx 3.33$ cm"
+            }
+          ],
+          "answer": "$x = \\dfrac{10}{3} \\approx 3.33$ cm",
+          "solution": "$$12x^2 - 160x + 400 = 4(3x - 10)(x - 10) = 0$$$x = 10$ gives a zero-volume box, so the maximum is at $x = \\tfrac{10}{3} \\approx 3.33$.",
+          "verify": [
+            "Eq(expand(4*(3*x - 10)*(x - 10)), 12*x**2 - 160*x + 400)",
+            "Abs(Rational(10, 3) - 3.33) < 0.0051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the maximum volume, giving your answer to three significant figures.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$V_{\\max} = \\tfrac{16000}{27} \\approx 593$ cm$^3$"
+            }
+          ],
+          "answer": "$\\approx 593$ cm$^3$",
+          "solution": "$$V\\!\\left(\\tfrac{10}{3}\\right) = \\tfrac{16000}{27} = 592.59\\ldots \\approx 593$$",
+          "verify": [
+            "Eq(Rational(10, 3)*(20 - 2*Rational(10, 3))**2, Rational(16000, 27))",
+            "Abs(Rational(16000, 27) - 593) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "An open box is made from a square sheet of card of side $20$ cm by cutting a square of side $x$ cm from each corner and folding up the sides. The volume of the box is $V = x(20 - 2x)^2$ for $0 < x < 10$."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "functions",
+      "skill_tag": "quadratic_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the height of the balcony.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$h(0) = 1.5$ m"
+            }
+          ],
+          "answer": "$1.5$ m",
+          "solution": "The launch height is $h(0) = 1.5$ m.",
+          "verify": [
+            "Eq(Rational(-49, 10)*0 + Rational(98, 5)*0 + Rational(3, 2), Rational(3, 2))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the maximum height of the ball and the time at which it occurs.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "vertex at $t = -\\tfrac{19.6}{2(-4.9)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 2$ s"
+            },
+            {
+              "mark": "M1",
+              "note": "substitute back into $h$"
+            },
+            {
+              "mark": "A1",
+              "note": "maximum height $h(2) = 21.1$ m"
+            }
+          ],
+          "answer": "$21.1$ m at $t = 2$ s",
+          "solution": "$$t = \\frac{-19.6}{2(-4.9)} = 2$$$$h(2) = -19.6 + 39.2 + 1.5 = 21.1 \\text{ m}$$",
+          "verify": [
+            "Eq(Rational(98, 5)/(2*Rational(49, 10)), 2)",
+            "Eq(Rational(-49, 10)*4 + Rational(98, 5)*2 + Rational(3, 2), Rational(211, 10))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the time at which the ball hits the ground, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $h(t) = 0$ with the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "positive root of $-4.9t^2 + 19.6t + 1.5 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 4.0751\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t \\approx 4.08$ s"
+            }
+          ],
+          "answer": "$t \\approx 4.08$ s (3 sf)",
+          "solution": "**Plan:** GDC polynomial solver, keep the positive root.$$t = 4.0751\\ldots \\approx 4.08 \\text{ s}$$(The negative root has no physical meaning.)",
+          "verify": [
+            "Abs(Rational(-49, 10)*(4.0751199)**2 + Rational(98, 5)*4.0751199 + Rational(3, 2)) < 0.001",
+            "Abs(4.0751199 - 4.08) < 0.0051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the rate of change of the height at $t = 1$, and interpret the sign of your answer.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate: $h'(t) = -9.8t + 19.6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$h'(1) = 9.8$ m s$^{-1}$"
+            },
+            {
+              "mark": "R1",
+              "note": "positive, so the ball is still RISING at $t = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "accept 9.8 m/s upward"
+            }
+          ],
+          "answer": "$h'(1) = 9.8$ m s$^{-1}$; the ball is rising",
+          "solution": "$$h'(t) = -9.8t + 19.6, \\qquad h'(1) = 9.8$$The rate is positive, so the height is increasing — the ball is still on its way up at $t = 1$.",
+          "verify": [
+            "Eq(diff(Rational(-49, 10)*t**2 + Rational(98, 5)*t + Rational(3, 2), t).subs(t, 1), Rational(49, 5))"
+          ]
+        }
+      ],
+      "contextIntro": "A ball is thrown upward from a balcony. Its height above the ground, in metres, $t$ seconds after it is thrown is modelled by $h(t) = -4.9t^2 + 19.6t + 1.5$, as shown.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t3-q7.png",
+        "width": 853,
+        "height": 628,
+        "alt_en": "Downward parabola h(t) starting at height 1.5, peaking at t = 2 (marked with a dashed line), and returning to the t-axis just after t = 4."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down $P(X > 70)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$0.5$ (the mean is the centre of symmetry)"
+            }
+          ],
+          "answer": "$0.5$",
+          "solution": "The normal curve is symmetric about the mean, so $P(X > 70) = 0.5$.",
+          "verify": [
+            "Eq((1 + erf(0))/2, Rational(1, 2))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the probability that a runner takes more than 80 minutes, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise or use the GDC: $z = \\tfrac{80 - 70}{8} = 1.25$"
+            },
+            {
+              "mark": "A1",
+              "note": "normal cdf above 80"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X > 80) \\approx 0.106$"
+            }
+          ],
+          "answer": "$0.106$ (3 sf)",
+          "solution": "$$z = \\frac{80 - 70}{8} = 1.25$$$$P(X > 80) = 0.1056\\ldots \\approx 0.106$$",
+          "verify": [
+            "Abs(1 - (1 + erf(Rational(10, 8)/sqrt(2)))/2 - 0.106) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(60 < X < 75)$, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "GDC normal cdf between 60 and 75"
+            },
+            {
+              "mark": "A1",
+              "note": "bounds standardise to $-1.25$ and $0.625$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 0.6284\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 0.628$"
+            }
+          ],
+          "answer": "$0.628$ (3 sf)",
+          "solution": "**Plan:** GDC normal cdf with lower 60, upper 75.$$P(60 < X < 75) = 0.6284\\ldots \\approx 0.628$$",
+          "verify": [
+            "Abs((erf(Rational(5, 8)/sqrt(2)) - erf(Rational(-10, 8)/sqrt(2)))/2 - 0.628) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "The slowest 15\\% of runners take longer than $k$ minutes. Find $k$, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X > k) = 0.15$, so $P(X < k) = 0.85$ — inverse normal"
+            },
+            {
+              "mark": "A1",
+              "note": "$z = 1.036$"
+            },
+            {
+              "mark": "M1",
+              "note": "$k = 70 + 8z$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k \\approx 78.3$ minutes"
+            }
+          ],
+          "answer": "$k \\approx 78.3$ min (3 sf)",
+          "solution": "**Plan:** inverse normal with area 0.85.$$z = 1.036\\ldots \\Rightarrow k = 70 + 8(1.036\\ldots) = 78.291\\ldots \\approx 78.3$$",
+          "verify": [
+            "Abs((1 + erf((78.291467 - 70)/(8*sqrt(2))))/2 - Rational(17, 20)) < 0.0005",
+            "Abs(sqrt(2)*erfinv(Rational(7, 10)) - 1.036) < 0.0005"
+          ]
+        }
+      ],
+      "contextIntro": "The times taken by runners to finish a 10 km race are normally distributed with mean 70 minutes and standard deviation 8 minutes. Let $X$ be a runner's time, so $X \\sim N(70,\\ 8^2)$."
+    },
+    {
+      "source": "IB-AASL-P2-T3-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "kinematics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the initial velocity of the particle.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$v(0) = 8$ m s$^{-1}$"
+            }
+          ],
+          "answer": "$8$ m s$^{-1}$",
+          "solution": "$$v(0) = 8 \\text{ m s}^{-1}$$",
+          "verify": [
+            "Eq(0**2 - 6*0 + 8, 8)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the times at which the particle is instantaneously at rest.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $v(t) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(t - 2)(t - 4) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 2$ s and $t = 4$ s"
+            }
+          ],
+          "answer": "$t = 2$ and $t = 4$",
+          "solution": "$$t^2 - 6t + 8 = (t - 2)(t - 4) = 0 \\Rightarrow t = 2 \\text{ or } t = 4$$",
+          "verify": [
+            "Eq(2**2 - 6*2 + 8, 0)",
+            "Eq(4**2 - 6*4 + 8, 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the acceleration of the particle at $t = 1$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate: $a(t) = 2t - 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$a(1) = -4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$-4$ m s$^{-2}$ (decelerating)"
+            }
+          ],
+          "answer": "$-4$ m s$^{-2}$",
+          "solution": "$$a(t) = v'(t) = 2t - 6, \\qquad a(1) = -4 \\text{ m s}^{-2}$$",
+          "verify": [
+            "Eq(diff(t**2 - 6*t + 8, t).subs(t, 1), -4)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the displacement of the particle from its starting point after 5 seconds, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "displacement $= \\int_0^5 v\\,dt$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\left[\\tfrac{t^3}{3} - 3t^2 + 8t\\right]_0^5 = \\tfrac{20}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\approx 6.67$ m"
+            }
+          ],
+          "answer": "$\\dfrac{20}{3} \\approx 6.67$ m",
+          "solution": "$$\\int_0^5 (t^2 - 6t + 8)\\,dt = \\frac{125}{3} - 75 + 40 = \\frac{20}{3} \\approx 6.67 \\text{ m}$$",
+          "verify": [
+            "Eq(integrate(t**2 - 6*t + 8, (t, 0, 5)), Rational(20, 3))",
+            "Abs(Rational(20, 3) - 6.67) < 0.0051"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the TOTAL DISTANCE travelled by the particle in the first 5 seconds, giving your answer to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "split at the rest times $t = 2$ and $t = 4$ (velocity changes sign)"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\int_0^2 v = \\tfrac{20}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\int_2^4 v = -\\tfrac{4}{3}$ and $\\int_4^5 v = \\tfrac{4}{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "add the absolute values"
+            },
+            {
+              "mark": "A1",
+              "note": "distance $= \\tfrac{28}{3} \\approx 9.33$ m"
+            }
+          ],
+          "answer": "$\\dfrac{28}{3} \\approx 9.33$ m",
+          "solution": "The particle reverses direction on $(2, 4)$, so integrate piecewise and add absolute values:$$\\tfrac{20}{3} + \\left|-\\tfrac{4}{3}\\right| + \\tfrac{4}{3} = \\tfrac{28}{3} \\approx 9.33 \\text{ m}$$(Displacement and distance differ because of the backward leg.)",
+          "verify": [
+            "Eq(integrate(t**2 - 6*t + 8, (t, 0, 2)), Rational(20, 3))",
+            "Eq(integrate(t**2 - 6*t + 8, (t, 2, 4)), Rational(-4, 3))",
+            "Eq(integrate(t**2 - 6*t + 8, (t, 4, 5)), Rational(4, 3))",
+            "Abs(Rational(28, 3) - 9.33) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "A particle moves in a straight line. Its velocity, in metres per second, at time $t$ seconds is $v(t) = t^2 - 6t + 8$ for $0 \\le t \\le 5$."
+    }
+  ]
+}

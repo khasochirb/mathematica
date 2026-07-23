@@ -1,0 +1,801 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 1,
+    "testId": "ib-practice-3",
+    "label": "AA SL Practice Paper 1",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P1-T3-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "arithmetic_sequences",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $u_{10}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $u_n = u_1 + (n - 1)d$"
+            },
+            {
+              "mark": "A1",
+              "note": "$u_{10} = 5 + 9(3) = 32$"
+            }
+          ],
+          "answer": "$u_{10} = 32$",
+          "solution": "$$u_{10} = u_1 + 9d = 5 + 27 = 32$$",
+          "verify": [
+            "Eq(5 + 9*3, 32)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $S_{10}$, the sum of the first ten terms.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $S_n = \\tfrac{n}{2}(2u_1 + (n - 1)d)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_{10} = 5(10 + 27)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_{10} = 185$"
+            }
+          ],
+          "answer": "$S_{10} = 185$",
+          "solution": "$$S_{10} = \\frac{10}{2}\\big(2(5) + 9(3)\\big) = 5(37) = 185$$",
+          "verify": [
+            "Eq(Rational(10, 2)*(2*5 + 9*3), 185)"
+          ]
+        }
+      ],
+      "contextIntro": "An arithmetic sequence has first term $u_1 = 5$ and common difference $d = 3$."
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "stats_probability",
+      "skill_tag": "probability_basics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the probability that both counters are red.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "multiply along the branch: $\\tfrac{4}{10} \\times \\tfrac{3}{9}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{12}{90}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\dfrac{2}{15}$"
+            }
+          ],
+          "answer": "$\\dfrac{2}{15}$",
+          "solution": "After one red is taken, 3 of the remaining 9 are red:$$P(RR) = \\frac{4}{10} \\cdot \\frac{3}{9} = \\frac{12}{90} = \\frac{2}{15}$$",
+          "verify": [
+            "Eq(Rational(4, 10)*Rational(3, 9), Rational(2, 15))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Given that the first counter is blue, write down the probability that the second counter is red.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "after one blue is removed, 9 counters remain, 4 red"
+            },
+            {
+              "mark": "A1",
+              "note": "$P = \\dfrac{4}{9}$"
+            }
+          ],
+          "answer": "$\\dfrac{4}{9}$",
+          "solution": "Removing a blue counter leaves 4 red among 9:$$P(\\text{2nd red} \\mid \\text{1st blue}) = \\frac{4}{9}$$",
+          "verify": [
+            "Eq(Rational(4, 9), Rational(4, 9))",
+            "Eq(4 + 5, 9)"
+          ]
+        }
+      ],
+      "contextIntro": "A bag contains 4 red and 6 blue counters. Two counters are taken from the bag at random, one after the other, WITHOUT replacement."
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "composite_inverse",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $(f \\circ g)(2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "evaluate $g(2) = 4$ first"
+            },
+            {
+              "mark": "A1",
+              "note": "$(f \\circ g)(2) = f(4) = 5$"
+            }
+          ],
+          "answer": "$5$",
+          "solution": "$$g(2) = 4, \\qquad f(4) = 2(4) - 3 = 5$$",
+          "verify": [
+            "Eq(2*(2**2) - 3, 5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $f^{-1}(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "swap and solve: $x = 2y - 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f^{-1}(x) = \\dfrac{x + 3}{2}$"
+            }
+          ],
+          "answer": "$f^{-1}(x) = \\dfrac{x + 3}{2}$",
+          "solution": "Write $y = 2x - 3$, swap variables and solve:$$x = 2y - 3 \\Rightarrow y = \\frac{x + 3}{2}$$",
+          "verify": [
+            "Eq((2*5 - 3 + 3)/2, 5)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Solve $f^{-1}(x) = 5$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply $f$ to both sides (or solve directly)"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = f(5) = 7$"
+            }
+          ],
+          "answer": "$x = 7$",
+          "solution": "$$\\frac{x + 3}{2} = 5 \\Rightarrow x + 3 = 10 \\Rightarrow x = 7$$",
+          "verify": [
+            "Eq(Rational(7 + 3, 2), 5)"
+          ]
+        }
+      ],
+      "contextIntro": "The functions $f$ and $g$ are defined by $f(x) = 2x - 3$ and $g(x) = x^2$."
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "trig_equations",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Solve $2\\cos x = \\sqrt{3}$ for $0 \\le x \\le 2\\pi$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "isolate: $\\cos x = \\tfrac{\\sqrt{3}}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "M1",
+              "note": "use the symmetry of cosine: $x = 2\\pi - \\tfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{11\\pi}{6}$"
+            }
+          ],
+          "answer": "$x = \\dfrac{\\pi}{6}$ and $x = \\dfrac{11\\pi}{6}$",
+          "solution": "**Plan:** isolate the cosine, then use the unit circle.$$\\cos x = \\frac{\\sqrt{3}}{2} \\Rightarrow x = \\frac{\\pi}{6} \\text{ or } x = 2\\pi - \\frac{\\pi}{6} = \\frac{11\\pi}{6}$$",
+          "verify": [
+            "Eq(simplify(2*cos(pi/6) - sqrt(3)), 0)",
+            "Eq(simplify(2*cos(11*pi/6) - sqrt(3)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence state the number of solutions of $2\\cos x = \\sqrt{3}$ for $0 \\le x \\le 4\\pi$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine has period $2\\pi$, so each period contributes two solutions"
+            },
+            {
+              "mark": "A1",
+              "note": "$4$ solutions"
+            }
+          ],
+          "answer": "$4$",
+          "solution": "Each $2\\pi$-period contains the two solutions found in part (a), and $[0, 4\\pi]$ spans two periods:$$2 \\times 2 = 4 \\text{ solutions.}$$",
+          "verify": [
+            "Eq(2*2, 4)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "exponents_logs",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of $\\log_2 32$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write $32 = 2^5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_2 32 = 5$"
+            }
+          ],
+          "answer": "$5$",
+          "solution": "$$32 = 2^5 \\Rightarrow \\log_2 32 = 5$$",
+          "verify": [
+            "Eq(log(32, 2), 5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Solve $\\log_2 x + \\log_2 (x - 2) = 3$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "combine: $\\log_2 \\big(x(x - 2)\\big) = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x(x - 2) = 8$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 4$ or $x = -2$ from the quadratic"
+            },
+            {
+              "mark": "R1",
+              "note": "reject $x = -2$ (logarithms need $x > 2$); $x = 4$"
+            }
+          ],
+          "answer": "$x = 4$",
+          "solution": "**Plan:** combine the logs, convert to index form.$$\\log_2\\big(x(x-2)\\big) = 3 \\Rightarrow x^2 - 2x - 8 = 0 \\Rightarrow (x - 4)(x + 2) = 0$$Both arguments must be positive, so $x = -2$ is rejected and $x = 4$.",
+          "verify": [
+            "Eq(expand((x - 4)*(x + 2)), x**2 - 2*x - 8)",
+            "Eq(4*(4 - 2), 8)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Given that $\\log_2 y = p$, express $\\log_2 \\dfrac{8}{y}$ in terms of $p$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "split: $\\log_2 8 - \\log_2 y$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3 - p$"
+            }
+          ],
+          "answer": "$3 - p$",
+          "solution": "$$\\log_2 \\frac{8}{y} = \\log_2 8 - \\log_2 y = 3 - p$$",
+          "verify": [
+            "Eq(log(8, 2), 3)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 10,
+      "topic": "calculus",
+      "skill_tag": "differentiation_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = 4x^3 - 16x$"
+            }
+          ],
+          "answer": "$f'(x) = 4x^3 - 16x$",
+          "solution": "$$f'(x) = 4x^3 - 16x$$",
+          "verify": [
+            "Eq(expand(diff(x**4 - 8*x**2, x)), 4*x**3 - 16*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the three stationary points of the graph of $f$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$: $4x(x^2 - 4) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0, \\; x = 2, \\; x = -2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(0, 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(2, -16)$ and $(-2, -16)$"
+            }
+          ],
+          "answer": "$(0, 0)$, $(2, -16)$, $(-2, -16)$",
+          "solution": "$$4x(x - 2)(x + 2) = 0 \\Rightarrow x = 0, \\pm 2$$$$f(0) = 0, \\qquad f(\\pm 2) = 16 - 32 = -16$$",
+          "verify": [
+            "Eq(4*0**3 - 16*0, 0)",
+            "Eq(2**4 - 8*2**2, -16)",
+            "Eq((-2)**4 - 8*(-2)**2, -16)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Determine the nature of each stationary point.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "find $f''(x) = 12x^2 - 16$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(0) = -16 < 0$"
+            },
+            {
+              "mark": "R1",
+              "note": "so $(0, 0)$ is a local maximum"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(\\pm 2) = 32 > 0$, so $(\\pm 2, -16)$ are local minima"
+            }
+          ],
+          "answer": "$(0, 0)$ maximum; $(\\pm 2, -16)$ minima",
+          "solution": "$$f''(x) = 12x^2 - 16$$$$f''(0) = -16 < 0 \\Rightarrow (0, 0) \\text{ is a local maximum}$$$$f''(\\pm 2) = 32 > 0 \\Rightarrow (\\pm 2, -16) \\text{ are local minima}$$",
+          "verify": [
+            "Eq(expand(diff(x**4 - 8*x**2, x, 2)), 12*x**2 - 16)",
+            "Eq((12*x**2 - 16).subs(x, 0), -16)",
+            "Eq((12*x**2 - 16).subs(x, 2), 32)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x^4 - 8x^2$."
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "geometry_trig",
+      "skill_tag": "circular_measure",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of the arc $AB$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use arc $= r\\theta$"
+            },
+            {
+              "mark": "A1",
+              "note": "$6 \\cdot \\tfrac{2\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "arc $= 4\\pi$ cm"
+            }
+          ],
+          "answer": "$4\\pi$ cm",
+          "solution": "$$\\text{arc} = r\\theta = 6 \\cdot \\frac{2\\pi}{3} = 4\\pi \\text{ cm}$$",
+          "verify": [
+            "Eq(simplify(6*(2*pi/3) - 4*pi), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the perimeter of the sector $OAB$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "add the two radii to the arc"
+            },
+            {
+              "mark": "A1",
+              "note": "perimeter $= 12 + 4\\pi$ cm"
+            }
+          ],
+          "answer": "$(12 + 4\\pi)$ cm",
+          "solution": "$$P = 2r + r\\theta = 12 + 4\\pi \\text{ cm}$$",
+          "verify": [
+            "Eq(6 + 6, 12)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the area of the sector $OAB$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use sector area $= \\tfrac{1}{2}r^2\\theta$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}(36)\\tfrac{2\\pi}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 12\\pi$ cm$^2$"
+            }
+          ],
+          "answer": "$12\\pi$ cm$^2$",
+          "solution": "$$A = \\tfrac{1}{2}r^2\\theta = \\tfrac{1}{2}(36)\\cdot\\frac{2\\pi}{3} = 12\\pi \\text{ cm}^2$$",
+          "verify": [
+            "Eq(simplify(Rational(1, 2)*36*(2*pi/3) - 12*pi), 0)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the area of triangle $OAB$, giving your answer in the form $a\\sqrt{3}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use area $= \\tfrac{1}{2}r^2\\sin\\theta$ with $\\sin\\tfrac{2\\pi}{3} = \\tfrac{\\sqrt3}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 9\\sqrt{3}$ cm$^2$"
+            }
+          ],
+          "answer": "$9\\sqrt{3}$ cm$^2$",
+          "solution": "$$A = \\tfrac{1}{2}(36)\\sin\\frac{2\\pi}{3} = 18 \\cdot \\frac{\\sqrt3}{2} = 9\\sqrt{3} \\text{ cm}^2$$",
+          "verify": [
+            "Eq(simplify(Rational(1, 2)*36*sin(2*pi/3) - 9*sqrt(3)), 0)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Hence find the area of the shaded segment.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "segment = sector − triangle"
+            },
+            {
+              "mark": "A1",
+              "note": "$12\\pi - 9\\sqrt{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "accept exact form (cm$^2$)"
+            }
+          ],
+          "answer": "$(12\\pi - 9\\sqrt{3})$ cm$^2$",
+          "solution": "$$\\text{segment} = 12\\pi - 9\\sqrt{3} \\text{ cm}^2$$",
+          "verify": [
+            "12*pi - 9*sqrt(3) > 0"
+          ]
+        }
+      ],
+      "contextIntro": "The circle shown has centre $O$ and radius $6$ cm. Points $A$ and $B$ lie on the circle and the angle $A\\hat{O}B = \\dfrac{2\\pi}{3}$. The shaded region is the minor segment between the chord $[AB]$ and the arc $AB$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t3-q7.png",
+        "width": 689,
+        "height": 671,
+        "alt_en": "Circle with centre O and radius 6 cm; radii OA and OB make an angle of 2 pi over 3, and the minor segment between chord AB and the arc is shaded."
+      }
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "binomial_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(X = 3)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "multiply: $\\left(\\tfrac{1}{4}\\right)^3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 3) = \\dfrac{1}{64}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{64}$",
+          "solution": "$$P(X = 3) = \\left(\\tfrac{1}{4}\\right)^3 = \\tfrac{1}{64}$$",
+          "verify": [
+            "Eq(Rational(1, 4)**3, Rational(1, 64))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X = 2)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial term $\\binom{3}{2}p^2(1 - p)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3 \\cdot \\tfrac{1}{16} \\cdot \\tfrac{3}{4}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 2) = \\dfrac{9}{64}$"
+            }
+          ],
+          "answer": "$\\dfrac{9}{64}$",
+          "solution": "$$P(X = 2) = \\binom{3}{2}\\left(\\tfrac{1}{4}\\right)^2\\left(\\tfrac{3}{4}\\right) = \\tfrac{9}{64}$$",
+          "verify": [
+            "Eq(binomial(3, 2)*Rational(1, 4)**2*Rational(3, 4), Rational(9, 64))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $P(X \\ge 1)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the complement: $1 - P(X = 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 0) = \\left(\\tfrac{3}{4}\\right)^3 = \\tfrac{27}{64}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 1) = \\dfrac{37}{64}$"
+            }
+          ],
+          "answer": "$\\dfrac{37}{64}$",
+          "solution": "$$P(X \\ge 1) = 1 - \\left(\\tfrac{3}{4}\\right)^3 = 1 - \\tfrac{27}{64} = \\tfrac{37}{64}$$",
+          "verify": [
+            "Eq(1 - Rational(3, 4)**3, Rational(37, 64))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Write down $E(X)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $E(X) = np$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = \\dfrac{3}{4}$"
+            }
+          ],
+          "answer": "$\\dfrac{3}{4}$",
+          "solution": "$$E(X) = np = 3 \\cdot \\tfrac{1}{4} = \\tfrac{3}{4}$$",
+          "verify": [
+            "Eq(3*Rational(1, 4), Rational(3, 4))"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "The three spins are repeated on two separate days. Find the probability that the spinner lands on red ZERO times on both days.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "square the day-probability $\\tfrac{27}{64}$ by independence"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\left(\\tfrac{27}{64}\\right)^2 = \\dfrac{729}{4096}$"
+            }
+          ],
+          "answer": "$\\dfrac{729}{4096}$",
+          "solution": "$$P = \\left(\\tfrac{27}{64}\\right)^2 = \\tfrac{729}{4096}$$",
+          "verify": [
+            "Eq(Rational(27, 64)**2, Rational(729, 4096))"
+          ]
+        }
+      ],
+      "contextIntro": "A spinner lands on red with probability $\\dfrac{1}{4}$ on each spin, independently of all other spins. The spinner is spun 3 times, and $X$ is the number of times it lands on red, so $X \\sim B\\!\\left(3, \\dfrac{1}{4}\\right)$."
+    },
+    {
+      "source": "IB-AASL-P1-T3-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "integration_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the $x$-coordinates of the two points where the curve and the line intersect.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $4x - x^2 = x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3x - x^2 = x(3 - x) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0$ and $x = 3$"
+            }
+          ],
+          "answer": "$x = 0$ and $x = 3$",
+          "solution": "$$4x - x^2 = x \\Rightarrow 3x - x^2 = 0 \\Rightarrow x(3 - x) = 0$$So $x = 0$ or $x = 3$.",
+          "verify": [
+            "Eq(4*0 - 0**2, 0)",
+            "Eq(4*3 - 3**2, 3)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the gradient of the curve at the origin.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate: $\\tfrac{dy}{dx} = 4 - 2x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{dy}{dx} = 4 - 2x$"
+            },
+            {
+              "mark": "A1",
+              "note": "at $x = 0$ the gradient is $4$"
+            }
+          ],
+          "answer": "$4$",
+          "solution": "$$\\frac{dy}{dx} = 4 - 2x, \\qquad \\left.\\frac{dy}{dx}\\right|_{x=0} = 4$$",
+          "verify": [
+            "Eq(diff(4*x - x**2, x).subs(x, 0), 4)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Show that the area of the region $R$ is $\\dfrac{9}{2}$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\int_0^3 \\big((4x - x^2) - x\\big)\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "integrand simplifies to $3x - x^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $\\tfrac{3x^2}{2} - \\tfrac{x^3}{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate at the limits: $\\tfrac{27}{2} - 9$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= \\tfrac{9}{2}$"
+            }
+          ],
+          "answer": "area $= \\dfrac{9}{2}$",
+          "solution": "The curve lies above the line on $[0, 3]$:$$\\int_0^3 (3x - x^2)\\,dx = \\left[\\frac{3x^2}{2} - \\frac{x^3}{3}\\right]_0^3 = \\frac{27}{2} - 9 = \\frac{9}{2}.$$",
+          "verify": [
+            "Eq(integrate((4*x - x**2) - x, (x, 0, 3)), Rational(9, 2))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the equation of the tangent to the curve at the point where $x = 3$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "gradient at $x = 3$: $4 - 6 = -2$; point $(3, 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "gradient $-2$"
+            },
+            {
+              "mark": "M1",
+              "note": "use $y - y_1 = m(x - x_1)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -2x + 9$"
+            }
+          ],
+          "answer": "$y = -2x + 9$",
+          "solution": "At $x = 3$: $y = 12 - 9 = 3$ and the gradient is $4 - 2(3) = -2$, so$$y - 3 = -2(x - 3) \\Rightarrow y = -2x + 9.$$",
+          "verify": [
+            "Eq(4*3 - 3**2, 3)",
+            "Eq(diff(4*x - x**2, x).subs(x, 3), -2)",
+            "Eq(-2*3 + 9, 3)"
+          ]
+        }
+      ],
+      "contextIntro": "The diagram shows the curve $y = 4x - x^2$ and the line $y = x$. The region $R$ enclosed between the curve and the line is shaded.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t3-q9.png",
+        "width": 827,
+        "height": 627,
+        "alt_en": "Downward parabola y = 4x - x^2 and the line y = x; the region R between them, from the origin to their second intersection, is shaded."
+      }
+    }
+  ]
+}
