@@ -432,6 +432,26 @@ export interface ImprovementStep {
   delta?: number; // projectedScore − current (omitted for "get rated" steps)
 }
 
+// One evidence stream feeding an attribute, exposed so the UI can answer
+// "why is my number what it is?" instead of leaving the formula a black box.
+export interface EvidenceStream {
+  kind: "exam" | "placement" | "course";
+  n: number; // decayed question count (course: units touched)
+  acc: number; // 0..1 accuracy (course: mastery of touched units)
+  perf: number; // the 0–100 score this stream argues for, after difficulty
+  conf: number; // 0..1 — how much of this stream's full weight is earned
+  weight: number; // the blend weight (W_EXAM / W_PLACEMENT / W_COURSE)
+}
+
+export interface AttributeEvidence {
+  streams: EvidenceStream[];
+  combinedConf: number; // how settled the rating is — the score sits this
+  // fraction of the way from the 40 floor toward what the evidence argues
+  perfBlend: number; // what the evidence argues (before the confidence pull)
+  examDifficulty: number; // attempt-weighted 0.8..1 (0 when no exam evidence)
+  capNoExam: boolean; // course-only cap (84) was applied
+}
+
 export interface AttributeRating {
   key: AttributeKey;
   rated: boolean; // false = not enough evidence yet — display "—", never 0
@@ -444,6 +464,8 @@ export interface AttributeRating {
   examAcc: number; // 0..1, decayed
   examN: number; // decayed count
   hasUnitTest: boolean;
+  // The transparent "why this number" breakdown.
+  evidence: AttributeEvidence;
   // Ranked, personalized "how to raise this" — most impactful first.
   improvements: ImprovementStep[];
 }
@@ -618,17 +640,22 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     const pAcc = pn > 0 ? placeAgg!.correct / pn : 0;
     const placeConf = conf(pn, C.N_PLACEMENT_FULL);
 
-    const streams: { perf: number; conf: number; w: number }[] = [];
-    if (en > 0) streams.push({ perf: 100 * ea * eD, conf: examConf, w: C.W_EXAM });
-    if (pn > 0) streams.push({ perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, w: C.W_PLACEMENT });
-    if (unitsTouched > 0) streams.push({ perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, w: C.W_COURSE });
+    const streams: EvidenceStream[] = [];
+    if (en > 0)
+      streams.push({ kind: "exam", n: en, acc: ea, perf: 100 * ea * eD, conf: examConf, weight: C.W_EXAM });
+    if (pn > 0)
+      streams.push({ kind: "placement", n: pn, acc: pAcc, perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, weight: C.W_PLACEMENT });
+    if (unitsTouched > 0)
+      streams.push({ kind: "course", n: unitsTouched, acc: courseMastery, perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, weight: C.W_COURSE });
 
-    const ewTot = streams.reduce((s, x) => s + x.conf * x.w, 0);
-    const perf = ewTot > 0 ? streams.reduce((s, x) => s + x.perf * x.conf * x.w, 0) / ewTot : C.RATING_FLOOR;
+    const ewTot = streams.reduce((s, x) => s + x.conf * x.weight, 0);
+    const perf = ewTot > 0 ? streams.reduce((s, x) => s + x.perf * x.conf * x.weight, 0) / ewTot : C.RATING_FLOOR;
     const combinedConf = 1 - streams.reduce((prod, x) => prod * (1 - x.conf), 1);
     let score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
     // Pure course work (no test of any kind) caps below Near-mastery.
-    if (en === 0 && pn === 0 && unitsTouched > 0) score = Math.min(score, C.CAP_NO_EXAM);
+    const courseOnly = en === 0 && pn === 0 && unitsTouched > 0;
+    const capNoExam = courseOnly && score > C.CAP_NO_EXAM;
+    if (courseOnly) score = Math.min(score, C.CAP_NO_EXAM);
     score = Math.max(C.RATING_FLOOR, Math.min(100, score));
     return {
       score,
@@ -640,6 +667,13 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       courseMastery,
       examAcc: ea,
       examN: en,
+      evidence: {
+        streams,
+        combinedConf,
+        perfBlend: perf,
+        examDifficulty: eD,
+        capNoExam,
+      } satisfies AttributeEvidence,
     };
   };
 
@@ -670,6 +704,69 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     if (!rated) return [placementStepFor(attrKey)];
 
     const steps: ImprovementStep[] = [];
+
+    // Rated with NO course work yet (exams/placement only) — the honest next
+    // step is the attribute's ladder course at the right rung: working its
+    // units (and passing their tests) opens the course-evidence stream. One
+    // aggregate step, simulated like everything else so the "+N" is real.
+    const ladder = ATTRIBUTE_COURSE_LADDER[attrKey];
+    const rungCtx = ladder[band(current) === "strong" || band(current) === "mastery" ? Math.min(1, ladder.length - 1) : 0];
+    const untouchedRung = attrUnits.filter((u) => u.context === rungCtx && !u.touched);
+    if (untouchedRung.length > 0) {
+      const simUnits = attrUnits.map((x) =>
+        x.context === rungCtx && !x.touched
+          ? { ...x, score: 100, band: band(100), touched: true, hasTest: true }
+          : x,
+      );
+      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);
+      const delta = proj - current;
+      if (delta >= 1) {
+        const titleEn = COURSE_TITLES_EN[rungCtx] ?? rungCtx;
+        const titleMn = COURSE_TITLES_MN[rungCtx] ?? rungCtx;
+        steps.push({
+          kind: "master-unit",
+          href: contextHref(rungCtx) ?? "/math",
+          labelEn: `Work through ${titleEn} and pass its unit tests`,
+          labelMn: `${titleMn} хичээлийг үзэж, нэгжийн тестүүдийг нь даваарай`,
+          projectedScore: proj,
+          delta,
+        });
+      }
+    }
+
+    // Exam evidence exists but isn't elite or isn't from the hard exams —
+    // simulate one more strong mock's worth (24 questions at 90% on an
+    // ЭЕШ/IB-difficulty paper) so the step carries an honest projection.
+    if (examAgg && examAgg.weight > 0) {
+      const eAcc = examAgg.correct / examAgg.weight;
+      const eDiff = examAgg.diffWeight / examAgg.weight;
+      if (eAcc < C.ELITE_TEST_ACC || eDiff < 0.99) {
+        const add = 24;
+        const boosted: ExamAgg = {
+          weight: examAgg.weight + add,
+          correct: examAgg.correct + add * 0.9,
+          diffWeight: examAgg.diffWeight + add * 1.0,
+        };
+        const proj = Math.round(scoreAttr(attrUnits, boosted, placeAgg).score);
+        const delta = proj - current;
+        if (delta >= 1) {
+          const harder = eDiff < 0.95; // SAT-heavy evidence → point at the hard pair
+          steps.push({
+            kind: "mock-exam",
+            href: "/practice",
+            labelEn: harder
+              ? "Score ~90% on a harder mock (ЭЕШ or IB) — the SAT alone tops out at 80"
+              : "Score ~90% on your next full mock — recent papers count most",
+            labelMn: harder
+              ? "Илүү хүнд шалгалтад (ЭЕШ, IB) ~90% аваарай — SAT дангаараа дээд тал нь 80"
+              : "Дараагийн бүтэн шалгалтдаа ~90% аваарай — сүүлийн оролдлого хамгийн их жинтэй",
+            projectedScore: proj,
+            delta,
+          });
+        }
+      }
+    }
+
     // Raising a weak/unproven unit to elite.
     for (const u of attrUnits) {
       const elite = u.score >= 85 && u.hasTest;
@@ -744,6 +841,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       examAcc: r.examAcc,
       examN: r.examN,
       hasUnitTest: r.hasUnitTest,
+      evidence: r.evidence,
       improvements: improvementsFor(info.key, mine, examAgg, placeAgg, rounded, r.rated, provisional),
     };
   });

@@ -338,3 +338,50 @@ describe("placement bank (curated tiers)", () => {
     expect(r.overallAccuracy).toBeLessThanOrEqual(1);
   });
 });
+
+describe("seeded variants", () => {
+  // Drive a full perfect run and record the asked question ids.
+  function askedIds(bank: PlacementQuestion[], seed: number): string[] {
+    let state = initPlacement(bank, 2, seed);
+    let guard = 0;
+    while (!isComplete(state) && guard++ < 1000) {
+      const q = pickNext(state, bank);
+      if (!q) break;
+      state = applyAnswer(state, q, q.correctIndex);
+    }
+    return state.askedIds;
+  }
+
+  it("the same seed replays the same variant", () => {
+    const bank = synthBank();
+    expect(askedIds(bank, 42)).toEqual(askedIds(bank, 42));
+  });
+
+  it("different seeds draw different variants where the bank has spares", () => {
+    const bank = synthBank(); // 3 spare questions per topic × difficulty
+    const base = askedIds(bank, 1).join(",");
+    const variants = new Set([base]);
+    for (let s = 2; s <= 8; s++) variants.add(askedIds(bank, s).join(","));
+    // At least one alternate ordering must appear across 8 seeds — a retake
+    // is a fresh test, not a replay.
+    expect(variants.size).toBeGreaterThan(1);
+  });
+
+  it("every variant still respects topic coverage and the adaptive ladder", () => {
+    const bank = synthBank();
+    for (const seed of [7, 99, 12345]) {
+      let state = initPlacement(bank, 2, seed);
+      let guard = 0;
+      while (!isComplete(state) && guard++ < 1000) {
+        const q = pickNext(state, bank);
+        if (!q) break;
+        state = applyAnswer(state, q, q.correctIndex);
+      }
+      expect(isComplete(state)).toBe(true);
+      expect(new Set(state.askedIds).size).toBe(state.askedIds.length);
+      for (const s of state.topics) {
+        expect(state.answers.filter((a) => a.topicSlug === s).length).toBe(2);
+      }
+    }
+  });
+});

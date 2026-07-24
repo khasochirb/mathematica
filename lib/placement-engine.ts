@@ -15,12 +15,25 @@ export type PlacementState = {
   askedIds: string[];
   answers: Answered[];
   topics: string[]; // topic slugs that have questions, in course order
+  seed: number; // variant seed — different seeds draw different questions
 };
 
-export function initPlacement(bank: PlacementQuestion[], perTopicTarget = 2): PlacementState {
+export function initPlacement(bank: PlacementQuestion[], perTopicTarget = 2, seed = 0): PlacementState {
   const topics: string[] = [];
   for (const q of bank) if (!topics.includes(q.topicSlug)) topics.push(q.topicSlug);
-  return { level: 1, wrongStreak: 0, perTopicTarget, askedIds: [], answers: [], topics };
+  return { level: 1, wrongStreak: 0, perTopicTarget, askedIds: [], answers: [], topics, seed: seed >>> 0 };
+}
+
+// FNV-1a over seed+id — a stable per-sitting shuffle key, so a retake with a
+// new seed draws a different variant of the test wherever the bank has spare
+// questions at the same topic × difficulty, instead of replaying the same one.
+function variantKey(seed: number, id: string): number {
+  let h = (seed >>> 0) ^ 2166136261;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
 }
 
 function seenCount(state: PlacementState, slug: string): number {
@@ -54,6 +67,7 @@ export function pickNext(state: PlacementState, bank: PlacementQuestion[]): Plac
       (a, b) =>
         Math.abs(a.difficulty - state.level) - Math.abs(b.difficulty - state.level) ||
         a.difficulty - b.difficulty ||
+        variantKey(state.seed, a.id) - variantKey(state.seed, b.id) ||
         a.id.localeCompare(b.id)
     );
     return pool[0];

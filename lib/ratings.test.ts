@@ -469,3 +469,85 @@ describe("eshSeverity", () => {
     expect(eshSeverity(90, 5)).toBe("mastery");
   });
 });
+
+// ---------------------------------------------------------------------------
+// The reported scenario: strong-but-imperfect SAT mocks plus a PERFECT
+// Algebra 2 placement left Functions in the 60s with no explanation and no
+// next steps. The score being strict is by design; the dashboard must now
+// expose WHY (evidence streams) and WHAT NEXT (non-empty improvements).
+// ---------------------------------------------------------------------------
+
+function satAttempts(topic: string, n: number, nCorrect: number, ageDays = 1): RatingAttempt[] {
+  return Array.from({ length: n }, (_, i) => ({
+    context: "sat",
+    topic,
+    subtopic: "misc",
+    isCorrect: i < nCorrect,
+    timestamp: NOW - ageDays * DAY,
+    source: "test",
+  }));
+}
+
+describe("evidence transparency + guidance", () => {
+  const alg2FunctionUnits = allRatedUnits().filter(
+    (u) => u.context === "course:algebra-2" && u.attribute === "functions",
+  );
+
+  const profile = () =>
+    computeRatings({
+      // 20 SAT advanced-math questions at 65% — the drag on the blend.
+      attempts: satAttempts("advanced-math", 20, 13),
+      placements: [
+        {
+          namespace: "algebra-2",
+          takenAt: NOW - DAY,
+          // Perfect placement across the functions-mapped Algebra 2 units.
+          topicScores: alg2FunctionUnits.map((u) => ({ slug: u.slug, seen: 2, correct: 2 })),
+        },
+      ],
+      now: NOW,
+    });
+
+  it("every attribute carries an evidence breakdown", () => {
+    const p = profile();
+    for (const a of p.attributes) {
+      expect(Array.isArray(a.evidence.streams)).toBe(true);
+      expect(a.evidence.combinedConf).toBeGreaterThanOrEqual(0);
+      expect(a.evidence.combinedConf).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("exam+placement evidence shows both streams, SAT difficulty, and stays strict", () => {
+    const p = profile();
+    const f = attr(p, "functions");
+    expect(f.rated).toBe(true);
+    const kinds = f.evidence.streams.map((s) => s.kind).sort();
+    expect(kinds).toEqual(["exam", "placement"]);
+    // SAT-only exam evidence → attempt-weighted difficulty is the SAT dial.
+    expect(f.evidence.examDifficulty).toBeCloseTo(0.8, 5);
+    // Strictness preserved: a perfect placement does NOT push past 90, and the
+    // 65% SAT evidence holds the blend below the placement's own 90.
+    expect(f.score).toBeLessThan(90);
+    expect(f.score).toBeGreaterThanOrEqual(55);
+  });
+
+  it("a rated attribute with no course work still gets concrete next steps", () => {
+    const p = profile();
+    const f = attr(p, "functions");
+    expect(f.improvements.length).toBeGreaterThan(0);
+    // The honest big lever: prove it on a harder mock (+N computed for real).
+    const mock = f.improvements.find((s) => s.kind === "mock-exam");
+    expect(mock).toBeDefined();
+    expect(mock!.delta ?? 0).toBeGreaterThanOrEqual(1);
+    // And a course step exists (work the ladder course, pass its unit tests).
+    const course = f.improvements.find((s) => s.kind === "master-unit" || s.kind === "unit-test");
+    expect(course).toBeDefined();
+    // Every projected gain is simulated against the real formula.
+    for (const s of f.improvements) {
+      if (s.projectedScore !== undefined) {
+        expect(s.projectedScore).toBeGreaterThan(f.score);
+        expect(s.projectedScore).toBeLessThanOrEqual(100);
+      }
+    }
+  });
+});

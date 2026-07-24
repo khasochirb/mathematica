@@ -45,7 +45,10 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
   const disp = useMemo(() => (current ? displayQuestion(current) : null), [current]);
 
   function start() {
-    const fresh = initPlacement(bank, 2);
+    // A fresh seed per sitting: every take (and retake) draws a different
+    // variant of the test wherever the bank has spare questions at the same
+    // topic × difficulty.
+    const fresh = initPlacement(bank, 2, Date.now() >>> 0);
     setState(fresh);
     setCurrent(pickNext(fresh, bank));
     setPicked(null);
@@ -217,6 +220,11 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
       <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15 }}>
         You answered <b className="tabular">{pct}%</b> correct across the {config.homeLabel} we tested.
       </p>
+      <p className="mt-2 text-[13px]" style={{ color: "var(--fg-3)" }}>
+        On your dashboard this placement rates a skill up to 90 — real mocks
+        (ЭЕШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
+        fresh mix of questions.
+      </p>
 
       {priority.length > 0 ? (
         <div className="mt-8">
@@ -263,7 +271,7 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
           Go to my {config.homeLabel} <ArrowRight className="h-4 w-4" />
         </Link>
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
-          <RotateCcw className="h-4 w-4" /> Retake
+          <RotateCcw className="h-4 w-4" /> Retake with new questions
         </button>
       </div>
     </div>
