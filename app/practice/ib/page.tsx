@@ -77,7 +77,10 @@ export default function IbHubPage() {
         </div>
 
         <div className="eyebrow mt-10 mb-3">Practice sets — AA SL</div>
-        <IbPracticeSets />
+        <IbPracticeSets level="sl" />
+
+        <div className="eyebrow mt-10 mb-3">Practice sets — AA HL</div>
+        <IbPracticeSets level="hl" />
 
         <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
         <Link

@@ -18,9 +18,11 @@ export const SAT_DOMAIN_LABELS: Record<string, string> = {
 
 // IB Mathematics components: course track × paper.
 export const IB_COMPONENT_LABELS: Record<string, string> = {
-  "aa-paper-1": "AA · Paper 1 (no calculator)",
-  "aa-paper-2": "AA · Paper 2 (calculator)",
+  "aa-paper-1": "AA SL · Paper 1 (no calculator)",
+  "aa-paper-2": "AA SL · Paper 2 (calculator)",
   "aa-paper-3": "AA · Paper 3 (HL)",
+  "aa-hl-paper-1": "AA HL · Paper 1 (no calculator)",
+  "aa-hl-paper-2": "AA HL · Paper 2 (calculator)",
   "ai-paper-1": "AI · Paper 1",
   "ai-paper-2": "AI · Paper 2",
   "ai-paper-3": "AI · Paper 3 (HL)",

@@ -14,6 +14,8 @@ import ibPractice2Paper1 from "@/data/ib/aa-sl/ib-practice-2/paper1.json";
 import ibPractice2Paper2 from "@/data/ib/aa-sl/ib-practice-2/paper2.json";
 import ibPractice3Paper1 from "@/data/ib/aa-sl/ib-practice-3/paper1.json";
 import ibPractice3Paper2 from "@/data/ib/aa-sl/ib-practice-3/paper2.json";
+import ibHlPractice1Paper1 from "@/data/ib/aa-hl/ib-hl-practice-1/paper1.json";
+import ibHlPractice1Paper2 from "@/data/ib/aa-hl/ib-hl-practice-1/paper2.json";
 
 export type IbTopic =
   | "number_algebra"
@@ -79,6 +81,8 @@ const PAPERS: IbPaper[] = [
   ibPractice2Paper2 as unknown as IbPaper,
   ibPractice3Paper1 as unknown as IbPaper,
   ibPractice3Paper2 as unknown as IbPaper,
+  ibHlPractice1Paper1 as unknown as IbPaper,
+  ibHlPractice1Paper2 as unknown as IbPaper,
 ];
 
 export function listIbPapers(): IbPaperMeta[] {
@@ -108,11 +112,16 @@ export function listIbPracticeSets(): IbPracticeSet[] {
     if (list) list.push(p.meta);
     else byTest.set(p.meta.testId, [p.meta]);
   }
-  return Array.from(byTest.entries()).map(([testId, papers], i) => {
+  // Sets are numbered WITHIN their course+level track (AA SL Set 1..N,
+  // AA HL Set 1..N), not across the whole registry.
+  const trackCount: Record<string, number> = {};
+  return Array.from(byTest.entries()).map(([testId, papers]) => {
     const first = papers[0];
+    const track = `${first.course}-${first.level}`;
+    trackCount[track] = (trackCount[track] ?? 0) + 1;
     return {
       testId,
-      label: `${first.course.toUpperCase()} ${first.level.toUpperCase()} Practice Set ${i + 1}`,
+      label: `${first.course.toUpperCase()} ${first.level.toUpperCase()} Practice Set ${trackCount[track]}`,
       course: first.course,
       level: first.level,
       papers: [...papers].sort((a, b) => a.paper - b.paper),
@@ -143,9 +152,11 @@ export const IB_TOPIC_LABELS: Record<IbTopic, string> = {
 
 // The performance pipeline's topic for the "ib" context is the component
 // key from IB_COMPONENT_LABELS in lib/hub-analytics.ts (tagging contract):
-// course × paper, e.g. "aa-paper-1".
+// course × paper for SL (e.g. "aa-paper-1"), with an explicit level
+// segment for HL ("aa-hl-paper-1") so SL and HL accuracy never blend.
 export function ibAnalyticsTopic(meta: IbPaperMeta): string {
-  return `${meta.course}-paper-${meta.paper}`;
+  const levelSeg = meta.level === "hl" ? "-hl" : "";
+  return `${meta.course}${levelSeg}-paper-${meta.paper}`;
 }
 
 // A part identifier stable across sessions (localStorage keys, attempt

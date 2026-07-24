@@ -201,8 +201,9 @@ export default function IbPaperRunnerPage() {
             {grade} <span style={{ fontSize: 16, color: "var(--fg-2)" }}>/ 7 · {Math.round(pct)}%</span>
           </div>
           <p className="text-[12px] mt-2" style={{ color: "var(--fg-2)" }}>
-            Estimated from typical AA SL boundaries on this single paper — real
-            IB grades combine both papers and boundaries move each session.
+            Estimated from typical AA {meta.level.toUpperCase()} boundaries on
+            this single paper — real IB grades combine both papers and
+            boundaries move each session.
           </p>
         </section>
 

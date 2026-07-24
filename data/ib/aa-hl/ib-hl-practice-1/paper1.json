@@ -1,0 +1,1043 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "hl",
+    "paper": 1,
+    "testId": "ib-hl-practice-1",
+    "label": "AA HL Practice Paper 1",
+    "timeMinutes": 120,
+    "totalMarks": 110,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AAHL-P1-T1-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "binomial_theorem",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down an expression for the general term in the expansion.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the binomial theorem to the two bracket terms"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\binom{6}{k}(x^2)^{6-k}\\left(-\\dfrac{2}{x}\\right)^{k} = \\binom{6}{k}(-2)^k x^{12-3k}$"
+            }
+          ],
+          "answer": "$\\binom{6}{k}(-2)^k x^{12-3k}$",
+          "solution": "$$T_k = \\binom{6}{k}(x^2)^{6-k}\\left(-\\frac{2}{x}\\right)^{k} = \\binom{6}{k}(-2)^k x^{12-3k}$$",
+          "verify": [
+            "Eq(binomial(6, 1)*(-2)**1, -12)",
+            "Eq(12 - 3*1, 9)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence find the term independent of $x$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set the index to zero: $12 - 3k = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k = 4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\binom{6}{4}(-2)^4 = 15 \\times 16 = 240$"
+            }
+          ],
+          "answer": "$240$",
+          "solution": "The term independent of $x$ needs $12 - 3k = 0$, so $k = 4$:$$\\binom{6}{4}(-2)^4 = 15 \\cdot 16 = 240.$$",
+          "verify": [
+            "Eq(solve(Eq(12 - 3*x, 0), x)[0], 4)",
+            "Eq(binomial(6, 4)*(-2)**4, 240)",
+            "Eq(expand((x**2 - 2/x)**6).coeff(x, 0), 240)"
+          ]
+        }
+      ],
+      "contextIntro": "Consider the expansion of $\\left(x^2 - \\dfrac{2}{x}\\right)^{6}$."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "stats_probability",
+      "skill_tag": "conditional_probability",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the probability that the counter taken is red.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the total probability over the two boxes"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}\\cdot\\tfrac{3}{5} + \\tfrac{1}{2}\\cdot\\tfrac{1}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(R) = \\dfrac{2}{5}$"
+            }
+          ],
+          "answer": "$\\dfrac{2}{5}$",
+          "solution": "$$P(R) = \\frac{1}{2}\\cdot\\frac{3}{5} + \\frac{1}{2}\\cdot\\frac{1}{5} = \\frac{3}{10} + \\frac{1}{10} = \\frac{2}{5}$$",
+          "verify": [
+            "Eq(Rational(1,2)*Rational(3,5) + Rational(1,2)*Rational(1,5), Rational(2,5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Given that the counter is red, find the probability that it came from box A.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $P(A \\mid R) = \\dfrac{P(A \\cap R)}{P(R)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{3/10}{2/5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\mid R) = \\dfrac{3}{4}$"
+            }
+          ],
+          "answer": "$\\dfrac{3}{4}$",
+          "solution": "$$P(A \\mid R) = \\frac{\\tfrac{1}{2}\\cdot\\tfrac{3}{5}}{\\tfrac{2}{5}} = \\frac{3/10}{2/5} = \\frac{3}{4}$$",
+          "verify": [
+            "Eq((Rational(1,2)*Rational(3,5))/Rational(2,5), Rational(3,4))"
+          ]
+        }
+      ],
+      "contextIntro": "Box A contains 3 red and 2 green counters; box B contains 1 red and 4 green counters. A fair coin is tossed: heads means a counter is taken at random from box A, tails from box B."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 9,
+      "topic": "functions",
+      "skill_tag": "polynomial_theorems",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of $a$ and the value of $b$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "factor theorem: $p(2) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$4a + 2b = -10$"
+            },
+            {
+              "mark": "M1",
+              "note": "remainder theorem: $p(-1) = -12$"
+            },
+            {
+              "mark": "A1",
+              "note": "$a - b = -4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$a = -3, \\; b = 1$"
+            }
+          ],
+          "answer": "$a = -3$, $b = 1$",
+          "solution": "$p(2) = 0$: $16 + 4a + 2b - 6 = 0 \\Rightarrow 2a + b = -5$.$$p(-1) = -2 + a - b - 6 = -12 \\Rightarrow a - b = -4$$Adding the equations: $3a = -9$, so $a = -3$ and $b = 1$.",
+          "verify": [
+            "Eq((2*x**3 - 3*x**2 + x - 6).subs(x, 2), 0)",
+            "Eq((2*x**3 - 3*x**2 + x - 6).subs(x, -1), -12)",
+            "Eq(2*(-3) + 1, -5)",
+            "Eq(-3 - 1, -4)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Express $p(x)$ as a product of $(x - 2)$ and a quadratic factor.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "divide (or compare coefficients)"
+            },
+            {
+              "mark": "A1",
+              "note": "$p(x) = (x - 2)(2x^2 + x + 3)$"
+            }
+          ],
+          "answer": "$p(x) = (x - 2)(2x^2 + x + 3)$",
+          "solution": "Dividing $2x^3 - 3x^2 + x - 6$ by $(x - 2)$:$$p(x) = (x - 2)(2x^2 + x + 3).$$",
+          "verify": [
+            "Eq(expand((x - 2)*(2*x**2 + x + 3)), 2*x**3 - 3*x**2 + x - 6)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Hence show that the equation $p(x) = 0$ has exactly one real root.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "discriminant of the quadratic factor: $1 - 24 = -23 < 0$"
+            },
+            {
+              "mark": "AG",
+              "note": "only $x = 2$ is real"
+            }
+          ],
+          "answer": "only real root: $x = 2$",
+          "solution": "The quadratic factor has discriminant $$\\Delta = 1^2 - 4(2)(3) = -23 < 0,$$ so it has no real zeros, and the only real root of $p(x) = 0$ is $x = 2$.",
+          "verify": [
+            "Eq(1 - 4*2*3, -23)",
+            "-23 < 0"
+          ]
+        }
+      ],
+      "contextIntro": "The polynomial $p(x) = 2x^3 + ax^2 + bx - 6$ has $(x - 2)$ as a factor. When $p(x)$ is divided by $(x + 1)$ the remainder is $-12$."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "number_algebra",
+      "skill_tag": "complex_numbers",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $|z|$ and $\\arg z$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$|z| = \\sqrt{1 + 3} = 2$"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\tan(\\arg z) = \\sqrt{3}$ with $z$ in the first quadrant"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\arg z = \\dfrac{\\pi}{3}$"
+            }
+          ],
+          "answer": "$|z| = 2$, $\\arg z = \\dfrac{\\pi}{3}$",
+          "solution": "$$|z| = \\sqrt{1^2 + (\\sqrt{3})^2} = 2, \\qquad \\arg z = \\arctan\\sqrt{3} = \\frac{\\pi}{3}.$$",
+          "verify": [
+            "Eq(Abs(1 + sqrt(3)*I), 2)",
+            "Eq(arg(1 + sqrt(3)*I), pi/3)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Use de Moivre's theorem to find the value of $z^6$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$z^6 = 2^6\\big(\\cos 2\\pi + i\\sin 2\\pi\\big)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos 2\\pi = 1$, $\\sin 2\\pi = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$z^6 = 64$"
+            }
+          ],
+          "answer": "$z^6 = 64$",
+          "solution": "$z = 2\\operatorname{cis}\\dfrac{\\pi}{3}$, so by de Moivre$$z^6 = 2^6\\operatorname{cis}(2\\pi) = 64(1 + 0i) = 64.$$",
+          "verify": [
+            "Eq(simplify((1 + sqrt(3)*I)**6), 64)",
+            "Eq(2**6, 64)",
+            "Eq(6*pi/3, 2*pi)"
+          ]
+        }
+      ],
+      "contextIntro": "Let $z = 1 + \\sqrt{3}\\,i$."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "geometry_trig",
+      "skill_tag": "compound_angles",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Using the identity for $\\tan(A + B)$, show that $\\tan 75^{\\circ} = 2 + \\sqrt{3}$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write $75^{\\circ} = 45^{\\circ} + 30^{\\circ}$ and apply $\\tan(A+B) = \\dfrac{\\tan A + \\tan B}{1 - \\tan A\\tan B}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{1 + \\tfrac{1}{\\sqrt{3}}}{1 - \\tfrac{1}{\\sqrt{3}}} = \\dfrac{\\sqrt{3} + 1}{\\sqrt{3} - 1}$"
+            },
+            {
+              "mark": "M1",
+              "note": "rationalise the denominator"
+            },
+            {
+              "mark": "AG",
+              "note": "$\\dfrac{(\\sqrt{3}+1)^2}{2} = \\dfrac{4 + 2\\sqrt{3}}{2} = 2 + \\sqrt{3}$"
+            }
+          ],
+          "answer": "$\\tan 75^{\\circ} = 2 + \\sqrt{3}$",
+          "solution": "$$\\tan 75^{\\circ} = \\frac{\\tan 45^{\\circ} + \\tan 30^{\\circ}}{1 - \\tan 45^{\\circ}\\tan 30^{\\circ}} = \\frac{1 + \\tfrac{1}{\\sqrt3}}{1 - \\tfrac{1}{\\sqrt3}} = \\frac{\\sqrt3 + 1}{\\sqrt3 - 1}$$Multiplying top and bottom by $(\\sqrt3 + 1)$:$$\\frac{(\\sqrt3 + 1)^2}{3 - 1} = \\frac{4 + 2\\sqrt3}{2} = 2 + \\sqrt{3}.$$",
+          "verify": [
+            "Eq(simplify((1 + 1/sqrt(3))/(1 - 1/sqrt(3)) - (2 + sqrt(3))), 0)",
+            "Eq(simplify(tan(5*pi/12) - (2 + sqrt(3))), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence find the exact value of $\\tan 15^{\\circ}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\tan 15^{\\circ} = \\dfrac{1}{\\tan 75^{\\circ}}$ (complementary angles)"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{1}{2 + \\sqrt{3}} = 2 - \\sqrt{3}$"
+            }
+          ],
+          "answer": "$\\tan 15^{\\circ} = 2 - \\sqrt{3}$",
+          "solution": "Since $15^{\\circ}$ and $75^{\\circ}$ are complementary, $\\tan 15^{\\circ} = \\cot 75^{\\circ}$:$$\\tan 15^{\\circ} = \\frac{1}{2 + \\sqrt3} = \\frac{2 - \\sqrt3}{(2+\\sqrt3)(2-\\sqrt3)} = 2 - \\sqrt{3}.$$",
+          "verify": [
+            "Eq(simplify(tan(pi/12) - (2 - sqrt(3))), 0)",
+            "Eq(simplify(1/(2 + sqrt(3)) - (2 - sqrt(3))), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Write down the exact value of $\\tan 75^{\\circ} \\times \\tan 15^{\\circ}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$(2 + \\sqrt{3})(2 - \\sqrt{3}) = 4 - 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$1$"
+            }
+          ],
+          "answer": "$1$",
+          "solution": "$$(2 + \\sqrt3)(2 - \\sqrt3) = 4 - 3 = 1,$$ as expected for the tangents of complementary angles.",
+          "verify": [
+            "Eq(expand((2 + sqrt(3))*(2 - sqrt(3))), 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "implicit_differentiation",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $\\dfrac{dy}{dx} = -\\dfrac{2x + y}{x + 2y}$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate both sides with respect to $x$"
+            },
+            {
+              "mark": "A1",
+              "note": "product rule on $xy$: $y + x\\dfrac{dy}{dx}$"
+            },
+            {
+              "mark": "M1",
+              "note": "collect the $\\dfrac{dy}{dx}$ terms"
+            },
+            {
+              "mark": "AG",
+              "note": "$\\dfrac{dy}{dx}(x + 2y) = -(2x + y)$"
+            }
+          ],
+          "answer": "$\\dfrac{dy}{dx} = -\\dfrac{2x + y}{x + 2y}$",
+          "solution": "Differentiating term by term:$$2x + \\Big(y + x\\frac{dy}{dx}\\Big) + 2y\\frac{dy}{dx} = 0$$$$\\frac{dy}{dx}(x + 2y) = -(2x + y) \\Rightarrow \\frac{dy}{dx} = -\\frac{2x + y}{x + 2y}.$$",
+          "verify": [
+            "Eq(simplify(diff(7 - x**2 - x*y - y**2, x) - (-2*x - y)), 0)",
+            "Eq((-(2*x + y)/(x + 2*y)).subs({x: 1, y: 2}), Rational(-4, 5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the equation of the tangent to the curve at $P$, giving your answer in the form $y = mx + c$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "gradient at $P$ is $-\\dfrac{4}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -\\dfrac{4}{5}x + \\dfrac{14}{5}$"
+            }
+          ],
+          "answer": "$y = -\\dfrac{4}{5}x + \\dfrac{14}{5}$",
+          "solution": "At $P(1,2)$ the gradient is $-\\dfrac{2 + 2}{1 + 4} = -\\dfrac{4}{5}$, so$$y - 2 = -\\frac{4}{5}(x - 1) \\Rightarrow y = -\\frac{4}{5}x + \\frac{14}{5}.$$",
+          "verify": [
+            "Eq(Rational(-4, 5)*1 + Rational(14, 5), 2)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the coordinates of the point where this tangent crosses the $x$-axis.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $y = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{7}{2}$, i.e. $\\left(\\dfrac{7}{2}, 0\\right)$"
+            }
+          ],
+          "answer": "$\\left(\\dfrac{7}{2}, 0\\right)$",
+          "solution": "$$0 = -\\frac{4}{5}x + \\frac{14}{5} \\Rightarrow 4x = 14 \\Rightarrow x = \\frac{7}{2}.$$",
+          "verify": [
+            "Eq(solve(Eq(Rational(-4,5)*x + Rational(14,5), 0), x)[0], Rational(7, 2))"
+          ]
+        }
+      ],
+      "contextIntro": "A curve is defined implicitly by $x^2 + xy + y^2 = 7$. The point $P(1, 2)$ lies on the curve."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q7",
+      "number": 7,
+      "section": "A",
+      "maximumMark": 9,
+      "topic": "stats_probability",
+      "skill_tag": "discrete_random_variables",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $k = \\dfrac{1}{10}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "probabilities sum to 1: $k(1 + 2 + 3 + 4) = 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$10k = 1 \\Rightarrow k = \\tfrac{1}{10}$"
+            }
+          ],
+          "answer": "$k = \\dfrac{1}{10}$",
+          "solution": "$$\\sum P(X = x) = k(1 + 2 + 3 + 4) = 10k = 1 \\Rightarrow k = \\frac{1}{10}.$$",
+          "verify": [
+            "Eq(Rational(1,10)*(1 + 2 + 3 + 4), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $E(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X) = \\sum x\\,P(X = x)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{10}(1 + 4 + 9 + 16)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 3$"
+            }
+          ],
+          "answer": "$E(X) = 3$",
+          "solution": "$$E(X) = \\frac{1}{10}(1^2 + 2^2 + 3^2 + 4^2) = \\frac{30}{10} = 3.$$",
+          "verify": [
+            "Eq(Rational(1,10)*(1 + 4 + 9 + 16), 3)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\operatorname{Var}(X)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X^2) = \\tfrac{1}{10}(1 + 8 + 27 + 64) = 10$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\operatorname{Var}(X) = 10 - 3^2 = 1$"
+            }
+          ],
+          "answer": "$\\operatorname{Var}(X) = 1$",
+          "solution": "$$E(X^2) = \\frac{1}{10}(1 + 8 + 27 + 64) = 10, \\qquad \\operatorname{Var}(X) = 10 - 9 = 1.$$",
+          "verify": [
+            "Eq(Rational(1,10)*(1 + 8 + 27 + 64), 10)",
+            "Eq(10 - 3**2, 1)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $P(X \\ge 3 \\mid X \\ge 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\dfrac{P(X \\ge 3)}{P(X \\ge 2)} = \\dfrac{7/10}{9/10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{7}{9}$"
+            }
+          ],
+          "answer": "$\\dfrac{7}{9}$",
+          "solution": "$$P(X \\ge 3) = \\frac{7}{10}, \\quad P(X \\ge 2) = \\frac{9}{10} \\Rightarrow P(X \\ge 3 \\mid X \\ge 2) = \\frac{7}{9}.$$",
+          "verify": [
+            "Eq(Rational(7,10)/Rational(9,10), Rational(7,9))"
+          ]
+        }
+      ],
+      "contextIntro": "A discrete random variable $X$ has probability function $P(X = x) = kx$ for $x = 1, 2, 3, 4$, where $k$ is a constant."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 21,
+      "topic": "geometry_trig",
+      "skill_tag": "vectors_planes",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the vectors $\\vec{AB}$ and $\\vec{AC}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$\\vec{AB} = \\begin{pmatrix}1\\\\0\\\\-2\\end{pmatrix}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\vec{AC} = \\begin{pmatrix}0\\\\1\\\\2\\end{pmatrix}$"
+            }
+          ],
+          "answer": "$\\vec{AB} = (1, 0, -2)$, $\\vec{AC} = (0, 1, 2)$",
+          "solution": "$$\\vec{AB} = B - A = (1, 0, -2), \\qquad \\vec{AC} = C - A = (0, 1, 2).$$",
+          "verify": [
+            "Eq(2 - 1, 1)",
+            "Eq(-1 - 1, -2)",
+            "Eq(3 - 1, 2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that $\\vec{AB} \\times \\vec{AC} = \\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the vector-product determinant"
+            },
+            {
+              "mark": "A1",
+              "note": "components $(0\\cdot 2 - (-2)\\cdot 1,\\; (-2)\\cdot 0 - 1\\cdot 2,\\; 1\\cdot 1 - 0\\cdot 0)$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= (2, -2, 1)$"
+            }
+          ],
+          "answer": "$(2, -2, 1)$",
+          "solution": "$$\\vec{AB} \\times \\vec{AC} = \\begin{vmatrix}\\mathbf{i} & \\mathbf{j} & \\mathbf{k}\\\\ 1 & 0 & -2\\\\ 0 & 1 & 2\\end{vmatrix} = (0 + 2,\\; -(2 - 0),\\; 1 - 0) = (2, -2, 1).$$",
+          "verify": [
+            "Eq(0*2 - (-2)*1, 2)",
+            "Eq(-(1*2 - (-2)*0), -2)",
+            "Eq(1*1 - 0*0, 1)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Hence find the area of triangle $ABC$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac{1}{2}\\left|\\vec{AB} \\times \\vec{AC}\\right|$ with $|(2,-2,1)| = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= \\dfrac{3}{2}$"
+            }
+          ],
+          "answer": "$\\dfrac{3}{2}$",
+          "solution": "$$\\left|\\vec{AB}\\times\\vec{AC}\\right| = \\sqrt{4 + 4 + 1} = 3 \\Rightarrow \\text{area} = \\frac{3}{2}.$$",
+          "verify": [
+            "Eq(sqrt(4 + 4 + 1), 3)",
+            "Eq(Rational(1,2)*3, Rational(3,2))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find a Cartesian equation of the plane $\\Pi$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\mathbf{r}\\cdot\\mathbf{n} = \\mathbf{a}\\cdot\\mathbf{n}$ with $\\mathbf{n} = (2, -2, 1)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{a}\\cdot\\mathbf{n} = 2 - 2 + 1 = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2x - 2y + z = 1$"
+            }
+          ],
+          "answer": "$2x - 2y + z = 1$",
+          "solution": "With normal $(2, -2, 1)$ and point $A(1,1,1)$:$$2x - 2y + z = 2(1) - 2(1) + 1 = 1.$$",
+          "verify": [
+            "Eq(2*1 - 2*1 + 1, 1)",
+            "Eq(2*2 - 2*1 + (-1), 1)",
+            "Eq(2*1 - 2*2 + 3, 1)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Write down a vector equation of the line $L$ through $D$ perpendicular to $\\Pi$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "direction is the normal $(2, -2, 1)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{r} = \\begin{pmatrix}4\\\\0\\\\2\\end{pmatrix} + t\\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}$"
+            }
+          ],
+          "answer": "$\\mathbf{r} = (4, 0, 2) + t(2, -2, 1)$",
+          "solution": "A line perpendicular to a plane is parallel to the plane's normal:$$\\mathbf{r} = \\begin{pmatrix}4\\\\0\\\\2\\end{pmatrix} + t\\begin{pmatrix}2\\\\-2\\\\1\\end{pmatrix}.$$",
+          "verify": [
+            "Eq(2*4 - 2*0 + 2, 10)"
+          ]
+        },
+        {
+          "label": "f",
+          "body": "Find the coordinates of $F$, the foot of the perpendicular from $D$ to $\\Pi$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $(4 + 2t,\\; -2t,\\; 2 + t)$ into the plane"
+            },
+            {
+              "mark": "A1",
+              "note": "$10 + 9t = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$F(2, 2, 1)$"
+            }
+          ],
+          "answer": "$F(2, 2, 1)$",
+          "solution": "$$2(4 + 2t) - 2(-2t) + (2 + t) = 1 \\Rightarrow 10 + 9t = 1 \\Rightarrow t = -1$$$$F = (4 - 2,\\; 0 + 2,\\; 2 - 1) = (2, 2, 1).$$",
+          "verify": [
+            "Eq(solve(Eq(10 + 9*x, 1), x)[0], -1)",
+            "Eq(2*2 - 2*2 + 1, 1)"
+          ]
+        },
+        {
+          "label": "g",
+          "body": "Hence find the exact distance from $D$ to the plane $\\Pi$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "distance $= |\\vec{DF}|$ with $\\vec{DF} = (-2, 2, -1)$"
+            },
+            {
+              "mark": "A1",
+              "note": "distance $= 3$"
+            }
+          ],
+          "answer": "$3$",
+          "solution": "$$\\vec{DF} = F - D = (-2, 2, -1), \\qquad |\\vec{DF}| = \\sqrt{4 + 4 + 1} = 3.$$",
+          "verify": [
+            "Eq(sqrt((-2)**2 + 2**2 + (-1)**2), 3)"
+          ]
+        },
+        {
+          "label": "h",
+          "body": "Find the exact value of $\\sin\\theta$, where $\\theta$ is the acute angle between the line $(BD)$ and the plane $\\Pi$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\sin\\theta = \\dfrac{|\\vec{BD}\\cdot\\mathbf{n}|}{|\\vec{BD}||\\mathbf{n}|}$ with $\\vec{BD} = (2,-1,3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\vec{BD}\\cdot\\mathbf{n} = 9$, $|\\vec{BD}| = \\sqrt{14}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin\\theta = \\dfrac{9}{3\\sqrt{14}} = \\dfrac{3\\sqrt{14}}{14}$"
+            }
+          ],
+          "answer": "$\\sin\\theta = \\dfrac{3\\sqrt{14}}{14}$",
+          "solution": "$$\\vec{BD} = D - B = (2, -1, 3), \\qquad \\vec{BD}\\cdot\\mathbf{n} = 4 + 2 + 3 = 9$$$$\\sin\\theta = \\frac{9}{\\sqrt{14}\\cdot 3} = \\frac{3}{\\sqrt{14}} = \\frac{3\\sqrt{14}}{14}.$$",
+          "verify": [
+            "Eq(2*2 + (-1)*(-2) + 3*1, 9)",
+            "Eq(sqrt(2**2 + 1 + 3**2), sqrt(14))",
+            "Eq(simplify(9/(3*sqrt(14)) - 3*sqrt(14)/14), 0)"
+          ]
+        }
+      ],
+      "contextIntro": "The points $A(1, 1, 1)$, $B(2, 1, -1)$, $C(1, 2, 3)$ and $D(4, 0, 2)$ are given. The plane $\\Pi$ contains the points $A$, $B$ and $C$."
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 20,
+      "topic": "calculus",
+      "skill_tag": "integration_by_parts",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $f'(x) = (1 - x)e^{-x}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "product rule: $e^{-x} + x(-e^{-x})$"
+            },
+            {
+              "mark": "AG",
+              "note": "$f'(x) = (1 - x)e^{-x}$"
+            }
+          ],
+          "answer": "$f'(x) = (1 - x)e^{-x}$",
+          "solution": "$$f'(x) = 1\\cdot e^{-x} + x(-e^{-x}) = (1 - x)e^{-x}.$$",
+          "verify": [
+            "Eq(simplify(diff(x*exp(-x), x) - (1 - x)*exp(-x)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence find the coordinates of the maximum point of the graph of $f$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$f'(x) = 0$ with $e^{-x} \\ne 0$ gives $x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "maximum at $\\left(1, \\dfrac{1}{e}\\right)$"
+            }
+          ],
+          "answer": "$\\left(1, \\dfrac{1}{e}\\right)$",
+          "solution": "$e^{-x} > 0$ for all $x$, so $f'(x) = 0$ only at $x = 1$; $f'$ changes from positive to negative there, and$$f(1) = e^{-1} = \\frac{1}{e}.$$",
+          "verify": [
+            "Eq((x*exp(-x)).subs(x, 1), exp(-1))",
+            "Eq(((1 - x)*exp(-x)).subs(x, 1), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Show that $f''(x) = (x - 2)e^{-x}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate $f'(x) = (1 - x)e^{-x}$ by the product rule"
+            },
+            {
+              "mark": "A1",
+              "note": "$-e^{-x} - (1 - x)e^{-x}$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= (x - 2)e^{-x}$"
+            }
+          ],
+          "answer": "$f''(x) = (x - 2)e^{-x}$",
+          "solution": "$$f''(x) = -e^{-x} + (1 - x)(-e^{-x}) = e^{-x}(-1 - 1 + x) = (x - 2)e^{-x}.$$",
+          "verify": [
+            "Eq(simplify(diff(x*exp(-x), x, 2) - (x - 2)*exp(-x)), 0)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the coordinates of the point of inflexion of the graph of $f$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$f''(x) = 0$ gives $x = 2$ (sign change)"
+            },
+            {
+              "mark": "A1",
+              "note": "inflexion at $\\left(2, \\dfrac{2}{e^2}\\right)$"
+            }
+          ],
+          "answer": "$\\left(2, \\dfrac{2}{e^2}\\right)$",
+          "solution": "$f''$ changes sign at $x = 2$, and $f(2) = 2e^{-2}$, so the point of inflexion is $\\left(2, \\dfrac{2}{e^2}\\right)$.",
+          "verify": [
+            "Eq((x*exp(-x)).subs(x, 2), 2*exp(-2))",
+            "Eq(((x - 2)*exp(-x)).subs(x, 2), 0)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Using integration by parts, find $\\displaystyle\\int x e^{-x}\\,dx$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "parts with $u = x$, $dv = e^{-x}dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "$-x e^{-x} + \\displaystyle\\int e^{-x}\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "$-x e^{-x} - e^{-x}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$-(x + 1)e^{-x} + C$"
+            }
+          ],
+          "answer": "$-(x + 1)e^{-x} + C$",
+          "solution": "Take $u = x$ and $dv = e^{-x}dx$, so $du = dx$ and $v = -e^{-x}$:$$\\int x e^{-x}dx = -x e^{-x} + \\int e^{-x}dx = -x e^{-x} - e^{-x} + C = -(x + 1)e^{-x} + C.$$",
+          "verify": [
+            "Eq(simplify(diff(-(x + 1)*exp(-x), x) - x*exp(-x)), 0)"
+          ]
+        },
+        {
+          "label": "f",
+          "body": "Hence show that the area of $R$ is $1 - \\dfrac{2}{e}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\Big[-(x + 1)e^{-x}\\Big]_0^1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$-2e^{-1} - (-1)$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= 1 - \\dfrac{2}{e}$"
+            }
+          ],
+          "answer": "area $= 1 - \\dfrac{2}{e}$",
+          "solution": "$$\\int_0^1 x e^{-x}dx = \\Big[-(x + 1)e^{-x}\\Big]_0^1 = -2e^{-1} + 1 = 1 - \\frac{2}{e}.$$",
+          "verify": [
+            "Eq(simplify(integrate(x*exp(-x), (x, 0, 1)) - (1 - 2*exp(-1))), 0)"
+          ]
+        },
+        {
+          "label": "g",
+          "body": "Write down the first three non-zero terms of the Maclaurin series for $e^{-x}$, and hence find the first three non-zero terms of the Maclaurin series for $f(x)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$e^{-x} = 1 - x + \\dfrac{x^2}{2} - \\cdots$"
+            },
+            {
+              "mark": "M1",
+              "note": "multiply the series by $x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(x) = x - x^2 + \\dfrac{x^3}{2} - \\cdots$"
+            }
+          ],
+          "answer": "$x - x^2 + \\dfrac{x^3}{2}$",
+          "solution": "$$e^{-x} = 1 - x + \\frac{x^2}{2} - \\cdots \\Rightarrow x e^{-x} = x - x^2 + \\frac{x^3}{2} - \\cdots$$",
+          "verify": [
+            "Eq(expand(series(x*exp(-x), x, 0, 4).removeO() - (x - x**2 + x**3/2)), 0)"
+          ]
+        }
+      ],
+      "contextIntro": "Let $f(x) = x e^{-x}$ for $x \\ge 0$. The diagram shows the graph of $y = f(x)$; the shaded region $R$ is bounded by the curve, the $x$-axis and the line $x = 1$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p1-t1-q9.png",
+        "width": 764,
+        "height": 504,
+        "alt_en": "Curve y = x e^(-x) for x from 0 to about 4, rising to a maximum then decaying; the region under the curve between x = 0 and x = 1 is shaded."
+      }
+    },
+    {
+      "source": "IB-AAHL-P1-T1-Q10",
+      "number": 10,
+      "section": "B",
+      "maximumMark": 18,
+      "topic": "number_algebra",
+      "skill_tag": "proof",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Prove by mathematical induction that $\\displaystyle\\sum_{r=1}^{n} r \\cdot r! = (n + 1)! - 1$ for all $n \\in \\mathbb{Z}^{+}$.",
+          "marks": 8,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "base case $n = 1$: LHS $= 1\\cdot 1! = 1$, RHS $= 2! - 1 = 1$ — true"
+            },
+            {
+              "mark": "M1",
+              "note": "assume true for $n = k$: $\\sum_{r=1}^{k} r\\cdot r! = (k + 1)! - 1$"
+            },
+            {
+              "mark": "M1",
+              "note": "consider $n = k + 1$: add the next term $(k + 1)(k + 1)!$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sum_{r=1}^{k+1} r\\cdot r! = (k + 1)! - 1 + (k + 1)(k + 1)!$"
+            },
+            {
+              "mark": "M1",
+              "note": "factor out $(k + 1)!$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= (k + 1)!\\,(1 + k + 1) - 1 = (k + 2)! - 1$"
+            },
+            {
+              "mark": "R1",
+              "note": "this is the statement for $n = k + 1$"
+            },
+            {
+              "mark": "R1",
+              "note": "true for $n = 1$ and $k \\Rightarrow k + 1$, so true for all $n \\in \\mathbb{Z}^{+}$ by induction"
+            }
+          ],
+          "answer": "proof by induction (see solution)",
+          "solution": "**Base case** $n = 1$: LHS $= 1 \\cdot 1! = 1$ and RHS $= 2! - 1 = 1$, so the statement holds.**Inductive step**: assume $\\sum_{r=1}^{k} r\\cdot r! = (k+1)! - 1$. Then$$\\sum_{r=1}^{k+1} r\\cdot r! = (k+1)! - 1 + (k+1)(k+1)! = (k+1)!\\big(1 + (k+1)\\big) - 1$$$$= (k+1)!\\,(k+2) - 1 = (k+2)! - 1,$$which is the statement for $n = k + 1$. Since the statement is true for $n = 1$ and truth for $k$ implies truth for $k+1$, it holds for all positive integers $n$ by mathematical induction.",
+          "verify": [
+            "Eq(1*factorial(1), factorial(2) - 1)",
+            "Eq(1*factorial(1) + 2*factorial(2) + 3*factorial(3) + 4*factorial(4) + 5*factorial(5), factorial(6) - 1)",
+            "Eq(expand((k + 1)*(1 + (k + 1))), expand((k + 1)*(k + 2)))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence find the exact value of $\\displaystyle\\sum_{r=1}^{9} r \\cdot r!$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the formula with $n = 9$: $10! - 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3628799$"
+            }
+          ],
+          "answer": "$3\\,628\\,799$",
+          "solution": "$$\\sum_{r=1}^{9} r\\cdot r! = 10! - 1 = 3628800 - 1 = 3628799.$$",
+          "verify": [
+            "Eq(factorial(10) - 1, 3628799)",
+            "Eq(1*factorial(1) + 2*factorial(2) + 3*factorial(3) + 4*factorial(4) + 5*factorial(5) + 6*factorial(6) + 7*factorial(7) + 8*factorial(8) + 9*factorial(9), 3628799)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Prove by contradiction that $\\sqrt{2}$ is irrational.",
+          "marks": 8,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "assume $\\sqrt{2} = \\dfrac{p}{q}$ with $p, q \\in \\mathbb{Z}$, $q \\ne 0$, and the fraction in lowest terms"
+            },
+            {
+              "mark": "M1",
+              "note": "square: $2q^2 = p^2$"
+            },
+            {
+              "mark": "R1",
+              "note": "$p^2$ is even, hence $p$ is even"
+            },
+            {
+              "mark": "M1",
+              "note": "write $p = 2m$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2q^2 = 4m^2 \\Rightarrow q^2 = 2m^2$"
+            },
+            {
+              "mark": "R1",
+              "note": "so $q^2$ is even, hence $q$ is even"
+            },
+            {
+              "mark": "R1",
+              "note": "both $p$ and $q$ even contradicts lowest terms"
+            },
+            {
+              "mark": "R1",
+              "note": "therefore $\\sqrt{2}$ is irrational"
+            }
+          ],
+          "answer": "proof by contradiction (see solution)",
+          "solution": "Assume, for contradiction, that $\\sqrt{2}$ is rational: $\\sqrt{2} = \\dfrac{p}{q}$ in lowest terms. Squaring, $2q^2 = p^2$, so $p^2$ is even. An odd number squared is odd, so $p$ must be even: $p = 2m$. Then $2q^2 = 4m^2$, so $q^2 = 2m^2$ is even, hence $q$ is even. But then $p$ and $q$ share the factor 2, contradicting lowest terms. The assumption is false, so $\\sqrt{2}$ is irrational.",
+          "verify": [
+            "Eq((2*3)**2, 4*3**2)",
+            "Eq(2*2**2, 8)",
+            "Eq(sqrt(2)**2, 2)"
+          ]
+        }
+      ]
+    }
+  ]
+}

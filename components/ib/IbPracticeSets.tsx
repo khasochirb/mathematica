@@ -31,14 +31,14 @@ function localPhase(testId: string, paper: number): string | null {
   }
 }
 
-export default function IbPracticeSets() {
+export default function IbPracticeSets({ level }: { level?: "sl" | "hl" }) {
   const perf = usePerformance();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   useEffect(() => setMounted(true), []);
 
-  const sets = listIbPracticeSets();
+  const sets = listIbPracticeSets().filter((s) => !level || s.level === level);
   const runs = useMemo(() => deriveTestRuns(perf.attempts, "ib"), [perf.attempts]);
 
   const paperState = (meta: IbPaperMeta): { status: PaperStatus; latest: TestRun | null } => {

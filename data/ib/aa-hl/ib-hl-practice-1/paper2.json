@@ -1,0 +1,1093 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "hl",
+    "paper": 2,
+    "testId": "ib-hl-practice-1",
+    "label": "AA HL Practice Paper 2",
+    "timeMinutes": 120,
+    "totalMarks": 110,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AAHL-P2-T1-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "geometry_trig",
+      "skill_tag": "non_right_trig",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of $BC$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule: $BC^2 = 11^2 + 8^2 - 2(11)(8)\\cos 37^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC^2 = 44.4402$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC = 6.67$ cm $(6.66634\\ldots)$"
+            }
+          ],
+          "answer": "$BC = 6.67$ cm",
+          "solution": "$$BC^2 = 11^2 + 8^2 - 2(11)(8)\\cos 37^{\\circ} = 44.4402$$$$BC = 6.66634 \\approx 6.67 \\text{ cm}.$$",
+          "verify": [
+            "Abs(sqrt(11**2 + 8**2 - 176*cos(rad(37))) - 6.67) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $ABC$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac{1}{2}(11)(8)\\sin 37^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 26.5$ cm$^2$ $(26.4799\\ldots)$"
+            }
+          ],
+          "answer": "$26.5$ cm$^2$",
+          "solution": "$$\\text{Area} = \\tfrac{1}{2}(11)(8)\\sin 37^{\\circ} = 26.4799 \\approx 26.5 \\text{ cm}^2.$$",
+          "verify": [
+            "Abs(Rational(1,2)*88*sin(rad(37)) - 26.5) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the shortest distance from $C$ to the line $(AB)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac{1}{2} \\times AB \\times h$, so $h = \\dfrac{2 \\times \\text{area}}{8}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$h = 6.62$ cm"
+            }
+          ],
+          "answer": "$6.62$ cm",
+          "solution": "The shortest distance is the height from $C$ onto $AB$:$$h = \\frac{2 \\times 26.4799}{8} = 6.61997 \\approx 6.62 \\text{ cm}.$$",
+          "verify": [
+            "Abs(11*sin(rad(37)) - 6.62) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 8$ cm, $AC = 11$ cm and $B\\hat{A}C = 37^{\\circ}$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t1-q1.png",
+        "width": 607,
+        "height": 502,
+        "alt_en": "Triangle ABC with AB = 8 cm along the base, AC = 11 cm, and the 37 degree angle at A marked with an arc."
+      }
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(X > 75)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise or use the GDC normal cdf"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X > 75) = 0.0808$ $(0.0807567\\ldots)$"
+            }
+          ],
+          "answer": "$0.0808$",
+          "solution": "$$P(X > 75) = P\\Big(Z > \\frac{75 - 68}{5}\\Big) = P(Z > 1.4) = 0.0807567 \\approx 0.0808.$$",
+          "verify": [
+            "Abs((1 - (1 + erf(Rational(7,5)/sqrt(2)))/2) - 0.0808) < 5.1000000000000006e-05"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(60 < X < 75)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "GDC normal cdf between 60 and 75"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(60 < X < 75) = 0.864$ $(0.864444\\ldots)$"
+            }
+          ],
+          "answer": "$0.864$",
+          "solution": "$$P(60 < X < 75) = \\Phi(1.4) - \\Phi(-1.6) = 0.864444 \\approx 0.864.$$",
+          "verify": [
+            "Abs(((1 + erf(Rational(7,5)/sqrt(2)))/2 - (1 + erf(Rational(-8,5)/sqrt(2)))/2) - 0.864) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "The top 20% of scores receive a distinction. Find the minimum score needed for a distinction.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X > k) = 0.2$, use the inverse normal"
+            },
+            {
+              "mark": "A1",
+              "note": "$z = 0.8416\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$k = 72.2$ $(72.2081\\ldots)$"
+            }
+          ],
+          "answer": "$k = 72.2$",
+          "solution": "$P(X > k) = 0.2$ means $\\Phi\\big(\\tfrac{k - 68}{5}\\big) = 0.8$, so $\\tfrac{k - 68}{5} = 0.841621\\ldots$ and$$k = 68 + 5(0.841621\\ldots) = 72.2081 \\approx 72.2.$$",
+          "verify": [
+            "Abs((68 + 5*sqrt(2)*erfinv(Rational(3,5))) - 72.2) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "The scores $X$ in an examination are normally distributed: $X \\sim N(68, 5^2)$."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "number_algebra",
+      "skill_tag": "compound_interest",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of the investment after 6 years, giving your answer to two decimal places.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $V = 5000\\left(1 + \\tfrac{0.048}{4}\\right)^{4n}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$V = 5000(1.012)^{24}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$V = \\$6657.36$"
+            }
+          ],
+          "answer": "$\\$6657.36$",
+          "solution": "Quarterly rate $= 0.048/4 = 0.012$, with $24$ quarters in 6 years:$$V = 5000(1.012)^{24} = 6657.36.$$",
+          "verify": [
+            "Abs(5000*(Rational(1012,1000))**24 - 6657.36) < 0.005"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the least number of complete years needed for the investment to exceed \\$8000.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $5000(1.012)^{4n} > 8000$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(1.012)^{4n} > 1.6$, so $4n > 39.4$ quarters"
+            },
+            {
+              "mark": "M1",
+              "note": "check whole years: after 9 years \\$7681.90, after 10 years \\$8057.32"
+            },
+            {
+              "mark": "A1",
+              "note": "least $n = 10$ years"
+            }
+          ],
+          "answer": "$10$ years",
+          "solution": "$$5000(1.012)^{4n} > 8000 \\Rightarrow (1.012)^{4n} > 1.6 \\Rightarrow 4n > \\frac{\\ln 1.6}{\\ln 1.012} = 39.40\\ldots$$After 9 years the value is \\$7681.90 $< 8000$; after 10 years it is \\$8057.32 $> 8000$. The least number of complete years is $10$.",
+          "verify": [
+            "5000*(Rational(1012,1000))**36 < 8000",
+            "5000*(Rational(1012,1000))**40 > 8000",
+            "Abs(log(Rational(8,5))/log(Rational(1012,1000)) - 39.4) < 0.05"
+          ]
+        }
+      ],
+      "contextIntro": "Tuya invests \\$5000 in an account paying a nominal annual interest rate of 4.8%, compounded quarterly."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "functions",
+      "skill_tag": "exponential_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the initial temperature of the coffee.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$T(0) = 85\\,^{\\circ}$C"
+            }
+          ],
+          "answer": "$85\\,^{\\circ}$C",
+          "solution": "$$T(0) = 22 + 63 = 85\\,^{\\circ}\\text{C}.$$",
+          "verify": [
+            "Eq(22 + 63, 85)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the temperature after 10 minutes.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $t = 10$"
+            },
+            {
+              "mark": "A1",
+              "note": "$T(10) = 47.6\\,^{\\circ}$C $(47.6139\\ldots)$"
+            }
+          ],
+          "answer": "$47.6\\,^{\\circ}$C",
+          "solution": "$$T(10) = 22 + 63e^{-0.9} = 47.6139 \\approx 47.6\\,^{\\circ}\\text{C}.$$",
+          "verify": [
+            "Abs(22 + 63*exp(Rational(-9,10)) - 47.6) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find how long it takes for the temperature to reach $40\\,^{\\circ}$C.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$63e^{-0.09t} = 18$"
+            },
+            {
+              "mark": "A1",
+              "note": "$e^{-0.09t} = \\dfrac{2}{7}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 13.9$ minutes $(13.9196\\ldots)$"
+            }
+          ],
+          "answer": "$t = 13.9$ minutes",
+          "solution": "$$22 + 63e^{-0.09t} = 40 \\Rightarrow e^{-0.09t} = \\frac{18}{63} = \\frac{2}{7}$$$$t = \\frac{\\ln(7/2)}{0.09} = 13.9196 \\approx 13.9 \\text{ minutes}.$$",
+          "verify": [
+            "Abs(log(Rational(7,2))/Rational(9,100) - 13.9) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "State the temperature the model predicts the coffee approaches for large $t$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$22\\,^{\\circ}$C (room temperature)"
+            }
+          ],
+          "answer": "$22\\,^{\\circ}$C",
+          "solution": "As $t \\to \\infty$, $e^{-0.09t} \\to 0$, so $T \\to 22\\,^{\\circ}$C.",
+          "verify": [
+            "Eq(22 + 63*0, 22)"
+          ]
+        }
+      ],
+      "contextIntro": "A cup of coffee cools so that its temperature, in $^{\\circ}$C, after $t$ minutes is modelled by $T(t) = 22 + 63e^{-0.09t}$, $t \\ge 0$."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "kinematics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the velocity when $t = 2$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$v(2) = 6.10$ m s$^{-1}$ $(6.09520\\ldots)$"
+            }
+          ],
+          "answer": "$6.10$ m s$^{-1}$",
+          "solution": "$$v(2) = 10e^{-0.4}\\sin 2 = 6.09520 \\approx 6.10 \\text{ m s}^{-1}.$$",
+          "verify": [
+            "Abs(10*exp(Rational(-2,5))*sin(2) - 6.10) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the maximum velocity of the particle.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "maximise with the GDC (or solve $v'(t) = 0$, i.e. $\\tan t = 5$, giving $t = 1.37$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$v_{max} = 7.45$ m s$^{-1}$ $(7.45060\\ldots)$"
+            }
+          ],
+          "answer": "$7.45$ m s$^{-1}$",
+          "solution": "$v'(t) = 10e^{-0.2t}(\\cos t - 0.2\\sin t) = 0$ gives $\\tan t = 5$, so $t = \\arctan 5 = 1.37340$ and$$v_{max} = 7.45060 \\approx 7.45 \\text{ m s}^{-1}.$$",
+          "verify": [
+            "Abs(atan(5) - 1.37) < 0.0051",
+            "Abs(10*exp(-atan(5)/5)*sin(atan(5)) - 7.45) < 0.0051",
+            "Eq(simplify(cos(atan(5)) - sin(atan(5))/5), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the time at which the particle is next at rest after $t = 0$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$v = 0$ when $\\sin t = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = \\pi \\; (= 3.14)$ seconds"
+            }
+          ],
+          "answer": "$t = \\pi \\approx 3.14$ s",
+          "solution": "$e^{-0.2t} > 0$ always, so $v = 0$ requires $\\sin t = 0$: the next time is $t = \\pi \\approx 3.14$ s.",
+          "verify": [
+            "Eq(sin(pi), 0)",
+            "Abs(pi - 3.14) < 0.005"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the total distance travelled by the particle in the interval $0 \\le t \\le \\pi$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "distance $= \\displaystyle\\int_0^{\\pi} |v(t)|\\,dt$, and $v \\ge 0$ on the interval"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate the integral with the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "distance $= 14.7$ m $(14.7451\\ldots)$"
+            }
+          ],
+          "answer": "$14.7$ m",
+          "solution": "$\\sin t \\ge 0$ on $[0, \\pi]$, so $v \\ge 0$ and$$\\text{distance} = \\int_0^{\\pi} 10e^{-0.2t}\\sin t\\,dt = 14.7451 \\approx 14.7 \\text{ m}.$$",
+          "verify": [
+            "Abs(integrate(10*exp(-t/5)*sin(t), (t, 0, pi)) - 14.7) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "A particle moves in a straight line. Its velocity in m s$^{-1}$ at time $t$ seconds is $v(t) = 10e^{-0.2t}\\sin t$ for $0 \\le t \\le \\pi$."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "rational_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the equations of the two asymptotes of the graph of $f$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "vertical: $x = -3$"
+            },
+            {
+              "mark": "A1",
+              "note": "horizontal: $y = 2$"
+            }
+          ],
+          "answer": "$x = -3$ and $y = 2$",
+          "solution": "The denominator vanishes at $x = -3$ (vertical asymptote); as $x \\to \\pm\\infty$, $f(x) \\to 2$ (horizontal asymptote).",
+          "verify": [
+            "Eq(solve(Eq(x + 3, 0), x)[0], -3)",
+            "Eq(limit((2*x - 1)/(x + 3), x, oo), 2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find an expression for $f^{-1}(x)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $x = \\dfrac{2y - 1}{y + 3}$ and clear the fraction"
+            },
+            {
+              "mark": "A1",
+              "note": "$y(x - 2) = -3x - 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f^{-1}(x) = \\dfrac{3x + 1}{2 - x}$, $x \\ne 2$"
+            }
+          ],
+          "answer": "$f^{-1}(x) = \\dfrac{3x + 1}{2 - x}$",
+          "solution": "$$x = \\frac{2y - 1}{y + 3} \\Rightarrow xy + 3x = 2y - 1 \\Rightarrow y(x - 2) = -3x - 1$$$$f^{-1}(x) = \\frac{3x + 1}{2 - x}, \\quad x \\ne 2.$$",
+          "verify": [
+            "Eq(simplify(((2*((3*x + 1)/(2 - x)) - 1)/(((3*x + 1)/(2 - x)) + 3)) - x), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Show that the equation $f(x) = x$ has no real solutions.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$2x - 1 = x(x + 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^2 + x + 1 = 0$ with discriminant $1 - 4 = -3$"
+            },
+            {
+              "mark": "AG",
+              "note": "$\\Delta < 0$, so no real solutions"
+            }
+          ],
+          "answer": "no real solutions ($\\Delta = -3 < 0$)",
+          "solution": "$$\\frac{2x - 1}{x + 3} = x \\Rightarrow 2x - 1 = x^2 + 3x \\Rightarrow x^2 + x + 1 = 0$$The discriminant is $1 - 4 = -3 < 0$, so the quadratic — and hence $f(x) = x$ — has no real solutions.",
+          "verify": [
+            "Eq(expand(x*(x + 3) - (2*x - 1)), x**2 + x + 1)",
+            "Eq(1 - 4, -3)",
+            "-3 < 0"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = \\dfrac{2x - 1}{x + 3}$ for $x \\ne -3$."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q7",
+      "number": 7,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "sequences_series",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the number of seats in row 20.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "arithmetic: $u_{20} = 14 + 19(2)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$u_{20} = 52$"
+            }
+          ],
+          "answer": "$52$",
+          "solution": "$$u_{20} = 14 + (20 - 1)(2) = 52.$$",
+          "verify": [
+            "Eq(14 + 19*2, 52)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the total number of seats in the theatre.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$S_{20} = \\tfrac{20}{2}(14 + 52)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_{20} = 660$"
+            }
+          ],
+          "answer": "$660$",
+          "solution": "$$S_{20} = \\frac{20}{2}(14 + 52) = 10(66) = 660.$$",
+          "verify": [
+            "Eq(Rational(20,2)*(14 + 52), 660)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the price of a season ticket in year 6, to two decimal places.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "geometric: $8(1.05)^5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\$10.21$"
+            }
+          ],
+          "answer": "$\\$10.21$",
+          "solution": "$$p_6 = 8(1.05)^5 = 10.21.$$",
+          "verify": [
+            "Abs(8*Rational(105,100)**5 - 10.21) < 0.005"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "A member buys one season ticket every year for the first 6 years. Find the total amount they pay, to two decimal places.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "geometric series: $8\\,\\dfrac{1.05^6 - 1}{0.05}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\$54.42$"
+            }
+          ],
+          "answer": "$\\$54.42$",
+          "solution": "$$S_6 = 8\\cdot\\frac{1.05^6 - 1}{1.05 - 1} = 54.42.$$",
+          "verify": [
+            "Abs(8*(Rational(105,100)**6 - 1)/(Rational(105,100) - 1) - 54.42) < 0.005"
+          ]
+        }
+      ],
+      "contextIntro": "A theatre has 20 rows. The first row has 14 seats and each row after the first has 2 more seats than the row in front of it. Season-ticket prices grow geometrically: \\$8 in year 1, increasing by 5% each year."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 19,
+      "topic": "stats_probability",
+      "skill_tag": "normal_binomial",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that the probability that a randomly chosen bottle is rejected is $0.133$, correct to three significant figures.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(V < 500) = P\\Big(Z < \\tfrac{500 - 502}{1.8}\\Big) = P(Z < -1.11\\ldots)$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= 0.133260\\ldots \\approx 0.133$"
+            }
+          ],
+          "answer": "$0.133$",
+          "solution": "$$P(V < 500) = P\\Big(Z < \\frac{-2}{1.8}\\Big) = 0.133260 \\approx 0.133.$$",
+          "verify": [
+            "Abs((1 + erf((Rational(-10,9))/sqrt(2)))/2 - 0.133) < 0.00051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the probability that a bottle contains between 501 and 504 ml.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "GDC normal cdf between 501 and 504"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.577$ $(0.577482\\ldots)$"
+            }
+          ],
+          "answer": "$0.577$",
+          "solution": "$$P(501 < V < 504) = 0.577482 \\approx 0.577.$$",
+          "verify": [
+            "Abs(((1 + erf(Rational(10,9)/sqrt(2)))/2 - (1 + erf(Rational(-5,9)/sqrt(2)))/2) - 0.577) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Ten bottles are chosen at random. Let $X$ be the number of rejected bottles. Find $P(X = 2)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "recognise $X \\sim B(10, 0.133\\ldots)$"
+            },
+            {
+              "mark": "M1",
+              "note": "$P(X = 2) = \\binom{10}{2}p^2(1 - p)^8$ (or GDC binomial pdf)"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.255$ $(0.254521\\ldots)$"
+            }
+          ],
+          "answer": "$0.255$",
+          "solution": "With $p = 0.13326\\ldots$ (unrounded):$$P(X = 2) = \\binom{10}{2}p^2(1 - p)^8 = 0.254521 \\approx 0.255.$$",
+          "verify": [
+            "Abs(binomial(10, 2)*((1 + erf(Rational(-10,9)/sqrt(2)))/2)**2*(1 - (1 + erf(Rational(-10,9)/sqrt(2)))/2)**8 - 0.255) < 0.00051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $P(X \\ge 1)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "complement: $1 - (1 - p)^{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.761$ $(0.760731\\ldots)$"
+            }
+          ],
+          "answer": "$0.761$",
+          "solution": "$$P(X \\ge 1) = 1 - (1 - p)^{10} = 0.760731 \\approx 0.761.$$",
+          "verify": [
+            "Abs(1 - (1 - (1 + erf(Rational(-10,9)/sqrt(2)))/2)**10 - 0.761) < 0.00051"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find $E(X)$ and $\\operatorname{Var}(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X) = np$, $\\operatorname{Var}(X) = np(1 - p)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 1.33$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\operatorname{Var}(X) = 1.16$"
+            }
+          ],
+          "answer": "$E(X) = 1.33$, $\\operatorname{Var}(X) = 1.16$",
+          "solution": "$$E(X) = 10p = 1.33260 \\approx 1.33, \\qquad \\operatorname{Var}(X) = 10p(1 - p) = 1.15502 \\approx 1.16.$$",
+          "verify": [
+            "Abs(10*(1 + erf(Rational(-10,9)/sqrt(2)))/2 - 1.33) < 0.0051",
+            "Abs(10*((1 + erf(Rational(-10,9)/sqrt(2)))/2)*(1 - (1 + erf(Rational(-10,9)/sqrt(2)))/2) - 1.16) < 0.0051"
+          ]
+        },
+        {
+          "label": "f",
+          "body": "Given that at least one bottle is rejected, find the probability that exactly two are rejected.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "conditional probability: $\\dfrac{P(X = 2)}{P(X \\ge 1)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "substitute the unrounded values from (c) and (d)"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.335$ $(0.334574\\ldots)$"
+            }
+          ],
+          "answer": "$0.335$",
+          "solution": "$$P(X = 2 \\mid X \\ge 1) = \\frac{P(X = 2)}{P(X \\ge 1)} = \\frac{0.254521}{0.760731} = 0.334574 \\approx 0.335.$$",
+          "verify": [
+            "Abs((binomial(10, 2)*((1 + erf(Rational(-10,9)/sqrt(2)))/2)**2*(1 - (1 + erf(Rational(-10,9)/sqrt(2)))/2)**8)/(1 - (1 - (1 + erf(Rational(-10,9)/sqrt(2)))/2)**10) - 0.335) < 0.00051"
+          ]
+        },
+        {
+          "label": "g",
+          "body": "The machine is recalibrated: the standard deviation stays $1.8$ ml, and the mean $\\mu$ is changed so that only 5% of bottles are rejected. Find $\\mu$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(V < 500) = 0.05$, standardise"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{500 - \\mu}{1.8} = -1.6448\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve for $\\mu$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu = 503$ ml $(502.961\\ldots)$"
+            }
+          ],
+          "answer": "$\\mu = 503$ ml",
+          "solution": "$$\\frac{500 - \\mu}{1.8} = z_{0.05} = -1.64485\\ldots$$$$\\mu = 500 + 1.8(1.64485\\ldots) = 502.961 \\approx 503 \\text{ ml}.$$",
+          "verify": [
+            "Abs(500 - Rational(18,10)*sqrt(2)*erfinv(2*Rational(5,100) - 1) - 503) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "A machine fills bottles with juice. The volume $V$, in ml, is normally distributed: $V \\sim N(502, 1.8^2)$. A bottle is REJECTED if it contains less than 500 ml."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 21,
+      "topic": "calculus",
+      "skill_tag": "differential_equations",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $\\dfrac{1000}{P(1000 - P)} = \\dfrac{1}{P} + \\dfrac{1}{1000 - P}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write $\\dfrac{1000}{P(1000 - P)} = \\dfrac{A}{P} + \\dfrac{B}{1000 - P}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$A(1000 - P) + BP = 1000$ gives $A = 1$, $B = 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$\\dfrac{1}{P} + \\dfrac{1}{1000 - P}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{P} + \\dfrac{1}{1000 - P}$",
+          "solution": "$A(1000 - P) + BP = 1000$: at $P = 0$, $1000A = 1000$ so $A = 1$; at $P = 1000$, $1000B = 1000$ so $B = 1$. Hence$$\\frac{1000}{P(1000 - P)} = \\frac{1}{P} + \\frac{1}{1000 - P}.$$",
+          "verify": [
+            "Eq(simplify(1000/(P*(1000 - P)) - (1/P + 1/(1000 - P))), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Using separation of variables and part (a), show that $\\ln\\left(\\dfrac{P}{1000 - P}\\right) = 0.2t + c$, where $c$ is a constant.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "separate: $\\displaystyle\\int\\frac{1000\\,dP}{P(1000 - P)} = \\int 0.2\\,dt$"
+            },
+            {
+              "mark": "M1",
+              "note": "integrate using the partial fractions from (a)"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\ln P - \\ln(1000 - P) = 0.2t + c$"
+            },
+            {
+              "mark": "AG",
+              "note": "$\\ln\\left(\\dfrac{P}{1000 - P}\\right) = 0.2t + c$"
+            }
+          ],
+          "answer": "$\\ln\\left(\\dfrac{P}{1000 - P}\\right) = 0.2t + c$",
+          "solution": "$\\dfrac{dP}{dt} = \\dfrac{0.2P(1000 - P)}{1000}$ separates to$$\\int\\Big(\\frac{1}{P} + \\frac{1}{1000 - P}\\Big)dP = \\int 0.2\\,dt$$$$\\ln P - \\ln(1000 - P) = 0.2t + c \\Rightarrow \\ln\\frac{P}{1000 - P} = 0.2t + c.$$",
+          "verify": [
+            "Eq(simplify(diff(log(P/(1000 - P)), P) - 1000/(P*(1000 - P))), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Hence show that $P(t) = \\dfrac{1000}{1 + 9e^{-0.2t}}$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $P(0) = 100$: $c = \\ln\\dfrac{100}{900} = -\\ln 9$"
+            },
+            {
+              "mark": "M1",
+              "note": "exponentiate: $\\dfrac{P}{1000 - P} = \\dfrac{1}{9}e^{0.2t}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$9P = (1000 - P)e^{0.2t}$, solve for $P$"
+            },
+            {
+              "mark": "AG",
+              "note": "$P = \\dfrac{1000}{1 + 9e^{-0.2t}}$"
+            }
+          ],
+          "answer": "$P(t) = \\dfrac{1000}{1 + 9e^{-0.2t}}$",
+          "solution": "At $t = 0$: $\\ln\\frac{100}{900} = c$, so $c = -\\ln 9$. Then$$\\frac{P}{1000 - P} = \\frac{e^{0.2t}}{9} \\Rightarrow 9P = (1000 - P)e^{0.2t}$$$$P\\big(9 + e^{0.2t}\\big) = 1000e^{0.2t} \\Rightarrow P = \\frac{1000e^{0.2t}}{9 + e^{0.2t}} = \\frac{1000}{1 + 9e^{-0.2t}}.$$",
+          "verify": [
+            "Eq((1000/(1 + 9*exp(-t/5))).subs(t, 0), 100)",
+            "Eq(simplify(diff(1000/(1 + 9*exp(-t/5)), t) - Rational(1,5)*(1000/(1 + 9*exp(-t/5)))*(1 - (1000/(1 + 9*exp(-t/5)))/1000)), 0)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the number of fish predicted after 10 years.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $t = 10$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(10) = 451$ fish $(450.853\\ldots)$"
+            }
+          ],
+          "answer": "$\\approx 451$ fish",
+          "solution": "$$P(10) = \\frac{1000}{1 + 9e^{-2}} = 450.853 \\approx 451.$$",
+          "verify": [
+            "Abs(1000/(1 + 9*exp(-2)) - 451) < 0.51"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find how long it takes for the population to reach 800 fish.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$1 + 9e^{-0.2t} = \\dfrac{1000}{800} = 1.25$"
+            },
+            {
+              "mark": "A1",
+              "note": "$e^{-0.2t} = \\dfrac{1}{36}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 5\\ln 36 = 17.9$ years $(17.9176\\ldots)$"
+            }
+          ],
+          "answer": "$t = 17.9$ years",
+          "solution": "$$\\frac{1000}{1 + 9e^{-0.2t}} = 800 \\Rightarrow 9e^{-0.2t} = 0.25 \\Rightarrow e^{-0.2t} = \\frac{1}{36}$$$$t = 5\\ln 36 = 17.9176 \\approx 17.9 \\text{ years}.$$",
+          "verify": [
+            "Abs(5*log(36) - 17.9) < 0.051000000000000004",
+            "Eq(1000/(1 + 9*Rational(1,36)), 800)"
+          ]
+        },
+        {
+          "label": "f",
+          "body": "Write down the limiting size of the population predicted by the model.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$1000$ fish (the carrying capacity)"
+            }
+          ],
+          "answer": "$1000$",
+          "solution": "As $t \\to \\infty$, $e^{-0.2t} \\to 0$ and $P \\to 1000$.",
+          "verify": [
+            "Eq(1000/(1 + 9*0), 1000)"
+          ]
+        },
+        {
+          "label": "g",
+          "body": "Use Euler's method with step length $h = 0.5$ to estimate $P(1)$, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P_{n+1} = P_n + h \\cdot 0.2P_n\\big(1 - \\tfrac{P_n}{1000}\\big)$"
+            },
+            {
+              "mark": "A1",
+              "note": "first step: $P(0.5) \\approx 100 + 0.5(18) = 109$"
+            },
+            {
+              "mark": "A1",
+              "note": "second slope: $0.2(109)(0.891) = 19.42\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(1) \\approx 109 + 9.71\\ldots = 118.712 \\approx 119$"
+            }
+          ],
+          "answer": "$P(1) \\approx 119$",
+          "solution": "Slope at $P = 100$: $0.2(100)(0.9) = 18$, so $P(0.5) \\approx 100 + 0.5(18) = 109$.Slope at $P = 109$: $0.2(109)(1 - 0.109) = 19.4238$, so$$P(1) \\approx 109 + 0.5(19.4238) = 118.71\\ldots \\approx 119.$$(The exact model gives $P(1) = 119.49\\ldots$ — Euler slightly underestimates here.)",
+          "verify": [
+            "Eq(100 + Rational(1,2)*Rational(1,5)*100*(1 - Rational(100,1000)), 109)",
+            "Abs(109 + Rational(1,2)*Rational(1,5)*109*(1 - Rational(109,1000)) - 118.712) < 0.001",
+            "Abs(109 + Rational(1,2)*Rational(1,5)*109*(1 - Rational(109,1000)) - 119) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "The number of fish in a lake is modelled by the logistic differential equation $\\dfrac{dP}{dt} = 0.2P\\left(1 - \\dfrac{P}{1000}\\right)$, where $t$ is the time in years and $P(0) = 100$."
+    },
+    {
+      "source": "IB-AAHL-P2-T1-Q10",
+      "number": 10,
+      "section": "B",
+      "maximumMark": 18,
+      "topic": "geometry_trig",
+      "skill_tag": "planes_lines",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find, in degrees, the acute angle between $\\Pi_1$ and $\\Pi_2$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the normals $(1, 2, -2)$ and $(2, -1, 1)$: $\\cos\\theta = \\dfrac{|\\mathbf{n}_1\\cdot\\mathbf{n}_2|}{|\\mathbf{n}_1||\\mathbf{n}_2|}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{n}_1\\cdot\\mathbf{n}_2 = -2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$|\\mathbf{n}_1| = 3$, $|\\mathbf{n}_2| = \\sqrt{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\theta = \\arccos\\dfrac{2}{3\\sqrt{6}} = 74.2^{\\circ}$ $(74.2068\\ldots)$"
+            }
+          ],
+          "answer": "$\\theta = 74.2^{\\circ}$",
+          "solution": "$$\\cos\\theta = \\frac{|(1)(2) + (2)(-1) + (-2)(1)|}{3\\sqrt{6}} = \\frac{2}{3\\sqrt6}$$$$\\theta = 74.2068^{\\circ} \\approx 74.2^{\\circ}.$$",
+          "verify": [
+            "Abs(deg(acos(2/(3*sqrt(6)))) - 74.2) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that the direction vector of $L$ is parallel to $\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "direction $= \\mathbf{n}_1 \\times \\mathbf{n}_2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{n}_1 \\times \\mathbf{n}_2 = (0, -5, -5)$"
+            },
+            {
+              "mark": "AG",
+              "note": "$(0, -5, -5) = -5(0, 1, 1)$, parallel to $(0, 1, 1)$"
+            }
+          ],
+          "answer": "direction $\\parallel (0, 1, 1)$",
+          "solution": "$$\\mathbf{n}_1 \\times \\mathbf{n}_2 = \\begin{vmatrix}\\mathbf{i} & \\mathbf{j} & \\mathbf{k}\\\\ 1 & 2 & -2\\\\ 2 & -1 & 1\\end{vmatrix} = (0, -5, -5) = -5(0, 1, 1).$$",
+          "verify": [
+            "Eq(2*1 - (-2)*(-1), 0)",
+            "Eq((-2)*2 - 1*1, -5)",
+            "Eq(1*(-1) - 2*2, -5)",
+            "Eq(0*1 + (-5)*1 + (-5)*(-2) - (0 - 5 + 10), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find a vector equation of $L$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "find a point on both planes, e.g. set $z = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x + 2y = 5$ and $2x - y = 4$ give $\\left(\\dfrac{13}{5}, \\dfrac{6}{5}, 0\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{r} = \\begin{pmatrix}13/5\\\\6/5\\\\0\\end{pmatrix} + t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}$"
+            }
+          ],
+          "answer": "$\\mathbf{r} = \\left(\\dfrac{13}{5}, \\dfrac{6}{5}, 0\\right) + t(0, 1, 1)$",
+          "solution": "With $z = 0$: $x + 2y = 5$ and $2x - y = 4$. Doubling the second and adding: $5x = 13$, so $x = \\dfrac{13}{5}$, $y = \\dfrac{6}{5}$:$$\\mathbf{r} = \\begin{pmatrix}13/5\\\\6/5\\\\0\\end{pmatrix} + t\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}.$$",
+          "verify": [
+            "Eq(Rational(13,5) + 2*Rational(6,5) - 0, 5)",
+            "Eq(2*Rational(13,5) - Rational(6,5) + 0, 4)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "The plane $\\Pi_3$ has equation $x + y + z = 1$. Find the coordinates of the point where $L$ meets $\\Pi_3$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute the general point of $L$ into $\\Pi_3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{13}{5} + \\dfrac{6}{5} + t + t = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = -\\dfrac{7}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = \\dfrac{6}{5} - \\dfrac{7}{5} = -\\dfrac{1}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "point $\\left(\\dfrac{13}{5}, -\\dfrac{1}{5}, -\\dfrac{7}{5}\\right)$"
+            }
+          ],
+          "answer": "$\\left(\\dfrac{13}{5}, -\\dfrac{1}{5}, -\\dfrac{7}{5}\\right)$",
+          "solution": "The general point of $L$ is $\\left(\\dfrac{13}{5},\\; \\dfrac{6}{5} + t,\\; t\\right)$:$$\\frac{13}{5} + \\frac{6}{5} + t + t = 1 \\Rightarrow \\frac{19}{5} + 2t = 1 \\Rightarrow t = -\\frac{7}{5}$$$$\\left(\\frac{13}{5},\\; -\\frac{1}{5},\\; -\\frac{7}{5}\\right).$$",
+          "verify": [
+            "Eq(solve(Eq(Rational(13,5) + Rational(6,5) + 2*x, 1), x)[0], Rational(-7,5))",
+            "Eq(Rational(13,5) + Rational(-1,5) + Rational(-7,5), 1)",
+            "Eq(Rational(13,5) + 2*Rational(-1,5) - 2*Rational(-7,5), 5)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the exact distance from the point $Q(3, 1, 2)$ to the plane $\\Pi_1$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "distance $= \\dfrac{|3 + 2(1) - 2(2) - 5|}{|\\mathbf{n}_1|}$"
+            },
+            {
+              "mark": "A1",
+              "note": "numerator $= |-4| = 4$, denominator $= 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "distance $= \\dfrac{4}{3}$"
+            }
+          ],
+          "answer": "$\\dfrac{4}{3}$",
+          "solution": "$$d = \\frac{|3 + 2 - 4 - 5|}{\\sqrt{1 + 4 + 4}} = \\frac{4}{3}.$$",
+          "verify": [
+            "Eq(Abs(3 + 2*1 - 2*2 - 5)/3, Rational(4,3))"
+          ]
+        }
+      ],
+      "contextIntro": "The planes $\\Pi_1: x + 2y - 2z = 5$ and $\\Pi_2: 2x - y + z = 4$ intersect in a line $L$."
+    }
+  ]
+}

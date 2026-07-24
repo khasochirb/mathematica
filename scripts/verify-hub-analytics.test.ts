@@ -9,8 +9,9 @@ describe("exam-hub analytics vocabulary", () => {
   });
 
   it("IB covers both tracks and all papers", () => {
-    expect(Object.keys(IB_COMPONENT_LABELS)).toHaveLength(6);
+    expect(Object.keys(IB_COMPONENT_LABELS)).toHaveLength(8);
     expect(hubTopicLabel("ib", "aa-paper-3")).toBe("AA · Paper 3 (HL)");
+    expect(hubTopicLabel("ib", "aa-hl-paper-1")).toBe("AA HL · Paper 1 (no calculator)");
   });
 
   it("unknown slugs degrade to humanized text, never raw kebab-case", () => {

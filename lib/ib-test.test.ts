@@ -6,8 +6,10 @@ import {
   getIbPaper,
   ibAnalyticsTopic,
   ibGradeEstimate,
+  ibPaperSourcePrefix,
   ibPartKey,
   listIbPapers,
+  listIbPracticeSets,
   tallyByTopic,
   tallyPaper,
 } from "./ib-test";
@@ -45,7 +47,33 @@ describe("IB paper registry", () => {
         grand += q.maximumMark;
       }
       expect(grand).toBe(meta.totalMarks);
-      expect(meta.totalMarks).toBe(80); // SL papers
+      expect(meta.totalMarks).toBe(meta.level === "hl" ? 110 : 80);
+    }
+  });
+
+  it("lists the AA HL practice set with both 110-mark papers", () => {
+    const p1 = getIbPaper("ib-hl-practice-1", 1);
+    const p2 = getIbPaper("ib-hl-practice-1", 2);
+    expect(p1?.meta.level).toBe("hl");
+    expect(p1?.meta.totalMarks).toBe(110);
+    expect(p1?.meta.calculator).toBe(false);
+    expect(p2?.meta.calculator).toBe(true);
+    expect(p2?.meta.timeMinutes).toBe(120);
+  });
+
+  it("groups papers into practice sets numbered within each track", () => {
+    const sets = listIbPracticeSets();
+    const sl = sets.filter((s) => s.level === "sl");
+    const hl = sets.filter((s) => s.level === "hl");
+    expect(sl.length).toBeGreaterThanOrEqual(3);
+    expect(hl.length).toBeGreaterThanOrEqual(1);
+    expect(sl[0].label).toBe("AA SL Practice Set 1");
+    expect(hl[0].label).toBe("AA HL Practice Set 1"); // numbering restarts per track
+    for (const s of sets) {
+      expect(s.papers.map((p) => p.paper)).toEqual([1, 2]);
+      for (const p of s.papers) {
+        expect(ibPaperSourcePrefix(p.testId, p.paper)).toMatch(/^IB-/);
+      }
     }
   });
 
@@ -53,6 +81,8 @@ describe("IB paper registry", () => {
     const meta = getIbPaper("ib-practice-1", 1)!.meta;
     expect(ibAnalyticsTopic(meta)).toBe("aa-paper-1");
     expect(ibAnalyticsTopic(getIbPaper("ib-practice-1", 2)!.meta)).toBe("aa-paper-2");
+    // HL papers carry an explicit level segment so SL/HL stats never blend.
+    expect(ibAnalyticsTopic(getIbPaper("ib-hl-practice-1", 1)!.meta)).toBe("aa-hl-paper-1");
   });
 });
 
