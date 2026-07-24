@@ -82,6 +82,16 @@ def check_math_text(label: str, text: str) -> None:
         if "**" in part:
             err(f"{label}: stray/unmatched ** would render literally: "
                 f"…{part.strip()[:60]!r}…")
+        # LaTeX-isms in PLAIN TEXT render raw (MathText only renders math
+        # segments): "{,}" shows its braces, "\frac" shows the backslash.
+        # (MathText unescapes \% \# \& in text, so those are fine.)
+        if "{,}" in part:
+            err(f"{label}: '{{,}}' outside math renders literal braces: "
+                f"…{part.strip()[:60]!r}…")
+        cmd = re.search(r"\\[a-zA-Z]{2,}", part)
+        if cmd:
+            err(f"{label}: LaTeX command {cmd.group(0)!r} outside math "
+                f"renders literally: …{part.strip()[:60]!r}…")
 
 
 def check_figure(label: str, fig: dict, mn_required: bool = True) -> None:
@@ -448,6 +458,10 @@ def check_ib(path: Path, data, strict: bool) -> None:
             for entry in ms:
                 if not IB_MARK_RE.match(str(entry.get("mark", ""))):
                     err(f"{plabel}: illegal mark code {entry.get('mark')!r}")
+                if isinstance(entry.get("note"), str):
+                    check_math_text(f"{plabel}.note", entry["note"])
+            if isinstance(p.get("answer"), str):
+                check_math_text(f"{plabel}.answer", p["answer"])
             body = p.get("body", "")
             if isinstance(body, str):
                 check_math_text(f"{plabel}.body", body)

@@ -89,6 +89,48 @@ export function getIbPaper(testId: string, paper: number): IbPaper | undefined {
   return PAPERS.find((p) => p.meta.testId === testId && p.meta.paper === paper);
 }
 
+// ── practice sets (Paper 1 + Paper 2 = one sitting of the exam) ───────
+// The hub presents one card per practice SET; a set is complete when both
+// of its papers are. Grouped by testId, ordered by paper number.
+
+export interface IbPracticeSet {
+  testId: string;
+  label: string; // "AA SL Practice Set 1"
+  course: "aa" | "ai";
+  level: "sl" | "hl";
+  papers: IbPaperMeta[];
+}
+
+export function listIbPracticeSets(): IbPracticeSet[] {
+  const byTest = new Map<string, IbPaperMeta[]>();
+  for (const p of PAPERS) {
+    const list = byTest.get(p.meta.testId);
+    if (list) list.push(p.meta);
+    else byTest.set(p.meta.testId, [p.meta]);
+  }
+  return Array.from(byTest.entries()).map(([testId, papers], i) => {
+    const first = papers[0];
+    return {
+      testId,
+      label: `${first.course.toUpperCase()} ${first.level.toUpperCase()} Practice Set ${i + 1}`,
+      course: first.course,
+      level: first.level,
+      papers: [...papers].sort((a, b) => a.paper - b.paper),
+    };
+  });
+}
+
+// The attempt stream keys runs by the question-source prefix (everything
+// before "-Q", e.g. "IB-AASL-P1-T2"). Derived from the paper's own first
+// question so it can never drift from the builders' naming scheme.
+export function ibPaperSourcePrefix(testId: string, paper: number): string | null {
+  const p = getIbPaper(testId, paper);
+  const source = p?.questions[0]?.source;
+  if (!source) return null;
+  const idx = source.indexOf("-Q");
+  return idx > 0 ? source.slice(0, idx) : null;
+}
+
 // Syllabus-topic display names (the question bank's `topic` vocabulary —
 // distinct from the per-component analytics vocabulary below).
 export const IB_TOPIC_LABELS: Record<IbTopic, string> = {

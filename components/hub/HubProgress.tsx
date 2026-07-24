@@ -1,18 +1,24 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { BarChart3, Target } from "lucide-react";
+import { BarChart3, Check, ChevronDown, Target, TrendingDown, TrendingUp, X } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import usePerformance from "@/lib/use-performance";
 import { contextHref } from "@/lib/perf-context";
 import { hubTopicLabel, HUB_NATIVE_METRIC_NOTE } from "@/lib/hub-analytics";
+import { deriveTestRuns, runMarks, runTrend, TestRun } from "@/lib/test-history";
+import { getSatTest, listSatTests, scaledScoreEstimate } from "@/lib/sat-test";
+import { ibGradeEstimate, ibPaperSourcePrefix, listIbPracticeSets } from "@/lib/ib-test";
+import { parseTestId } from "@/lib/test-history";
 
-// The exam-hub progress skeleton (SAT / IB). Reads ONLY its own context from
+// The exam-hub progress page (SAT / IB). Reads ONLY its own context from
 // the shared attempt stream — the same isolation rule as everywhere else.
-// Ships before the hubs have content so that the day the first mock test
-// records attempts, this page lights up with zero extra wiring. Until then
-// it shows an honest empty state, and the native score metric is a written
-// promise instead of a fake number.
+// Every completed mock sitting is reconstructed from the server-synced
+// attempts (lib/test-history.ts), so the history survives devices,
+// logouts, and cleared browsers: score trend, per-sitting native metric
+// (scaled score / marks + grade), domain breakdown, and a per-question
+// right/wrong review of every sitting.
 export default function HubProgress({
   context,
   title,
@@ -23,11 +29,53 @@ export default function HubProgress({
   comingSoonCopy: string;
 }) {
   const perf = usePerformance();
+  const [openRun, setOpenRun] = useState<Record<string, boolean>>({});
   const overall = perf.getOverallStats(context);
   const topicStats = perf.getTopicStats(context);
-  const sessions = perf.getTestOnlySessions(context);
   const hubHome = contextHref(context) ?? "/practice";
   const hasData = overall.total > 0;
+
+  const runs = useMemo(() => deriveTestRuns(perf.attempts, context), [perf.attempts, context]);
+  const trend = runTrend(runs);
+
+  // testId (source prefix) → display label, from the registries so run
+  // rows read "SAT Math Practice Test 3", not "SAT-P3".
+  const runLabels = useMemo(() => {
+    const map: Record<string, string> = {};
+    if (context === "sat") {
+      for (const m of listSatTests()) {
+        const t = getSatTest(m.testId);
+        const prefix = t ? parseTestId(t.module1[0]?.source ?? "") : null;
+        if (prefix) map[prefix] = m.label;
+      }
+    } else {
+      for (const set of listIbPracticeSets()) {
+        for (const p of set.papers) {
+          const prefix = ibPaperSourcePrefix(p.testId, p.paper);
+          if (prefix) map[prefix] = `${set.label} · Paper ${p.paper}`;
+        }
+      }
+    }
+    return map;
+  }, [context]);
+
+  const runLabel = (r: TestRun) => runLabels[r.testId] ?? r.testId;
+
+  // The hub's native metric for one sitting: SAT → estimated scaled score
+  // (full 44-question sittings only); IB → self-awarded marks + grade.
+  const nativeSummary = (r: TestRun): string | null => {
+    if (context === "sat") {
+      return r.total >= 44 ? `≈${scaledScoreEstimate(r.correct)}/800` : null;
+    }
+    const marks = runMarks(r);
+    if (!marks) return null;
+    return `${marks.earned}/${marks.total} marks · grade ≈${ibGradeEstimate((100 * marks.earned) / marks.total)}`;
+  };
+
+  const latestNative = runs.map(nativeSummary).find((s) => s !== null) ?? null;
+
+  const fmtDate = (t: number) =>
+    new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -79,22 +127,74 @@ export default function HubProgress({
                 </div>
               </div>
               <div className="card-edit p-5">
-                <div className="eyebrow">Mock tests</div>
+                <div className="eyebrow">Mock sittings</div>
                 <div className="serif tabular mt-2" style={{ fontSize: 36, letterSpacing: "-0.03em", color: "var(--fg)" }}>
-                  {sessions.length}
+                  {runs.length}
                 </div>
               </div>
             </section>
 
-            {/* Native metric: an honest placeholder until scoring curves ship */}
+            {/* Native metric: the latest sitting's score in this hub's own
+                units, or a written promise until the first full sitting. */}
             <section className="card-edit p-5 mt-5" style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}>
               <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>
-                Native score
+                {latestNative ? "Latest sitting" : "Native score"}
               </div>
-              <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
-                {HUB_NATIVE_METRIC_NOTE[context]}
-              </p>
+              {latestNative ? (
+                <div className="serif tabular" style={{ fontSize: 32, letterSpacing: "-0.03em", color: "var(--fg)" }}>
+                  {latestNative}
+                </div>
+              ) : (
+                <p className="text-[13px]" style={{ color: "var(--fg-1)" }}>
+                  {HUB_NATIVE_METRIC_NOTE[context]}
+                </p>
+              )}
             </section>
+
+            {/* Score history + tendency across sittings */}
+            {runs.length > 0 && (
+              <section className="card-edit p-6 mt-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="eyebrow flex-1">Score history</div>
+                  {trend && (
+                    <span
+                      className="mono text-[10px] uppercase px-1.5 py-0.5 rounded inline-flex items-center gap-1"
+                      style={{
+                        letterSpacing: "0.08em",
+                        border: "1px solid var(--line)",
+                        color: trend === "improving" ? "var(--accent)" : trend === "declining" ? "var(--danger)" : "var(--fg-3)",
+                      }}
+                    >
+                      {trend === "improving" ? <TrendingUp className="h-3 w-3" /> : trend === "declining" ? <TrendingDown className="h-3 w-3" /> : null}
+                      {trend}
+                    </span>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  {[...runs].sort((a, b) => a.finishedAt - b.finishedAt).map((r) => {
+                    const color = r.accuracy >= 80 ? "var(--accent)" : r.accuracy >= 50 ? "var(--warn)" : "var(--danger)";
+                    return (
+                      <div key={r.runKey} className="flex items-center gap-3 px-3 py-2.5 rounded-md" style={{ background: "var(--bg-2)" }}>
+                        <span className="text-[12px] w-40 truncate shrink-0" style={{ color: "var(--fg-1)" }}>
+                          {runLabel(r)}
+                        </span>
+                        <div className="flex-1">
+                          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-1)" }}>
+                            <div className="h-full rounded-full" style={{ width: `${r.accuracy}%`, background: color }} />
+                          </div>
+                        </div>
+                        <span className="serif tabular w-12 text-right" style={{ fontSize: 15, color }}>
+                          {r.accuracy}%
+                        </span>
+                        <span className="mono text-[10px] w-14 text-right" style={{ color: "var(--fg-3)" }}>
+                          {fmtDate(r.finishedAt)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
 
             {/* Domain / component breakdown */}
             {topicStats.length > 0 && (
@@ -128,19 +228,63 @@ export default function HubProgress({
               </section>
             )}
 
-            {/* Mock-test history */}
-            {sessions.length > 0 && (
-              <section className="card-edit p-6 mt-5">
-                <div className="eyebrow mb-4">Recent mock tests</div>
+            {/* Every sitting, expandable to per-question right/wrong */}
+            {runs.length > 0 && (
+              <section className="mt-6">
+                <div className="eyebrow mb-3">Every sitting — question by question</div>
                 <div className="space-y-2">
-                  {sessions.slice(0, 8).map((s) => (
-                    <div key={s.testKey} className="flex items-baseline justify-between text-sm">
-                      <span style={{ color: "var(--fg-1)" }}>{s.testKey}</span>
-                      <span className="mono tabular" style={{ color: "var(--fg-3)", fontSize: 12 }}>
-                        {s.correct}/{s.total} · {s.accuracy}%
-                      </span>
-                    </div>
-                  ))}
+                  {runs.map((r) => {
+                    const isOpen = !!openRun[r.runKey];
+                    const native = nativeSummary(r);
+                    return (
+                      <div key={r.runKey} className="card-edit overflow-hidden">
+                        <button
+                          className="w-full flex items-center gap-3 p-4 text-left"
+                          onClick={() => setOpenRun((o) => ({ ...o, [r.runKey]: !o[r.runKey] }))}
+                          aria-expanded={isOpen}
+                        >
+                          <span className="text-sm flex-1" style={{ color: "var(--fg-1)" }}>
+                            {runLabel(r)}
+                            <span style={{ color: "var(--fg-3)" }}> · {fmtDate(r.finishedAt)}</span>
+                          </span>
+                          <span className="mono text-xs tabular" style={{ color: "var(--fg-3)" }}>
+                            {r.correct}/{r.total}
+                            {native ? ` · ${native}` : ""}
+                          </span>
+                          <ChevronDown
+                            className="h-4 w-4 shrink-0 transition-transform"
+                            style={{ color: "var(--fg-3)", transform: isOpen ? "rotate(180deg)" : "none" }}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 pb-4 border-t pt-3" style={{ borderColor: "var(--line)" }}>
+                            <div className="space-y-1">
+                              {r.questions.map((q) => (
+                                <div key={q.source} className="flex items-center gap-2 text-[13px] rounded px-2 py-1" style={{ background: q.isCorrect ? "transparent" : "color-mix(in oklch, var(--danger) 6%, transparent)" }}>
+                                  {q.isCorrect ? (
+                                    <Check className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--accent)" }} />
+                                  ) : (
+                                    <X className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--danger)" }} />
+                                  )}
+                                  <span className="mono w-20 shrink-0" style={{ color: "var(--fg-2)" }}>
+                                    {q.label}
+                                  </span>
+                                  <span className="mono text-[12px] truncate" style={{ color: "var(--fg-3)" }}>
+                                    {q.selected === "" ? "blank" : `you: ${q.selected}`}
+                                    {!q.isCorrect && q.correctAnswer ? ` · key: ${q.correctAnswer}` : ""}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                            <p className="text-[11px] mt-3" style={{ color: "var(--fg-3)" }}>
+                              Full statements and worked solutions are on the test&apos;s
+                              own results page until you retake it.
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}

@@ -8,6 +8,7 @@ import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LAB
 import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
+import { parseTestId } from "./test-history";
 
 export interface AttemptRecord {
   questionSource: string;
@@ -81,15 +82,7 @@ function queueKeyFor(userId: string): string {
   return `${QUEUE_BASE}:${userId}`;
 }
 
-function parseTestId(source: string): string | null {
-  // SAT sources are SAT-<test>-<module>-Q<n> (e.g. SAT-P1-M2H-Q07). The
-  // module segment is dropped so both sittings of one adaptive test
-  // aggregate into a single session ("SAT-P1"), not one per module.
-  const sat = /^(SAT-[A-Za-z0-9]+)-M(?:1|2E|2H)-Q\d+$/.exec(source);
-  if (sat) return sat[1];
-  const idx = source.indexOf("-Q");
-  return idx > 0 ? source.slice(0, idx) : null;
-}
+// parseTestId lives in lib/test-history.ts (shared with run derivation).
 
 function toServerRow(attempt: AttemptRecord, userId: string) {
   // Topic canonicalization is an ЭЕШ vocabulary; course attempts carry unit/

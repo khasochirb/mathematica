@@ -185,17 +185,17 @@ b5_p, b5_tol = "34034.18", 0.005
 QS.append(question(
     "IB-AASL-P2-T3-Q4", 4, "A", "number_algebra", "sequences_applications",
     contextIntro=("Two salary offers both run for several years. Offer A "
-                  "starts at \\$30{,}000 with a raise of \\$1{,}200 each "
-                  "year. Offer B starts at \\$28{,}000 and increases by "
+                  "starts at \\$30,000 with a raise of \\$1,200 each "
+                  "year. Offer B starts at \\$28,000 and increases by "
                   "5\\% each year."),
     parts=[
         part("a", "Find the salary in the 5th year under each offer, giving "
              "the Offer B amount to the nearest cent.", 4,
              [M1("Offer A is arithmetic: $30000 + 4(1200)$"),
-              A1("Offer A: \\$34{,}800"),
+              A1("Offer A: \\$34,800"),
               M1("Offer B is geometric: $28000(1.05)^4$"),
               A1(f"Offer B: $\\${b5_p}$")],
-             answer=f"A: \\$34{{,}}800; B: \\${b5_p}$",
+             answer="A: \\$34,800; B: \\$34,034.18",
              solution=("Year 5 is four steps beyond year 1."
                        "$$A_5 = 30000 + 4(1200) = 34800$$"
                        f"$$B_5 = 28000(1.05)^4 = {b5_p}$$"),

@@ -918,7 +918,7 @@ def module2_easy() -> list[dict]:
     assert 95 + 165 == 260 and 11 * 95 + 7 * 165 == 2200
     qs.append(mcq_listed(
         "SAT-P2-M2E-Q21", M, 21, "algebra", "systems_two_linear", "hard",
-        r"A cinema sold 260 tickets one evening for a total of \$2{,}200."
+        r"A cinema sold 260 tickets one evening for a total of \$2,200."
         r" Adult tickets cost \$11 each and student tickets cost \$7"
         r" each. If $a$ is the number of adult tickets and $s$ is the"
         r" number of student tickets, which system of equations models"

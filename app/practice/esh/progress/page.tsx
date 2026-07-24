@@ -3,9 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
+  Check,
+  ChevronDown,
   Flag,
   Target,
   Trash2,
+  X,
 } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import TopicBreakdownChart from "@/components/esh/TopicBreakdownChart";
@@ -28,6 +31,7 @@ const BAND_COLOR: Record<Band, string> = {
 export default function ProgressPage() {
   const [mounted, setMounted] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [openEntry, setOpenEntry] = useState<Record<string, boolean>>({});
   const progress = useESHProgress();
   const perf = usePerformance();
   const testSession = useTestSession();
@@ -141,34 +145,74 @@ export default function ProgressPage() {
                 <div className="space-y-2">
                   {progress.scoreHistory.map((entry, i) => {
                     const color = entry.accuracy >= 80 ? "var(--accent)" : entry.accuracy >= 50 ? "var(--warn)" : "var(--danger)";
+                    const entryKey = `${entry.testKey}@${entry.date}`;
+                    const isOpen = !!openEntry[entryKey];
+                    const hasDetail = !!entry.run && entry.run.questions.length > 0;
                     return (
-                      <div
-                        key={i}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-md"
-                        style={{ background: "var(--bg-2)" }}
-                      >
-                        <span
-                          className="mono tabular w-9 h-7 rounded flex items-center justify-center text-[11px]"
-                          style={{
-                            background: "var(--bg-1)",
-                            border: "1px solid var(--line)",
-                            color: "var(--fg)",
-                            letterSpacing: "0.04em",
-                          }}
+                      <div key={i} className="rounded-md overflow-hidden" style={{ background: "var(--bg-2)" }}>
+                        <button
+                          className="w-full flex items-center gap-3 px-3 py-2.5 text-left"
+                          onClick={() =>
+                            hasDetail && setOpenEntry((o) => ({ ...o, [entryKey]: !o[entryKey] }))
+                          }
+                          aria-expanded={isOpen}
+                          style={{ cursor: hasDetail ? "pointer" : "default" }}
                         >
-                          {entry.testKey}
-                        </span>
-                        <div className="flex-1">
-                          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-1)" }}>
-                            <div className="h-full rounded-full transition-all" style={{ width: `${entry.accuracy}%`, background: color }} />
+                          <span
+                            className="mono tabular w-9 h-7 rounded flex items-center justify-center text-[11px] shrink-0"
+                            style={{
+                              background: "var(--bg-1)",
+                              border: "1px solid var(--line)",
+                              color: "var(--fg)",
+                              letterSpacing: "0.04em",
+                            }}
+                          >
+                            {entry.testKey}
+                          </span>
+                          <div className="flex-1">
+                            <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--bg-1)" }}>
+                              <div className="h-full rounded-full transition-all" style={{ width: `${entry.accuracy}%`, background: color }} />
+                            </div>
                           </div>
-                        </div>
-                        <span className="serif tabular w-12 text-right" style={{ fontSize: 16, color }}>
-                          {entry.accuracy}%
-                        </span>
-                        <span className="mono text-[10px] w-16 text-right" style={{ color: "var(--fg-3)" }}>
-                          {new Date(entry.date).toLocaleDateString("mn-MN", { month: "short", day: "numeric" })}
-                        </span>
+                          <span className="serif tabular w-12 text-right" style={{ fontSize: 16, color }}>
+                            {entry.accuracy}%
+                          </span>
+                          <span className="mono text-[10px] w-16 text-right" style={{ color: "var(--fg-3)" }}>
+                            {new Date(entry.date).toLocaleDateString("mn-MN", { month: "short", day: "numeric" })}
+                          </span>
+                          {hasDetail && (
+                            <ChevronDown
+                              className="h-3.5 w-3.5 shrink-0 transition-transform"
+                              style={{ color: "var(--fg-3)", transform: isOpen ? "rotate(180deg)" : "none" }}
+                            />
+                          )}
+                        </button>
+                        {isOpen && entry.run && (
+                          <div className="px-3 pb-3 border-t pt-2" style={{ borderColor: "var(--line)" }}>
+                            <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
+                              {entry.run.questions.map((q) => (
+                                <div
+                                  key={q.source}
+                                  className="flex items-center gap-1.5 text-[12px] rounded px-1.5 py-0.5"
+                                  style={{ background: q.isCorrect ? "transparent" : "color-mix(in oklch, var(--danger) 7%, transparent)" }}
+                                >
+                                  {q.isCorrect ? (
+                                    <Check className="h-3 w-3 shrink-0" style={{ color: "var(--accent)" }} />
+                                  ) : (
+                                    <X className="h-3 w-3 shrink-0" style={{ color: "var(--danger)" }} />
+                                  )}
+                                  <span className="mono w-10 shrink-0" style={{ color: "var(--fg-2)" }}>
+                                    {q.label}
+                                  </span>
+                                  <span className="mono truncate" style={{ color: "var(--fg-3)" }}>
+                                    {q.selected === "" ? "—" : q.selected}
+                                    {!q.isCorrect && q.correctAnswer ? ` → ${q.correctAnswer}` : ""}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     );
                   })}

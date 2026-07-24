@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookOpen, FileText } from "lucide-react";
-import { listIbPapers } from "@/lib/ib-test";
+import { ArrowRight, BarChart3, BookOpen } from "lucide-react";
+import IbPracticeSets from "@/components/ib/IbPracticeSets";
 
 export const metadata = { title: "IB Math Hub" };
 
@@ -76,36 +76,8 @@ export default function IbHubPage() {
           </Link>
         </div>
 
-        <div className="eyebrow mt-10 mb-3">Practice papers — AA SL</div>
-        <div className="space-y-3">
-          {listIbPapers().map((m) => (
-            <Link
-              key={`${m.testId}-p${m.paper}`}
-              href={`/practice/ib/test/${m.testId}/${m.paper}`}
-              className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
-              style={{ display: "flex" }}
-            >
-              <span className="inline-flex items-start gap-2.5" style={{ color: "var(--fg-1)" }}>
-                <FileText className="h-4 w-4 mt-1" style={{ color: "var(--accent)" }} />
-                <span>
-                  <span className="serif" style={{ fontSize: 20, color: "var(--fg)" }}>
-                    {m.label}
-                  </span>
-                  <span className="mono text-[10px] uppercase ml-2 px-1.5 py-0.5 rounded" style={{ color: "var(--accent)", border: "1px solid var(--accent-line)", letterSpacing: "0.08em" }}>
-                    {m.calculator ? "GDC" : "No calculator"}
-                  </span>
-                  <span className="block text-[12px] mt-1" style={{ color: "var(--fg-3)" }}>
-                    {m.timeMinutes} minutes · {m.totalMarks} marks · Section A short
-                    questions + Section B long questions. Sit it against the
-                    clock, then mark yourself with the full M/A/R markscheme and
-                    get an indicative grade.
-                  </span>
-                </span>
-              </span>
-              <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
-            </Link>
-          ))}
-        </div>
+        <div className="eyebrow mt-10 mb-3">Practice sets — AA SL</div>
+        <IbPracticeSets />
 
         <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
         <Link

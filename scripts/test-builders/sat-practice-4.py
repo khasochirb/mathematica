@@ -253,7 +253,7 @@ def module1() -> list[dict]:
         "medium",
         r"The graph shows the value $y$, in dollars, of a machine $x$"
         r" years after purchase; the value is multiplied by $0.75$ each"
-        r" year from an initial \$8{,}000. What is the value of the"
+        r" year from an initial \$8,000. What is the value of the"
         r" machine after 2 years?",
         r"Two years is two multiplications by 0.75:"
         r" $$8000 (0.75)^2 = 8000 \cdot 0.5625 = 4500.$$"
@@ -1139,7 +1139,7 @@ def module2_hard() -> list[dict]:
     assert Fraction(5, 100) * 2000 + Fraction(8, 100) * 4000 == 420
     qs.append(mcq_numeric(
         "SAT-P4-M2H-Q16", M, 16, "algebra", "systems_two_linear", "hard",
-        r"Tuya invested a total of \$6{,}000 in two accounts, one earning"
+        r"Tuya invested a total of \$6,000 in two accounts, one earning"
         r" 5\% simple interest per year and the other earning 8\%. The"
         r" total interest earned in the first year was \$420. How many"
         r" dollars were invested in the 8\% account?",
@@ -1148,7 +1148,7 @@ def module2_hard() -> list[dict]:
         r" $420 - 300 = 120$ comes from the 3-point difference:"
         r" $$0.03b = 120 \;\Rightarrow\; b = 4000.$$"
         r" Check: $0.05(2000) + 0.08(4000) = 100 + 320 = 420$. ✓ The"
-        r" \$2{,}000 is the 5\% account; \$3{,}000 assumes an even"
+        r" \$2,000 is the 5\% account; \$3,000 assumes an even"
         r" split."
         r" The correct answer is **D**.",
         ["Eq(Rational(5, 100)*6000, 300)",

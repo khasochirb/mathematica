@@ -22,7 +22,11 @@ export default function MathText({ text, className = "" }: MathTextProps) {
   // alternation on `$$...$$` strings (otherwise the inline `$...$` alternative would
   // steal the leading `$` and leave a stray trailing `$$` after the match).
   const parts = escaped.split(/(\$\$[^$]+\$\$|\$[^$]+\$|\*\*[^*]+\*\*)/g);
-  const restoreText = (s: string) => s.split(DOLLAR_SENTINEL).join("$");
+  // Plain text renders raw, so LaTeX-style escapes that are harmless inside
+  // math ("20\%") would show their backslash. Unescape them in text segments;
+  // math segments keep the escape for KaTeX.
+  const restoreText = (s: string) =>
+    s.split(DOLLAR_SENTINEL).join("$").replace(/\\([%#&])/g, "$1");
   const restoreMath = (s: string) => s.split(DOLLAR_SENTINEL).join("\\$");
 
   return (

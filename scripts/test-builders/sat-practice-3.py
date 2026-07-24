@@ -1045,7 +1045,7 @@ def module2_hard() -> list[dict]:
     assert sol[symbols("a")] == 70 and sol[symbols("c")] == 30
     qs.append(mcq_numeric(
         "SAT-P3-M2H-Q09", M, 9, "algebra", "systems_two_linear", "medium",
-        r"A museum sold 100 tickets for a total of \$1{,}080. Adult"
+        r"A museum sold 100 tickets for a total of \$1,080. Adult"
         r" tickets cost \$12 and child tickets cost \$8. How many adult"
         r" tickets were sold?",
         r"Let $a$ and $c$ be the ticket counts: $a + c = 100$ and"

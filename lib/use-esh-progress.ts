@@ -8,6 +8,7 @@ import usePerformance from "./use-performance";
 import useFlaggedQuestions from "./use-flagged-questions";
 import { TOPIC_LABELS, getTestsForUser } from "./esh-questions";
 import { useAuth } from "./auth-context";
+import { deriveTestRuns, type TestRun } from "./test-history";
 
 export interface TopicMastery {
   topic: string;
@@ -38,8 +39,26 @@ export default function useESHProgress() {
   const overallStats = perf.getOverallStats();
   const averageAccuracy = overallStats.accuracy;
 
+  // Local sessions are the primary record (they know skipped counts), but
+  // they live in un-synced localStorage — a cleared browser or a second
+  // device loses them. The attempt stream is server-synced, so sittings
+  // derived from it (lib/test-history.ts) fill any holes: history no
+  // longer disappears with storage. Each entry carries its derived run
+  // (when one matches) so the UI can show per-question right/wrong.
+  const derivedRuns = useMemo(
+    () => deriveTestRuns(perf.attempts, "esh"),
+    [perf.attempts],
+  );
+
   const scoreHistory = useMemo(() => {
-    return completedSessions
+    const MATCH_WINDOW_MS = 3 * 60 * 60 * 1000;
+    const runFor = (testKey: string, date: number): TestRun | undefined =>
+      derivedRuns.find(
+        (r) =>
+          r.testId === `Test-${testKey}` &&
+          Math.abs(r.finishedAt - date) < MATCH_WINDOW_MS,
+      );
+    const local = completedSessions
       .filter((s) => s.score)
       .map((s) => ({
         testKey: s.testKey,
@@ -47,9 +66,21 @@ export default function useESHProgress() {
         accuracy: s.score!.accuracy,
         correct: s.score!.correct,
         total: s.score!.total,
-      }))
-      .sort((a, b) => a.date - b.date);
-  }, [completedSessions]);
+        run: runFor(s.testKey, s.completedAt!),
+      }));
+    const claimed = new Set(local.map((e) => e.run?.runKey).filter(Boolean));
+    const serverOnly = derivedRuns
+      .filter((r) => r.testId.startsWith("Test-") && !claimed.has(r.runKey))
+      .map((r) => ({
+        testKey: r.testId.replace(/^Test-/, ""),
+        date: r.finishedAt,
+        accuracy: r.accuracy,
+        correct: r.correct,
+        total: r.total,
+        run: r as TestRun | undefined,
+      }));
+    return [...local, ...serverOnly].sort((a, b) => a.date - b.date);
+  }, [completedSessions, derivedRuns]);
 
   const topicMastery = useMemo((): TopicMastery[] => {
     const topicStats = perf.getTopicStats();
