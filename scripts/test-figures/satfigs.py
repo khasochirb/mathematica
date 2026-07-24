@@ -32,6 +32,15 @@ Tool inventory (each returns nothing; writes public/sat-figures/<name>.png):
   composite_area(...)        rectangle with a right triangle on top
   cylinder(...)              right circular cylinder with r/h labels
   right_triangle(...)        right triangle, optional angle mark + labels
+  trapezoid(...)             isosceles trapezoid with base/height labels
+  parallelogram(...)         parallelogram with two adjacent angle labels
+  triangle_sss(...)          any triangle from three side lengths, with
+                             optional per-vertex angle and per-side labels
+  vertical_angles(...)       two crossing lines, vertical-angle pair marked
+  sector(...)                circle with a central angle / arc marked
+  tangent_circle(...)        circle with a tangent line and external point
+  semicircle_triangle(...)   triangle inscribed in a semicircle (Thales)
+  sphere(...)                sphere with a radius label
 """
 
 import math
@@ -523,5 +532,297 @@ def right_triangle(name, base, height, base_label=None, height_label=None,
                 theta_label, fontsize=13, ha="center", va="center")
     ax.set_xlim(-base * 0.12, base * 1.18)
     ax.set_ylim(-height * 0.18, height * 1.12)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def trapezoid(name, b_bottom, b_top, height, bottom_label=None,
+              top_label=None, height_label=None, figsize=(4.6, 3.2)):
+    """Isosceles trapezoid drawn to scale from the exact base lengths and
+    height, with a dashed height segment when height_label is given."""
+    dx = (b_bottom - b_top) / 2.0
+    xs = [0, b_bottom, b_bottom - dx, dx, 0]
+    ys = [0, 0, height, height, 0]
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot(xs, ys, color=BLACK, lw=1.6)
+    if height_label:
+        ax.plot([dx, dx], [0, height], color=BLACK, lw=1.0, ls=(0, (4, 3)))
+        s = min(b_bottom, height) * 0.07
+        ax.plot([dx, dx + s, dx + s], [s, s, 0], color=BLACK, lw=1.0)
+        ax.text(dx - b_bottom * 0.02, height / 2, height_label, ha="right",
+                va="center", fontsize=14)
+    if bottom_label:
+        ax.text(b_bottom / 2, -height * 0.08, bottom_label, ha="center",
+                va="top", fontsize=14)
+    if top_label:
+        ax.text(b_bottom / 2, height * 1.06, top_label, ha="center",
+                va="bottom", fontsize=14)
+    ax.set_xlim(-b_bottom * 0.10, b_bottom * 1.10)
+    ax.set_ylim(-height * 0.28, height * 1.34)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def parallelogram(name, base, side, angle_deg, left_label=None,
+                  right_label=None, figsize=(4.8, 3.2)):
+    """Parallelogram with the given base, side, and interior angle at the
+    bottom-left vertex — drawn to scale. left_label marks that angle;
+    right_label marks the adjacent (supplementary) angle at bottom-right."""
+    t = math.radians(angle_deg)
+    ox, oy = side * math.cos(t), side * math.sin(t)
+    P = [(0, 0), (base, 0), (base + ox, oy), (ox, oy)]
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot([p[0] for p in P] + [P[0][0]], [p[1] for p in P] + [P[0][1]],
+            color=BLACK, lw=1.6)
+    rr = min(base, side) * 0.22
+    if left_label:
+        th = np.linspace(0, t, 60)
+        ax.plot(rr * np.cos(th), rr * np.sin(th), color=BLACK, lw=1.0)
+        ax.text(rr * 1.6 * math.cos(t / 2), rr * 1.6 * math.sin(t / 2),
+                left_label, ha="center", va="center", fontsize=13)
+    if right_label:
+        # interior angle at (base, 0) opens from the +x-reversed direction
+        th = np.linspace(math.pi - t, math.pi, 60)
+        ax.plot(base + rr * np.cos(th), rr * np.sin(th), color=BLACK, lw=1.0)
+        mid = math.pi - t / 2
+        ax.text(base + rr * 1.7 * math.cos(mid), rr * 1.7 * math.sin(mid),
+                right_label, ha="center", va="center", fontsize=13)
+    xlo, xhi = min(0, ox), max(base, base + ox)
+    ax.set_xlim(xlo - base * 0.12, xhi + base * 0.12)
+    ax.set_ylim(-oy * 0.30, oy * 1.30)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def triangle_sss(name, a, b, c, vertex_labels=("A", "B", "C"),
+                 angle_labels=None, side_labels=None, ticks=None,
+                 figsize=(4.6, 3.4)):
+    """Triangle from three EXACT side lengths (a = BC opposite A,
+    b = CA opposite B, c = AB opposite C), placed with AB along the
+    x-axis. angle_labels / side_labels are dicts keyed by vertex letter
+    and by side name ("a"/"b"/"c") respectively; omitted keys draw
+    nothing. `ticks` maps a side name to a number of congruence tick
+    marks, so equal sides READ as equal (the convention real exam figures
+    use for isosceles triangles). Coordinates are computed by the law of
+    cosines — never sketched."""
+    assert a + b > c and b + c > a and a + c > b, f"{name}: not a triangle"
+    A = (0.0, 0.0)
+    B = (c, 0.0)
+    # C from distances b (to A) and a (to B)
+    cx = (b * b - a * a + c * c) / (2 * c)
+    cy = math.sqrt(max(b * b - cx * cx, 0.0))
+    C = (cx, cy)
+    pts = {"A": A, "B": B, "C": C}
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot([A[0], B[0], C[0], A[0]], [A[1], B[1], C[1], A[1]],
+            color=BLACK, lw=1.6)
+    span = max(c, cy)
+    for key, (px, py) in pts.items():
+        idx = "ABC".index(key)
+        lab = vertex_labels[idx]
+        if not lab:
+            continue
+        # push the label outward from the centroid
+        gx, gy = (A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3
+        vx, vy = px - gx, py - gy
+        n = math.hypot(vx, vy) or 1.0
+        ax.text(px + span * 0.09 * vx / n, py + span * 0.09 * vy / n,
+                f"${lab}$", ha="center", va="center", fontsize=13)
+    for key, lab in (angle_labels or {}).items():
+        px, py = pts[key]
+        others = [pts[k] for k in "ABC" if k != key]
+        a1 = math.atan2(others[0][1] - py, others[0][0] - px)
+        a2 = math.atan2(others[1][1] - py, others[1][0] - px)
+        lo, hi = sorted([a1, a2])
+        if hi - lo > math.pi:
+            lo, hi = hi, lo + 2 * math.pi
+        th = np.linspace(lo, hi, 60)
+        rr = span * 0.14
+        ax.plot(px + rr * np.cos(th), py + rr * np.sin(th), color=BLACK, lw=1.0)
+        mid = (lo + hi) / 2
+        ax.text(px + rr * 1.75 * math.cos(mid), py + rr * 1.75 * math.sin(mid),
+                lab, ha="center", va="center", fontsize=13)
+    seg = {"a": (B, C), "b": (C, A), "c": (A, B)}
+    for key, n_tick in (ticks or {}).items():
+        (x1, y1), (x2, y2) = seg[key]
+        L = math.hypot(x2 - x1, y2 - y1)
+        ux, uy = (x2 - x1) / L, (y2 - y1) / L
+        nx, ny = -uy, ux  # unit normal to the side
+        h = span * 0.045
+        gap = span * 0.035
+        for i in range(n_tick):
+            # centre the tick group on the side's midpoint
+            off = (i - (n_tick - 1) / 2) * gap
+            mx, my = (x1 + x2) / 2 + ux * off, (y1 + y2) / 2 + uy * off
+            ax.plot([mx - nx * h, mx + nx * h], [my - ny * h, my + ny * h],
+                    color=BLACK, lw=1.2)
+    for key, lab in (side_labels or {}).items():
+        (x1, y1), (x2, y2) = seg[key]
+        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+        gx, gy = (A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3
+        vx, vy = mx - gx, my - gy
+        n = math.hypot(vx, vy) or 1.0
+        ax.text(mx + span * 0.08 * vx / n, my + span * 0.08 * vy / n, lab,
+                ha="center", va="center", fontsize=14)
+    ax.set_xlim(min(0, cx) - span * 0.22, max(c, cx) + span * 0.22)
+    ax.set_ylim(-span * 0.24, cy + span * 0.26)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def vertical_angles(name, slope_deg, label_right, label_left,
+                    figsize=(4.8, 3.2)):
+    """Two straight lines crossing at the origin — one horizontal, one at
+    EXACTLY slope_deg — with the vertical-angle pair marked: label_right
+    on the angle opening to the right of the vertex, label_left on the
+    angle vertically opposite it."""
+    t = math.radians(slope_deg)
+    L = 4.2
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot([-L, L], [0, 0], color=BLACK, lw=1.6)
+    ax.plot([-L * math.cos(t), L * math.cos(t)],
+            [-L * math.sin(t), L * math.sin(t)], color=BLACK, lw=1.6)
+    for r, (a1, a2), lab in [(1.0, (0, slope_deg), label_right),
+                             (1.15, (180, 180 + slope_deg), label_left)]:
+        th = np.linspace(math.radians(a1), math.radians(a2), 70)
+        ax.plot(r * np.cos(th), r * np.sin(th), color=BLACK, lw=1.0)
+        mid = math.radians((a1 + a2) / 2)
+        ax.text(r * 1.75 * math.cos(mid), r * 1.75 * math.sin(mid), lab,
+                ha="center", va="center", fontsize=13)
+    ax.plot([0], [0], "o", ms=4, color=BLACK)
+    ax.set_xlim(-L * 1.15, L * 1.15)
+    ax.set_ylim(-L * math.sin(t) - 0.7, L * math.sin(t) + 0.7)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def sector(name, central_deg, angle_label=None, radius_label=None, r=3.0,
+           figsize=(4.2, 4.2)):
+    """Circle with center O and a central angle of EXACTLY central_deg
+    swept counterclockwise from the positive x-axis; the subtended arc is
+    drawn heavy. Labels the angle and one radius only — never the arc
+    length the student must find."""
+    t = math.radians(central_deg)
+    fig, ax = plt.subplots(figsize=figsize)
+    th = np.linspace(0, 2 * math.pi, 400)
+    ax.plot(r * np.cos(th), r * np.sin(th), color=BLACK, lw=1.4)
+    arc = np.linspace(0, t, 200)
+    ax.plot(r * np.cos(arc), r * np.sin(arc), color=BLACK, lw=3.4)
+    ax.plot([0, r], [0, 0], color=BLACK, lw=1.4)
+    ax.plot([0, r * math.cos(t)], [0, r * math.sin(t)], color=BLACK, lw=1.4)
+    ax.plot([0], [0], "o", ms=4, color=BLACK)
+    ax.text(-r * 0.10, -r * 0.10, "$O$", ha="right", va="top", fontsize=13)
+    if angle_label:
+        ma = np.linspace(0, t, 60)
+        ax.plot(r * 0.28 * np.cos(ma), r * 0.28 * np.sin(ma), color=BLACK, lw=1.0)
+        ax.text(r * 0.50 * math.cos(t / 2), r * 0.50 * math.sin(t / 2),
+                angle_label, ha="center", va="center", fontsize=13)
+    if radius_label:
+        ax.text(r * 0.52, -r * 0.09, radius_label, ha="center", va="top",
+                fontsize=14)
+    ax.set_xlim(-r * 1.22, r * 1.22)
+    ax.set_ylim(-r * 1.22, r * 1.22)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def tangent_circle(name, radius, tangent_len, radius_label=None,
+                   hyp_label=None, figsize=(4.6, 3.8)):
+    """Circle of the given radius centered at O with a tangent line
+    touching at P, and an external point Q on that line at EXACTLY
+    tangent_len from P. The radius OP is drawn (perpendicular to the
+    tangent, marked with a right angle) and OQ is drawn. PQ — the length
+    the student must find — is deliberately NOT labeled."""
+    r, d = float(radius), float(tangent_len)
+    O, P, Q = (0.0, 0.0), (0.0, -r), (d, -r)
+    fig, ax = plt.subplots(figsize=figsize)
+    th = np.linspace(0, 2 * math.pi, 400)
+    ax.plot(r * np.cos(th), r * np.sin(th), color=BLACK, lw=1.4)
+    ax.plot([-r * 0.55, d * 1.12], [-r, -r], color=BLACK, lw=1.5)
+    ax.plot([O[0], P[0]], [O[1], P[1]], color=BLACK, lw=1.5)
+    ax.plot([O[0], Q[0]], [O[1], Q[1]], color=BLACK, lw=1.5)
+    s = r * 0.13
+    ax.plot([0, s, s], [-r + s, -r + s, -r], color=BLACK, lw=1.0)
+    for (px, py), lab, ha, va in [(O, "$O$", "right", "bottom"),
+                                  (P, "$P$", "right", "top"),
+                                  (Q, "$Q$", "left", "top")]:
+        ax.text(px + (0.10 * r if ha == "left" else -0.10 * r),
+                py + (0.10 * r if va == "bottom" else -0.10 * r),
+                lab, ha=ha, va=va, fontsize=13)
+    if radius_label:
+        ax.text(-r * 0.10, -r * 0.5, radius_label, ha="right", va="center",
+                fontsize=14)
+    if hyp_label:
+        ax.text(d * 0.5 + r * 0.06, -r * 0.5 + r * 0.10, hyp_label,
+                ha="left", va="bottom", fontsize=14)
+    ax.set_xlim(-r * 1.35, d * 1.24)
+    ax.set_ylim(-r * 1.45, r * 1.25)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def semicircle_triangle(name, diameter, leg, diam_label=None, leg_label=None,
+                        figsize=(4.8, 3.2)):
+    """Triangle inscribed in a circle with AB as a DIAMETER, so the angle
+    at C is right (Thales). C is placed exactly: AC = leg, and
+    BC = sqrt(diameter^2 - leg^2) — which is left UNLABELED because it is
+    what the question asks for."""
+    D, p = float(diameter), float(leg)
+    assert 0 < p < D, f"{name}: leg must be shorter than the diameter"
+    R = D / 2
+    # A=(-R,0), B=(R,0); C on the circle with |AC| = p
+    cx = -R + p * p / D
+    cy = math.sqrt(max(R * R - cx * cx, 0.0))
+    A, B, C = (-R, 0.0), (R, 0.0), (cx, cy)
+    fig, ax = plt.subplots(figsize=figsize)
+    th = np.linspace(0, 2 * math.pi, 400)
+    ax.plot(R * np.cos(th), R * np.sin(th), color=BLACK, lw=1.3)
+    ax.plot([A[0], B[0], C[0], A[0]], [A[1], B[1], C[1], A[1]],
+            color=BLACK, lw=1.6)
+    # right-angle square at C, built from the two unit edge directions
+    e1 = ((A[0] - C[0]) / p, (A[1] - C[1]) / p)
+    q = math.dist(B, C)
+    e2 = ((B[0] - C[0]) / q, (B[1] - C[1]) / q)
+    s = R * 0.13
+    ax.plot([C[0] + s * e1[0], C[0] + s * (e1[0] + e2[0]), C[0] + s * e2[0]],
+            [C[1] + s * e1[1], C[1] + s * (e1[1] + e2[1]), C[1] + s * e2[1]],
+            color=BLACK, lw=1.0)
+    for (px, py), lab, ha, va in [(A, "$A$", "right", "center"),
+                                  (B, "$B$", "left", "center"),
+                                  (C, "$C$", "center", "bottom")]:
+        ax.text(px + (-0.09 * R if ha == "right" else 0.09 * R if ha == "left" else 0),
+                py + (0.10 * R if va == "bottom" else 0),
+                lab, ha=ha, va=va, fontsize=13)
+    if diam_label:
+        ax.text(0, -R * 0.12, diam_label, ha="center", va="top", fontsize=14)
+    if leg_label:
+        ax.text((A[0] + C[0]) / 2 - R * 0.10, (A[1] + C[1]) / 2 + R * 0.06,
+                leg_label, ha="right", va="bottom", fontsize=14)
+    ax.set_xlim(-R * 1.30, R * 1.30)
+    ax.set_ylim(-R * 0.42, R * 1.28)
+    clean_axes(ax)
+    save(fig, name)
+
+
+def sphere(name, radius_label=None, r=3.0, figsize=(3.6, 3.6)):
+    """Sphere: outline circle plus the standard dashed/solid equator
+    ellipse, with a radius segment drawn from the center."""
+    fig, ax = plt.subplots(figsize=figsize)
+    th = np.linspace(0, 2 * math.pi, 400)
+    ax.plot(r * np.cos(th), r * np.sin(th), color=BLACK, lw=1.5)
+    ey = r * 0.34
+    ax.plot(r * np.cos(th), ey * np.sin(th), color=BLACK, lw=1.0,
+            ls=(0, (4, 3)))
+    front = th[(np.sin(th) <= 0)]
+    ax.plot(r * np.cos(front), ey * np.sin(front), color=BLACK, lw=1.3)
+    ax.plot([0, r * math.cos(math.radians(35))],
+            [0, r * math.sin(math.radians(35))], color=BLACK, lw=1.4)
+    ax.plot([0], [0], "o", ms=3.5, color=BLACK)
+    if radius_label:
+        ax.text(r * 0.30 * math.cos(math.radians(35)) - r * 0.04,
+                r * 0.55 * math.sin(math.radians(35)) + r * 0.06,
+                radius_label, ha="right", va="bottom", fontsize=14)
+    ax.set_xlim(-r * 1.14, r * 1.14)
+    ax.set_ylim(-r * 1.14, r * 1.14)
     clean_axes(ax)
     save(fig, name)
