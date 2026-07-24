@@ -13,6 +13,7 @@ import satPractice3 from "@/data/sat/sat-practice-3.json";
 import satPractice4 from "@/data/sat/sat-practice-4.json";
 import satPractice5 from "@/data/sat/sat-practice-5.json";
 import satPractice6 from "@/data/sat/sat-practice-6.json";
+import satPractice7 from "@/data/sat/sat-practice-7.json";
 
 export type SatDomain = "algebra" | "advanced_math" | "psda" | "geometry_trig";
 export type SatModuleKey = "module1" | "module2Easy" | "module2Hard";
@@ -62,6 +63,7 @@ const TESTS: SatTest[] = [
   satPractice4 as unknown as SatTest,
   satPractice5 as unknown as SatTest,
   satPractice6 as unknown as SatTest,
+  satPractice7 as unknown as SatTest,
 ];
 
 export function listSatTests(): SatTestMeta[] {

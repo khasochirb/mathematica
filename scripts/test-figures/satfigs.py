@@ -41,6 +41,7 @@ Tool inventory (each returns nothing; writes public/sat-figures/<name>.png):
   tangent_circle(...)        circle with a tangent line and external point
   semicircle_triangle(...)   triangle inscribed in a semicircle (Thales)
   sphere(...)                sphere with a radius label
+  stack_images(...)          composite several saved figures into one
 """
 
 import math
@@ -826,3 +827,29 @@ def sphere(name, radius_label=None, r=3.0, figsize=(3.6, 3.6)):
     ax.set_ylim(-r * 1.14, r * 1.14)
     clean_axes(ax)
     save(fig, name)
+
+
+def stack_images(name: str, parts: list[str], gap: int = 24) -> None:
+    """Composite already-saved figures vertically into ONE image, then
+    delete the parts. Use when a stem shows several tables or panels but
+    the question schema allows a single figure. Panels are centred on the
+    widest one and the canvas stays pure white, per the house rules."""
+    from PIL import Image
+    paths = [OUT / f"{p}.png" for p in parts]
+    ims = [Image.open(p).convert("RGB") for p in paths]
+    width = max(im.width for im in ims)
+    height = sum(im.height for im in ims) + gap * (len(ims) - 1)
+    sheet = Image.new("RGB", (width, height), "white")
+    y = 0
+    for im in ims:
+        sheet.paste(im, ((width - im.width) // 2, y))
+        y += im.height + gap
+    for im in ims:
+        im.close()
+    out = OUT / f"{name}.png"
+    sheet.save(out, optimize=True)
+    for p in paths:
+        p.unlink()
+    kb = out.stat().st_size / 1024
+    flag = "" if kb <= 50 else "  << OVER 50KB"
+    print(f"  {name}.png  {kb:.1f} KB (stacked {len(parts)}){flag}")
