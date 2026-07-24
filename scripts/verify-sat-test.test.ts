@@ -17,9 +17,13 @@ const MODULES: SatModuleKey[] = ["module1", "module2Easy", "module2Hard"];
 const ALL_TESTS = listSatTests().map((m) => getSatTest(m.testId)!);
 
 describe("SAT test registry", () => {
-  it("lists both practice tests with Bluebook-format meta", () => {
+  it("lists the practice tests with Bluebook-format meta", () => {
     const metas = listSatTests();
-    expect(metas.map((m) => m.testId)).toEqual(["sat-practice-1", "sat-practice-2"]);
+    const ids = metas.map((m) => m.testId);
+    // At least the first two ship; new tests append as sat-practice-N.
+    expect(ids).toEqual(expect.arrayContaining(["sat-practice-1", "sat-practice-2"]));
+    for (const id of ids) expect(id).toMatch(/^sat-practice-\d+$/);
+    expect(new Set(ids).size).toBe(ids.length); // unique testIds
     for (const m of metas) {
       expect(m.minutesPerModule).toBe(35);
       expect(m.module2Threshold).toBe(15);
