@@ -1,0 +1,1016 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "hl",
+    "paper": 2,
+    "testId": "ib-hl-practice-2",
+    "label": "AA HL Practice Paper 2",
+    "timeMinutes": 120,
+    "totalMarks": 110,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AAHL-P2-T2-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "geometry_trig",
+      "skill_tag": "non_right_trig",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the size of the largest angle of the triangle.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the largest angle is opposite the longest side; cosine rule $\\cos C = \\dfrac{8^2 + 11^2 - 15^2}{2(8)(11)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos C = -\\dfrac{40}{176}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C = 103^\\circ$ $(103.137\\ldots)$"
+            }
+          ],
+          "answer": "$C = 103^\\circ$",
+          "solution": "$$\\cos C = \\frac{8^2 + 11^2 - 15^2}{2(8)(11)} = -\\frac{40}{176} \\Rightarrow C = 103.137 \\approx 103^\\circ.$$",
+          "verify": [
+            "Abs(deg(acos(Rational(-40, 176))) - 103) < 0.51"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of the triangle.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac12(8)(11)\\sin C$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 42.8$ $(42.8486\\ldots)$"
+            }
+          ],
+          "answer": "$42.8$",
+          "solution": "$$\\text{Area} = \\tfrac12(8)(11)\\sin C = 42.8486 \\approx 42.8.$$",
+          "verify": [
+            "Abs(Rational(1,2)*88*sin(acos(Rational(-40,176))) - 42.8) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the shortest distance from $C$ to the side $[AB]$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac12 \\times AB \\times h$, so $h = \\dfrac{2 \\times \\text{area}}{15}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$h = 5.71$"
+            }
+          ],
+          "answer": "$h = 5.71$",
+          "solution": "The shortest distance is the altitude to $[AB]$:$$h = \\frac{2 \\times 42.8486}{15} = 5.71314 \\approx 5.71.$$",
+          "verify": [
+            "Abs(2*Rational(1,2)*88*sin(acos(Rational(-40,176)))/15 - 5.71) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 15$, $BC = 8$ and $AC = 11$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t2-q1.png",
+        "width": 752,
+        "height": 369,
+        "alt_en": "Triangle ABC with the longest side AB = 15 as the base, AC = 11 and BC = 8."
+      }
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "stats_probability",
+      "skill_tag": "binomial_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(X = 6)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial pdf (GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 6) = 0.192$ $(0.191639\\ldots)$"
+            }
+          ],
+          "answer": "$0.192$",
+          "solution": "$$P(X = 6) = \\binom{20}{6}(0.3)^6(0.7)^{14} = 0.191639 \\approx 0.192.$$",
+          "verify": [
+            "Abs(binomial(20, 6)*Rational(3,10)**6*Rational(7,10)**14 - 0.192) < 0.00051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X \\ge 8)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the complement $1 - P(X \\le 7)$ (GDC binomial cdf)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\le 7) = 0.772\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 8) = 0.228$ $(0.227728\\ldots)$"
+            }
+          ],
+          "answer": "$0.228$",
+          "solution": "$$P(X \\ge 8) = 1 - P(X \\le 7) = 0.227728 \\approx 0.228.$$",
+          "verify": [
+            "Abs((1 - (binomial(20, 0)*Rational(3,10)**0*Rational(7,10)**20 + binomial(20, 1)*Rational(3,10)**1*Rational(7,10)**19 + binomial(20, 2)*Rational(3,10)**2*Rational(7,10)**18 + binomial(20, 3)*Rational(3,10)**3*Rational(7,10)**17 + binomial(20, 4)*Rational(3,10)**4*Rational(7,10)**16 + binomial(20, 5)*Rational(3,10)**5*Rational(7,10)**15 + binomial(20, 6)*Rational(3,10)**6*Rational(7,10)**14 + binomial(20, 7)*Rational(3,10)**7*Rational(7,10)**13)) - 0.228) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $E(X)$ and $\\operatorname{Var}(X)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$E(X) = np = 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\operatorname{Var}(X) = np(1-p) = 4.2$"
+            }
+          ],
+          "answer": "$E(X) = 6$, $\\operatorname{Var}(X) = 4.2$",
+          "solution": "$$E(X) = 20(0.3) = 6, \\qquad \\operatorname{Var}(X) = 20(0.3)(0.7) = 4.2.$$",
+          "verify": [
+            "Eq(20*Rational(3, 10), 6)",
+            "Eq(20*Rational(3, 10)*Rational(7, 10), Rational(21, 5))"
+          ]
+        }
+      ],
+      "contextIntro": "A factory produces components, $30\\%$ of which are painted red. A random sample of $20$ components is taken. Let $X$ be the number that are red, so $X \\sim B(20,\\, 0.3)$."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "number_algebra",
+      "skill_tag": "systems_equations",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Use technology to solve the system.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "enter the coefficient matrix and constants into the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$z = 3$"
+            },
+            {
+              "mark": "R1",
+              "note": "verify in an equation, e.g. $2 + (-1) + 3 = 4$"
+            }
+          ],
+          "answer": "$x = 2$, $y = -1$, $z = 3$",
+          "solution": "Solving with the GDC gives$$x = 2, \\quad y = -1, \\quad z = 3.$$ Check: $2 - (-1) + 2(3) = 9$ and $2(2) + (-1) - 3 = 0$.",
+          "verify": [
+            "Eq(2 + (-1) + 3, 4)",
+            "Eq(2 - (-1) + 2*3, 9)",
+            "Eq(2*2 + (-1) - 3, 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence write down the value of $x + 2y + 3z$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute the solution"
+            },
+            {
+              "mark": "A1",
+              "note": "$2 + 2(-1) + 3(3) = 9$"
+            }
+          ],
+          "answer": "$9$",
+          "solution": "$$x + 2y + 3z = 2 + 2(-1) + 3(3) = 2 - 2 + 9 = 9.$$",
+          "verify": [
+            "Eq(2 + 2*(-1) + 3*3, 9)"
+          ]
+        }
+      ],
+      "contextIntro": "The variables $x$, $y$ and $z$ satisfy the system $$x + y + z = 4$$ $$x - y + 2z = 9$$ $$2x + y - z = 0.$$"
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "functions",
+      "skill_tag": "graphical_solutions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "By considering $f(x) = e^{x} - 3x$ at $x = 0$ and $x = 1$, explain why the equation has a solution between $0$ and $1$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$f(0) = 1 > 0$ and $f(1) = e - 3 < 0$"
+            },
+            {
+              "mark": "R1",
+              "note": "$f$ is continuous and changes sign, so by the intermediate value theorem there is a root in $(0, 1)$"
+            }
+          ],
+          "answer": "sign change of $f$ on $(0, 1)$",
+          "solution": "$f(0) = e^0 - 0 = 1 > 0$ and $f(1) = e - 3 \\approx -0.28 < 0$. As $f$ is continuous and changes sign, there is a root between $0$ and $1$.",
+          "verify": [
+            "Eq(exp(0) - 3*0, 1)",
+            "(exp(1) - 3) < 0"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "State the number of real solutions of $e^{x} = 3x$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sketch $y = e^x$ and $y = 3x$ (GDC) — they cross twice"
+            },
+            {
+              "mark": "A1",
+              "note": "$2$ solutions"
+            }
+          ],
+          "answer": "$2$",
+          "solution": "The line $y = 3x$ meets the curve $y = e^x$ at two points, so there are $2$ real solutions.",
+          "verify": [
+            "(exp(0) - 3*0) > 0",
+            "(exp(1) - 3*1) < 0",
+            "(exp(2) - 3*2) > 0"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find both solutions, giving your answers to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $e^x = 3x$ with the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0.619$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1.51$"
+            }
+          ],
+          "answer": "$x = 0.619$ and $x = 1.51$",
+          "solution": "Using the GDC to intersect $y = e^x$ and $y = 3x$:$$x = 0.619 \\text{ and } x = 1.51.$$",
+          "verify": [
+            "Abs(exp(0.619) - 3*0.619) < 0.02",
+            "Abs(exp(1.51) - 3*1.51) < 0.02"
+          ]
+        }
+      ],
+      "contextIntro": "Consider the equation $e^{x} = 3x$."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "area_between_curves",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the $x$-coordinates of the points of intersection of the two curves.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $x = x^2 - 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^2 - x - 2 = (x - 2)(x + 1) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = -1$ and $x = 2$"
+            }
+          ],
+          "answer": "$x = -1$ and $x = 2$",
+          "solution": "$$x = x^2 - 2 \\Rightarrow x^2 - x - 2 = 0 \\Rightarrow (x - 2)(x + 1) = 0,$$ so $x = -1, 2$.",
+          "verify": [
+            "Eq(-1 - ((-1)**2 - 2), 0)",
+            "Eq(2 - (2**2 - 2), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of $R$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\displaystyle\\int_{-1}^{2}\\big(x - (x^2 - 2)\\big)\\,dx$ (line is above the parabola)"
+            },
+            {
+              "mark": "A1",
+              "note": "integrand $= -x^2 + x + 2$"
+            },
+            {
+              "mark": "M1",
+              "note": "antiderivative $-\\tfrac{x^3}{3} + \\tfrac{x^2}{2} + 2x$"
+            },
+            {
+              "mark": "A1",
+              "note": "evaluate between $-1$ and $2$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= \\dfrac{9}{2}$"
+            }
+          ],
+          "answer": "area $= \\dfrac{9}{2}$",
+          "solution": "On $[-1, 2]$ the line lies above the parabola:$$\\int_{-1}^{2}\\big(x - (x^2 - 2)\\big)\\,dx = \\int_{-1}^{2}(-x^2 + x + 2)\\,dx = \\frac{9}{2}.$$",
+          "verify": [
+            "Eq(integrate(x - (x**2 - 2), (x, -1, 2)), Rational(9, 2))"
+          ]
+        }
+      ],
+      "contextIntro": "The curves $y = x$ and $y = x^2 - 2$ enclose a region $R$."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "logarithmic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "product rule on $x$ and $\\ln x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = \\ln x + 1$"
+            }
+          ],
+          "answer": "$f'(x) = \\ln x + 1$",
+          "solution": "$$f'(x) = 1\\cdot\\ln x + x\\cdot\\frac1x = \\ln x + 1.$$",
+          "verify": [
+            "Eq(simplify(diff(x*log(x), x) - (log(x) + 1)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the minimum point of the graph of $f$, giving your answer in exact form.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $f'(x) = 0$: $\\ln x = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = e^{-1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "minimum point $\\left(e^{-1},\\, -e^{-1}\\right)$"
+            }
+          ],
+          "answer": "$\\left(e^{-1}, -e^{-1}\\right)$",
+          "solution": "$f'(x) = 0 \\Rightarrow \\ln x = -1 \\Rightarrow x = e^{-1}$, and$$f(e^{-1}) = e^{-1}\\ln(e^{-1}) = -e^{-1}.$$ Since $f'$ changes from negative to positive, this is a minimum.",
+          "verify": [
+            "Eq(solve(Eq(log(x) + 1, 0), x)[0], exp(-1))",
+            "Eq(simplify((x*log(x)).subs(x, exp(-1)) + exp(-1)), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the equation of the tangent to the graph of $f$ at the point where $x = 1$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$f(1) = 0$ and $f'(1) = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "gradient $1$, point $(1, 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = x - 1$"
+            }
+          ],
+          "answer": "$y = x - 1$",
+          "solution": "At $x = 1$: $f(1) = 0$ and $f'(1) = \\ln 1 + 1 = 1$, so$$y - 0 = 1(x - 1) \\Rightarrow y = x - 1.$$",
+          "verify": [
+            "Eq((x*log(x)).subs(x, 1), 0)",
+            "Eq(diff(x*log(x), x).subs(x, 1), 1)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x\\ln x$ for $x > 0$."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q7",
+      "number": 7,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "complex_numbers",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down $|z|$ and $\\arg z$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$|z| = \\sqrt2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\arg z = \\dfrac{\\pi}{4}$"
+            }
+          ],
+          "answer": "$|z| = \\sqrt2$, $\\arg z = \\dfrac{\\pi}{4}$",
+          "solution": "$$|z| = \\sqrt{1^2 + 1^2} = \\sqrt2, \\qquad \\arg z = \\frac{\\pi}{4}.$$",
+          "verify": [
+            "Eq(Abs(1 + I), sqrt(2))",
+            "Eq(arg(1 + I), pi/4)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Use de Moivre's theorem to find $z^{8}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$z^8 = (\\sqrt2)^8\\operatorname{cis}\\!\\left(8\\cdot\\tfrac{\\pi}{4}\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 16\\operatorname{cis}(2\\pi)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$z^8 = 16$"
+            }
+          ],
+          "answer": "$z^8 = 16$",
+          "solution": "$$z^8 = (\\sqrt2)^8\\operatorname{cis}(2\\pi) = 16(1 + 0i) = 16.$$",
+          "verify": [
+            "Eq(simplify((1 + I)**8), 16)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the smallest positive integer $n$ such that $z^{n}$ is a real number.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$z^n$ is real when $\\arg(z^n) = \\dfrac{n\\pi}{4}$ is a multiple of $\\pi$"
+            },
+            {
+              "mark": "A1",
+              "note": "$n$ must be a multiple of $4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$n = 4$ (and $z^4 = -4$)"
+            }
+          ],
+          "answer": "$n = 4$",
+          "solution": "$\\arg(z^n) = \\dfrac{n\\pi}{4}$ is a multiple of $\\pi$ exactly when $4 \\mid n$; the smallest positive such $n$ is $4$, and indeed $z^4 = (1+i)^4 = -4$ is real.",
+          "verify": [
+            "Eq(simplify((1 + I)**4), -4)"
+          ]
+        }
+      ],
+      "contextIntro": "Let $z = 1 + i$."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 19,
+      "topic": "stats_probability",
+      "skill_tag": "expectation_binomial",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Complete the probability distribution of $W$: the values are $-2$, $2$, $4$ and $6$. Write down each probability.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$P(W = -2) = \\tfrac12$ (odd)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(W = 2) = P(W = 4) = P(W = 6) = \\tfrac16$"
+            },
+            {
+              "mark": "R1",
+              "note": "the four probabilities sum to $1$"
+            }
+          ],
+          "answer": "$P(W=-2)=\\tfrac12$; $P(W=2)=P(W=4)=P(W=6)=\\tfrac16$",
+          "solution": "An odd result ($1, 3, 5$) has probability $\\tfrac36 = \\tfrac12$ and gives $W = -2$; each even result has probability $\\tfrac16$ and gives $W = 2, 4, 6$ respectively. These sum to $1$.",
+          "verify": [
+            "Eq(Rational(1,2) + 3*Rational(1,6), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $E(W)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(W) = \\sum w\\,P(W = w)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac16(2 + 4 + 6) + \\tfrac12(-2) = 2 - 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(W) = 1$"
+            }
+          ],
+          "answer": "$E(W) = \\$1$",
+          "solution": "$$E(W) = \\frac16(2 + 4 + 6) + \\frac12(-2) = 2 - 1 = 1.$$",
+          "verify": [
+            "Eq(Rational(1,6)*(2 + 4 + 6) + Rational(1,2)*(-2), 1)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\operatorname{Var}(W)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(W^2) = \\tfrac16(4 + 16 + 36) + \\tfrac12(4) = \\tfrac{34}{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\operatorname{Var}(W) = E(W^2) - [E(W)]^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\operatorname{Var}(W) = \\dfrac{31}{3}$"
+            }
+          ],
+          "answer": "$\\operatorname{Var}(W) = \\dfrac{31}{3}$",
+          "solution": "$$E(W^2) = \\frac16(4 + 16 + 36) + \\frac12(4) = \\frac{34}{3},$$$$\\operatorname{Var}(W) = \\frac{34}{3} - 1^2 = \\frac{31}{3}.$$",
+          "verify": [
+            "Eq(Rational(1,6)*(4 + 16 + 36) + Rational(1,2)*4, Rational(34, 3))",
+            "Eq(Rational(34, 3) - 1, Rational(31, 3))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "The game is played $20$ times. Find the expected total winnings and the standard deviation of the total.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "total expectation $= 20\\,E(W)$"
+            },
+            {
+              "mark": "A1",
+              "note": "expected total $= \\$20$"
+            },
+            {
+              "mark": "M1",
+              "note": "total variance $= 20\\operatorname{Var}(W)$ (independent rolls)"
+            },
+            {
+              "mark": "A1",
+              "note": "standard deviation $= \\sqrt{20 \\cdot \\tfrac{31}{3}} = 14.4$"
+            }
+          ],
+          "answer": "expected \\$20; standard deviation $14.4$",
+          "solution": "$$E(\\text{total}) = 20(1) = \\$20.$$ Because the rolls are independent, variances add:$$\\operatorname{sd} = \\sqrt{20\\cdot\\tfrac{31}{3}} = 14.3759 \\approx 14.4.$$",
+          "verify": [
+            "Abs(sqrt(20*Rational(31, 3)) - 14.4) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Let $Y$ be the number of the $20$ games that are wins (i.e. $W > 0$). Find $P(Y \\ge 12)$ and write down the most likely number of wins.",
+          "marks": 6,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(W > 0) = P(\\text{even}) = \\tfrac12$, so $Y \\sim B(20, \\tfrac12)$"
+            },
+            {
+              "mark": "M1",
+              "note": "$P(Y \\ge 12) = 1 - P(Y \\le 11)$ (GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(Y \\ge 12) = 0.252$ $(0.251722\\ldots)$"
+            },
+            {
+              "mark": "A1",
+              "note": "the distribution is symmetric about its mean"
+            },
+            {
+              "mark": "A1",
+              "note": "mean $= 20\\cdot\\tfrac12 = 10$"
+            },
+            {
+              "mark": "A1",
+              "note": "most likely number of wins $= 10$"
+            }
+          ],
+          "answer": "$P(Y \\ge 12) = 0.252$; mode $= 10$",
+          "solution": "A win occurs on an even roll, with probability $\\tfrac12$, so $Y \\sim B(20, \\tfrac12)$:$$P(Y \\ge 12) = 1 - P(Y \\le 11) = 0.251722 \\approx 0.252.$$ The binomial with $p = \\tfrac12$ is symmetric, so the most likely value is the mean $np = 10$.",
+          "verify": [
+            "Abs((1 - (binomial(20, 0)*Rational(1,2)**20 + binomial(20, 1)*Rational(1,2)**20 + binomial(20, 2)*Rational(1,2)**20 + binomial(20, 3)*Rational(1,2)**20 + binomial(20, 4)*Rational(1,2)**20 + binomial(20, 5)*Rational(1,2)**20 + binomial(20, 6)*Rational(1,2)**20 + binomial(20, 7)*Rational(1,2)**20 + binomial(20, 8)*Rational(1,2)**20 + binomial(20, 9)*Rational(1,2)**20 + binomial(20, 10)*Rational(1,2)**20 + binomial(20, 11)*Rational(1,2)**20)) - 0.252) < 0.00051",
+            "Eq(20*Rational(1, 2), 10)"
+          ]
+        }
+      ],
+      "contextIntro": "In a game a fair six-sided die is rolled once. If the result is even the player wins that many dollars; if the result is odd the player loses \\$2. Let $W$ be the player's winnings, in dollars, from one roll."
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 21,
+      "topic": "calculus",
+      "skill_tag": "optimisation",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $A = 2\\pi r^2 + \\dfrac{660}{r}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "from $V = \\pi r^2 h = 330$, $h = \\dfrac{330}{\\pi r^2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$A = 2\\pi r^2 + 2\\pi r h$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= 2\\pi r^2 + \\dfrac{660}{r}$"
+            }
+          ],
+          "answer": "$A = 2\\pi r^2 + \\dfrac{660}{r}$",
+          "solution": "From $\\pi r^2 h = 330$, $h = \\dfrac{330}{\\pi r^2}$. The surface area of a closed cylinder is$$A = 2\\pi r^2 + 2\\pi r h = 2\\pi r^2 + 2\\pi r \\cdot\\frac{330}{\\pi r^2} = 2\\pi r^2 + \\frac{660}{r}.$$",
+          "verify": [
+            "Eq(simplify(2*pi*r**2 + 2*pi*r*(330/(pi*r**2)) - (2*pi*r**2 + 660/r)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $\\dfrac{dA}{dr}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$4\\pi r$ from the first term"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{dA}{dr} = 4\\pi r - \\dfrac{660}{r^2}$"
+            }
+          ],
+          "answer": "$\\dfrac{dA}{dr} = 4\\pi r - \\dfrac{660}{r^2}$",
+          "solution": "$$\\frac{dA}{dr} = 4\\pi r - \\frac{660}{r^2}.$$",
+          "verify": [
+            "Eq(simplify(diff(2*pi*r**2 + 660/r, r) - (4*pi*r - 660/r**2)), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the value of $r$ that minimises $A$, giving your answer to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $\\dfrac{dA}{dr} = 0$: $4\\pi r = \\dfrac{660}{r^2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$r^3 = \\dfrac{165}{\\pi}$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve (GDC or cube root)"
+            },
+            {
+              "mark": "A1",
+              "note": "$r = 3.74$ $(3.74494\\ldots)$"
+            }
+          ],
+          "answer": "$r = 3.74$",
+          "solution": "$$4\\pi r - \\frac{660}{r^2} = 0 \\Rightarrow r^3 = \\frac{660}{4\\pi} = \\frac{165}{\\pi} \\Rightarrow r = 3.74494 \\approx 3.74.$$",
+          "verify": [
+            "Abs((Rational(165)/pi)**Rational(1,3) - 3.74) < 0.0051"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the minimum surface area.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $r$ into $A$"
+            },
+            {
+              "mark": "A1",
+              "note": "$A = 2\\pi r^2 + \\dfrac{660}{r}$ at the optimal $r$"
+            },
+            {
+              "mark": "A1",
+              "note": "$A_{\\min} = 264$ cm$^2$ $(264.357\\ldots)$"
+            }
+          ],
+          "answer": "$A_{\\min} = 264$ cm$^2$",
+          "solution": "$$A_{\\min} = 2\\pi(3.744)^2 + \\frac{660}{3.744} = 264.357 \\approx 264 \\text{ cm}^2.$$",
+          "verify": [
+            "Abs((2*pi*r**2 + 660/r).subs(r, (Rational(165)/pi)**Rational(1,3)) - 264) < 0.51"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "By considering the second derivative, justify that this value of $r$ gives a minimum, and find the corresponding height $h$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\dfrac{d^2A}{dr^2} = 4\\pi + \\dfrac{1320}{r^3}$"
+            },
+            {
+              "mark": "R1",
+              "note": "this is positive for all $r > 0$, so $A$ is a minimum"
+            },
+            {
+              "mark": "M1",
+              "note": "$h = \\dfrac{330}{\\pi r^2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$h = 7.49$ cm (note $h = 2r$)"
+            }
+          ],
+          "answer": "minimum confirmed; $h = 7.49$ cm",
+          "solution": "$$\\frac{d^2A}{dr^2} = 4\\pi + \\frac{1320}{r^3} > 0\\text{ for all } r > 0,$$ so the stationary point is a minimum. The height is$$h = \\frac{330}{\\pi r^2} = 7.48988 \\approx 7.49 \\text{ cm},$$ which equals $2r$.",
+          "verify": [
+            "Eq(simplify(diff(2*pi*r**2 + 660/r, r, 2) - (4*pi + 1320/r**3)), 0)",
+            "Abs((330/(pi*r**2)).subs(r, (Rational(165)/pi)**Rational(1,3)) - 7.49) < 0.0051"
+          ]
+        },
+        {
+          "label": "f",
+          "body": "The volume is now doubled to $660$ cm$^3$. Find the new minimum surface area.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "now $A = 2\\pi r^2 + \\dfrac{1320}{r}$"
+            },
+            {
+              "mark": "M1",
+              "note": "minimise: $r^3 = \\dfrac{330}{\\pi}$"
+            },
+            {
+              "mark": "A1",
+              "note": "optimal $r \\approx 4.72$"
+            },
+            {
+              "mark": "A1",
+              "note": "$A_{\\min} = 420$ cm$^2$ $(419.640\\ldots)$"
+            }
+          ],
+          "answer": "$A_{\\min} = 420$ cm$^2$",
+          "solution": "Doubling the volume gives $A = 2\\pi r^2 + \\dfrac{1320}{r}$, minimised when $r^3 = \\dfrac{330}{\\pi}$, i.e. $r \\approx 4.72$:$$A_{\\min} = 419.640 \\approx 420 \\text{ cm}^2.$$",
+          "verify": [
+            "Abs((2*pi*r**2 + 1320/r).subs(r, (Rational(330)/pi)**Rational(1,3)) - 420) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "A closed cylindrical can has radius $r$ cm and height $h$ cm, and a fixed volume of $330$ cm$^3$. The surface area of the can is $A$ cm$^2$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t2-q9.png",
+        "width": 536,
+        "height": 571,
+        "alt_en": "Closed cylinder of radius r and height h with r marked on the top circle and h marked on the side."
+      }
+    },
+    {
+      "source": "IB-AAHL-P2-T2-Q10",
+      "number": 10,
+      "section": "B",
+      "maximumMark": 18,
+      "topic": "geometry_trig",
+      "skill_tag": "bearings",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that the angle $P\\hat{Q}R = 110^\\circ$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the back-bearing of $Q$ from the first leg is $240^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "angle $= 240^\\circ - 130^\\circ$"
+            },
+            {
+              "mark": "AG",
+              "note": "$P\\hat{Q}R = 110^\\circ$"
+            }
+          ],
+          "answer": "$P\\hat{Q}R = 110^\\circ$",
+          "solution": "Arriving at $Q$ the ship faces $060^\\circ$, so the direction back to $P$ is $060 + 180 = 240^\\circ$. The next leg is on $130^\\circ$, so$$P\\hat{Q}R = 240^\\circ - 130^\\circ = 110^\\circ.$$",
+          "verify": [
+            "Eq(240 - 130, 110)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the distance $PR$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule $PR^2 = 20^2 + 15^2 - 2(20)(15)\\cos 110^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "$PR^2 = 830.212$"
+            },
+            {
+              "mark": "M1",
+              "note": "take the positive square root"
+            },
+            {
+              "mark": "A1",
+              "note": "$PR = 28.8$ km"
+            }
+          ],
+          "answer": "$PR = 28.8$ km",
+          "solution": "$$PR^2 = 20^2 + 15^2 - 2(20)(15)\\cos 110^\\circ = 830.212$$$$PR = 28.8134 \\approx 28.8 \\text{ km}.$$",
+          "verify": [
+            "Abs(sqrt(20**2 + 15**2 - 600*cos(rad(110))) - 28.8) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the bearing of $R$ from $P$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sine rule for angle $Q\\hat{P}R$: $\\dfrac{\\sin Q\\hat{P}R}{15} = \\dfrac{\\sin 110^\\circ}{PR}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$Q\\hat{P}R = 29.3^\\circ$"
+            },
+            {
+              "mark": "M1",
+              "note": "add to the first bearing: $060^\\circ + Q\\hat{P}R$"
+            },
+            {
+              "mark": "A1",
+              "note": "bearing $= 89.3^\\circ$"
+            }
+          ],
+          "answer": "$ 89.3^\\circ$",
+          "solution": "By the sine rule, $\\sin Q\\hat{P}R = \\dfrac{15\\sin 110^\\circ}{PR}$, giving $Q\\hat{P}R = 29.3^\\circ$. The bearing of $R$ from $P$ is$$060^\\circ + 29.3^\\circ = 89.3^\\circ.$$",
+          "verify": [
+            "Abs(60 + deg(asin(15*sin(rad(110))/sqrt(20**2 + 15**2 - 600*cos(rad(110))))) - 89.3) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the shortest distance from $Q$ to the line $[PR]$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area of triangle $= \\tfrac12(20)(15)\\sin 110^\\circ$, and area $= \\tfrac12 \\times PR \\times d$"
+            },
+            {
+              "mark": "A1",
+              "note": "$d = \\dfrac{2 \\times \\text{area}}{PR}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$d = 9.78$ km"
+            }
+          ],
+          "answer": "$ 9.78$ km",
+          "solution": "The area of triangle $PQR$ is $\\tfrac12(20)(15)\\sin 110^\\circ$. Equating to $\\tfrac12\\,PR\\,d$:$$d = \\frac{2\\times\\tfrac12(20)(15)\\sin 110^\\circ}{PR} = 9.78391 \\approx 9.78 \\text{ km}.$$",
+          "verify": [
+            "Abs(2*Rational(1,2)*300*sin(rad(110))/sqrt(20**2 + 15**2 - 600*cos(rad(110))) - 9.78) < 0.0051"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the bearing on which the ship must sail to return directly from $R$ to $P$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the return bearing is the reverse of the bearing of $R$ from $P$"
+            },
+            {
+              "mark": "A1",
+              "note": "add $180^\\circ$ to the bearing found in (c)"
+            },
+            {
+              "mark": "A1",
+              "note": "$89.3^\\circ + 180^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "bearing $= 269^\\circ$"
+            }
+          ],
+          "answer": "$ 269^\\circ$",
+          "solution": "The bearing of $P$ from $R$ is the back-bearing of the bearing of $R$ from $P$:$$89.3^\\circ + 180^\\circ = 269^\\circ.$$",
+          "verify": [
+            "Abs((60 + deg(asin(15*sin(rad(110))/sqrt(20**2 + 15**2 - 600*cos(rad(110))))) + 180) - 269) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "A ship sails from port $P$ on a bearing of $060^\\circ$ for $20$ km to a point $Q$, then changes course and sails on a bearing of $130^\\circ$ for $15$ km to a point $R$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t2-q10.png",
+        "width": 722,
+        "height": 439,
+        "alt_en": "Navigation diagram: from P a leg of 20 km on bearing 060 to Q, then a leg of 15 km on bearing 130 to R, with North arrows at P and Q and the direct line PR dashed."
+      }
+    }
+  ]
+}
