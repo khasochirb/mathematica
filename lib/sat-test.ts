@@ -70,6 +70,22 @@ export function getSatTest(testId: string): SatTest | undefined {
   return TESTS.find((t) => t.meta.testId === testId);
 }
 
+// Resolve a full question from its source id (e.g. "SAT-P5-M1-Q07"),
+// searching every module of every test. Used by the progress dashboard to
+// show the whole problem — statement, options, key, solution — behind a
+// past sitting's per-question row.
+export function getSatQuestionBySource(source: string): SatQuestion | undefined {
+  const modules: Array<keyof Pick<SatTest, "module1" | "module2Easy" | "module2Hard">> =
+    ["module1", "module2Easy", "module2Hard"];
+  for (const t of TESTS) {
+    for (const key of modules) {
+      const q = t[key].find((qq) => qq.source === source);
+      if (q) return q;
+    }
+  }
+  return undefined;
+}
+
 // The performance pipeline's topic vocabulary for the SAT context is the
 // key set of SAT_DOMAIN_LABELS in lib/hub-analytics.ts (the tagging
 // contract). This maps the question bank's domain field onto it.

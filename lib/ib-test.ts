@@ -101,6 +101,25 @@ export function getIbPaper(testId: string, paper: number): IbPaper | undefined {
   return PAPERS.find((p) => p.meta.testId === testId && p.meta.paper === paper);
 }
 
+// Resolve a full question + part from a run/attempt source id, which is
+// the part-keyed form "IB-AASL-P1-T4-Q3(a)" (see ibPartKey). Used by the
+// progress dashboard to show the whole problem — part statement, official
+// answer, markscheme, and worked solution — behind a past sitting's row.
+export function getIbQuestionPartBySource(
+  source: string,
+): { question: IbQuestion; part: IbPart } | undefined {
+  const m = /^(.*)\(([^()]+)\)$/.exec(source);
+  if (!m) return undefined;
+  const [, qSource, label] = m;
+  for (const p of PAPERS) {
+    const q = p.questions.find((qq) => qq.source === qSource);
+    if (!q) continue;
+    const part = q.parts.find((pp) => pp.label === label);
+    if (part) return { question: q, part };
+  }
+  return undefined;
+}
+
 // ── practice sets (Paper 1 + Paper 2 = one sitting of the exam) ───────
 // The hub presents one card per practice SET; a set is complete when both
 // of its papers are. Grouped by testId, ordered by paper number.

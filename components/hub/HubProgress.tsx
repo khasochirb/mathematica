@@ -4,12 +4,19 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { BarChart3, Check, ChevronDown, Target, TrendingDown, TrendingUp, X } from "lucide-react";
 import BackButton from "@/components/BackButton";
+import MathText from "@/components/esh/MathText";
+import EshFigure from "@/components/esh/EshFigure";
 import usePerformance from "@/lib/use-performance";
 import { contextHref } from "@/lib/perf-context";
 import { hubTopicLabel, HUB_NATIVE_METRIC_NOTE } from "@/lib/hub-analytics";
-import { deriveTestRuns, runMarks, runTrend, TestRun } from "@/lib/test-history";
-import { getSatTest, listSatTests, scaledScoreEstimate } from "@/lib/sat-test";
-import { ibGradeEstimate, ibPaperSourcePrefix, listIbPracticeSets } from "@/lib/ib-test";
+import { deriveTestRuns, RunQuestion, runMarks, runTrend, TestRun } from "@/lib/test-history";
+import { getSatQuestionBySource, getSatTest, listSatTests, scaledScoreEstimate } from "@/lib/sat-test";
+import {
+  getIbQuestionPartBySource,
+  ibGradeEstimate,
+  ibPaperSourcePrefix,
+  listIbPracticeSets,
+} from "@/lib/ib-test";
 import { parseTestId } from "@/lib/test-history";
 
 // The exam-hub progress page (SAT / IB). Reads ONLY its own context from
@@ -258,28 +265,11 @@ export default function HubProgress({
                         </button>
                         {isOpen && (
                           <div className="px-4 pb-4 border-t pt-3" style={{ borderColor: "var(--line)" }}>
-                            <div className="space-y-1">
+                            <div className="space-y-1.5">
                               {r.questions.map((q) => (
-                                <div key={q.source} className="flex items-center gap-2 text-[13px] rounded px-2 py-1" style={{ background: q.isCorrect ? "transparent" : "color-mix(in oklch, var(--danger) 6%, transparent)" }}>
-                                  {q.isCorrect ? (
-                                    <Check className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--accent)" }} />
-                                  ) : (
-                                    <X className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--danger)" }} />
-                                  )}
-                                  <span className="mono w-20 shrink-0" style={{ color: "var(--fg-2)" }}>
-                                    {q.label}
-                                  </span>
-                                  <span className="mono text-[12px] truncate" style={{ color: "var(--fg-3)" }}>
-                                    {q.selected === "" ? "blank" : `you: ${q.selected}`}
-                                    {!q.isCorrect && q.correctAnswer ? ` · key: ${q.correctAnswer}` : ""}
-                                  </span>
-                                </div>
+                                <SittingQuestion key={q.source} context={context} q={q} />
                               ))}
                             </div>
-                            <p className="text-[11px] mt-3" style={{ color: "var(--fg-3)" }}>
-                              Full statements and worked solutions are on the test&apos;s
-                              own results page until you retake it.
-                            </p>
                           </div>
                         )}
                       </div>
@@ -291,6 +281,183 @@ export default function HubProgress({
           </>
         )}
       </div>
+    </div>
+  );
+}
+
+// One question inside an expanded sitting. Collapsed, it's the terse
+// right/wrong row the student already knew ("M1 · Q7 · you: D · key: C");
+// expanded, it resolves the FULL problem from the registry by source id —
+// statement, figure, options with the correct one highlighted (SAT) or the
+// part statement, official answer, markscheme, and worked solution (IB) —
+// so the whole problem is reviewable from the dashboard, not just the score.
+function SittingQuestion({ context, q }: { context: "sat" | "ib"; q: RunQuestion }) {
+  const [open, setOpen] = useState(false);
+  const resolved =
+    context === "sat" ? getSatQuestionBySource(q.source) : getIbQuestionPartBySource(q.source);
+
+  // IB rows record marks as "earned/max" strings (selected "3/4", key
+  // "4/4"); SAT rows record the letter/SPR value the student entered.
+  const ibEarned = q.selected.includes("/") ? q.selected.split("/")[0] : q.selected || "0";
+  const ibMax = q.correctAnswer.split("/")[1] ?? q.correctAnswer;
+  const summary =
+    context === "sat"
+      ? `${q.selected === "" ? "blank" : `you: ${q.selected}`}${
+          q.correctAnswer ? ` · key: ${q.correctAnswer}` : ""
+        }`
+      : `${ibEarned}/${ibMax} marks`;
+
+  return (
+    <div
+      className="rounded-md overflow-hidden"
+      style={{ background: q.isCorrect ? "transparent" : "color-mix(in oklch, var(--danger) 6%, transparent)" }}
+    >
+      <button
+        className="w-full flex items-center gap-2 text-[13px] px-2 py-1.5 text-left"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        disabled={!resolved}
+      >
+        {q.isCorrect ? (
+          <Check className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--accent)" }} />
+        ) : (
+          <X className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--danger)" }} />
+        )}
+        <span className="mono w-20 shrink-0" style={{ color: "var(--fg-2)" }}>
+          {q.label}
+        </span>
+        <span className="mono text-[12px] truncate flex-1" style={{ color: "var(--fg-3)" }}>
+          {summary}
+        </span>
+        {resolved && (
+          <ChevronDown
+            className="h-3.5 w-3.5 shrink-0 transition-transform"
+            style={{ color: "var(--fg-3)", transform: open ? "rotate(180deg)" : "none" }}
+          />
+        )}
+      </button>
+
+      {open && resolved && context === "sat" && "body" in resolved && (
+        <div className="px-3 pb-3">
+          <div className="text-[13px]" style={{ color: "var(--fg)", lineHeight: 1.7 }}>
+            <MathText text={resolved.body} />
+          </div>
+          {resolved.figure && (
+            <div className="mt-3 max-w-xs">
+              <EshFigure
+                src={resolved.figure.src}
+                alt_en={resolved.figure.alt_en}
+                alt_mn={resolved.figure.alt_en}
+                width={resolved.figure.width}
+                height={resolved.figure.height}
+              />
+            </div>
+          )}
+          {resolved.format === "mcq" && resolved.options ? (
+            <div className="mt-3 space-y-1.5">
+              {Object.entries(resolved.options).map(([letter, text]) => {
+                const isKey = letter === resolved.answer;
+                const isWrongPick = !isKey && letter === q.selected;
+                return (
+                  <div
+                    key={letter}
+                    className="text-[13px] rounded-md px-3 py-1.5"
+                    style={{
+                      border: "1px solid",
+                      borderColor: isKey ? "var(--accent-line)" : isWrongPick ? "var(--danger)" : "var(--line)",
+                      background: isKey ? "var(--accent-wash)" : "transparent",
+                      color: "var(--fg-1)",
+                    }}
+                  >
+                    <span className="mono mr-2" style={{ color: isKey ? "var(--accent)" : "var(--fg-3)" }}>
+                      {letter}
+                    </span>
+                    <MathText text={text} />
+                    {isKey ? (
+                      <span className="mono text-[10px] ml-2" style={{ color: "var(--accent)" }}>
+                        ✓ correct
+                      </span>
+                    ) : isWrongPick ? (
+                      <span className="mono text-[10px] ml-2" style={{ color: "var(--danger)" }}>
+                        your answer
+                      </span>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div
+              className="mt-3 text-[13px] rounded-md px-3 py-1.5"
+              style={{ border: "1px solid var(--accent-line)", background: "var(--accent-wash)", color: "var(--fg-1)" }}
+            >
+              <span className="mono mr-2" style={{ color: "var(--accent)" }}>
+                answer
+              </span>
+              {(resolved.acceptedAnswers ?? []).join(" or ")}
+            </div>
+          )}
+          <div className="text-[13px] mt-3 pt-3 border-t" style={{ borderColor: "var(--line)", color: "var(--fg-1)", lineHeight: 1.7 }}>
+            <MathText text={resolved.solution} />
+          </div>
+        </div>
+      )}
+
+      {open && resolved && context === "ib" && "part" in resolved && (
+        <div className="px-3 pb-3">
+          {resolved.question.contextIntro && (
+            <div className="text-[13px]" style={{ color: "var(--fg-2)", lineHeight: 1.7 }}>
+              <MathText text={resolved.question.contextIntro} />
+            </div>
+          )}
+          {resolved.question.figure && (
+            <div className="mt-3 max-w-xs">
+              <EshFigure
+                src={resolved.question.figure.src}
+                alt_en={resolved.question.figure.alt_en}
+                alt_mn={resolved.question.figure.alt_en}
+                width={resolved.question.figure.width}
+                height={resolved.question.figure.height}
+              />
+            </div>
+          )}
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="mono text-[12px]" style={{ color: "var(--accent)" }}>
+              ({resolved.part.label})
+            </span>
+            <div className="text-[13px] flex-1" style={{ color: "var(--fg-1)", lineHeight: 1.7 }}>
+              <MathText text={resolved.part.body} />
+            </div>
+            <span className="mono text-[11px] shrink-0" style={{ color: "var(--fg-3)" }}>
+              [{resolved.part.marks}]
+            </span>
+          </div>
+          <div
+            className="rounded-md px-3 py-2 mt-2 text-[13px]"
+            style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--fg)" }}
+          >
+            <MathText text={resolved.part.answer} />
+          </div>
+          <div className="mt-3 space-y-1">
+            {resolved.part.markscheme.map((m, i) => (
+              <div key={i} className="flex items-start gap-2 text-[12px]">
+                <span
+                  className="mono shrink-0 rounded px-1.5 py-0.5 text-[10px] mt-0.5"
+                  style={{ border: "1px solid var(--line)", color: "var(--accent)" }}
+                >
+                  {m.mark}
+                </span>
+                <span style={{ color: "var(--fg-1)" }}>
+                  <MathText text={m.note} />
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="text-[13px] mt-3 pt-3 border-t" style={{ borderColor: "var(--line)", color: "var(--fg-1)", lineHeight: 1.7 }}>
+            <MathText text={resolved.part.solution} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
