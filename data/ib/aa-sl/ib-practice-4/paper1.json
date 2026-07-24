@@ -1,0 +1,827 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 1,
+    "testId": "ib-practice-4",
+    "label": "AA SL Practice Paper 1",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P1-T4-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "geometric_series",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $u_3$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $u_n = u_1 r^{\\,n-1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$u_3 = 12\\left(\\tfrac{1}{3}\\right)^2 = \\tfrac{4}{3}$"
+            }
+          ],
+          "answer": "$u_3 = \\dfrac{4}{3}$",
+          "solution": "$$u_3 = 12\\left(\\frac{1}{3}\\right)^{2} = \\frac{12}{9} = \\frac{4}{3}.$$",
+          "verify": [
+            "Eq(12*Rational(1, 3)**2, Rational(4, 3))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the sum to infinity of the sequence.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $S_\\infty = \\dfrac{u_1}{1 - r}$ (valid since $|r| < 1$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{12}{1 - \\tfrac{1}{3}}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$S_\\infty = 18$"
+            }
+          ],
+          "answer": "$S_\\infty = 18$",
+          "solution": "Since $|r| = \\tfrac13 < 1$ the series converges:$$S_\\infty = \\frac{u_1}{1 - r} = \\frac{12}{1 - \\tfrac13} = \\frac{12}{\\tfrac23} = 18.$$",
+          "verify": [
+            "Eq(12/(1 - Rational(1, 3)), 18)"
+          ]
+        }
+      ],
+      "contextIntro": "A geometric sequence has first term $u_1 = 12$ and common ratio $r = \\dfrac{1}{3}$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "stats_probability",
+      "skill_tag": "set_probability",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(A \\cap B)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A \\cap B) = \\dfrac{1}{5}$"
+            }
+          ],
+          "answer": "$P(A \\cap B) = \\dfrac{1}{5}$",
+          "solution": "$$P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = \\frac12 + \\frac25 - \\frac{7}{10} = \\frac{1}{5}.$$",
+          "verify": [
+            "Eq(Rational(1, 2) + Rational(2, 5) - Rational(7, 10), Rational(1, 5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Determine whether $A$ and $B$ are independent, justifying your answer.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "compute $P(A)\\,P(B) = \\tfrac12 \\cdot \\tfrac25$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(A)P(B) = \\dfrac{1}{5}$"
+            },
+            {
+              "mark": "R1",
+              "note": "since $P(A \\cap B) = P(A)P(B)$, the events ARE independent"
+            }
+          ],
+          "answer": "independent, since $P(A \\cap B) = P(A)P(B) = \\dfrac{1}{5}$",
+          "solution": "$A$ and $B$ are independent exactly when $P(A \\cap B) = P(A)P(B)$. Here$$P(A)P(B) = \\frac12 \\cdot \\frac25 = \\frac15 = P(A \\cap B),$$ so the events are independent.",
+          "verify": [
+            "Eq(Rational(1, 2)*Rational(2, 5), Rational(1, 5))"
+          ]
+        }
+      ],
+      "contextIntro": "For two events $A$ and $B$, $P(A) = \\dfrac{1}{2}$, $P(B) = \\dfrac{2}{5}$ and $P(A \\cup B) = \\dfrac{7}{10}$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "quadratic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write $f(x)$ in the form $(x - h)^2 + k$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "complete the square: half of $-6$ is $-3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(x - 3)^2$ with a correction of $-9$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(x) = (x - 3)^2 - 4$"
+            }
+          ],
+          "answer": "$f(x) = (x - 3)^2 - 4$",
+          "solution": "$$f(x) = x^2 - 6x + 5 = (x - 3)^2 - 9 + 5 = (x - 3)^2 - 4.$$",
+          "verify": [
+            "Eq(expand((x - 3)**2 - 4), x**2 - 6*x + 5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence write down the coordinates of the vertex of the graph of $f$, and find the $x$-intercepts.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "vertex $(3, -4)$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve $(x - 3)^2 = 4$, i.e. $x - 3 = \\pm 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$ and $x = 5$"
+            }
+          ],
+          "answer": "vertex $(3, -4)$; $x$-intercepts $x = 1$ and $x = 5$",
+          "solution": "The vertex form gives the minimum point $(3, -4)$. Setting $f(x) = 0$:$$(x - 3)^2 = 4 \\Rightarrow x - 3 = \\pm 2 \\Rightarrow x = 1 \\text{ or } x = 5.$$",
+          "verify": [
+            "Eq(1**2 - 6*1 + 5, 0)",
+            "Eq(5**2 - 6*5 + 5, 0)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x^2 - 6x + 5$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "double_angle",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $\\sin\\theta$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\sin^2\\theta + \\cos^2\\theta = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin\\theta = \\dfrac{4}{5}$ (positive, as $\\theta$ is acute)"
+            }
+          ],
+          "answer": "$\\sin\\theta = \\dfrac{4}{5}$",
+          "solution": "$$\\sin\\theta = \\sqrt{1 - \\left(\\tfrac35\\right)^2} = \\sqrt{\\tfrac{16}{25}} = \\frac{4}{5}.$$",
+          "verify": [
+            "Eq(sqrt(1 - Rational(9, 25)), Rational(4, 5))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $\\sin 2\\theta$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin 2\\theta = \\dfrac{24}{25}$"
+            }
+          ],
+          "answer": "$\\sin 2\\theta = \\dfrac{24}{25}$",
+          "solution": "$$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta = 2 \\cdot \\frac45 \\cdot \\frac35 = \\frac{24}{25}.$$",
+          "verify": [
+            "Eq(2*Rational(4, 5)*Rational(3, 5), Rational(24, 25))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\cos 2\\theta$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\cos 2\\theta = 2\\cos^2\\theta - 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos 2\\theta = -\\dfrac{7}{25}$"
+            }
+          ],
+          "answer": "$\\cos 2\\theta = -\\dfrac{7}{25}$",
+          "solution": "$$\\cos 2\\theta = 2\\cos^2\\theta - 1 = 2 \\cdot \\frac{9}{25} - 1 = \\frac{18}{25} - \\frac{25}{25} = -\\frac{7}{25}.$$",
+          "verify": [
+            "Eq(2*Rational(3, 5)**2 - 1, Rational(-7, 25))"
+          ]
+        }
+      ],
+      "contextIntro": "The angle $\\theta$ is acute and $\\cos\\theta = \\dfrac{3}{5}$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "binomial_theorem",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the first three terms of the expansion, in ascending powers of $x$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply the binomial theorem with terms $\\binom{6}{k}(2x)^k$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\binom{6}{1}(2x) = 12x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$1 + 12x + 60x^2$"
+            }
+          ],
+          "answer": "$1 + 12x + 60x^2$",
+          "solution": "$$(1 + 2x)^6 = 1 + \\binom{6}{1}(2x) + \\binom{6}{2}(2x)^2 + \\cdots = 1 + 12x + 60x^2 + \\cdots$$",
+          "verify": [
+            "Eq(binomial(6, 1)*2, 12)",
+            "Eq(binomial(6, 2)*2**2, 60)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coefficient of $x^3$ in the expansion.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the $x^3$ term is $\\binom{6}{3}(2x)^3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\binom{6}{3} = 20$ and $(2)^3 = 8$"
+            },
+            {
+              "mark": "A1",
+              "note": "coefficient $= 160$"
+            }
+          ],
+          "answer": "$160$",
+          "solution": "$$\\binom{6}{3}(2x)^3 = 20 \\cdot 8x^3 = 160x^3,$$ so the coefficient is $160$.",
+          "verify": [
+            "Eq(binomial(6, 3)*2**3, 160)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "By substituting a suitable value of $x$ into the first three terms, estimate $(1.02)^6$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $2x = 0.02$, i.e. $x = 0.01$"
+            },
+            {
+              "mark": "A1",
+              "note": "$1 + 12(0.01) + 60(0.01)^2 = 1.126$"
+            }
+          ],
+          "answer": "$(1.02)^6 \\approx 1.126$",
+          "solution": "With $x = 0.01$ the first three terms give$$1 + 12(0.01) + 60(0.01)^2 = 1 + 0.12 + 0.006 = 1.126.$$",
+          "verify": [
+            "Eq(1 + Rational(12, 100) + Rational(60, 10000), Rational(1126, 1000))"
+          ]
+        }
+      ],
+      "contextIntro": "Consider the binomial expansion of $(1 + 2x)^6$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 10,
+      "topic": "calculus",
+      "skill_tag": "differentiation_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $f'(x)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = 3x^2 - 6x$"
+            }
+          ],
+          "answer": "$f'(x) = 3x^2 - 6x$",
+          "solution": "$$f'(x) = 3x^2 - 6x.$$",
+          "verify": [
+            "Eq(expand(diff(x**3 - 3*x**2, x)), 3*x**2 - 6*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the two stationary points of the graph of $f$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $f'(x) = 0$: $3x(x - 2) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0$ and $x = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(0, 0)$ and $(2, -4)$"
+            }
+          ],
+          "answer": "$(0, 0)$ and $(2, -4)$",
+          "solution": "$$3x(x - 2) = 0 \\Rightarrow x = 0 \\text{ or } x = 2.$$$$f(0) = 0, \\qquad f(2) = 8 - 12 = -4.$$",
+          "verify": [
+            "Eq(0**3 - 3*0**2, 0)",
+            "Eq(2**3 - 3*2**2, -4)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the equation of the tangent to the graph of $f$ at the point where $x = 1$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "gradient $f'(1) = -3$ and point $(1, -2)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -3x + 1$"
+            }
+          ],
+          "answer": "$y = -3x + 1$",
+          "solution": "At $x = 1$: $f(1) = -2$ and $f'(1) = 3 - 6 = -3$, so$$y - (-2) = -3(x - 1) \\Rightarrow y = -3x + 1.$$",
+          "verify": [
+            "Eq(1**3 - 3*1**2, -2)",
+            "Eq(diff(x**3 - 3*x**2, x).subs(x, 1), -3)",
+            "Eq(-3*1 + 1, -2)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Determine the nature of each stationary point.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "find $f''(x) = 6x - 6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(0) = -6 < 0 \\Rightarrow (0, 0)$ is a local maximum"
+            },
+            {
+              "mark": "A1",
+              "note": "$f''(2) = 6 > 0 \\Rightarrow (2, -4)$ is a local minimum"
+            }
+          ],
+          "answer": "$(0, 0)$ maximum; $(2, -4)$ minimum",
+          "solution": "$$f''(x) = 6x - 6.$$$$f''(0) = -6 < 0 \\Rightarrow (0, 0)\\text{ is a maximum};$$$$f''(2) = 6 > 0 \\Rightarrow (2, -4)\\text{ is a minimum}.$$",
+          "verify": [
+            "Eq(expand(diff(x**3 - 3*x**2, x, 2)), 6*x - 6)",
+            "Eq((6*x - 6).subs(x, 0), -6)",
+            "Eq((6*x - 6).subs(x, 2), 6)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = x^3 - 3x^2$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "geometry_trig",
+      "skill_tag": "solid_geometry",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of the base diagonal $AC$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply Pythagoras in the base: $AC^2 = 3^2 + 4^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$AC = 5$ cm"
+            }
+          ],
+          "answer": "$AC = 5$ cm",
+          "solution": "$$AC = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5 \\text{ cm}.$$",
+          "verify": [
+            "Eq(sqrt(3**2 + 4**2), 5)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the length of the space diagonal $AG$, giving your answer in the form $a\\sqrt{2}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$AG^2 = AC^2 + CG^2 = 5^2 + 5^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$AG = \\sqrt{50}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$AG = 5\\sqrt{2}$ cm"
+            }
+          ],
+          "answer": "$AG = 5\\sqrt{2}$ cm",
+          "solution": "Triangle $ACG$ is right-angled at $C$:$$AG = \\sqrt{AC^2 + CG^2} = \\sqrt{25 + 25} = \\sqrt{50} = 5\\sqrt{2} \\text{ cm}.$$",
+          "verify": [
+            "Eq(sqrt(5**2 + 5**2), 5*sqrt(2))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Show that the angle $G\\hat{A}C$ between the space diagonal $AG$ and the base is $45^\\circ$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "in right triangle $ACG$, $\\tan(G\\hat{A}C) = \\dfrac{CG}{AC}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tan(G\\hat{A}C) = \\dfrac{5}{5} = 1$"
+            },
+            {
+              "mark": "AG",
+              "note": "$G\\hat{A}C = 45^\\circ$"
+            }
+          ],
+          "answer": "$G\\hat{A}C = 45^\\circ$",
+          "solution": "$$\\tan(G\\hat{A}C) = \\frac{CG}{AC} = \\frac{5}{5} = 1 \\Rightarrow G\\hat{A}C = 45^\\circ.$$",
+          "verify": [
+            "Eq(atan(Rational(5, 5)), pi/4)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the volume of the cuboid.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "volume $= 3 \\times 4 \\times 5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$60$ cm$^3$"
+            }
+          ],
+          "answer": "$60$ cm$^3$",
+          "solution": "$$V = 3 \\times 4 \\times 5 = 60 \\text{ cm}^3.$$",
+          "verify": [
+            "Eq(3*4*5, 60)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the total surface area of the cuboid.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sum the three distinct face areas $12, 20, 15$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2(12 + 20 + 15)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$94$ cm$^2$"
+            }
+          ],
+          "answer": "$94$ cm$^2$",
+          "solution": "The three pairs of faces have areas $3 \\times 4 = 12$, $4 \\times 5 = 20$, $3 \\times 5 = 15$:$$S = 2(12 + 20 + 15) = 2(47) = 94 \\text{ cm}^2.$$",
+          "verify": [
+            "Eq(2*(3*4 + 4*5 + 3*5), 94)"
+          ]
+        }
+      ],
+      "contextIntro": "The diagram shows a cuboid $ABCDEFGH$ with $AB = 3$ cm, $BC = 4$ cm and $CG = 5$ cm. The base $ABCD$ is horizontal and $G$ is the vertex above $C$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t4-q7.png",
+        "width": 559,
+        "height": 656,
+        "alt_en": "Cuboid ABCDEFGH with base edges AB = 3 and BC = 4 and vertical edge CG = 5; the space diagonal from A to G is drawn, together with the base diagonal AC."
+      }
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "discrete_random_variable",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of $k$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the probabilities sum to 1"
+            },
+            {
+              "mark": "A1",
+              "note": "$k = \\dfrac{2}{5}$"
+            }
+          ],
+          "answer": "$k = \\dfrac{2}{5}$",
+          "solution": "$$\\frac{1}{10} + k + \\frac{3}{10} + \\frac{2}{10} = 1 \\Rightarrow k = 1 - \\frac{6}{10} = \\frac{2}{5}.$$",
+          "verify": [
+            "Eq(Rational(1,10) + Rational(2,5) + Rational(3,10) + Rational(2,10), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $E(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $E(X) = \\sum x\\,P(X = x)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$0 + \\tfrac25 + \\tfrac{6}{10} + \\tfrac{6}{10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = \\dfrac{8}{5}$"
+            }
+          ],
+          "answer": "$E(X) = \\dfrac{8}{5}$",
+          "solution": "$$E(X) = 1\\cdot\\frac25 + 2\\cdot\\frac{3}{10} + 3\\cdot\\frac{2}{10} = \\frac{4}{10} + \\frac{6}{10} + \\frac{6}{10} = \\frac{16}{10} = \\frac{8}{5}.$$",
+          "verify": [
+            "Eq(1*Rational(2,5) + 2*Rational(3,10) + 3*Rational(2,10), Rational(8,5))"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\operatorname{Var}(X)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$E(X^2) = \\tfrac25 + 4\\cdot\\tfrac{3}{10} + 9\\cdot\\tfrac{2}{10} = \\tfrac{17}{5}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\operatorname{Var}(X) = E(X^2) - [E(X)]^2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\operatorname{Var}(X) = \\dfrac{21}{25}$"
+            }
+          ],
+          "answer": "$\\operatorname{Var}(X) = \\dfrac{21}{25}$",
+          "solution": "$$E(X^2) = 1\\cdot\\frac25 + 4\\cdot\\frac{3}{10} + 9\\cdot\\frac{2}{10} = \\frac{17}{5}.$$$$\\operatorname{Var}(X) = \\frac{17}{5} - \\left(\\frac85\\right)^2 = \\frac{85}{25} - \\frac{64}{25} = \\frac{21}{25}.$$",
+          "verify": [
+            "Eq(1*Rational(2,5) + 4*Rational(3,10) + 9*Rational(2,10), Rational(17,5))",
+            "Eq(Rational(17,5) - Rational(8,5)**2, Rational(21,25))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $P(X \\ge 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "add $P(X = 2)$ and $P(X = 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\ge 2) = \\dfrac{1}{2}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{2}$",
+          "solution": "$$P(X \\ge 2) = \\frac{3}{10} + \\frac{2}{10} = \\frac{5}{10} = \\frac{1}{2}.$$",
+          "verify": [
+            "Eq(Rational(3,10) + Rational(2,10), Rational(1,2))"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Write down the mode of $X$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "identify the value with the greatest probability"
+            },
+            {
+              "mark": "A1",
+              "note": "mode $= 1$ (probability $\\tfrac25$)"
+            }
+          ],
+          "answer": "mode $= 1$",
+          "solution": "The largest probability is $k = \\tfrac25$, at $X = 1$, so the mode is $1$.",
+          "verify": [
+            "Rational(2, 5) > Rational(3, 10)"
+          ]
+        }
+      ],
+      "contextIntro": "A discrete random variable $X$ has the probability distribution shown, where $k$ is a constant: $P(X = 0) = \\dfrac{1}{10}$, $P(X = 1) = k$, $P(X = 2) = \\dfrac{3}{10}$, $P(X = 3) = \\dfrac{2}{10}$."
+    },
+    {
+      "source": "IB-AASL-P1-T4-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "integration_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $f(x) = x(x - 1)(x - 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "expand the product $x(x - 1)(x - 2)$"
+            },
+            {
+              "mark": "AG",
+              "note": "$= x^3 - 3x^2 + 2x$"
+            }
+          ],
+          "answer": "$f(x) = x(x - 1)(x - 2)$",
+          "solution": "$$x(x - 1)(x - 2) = x(x^2 - 3x + 2) = x^3 - 3x^2 + 2x = f(x).$$",
+          "verify": [
+            "Eq(expand(x*(x - 1)*(x - 2)), x**3 - 3*x**2 + 2*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Write down the $x$-intercepts of the graph and find $f'(x)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "intercepts $x = 0, 1, 2$"
+            },
+            {
+              "mark": "M1",
+              "note": "differentiate term by term"
+            },
+            {
+              "mark": "A1",
+              "note": "$f'(x) = 3x^2 - 6x + 2$"
+            }
+          ],
+          "answer": "intercepts $0, 1, 2$; $f'(x) = 3x^2 - 6x + 2$",
+          "solution": "From the factored form the intercepts are $x = 0, 1, 2$, and$$f'(x) = 3x^2 - 6x + 2.$$",
+          "verify": [
+            "Eq(expand(diff(x**3 - 3*x**2 + 2*x, x)), 3*x**2 - 6*x + 2)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the equation of the tangent to the curve at the point where $x = 1$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "gradient $f'(1) = 3 - 6 + 2 = -1$"
+            },
+            {
+              "mark": "A1",
+              "note": "point $(1, 0)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = -x + 1$"
+            }
+          ],
+          "answer": "$y = -x + 1$",
+          "solution": "At $x = 1$: $f(1) = 0$ and $f'(1) = -1$, so$$y - 0 = -1(x - 1) \\Rightarrow y = -x + 1.$$",
+          "verify": [
+            "Eq((x**3 - 3*x**2 + 2*x).subs(x, 1), 0)",
+            "Eq(diff(x**3 - 3*x**2 + 2*x, x).subs(x, 1), -1)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $\\displaystyle\\int_0^1 f(x)\\,dx$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "antiderivative $\\tfrac{x^4}{4} - x^3 + x^2$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate between $0$ and $1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{1}{4}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{4}$",
+          "solution": "$$\\int_0^1 (x^3 - 3x^2 + 2x)\\,dx = \\left[\\frac{x^4}{4} - x^3 + x^2\\right]_0^1 = \\frac14 - 1 + 1 = \\frac14.$$",
+          "verify": [
+            "Eq(integrate(x**3 - 3*x**2 + 2*x, (x, 0, 1)), Rational(1, 4))"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Hence find the total area enclosed between the curve and the $x$-axis for $0 \\le x \\le 2$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "recognise the curve is BELOW the axis on $(1, 2)$"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\displaystyle\\int_1^2 f(x)\\,dx = -\\tfrac14$"
+            },
+            {
+              "mark": "A1",
+              "note": "area below $= \\tfrac14$"
+            },
+            {
+              "mark": "A1",
+              "note": "total area $= \\tfrac14 + \\tfrac14 = \\tfrac12$"
+            }
+          ],
+          "answer": "total area $= \\dfrac{1}{2}$",
+          "solution": "On $(1, 2)$ the curve lies below the axis, and$$\\int_1^2 f(x)\\,dx = \\left[\\frac{x^4}{4} - x^3 + x^2\\right]_1^2 = 0 - \\frac14 = -\\frac14,$$ so that region has area $\\tfrac14$. The total area is$$\\frac14 + \\frac14 = \\frac12.$$",
+          "verify": [
+            "Eq(integrate(x**3 - 3*x**2 + 2*x, (x, 1, 2)), Rational(-1, 4))",
+            "Eq(Rational(1, 4) + Rational(1, 4), Rational(1, 2))"
+          ]
+        }
+      ],
+      "contextIntro": "The diagram shows part of the graph of $f(x) = x^3 - 3x^2 + 2x$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p1-t4-q9.png",
+        "width": 859,
+        "height": 550,
+        "alt_en": "Cubic curve y = x^3 - 3x^2 + 2x crossing the x-axis at 0, 1 and 2; the region between the curve and the x-axis from x = 0 to x = 2 is shaded, lying above the axis on (0,1) and below it on (1,2)."
+      }
+    }
+  ]
+}

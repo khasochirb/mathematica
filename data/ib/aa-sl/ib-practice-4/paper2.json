@@ -1,0 +1,794 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "sl",
+    "paper": 2,
+    "testId": "ib-practice-4",
+    "label": "AA SL Practice Paper 2",
+    "timeMinutes": 90,
+    "totalMarks": 80,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AASL-P2-T4-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "functions",
+      "skill_tag": "exponential_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the value of $f(0)$.",
+          "marks": 1,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$f(0) = 3$"
+            }
+          ],
+          "answer": "$f(0) = 3$",
+          "solution": "$$f(0) = 3 \\times 2^{0} = 3.$$",
+          "verify": [
+            "Eq(3*2**0, 3)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the value of $x$ for which $f(x) = 48$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$2^{x} = 16$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 4$"
+            }
+          ],
+          "answer": "$x = 4$",
+          "solution": "$$3 \\times 2^{x} = 48 \\Rightarrow 2^{x} = 16 = 2^4 \\Rightarrow x = 4.$$",
+          "verify": [
+            "Eq(3*2**4, 48)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Solve $f(x) = 100$, giving your answer to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$2^{x} = \\dfrac{100}{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "take logarithms: $x = \\dfrac{\\ln(100/3)}{\\ln 2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 5.06$ $(5.05889\\ldots)$"
+            }
+          ],
+          "answer": "$x = 5.06$",
+          "solution": "$$3 \\times 2^{x} = 100 \\Rightarrow 2^{x} = \\frac{100}{3}$$$$x = \\frac{\\ln(100/3)}{\\ln 2} = 5.05889 \\approx 5.06.$$",
+          "verify": [
+            "Abs(log(Rational(100, 3))/log(2) - 5.06) < 0.0051"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = 3 \\times 2^{x}$."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "stats_probability",
+      "skill_tag": "binomial_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(X = 3)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial pdf $\\binom{8}{3}(0.35)^3(0.65)^5$ (or GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X = 3) = 0.279$ $(0.278586\\ldots)$"
+            }
+          ],
+          "answer": "$0.279$",
+          "solution": "$$P(X = 3) = \\binom{8}{3}(0.35)^3(0.65)^5 = 0.278586 \\approx 0.279.$$",
+          "verify": [
+            "Abs(binomial(8, 3)*Rational(35,100)**3*Rational(65,100)**5 - 0.279) < 0.00051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(X \\le 2)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "binomial cdf up to $2$ (or sum $k = 0, 1, 2$)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\le 2) = 0.428$ $(0.427814\\ldots)$"
+            }
+          ],
+          "answer": "$0.428$",
+          "solution": "$$P(X \\le 2) = \\sum_{k=0}^{2}\\binom{8}{k}(0.35)^k(0.65)^{8-k} = 0.427814 \\approx 0.428.$$",
+          "verify": [
+            "Abs((Rational(65,100)**8 + 8*Rational(35,100)*Rational(65,100)**7 + 28*Rational(35,100)**2*Rational(65,100)**6) - 0.428) < 0.00051"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Write down $E(X)$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $E(X) = np$"
+            },
+            {
+              "mark": "A1",
+              "note": "$E(X) = 2.8$"
+            }
+          ],
+          "answer": "$E(X) = 2.8$",
+          "solution": "$$E(X) = np = 8 \\times 0.35 = 2.8.$$",
+          "verify": [
+            "Eq(8*Rational(35,100), Rational(14,5))"
+          ]
+        }
+      ],
+      "contextIntro": "A biased coin lands on heads with probability $0.35$. The coin is tossed $8$ times. Let $X$ be the number of heads, so $X \\sim B(8,\\, 0.35)$."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "geometry_trig",
+      "skill_tag": "non_right_triangles",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of $BC$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule $BC^2 = 7^2 + 9^2 - 2(7)(9)\\cos 52^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC^2 = 52.4267$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BC = 7.24$ cm"
+            }
+          ],
+          "answer": "$BC = 7.24$ cm",
+          "solution": "$$BC^2 = 7^2 + 9^2 - 2(7)(9)\\cos 52^{\\circ} = 52.4267$$$$BC = 7.24063 \\approx 7.24 \\text{ cm}.$$",
+          "verify": [
+            "Abs(sqrt(7**2 + 9**2 - 126*cos(rad(52))) - 7.24) < 0.0051"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $ABC$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\tfrac12 (7)(9)\\sin 52^{\\circ}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 24.8223\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= 24.8$ cm$^2$"
+            }
+          ],
+          "answer": "$24.8$ cm$^2$",
+          "solution": "$$\\text{Area} = \\tfrac12 (7)(9)\\sin 52^{\\circ} = 24.8223 \\approx 24.8 \\text{ cm}^2.$$",
+          "verify": [
+            "Abs(Rational(1,2)*63*sin(rad(52)) - 24.8) < 0.051000000000000004"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 7$ cm, $AC = 9$ cm and $B\\hat{A}C = 52^{\\circ}$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t4-q3.png",
+        "width": 554,
+        "height": 535,
+        "alt_en": "Triangle ABC with AB = 7 cm along the base, AC = 9 cm, and the 52 degree angle at A marked with an arc."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 6,
+      "topic": "number_algebra",
+      "skill_tag": "financial_math",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of the investment after $5$ years, giving your answer to two decimal places.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$V = 2000(1.04)^5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$V = \\$2433.31$"
+            }
+          ],
+          "answer": "$\\$2433.31$",
+          "solution": "$$V = 2000(1.04)^5 = 2433.31.$$",
+          "verify": [
+            "Abs(2000*Rational(104,100)**5 - 2433.31) < 0.005"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the least number of complete years for the investment to exceed \\$3000.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $2000(1.04)^n > 3000$, i.e. $(1.04)^n > 1.5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$n > \\dfrac{\\ln 1.5}{\\ln 1.04} = 10.3\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "test whole years: $2000(1.04)^{10} = \\$2960.49 < 3000$"
+            },
+            {
+              "mark": "A1",
+              "note": "least $n = 11$ years"
+            }
+          ],
+          "answer": "$11$ years",
+          "solution": "$$2000(1.04)^n > 3000 \\Rightarrow (1.04)^n > 1.5 \\Rightarrow n > \\frac{\\ln 1.5}{\\ln 1.04} = 10.33\\ldots$$After $10$ years the value is \\$2960.49 $< 3000$; after $11$ years it is \\$3078.91 $> 3000$. The least number of complete years is $11$.",
+          "verify": [
+            "2000*Rational(104,100)**10 < 3000",
+            "2000*Rational(104,100)**11 > 3000",
+            "Abs(log(Rational(3,2))/log(Rational(104,100)) - 10.33) < 0.05"
+          ]
+        }
+      ],
+      "contextIntro": "Bold invests \\$2000 in an account paying $4\\%$ interest per year, compounded annually."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "cubic_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the coordinates of the two stationary points of the graph of $g$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$g'(x) = 3x^2 - 12x + 9 = 0$ (GDC or factor)"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 1$ and $x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(1, 6)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(3, 2)$"
+            }
+          ],
+          "answer": "$(1, 6)$ and $(3, 2)$",
+          "solution": "$$g'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3) = 0 \\Rightarrow x = 1, 3.$$$$g(1) = 6, \\qquad g(3) = 2.$$",
+          "verify": [
+            "Eq(expand(diff(x**3 - 6*x**2 + 9*x + 2, x)), 3*x**2 - 12*x + 9)",
+            "Eq((x**3 - 6*x**2 + 9*x + 2).subs(x, 1), 6)",
+            "Eq((x**3 - 6*x**2 + 9*x + 2).subs(x, 3), 2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "State the nature of each stationary point.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "$(1, 6)$ is a local maximum"
+            },
+            {
+              "mark": "A1",
+              "note": "$(3, 2)$ is a local minimum"
+            }
+          ],
+          "answer": "$(1, 6)$ maximum; $(3, 2)$ minimum",
+          "solution": "The cubic has a positive leading coefficient, so the first stationary point $(1, 6)$ is a local maximum and $(3, 2)$ is a local minimum.",
+          "verify": [
+            "Eq((x**3 - 6*x**2 + 9*x + 2).subs(x, 1) - (x**3 - 6*x**2 + 9*x + 2).subs(x, 3), 4)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Hence state the number of solutions of the equation $g(x) = 4$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the line $y = 4$ lies between the minimum $2$ and the maximum $6$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3$ solutions"
+            }
+          ],
+          "answer": "$3$",
+          "solution": "Since $2 < 4 < 6$, the horizontal line $y = 4$ cuts the curve three times, so $g(x) = 4$ has $3$ solutions.",
+          "verify": [
+            "2 < 4",
+            "4 < 6"
+          ]
+        }
+      ],
+      "contextIntro": "The function $g$ is defined by $g(x) = x^3 - 6x^2 + 9x + 2$."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "integration_area",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the $x$-coordinates of the points where the curve meets the $x$-axis.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $4x - x^2 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x(4 - x) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 0$ and $x = 4$"
+            }
+          ],
+          "answer": "$x = 0$ and $x = 4$",
+          "solution": "$$4x - x^2 = x(4 - x) = 0 \\Rightarrow x = 0 \\text{ or } x = 4.$$",
+          "verify": [
+            "Eq(4*0 - 0**2, 0)",
+            "Eq(4*4 - 4**2, 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of the region enclosed between the curve and the $x$-axis.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area $= \\displaystyle\\int_0^4 (4x - x^2)\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $2x^2 - \\tfrac{x^3}{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate between $0$ and $4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$32 - \\tfrac{64}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= \\dfrac{32}{3}$"
+            }
+          ],
+          "answer": "area $= \\dfrac{32}{3}$",
+          "solution": "The curve is above the axis on $[0, 4]$:$$\\int_0^4 (4x - x^2)\\,dx = \\left[2x^2 - \\frac{x^3}{3}\\right]_0^4 = 32 - \\frac{64}{3} = \\frac{32}{3}.$$",
+          "verify": [
+            "Eq(integrate(4*x - x**2, (x, 0, 4)), Rational(32, 3))"
+          ]
+        }
+      ],
+      "contextIntro": "The curve $y = 4x - x^2$ encloses a region with the $x$-axis."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q7",
+      "number": 7,
+      "section": "B",
+      "maximumMark": 13,
+      "topic": "functions",
+      "skill_tag": "trigonometric_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the maximum and minimum temperatures predicted by the model.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "maximum $= 15 + 8 = 23\\,^{\\circ}$C"
+            },
+            {
+              "mark": "A1",
+              "note": "minimum $= 15 - 8 = 7\\,^{\\circ}$C"
+            }
+          ],
+          "answer": "maximum $23\\,^{\\circ}$C, minimum $7\\,^{\\circ}$C",
+          "solution": "The amplitude is $8$ about the midline $15$, so$$T_{\\max} = 23\\,^{\\circ}\\text{C}, \\qquad T_{\\min} = 7\\,^{\\circ}\\text{C}.$$",
+          "verify": [
+            "Eq(15 + 8, 23)",
+            "Eq(15 - 8, 7)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the period of the model.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "period $= \\dfrac{2\\pi}{\\pi/6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$12$ hours"
+            }
+          ],
+          "answer": "$12$ hours",
+          "solution": "$$\\text{period} = \\frac{2\\pi}{\\pi/6} = 12 \\text{ hours}.$$",
+          "verify": [
+            "Eq(2*pi/(pi/6), 12)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the maximum temperature and the time at which it first occurs.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the maximum occurs when $\\dfrac{\\pi}{6}(t - 3) = \\dfrac{\\pi}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t - 3 = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$T = 23\\,^{\\circ}$C at $t = 6$ (06:00)"
+            }
+          ],
+          "answer": "$23\\,^{\\circ}$C at $t = 6$",
+          "solution": "The sine reaches $1$ when $\\dfrac{\\pi}{6}(t-3) = \\dfrac{\\pi}{2}$, giving $t = 6$, and then$$T(6) = 8(1) + 15 = 23\\,^{\\circ}\\text{C}.$$",
+          "verify": [
+            "Eq(8*sin(pi/6*(6 - 3)) + 15, 23)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the two times during the first $12$ hours at which the temperature is $20\\,^{\\circ}$C.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\sin\\!\\left(\\tfrac{\\pi}{6}(t-3)\\right) = \\tfrac{5}{8}$ (GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 4.29$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 7.71$"
+            }
+          ],
+          "answer": "$t = 4.29$ and $t = 7.71$ hours",
+          "solution": "$$8\\sin\\!\\left(\\tfrac{\\pi}{6}(t-3)\\right) + 15 = 20 \\Rightarrow \\sin\\!\\left(\\tfrac{\\pi}{6}(t-3)\\right) = \\tfrac{5}{8}.$$ Solving with the GDC on $0 \\le t \\le 12$ gives $t = 4.29$ and $t = 7.71$ hours.",
+          "verify": [
+            "Abs(8*sin(pi/6*(4.29 - 3)) + 15 - 20) < 0.02",
+            "Abs(8*sin(pi/6*(7.71 - 3)) + 15 - 20) < 0.02"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Hence find the length of time during the first $12$ hours for which the temperature is at least $20\\,^{\\circ}$C.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the temperature is $\\ge 20$ between the two times in (d)"
+            },
+            {
+              "mark": "A1",
+              "note": "$7.71 - 4.29$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 3.42$ hours"
+            }
+          ],
+          "answer": "$3.42$ hours",
+          "solution": "Between the two solutions the curve is above $20$:$$ 7.71 - 4.29 = 3.42 \\text{ hours}.$$",
+          "verify": [
+            "Abs((7.71 - 4.29) - 3.42) < 0.02"
+          ]
+        }
+      ],
+      "contextIntro": "The temperature $T$, in $^{\\circ}$C, in a greenhouse $t$ hours after midnight is modelled by $T(t) = 8\\sin\\!\\left(\\dfrac{\\pi}{6}(t - 3)\\right) + 15$ for $0 \\le t \\le 24$.",
+      "figure": {
+        "src": "/ib-figures/ib-aasl-p2-t4-q7.png",
+        "width": 906,
+        "height": 584,
+        "alt_en": "One-and-a-half cycles of the temperature curve T against t from 0 to 24 hours, oscillating between 7 and 23 with midline 15."
+      }
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 12,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of $\\mu$ and the value of $\\sigma$.",
+          "marks": 6,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise the first condition: $\\dfrac{200 - \\mu}{\\sigma} = z_{0.10}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$z_{0.10} = -1.2816\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "standardise the second: $\\dfrac{260 - \\mu}{\\sigma} = z_{0.95} = 1.6449\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "subtract to eliminate $\\mu$: $60 = (z_{0.95} - z_{0.10})\\sigma$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sigma = 20.5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu = 226$"
+            }
+          ],
+          "answer": "$\\mu = 226$, $\\sigma = 20.5$",
+          "solution": "Standardising, $\\dfrac{200 - \\mu}{\\sigma} = -1.28155$ and $\\dfrac{260 - \\mu}{\\sigma} = 1.64485$. Subtracting the first from the second:$$60 = (1.64485 + 1.28155)\\sigma \\Rightarrow \\sigma = 20.5030 \\approx 20.5.$$$$\\mu = 200 + 1.28155\\sigma = 226.276 \\approx 226.$$",
+          "verify": [
+            "Abs((260 - 200)/(sqrt(2)*erfinv(Rational(9,10)) - sqrt(2)*erfinv(Rational(-8,10))) - 20.5) < 0.051000000000000004"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(210 < M < 240)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise both bounds with the unrounded $\\mu, \\sigma$"
+            },
+            {
+              "mark": "M1",
+              "note": "normal cdf between the two $z$-values (GDC)"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(210 < M < 240) = 0.535$ $(0.534724\\ldots)$"
+            }
+          ],
+          "answer": "$0.535$",
+          "solution": "Using the unrounded $\\mu = 226.28$ and $\\sigma = 20.50$,$$P(210 < M < 240) = 0.534724 \\approx 0.535.$$",
+          "verify": [
+            "Abs(((1 + erf(0.66936/sqrt(2)))/2 - (1 + erf(-0.79383/sqrt(2)))/2) - 0.535) < 0.01"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the mass that is exceeded by only $1\\%$ of the apples.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $P(M > m) = 0.01$, i.e. the $99$th percentile"
+            },
+            {
+              "mark": "A1",
+              "note": "$m = \\mu + 2.3263\\ldots\\,\\sigma$"
+            },
+            {
+              "mark": "A1",
+              "note": "$m = 274$ g $(273.973\\ldots)$"
+            }
+          ],
+          "answer": "$m = 274$ g",
+          "solution": "The $99$th percentile satisfies $P(M > m) = 0.01$:$$m = \\mu + 2.32635\\,\\sigma = 273.973 \\approx 274 \\text{ g}.$$",
+          "verify": [
+            "Abs(226.276 + 20.5033*sqrt(2)*erfinv(Rational(98, 100)) - 274) < 0.51"
+          ]
+        }
+      ],
+      "contextIntro": "The mass $M$, in grams, of an apple from an orchard is normally distributed with mean $\\mu$ and standard deviation $\\sigma$. It is known that $P(M < 200) = 0.10$ and $P(M > 260) = 0.05$."
+    },
+    {
+      "source": "IB-AASL-P2-T4-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 15,
+      "topic": "calculus",
+      "skill_tag": "kinematics",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the times at which $P$ is at rest.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $v(t) = 0$: $(t - 1)(t - 3) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 1$ and $t = 3$"
+            }
+          ],
+          "answer": "$t = 1$ and $t = 3$ seconds",
+          "solution": "$$v(t) = t^2 - 4t + 3 = (t - 1)(t - 3) = 0 \\Rightarrow t = 1, 3.$$",
+          "verify": [
+            "Eq(1**2 - 4*1 + 3, 0)",
+            "Eq(3**2 - 4*3 + 3, 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the acceleration of $P$ when $t = 2$, and state what this tells you about the motion at that instant.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$a(t) = v'(t) = 2t - 4$"
+            },
+            {
+              "mark": "A1",
+              "note": "$a(2) = 0$"
+            },
+            {
+              "mark": "R1",
+              "note": "the velocity is a minimum (speed greatest in that phase) when $a = 0$"
+            }
+          ],
+          "answer": "$a(2) = 0$",
+          "solution": "$$a(t) = v'(t) = 2t - 4 \\Rightarrow a(2) = 0.$$ At $t = 2$ the acceleration is zero, so the velocity is momentarily neither increasing nor decreasing (a turning point of $v$).",
+          "verify": [
+            "Eq(diff(t**2 - 4*t + 3, t).subs(t, 2), 0)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the displacement of $P$ from its starting point over the interval $0 \\le t \\le 4$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "displacement $= \\displaystyle\\int_0^4 v(t)\\,dt$"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $\\tfrac{t^3}{3} - 2t^2 + 3t$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{4}{3}$ m"
+            }
+          ],
+          "answer": "$\\dfrac{4}{3}$ m",
+          "solution": "$$\\int_0^4 (t^2 - 4t + 3)\\,dt = \\left[\\frac{t^3}{3} - 2t^2 + 3t\\right]_0^4 = \\frac{64}{3} - 32 + 12 = \\frac{4}{3} \\text{ m}.$$",
+          "verify": [
+            "Eq(integrate(t**2 - 4*t + 3, (t, 0, 4)), Rational(4, 3))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the total distance travelled by $P$ over the interval $0 \\le t \\le 4$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the velocity changes sign at $t = 1$ and $t = 3$"
+            },
+            {
+              "mark": "M1",
+              "note": "integrate over each interval and take absolute values"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac43 + \\tfrac43 + \\tfrac43$"
+            },
+            {
+              "mark": "A1",
+              "note": "total distance $= 4$ m"
+            }
+          ],
+          "answer": "$4$ m",
+          "solution": "$v > 0$ on $(0, 1)$ and $(3, 4)$ and $v < 0$ on $(1, 3)$:$$\\int_0^1 v = \\frac43, \\quad \\int_1^3 v = -\\frac43, \\quad \\int_3^4 v = \\frac43,$$$$\\text{distance} = \\frac43 + \\frac43 + \\frac43 = 4 \\text{ m}.$$",
+          "verify": [
+            "Eq(integrate(t**2 - 4*t + 3, (t, 0, 1)), Rational(4,3))",
+            "Eq(integrate(t**2 - 4*t + 3, (t, 1, 3)), Rational(-4,3))",
+            "Eq(integrate(t**2 - 4*t + 3, (t, 3, 4)), Rational(4,3))"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "Find the maximum speed of $P$ over the interval $0 \\le t \\le 4$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "check the velocity at the endpoints and the turning point"
+            },
+            {
+              "mark": "A1",
+              "note": "$v(0) = 3$, $v(2) = -1$, $v(4) = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "maximum speed $= 3$ m s$^{-1}$"
+            }
+          ],
+          "answer": "$3$ m s$^{-1}$",
+          "solution": "Speed is $|v|$. The interior turning point gives $v(2) = -1$ (speed $1$), while the endpoints give $v(0) = v(4) = 3$:$$\\text{maximum speed} = 3 \\text{ m s}^{-1}.$$",
+          "verify": [
+            "Eq((t**2 - 4*t + 3).subs(t, 0), 3)",
+            "Eq((t**2 - 4*t + 3).subs(t, 2), -1)",
+            "Eq((t**2 - 4*t + 3).subs(t, 4), 3)"
+          ]
+        }
+      ],
+      "contextIntro": "A particle $P$ moves in a straight line. Its velocity, in m s$^{-1}$, at time $t$ seconds is given by $v(t) = t^2 - 4t + 3$ for $0 \\le t \\le 4$."
+    }
+  ]
+}
