@@ -1,0 +1,1884 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 2 — Unit 3: Quadratic Functions.
+
+CCSS Integrated Math II: F-IF.4 (interpret key features of a graph), F-IF.7a
+(graph quadratics showing intercepts, maxima and minima), F-IF.8a (use the
+process of factoring and completing the square to reveal zeros, extreme values
+and symmetry), F-BF.3 (identify the effect on the graph of replacing f(x) by
+f(x) + k, k f(x) and f(x + k)), F-LE.3 (a quantity increasing exponentially
+eventually exceeds a quantity increasing linearly or quadratically).
+
+The unit's organising idea is that a quadratic has three faces — standard,
+factored and vertex form — and each one is a different question already
+answered. The algebra of moving between them is Unit 4's job; this unit is
+about what each form TELLS you.
+
+Run: python3 scripts/im/build_im2_unit3.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-2"
+
+
+# ===========================================================================
+# Lesson 1 — F-IF.4/7a: the parabola and its features
+# ===========================================================================
+def lesson_the_parabola():
+    return lesson(
+        slug="introducing-the-parabola",
+        title="The Parabola and Its Features",
+        concrete=(
+            "Throw a ball and photograph its flight against a wall. The curve you get is a "
+            "parabola, and every question you would naturally ask about the throw — how high did "
+            "it go, when did it land, when was it at its peak — is a question about one specific "
+            "feature of that curve. This lesson names the features."
+        ),
+        objective=(
+            "Recognise a quadratic function from its equation, its table and its graph, and "
+            "identify the vertex, the axis of symmetry, the intercepts and the direction of "
+            "opening."
+        ),
+        concept=[
+            "**A quadratic function has a squared term and nothing higher.** In standard form it "
+            "is $f(x) = ax^{2} + bx + c$ with $a \\neq 0$. If $a$ were zero the squared term would "
+            "vanish and the function would be linear — which is exactly why the condition is part "
+            "of the definition rather than an afterthought.",
+            "**The graph is always a parabola, and it always has an axis of symmetry.** Fold the "
+            "curve along that vertical line and the two halves match exactly. This symmetry is not "
+            "a decorative fact: it is the reason a quadratic's two roots are always the same "
+            "distance from the vertex, and it lets you find a second point for free every time you "
+            "find one.",
+            "**The vertex is the turning point.** It is the lowest point when $a > 0$ and the "
+            "highest when $a < 0$. Every maximum-or-minimum question about a quadratic model — "
+            "greatest height, least cost, maximum area — is asking for the vertex, so recognising "
+            "the question type is most of the work.",
+            "**The leading coefficient decides the direction of opening.** A positive $a$ opens upward (a "
+            "valley, so the vertex is a minimum); negative opens downward (a hill, so the vertex "
+            "is a maximum). The size of $a$ decides the width: large $|a|$ makes a narrow curve, "
+            "small $|a|$ a wide one.",
+            "**Second differences are constant for a quadratic.** Take a table with evenly spaced "
+            "inputs, subtract consecutive outputs to get first differences, then subtract those to "
+            "get second differences. Linear functions have constant FIRST differences; quadratics "
+            "have constant SECOND differences. This is how you identify a quadratic from data "
+            "alone, with no equation in sight.",
+            "**The vertical intercept is free.** Substituting $x = 0$ into $ax^{2} + bx + c$ kills the "
+            "first two terms and leaves $c$. So in standard form the constant term IS the "
+            "$y$-intercept, readable without any work at all.",
+        ],
+        key_idea=(
+            "Every quadratic graph is a parabola with an axis of symmetry through its vertex; the "
+            "sign of $a$ says which way it opens and the constant term is the $y$-intercept."
+        ),
+        facts=[
+            fact(
+                "Standard form",
+                "f(x) = ax^{2} + bx + c, \\quad a \\neq 0",
+                "If $a = 0$ the function is linear, not quadratic — hence the condition.",
+            ),
+            fact(
+                "Axis of symmetry",
+                "x = -\\frac{b}{2a}",
+                "A vertical line through the vertex; the curve mirrors across it.",
+            ),
+            fact(
+                "The vertex from standard form",
+                "\\left(-\\frac{b}{2a},\\ f\\!\\left(-\\frac{b}{2a}\\right)\\right)",
+                "Find the $x$ first, then substitute back for the $y$ — never guess the $y$.",
+            ),
+            fact(
+                "Constant second differences",
+                "\\Delta^{2}y = 2a \\cdot (\\Delta x)^{2}",
+                "Equal spacing in $x$ gives constant second differences equal to $2a$ when the step is 1.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u3-l1-we1",
+                "For $f(x) = x^{2} - 6x + 5$, find the axis of symmetry, the vertex, the "
+                "$y$-intercept, and say which way the parabola opens.",
+                "**Direction of opening.** Here $a = 1 > 0$, so the parabola opens upward and the "
+                "vertex will be a MINIMUM."
+                "**Axis of symmetry.** With $a = 1$ and $b = -6$:"
+                "$$x = -\\frac{b}{2a} = -\\frac{-6}{2} = 3.$$"
+                "**Vertex.** Substitute $x = 3$ back into the function — this is the step people "
+                "skip, and the $y$-value cannot be guessed:"
+                "$$f(3) = 9 - 18 + 5 = -4,$$"
+                "so the vertex is $(3, -4)$."
+                "**The vertical intercept.** Set $x = 0$: $f(0) = 5$. In standard form this is just the "
+                "constant term."
+                "**Use the symmetry as a check.** The axis is $x = 3$, so $f(0)$ and $f(6)$ must "
+                "be equal — the two inputs are the same distance from $3$. Indeed "
+                "$f(6) = 36 - 36 + 5 = 5$ ✓ Symmetry has just handed you a second point for free.",
+                [
+                    "Eq(-(-6)/(2*1), 3)",
+                    "Eq(3**2 - 6*3 + 5, -4)",
+                    "Eq(0**2 - 6*0 + 5, 5)",
+                    "Eq(6**2 - 6*6 + 5, 5)",
+                    "Eq(1**2 - 6*1 + 5, 5**2 - 6*5 + 5)",
+                ],
+            ),
+            problem(
+                "im2-u3-l1-we2",
+                "A table gives $y$ at $x = 0, 1, 2, 3, 4$ as $3, 4, 9, 18, 31$. Show the "
+                "relationship is quadratic and find the leading coefficient.",
+                "**First differences.** Subtract each output from the next:"
+                "$$4 - 3 = 1, \\quad 9 - 4 = 5, \\quad 18 - 9 = 9, \\quad 31 - 18 = 13.$$"
+                "These are not constant, so the relationship is not linear."
+                "**Second differences.** Now difference the differences:"
+                "$$5 - 1 = 4, \\quad 9 - 5 = 4, \\quad 13 - 9 = 4.$$"
+                "Constant. That is the signature of a quadratic."
+                "**Extract the leading coefficient.** For unit steps in $x$, the constant second "
+                "difference equals $2a$. Since it is $4$:"
+                "$$2a = 4 \\quad\\Longrightarrow\\quad a = 2.$$"
+                "**Recover the whole function.** The $y$-intercept is the value at $x = 0$, so "
+                "$c = 3$. Using $x = 1$: $2 + b + 3 = 4$, so $b = -1$. The function is "
+                "$y = 2x^{2} - x + 3$."
+                "**Verify against a value not used in the fitting.** At $x = 4$: "
+                "$2(16) - 4 + 3 = 31$ ✓ — the model reproduces a data point it was not built "
+                "from, which is what makes the fit believable.",
+                [
+                    "Eq(4 - 3, 1)",
+                    "Eq(9 - 4, 5)",
+                    "Eq(18 - 9, 9)",
+                    "Eq(31 - 18, 13)",
+                    "Eq(5 - 1, 4)",
+                    "Eq(13 - 9, 4)",
+                    "Eq(2*4**2 - 4 + 3, 31)",
+                    "Eq(2*2**2 - 2 + 3, 9)",
+                    "Eq(2*3**2 - 3 + 3, 18)",
+                ],
+            ),
+            problem(
+                "im2-u3-l1-we3",
+                "For $g(x) = -2x^{2} + 8x - 3$, find the vertex and state the maximum value of "
+                "the function.",
+                "**Read the direction first.** $a = -2 < 0$, so the parabola opens DOWNWARD and "
+                "the vertex is a maximum. Knowing this before computing anything means the answer "
+                "can be sanity-checked at the end."
+                "**Axis of symmetry.**"
+                "$$x = -\\frac{8}{2(-2)} = -\\frac{8}{-4} = 2.$$"
+                "**Vertex.** Substitute:"
+                "$$g(2) = -2(4) + 16 - 3 = -8 + 16 - 3 = 5,$$"
+                "giving the vertex $(2, 5)$."
+                "**State the maximum properly.** The maximum VALUE is $5$; it OCCURS at $x = 2$. "
+                "Those are different quantities and mixing them up is the most common error in "
+                "optimisation problems."
+                "**Confirm it really is the largest.** Test on either side: $g(1) = -2 + 8 - 3 = "
+                "3$ and $g(3) = -18 + 24 - 3 = 3$. Both below $5$, and equal to each other — "
+                "which they must be, since $1$ and $3$ are symmetric about $x = 2$ ✓",
+                [
+                    "Eq(-8/(2*(-2)), 2)",
+                    "Eq(-2*2**2 + 8*2 - 3, 5)",
+                    "Eq(-2*1**2 + 8*1 - 3, 3)",
+                    "Eq(-2*3**2 + 8*3 - 3, 3)",
+                    "-2*1**2 + 8*1 - 3 < -2*2**2 + 8*2 - 3",
+                ],
+            ),
+            problem(
+                "im2-u3-l1-we4",
+                "A ball is thrown upward from a $1.5$ m platform; its height in metres after $t$ "
+                "seconds is $h(t) = -5t^{2} + 20t + 1.5$. Find when it reaches its greatest "
+                "height, what that height is, and interpret the constant term.",
+                "**Interpret the constant first.** $h(0) = 1.5$ — the platform height. In any "
+                "model like this the constant term is the starting value, readable with no "
+                "computation."
+                "**Find the time of the peak.** The coefficient of $t^{2}$ is negative so there IS "
+                "a peak:"
+                "$$t = -\\frac{20}{2(-5)} = 2 \\text{ seconds}.$$"
+                "**Find the greatest height.**"
+                "$$h(2) = -5(4) + 40 + 1.5 = -20 + 41.5 = 21.5 \\text{ metres}.$$"
+                "**Check the symmetry against the physics.** The ball should be at the same height "
+                "one second before and one second after the peak: $h(1) = -5 + 20 + 1.5 = 16.5$ "
+                "and $h(3) = -45 + 60 + 1.5 = 16.5$ ✓ — the model's symmetry matches what actually "
+                "happens to a thrown ball."
+                "**A word on the domain.** The formula gives heights for negative $t$ too, but "
+                "those describe a time before the throw. A model's mathematical domain is almost "
+                "always larger than the situation it describes.",
+                [
+                    "Eq(-20/(2*(-5)), 2)",
+                    "Eq(-5*2**2 + 20*2 + Rational(3,2), Rational(43,2))",
+                    "Eq(-5*1**2 + 20*1 + Rational(3,2), Rational(33,2))",
+                    "Eq(-5*3**2 + 20*3 + Rational(3,2), Rational(33,2))",
+                    "Eq(-5*0**2 + 20*0 + Rational(3,2), Rational(3,2))",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reporting the axis of symmetry as the vertex.",
+                "$x = -\\frac{b}{2a}$ is only the $x$-coordinate. Substitute it back into the "
+                "function to get the $y$. A vertex is a point, not a number.",
+            ),
+            mistake(
+                "Forgetting the minus in $x = -\\frac{b}{2a}$.",
+                "For $x^2 - 6x + 5$ the axis is $-\\frac{-6}{2} = +3$, not $-3$. Check with the "
+                "graph: an upward parabola with a negative $b$ has its vertex to the RIGHT of the "
+                "$y$-axis.",
+            ),
+            mistake(
+                "Concluding a table is quadratic from non-constant first differences alone.",
+                "Non-constant first differences only rule out LINEAR. You must check that the "
+                "SECOND differences are constant before claiming quadratic.",
+            ),
+            mistake(
+                "Saying 'the maximum is at $x = 2$' when asked for the maximum value.",
+                "The maximum value is $g(2) = 5$; it occurs at $x = 2$. Optimisation questions "
+                "almost always want the value, and sometimes both — read which.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u3-l1-t1",
+                "Find the vertex and $y$-intercept of $f(x) = x^{2} + 4x - 5$, and say which way "
+                "it opens.",
+                "$a = 1 > 0$, so it opens upward. Axis: $x = -\\frac{4}{2} = -2$. Vertex "
+                "$y$-value: $f(-2) = 4 - 8 - 5 = -9$, so the vertex is $(-2, -9)$. The "
+                "$y$-intercept is the constant term, $-5$. Symmetry check: $f(0) = -5$ and "
+                "$f(-4) = 16 - 16 - 5 = -5$ ✓",
+                [
+                    "Eq(-4/(2*1), -2)",
+                    "Eq((-2)**2 + 4*(-2) - 5, -9)",
+                    "Eq(0**2 + 4*0 - 5, -5)",
+                    "Eq((-4)**2 + 4*(-4) - 5, -5)",
+                ],
+            ),
+            problem(
+                "im2-u3-l1-t2",
+                "A table gives $y = 1, 3, 9, 19, 33$ at $x = 0, 1, 2, 3, 4$. Is it quadratic? If "
+                "so, find $a$.",
+                "First differences: $2, 6, 10, 14$ — not constant, so not linear. Second "
+                "differences: $4, 4, 4$ — constant, so it IS quadratic. With unit steps the "
+                "second difference is $2a$, so $a = 2$. Fitting the rest: $c = 1$ and at $x = 1$, "
+                "$2 + b + 1 = 3$ gives $b = 0$, so $y = 2x^{2} + 1$. Check at $x = 4$: "
+                "$32 + 1 = 33$ ✓",
+                [
+                    "Eq(3 - 1, 2)",
+                    "Eq(9 - 3, 6)",
+                    "Eq(6 - 2, 4)",
+                    "Eq(14 - 10, 4)",
+                    "Eq(2*4**2 + 1, 33)",
+                    "Eq(2*3**2 + 1, 19)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "F-IF.4",
+                "title": "A curve with exactly four questions",
+                "body": (
+                    "Which way does it open? Where does it turn? Where does it cross the axes? "
+                    "How wide is it? Every quadratic question in this unit is one of those four, "
+                    "and each has a feature of the graph as its answer."
+                ),
+                "beats": [
+                    "Direction: the sign of $a$",
+                    "Turning point: the vertex",
+                    "Crossings: the intercepts",
+                    "Width: the size of $a$",
+                ],
+            },
+            {
+                "kind": "parabolaGraph",
+                "eyebrow": "Feel the coefficient",
+                "title": "What $a$ does to the curve",
+                "teach": (
+                    "Drag the leading coefficient. Positive opens upward, negative opens downward, "
+                    "and the further from zero it goes the narrower the curve becomes. At $a = 0$ "
+                    "the parabola would flatten into a line — which is exactly why the definition "
+                    "forbids it."
+                ),
+                "config": {"mode": "shape", "a": 1, "interactive": True},
+            },
+            {
+                "kind": "worked",
+                "title": "Vertex, axis and intercept from standard form",
+                "problemId": "im2-u3-l1-we1",
+            },
+            tap(
+                "Which way does it open?",
+                "The parabola $y = -3x^{2} + 12x - 7$ opens…",
+                [
+                    "upward, with a minimum at the vertex",
+                    "downward, with a maximum at the vertex",
+                    "upward, with a maximum at the vertex",
+                    "it depends on the value of $b$",
+                ],
+                1,
+                "Only the sign of $a$ matters. Here $a = -3 < 0$, so the parabola opens downward "
+                "and its vertex is the highest point — a maximum.",
+                [
+                    "-3 < 0",
+                    "Eq(-12/(2*(-3)), 2)",
+                    "Eq(-3*2**2 + 12*2 - 7, 5)",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "From data alone",
+                "title": "Second differences give it away",
+                "body": (
+                    "With equally spaced inputs, a linear function has constant FIRST differences "
+                    "and a quadratic has constant SECOND differences. So you can identify a "
+                    "quadratic from a table with no equation and no graph — and for unit steps "
+                    "the constant second difference is exactly $2a$."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Identifying a quadratic from a table",
+                "problemId": "im2-u3-l1-we2",
+            },
+            {
+                "kind": "patternGrow",
+                "eyebrow": "See the second difference",
+                "title": "Growth that itself grows",
+                "teach": (
+                    "In a linear pattern each stage adds the same amount. In a quadratic pattern "
+                    "the amount ADDED grows by a constant each time — the growth has its own "
+                    "growth rate, and that inner constant is the second difference."
+                ),
+                "config": {"start": 3, "step": 4, "stages": 5},
+            },
+            {
+                "kind": "worked",
+                "title": "A downward parabola and its maximum",
+                "problemId": "im2-u3-l1-we3",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Free points",
+                "title": "Symmetry doubles every point you find",
+                "body": (
+                    "Once you know the axis of symmetry, every point you compute gives you a "
+                    "second one for nothing: the mirror point at the same distance on the other "
+                    "side has the same height. Sketching a parabola should never take more than "
+                    "three computed points."
+                ),
+            },
+            tap(
+                "Use the symmetry",
+                "A parabola has its axis of symmetry at $x = 4$, and passes through $(1, 7)$. "
+                "Which point must it also pass through?",
+                ["$(-1, 7)$", "$(7, 7)$", "$(4, 7)$", "$(1, -7)$"],
+                1,
+                "The point $(1, 7)$ is $3$ units left of the axis, so its mirror is $3$ units "
+                "right: $x = 4 + 3 = 7$, at the same height. The parabola passes through $(7, 7)$.",
+                ["Eq(4 - 1, 3)", "Eq(4 + 3, 7)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "A thrown ball, start to peak",
+                "problemId": "im2-u3-l1-we4",
+            },
+            {"kind": "tryIt", "title": "Vertex and intercept", "problemId": "im2-u3-l1-t1"},
+            {"kind": "tryIt", "title": "Quadratic from a table", "problemId": "im2-u3-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "$f(x) = ax^{2} + bx + c$ with $a \\neq 0$; the graph is always a parabola",
+                    "Axis of symmetry $x = -\\frac{b}{2a}$; substitute back for the vertex's $y$",
+                    "$a > 0$ opens up (minimum); $a < 0$ opens down (maximum); $|a|$ sets the width",
+                    "The constant term is the $y$-intercept, free of charge",
+                    "Constant second differences identify a quadratic from a table alone",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — F-IF.8a: the three forms
+# ===========================================================================
+def lesson_three_forms():
+    return lesson(
+        slug="the-three-forms",
+        title="Three Forms, Three Different Questions Answered",
+        concrete=(
+            "A train timetable, a route map and a fare table all describe the same railway. Each "
+            "one answers a different question instantly and makes the others awkward. A quadratic "
+            "has the same property: standard form hands you the $y$-intercept, factored form hands "
+            "you the roots, vertex form hands you the turning point — and they are all the same "
+            "function."
+        ),
+        objective=(
+            "Read the roots from factored form, the vertex from vertex form, and the "
+            "$y$-intercept from standard form; and choose the form that answers the question "
+            "being asked."
+        ),
+        concept=[
+            "**Standard form gives the vertical intercept.** $f(x) = ax^{2} + bx + c$ crosses the "
+            "vertical axis at $(0, c)$, because setting $x = 0$ annihilates the other two terms. "
+            "It is also the form data usually arrives in, and the form the quadratic formula "
+            "expects in Unit 4.",
+            "**Factored form gives the roots.** $f(x) = a(x - p)(x - q)$ is zero exactly when a "
+            "factor is zero, so the roots are $x = p$ and $x = q$. Note the SIGN FLIP: the factor "
+            "$(x - 3)$ gives the root $+3$. This is the single most common reading error in the "
+            "whole unit.",
+            "**Vertex form gives the vertex.** $f(x) = a(x - h)^{2} + k$ has its turning point at "
+            "$(h, k)$ — again with the sign flip on $h$, so $(x + 2)^{2}$ means $h = -2$. The "
+            "squared term is never negative, so $a(x - h)^{2}$ pushes the value away from $k$ in "
+            "one direction only, and $k$ is therefore the extreme value.",
+            "**The vertex sits halfway between the roots.** Symmetry forces it: if the parabola "
+            "crosses at $p$ and $q$, the axis is at $x = \\frac{p + q}{2}$. So factored form gives "
+            "you the vertex too, with one extra step — and this is often faster than "
+            "$-\\frac{b}{2a}$.",
+            "**Not every quadratic has a factored form over the reals.** If the parabola never "
+            "touches the horizontal axis there are no real roots and no real factorisation. Vertex "
+            "form and standard form always exist; factored form is the conditional one.",
+            "**Choose the form by the question.** Asked for roots? Factor. Asked for the maximum? "
+            "Vertex form. Asked where it starts? Standard form. Converting between them is Unit "
+            "4's work — the skill here is knowing which one you want before you start converting.",
+        ],
+        key_idea=(
+            "The three forms are the same function wearing different labels; each makes one "
+            "feature free to read and the others require work."
+        ),
+        facts=[
+            fact(
+                "Factored form",
+                "f(x) = a(x - p)(x - q)",
+                "Roots at $x = p$ and $x = q$ — note the sign flip from the factors.",
+            ),
+            fact(
+                "Vertex form",
+                "f(x) = a(x - h)^{2} + k",
+                "Vertex at $(h, k)$; $k$ is the maximum if $a < 0$ and the minimum if $a > 0$.",
+            ),
+            fact(
+                "Vertex from the roots",
+                "h = \\frac{p + q}{2}",
+                "Symmetry puts the turning point exactly midway between the two crossings.",
+            ),
+            fact(
+                "Zero-product property",
+                "AB = 0 \\iff A = 0 \\text{ or } B = 0",
+                "The reason factored form reveals roots at all — and it needs the zero on one side.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u3-l2-we1",
+                "For $f(x) = 2(x - 3)(x + 5)$, find the roots, the axis of symmetry, the vertex "
+                "and the $y$-intercept.",
+                "**Roots, with the sign flip.** The product is zero when a factor is zero: "
+                "$x - 3 = 0$ gives $x = 3$, and $x + 5 = 0$ gives $x = -5$. Note carefully that "
+                "$(x + 5)$ produces the root $-5$, not $+5$."
+                "**Axis of symmetry, from the midpoint of the roots.**"
+                "$$x = \\frac{3 + (-5)}{2} = -1.$$"
+                "**Vertex.** Substitute $x = -1$ into the factored form directly — expanding first "
+                "would be wasted work:"
+                "$$f(-1) = 2(-4)(4) = -32,$$"
+                "so the vertex is $(-1, -32)$."
+                "**The vertical intercept.** Set $x = 0$: $f(0) = 2(-3)(5) = -30$."
+                "**Cross-check by expanding.** $2(x - 3)(x + 5) = 2(x^{2} + 2x - 15) = "
+                "2x^{2} + 4x - 30$. The constant $-30$ matches the $y$-intercept ✓, and "
+                "$-\\frac{b}{2a} = -\\frac{4}{4} = -1$ matches the axis ✓ — two independent "
+                "confirmations that the reading was right.",
+                [
+                    "Eq(2*(3 - 3)*(3 + 5), 0)",
+                    "Eq(2*(-5 - 3)*(-5 + 5), 0)",
+                    "Eq((3 + (-5))/2, -1)",
+                    "Eq(2*(-1 - 3)*(-1 + 5), -32)",
+                    "Eq(2*(0 - 3)*(0 + 5), -30)",
+                    "Eq(-4/(2*2), -1)",
+                ],
+            ),
+            problem(
+                "im2-u3-l2-we2",
+                "For $g(x) = -3(x + 2)^{2} + 12$, state the vertex, the direction of opening, the "
+                "maximum or minimum value, and find the roots.",
+                "**Read the vertex, watching the sign.** Vertex form is $a(x - h)^{2} + k$, and "
+                "$(x + 2)$ is $(x - (-2))$, so $h = -2$ and $k = 12$. The vertex is $(-2, 12)$."
+                "**Direction and extreme value.** $a = -3 < 0$, so the parabola opens downward and "
+                "$k = 12$ is the MAXIMUM value, attained at $x = -2$."
+                "**Why the constant has to be the extreme value.** $(x + 2)^{2}$ is never negative, so "
+                "$-3(x + 2)^{2}$ is never positive. It only ever subtracts from $12$ — which makes "
+                "$12$ the largest value the function can take, reached exactly when the squared "
+                "term is zero."
+                "**Find the roots.** Set the function to zero:"
+                "$$-3(x + 2)^{2} + 12 = 0 \\Longrightarrow (x + 2)^{2} = 4 \\Longrightarrow "
+                "x + 2 = \\pm 2.$$"
+                "So $x = 0$ or $x = -4$."
+                "**Check the symmetry.** The two roots $0$ and $-4$ have midpoint $-2$ ✓ — exactly "
+                "the vertex's $x$-coordinate, as symmetry demands.",
+                [
+                    "Eq(-3*(-2 + 2)**2 + 12, 12)",
+                    "Eq(-3*(0 + 2)**2 + 12, 0)",
+                    "Eq(-3*(-4 + 2)**2 + 12, 0)",
+                    "Eq((0 + (-4))/2, -2)",
+                    "-3*(1 + 2)**2 + 12 < 12",
+                ],
+            ),
+            problem(
+                "im2-u3-l2-we3",
+                "A parabola has roots at $x = -1$ and $x = 7$ and passes through $(0, -14)$. "
+                "Find its equation in factored form, then locate its vertex.",
+                "**Start from the roots.** Two known roots fix the factors up to a multiplier:"
+                "$$f(x) = a(x + 1)(x - 7).$$"
+                "The $a$ is genuinely unknown — infinitely many parabolas share a pair of roots, "
+                "differing only in how steep they are."
+                "**Use the extra point to pin down the multiplier.** Substituting $(0, -14)$:"
+                "$$-14 = a(1)(-7) = -7a \\quad\\Longrightarrow\\quad a = 2.$$"
+                "**Write the equation.**"
+                "$$f(x) = 2(x + 1)(x - 7).$$"
+                "**Locate the vertex.** The axis is the midpoint of the roots:"
+                "$$x = \\frac{-1 + 7}{2} = 3, \\qquad f(3) = 2(4)(-4) = -32,$$"
+                "so the vertex is $(3, -32)$."
+                "**Verify the given point survives.** $f(0) = 2(1)(-7) = -14$ ✓ — the constructed "
+                "equation reproduces the data it was built from, and the roots are still where "
+                "they were specified: $f(-1) = 0$ ✓ and $f(7) = 0$ ✓",
+                [
+                    "Eq(2*(0 + 1)*(0 - 7), -14)",
+                    "Eq(2*(-1 + 1)*(-1 - 7), 0)",
+                    "Eq(2*(7 + 1)*(7 - 7), 0)",
+                    "Eq((-1 + 7)/2, 3)",
+                    "Eq(2*(3 + 1)*(3 - 7), -32)",
+                ],
+            ),
+            problem(
+                "im2-u3-l2-we4",
+                "The same parabola is written three ways: $y = x^{2} - 4x - 5$, "
+                "$y = (x - 5)(x + 1)$, and $y = (x - 2)^{2} - 9$. Confirm they agree, and say "
+                "which form you would use for each of: the $y$-intercept, the roots, the minimum.",
+                "**Confirm the three agree by expanding the last two.** The factored form: "
+                "$(x - 5)(x + 1) = x^{2} + x - 5x - 5 = x^{2} - 4x - 5$ ✓ The vertex form: "
+                "$(x - 2)^{2} - 9 = x^{2} - 4x + 4 - 9 = x^{2} - 4x - 5$ ✓ All three are the same "
+                "function."
+                "**For the vertical intercept, use standard form.** The constant term is $-5$, so the "
+                "curve crosses at $(0, -5)$ — no work at all. The other two forms would require a "
+                "substitution."
+                "**For the roots, use factored form.** $x = 5$ and $x = -1$, read straight off "
+                "with the sign flip."
+                "**For the minimum, use vertex form.** The vertex is $(2, -9)$, so the minimum "
+                "value is $-9$ at $x = 2$."
+                "**Confirm the pieces agree with each other.** The midpoint of the roots is "
+                "$\\frac{5 + (-1)}{2} = 2$ ✓ — the same $x$ the vertex form gave. And "
+                "$-\\frac{b}{2a} = \\frac{4}{2} = 2$ ✓ from standard form. Three routes, one "
+                "answer, which is what 'the same function' means.",
+                [
+                    "Eq((3 - 5)*(3 + 1), 3**2 - 4*3 - 5)",
+                    "Eq((3 - 2)**2 - 9, 3**2 - 4*3 - 5)",
+                    "Eq((0 - 2)**2 - 9, -5)",
+                    "Eq((5 + (-1))/2, 2)",
+                    "Eq(-(-4)/(2*1), 2)",
+                    "Eq((2 - 2)**2 - 9, -9)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reading the roots of $(x + 3)(x - 4)$ as $3$ and $-4$.",
+                "The root is the value that makes the factor ZERO. $x + 3 = 0$ gives $x = -3$; "
+                "$x - 4 = 0$ gives $x = 4$. The signs flip, every time.",
+            ),
+            mistake(
+                "Reading the vertex of $2(x + 5)^{2} - 1$ as $(5, -1)$.",
+                "Vertex form is $a(x - h)^2 + k$, so $(x + 5)$ means $h = -5$. The vertex is "
+                "$(-5, -1)$. Check by substituting: the squared term must vanish there.",
+            ),
+            mistake(
+                "Assuming two roots determine the parabola uniquely.",
+                "$a(x - p)(x - q)$ has the same roots for every $a$. One more point is needed to "
+                "fix $a$ — which is exactly why the third point is always given.",
+            ),
+            mistake(
+                "Expanding to standard form before answering a question the other form already answered.",
+                "If factored form is given and roots are wanted, read them. Expanding first "
+                "throws away the very structure that made the answer free.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u3-l2-t1",
+                "For $y = -(x - 2)(x - 8)$, find the roots, the vertex and the $y$-intercept.",
+                "Roots: $x = 2$ and $x = 8$. Axis: midpoint $\\frac{2 + 8}{2} = 5$; vertex "
+                "$y$-value $-(3)(-3) = 9$, so the vertex is $(5, 9)$ — a maximum, since $a = -1 < "
+                "0$. The $y$-intercept: $-(-2)(-8) = -16$. Check: at $x = 4$, "
+                "$-(2)(-4) = 8 < 9$ ✓ consistent with $9$ being the peak.",
+                [
+                    "Eq(-(2 - 2)*(2 - 8), 0)",
+                    "Eq(-(8 - 2)*(8 - 8), 0)",
+                    "Eq((2 + 8)/2, 5)",
+                    "Eq(-(5 - 2)*(5 - 8), 9)",
+                    "Eq(-(0 - 2)*(0 - 8), -16)",
+                ],
+            ),
+            problem(
+                "im2-u3-l2-t2",
+                "For $y = 4(x - 1)^{2} - 16$, state the vertex, then find the roots.",
+                "Vertex $(1, -16)$; $a = 4 > 0$ so it is a minimum. For the roots set "
+                "$4(x - 1)^{2} = 16$, so $(x - 1)^{2} = 4$ and $x - 1 = \\pm 2$, giving $x = 3$ "
+                "and $x = -1$. Check the symmetry: the midpoint of $3$ and $-1$ is $1$ ✓, the "
+                "vertex's $x$-coordinate.",
+                [
+                    "Eq(4*(1 - 1)**2 - 16, -16)",
+                    "Eq(4*(3 - 1)**2 - 16, 0)",
+                    "Eq(4*(-1 - 1)**2 - 16, 0)",
+                    "Eq((3 + (-1))/2, 1)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "F-IF.8a",
+                "title": "One function, three costumes",
+                "body": (
+                    "Standard, factored and vertex form describe exactly the same curve. What "
+                    "differs is which feature is written on the outside where you can read it "
+                    "without doing any algebra."
+                ),
+                "beats": [
+                    "Standard $\\to$ the $y$-intercept",
+                    "Factored $\\to$ the roots",
+                    "Vertex $\\to$ the turning point",
+                    "Same curve, different label showing",
+                ],
+            },
+            {
+                "kind": "parabolaGraph",
+                "eyebrow": "Factored form",
+                "title": "The roots are where it crosses",
+                "teach": (
+                    "Drag the two crossing points. The curve is pinned to the horizontal axis "
+                    "exactly there, and the turning point stays locked at the midpoint between "
+                    "them — symmetry does not let it wander."
+                ),
+                "config": {"mode": "roots", "a": 1, "h": 1, "k": -4, "interactive": True, "min": -8, "max": 8},
+            },
+            {
+                "kind": "worked",
+                "title": "Reading everything off factored form",
+                "problemId": "im2-u3-l2-we1",
+            },
+            tap(
+                "Read the roots",
+                "What are the roots of $y = 5(x + 4)(x - 1)$?",
+                ["$4$ and $-1$", "$-4$ and $1$", "$-4$ and $-1$", "$5$, $-4$ and $1$"],
+                1,
+                "A root makes a factor zero: $x + 4 = 0$ gives $x = -4$, and $x - 1 = 0$ gives "
+                "$x = 1$. The leading $5$ changes the steepness but never the roots.",
+                [
+                    "Eq(5*(-4 + 4)*(-4 - 1), 0)",
+                    "Eq(5*(1 + 4)*(1 - 1), 0)",
+                    "Ne(5*(4 + 4)*(4 - 1), 0)",
+                ],
+            ),
+            {
+                "kind": "parabolaGraph",
+                "eyebrow": "Vertex form",
+                "title": "Move the turning point directly",
+                "teach": (
+                    "Drag $h$ and $k$. The whole curve slides without changing shape — vertex form "
+                    "hands you the turning point as two numbers you can set, which is why it is "
+                    "the form of choice for any maximum or minimum question."
+                ),
+                "config": {"mode": "vertex", "a": 1, "h": 1, "k": -2, "interactive": True, "min": -8, "max": 8},
+            },
+            {
+                "kind": "worked",
+                "title": "Vertex form: reading, and why $k$ is extreme",
+                "problemId": "im2-u3-l2-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "The sign flip",
+                "title": "Both forms subtract",
+                "body": (
+                    "Factored form is $(x - p)$ and vertex form is $(x - h)$. So a PLUS inside the "
+                    "bracket always means a NEGATIVE value: $(x + 5)$ is $(x - (-5))$. Rewriting "
+                    "the plus as a minus of a negative takes two seconds and prevents the error."
+                ),
+            },
+            tap(
+                "Read the vertex",
+                "What is the vertex of $y = -2(x + 6)^{2} + 1$?",
+                ["$(6, 1)$", "$(-6, 1)$", "$(-6, -1)$", "$(6, -1)$"],
+                1,
+                "$(x + 6)$ is $(x - (-6))$, so $h = -6$ and $k = 1$. The vertex is $(-6, 1)$, and "
+                "since $a = -2 < 0$ it is a maximum.",
+                [
+                    "Eq(-2*(-6 + 6)**2 + 1, 1)",
+                    "-2*(0 + 6)**2 + 1 < 1",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "Building one",
+                "title": "Roots fix the shape up to a stretch",
+                "body": (
+                    "Knowing where a parabola crosses tells you the factors but not the "
+                    "steepness — infinitely many parabolas share the same two roots. One extra "
+                    "point pins down $a$ and completes the equation."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Building an equation from roots and a point",
+                "problemId": "im2-u3-l2-we3",
+            },
+            {
+                "kind": "worked",
+                "title": "The same parabola, three ways",
+                "problemId": "im2-u3-l2-we4",
+            },
+            {"kind": "tryIt", "title": "Factored form, negative leading coefficient", "problemId": "im2-u3-l2-t1"},
+            {"kind": "tryIt", "title": "Vertex form to roots", "problemId": "im2-u3-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Standard $ax^{2} + bx + c$: the constant is the $y$-intercept",
+                    "Factored $a(x - p)(x - q)$: roots $p$ and $q$ — signs flip from the factors",
+                    "Vertex $a(x - h)^{2} + k$: turning point $(h, k)$, and $k$ is the extreme value",
+                    "The vertex sits at the midpoint of the roots whenever roots exist",
+                    "Pick the form that already answers the question before doing any algebra",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — F-BF.3: transformations of the parabola
+# ===========================================================================
+def lesson_transformations():
+    return lesson(
+        slug="transforming-parabolas",
+        title="Transforming the Basic Parabola",
+        concrete=(
+            "Every parabola in existence is $y = x^{2}$ that has been moved, stretched or flipped. "
+            "There is one curve and a set of instructions for relocating it — which means you "
+            "never have to plot a quadratic point by point again, once you can read the "
+            "instructions."
+        ),
+        objective=(
+            "Describe and apply vertical and horizontal shifts, vertical stretches and "
+            "reflections to $y = x^{2}$, and write the equation of a transformed parabola."
+        ),
+        concept=[
+            "**Outside the square shifts vertically, and behaves as you expect.** "
+            "$y = x^{2} + k$ moves the curve UP by $k$ when $k$ is positive. Adding to the output "
+            "raises the output — no surprises here.",
+            "**Inside the square shifts horizontally, and behaves backwards.** "
+            "$y = (x - h)^{2}$ moves the curve RIGHT by $h$. The minus produces a rightward move "
+            "because the input must now be larger by $h$ to produce the same output the basic "
+            "parabola gave — the curve has to wait for $x$ to catch up.",
+            "**A leading coefficient stretches vertically.** $y = ax^{2}$ multiplies every height "
+            "by $a$. With $|a| > 1$ the curve is narrower (steeper); with $|a| < 1$ it is wider "
+            "(flatter). The roots of $ax^{2} + bx + c$ never move when only $a$ changes sign or "
+            "size in factored form, because a multiplier cannot make a nonzero product zero.",
+            "**A negative leading coefficient reflects across the horizontal axis.** Every height becomes its "
+            "opposite, so an upward parabola becomes downward and a minimum becomes a maximum. "
+            "The vertex's $x$-coordinate is unaffected — reflection across a horizontal axis "
+            "moves nothing sideways.",
+            "**Vertex form is the transformation written down.** "
+            "$y = a(x - h)^{2} + k$ says: take $y = x^{2}$, stretch by $a$, move right $h$, move "
+            "up $k$. Reading a transformation IS reading vertex form, which is why the two lessons "
+            "belong together.",
+            "**Order matters when you describe it, not when you read it.** Applying a stretch "
+            "then a shift gives a different curve from shift-then-stretch, but vertex form has "
+            "already fixed the order for you: stretch first, then translate. Describe it that way "
+            "and you will always be right.",
+        ],
+        key_idea=(
+            "$y = a(x - h)^{2} + k$ is an instruction sheet: stretch $y = x^{2}$ by $a$, then move "
+            "it $h$ right and $k$ up."
+        ),
+        facts=[
+            fact(
+                "Vertical shift",
+                "y = x^{2} + k \\quad\\text{moves up } k",
+                "Outside the square; positive $k$ goes up. Intuitive direction.",
+            ),
+            fact(
+                "Horizontal shift",
+                "y = (x - h)^{2} \\quad\\text{moves right } h",
+                "Inside the square; the minus moves it right. Counter-intuitive direction.",
+            ),
+            fact(
+                "Vertical stretch",
+                "y = ax^{2}, \\quad |a| > 1 \\text{ narrower},\\ |a| < 1 \\text{ wider}",
+                "Heights multiply by $a$; the vertex stays put if it is at the origin.",
+            ),
+            fact(
+                "Reflection",
+                "y = -x^{2} \\text{ flips across the } x\\text{-axis}",
+                "Minimum becomes maximum; nothing moves horizontally.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u3-l3-we1",
+                "Describe how $y = (x - 4)^{2} + 3$ is obtained from $y = x^{2}$, and state its "
+                "vertex.",
+                "**Read the inside first.** $(x - 4)$ is a horizontal shift of $4$ units to the "
+                "RIGHT. The minus sign gives a rightward move, which is worth pausing on: to get "
+                "the output that $y = x^{2}$ produced at $x = 0$, this function needs $x = 4$."
+                "**Read the outside.** The $+3$ is a vertical shift of $3$ units UP — the "
+                "intuitive direction."
+                "**State the vertex.** The basic parabola's vertex is at the origin; moving right "
+                "$4$ and up $3$ puts it at $(4, 3)$. Vertex form confirms it directly: $h = 4$, "
+                "$k = 3$."
+                "**Verify with two points.** At $x = 4$ the squared term is zero, giving $y = 3$ — "
+                "the lowest possible value, since a square cannot be negative ✓ At $x = 5$: "
+                "$1 + 3 = 4$, and at $x = 3$: $1 + 3 = 4$ — equal heights either side, exactly as "
+                "symmetry about $x = 4$ requires ✓",
+                [
+                    "Eq((4 - 4)**2 + 3, 3)",
+                    "Eq((5 - 4)**2 + 3, 4)",
+                    "Eq((3 - 4)**2 + 3, 4)",
+                    "(6 - 4)**2 + 3 > 3",
+                ],
+            ),
+            problem(
+                "im2-u3-l3-we2",
+                "Describe the transformations in $y = -2(x + 1)^{2} - 5$ and state the vertex, "
+                "direction of opening and maximum or minimum value.",
+                "**Rewrite the plus as a minus.** $(x + 1) = (x - (-1))$, so $h = -1$ — a shift "
+                "of one unit LEFT."
+                "**Take the transformations in the order vertex form fixes.** First the stretch "
+                "and reflection: the factor $-2$ makes the curve twice as steep and flips it "
+                "upside down. Then the translation: one unit left, five units down."
+                "**State the vertex.** $(h, k) = (-1, -5)$."
+                "**Direction and extreme value.** $a = -2 < 0$, so it opens downward and $-5$ is "
+                "the MAXIMUM value, attained at $x = -1$. A maximum can perfectly well be a "
+                "negative number — the whole curve simply lies below the horizontal axis."
+                "**Check that nothing beats it.** At $x = 0$: $-2(1) - 5 = -7$. At $x = -2$: "
+                "$-2(1) - 5 = -7$. Both less than $-5$ ✓ and equal to each other, as symmetry "
+                "about $x = -1$ requires ✓"
+                "**One consequence worth noting.** Since the maximum is $-5$, this parabola never "
+                "reaches the horizontal axis — it has no real roots at all.",
+                [
+                    "Eq(-2*(-1 + 1)**2 - 5, -5)",
+                    "Eq(-2*(0 + 1)**2 - 5, -7)",
+                    "Eq(-2*(-2 + 1)**2 - 5, -7)",
+                    "-2*(0 + 1)**2 - 5 < -5",
+                    "-2*(3 + 1)**2 - 5 < 0",
+                ],
+            ),
+            problem(
+                "im2-u3-l3-we3",
+                "Write the equation of the parabola obtained by taking $y = x^{2}$, reflecting it "
+                "in the horizontal axis, stretching it by a factor of $3$, and moving it $2$ units "
+                "left and $7$ units up.",
+                "**Handle the stretch and reflection together.** A reflection is multiplication by "
+                "$-1$ and a stretch by $3$ is multiplication by $3$, so together $a = -3$:"
+                "$$y = -3x^{2}.$$"
+                "**Apply the horizontal shift.** Two units LEFT means $h = -2$, and vertex form "
+                "subtracts $h$, so the bracket becomes $(x - (-2)) = (x + 2)$:"
+                "$$y = -3(x + 2)^{2}.$$"
+                "**Apply the vertical shift.** Seven units up adds $7$:"
+                "$$y = -3(x + 2)^{2} + 7.$$"
+                "**Check the vertex is where it should be.** The origin moved two left and seven "
+                "up, landing at $(-2, 7)$ — and vertex form reads $h = -2$, $k = 7$ ✓"
+                "**Check the reflection took.** At $x = -1$, one unit from the vertex, the height "
+                "is $-3(1) + 7 = 4$, which is BELOW the vertex height of $7$. Points falling away "
+                "from the vertex is exactly what a downward parabola does ✓",
+                [
+                    "Eq(-3*(-2 + 2)**2 + 7, 7)",
+                    "Eq(-3*(-1 + 2)**2 + 7, 4)",
+                    "Eq(-3*(-3 + 2)**2 + 7, 4)",
+                    "-3*(-1 + 2)**2 + 7 < 7",
+                    "Eq(-3*(0 + 2)**2 + 7, -5)",
+                ],
+            ),
+            problem(
+                "im2-u3-l3-we4",
+                "Two parabolas: $y = (x - 3)^{2}$ and $y = x^{2} - 3$. Explain why they are "
+                "different curves, and give a point that lies on one but not the other.",
+                "**Locate each vertex.** The first has the shift INSIDE the square, so it is "
+                "horizontal: vertex $(3, 0)$. The second has it outside, so it is vertical: "
+                "vertex $(0, -3)$. Different vertices means different curves — the same number $3$ "
+                "moved the parabola in two completely different directions."
+                "**Why inside and outside behave differently.** Outside, the $-3$ acts on the "
+                "answer after squaring, lowering every height. Inside, it acts on the input before "
+                "squaring, so the function is asking for a different $x$ to do the same job — and "
+                "the whole curve slides sideways to compensate."
+                "**Find a distinguishing point.** Take $x = 3$. The first gives $0$; the second "
+                "gives $9 - 3 = 6$. So $(3, 0)$ lies on the first and not on the second."
+                "**Check they are not merely shifted versions of each other.** The first is never "
+                "negative, since it is a perfect square. The second dips to $-3$. A curve that "
+                "reaches $-3$ cannot be the same as one whose minimum is $0$ ✓"
+                "**Do they meet anywhere?** Setting them equal: "
+                "$x^{2} - 6x + 9 = x^{2} - 3$, so $-6x = -12$ and $x = 2$. They cross once, at "
+                "$(2, 1)$ — verified by both formulas: $(2-3)^{2} = 1$ and $4 - 3 = 1$ ✓",
+                [
+                    "Eq((3 - 3)**2, 0)",
+                    "Eq(3**2 - 3, 6)",
+                    "Eq((2 - 3)**2, 1)",
+                    "Eq(2**2 - 3, 1)",
+                    "Eq(0**2 - 3, -3)",
+                    "(0 - 3)**2 >= 0",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reading $(x - 4)^2$ as a shift four units LEFT.",
+                "Inside the bracket the direction is reversed: $(x - 4)$ moves RIGHT by $4$. "
+                "Check by asking where the squared term vanishes — at $x = 4$, so the vertex is "
+                "there.",
+            ),
+            mistake(
+                "Treating $y = (x - 3)^2$ and $y = x^2 - 3$ as the same curve.",
+                "Inside the square is horizontal, outside is vertical. The first has vertex "
+                "$(3, 0)$; the second has vertex $(0, -3)$.",
+            ),
+            mistake(
+                "Believing a negative $k$ means the parabola has no maximum.",
+                "$y = -2(x+1)^2 - 5$ has maximum value $-5$. An extreme value can be negative; "
+                "it just means the whole curve sits below the axis.",
+            ),
+            mistake(
+                "Applying the translation before the stretch when writing the equation.",
+                "Vertex form fixes the order: stretch by $a$ first, then translate by $h$ and $k$. "
+                "Stretching after a vertical shift would multiply the shift too.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u3-l3-t1",
+                "Describe the transformations in $y = \\frac{1}{2}(x - 5)^{2} - 2$ and state the "
+                "vertex.",
+                "The factor $\\frac{1}{2}$ is a vertical stretch by less than one, so the curve is "
+                "WIDER (flatter) than $y = x^{2}$, still opening upward. The bracket shifts it $5$ "
+                "right and the $-2$ shifts it $2$ down. Vertex $(5, -2)$. Check: at $x = 7$, "
+                "$\\frac{1}{2}(4) - 2 = 0$ and at $x = 3$, $\\frac{1}{2}(4) - 2 = 0$ ✓ symmetric "
+                "about $x = 5$, and those are its two roots.",
+                [
+                    "Eq(Rational(1,2)*(5 - 5)**2 - 2, -2)",
+                    "Eq(Rational(1,2)*(7 - 5)**2 - 2, 0)",
+                    "Eq(Rational(1,2)*(3 - 5)**2 - 2, 0)",
+                    "Rational(1,2) < 1",
+                ],
+            ),
+            problem(
+                "im2-u3-l3-t2",
+                "Write the equation of $y = x^{2}$ after a reflection in the horizontal axis and a "
+                "translation $3$ units right and $4$ units down.",
+                "Reflection gives $a = -1$; three right gives $h = 3$; four down gives $k = -4$. "
+                "So $y = -(x - 3)^{2} - 4$. Vertex $(3, -4)$, opening downward, maximum value "
+                "$-4$. Check at $x = 4$: $-(1) - 4 = -5$, below the vertex ✓ and at $x = 2$ the "
+                "same $-5$ ✓",
+                [
+                    "Eq(-(3 - 3)**2 - 4, -4)",
+                    "Eq(-(4 - 3)**2 - 4, -5)",
+                    "Eq(-(2 - 3)**2 - 4, -5)",
+                    "-(4 - 3)**2 - 4 < -4",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "F-BF.3",
+                "title": "There is only one parabola",
+                "body": (
+                    "Every quadratic graph is $y = x^{2}$ relocated. Learn the four instructions — "
+                    "shift up, shift across, stretch, flip — and you can sketch any quadratic in "
+                    "vertex form without computing a single point."
+                ),
+                "beats": [
+                    "$+k$ outside: up $k$",
+                    "$-h$ inside: right $h$",
+                    "$\\times a$: stretch",
+                    "$a < 0$: flip",
+                ],
+            },
+            {
+                "kind": "parabolaGraph",
+                "eyebrow": "Drag it around",
+                "title": "The two shifts, side by side",
+                "teach": (
+                    "Move $h$ and the curve slides sideways; move $k$ and it slides up and down. "
+                    "Notice the shape never changes — a translation relocates the parabola without "
+                    "altering it in any other way."
+                ),
+                "config": {"mode": "vertex", "a": 1, "h": 0, "k": 0, "interactive": True, "min": -8, "max": 8},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The awkward one",
+                "title": "Why inside the bracket runs backwards",
+                "body": (
+                    "In $y = (x - 4)^{2}$, the squared term is zero when $x = 4$, not $x = -4$. "
+                    "The function needs a LARGER input to reach the state the basic parabola "
+                    "reached at zero — so the whole curve waits, and appears shifted to the right."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Reading a shift in both directions",
+                "problemId": "im2-u3-l3-we1",
+            },
+            tap(
+                "Which way does it move?",
+                "Compared with $y = x^{2}$, the graph of $y = (x + 7)^{2}$ is shifted…",
+                ["$7$ units right", "$7$ units left", "$7$ units up", "$7$ units down"],
+                1,
+                "$(x + 7) = (x - (-7))$, so $h = -7$: seven units LEFT. Check where the square "
+                "vanishes — at $x = -7$, which is where the vertex now sits.",
+                ["Eq((-7 + 7)**2, 0)", "Eq((0 + 7)**2, 49)"],
+            ),
+            {
+                "kind": "parabolaGraph",
+                "eyebrow": "Stretch and flip",
+                "title": "What the leading coefficient does",
+                "teach": (
+                    "Push $a$ above $1$ and the curve narrows; pull it between $0$ and $1$ and it "
+                    "widens. Cross into negatives and it flips upside down, turning the minimum "
+                    "into a maximum without moving it sideways at all."
+                ),
+                "config": {"mode": "shape", "a": 1, "interactive": True, "min": -8, "max": 8},
+            },
+            {
+                "kind": "worked",
+                "title": "Stretch, reflect and translate at once",
+                "problemId": "im2-u3-l3-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Building an equation",
+                "title": "Stretch first, then move",
+                "body": (
+                    "When you are handed a list of transformations, apply them in the order vertex "
+                    "form encodes: multiply by $a$ first, then translate. Shifting before "
+                    "stretching would multiply the shift as well and land the vertex in the wrong "
+                    "place."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "From a word description to an equation",
+                "problemId": "im2-u3-l3-we3",
+            },
+            tap(
+                "Inside or outside?",
+                "Which graph has its vertex at $(0, -6)$?",
+                ["$y = (x - 6)^{2}$", "$y = x^{2} - 6$", "$y = (x + 6)^{2}$", "$y = x^{2} + 6$"],
+                1,
+                "A change OUTSIDE the square moves the curve vertically. $y = x^{2} - 6$ lowers "
+                "every height by $6$, putting the vertex at $(0, -6)$. The bracketed versions move "
+                "sideways instead.",
+                [
+                    "Eq(0**2 - 6, -6)",
+                    "Eq((0 - 6)**2, 36)",
+                    "Eq((0 + 6)**2, 36)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Inside versus outside, compared directly",
+                "problemId": "im2-u3-l3-we4",
+            },
+            {"kind": "tryIt", "title": "A fractional stretch", "problemId": "im2-u3-l3-t1"},
+            {"kind": "tryIt", "title": "Reflect, then translate", "problemId": "im2-u3-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "$y = a(x - h)^{2} + k$ is a set of instructions, not just a formula",
+                    "Outside the square is vertical and intuitive; inside is horizontal and reversed",
+                    "$|a| > 1$ narrows, $|a| < 1$ widens, $a < 0$ flips",
+                    "The vertex lands at $(h, k)$ every time",
+                    "Stretch first, then translate — the order vertex form already fixed",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — F-LE.3: comparing linear, quadratic and exponential growth
+# ===========================================================================
+def lesson_comparing_growth():
+    return lesson(
+        slug="comparing-growth-rates",
+        title="Linear, Quadratic and Exponential Growth",
+        concrete=(
+            "A salary that rises by a fixed amount each year, a square field whose area grows as "
+            "its side grows, and a rumour that doubles daily. Over a week the salary might look "
+            "best. Over a decade it is not close — and the reason has nothing to do with the "
+            "starting numbers."
+        ),
+        objective=(
+            "Distinguish linear, quadratic and exponential growth from tables, graphs and "
+            "equations, compute average rates of change, and explain why exponential growth "
+            "eventually dominates."
+        ),
+        concept=[
+            "**Three engines, three signatures in a table.** Linear adds a constant; its FIRST "
+            "differences are constant. Quadratic has constant SECOND differences. Exponential "
+            "MULTIPLIES by a constant; its consecutive RATIOS are constant. Checking those three "
+            "things in order identifies the type in under a minute.",
+            "**Average rate of change measures steepness over an interval.** It is "
+            "$\\frac{f(b) - f(a)}{b - a}$ — the slope of the straight line joining the two points. "
+            "For a linear function it is the same on every interval; for a quadratic it grows "
+            "steadily; for an exponential it explodes.",
+            "**A quadratic's rate of change is itself linear.** Successive average rates over "
+            "unit intervals climb by a constant amount — which is exactly the constant second "
+            "difference, seen from a different angle. This is the first sighting of an idea that "
+            "becomes the derivative in calculus.",
+            "**Exponential growth eventually beats every polynomial.** Not sometimes: always, and "
+            "regardless of the constants. $2^{x}$ starts far below $x^{2}$ — at $x = 3$ it is $8$ "
+            "against $9$ — but by $x = 5$ it leads $32$ to $25$ and it never looks back. The "
+            "crossover point can be pushed out by choosing worse constants, but it cannot be "
+            "removed.",
+            "**Why the domination is inevitable.** Each step of a quadratic ADDS a growing amount; "
+            "each step of an exponential MULTIPLIES. Multiplying by $2$ eventually outruns adding "
+            "any fixed pattern, because the amount being doubled is itself growing without bound.",
+            "**Reading the context tells you the model before the data does.** Fixed amount per "
+            "unit means linear. Area, or a product of two growing lengths, means quadratic. "
+            "Fixed PERCENTAGE per unit — interest, population, decay — means exponential. Naming "
+            "the mechanism is more reliable than eyeballing a graph.",
+        ],
+        key_idea=(
+            "Constant first differences means linear, constant second differences means quadratic, "
+            "constant ratios means exponential — and exponential always wins in the end."
+        ),
+        facts=[
+            fact(
+                "Average rate of change",
+                "\\frac{f(b) - f(a)}{b - a}",
+                "The slope of the line through the two points; constant only for linear functions.",
+            ),
+            fact(
+                "Linear signature",
+                "\\Delta y \\text{ constant}",
+                "Same amount added each step.",
+            ),
+            fact(
+                "Quadratic signature",
+                "\\Delta^{2} y \\text{ constant}",
+                "The amount added grows by a fixed amount each step.",
+            ),
+            fact(
+                "Exponential signature",
+                "\\frac{y_{n+1}}{y_{n}} \\text{ constant}",
+                "Multiplied by the same factor each step — and this eventually beats any polynomial.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u3-l4-we1",
+                "Three tables at $x = 0, 1, 2, 3, 4$: A gives $5, 8, 11, 14, 17$; B gives "
+                "$2, 3, 6, 11, 18$; C gives $3, 6, 12, 24, 48$. Identify each type.",
+                "**Table A: first differences.**"
+                "$$8 - 5 = 3, \\quad 11 - 8 = 3, \\quad 14 - 11 = 3, \\quad 17 - 14 = 3.$$"
+                "Constant, so A is LINEAR — specifically $y = 3x + 5$."
+                "**Table B: first differences are not constant.**"
+                "$$1, \\quad 3, \\quad 5, \\quad 7.$$"
+                "**So take second differences.**"
+                "$$3 - 1 = 2, \\quad 5 - 3 = 2, \\quad 7 - 5 = 2.$$"
+                "Constant, so B is QUADRATIC. With unit steps the second difference is $2a$, so "
+                "$a = 1$; the intercept gives $c = 2$; and at $x = 1$, $1 + b + 2 = 3$ gives "
+                "$b = 0$. So $y = x^{2} + 2$."
+                "**Table C: try ratios.**"
+                "$$\\frac{6}{3} = 2, \\quad \\frac{12}{6} = 2, \\quad \\frac{24}{12} = 2, "
+                "\\quad \\frac{48}{24} = 2.$$"
+                "Constant, so C is EXPONENTIAL: $y = 3 \\cdot 2^{x}$."
+                "**Confirm each formula at the last input.** A: $12 + 5 = 17$ ✓ B: $16 + 2 = 18$ ✓ "
+                "C: $3 \\cdot 16 = 48$ ✓ — all three reproduce the last data point.",
+                [
+                    "Eq(8 - 5, 3)",
+                    "Eq(17 - 14, 3)",
+                    "Eq(3*4 + 5, 17)",
+                    "Eq(6 - 3, 3)",
+                    "Eq(11 - 6, 5)",
+                    "Eq(5 - 3, 2)",
+                    "Eq(4**2 + 2, 18)",
+                    "Eq(Rational(48,24), 2)",
+                    "Eq(3*2**4, 48)",
+                ],
+            ),
+            problem(
+                "im2-u3-l4-we2",
+                "For $f(x) = x^{2} + 1$, compute the average rate of change on $[0, 1]$, $[1, 2]$ "
+                "and $[2, 3]$. What pattern appears, and what does it say about the function?",
+                "**The first interval.**"
+                "$$\\frac{f(1) - f(0)}{1 - 0} = \\frac{2 - 1}{1} = 1.$$"
+                "**The second interval.**"
+                "$$\\frac{f(2) - f(1)}{2 - 1} = \\frac{5 - 2}{1} = 3.$$"
+                "**The third interval.**"
+                "$$\\frac{f(3) - f(2)}{3 - 2} = \\frac{10 - 5}{1} = 5.$$"
+                "**The pattern.** The rates are $1, 3, 5$ — increasing by $2$ each time. So the "
+                "RATE of change is itself changing linearly, at a constant rate of $2$."
+                "**What that says about the function.** A quadratic is not steep everywhere; it "
+                "gets steeper as you move right, and it does so at a perfectly regular pace. That "
+                "regular pace is the constant second difference, $2a = 2$, arriving by a different "
+                "route ✓"
+                "**Contrast with a linear function.** For $g(x) = 3x + 5$ the average rate is $3$ "
+                "on every interval, which is precisely what 'constant slope' means. A quadratic "
+                "has no single slope, which is why the question must specify an interval.",
+                [
+                    "Eq((1**2 + 1) - (0**2 + 1), 1)",
+                    "Eq((2**2 + 1) - (1**2 + 1), 3)",
+                    "Eq((3**2 + 1) - (2**2 + 1), 5)",
+                    "Eq(3 - 1, 2)",
+                    "Eq(5 - 3, 2)",
+                    "Eq((3*2 + 5) - (3*1 + 5), 3)",
+                ],
+            ),
+            problem(
+                "im2-u3-l4-we3",
+                "Compare $q(x) = x^{2}$ and $e(x) = 2^{x}$ at $x = 1, 2, 3, 4, 5, 6$. Find where "
+                "the exponential overtakes for good, and explain why it must.",
+                "**Tabulate both.**"
+                "$$q: 1, \\ 4, \\ 9, \\ 16, \\ 25, \\ 36$$"
+                "$$e: 2, \\ 4, \\ 8, \\ 16, \\ 32, \\ 64$$"
+                "**Read the comparison.** At $x = 1$ the exponential leads. At $x = 2$ they tie. "
+                "From $x = 3$ the quadratic leads ($9$ against $8$), and at $x = 4$ they tie "
+                "again. From $x = 5$ onward the exponential leads and the gap widens: $32$ "
+                "against $25$, then $64$ against $36$."
+                "**Why it must happen.** Every step, the exponential DOUBLES — it multiplies by "
+                "$2$. The quadratic multiplies by $\\left(\\frac{x+1}{x}\\right)^{2}$, which "
+                "shrinks toward $1$ as $x$ grows: from $x = 5$ to $6$ it is only "
+                "$\\left(\\frac{6}{5}\\right)^{2} = 1.44$. A factor stuck near $1$ cannot compete "
+                "with a factor of $2$ forever."
+                "**The general statement.** Any exponential with base greater than $1$ eventually "
+                "exceeds any polynomial, whatever the coefficients. Bad constants only postpone "
+                "the crossover; they never prevent it."
+                "**Check the gap further out.** At $x = 10$: $2^{10} = 1024$ against $10^{2} = 100$ — a factor "
+                "of ten, from a race that was tied at $x = 4$ ✓",
+                [
+                    "Eq(2**2, 2**2)",
+                    "Eq(3**2, 9)",
+                    "Eq(2**3, 8)",
+                    "Eq(4**2, 2**4)",
+                    "2**5 > 5**2",
+                    "2**6 > 6**2",
+                    "Eq(2**10, 1024)",
+                    "Eq(Rational(6,5)**2, Rational(36,25))",
+                ],
+            ),
+            problem(
+                "im2-u3-l4-we4",
+                "Three savings plans start at $100{,}000$ tugriks. Plan A adds $20{,}000$ per "
+                "year. Plan B follows $100{,}000 + 5{,}000t^{2}$. Plan C grows $15\\%$ per year. "
+                "Compare the values after $5$ and after $20$ years.",
+                "**Write the three models.** Plan A is linear: $100{,}000 + 20{,}000t$. Plan B is "
+                "quadratic as given. Plan C is exponential: $100{,}000 \\times 1.15^{t}$."
+                "**After 5 years.**"
+                "$$A = 100{,}000 + 100{,}000 = 200{,}000$$"
+                "$$B = 100{,}000 + 125{,}000 = 225{,}000$$"
+                "$$C = 100{,}000 \\times 1.15^{5} \\approx 201{,}136$$"
+                "Plan B leads; the exponential is barely ahead of the linear one."
+                "**After 20 years.**"
+                "$$A = 100{,}000 + 400{,}000 = 500{,}000$$"
+                "$$B = 100{,}000 + 2{,}000{,}000 = 2{,}100{,}000$$"
+                "$$C = 100{,}000 \\times 1.15^{20} \\approx 1{,}636{,}654$$"
+                "Plan B still leads — but the ordering among the other two has flipped, and C is "
+                "now more than three times A."
+                "**Where C finally wins.** Around year $24$: $1.15^{24} \\approx 28.6$, giving "
+                "roughly $2{,}860{,}000$, against Plan B's $100{,}000 + 5{,}000(576) = "
+                "2{,}980{,}000$ — nearly level. By year $25$ the exponential is ahead and stays "
+                "ahead forever."
+                "**The lesson.** A short horizon can make any of the three look best. Only the "
+                "exponential's advantage is permanent, and reading the mechanism — a fixed "
+                "PERCENTAGE per year — tells you that before any arithmetic.",
+                [
+                    "Eq(100000 + 20000*5, 200000)",
+                    "Eq(100000 + 5000*5**2, 225000)",
+                    "Eq(100000 + 20000*20, 500000)",
+                    "Eq(100000 + 5000*20**2, 2100000)",
+                    "Abs(100000*Rational(115,100)**5 - 201136) < 2",
+                    "Abs(100000*Rational(115,100)**20 - 1636654) < 2",
+                    "100000*Rational(115,100)**25 > 100000 + 5000*25**2",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Calling a table quadratic because the values 'grow faster and faster'.",
+                "Exponential tables do that too. Compute both the second differences and the "
+                "ratios — only one of them will be constant.",
+            ),
+            mistake(
+                "Treating average rate of change as a property of the function rather than an interval.",
+                "For a quadratic the rate differs on every interval. 'The rate of change of "
+                "$x^2 + 1$' is not a question; 'on $[1, 2]$' makes it one.",
+            ),
+            mistake(
+                "Concluding from a short table that a quadratic beats an exponential.",
+                "$x^2$ leads $2^x$ at $x = 3$ and loses permanently from $x = 5$. Extend the "
+                "table before drawing a conclusion about the long run.",
+            ),
+            mistake(
+                "Using a linear model for a fixed-percentage situation.",
+                "'$15\\%$ per year' multiplies; '20 000 per year' adds. The word 'percent' is the "
+                "signal for exponential, and the difference compounds enormously over time.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u3-l4-t1",
+                "A table at $x = 0, 1, 2, 3, 4$ reads $4, 12, 36, 108, 324$. Identify the type "
+                "and write the function.",
+                "First differences $8, 24, 72, 216$ are not constant; second differences "
+                "$16, 48, 144$ are not constant either. Ratios: "
+                "$\\frac{12}{4} = 3$, $\\frac{36}{12} = 3$, $\\frac{108}{36} = 3$, "
+                "$\\frac{324}{108} = 3$ — constant. It is EXPONENTIAL with starting value $4$ and "
+                "factor $3$: $y = 4 \\cdot 3^{x}$. Check at $x = 4$: $4 \\times 81 = 324$ ✓",
+                [
+                    "Eq(Rational(12,4), 3)",
+                    "Eq(Rational(324,108), 3)",
+                    "Eq(4*3**4, 324)",
+                    "Eq(4*3**2, 36)",
+                    "Ne(24 - 8, 72 - 24)",
+                ],
+            ),
+            problem(
+                "im2-u3-l4-t2",
+                "Find the average rate of change of $f(x) = 2x^{2} - 3$ on $[1, 4]$, and compare "
+                "it with the rate on $[1, 2]$.",
+                "On $[1, 4]$: $f(4) = 29$, $f(1) = -1$, so the rate is "
+                "$\\frac{29 - (-1)}{3} = 10$. On $[1, 2]$: $f(2) = 5$, so the rate is "
+                "$\\frac{5 - (-1)}{1} = 6$. The wider interval reaches further right where the "
+                "curve is steeper, so its average rate is larger. A quadratic has no single "
+                "slope — the interval is part of the question.",
+                [
+                    "Eq(2*4**2 - 3, 29)",
+                    "Eq(2*1**2 - 3, -1)",
+                    "Eq((29 - (-1))/3, 10)",
+                    "Eq(2*2**2 - 3, 5)",
+                    "Eq((5 - (-1))/1, 6)",
+                    "10 > 6",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "F-LE.3",
+                "title": "Three engines, three signatures",
+                "body": (
+                    "Linear adds. Quadratic adds an amount that grows. Exponential multiplies. "
+                    "Every table, graph and word problem in this lesson is asking which of those "
+                    "three is running underneath."
+                ),
+                "beats": [
+                    "First differences constant $\\to$ linear",
+                    "Second differences constant $\\to$ quadratic",
+                    "Ratios constant $\\to$ exponential",
+                    "Check them in that order",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "Identifying all three from tables",
+                "problemId": "im2-u3-l4-we1",
+            },
+            tap(
+                "Which type is it?",
+                "A table reads $5, 15, 45, 135$ at equally spaced inputs. What kind of growth?",
+                ["linear", "quadratic", "exponential", "none of these"],
+                2,
+                "The differences $10, 30, 90$ are not constant and neither are the second "
+                "differences. But each value is $3$ times the last — a constant RATIO, which is "
+                "the exponential signature.",
+                [
+                    "Eq(Rational(15,5), 3)",
+                    "Eq(Rational(45,15), 3)",
+                    "Eq(Rational(135,45), 3)",
+                    "Ne(30 - 10, 90 - 30)",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "Measuring steepness",
+                "title": "Average rate of change over an interval",
+                "body": (
+                    "$\\frac{f(b) - f(a)}{b - a}$ is the slope of the straight line joining the two "
+                    "points on the curve. For a line it is the same everywhere. For a parabola it "
+                    "depends entirely on which interval you pick — so the interval is part of the "
+                    "question, never an afterthought."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A quadratic's rate of change is itself linear",
+                "problemId": "im2-u3-l4-we2",
+            },
+            {
+                "kind": "expGraph",
+                "eyebrow": "The overtake",
+                "title": "Watch the exponential catch up",
+                "teach": (
+                    "The exponential starts slowly and looks beaten. Then the multiplication "
+                    "compounds and the curve turns almost vertical. Whatever polynomial it is "
+                    "racing, and whatever head start that polynomial has, the crossing happens."
+                ),
+                "config": {"mode": "growth", "a": 1, "b": 2, "interactive": True},
+            },
+            {
+                "kind": "worked",
+                "title": "$x^{2}$ against $2^{x}$, term by term",
+                "problemId": "im2-u3-l4-we3",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Read the mechanism",
+                "title": "The words tell you the model",
+                "body": (
+                    "'A fixed amount each year' is linear. 'Area', or anything that is a product "
+                    "of two growing lengths, is quadratic. 'A fixed percentage each year' — "
+                    "interest, population, decay — is exponential. Naming the mechanism beats "
+                    "eyeballing the numbers."
+                ),
+            },
+            tap(
+                "Which model fits?",
+                "A bacterial culture increases by $8\\%$ every hour. Which model?",
+                ["linear", "quadratic", "exponential", "it cannot be determined"],
+                2,
+                "A fixed PERCENTAGE per hour means multiplying by $1.08$ each hour — a constant "
+                "ratio, which is exponential. A fixed NUMBER of bacteria per hour would have been "
+                "linear.",
+                [
+                    "Eq(Rational(108,100), 1 + Rational(8,100))",
+                    "Abs(Rational(108,100)**10 - Rational(2159,1000)) < Rational(1,1000)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Three savings plans over twenty years",
+                "problemId": "im2-u3-l4-we4",
+            },
+            {"kind": "tryIt", "title": "Identify from a table", "problemId": "im2-u3-l4-t1"},
+            {"kind": "tryIt", "title": "Two intervals, two rates", "problemId": "im2-u3-l4-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "First differences constant: linear. Second: quadratic. Ratios: exponential",
+                    "Average rate of change is $\\frac{f(b) - f(a)}{b - a}$ — always over an interval",
+                    "A quadratic's rate of change grows linearly; a line's is constant",
+                    "Exponential growth eventually beats every polynomial, whatever the constants",
+                    "The mechanism in the wording identifies the model faster than the data does",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Practice and test banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im2-u3-p1",
+            "Find the axis of symmetry and vertex of $f(x) = x^{2} - 8x + 11$.",
+            "Axis: $x = -\\frac{-8}{2} = 4$. Vertex $y$-value: $f(4) = 16 - 32 + 11 = -5$, so the "
+            "vertex is $(4, -5)$ — a minimum, since $a = 1 > 0$. Symmetry check: $f(3) = "
+            "9 - 24 + 11 = -4$ and $f(5) = 25 - 40 + 11 = -4$ ✓",
+            [
+                "Eq(-(-8)/(2*1), 4)",
+                "Eq(4**2 - 8*4 + 11, -5)",
+                "Eq(3**2 - 8*3 + 11, -4)",
+                "Eq(5**2 - 8*5 + 11, -4)",
+            ],
+        ),
+        problem(
+            "im2-u3-p2",
+            "For $g(x) = -x^{2} + 6x - 4$, find the maximum value and where it occurs.",
+            "$a = -1 < 0$, so there is a maximum. Axis: $x = -\\frac{6}{2(-1)} = 3$. Value: "
+            "$g(3) = -9 + 18 - 4 = 5$. The maximum VALUE is $5$, occurring at $x = 3$. Check "
+            "either side: $g(2) = -4 + 12 - 4 = 4$ and $g(4) = -16 + 24 - 4 = 4$, both below "
+            "$5$ ✓",
+            [
+                "Eq(-6/(2*(-1)), 3)",
+                "Eq(-3**2 + 6*3 - 4, 5)",
+                "Eq(-2**2 + 6*2 - 4, 4)",
+                "Eq(-4**2 + 6*4 - 4, 4)",
+            ],
+        ),
+        problem(
+            "im2-u3-p3",
+            "A table at $x = 0, 1, 2, 3, 4$ gives $y = -1, 2, 11, 26, 47$. Show it is quadratic "
+            "and find the function.",
+            "First differences: $3, 9, 15, 21$ — not constant. Second differences: $6, 6, 6$ — "
+            "constant, so quadratic. With unit steps, $2a = 6$ gives $a = 3$. The intercept gives "
+            "$c = -1$; at $x = 1$, $3 + b - 1 = 2$ gives $b = 0$. So $y = 3x^{2} - 1$. Check at "
+            "$x = 4$: $48 - 1 = 47$ ✓",
+            [
+                "Eq(2 - (-1), 3)",
+                "Eq(11 - 2, 9)",
+                "Eq(9 - 3, 6)",
+                "Eq(21 - 15, 6)",
+                "Eq(3*4**2 - 1, 47)",
+                "Eq(3*3**2 - 1, 26)",
+            ],
+        ),
+        problem(
+            "im2-u3-p4",
+            "For $y = 3(x - 2)(x + 6)$, find the roots, vertex and $y$-intercept.",
+            "Roots: $x = 2$ and $x = -6$. Axis: midpoint $\\frac{2 + (-6)}{2} = -2$. Vertex "
+            "$y$-value: $3(-4)(4) = -48$, so $(-2, -48)$. The $y$-intercept: "
+            "$3(-2)(6) = -36$. Check the roots really vanish: at $x = 2$, $3(0)(8) = 0$ ✓",
+            [
+                "Eq(3*(2 - 2)*(2 + 6), 0)",
+                "Eq(3*(-6 - 2)*(-6 + 6), 0)",
+                "Eq((2 + (-6))/2, -2)",
+                "Eq(3*(-2 - 2)*(-2 + 6), -48)",
+                "Eq(3*(0 - 2)*(0 + 6), -36)",
+            ],
+        ),
+        problem(
+            "im2-u3-p5",
+            "State the vertex, direction and extreme value of $y = 5(x - 1)^{2} - 20$, then find "
+            "its roots.",
+            "Vertex $(1, -20)$; $a = 5 > 0$ so it opens upward and $-20$ is the minimum. Roots: "
+            "$5(x - 1)^{2} = 20$ gives $(x - 1)^{2} = 4$, so $x - 1 = \\pm 2$ and $x = 3$ or "
+            "$x = -1$. Midpoint of the roots is $1$ ✓ matching the vertex.",
+            [
+                "Eq(5*(1 - 1)**2 - 20, -20)",
+                "Eq(5*(3 - 1)**2 - 20, 0)",
+                "Eq(5*(-1 - 1)**2 - 20, 0)",
+                "Eq((3 + (-1))/2, 1)",
+            ],
+        ),
+        problem(
+            "im2-u3-p6",
+            "A parabola has roots $-3$ and $5$ and passes through $(1, -32)$. Find its equation "
+            "in factored form.",
+            "Start with $y = a(x + 3)(x - 5)$. Substituting $(1, -32)$: $a(4)(-4) = -16a = -32$, "
+            "so $a = 2$. The equation is $y = 2(x + 3)(x - 5)$. Check: at $x = 1$, "
+            "$2(4)(-4) = -32$ ✓ and both roots still give zero ✓",
+            [
+                "Eq(2*(1 + 3)*(1 - 5), -32)",
+                "Eq(2*(-3 + 3)*(-3 - 5), 0)",
+                "Eq(2*(5 + 3)*(5 - 5), 0)",
+                "Eq((-3 + 5)/2, 1)",
+            ],
+        ),
+        problem(
+            "im2-u3-p7",
+            "Describe the transformations taking $y = x^{2}$ to $y = -4(x + 3)^{2} + 1$, and "
+            "state the vertex.",
+            "The $-4$ reflects the curve in the horizontal axis and stretches it by $4$ (narrower "
+            "and upside down). The bracket $(x + 3) = (x - (-3))$ shifts it $3$ units left, and "
+            "the $+1$ shifts it $1$ unit up. Vertex $(-3, 1)$, a maximum. Check at $x = -2$: "
+            "$-4(1) + 1 = -3 < 1$ ✓",
+            [
+                "Eq(-4*(-3 + 3)**2 + 1, 1)",
+                "Eq(-4*(-2 + 3)**2 + 1, -3)",
+                "Eq(-4*(-4 + 3)**2 + 1, -3)",
+                "-4*(-2 + 3)**2 + 1 < 1",
+            ],
+        ),
+        problem(
+            "im2-u3-p8",
+            "Write the equation of $y = x^{2}$ after a stretch by factor $2$, a shift $1$ unit "
+            "left, and a shift $6$ units down.",
+            "Stretch first: $y = 2x^{2}$. One left means $h = -1$, so the bracket is $(x + 1)$. "
+            "Six down means $k = -6$. The equation is $y = 2(x + 1)^{2} - 6$, with vertex "
+            "$(-1, -6)$. Check at $x = 0$: $2(1) - 6 = -4$, and at $x = -2$ the same $-4$ ✓ "
+            "symmetric about $x = -1$.",
+            [
+                "Eq(2*(-1 + 1)**2 - 6, -6)",
+                "Eq(2*(0 + 1)**2 - 6, -4)",
+                "Eq(2*(-2 + 1)**2 - 6, -4)",
+            ],
+        ),
+        problem(
+            "im2-u3-p9",
+            "Explain why $y = (x + 2)^{2}$ and $y = x^{2} + 2$ are different, giving a point on "
+            "one but not the other.",
+            "The first shifts horizontally (vertex $(-2, 0)$); the second shifts vertically "
+            "(vertex $(0, 2)$). Take $x = -2$: the first gives $0$, the second gives $4 + 2 = 6$. "
+            "So $(-2, 0)$ lies on the first only. Also the first reaches $0$ and the second never "
+            "goes below $2$ ✓",
+            [
+                "Eq((-2 + 2)**2, 0)",
+                "Eq((-2)**2 + 2, 6)",
+                "Eq(0**2 + 2, 2)",
+                "(1 + 2)**2 >= 0",
+            ],
+        ),
+        problem(
+            "im2-u3-p10",
+            "Find the average rate of change of $f(x) = x^{2} - 2x$ on $[0, 2]$ and on $[2, 5]$.",
+            "$f(0) = 0$, $f(2) = 0$, so the rate on $[0, 2]$ is $\\frac{0 - 0}{2} = 0$ — the curve "
+            "returns to the same height, so the average rate is zero even though the function was "
+            "never flat. $f(5) = 15$, so on $[2, 5]$ the rate is $\\frac{15 - 0}{3} = 5$. The "
+            "second interval sits on the steep right-hand branch.",
+            [
+                "Eq(0**2 - 2*0, 0)",
+                "Eq(2**2 - 2*2, 0)",
+                "Eq(5**2 - 2*5, 15)",
+                "Eq((15 - 0)/3, 5)",
+            ],
+        ),
+        problem(
+            "im2-u3-p11",
+            "A table gives $y = 7, 21, 63, 189$ at equally spaced inputs. Identify the growth "
+            "type and give the function if the first input is $x = 0$.",
+            "Differences $14, 42, 126$ are not constant, and second differences $28, 84$ are not "
+            "either. Ratios: $\\frac{21}{7} = 3$, $\\frac{63}{21} = 3$, $\\frac{189}{63} = 3$ — "
+            "constant. Exponential with $a = 7$, $b = 3$: $y = 7 \\cdot 3^{x}$. Check at $x = 3$: "
+            "$7 \\times 27 = 189$ ✓",
+            [
+                "Eq(Rational(21,7), 3)",
+                "Eq(Rational(189,63), 3)",
+                "Eq(7*3**3, 189)",
+                "Ne(42 - 14, 126 - 42)",
+            ],
+        ),
+        problem(
+            "im2-u3-p12",
+            "At $x = 4$, which is larger: $3x^{2}$ or $2^{x}$? What about at $x = 10$?",
+            "At $x = 4$: $3(16) = 48$ against $2^{4} = 16$ — the quadratic leads comfortably. At "
+            "$x = 10$: $3(100) = 300$ against $2^{10} = 1024$ — the exponential has taken over. "
+            "A larger coefficient on the quadratic delays the crossover but cannot prevent it; "
+            "here it happens between $x = 8$ ($192$ against $256$) and $x = 7$ ($147$ against "
+            "$128$).",
+            [
+                "Eq(3*4**2, 48)",
+                "Eq(2**4, 16)",
+                "3*4**2 > 2**4",
+                "Eq(3*10**2, 300)",
+                "2**10 > 3*10**2",
+                "3*7**2 > 2**7",
+                "2**8 > 3*8**2",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im2-u3-ty-1",
+            "For $f(x) = 2x^{2} - 12x + 7$: find the axis of symmetry, the vertex, the "
+            "$y$-intercept, and state whether the vertex is a maximum or a minimum.",
+            "**Direction first.** $a = 2 > 0$, so the parabola opens upward and the vertex will be "
+            "a minimum."
+            "**Axis of symmetry.**"
+            "$$x = -\\frac{-12}{2(2)} = \\frac{12}{4} = 3.$$"
+            "**Vertex.** Substitute back:"
+            "$$f(3) = 2(9) - 36 + 7 = 18 - 36 + 7 = -11,$$"
+            "so the vertex is $(3, -11)$, a minimum."
+            "**The vertical intercept.** The constant term: $(0, 7)$."
+            "**Symmetry check.** $f(0) = 7$ and $f(6) = 72 - 72 + 7 = 7$ ✓ Equal heights three "
+            "units either side of the axis, as required.",
+            [
+                "Eq(-(-12)/(2*2), 3)",
+                "Eq(2*3**2 - 12*3 + 7, -11)",
+                "Eq(2*0**2 - 12*0 + 7, 7)",
+                "Eq(2*6**2 - 12*6 + 7, 7)",
+                "Eq(2*4**2 - 12*4 + 7, 2*2**2 - 12*2 + 7)",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-2",
+            "A rectangular pen is built against a straight wall using $60$ metres of fence on the "
+            "other three sides. Write the area as a function of the width $x$, and find the width "
+            "that maximises it.",
+            "**Set up the dimensions.** Two widths and one length use the fence:"
+            "$$2x + L = 60 \\quad\\Longrightarrow\\quad L = 60 - 2x.$$"
+            "**Write the area.**"
+            "$$A(x) = x(60 - 2x) = 60x - 2x^{2}.$$"
+            "**Recognise the shape.** The coefficient of $x^{2}$ is $-2 < 0$, so the parabola "
+            "opens downward and a maximum exists."
+            "**Find the vertex.**"
+            "$$x = -\\frac{60}{2(-2)} = 15.$$"
+            "**Compute the maximum area.** $A(15) = 15(60 - 30) = 15 \\times 30 = 450$ square "
+            "metres, with length $30$ m."
+            "**Check the neighbours.** $A(14) = 14(32) = 448$ and $A(16) = 16(28) = 448$ — both "
+            "below $450$, and equal to each other as symmetry demands ✓"
+            "**Interpret the domain.** Only $0 < x < 30$ makes physical sense; outside that range "
+            "the length would be zero or negative, so the algebraic parabola extends further than "
+            "the pen ever could.",
+            [
+                "Eq(15*(60 - 2*15), 450)",
+                "Eq(-60/(2*(-2)), 15)",
+                "Eq(14*(60 - 2*14), 448)",
+                "Eq(16*(60 - 2*16), 448)",
+                "14*(60 - 2*14) < 15*(60 - 2*15)",
+                "Eq(30*(60 - 2*30), 0)",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-3",
+            "For $y = -2(x - 1)(x + 5)$: find the roots, the vertex, the $y$-intercept, and "
+            "sketch-describe the curve.",
+            "**Roots.** $x = 1$ and $x = -5$, reading the factors with the sign flip."
+            "**Axis of symmetry.** Midway between the roots:"
+            "$$x = \\frac{1 + (-5)}{2} = -2.$$"
+            "**Vertex.** Substituting into factored form directly:"
+            "$$y = -2(-2 - 1)(-2 + 5) = -2(-3)(3) = 18,$$"
+            "so the vertex is $(-2, 18)$."
+            "**The vertical intercept.** $-2(-1)(5) = 10$, so $(0, 10)$."
+            "**Describe the curve.** $a = -2 < 0$, so it opens downward, peaking at $(-2, 18)$, "
+            "crossing the horizontal axis at $-5$ and $1$, and passing through $(0, 10)$ on its "
+            "way down."
+            "**Consistency check.** Expanding gives $-2(x^{2} + 4x - 5) = -2x^{2} - 8x + 10$. The "
+            "constant $10$ matches the $y$-intercept ✓ and $-\\frac{b}{2a} = \\frac{8}{-4} = -2$ "
+            "matches the axis ✓",
+            [
+                "Eq(-2*(1 - 1)*(1 + 5), 0)",
+                "Eq(-2*(-5 - 1)*(-5 + 5), 0)",
+                "Eq((1 + (-5))/2, -2)",
+                "Eq(-2*(-2 - 1)*(-2 + 5), 18)",
+                "Eq(-2*(0 - 1)*(0 + 5), 10)",
+                "Eq(-(-8)/(2*(-2)), -2)",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-4",
+            "Describe fully the transformations taking $y = x^{2}$ to "
+            "$y = \\frac{1}{3}(x + 4)^{2} - 2$, state the vertex, and give the range of the "
+            "function.",
+            "**The stretch.** The factor $\\frac{1}{3}$ is between $0$ and $1$, so the parabola is "
+            "WIDER than $y = x^{2}$ — every height is a third of what it was. It still opens "
+            "upward, since the factor is positive."
+            "**The horizontal shift.** $(x + 4) = (x - (-4))$, so $h = -4$: four units LEFT."
+            "**The vertical shift.** The $-2$ moves it two units DOWN."
+            "**The vertex.** $(h, k) = (-4, -2)$, a minimum since $a > 0$."
+            "**The range.** A square is never negative, so $\\frac{1}{3}(x + 4)^{2} \\ge 0$ and "
+            "the function is never below $-2$. The range is $y \\ge -2$, with the value $-2$ "
+            "attained exactly at $x = -4$."
+            "**Check two symmetric points.** At $x = -1$: $\\frac{1}{3}(9) - 2 = 1$. At $x = -7$: "
+            "$\\frac{1}{3}(9) - 2 = 1$ ✓ Equal heights, three units either side of $x = -4$.",
+            [
+                "Eq(Rational(1,3)*(-4 + 4)**2 - 2, -2)",
+                "Eq(Rational(1,3)*(-1 + 4)**2 - 2, 1)",
+                "Eq(Rational(1,3)*(-7 + 4)**2 - 2, 1)",
+                "Rational(1,3)*(0 + 4)**2 - 2 > -2",
+                "Rational(1,3) < 1",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-5",
+            "A table at $x = 0, 1, 2, 3, 4$ gives $y = 6, 4, 6, 12, 22$. Identify the type of "
+            "relationship, find the function, and state its minimum.",
+            "**First differences.**"
+            "$$-2, \\quad 2, \\quad 6, \\quad 10.$$"
+            "Not constant, so not linear."
+            "**Second differences.**"
+            "$$4, \\quad 4, \\quad 4.$$"
+            "Constant, so QUADRATIC."
+            "**Find the coefficients.** With unit steps, $2a = 4$ gives $a = 2$. The value at "
+            "$x = 0$ gives $c = 6$. At $x = 1$: $2 + b + 6 = 4$, so $b = -4$. The function is"
+            "$$y = 2x^{2} - 4x + 6.$$"
+            "**Verify on a point not used.** At $x = 3$: $18 - 12 + 6 = 12$ ✓ and at $x = 4$: "
+            "$32 - 16 + 6 = 22$ ✓"
+            "**Find the minimum.** Axis: $x = \\frac{4}{4} = 1$; value $2 - 4 + 6 = 4$. The "
+            "minimum is $4$ at $x = 1$ — which the table shows directly as its lowest entry ✓",
+            [
+                "Eq(4 - 6, -2)",
+                "Eq(6 - 4, 2)",
+                "Eq(2 - (-2), 4)",
+                "Eq(10 - 6, 4)",
+                "Eq(2*3**2 - 4*3 + 6, 12)",
+                "Eq(2*4**2 - 4*4 + 6, 22)",
+                "Eq(-(-4)/(2*2), 1)",
+                "Eq(2*1**2 - 4*1 + 6, 4)",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-6",
+            "Compare $f(x) = 4x^{2}$ and $g(x) = 3^{x}$ at $x = 1, 2, 3, 4, 5$. State where the "
+            "exponential takes the lead permanently and explain why the lead is permanent.",
+            "**Tabulate.**"
+            "$$f: 4, \\ 16, \\ 36, \\ 64, \\ 100$$"
+            "$$g: 3, \\ 9, \\ 27, \\ 81, \\ 243$$"
+            "**Read the comparison.** The quadratic leads at $x = 1, 2, 3$. At $x = 4$ the "
+            "exponential passes it ($81$ against $64$) and by $x = 5$ the gap is $243$ to $100$."
+            "**Why the lead is permanent.** Each step multiplies $g$ by exactly $3$. The "
+            "quadratic's step factor is $\\left(\\frac{x+1}{x}\\right)^{2}$, which falls toward "
+            "$1$: from $x = 4$ to $5$ it is only $\\left(\\frac{5}{4}\\right)^{2} = 1.5625$. Once "
+            "the exponential is ahead AND growing by a larger factor every step, it can never be "
+            "caught."
+            "**Confirm the domination continues.** At $x = 8$: $4(64) = 256$ against "
+            "$3^{8} = 6561$ — a factor of twenty-five, from a race the quadratic was leading four "
+            "steps earlier ✓"
+            "**The general fact.** Any exponential with base above $1$ eventually exceeds any "
+            "polynomial. A bigger leading coefficient delays the crossing; it never prevents it.",
+            [
+                "Eq(4*3**2, 36)",
+                "Eq(3**3, 27)",
+                "4*3**2 > 3**3",
+                "3**4 > 4*4**2",
+                "3**5 > 4*5**2",
+                "Eq(3**8, 6561)",
+                "Eq(4*8**2, 256)",
+                "Eq(Rational(5,4)**2, Rational(25,16))",
+            ],
+        ),
+        problem(
+            "im2-u3-ty-7",
+            "A company's monthly profit in millions of tugriks is modelled by "
+            "$P(x) = -x^{2} + 14x - 33$, where $x$ is the price in thousands of tugriks. Find the "
+            "break-even prices, the profit-maximising price, and the maximum profit. Then find "
+            "the average rate of change of profit as the price rises from $3$ to $5$.",
+            "**Break-even means zero profit.** Factor: two numbers with product $33$ and sum "
+            "$-14$, both negative — $-3$ and $-11$. So"
+            "$$P(x) = -(x^{2} - 14x + 33) = -(x - 3)(x - 11),$$"
+            "giving break-even at $x = 3$ and $x = 11$ thousand tugriks."
+            "**The profit-maximising price.** Symmetry puts the peak midway between the "
+            "break-even points:"
+            "$$x = \\frac{3 + 11}{2} = 7.$$"
+            "**The maximum profit.**"
+            "$$P(7) = -49 + 98 - 33 = 16 \\text{ million tugriks}.$$"
+            "**The average rate of change over the given interval.** $P(3) = 0$ and "
+            "$P(5) = -25 + 70 - 33 = 12$, so"
+            "$$\\frac{12 - 0}{5 - 3} = 6$$"
+            "million tugriks of profit per thousand tugriks of price."
+            "**Interpret it.** Over that stretch, each extra thousand tugriks on the price adds "
+            "about $6$ million to profit on average. But this rate does NOT continue — between "
+            "$x = 7$ and $x = 9$ the same calculation gives $\\frac{12 - 16}{2} = -2$, a loss. A "
+            "quadratic's rate of change is never a single number, which is exactly why the "
+            "interval had to be specified ✓",
+            [
+                "Eq(-(3**2) + 14*3 - 33, 0)",
+                "Eq(-(11**2) + 14*11 - 33, 0)",
+                "Eq((3 + 11)/2, 7)",
+                "Eq(-(7**2) + 14*7 - 33, 16)",
+                "Eq(-(5**2) + 14*5 - 33, 12)",
+                "Eq((12 - 0)/(5 - 3), 6)",
+                "Eq(-(9**2) + 14*9 - 33, 12)",
+                "Eq((12 - 16)/(9 - 7), -2)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="quadratic-functions",
+        title="Quadratic Functions",
+        unit_number=3,
+        blurb=(
+            "The parabola and its vertex, axis of symmetry and intercepts; the three forms of a "
+            "quadratic and the question each one answers for free; transformations of the basic "
+            "parabola; and why exponential growth eventually overtakes both linear and quadratic "
+            "growth, whatever the constants."
+        ),
+        builds_on=(
+            "Function notation and linear models from IM1 Units 3 and 4 — the same reading of "
+            "graphs, now for a curve that turns."
+        ),
+        lessons=[
+            lesson_the_parabola(),
+            lesson_three_forms(),
+            lesson_transformations(),
+            lesson_comparing_growth(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()
