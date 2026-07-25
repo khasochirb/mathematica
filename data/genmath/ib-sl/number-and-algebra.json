@@ -632,7 +632,7 @@
     {
       "slug": "financial-applications",
       "title": "Financial Applications: Compound Interest & Depreciation",
-      "concreteComparison": "₮1,000,000 at 12% per year, compounded monthly, is NOT ₮1,120,000 after a year — it's $1{,}000{,}000\\left(1 + \\frac{12}{100 \\cdot 12}\\right)^{12} \\approx ₮1{,}126{,}825$. The extra ₮6,825 is interest earning interest — the whole reason banks exist, and officially syllabus code SL 1.4.",
+      "concreteComparison": "₮1,000,000 at 12% per year, compounded monthly, is NOT ₮1,120,000 after a year — it's $1{,}000{,}000\\left(1 + \\frac{12}{100 \\cdot 12}\\right)^{12} \\approx 1{,}126{,}825$₮. The extra ₮6,825 is interest earning interest — the whole reason banks exist, and officially syllabus code SL 1.4.",
       "objective": "Use $FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ for compound interest with any compounding frequency, model depreciation with a ratio below 1, and answer 'how long until…' questions.",
       "concept": [
         "**Syllabus card — SL 1.4.** Financial applications of geometric sequences and series: compound interest and annual depreciation. Mostly **Paper 2** (calculator) territory, SL and HL. The GDC's finance solver (TVM) is an accepted method — but the formula must also be usable by hand for clean numbers.",
@@ -657,7 +657,7 @@
         {
           "id": "ibsl-14-we1",
           "statement": "Sarnai invests ₮$2{,}000{,}000$ at a nominal annual rate of $6\\%$, compounded **quarterly**.  \n**(a)** Find the value after 5 years. **[3]**  \n**(b)** Write down the value of one quarter's multiplier. **[1]**",
-          "solution": "**(a)** $r = 6$, $k = 4$, $n = 5$: $FV = 2{,}000{,}000\\left(1 + \\frac{6}{100 \\cdot 4}\\right)^{4 \\cdot 5}$ *(M1 for correct substitution)* $= 2{,}000{,}000(1.015)^{20}$ *(A1)* $\\approx ₮2{,}693{,}710$ *(A1)*.  \n**(b)** $1.015$ *(A1)* — each quarter multiplies the balance by this.  \n**Narrative:** the only decisions are $k = 4$ (quarterly) and the exponent $kn = 20$. The substitution line IS the method mark — write it before touching the calculator, so a keying slip still scores M1.",
+          "solution": "**(a)** $r = 6$, $k = 4$, $n = 5$: $FV = 2{,}000{,}000\\left(1 + \\frac{6}{100 \\cdot 4}\\right)^{4 \\cdot 5}$ *(M1 for correct substitution)* $= 2{,}000{,}000(1.015)^{20}$ *(A1)* $\\approx 2{,}693{,}710$₮ *(A1)*.  \n**(b)** $1.015$ *(A1)* — each quarter multiplies the balance by this.  \n**Narrative:** the only decisions are $k = 4$ (quarterly) and the exponent $kn = 20$. The substitution line IS the method mark — write it before touching the calculator, so a keying slip still scores M1.",
           "check": [
             "1 + Rational(6, 100*4) == Rational(1015, 1000)",
             "4*5 == 20",
@@ -1999,7 +1999,7 @@
     {
       "id": "ibsl-na-p07",
       "statement": "₮$500{,}000$ is invested at $8\\%$ per year, compounded **monthly**. **Find** the value after 3 years, to the nearest tögrög. **[3]**",
-      "solution": "$FV = 500{,}000\\left(1 + \\frac{8}{1200}\\right)^{36}$ *(M1 A1)* $\\approx ₮635{,}119$ *(A1)*. Per-month multiplier $1 + \\frac{0.08}{12}$, 36 months.",
+      "solution": "$FV = 500{,}000\\left(1 + \\frac{8}{1200}\\right)^{36}$ *(M1 A1)* $\\approx 635{,}119$₮ *(A1)*. Per-month multiplier $1 + \\frac{0.08}{12}$, 36 months.",
       "badges": [
         {
           "text": "ib-aa-sl-1.4",

@@ -238,7 +238,7 @@
       "objective": "Apply the compound interest formula for n compoundings per year, see how more frequent compounding approaches the limit e, and use continuous growth A = Pe^(rt).",
       "concept": [
         "Compounding $n$ times per year at annual rate $r$ splits the rate into $n$ slices of $\\frac{r}{n}$, applied as factors: $A = P\\left(1 + \\frac{r}{n}\\right)^{nt}$. More slices beat fewer: 10% compounded twice gives $(1.05)^2 = 1.1025$ — a quarter percent better than 10% once, because mid-year interest starts earning too.",
-        "Push $n \\to \\infty$ and the sequence $\\left(1 + \\frac{1}{n}\\right)^n$ — yearly 2, monthly 2.613, daily 2.7146 — climbs toward a ceiling: **$e \\approx 2.71828$**, the natural base. Continuous compounding is the limit: $A = Pe^{rt}$.",
+        "Push $n \\to \\infty$ and the sequence $\\left(1 + \\frac{1}{n}\\right)^n$ — yearly 2, monthly 2.613, daily 2.7146 — climbs toward a ceiling: $e \\approx 2.71828$, the natural base. Continuous compounding is the limit: $A = Pe^{rt}$.",
         "$e$ is not a curiosity — it's the base nature prefers: population growth, radioactive decay, cooling coffee, and (later) calculus, where $e^x$ is the unique function that is its own derivative. Most scientific models arrive written as $Q(t) = Q_0 e^{kt}$: growth for $k > 0$, decay for $k < 0$."
       ],
       "keyIdea": "A = P(1 + r/n)^(nt): more compounding slices always help but converge — the limit is e ≈ 2.718 and continuous growth A = Pe^(rt).",
@@ -906,7 +906,7 @@
     {
       "id": "pc5-pr-3",
       "statement": "$3000$ at 6% for 5 years: compare simple interest with monthly compounding (set up both; evaluate the compound factor as $(1.005)^{60} \\approx 1.3489$).",
-      "solution": "Simple: $3000(1 + 0.06 \\cdot 5) = 3900$. Monthly: $3000(1.005)^{60} \\approx 3000 \\cdot 1.3489 = 4046.70$ — compounding earns about $147 more.",
+      "solution": "Simple: $3000(1 + 0.06 \\cdot 5) = 3900$. Monthly: $3000(1.005)^{60} \\approx 3000 \\cdot 1.3489 = 4046.70$ — compounding earns about \\$147 more.",
       "check": [
         "3000*(1 + Rational(6,100)*5) == 3900",
         "Abs((Rational(1005,1000))**60 - Rational(13489,10000)) < Rational(2,10000)",

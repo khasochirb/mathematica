@@ -298,7 +298,7 @@
         },
         {
           "id": "ef2-we2",
-          "statement": "A $800 phone loses $25\\%$ of its value yearly. Value after 2 years?",
+          "statement": "A \\$800 phone loses $25\\%$ of its value yearly. Value after 2 years?",
           "solution": "$V = 800(0.75)^t$; $t=2$: $800 \\cdot \\tfrac{9}{16} = 450$.",
           "check": [
             "800*Rational(3,4)**2 == 450"
@@ -399,7 +399,7 @@
             "kind": "tapQuestion",
             "eyebrow": "Run a model",
             "title": "Phone value",
-            "prompt": "An $800 phone at $-25\\%$/year is worth, after 2 years…",
+            "prompt": "An \\$800 phone at $-25\\%$/year is worth, after 2 years…",
             "options": [
               "$450$",
               "$400$",

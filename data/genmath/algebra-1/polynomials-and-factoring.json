@@ -186,7 +186,7 @@
           { "kind": "teach", "eyebrow": "The problem", "title": "Multiplication, run backwards", "body": "Expanding $(x+3)(x+4)$ is mechanical. The REVERSE — given $x^2 + 7x + 12$, recover the factors — is where equations get solved, fractions get simplified, and quadratics crack open. Factoring is the skill the rest of algebra quietly depends on." },
           { "kind": "teach", "eyebrow": "Step zero", "title": "GCF first, always", "body": "Before any cleverness, un-distribute what every term shares: $6x^2 + 15x$ → both divide by 3 and by $x$ → $3x(2x + 5)$. Check by redistributing. Skipping this step doesn't just lose marks — it makes the next puzzle artificially hard." },
           { "kind": "tapQuestion", "eyebrow": "Check step zero", "title": "Pull the GCF", "prompt": "The GCF factorization of $8x^3 + 12x^2$ is:", "options": ["$4x^2(2x + 3)$", "$4x(2x^2 + 3x)$", "$8x^2(x + 12)$", "$2x^2(4x + 6)$"], "correctIndex": 0, "explanation": "Biggest shared number: 4; smallest shared power: $x^2$. Options B and D under-pull — their parentheses still share factors.", "check": ["4*2 == 8", "4*3 == 12", "4*2**2*(2*2 + 3) == 8*2**3 + 12*2**2"] },
-          { "kind": "teach", "eyebrow": "The puzzle", "title": "Product c, sum b", "body": "$(x + p)(x + q) = x^2 + (p+q)x + pq$. So factoring $x^2 + bx + c$ asks: **which two numbers multiply to $c$ and add to $b$?** For $x^2 + 7x + 12$: factor pairs of 12 are 1·12, 2·6, 3·4 — sums 13, 8, 7. Winner: 3 and 4." },
+          { "kind": "teach", "eyebrow": "The puzzle", "title": "Product c, sum b", "body": "$(x + p)(x + q) = x^2 + (p+q)x + pq$. So factoring $x^2 + bx + c$ asks: **which two numbers multiply to** $c$ **and add to** $b$? For $x^2 + 7x + 12$: factor pairs of 12 are 1·12, 2·6, 3·4 — sums 13, 8, 7. Winner: 3 and 4." },
           { "kind": "worked", "eyebrow": "Worked example", "title": "Two sign patterns", "problemId": "al73-we1" },
           { "kind": "tapQuestion", "eyebrow": "Check the puzzle", "title": "Signs narrow it", "prompt": "$x^2 - 5x - 24$ factors as:", "options": ["$(x - 8)(x + 3)$", "$(x + 8)(x - 3)$", "$(x - 6)(x + 4)$", "$(x - 12)(x + 2)$"], "correctIndex": 0, "explanation": "Product $-24$ → opposite signs; sum $-5$ → the larger (8) is negative: $-8, +3$. Check: $-8 + 3 = -5$ ✓, $(-8)(3) = -24$ ✓.", "check": ["-8 + 3 == -5", "-8*3 == -24"] },
           { "kind": "worked", "eyebrow": "Worked example", "title": "GCF, then puzzle", "problemId": "al73-we2" },
@@ -209,7 +209,7 @@
       ],
       "keyIdea": "For a ≠ 1: split bx using two numbers with product ac and sum b, then group; keep the reversed special products loaded, and factor until nothing budges.",
       "facts": [
-        { "title": "The ac-method", "latex": "2x^2 + 7x + 3: \\; ac = 6, \\; 7 = 1 + 6 \\;\\to\\; \\text{split & group}", "explanation": "Product $ac$, sum $b$ — then the grouping factors itself." },
+        { "title": "The ac-method", "latex": "2x^2 + 7x + 3: \\; ac = 6, \\; 7 = 1 + 6 \\;\\to\\; \\text{split \\& group}", "explanation": "Product $ac$, sum $b$ — then the grouping factors itself." },
         { "title": "Patterns in reverse", "latex": "a^2 - b^2 = (a+b)(a-b), \\quad a^2 \\pm 2ab + b^2 = (a \\pm b)^2", "explanation": "Difference of squares splits; perfect-square trinomials fold. Sums of squares don't factor." }
       ],
       "workedExamples": [

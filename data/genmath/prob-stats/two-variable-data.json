@@ -214,7 +214,7 @@
       "concreteComparison": "\"Moderately tight\" is your word against mine. The **correlation coefficient** $r$ ends the argument with one number between $-1$ and $+1$: sign gives the direction, magnitude gives the tightness. Hours-vs-scores at $r = 0.8$ and temperature-vs-sales at $r = -0.9$ are now comparable claims — the second cloud is tighter, whatever the units.",
       "objective": "Interpret r: sign, magnitude, unitlessness, and its blind spots (nonlinearity, outlier sensitivity).",
       "concept": [
-        "**What $r$ measures:** the direction and tightness of a LINEAR association, on a fixed scale: $r = +1$ (perfect uphill line), $0$ (no linear pattern), $-1$ (perfect downhill line). Working bands: $|r| > 0.8$ strong, $0.5$–$0.8$ moderate, below $0.3$ weak.",
+        "**What** $r$ **measures:** the direction and tightness of a LINEAR association, on a fixed scale: $r = +1$ (perfect uphill line), $0$ (no linear pattern), $-1$ (perfect downhill line). Working bands: $|r| > 0.8$ strong, $0.5$–$0.8$ moderate, below $0.3$ weak.",
         "$r$ is built from paired z-scores — roughly the average of $z_x \\cdot z_y$ across points — which makes it UNIT-FREE and symmetric: correlation of height with weight equals weight with height, in inches or centimeters, points or percents.",
         "**Blind spot 1 — nonlinearity:** $r$ only sees lines. A perfect U-shaped curve can score $r \\approx 0$: strong association, invisible to $r$. Plot FIRST; $r$ second.",
         "**Blind spot 2 — outliers:** built from means and SDs (Unit 9's sensitive tools), $r$ can be dragged wildly by one off-pattern point — a single distant point can fake a strong correlation or destroy a real one. The plot, again, is the audit."
@@ -420,8 +420,8 @@
       "objective": "Interpret and use the least-squares line ŷ = a + bx: slope and intercept in context, and predictions within range.",
       "concept": [
         "The **least-squares line** minimizes the sum of SQUARED vertical misses (residuals) — squaring for the same reason variance did (Unit 9): no cancellation, big misses punished. The hat in $\\hat{y}$ means PREDICTED, distinguishing forecasts from observed values.",
-        "**Slope $b$** is the workhorse sentence: \"per one-unit increase in $x$, predicted $y$ changes by $b$\" — per extra study hour, about $5.2$ more points, ON AVERAGE. It's a claim about the cloud's drift, not about any single student.",
-        "**Intercept $a$** is the prediction at $x = 0$ — sometimes meaningful (a zero-study baseline of $42$), often just the line's anchor (predicted weight at height zero is geometry, not biology).",
+        "**Slope** $b$ is the workhorse sentence: \"per one-unit increase in $x$, predicted $y$ changes by $b$\" — per extra study hour, about $5.2$ more points, ON AVERAGE. It's a claim about the cloud's drift, not about any single student.",
+        "**Intercept** $a$ is the prediction at $x = 0$ — sometimes meaningful (a zero-study baseline of $42$), often just the line's anchor (predicted weight at height zero is geometry, not biology).",
         "Two anchors worth knowing: the line always passes through $(\\bar{x}, \\bar{y}$) — the cloud's center of mass — and its slope carries $r$'s sign (uphill clouds get uphill lines). The line and the correlation tell one story in two dialects."
       ],
       "keyIdea": "ŷ = a + bx minimizes squared vertical misses; slope = predicted change per unit of x (in context), intercept = the x = 0 anchor, and the line passes through the cloud's center.",
@@ -627,7 +627,7 @@
       "concept": [
         "**Typical miss:** the spread of residuals (their SD, informally \"the typical prediction error\") is the line's honesty label: \"predictions typically miss by $\\pm 6$ points\" tells a user everything a slope doesn't.",
         "**Leftover patterns:** residuals should look like patternless noise around zero. A CURVE in the residuals means the straight line missed a bend (fit something curved); a FAN (spread growing with $x$) means predictions get less reliable at one end. Structure in the leftovers is unfinished business.",
-        "**$r^2$** (the square of the correlation) is the standard fit score: the fraction of $y$'s variation the line accounts for. $r = 0.8 \\to r^2 = 0.64$: the line explains $64\\%$ of score variation; the rest lives in the residuals. It's a share of variation explained — not a probability, not a grade.",
+        "$r^2$ (the square of the correlation) is the standard fit score: the fraction of $y$'s variation the line accounts for. $r = 0.8 \\to r^2 = 0.64$: the line explains $64\\%$ of score variation; the rest lives in the residuals. It's a share of variation explained — not a probability, not a grade.",
         "**Influential points:** an extreme-$x$ point acts as a lever on the line — one such point can seize the slope. Fit-with and fit-without, compare, and report the difference honestly (Unit 9's flag-investigate-decide, now for lines)."
       ],
       "keyIdea": "Judge the line by its leftovers: typical miss size, no leftover pattern, r² as the share of variation explained, and lever points checked with/without.",

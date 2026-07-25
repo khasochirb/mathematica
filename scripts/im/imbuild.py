@@ -28,18 +28,30 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 MATHTEXT_SPLIT = re.compile(r"(\$\$[^$]+\$\$|\$[^$]+\$|\*\*[^*]+\*\*)")
 
 
+# MathText protects escaped dollars (\$) with a sentinel before splitting, and
+# renders bold content as plain text. So a LONE currency $ inside bold renders
+# fine; the defect is a bold run containing a COMPLETE $...$ pair, whose math
+# then shows up as literal dollar signs.
+DOLLAR_SENTINEL = "\x00"
+MATH_PAIR = re.compile(r"\$\$[^$]+\$\$|\$[^$]+\$")
+
+
 def find_math_in_bold(text):
-    """Bold runs containing inline math — they render as literal dollar signs."""
-    return [t for t in MATHTEXT_SPLIT.findall(text) if t.startswith("**") and "$" in t]
+    """Bold runs swallowing a full math pair — they render as literal dollars."""
+    protected = text.replace("\\$", DOLLAR_SENTINEL)
+    return [
+        t.replace(DOLLAR_SENTINEL, "\\$")
+        for t in MATHTEXT_SPLIT.findall(protected)
+        if t.startswith("**") and MATH_PAIR.search(t[2:-2])
+    ]
 
 
 # Characters KaTeX has no glyph for. Inside math they produce a warning and a
 # blank box rather than an error node, so the render gate reports the file
-# clean and the defect ships. The tugrik sign is the obvious one; the tick and
-# cross are the sneaky ones, because they read perfectly well in prose and are
-# a natural thing to append to a displayed equation. All three belong in the
-# text beside the math, never inside it.
-UNRENDERABLE_IN_MATH = "₮✓✗"
+# clean and the defect ships. The tugrik sign and the ballot cross are the two
+# that occur in practice; the check mark ✓ HAS KaTeX metrics and renders fine,
+# so it is deliberately not listed.
+UNRENDERABLE_IN_MATH = "₮✗"
 
 
 def find_unrenderable_math(text):

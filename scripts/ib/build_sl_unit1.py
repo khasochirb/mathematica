@@ -798,7 +798,7 @@ def lesson_financial():
         "concreteComparison": (
             "₮1,000,000 at 12% per year, compounded monthly, is NOT ₮1,120,000 after a year — "
             "it's $1{,}000{,}000\\left(1 + \\frac{12}{100 \\cdot 12}\\right)^{12} \\approx "
-            "₮1{,}126{,}825$. The extra ₮6,825 is interest earning interest — the whole reason "
+            "1{,}126{,}825$₮. The extra ₮6,825 is interest earning interest — the whole reason "
             "banks exist, and officially syllabus code SL 1.4."
         ),
         "objective": (
@@ -857,7 +857,7 @@ def lesson_financial():
                 "solution": (
                     "**(a)** $r = 6$, $k = 4$, $n = 5$: $FV = 2{,}000{,}000\\left(1 + "
                     "\\frac{6}{100 \\cdot 4}\\right)^{4 \\cdot 5}$ *(M1 for correct substitution)* "
-                    "$= 2{,}000{,}000(1.015)^{20}$ *(A1)* $\\approx ₮2{,}693{,}710$ *(A1)*.  \n"
+                    "$= 2{,}000{,}000(1.015)^{20}$ *(A1)* $\\approx 2{,}693{,}710$₮ *(A1)*.  \n"
                     "**(b)** $1.015$ *(A1)* — each quarter multiplies the balance by this.  \n"
                     "**Narrative:** the only decisions are $k = 4$ (quarterly) and the exponent "
                     "$kn = 20$. The substitution line IS the method mark — write it before "
@@ -2397,7 +2397,7 @@ def practice_bank():
             "statement": "₮$500{,}000$ is invested at $8\\%$ per year, compounded **monthly**. **Find** the value after 3 years, to the nearest tögrög. **[3]**",
             "solution": (
                 "$FV = 500{,}000\\left(1 + \\frac{8}{1200}\\right)^{36}$ *(M1 A1)* "
-                "$\\approx ₮635{,}119$ *(A1)*. Per-month multiplier $1 + \\frac{0.08}{12}$, 36 months."
+                "$\\approx 635{,}119$₮ *(A1)*. Per-month multiplier $1 + \\frac{0.08}{12}$, 36 months."
             ),
             "badges": [{"text": "ib-aa-sl-1.4", "mono": True}, {"text": "P2"}],
             "check": ["1 + Rational(8, 1200) == Rational(151, 150)", "floor(500000*Rational(151,150)**36) == 635118"],

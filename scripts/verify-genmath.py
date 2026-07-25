@@ -18,6 +18,7 @@ Run: npm run verify:genmath
 import glob
 import json
 import os
+import re
 import sys
 
 from sympy import sympify
@@ -27,6 +28,44 @@ DATA_GLOB = os.path.join(ROOT, "data", "genmath", "**", "*.json")
 
 failures = []
 topics_checked = 0
+
+# --- Render-safety (mirrors components/esh/MathText.tsx) -------------------
+# Two defect classes are invisible to every other gate:
+#   1. A **bold** run containing a complete $...$ pair. MathText's splitter is
+#      leftmost-first, so the whole run matches AS BOLD and its content renders
+#      as plain text — the math shows up as literal dollar signs. (A lone $ in
+#      bold is a currency dollar and renders fine; only a full pair is a bug.)
+#   2. A character KaTeX has no glyph for inside a math segment. It draws a
+#      blank box with only a console warning — no katex-error node — so even
+#      the render QA reports the file clean. ✓ has metrics and is fine;
+#      Cyrillic inside \text{} falls back to a browser font and is fine.
+# Checked for EVERY file, published or not, so no authoring route can skip it.
+MATHTEXT_TOKEN = re.compile(r"(\$\$[^$]+\$\$|\$[^$]+\$|\*\*[^*]+\*\*)")
+MATH_PAIR = re.compile(r"\$\$[^$]+\$\$|\$[^$]+\$")
+DOLLAR_SENTINEL = "\x00"
+UNRENDERABLE_IN_MATH = "₮✗"
+
+render_strings_checked = 0
+
+
+def check_render_safety(label, node):
+    global render_strings_checked
+    if isinstance(node, str):
+        render_strings_checked += 1
+        protected = node.replace("\\$", DOLLAR_SENTINEL)
+        for tok in MATHTEXT_TOKEN.findall(protected):
+            shown = tok.replace(DOLLAR_SENTINEL, "\\$")[:80]
+            if tok.startswith("**") and MATH_PAIR.search(tok[2:-2]):
+                failures.append(f"{label}: bold run swallows inline math (renders literal $): {shown!r}")
+            elif tok.startswith("$") and any(c in tok for c in UNRENDERABLE_IN_MATH):
+                failures.append(f"{label}: character KaTeX cannot draw inside math: {shown!r}")
+    elif isinstance(node, dict):
+        for value in node.values():
+            check_render_safety(label, value)
+    elif isinstance(node, list):
+        for value in node:
+            check_render_safety(label, value)
+
 problems_checked = 0
 tapq_checked = 0
 checks_run = 0
@@ -110,6 +149,7 @@ def main():
     for path in files:
         with open(path, "r", encoding="utf-8") as fh:
             topic = json.load(fh)
+        check_render_safety(os.path.relpath(path, ROOT), topic)
         if topic.get("status") != "published":
             continue
         published.append(topic.get("slug", os.path.basename(path)))
@@ -146,7 +186,10 @@ def main():
         sys.exit(0)
 
     print(f"verify:genmath — published topics: {', '.join(published)}")
-    print(f"  problems: {problems_checked}   tap-questions: {tapq_checked}   sympy checks run: {checks_run}")
+    print(
+        f"  problems: {problems_checked}   tap-questions: {tapq_checked}   "
+        f"sympy checks run: {checks_run}   render-safety strings: {render_strings_checked}"
+    )
 
     if failures:
         print(f"\nFAILED — {len(failures)} issue(s):", file=sys.stderr)

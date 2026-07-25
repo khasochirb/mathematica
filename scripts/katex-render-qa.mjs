@@ -35,6 +35,15 @@ function renderCheck(where, text) {
     const isDisplay = part.startsWith("$$") && part.endsWith("$$");
     const isInline = !isDisplay && part.startsWith("$") && part.endsWith("$");
     if (!isDisplay && !isInline) {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        // Bold content renders as plain text, so a lone currency $ inside it
+        // is fine — but a complete $...$ pair means math was swallowed by the
+        // bold token and will show up as literal dollar signs.
+        if (/\$\$[^$]+\$\$|\$[^$]+\$/.test(part.slice(2, -2))) {
+          failures.push(`${where}: bold swallows inline math: ${part.slice(0, 70)}`);
+        }
+        continue;
+      }
       // A stray $ surviving in a text segment means the splitter did not treat
       // it as math — exactly what renders as a literal dollar in production.
       if (part.includes("$")) failures.push(`${where}: stray $ in text segment: ${part.slice(0, 70)}`);
@@ -53,6 +62,13 @@ function renderCheck(where, text) {
     }
     if (html.includes("katex-error")) {
       failures.push(`${where}: renders as katex-error: ${latex.slice(0, 90)}`);
+    }
+    // Characters KaTeX has no glyph for draw a blank box with only a console
+    // warning — no error node — so the check above cannot see them. The check
+    // mark ✓ has metrics and Cyrillic in \text{} falls back to a browser
+    // font; these two genuinely vanish:
+    for (const ch of "₮✗") {
+      if (latex.includes(ch)) failures.push(`${where}: KaTeX cannot draw '${ch}' in math: ${latex.slice(0, 70)}`);
     }
   }
 }
@@ -75,7 +91,16 @@ for (const file of files) {
     for (const [i, c] of (l.concept || []).entries()) renderCheck(`${w}:concept[${i}]`, c);
     for (const [i, f] of (l.facts || []).entries()) {
       renderCheck(`${w}:facts[${i}].title`, f.title);
-      renderCheck(`${w}:facts[${i}].latex`, f.latex ? `$$${f.latex}$$` : undefined);
+      // facts[].latex carries two conventions. Grade files store a MathText
+      // string ($-delimited, possibly mixed with prose) which FactCard passes
+      // to MathText RAW — so it must be checked raw, not $$-wrapped. Course
+      // files store bare LaTeX with no $ at all; those are validated wrapped,
+      // which is how any future renderer would display them.
+      if (typeof f.latex === "string" && f.latex.replace(/\\\$/g, "").includes("$")) {
+        renderCheck(`${w}:facts[${i}].latex`, f.latex);
+      } else {
+        renderCheck(`${w}:facts[${i}].latex`, f.latex ? `$$${f.latex}$$` : undefined);
+      }
       renderCheck(`${w}:facts[${i}].explanation`, f.explanation);
     }
     for (const [i, m] of (l.commonMistakes || []).entries()) {

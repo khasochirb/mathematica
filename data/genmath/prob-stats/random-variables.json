@@ -225,13 +225,13 @@
     {
       "slug": "expected-value",
       "title": "Expected Value",
-      "concreteComparison": "A raffle sells $100$ tickets at $1000₮$ each; one wins $50{,}000₮$. Is a ticket worth it? Your winnings-per-ticket, averaged over ALL tickets: $\\frac{50000}{100} = 500₮$ — you pay $1000₮$ for something worth $500₮$ on average. That long-run per-play average is the **expected value**, and it's the single most useful number a distribution owns.",
+      "concreteComparison": "A raffle sells $100$ tickets at $1000$₮ each; one wins $50{,}000$₮. Is a ticket worth it? Your winnings-per-ticket, averaged over ALL tickets: $\\frac{50000}{100} = 500$₮ — you pay $1000$₮ for something worth $500$₮ on average. That long-run per-play average is the **expected value**, and it's the single most useful number a distribution owns.",
       "objective": "Compute E(X) = Σ x·P(x), interpret it as the long-run average, and locate it as the distribution's balance point.",
       "concept": [
         "The **expected value** weighs each value by its probability: $$E(X) = \\sum_x x \\cdot P(X = x)$$ — the long-run average of the variable over many repetitions of the experiment.",
         "It is NOT the most likely value and often isn't even a possible one: a die's expectation is $E(X) = \\frac{1+2+3+4+5+6}{6} = 3.5$ — a value no face shows. \"Expected\" means average, not anticipated.",
         "Physically, $E(X)$ is the distribution's BALANCE POINT: put the probabilities as weights on a number line and $E(X)$ is where it balances. Skewed weights drag the balance toward the heavy tail.",
-        "Interpretation discipline: $E(X) = 500₮$ per raffle ticket means that across thousands of tickets the average payout settles near $500₮$ — single plays wobble freely. It's Unit 5's long-run promise with numbers attached."
+        "Interpretation discipline: $E(X) = 500$₮ per raffle ticket means that across thousands of tickets the average payout settles near $500$₮ — single plays wobble freely. It's Unit 5's long-run promise with numbers attached."
       ],
       "keyIdea": "E(X) = Σ x·P(x): probability-weighted average = long-run per-play value = the distribution's balance point.",
       "facts": [
@@ -257,8 +257,8 @@
         },
         {
           "id": "rv-l2-w2",
-          "statement": "The raffle: $100$ tickets, one $50{,}000₮$ prize. Find the expected winnings per $1000₮$ ticket, and the expected NET.",
-          "solution": "$E(\\text{winnings}) = 50000 \\times \\frac{1}{100} + 0 \\times \\frac{99}{100} = 500₮$. Net of the ticket price: $500 - 1000 = -500₮$ per play. Buyers donate, on average, half the ticket price.",
+          "statement": "The raffle: $100$ tickets, one $50{,}000$₮ prize. Find the expected winnings per $1000$₮ ticket, and the expected NET.",
+          "solution": "$E(\\text{winnings}) = 50000 \\times \\frac{1}{100} + 0 \\times \\frac{99}{100} = 500$₮. Net of the ticket price: $500 - 1000 = -500$₮ per play. Buyers donate, on average, half the ticket price.",
           "check": [
             "50000/100 == 500",
             "500 - 1000 == -500"
@@ -288,8 +288,8 @@
       "tryIt": [
         {
           "id": "rv-l2-t1",
-          "statement": "A spinner pays $0₮$ with probability $\\frac{1}{2}$, $200₮$ with probability $\\frac{1}{3}$, and $600₮$ with probability $\\frac{1}{6}$. Find $E(\\text{payout})$.",
-          "solution": "$0 \\cdot \\frac{1}{2} + 200 \\cdot \\frac{1}{3} + 600 \\cdot \\frac{1}{6} = 0 + \\frac{200}{3} + 100 = \\frac{500}{3} \\approx 166.7₮$.",
+          "statement": "A spinner pays $0$₮ with probability $\\frac{1}{2}$, $200$₮ with probability $\\frac{1}{3}$, and $600$₮ with probability $\\frac{1}{6}$. Find $E(\\text{payout})$.",
+          "solution": "$0 \\cdot \\frac{1}{2} + 200 \\cdot \\frac{1}{3} + 600 \\cdot \\frac{1}{6} = 0 + \\frac{200}{3} + 100 = \\frac{500}{3} \\approx 166.7$₮.",
           "check": [
             "0*(1/2) + 200*(1/3) + 600*(1/6) == 500/3"
           ]
@@ -310,9 +310,9 @@
             "eyebrow": "The hook",
             "title": "What is a raffle ticket worth?",
             "beats": [
-              "$100$ tickets at $1000₮$; one wins $50{,}000₮$.",
-              "Average winnings per ticket: $\\frac{50000}{100} = 500₮$.",
-              "You pay $1000₮$ for an average of $500₮$.",
+              "$100$ tickets at $1000$₮; one wins $50{,}000$₮.",
+              "Average winnings per ticket: $\\frac{50000}{100} = 500$₮.",
+              "You pay $1000$₮ for an average of $500$₮.",
               "That per-play average is the EXPECTED VALUE — the price tag of chance."
             ]
           },
@@ -385,14 +385,14 @@
             "kind": "tapQuestion",
             "eyebrow": "Interpretation",
             "title": "What −500₮ means",
-            "prompt": "The raffle's expected NET is $-500₮$ per ticket. Which reading is right?",
+            "prompt": "The raffle's expected NET is $-500$₮ per ticket. Which reading is right?",
             "options": [
               "Over many tickets, losses average about 500₮ each",
               "Every ticket loses exactly 500₮",
               "Half the tickets lose 1000₮"
             ],
             "correctIndex": 0,
-            "explanation": "Expectation speaks about the long-run average. Individual tickets lose $1000₮$ (the 99%) or gain $49{,}000₮$ (the lucky 1%); NO ticket loses 500₮. The average is a center, not an experience.",
+            "explanation": "Expectation speaks about the long-run average. Individual tickets lose $1000$₮ (the 99%) or gain $49{,}000$₮ (the lucky 1%); NO ticket loses 500₮. The average is a center, not an experience.",
             "check": [
               "(99*(-1000) + 49000)/100 == -500"
             ]
@@ -437,13 +437,13 @@
     {
       "slug": "fair-games",
       "title": "Fair Games & the House Edge",
-      "concreteComparison": "A carnival dice game: pay $500₮$, roll one die, win $100₮$ times the roll. Average winnings: $100 \\times 3.5 = 350₮$ — the stall pockets $150₮$ per play, every play, forever. What entry fee WOULD make it fair? Exactly $350₮$: the expected winnings. A game is **fair** when the price equals the expectation — and almost nothing you can pay to play is.",
+      "concreteComparison": "A carnival dice game: pay $500$₮, roll one die, win $100$₮ times the roll. Average winnings: $100 \\times 3.5 = 350$₮ — the stall pockets $150$₮ per play, every play, forever. What entry fee WOULD make it fair? Exactly $350$₮: the expected winnings. A game is **fair** when the price equals the expectation — and almost nothing you can pay to play is.",
       "objective": "Price games with expected value: compute expected net, define fairness, and quantify the house edge.",
       "concept": [
         "A game is **fair** when the expected NET is zero — entry fee equals expected winnings: $E(\\text{net}) = E(\\text{winnings}) - \\text{fee} = 0$. Fair games neither enrich nor drain either side in the long run.",
-        "The **house edge** is the negative of the player's expected net, often expressed per unit staked: the carnival's $150₮$ on a $500₮$ fee is a $30\\%$ edge — brutal by casino standards ($1$–$5\\%$), generous by lottery standards ($\\approx 50\\%$).",
+        "The **house edge** is the negative of the player's expected net, often expressed per unit staked: the carnival's $150$₮ on a $500$₮ fee is a $30\\%$ edge — brutal by casino standards ($1$–$5\\%$), generous by lottery standards ($\\approx 50\\%$).",
         "Two equivalent framings — get comfortable with both: expected NET (fold the fee into the values as losses/gains) or expected WINNINGS minus fee. Same answer, different bookkeeping.",
-        "Fairness math also SETS prizes: to make a fee $F$ fair with win-probability $p$, the prize must be $\\frac{F}{p}$. A fair $1$-in-$100$ raffle at $1000₮$ per ticket needs a $100{,}000₮$ prize — real raffles offering half that are running a $50\\%$ edge."
+        "Fairness math also SETS prizes: to make a fee $F$ fair with win-probability $p$, the prize must be $\\frac{F}{p}$. A fair $1$-in-$100$ raffle at $1000$₮ per ticket needs a $100{,}000$₮ prize — real raffles offering half that are running a $50\\%$ edge."
       ],
       "keyIdea": "Fair means E(net) = 0 — fee equals expected winnings; the shortfall is the house edge, and it compounds forever.",
       "facts": [
@@ -461,8 +461,8 @@
       "workedExamples": [
         {
           "id": "rv-l3-w1",
-          "statement": "Carnival game: pay $500₮$, roll a die, win $100₮ \\times$ roll. Find the player's expected net and the fair fee.",
-          "solution": "$E(\\text{winnings}) = 100 \\times E(\\text{roll}) = 100 \\times 3.5 = 350₮$. Net: $350 - 500 = -150₮$ per play. Fair fee: $350₮$.",
+          "statement": "Carnival game: pay $500$₮, roll a die, win $100$₮ $\\times$ roll. Find the player's expected net and the fair fee.",
+          "solution": "$E(\\text{winnings}) = 100 \\times E(\\text{roll}) = 100 \\times 3.5 = 350$₮. Net: $350 - 500 = -150$₮ per play. Fair fee: $350$₮.",
           "check": [
             "100*7/2 == 350",
             "350 - 500 == -150"
@@ -470,16 +470,16 @@
         },
         {
           "id": "rv-l3-w2",
-          "statement": "A wheel has $10$ equal sectors: one pays $2000₮$, two pay $500₮$, the rest pay nothing. What entry fee makes the game fair?",
-          "solution": "$E(\\text{winnings}) = 2000 \\cdot \\frac{1}{10} + 500 \\cdot \\frac{2}{10} + 0 \\cdot \\frac{7}{10} = 200 + 100 = 300₮$. Fair fee: $300₮$.",
+          "statement": "A wheel has $10$ equal sectors: one pays $2000$₮, two pay $500$₮, the rest pay nothing. What entry fee makes the game fair?",
+          "solution": "$E(\\text{winnings}) = 2000 \\cdot \\frac{1}{10} + 500 \\cdot \\frac{2}{10} + 0 \\cdot \\frac{7}{10} = 200 + 100 = 300$₮. Fair fee: $300$₮.",
           "check": [
             "2000/10 + 500*2/10 == 300"
           ]
         },
         {
           "id": "rv-l3-w3",
-          "statement": "A bet pays even money ($+x$ or $-x$) on \"at least one six in two dice\". Using $P = \\frac{11}{36}$, find the player's expected net per $360₮$ staked.",
-          "solution": "$E(\\text{net}) = 360 \\cdot \\frac{11}{36} - 360 \\cdot \\frac{25}{36} = 110 - 250 = -140₮$. Even-money odds on an $11$-in-$36$ event is a terrible trade — fair odds would pay $\\frac{25}{11}$ times the stake.",
+          "statement": "A bet pays even money ($+x$ or $-x$) on \"at least one six in two dice\". Using $P = \\frac{11}{36}$, find the player's expected net per $360$₮ staked.",
+          "solution": "$E(\\text{net}) = 360 \\cdot \\frac{11}{36} - 360 \\cdot \\frac{25}{36} = 110 - 250 = -140$₮. Even-money odds on an $11$-in-$36$ event is a terrible trade — fair odds would pay $\\frac{25}{11}$ times the stake.",
           "check": [
             "360*11/36 - 360*25/36 == -140"
           ]
@@ -500,16 +500,16 @@
       "tryIt": [
         {
           "id": "rv-l3-t1",
-          "statement": "Pay $200₮$; flip a coin; heads pays $500₮$, tails nothing. Fair, favorable, or unfavorable?",
-          "solution": "$E(\\text{winnings}) = 250₮ > 200₮$ fee: FAVORABLE by $50₮$ per play. (Grab it — they're rare.)",
+          "statement": "Pay $200$₮; flip a coin; heads pays $500$₮, tails nothing. Fair, favorable, or unfavorable?",
+          "solution": "$E(\\text{winnings}) = 250$₮ against the $200$₮ fee: FAVORABLE by $50$₮ per play. (Grab it — they're rare.)",
           "check": [
             "500/2 - 200 == 50"
           ]
         },
         {
           "id": "rv-l3-t2",
-          "statement": "A $1$-in-$20$ scratch card pays a single $3000₮$ prize. What's the fair price per card?",
-          "solution": "$E = \\frac{3000}{20} = 150₮$.",
+          "statement": "A $1$-in-$20$ scratch card pays a single $3000$₮ prize. What's the fair price per card?",
+          "solution": "$E = \\frac{3000}{20} = 150$₮.",
           "check": [
             "3000/20 == 150"
           ]
@@ -522,10 +522,10 @@
             "eyebrow": "The hook",
             "title": "The stall never loses",
             "beats": [
-              "Pay $500₮$, roll a die, win $100₮ \\times$ roll.",
-              "Expected winnings: $100 \\times 3.5 = 350₮$.",
-              "The stall keeps $150₮$ per play. Every play. Forever.",
-              "Fair would be a $350₮$ fee — fee $=$ expectation."
+              "Pay $500$₮, roll a die, win $100$₮ $\\times$ roll.",
+              "Expected winnings: $100 \\times 3.5 = 350$₮.",
+              "The stall keeps $150$₮ per play. Every play. Forever.",
+              "Fair would be a $350$₮ fee — fee $=$ expectation."
             ]
           },
           {
@@ -565,14 +565,14 @@
             "kind": "tapQuestion",
             "eyebrow": "Price it",
             "title": "The fair fee",
-            "prompt": "A game pays $600₮$ with probability $\\frac{1}{4}$ (else nothing). The fair entry fee is…",
+            "prompt": "A game pays $600$₮ with probability $\\frac{1}{4}$ (else nothing). The fair entry fee is…",
             "options": [
-              "$150₮$",
-              "$600₮$",
-              "$300₮$"
+              "$150$₮",
+              "$600$₮",
+              "$300$₮"
             ],
             "correctIndex": 0,
-            "explanation": "$E(\\text{winnings}) = 600 \\times \\frac{1}{4} = 150₮$ — that's the fair price. $600₮$ prices the jackpot; $300₮$ halves it for no reason the distribution knows.",
+            "explanation": "$E(\\text{winnings}) = 600 \\times \\frac{1}{4} = 150$₮ — that's the fair price. $600$₮ prices the jackpot; $300$₮ halves it for no reason the distribution knows.",
             "check": [
               "600/4 == 150"
             ]
@@ -599,14 +599,14 @@
             "kind": "tapQuestion",
             "eyebrow": "Edge detection",
             "title": "Rank the games",
-            "prompt": "Which game treats the player best? A: fee $100₮$, $E(\\text{win}) = 95₮$. B: fee $1000₮$, $E(\\text{win}) = 900₮$. C: fee $50₮$, $E(\\text{win}) = 51₮$.",
+            "prompt": "Which game treats the player best? A: fee $100$₮, $E(\\text{win}) = 95$₮. B: fee $1000$₮, $E(\\text{win}) = 900$₮. C: fee $50$₮, $E(\\text{win}) = 51$₮.",
             "options": [
               "C — the only positive net",
               "B — biggest expected winnings",
               "A — smallest loss"
             ],
             "correctIndex": 0,
-            "explanation": "Nets: A $-5₮$, B $-100₮$, C $+1₮$. Only C is favorable. Big expected winnings mean nothing next to a bigger fee — always compute the NET.",
+            "explanation": "Nets: A $-5$₮, B $-100$₮, C $+1$₮. Only C is favorable. Big expected winnings mean nothing next to a bigger fee — always compute the NET.",
             "check": [
               "51 - 50 == 1",
               "95 - 100 == -5",
@@ -653,11 +653,11 @@
     {
       "slug": "variance-and-spread",
       "title": "Variance & Standard Deviation",
-      "concreteComparison": "Two investments both average $+100₮$ per month. Plan A: always exactly $+100₮$. Plan B: $+1100₮$ half the months, $-900₮$ the other half. Same expectation, wildly different lives. The number that separates them measures how far outcomes stray from the mean — the **variance**, and its square root, the **standard deviation**.",
+      "concreteComparison": "Two investments both average $+100$₮ per month. Plan A: always exactly $+100$₮. Plan B: $+1100$₮ half the months, $-900$₮ the other half. Same expectation, wildly different lives. The number that separates them measures how far outcomes stray from the mean — the **variance**, and its square root, the **standard deviation**.",
       "objective": "Compute Var(X) = E[(X−μ)²] and SD, and interpret them as the distribution's risk/spread.",
       "concept": [
         "**Variance** averages the SQUARED distance from the mean: $$\\text{Var}(X) = \\sum_x (x - \\mu)^2 P(x), \\quad \\mu = E(X)$$ Squaring kills the sign (deviations don't cancel) and punishes big misses more than small ones.",
-        "**Standard deviation** $\\sigma = \\sqrt{\\text{Var}(X)}$ restores the original units — ₮, heads, points — making it the reportable number: \"averages $100₮$, typically $\\pm 1000₮$\" tells the whole Plan-B story.",
+        "**Standard deviation** $\\sigma = \\sqrt{\\text{Var}(X)}$ restores the original units — ₮, heads, points — making it the reportable number: \"averages $100$₮, typically $\\pm 1000$₮\" tells the whole Plan-B story.",
         "The computing shortcut: $\\text{Var}(X) = E(X^2) - [E(X)]^2$ — average of the squares minus square of the average. Same answer, less arithmetic (one pass for $E(X^2)$).",
         "Interpretation: $\\sigma = 0$ means certainty (Plan A); larger $\\sigma$ means riskier/spreader. Two distributions with equal means are compared BY their $\\sigma$ — expectation prices a game, deviation prices its drama."
       ],
@@ -744,8 +744,8 @@
             "eyebrow": "The hook",
             "title": "Same average, different lives",
             "beats": [
-              "Plan A: $+100₮$ every month. Plan B: $+1100$ or $-900$, coin flip.",
-              "Both AVERAGE $+100₮$. Expectation can't tell them apart.",
+              "Plan A: $+100$₮ every month. Plan B: $+1100$ or $-900$, coin flip.",
+              "Both AVERAGE $+100$₮. Expectation can't tell them apart.",
               "The missing number: how far outcomes STRAY from the mean.",
               "Variance measures it. Standard deviation reports it."
             ]
@@ -881,7 +881,7 @@
     {
       "slug": "linearity-of-expectation",
       "title": "Combining Expectations",
-      "concreteComparison": "A taxi charges a $2000₮$ flag fee plus $1500₮$ per km, and your ride length averages $6$ km. Expected fare? You could build the fare's whole distribution... or just push the expectation through the formula: $E(\\text{fare}) = 2000 + 1500 \\times 6 = 11{,}000₮$. Expectation slides through additions and multiplications-by-constants untouched — the most laborsaving fact in the unit.",
+      "concreteComparison": "A taxi charges a $2000$₮ flag fee plus $1500$₮ per km, and your ride length averages $6$ km. Expected fare? You could build the fare's whole distribution... or just push the expectation through the formula: $E(\\text{fare}) = 2000 + 1500 \\times 6 = 11{,}000$₮. Expectation slides through additions and multiplications-by-constants untouched — the most laborsaving fact in the unit.",
       "objective": "Use linearity — E(aX + b) = aE(X) + b and E(X + Y) = E(X) + E(Y) — to compute expectations without rebuilding distributions.",
       "concept": [
         "**Scaling and shifting:** $E(aX + b) = a\\,E(X) + b$ — constants factor out, shifts pass through. (Spread behaves differently: adding $b$ leaves $\\sigma$ alone, scaling multiplies it: $\\sigma_{aX+b} = |a|\\sigma_X$.)",
@@ -905,8 +905,8 @@
       "workedExamples": [
         {
           "id": "rv-l5-w1",
-          "statement": "Taxi fare: $2000₮$ flag plus $1500₮$/km; ride length $X$ has $E(X) = 6$ km. Find the expected fare.",
-          "solution": "Fare $= 1500X + 2000$: $E = 1500 \\times 6 + 2000 = 11{,}000₮$. No distribution needed — linearity carries the expectation through.",
+          "statement": "Taxi fare: $2000$₮ flag plus $1500$₮/km; ride length $X$ has $E(X) = 6$ km. Find the expected fare.",
+          "solution": "Fare $= 1500X + 2000$: $E = 1500 \\times 6 + 2000 = 11{,}000$₮. No distribution needed — linearity carries the expectation through.",
           "check": [
             "1500*6 + 2000 == 11000"
           ]
@@ -952,8 +952,8 @@
         },
         {
           "id": "rv-l5-t2",
-          "statement": "A shop's morning revenue averages $80{,}000₮$ and afternoon revenue averages $120{,}000₮$ (they're strongly dependent — busy days are busy all day). Expected daily total?",
-          "solution": "Linearity doesn't care about the dependence: $E = 80{,}000 + 120{,}000 = 200{,}000₮$.",
+          "statement": "A shop's morning revenue averages $80{,}000$₮ and afternoon revenue averages $120{,}000$₮ (they're strongly dependent — busy days are busy all day). Expected daily total?",
+          "solution": "Linearity doesn't care about the dependence: $E = 80{,}000 + 120{,}000 = 200{,}000$₮.",
           "check": [
             "80000 + 120000 == 200000"
           ]
@@ -967,7 +967,7 @@
             "title": "Push the mean through the formula",
             "beats": [
               "Fare $= 1500X + 2000$, $E(X) = 6$ km.",
-              "$E(\\text{fare}) = 1500 \\times 6 + 2000 = 11{,}000₮$.",
+              "$E(\\text{fare}) = 1500 \\times 6 + 2000 = 11{,}000$₮.",
               "No fare distribution was ever built.",
               "$E(aX + b) = aE(X) + b$ — expectation slides through linear math."
             ]
@@ -1073,7 +1073,7 @@
     {
       "slug": "decisions-with-expected-value",
       "title": "Capstone: Decisions Under Risk",
-      "concreteComparison": "Insurance is a bet you HOPE to lose: you pay $120{,}000₮$ a year so that a $1\\%$-chance $8{,}000{,}000₮$ disaster costs you nothing. The company's expected payout is $80{,}000₮$ — they pocket $40{,}000₮$ on average. Negative expected value... and possibly still the right choice. This capstone is where expectation, variance, and judgment meet.",
+      "concreteComparison": "Insurance is a bet you HOPE to lose: you pay $120{,}000$₮ a year so that a $1\\%$-chance $8{,}000{,}000$₮ disaster costs you nothing. The company's expected payout is $80{,}000$₮ — they pocket $40{,}000$₮ on average. Negative expected value... and possibly still the right choice. This capstone is where expectation, variance, and judgment meet.",
       "objective": "Analyze real decisions — insurance, warranties, lotteries, business choices — with expected value AND spread, and know when EV alone misleads.",
       "concept": [
         "The EV workflow for any decision: list the outcomes of each option, attach probabilities and values, compute each option's $E$, compare. For REPEATED decisions, higher EV wins — the long run will collect it.",
@@ -1097,8 +1097,8 @@
       "workedExamples": [
         {
           "id": "rv-l6-w1",
-          "statement": "Insurance: premium $120{,}000₮$/year against a $1\\%$-chance $8{,}000{,}000₮$ loss. Compute both sides' expected values, and say why a rational person might still buy.",
-          "solution": "Company: collects $120{,}000$, expects to pay $0.01 \\times 8{,}000{,}000 = 80{,}000$ — nets $+40{,}000₮$ per policy. Buyer: EV $= -40{,}000₮$. Rational anyway IF an $8$M₮ hit is unsurvivable: the premium converts a ruinous $1\\%$ branch into a certain, affordable cost. EV prices the average; the buyer is pricing the worst case.",
+          "statement": "Insurance: premium $120{,}000$₮/year against a $1\\%$-chance $8{,}000{,}000$₮ loss. Compute both sides' expected values, and say why a rational person might still buy.",
+          "solution": "Company: collects $120{,}000$, expects to pay $0.01 \\times 8{,}000{,}000 = 80{,}000$ — nets $+40{,}000$₮ per policy. Buyer: EV $= -40{,}000$₮. Rational anyway IF an $8$M₮ hit is unsurvivable: the premium converts a ruinous $1\\%$ branch into a certain, affordable cost. EV prices the average; the buyer is pricing the worst case.",
           "check": [
             "8000000/100 == 80000",
             "120000 - 80000 == 40000"
@@ -1106,8 +1106,8 @@
         },
         {
           "id": "rv-l6-w2",
-          "statement": "A $25{,}000₮$ extended warranty covers a $2\\%$-chance $300{,}000₮$ repair. Analyze it.",
-          "solution": "Expected repair cost: $0.02 \\times 300{,}000 = 6{,}000₮$ — the warranty charges $25{,}000₮$ for it: EV $= -19{,}000₮$, more than four times the fair price. And the deleted branch ($300$K) is unpleasant, not ruinous. Skip it; self-insure small stuff.",
+          "statement": "A $25{,}000$₮ extended warranty covers a $2\\%$-chance $300{,}000$₮ repair. Analyze it.",
+          "solution": "Expected repair cost: $0.02 \\times 300{,}000 = 6{,}000$₮ — the warranty charges $25{,}000$₮ for it: EV $= -19{,}000$₮, more than four times the fair price. And the deleted branch ($300$K) is unpleasant, not ruinous. Skip it; self-insure small stuff.",
           "check": [
             "300000*2/100 == 6000",
             "25000 - 6000 == 19000"
@@ -1115,8 +1115,8 @@
         },
         {
           "id": "rv-l6-w3",
-          "statement": "A food stall chooses: location A nets $200{,}000₮$/day rain or shine; location B nets $500{,}000₮$ on dry days but $-100{,}000₮$ on rainy ones. With $P(\\text{rain}) = 0.4$, compare for a season.",
-          "solution": "$E_B = 0.6 \\times 500{,}000 + 0.4 \\times (-100{,}000) = 300{,}000 - 40{,}000 = 260{,}000₮ > E_A = 200{,}000₮$. Over a SEASON (repeated daily), B's edge compounds and rainy losses average out — take B if the stall can absorb losing days; take A if a bad week would sink the business. EV picks B; solvency has a vote.",
+          "statement": "A food stall chooses: location A nets $200{,}000$₮/day rain or shine; location B nets $500{,}000$₮ on dry days but $-100{,}000$₮ on rainy ones. With $P(\\text{rain}) = 0.4$, compare for a season.",
+          "solution": "$E_B = 0.6 \\times 500{,}000 + 0.4 \\times (-100{,}000) = 300{,}000 - 40{,}000 = 260{,}000$₮ $> E_A = 200{,}000$₮. Over a SEASON (repeated daily), B's edge compounds and rainy losses average out — take B if the stall can absorb losing days; take A if a bad week would sink the business. EV picks B; solvency has a vote.",
           "check": [
             "(6/10)*500000 + (4/10)*(-100000) == 260000"
           ]
@@ -1137,8 +1137,8 @@
       "tryIt": [
         {
           "id": "rv-l6-t1",
-          "statement": "Bike insurance costs $30{,}000₮$/year; theft probability $5\\%$; bike worth $400{,}000₮$. Fair price? Your call?",
-          "solution": "Fair: $0.05 \\times 400{,}000 = 20{,}000₮$ — the premium runs $10{,}000₮$ over. If losing $400$K is absorbable, skip; if it's your only transport to work, the tail may be worth deleting.",
+          "statement": "Bike insurance costs $30{,}000$₮/year; theft probability $5\\%$; bike worth $400{,}000$₮. Fair price? Your call?",
+          "solution": "Fair: $0.05 \\times 400{,}000 = 20{,}000$₮ — the premium runs $10{,}000$₮ over. If losing $400$K is absorbable, skip; if it's your only transport to work, the tail may be worth deleting.",
           "check": [
             "400000*5/100 == 20000",
             "30000 - 20000 == 10000"
@@ -1146,8 +1146,8 @@
         },
         {
           "id": "rv-l6-t2",
-          "statement": "Choose: certain $90{,}000₮$, or a $50\\%$ shot at $200{,}000₮$. Compare EVs; when would you take the certain money anyway?",
-          "solution": "Gamble's EV: $100{,}000₮ > 90{,}000₮$. Repeated many times: gamble. One-shot with the money needed for rent: the certain $90$K's zero variance is worth the $10$K of EV.",
+          "statement": "Choose: certain $90{,}000$₮, or a $50\\%$ shot at $200{,}000$₮. Compare EVs; when would you take the certain money anyway?",
+          "solution": "Gamble's EV: $100{,}000$₮ $> 90{,}000$₮. Repeated many times: gamble. One-shot with the money needed for rent: the certain $90$K's zero variance is worth the $10$K of EV.",
           "check": [
             "200000/2 == 100000"
           ]
@@ -1480,8 +1480,8 @@
     },
     {
       "id": "rv-p-3",
-      "statement": "A raffle sells $250$ tickets at $400₮$; prizes are one $40{,}000₮$ and two $10{,}000₮$. Find the expected net per ticket.",
-      "solution": "$E(\\text{win}) = \\frac{40000 + 2 \\times 10000}{250} = \\frac{60000}{250} = 240₮$; net $= 240 - 400 = -160₮$.",
+      "statement": "A raffle sells $250$ tickets at $400$₮; prizes are one $40{,}000$₮ and two $10{,}000$₮. Find the expected net per ticket.",
+      "solution": "$E(\\text{win}) = \\frac{40000 + 2 \\times 10000}{250} = \\frac{60000}{250} = 240$₮; net $= 240 - 400 = -160$₮.",
       "check": [
         "(40000 + 2*10000)/250 == 240",
         "240 - 400 == -160"
@@ -1489,8 +1489,8 @@
     },
     {
       "id": "rv-p-4",
-      "statement": "What entry fee makes this game fair: draw one card, win $2600₮$ if it's a heart?",
-      "solution": "$E = 2600 \\times \\frac{13}{52} = 650₮$.",
+      "statement": "What entry fee makes this game fair: draw one card, win $2600$₮ if it's a heart?",
+      "solution": "$E = 2600 \\times \\frac{13}{52} = 650$₮.",
       "check": [
         "2600*13/52 == 650"
       ]
@@ -1523,8 +1523,8 @@
     },
     {
       "id": "rv-p-8",
-      "statement": "Phone insurance: $18{,}000₮$/year, covers a $6\\%$-chance $250{,}000₮$ replacement. Find the fair premium and the company's expected margin.",
-      "solution": "Fair: $0.06 \\times 250{,}000 = 15{,}000₮$; margin $= 18{,}000 - 15{,}000 = 3{,}000₮$ per policy.",
+      "statement": "Phone insurance: $18{,}000$₮/year, covers a $6\\%$-chance $250{,}000$₮ replacement. Find the fair premium and the company's expected margin.",
+      "solution": "Fair: $0.06 \\times 250{,}000 = 15{,}000$₮; margin $= 18{,}000 - 15{,}000 = 3{,}000$₮ per policy.",
       "check": [
         "250000*6/100 == 15000",
         "18000 - 15000 == 3000"
@@ -1563,8 +1563,8 @@
     },
     {
       "id": "rv-ty-2",
-      "statement": "A game: pay $300₮$, draw one card. Aces pay $2000₮$, other face cards (J, Q, K) pay $500₮$, anything else pays nothing. Fair, favorable, or edged — by how much?",
-      "solution": "$E(\\text{win}) = 2000 \\cdot \\frac{4}{52} + 500 \\cdot \\frac{12}{52} = \\frac{8000 + 6000}{52} = \\frac{14000}{52} \\approx 269₮$. Net $\\approx -31₮$: house-edged by about $10\\%$ of the fee.",
+      "statement": "A game: pay $300$₮, draw one card. Aces pay $2000$₮, other face cards (J, Q, K) pay $500$₮, anything else pays nothing. Fair, favorable, or edged — by how much?",
+      "solution": "$E(\\text{win}) = 2000 \\cdot \\frac{4}{52} + 500 \\cdot \\frac{12}{52} = \\frac{8000 + 6000}{52} = \\frac{14000}{52} \\approx 269$₮. Net $\\approx -31$₮: house-edged by about $10\\%$ of the fee.",
       "check": [
         "2000*4/52 + 500*12/52 == 14000/52"
       ]
@@ -1582,8 +1582,8 @@
     },
     {
       "id": "rv-ty-4",
-      "statement": "A delivery service charges $3000₮$ base plus $800₮$/km. Distances average $7$ km. Find the expected charge, and what happens to it if every distance grows by exactly $2$ km.",
-      "solution": "$E = 800 \\times 7 + 3000 = 8600₮$. Distances $+2$ km: $E(\\text{new}) = 800 \\times 9 + 3000 = 10{,}200₮$ — linearity shifts the mean by $800 \\times 2 = 1600₮$, no distribution rebuilt.",
+      "statement": "A delivery service charges $3000$₮ base plus $800$₮/km. Distances average $7$ km. Find the expected charge, and what happens to it if every distance grows by exactly $2$ km.",
+      "solution": "$E = 800 \\times 7 + 3000 = 8600$₮. Distances $+2$ km: $E(\\text{new}) = 800 \\times 9 + 3000 = 10{,}200$₮ — linearity shifts the mean by $800 \\times 2 = 1600$₮, no distribution rebuilt.",
       "check": [
         "800*7 + 3000 == 8600",
         "800*9 + 3000 == 10200"
@@ -1600,8 +1600,8 @@
     },
     {
       "id": "rv-ty-6",
-      "statement": "Crop insurance costs $500{,}000₮$; drought probability $8\\%$ would cost the farm $5{,}000{,}000₮$. Compute the fair premium, the EV of buying, and give the two-sentence recommendation a good advisor would.",
-      "solution": "Fair: $0.08 \\times 5M = 400{,}000₮$; buying has EV $-100{,}000₮$. Recommendation: the premium runs $25\\%$ over fair — but if a $5$M₮ loss would end the farm, buy anyway: you're deleting an unsurvivable branch, and that's what insurance is FOR. If the farm holds reserves that could absorb it, self-insure and bank the edge.",
+      "statement": "Crop insurance costs $500{,}000$₮; drought probability $8\\%$ would cost the farm $5{,}000{,}000$₮. Compute the fair premium, the EV of buying, and give the two-sentence recommendation a good advisor would.",
+      "solution": "Fair: $0.08 \\times 5M = 400{,}000$₮; buying has EV $-100{,}000$₮. Recommendation: the premium runs $25\\%$ over fair — but if a $5$M₮ loss would end the farm, buy anyway: you're deleting an unsurvivable branch, and that's what insurance is FOR. If the farm holds reserves that could absorb it, self-insure and bank the edge.",
       "check": [
         "5000000*8/100 == 400000",
         "500000 - 400000 == 100000"

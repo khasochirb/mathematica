@@ -203,7 +203,7 @@
     {
       "slug": "piecewise-functions",
       "title": "Piecewise Functions",
-      "concreteComparison": "A parking garage charges $3 for the first hour, then $2 per extra hour, capped at $15 — three different rules, each ruling its own time interval. Real pricing, taxes, and shipping are all stitched from pieces, and piecewise notation is just that stitching written down.",
+      "concreteComparison": "A parking garage charges \\$3 for the first hour, then \\$2 per extra hour, capped at \\$15 — three different rules, each ruling its own time interval. Real pricing, taxes, and shipping are all stitched from pieces, and piecewise notation is just that stitching written down.",
       "objective": "Evaluate, graph, and write piecewise-defined functions, handling boundary points and open/closed endpoints correctly.",
       "concept": [
         "A piecewise function lists rule + territory pairs: $f(x) = \\begin{cases} x + 3 & x < 1 \\\\ x^2 & x \\ge 1 \\end{cases}$. To evaluate, FIRST find which territory the input lives in, THEN apply only that rule: $f(0) = 3$ (first rule), $f(2) = 4$ (second).",
@@ -225,7 +225,7 @@
         {
           "id": "a214-we2",
           "statement": "A taxi charges a $4 flag fee covering the first 2 km, then $1.50 per km after. Write the fare $C(d)$ as a piecewise function and price a 7 km ride.",
-          "solution": "$C(d) = \\begin{cases} 4 & 0 < d \\le 2 \\\\ 4 + 1.5(d - 2) & d > 2 \\end{cases}$. For $d = 7$: $4 + 1.5(5) = 11.5$ — $11.50.",
+          "solution": "$C(d) = \\begin{cases} 4 & 0 < d \\le 2 \\\\ 4 + 1.5(d - 2) & d > 2 \\end{cases}$. For $d = 7$: $4 + 1.5(5) = 11.5$ — \\$11.50.",
           "check": ["4 + Rational(3,2)*(7 - 2) == Rational(23,2)", "4 + Rational(3,2)*(2 - 2) == 4"]
         }
       ],

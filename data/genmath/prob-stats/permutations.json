@@ -15,7 +15,7 @@
         "Arranging ALL of $n$ distinct objects in a row is the multiplication principle with shrinking slots run to the end: $n \\times (n-1) \\times (n-2) \\times \\cdots \\times 1$. The product is written $n!$ and read \"$n$ factorial\".",
         "Factorials grow violently: $3! = 6$, $5! = 120$, $10! = 3{,}628{,}800$, and $13!$ already passes six billion. This explosion is why arrangement puzzles get impossible to brute-force so fast.",
         "Factorials simplify by CANCELING, not computing: $\\frac{8!}{6!} = \\frac{8 \\times 7 \\times 6!}{6!} = 8 \\times 7 = 56$. Expand the bigger one just far enough to reach the smaller one.",
-        "**$0! = 1$** by definition — there is exactly ONE way to arrange nothing (do nothing). The convention keeps every formula in the next lessons working without special cases."
+        "$0! = 1$ by definition — there is exactly ONE way to arrange nothing (do nothing). The convention keeps every formula in the next lessons working without special cases."
       ],
       "keyIdea": "n! = n × (n−1) × ⋯ × 1 counts the arrangements of all n distinct objects — and factorials cancel, they don't get computed.",
       "facts": [

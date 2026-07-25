@@ -112,7 +112,7 @@
         },
         {
           "id": "a282-t2",
-          "statement": "You save $10 in week 1 and increase by 50% each week. Total saved after 8 weeks?",
+          "statement": "You save \\$10 in week 1 and increase by 50% each week. Total saved after 8 weeks?",
           "solution": "$r = 1.5$: $S_8 = 10 \\cdot \\frac{1 - 1.5^8}{1 - 1.5} = 10 \\cdot \\frac{1.5^8 - 1}{0.5} \\approx 493.3$ dollars — about \\$493.",
           "check": ["summation(10*Rational(3,2)**(k-1), (k, 1, 8)) == Rational(31525, 64)", "Rational(31525, 64) > 492", "Rational(3,2)**2 == Rational(9,4)"]
         }

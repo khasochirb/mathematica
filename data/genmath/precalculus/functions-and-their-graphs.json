@@ -459,7 +459,7 @@
       "objective": "Find inverse functions algebraically, verify inverses by composition, recognize the y = x mirror symmetry, and use the horizontal line test for invertibility.",
       "concept": [
         "$f^{-1}$ **undoes** $f$: if $f(2) = 11$ then $f^{-1}(11) = 2$. Every input–output pair $(a, b)$ of $f$ becomes the pair $(b, a)$ of $f^{-1}$ — inputs and outputs trade places. (The $-1$ is NOT an exponent: $f^{-1}(x) \\ne \\frac{1}{f(x)}$.)",
-        "To find a formula: write $y = f(x)$, **swap $x$ and $y$**, and solve for $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve: $y = \\frac{x+5}{3}$. The verification is composition: $f(f^{-1}(x)) = x$ AND $f^{-1}(f(x)) = x$ — each machine undoes the other.",
+        "To find a formula: write $y = f(x)$, **swap** $x$ **and** $y$, and solve for $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve: $y = \\frac{x+5}{3}$. The verification is composition: $f(f^{-1}(x)) = x$ AND $f^{-1}(f(x)) = x$ — each machine undoes the other.",
         "Swapping coordinates reflects the graph across the line $y = x$. And not every function qualifies: if two inputs share an output ($f(2) = f(-2) = 4$ for $x^2$), the rewind is ambiguous. The **horizontal line test** — no horizontal line hits the graph twice — decides invertibility."
       ],
       "keyIdea": "The inverse swaps every (a, b) into (b, a): algebraically swap x and y and re-solve; graphically mirror across y = x; only one-to-one functions (horizontal line test) qualify.",
@@ -605,7 +605,7 @@
             "kind": "teach",
             "eyebrow": "The method",
             "title": "Swap and re-solve",
-            "body": "The coordinate flip becomes an algorithm: write $y = f(x)$, **swap every $x$ and $y$**, then solve for the new $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve to $y = \\frac{x + 5}{3}$. Notice what the answer does: it adds 5 back FIRST, then divides — undoing $f$'s steps in reverse order, shoes before socks."
+            "body": "The coordinate flip becomes an algorithm: write $y = f(x)$, **swap every** $x$ **and** $y$, then solve for the new $y$. For $f(x) = 3x - 5$: swap to $x = 3y - 5$, solve to $y = \\frac{x + 5}{3}$. Notice what the answer does: it adds 5 back FIRST, then divides — undoing $f$'s steps in reverse order, shoes before socks."
           },
           {
             "kind": "worked",

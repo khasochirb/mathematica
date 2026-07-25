@@ -13,7 +13,7 @@
       "concept": [
         "**The definition**: $F$ is an antiderivative of $f$ if $F' = f$. Since $(x^3)' = 3x^2$, an antiderivative of $3x^2$ is $x^3$. Notation: $\\int 3x^2\\,dx = x^3 + C$.",
         "**Reverse power rule**: forward was 'down front, drop by one'; backward is 'UP by one, divide by the new exponent': $\\int x^n\\,dx = \\tfrac{x^{n+1}}{n+1} + C$ (for $n \\neq -1$). Sums split and constants ride, exactly as before.",
-        "**The ghost $+C$**: $x^3$, $x^3 + 5$, and $x^3 - 100$ ALL differentiate to $3x^2$ — constants die under differentiation, so reversing can't recover them. The $+C$ acknowledges the whole family of answers. Extra information (like a starting position) pins down which family member you need.",
+        "**The ghost** $+C$: $x^3$, $x^3 + 5$, and $x^3 - 100$ ALL differentiate to $3x^2$ — constants die under differentiation, so reversing can't recover them. The $+C$ acknowledges the whole family of answers. Extra information (like a starting position) pins down which family member you need.",
         "**The free checker**: differentiate your answer. If you don't get the integrand back, the answer is wrong — no exceptions, no doubt. Antidifferentiation is the rare skill that grades itself."
       ],
       "keyIdea": "∫ xⁿ dx = xⁿ⁺¹/(n+1) + C — up by one, divide by the new one, plus the family constant. Differentiate to check: the answer grades itself.",

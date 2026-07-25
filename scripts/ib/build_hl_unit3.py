@@ -2300,7 +2300,7 @@ def lesson_line_relationships():
                     "Now test whether $L_2$'s point $(0, 7, 1)$ lies on $L_1$ *(M1)*. From the "
                     "$x$-component: $3 + 2\\lambda = 0$, so $\\lambda = -\\frac{3}{2}$. Then  \n"
                     "$$y = 1 - 4\\left(-\\tfrac{3}{2}\\right) = 7 \\;✓, \\qquad "
-                    "z = -2 + 6\\left(-\\tfrac{3}{2}\\right) = -11 \\ne 1 \\;✗. \\;(A1)$$  \n"
+                    "z = -2 + 6\\left(-\\tfrac{3}{2}\\right) = -11 \\ne 1. \\;(A1)$$  \n"
                     "The point is not on $L_1$, so the lines are parallel and **distinct**, not "
                     "coincident *(A1)*.  \n"
                     "Two out of three components agreeing is exactly the trap — the $z$-component "
