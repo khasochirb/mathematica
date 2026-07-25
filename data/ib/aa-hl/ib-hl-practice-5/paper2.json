@@ -1,0 +1,969 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "hl",
+    "paper": 2,
+    "testId": "ib-hl-practice-5",
+    "label": "AA HL Practice Paper 2",
+    "timeMinutes": 120,
+    "totalMarks": 110,
+    "calculator": true
+  },
+  "questions": [
+    {
+      "source": "IB-AAHL-P2-T5-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "number_algebra",
+      "skill_tag": "geometric_sequences",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the value of the car after $4$ years, correct to the nearest dollar.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "geometric with ratio $0.85$"
+            },
+            {
+              "mark": "A1",
+              "note": "$24000(0.85)^{4}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\$12{,}528$"
+            }
+          ],
+          "answer": "$\\$12{,}528$",
+          "solution": "Losing $15\\%$ each year multiplies the value by $0.85$ annually, so after $4$ years$$V = 24000(0.85)^{4} = 24000(0.52200625) = 12528.15.$$ Carrying the unrounded power through gives $12528.15$, so to the nearest dollar the car is worth $\\$12{,}528$.",
+          "verify": [
+            "Abs(24000*Rational(85,100)**4 - 12528) < 1",
+            "Eq(1 - Rational(15,100), Rational(85,100))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the first year at the end of which the value has fallen below $\\$6{,}000$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $24000(0.85)^{n} < 6000$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(0.85)^{n} < 0.25$"
+            },
+            {
+              "mark": "M1",
+              "note": "$n > \\dfrac{\\ln 0.25}{\\ln 0.85} = 8.53\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "year $9$"
+            }
+          ],
+          "answer": "year $9$",
+          "solution": "The condition is$$24000(0.85)^{n} < 6000 \\;\\Rightarrow\\; (0.85)^{n} < \\frac{1}{4}.$$ Taking natural logarithms and remembering that $\\ln 0.85$ is NEGATIVE, so the inequality reverses,$$n > \\frac{\\ln 0.25}{\\ln 0.85} = 8.5265\\ldots$$ The first whole year that satisfies this is $n = 9$. Checking: after $8$ years the value is $\\$6{,}199$ and after $9$ years it is $\\$5{,}269$.",
+          "verify": [
+            "Eq(Rational(6000, 24000), Rational(1,4))",
+            "24000*Rational(85,100)**8 > 6000",
+            "24000*Rational(85,100)**9 < 6000"
+          ]
+        }
+      ],
+      "contextIntro": "A car is bought for $\\$24{,}000$. Its value falls by $15\\%$ of its value at the start of each year."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "functions",
+      "skill_tag": "exponential_models",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the number of fish at the moment of stocking.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $t = 0$, so $\\mathrm{e}^{0} = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$500$ fish"
+            }
+          ],
+          "answer": "$500$ fish",
+          "solution": "At $t = 0$ the exponential is $1$, so$$P(0) = \\frac{5000}{1 + 9(1)} = \\frac{5000}{10} = 500.$$",
+          "verify": [
+            "Eq(5000/(1 + 9*exp(0)), 500)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the number of fish after $5$ years, giving your answer to the nearest whole fish.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $t = 5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{5000}{1 + 9\\mathrm{e}^{-2}} = 2254.2\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2254$ fish"
+            }
+          ],
+          "answer": "$2254$ fish",
+          "solution": "Substituting $t = 5$ makes the exponent $-0.4(5) = -2$:$$P(5) = \\frac{5000}{1 + 9\\mathrm{e}^{-2}} = \\frac{5000}{1 + 9(0.135335\\ldots)} = \\frac{5000}{2.21802\\ldots} = 2254.2\\ldots$$ To the nearest whole fish the population is $2254$.",
+          "verify": [
+            "Abs(5000/(1 + 9*exp(-2)) - 2254) < 1"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the time at which the population reaches $2500$ fish, correct to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $P(t) = 2500$ and isolate the exponential"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathrm{e}^{-0.4t} = \\dfrac{1}{9}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$t = 5.49$ years"
+            }
+          ],
+          "answer": "$t = 5.49$ years",
+          "solution": "Set the model equal to $2500$:$$\\frac{5000}{1 + 9\\mathrm{e}^{-0.4t}} = 2500 \\;\\Rightarrow\\; 1 + 9\\mathrm{e}^{-0.4t} = 2.$$ Hence $\\mathrm{e}^{-0.4t} = \\dfrac{1}{9}$, and taking logarithms,$$-0.4t = -\\ln 9 \\;\\Rightarrow\\; t = \\frac{\\ln 9}{0.4} = 5.49306\\ldots$$ So $t = 5.49$ years. Note $2500$ is exactly half the ceiling of $5000$ — the model's point of fastest growth.",
+          "verify": [
+            "Abs(log(9)/Rational(4,10) - Rational(549,100)) < Rational(1,100)",
+            "Abs(5000/(1 + 9*exp(-Rational(4,10)*log(9)/Rational(4,10))) - 2500) < Rational(1,1000)"
+          ]
+        }
+      ],
+      "contextIntro": "The number of fish in a lake $t$ years after stocking is modelled by $$P(t) = \\frac{5000}{1 + 9\\mathrm{e}^{-0.4t}}, \\quad t \\ge 0.$$"
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "geometry_trig",
+      "skill_tag": "sine_rule",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the two possible sizes of the angle at $C$, each correct to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "sine rule $\\dfrac{\\sin C}{9} = \\dfrac{\\sin 35^\\circ}{7}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin C = 0.737455\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C = 47.5151\\ldots^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "or $C = 132.485^\\circ$"
+            }
+          ],
+          "answer": "$C = 47.6^\\circ$ or $C = 132^\\circ$",
+          "solution": "Pair each side with the angle opposite it. The side $AB = 9$ faces $C$ and $BC = 7$ faces $A$, so$$\\frac{\\sin C}{9} = \\frac{\\sin 35^\\circ}{7} \\;\\Rightarrow\\; \\sin C = \\frac{9\\sin 35^\\circ}{7} = 0.737455\\ldots$$ The inverse sine gives $C = 47.5151\\ldots^\\circ$, but the sine of an obtuse angle is equally positive, so$$C = 180^\\circ - 47.5151^\\circ = 132.4849\\ldots^\\circ$$ is a second candidate. To three significant figures the two possibilities are $47.6^\\circ$ and $132^\\circ$.",
+          "verify": [
+            "Abs(9*sin(rad(35))/7 - Rational(7375,10000)) < Rational(1,1000)",
+            "Abs(deg(asin(9*sin(rad(35))/7)) - Rational(476,10)) < Rational(1,10)",
+            "Abs(180 - deg(asin(9*sin(rad(35))/7)) - 132) < Rational(1,2)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Explain why both of these values give a valid triangle here.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "check that the three angles can still sum to $180^\\circ$ in each case"
+            },
+            {
+              "mark": "A1",
+              "note": "$35 + 47.52 = 82.52 < 180$ and $35 + 132.48 = 167.48 < 180$"
+            },
+            {
+              "mark": "R1",
+              "note": "each leaves a positive angle at $B$, so both triangles exist"
+            }
+          ],
+          "answer": "both leave a positive angle at $B$, so two triangles fit the data",
+          "solution": "An ambiguous case is only genuinely ambiguous if BOTH candidates leave room for a third angle. With $A = 35^\\circ$:$$C = 47.5151^\\circ \\;\\Rightarrow\\; B = 180 - 35 - 47.5151 = 97.48^\\circ,$$$$C = 132.4849^\\circ \\;\\Rightarrow\\; B = 180 - 35 - 132.4849 = 12.52^\\circ.$$ Both values of $B$ are positive, so both triangles genuinely exist — the data given (two sides and a NON-included angle) do not determine the triangle uniquely.",
+          "verify": [
+            "Abs(180 - 35 - deg(asin(9*sin(rad(35))/7)) - Rational(975,10)) < 1",
+            "180 - 35 - 132 > 0"
+          ]
+        }
+      ],
+      "contextIntro": "In triangle $ABC$, $AB = 9$ cm, $BC = 7$ cm and the angle at $A$ measures $35^\\circ$."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "stats_probability",
+      "skill_tag": "poisson_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the probability that exactly $3$ customers arrive in a given $10$-minute interval.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(X = k) = \\dfrac{\\mathrm{e}^{-\\lambda}\\lambda^{k}}{k!}$ with $\\lambda = 2.5$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{\\mathrm{e}^{-2.5}(2.5)^{3}}{3!}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.214$"
+            }
+          ],
+          "answer": "$0.214$ (3 s.f.)",
+          "solution": "Apply the Poisson formula with $\\lambda = 2.5$ and $k = 3$:$$P(X = 3) = \\frac{\\mathrm{e}^{-2.5}(2.5)^{3}}{3!} = \\frac{0.082085 \\times 15.625}{6} = 0.21376\\ldots$$ To three significant figures this is $0.214$.",
+          "verify": [
+            "Abs(exp(-Rational(5,2))*Rational(5,2)**3/factorial(3) - Rational(214,1000)) < Rational(1,1000)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the probability that at least $3$ customers arrive in a given $10$-minute interval.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use the complement $1 - P(X \\le 2)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$P(X \\le 2) = 0.543813\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.456$"
+            }
+          ],
+          "answer": "$0.456$ (3 s.f.)",
+          "solution": "\"At least $3$\" is the complement of \"at most $2$\":$$P(X \\ge 3) = 1 - P(X \\le 2) = 1 - \\left[P(0) + P(1) + P(2)\\right].$$ Those three terms are $0.082085$, $0.205212$ and $0.256516$, summing to $0.543813\\ldots$, so$$P(X \\ge 3) = 0.456187\\ldots \\approx 0.456.$$ The boundary matters: $X \\ge 3$ excludes $2$, so the complement stops at $2$.",
+          "verify": [
+            "Abs(1 - Sum(exp(-Rational(5,2))*Rational(5,2)**n/factorial(n), (n, 0, 2)).doit() - Rational(456,1000)) < Rational(1,1000)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the probability that exactly $4$ customers arrive in a given $20$-minute interval.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "scale the mean: $\\lambda = 5$ for $20$ minutes"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.175$"
+            }
+          ],
+          "answer": "$0.175$ (3 s.f.)",
+          "solution": "A Poisson mean scales with the length of the interval, so a $20$-minute window has $\\lambda = 2 \\times 2.5 = 5$. Then$$P(X = 4) = \\frac{\\mathrm{e}^{-5}(5)^{4}}{4!} = \\frac{0.0067379 \\times 625}{24} = 0.17547\\ldots$$ So $0.175$ to three significant figures. Keeping $\\lambda = 2.5$ here would be the error the question is testing.",
+          "verify": [
+            "Eq(2*Rational(5,2), 5)",
+            "Abs(exp(-5)*5**4/factorial(4) - Rational(175,1000)) < Rational(1,1000)"
+          ]
+        }
+      ],
+      "contextIntro": "The number of customers arriving at a small shop follows a Poisson distribution with a mean of $2.5$ customers per $10$-minute interval."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "calculus",
+      "skill_tag": "differentiation_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $g'(x) = x^{2}(3 - x)\\mathrm{e}^{-x}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "product rule on $x^{3}$ and $\\mathrm{e}^{-x}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$3x^{2}\\mathrm{e}^{-x} - x^{3}\\mathrm{e}^{-x}$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$g'(x) = x^{2}(3 - x)\\mathrm{e}^{-x}$ (given)",
+          "solution": "Apply the product rule with $u = x^{3}$ and $v = \\mathrm{e}^{-x}$, so $u' = 3x^{2}$ and $v' = -\\mathrm{e}^{-x}$:$$g'(x) = 3x^{2}\\mathrm{e}^{-x} - x^{3}\\mathrm{e}^{-x}.$$ Factoring out the common $x^{2}\\mathrm{e}^{-x}$,$$g'(x) = x^{2}(3 - x)\\mathrm{e}^{-x}.$$",
+          "verify": [
+            "Eq(simplify(diff(x**3*exp(-x), x) - x**2*(3 - x)*exp(-x)), 0)",
+            "Eq(diff(exp(-x), x), -exp(-x))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the maximum point of the curve, giving the $y$-coordinate correct to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $g'(x) = 0$: $x = 0$ or $x = 3$"
+            },
+            {
+              "mark": "R1",
+              "note": "$x = 0$ gives $g = 0$ and $g' $ does not change sign there, so the maximum is at $x = 3$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate $g(3) = 27\\mathrm{e}^{-3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$(3,\\ 1.34)$"
+            }
+          ],
+          "answer": "$(3,\\ 1.34)$",
+          "solution": "Since $\\mathrm{e}^{-x} > 0$ always, the derivative vanishes when $x^{2}(3 - x) = 0$, that is at $x = 0$ or $x = 3$. At $x = 0$ the factor $x^{2}$ touches zero without changing sign, so the curve merely flattens; $g'$ is positive on both sides. At $x = 3$ the factor $(3 - x)$ changes from positive to negative, so that is a maximum:$$g(3) = 27\\mathrm{e}^{-3} = 1.34425\\ldots$$ The maximum point is $(3,\\ 1.34)$.",
+          "verify": [
+            "Eq(3**2*(3 - 3)*exp(-3), 0)",
+            "1**2*(3 - 1)*exp(-1) > 0",
+            "4**2*(3 - 4)*exp(-4) < 0",
+            "Abs(27*exp(-3) - Rational(134,100)) < Rational(1,100)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $g$ is defined by $g(x) = x^{3}\\mathrm{e}^{-x}$ for $x \\ge 0$."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "functions",
+      "skill_tag": "polynomial_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find all real solutions of $h(x) = 0$, giving your answers correct to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "treat it as a quadratic in $x^{2}$, or solve on the GDC"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^{2} = \\dfrac{5 \\pm \\sqrt{17}}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\pm 2.14$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\pm 0.662$"
+            }
+          ],
+          "answer": "$x = \\pm 2.14$ and $x = \\pm 0.662$",
+          "solution": "The equation is a quadratic in $x^{2}$:$$\\left(x^{2}\\right)^{2} - 5x^{2} + 2 = 0 \\;\\Rightarrow\\; x^{2} = \\frac{5 \\pm \\sqrt{25 - 8}}{2} = \\frac{5 \\pm \\sqrt{17}}{2}.$$ Both values are positive ($4.56155\\ldots$ and $0.43844\\ldots$), so each gives two real square roots:$$x = \\pm 2.135779\\ldots, \\qquad x = \\pm 0.662153\\ldots$$ To three significant figures the four solutions are $\\pm 2.14$ and $\\pm 0.662$.",
+          "verify": [
+            "Abs((Rational(213578,100000))**4 - 5*(Rational(213578,100000))**2 + 2) < Rational(1,1000)",
+            "Abs((Rational(662153,1000000))**4 - 5*(Rational(662153,1000000))**2 + 2) < Rational(1,1000)",
+            "Abs(Rational(5,1)/2 + sqrt(17)/2 - Rational(456155,100000)) < Rational(1,1000)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "State the number of times the graph of $y = h(x)$ crosses the $x$-axis, and explain how the symmetry of $h$ accounts for the pattern of the solutions.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "A1",
+              "note": "four crossings"
+            },
+            {
+              "mark": "R1",
+              "note": "$h(-x) = h(x)$, so the graph is symmetric about the $y$-axis"
+            },
+            {
+              "mark": "R1",
+              "note": "solutions therefore come in $\\pm$ pairs"
+            }
+          ],
+          "answer": "four crossings; $h$ is even, so the roots pair up as $\\pm$",
+          "solution": "Part (a) found four distinct real solutions, so the graph crosses the $x$-axis four times. The reason they pair up is the symmetry: every power of $x$ in $h$ is even, so$$h(-x) = (-x)^{4} - 5(-x)^{2} + 2 = x^{4} - 5x^{2} + 2 = h(x).$$ An even function has a graph symmetric about the $y$-axis, so whenever $x = a$ is a root so is $x = -a$ — exactly the $\\pm$ pattern seen.",
+          "verify": [
+            "Eq(expand((-x)**4 - 5*(-x)**2 + 2), x**4 - 5*x**2 + 2)",
+            "Eq(2**4 - 5*2**2 + 2, (-2)**4 - 5*(-2)**2 + 2)"
+          ]
+        }
+      ],
+      "contextIntro": "The function $h$ is defined by $h(x) = x^{4} - 5x^{2} + 2$."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q7",
+      "number": 7,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "geometric_series",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Explain why the first deposit grows to $2000(1.04)^{9}$ by the end of the tenth year.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "the first deposit is made at the end of year $1$"
+            },
+            {
+              "mark": "M1",
+              "note": "it then earns interest for the remaining $9$ years"
+            },
+            {
+              "mark": "A1",
+              "note": "so it becomes $2000(1.04)^{9}$"
+            }
+          ],
+          "answer": "it sits in the account for $9$ further years",
+          "solution": "The first $\\$2000$ arrives at the END of year $1$, so it earns no interest during that first year. From then until the end of year $10$ there are $10 - 1 = 9$ complete years of compounding, each multiplying the balance by $1.04$. Hence that deposit is worth$$2000(1.04)^{9} = 2846.42\\ldots$$ by the end of year $10$. The LAST deposit, by contrast, earns nothing and is still just $\\$2000$.",
+          "verify": [
+            "Eq(10 - 1, 9)",
+            "Abs(2000*Rational(104,100)**9 - Rational(284642,100)) < 1"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the total value of the account at the end of the tenth year, correct to the nearest dollar.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the ten deposits form a geometric series"
+            },
+            {
+              "mark": "A1",
+              "note": "terms $2000, 2000(1.04), \\ldots, 2000(1.04)^{9}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$S_{10} = \\dfrac{2000\\left((1.04)^{10} - 1\\right)}{1.04 - 1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= 24012.2\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\$24{,}012$"
+            }
+          ],
+          "answer": "$\\$24{,}012$",
+          "solution": "Each deposit has been compounding for a different number of years, so the ten amounts form a geometric series with first term $2000$ (the last deposit, uncompounded) and ratio $1.04$:$$S = 2000 + 2000(1.04) + \\cdots + 2000(1.04)^{9}.$$ Summing with $S_n = \\dfrac{u_1\\left(r^{n} - 1\\right)}{r - 1}$,$$S_{10} = \\frac{2000\\left((1.04)^{10} - 1\\right)}{0.04} = 24012.21\\ldots$$ To the nearest dollar the account holds $\\$24{,}012$ — the $\\$20{,}000$ deposited plus about $\\$4{,}012$ of interest.",
+          "verify": [
+            "Abs(2000*(Rational(104,100)**10 - 1)/(Rational(104,100) - 1) - 24012) < 1",
+            "Eq(10*2000, 20000)"
+          ]
+        }
+      ],
+      "contextIntro": "At the end of each year for $10$ years, $\\$2000$ is paid into an account that earns $4\\%$ interest per year, compounded annually. Interest is added at the end of each subsequent year."
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 20,
+      "topic": "calculus",
+      "skill_tag": "optimisation",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $C'(x)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "write $\\dfrac{200}{x}$ as $200x^{-1}$"
+            },
+            {
+              "mark": "A1",
+              "note": "derivative $-200x^{-2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C'(x) = 0.5 - \\dfrac{200}{x^{2}}$"
+            }
+          ],
+          "answer": "$C'(x) = 0.5 - \\dfrac{200}{x^{2}}$",
+          "solution": "Rewrite the middle term with a negative exponent so the power rule applies:$$C(x) = 0.5x + 200x^{-1} + 8.$$ Differentiating term by term,$$C'(x) = 0.5 - 200x^{-2} = 0.5 - \\frac{200}{x^{2}}.$$",
+          "verify": [
+            "Eq(simplify(diff(Rational(1,2)*x + 200/x + 8, x) - (Rational(1,2) - 200/x**2)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that the average cost is least when $x = 20$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $C'(x) = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^{2} = 400$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 20$ (rejecting $x = -20$, since $x > 0$)"
+            },
+            {
+              "mark": "R1",
+              "note": "$C''(x) = \\dfrac{400}{x^{3}} > 0$ for $x > 0$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$x = 20$ (given)",
+          "solution": "Set the derivative to zero:$$0.5 - \\frac{200}{x^{2}} = 0 \\;\\Rightarrow\\; x^{2} = 400 \\;\\Rightarrow\\; x = \\pm 20.$$ The context requires $x > 0$, so $x = 20$. To confirm it is a minimum rather than a maximum, differentiate again:$$C''(x) = \\frac{400}{x^{3}},$$ which is positive for every $x > 0$. The curve is concave up throughout, so the stationary point at $x = 20$ is the minimum.",
+          "verify": [
+            "Eq(Rational(1,2) - 200/20**2, 0)",
+            "Eq(simplify(diff(Rational(1,2)*x + 200/x + 8, x, 2) - 400/x**3), 0)",
+            "400/20**3 > 0"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the least average cost per unit.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $x = 20$ into $C$"
+            },
+            {
+              "mark": "A1",
+              "note": "$10 + 10 + 8$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\$28$"
+            }
+          ],
+          "answer": "$\\$28$ per unit",
+          "solution": "Substitute the minimising value:$$C(20) = 0.5(20) + \\frac{200}{20} + 8 = 10 + 10 + 8 = 28.$$ The least average cost is $\\$28$ per unit, at a production level of $2000$ units.",
+          "verify": [
+            "Eq(Rational(1,2)*20 + 200/20 + 8, 28)",
+            "Eq(20*100, 2000)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the two production levels at which the average cost per unit is $\\$33$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "solve $0.5x + \\dfrac{200}{x} + 8 = 33$"
+            },
+            {
+              "mark": "M1",
+              "note": "multiply through by $x$: $0.5x^{2} - 25x + 200 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^{2} - 50x + 400 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 10$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 40$"
+            }
+          ],
+          "answer": "$x = 10$ and $x = 40$ (that is, $1000$ and $4000$ units)",
+          "solution": "Set the average cost equal to $33$ and clear the fraction by multiplying by $x$ (legal since $x > 0$):$$0.5x^{2} + 200 + 8x = 33x \\;\\Rightarrow\\; 0.5x^{2} - 25x + 200 = 0.$$ Doubling,$$x^{2} - 50x + 400 = 0 \\;\\Rightarrow\\; (x - 10)(x - 40) = 0,$$ so $x = 10$ or $x = 40$ — that is, $1000$ or $4000$ units. The two roots sit symmetrically either side of the minimum at $x = 20$ in the sense that both give the same cost, which is what the U-shape of the graph shows.",
+          "verify": [
+            "Eq(Rational(1,2)*10 + 200/10 + 8, 33)",
+            "Eq(Rational(1,2)*40 + 200/40 + 8, 33)",
+            "Eq(expand((x - 10)*(x - 40)), x**2 - 50*x + 400)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "State, with a reason, what happens to the average cost per unit as $x$ becomes very large.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "consider each term as $x \\to \\infty$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{200}{x} \\to 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C(x) \\approx 0.5x + 8$, which grows without bound"
+            },
+            {
+              "mark": "R1",
+              "note": "so the average cost rises indefinitely — the fixed cost is spread thinner but the variable term dominates"
+            }
+          ],
+          "answer": "it increases without bound, behaving like $0.5x + 8$",
+          "solution": "Look at the three terms separately as $x \\to \\infty$. The term $\\dfrac{200}{x}$ represents the fixed cost spread over the output, and it tends to $0$. The constant $8$ stays put. The term $0.5x$ grows without limit, so$$C(x) \\approx 0.5x + 8 \\to \\infty.$$ In context: producing more does spread the fixed cost thinner, which is what pulls the curve down for small $x$, but beyond $x = 20$ the rising per-unit term takes over and the average cost climbs indefinitely. The line $C = 0.5x + 8$ is an oblique asymptote.",
+          "verify": [
+            "Eq(limit(200/x, x, oo), 0)",
+            "Eq(limit(Rational(1,2)*x + 200/x + 8, x, oo), oo)",
+            "Rational(1,2)*100 + 200/100 + 8 > 28"
+          ]
+        }
+      ],
+      "contextIntro": "A factory's average cost per unit, in dollars, when $x$ hundred units are produced is modelled by $$C(x) = 0.5x + \\frac{200}{x} + 8, \\quad x > 0.$$ The diagram shows the graph of $C$ against $x$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t5-q8.png",
+        "width": 814,
+        "height": 541,
+        "alt_en": "Graph of average cost C against x, falling to a minimum near x = 20 and then rising"
+      }
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 20,
+      "topic": "geometry_trig",
+      "skill_tag": "triangle_trigonometry",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the length of $BD$, correct to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "cosine rule in triangle $ABD$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BD^{2} = 40^{2} + 55^{2} - 2(40)(55)\\cos 62^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "$BD = 50.6$ m"
+            }
+          ],
+          "answer": "$BD = 50.6$ m",
+          "solution": "Triangle $ABD$ has two sides and the included angle, so the cosine rule applies:$$BD^{2} = 40^{2} + 55^{2} - 2(40)(55)\\cos 62^\\circ = 4625 - 4400(0.469472\\ldots).$$ That gives $BD^{2} = 2559.32\\ldots$, so$$BD = 50.5898\\ldots \\approx 50.6\\ \\text{m}.$$",
+          "verify": [
+            "Abs(sqrt(40**2 + 55**2 - 2*40*55*cos(rad(62))) - Rational(506,10)) < Rational(1,10)",
+            "Eq(40**2 + 55**2, 4625)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the area of triangle $ABD$, correct to three significant figures.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\tfrac{1}{2}ab\\sin C$ with the included angle"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{2}(40)(55)\\sin 62^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "$971$ m$^{2}$"
+            }
+          ],
+          "answer": "$971$ m$^{2}$",
+          "solution": "Use the included angle directly:$$\\text{Area}_{ABD} = \\tfrac{1}{2}(40)(55)\\sin 62^\\circ = 1100(0.882948\\ldots) = 971.242\\ldots$$ To three significant figures the area is $971$ m$^{2}$.",
+          "verify": [
+            "Abs(Rational(1,2)*40*55*sin(rad(62)) - 971) < 1",
+            "Eq(Rational(1,2)*40*55, 1100)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the size of the angle at $C$, correct to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "triangle $BCD$ now has all three sides known"
+            },
+            {
+              "mark": "M1",
+              "note": "rearranged cosine rule $\\cos C = \\dfrac{BC^{2} + CD^{2} - BD^{2}}{2(BC)(CD)}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos C = 0.265851\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C = 74.5744\\ldots^\\circ$"
+            },
+            {
+              "mark": "A1",
+              "note": "$C = 74.6^\\circ$"
+            }
+          ],
+          "answer": "$74.6^\\circ$",
+          "solution": "Once $BD$ is known, triangle $BCD$ has all three sides, so use the cosine rule rearranged for the angle:$$\\cos C = \\frac{BC^{2} + CD^{2} - BD^{2}}{2(BC)(CD)} = \\frac{2025 + 1444 - 2559.32}{2(45)(38)}.$$ That is $\\cos C = 0.265851\\ldots$, so$$C = 74.5744\\ldots^\\circ \\approx 74.6^\\circ.$$ Carry the unrounded $BD$ into this step — rounding to $50.6$ first shifts the angle in the third figure.",
+          "verify": [
+            "Abs(deg(acos((45**2 + 38**2 - (40**2 + 55**2 - 2*40*55*cos(rad(62))))/(2*45*38))) - Rational(746,10)) < Rational(1,10)",
+            "Eq(45**2 + 38**2, 3469)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the total area of the field, correct to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "area of triangle $BCD$ $= \\tfrac{1}{2}(45)(38)\\sin C$"
+            },
+            {
+              "mark": "A1",
+              "note": "$824.200\\ldots$ m$^{2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "add the two triangle areas"
+            },
+            {
+              "mark": "A1",
+              "note": "$971.242 + 824.200$"
+            },
+            {
+              "mark": "A1",
+              "note": "$1800$ m$^{2}$ (3 s.f.)"
+            }
+          ],
+          "answer": "$1800$ m$^{2}$ (3 s.f.)",
+          "solution": "With the angle at $C$ known, the second triangle yields to the same area formula:$$\\text{Area}_{BCD} = \\tfrac{1}{2}(45)(38)\\sin 74.5744^\\circ = 855(0.963977\\ldots) = 824.200\\ldots$$ The diagonal splits the field into exactly these two triangles, so$$\\text{Total} = 971.242 + 824.200 = 1795.44\\ldots$$ To three significant figures the field covers $1800$ m$^{2}$.",
+          "verify": [
+            "Abs(Rational(1,2)*45*38*sin(acos((45**2 + 38**2 - (40**2 + 55**2 - 2*40*55*cos(rad(62))))/(2*45*38))) - 824) < 1",
+            "Abs(Rational(1,2)*40*55*sin(rad(62)) + Rational(1,2)*45*38*sin(acos((45**2 + 38**2 - (40**2 + 55**2 - 2*40*55*cos(rad(62))))/(2*45*38))) - 1795) < 2"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "A fence is to be built along the perimeter of the field. Find the total length of fencing needed.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "the perimeter is the sum of the four SIDES"
+            },
+            {
+              "mark": "R1",
+              "note": "the diagonal $BD$ is not part of the boundary"
+            },
+            {
+              "mark": "A1",
+              "note": "$40 + 45 + 38 + 55$"
+            },
+            {
+              "mark": "A1",
+              "note": "$178$ m"
+            }
+          ],
+          "answer": "$178$ m",
+          "solution": "The boundary of the field consists of the four sides only — the diagonal $BD$ was a construction line used to solve the geometry, not a physical edge. So$$P = AB + BC + CD + DA = 40 + 45 + 38 + 55 = 178\\ \\text{m}.$$ Including $BD$ by mistake would add about $50.6$ m of fencing that is not needed.",
+          "verify": [
+            "Eq(40 + 45 + 38 + 55, 178)",
+            "Abs(178 + sqrt(40**2 + 55**2 - 2*40*55*cos(rad(62))) - Rational(2286,10)) < 1"
+          ]
+        }
+      ],
+      "contextIntro": "A field has the shape of the quadrilateral $ABCD$ shown in the diagram, with $AB = 40$ m, $AD = 55$ m, $BC = 45$ m and $CD = 38$ m. The angle at $A$ measures $62^\\circ$. The diagonal $BD$ divides the field into two triangles.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p2-t5-q9.png",
+        "width": 740,
+        "height": 625,
+        "alt_en": "Quadrilateral field ABCD with sides 40, 45, 38 and 55 metres, angle A of 62 degrees, and the diagonal BD drawn"
+      }
+    },
+    {
+      "source": "IB-AAHL-P2-T5-Q10",
+      "number": 10,
+      "section": "B",
+      "maximumMark": 18,
+      "topic": "stats_probability",
+      "skill_tag": "normal_distribution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Write down the two standard scores corresponding to the given percentages, each correct to three significant figures.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "inverse normal for the lower tail"
+            },
+            {
+              "mark": "A1",
+              "note": "$z_1 = -1.28$"
+            },
+            {
+              "mark": "M1",
+              "note": "inverse normal for the upper cut-off"
+            },
+            {
+              "mark": "A1",
+              "note": "$z_2 = 1.64$"
+            }
+          ],
+          "answer": "$z_1 = -1.28$ and $z_2 = 1.64$",
+          "solution": "Each percentage names a point of the STANDARD normal distribution. From the inverse normal,$$P(Z < z_1) = 0.10 \\;\\Rightarrow\\; z_1 = -1.28155\\ldots,$$$$P(Z < z_2) = 0.95 \\;\\Rightarrow\\; z_2 = 1.64485\\ldots$$ To three significant figures $z_1 = -1.28$ and $z_2 = 1.64$. The first is negative because $10\\%$ is below the mean.",
+          "verify": [
+            "Abs((1 + erf(Rational(-128155,100000)/sqrt(2)))/2 - Rational(1,10)) < Rational(1,10000)",
+            "Abs((1 + erf(Rational(164485,100000)/sqrt(2)))/2 - Rational(95,100)) < Rational(1,10000)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Write down two equations connecting $\\mu$ and $\\sigma$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $z = \\dfrac{t - \\mu}{\\sigma}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu - 1.28155\\sigma = 42$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu + 1.64485\\sigma = 68$"
+            }
+          ],
+          "answer": "$\\mu - 1.28155\\sigma = 42$ and $\\mu + 1.64485\\sigma = 68$",
+          "solution": "The standardising formula $z = \\dfrac{t - \\mu}{\\sigma}$ rearranges to $t = \\mu + z\\sigma$. Applying it to each cut-off,$$42 = \\mu + (-1.28155\\ldots)\\sigma,$$$$68 = \\mu + (1.64485\\ldots)\\sigma.$$",
+          "verify": [
+            "Abs(Rational(533861,10000) - Rational(128155,100000)*Rational(888462,100000) - 42) < Rational(1,50)",
+            "Abs(Rational(533861,10000) + Rational(164485,100000)*Rational(888462,100000) - 68) < Rational(1,50)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Hence find $\\mu$ and $\\sigma$, each correct to three significant figures.",
+          "marks": 6,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "subtract the equations to eliminate $\\mu$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2.92640\\ldots\\sigma = 26$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sigma = 8.88462\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "substitute back"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu = 53.3861\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mu = 53.4$, $\\sigma = 8.88$"
+            }
+          ],
+          "answer": "$\\mu = 53.4$ minutes, $\\sigma = 8.88$ minutes",
+          "solution": "Subtracting the first equation from the second removes $\\mu$:$$\\left(1.64485 + 1.28155\\right)\\sigma = 68 - 42 \\;\\Rightarrow\\; 2.92640\\ldots\\,\\sigma = 26,$$ so$$\\sigma = 8.88462\\ldots$$ Substituting back into the second equation,$$\\mu = 68 - 1.64485(8.88462\\ldots) = 53.3861\\ldots$$ To three significant figures $\\mu = 53.4$ minutes and $\\sigma = 8.88$ minutes.",
+          "verify": [
+            "Abs(26/(Rational(164485,100000) + Rational(128155,100000)) - Rational(888,100)) < Rational(1,100)",
+            "Abs(68 - Rational(164485,100000)*Rational(888,100) - Rational(534,10)) < Rational(1,10)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the percentage of customers who stay longer than one hour, correct to three significant figures.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "standardise $t = 60$ with the values from part (c)"
+            },
+            {
+              "mark": "A1",
+              "note": "$z = \\dfrac{60 - 53.3861}{8.88462} = 0.744421\\ldots$"
+            },
+            {
+              "mark": "M1",
+              "note": "$P(Z > 0.7444\\ldots)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$0.228311\\ldots$"
+            },
+            {
+              "mark": "A1",
+              "note": "$22.8\\%$"
+            }
+          ],
+          "answer": "$22.8\\%$",
+          "solution": "One hour is $60$ minutes. Standardising with the parameters found above,$$z = \\frac{60 - 53.3861\\ldots}{8.88462\\ldots} = 0.744421\\ldots$$ The upper-tail probability is$$P(T > 60) = P(Z > 0.7444\\ldots) = 0.228311\\ldots,$$ so about $22.8\\%$ of customers stay longer than an hour. That sits sensibly between the given $5\\%$ above $68$ minutes and the $50\\%$ above the mean of $53.4$ minutes.",
+          "verify": [
+            "Abs((60 - Rational(533861,10000))/Rational(888462,100000) - Rational(744,1000)) < Rational(1,100)",
+            "Abs((1 - erf(Rational(7444,10000)/sqrt(2)))/2 - Rational(228,1000)) < Rational(1,500)"
+          ]
+        }
+      ],
+      "contextIntro": "The time $T$, in minutes, that customers spend in a restaurant is modelled by a normal distribution with unknown mean $\\mu$ and unknown standard deviation $\\sigma$. It is known that $10\\%$ of customers stay less than $42$ minutes and $95\\%$ stay less than $68$ minutes."
+    }
+  ]
+}
