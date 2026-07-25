@@ -79,6 +79,6 @@ each student gets a personalized start with full access to the whole site.
   after sending.)
 - `focusHref` values that exist today: `/math/6`…`/math/12`,
   `/math/geometry`, `/practice/esh`, `/practice/sat`, `/practice/ib`,
-  `/courses`.
+  `/math`.
 - To change a student's grade/focus later, edit the roster and re-run, or
   update their `profiles` row directly in Supabase.

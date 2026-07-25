@@ -113,7 +113,7 @@ export default function ExamPrepPage() {
               {t("Start practicing free", "Үнэгүй дадлага эхлэх")}
               <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Link>
-            <Link href="/courses" className="btn btn-line">
+            <Link href="/practice/esh/topics" className="btn btn-line">
               {t("Browse topics", "Сэдвүүдийг үзэх")}
             </Link>
           </div>

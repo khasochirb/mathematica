@@ -73,13 +73,14 @@ export default function ESHHubPage() {
       icon: Target,
     },
     {
-      // Shared study-by-topic destination: the full topic courses on /math
-      // (Алгебр 1–2, Геометр, Магадлал… — ЭЕШ-tagged). The exam-specific
-      // formula sheets stay at /practice/esh/learn, linked from every
-      // weak-topic recommendation.
-      href: "/math#topics",
+      // ЭЕШ's own topic breakdown, inside the hub — the way the IB hub lists
+      // its SL/HL courses. This used to bounce users out to the general
+      // Courses catalog at /math#topics; keeping them in the ЭЕШ hub means the
+      // weights and subtopics they see are the exam's, not the whole school
+      // ladder's. Each topic opens its ЭЕШ study page at /practice/esh/learn.
+      href: "/practice/esh/topics",
       title: "Сэдвээр суралцах",
-      subtitle: "Бүрэн курсууд · Алгебр, Геометр…",
+      subtitle: "ЭЕШ-ийн сэдвүүд · Жингээр эрэмбэлсэн",
       icon: BookOpen,
     },
   ];

@@ -49,6 +49,15 @@ const nextConfig = {
         destination: "/practice/esh/test?type=previous",
         permanent: true,
       },
+      // /courses used to be the ЭЕШ topic overview, back when the school-math
+      // hub at /math was called "General Math". Now that /math IS "Courses",
+      // the ЭЕШ overview lives inside its own hub and /courses would be a
+      // confusing second name for it. 301 — the old path is gone for good.
+      {
+        source: "/courses",
+        destination: "/practice/esh/topics",
+        permanent: true,
+      },
     ];
   },
 };

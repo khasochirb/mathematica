@@ -11,7 +11,7 @@ type Bi = { en: string; mn: string };
 // SAT/AP/IB link to their coming-soon hub pages. Used by the exam strip and the
 // "multiple curricula" launchpad chips so every curriculum name is navigable.
 const CURRICULA: { label: Bi; href: string; live: boolean }[] = [
-  { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/courses", live: true },
+  { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/math", live: true },
   { label: { en: "SAT Math", mn: "SAT Math" }, href: "/practice/sat", live: false },
   { label: { en: "AP Calculus", mn: "AP Calculus" }, href: "/practice/ap", live: false },
   { label: { en: "IB Math", mn: "IB Math" }, href: "/practice/ib", live: false },
