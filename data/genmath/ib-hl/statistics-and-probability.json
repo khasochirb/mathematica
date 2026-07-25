@@ -1,0 +1,1233 @@
+{
+  "slug": "statistics-and-probability",
+  "title": "Statistics & Probability (AHL)",
+  "unit": 4,
+  "status": "published",
+  "blurb": "The HL extension of Topic 4: Bayes' theorem for reversing a conditional probability over a partition of up to three events, the variance of a discrete random variable, and the whole apparatus of continuous random variables — probability density functions, mode, median, mean and variance by integration, and cumulative distribution functions. Every subtopic code from AHL 4.13 to AHL 4.14.",
+  "buildsOn": "SL Topic 4's probability laws, tree diagrams, conditional probability and discrete expectation. HL reverses the conditioning with Bayes and replaces sums over isolated values with integrals over a continuum.",
+  "lessons": [
+    {
+      "slug": "bayes-theorem",
+      "title": "Bayes' Theorem: Reversing the Condition",
+      "concreteComparison": "A smoke alarm going off does not mean your house is probably on fire — alarms are sensitive, and fires are rare. Knowing $P(\\text{alarm} \\mid \\text{fire})$ tells you almost nothing on its own; you also need how COMMON fires are. Bayes' theorem is the machinery that combines the two and reverses the condition properly.",
+      "objective": "Apply Bayes' theorem to reverse a conditional probability, for a partition of the sample space into two or three events, and recognise how the prior probabilities reshape the answer.",
+      "concept": [
+        "**Syllabus card — AHL 4.13.** Use of Bayes' theorem for a maximum of three events. Papers 1 and 2. Weight: 5-8 marks — and it is the only genuinely new probability THEOREM at HL, so it appears with high reliability.",
+        "**The two-event form.** $$P(A \\mid B) = \\frac{P(A)\\,P(B \\mid A)}{P(B)} = \\frac{P(A)\\,P(B \\mid A)}{P(A)P(B \\mid A) + P(A')P(B \\mid A')}$$ In the booklet. The denominator is just the total probability of $B$, assembled from the two ways it can happen — which is why a tree diagram computes it for you automatically.",
+        "**The three-event form.** If $B_1, B_2, B_3$ partition the sample space (mutually exclusive, covering everything), then $$P(B_i \\mid A) = \\frac{P(B_i)\\,P(A \\mid B_i)}{\\sum_{j=1}^{3} P(B_j)\\,P(A \\mid B_j)}.$$ In the booklet. Every numerator is one branch of the tree; the denominator is the sum of ALL relevant branches. The syllabus caps this at three events, so the arithmetic never runs away.",
+        "**The tree does the work.** Draw the tree with the CAUSE first and the OBSERVATION second. Each complete path multiplies to a joint probability. Then Bayes reads: $$P(\\text{cause} \\mid \\text{observation}) = \\frac{\\text{the one path that has both}}{\\text{the sum of all paths with the observation}}.$$ Written this way, it is a fraction of tree branches — no formula recall required, and markschemes award the method marks for exactly this structure.",
+        "**Why the prior matters so much.** A test that is $95\\%$ accurate on a condition affecting $2\\%$ of people still produces mostly FALSE positives, because the $98\\%$ who are healthy generate a large number of them even at a low error rate. Bayes' theorem quantifies that: the answer can be surprisingly small, and a candidate who 'sanity-checks' it against intuition and changes it loses the marks. Trust the arithmetic."
+      ],
+      "keyIdea": "$P(\\text{cause} \\mid \\text{effect})$ = (the one tree path with both) ÷ (the sum of all paths showing the effect). Rare causes stay unlikely even after strong evidence — the prior never leaves the calculation.",
+      "facts": [
+        {
+          "title": "Bayes, two events",
+          "latex": "P(A \\mid B) = \\frac{P(A)P(B \\mid A)}{P(A)P(B \\mid A) + P(A')P(B \\mid A')}",
+          "explanation": "IN the booklet. The denominator is $P(B)$ expanded by the law of total probability — the sum of every route to $B$."
+        },
+        {
+          "title": "Bayes, three events",
+          "latex": "P(B_i \\mid A) = \\frac{P(B_i)P(A \\mid B_i)}{\\sum_j P(B_j)P(A \\mid B_j)}",
+          "explanation": "IN the booklet. Requires $B_1, B_2, B_3$ to PARTITION the space — mutually exclusive and exhaustive, or the denominator is wrong."
+        },
+        {
+          "title": "The posteriors sum to 1",
+          "latex": "P(B_1 \\mid A) + P(B_2 \\mid A) + P(B_3 \\mid A) = 1",
+          "explanation": "NOT in the booklet, but a free check on a 3-event question: every conditional shares the same denominator, and the numerators total it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-413-we1",
+          "statement": "A company runs two production lines. Line $A$ makes $60\\%$ of the output and $3\\%$ of its items are defective; line $B$ makes the other $40\\%$ and $5\\%$ of its items are defective.  \n**(a)** Find the probability that a randomly chosen item is defective. **[3]**  \n**(b)** Given that an item is defective, find the probability it came from line $A$. **[3]**",
+          "solution": "**(a)** Total probability — add the two routes to a defect *(M1)*:  \n$$P(D) = (0.6)(0.03) + (0.4)(0.05) = 0.018 + 0.020 \\;(A1) = 0.038. \\;(A1)$$  \n**(b)** Bayes: the one path with both, over all paths with a defect *(M1)*:  \n$$P(A \\mid D) = \\frac{(0.6)(0.03)}{0.038} = \\frac{0.018}{0.038} \\;(A1) = \\frac{9}{19} \\approx 0.474. \\;(A1)$$  \n**Narrative:** line $A$ has the LOWER defect rate, yet supplies almost half the defects — because it makes so much more. That tension between the rate and the prior is exactly what Bayes resolves. Check: $P(B \\mid D) = \\frac{0.020}{0.038} = \\frac{10}{19}$, and $\\frac{9}{19} + \\frac{10}{19} = 1$ ✓.",
+          "check": [
+            "Eq(Rational(6,10)*Rational(3,100) + Rational(4,10)*Rational(5,100), Rational(19,500))",
+            "Eq(Rational(19,500), 0.038)",
+            "Eq((Rational(6,10)*Rational(3,100))/Rational(19,500), Rational(9,19))",
+            "Eq((Rational(4,10)*Rational(5,100))/Rational(19,500), Rational(10,19))",
+            "Eq(Rational(9,19) + Rational(10,19), 1)",
+            "Abs(Rational(9,19) - 0.4737) < Rational(1,1000)"
+          ]
+        },
+        {
+          "id": "ibhl-413-we2",
+          "statement": "Three machines produce the same component. Machine 1 makes $50\\%$ of the components, machine 2 makes $30\\%$ and machine 3 makes $20\\%$. The proportions that are defective are $2\\%$, $4\\%$ and $5\\%$ respectively.  \n**(a)** Find the probability a randomly chosen component is defective. **[3]**  \n**(b)** A component is found to be defective. Find the probability it was made by machine 2. **[3]**  \n**(c)** Verify that the three posterior probabilities sum to 1. **[2]**",
+          "solution": "**(a)** Sum the three branches *(M1)*:  \n$$P(D) = (0.5)(0.02) + (0.3)(0.04) + (0.2)(0.05) = 0.010 + 0.012 + 0.010 \\;(A1)$$  \n$$= 0.032. \\;(A1)$$  \n**(b)** *(M1)* $$P(M_2 \\mid D) = \\frac{(0.3)(0.04)}{0.032} = \\frac{0.012}{0.032} \\;(A1) = \\frac{3}{8} = 0.375. \\;(A1)$$  \n**(c)** The other two share the same denominator *(M1)*:  \n$$P(M_1 \\mid D) = \\frac{0.010}{0.032} = \\frac{5}{16}, \\qquad P(M_3 \\mid D) = \\frac{0.010}{0.032} = \\frac{5}{16},$$  \n$$\\frac{5}{16} + \\frac{3}{8} + \\frac{5}{16} = \\frac{5 + 6 + 5}{16} = 1. \\;✓\\;(A1)$$  \n**Narrative:** machines 1 and 3 are equally likely suspects despite machine 3 being over twice as error-prone — machine 1's much larger share exactly compensates. Part (c) costs thirty seconds and catches any slip in (a).",
+          "check": [
+            "Eq(Rational(5,10)*Rational(2,100) + Rational(3,10)*Rational(4,100) + Rational(2,10)*Rational(5,100), Rational(4,125))",
+            "Eq(Rational(4,125), 0.032)",
+            "Eq((Rational(3,10)*Rational(4,100))/Rational(4,125), Rational(3,8))",
+            "Eq((Rational(5,10)*Rational(2,100))/Rational(4,125), Rational(5,16))",
+            "Eq((Rational(2,10)*Rational(5,100))/Rational(4,125), Rational(5,16))",
+            "Eq(Rational(5,16) + Rational(3,8) + Rational(5,16), 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reporting $P(B \\mid A)$ when the question asked for $P(A \\mid B)$.",
+          "correction": "The two are different numbers unless the priors happen to match. Write down which event is GIVEN before computing anything — the given event's total probability is the denominator.",
+          "authored": true
+        },
+        {
+          "text": "Using only the branch of interest and forgetting the other routes in the denominator.",
+          "correction": "The denominator is the TOTAL probability of the observed event: sum over every branch that produces it. Missing a branch always makes the answer too large.",
+          "authored": true
+        },
+        {
+          "text": "Overriding a surprisingly small answer because it 'feels wrong'.",
+          "correction": "With a rare cause, even a strong test yields a modest posterior — that IS the lesson of the theorem. Check the arithmetic, then trust it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-413-t1",
+          "statement": "A screening test is positive for $95\\%$ of people who have a certain condition, and positive for $10\\%$ of people who do not. In the population, $2\\%$ of people have the condition.  \nA person tests positive. Find the probability that they have the condition, correct to 3 significant figures. **[5]**",
+          "solution": "Total probability of a positive result *(M1)*:  \n$$P(+) = (0.02)(0.95) + (0.98)(0.10) = 0.019 + 0.098 = 0.117. \\;(A1\\,A1)$$  \nBayes *(M1)*:  \n$$P(C \\mid +) = \\frac{0.019}{0.117} = \\frac{19}{117} \\approx 0.162. \\;(A1)$$  \nBarely one positive in six is a real case. The $98\\%$ healthy majority generates $0.098$ worth of false positives — five times the true-positive mass — purely because there are so many of them. This is why screening programmes retest.",
+          "check": [
+            "Eq(Rational(2,100)*Rational(95,100) + Rational(98,100)*Rational(10,100), Rational(117,1000))",
+            "Eq((Rational(2,100)*Rational(95,100))/Rational(117,1000), Rational(19,117))",
+            "Abs(Rational(19,117) - 0.162) < Rational(1,1000)",
+            "Rational(98,100)*Rational(10,100) > 5*Rational(2,100)*Rational(95,100)"
+          ]
+        },
+        {
+          "id": "ibhl-413-t2",
+          "statement": "Bag $A$ contains 3 red and 5 blue balls; bag $B$ contains 6 red and 2 blue balls. A bag is chosen at random and one ball is drawn from it. The ball is red.  \nFind the probability that bag $A$ was chosen. **[5]**",
+          "solution": "Each bag is equally likely, and each holds 8 balls *(M1)*:  \n$$P(R) = \\tfrac{1}{2}\\cdot\\tfrac{3}{8} + \\tfrac{1}{2}\\cdot\\tfrac{6}{8} = \\tfrac{3}{16} + \\tfrac{6}{16} = \\tfrac{9}{16}. \\;(A1\\,A1)$$  \n$$P(A \\mid R) = \\frac{3/16}{9/16} \\;(M1) = \\frac{3}{9} = \\frac{1}{3}. \\;(A1)$$  \nThe priors were equal, so the posterior is simply the ratio of the two red counts, $3 : 6$. Whenever the priors match, Bayes reduces to comparing the likelihoods directly.",
+          "check": [
+            "Eq(Rational(1,2)*Rational(3,8) + Rational(1,2)*Rational(6,8), Rational(9,16))",
+            "Eq((Rational(1,2)*Rational(3,8))/Rational(9,16), Rational(1,3))",
+            "Eq((Rational(1,2)*Rational(6,8))/Rational(9,16), Rational(2,3))",
+            "Eq(Rational(1,3) + Rational(2,3), 1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 4.13 · Papers 1 & 2",
+            "title": "The condition runs the wrong way",
+            "body": "Data usually arrives as $P(\\text{evidence} \\mid \\text{cause})$ — a test's accuracy, a machine's defect rate. What you actually want is $P(\\text{cause} \\mid \\text{evidence})$: given this result, what happened? Those are different numbers, and swapping them is the single most consequential error in applied probability. Bayes' theorem is the conversion."
+          },
+          {
+            "kind": "treeDiagram",
+            "eyebrow": "Where the numbers live",
+            "title": "Cause first, observation second",
+            "teach": "Put the CAUSE on the first branching and the OBSERVATION on the second. Each full path multiplies to a joint probability. Bayes then reads off the diagram directly: one path on top, the sum of all matching paths underneath. Build the tree and the formula becomes unnecessary.",
+            "config": {
+              "mode": "prob",
+              "stages": [
+                {
+                  "label": "Production line",
+                  "branches": [
+                    {
+                      "label": "A",
+                      "p": 0.6
+                    },
+                    {
+                      "label": "B",
+                      "p": 0.4
+                    }
+                  ]
+                },
+                {
+                  "label": "Item quality",
+                  "branches": [
+                    {
+                      "label": "defective",
+                      "p": 0.03
+                    },
+                    {
+                      "label": "good",
+                      "p": 0.97
+                    }
+                  ]
+                }
+              ],
+              "caption": "Line A's branch: 0.6 x 0.03 = 0.018 of all items are defective from A."
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "What goes underneath?",
+            "prompt": "In $P(A \\mid D) = \\dfrac{P(A)P(D \\mid A)}{?}$, the denominator is:",
+            "options": [
+              "$P(D)$, the total probability of $D$ over all causes",
+              "$P(A)$",
+              "$P(D \\mid A)$",
+              "$P(A) + P(D)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The denominator normalises over EVERY way the observation could arise: $P(D) = P(A)P(D \\mid A) + P(A')P(D \\mid A')$. Using only the branch of interest would give a value above 1 in general — the giveaway that a route was dropped.",
+            "check": [
+              "Eq(Rational(6,10)*Rational(3,100) + Rational(4,10)*Rational(5,100), Rational(19,500))",
+              "Eq((Rational(6,10)*Rational(3,100))/Rational(19,500), Rational(9,19))",
+              "Rational(9,19) < 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Two lines, one defect",
+            "problemId": "ibhl-413-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Equal priors, unequal bags",
+            "problemId": "ibhl-413-t2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The counter-intuitive part",
+            "title": "Rare causes stay rare",
+            "body": "Suppose a condition affects $2\\%$ of people and a test catches $95\\%$ of cases while wrongly flagging only $10\\%$ of healthy people. That sounds decisive — but the healthy group is $49$ times larger, so it produces about five times as many positives as the sick group does. A positive result therefore leaves the probability of illness around $16\\%$, not $95\\%$. The prior is not a detail; it dominates."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Base rates",
+            "title": "Why so low?",
+            "prompt": "A condition affects 2% of people; a test flags 95% of cases and 10% of non-cases. $P(\\text{condition} \\mid \\text{positive})$ is closest to:",
+            "options": [
+              "$0.16$",
+              "$0.95$",
+              "$0.50$",
+              "$0.02$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{0.02 \\times 0.95}{0.02 \\times 0.95 + 0.98 \\times 0.10} = \\frac{0.019}{0.117} \\approx 0.162$. The $98\\%$ healthy group contributes $0.098$ of false positives — over five times the true-positive mass — simply by being enormous.",
+            "check": [
+              "Eq((Rational(2,100)*Rational(95,100))/(Rational(2,100)*Rational(95,100) + Rational(98,100)*Rational(10,100)), Rational(19,117))",
+              "Abs(Rational(19,117) - 0.162) < Rational(1,500)",
+              "Rational(19,117) < Rational(1,5)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Three machines, three posteriors",
+            "problemId": "ibhl-413-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The screening paradox",
+            "problemId": "ibhl-413-t1"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 4.13 in four lines",
+            "points": [
+              "$P(A \\mid B) = \\frac{P(A)P(B \\mid A)}{P(B)}$, with $P(B)$ summed over ALL causes.",
+              "Three events must partition the space; the denominator sums all three branches.",
+              "Tree method: one matching path on top, every matching path underneath.",
+              "Check: the posteriors over a partition must add to exactly 1."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "variance-and-probability-density-functions",
+      "title": "Variance & the Probability Density Function",
+      "concreteComparison": "Ask how long a phone call lasts and 'exactly 4 minutes' has probability zero — it could be $4.0001$. What is meaningful is the chance it falls BETWEEN four and five minutes. That is the whole shift from discrete to continuous: probability stops living at points and starts living in areas.",
+      "objective": "Compute the variance and standard deviation of a discrete random variable using $\\mathrm{Var}(X) = \\mathrm{E}(X^2) - [\\mathrm{E}(X)]^2$, and identify, verify and use a probability density function for a continuous random variable.",
+      "concept": [
+        "**Syllabus card — AHL 4.14 (first half).** Variance of a discrete random variable; continuous random variables and their probability density functions. Papers 1 and 2. Weight: 5-9 marks, and it is the foundation for the remaining two lessons of this unit.",
+        "**Variance of a discrete variable.** $$\\mathrm{Var}(X) = \\mathrm{E}(X^2) - [\\mathrm{E}(X)]^2, \\qquad \\mathrm{E}(X^2) = \\sum x^2\\,P(X = x).$$ In the booklet. The order matters: square each VALUE and weight by its probability, then subtract the square of the mean. Squaring the mean of the squares — or forgetting to subtract at all — is the standard error, and both give an answer that is far too large.",
+        "**From bars to a curve.** A discrete variable assigns probability to individual values; a continuous one spreads it over an interval. The **probability density function** $f$ is what it spreads: $$P(a \\le X \\le b) = \\int_a^b f(x)\\,dx.$$ Probability is AREA under the curve. As an immediate consequence $P(X = a) = 0$ for every single value — the integral over a point is zero — so $\\le$ and $<$ are interchangeable throughout, which is not true of the discrete case.",
+        "**The two conditions a pdf must satisfy.** $$f(x) \\ge 0 \\text{ for all } x, \\qquad \\int_{-\\infty}^{\\infty} f(x)\\,dx = 1.$$ Total area exactly one. This is what 'find the value of $k$' questions are really asking: integrate over the stated domain, set the result equal to 1, solve. Outside the stated domain $f$ is zero, so the infinite integral is really a definite one.",
+        "**Density is not probability.** $f(x)$ can exceed 1 — a pdf on a narrow interval must be tall to enclose unit area. What can never exceed 1 is the AREA. Reading $f(2) = 1.5$ as 'a probability of 1.5' means the distinction has not landed; the value is a density, probability per unit of $x$."
+      ],
+      "keyIdea": "$\\mathrm{Var}(X) = \\mathrm{E}(X^2) - [\\mathrm{E}(X)]^2$ for a discrete variable. For a continuous one, probability is the AREA under $f$: $f \\ge 0$ with total area 1, individual values have probability zero, and $f$ itself may exceed 1.",
+      "facts": [
+        {
+          "title": "Variance from the mean of squares",
+          "latex": "\\mathrm{Var}(X) = \\mathrm{E}(X^2) - [\\mathrm{E}(X)]^2 = \\sum x^2 P(X = x) - \\mu^2",
+          "explanation": "IN the booklet. Standard deviation is its square root. Answer negative? Then $\\mathrm{E}(X^2)$ and $\\mu^2$ were swapped."
+        },
+        {
+          "title": "Probability as area",
+          "latex": "P(a \\le X \\le b) = \\int_a^b f(x)\\,dx, \\qquad P(X = a) = 0",
+          "explanation": "IN the booklet. Because points carry no probability, $\\le$ and $<$ give identical answers for continuous variables."
+        },
+        {
+          "title": "The two pdf conditions",
+          "latex": "f(x) \\ge 0 \\;\\text{ for all } x, \\qquad \\int_{-\\infty}^{\\infty} f(x)\\,dx = 1",
+          "explanation": "NOT in the booklet as a boxed formula but assumed everywhere. Total area 1 is the equation that determines an unknown constant."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-414a-we1",
+          "statement": "The discrete random variable $X$ has the distribution below.  \n$P(X = 1) = 0.1$, $P(X = 2) = 0.3$, $P(X = 3) = 0.4$, $P(X = 4) = 0.2$.  \n**(a)** Find $\\mathrm{E}(X)$. **[2]**  \n**(b)** Find $\\mathrm{Var}(X)$ and the standard deviation of $X$. **[4]**",
+          "solution": "**(a)** *(M1)* $$\\mathrm{E}(X) = 1(0.1) + 2(0.3) + 3(0.4) + 4(0.2) = 0.1 + 0.6 + 1.2 + 0.8 = 2.7. \\;(A1)$$  \n**(b)** Square the VALUES, keep the same weights *(M1)*:  \n$$\\mathrm{E}(X^2) = 1(0.1) + 4(0.3) + 9(0.4) + 16(0.2) = 0.1 + 1.2 + 3.6 + 3.2 = 8.1. \\;(A1)$$  \n$$\\mathrm{Var}(X) = 8.1 - 2.7^2 = 8.1 - 7.29 = 0.81 \\;(A1)$$  \n$$\\sigma = \\sqrt{0.81} = 0.9. \\;(A1)$$  \n**Narrative:** the probabilities sum to 1 ✓ — always check before starting. A standard deviation of $0.9$ on values spanning $1$ to $4$ is plausible; a value like $8.1$ would immediately signal that the subtraction was skipped.",
+          "check": [
+            "Eq(Rational(1,10) + Rational(3,10) + Rational(4,10) + Rational(2,10), 1)",
+            "Eq(1*Rational(1,10) + 2*Rational(3,10) + 3*Rational(4,10) + 4*Rational(2,10), Rational(27,10))",
+            "Eq(1*Rational(1,10) + 4*Rational(3,10) + 9*Rational(4,10) + 16*Rational(2,10), Rational(81,10))",
+            "Eq(Rational(81,10) - Rational(27,10)**2, Rational(81,100))",
+            "Eq(sqrt(Rational(81,100)), Rational(9,10))"
+          ]
+        },
+        {
+          "id": "ibhl-414a-we2",
+          "statement": "The continuous random variable $X$ has probability density function  \n$$f(x) = \\begin{cases} kx(4 - x), & 0 \\le x \\le 4 \\\\ 0, & \\text{otherwise.} \\end{cases}$$  \n**(a)** Show that $k = \\dfrac{3}{32}$. **[4]**  \n**(b)** Find $P(1 \\le X \\le 3)$. **[4]**",
+          "solution": "**(a)** Total area must be 1 *(M1)*:  \n$$\\int_0^4 kx(4 - x)\\,dx = k\\int_0^4 (4x - x^2)\\,dx = k\\left[2x^2 - \\frac{x^3}{3}\\right]_0^4 \\;(A1)$$  \n$$= k\\left(32 - \\frac{64}{3}\\right) = k \\cdot \\frac{32}{3} \\;(A1)$$  \nSetting this to 1 gives $k = \\frac{3}{32}$ *(AG)*.  \n**(b)** *(M1)* $$P(1 \\le X \\le 3) = \\frac{3}{32}\\left[2x^2 - \\frac{x^3}{3}\\right]_1^3 = \\frac{3}{32}\\left[(18 - 9) - \\left(2 - \\tfrac{1}{3}\\right)\\right] \\;(A1)$$  \n$$= \\frac{3}{32}\\left(9 - \\frac{5}{3}\\right) = \\frac{3}{32} \\cdot \\frac{22}{3} \\;(A1) = \\frac{22}{32} = \\frac{11}{16}. \\;(A1)$$  \n**Narrative:** $\\frac{11}{16} \\approx 0.69$, and the interval $[1, 3]$ covers the middle half of the domain where the parabola is tallest — so capturing well over half the area is exactly right. A probability above 1 would mean $k$ was inverted.",
+          "check": [
+            "Eq(integrate(x*(4 - x), (x, 0, 4)), Rational(32,3))",
+            "Eq(1/Rational(32,3), Rational(3,32))",
+            "Eq(Rational(3,32)*integrate(x*(4 - x), (x, 0, 4)), 1)",
+            "Eq(Rational(3,32)*integrate(x*(4 - x), (x, 1, 3)), Rational(11,16))",
+            "Rational(11,16) < 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $\\mathrm{Var}(X)$ as $\\mathrm{E}(X^2)$ without subtracting $\\mu^2$.",
+          "correction": "$\\mathrm{Var}(X) = \\mathrm{E}(X^2) - \\mu^2$. Skipping the subtraction inflates the answer enormously — sanity-check the standard deviation against the spread of the values.",
+          "authored": true
+        },
+        {
+          "text": "Squaring the probabilities instead of the values when finding $\\mathrm{E}(X^2)$.",
+          "correction": "$\\mathrm{E}(X^2) = \\sum x^2 P(X = x)$ — the VALUES are squared, the weights are untouched. Squared probabilities would no longer sum to 1.",
+          "authored": true
+        },
+        {
+          "text": "Objecting that $f(x) = 1.5$ is impossible because probabilities cannot exceed 1.",
+          "correction": "$f$ is a DENSITY, not a probability. Only the area is bounded by 1; on a short interval the curve must be tall to enclose it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-414a-t1",
+          "statement": "The discrete random variable $X$ has $P(X = x) = \\dfrac{x}{10}$ for $x = 1, 2, 3, 4$.  \n**(a)** Verify this is a valid probability distribution. **[2]**  \n**(b)** Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[5]**",
+          "solution": "**(a)** Each probability is positive and $\\frac{1 + 2 + 3 + 4}{10} = \\frac{10}{10} = 1$ ✓ *(M1 A1)*.  \n**(b)** *(M1)* $$\\mathrm{E}(X) = \\frac{1(1) + 2(2) + 3(3) + 4(4)}{10} = \\frac{1 + 4 + 9 + 16}{10} = \\frac{30}{10} = 3. \\;(A1)$$  \n$$\\mathrm{E}(X^2) = \\frac{1(1) + 4(2) + 9(3) + 16(4)}{10} = \\frac{1 + 8 + 27 + 64}{10} = 10 \\;(M1\\,A1)$$  \n$$\\mathrm{Var}(X) = 10 - 3^2 = 1. \\;(A1)$$  \nA mean of $3$ on values $1$ to $4$ reflects the distribution leaning towards the larger values — which is exactly what $P(X = x) \\propto x$ does.",
+          "check": [
+            "Eq(Rational(1,10) + Rational(2,10) + Rational(3,10) + Rational(4,10), 1)",
+            "Eq(1*Rational(1,10) + 2*Rational(2,10) + 3*Rational(3,10) + 4*Rational(4,10), 3)",
+            "Eq(1*Rational(1,10) + 4*Rational(2,10) + 9*Rational(3,10) + 16*Rational(4,10), 10)",
+            "Eq(10 - 3**2, 1)"
+          ]
+        },
+        {
+          "id": "ibhl-414a-t2",
+          "statement": "The continuous random variable $X$ has probability density function $f(x) = \\dfrac{c}{x^2}$ for $1 \\le x \\le 4$, and zero otherwise.  \n**(a)** Find the exact value of $c$. **[3]**  \n**(b)** Find $P(X > 2)$. **[3]**",
+          "solution": "**(a)** *(M1)* $$\\int_1^4 \\frac{c}{x^2}\\,dx = c\\left[-\\frac{1}{x}\\right]_1^4 = c\\left(-\\tfrac{1}{4} + 1\\right) = \\frac{3c}{4} \\;(A1)$$  \nSetting this to 1 gives $c = \\frac{4}{3}$ *(A1)*.  \n**(b)** *(M1)* $$P(X > 2) = \\frac{4}{3}\\left[-\\frac{1}{x}\\right]_2^4 = \\frac{4}{3}\\left(-\\tfrac{1}{4} + \\tfrac{1}{2}\\right) = \\frac{4}{3} \\cdot \\frac{1}{4} \\;(A1) = \\frac{1}{3}. \\;(A1)$$  \nThe density falls off as $x$ grows, so the upper two-thirds of the domain holds only a third of the probability — the shape of $f$ predicted the imbalance before any integration.",
+          "check": [
+            "Eq(integrate(1/x**2, (x, 1, 4)), Rational(3,4))",
+            "Eq(1/Rational(3,4), Rational(4,3))",
+            "Eq(Rational(4,3)*integrate(1/x**2, (x, 1, 4)), 1)",
+            "Eq(Rational(4,3)*integrate(1/x**2, (x, 2, 4)), Rational(1,3))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 4.14 · Papers 1 & 2",
+            "title": "Spread, and then a different kind of variable",
+            "body": "Two things arrive together in this code. First, VARIANCE for a discrete variable — the average squared distance from the mean, computed as $\\mathrm{E}(X^2) - \\mu^2$. Second, a whole new species: the CONTINUOUS random variable, where probability is no longer attached to individual values but spread as area under a curve."
+          },
+          {
+            "kind": "distributionBars",
+            "eyebrow": "Discrete first",
+            "title": "Bars carry the probability",
+            "teach": "Each bar's height IS a probability, and they total exactly 1. The mean is the balance point; the variance measures how far the bars typically sit from it. Notice the values are isolated — there is nothing between $x = 2$ and $x = 3$, which is precisely what continuity will change.",
+            "config": {
+              "values": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "probs": [
+                0.1,
+                0.3,
+                0.4,
+                0.2
+              ],
+              "pLabels": [
+                "0.1",
+                "0.3",
+                "0.4",
+                "0.2"
+              ],
+              "xLabel": "x",
+              "showMean": true,
+              "showSd": true
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Which subtraction?",
+            "prompt": "If $\\mathrm{E}(X) = 2.7$ and $\\mathrm{E}(X^2) = 8.1$, then $\\mathrm{Var}(X)$ is:",
+            "options": [
+              "$0.81$",
+              "$8.1$",
+              "$5.4$",
+              "$65.61$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\mathrm{Var}(X) = 8.1 - 2.7^2 = 8.1 - 7.29 = 0.81$. Reporting $8.1$ means the subtraction was skipped; $5.4$ subtracts the mean instead of its square; $65.61$ is $8.1^2$, squaring the wrong quantity.",
+            "check": [
+              "Eq(Rational(81,10) - Rational(27,10)**2, Rational(81,100))",
+              "Eq(Rational(27,10)**2, Rational(729,100))",
+              "Ne(Rational(81,10) - Rational(27,10), Rational(81,100))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Mean, variance, standard deviation",
+            "problemId": "ibhl-414a-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Verify, then measure",
+            "problemId": "ibhl-414a-t1"
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Now continuous",
+            "title": "Probability becomes area",
+            "teach": "Slide the interval and watch the shaded area change — that area IS the probability that $X$ lands inside. Shrink the interval to a single point and the area vanishes, which is why $P(X = a) = 0$ for a continuous variable. The whole region under the curve must have area exactly 1.",
+            "config": {
+              "mode": "accumulate"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Density vs probability",
+            "title": "Can f exceed 1?",
+            "prompt": "For a probability density function $f$, which statement is TRUE?",
+            "options": [
+              "$f(x)$ may exceed 1, but $\\int f(x)\\,dx$ over the whole domain is 1",
+              "$f(x) \\le 1$ for every $x$",
+              "$f(x)$ is the probability that $X$ equals $x$",
+              "$f(x)$ may be negative on part of the domain"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only the AREA is capped at 1. On $[0, 0.5]$ a valid pdf must average a height of $2$ to enclose unit area. And $f$ can never be negative — negative area would mean negative probability.",
+            "check": [
+              "Eq(integrate(2, (x, 0, Rational(1,2))), 1)",
+              "2 > 1",
+              "Eq(Rational(3,32)*integrate(x*(4 - x), (x, 0, 4)), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Find k, then a probability",
+            "problemId": "ibhl-414a-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Normalise a decaying density",
+            "problemId": "ibhl-414a-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 4.14 (first half) in four lines",
+            "points": [
+              "$\\mathrm{Var}(X) = \\mathrm{E}(X^2) - \\mu^2$; square the VALUES, then subtract.",
+              "Continuous: $P(a \\le X \\le b) = \\int_a^b f$, so probability is area.",
+              "A pdf needs $f \\ge 0$ and total area exactly 1 — that equation finds $k$.",
+              "$P(X = a) = 0$, and $f$ itself may exceed 1: density is not probability."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mode-median-mean-and-variance-by-integration",
+      "title": "Mode, Median, Mean & Variance by Integration",
+      "concreteComparison": "Three different questions about the same crowd: where is it densest (mode), where would you stand to have half the people on each side (median), and where is the balance point if everyone weighed the same (mean)? For a symmetric crowd all three coincide. For a lopsided one they separate — and their order tells you which way it leans.",
+      "objective": "Find the mode, median, mean and variance of a continuous random variable from its probability density function, using differentiation for the mode and integration for the rest.",
+      "concept": [
+        "**Syllabus card — AHL 4.14 (second half).** Mode and median of continuous random variables; mean, variance and standard deviation of both discrete and continuous random variables. Papers 1 and 2. Weight: 6-10 marks, and frequently a full Section B question when combined with the cdf.",
+        "**Mode — where the density peaks.** The mode maximises $f$. On an interior maximum solve $f'(x) = 0$ and confirm it is a maximum; but check the ENDPOINTS too, because a density that is monotonic on its domain has its mode at one end and $f'(x) = 0$ has no solution at all. That endpoint case appears regularly and catches candidates who differentiate on autopilot.",
+        "**Median — where the area splits.** The median $m$ satisfies $$\\int_{-\\infty}^{m} f(x)\\,dx = \\frac{1}{2},$$ i.e. half the area lies to its left. Integrate from the domain's lower limit up to $m$, set the result to $\\frac{1}{2}$, and solve for $m$. The same method with $\\frac{1}{4}$ and $\\frac{3}{4}$ produces the quartiles.",
+        "**Mean and variance — the same formulas with integrals.** $$\\mu = \\mathrm{E}(X) = \\int_{-\\infty}^{\\infty} x f(x)\\,dx, \\qquad \\mathrm{E}(X^2) = \\int_{-\\infty}^{\\infty} x^2 f(x)\\,dx,$$ $$\\mathrm{Var}(X) = \\mathrm{E}(X^2) - \\mu^2.$$ All in the booklet. The discrete $\\sum x\\,P(X = x)$ has become $\\int x f(x)\\,dx$ — sums over isolated values turn into integrals over a continuum, and the variance formula does not change at all.",
+        "**Symmetry is a shortcut worth taking.** If $f$ is symmetric about $x = c$ on its domain, then mean $=$ median $=$ $c$ immediately, with no integration. $f(x) = \\frac{3}{32}x(4 - x)$ on $[0, 4]$ is a parabola symmetric about $x = 2$, so all three measures equal $2$ — a fact worth spotting BEFORE spending four minutes on $\\int x f(x)\\,dx$. Say so explicitly; markschemes accept the symmetry argument."
+      ],
+      "keyIdea": "Mode maximises $f$ (check endpoints too); median splits the area at $\\frac{1}{2}$; mean is $\\int x f(x)\\,dx$; variance is $\\int x^2 f(x)\\,dx - \\mu^2$. Symmetric density $\\Rightarrow$ mean $=$ median $=$ centre, free of charge.",
+      "facts": [
+        {
+          "title": "Median of a continuous variable",
+          "latex": "\\int_{-\\infty}^{m} f(x)\\,dx = \\frac{1}{2}",
+          "explanation": "IN the booklet. Same equation with $\\frac{1}{4}$ or $\\frac{3}{4}$ gives the lower and upper quartiles."
+        },
+        {
+          "title": "Mean and variance by integration",
+          "latex": "\\mu = \\int x f(x)\\,dx, \\qquad \\mathrm{Var}(X) = \\int x^2 f(x)\\,dx - \\mu^2",
+          "explanation": "IN the booklet. Identical in structure to the discrete formulas, with integrals replacing sums."
+        },
+        {
+          "title": "Mode",
+          "latex": "\\text{mode} = \\arg\\max f(x) \\;\\text{ on the domain}",
+          "explanation": "NOT a booklet formula. Solve $f'(x) = 0$ for interior peaks, but ALWAYS compare the endpoint values — a monotonic density peaks at an end."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-414b-we1",
+          "statement": "The continuous random variable $X$ has probability density function $f(x) = \\dfrac{3}{32}x(4 - x)$ for $0 \\le x \\le 4$, and zero otherwise.  \n**(a)** Find the mode of $X$. **[3]**  \n**(b)** Write down the median of $X$, justifying your answer. **[2]**  \n**(c)** Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[6]**",
+          "solution": "**(a)** Differentiate the density *(M1)*: $f'(x) = \\frac{3}{32}(4 - 2x)$, which is zero at $x = 2$ *(A1)*. Since $f'$ changes from positive to negative there, it is a maximum, so the mode is $2$ *(A1)*.  \n**(b)** $f$ is a downward parabola with roots at $0$ and $4$, hence symmetric about $x = 2$ *(R1)*. Symmetry splits the area equally, so the median is also $2$ *(A1)*.  \n**(c)** *(M1)* $$\\mathrm{E}(X) = \\frac{3}{32}\\int_0^4 x^2(4 - x)\\,dx = \\frac{3}{32}\\left[\\frac{4x^3}{3} - \\frac{x^4}{4}\\right]_0^4 = \\frac{3}{32}\\left(\\frac{256}{3} - 64\\right) \\;(A1)$$  \n$$= \\frac{3}{32} \\cdot \\frac{64}{3} = 2 \\;(A1)$$  \n— agreeing with the symmetry argument, as it must.  \n$$\\mathrm{E}(X^2) = \\frac{3}{32}\\int_0^4 x^3(4 - x)\\,dx = \\frac{3}{32}\\left(256 - \\frac{1024}{5}\\right) = \\frac{24}{5} \\;(M1\\,A1)$$  \n$$\\mathrm{Var}(X) = \\frac{24}{5} - 4 = \\frac{4}{5} = 0.8. \\;(A1)$$  \n**Narrative:** mode, median and mean all equal $2$ — the signature of a symmetric distribution. A standard deviation of $\\sqrt{0.8} \\approx 0.89$ on a domain of width $4$ is sensible: the density is concentrated in the middle.",
+          "check": [
+            "Eq(diff(Rational(3,32)*x*(4 - x), x).subs(x, 2), 0)",
+            "Eq(Rational(3,32)*integrate(x*(4-x), (x, 0, 2)), Rational(1,2))",
+            "Eq(Rational(3,32)*integrate(x**2*(4-x), (x, 0, 4)), 2)",
+            "Eq(Rational(3,32)*integrate(x**3*(4-x), (x, 0, 4)), Rational(24,5))",
+            "Eq(Rational(24,5) - 2**2, Rational(4,5))",
+            "Eq(Rational(3,32)*x*(4-x) - (Rational(3,32)*(4-x)*x).subs(x, 4-x), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-414b-we2",
+          "statement": "The continuous random variable $X$ has probability density function $f(x) = \\dfrac{3}{8}x^2$ for $0 \\le x \\le 2$, and zero otherwise.  \n**(a)** State the mode of $X$, with a reason. **[2]**  \n**(b)** Find the exact median of $X$. **[4]**  \n**(c)** Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[5]**  \n**(d)** Comment on the relative positions of the mode, median and mean. **[2]**",
+          "solution": "**(a)** $f'(x) = \\frac{3}{4}x > 0$ throughout $(0, 2]$, so $f$ is strictly increasing and its greatest value is at the right endpoint *(R1)*. The mode is $2$ *(A1)* — there is no interior stationary point to find.  \n**(b)** *(M1)* $$\\int_0^m \\frac{3}{8}x^2\\,dx = \\left[\\frac{x^3}{8}\\right]_0^m = \\frac{m^3}{8} = \\frac{1}{2} \\;(A1)$$  \n$$m^3 = 4 \\;\\Longrightarrow\\; m = \\sqrt[3]{4} \\approx 1.587. \\;(M1\\,A1)$$  \n**(c)** *(M1)* $$\\mathrm{E}(X) = \\frac{3}{8}\\int_0^2 x^3\\,dx = \\frac{3}{8} \\cdot 4 = \\frac{3}{2} \\;(A1)$$  \n$$\\mathrm{E}(X^2) = \\frac{3}{8}\\int_0^2 x^4\\,dx = \\frac{3}{8} \\cdot \\frac{32}{5} = \\frac{12}{5} \\;(A1)$$  \n$$\\mathrm{Var}(X) = \\frac{12}{5} - \\frac{9}{4} = \\frac{48 - 45}{20} = \\frac{3}{20} = 0.15. \\;(M1\\,A1)$$  \n**(d)** mode $= 2 >$ median $\\approx 1.587 >$ mean $= 1.5$ *(A1)*. The long tail runs to the LEFT, so the distribution is negatively skewed and the mean is dragged furthest that way *(R1)*.  \n**Narrative:** contrast with the previous example, where symmetry made all three coincide. Here the ordering itself is the answer to (d) — the mean is always the measure most sensitive to a tail.",
+          "check": [
+            "Eq(integrate(Rational(3,8)*x**2, (x, 0, 2)), 1)",
+            "Eq(diff(Rational(3,8)*x**2, x).subs(x, 1), Rational(3,4))",
+            "Eq((Rational(4,1)**Rational(1,3))**3, 4)",
+            "Eq(integrate(Rational(3,8)*x**2, (x, 0, Rational(4,1)**Rational(1,3))), Rational(1,2))",
+            "Eq(integrate(x*Rational(3,8)*x**2, (x, 0, 2)), Rational(3,2))",
+            "Eq(integrate(x**2*Rational(3,8)*x**2, (x, 0, 2)), Rational(12,5))",
+            "Eq(Rational(12,5) - Rational(3,2)**2, Rational(3,20))",
+            "Rational(3,2) < Rational(4,1)**Rational(1,3)",
+            "Rational(4,1)**Rational(1,3) < 2"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Solving $f'(x) = 0$ for the mode and concluding 'no mode' when there is no solution.",
+          "correction": "A monotonic density attains its maximum at an ENDPOINT. Compare $f$ at both ends of the domain before declaring anything.",
+          "authored": true
+        },
+        {
+          "text": "Setting $f(m) = \\frac{1}{2}$ to find the median.",
+          "correction": "The median splits AREA, not height: $\\int_{\\text{lower}}^{m} f = \\frac{1}{2}$. Integrate, then solve.",
+          "authored": true
+        },
+        {
+          "text": "Computing $\\mathrm{E}(X^2)$ as $\\left[\\mathrm{E}(X)\\right]^2$.",
+          "correction": "$\\mathrm{E}(X^2) = \\int x^2 f(x)\\,dx$ — integrate $x^2$ against the density. If they were equal, every variance would be zero.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-414b-t1",
+          "statement": "The continuous random variable $X$ has $f(x) = \\dfrac{1}{8}x$ for $0 \\le x \\le 4$, and zero otherwise.  \n**(a)** Find $\\mathrm{E}(X)$. **[3]**  \n**(b)** Find the exact median of $X$. **[4]**",
+          "solution": "First confirm it is a valid density: $\\int_0^4 \\frac{x}{8}\\,dx = \\frac{16}{16} = 1$ ✓.  \n**(a)** *(M1)* $$\\mathrm{E}(X) = \\int_0^4 \\frac{x^2}{8}\\,dx = \\left[\\frac{x^3}{24}\\right]_0^4 = \\frac{64}{24} \\;(A1) = \\frac{8}{3}. \\;(A1)$$  \n**(b)** *(M1)* $$\\int_0^m \\frac{x}{8}\\,dx = \\frac{m^2}{16} = \\frac{1}{2} \\;(A1) \\;\\Longrightarrow\\; m^2 = 8 \\;(A1)$$  \n$$m = 2\\sqrt2 \\approx 2.828. \\;(A1)$$  \nThe median $2\\sqrt2 \\approx 2.83$ sits BELOW the mean $\\frac{8}{3} \\approx 2.67$? No — check: $2.83 > 2.67$, so the median is above the mean, consistent with the left-leaning tail of an increasing density. Only the positive root is admissible, since the domain starts at $0$.",
+          "check": [
+            "Eq(integrate(Rational(1,8)*x, (x, 0, 4)), 1)",
+            "Eq(integrate(x*Rational(1,8)*x, (x, 0, 4)), Rational(8,3))",
+            "Eq(integrate(Rational(1,8)*x, (x, 0, 2*sqrt(2))), Rational(1,2))",
+            "Eq((2*sqrt(2))**2, 8)",
+            "2*sqrt(2) > Rational(8,3)"
+          ]
+        },
+        {
+          "id": "ibhl-414b-t2",
+          "statement": "The continuous random variable $X$ has $f(x) = \\dfrac{1}{2}\\sin x$ for $0 \\le x \\le \\pi$, and zero otherwise.  \n**(a)** Verify that $f$ is a valid probability density function. **[2]**  \n**(b)** State the mode and the median of $X$. **[2]**  \n**(c)** Find $\\mathrm{E}(X)$. **[4]**",
+          "solution": "**(a)** $\\sin x \\ge 0$ on $[0, \\pi]$, so $f \\ge 0$ *(R1)*, and  \n$$\\int_0^{\\pi} \\tfrac{1}{2}\\sin x\\,dx = \\tfrac{1}{2}\\left[-\\cos x\\right]_0^{\\pi} = \\tfrac{1}{2}(1 + 1) = 1. \\;✓\\;(A1)$$  \n**(b)** $\\sin x$ peaks at $x = \\frac{\\pi}{2}$, so that is the mode *(A1)*. The curve is symmetric about $x = \\frac{\\pi}{2}$, so the median is $\\frac{\\pi}{2}$ as well *(A1)*.  \n**(c)** Integration by parts *(M1)*:  \n$$\\mathrm{E}(X) = \\tfrac{1}{2}\\int_0^{\\pi} x\\sin x\\,dx = \\tfrac{1}{2}\\left[\\sin x - x\\cos x\\right]_0^{\\pi} \\;(A1)$$  \n$$= \\tfrac{1}{2}\\left(0 - \\pi(-1)\\right) - 0 = \\frac{\\pi}{2}. \\;(A1\\,A1)$$  \nMode, median and mean all equal $\\frac{\\pi}{2}$ — symmetry again. Quoting symmetry in (b) is legitimate and saves an integration.",
+          "check": [
+            "Eq(integrate(Rational(1,2)*sin(x), (x, 0, pi)), 1)",
+            "Eq(integrate(Rational(1,2)*sin(x), (x, 0, pi/2)), Rational(1,2))",
+            "Eq(integrate(x*Rational(1,2)*sin(x), (x, 0, pi)), pi/2)",
+            "Eq(diff(sin(x), x).subs(x, pi/2), 0)",
+            "Eq(sin(pi/2), 1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 4.14 · Papers 1 & 2",
+            "title": "Three centres, three questions",
+            "body": "The MODE asks where the density is greatest — a calculus question about $f$ itself. The MEDIAN asks where the area splits in half — an integral set equal to $\\frac{1}{2}$. The MEAN asks where the distribution balances — the integral $\\int x f(x)\\,dx$. Different questions, different techniques, and for an asymmetric density three different answers."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "The median",
+            "title": "Split the area in half",
+            "teach": "Drag the boundary until the shaded region holds exactly half the total area — that position is the median. Note it is decided by AREA, not by the height of the curve: where $f$ is tall, a little width suffices, so the median is pulled towards the dense region.",
+            "config": {
+              "mode": "accumulate"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "The median equation",
+            "prompt": "For a continuous random variable on $[0, 4]$, the median $m$ satisfies:",
+            "options": [
+              "$\\displaystyle\\int_0^m f(x)\\,dx = \\dfrac{1}{2}$",
+              "$f(m) = \\dfrac{1}{2}$",
+              "$m = \\dfrac{0 + 4}{2}$",
+              "$\\displaystyle\\int_0^m x f(x)\\,dx = \\dfrac{1}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The median splits the AREA. Setting $f(m) = \\frac{1}{2}$ confuses the curve's height with probability; the midpoint of the domain is only the median if the density happens to be symmetric; and the last option is a partial mean, not a median.",
+            "check": [
+              "Eq(integrate(Rational(3,8)*x**2, (x, 0, Rational(4,1)**Rational(1,3))), Rational(1,2))",
+              "Ne(Rational(3,8)*(Rational(4,1)**Rational(1,3))**2, Rational(1,2))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Symmetry does half the work",
+            "problemId": "ibhl-414b-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Mean and median of a linear density",
+            "problemId": "ibhl-414b-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The mode",
+            "title": "Check the endpoints",
+            "body": "For an interior peak, $f'(x) = 0$ locates the mode. But a density like $f(x) = \\frac{3}{8}x^2$ on $[0, 2]$ climbs the whole way — $f'(x) = 0$ only at $x = 0$, which is the MINIMUM. The mode is at the right endpoint, $x = 2$. Always compare the endpoint values before committing; the stationary point may not be the answer, or may not exist."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Skew",
+            "title": "Read the ordering",
+            "prompt": "For a density with mode $2$, median $\\approx 1.59$ and mean $1.5$, the distribution is:",
+            "options": [
+              "negatively skewed — the tail runs to the left",
+              "positively skewed — the tail runs to the right",
+              "symmetric",
+              "not a valid density"
+            ],
+            "correctIndex": 0,
+            "explanation": "mean $<$ median $<$ mode signals a left tail: the mean is dragged furthest towards it because it is the measure most sensitive to extreme values. Positive skew reverses the ordering entirely.",
+            "check": [
+              "Rational(3,2) < Rational(4,1)**Rational(1,3)",
+              "Rational(4,1)**Rational(1,3) < 2",
+              "Eq(integrate(Rational(3,8)*x**2, (x, 0, 2)), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "An asymmetric density, all four measures",
+            "problemId": "ibhl-414b-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "A trigonometric density",
+            "problemId": "ibhl-414b-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 4.14 (second half) in five lines",
+            "points": [
+              "Mode: maximise $f$ — solve $f'(x) = 0$, but CHECK THE ENDPOINTS.",
+              "Median: $\\int_{\\text{lower}}^{m} f = \\frac{1}{2}$; quartiles use $\\frac{1}{4}$ and $\\frac{3}{4}$.",
+              "Mean: $\\mu = \\int x f(x)\\,dx$. Variance: $\\int x^2 f(x)\\,dx - \\mu^2$.",
+              "Symmetric density $\\Rightarrow$ mean $=$ median $=$ centre, no integration needed.",
+              "mean $<$ median $<$ mode means negative skew; reverse for positive."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cumulative-distribution-functions",
+      "title": "Cumulative Distribution Functions",
+      "concreteComparison": "A speedometer tells you your speed right now; the odometer tells you how far you have come in total. The density $f$ is the speedometer — how concentrated the probability is at a point. The cumulative function $F$ is the odometer — how much probability has accumulated so far. One differentiates into the other.",
+      "objective": "Construct the cumulative distribution function of a continuous random variable from its density and recover the density from $F$, and use $F$ to compute probabilities, medians and quartiles directly.",
+      "concept": [
+        "**Syllabus card — AHL 4.14 (final part).** The cumulative distribution function for a continuous random variable. Papers 1 and 2. Weight: 5-9 marks, and it frequently carries the later parts of a Section B question whose earlier parts built the density.",
+        "**Definition and the two-way link.** $$F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t)\\,dt, \\qquad f(x) = F'(x).$$ Both directions are examinable and both are quick: integrate to go up, differentiate to come back down. Note the dummy variable $t$ inside the integral — using $x$ for both the limit and the variable of integration is sloppy and occasionally costs a mark.",
+        "**What $F$ must look like.** $F$ is non-decreasing (probability only accumulates), runs from $0$ to $1$, and is written piecewise: zero below the domain, the integral expression inside it, and $1$ above. Quoting all three pieces is part of the answer — 'find the cumulative distribution function' means the complete piecewise definition, not just the middle line.",
+        "**Why $F$ is worth building.** Once you have it, probabilities need no further integration: $$P(a \\le X \\le b) = F(b) - F(a), \\qquad P(X > a) = 1 - F(a).$$ A question asking for three separate probabilities is answered by one construction and three substitutions — much faster, and far less error-prone, than three definite integrals.",
+        "**Median and quartiles, directly.** The median solves $F(m) = 0.5$; the lower and upper quartiles solve $F(q) = 0.25$ and $F(q) = 0.75$. This is the same condition as before, but with the integration already done — which is exactly why 'find $F$, hence find the median' is such a common two-part structure. It also means a GDC can finish the job on Paper 2 when the resulting equation is not solvable by hand."
+      ],
+      "keyIdea": "$F(x) = P(X \\le x) = \\int_{-\\infty}^x f$, and $f = F'$. With $F$ in hand, $P(a \\le X \\le b) = F(b) - F(a)$, $P(X > a) = 1 - F(a)$, and the median solves $F(m) = 0.5$ — no more integration.",
+      "facts": [
+        {
+          "title": "The cumulative distribution function",
+          "latex": "F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t)\\,dt",
+          "explanation": "IN the booklet. Non-decreasing, from $0$ to $1$; always present it piecewise across the whole real line."
+        },
+        {
+          "title": "Recovering the density",
+          "latex": "f(x) = F'(x)",
+          "explanation": "NOT boxed in the booklet — it is the Fundamental Theorem of Calculus applied to the definition. Examined in both directions."
+        },
+        {
+          "title": "Probabilities from F",
+          "latex": "P(a \\le X \\le b) = F(b) - F(a), \\qquad P(X > a) = 1 - F(a)",
+          "explanation": "One construction answers every probability question about the variable — no repeated integration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-414c-we1",
+          "statement": "The continuous random variable $X$ has probability density function $f(x) = \\dfrac{3}{8}x^2$ for $0 \\le x \\le 2$, and zero otherwise.  \n**(a)** Find the cumulative distribution function $F(x)$, defined for all real $x$. **[4]**  \n**(b)** Hence find $P(0.5 < X < 1.5)$. **[3]**  \n**(c)** Find the exact lower quartile of $X$. **[3]**",
+          "solution": "**(a)** For $0 \\le x \\le 2$ *(M1)*:  \n$$F(x) = \\int_0^x \\frac{3}{8}t^2\\,dt = \\left[\\frac{t^3}{8}\\right]_0^x = \\frac{x^3}{8}. \\;(A1)$$  \nComplete the piecewise definition *(A1 A1)*:  \n$$F(x) = \\begin{cases} 0, & x < 0 \\\\ \\dfrac{x^3}{8}, & 0 \\le x \\le 2 \\\\ 1, & x > 2. \\end{cases}$$  \nCheck $F(2) = \\frac{8}{8} = 1$ ✓ — the pieces join without a jump.  \n**(b)** *(M1)* $$P(0.5 < X < 1.5) = F(1.5) - F(0.5) = \\frac{3.375}{8} - \\frac{0.125}{8} \\;(A1) = \\frac{3.25}{8} = \\frac{13}{32}. \\;(A1)$$  \n**(c)** The lower quartile solves $F(q) = \\frac{1}{4}$ *(M1)*:  \n$$\\frac{q^3}{8} = \\frac{1}{4} \\;\\Longrightarrow\\; q^3 = 2 \\;\\Longrightarrow\\; q = \\sqrt[3]{2} \\approx 1.26. \\;(A1\\,A1)$$  \n**Narrative:** part (b) took two substitutions where direct integration would have taken a full definite integral — that saving compounds when a question asks for several probabilities. And the quartile sits above the midpoint of $[0, 2]$'s first half because the density is climbing.",
+          "check": [
+            "Eq(integrate(Rational(3,8)*x**2, (x, 0, 2)), 1)",
+            "Eq(integrate(Rational(3,8)*x**2, (x, 0, Rational(3,2))) - integrate(Rational(3,8)*x**2, (x, 0, Rational(1,2))), Rational(13,32))",
+            "Eq(diff(x**3/8, x), Rational(3,8)*x**2)",
+            "Eq((Rational(2,1)**Rational(1,3))**3, 2)",
+            "Eq(integrate(Rational(3,8)*x**2, (x, 0, Rational(2,1)**Rational(1,3))), Rational(1,4))"
+          ]
+        },
+        {
+          "id": "ibhl-414c-we2",
+          "statement": "The continuous random variable $X$ has cumulative distribution function  \n$$F(x) = \\begin{cases} 0, & x < 1 \\\\ \\dfrac{x^2 - 1}{8}, & 1 \\le x \\le 3 \\\\ 1, & x > 3. \\end{cases}$$  \n**(a)** Find the probability density function of $X$. **[3]**  \n**(b)** Find $P(X \\le 2)$. **[2]**  \n**(c)** Find the exact median of $X$. **[3]**  \n**(d)** Find $\\mathrm{E}(X)$. **[4]**",
+          "solution": "First confirm the definition is consistent: $F(3) = \\frac{9 - 1}{8} = 1$ ✓ and $F(1) = 0$ ✓.  \n**(a)** Differentiate on the middle interval *(M1)*:  \n$$f(x) = F'(x) = \\frac{2x}{8} = \\frac{x}{4}, \\qquad 1 \\le x \\le 3 \\;(A1)$$  \nand $f(x) = 0$ elsewhere *(A1)*. Check: $\\int_1^3 \\frac{x}{4}\\,dx = \\frac{9 - 1}{8} = 1$ ✓.  \n**(b)** Read it straight off *(M1)*: $P(X \\le 2) = F(2) = \\frac{4 - 1}{8} = \\frac{3}{8}$ *(A1)*.  \n**(c)** *(M1)* $$\\frac{m^2 - 1}{8} = \\frac{1}{2} \\;\\Longrightarrow\\; m^2 = 5 \\;(A1) \\;\\Longrightarrow\\; m = \\sqrt5 \\approx 2.24 \\;(A1)$$  \n(the negative root lies outside the domain).  \n**(d)** *(M1)* $$\\mathrm{E}(X) = \\int_1^3 x \\cdot \\frac{x}{4}\\,dx = \\left[\\frac{x^3}{12}\\right]_1^3 \\;(A1) = \\frac{27 - 1}{12} \\;(A1) = \\frac{13}{6} \\approx 2.17. \\;(A1)$$  \n**Narrative:** the median $\\sqrt5 \\approx 2.24$ exceeds the mean $\\frac{13}{6} \\approx 2.17$, consistent with the density increasing across $[1, 3]$. Note part (b) needed no calculus at all — that is the point of having $F$.",
+          "check": [
+            "Eq((3**2 - 1)/8, 1)",
+            "Eq((1**2 - 1)/8, 0)",
+            "Eq(diff((x**2 - 1)/8, x), x/4)",
+            "Eq(integrate(x/4, (x, 1, 3)), 1)",
+            "Eq((2**2 - 1)/8, Rational(3,8))",
+            "Eq((sqrt(5)**2 - 1)/8, Rational(1,2))",
+            "Eq(integrate(x*x/4, (x, 1, 3)), Rational(13,6))",
+            "sqrt(5) > Rational(13,6)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Giving only the middle expression when asked for $F(x)$.",
+          "correction": "$F$ is defined on ALL of $\\mathbb{R}$: $0$ below the domain, the integral inside, $1$ above. The outer pieces carry marks.",
+          "authored": true
+        },
+        {
+          "text": "Integrating $F$ to get $f$.",
+          "correction": "The relationship runs the other way: $f = F'$. Integrate $f$ to build $F$; DIFFERENTIATE $F$ to recover $f$.",
+          "authored": true
+        },
+        {
+          "text": "Solving $F(m) = 0.5$ and keeping a root outside the domain.",
+          "correction": "$m^2 = 5$ gives $\\pm\\sqrt5$, but the variable lives on $[1, 3]$ — discard $-\\sqrt5$ and say why.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-414c-t1",
+          "statement": "The continuous random variable $X$ has $f(x) = \\dfrac{2}{9}x$ for $0 \\le x \\le 3$, and zero otherwise.  \n**(a)** Find $F(x)$ on $0 \\le x \\le 3$. **[3]**  \n**(b)** Hence find $P(1 < X < 2)$ and the exact median. **[4]**",
+          "solution": "**(a)** *(M1)* $$F(x) = \\int_0^x \\frac{2}{9}t\\,dt = \\left[\\frac{t^2}{9}\\right]_0^x = \\frac{x^2}{9} \\;(A1)$$  \nand $F(3) = \\frac{9}{9} = 1$ ✓ *(A1)*.  \n**(b)** *(M1)* $$P(1 < X < 2) = F(2) - F(1) = \\frac{4}{9} - \\frac{1}{9} = \\frac{3}{9} = \\frac{1}{3}. \\;(A1)$$  \nMedian *(M1)*: $\\frac{m^2}{9} = \\frac{1}{2}$, so $m^2 = 4.5$ and  \n$$m = \\frac{3}{\\sqrt2} = \\frac{3\\sqrt2}{2} \\approx 2.12. \\;(A1)$$  \nThe median sits well past the domain's midpoint of $1.5$ — an increasing density pushes the half-area point to the right.",
+          "check": [
+            "Eq(integrate(Rational(2,9)*x, (x, 0, 3)), 1)",
+            "Eq(diff(x**2/9, x), Rational(2,9)*x)",
+            "Eq(Rational(4,9) - Rational(1,9), Rational(1,3))",
+            "Eq((3*sqrt(2)/2)**2/9, Rational(1,2))",
+            "3*sqrt(2)/2 > Rational(3,2)"
+          ]
+        },
+        {
+          "id": "ibhl-414c-t2",
+          "statement": "The lifetime $X$ hours of a component has cumulative distribution function $F(x) = 1 - \\mathrm{e}^{-x/4}$ for $x \\ge 0$, and $F(x) = 0$ for $x < 0$.  \n**(a)** Find the probability density function. **[2]**  \n**(b)** Find the exact median lifetime. **[3]**  \n**(c)** Find $P(X > 8)$, correct to 3 significant figures. **[3]**",
+          "solution": "**(a)** *(M1)* $$f(x) = F'(x) = \\frac{1}{4}\\mathrm{e}^{-x/4}, \\qquad x \\ge 0. \\;(A1)$$  \n**(b)** *(M1)* $$1 - \\mathrm{e}^{-m/4} = \\frac{1}{2} \\;\\Longrightarrow\\; \\mathrm{e}^{-m/4} = \\frac{1}{2} \\;(A1)$$  \nTaking logarithms: $-\\frac{m}{4} = -\\ln 2$, so  \n$$m = 4\\ln 2 \\approx 2.77 \\text{ hours}. \\;(A1)$$  \n**(c)** *(M1)* $$P(X > 8) = 1 - F(8) = \\mathrm{e}^{-2} \\;(A1) \\approx 0.135. \\;(A1)$$  \nThe median is well below the mean of $4$ hours — the hallmark of an exponential lifetime, where a long thin tail of survivors drags the mean up while most components fail early.",
+          "check": [
+            "Eq(diff(1 - exp(-x/4), x), exp(-x/4)/4)",
+            "Eq(1 - exp(-(4*log(2))/4), Rational(1,2))",
+            "Abs(4*log(2) - 2.7726) < Rational(1,1000)",
+            "Eq(1 - (1 - exp(-Rational(8,4))), exp(-2))",
+            "Abs(exp(-2) - 0.135) < Rational(1,1000)",
+            "4*log(2) < 4"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 4.14 · Papers 1 & 2",
+            "title": "Running total of probability",
+            "body": "$F(x) = P(X \\le x)$ records how much probability has accumulated by the time you reach $x$. It starts at $0$, climbs, and finishes at $1$ — never decreasing, because probability cannot be un-accumulated. And since it is built by integrating $f$, differentiating it hands $f$ straight back."
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "Accumulating",
+            "title": "From density to running total",
+            "teach": "As the right-hand boundary sweeps across, the accumulated area traces out $F$. Where $f$ is tall, $F$ climbs steeply; where $f$ is near zero, $F$ flattens. That is the Fundamental Theorem of Calculus, seen directly: the gradient of the running total IS the density.",
+            "config": {
+              "mode": "ftc"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Which way round?",
+            "prompt": "Given the cumulative distribution function $F$, the density $f$ is:",
+            "options": [
+              "$f(x) = F'(x)$",
+              "$f(x) = \\displaystyle\\int F(x)\\,dx$",
+              "$f(x) = 1 - F(x)$",
+              "$f(x) = F(x)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$F$ was built by integrating $f$, so differentiating undoes it. Check on $F(x) = \\frac{x^3}{8}$: $F'(x) = \\frac{3x^2}{8}$, which is exactly the density it came from. The option $1 - F(x)$ is $P(X > x)$, a different quantity.",
+            "check": [
+              "Eq(diff(x**3/8, x), Rational(3,8)*x**2)",
+              "Eq(diff((x**2 - 1)/8, x), x/4)",
+              "Eq(integrate(Rational(3,8)*x**2, (x, 0, 2)), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Build F, then harvest it",
+            "problemId": "ibhl-414c-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "One integration, two answers",
+            "problemId": "ibhl-414c-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Why bother",
+            "title": "One construction, every probability",
+            "body": "With $F$ in hand, $P(a \\le X \\le b) = F(b) - F(a)$ and $P(X > a) = 1 - F(a)$ — substitutions, not integrations. The median solves $F(m) = 0.5$ and the quartiles $F(q) = 0.25$ or $0.75$. A question that would otherwise need four separate definite integrals collapses into one construction and four substitutions."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Using F",
+            "title": "Above a value",
+            "prompt": "If $F(3) = 0.7$, then $P(X > 3)$ equals:",
+            "options": [
+              "$0.3$",
+              "$0.7$",
+              "$1.7$",
+              "cannot be found without $f$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$F(3) = P(X \\le 3) = 0.7$, and the two outcomes exhaust the possibilities, so $P(X > 3) = 1 - 0.7 = 0.3$. For a CONTINUOUS variable the boundary point contributes nothing, so $P(X \\ge 3)$ is also $0.3$.",
+            "check": [
+              "Eq(1 - Rational(7,10), Rational(3,10))",
+              "Eq(1 - (1 - exp(-2)), exp(-2))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Given F, recover everything",
+            "problemId": "ibhl-414c-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "An exponential lifetime",
+            "problemId": "ibhl-414c-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 4.14 (cdf) in five lines",
+            "points": [
+              "$F(x) = P(X \\le x) = \\int_{-\\infty}^{x} f(t)\\,dt$; present it piecewise across all of $\\mathbb{R}$.",
+              "$f = F'$ — differentiate to come back down.",
+              "$F$ is non-decreasing from $0$ to $1$; check the pieces join.",
+              "$P(a \\le X \\le b) = F(b) - F(a)$ and $P(X > a) = 1 - F(a)$.",
+              "Median: $F(m) = 0.5$. Quartiles: $F(q) = 0.25$ or $0.75$. Discard roots outside the domain."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ibhl-sp-p01",
+      "statement": "A factory has two machines. Machine $X$ makes $70\\%$ of the output with a $4\\%$ defect rate; machine $Y$ makes the rest with a $6\\%$ defect rate. An item is chosen at random and found to be defective. Find the probability it came from machine $Y$. **[5]**",
+      "solution": "Total probability of a defect *(M1)*:  \n$$P(D) = (0.7)(0.04) + (0.3)(0.06) = 0.028 + 0.018 = 0.046. \\;(A1\\,A1)$$  \n$$P(Y \\mid D) = \\frac{0.018}{0.046} \\;(M1) = \\frac{9}{23} \\approx 0.391. \\;(A1)$$  \nMachine $Y$ makes under a third of the output but supplies nearly $40\\%$ of the defects — its higher rate partly, but not fully, offsets its smaller share.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.13",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(Rational(7,10)*Rational(4,100) + Rational(3,10)*Rational(6,100), Rational(23,500))",
+        "Eq((Rational(3,10)*Rational(6,100))/Rational(23,500), Rational(9,23))",
+        "Eq((Rational(7,10)*Rational(4,100))/Rational(23,500), Rational(14,23))",
+        "Eq(Rational(9,23) + Rational(14,23), 1)",
+        "Abs(Rational(9,23) - 0.391) < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p02",
+      "statement": "A commuter takes one of three routes: route 1 with probability $0.40$, route 2 with probability $0.35$, route 3 with probability $0.25$. The probabilities of arriving late are $0.10$, $0.20$ and $0.05$ respectively. Given that the commuter is late, find the probability route 2 was taken. **[5]**",
+      "solution": "Sum all three branches *(M1)*:  \n$$P(L) = (0.40)(0.10) + (0.35)(0.20) + (0.25)(0.05) = 0.040 + 0.070 + 0.0125 \\;(A1)$$  \n$$= 0.1225. \\;(A1)$$  \n$$P(R_2 \\mid L) = \\frac{0.070}{0.1225} \\;(M1) = \\frac{4}{7} \\approx 0.571. \\;(A1)$$  \nRoute 2 is the most likely explanation for lateness despite being the second-most-used — its lateness rate is double route 1's.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.13",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(Rational(40,100)*Rational(10,100) + Rational(35,100)*Rational(20,100) + Rational(25,100)*Rational(5,100), Rational(49,400))",
+        "Eq((Rational(35,100)*Rational(20,100))/Rational(49,400), Rational(4,7))",
+        "Abs(Rational(4,7) - 0.571) < Rational(1,1000)",
+        "Eq(Rational(49,400), 0.1225)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p03",
+      "statement": "The discrete random variable $X$ has $P(X = 0) = 0.2$, $P(X = 1) = 0.5$ and $P(X = 2) = 0.3$. Find $\\mathrm{E}(X)$, $\\mathrm{Var}(X)$ and the standard deviation of $X$. **[5]**",
+      "solution": "*(M1)* $$\\mathrm{E}(X) = 0(0.2) + 1(0.5) + 2(0.3) = 1.1 \\;(A1)$$  \n$$\\mathrm{E}(X^2) = 0(0.2) + 1(0.5) + 4(0.3) = 1.7 \\;(A1)$$  \n$$\\mathrm{Var}(X) = 1.7 - 1.1^2 = 1.7 - 1.21 = 0.49 \\;(A1)$$  \n$$\\sigma = \\sqrt{0.49} = 0.7. \\;(A1)$$  \nThe probabilities total 1 ✓, and a standard deviation of $0.7$ across values $0$ to $2$ is comfortably plausible.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(Rational(2,10) + Rational(5,10) + Rational(3,10), 1)",
+        "Eq(0*Rational(2,10) + 1*Rational(5,10) + 2*Rational(3,10), Rational(11,10))",
+        "Eq(0*Rational(2,10) + 1*Rational(5,10) + 4*Rational(3,10), Rational(17,10))",
+        "Eq(Rational(17,10) - Rational(11,10)**2, Rational(49,100))",
+        "Eq(sqrt(Rational(49,100)), Rational(7,10))"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p04",
+      "statement": "The continuous random variable $X$ has $f(x) = k(1 - x^2)$ for $-1 \\le x \\le 1$, and zero otherwise. Find the exact value of $k$. **[4]**",
+      "solution": "Total area must be 1 *(M1)*:  \n$$\\int_{-1}^{1} (1 - x^2)\\,dx = \\left[x - \\frac{x^3}{3}\\right]_{-1}^{1} = \\left(1 - \\tfrac{1}{3}\\right) - \\left(-1 + \\tfrac{1}{3}\\right) \\;(A1)$$  \n$$= \\frac{2}{3} + \\frac{2}{3} = \\frac{4}{3} \\;(A1)$$  \n$$\\Longrightarrow\\; k = \\frac{3}{4}. \\;(A1)$$  \nThe integrand is even, so $2\\int_0^1$ gives the same answer with half the arithmetic — worth using whenever the domain is symmetric about zero.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[4 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(1 - x**2, (x, -1, 1)), Rational(4,3))",
+        "Eq(1/Rational(4,3), Rational(3,4))",
+        "Eq(Rational(3,4)*integrate(1 - x**2, (x, -1, 1)), 1)",
+        "Eq(integrate(1 - x**2, (x, -1, 1)), 2*integrate(1 - x**2, (x, 0, 1)))"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p05",
+      "statement": "The continuous random variable $X$ has $f(x) = \\dfrac{2x}{25}$ for $0 \\le x \\le 5$, and zero otherwise. Find the exact median of $X$. **[4]**",
+      "solution": "Check first that $\\int_0^5 \\frac{2x}{25}\\,dx = \\frac{25}{25} = 1$ ✓.  \nThe median splits the area *(M1)*:  \n$$\\int_0^m \\frac{2x}{25}\\,dx = \\frac{m^2}{25} = \\frac{1}{2} \\;(A1)$$  \n$$m^2 = \\frac{25}{2} \\;\\Longrightarrow\\; m = \\frac{5}{\\sqrt2} = \\frac{5\\sqrt2}{2} \\approx 3.54 \\;(M1\\,A1)$$  \ntaking only the positive root, since the domain is $[0, 5]$. The median lies above the midpoint $2.5$ because the density increases across the interval.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[4 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(Rational(2,25)*x, (x, 0, 5)), 1)",
+        "Eq(integrate(Rational(2,25)*x, (x, 0, 5*sqrt(2)/2)), Rational(1,2))",
+        "Eq((5*sqrt(2)/2)**2, Rational(25,2))",
+        "5*sqrt(2)/2 > Rational(5,2)",
+        "Abs(5*sqrt(2)/2 - 3.5355) < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p06",
+      "statement": "The continuous random variable $X$ is uniformly distributed with $f(x) = \\dfrac{1}{4}$ for $2 \\le x \\le 6$, and zero otherwise. Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[5]**",
+      "solution": "*(M1)* $$\\mathrm{E}(X) = \\int_2^6 \\frac{x}{4}\\,dx = \\left[\\frac{x^2}{8}\\right]_2^6 = \\frac{36 - 4}{8} = 4 \\;(A1)$$  \n— the midpoint, as symmetry demands.  \n$$\\mathrm{E}(X^2) = \\int_2^6 \\frac{x^2}{4}\\,dx = \\left[\\frac{x^3}{12}\\right]_2^6 = \\frac{216 - 8}{12} = \\frac{52}{3} \\;(M1\\,A1)$$  \n$$\\mathrm{Var}(X) = \\frac{52}{3} - 16 = \\frac{4}{3}. \\;(A1)$$  \nThis matches the standard uniform result $\\frac{(b-a)^2}{12} = \\frac{16}{12} = \\frac{4}{3}$ — a useful independent check.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(Rational(1,4), (x, 2, 6)), 1)",
+        "Eq(integrate(x*Rational(1,4), (x, 2, 6)), 4)",
+        "Eq(integrate(x**2*Rational(1,4), (x, 2, 6)), Rational(52,3))",
+        "Eq(Rational(52,3) - 16, Rational(4,3))",
+        "Eq(Rational((6-2)**2, 12), Rational(4,3))"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p07",
+      "statement": "The continuous random variable $X$ has cumulative distribution function $F(x) = \\dfrac{x^3}{27}$ for $0 \\le x \\le 3$.  \n**(a)** Find the probability density function. **[2]**  \n**(b)** Find $P(1 < X < 2)$. **[2]**  \n**(c)** Find the exact median. **[3]**",
+      "solution": "**(a)** *(M1)* $f(x) = F'(x) = \\frac{3x^2}{27} = \\frac{x^2}{9}$ on $0 \\le x \\le 3$ *(A1)*.  \n**(b)** *(M1)* $$P(1 < X < 2) = F(2) - F(1) = \\frac{8}{27} - \\frac{1}{27} = \\frac{7}{27}. \\;(A1)$$  \n**(c)** $F(m) = \\frac{1}{2}$ *(M1)*:  \n$$\\frac{m^3}{27} = \\frac{1}{2} \\;\\Longrightarrow\\; m^3 = \\frac{27}{2} \\;(A1) \\;\\Longrightarrow\\; m = \\frac{3}{\\sqrt[3]{2}} \\approx 2.38. \\;(A1)$$  \n$F(3) = 1$ ✓, confirming the cumulative function is complete on its domain.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[7 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(diff(x**3/27, x), x**2/9)",
+        "Eq(Rational(8,27) - Rational(1,27), Rational(7,27))",
+        "Eq((3/Rational(2,1)**Rational(1,3))**3, Rational(27,2))",
+        "Eq(integrate(x**2/9, (x, 0, 3)), 1)",
+        "Abs(3/Rational(2,1)**Rational(1,3) - 2.3811) < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p08",
+      "statement": "The continuous random variable $X$ has $f(x) = kx^2(3 - x)$ for $0 \\le x \\le 3$, and zero otherwise.  \n**(a)** Find the exact value of $k$. **[3]**  \n**(b)** Find the mode of $X$. **[4]**",
+      "solution": "**(a)** *(M1)* $$\\int_0^3 (3x^2 - x^3)\\,dx = \\left[x^3 - \\frac{x^4}{4}\\right]_0^3 = 27 - \\frac{81}{4} = \\frac{27}{4} \\;(A1)$$  \n$$\\Longrightarrow\\; k = \\frac{4}{27}. \\;(A1)$$  \n**(b)** Differentiate the density *(M1)*: $\\frac{d}{dx}(3x^2 - x^3) = 6x - 3x^2 = 3x(2 - x)$ *(A1)*, which vanishes at $x = 0$ and $x = 2$ *(A1)*. At $x = 0$ the density is zero — a minimum — so the mode is  \n$$x = 2. \\;(A1)$$  \nBoth stationary points must be examined; the one at the domain's edge is the trough, not the peak.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[7 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(x**2*(3 - x), (x, 0, 3)), Rational(27,4))",
+        "Eq(1/Rational(27,4), Rational(4,27))",
+        "Eq(Rational(4,27)*integrate(x**2*(3 - x), (x, 0, 3)), 1)",
+        "Eq(diff(x**2*(3 - x), x).subs(x, 2), 0)",
+        "Eq(diff(x**2*(3 - x), x).subs(x, 0), 0)",
+        "Rational(4,27)*(2**2*(3 - 2)) > 0"
+      ]
+    },
+    {
+      "id": "ibhl-sp-p09",
+      "statement": "On any given day the probability of rain is $0.3$. If it rains, the probability a delivery is late is $0.6$; if it does not rain, the probability is $0.1$. Given that a delivery was late, find the probability it rained. **[5]**",
+      "solution": "Total probability of a late delivery *(M1)*:  \n$$P(L) = (0.3)(0.6) + (0.7)(0.1) = 0.18 + 0.07 = 0.25. \\;(A1\\,A1)$$  \n$$P(R \\mid L) = \\frac{0.18}{0.25} \\;(M1) = \\frac{18}{25} = 0.72. \\;(A1)$$  \nThe prior was only $0.3$, but lateness is six times as likely in the rain, so the evidence more than doubles the probability. Compare this with the screening example, where a much rarer prior kept the posterior small.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.13",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(Rational(3,10)*Rational(6,10) + Rational(7,10)*Rational(1,10), Rational(1,4))",
+        "Eq((Rational(3,10)*Rational(6,10))/Rational(1,4), Rational(18,25))",
+        "Eq(Rational(18,25), 0.72)",
+        "Rational(18,25) > Rational(3,10)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ibhl-sp-q01",
+      "statement": "A shop stocks components from three suppliers: $A$ supplies $50\\%$, $B$ supplies $30\\%$ and $C$ supplies $20\\%$. The proportions that are faulty are $1\\%$, $3\\%$ and $6\\%$ respectively.  \n**(a)** Find the probability that a randomly chosen component is faulty. **[3]**  \n**(b)** A component is found to be faulty. Find the probability it came from each supplier. **[5]**  \n**(c)** State which supplier is the most likely source of a faulty component, and comment on this in relation to the supply shares. **[2]**",
+      "solution": "**(a)** *(M1)* $$P(F) = (0.5)(0.01) + (0.3)(0.03) + (0.2)(0.06) = 0.005 + 0.009 + 0.012 \\;(A1) = 0.026. \\;(A1)$$  \n**(b)** Every posterior shares the denominator $0.026$ *(M1)*:  \n$$P(A \\mid F) = \\frac{0.005}{0.026} = \\frac{5}{26} \\approx 0.192 \\;(A1)$$  \n$$P(B \\mid F) = \\frac{0.009}{0.026} = \\frac{9}{26} \\approx 0.346 \\;(A1)$$  \n$$P(C \\mid F) = \\frac{0.012}{0.026} = \\frac{6}{13} \\approx 0.462 \\;(A1)$$  \nand $\\frac{5}{26} + \\frac{9}{26} + \\frac{12}{26} = 1$ ✓ *(A1)*.  \n**(c)** Supplier $C$ is the most likely source *(A1)*, despite supplying the SMALLEST share — its fault rate of $6\\%$ is six times $A$'s, which more than compensates for its $20\\%$ share *(R1)*.  \n**Narrative:** the ordering of the posteriors is the exact reverse of the ordering of the supply shares. That inversion is what makes Bayes worth computing rather than guessing.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.13",
+          "mono": true
+        },
+        {
+          "text": "[10 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(Rational(5,10)*Rational(1,100) + Rational(3,10)*Rational(3,100) + Rational(2,10)*Rational(6,100), Rational(13,500))",
+        "Eq(Rational(13,500), 0.026)",
+        "Eq((Rational(5,10)*Rational(1,100))/Rational(13,500), Rational(5,26))",
+        "Eq((Rational(3,10)*Rational(3,100))/Rational(13,500), Rational(9,26))",
+        "Eq((Rational(2,10)*Rational(6,100))/Rational(13,500), Rational(6,13))",
+        "Eq(Rational(5,26) + Rational(9,26) + Rational(6,13), 1)",
+        "Rational(6,13) > Rational(9,26)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-q02",
+      "statement": "The discrete random variable $X$ has $P(X = x) = k(x + 1)$ for $x = 0, 1, 2, 3$.  \n**(a)** Find $k$. **[3]**  \n**(b)** Find $\\mathrm{E}(X)$. **[3]**  \n**(c)** Find $\\mathrm{Var}(X)$. **[4]**",
+      "solution": "**(a)** Probabilities must total 1 *(M1)*:  \n$$k(1 + 2 + 3 + 4) = 10k = 1 \\;(A1) \\;\\Longrightarrow\\; k = \\frac{1}{10}. \\;(A1)$$  \n**(b)** *(M1)* $$\\mathrm{E}(X) = \\frac{0(1) + 1(2) + 2(3) + 3(4)}{10} = \\frac{0 + 2 + 6 + 12}{10} \\;(A1) = 2. \\;(A1)$$  \n**(c)** *(M1)* $$\\mathrm{E}(X^2) = \\frac{0(1) + 1(2) + 4(3) + 9(4)}{10} = \\frac{0 + 2 + 12 + 36}{10} = 5 \\;(A1\\,A1)$$  \n$$\\mathrm{Var}(X) = 5 - 2^2 = 1. \\;(A1)$$  \n**Narrative:** the distribution leans towards the larger values (their weights are bigger), which pushes the mean above the midpoint $1.5$. A variance of $1$ on a range of $3$ is a moderate spread — plausible for four fairly balanced outcomes.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[10 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(Rational(1,10)*(1 + 2 + 3 + 4), 1)",
+        "Eq(0*Rational(1,10) + 1*Rational(2,10) + 2*Rational(3,10) + 3*Rational(4,10), 2)",
+        "Eq(0*Rational(1,10) + 1*Rational(2,10) + 4*Rational(3,10) + 9*Rational(4,10), 5)",
+        "Eq(5 - 2**2, 1)",
+        "2 > Rational(3,2)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-q03",
+      "statement": "The continuous random variable $X$ has $f(x) = k(4 - x^2)$ for $0 \\le x \\le 2$, and zero otherwise.  \n**(a)** Show that $k = \\dfrac{3}{16}$. **[3]**  \n**(b)** State the mode of $X$, with a reason. **[2]**  \n**(c)** Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[6]**  \n**(d)** Find the median of $X$, correct to 3 significant figures. **[3]**",
+      "solution": "**(a)** *(M1)* $$\\int_0^2 (4 - x^2)\\,dx = \\left[4x - \\frac{x^3}{3}\\right]_0^2 = 8 - \\frac{8}{3} = \\frac{16}{3} \\;(A1)$$  \nso $k = \\frac{3}{16}$ *(AG)*.  \n**(b)** $f'(x) = -\\frac{3}{8}x < 0$ on $(0, 2]$, so $f$ is strictly decreasing *(R1)*; the mode is at the left endpoint, $x = 0$ *(A1)*.  \n**(c)** *(M1)* $$\\mathrm{E}(X) = \\frac{3}{16}\\int_0^2 (4x - x^3)\\,dx = \\frac{3}{16}\\left[2x^2 - \\frac{x^4}{4}\\right]_0^2 = \\frac{3}{16}(8 - 4) = \\frac{3}{4} \\;(A1\\,A1)$$  \n$$\\mathrm{E}(X^2) = \\frac{3}{16}\\int_0^2 (4x^2 - x^4)\\,dx = \\frac{3}{16}\\left(\\frac{32}{3} - \\frac{32}{5}\\right) = \\frac{4}{5} \\;(M1\\,A1)$$  \n$$\\mathrm{Var}(X) = \\frac{4}{5} - \\frac{9}{16} = \\frac{64 - 45}{80} = \\frac{19}{80} = 0.2375. \\;(A1)$$  \n**(d)** *(M1)* $$\\frac{3}{16}\\left(4m - \\frac{m^3}{3}\\right) = \\frac{1}{2} \\;\\Longleftrightarrow\\; m^3 - 12m + 8 = 0. \\;(A1)$$  \nSolving on the GDC and keeping the root in $[0, 2]$:  \n$$m = 0.695 \\;(3\\text{ s.f.}). \\;(A1)$$  \n**Narrative:** mode $0 <$ median $0.695 <$ mean $0.75$ — the ordering of a POSITIVELY skewed distribution, with the tail stretching right, which matches a density that decays across the domain. The cubic has three real roots; only one lies in the domain, and saying so is part of the answer.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[14 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(integrate(4 - x**2, (x, 0, 2)), Rational(16,3))",
+        "Eq(Rational(3,16)*integrate(4 - x**2, (x, 0, 2)), 1)",
+        "Eq(Rational(3,16)*integrate(x*(4 - x**2), (x, 0, 2)), Rational(3,4))",
+        "Eq(Rational(3,16)*integrate(x**2*(4 - x**2), (x, 0, 2)), Rational(4,5))",
+        "Eq(Rational(4,5) - Rational(3,4)**2, Rational(19,80))",
+        "Abs(Rational(3,16)*integrate(4 - x**2, (x, 0, Rational(695,1000))) - Rational(1,2)) < Rational(1,1000)",
+        "Abs(0.6945927 - 0.695) < Rational(1,1000)",
+        "Rational(695,1000) < Rational(3,4)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-q04",
+      "statement": "The continuous random variable $X$ has cumulative distribution function $F(x) = \\dfrac{x^2}{16}$ for $0 \\le x \\le 4$, with $F(x) = 0$ for $x < 0$ and $F(x) = 1$ for $x > 4$.  \n**(a)** Find the probability density function of $X$. **[3]**  \n**(b)** Find the exact median and the exact upper quartile. **[4]**  \n**(c)** Find $\\mathrm{E}(X)$ and $\\mathrm{Var}(X)$. **[5]**",
+      "solution": "**(a)** *(M1)* $$f(x) = F'(x) = \\frac{2x}{16} = \\frac{x}{8}, \\qquad 0 \\le x \\le 4 \\;(A1)$$  \nand zero elsewhere *(A1)*. Check: $\\int_0^4 \\frac{x}{8}\\,dx = \\frac{16}{16} = 1$ ✓.  \n**(b)** Median *(M1)*: $\\frac{m^2}{16} = \\frac{1}{2}$ gives $m^2 = 8$, so  \n$$m = 2\\sqrt2 \\approx 2.83. \\;(A1)$$  \nUpper quartile *(M1)*: $\\frac{q^2}{16} = \\frac{3}{4}$ gives $q^2 = 12$, so  \n$$q = 2\\sqrt3 \\approx 3.46. \\;(A1)$$  \n**(c)** *(M1)* $$\\mathrm{E}(X) = \\int_0^4 \\frac{x^2}{8}\\,dx = \\frac{64}{24} = \\frac{8}{3} \\;(A1)$$  \n$$\\mathrm{E}(X^2) = \\int_0^4 \\frac{x^3}{8}\\,dx = \\frac{256}{32} = 8 \\;(A1)$$  \n$$\\mathrm{Var}(X) = 8 - \\left(\\frac{8}{3}\\right)^2 = 8 - \\frac{64}{9} = \\frac{8}{9}. \\;(M1\\,A1)$$  \n**Narrative:** the median $2.83$ exceeds the mean $2.67$, and both sit right of the domain's midpoint — all consistent with a density that rises steadily. Negative roots were discarded in (b) because the domain begins at $0$.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[12 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(diff(x**2/16, x), x/8)",
+        "Eq(integrate(x/8, (x, 0, 4)), 1)",
+        "Eq((2*sqrt(2))**2/16, Rational(1,2))",
+        "Eq((2*sqrt(3))**2/16, Rational(3,4))",
+        "Eq(integrate(x*x/8, (x, 0, 4)), Rational(8,3))",
+        "Eq(integrate(x**2*x/8, (x, 0, 4)), 8)",
+        "Eq(8 - Rational(8,3)**2, Rational(8,9))",
+        "2*sqrt(2) > Rational(8,3)"
+      ]
+    },
+    {
+      "id": "ibhl-sp-q05",
+      "statement": "The continuous random variable $X$ has $f(x) = \\cos x$ for $0 \\le x \\le \\dfrac{\\pi}{2}$, and zero otherwise.  \n**(a)** Verify that $f$ is a valid probability density function. **[2]**  \n**(b)** State the mode of $X$. **[1]**  \n**(c)** Find the exact median of $X$. **[3]**  \n**(d)** Show that $\\mathrm{E}(X) = \\dfrac{\\pi}{2} - 1$, and find $\\mathrm{Var}(X)$ in exact form. **[7]**",
+      "solution": "**(a)** $\\cos x \\ge 0$ on $\\left[0, \\frac{\\pi}{2}\\right]$ *(R1)* and  \n$$\\int_0^{\\pi/2} \\cos x\\,dx = \\left[\\sin x\\right]_0^{\\pi/2} = 1. \\;✓\\;(A1)$$  \n**(b)** $\\cos$ is decreasing on the domain, so the mode is $x = 0$ *(A1)*.  \n**(c)** *(M1)* $$\\int_0^m \\cos x\\,dx = \\sin m = \\frac{1}{2} \\;(A1) \\;\\Longrightarrow\\; m = \\frac{\\pi}{6} \\;(A1)$$  \n(the other solution $\\frac{5\\pi}{6}$ lies outside the domain).  \n**(d)** Integration by parts *(M1)*:  \n$$\\mathrm{E}(X) = \\int_0^{\\pi/2} x\\cos x\\,dx = \\left[x\\sin x + \\cos x\\right]_0^{\\pi/2} \\;(A1)$$  \n$$= \\left(\\frac{\\pi}{2} + 0\\right) - (0 + 1) = \\frac{\\pi}{2} - 1. \\;(AG)$$  \nParts twice for the second moment *(M1)*:  \n$$\\mathrm{E}(X^2) = \\int_0^{\\pi/2} x^2\\cos x\\,dx = \\left[x^2\\sin x + 2x\\cos x - 2\\sin x\\right]_0^{\\pi/2} = \\frac{\\pi^2}{4} - 2 \\;(A1)$$  \n$$\\mathrm{Var}(X) = \\frac{\\pi^2}{4} - 2 - \\left(\\frac{\\pi}{2} - 1\\right)^2 = \\frac{\\pi^2}{4} - 2 - \\frac{\\pi^2}{4} + \\pi - 1 \\;(M1)$$  \n$$= \\pi - 3. \\;(A1)$$  \n**Narrative:** the $\\frac{\\pi^2}{4}$ terms cancel exactly, leaving the startlingly clean $\\pi - 3 \\approx 0.142$. A small variance is right: the density is concentrated near the left of a short interval. Mode $0 <$ median $\\frac{\\pi}{6} \\approx 0.524 <$ mean $\\approx 0.571$ — positive skew.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.14",
+          "mono": true
+        },
+        {
+          "text": "[13 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(cos(x), (x, 0, pi/2)), 1)",
+        "Eq(integrate(cos(x), (x, 0, pi/6)), Rational(1,2))",
+        "Eq(integrate(x*cos(x), (x, 0, pi/2)), pi/2 - 1)",
+        "Eq(integrate(x**2*cos(x), (x, 0, pi/2)), pi**2/4 - 2)",
+        "Eq(simplify(pi**2/4 - 2 - (pi/2 - 1)**2), pi - 3)",
+        "Abs(pi - 3 - 0.14159) < Rational(1,10000)",
+        "pi/6 < pi/2 - 1"
+      ]
+    },
+    {
+      "id": "ibhl-sp-q06",
+      "statement": "A drawer contains a fair coin and a biased coin for which $P(\\text{head}) = 0.8$. One coin is chosen at random and tossed.  \n**(a)** The coin lands heads twice in two tosses. Find the probability the biased coin was chosen, correct to 3 significant figures. **[5]**  \n**(b)** The same coin is tossed a third time and lands heads again. Find the probability the biased coin was chosen, correct to 3 significant figures. **[4]**  \n**(c)** Comment on how the evidence has changed your belief. **[2]**",
+      "solution": "**(a)** For the fair coin $P(HH) = \\left(\\frac{1}{2}\\right)^2 = 0.25$; for the biased coin $P(HH) = 0.8^2 = 0.64$ *(M1 A1)*.  \n$$P(HH) = (0.5)(0.25) + (0.5)(0.64) = 0.125 + 0.32 = 0.445 \\;(A1)$$  \n$$P(\\text{biased} \\mid HH) = \\frac{0.32}{0.445} = \\frac{64}{89} \\approx 0.719. \\;(M1\\,A1)$$  \n**(b)** Now $P(HHH) = 0.125$ for the fair coin and $0.8^3 = 0.512$ for the biased *(M1 A1)*.  \n$$P(\\text{biased} \\mid HHH) = \\frac{(0.5)(0.512)}{(0.5)(0.125) + (0.5)(0.512)} = \\frac{512}{637} \\approx 0.804. \\;(M1\\,A1)$$  \n**(c)** The probability rose from about $0.719$ to about $0.804$ *(A1)*: each additional head is more likely under the biased hypothesis, so the evidence accumulates in its favour — though never reaching certainty, since a fair coin can still produce three heads *(R1)*.  \n**Narrative:** the prior started at $0.5$ and every head shifts it upwards, but with diminishing effect. This is Bayes used sequentially — the natural way evidence actually arrives.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-4.13",
+          "mono": true
+        },
+        {
+          "text": "[11 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(Rational(1,2)**2, Rational(1,4))",
+        "Eq(Rational(8,10)**2, Rational(16,25))",
+        "Eq(Rational(1,2)*Rational(1,4) + Rational(1,2)*Rational(16,25), Rational(89,200))",
+        "Eq((Rational(1,2)*Rational(16,25))/Rational(89,200), Rational(64,89))",
+        "Eq(Rational(8,10)**3, Rational(64,125))",
+        "Eq((Rational(1,2)*Rational(64,125))/(Rational(1,2)*Rational(1,8) + Rational(1,2)*Rational(64,125)), Rational(512,637))",
+        "Abs(Rational(64,89) - 0.719) < Rational(1,1000)",
+        "Abs(Rational(512,637) - 0.804) < Rational(1,1000)",
+        "Rational(512,637) > Rational(64,89)"
+      ]
+    }
+  ]
+}

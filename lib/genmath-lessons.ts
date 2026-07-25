@@ -211,6 +211,7 @@ import ibSlCalculus from "@/data/genmath/ib-sl/calculus.json";
 import ibHlNumberAlgebra from "@/data/genmath/ib-hl/number-and-algebra.json";
 import ibHlFunctions from "@/data/genmath/ib-hl/functions.json";
 import ibHlGeoTrig from "@/data/genmath/ib-hl/geometry-and-trigonometry.json";
+import ibHlStatsProb from "@/data/genmath/ib-hl/statistics-and-probability.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1767,7 +1768,7 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
     title: "Statistics & Probability (AHL)",
     blurb: "Bayes' theorem, and continuous random variables with probability density functions — mode, median, mean and variance from integrals — AHL 4.13 to 4.14.",
     buildsOn: "SL Topic 4's probability laws and distributions.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -1783,6 +1784,7 @@ const ibHlUnits: CourseUnit[] = [
   ibHlNumberAlgebra as unknown as CourseUnit,
   ibHlFunctions as unknown as CourseUnit,
   ibHlGeoTrig as unknown as CourseUnit,
+  ibHlStatsProb as unknown as CourseUnit,
 ];
 
 export function getIbHlSpine(): GeometrySpineEntry[] {
