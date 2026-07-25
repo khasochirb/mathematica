@@ -210,6 +210,7 @@ import ibSlStatsProb from "@/data/genmath/ib-sl/statistics-and-probability.json"
 import ibSlCalculus from "@/data/genmath/ib-sl/calculus.json";
 import ibHlNumberAlgebra from "@/data/genmath/ib-hl/number-and-algebra.json";
 import ibHlFunctions from "@/data/genmath/ib-hl/functions.json";
+import ibHlGeoTrig from "@/data/genmath/ib-hl/geometry-and-trigonometry.json";
 import sgPlanes from "@/data/genmath/solid-geometry/lines-and-planes-in-space.json";
 import sgPrisms from "@/data/genmath/solid-geometry/prisms-and-the-cube.json";
 import sgPyramids from "@/data/genmath/solid-geometry/pyramids.json";
@@ -1758,7 +1759,7 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
     title: "Geometry & Trigonometry (AHL)",
     blurb: "Reciprocal and inverse trig, compound angles, and the whole vector toolkit: scalar and vector products, lines and planes in space, intersections and angles — AHL 3.9 to 3.18.",
     buildsOn: "SL Topic 3's unit circle and identities.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -1781,6 +1782,7 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
 const ibHlUnits: CourseUnit[] = [
   ibHlNumberAlgebra as unknown as CourseUnit,
   ibHlFunctions as unknown as CourseUnit,
+  ibHlGeoTrig as unknown as CourseUnit,
 ];
 
 export function getIbHlSpine(): GeometrySpineEntry[] {
