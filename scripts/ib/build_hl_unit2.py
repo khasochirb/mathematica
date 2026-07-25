@@ -1248,7 +1248,8 @@ def lesson_modulus_family():
             "graphs of $|f(x)|$, $f(|x|)$, $\\dfrac{1}{f(x)}$, $f(ax+b)$ and $[f(x)]^2$ from a "
             "given graph of $f$. Papers 1 and 2. Weight: 5–8 marks. The transformation grammar "
             "of SL 2.11, upgraded with folds.",
-            "**$|A| = |B|$: two clean routes.** Cases: $A = B$ or $A = -B$ — two linear "
+            "**Modulus equals modulus: two clean routes.** For $|A| = |B|$ the cases are "
+            "$A = B$ or $A = -B$ — two linear "
             "equations. Or square both sides (always legal for $|\\cdot| = |\\cdot|$): "
             "$A^2 = B^2 \\Rightarrow (A-B)(A+B) = 0$, the same two equations wearing algebra. "
             "$|2x-1| = |x+4|$: $x = 5$ or $x = -1$; substitute BOTH back — checking is part of "

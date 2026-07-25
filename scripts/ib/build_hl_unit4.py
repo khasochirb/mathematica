@@ -1126,12 +1126,12 @@ def lesson_cdf():
             "to come back down. Note the dummy variable $t$ inside the integral — using $x$ for "
             "both the limit and the variable of integration is sloppy and occasionally costs a "
             "mark.",
-            "**What $F$ must look like.** $F$ is non-decreasing (probability only accumulates), "
+            "**The shape of a cumulative function.** $F$ is non-decreasing (probability only accumulates), "
             "runs from $0$ to $1$, and is written piecewise: zero below the domain, the integral "
             "expression inside it, and $1$ above. Quoting all three pieces is part of the answer — "
             "'find the cumulative distribution function' means the complete piecewise definition, "
             "not just the middle line.",
-            "**Why $F$ is worth building.** Once you have it, probabilities need no further "
+            "**Why it is worth building.** Once you have it, probabilities need no further "
             "integration: "
             "$$P(a \\le X \\le b) = F(b) - F(a), \\qquad P(X > a) = 1 - F(a).$$ "
             "A question asking for three separate probabilities is answered by one construction "

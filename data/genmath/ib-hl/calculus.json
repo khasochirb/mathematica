@@ -1,0 +1,2334 @@
+{
+  "slug": "calculus",
+  "title": "Calculus (AHL)",
+  "unit": 5,
+  "status": "published",
+  "blurb": "The HL extension of Topic 5, complete: continuity, differentiability and the derivative from first principles; limits and l'Hopital's rule; implicit differentiation with related rates; the extended derivative library and its integrals with partial fractions; integration by substitution and by parts; areas between a curve and the y-axis with volumes of revolution about both axes; differential equations by separation, homogeneous substitution, integrating factor and Euler's method; and Maclaurin series. Every subtopic code from AHL 5.12 to AHL 5.19.",
+  "buildsOn": "SL Topic 5 end to end — limits informally, the power/product/quotient/chain rules, tangents and normals, optimisation, kinematics, and definite integrals for area. HL widens the library of functions, adds three genuinely new techniques (implicit differentiation, parts, substitution), and turns calculus back on itself with differential equations and series.",
+  "lessons": [
+    {
+      "slug": "continuity-differentiability-and-first-principles",
+      "title": "Continuity, Differentiability & First Principles",
+      "concreteComparison": "A speedometer reading is really an average speed over a vanishingly short interval. Measure over a second and you get an average; over a hundredth, a better one; the instantaneous value is what those averages CONVERGE to. First principles is that sentence written as a limit — and it is where every differentiation rule you already use came from.",
+      "objective": "Differentiate polynomial and simple rational functions from first principles, distinguish continuity from differentiability, and work with higher derivatives.",
+      "concept": [
+        "**Syllabus card — AHL 5.12.** Informal understanding of continuity and differentiability of a function at a point; understanding of limits (convergence and divergence); definition of the derivative from first principles; higher derivatives. Papers 1 and 2. Weight: 4-8 marks — and 'from first principles' means exactly that, so a shortcut earns nothing.",
+        "**The definition.** $$f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}$$ In the booklet. The fraction is the gradient of the CHORD between $(x, f(x))$ and $(x + h, f(x + h))$; letting $h \\to 0$ slides the second point onto the first and the chord becomes the tangent. Every rule — power, product, chain — is a theorem proved from this line.",
+        "**The method, and the step where marks are lost.** Substitute, expand, and simplify until the $h$ in the denominator CANCELS; only then take the limit. Setting $h = 0$ before cancelling gives $\\frac{0}{0}$ and no marks. For $f(x) = x^2 - 3x$: $$\\frac{(x+h)^2 - 3(x+h) - (x^2 - 3x)}{h} = \\frac{2xh + h^2 - 3h}{h} = 2x + h - 3 \\;\\longrightarrow\\; 2x - 3.$$ Note every term without an $h$ cancelled — if any survive, the algebra has gone wrong.",
+        "**Continuous but not differentiable.** Continuity at $a$ means the graph has no break: $\\lim_{x \\to a} f(x) = f(a)$. Differentiability is STRONGER — it also requires no corner, because the limit above must be the same from both sides. $f(x) = |x|$ is continuous everywhere but not differentiable at $0$: the left-hand quotient tends to $-1$ and the right-hand one to $+1$. Differentiable $\\Rightarrow$ continuous, and the converse is false.",
+        "**Higher derivatives.** Differentiating repeatedly gives $f''$, $f'''$, $f^{(n)}$ — written $\\frac{d^2y}{dx^2}$, $\\frac{d^3y}{dx^3}$ in Leibniz notation. The second derivative governs concavity and, at HL, the third settles a doubtful case: if $f''(a) = 0$ and $f'''(a) \\ne 0$, then $a$ is a genuine point of inflexion. Higher derivatives also generate the Maclaurin coefficients in AHL 5.19."
+      ],
+      "keyIdea": "$f'(x) = \\lim_{h \\to 0}\\frac{f(x+h) - f(x)}{h}$ — expand and CANCEL the $h$ before taking the limit. Differentiable implies continuous, never the reverse: $|x|$ is continuous at $0$ but has a corner there.",
+      "facts": [
+        {
+          "title": "Derivative from first principles",
+          "latex": "f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}",
+          "explanation": "IN the booklet. Also written with $\\frac{f(x+h)-f(x)}{h}$ as the gradient of a chord — the geometric reading examiners like to see mentioned."
+        },
+        {
+          "title": "Differentiable implies continuous",
+          "latex": "f \\text{ differentiable at } a \\;\\Rightarrow\\; f \\text{ continuous at } a",
+          "explanation": "NOT in the booklet. The converse FAILS: $|x|$ at $x = 0$ is the standard counterexample, and it is worth knowing by name."
+        },
+        {
+          "title": "Third-derivative inflexion test",
+          "latex": "f''(a) = 0 \\text{ and } f'''(a) \\ne 0 \\;\\Rightarrow\\; a \\text{ is a point of inflexion}",
+          "explanation": "NOT in the booklet. Cleaner than checking a sign change in $f''$ either side, when $f'''$ is easy to compute."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-512-we1",
+          "statement": "Differentiate $f(x) = x^2 - 3x$ from first principles. **[5]**",
+          "solution": "Start from the definition *(M1)*:  \n$$f'(x) = \\lim_{h \\to 0} \\frac{\\left[(x+h)^2 - 3(x+h)\\right] - \\left[x^2 - 3x\\right]}{h}$$  \nExpand the numerator *(A1)*:  \n$$= \\lim_{h \\to 0} \\frac{x^2 + 2xh + h^2 - 3x - 3h - x^2 + 3x}{h} = \\lim_{h \\to 0} \\frac{2xh + h^2 - 3h}{h} \\;(A1)$$  \nEvery surviving term carries an $h$, so the fraction cancels *(M1)*:  \n$$= \\lim_{h \\to 0} (2x + h - 3) = 2x - 3. \\;(A1)$$  \n**Narrative:** the cancellation is the whole method — before it the limit is $\\frac{0}{0}$ and says nothing; after it, substituting $h = 0$ is legitimate because the expression is now continuous. Check against the power rule: $2x - 3$ ✓.",
+          "check": [
+            "Eq(limit(((x + h)**2 - 3*(x + h) - (x**2 - 3*x))/h, h, 0), 2*x - 3)",
+            "Eq(expand((x + h)**2 - 3*(x + h) - (x**2 - 3*x)), 2*x*h + h**2 - 3*h)",
+            "Eq(diff(x**2 - 3*x, x), 2*x - 3)"
+          ]
+        },
+        {
+          "id": "ibhl-512-we2",
+          "statement": "**(a)** Differentiate $f(x) = \\dfrac{1}{x}$ from first principles, for $x \\ne 0$. **[5]**  \n**(b)** Explain why $g(x) = |x|$ is continuous at $x = 0$ but not differentiable there. **[4]**",
+          "solution": "**(a)** *(M1)* $$f'(x) = \\lim_{h \\to 0} \\frac{\\frac{1}{x+h} - \\frac{1}{x}}{h}$$  \nCombine the fractions in the numerator *(M1)*:  \n$$= \\lim_{h \\to 0} \\frac{x - (x + h)}{h\\,x(x+h)} = \\lim_{h \\to 0} \\frac{-h}{h\\,x(x+h)} \\;(A1)$$  \n$$= \\lim_{h \\to 0} \\frac{-1}{x(x+h)} \\;(A1) = -\\frac{1}{x^2}. \\;(A1)$$  \n**(b)** $g$ is continuous at $0$ because $\\lim_{x \\to 0} |x| = 0 = g(0)$ — no break in the graph *(R1 A1)*.  \nIt is not differentiable there because the first-principles quotient has different one-sided limits *(M1)*: for $h > 0$, $\\frac{|h| - 0}{h} = 1$; for $h < 0$, $\\frac{|h|}{h} = -1$. The limit does not exist *(A1)*.  \n**Narrative:** geometrically, the graph has a CORNER at the origin — there is no single tangent line. This is the standard counterexample to 'continuous therefore differentiable', and knowing it is worth stating explicitly.",
+          "check": [
+            "Eq(limit((1/(x + h) - 1/x)/h, h, 0), -1/x**2)",
+            "Eq(simplify((1/(x + h) - 1/x)/h + 1/(x*(x + h))), 0)",
+            "Eq(limit(Abs(x), x, 0), 0)",
+            "Eq(limit(Abs(h)/h, h, 0, '+'), 1)",
+            "Eq(limit(Abs(h)/h, h, 0, '-'), -1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Substituting $h = 0$ before the $h$ in the denominator has cancelled.",
+          "correction": "That gives $\\frac{0}{0}$, which is meaningless. Expand and simplify until every numerator term carries an $h$, cancel, THEN take the limit.",
+          "authored": true
+        },
+        {
+          "text": "Using the power rule when the question says 'from first principles'.",
+          "correction": "The command term demands the limit definition — quoting the answer earns zero. The power rule is what first principles PROVES.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a continuous function is automatically differentiable.",
+          "correction": "The implication runs one way only. $|x|$ at $x = 0$ is continuous with a corner: the one-sided gradients are $-1$ and $+1$, so no derivative exists.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-512-t1",
+          "statement": "Differentiate $f(x) = 3x^2 + 2x$ from first principles. **[5]**",
+          "solution": "*(M1)* $$f'(x) = \\lim_{h \\to 0} \\frac{3(x+h)^2 + 2(x+h) - 3x^2 - 2x}{h}$$  \nExpanding *(A1)*: $3x^2 + 6xh + 3h^2 + 2x + 2h - 3x^2 - 2x = 6xh + 3h^2 + 2h$ *(A1)*.  \nCancel the $h$ *(M1)*:  \n$$f'(x) = \\lim_{h \\to 0}(6x + 3h + 2) = 6x + 2. \\;(A1)$$  \nThe $3x^2$ and $2x$ terms cancelled exactly, as they must — anything left over without an $h$ means an expansion slip.",
+          "check": [
+            "Eq(limit((3*(x + h)**2 + 2*(x + h) - 3*x**2 - 2*x)/h, h, 0), 6*x + 2)",
+            "Eq(expand(3*(x + h)**2 + 2*(x + h) - 3*x**2 - 2*x), 6*x*h + 3*h**2 + 2*h)",
+            "Eq(diff(3*x**2 + 2*x, x), 6*x + 2)"
+          ]
+        },
+        {
+          "id": "ibhl-512-t2",
+          "statement": "Let $f(x) = x^4 - 2x^3$.  \n**(a)** Find $f''(x)$ and $f'''(x)$. **[3]**  \n**(b)** Find the $x$-coordinates of the points of inflexion of $f$, justifying that they are genuine. **[4]**",
+          "solution": "**(a)** $f'(x) = 4x^3 - 6x^2$, so *(A1)*  \n$$f''(x) = 12x^2 - 12x, \\qquad f'''(x) = 24x - 12. \\;(A1\\,A1)$$  \n**(b)** Set $f'' = 0$ *(M1)*: $12x(x - 1) = 0$, so $x = 0$ or $x = 1$ *(A1)*.  \nApply the third-derivative test *(M1)*: $f'''(0) = -12 \\ne 0$ and $f'''(1) = 12 \\ne 0$, so the concavity genuinely changes at both *(A1)*.  \n$$x = 0 \\quad\\text{and}\\quad x = 1.$$  \nWithout the third-derivative check these would only be CANDIDATES — $f''(a) = 0$ alone does not guarantee an inflexion, as $y = x^4$ at the origin shows.",
+          "check": [
+            "Eq(simplify(diff(x**4 - 2*x**3, x, 2) - (12*x**2 - 12*x)), 0)",
+            "Eq(simplify(diff(x**4 - 2*x**3, x, 3) - (24*x - 12)), 0)",
+            "Eq(diff(x**4 - 2*x**3, x, 2).subs(x, 0), 0)",
+            "Eq(diff(x**4 - 2*x**3, x, 2).subs(x, 1), 0)",
+            "Ne(diff(x**4 - 2*x**3, x, 3).subs(x, 0), 0)",
+            "Ne(diff(x**4 - 2*x**3, x, 3).subs(x, 1), 0)",
+            "Eq(diff(x**4, x, 3).subs(x, 0), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.12 · Papers 1 & 2",
+            "title": "Where the rules come from",
+            "body": "You have differentiated hundreds of functions by rule. This code asks a different question: WHY does the power rule work? The answer is a limit of chord gradients, and once you have computed two or three derivatives from that definition, the rules stop being magic and become theorems you could rebuild yourself."
+          },
+          {
+            "kind": "tangentGraph",
+            "eyebrow": "The chord becomes the tangent",
+            "title": "Slide the second point in",
+            "teach": "Drag the second point towards the first and watch the chord's gradient settle. The number it converges to is the derivative. Nothing about the picture requires $h$ to reach zero — only that the gradients approach a single value, which is exactly what a limit asserts.",
+            "config": {
+              "mode": "secant"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "The order of operations",
+            "prompt": "In a first-principles calculation, you should take the limit:",
+            "options": [
+              "after cancelling the $h$ from the denominator",
+              "immediately, before expanding",
+              "only if the function is a polynomial",
+              "after substituting $h = 0$ in the numerator"
+            ],
+            "correctIndex": 0,
+            "explanation": "Before cancelling, the quotient reads $\\frac{0}{0}$ — undefined, and it carries no information. Expanding makes every numerator term contain an $h$; cancelling then leaves a continuous expression where substituting $h = 0$ is finally valid.",
+            "check": [
+              "Eq(expand((x + h)**2 - x**2), 2*x*h + h**2)",
+              "Eq(limit(((x + h)**2 - x**2)/h, h, 0), 2*x)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A quadratic, the long way",
+            "problemId": "ibhl-512-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Same method, new coefficients",
+            "problemId": "ibhl-512-t1"
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "Continuity",
+            "title": "A break in the graph",
+            "teach": "Continuity at a point means the limit as you approach it equals the value there — approach from either side and arrive at the same place the function actually sits. A jump breaks that condition outright; a corner keeps continuity but destroys differentiability, which is a subtler failure.",
+            "config": {
+              "mode": "jump"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The corner",
+            "title": "Continuous but not smooth",
+            "prompt": "At $x = 0$, the function $f(x) = |x|$ is:",
+            "options": [
+              "continuous but not differentiable",
+              "differentiable but not continuous",
+              "both continuous and differentiable",
+              "neither continuous nor differentiable"
+            ],
+            "correctIndex": 0,
+            "explanation": "No break, so continuous — but the gradient approaches $-1$ from the left and $+1$ from the right, so the first-principles limit does not exist. Differentiable ALWAYS implies continuous, so the second option is impossible for any function anywhere.",
+            "check": [
+              "Eq(limit(Abs(x), x, 0), 0)",
+              "Eq(limit(Abs(h)/h, h, 0, '+'), 1)",
+              "Eq(limit(Abs(h)/h, h, 0, '-'), -1)",
+              "Ne(1, -1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A reciprocal, and a corner",
+            "problemId": "ibhl-512-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Higher derivatives, and a genuine inflexion",
+            "problemId": "ibhl-512-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.12 in four lines",
+            "points": [
+              "$f'(x) = \\lim_{h \\to 0}\\frac{f(x+h) - f(x)}{h}$ — the limit of chord gradients.",
+              "Expand, cancel the $h$, THEN take the limit. Never substitute $h = 0$ early.",
+              "Differentiable $\\Rightarrow$ continuous; the converse fails at corners such as $|x|$.",
+              "$f''(a) = 0$ with $f'''(a) \\ne 0$ confirms a genuine point of inflexion."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "limits-and-lhopitals-rule",
+      "title": "Limits & l'Hôpital's Rule",
+      "concreteComparison": "Two runners both slow to a stop at the finish line. Asking who was faster AT the line gives $\\frac{0}{0}$ — meaningless. But compare how fast each was DECELERATING and the question has a perfectly good answer. That is l'Hôpital's rule: when both parts vanish together, compare their rates instead.",
+      "objective": "Recognise indeterminate forms and evaluate limits using l'Hôpital's rule, including repeated application and cases that must first be rearranged into $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$.",
+      "concept": [
+        "**Syllabus card — AHL 5.13.** The evaluation of limits of the form $\\lim_{x \\to a}\\frac{f(x)}{g(x)}$ and $\\lim_{x \\to \\infty}\\frac{f(x)}{g(x)}$ using l'Hôpital's rule or the Maclaurin series. Papers 1 and 2. Weight: 4-8 marks, and it pairs naturally with AHL 5.19.",
+        "**The rule.** If $\\lim_{x \\to a} f(x) = \\lim_{x \\to a} g(x) = 0$, or both tend to $\\pm\\infty$, then $$\\lim_{x \\to a} \\frac{f(x)}{g(x)} = \\lim_{x \\to a} \\frac{f'(x)}{g'(x)}$$ provided the right-hand limit exists. In the booklet. Note carefully: you differentiate the numerator and denominator SEPARATELY — this is not the quotient rule, and confusing the two is the most common error on the code.",
+        "**Check the form first, every time.** The rule applies ONLY to $\\frac{0}{0}$ and $\\frac{\\infty}{\\infty}$. Applying it to $\\lim_{x \\to 0}\\frac{\\cos x}{x + 1}$, which is a perfectly ordinary $\\frac{1}{1}$, produces $\\frac{-\\sin x}{1} \\to 0$ — confidently wrong. State that the form is indeterminate before using the rule; markschemes award a mark for it.",
+        "**Repeat as needed.** If the new quotient is still indeterminate, differentiate again. $$\\lim_{x \\to 0}\\frac{1 - \\cos x}{x^2} \\to \\frac{\\sin x}{2x} \\to \\frac{\\cos x}{2} = \\frac{1}{2}.$$ Two applications, and the form must be re-checked before each. A limit needing three or four passes is entirely normal at HL.",
+        "**Rearranging into a quotient.** Forms like $0 \\times \\infty$ and $\\infty - \\infty$ are not directly usable — rewrite them first. For $\\lim_{x \\to 0^+} x\\ln x$, write it as $\\frac{\\ln x}{1/x}$, now $\\frac{-\\infty}{\\infty}$, and the rule gives $\\frac{1/x}{-1/x^2} = -x \\to 0$. Choosing which factor to invert is the whole skill: invert the one that makes the derivatives simpler."
+      ],
+      "keyIdea": "For $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ only, differentiate top and bottom SEPARATELY and retry. Re-check the form before each repeat, and rearrange $0 \\times \\infty$ into a quotient before starting.",
+      "facts": [
+        {
+          "title": "l'Hôpital's rule",
+          "latex": "\\lim_{x \\to a}\\frac{f(x)}{g(x)} = \\lim_{x \\to a}\\frac{f'(x)}{g'(x)} \\quad \\text{for } \\tfrac{0}{0} \\text{ or } \\tfrac{\\infty}{\\infty}",
+          "explanation": "IN the booklet. Separate derivatives, NOT the quotient rule. Valid only for the two indeterminate forms named."
+        },
+        {
+          "title": "Standard small-angle limits",
+          "latex": "\\lim_{x \\to 0}\\frac{\\sin x}{x} = 1, \\qquad \\lim_{x \\to 0}\\frac{1 - \\cos x}{x^2} = \\frac{1}{2}",
+          "explanation": "NOT in the booklet. Worth memorising — they appear constantly and both fall straight out of the rule."
+        },
+        {
+          "title": "Rearranging other forms",
+          "latex": "f \\cdot g \\;(0 \\times \\infty) \\;\\longrightarrow\\; \\frac{f}{1/g}",
+          "explanation": "The rule needs a QUOTIENT. Invert whichever factor gives the tidier derivatives; $\\infty - \\infty$ usually needs a common denominator first."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-513-we1",
+          "statement": "Evaluate  \n**(a)** $\\displaystyle\\lim_{x \\to 0} \\frac{\\sin 3x}{5x}$; **[3]**  \n**(b)** $\\displaystyle\\lim_{x \\to 0} \\frac{1 - \\cos x}{x^2}$. **[4]**",
+          "solution": "**(a)** As $x \\to 0$ both parts tend to $0$, so the form is $\\frac{0}{0}$ and l'Hôpital applies *(R1)*:  \n$$\\lim_{x \\to 0}\\frac{\\sin 3x}{5x} = \\lim_{x \\to 0}\\frac{3\\cos 3x}{5} \\;(M1) = \\frac{3}{5}. \\;(A1)$$  \n**(b)** Again $\\frac{0}{0}$ *(R1)*:  \n$$\\lim_{x \\to 0}\\frac{1 - \\cos x}{x^2} = \\lim_{x \\to 0}\\frac{\\sin x}{2x} \\;(M1)$$  \nwhich is STILL $\\frac{0}{0}$, so apply the rule a second time *(M1)*:  \n$$= \\lim_{x \\to 0}\\frac{\\cos x}{2} = \\frac{1}{2}. \\;(A1)$$  \n**Narrative:** part (a) needed the chain rule on the numerator — $\\frac{d}{dx}\\sin 3x = 3\\cos 3x$, not $\\cos 3x$. And in (b) the form was re-checked before the second pass; skipping that check is how candidates differentiate a limit that had already resolved.",
+          "check": [
+            "Eq(limit(sin(3*x)/(5*x), x, 0), Rational(3,5))",
+            "Eq(diff(sin(3*x), x), 3*cos(3*x))",
+            "Eq(limit((1 - cos(x))/x**2, x, 0), Rational(1,2))",
+            "Eq(limit(sin(x)/(2*x), x, 0), Rational(1,2))",
+            "Eq(sin(0), 0)",
+            "Eq(1 - cos(0), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-513-we2",
+          "statement": "Evaluate  \n**(a)** $\\displaystyle\\lim_{x \\to \\infty} \\frac{\\ln x}{x}$; **[3]**  \n**(b)** $\\displaystyle\\lim_{x \\to 0^+} x\\ln x$. **[5]**",
+          "solution": "**(a)** Both parts tend to $\\infty$, so the form is $\\frac{\\infty}{\\infty}$ *(R1)*:  \n$$\\lim_{x \\to \\infty}\\frac{\\ln x}{x} = \\lim_{x \\to \\infty}\\frac{1/x}{1} \\;(M1) = \\lim_{x \\to \\infty}\\frac{1}{x} = 0. \\;(A1)$$  \n**(b)** This is $0 \\times (-\\infty)$ — not a form the rule accepts, so rewrite it as a quotient *(M1)*:  \n$$x\\ln x = \\frac{\\ln x}{1/x}, \\qquad\\text{now } \\frac{-\\infty}{\\infty}. \\;(R1)$$  \n$$\\lim_{x \\to 0^+}\\frac{\\ln x}{1/x} = \\lim_{x \\to 0^+}\\frac{1/x}{-1/x^2} \\;(M1\\,A1) = \\lim_{x \\to 0^+} (-x) = 0. \\;(A1)$$  \n**Narrative:** part (a) says logarithms grow more slowly than any positive power of $x$ — a fact worth carrying. In (b), inverting $x$ rather than $\\ln x$ was the right choice: the alternative $\\frac{x}{1/\\ln x}$ produces far uglier derivatives.",
+          "check": [
+            "Eq(limit(log(x)/x, x, oo), 0)",
+            "Eq(limit(x*log(x), x, 0, '+'), 0)",
+            "Eq(simplify(diff(log(x), x)/diff(1/x, x)), -x)",
+            "Eq(limit(-x, x, 0, '+'), 0)",
+            "Eq(diff(log(x), x), 1/x)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying the quotient rule instead of differentiating top and bottom separately.",
+          "correction": "l'Hôpital differentiates numerator and denominator INDEPENDENTLY: $\\frac{f}{g} \\to \\frac{f'}{g'}$. The quotient rule computes something else entirely.",
+          "authored": true
+        },
+        {
+          "text": "Using the rule on a limit that is not indeterminate.",
+          "correction": "Check the form FIRST. $\\lim_{x \\to 0}\\frac{\\cos x}{x + 1} = 1$ by direct substitution; applying l'Hôpital gives $0$ — confidently wrong.",
+          "authored": true
+        },
+        {
+          "text": "Feeding $0 \\times \\infty$ straight into the rule.",
+          "correction": "Rearrange into a quotient first: $f \\cdot g = \\frac{f}{1/g}$. Only $\\frac{0}{0}$ and $\\frac{\\infty}{\\infty}$ are admissible.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-513-t1",
+          "statement": "Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\mathrm{e}^{2x} - 1}{3x}$. **[4]**",
+          "solution": "At $x = 0$: numerator $\\mathrm{e}^0 - 1 = 0$ and denominator $0$, so the form is $\\frac{0}{0}$ *(R1)*.  \n$$\\lim_{x \\to 0}\\frac{\\mathrm{e}^{2x} - 1}{3x} = \\lim_{x \\to 0}\\frac{2\\mathrm{e}^{2x}}{3} \\;(M1\\,A1) = \\frac{2}{3}. \\;(A1)$$  \nThe chain rule supplied the factor $2$; forgetting it gives $\\frac{1}{3}$, the most common wrong answer here.",
+          "check": [
+            "Eq(limit((exp(2*x) - 1)/(3*x), x, 0), Rational(2,3))",
+            "Eq(diff(exp(2*x), x), 2*exp(2*x))",
+            "Eq(exp(0) - 1, 0)"
+          ]
+        },
+        {
+          "id": "ibhl-513-t2",
+          "statement": "Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{x - \\sin x}{x^3}$. **[6]**",
+          "solution": "Form $\\frac{0}{0}$ *(R1)*, so apply the rule *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{1 - \\cos x}{3x^2}$$  \nstill $\\frac{0}{0}$ *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{\\sin x}{6x}$$  \nstill $\\frac{0}{0}$ *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{\\cos x}{6} \\;(A1) = \\frac{1}{6}. \\;(A1)$$  \nThree applications, each preceded by a re-check. The Maclaurin route confirms it in one line: $x - \\sin x = \\frac{x^3}{6} - \\cdots$, so dividing by $x^3$ leaves $\\frac{1}{6}$.",
+          "check": [
+            "Eq(limit((x - sin(x))/x**3, x, 0), Rational(1,6))",
+            "Eq(limit((1 - cos(x))/(3*x**2), x, 0), Rational(1,6))",
+            "Eq(limit(sin(x)/(6*x), x, 0), Rational(1,6))",
+            "Eq(series(x - sin(x), x, 0, 5).removeO(), x**3/6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.13 · Papers 1 & 2",
+            "title": "When zero over zero has an answer",
+            "body": "$\\frac{0}{0}$ is called INDETERMINATE rather than undefined because the answer depends on HOW each part reaches zero. $\\frac{2x}{x} \\to 2$ and $\\frac{x^2}{x} \\to 0$ — both are $\\frac{0}{0}$ at the limit, with different answers. Comparing the rates of approach is precisely what differentiating both parts does."
+          },
+          {
+            "kind": "limitGraph",
+            "eyebrow": "The hole",
+            "title": "Undefined at a point, but heading somewhere",
+            "teach": "The function has no value at the marked point, yet approaching from either side leads to the same height. That height is the limit. l'Hôpital's rule is a tool for finding it when the algebra will not simplify by hand.",
+            "config": {
+              "mode": "hole"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "When does the rule apply?",
+            "prompt": "l'Hôpital's rule may be used on $\\lim \\frac{f}{g}$ when the form is:",
+            "options": [
+              "$\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ only",
+              "any limit at all",
+              "$\\frac{0}{0}$ only",
+              "$0 \\times \\infty$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Exactly those two indeterminate quotients. $0 \\times \\infty$ must be REWRITTEN as a quotient first. And on a non-indeterminate limit the rule gives a wrong answer, not merely a useless one.",
+            "check": [
+              "Eq(limit(2*x/x, x, 0), 2)",
+              "Eq(limit(x**2/x, x, 0), 0)",
+              "Eq(limit(cos(x)/(x + 1), x, 0), 1)",
+              "Ne(limit(-sin(x)/1, x, 0), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "One pass, then two",
+            "problemId": "ibhl-513-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Mind the chain rule",
+            "problemId": "ibhl-513-t1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The trap",
+            "title": "Not every limit needs the rule",
+            "prompt": "$\\displaystyle\\lim_{x \\to 0}\\frac{\\cos x}{x + 1}$ equals:",
+            "options": [
+              "$1$, by direct substitution",
+              "$0$, by l'Hôpital's rule",
+              "$-1$",
+              "the limit does not exist"
+            ],
+            "correctIndex": 0,
+            "explanation": "Substituting gives $\\frac{\\cos 0}{1} = \\frac{1}{1} = 1$ — the form is not indeterminate, so there is nothing to resolve. Applying l'Hôpital anyway yields $\\frac{-\\sin x}{1} \\to 0$, which is simply wrong. Check the form before reaching for the tool.",
+            "check": [
+              "Eq(limit(cos(x)/(x + 1), x, 0), 1)",
+              "Eq(cos(0)/(0 + 1), 1)",
+              "Ne(limit(diff(cos(x), x)/diff(x + 1, x), x, 0), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Infinity, and a form that needs rewriting",
+            "problemId": "ibhl-513-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Three applications",
+            "problemId": "ibhl-513-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.13 in four lines",
+            "points": [
+              "State the form first — $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$ only.",
+              "Differentiate numerator and denominator SEPARATELY, not by the quotient rule.",
+              "Re-check the form and repeat as often as needed.",
+              "$0 \\times \\infty$ and $\\infty - \\infty$ must be rearranged into a quotient first."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "implicit-differentiation-and-related-rates",
+      "title": "Implicit Differentiation & Related Rates",
+      "concreteComparison": "A circle's equation $x^2 + y^2 = 25$ never says '$y$ equals' anything — solving for $y$ splits it into two half-circles and loses the object. Implicit differentiation refuses to solve: it differentiates the relationship as it stands, treating $y$ as an unknown function of $x$, and hands back the gradient anyway.",
+      "objective": "Differentiate relations defined implicitly, find gradients and tangents on such curves, and solve related-rates problems by differentiating a geometric relationship with respect to time.",
+      "concept": [
+        "**Syllabus card — AHL 5.14.** Implicit differentiation; related rates of change; optimisation problems. Papers 1 and 2. Weight: 6-10 marks, and related rates in particular is a reliable Section B opener.",
+        "**The one new idea.** Treat $y$ as a function of $x$ and apply the chain rule whenever you differentiate a term containing $y$: $$\\frac{d}{dx}\\left(y^2\\right) = 2y\\,\\frac{dy}{dx}, \\qquad \\frac{d}{dx}\\left(xy\\right) = y + x\\,\\frac{dy}{dx} \\;(\\text{product rule}).$$ Everything else is ordinary differentiation. Forgetting the $\\frac{dy}{dx}$ factor is the defining error of this code — it turns the whole calculation into nonsense while looking plausible.",
+        "**The procedure.** Differentiate every term with respect to $x$; collect all the $\\frac{dy}{dx}$ terms on one side; factorise; divide. For $x^2 + xy + y^2 = 7$: $$2x + y + x\\frac{dy}{dx} + 2y\\frac{dy}{dx} = 0 \\;\\Longrightarrow\\; \\frac{dy}{dx} = -\\frac{2x + y}{x + 2y}.$$ The answer legitimately contains BOTH variables — that is normal for an implicit curve, and substituting a point gives the numerical gradient there.",
+        "**Related rates: the chain rule against time.** When two quantities are geometrically linked and one is changing, the other must be too. Write the RELATIONSHIP first (before any calculus), differentiate the whole thing with respect to $t$, then substitute the instant's values: $$V = \\tfrac{4}{3}\\pi r^3 \\;\\Longrightarrow\\; \\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}.$$",
+        "**Substitute values LAST.** Putting $r = 10$ into the volume formula before differentiating turns it into the constant $\\frac{4000\\pi}{3}$, whose derivative is zero — the single most destructive mistake in related rates. Differentiate the general relationship, THEN insert the instantaneous values. And watch the signs: a decreasing quantity has a NEGATIVE rate, and saying 'decreasing at $0.15$ m/s' when $\\frac{dy}{dt} = -0.15$ is the expected phrasing."
+      ],
+      "keyIdea": "Differentiating a $y$-term picks up a factor $\\frac{dy}{dx}$ — collect, factorise, divide. For related rates, write the relationship, differentiate with respect to $t$, and substitute the instant's values only at the END.",
+      "facts": [
+        {
+          "title": "The implicit chain rule",
+          "latex": "\\frac{d}{dx}\\left[g(y)\\right] = g'(y)\\,\\frac{dy}{dx}",
+          "explanation": "NOT in the booklet — it is the chain rule with $y$ as the inner function. Every $y$-term produces a $\\frac{dy}{dx}$."
+        },
+        {
+          "title": "Implicit gradient of a conic-type relation",
+          "latex": "\\frac{dy}{dx} = -\\frac{\\partial_x F}{\\partial_y F} \\quad\\text{for } F(x, y) = c",
+          "explanation": "NOT examinable in this notation, but a fast CHECK: differentiate $F$ treating each variable in turn as the only one, then take minus the ratio."
+        },
+        {
+          "title": "Related rates chain",
+          "latex": "\\frac{dV}{dt} = \\frac{dV}{dr} \\cdot \\frac{dr}{dt}",
+          "explanation": "The chain rule, applied against time. Differentiate the general relationship BEFORE substituting the instant's values."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-514-we1",
+          "statement": "A curve has equation $x^2 + xy + y^2 = 7$.  \n**(a)** Show that $\\dfrac{dy}{dx} = -\\dfrac{2x + y}{x + 2y}$. **[4]**  \n**(b)** Verify that $(1, 2)$ lies on the curve, and find the gradient of the tangent there. **[3]**",
+          "solution": "**(a)** Differentiate term by term with respect to $x$, remembering that $xy$ needs the product rule and $y^2$ the chain rule *(M1)*:  \n$$2x + \\left(y + x\\frac{dy}{dx}\\right) + 2y\\frac{dy}{dx} = 0. \\;(A1)$$  \nCollect the $\\frac{dy}{dx}$ terms *(M1)*:  \n$$(x + 2y)\\frac{dy}{dx} = -(2x + y) \\;\\Longrightarrow\\; \\frac{dy}{dx} = -\\frac{2x + y}{x + 2y}. \\;(AG)$$  \n**(b)** Substitute: $1 + 2 + 4 = 7$ ✓, so $(1, 2)$ is on the curve *(A1)*.  \n$$\\left.\\frac{dy}{dx}\\right|_{(1,2)} = -\\frac{2 + 2}{1 + 4} \\;(M1) = -\\frac{4}{5}. \\;(A1)$$  \n**Narrative:** the answer depends on both coordinates, which is expected — an implicit curve can pass through the same $x$-value twice with different gradients. The tangent there is $y - 2 = -\\frac{4}{5}(x - 1)$.",
+          "check": [
+            "Eq(1**2 + 1*2 + 2**2, 7)",
+            "Eq(-(2*1 + 2)/(1 + 2*2), Rational(-4,5))",
+            "Eq(simplify(-diff(x**2 + x*y + y**2, x)/diff(x**2 + x*y + y**2, y) - (-(2*x + y)/(x + 2*y))), 0)",
+            "Eq(diff(x**2 + x*y + y**2, x), 2*x + y)",
+            "Eq(diff(x**2 + x*y + y**2, y), x + 2*y)"
+          ]
+        },
+        {
+          "id": "ibhl-514-we2",
+          "statement": "A spherical balloon is inflated so that its volume increases at a constant rate of $100\\text{ cm}^3\\text{ s}^{-1}$.  \n**(a)** Find the rate at which the radius is increasing when the radius is $10$ cm, giving an exact answer. **[4]**  \n**(b)** Find the rate at which the surface area is increasing at that same instant. **[4]**",
+          "solution": "**(a)** The relationship first, differentiated in general *(M1)*:  \n$$V = \\tfrac{4}{3}\\pi r^3 \\;\\Longrightarrow\\; \\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}. \\;(A1)$$  \nNOW substitute $r = 10$ and $\\frac{dV}{dt} = 100$ *(M1)*:  \n$$100 = 4\\pi(100)\\frac{dr}{dt} \\;\\Longrightarrow\\; \\frac{dr}{dt} = \\frac{1}{4\\pi} \\approx 0.0796 \\text{ cm s}^{-1}. \\;(A1)$$  \n**(b)** $S = 4\\pi r^2$, so $\\frac{dS}{dt} = 8\\pi r\\frac{dr}{dt}$ *(M1 A1)*. At the same instant *(M1)*:  \n$$\\frac{dS}{dt} = 8\\pi(10)\\left(\\frac{1}{4\\pi}\\right) = 20 \\text{ cm}^2\\text{ s}^{-1}. \\;(A1)$$  \n**Narrative:** the $\\pi$ cancels in (b), giving a clean whole number — a good sign. Had $r = 10$ been substituted into $V$ before differentiating, $V$ would have been a constant and $\\frac{dV}{dt}$ would have come out as zero, contradicting the question.",
+          "check": [
+            "Eq(diff(Rational(4,3)*pi*r**3, r), 4*pi*r**2)",
+            "Eq(100/(4*pi*10**2), 1/(4*pi))",
+            "Eq(diff(4*pi*r**2, r), 8*pi*r)",
+            "Eq(8*pi*10*(1/(4*pi)), 20)",
+            "Abs(1/(4*pi) - 0.0796) < Rational(1,10000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Differentiating $y^2$ as $2y$, without the $\\frac{dy}{dx}$ factor.",
+          "correction": "$y$ is a function of $x$, so the chain rule applies: $\\frac{d}{dx}(y^2) = 2y\\frac{dy}{dx}$. Missing it wrecks every subsequent line.",
+          "authored": true
+        },
+        {
+          "text": "Substituting the instant's values before differentiating in a related-rates problem.",
+          "correction": "That freezes the quantity into a constant whose derivative is zero. Differentiate the GENERAL relationship first; substitute last.",
+          "authored": true
+        },
+        {
+          "text": "Reporting a decreasing quantity with a positive rate.",
+          "correction": "A shrinking quantity has $\\frac{d}{dt} < 0$. Give the signed value, then describe it in words: '$\\frac{dy}{dt} = -0.15$, so the top slides down at $0.15$ m s$^{-1}$'.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-514-t1",
+          "statement": "A curve has equation $x^3 + y^3 = 6xy$.  \nShow that $(3, 3)$ lies on the curve and find the gradient of the tangent there. **[6]**",
+          "solution": "Substituting: $27 + 27 = 54$ and $6(3)(3) = 54$ ✓ *(A1)*.  \nDifferentiate implicitly, using the product rule on the right *(M1)*:  \n$$3x^2 + 3y^2\\frac{dy}{dx} = 6y + 6x\\frac{dy}{dx} \\;(A1)$$  \nCollect *(M1)*:  \n$$\\left(3y^2 - 6x\\right)\\frac{dy}{dx} = 6y - 3x^2 \\;\\Longrightarrow\\; \\frac{dy}{dx} = \\frac{2y - x^2}{y^2 - 2x}. \\;(A1)$$  \nAt $(3, 3)$: $\\frac{6 - 9}{9 - 6} = -1$ *(A1)*.  \nThis curve is the folium of Descartes, and $(3, 3)$ is the point where it crosses the line $y = x$ — a gradient of $-1$ there means the tangent is perpendicular to that line, which the curve's symmetry in $x$ and $y$ predicts.",
+          "check": [
+            "Eq(3**3 + 3**3, 6*3*3)",
+            "Eq((2*3 - 3**2)/(3**2 - 2*3), -1)",
+            "Eq(simplify(-diff(x**3 + y**3 - 6*x*y, x)/diff(x**3 + y**3 - 6*x*y, y) - (2*y - x**2)/(y**2 - 2*x)), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-514-t2",
+          "statement": "A ladder $5$ m long leans against a vertical wall. The foot of the ladder is pulled away from the wall at $0.2\\text{ m s}^{-1}$.  \nFind the rate at which the top of the ladder is moving when the foot is $3$ m from the wall. **[6]**",
+          "solution": "Let $x$ be the distance of the foot from the wall and $y$ the height of the top. Pythagoras gives the relationship *(M1)*:  \n$$x^2 + y^2 = 25.$$  \nWhen $x = 3$: $y = \\sqrt{25 - 9} = 4$ *(A1)*.  \nDifferentiate with respect to $t$ *(M1)*:  \n$$2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0 \\;\\Longrightarrow\\; \\frac{dy}{dt} = -\\frac{x}{y}\\cdot\\frac{dx}{dt}. \\;(A1)$$  \nSubstitute *(M1)*:  \n$$\\frac{dy}{dt} = -\\frac{3}{4}(0.2) = -0.15 \\text{ m s}^{-1},$$  \nso the top is sliding DOWN at $0.15\\text{ m s}^{-1}$ *(A1)*.  \nThe negative sign is the answer's most informative part — and note the ladder's length $5$ is constant, so differentiating $25$ gives zero.",
+          "check": [
+            "Eq(3**2 + 4**2, 25)",
+            "Eq(-Rational(3,4)*Rational(2,10), Rational(-3,20))",
+            "Eq(Rational(-3,20), -0.15)",
+            "Rational(-3,20) < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.14 · Papers 1 & 2",
+            "title": "Differentiate without solving",
+            "body": "Some curves cannot be written as $y = f(x)$ at all — a circle fails the vertical line test, and $x^3 + y^3 = 6xy$ resists rearrangement entirely. Implicit differentiation sidesteps the problem: differentiate the equation exactly as written, treating $y$ as an unnamed function of $x$, and every $y$-term contributes a $\\frac{dy}{dx}$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "The extra factor",
+            "prompt": "$\\dfrac{d}{dx}\\left(y^3\\right)$ equals:",
+            "options": [
+              "$3y^2\\dfrac{dy}{dx}$",
+              "$3y^2$",
+              "$3x^2\\dfrac{dy}{dx}$",
+              "$y^3\\dfrac{dy}{dx}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The chain rule with $y$ as the inner function: differentiate the outer power to get $3y^2$, then multiply by the derivative of the inner function, $\\frac{dy}{dx}$. Dropping that factor is the defining error of this topic.",
+            "check": [
+              "Eq(diff(y**3, y), 3*y**2)",
+              "Eq(diff((x**2)**3, x), 6*x**5)",
+              "Eq(3*(x**2)**2*diff(x**2, x), 6*x**5)"
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "A curve that is not a function",
+            "title": "Two gradients at one x-value",
+            "teach": "A circle passes through most vertical lines twice, with opposite gradients. That is exactly why $\\frac{dy}{dx}$ for an implicit relation depends on BOTH coordinates: the $x$-value alone does not identify the point, so it cannot determine the tangent.",
+            "config": {
+              "mode": "circle",
+              "center": {
+                "x": 0,
+                "y": 0
+              },
+              "r": 5
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Collect, factorise, divide",
+            "problemId": "ibhl-514-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The folium of Descartes",
+            "problemId": "ibhl-514-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Related rates",
+            "title": "The order that saves the marks",
+            "body": "Related-rates questions follow one fixed order. Write the geometric RELATIONSHIP. Differentiate it with respect to time, in general. THEN substitute the values holding at the instant of interest. Reversing the last two steps converts a variable into a constant, whose rate of change is zero — and the calculation collapses."
+          },
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Rates against time",
+            "title": "One quantity drives another",
+            "teach": "When two quantities are geometrically linked, changing one forces the other to change — but not at the same rate, and the ratio itself shifts as the configuration moves. The chain rule against time is what quantifies the link at any given instant.",
+            "config": {
+              "topLabel": "Volume added",
+              "topUnit": "cm^3",
+              "top": 100,
+              "topMax": 500,
+              "topStep": 50,
+              "bottomLabel": "Time elapsed",
+              "bottomUnit": "s",
+              "bottom": 1,
+              "bottomMax": 10,
+              "bottomStep": 1,
+              "rateUnit": "cm^3 per second"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The fatal shortcut",
+            "title": "When do you substitute?",
+            "prompt": "In a related-rates problem you should substitute the given instantaneous values:",
+            "options": [
+              "after differentiating the general relationship",
+              "into the relationship before differentiating",
+              "at whichever point is more convenient",
+              "never — the answer stays in terms of the variables"
+            ],
+            "correctIndex": 0,
+            "explanation": "Substituting $r = 10$ into $V = \\frac{4}{3}\\pi r^3$ first makes $V$ the constant $\\frac{4000\\pi}{3}$, so $\\frac{dV}{dt} = 0$ — contradicting the given rate of $100$. Differentiate in general; substitute last.",
+            "check": [
+              "Eq(diff(Rational(4,3)*pi*r**3, r), 4*pi*r**2)",
+              "Eq(diff(Rational(4,3)*pi*10**3, r), 0)",
+              "Eq(100/(4*pi*10**2), 1/(4*pi))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A balloon, two rates",
+            "problemId": "ibhl-514-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "The sliding ladder",
+            "problemId": "ibhl-514-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.14 in four lines",
+            "points": [
+              "Every $y$-term differentiates with a $\\frac{dy}{dx}$ attached — chain rule.",
+              "Collect the $\\frac{dy}{dx}$ terms, factorise, divide; the answer may contain both variables.",
+              "Related rates: RELATIONSHIP $\\to$ differentiate w.r.t. $t$ $\\to$ substitute the instant.",
+              "Negative rate = decreasing. State the sign, then describe it in words."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-derivative-library",
+      "title": "The Extended Derivative Library",
+      "concreteComparison": "A mechanic's socket set is useless if half the sizes are missing. SL gave you $\\sin$, $\\cos$, $\\mathrm{e}^x$ and $\\ln x$; HL fills in the rest — the reciprocal trig functions, general exponentials and logarithms, and the inverse trig functions. Same rules, wider set of pieces.",
+      "objective": "Differentiate $\\tan x$, $\\sec x$, $\\csc x$, $\\cot x$, $a^x$, $\\log_a x$, $\\arcsin x$, $\\arccos x$ and $\\arctan x$, combine them with the product, quotient and chain rules, and derive the inverse-trig derivatives from first principles of implicit differentiation.",
+      "concept": [
+        "**Syllabus card — AHL 5.15 (differentiation half).** Derivatives of $\\tan x$, $\\sec x$, $\\csc x$, $\\cot x$, $a^x$, $\\log_a x$, $\\arcsin x$, $\\arccos x$, $\\arctan x$. Papers 1 and 2. Weight: 5-9 marks, and these functions then reappear constantly inside the integration codes.",
+        "**The trigonometric additions.** $$\\frac{d}{dx}\\tan x = \\sec^2 x, \\qquad \\frac{d}{dx}\\sec x = \\sec x \\tan x,$$ $$\\frac{d}{dx}\\csc x = -\\csc x \\cot x, \\qquad \\frac{d}{dx}\\cot x = -\\csc^2 x.$$ All in the booklet. The pattern is worth noticing: the two 'co-' functions ($\\csc$, $\\cot$) carry a minus sign, exactly as $\\cos$ does.",
+        "**General exponentials and logarithms.** $$\\frac{d}{dx}a^x = a^x \\ln a, \\qquad \\frac{d}{dx}\\log_a x = \\frac{1}{x\\ln a}.$$ Both in the booklet, and both reduce to the familiar cases when $a = \\mathrm{e}$, since $\\ln \\mathrm{e} = 1$. That is the whole reason $\\mathrm{e}$ is the natural base: it is the one that makes the constant disappear.",
+        "**The inverse trigonometric derivatives.** $$\\frac{d}{dx}\\arcsin x = \\frac{1}{\\sqrt{1 - x^2}}, \\qquad \\frac{d}{dx}\\arccos x = -\\frac{1}{\\sqrt{1 - x^2}}, \\qquad \\frac{d}{dx}\\arctan x = \\frac{1}{1 + x^2}.$$ In the booklet. Two remarkable facts: no trigonometry survives in the answers, and $\\arcsin$ and $\\arccos$ differ only by a sign — because their sum is the constant $\\frac{\\pi}{2}$.",
+        "**Where they come from.** Each is one implicit differentiation away. For $y = \\arcsin x$, write $\\sin y = x$, differentiate to get $\\cos y \\frac{dy}{dx} = 1$, so $\\frac{dy}{dx} = \\frac{1}{\\cos y}$. On the restricted range $\\left[-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right]$ cosine is non-negative, so $\\cos y = \\sqrt{1 - \\sin^2 y} = \\sqrt{1 - x^2}$. The range restriction is what justifies the positive square root — mention it, it is an R mark."
+      ],
+      "keyIdea": "New pieces, same rules: $\\tan \\to \\sec^2$, the 'co-' functions carry minus signs, $a^x \\to a^x\\ln a$, and the inverse trig derivatives are algebraic — $\\frac{1}{\\sqrt{1-x^2}}$ and $\\frac{1}{1+x^2}$, each one implicit differentiation away.",
+      "facts": [
+        {
+          "title": "Reciprocal trig derivatives",
+          "latex": "\\tan' = \\sec^2 x, \\;\\; \\sec' = \\sec x\\tan x, \\;\\; \\csc' = -\\csc x\\cot x, \\;\\; \\cot' = -\\csc^2 x",
+          "explanation": "IN the booklet. The 'co-' functions take the minus signs — the same convention that makes $\\cos' = -\\sin$."
+        },
+        {
+          "title": "General base",
+          "latex": "\\frac{d}{dx}a^x = a^x\\ln a, \\qquad \\frac{d}{dx}\\log_a x = \\frac{1}{x\\ln a}",
+          "explanation": "IN the booklet. Setting $a = \\mathrm{e}$ recovers the SL results, since $\\ln\\mathrm{e} = 1$."
+        },
+        {
+          "title": "Inverse trig derivatives",
+          "latex": "\\arcsin' = \\frac{1}{\\sqrt{1-x^2}}, \\quad \\arccos' = \\frac{-1}{\\sqrt{1-x^2}}, \\quad \\arctan' = \\frac{1}{1+x^2}",
+          "explanation": "IN the booklet. Purely algebraic — and read backwards they are the source of the inverse-trig INTEGRALS in the next lesson."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-515a-we1",
+          "statement": "Differentiate with respect to $x$:  \n**(a)** $y = x^2\\tan x$; **[3]**  \n**(b)** $y = \\arctan(3x)$; **[3]**  \n**(c)** $y = 2^x + \\log_3 x$. **[3]**",
+          "solution": "**(a)** Product rule with $\\tan' = \\sec^2$ *(M1)*:  \n$$\\frac{dy}{dx} = 2x\\tan x + x^2\\sec^2 x. \\;(A1\\,A1)$$  \n**(b)** Chain rule on the inverse *(M1)*: the outer derivative is $\\frac{1}{1 + u^2}$ with $u = 3x$, and $\\frac{du}{dx} = 3$ *(A1)*:  \n$$\\frac{dy}{dx} = \\frac{3}{1 + 9x^2}. \\;(A1)$$  \n**(c)** Straight from the library *(M1)*:  \n$$\\frac{dy}{dx} = 2^x\\ln 2 + \\frac{1}{x\\ln 3}. \\;(A1\\,A1)$$  \n**Narrative:** in (b), note the denominator is $1 + 9x^2$, not $1 + 3x^2$ — the inner function is squared inside the formula, and the outer factor of $3$ sits in the numerator. Both slips are common and independent.",
+          "check": [
+            "Eq(simplify(diff(x**2*tan(x), x) - (2*x*tan(x) + x**2*sec(x)**2)), 0)",
+            "Eq(simplify(diff(atan(3*x), x) - 3/(1 + 9*x**2)), 0)",
+            "Eq(simplify(diff(2**x, x) - 2**x*log(2)), 0)",
+            "Eq(simplify(diff(log(x)/log(3), x) - 1/(x*log(3))), 0)",
+            "Eq(simplify(diff(tan(x), x) - sec(x)**2), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-515a-we2",
+          "statement": "**(a)** By writing $y = \\arcsin x$ and using implicit differentiation, show that $\\dfrac{dy}{dx} = \\dfrac{1}{\\sqrt{1 - x^2}}$. **[5]**  \n**(b)** Hence find the exact value of $\\dfrac{d}{dx}\\left[\\arcsin\\left(\\dfrac{x}{2}\\right)\\right]$ at $x = 1$. **[4]**",
+          "solution": "**(a)** $y = \\arcsin x$ means $\\sin y = x$ *(M1)*. Differentiate both sides with respect to $x$ *(M1)*:  \n$$\\cos y\\,\\frac{dy}{dx} = 1 \\;\\Longrightarrow\\; \\frac{dy}{dx} = \\frac{1}{\\cos y}. \\;(A1)$$  \nNow $\\cos y = \\pm\\sqrt{1 - \\sin^2 y} = \\pm\\sqrt{1 - x^2}$, and on the range of $\\arcsin$, namely $\\left[-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right]$, cosine is non-negative *(R1)*. Therefore  \n$$\\frac{dy}{dx} = \\frac{1}{\\sqrt{1 - x^2}}. \\;(AG)$$  \n**(b)** Chain rule with inner function $\\frac{x}{2}$ *(M1)*:  \n$$\\frac{d}{dx}\\arcsin\\!\\left(\\frac{x}{2}\\right) = \\frac{1/2}{\\sqrt{1 - x^2/4}} \\;(A1)$$  \nAt $x = 1$ *(M1)*:  \n$$\\frac{1/2}{\\sqrt{3/4}} = \\frac{1/2}{\\sqrt3/2} = \\frac{1}{\\sqrt3} = \\frac{\\sqrt3}{3}. \\;(A1)$$  \n**Narrative:** the range argument in (a) is not decoration — without it the sign of the square root is genuinely ambiguous, and the markscheme awards a reasoning mark for it specifically.",
+          "check": [
+            "Eq(simplify(diff(asin(x), x) - 1/sqrt(1 - x**2)), 0)",
+            "Eq(simplify(diff(asin(x/2), x) - Rational(1,2)/sqrt(1 - x**2/4)), 0)",
+            "Eq(simplify(diff(asin(x/2), x).subs(x, 1)), sqrt(3)/3)",
+            "Eq(simplify(sqrt(3)/3 - 1/sqrt(3)), 0)",
+            "cos(pi/4) > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "$\\frac{d}{dx}\\arctan(3x)$ written as $\\frac{1}{1 + 3x^2}$.",
+          "correction": "The inner function is squared INSIDE the formula and its derivative multiplies outside: $\\frac{3}{1 + (3x)^2} = \\frac{3}{1 + 9x^2}$.",
+          "authored": true
+        },
+        {
+          "text": "$\\frac{d}{dx}2^x$ given as $x\\,2^{x-1}$.",
+          "correction": "The power rule applies to $x^n$, a variable BASE. Here the variable is the EXPONENT: $\\frac{d}{dx}a^x = a^x\\ln a$.",
+          "authored": true
+        },
+        {
+          "text": "Taking $\\cos y = \\sqrt{1 - x^2}$ in the derivation without justifying the sign.",
+          "correction": "The square root could be negative in general. $\\arcsin$'s range $\\left[-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right]$ forces $\\cos y \\ge 0$ — say so; it is a reasoning mark.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-515a-t1",
+          "statement": "Find $\\dfrac{dy}{dx}$ for $y = \\sec x \\arctan x$. **[4]**",
+          "solution": "Product rule *(M1)*, with $\\sec' = \\sec x\\tan x$ and $\\arctan' = \\frac{1}{1 + x^2}$ *(A1 A1)*:  \n$$\\frac{dy}{dx} = \\sec x\\tan x \\arctan x + \\frac{\\sec x}{1 + x^2}. \\;(A1)$$  \nTwo library entries in one line, and neither simplifies further — leaving the answer as a sum of two clearly-derived terms is exactly what the markscheme wants.",
+          "check": [
+            "Eq(simplify(diff(sec(x)*atan(x), x) - (sec(x)*tan(x)*atan(x) + sec(x)/(1 + x**2))), 0)",
+            "Eq(simplify(diff(sec(x), x) - sec(x)*tan(x)), 0)",
+            "Eq(simplify(diff(atan(x), x) - 1/(1 + x**2)), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-515a-t2",
+          "statement": "Find $\\dfrac{dy}{dx}$ for $y = \\mathrm{e}^{2x}\\arccos x$. **[4]**",
+          "solution": "Product rule *(M1)*, remembering the MINUS on $\\arccos'$ *(A1)*:  \n$$\\frac{dy}{dx} = 2\\mathrm{e}^{2x}\\arccos x + \\mathrm{e}^{2x}\\left(-\\frac{1}{\\sqrt{1 - x^2}}\\right) \\;(A1)$$  \n$$= 2\\mathrm{e}^{2x}\\arccos x - \\frac{\\mathrm{e}^{2x}}{\\sqrt{1 - x^2}}. \\;(A1)$$  \nThe sign is the only thing separating this from the $\\arcsin$ version — and it is the mark most often dropped on the whole code.",
+          "check": [
+            "Eq(simplify(diff(exp(2*x)*acos(x), x) - (2*exp(2*x)*acos(x) - exp(2*x)/sqrt(1 - x**2))), 0)",
+            "Eq(simplify(diff(acos(x), x) + 1/sqrt(1 - x**2)), 0)",
+            "Eq(simplify(diff(asin(x) + acos(x), x)), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.15 · Papers 1 & 2",
+            "title": "More pieces, same machinery",
+            "body": "Nothing conceptual is new here — the product, quotient and chain rules are unchanged. What changes is the LIBRARY of functions you can feed them. Nine new derivatives arrive, all in the booklet, and the marks are lost not in understanding but in signs and in chain-rule factors."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "The tangent's derivative",
+            "prompt": "$\\dfrac{d}{dx}(\\tan x)$ equals:",
+            "options": [
+              "$\\sec^2 x$",
+              "$-\\csc^2 x$",
+              "$\\sec x\\tan x$",
+              "$\\dfrac{1}{1 + x^2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\tan' = \\sec^2 x$. The second option is $\\cot'$, the third is $\\sec'$, and the fourth is $\\arctan'$ — four different entries that get confused with each other more than any others in the library.",
+            "check": [
+              "Eq(simplify(diff(tan(x), x) - sec(x)**2), 0)",
+              "Eq(simplify(diff(cot(x), x) + csc(x)**2), 0)",
+              "Eq(simplify(diff(sec(x), x) - sec(x)*tan(x)), 0)",
+              "Eq(simplify(diff(atan(x), x) - 1/(1 + x**2)), 0)"
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Why e is natural",
+            "title": "The base that removes the constant",
+            "teach": "$\\frac{d}{dx}a^x = a^x \\ln a$ — every exponential is proportional to its own derivative, and the constant of proportionality is $\\ln a$. Choose $a = \\mathrm{e}$ and that constant becomes exactly $1$: the function is its own derivative. That is the entire reason $\\mathrm{e}$ is singled out.",
+            "config": {
+              "mode": "growth",
+              "a": 1,
+              "b": 2,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Three from the library",
+            "problemId": "ibhl-515a-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Product rule, two new pieces",
+            "problemId": "ibhl-515a-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Inverse trig",
+            "title": "Where the square roots come from",
+            "body": "The inverse-trig derivatives look nothing like trigonometry — and that is the point. Setting $\\sin y = x$ and differentiating gives $\\frac{1}{\\cos y}$; converting $\\cos y$ into $\\sqrt{1 - x^2}$ using the Pythagorean identity removes the last trigonometric function. Read backwards, these three results are the ONLY way to integrate $\\frac{1}{\\sqrt{1 - x^2}}$ and $\\frac{1}{1 + x^2}$ — which is the next lesson."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Sign discipline",
+            "title": "arcsin or arccos?",
+            "prompt": "$\\dfrac{d}{dx}(\\arccos x)$ equals:",
+            "options": [
+              "$-\\dfrac{1}{\\sqrt{1 - x^2}}$",
+              "$\\dfrac{1}{\\sqrt{1 - x^2}}$",
+              "$-\\dfrac{1}{1 + x^2}$",
+              "$\\dfrac{1}{\\sqrt{x^2 - 1}}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\arccos$ carries the minus sign. The clean reason: $\\arcsin x + \\arccos x = \\frac{\\pi}{2}$ is constant, so their derivatives must sum to zero — one is exactly the negative of the other.",
+            "check": [
+              "Eq(simplify(diff(acos(x), x) + 1/sqrt(1 - x**2)), 0)",
+              "Eq(simplify(asin(Rational(1,2)) + acos(Rational(1,2)) - pi/2), 0)",
+              "Eq(simplify(diff(asin(x) + acos(x), x)), 0)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Derive it, then use it",
+            "problemId": "ibhl-515a-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Mind the minus",
+            "problemId": "ibhl-515a-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.15 (differentiation) in five lines",
+            "points": [
+              "$\\tan' = \\sec^2 x$, $\\sec' = \\sec x\\tan x$; the 'co-' functions carry minus signs.",
+              "$\\frac{d}{dx}a^x = a^x\\ln a$ and $\\frac{d}{dx}\\log_a x = \\frac{1}{x\\ln a}$.",
+              "$\\arcsin' = \\frac{1}{\\sqrt{1-x^2}}$, $\\arccos'$ is its negative, $\\arctan' = \\frac{1}{1+x^2}$.",
+              "Chain rule: the inner function is squared INSIDE and its derivative multiplies OUTSIDE.",
+              "Derive the inverse results by implicit differentiation, justifying the root's sign from the range."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "integrating-the-library-and-partial-fractions",
+      "title": "Integrating the Library & Partial Fractions",
+      "concreteComparison": "Every derivative you learn is also an integral, read backwards — a dictionary that works in both directions. And when an integrand refuses to appear in the dictionary, partial fractions splits it into pieces that do. One rational fraction becomes two logarithms, and the problem dissolves.",
+      "objective": "Integrate the extended library of functions, recognise the inverse-trigonometric standard forms with a general constant $a$, and use partial fractions to integrate rational functions with distinct linear factors.",
+      "concept": [
+        "**Syllabus card — AHL 5.15 (integration half).** Indefinite integrals of $\\frac{1}{x}$, $\\sin x$, $\\cos x$, $\\frac{1}{\\cos^2 x}$, $\\mathrm{e}^x$ and $a^x$; the standard forms leading to $\\arcsin$ and $\\arctan$; use of partial fractions to rearrange the integrand. Papers 1 and 2. Weight: 5-9 marks.",
+        "**The dictionary, read backwards.** Every entry in the derivative library becomes an integral: $$\\int \\sec^2 x\\,dx = \\tan x + C, \\qquad \\int a^x\\,dx = \\frac{a^x}{\\ln a} + C,$$ $$\\int \\frac{1}{\\sqrt{1 - x^2}}\\,dx = \\arcsin x + C, \\qquad \\int \\frac{1}{1 + x^2}\\,dx = \\arctan x + C.$$ Note $a^x$ picks up a DIVISION by $\\ln a$ where differentiating multiplied by it — integration always undoes what differentiation did.",
+        "**The general standard forms.** The booklet gives them with a constant $a$: $$\\int \\frac{dx}{a^2 + x^2} = \\frac{1}{a}\\arctan\\!\\left(\\frac{x}{a}\\right) + C, \\qquad \\int \\frac{dx}{\\sqrt{a^2 - x^2}} = \\arcsin\\!\\left(\\frac{x}{a}\\right) + C.$$ Two details decide the marks: the arctan form carries an EXTERNAL $\\frac{1}{a}$ while the arcsin form does not, and $a^2$ must be identified from the constant — for $\\frac{1}{x^2 + 9}$, $a = 3$, giving $\\frac{1}{3}\\arctan\\frac{x}{3}$.",
+        "**Partial fractions.** A proper rational function with distinct linear factors splits as $$\\frac{px + q}{(x - r)(x - s)} = \\frac{A}{x - r} + \\frac{B}{x - s}.$$ Multiply through by the denominator and substitute the values that kill each bracket in turn — the fastest route by far. For $\\frac{5x - 4}{(x - 2)(x + 1)}$: putting $x = 2$ gives $6 = 3A$, so $A = 2$; putting $x = -1$ gives $-9 = -3B$, so $B = 3$.",
+        "**Then integrate the pieces.** Each fraction becomes a logarithm: $$\\int \\frac{5x - 4}{(x-2)(x+1)}\\,dx = 2\\ln|x - 2| + 3\\ln|x + 1| + C.$$ The MODULUS signs are compulsory — $\\ln$ of a negative number is undefined, and omitting them costs a mark every time. Check the split by recombining over a common denominator before integrating; it takes ten seconds and catches a wrong $A$ or $B$ before it propagates."
+      ],
+      "keyIdea": "Every derivative is an integral backwards. $\\int\\frac{dx}{a^2+x^2} = \\frac{1}{a}\\arctan\\frac{x}{a}$ (external $\\frac{1}{a}$), $\\int\\frac{dx}{\\sqrt{a^2-x^2}} = \\arcsin\\frac{x}{a}$ (no external factor). Partial fractions turn one rational function into a sum of logarithms — with modulus signs.",
+      "facts": [
+        {
+          "title": "Standard form leading to arctan",
+          "latex": "\\int \\frac{dx}{a^2 + x^2} = \\frac{1}{a}\\arctan\\!\\left(\\frac{x}{a}\\right) + C",
+          "explanation": "IN the booklet. The external $\\frac{1}{a}$ is the most-forgotten factor in the whole integration syllabus."
+        },
+        {
+          "title": "Standard form leading to arcsin",
+          "latex": "\\int \\frac{dx}{\\sqrt{a^2 - x^2}} = \\arcsin\\!\\left(\\frac{x}{a}\\right) + C",
+          "explanation": "IN the booklet. NO external factor here — the contrast with the arctan form is deliberate and examined."
+        },
+        {
+          "title": "Partial fractions, distinct linear factors",
+          "latex": "\\frac{px + q}{(x - r)(x - s)} = \\frac{A}{x - r} + \\frac{B}{x - s}",
+          "explanation": "IN the booklet. Find $A$ and $B$ by substituting $x = r$ and $x = s$ — each kills one bracket instantly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-515b-we1",
+          "statement": "Find the exact value of  \n**(a)** $\\displaystyle\\int_0^3 \\frac{1}{x^2 + 9}\\,dx$; **[4]**  \n**(b)** $\\displaystyle\\int_0^{\\sqrt2} \\frac{1}{\\sqrt{4 - x^2}}\\,dx$. **[4]**",
+          "solution": "**(a)** Match the standard form with $a^2 = 9$, so $a = 3$ *(M1)*:  \n$$\\int \\frac{dx}{9 + x^2} = \\frac{1}{3}\\arctan\\!\\left(\\frac{x}{3}\\right) + C. \\;(A1)$$  \nEvaluate *(M1)*:  \n$$\\left[\\frac{1}{3}\\arctan\\frac{x}{3}\\right]_0^3 = \\frac{1}{3}\\arctan 1 - 0 = \\frac{1}{3}\\cdot\\frac{\\pi}{4} = \\frac{\\pi}{12}. \\;(A1)$$  \n**(b)** Here $a^2 = 4$, so $a = 2$, and this form has NO external factor *(M1 A1)*:  \n$$\\left[\\arcsin\\frac{x}{2}\\right]_0^{\\sqrt2} = \\arcsin\\!\\left(\\frac{\\sqrt2}{2}\\right) - 0 \\;(M1) = \\frac{\\pi}{4}. \\;(A1)$$  \n**Narrative:** the two parts differ precisely in the $\\frac{1}{a}$. Writing $\\arctan\\frac{x}{3}$ without the $\\frac{1}{3}$ in (a) — or inventing a $\\frac{1}{2}$ in (b) — is the entire trap, and the parts are set side by side to expose it.",
+          "check": [
+            "Eq(integrate(1/(x**2 + 9), (x, 0, 3)), pi/12)",
+            "Eq(integrate(1/sqrt(4 - x**2), (x, 0, sqrt(2))), pi/4)",
+            "Eq(simplify(diff(atan(x/3)/3, x) - 1/(x**2 + 9)), 0)",
+            "Eq(simplify(diff(asin(x/2), x) - 1/sqrt(4 - x**2)), 0)",
+            "Eq(atan(1), pi/4)",
+            "Eq(asin(sqrt(2)/2), pi/4)"
+          ]
+        },
+        {
+          "id": "ibhl-515b-we2",
+          "statement": "**(a)** Express $\\dfrac{5x - 4}{(x - 2)(x + 1)}$ in partial fractions. **[4]**  \n**(b)** Hence find $\\displaystyle\\int \\frac{5x - 4}{(x - 2)(x + 1)}\\,dx$. **[3]**  \n**(c)** Evaluate $\\displaystyle\\int_3^5 \\frac{5x - 4}{(x - 2)(x + 1)}\\,dx$, giving your answer in the form $p\\ln 3 + q\\ln 2$. **[4]**",
+          "solution": "**(a)** Write $\\frac{5x - 4}{(x-2)(x+1)} = \\frac{A}{x-2} + \\frac{B}{x+1}$ *(M1)*, so $5x - 4 = A(x + 1) + B(x - 2)$ *(A1)*.  \nSubstitute $x = 2$: $6 = 3A$, so $A = 2$ *(A1)*.  \nSubstitute $x = -1$: $-9 = -3B$, so $B = 3$ *(A1)*.  \n$$\\frac{5x - 4}{(x-2)(x+1)} = \\frac{2}{x - 2} + \\frac{3}{x + 1}$$  \n**(b)** Each piece is a logarithm *(M1)*:  \n$$\\int \\left(\\frac{2}{x-2} + \\frac{3}{x+1}\\right)dx = 2\\ln|x - 2| + 3\\ln|x + 1| + C. \\;(A1\\,A1)$$  \n**(c)** *(M1)* $$\\left[2\\ln|x-2| + 3\\ln|x+1|\\right]_3^5 = (2\\ln 3 + 3\\ln 6) - (2\\ln 1 + 3\\ln 4) \\;(A1)$$  \n$$= 2\\ln 3 + 3\\ln\\frac{6}{4} = 2\\ln 3 + 3(\\ln 3 - \\ln 2) \\;(A1)$$  \n$$= 5\\ln 3 - 3\\ln 2. \\;(A1)$$  \n**Narrative:** check (a) by recombining: $\\frac{2(x+1) + 3(x-2)}{(x-2)(x+1)} = \\frac{5x - 4}{(x-2)(x+1)}$ ✓. And on $[3, 5]$ both brackets are positive, so the moduli are harmless here — but write them anyway, because the indefinite integral in (b) has no such guarantee.",
+          "check": [
+            "Eq(apart((5*x - 4)/((x - 2)*(x + 1))), 2/(x - 2) + 3/(x + 1))",
+            "Eq(expand(2*(x + 1) + 3*(x - 2)), 5*x - 4)",
+            "Eq(5*2 - 4, 3*2)",
+            "Eq(5*(-1) - 4, -3*3)",
+            "Eq(simplify(integrate((5*x - 4)/((x - 2)*(x + 1)), (x, 3, 5)) - (5*log(3) - 3*log(2))), 0)",
+            "Eq(simplify(diff(2*log(x - 2) + 3*log(x + 1), x) - (5*x - 4)/((x - 2)*(x + 1))), 0)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "$\\int \\frac{dx}{x^2 + 9}$ written as $\\arctan\\frac{x}{3} + C$.",
+          "correction": "The standard form carries an external $\\frac{1}{a}$: the answer is $\\frac{1}{3}\\arctan\\frac{x}{3} + C$. Differentiate your answer to check — it must return the integrand exactly.",
+          "authored": true
+        },
+        {
+          "text": "Adding a $\\frac{1}{a}$ to the arcsin form as well.",
+          "correction": "$\\int\\frac{dx}{\\sqrt{a^2 - x^2}} = \\arcsin\\frac{x}{a} + C$, with NO external factor. The two standard forms deliberately differ here.",
+          "authored": true
+        },
+        {
+          "text": "Omitting the modulus signs in $\\ln|x - 2|$.",
+          "correction": "The logarithm of a negative number is undefined, so an indefinite integral must carry $|\\;|$. It is a mark, every time.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-515b-t1",
+          "statement": "Find the exact value of $\\displaystyle\\int_0^2 \\frac{1}{4 + x^2}\\,dx$. **[4]**",
+          "solution": "Match the standard form with $a = 2$ *(M1)*:  \n$$\\int \\frac{dx}{4 + x^2} = \\frac{1}{2}\\arctan\\!\\left(\\frac{x}{2}\\right) + C. \\;(A1)$$  \n$$\\left[\\frac{1}{2}\\arctan\\frac{x}{2}\\right]_0^2 = \\frac{1}{2}\\arctan 1 \\;(M1) = \\frac{1}{2}\\cdot\\frac{\\pi}{4} = \\frac{\\pi}{8}. \\;(A1)$$  \nWhenever the upper limit equals $a$, the arctan evaluates to $\\frac{\\pi}{4}$ — a pattern worth recognising, since it makes these integrals exact.",
+          "check": [
+            "Eq(integrate(1/(4 + x**2), (x, 0, 2)), pi/8)",
+            "Eq(simplify(diff(atan(x/2)/2, x) - 1/(4 + x**2)), 0)",
+            "Eq(atan(1), pi/4)"
+          ]
+        },
+        {
+          "id": "ibhl-515b-t2",
+          "statement": "**(a)** Express $\\dfrac{3x + 7}{(x + 1)(x + 3)}$ in partial fractions. **[4]**  \n**(b)** Hence find $\\displaystyle\\int \\frac{3x + 7}{(x + 1)(x + 3)}\\,dx$. **[3]**",
+          "solution": "**(a)** $3x + 7 = A(x + 3) + B(x + 1)$ *(M1)*.  \n$x = -1$: $4 = 2A$, so $A = 2$ *(A1)*.  \n$x = -3$: $-2 = -2B$, so $B = 1$ *(A1)*.  \n$$\\frac{3x + 7}{(x+1)(x+3)} = \\frac{2}{x + 1} + \\frac{1}{x + 3} \\;(A1)$$  \n**(b)** *(M1)* $$\\int \\left(\\frac{2}{x+1} + \\frac{1}{x+3}\\right)dx = 2\\ln|x + 1| + \\ln|x + 3| + C. \\;(A1\\,A1)$$  \nRecombination check: $2(x + 3) + (x + 1) = 3x + 7$ ✓. Note the coefficients $A$ and $B$ became the LOG coefficients directly — that is always how the distinct-linear-factor case finishes.",
+          "check": [
+            "Eq(apart((3*x + 7)/((x + 1)*(x + 3))), 2/(x + 1) + 1/(x + 3))",
+            "Eq(expand(2*(x + 3) + 1*(x + 1)), 3*x + 7)",
+            "Eq(3*(-1) + 7, 2*2)",
+            "Eq(3*(-3) + 7, -2*1)",
+            "Eq(simplify(diff(2*log(x + 1) + log(x + 3), x) - (3*x + 7)/((x + 1)*(x + 3))), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.15 · Papers 1 & 2",
+            "title": "The dictionary works both ways",
+            "body": "Every derivative you learned last lesson is now an integral. $\\sec^2 x$ integrates to $\\tan x$; $\\frac{1}{1 + x^2}$ integrates to $\\arctan x$. The only genuinely new content is the GENERAL forms with a constant $a$ — and the asymmetry between them, which is where the marks actually live."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Mind the external factor",
+            "prompt": "$\\displaystyle\\int \\frac{1}{x^2 + 25}\\,dx$ equals:",
+            "options": [
+              "$\\dfrac{1}{5}\\arctan\\dfrac{x}{5} + C$",
+              "$\\arctan\\dfrac{x}{5} + C$",
+              "$5\\arctan\\dfrac{x}{5} + C$",
+              "$\\arcsin\\dfrac{x}{5} + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "With $a = 5$ the standard form gives $\\frac{1}{a}\\arctan\\frac{x}{a}$. Verify by differentiating: $\\frac{d}{dx}\\left[\\frac{1}{5}\\arctan\\frac{x}{5}\\right] = \\frac{1}{5}\\cdot\\frac{1/5}{1 + x^2/25} = \\frac{1}{25 + x^2}$ ✓.",
+            "check": [
+              "Eq(simplify(diff(atan(x/5)/5, x) - 1/(x**2 + 25)), 0)",
+              "Ne(simplify(diff(atan(x/5), x) - 1/(x**2 + 25)).subs(x, 0), 0)",
+              "Eq(integrate(1/(x**2 + 25), (x, 0, 5)), pi/20)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The other form",
+            "title": "No factor this time",
+            "prompt": "$\\displaystyle\\int \\frac{1}{\\sqrt{9 - x^2}}\\,dx$ equals:",
+            "options": [
+              "$\\arcsin\\dfrac{x}{3} + C$",
+              "$\\dfrac{1}{3}\\arcsin\\dfrac{x}{3} + C$",
+              "$3\\arcsin\\dfrac{x}{3} + C$",
+              "$\\dfrac{1}{3}\\arctan\\dfrac{x}{3} + C$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The arcsin standard form has no external factor — differentiating $\\arcsin\\frac{x}{3}$ gives $\\frac{1/3}{\\sqrt{1 - x^2/9}} = \\frac{1}{\\sqrt{9 - x^2}}$, since the $\\frac{1}{3}$ from the chain rule is exactly absorbed by pulling $3$ out of the root.",
+            "check": [
+              "Eq(simplify(diff(asin(x/3), x) - 1/sqrt(9 - x**2)), 0)",
+              "Ne(simplify(diff(asin(x/3)/3, x) - 1/sqrt(9 - x**2)).subs(x, 0), 0)",
+              "Eq(integrate(1/sqrt(9 - x**2), (x, 0, 3)), pi/2)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The two standard forms, side by side",
+            "problemId": "ibhl-515b-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Identify a, then evaluate",
+            "problemId": "ibhl-515b-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Partial fractions",
+            "title": "Split what will not integrate",
+            "body": "$\\frac{5x - 4}{(x-2)(x+1)}$ matches nothing in the dictionary — but $\\frac{2}{x-2}$ and $\\frac{3}{x+1}$ both do. The cover-up substitution finds the numerators fast: multiply by the denominator, then put $x$ equal to each root in turn, killing one bracket each time. Always recombine to check before integrating."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Cover-up",
+            "title": "Find A quickly",
+            "prompt": "For $\\dfrac{5x - 4}{(x-2)(x+1)} = \\dfrac{A}{x-2} + \\dfrac{B}{x+1}$, substituting $x = 2$ gives:",
+            "options": [
+              "$6 = 3A$, so $A = 2$",
+              "$6 = 3B$, so $B = 2$",
+              "$A = 5$",
+              "nothing useful — $x = 2$ is not in the domain"
+            ],
+            "correctIndex": 0,
+            "explanation": "After multiplying up, $5x - 4 = A(x+1) + B(x-2)$. Putting $x = 2$ kills the $B$ term entirely, leaving $6 = 3A$. This is an identity in $x$, so substituting a value excluded from the ORIGINAL fraction is perfectly legitimate.",
+            "check": [
+              "Eq(5*2 - 4, 3*2)",
+              "Eq(expand(2*(x + 1) + 3*(x - 2)), 5*x - 4)",
+              "Eq(apart((5*x - 4)/((x - 2)*(x + 1))), 2/(x - 2) + 3/(x + 1))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Split, integrate, evaluate",
+            "problemId": "ibhl-515b-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Two brackets, two logs",
+            "problemId": "ibhl-515b-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.15 (integration) in five lines",
+            "points": [
+              "Every derivative in the library is an integral read backwards.",
+              "$\\int\\frac{dx}{a^2 + x^2} = \\frac{1}{a}\\arctan\\frac{x}{a}$ — external $\\frac{1}{a}$.",
+              "$\\int\\frac{dx}{\\sqrt{a^2 - x^2}} = \\arcsin\\frac{x}{a}$ — no external factor.",
+              "Partial fractions: multiply up, substitute each root, recombine to check.",
+              "Each piece integrates to a logarithm — with modulus signs, always."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "integration-by-substitution",
+      "title": "Integration by Substitution",
+      "concreteComparison": "Converting a recipe from cups to millilitres does not change the cake — it changes the units you measure in, so the arithmetic gets easier. Substitution changes the variable you integrate in. The area under the curve is untouched; the expression you have to handle becomes something you already know.",
+      "objective": "Integrate by substitution, choosing $u$ so that $du$ absorbs a factor of the integrand, and handle definite integrals by converting the limits rather than reverting to $x$.",
+      "concept": [
+        "**Syllabus card — AHL 5.16 (first half).** Integration by substitution. Papers 1 and 2. Weight: 4-8 marks, and it underpins a large share of the volume and differential equation questions that follow.",
+        "**The mechanism.** It is the chain rule reversed: $$\\int f(g(x))\\,g'(x)\\,dx = \\int f(u)\\,du \\quad \\text{where } u = g(x), \\;\\; du = g'(x)\\,dx.$$ The signature to look for is a composite function multiplied by (something close to) the derivative of its inner function. If that factor is missing, substitution will not work and a different technique is needed.",
+        "**Choosing the substitution.** Take $u$ to be the awkward inner part — what sits inside a bracket, under a root, in an exponent, or in a denominator. Then check whether $du$ mops up the rest. For $\\int 2x(x^2 + 1)^5\\,dx$, take $u = x^2 + 1$; then $du = 2x\\,dx$, and the $2x$ is exactly what remains: $$\\int u^5\\,du = \\frac{u^6}{6} + C = \\frac{(x^2+1)^6}{6} + C.$$",
+        "**A constant multiple is fine.** If the integrand has $x$ where you need $2x$, adjust: $du = 2x\\,dx$ means $x\\,dx = \\frac{1}{2}du$. Only a CONSTANT can be moved across the integral sign this way — if you find yourself wanting to move an $x$, the substitution is the wrong one.",
+        "**Definite integrals: change the limits.** Far cleaner than converting back. If $u = x^2 + 1$ and $x$ runs from $0$ to $1$, then $u$ runs from $1$ to $2$, and you evaluate in $u$ directly. Write the new limits on the integral sign the moment you substitute — leaving the old ones there and evaluating in $u$ is a guaranteed wrong answer, and one that looks entirely plausible."
+      ],
+      "keyIdea": "Substitution is the chain rule reversed: pick $u$ as the awkward inner function and check that $du$ absorbs the remaining factor. For a definite integral, CONVERT THE LIMITS to $u$ and never go back to $x$.",
+      "facts": [
+        {
+          "title": "Substitution",
+          "latex": "\\int f(g(x))\\,g'(x)\\,dx = \\int f(u)\\,du, \\qquad u = g(x)",
+          "explanation": "IN the booklet. The presence of $g'(x)$ as a factor is what makes the method available at all."
+        },
+        {
+          "title": "Changing the limits",
+          "latex": "\\int_a^b f(g(x))g'(x)\\,dx = \\int_{g(a)}^{g(b)} f(u)\\,du",
+          "explanation": "NOT boxed in the booklet but standard practice. Convert once, evaluate in $u$, never return to $x$."
+        },
+        {
+          "title": "The log pattern",
+          "latex": "\\int \\frac{g'(x)}{g(x)}\\,dx = \\ln|g(x)| + C",
+          "explanation": "A substitution worth recognising instantly: derivative over function always gives a logarithm."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-516a-we1",
+          "statement": "**(a)** Find $\\displaystyle\\int 2x(x^2 + 1)^5\\,dx$. **[4]**  \n**(b)** Find the exact value of $\\displaystyle\\int_0^1 \\frac{x}{x^2 + 1}\\,dx$. **[5]**",
+          "solution": "**(a)** Let $u = x^2 + 1$, so $du = 2x\\,dx$ *(M1)*. The $2x$ in the integrand is exactly what is needed *(A1)*:  \n$$\\int u^5\\,du = \\frac{u^6}{6} + C \\;(A1) = \\frac{(x^2 + 1)^6}{6} + C. \\;(A1)$$  \n**(b)** Same substitution, but now only $x\\,dx$ is present, so $x\\,dx = \\frac{1}{2}du$ *(M1)*. Convert the limits: $x = 0 \\Rightarrow u = 1$ and $x = 1 \\Rightarrow u = 2$ *(A1)*.  \n$$\\int_0^1 \\frac{x\\,dx}{x^2 + 1} = \\frac{1}{2}\\int_1^2 \\frac{du}{u} \\;(M1) = \\frac{1}{2}\\left[\\ln u\\right]_1^2 \\;(A1)$$  \n$$= \\frac{1}{2}(\\ln 2 - \\ln 1) = \\frac{\\ln 2}{2}. \\;(A1)$$  \n**Narrative:** part (b) is also the log pattern $\\int\\frac{g'}{g}$ in disguise, up to the factor $\\frac{1}{2}$. Recognising that shortcut is faster, but the substitution shows the working the markscheme expects.",
+          "check": [
+            "Eq(simplify(diff((x**2 + 1)**6/6, x) - 2*x*(x**2 + 1)**5), 0)",
+            "Eq(integrate(x/(x**2 + 1), (x, 0, 1)), log(2)/2)",
+            "Eq(simplify(diff(log(x**2 + 1)/2, x) - x/(x**2 + 1)), 0)",
+            "Eq(0**2 + 1, 1)",
+            "Eq(1**2 + 1, 2)"
+          ]
+        },
+        {
+          "id": "ibhl-516a-we2",
+          "statement": "**(a)** Find the exact value of $\\displaystyle\\int_0^{\\pi/2} \\sin^3 x \\cos x\\,dx$. **[5]**  \n**(b)** Find the exact value of $\\displaystyle\\int_1^5 x\\sqrt{x - 1}\\,dx$. **[6]**",
+          "solution": "**(a)** Let $u = \\sin x$, so $du = \\cos x\\,dx$ — and $\\cos x\\,dx$ is sitting there *(M1)*. Limits: $x = 0 \\Rightarrow u = 0$; $x = \\frac{\\pi}{2} \\Rightarrow u = 1$ *(A1)*.  \n$$\\int_0^1 u^3\\,du = \\left[\\frac{u^4}{4}\\right]_0^1 \\;(M1\\,A1) = \\frac{1}{4}. \\;(A1)$$  \n**(b)** Let $u = x - 1$, so $x = u + 1$ and $du = dx$ *(M1)*. Limits: $x = 1 \\Rightarrow u = 0$; $x = 5 \\Rightarrow u = 4$ *(A1)*.  \n$$\\int_0^4 (u + 1)\\sqrt u\\,du = \\int_0^4 \\left(u^{3/2} + u^{1/2}\\right)du \\;(M1\\,A1)$$  \n$$= \\left[\\frac{2}{5}u^{5/2} + \\frac{2}{3}u^{3/2}\\right]_0^4 = \\frac{2}{5}(32) + \\frac{2}{3}(8) \\;(A1)$$  \n$$= \\frac{64}{5} + \\frac{16}{3} = \\frac{192 + 80}{15} = \\frac{272}{15}. \\;(A1)$$  \n**Narrative:** part (b) shows the second style of substitution — here $du$ did NOT absorb a factor; instead the substitution removed the awkward root by re-expressing $x$ itself. Both styles are examinable, and recognising which one applies is most of the skill.",
+          "check": [
+            "Eq(integrate(sin(x)**3*cos(x), (x, 0, pi/2)), Rational(1,4))",
+            "Eq(integrate(x*sqrt(x - 1), (x, 1, 5)), Rational(272,15))",
+            "Eq(integrate(u**Rational(3,2) + u**Rational(1,2), (u, 0, 4)), Rational(272,15))",
+            "Eq(Rational(2,5)*32 + Rational(2,3)*8, Rational(272,15))",
+            "Eq(sin(pi/2), 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating in $u$ but using the original $x$-limits.",
+          "correction": "Once you substitute, the limits belong to $u$. Either convert them ($x = 1 \\Rightarrow u = 2$) or revert fully to $x$ before evaluating — mixing the two is always wrong.",
+          "authored": true
+        },
+        {
+          "text": "Moving a variable factor across the integral sign to make $du$ fit.",
+          "correction": "Only CONSTANTS may be pulled out. If you need to move an $x$, the substitution is wrong — choose a different $u$, or reach for parts.",
+          "authored": true
+        },
+        {
+          "text": "Leaving the answer in terms of $u$ for an indefinite integral.",
+          "correction": "An indefinite integral must be a function of the ORIGINAL variable. Substitute back: $\\frac{u^6}{6} \\to \\frac{(x^2+1)^6}{6}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-516a-t1",
+          "statement": "Find the exact value of $\\displaystyle\\int_0^1 x\\mathrm{e}^{x^2}\\,dx$. **[5]**",
+          "solution": "Let $u = x^2$, so $du = 2x\\,dx$ and hence $x\\,dx = \\frac{1}{2}du$ *(M1 A1)*. Limits: $x = 0 \\Rightarrow u = 0$; $x = 1 \\Rightarrow u = 1$ *(A1)*.  \n$$\\int_0^1 x\\mathrm{e}^{x^2}dx = \\frac{1}{2}\\int_0^1 \\mathrm{e}^u\\,du = \\frac{1}{2}\\left[\\mathrm{e}^u\\right]_0^1 \\;(M1)$$  \n$$= \\frac{1}{2}(\\mathrm{e} - 1). \\;(A1)$$  \nThe exponent was the obvious choice for $u$, and the stray $x$ outside was exactly half of $du$ — the classic signature of a substitution problem.",
+          "check": [
+            "Eq(integrate(x*exp(x**2), (x, 0, 1)), E/2 - Rational(1,2))",
+            "Eq(simplify(diff(exp(x**2)/2, x) - x*exp(x**2)), 0)",
+            "Eq(simplify(integrate(exp(u), (u, 0, 1))/2 - (E - 1)/2), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-516a-t2",
+          "statement": "Show that $\\displaystyle\\int \\tan x\\,dx = -\\ln|\\cos x| + C$, and hence find the exact value of $\\displaystyle\\int_0^{\\pi/3} \\tan x\\,dx$. **[6]**",
+          "solution": "Write $\\tan x = \\frac{\\sin x}{\\cos x}$ and let $u = \\cos x$, so $du = -\\sin x\\,dx$ *(M1 A1)*:  \n$$\\int \\frac{\\sin x}{\\cos x}\\,dx = -\\int \\frac{du}{u} = -\\ln|u| + C = -\\ln|\\cos x| + C. \\;(AG)$$  \nNow evaluate *(M1)*:  \n$$\\left[-\\ln|\\cos x|\\right]_0^{\\pi/3} = -\\ln\\tfrac{1}{2} + \\ln 1 \\;(A1\\,A1) = \\ln 2. \\;(A1)$$  \nThe minus sign came from $du = -\\sin x\\,dx$; dropping it gives $-\\ln 2$, a negative answer for the area under a positive curve — which the graph immediately contradicts.",
+          "check": [
+            "Eq(integrate(tan(x), (x, 0, pi/3)), log(2))",
+            "Eq(simplify(diff(-log(cos(x)), x) - tan(x)), 0)",
+            "Eq(cos(pi/3), Rational(1,2))",
+            "Eq(-log(Rational(1,2)), log(2))",
+            "log(2) > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.16 · Papers 1 & 2",
+            "title": "The chain rule, run backwards",
+            "body": "Differentiating $(x^2 + 1)^6$ produced $6(x^2+1)^5 \\cdot 2x$ — a composite multiplied by the inner derivative. Substitution recognises that shape in an integrand and unwinds it. The tell is always the same: a function of something, times (a constant multiple of) that something's derivative."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Choose the substitution",
+            "prompt": "For $\\displaystyle\\int 3x^2(x^3 - 4)^7\\,dx$, the natural substitution is:",
+            "options": [
+              "$u = x^3 - 4$",
+              "$u = 3x^2$",
+              "$u = (x^3 - 4)^7$",
+              "$u = x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Take $u$ as the INNER function of the composite. Then $du = 3x^2\\,dx$, which is exactly the remaining factor, and the integral becomes $\\int u^7\\,du = \\frac{u^8}{8} + C$.",
+            "check": [
+              "Eq(diff(x**3 - 4, x), 3*x**2)",
+              "Eq(simplify(diff((x**3 - 4)**8/8, x) - 3*x**2*(x**3 - 4)**7), 0)"
+            ]
+          },
+          {
+            "kind": "areaGraph",
+            "eyebrow": "The area is unchanged",
+            "title": "New variable, same region",
+            "teach": "Substitution rescales the horizontal axis but leaves the AREA alone — which is why converting the limits along with the variable keeps the answer correct. Keeping the old limits after changing the variable measures a different region entirely, and that is the error the method most often falls to.",
+            "config": {
+              "mode": "riemann"
+            }
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Indefinite, then definite with new limits",
+            "problemId": "ibhl-516a-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Half of du",
+            "problemId": "ibhl-516a-t1"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Limits discipline",
+            "title": "What happens to the limits?",
+            "prompt": "In $\\displaystyle\\int_0^2 x(x^2+1)^3\\,dx$ with $u = x^2 + 1$, the new limits are:",
+            "options": [
+              "$u = 1$ to $u = 5$",
+              "$u = 0$ to $u = 2$",
+              "$u = 1$ to $u = 4$",
+              "unchanged — limits never change"
+            ],
+            "correctIndex": 0,
+            "explanation": "Substitute the old limits into $u = x^2 + 1$: $x = 0$ gives $u = 1$, and $x = 2$ gives $u = 5$. Keeping $0$ and $2$ would compute the integral over a completely different interval of $u$.",
+            "check": [
+              "Eq(0**2 + 1, 1)",
+              "Eq(2**2 + 1, 5)",
+              "Eq(integrate(x*(x**2 + 1)**3, (x, 0, 2)), integrate(u**3/2, (u, 1, 5)))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Two styles of substitution",
+            "problemId": "ibhl-516a-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Derive a standard integral",
+            "problemId": "ibhl-516a-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.16 (substitution) in five lines",
+            "points": [
+              "Look for a composite times (a constant multiple of) its inner derivative.",
+              "Take $u$ = the inner function; check $du$ absorbs the rest.",
+              "Only CONSTANTS may cross the integral sign — never a variable.",
+              "Definite: convert the limits and evaluate in $u$. Indefinite: substitute back to $x$.",
+              "$\\int\\frac{g'}{g}\\,dx = \\ln|g| + C$ — recognise it instantly."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "integration-by-parts",
+      "title": "Integration by Parts",
+      "concreteComparison": "Trading a hard job for an easier one is progress even if you have not finished. Integration by parts swaps the integral you cannot do for one you can — you pay by differentiating one factor and integrating the other, and the trade is worthwhile precisely when the new integral is simpler than the old.",
+      "objective": "Apply integration by parts to products, choose $u$ and $dv$ by the LIATE guideline, apply the method repeatedly, and handle the two special cases $\\int \\ln x\\,dx$ and the self-referential $\\int \\mathrm{e}^x \\sin x\\,dx$.",
+      "concept": [
+        "**Syllabus card — AHL 5.16 (second half).** Integration by parts; repeated integration by parts. Papers 1 and 2. Weight: 5-9 marks, very often as the calculation inside a larger volume or series question.",
+        "**The formula.** $$\\int u\\,\\frac{dv}{dx}\\,dx = uv - \\int v\\,\\frac{du}{dx}\\,dx$$ In the booklet, and it is the product rule integrated. You choose which factor is $u$ (to be DIFFERENTIATED) and which is $dv$ (to be INTEGRATED) — and the whole success of the method rests on that choice.",
+        "**LIATE: choosing the parts.** Pick $u$ as the function type that appears earliest in **L**ogarithmic, **I**nverse trig, **A**lgebraic, **T**rigonometric, **E**xponential. The reasoning: logs and inverse trig become simpler when differentiated, while trig and exponentials never get worse when integrated. For $\\int x\\mathrm{e}^x\\,dx$ the algebraic $x$ is $u$ — differentiating it to $1$ is exactly the simplification wanted.",
+        "**Repeat when necessary.** $\\int x^2\\sin x\\,dx$ needs two passes: the first reduces $x^2$ to $2x$, the second to $2$. A polynomial of degree $n$ against a trig or exponential factor needs $n$ applications, and the pattern of alternating signs is where errors creep in — keep the brackets explicit.",
+        "**Two special cases worth memorising.** First, $\\int \\ln x\\,dx$ has no obvious second factor, so take $u = \\ln x$ and $dv = 1\\,dx$: $$\\int \\ln x\\,dx = x\\ln x - \\int x \\cdot \\frac{1}{x}\\,dx = x\\ln x - x + C.$$ Second, $\\int \\mathrm{e}^x\\sin x\\,dx$ returns to itself after two applications; call the integral $I$, obtain an equation like $I = \\ldots - I$, and SOLVE for $I$. Recognising that the recursion is the answer, rather than a dead end, is the whole trick."
+      ],
+      "keyIdea": "$\\int u\\,dv = uv - \\int v\\,du$. Choose $u$ by LIATE — the factor that gets simpler when differentiated. Repeat for higher powers, and when the integral reappears, name it $I$ and solve algebraically.",
+      "facts": [
+        {
+          "title": "Integration by parts",
+          "latex": "\\int u\\,\\frac{dv}{dx}\\,dx = uv - \\int v\\,\\frac{du}{dx}\\,dx",
+          "explanation": "IN the booklet. It is the product rule, integrated and rearranged."
+        },
+        {
+          "title": "LIATE priority for u",
+          "latex": "\\textbf{L}\\text{og} \\to \\textbf{I}\\text{nv trig} \\to \\textbf{A}\\text{lgebraic} \\to \\textbf{T}\\text{rig} \\to \\textbf{E}\\text{xponential}",
+          "explanation": "NOT in the booklet — a reliable guideline, not a theorem. Earlier in the list becomes $u$."
+        },
+        {
+          "title": "The logarithm integral",
+          "latex": "\\int \\ln x\\,dx = x\\ln x - x + C",
+          "explanation": "NOT in the booklet. Obtained by parts with $dv = 1\\,dx$ — worth memorising, it appears constantly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-516b-we1",
+          "statement": "Find the exact value of $\\displaystyle\\int_0^1 x\\mathrm{e}^x\\,dx$. **[5]**",
+          "solution": "By LIATE, the algebraic factor becomes $u$ *(M1)*:  \n$$u = x, \\quad \\frac{du}{dx} = 1; \\qquad \\frac{dv}{dx} = \\mathrm{e}^x, \\quad v = \\mathrm{e}^x. \\;(A1)$$  \n$$\\int_0^1 x\\mathrm{e}^x\\,dx = \\left[x\\mathrm{e}^x\\right]_0^1 - \\int_0^1 \\mathrm{e}^x\\,dx \\;(M1)$$  \n$$= \\left[x\\mathrm{e}^x - \\mathrm{e}^x\\right]_0^1 \\;(A1)$$  \n$$= (\\mathrm{e} - \\mathrm{e}) - (0 - 1) = 1. \\;(A1)$$  \n**Narrative:** choosing $u = \\mathrm{e}^x$ instead would have produced $\\int \\frac{x^2}{2}\\mathrm{e}^x\\,dx$ — strictly worse, since the polynomial's degree went UP. That comparison is the whole justification for LIATE, and it is worth making once explicitly.",
+          "check": [
+            "Eq(integrate(x*exp(x), (x, 0, 1)), 1)",
+            "Eq(simplify(diff(x*exp(x) - exp(x), x) - x*exp(x)), 0)",
+            "Eq((1*E - E) - (0 - 1), 1)"
+          ]
+        },
+        {
+          "id": "ibhl-516b-we2",
+          "statement": "**(a)** Show that $\\displaystyle\\int \\ln x\\,dx = x\\ln x - x + C$. **[4]**  \n**(b)** Find the exact value of $\\displaystyle\\int_0^{\\pi} x^2\\sin x\\,dx$. **[7]**",
+          "solution": "**(a)** There is no visible second factor, so take $\\frac{dv}{dx} = 1$ *(M1)*:  \n$$u = \\ln x, \\quad \\frac{du}{dx} = \\frac{1}{x}; \\qquad v = x. \\;(A1)$$  \n$$\\int \\ln x\\,dx = x\\ln x - \\int x\\cdot\\frac{1}{x}\\,dx = x\\ln x - \\int 1\\,dx \\;(A1)$$  \n$$= x\\ln x - x + C. \\;(AG)$$  \n**(b)** Two applications. First, $u = x^2$, $\\frac{dv}{dx} = \\sin x$, so $v = -\\cos x$ *(M1)*:  \n$$\\int_0^{\\pi} x^2\\sin x\\,dx = \\left[-x^2\\cos x\\right]_0^{\\pi} + 2\\int_0^{\\pi} x\\cos x\\,dx \\;(A1)$$  \nThe bracket gives $-\\pi^2(-1) - 0 = \\pi^2$ *(A1)*.  \nSecond pass on the remaining integral, with $u = x$, $v = \\sin x$ *(M1)*:  \n$$\\int_0^{\\pi} x\\cos x\\,dx = \\left[x\\sin x\\right]_0^{\\pi} - \\int_0^{\\pi}\\sin x\\,dx = 0 - \\left[-\\cos x\\right]_0^{\\pi} \\;(A1)$$  \n$$= -(1 + 1) = -2. \\;(A1)$$  \nCombining: $\\pi^2 + 2(-2) = \\pi^2 - 4$ *(A1)*.  \n**Narrative:** $\\pi^2 - 4 \\approx 5.87$, positive — consistent with $x^2\\sin x$ being non-negative on $[0, \\pi]$. That sanity check catches the sign slip on $v = -\\cos x$, which is the most common error here.",
+          "check": [
+            "Eq(simplify(diff(x*log(x) - x, x) - log(x)), 0)",
+            "Eq(integrate(log(x), (x, 1, E)), 1)",
+            "Eq(integrate(x**2*sin(x), (x, 0, pi)), pi**2 - 4)",
+            "Eq(integrate(x*cos(x), (x, 0, pi)), -2)",
+            "pi**2 - 4 > 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Choosing $u$ as the exponential or trigonometric factor when a polynomial is present.",
+          "correction": "LIATE puts Algebraic before Trig and Exponential. Differentiating $x$ to $1$ simplifies; integrating it to $\\frac{x^2}{2}$ makes the next integral harder.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the minus sign from $\\int \\sin x\\,dx = -\\cos x$.",
+          "correction": "Sign errors in $v$ propagate through every later line. Check the final answer's sign against the graph — a positive integrand cannot give a negative area.",
+          "authored": true
+        },
+        {
+          "text": "Abandoning $\\int \\mathrm{e}^x\\sin x\\,dx$ when the original integral reappears.",
+          "correction": "That recursion IS the solution. Set $I = \\int \\mathrm{e}^x\\sin x\\,dx$, obtain $2I = \\mathrm{e}^x(\\sin x - \\cos x)$, and divide.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-516b-t1",
+          "statement": "Find the exact value of $\\displaystyle\\int_0^1 x\\mathrm{e}^{2x}\\,dx$. **[6]**",
+          "solution": "Take $u = x$ and $\\frac{dv}{dx} = \\mathrm{e}^{2x}$, so $v = \\frac{1}{2}\\mathrm{e}^{2x}$ *(M1 A1)*:  \n$$\\int_0^1 x\\mathrm{e}^{2x}dx = \\left[\\frac{x\\mathrm{e}^{2x}}{2}\\right]_0^1 - \\frac{1}{2}\\int_0^1 \\mathrm{e}^{2x}dx \\;(M1)$$  \n$$= \\frac{\\mathrm{e}^2}{2} - \\frac{1}{2}\\left[\\frac{\\mathrm{e}^{2x}}{2}\\right]_0^1 \\;(A1)$$  \n$$= \\frac{\\mathrm{e}^2}{2} - \\frac{\\mathrm{e}^2 - 1}{4} \\;(A1) = \\frac{\\mathrm{e}^2 + 1}{4}. \\;(A1)$$  \nThe factor $\\frac{1}{2}$ in $v$ appears twice — once in the bracket and once in front of the remaining integral. Losing it in either place is the standard slip when the exponent is not simply $x$.",
+          "check": [
+            "Eq(integrate(x*exp(2*x), (x, 0, 1)), (exp(2) + 1)/4)",
+            "Eq(simplify(diff(x*exp(2*x)/2 - exp(2*x)/4, x) - x*exp(2*x)), 0)",
+            "Eq(diff(exp(2*x)/2, x), exp(2*x))"
+          ]
+        },
+        {
+          "id": "ibhl-516b-t2",
+          "statement": "Show that $\\displaystyle\\int \\mathrm{e}^x\\sin x\\,dx = \\frac{\\mathrm{e}^x(\\sin x - \\cos x)}{2} + C$, and hence find $\\displaystyle\\int_0^{\\pi} \\mathrm{e}^x\\sin x\\,dx$. **[8]**",
+          "solution": "Let $I = \\int \\mathrm{e}^x\\sin x\\,dx$. Take $u = \\sin x$, $v = \\mathrm{e}^x$ *(M1)*:  \n$$I = \\mathrm{e}^x\\sin x - \\int \\mathrm{e}^x\\cos x\\,dx. \\;(A1)$$  \nApply parts again to the new integral, with $u = \\cos x$ *(M1)*:  \n$$\\int \\mathrm{e}^x\\cos x\\,dx = \\mathrm{e}^x\\cos x + \\int \\mathrm{e}^x\\sin x\\,dx = \\mathrm{e}^x\\cos x + I. \\;(A1)$$  \nSubstituting back *(M1)*:  \n$$I = \\mathrm{e}^x\\sin x - \\mathrm{e}^x\\cos x - I \\;\\Longrightarrow\\; 2I = \\mathrm{e}^x(\\sin x - \\cos x) \\;(A1)$$  \n$$I = \\frac{\\mathrm{e}^x(\\sin x - \\cos x)}{2} + C. \\;(AG)$$  \nEvaluating *(M1)*:  \n$$\\left[\\frac{\\mathrm{e}^x(\\sin x - \\cos x)}{2}\\right]_0^{\\pi} = \\frac{\\mathrm{e}^{\\pi}(0 + 1)}{2} - \\frac{1(0 - 1)}{2} = \\frac{\\mathrm{e}^{\\pi} + 1}{2}. \\;(A1)$$  \nCrucially, BOTH applications must differentiate the trigonometric factor. Switching roles on the second pass simply undoes the first and returns $I = I$.",
+          "check": [
+            "Eq(simplify(diff(exp(x)*(sin(x) - cos(x))/2, x) - exp(x)*sin(x)), 0)",
+            "Eq(simplify(integrate(exp(x)*sin(x), (x, 0, pi)) - (exp(pi) + 1)/2), 0)",
+            "Eq(sin(pi), 0)",
+            "Eq(cos(pi), -1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.16 · Papers 1 & 2",
+            "title": "Trade the integral you cannot do",
+            "body": "Substitution handles composites; parts handles PRODUCTS of unrelated functions — $x\\mathrm{e}^x$, $x^2\\sin x$, $\\ln x$. The formula converts $\\int u\\,dv$ into $uv - \\int v\\,du$: you still have an integral, but if you chose well it is an easier one. Choosing badly makes it harder, which is why the choice has a rule."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Which factor is u?",
+            "prompt": "For $\\displaystyle\\int x\\cos x\\,dx$, you should take:",
+            "options": [
+              "$u = x$ and $\\dfrac{dv}{dx} = \\cos x$",
+              "$u = \\cos x$ and $\\dfrac{dv}{dx} = x$",
+              "$u = x\\cos x$ and $\\dfrac{dv}{dx} = 1$",
+              "either choice works equally well"
+            ],
+            "correctIndex": 0,
+            "explanation": "LIATE: Algebraic before Trigonometric, so $u = x$. Differentiating it gives $1$ and the remaining integral is just $\\int\\sin x\\,dx$. The reverse choice produces $\\int\\frac{x^2}{2}\\sin x\\,dx$ — a higher power, strictly worse.",
+            "check": [
+              "Eq(integrate(x*cos(x), (x, 0, pi)), -2)",
+              "Eq(simplify(diff(x*sin(x) + cos(x), x) - x*cos(x)), 0)",
+              "Eq(diff(x, x), 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The archetype",
+            "problemId": "ibhl-516b-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "When the exponent is not just x",
+            "problemId": "ibhl-516b-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two special cases",
+            "title": "The invisible factor, and the loop",
+            "body": "$\\int \\ln x\\,dx$ looks impossible because there is only one function — until you notice the invisible factor $1$, which integrates to $x$. And $\\int \\mathrm{e}^x \\sin x\\,dx$ comes back to itself after two passes; far from a failure, that is the mechanism: name it $I$, gather the terms, and divide by $2$."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The loop",
+            "title": "The integral came back",
+            "prompt": "Applying parts twice to $I = \\int \\mathrm{e}^x\\sin x\\,dx$ gives $I = \\mathrm{e}^x(\\sin x - \\cos x) - I$. You should:",
+            "options": [
+              "solve algebraically: $2I = \\mathrm{e}^x(\\sin x - \\cos x)$",
+              "conclude the integral cannot be found",
+              "apply parts a third time",
+              "try substitution instead"
+            ],
+            "correctIndex": 0,
+            "explanation": "The equation is linear in $I$, so solve it: $I = \\frac{\\mathrm{e}^x(\\sin x - \\cos x)}{2} + C$. A third application would simply cycle back again — the recursion is the answer, not an obstacle.",
+            "check": [
+              "Eq(simplify(diff(exp(x)*(sin(x) - cos(x))/2, x) - exp(x)*sin(x)), 0)",
+              "Eq(simplify(integrate(exp(x)*sin(x), (x, 0, pi)) - (exp(pi) + 1)/2), 0)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The invisible 1, and a double pass",
+            "problemId": "ibhl-516b-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Close the loop",
+            "problemId": "ibhl-516b-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.16 (parts) in five lines",
+            "points": [
+              "$\\int u\\,dv = uv - \\int v\\,du$ — the product rule, integrated.",
+              "LIATE picks $u$: Log, Inverse trig, Algebraic, Trig, Exponential.",
+              "Degree-$n$ polynomial against trig/exponential needs $n$ applications.",
+              "$\\int\\ln x\\,dx = x\\ln x - x + C$, via the invisible factor $dv = 1\\,dx$.",
+              "If the integral reappears, name it $I$ and solve the equation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "areas-and-volumes-of-revolution",
+      "title": "Areas & Volumes of Revolution",
+      "concreteComparison": "A potter's wheel spins a flat profile into a vase. The shape of the profile decides the shape of the vase completely, and the volume follows by stacking circular slices along the axis. Volumes of revolution are that process, written as an integral of $\\pi r^2$.",
+      "objective": "Find the area between a curve and the $y$-axis, and compute volumes of revolution about the $x$-axis and about the $y$-axis, including volumes between two curves.",
+      "concept": [
+        "**Syllabus card — AHL 5.17.** Area of the region enclosed by a curve and the $y$-axis in a given interval; volumes of revolution about the $x$-axis or $y$-axis. Papers 1 and 2. Weight: 5-9 marks, and it is a standard Section B setting.",
+        "**Area measured against the vertical axis.** The SL formula $\\int y\\,dx$ measures area to the $x$-axis. Rotate your point of view ninety degrees and the same reasoning gives $$A = \\int_c^d x\\,dy,$$ with $x$ expressed as a function of $y$ and the limits taken on the $y$-axis. Both conversions — the function and the limits — are needed, and forgetting the limits is the more expensive omission.",
+        "**Volume about the horizontal axis.** Slice perpendicular to the axis; each slice is a disc of radius $y$ and thickness $dx$: $$V = \\pi\\int_a^b y^2\\,dx.$$ In the booklet. Note $y^2$, not $y$ — the radius gets squared, and dropping the square is the single most common error on this code.",
+        "**Volume about the vertical axis.** Everything swaps: $$V = \\pi\\int_c^d x^2\\,dy.$$ Express $x$ in terms of $y$, and take the limits on the $y$-axis. For $y = x^2$ over $0 \\le x \\le 2$, rotating about the $y$-axis means $x^2 = y$ with $y$ running from $0$ to $4$, giving $\\pi\\int_0^4 y\\,dy = 8\\pi$ — note how the limits changed along with the variable.",
+        "**Between two curves.** Rotating the region between $y_1$ (outer) and $y_2$ (inner) produces washers, not discs: $$V = \\pi\\int_a^b \\left(y_1^2 - y_2^2\\right)dx.$$ Subtract the SQUARES, never the difference squared — $y_1^2 - y_2^2$ is not $(y_1 - y_2)^2$, and confusing them is a guaranteed wrong answer. Identify which curve is outer on the interval before writing anything down."
+      ],
+      "keyIdea": "About the $x$-axis: $V = \\pi\\int y^2\\,dx$. About the $y$-axis: $V = \\pi\\int x^2\\,dy$, with the function AND the limits converted. Between curves, subtract the squares: $\\pi\\int(y_1^2 - y_2^2)\\,dx$.",
+      "facts": [
+        {
+          "title": "Volume about the x-axis",
+          "latex": "V = \\pi\\int_a^b y^2\\,dx",
+          "explanation": "IN the booklet. Each slice is a disc of radius $y$; the area $\\pi r^2$ is what puts the SQUARE there."
+        },
+        {
+          "title": "Volume about the y-axis",
+          "latex": "V = \\pi\\int_c^d x^2\\,dy",
+          "explanation": "IN the booklet. Rewrite $x$ as a function of $y$ AND convert the limits to $y$-values."
+        },
+        {
+          "title": "Area against the y-axis",
+          "latex": "A = \\int_c^d x\\,dy",
+          "explanation": "IN the booklet. The mirror image of $\\int y\\,dx$ — same reasoning, axes exchanged."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-517-we1",
+          "statement": "The curve $y = x^2$ is considered for $0 \\le x \\le 2$.  \n**(a)** Find the volume generated when the region between the curve and the $x$-axis is rotated $2\\pi$ about the $x$-axis. **[4]**  \n**(b)** Find the volume generated when the region between the curve and the $y$-axis is rotated $2\\pi$ about the $y$-axis. **[4]**  \n**(c)** Find the area of the region between the curve and the $y$-axis. **[3]**",
+          "solution": "**(a)** Discs of radius $y = x^2$ *(M1)*:  \n$$V = \\pi\\int_0^2 (x^2)^2\\,dx = \\pi\\int_0^2 x^4\\,dx \\;(A1) = \\pi\\left[\\frac{x^5}{5}\\right]_0^2 \\;(A1) = \\frac{32\\pi}{5}. \\;(A1)$$  \n**(b)** Now $x^2 = y$, and as $x$ runs $0$ to $2$, $y$ runs $0$ to $4$ *(M1 A1)*:  \n$$V = \\pi\\int_0^4 y\\,dy = \\pi\\left[\\frac{y^2}{2}\\right]_0^4 \\;(A1) = 8\\pi. \\;(A1)$$  \n**(c)** $x = \\sqrt y$, integrated over the same $y$-range *(M1)*:  \n$$A = \\int_0^4 \\sqrt y\\,dy = \\left[\\frac{2}{3}y^{3/2}\\right]_0^4 \\;(A1) = \\frac{16}{3}. \\;(A1)$$  \n**Narrative:** the two volumes differ substantially — $\\frac{32\\pi}{5} \\approx 20.1$ against $8\\pi \\approx 25.1$ — because rotating about different axes sweeps genuinely different solids. Part (b) is where marks go missing: the LIMITS had to change from $[0, 2]$ to $[0, 4]$ along with the variable.",
+          "check": [
+            "Eq(pi*integrate(x**4, (x, 0, 2)), 32*pi/5)",
+            "Eq(pi*integrate(y, (y, 0, 4)), 8*pi)",
+            "Eq(integrate(sqrt(y), (y, 0, 4)), Rational(16,3))",
+            "Eq(2**2, 4)",
+            "8*pi > 32*pi/5"
+          ]
+        },
+        {
+          "id": "ibhl-517-we2",
+          "statement": "The region $R$ is enclosed by the curves $y = x$ and $y = x^2$ between their points of intersection.  \n**(a)** Find the coordinates of the points of intersection. **[2]**  \n**(b)** Find the exact volume generated when $R$ is rotated $2\\pi$ about the $x$-axis. **[6]**",
+          "solution": "**(a)** $x = x^2$ gives $x(x - 1) = 0$ *(M1)*, so the curves meet at $(0, 0)$ and $(1, 1)$ *(A1)*.  \n**(b)** On $0 < x < 1$ we have $x > x^2$ (test $x = \\frac{1}{2}$: $0.5 > 0.25$ ✓), so $y = x$ is the OUTER curve *(R1)*. Washers *(M1)*:  \n$$V = \\pi\\int_0^1 \\left(x^2 - \\left(x^2\\right)^2\\right)dx = \\pi\\int_0^1 \\left(x^2 - x^4\\right)dx \\;(A1)$$  \n$$= \\pi\\left[\\frac{x^3}{3} - \\frac{x^5}{5}\\right]_0^1 \\;(A1) = \\pi\\left(\\frac{1}{3} - \\frac{1}{5}\\right) \\;(A1)$$  \n$$= \\frac{2\\pi}{15}. \\;(A1)$$  \n**Narrative:** the integrand is $y_{\\text{outer}}^2 - y_{\\text{inner}}^2 = x^2 - x^4$. Writing $(x - x^2)^2$ instead gives $\\frac{\\pi}{30}$ — exactly half, plausible-looking, and wrong. Establishing which curve is outer, with evidence, is the reasoning mark.",
+          "check": [
+            "solve(Eq(x, x**2), x) == [0, 1]",
+            "Rational(1,2) > Rational(1,4)",
+            "Eq(pi*integrate(x**2 - x**4, (x, 0, 1)), 2*pi/15)",
+            "Ne(pi*integrate((x - x**2)**2, (x, 0, 1)), 2*pi/15)",
+            "Eq(pi*integrate((x - x**2)**2, (x, 0, 1)), pi/30)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing $V = \\pi\\int y\\,dx$ without squaring.",
+          "correction": "Each slice is a disc of area $\\pi r^2$ with $r = y$, so the integrand is $y^2$. Check the units: a volume needs three lengths, and $y^2\\,dx$ supplies them.",
+          "authored": true
+        },
+        {
+          "text": "Rotating about the $y$-axis but keeping the $x$-limits.",
+          "correction": "Convert BOTH: express $x$ in terms of $y$, and map the limits through. For $y = x^2$ on $[0, 2]$, the $y$-limits are $[0, 4]$.",
+          "authored": true
+        },
+        {
+          "text": "Using $(y_1 - y_2)^2$ for the region between two curves.",
+          "correction": "Subtract the SQUARES: $\\pi\\int(y_1^2 - y_2^2)\\,dx$. The outer disc minus the inner disc — not the square of the gap.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-517-t1",
+          "statement": "The region under $y = \\dfrac{1}{x}$ between $x = 1$ and $x = 3$ is rotated $2\\pi$ about the $x$-axis. Find the exact volume. **[5]**",
+          "solution": "*(M1)* $$V = \\pi\\int_1^3 \\left(\\frac{1}{x}\\right)^2 dx = \\pi\\int_1^3 x^{-2}\\,dx \\;(A1)$$  \n$$= \\pi\\left[-\\frac{1}{x}\\right]_1^3 \\;(A1) = \\pi\\left(-\\frac{1}{3} + 1\\right) \\;(A1) = \\frac{2\\pi}{3}. \\;(A1)$$  \nSquaring turned $\\frac{1}{x}$ into $x^{-2}$, which integrates to a power rather than a logarithm. Forgetting to square would have produced $\\pi\\ln 3$ — a completely different kind of answer, and an immediate signal that the square was dropped.",
+          "check": [
+            "Eq(pi*integrate(1/x**2, (x, 1, 3)), 2*pi/3)",
+            "Ne(pi*integrate(1/x, (x, 1, 3)), 2*pi/3)",
+            "Eq(pi*integrate(1/x, (x, 1, 3)), pi*log(3))"
+          ]
+        },
+        {
+          "id": "ibhl-517-t2",
+          "statement": "The region under $y = \\sin x$ from $x = 0$ to $x = \\pi$ is rotated $2\\pi$ about the $x$-axis. Find the exact volume. **[6]**",
+          "solution": "*(M1)* $$V = \\pi\\int_0^{\\pi} \\sin^2 x\\,dx$$  \nUse the double angle identity to make it integrable *(M1)*:  \n$$\\sin^2 x = \\frac{1 - \\cos 2x}{2} \\;(A1)$$  \n$$V = \\frac{\\pi}{2}\\int_0^{\\pi} (1 - \\cos 2x)\\,dx = \\frac{\\pi}{2}\\left[x - \\frac{\\sin 2x}{2}\\right]_0^{\\pi} \\;(A1\\,A1)$$  \n$$= \\frac{\\pi}{2}(\\pi - 0) = \\frac{\\pi^2}{2}. \\;(A1)$$  \n$\\sin^2 x$ cannot be integrated directly — the identity is compulsory, and it is the step examiners award the second method mark for. Note $\\sin 2\\pi = 0$, so the trigonometric term contributes nothing at either limit.",
+          "check": [
+            "Eq(pi*integrate(sin(x)**2, (x, 0, pi)), pi**2/2)",
+            "Eq(simplify(sin(x)**2 - (1 - cos(2*x))/2), 0)",
+            "Eq(sin(2*pi), 0)",
+            "Eq(integrate(1 - cos(2*x), (x, 0, pi)), pi)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.17 · Papers 1 & 2",
+            "title": "Stack the discs",
+            "body": "Spin a region about an axis and slice the resulting solid perpendicular to that axis. Each slice is a thin circular disc whose radius is the distance from the axis to the curve. Adding up $\\pi r^2 \\times \\text{thickness}$ is exactly what the integral $\\pi\\int y^2\\,dx$ does — and the $r^2$ is where the square comes from."
+          },
+          {
+            "kind": "solid3d",
+            "eyebrow": "The solid",
+            "title": "A profile becomes a shape",
+            "teach": "Rotating a straight line through the origin sweeps out a cone; rotating a constant sweeps a cylinder; rotating a curve sweeps something in between. The formula $\\pi\\int y^2\\,dx$ reproduces the standard volume formulas exactly — try it on $y = r$ over $[0, h]$ and the cylinder's $\\pi r^2 h$ falls straight out.",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4,
+              "slant": 5
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Square or not?",
+            "prompt": "The volume generated by rotating $y = f(x)$, $a \\le x \\le b$, about the $x$-axis is:",
+            "options": [
+              "$\\pi\\displaystyle\\int_a^b \\left[f(x)\\right]^2 dx$",
+              "$\\pi\\displaystyle\\int_a^b f(x)\\,dx$",
+              "$\\displaystyle\\int_a^b \\left[f(x)\\right]^2 dx$",
+              "$2\\pi\\displaystyle\\int_a^b f(x)\\,dx$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each disc has area $\\pi r^2$ with $r = f(x)$, so both the $\\pi$ and the SQUARE are essential. Dropping the square leaves something dimensionally an area, not a volume — a check that catches the error instantly.",
+            "check": [
+              "Eq(pi*integrate(x**4, (x, 0, 2)), 32*pi/5)",
+              "Ne(pi*integrate(x**2, (x, 0, 2)), 32*pi/5)",
+              "Eq(pi*integrate(3**2, (x, 0, 4)), 36*pi)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Both axes, and an area",
+            "problemId": "ibhl-517-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Square first, then integrate",
+            "problemId": "ibhl-517-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "About the y-axis",
+            "title": "Swap everything, including the limits",
+            "body": "Rotating about the $y$-axis means slicing horizontally, so the radius is $x$ and the thickness is $dy$: $V = \\pi\\int x^2\\,dy$. TWO conversions are needed — rearrange the equation to give $x$ in terms of $y$, and map the limits onto the $y$-axis. Doing only the first is the classic half-conversion error."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Between curves",
+            "title": "Washers, not gaps",
+            "prompt": "Rotating the region between $y_1$ (outer) and $y_2$ (inner) about the $x$-axis gives:",
+            "options": [
+              "$\\pi\\displaystyle\\int \\left(y_1^2 - y_2^2\\right)dx$",
+              "$\\pi\\displaystyle\\int \\left(y_1 - y_2\\right)^2 dx$",
+              "$\\pi\\displaystyle\\int \\left(y_1 - y_2\\right)dx$",
+              "$\\pi\\displaystyle\\int \\left(y_1^2 + y_2^2\\right)dx$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Outer disc minus inner disc: $\\pi y_1^2 - \\pi y_2^2$ per slice. For $y = x$ and $y = x^2$ on $[0, 1]$ the correct answer is $\\frac{2\\pi}{15}$, while $(y_1 - y_2)^2$ gives $\\frac{\\pi}{30}$ — half the true volume.",
+            "check": [
+              "Eq(pi*integrate(x**2 - x**4, (x, 0, 1)), 2*pi/15)",
+              "Eq(pi*integrate((x - x**2)**2, (x, 0, 1)), pi/30)",
+              "Ne(2*pi/15, pi/30)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "A washer between two curves",
+            "problemId": "ibhl-517-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "An identity is compulsory",
+            "problemId": "ibhl-517-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.17 in five lines",
+            "points": [
+              "About the $x$-axis: $V = \\pi\\int_a^b y^2\\,dx$ — the radius is SQUARED.",
+              "About the $y$-axis: $V = \\pi\\int_c^d x^2\\,dy$ — convert the function AND the limits.",
+              "Area against the $y$-axis: $A = \\int_c^d x\\,dy$.",
+              "Between curves: $\\pi\\int(y_1^2 - y_2^2)\\,dx$, never $(y_1 - y_2)^2$.",
+              "$\\int\\sin^2 x\\,dx$ needs the double angle identity first."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "differential-equations",
+      "title": "Differential Equations",
+      "concreteComparison": "A population's growth rule — 'it increases in proportion to its current size' — is a statement about the DERIVATIVE, not the population. Solving a differential equation is recovering the function from a description of how it changes, which is how almost every scientific model is actually written down.",
+      "objective": "Solve first-order differential equations by separation of variables, by the homogeneous substitution $y = vx$, and by the integrating factor, and approximate solutions numerically using Euler's method.",
+      "concept": [
+        "**Syllabus card — AHL 5.18.** First-order differential equations; numerical solution using Euler's method; variables separable; homogeneous differential equations using the substitution $y = vx$; solution of $y' + P(x)y = Q(x)$ using the integrating factor. Papers 1 and 2. Weight: 8-14 marks, and this code alone can carry a whole Section B question.",
+        "**Separation of variables.** If the equation factorises as $\\frac{dy}{dx} = f(x)g(y)$, split and integrate both sides: $$\\int \\frac{dy}{g(y)} = \\int f(x)\\,dx.$$ One arbitrary constant appears, fixed by the initial condition. Apply that condition EARLY — before rearranging into an explicit $y = \\ldots$ — because the algebra is far simpler with a number in place of $C$.",
+        "**Homogeneous equations.** When $\\frac{dy}{dx}$ depends only on the ratio $\\frac{y}{x}$, substitute $y = vx$, so that $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$ by the product rule. The equation then always separates in $v$ and $x$. Solve for $v$, then restore $y = vx$ at the very end — forgetting that last step leaves the answer in the wrong variable.",
+        "**Integrating factor.** For the LINEAR form $\\frac{dy}{dx} + P(x)y = Q(x)$, multiply through by $$I(x) = \\mathrm{e}^{\\int P(x)\\,dx},$$ which is engineered so the left side collapses to $\\frac{d}{dx}\\left[I(x)y\\right]$. Then integrate once: $I(x)y = \\int I(x)Q(x)\\,dx$. The equation must be in that exact form first — with the coefficient of $\\frac{dy}{dx}$ equal to $1$ — or $P$ is misidentified and everything downstream fails.",
+        "**Euler's method.** When no analytic solution is available, step forward along the tangent: $$y_{n+1} = y_n + h\\,f(x_n, y_n), \\qquad x_{n+1} = x_n + h.$$ In the booklet. It is a straight-line approximation to a curve, so it accumulates error — for a solution curving upwards it systematically UNDERESTIMATES. Set the work out as a table of $x_n$, $y_n$, $f(x_n, y_n)$; markschemes follow the table, and a single arithmetic slip in row two corrupts everything after it."
+      ],
+      "keyIdea": "Separable $\\Rightarrow$ split and integrate. Depends only on $\\frac{y}{x}$ $\\Rightarrow$ substitute $y = vx$. Linear in the form $y' + Py = Q$ $\\Rightarrow$ multiply by $\\mathrm{e}^{\\int P\\,dx}$. No analytic route $\\Rightarrow$ step along tangents with Euler.",
+      "facts": [
+        {
+          "title": "Separation of variables",
+          "latex": "\\frac{dy}{dx} = f(x)g(y) \\;\\Longrightarrow\\; \\int\\frac{dy}{g(y)} = \\int f(x)\\,dx",
+          "explanation": "IN the booklet. Apply the initial condition as soon as both integrals are done — before rearranging for $y$."
+        },
+        {
+          "title": "Integrating factor",
+          "latex": "\\frac{dy}{dx} + P(x)y = Q(x), \\qquad I(x) = \\mathrm{e}^{\\int P(x)\\,dx}",
+          "explanation": "IN the booklet. Requires the coefficient of $\\frac{dy}{dx}$ to be exactly $1$ — divide through first if it is not."
+        },
+        {
+          "title": "Euler's method",
+          "latex": "y_{n+1} = y_n + h\\,f(x_n, y_n), \\qquad x_{n+1} = x_n + h",
+          "explanation": "IN the booklet. A tangent-line approximation; error accumulates, and a convex solution is underestimated."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-518-we1",
+          "statement": "Solve $\\dfrac{dy}{dx} = xy^2$ given that $y = 1$ when $x = 0$, expressing $y$ explicitly in terms of $x$. **[6]**",
+          "solution": "The right side factorises as $x \\cdot y^2$, so the variables separate *(M1)*:  \n$$\\int \\frac{dy}{y^2} = \\int x\\,dx \\;\\Longrightarrow\\; -\\frac{1}{y} = \\frac{x^2}{2} + C. \\;(A1\\,A1)$$  \nApply the condition now, while the form is simple *(M1)*: $x = 0$, $y = 1$ gives $-1 = C$ *(A1)*.  \n$$-\\frac{1}{y} = \\frac{x^2}{2} - 1 \\;\\Longrightarrow\\; \\frac{1}{y} = 1 - \\frac{x^2}{2} = \\frac{2 - x^2}{2}$$  \n$$y = \\frac{2}{2 - x^2}. \\;(A1)$$  \n**Narrative:** verify by differentiating — $\\frac{dy}{dx} = \\frac{4x}{(2 - x^2)^2}$, and $xy^2 = x \\cdot \\frac{4}{(2 - x^2)^2}$ ✓, with $y(0) = 1$ ✓. Note the solution blows up at $x = \\pm\\sqrt2$: a perfectly ordinary differential equation can have a solution valid only on a restricted interval.",
+          "check": [
+            "Eq(simplify(diff(2/(2 - x**2), x) - x*(2/(2 - x**2))**2), 0)",
+            "Eq((2/(2 - x**2)).subs(x, 0), 1)",
+            "Eq(-1/(2/(2 - 0**2)), Rational(0,1)**2/2 - 1)",
+            "Eq(2 - 2, 0)"
+          ]
+        },
+        {
+          "id": "ibhl-518-we2",
+          "statement": "Solve the homogeneous differential equation  \n$$\\frac{dy}{dx} = \\frac{x^2 + y^2}{xy}, \\qquad x > 0,$$  \ngiven that $y = 2$ when $x = 1$. **[9]**",
+          "solution": "The right side depends only on $\\frac{y}{x}$ — divide top and bottom by $x^2$ to see it *(R1)*. Substitute $y = vx$, so $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$ *(M1 A1)*:  \n$$v + x\\frac{dv}{dx} = \\frac{x^2 + v^2x^2}{x \\cdot vx} = \\frac{1 + v^2}{v}. \\;(A1)$$  \nIsolate the derivative *(M1)*:  \n$$x\\frac{dv}{dx} = \\frac{1 + v^2}{v} - v = \\frac{1 + v^2 - v^2}{v} = \\frac{1}{v}. \\;(A1)$$  \nNow separable:  \n$$\\int v\\,dv = \\int \\frac{dx}{x} \\;\\Longrightarrow\\; \\frac{v^2}{2} = \\ln x + C. \\;(A1)$$  \nRestore $v = \\frac{y}{x}$ *(M1)*: $\\frac{y^2}{2x^2} = \\ln x + C$, i.e. $y^2 = 2x^2(\\ln x + C)$.  \nApply $y(1) = 2$: $4 = 2(0 + C)$, so $C = 2$ *(A1)*.  \n$$y^2 = 2x^2(\\ln x + 2), \\qquad y = x\\sqrt{2\\ln x + 4}.$$  \n**Narrative:** the whole method turns on the cancellation $\\frac{1 + v^2}{v} - v = \\frac{1}{v}$ — that is what makes the equation separable, and it happens for every genuinely homogeneous equation. Restoring $v = \\frac{y}{x}$ before applying the condition avoids solving in the wrong variable.",
+          "check": [
+            "Eq(simplify(diff(sqrt(2*x**2*(log(x) + 2)), x) - (x**2 + 2*x**2*(log(x) + 2))/(x*sqrt(2*x**2*(log(x) + 2)))), 0)",
+            "Eq(sqrt(2*1**2*(log(1) + 2)), 2)",
+            "Eq(simplify((1 + v**2)/v - v), 1/v)",
+            "Eq(simplify(2*1**2*(0 + 2)), 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Applying the initial condition only after rearranging for $y$.",
+          "correction": "Substitute as soon as both sides are integrated. Finding $C$ from $-\\frac{1}{y} = \\frac{x^2}{2} + C$ is one line; doing it after rearranging is several, with more to go wrong.",
+          "authored": true
+        },
+        {
+          "text": "Writing $\\frac{dy}{dx} = x\\frac{dv}{dx}$ in the homogeneous substitution.",
+          "correction": "$y = vx$ is a PRODUCT of two functions of $x$: $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$. The missing $v$ destroys the cancellation the method depends on.",
+          "authored": true
+        },
+        {
+          "text": "Reading $P(x)$ off an equation not yet in the form $y' + Py = Q$.",
+          "correction": "Divide through so the coefficient of $\\frac{dy}{dx}$ is exactly $1$ FIRST. Otherwise $P$ is wrong and so is the integrating factor.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-518-t1",
+          "statement": "Solve $\\dfrac{dy}{dx} + \\dfrac{2}{x}y = x$ for $x > 0$, given that $y = 2$ when $x = 1$. **[7]**",
+          "solution": "The equation is already linear with the coefficient of $\\frac{dy}{dx}$ equal to $1$, so $P(x) = \\frac{2}{x}$ *(A1)*. The integrating factor is *(M1)*:  \n$$I = \\mathrm{e}^{\\int \\frac{2}{x}dx} = \\mathrm{e}^{2\\ln x} = x^2. \\;(A1)$$  \nMultiply through *(M1)*: $x^2\\frac{dy}{dx} + 2xy = x^3$, and the left side is exactly $\\frac{d}{dx}\\left(x^2 y\\right)$ *(A1)*:  \n$$x^2 y = \\int x^3\\,dx = \\frac{x^4}{4} + C. \\;(A1)$$  \nAt $x = 1$, $y = 2$: $2 = \\frac{1}{4} + C$, so $C = \\frac{7}{4}$ *(A1)*:  \n$$y = \\frac{x^2}{4} + \\frac{7}{4x^2}.$$  \nThe collapse of the left side into a single derivative is not luck — the factor $x^2$ was constructed precisely to make the product rule apply.",
+          "check": [
+            "Eq(simplify(diff(x**2/4 + Rational(7,4)/x**2, x) + (2/x)*(x**2/4 + Rational(7,4)/x**2) - x), 0)",
+            "Eq((x**2/4 + Rational(7,4)/x**2).subs(x, 1), 2)",
+            "Eq(simplify(exp(2*log(x)) - x**2), 0)",
+            "Eq(simplify(diff(x**2*(x**2/4 + Rational(7,4)/x**2), x) - x**3), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-518-t2",
+          "statement": "Use Euler's method with step length $h = 0.1$ to estimate $y(0.3)$ for $$\\frac{dy}{dx} = x + y, \\qquad y(0) = 1.$$  \nThe exact solution is $y = 2\\mathrm{e}^x - x - 1$. Comment on your estimate. **[8]**",
+          "solution": "Apply $y_{n+1} = y_n + h(x_n + y_n)$ *(M1)*:  \n$$y_1 = 1 + 0.1(0 + 1) = 1.1 \\;(A1)$$  \n$$y_2 = 1.1 + 0.1(0.1 + 1.1) = 1.1 + 0.12 = 1.22 \\;(A1)$$  \n$$y_3 = 1.22 + 0.1(0.2 + 1.22) = 1.22 + 0.142 = 1.362 \\;(A1\\,A1)$$  \nSo $y(0.3) \\approx 1.362$ *(A1)*.  \nThe exact value is $2\\mathrm{e}^{0.3} - 1.3 = 1.3997$ (4 s.f.) *(A1)*, so Euler UNDERESTIMATES by about $0.038$. The solution curve is concave up, and each tangent step runs below it, so every step loses a little and the shortfall accumulates *(R1)*.  \nA smaller $h$ reduces the error — roughly proportionally, since Euler is a first-order method.",
+          "check": [
+            "Eq(1 + Rational(1,10)*(0 + 1), Rational(11,10))",
+            "Eq(Rational(11,10) + Rational(1,10)*(Rational(1,10) + Rational(11,10)), Rational(122,100))",
+            "Eq(Rational(122,100) + Rational(1,10)*(Rational(2,10) + Rational(122,100)), Rational(1362,1000))",
+            "Abs(2*exp(Rational(3,10)) - Rational(3,10) - 1 - 1.3997) < Rational(1,1000)",
+            "2*exp(Rational(3,10)) - Rational(3,10) - 1 > Rational(1362,1000)",
+            "Eq(simplify(diff(2*exp(x) - x - 1, x) - (x + (2*exp(x) - x - 1))), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.18 · Papers 1 & 2",
+            "title": "Recovering the function from its rate",
+            "body": "Science rarely hands you a formula — it hands you a RULE about change. 'Cools at a rate proportional to the temperature difference'; 'grows in proportion to the current population'. Each is a differential equation, and solving it recovers the function itself. The four techniques in this code cover essentially every first-order equation the syllabus can pose."
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "Which technique?",
+            "prompt": "For $\\dfrac{dy}{dx} + \\dfrac{2}{x}y = x$, the appropriate method is:",
+            "options": [
+              "integrating factor",
+              "separation of variables",
+              "the substitution $y = vx$",
+              "Euler's method"
+            ],
+            "correctIndex": 0,
+            "explanation": "It is LINEAR: it has the shape $y' + P(x)y = Q(x)$ with $P = \\frac{2}{x}$ and $Q = x$. The variables do not separate because $x$ and $y$ are added, not multiplied — and the right side is not a function of $\\frac{y}{x}$ alone, so the homogeneous substitution does not apply either.",
+            "check": [
+              "Eq(simplify(exp(2*log(x)) - x**2), 0)",
+              "Eq(simplify(diff(x**2/4 + Rational(7,4)/x**2, x) + (2/x)*(x**2/4 + Rational(7,4)/x**2) - x), 0)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Separate, integrate, fit the condition",
+            "problemId": "ibhl-518-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Build the integrating factor",
+            "problemId": "ibhl-518-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Homogeneous",
+            "title": "When only the ratio matters",
+            "body": "If $\\frac{dy}{dx}$ can be written purely in terms of $\\frac{y}{x}$, the substitution $y = vx$ always works. The key line is the product rule: $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$. Substituting turns the equation into one that separates in $v$ and $x$ — every time — and the final step is restoring $v = \\frac{y}{x}$."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "The substitution that always separates",
+            "problemId": "ibhl-518-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "The product rule step",
+            "title": "Differentiate y = vx",
+            "prompt": "If $y = vx$ where $v$ is a function of $x$, then $\\dfrac{dy}{dx}$ equals:",
+            "options": [
+              "$v + x\\dfrac{dv}{dx}$",
+              "$x\\dfrac{dv}{dx}$",
+              "$v\\dfrac{dv}{dx}$",
+              "$\\dfrac{dv}{dx}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both factors depend on $x$, so the product rule gives $v \\cdot 1 + x \\cdot \\frac{dv}{dx}$. Losing the leading $v$ breaks the cancellation that makes the homogeneous method work at all.",
+            "check": [
+              "Eq(diff(x*v, x), v)",
+              "Eq(diff(x*x**2, x), 3*x**2)",
+              "Eq(x**2 + x*diff(x**2, x), 3*x**2)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Euler",
+            "title": "Walk along the tangents",
+            "body": "When no formula is available, approximate. From $(x_n, y_n)$ the differential equation gives the gradient there; follow that straight line for a step $h$ and you land at $(x_n + h,\\, y_n + h f(x_n, y_n))$. The curve bends away from each tangent, so error accumulates — and for a concave-up solution the estimate always falls short."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Three steps, and an honest comparison",
+            "problemId": "ibhl-518-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.18 in five lines",
+            "points": [
+              "Separable $\\frac{dy}{dx} = f(x)g(y)$: split, integrate, apply the condition EARLY.",
+              "Homogeneous (depends on $\\frac{y}{x}$): put $y = vx$, so $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$.",
+              "Linear $y' + Py = Q$: multiply by $I = \\mathrm{e}^{\\int P\\,dx}$; the left side becomes $(Iy)'$.",
+              "Euler: $y_{n+1} = y_n + h f(x_n, y_n)$ — tabulate, and expect accumulated error.",
+              "Always identify the TYPE before choosing a method; each has a recognisable shape."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "maclaurin-series",
+      "title": "Maclaurin Series",
+      "concreteComparison": "A satellite photograph flattens a curved Earth, and over a small area the distortion is invisible. A Maclaurin series does the same to a function near $x = 0$: it replaces the curve with a polynomial that matches its value, its slope, its curvature, and so on — and near zero the difference is negligible.",
+      "objective": "Construct Maclaurin series from repeated differentiation, from the standard series by substitution, multiplication or differentiation, and from a differential equation, and use them to evaluate limits.",
+      "concept": [
+        "**Syllabus card — AHL 5.19.** Maclaurin series to obtain expansions for $\\mathrm{e}^x$, $\\sin x$, $\\cos x$, $\\ln(1 + x)$, $(1 + x)^p$; use of simple substitution, products, integration and differentiation to obtain other series; use of a differential equation to find a Maclaurin series. Papers 1 and 2. Weight: 6-12 marks.",
+        "**The construction.** $$f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\cdots$$ In the booklet. The $n$-th coefficient is $\\frac{f^{(n)}(0)}{n!}$ — the derivative at ZERO, divided by the factorial. Both parts get dropped: substituting $x$ rather than $0$, or omitting the factorial, and each error is immediately visible if you check the first two terms against $f(0)$ and $f'(0)$.",
+        "**The five standard series.** All in the booklet: $$\\mathrm{e}^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots, \\qquad \\sin x = x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\cdots,$$ $$\\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\cdots, \\qquad \\ln(1 + x) = x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\cdots,$$ $$(1 + x)^p = 1 + px + \\frac{p(p-1)}{2!}x^2 + \\cdots$$ Note $\\sin$ has only odd powers and $\\cos$ only even — as their odd and even symmetry demands, and a useful check on any answer.",
+        "**Deriving new series from old.** Repeated differentiation is rarely the fastest route. SUBSTITUTE into a standard series ($\\mathrm{e}^{2x}$ from $\\mathrm{e}^x$ with $x \\to 2x$); MULTIPLY two series and collect powers up to the degree required; or DIFFERENTIATE/INTEGRATE term by term. For $\\mathrm{e}^x\\sin x$ up to $x^3$, multiply $\\left(1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}\\right)$ by $\\left(x - \\frac{x^3}{6}\\right)$ and keep terms to $x^3$: the result is $x + x^2 + \\frac{x^3}{3}$.",
+        "**From a differential equation.** If $y$ satisfies $\\frac{dy}{dx} = g(x, y)$ with a known $y(0)$, you can generate the coefficients without ever solving the equation: read off $y(0)$ and $y'(0)$, then differentiate the equation repeatedly to get $y''(0)$, $y'''(0)$, and so on. This is the technique the syllabus names explicitly, and it works even when the equation has no closed-form solution at all."
+      ],
+      "keyIdea": "Coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$ — derivative at ZERO, over the factorial. Build new series by substituting into, multiplying, differentiating or integrating the five standard ones, or by repeatedly differentiating a differential equation.",
+      "facts": [
+        {
+          "title": "The Maclaurin expansion",
+          "latex": "f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\cdots",
+          "explanation": "IN the booklet. Evaluate every derivative at $0$, and never omit the factorial."
+        },
+        {
+          "title": "Standard series",
+          "latex": "\\mathrm{e}^x = \\sum \\frac{x^n}{n!}, \\quad \\sin x = x - \\frac{x^3}{3!} + \\cdots, \\quad \\cos x = 1 - \\frac{x^2}{2!} + \\cdots",
+          "explanation": "IN the booklet. $\\sin$ is odd (odd powers only), $\\cos$ is even (even powers only) — a free structural check."
+        },
+        {
+          "title": "Binomial series",
+          "latex": "(1 + x)^p = 1 + px + \\frac{p(p-1)}{2!}x^2 + \\frac{p(p-1)(p-2)}{3!}x^3 + \\cdots",
+          "explanation": "IN the booklet, valid for $|x| < 1$. Works for any real $p$ — fractional and negative included, which is what makes it useful."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ibhl-519-we1",
+          "statement": "**(a)** Find the Maclaurin series for $\\mathrm{e}^{2x}$ up to and including the term in $x^3$, using the standard series for $\\mathrm{e}^x$. **[3]**  \n**(b)** Verify the coefficient of $x^2$ by direct differentiation. **[4]**",
+          "solution": "**(a)** Substitute $x \\to 2x$ into $\\mathrm{e}^x = 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots$ *(M1)*:  \n$$\\mathrm{e}^{2x} = 1 + 2x + \\frac{(2x)^2}{2} + \\frac{(2x)^3}{6} + \\cdots \\;(A1)$$  \n$$= 1 + 2x + 2x^2 + \\frac{4x^3}{3} + \\cdots \\;(A1)$$  \n**(b)** With $f(x) = \\mathrm{e}^{2x}$ *(M1)*: $f'(x) = 2\\mathrm{e}^{2x}$ and $f''(x) = 4\\mathrm{e}^{2x}$ *(A1)*, so $f''(0) = 4$ *(A1)*. The coefficient is  \n$$\\frac{f''(0)}{2!} = \\frac{4}{2} = 2 \\;✓\\;(A1)$$  \nmatching part (a).  \n**Narrative:** substitution took one line and differentiation took four — always check whether a standard series can be reused before differentiating. Note $(2x)^2 = 4x^2$, not $2x^2$: the whole substituted expression is squared, which is the most common slip in this technique.",
+          "check": [
+            "Eq(series(exp(2*x), x, 0, 4).removeO(), 1 + 2*x + 2*x**2 + 4*x**3/3)",
+            "Eq(diff(exp(2*x), x, 2).subs(x, 0), 4)",
+            "Eq(Rational(4, factorial(2)), 2)",
+            "Eq(diff(exp(2*x), x, 3).subs(x, 0)/factorial(3), Rational(4,3))"
+          ]
+        },
+        {
+          "id": "ibhl-519-we2",
+          "statement": "**(a)** Find the Maclaurin series for $\\mathrm{e}^x \\sin x$ up to and including the term in $x^3$. **[5]**  \n**(b)** Hence evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\mathrm{e}^x\\sin x - x}{x^2}$. **[4]**",
+          "solution": "**(a)** Multiply the two standard series, keeping terms up to $x^3$ *(M1)*:  \n$$\\left(1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}\\right)\\left(x - \\frac{x^3}{6}\\right) \\;(A1)$$  \nCollect by degree *(M1)*: the $x$ term is $1 \\cdot x = x$; the $x^2$ term is $x \\cdot x = x^2$; the $x^3$ terms are $\\frac{x^2}{2}\\cdot x = \\frac{x^3}{2}$ and $1 \\cdot \\left(-\\frac{x^3}{6}\\right)$, totalling $\\left(\\frac{1}{2} - \\frac{1}{6}\\right)x^3 = \\frac{x^3}{3}$ *(A1)*.  \n$$\\mathrm{e}^x\\sin x = x + x^2 + \\frac{x^3}{3} + \\cdots \\;(A1)$$  \n**(b)** Substitute the series *(M1)*:  \n$$\\frac{\\mathrm{e}^x\\sin x - x}{x^2} = \\frac{x^2 + \\frac{x^3}{3} + \\cdots}{x^2} = 1 + \\frac{x}{3} + \\cdots \\;(A1\\,A1)$$  \n$$\\Longrightarrow\\; \\lim_{x \\to 0} = 1. \\;(A1)$$  \n**Narrative:** the leading $x$ terms cancelled, which is exactly why the limit was $\\frac{0}{0}$ to begin with. Two applications of l'Hôpital give the same answer — but with a series in hand the limit is read off in one line, which is why the syllabus lists both routes together.",
+          "check": [
+            "Eq(series(exp(x)*sin(x), x, 0, 4).removeO(), x + x**2 + x**3/3)",
+            "Eq(limit((exp(x)*sin(x) - x)/x**2, x, 0), 1)",
+            "Eq(Rational(1,2) - Rational(1,6), Rational(1,3))",
+            "Eq(series(sin(x), x, 0, 4).removeO(), x - x**3/6)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Evaluating the derivatives at $x$ instead of at $0$.",
+          "correction": "Every coefficient uses $f^{(n)}(0)$ — a NUMBER. If your coefficients still contain $x$, the substitution was missed.",
+          "authored": true
+        },
+        {
+          "text": "Omitting the factorial denominators.",
+          "correction": "The coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$. Check against $\\mathrm{e}^x$: the $x^3$ coefficient is $\\frac{1}{6}$, not $1$.",
+          "authored": true
+        },
+        {
+          "text": "Substituting into a standard series without squaring or cubing the whole expression.",
+          "correction": "For $\\mathrm{e}^{2x}$ the quadratic term is $\\frac{(2x)^2}{2} = 2x^2$, not $\\frac{2x^2}{2}$. Bracket the substituted expression before applying the power.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ibhl-519-t1",
+          "statement": "Find the Maclaurin series for $\\cos 2x$ up to and including the term in $x^4$. **[4]**",
+          "solution": "Substitute $x \\to 2x$ into $\\cos x = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\cdots$ *(M1)*:  \n$$\\cos 2x = 1 - \\frac{(2x)^2}{2} + \\frac{(2x)^4}{24} - \\cdots \\;(A1)$$  \n$$= 1 - \\frac{4x^2}{2} + \\frac{16x^4}{24} - \\cdots \\;(A1)$$  \n$$= 1 - 2x^2 + \\frac{2x^4}{3} - \\cdots \\;(A1)$$  \nOnly even powers appear, as they must for an even function — a free structural check that would immediately expose a stray $x^3$ term.",
+          "check": [
+            "Eq(series(cos(2*x), x, 0, 5).removeO(), 1 - 2*x**2 + 2*x**4/3)",
+            "Eq(Rational((2)**4, factorial(4)), Rational(2,3))",
+            "Eq(Rational((2)**2, factorial(2)), 2)",
+            "Eq(cos(-x) - cos(x), 0)"
+          ]
+        },
+        {
+          "id": "ibhl-519-t2",
+          "statement": "The function $y$ satisfies $\\dfrac{dy}{dx} = y + x$ with $y(0) = 1$.  \nFind the Maclaurin series for $y$ up to and including the term in $x^3$, WITHOUT solving the differential equation. **[7]**",
+          "solution": "Read the values at $x = 0$ off the equation, differentiating it repeatedly *(M1)*.  \n$y(0) = 1$ is given *(A1)*.  \nFrom the equation: $y'(0) = y(0) + 0 = 1$ *(A1)*.  \nDifferentiate the equation: $y'' = y' + 1$, so $y''(0) = 1 + 1 = 2$ *(M1 A1)*.  \nAgain: $y''' = y''$, so $y'''(0) = 2$ *(A1)*.  \nAssemble the series:  \n$$y = 1 + x + \\frac{2}{2!}x^2 + \\frac{2}{3!}x^3 + \\cdots = 1 + x + x^2 + \\frac{x^3}{3} + \\cdots \\;(A1)$$  \nCross-check against the exact solution $y = 2\\mathrm{e}^x - x - 1$: its expansion is $2\\left(1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}\\right) - x - 1 = 1 + x + x^2 + \\frac{x^3}{3}$ ✓ — the same series, obtained without ever solving the equation.",
+          "check": [
+            "Eq(series(2*exp(x) - x - 1, x, 0, 4).removeO(), 1 + x + x**2 + x**3/3)",
+            "Eq((2*exp(x) - x - 1).subs(x, 0), 1)",
+            "Eq(diff(2*exp(x) - x - 1, x).subs(x, 0), 1)",
+            "Eq(diff(2*exp(x) - x - 1, x, 2).subs(x, 0), 2)",
+            "Eq(diff(2*exp(x) - x - 1, x, 3).subs(x, 0), 2)",
+            "Eq(simplify(diff(2*exp(x) - x - 1, x) - ((2*exp(x) - x - 1) + x)), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "AHL 5.19 · Papers 1 & 2",
+            "title": "A polynomial that impersonates a function",
+            "body": "Choose the constant term to match $f(0)$, the linear term to match the gradient, the quadratic to match the curvature — keep going and the polynomial agrees with $f$ in more and more respects near the origin. That matching is what $\\frac{f^{(n)}(0)}{n!}$ achieves, and it is why calculators evaluate $\\sin$ and $\\mathrm{e}^x$ this way."
+          },
+          {
+            "kind": "polyGraph",
+            "eyebrow": "Adding terms",
+            "title": "Each term buys more agreement",
+            "teach": "A constant matches the height. Add the linear term and it matches the slope too. Add the quadratic and it matches the bend. Every extra term extends the interval over which the polynomial and the function are visually indistinguishable — though the agreement always degrades far from zero.",
+            "config": {
+              "mode": "endBehavior",
+              "n": 3
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check yourself",
+            "title": "The coefficient",
+            "prompt": "In a Maclaurin series, the coefficient of $x^n$ is:",
+            "options": [
+              "$\\dfrac{f^{(n)}(0)}{n!}$",
+              "$f^{(n)}(0)$",
+              "$\\dfrac{f^{(n)}(x)}{n!}$",
+              "$\\dfrac{f(0)}{n!}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $n$-th derivative evaluated at ZERO, divided by $n!$. Test on $\\mathrm{e}^x$, where every derivative at $0$ is $1$: the coefficients become $\\frac{1}{n!}$, which is exactly the standard series.",
+            "check": [
+              "Eq(diff(exp(x), x, 3).subs(x, 0)/factorial(3), Rational(1,6))",
+              "Eq(series(exp(x), x, 0, 4).removeO(), 1 + x + x**2/2 + x**3/6)",
+              "Eq(factorial(3), 6)"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Structure check",
+            "title": "Which powers appear?",
+            "prompt": "The Maclaurin series for $\\sin x$ contains:",
+            "options": [
+              "odd powers of $x$ only",
+              "even powers of $x$ only",
+              "all powers of $x$",
+              "a constant term of $1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sin$ is an ODD function, so its series can contain only odd powers — $x - \\frac{x^3}{6} + \\frac{x^5}{120} - \\cdots$. $\\cos$ is even and contains only even powers. Spotting a wrong-parity term is an instant error check.",
+            "check": [
+              "Eq(series(sin(x), x, 0, 6).removeO(), x - x**3/6 + x**5/120)",
+              "Eq(sin(-x) + sin(x), 0)",
+              "Eq(series(cos(x), x, 0, 5).removeO(), 1 - x**2/2 + x**4/24)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Substitute, then verify",
+            "problemId": "ibhl-519-we1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Substitute into cosine",
+            "problemId": "ibhl-519-t1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From a differential equation",
+            "title": "A series without a solution",
+            "body": "If $y$ satisfies $\\frac{dy}{dx} = g(x, y)$ with a known $y(0)$, the equation itself supplies $y'(0)$. Differentiate the EQUATION to get an expression for $y''$, evaluate at $0$, and repeat. Each pass buys one more coefficient — and the method works even when the differential equation has no closed-form solution at all."
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Exam format",
+            "title": "Multiply two series, then take a limit",
+            "problemId": "ibhl-519-we2"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Your turn",
+            "title": "Coefficients from the equation",
+            "problemId": "ibhl-519-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "AHL 5.19 in five lines",
+            "points": [
+              "Coefficient of $x^n$ is $\\frac{f^{(n)}(0)}{n!}$ — at ZERO, over the factorial.",
+              "Five standard series in the booklet: $\\mathrm{e}^x$, $\\sin$, $\\cos$, $\\ln(1+x)$, $(1+x)^p$.",
+              "Build new ones by substitution, product, differentiation or integration.",
+              "From a differential equation: differentiate the equation repeatedly and evaluate at $0$.",
+              "$\\sin$ odd powers, $\\cos$ even powers — a free check on any answer."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ibhl-calc-p01",
+      "statement": "Differentiate $f(x) = x^2 + 5x$ from first principles. **[5]**",
+      "solution": "*(M1)* $$f'(x) = \\lim_{h \\to 0}\\frac{(x+h)^2 + 5(x+h) - x^2 - 5x}{h}$$  \nExpanding *(A1)*: $x^2 + 2xh + h^2 + 5x + 5h - x^2 - 5x = 2xh + h^2 + 5h$ *(A1)*.  \nCancel the $h$ *(M1)*:  \n$$f'(x) = \\lim_{h \\to 0}(2x + h + 5) = 2x + 5. \\;(A1)$$  \nThe power rule confirms it — but quoting the power rule alone would score nothing here.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.12",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(limit(((x + h)**2 + 5*(x + h) - x**2 - 5*x)/h, h, 0), 2*x + 5)",
+        "Eq(expand((x + h)**2 + 5*(x + h) - x**2 - 5*x), 2*x*h + h**2 + 5*h)",
+        "Eq(diff(x**2 + 5*x, x), 2*x + 5)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p02",
+      "statement": "Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{\\mathrm{e}^{3x} - 1 - 3x}{x^2}$. **[5]**",
+      "solution": "At $x = 0$ the numerator is $1 - 1 - 0 = 0$, so the form is $\\frac{0}{0}$ *(R1)*. Apply l'Hôpital *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{3\\mathrm{e}^{3x} - 3}{2x}$$  \nstill $\\frac{0}{0}$, so again *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{9\\mathrm{e}^{3x}}{2} \\;(A1) = \\frac{9}{2}. \\;(A1)$$  \nThe Maclaurin route agrees: $\\mathrm{e}^{3x} - 1 - 3x = \\frac{9x^2}{2} + \\cdots$, so dividing by $x^2$ leaves $\\frac{9}{2}$.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.13",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(limit((exp(3*x) - 1 - 3*x)/x**2, x, 0), Rational(9,2))",
+        "Eq(series(exp(3*x) - 1 - 3*x, x, 0, 3).removeO(), 9*x**2/2)",
+        "Eq(diff(exp(3*x), x, 2).subs(x, 0), 9)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p03",
+      "statement": "A curve has equation $x^2 y + y^3 = 10$. Show that $(3, 1)$ lies on the curve and find $\\dfrac{dy}{dx}$ there. **[6]**",
+      "solution": "Substituting: $9(1) + 1 = 10$ ✓ *(A1)*.  \nDifferentiate implicitly, product rule on the first term *(M1)*:  \n$$2xy + x^2\\frac{dy}{dx} + 3y^2\\frac{dy}{dx} = 0 \\;(A1\\,A1)$$  \n$$\\frac{dy}{dx} = -\\frac{2xy}{x^2 + 3y^2} \\;(A1)$$  \nAt $(3, 1)$: $-\\frac{6}{9 + 3} = -\\frac{1}{2}$ *(A1)*.  \nDifferentiating $10$ gives zero — a constant on the right is what makes the whole equation collapse into one relation between the derivatives.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.14",
+          "mono": true
+        },
+        {
+          "text": "[6 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(3**2*1 + 1**3, 10)",
+        "Eq(-(2*3*1)/(3**2 + 3*1**2), Rational(-1,2))",
+        "Eq(simplify(-diff(x**2*y + y**3, x)/diff(x**2*y + y**3, y) - (-2*x*y/(x**2 + 3*y**2))), 0)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p04",
+      "statement": "Find $\\dfrac{dy}{dx}$ for $y = \\arctan(x^2)$. **[3]**",
+      "solution": "Chain rule with the inverse-trig derivative *(M1)*: the outer derivative is $\\frac{1}{1 + u^2}$ with $u = x^2$, and $\\frac{du}{dx} = 2x$ *(A1)*.  \n$$\\frac{dy}{dx} = \\frac{2x}{1 + (x^2)^2} = \\frac{2x}{1 + x^4}. \\;(A1)$$  \nThe denominator carries $x^4$, not $x^2$ — the inner function is squared inside the standard formula.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.15",
+          "mono": true
+        },
+        {
+          "text": "[3 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(simplify(diff(atan(x**2), x) - 2*x/(1 + x**4)), 0)",
+        "Eq(simplify(diff(atan(x), x) - 1/(1 + x**2)), 0)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p05",
+      "statement": "**(a)** Express $\\dfrac{x + 5}{(x - 1)(x + 2)}$ in partial fractions. **[4]**  \n**(b)** Hence find $\\displaystyle\\int \\frac{x + 5}{(x - 1)(x + 2)}\\,dx$. **[3]**",
+      "solution": "**(a)** $x + 5 = A(x + 2) + B(x - 1)$ *(M1)*.  \n$x = 1$: $6 = 3A$, so $A = 2$ *(A1)*.  \n$x = -2$: $3 = -3B$, so $B = -1$ *(A1)*.  \n$$\\frac{x + 5}{(x-1)(x+2)} = \\frac{2}{x - 1} - \\frac{1}{x + 2} \\;(A1)$$  \n**(b)** *(M1)* $$\\int = 2\\ln|x - 1| - \\ln|x + 2| + C. \\;(A1\\,A1)$$  \nRecombination check: $2(x + 2) - (x - 1) = x + 5$ ✓. Note the NEGATIVE $B$ carries through into a subtracted logarithm.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.15",
+          "mono": true
+        },
+        {
+          "text": "[7 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(apart((x + 5)/((x - 1)*(x + 2))), 2/(x - 1) - 1/(x + 2))",
+        "Eq(expand(2*(x + 2) - 1*(x - 1)), x + 5)",
+        "Eq(1 + 5, 3*2)",
+        "Eq(-2 + 5, -3*(-1))",
+        "Eq(simplify(diff(2*log(x - 1) - log(x + 2), x) - (x + 5)/((x - 1)*(x + 2))), 0)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p06",
+      "statement": "Find the exact value of $\\displaystyle\\int_1^2 \\frac{x^2}{x^3 + 1}\\,dx$. **[5]**",
+      "solution": "Let $u = x^3 + 1$, so $du = 3x^2\\,dx$ and $x^2\\,dx = \\frac{1}{3}du$ *(M1 A1)*. Limits: $x = 1 \\Rightarrow u = 2$; $x = 2 \\Rightarrow u = 9$ *(A1)*.  \n$$\\int_1^2 \\frac{x^2\\,dx}{x^3 + 1} = \\frac{1}{3}\\int_2^9 \\frac{du}{u} = \\frac{1}{3}\\left[\\ln u\\right]_2^9 \\;(M1)$$  \n$$= \\frac{1}{3}\\left(\\ln 9 - \\ln 2\\right) = \\frac{1}{3}\\ln\\frac{9}{2}. \\;(A1)$$  \nThis is the $\\int\\frac{g'}{g}$ pattern up to the constant $\\frac{1}{3}$ — recognising it makes the substitution almost automatic.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.16",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(simplify(integrate(x**2/(x**3 + 1), (x, 1, 2)) - log(Rational(9,2))/3), 0)",
+        "Eq(1**3 + 1, 2)",
+        "Eq(2**3 + 1, 9)",
+        "Eq(simplify(diff(log(x**3 + 1)/3, x) - x**2/(x**3 + 1)), 0)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p07",
+      "statement": "Find the exact value of $\\displaystyle\\int_1^{\\mathrm{e}} x\\ln x\\,dx$. **[6]**",
+      "solution": "LIATE puts the Logarithm first, so $u = \\ln x$ and $\\frac{dv}{dx} = x$, giving $v = \\frac{x^2}{2}$ *(M1 A1)*:  \n$$\\int_1^{\\mathrm{e}} x\\ln x\\,dx = \\left[\\frac{x^2\\ln x}{2}\\right]_1^{\\mathrm{e}} - \\int_1^{\\mathrm{e}} \\frac{x^2}{2}\\cdot\\frac{1}{x}\\,dx \\;(M1)$$  \n$$= \\frac{\\mathrm{e}^2}{2} - \\frac{1}{2}\\int_1^{\\mathrm{e}} x\\,dx = \\frac{\\mathrm{e}^2}{2} - \\frac{1}{2}\\left[\\frac{x^2}{2}\\right]_1^{\\mathrm{e}} \\;(A1)$$  \n$$= \\frac{\\mathrm{e}^2}{2} - \\frac{\\mathrm{e}^2 - 1}{4} \\;(A1) = \\frac{\\mathrm{e}^2 + 1}{4}. \\;(A1)$$  \nThe $\\frac{x^2}{2} \\cdot \\frac{1}{x}$ simplifying to $\\frac{x}{2}$ is the payoff for choosing $u = \\ln x$ — the log disappears entirely.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.16",
+          "mono": true
+        },
+        {
+          "text": "[6 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(x*log(x), (x, 1, E)), (exp(2) + 1)/4)",
+        "Eq(simplify(diff(x**2*log(x)/2 - x**2/4, x) - x*log(x)), 0)",
+        "Eq(log(E), 1)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p08",
+      "statement": "The region bounded by $y = x^3$, the $y$-axis and the line $y = 1$ is rotated $2\\pi$ about the $y$-axis. Find the exact volume. **[5]**",
+      "solution": "Rotating about the $y$-axis needs $x$ in terms of $y$ *(M1)*: $x = y^{1/3}$, so $x^2 = y^{2/3}$ *(A1)*. As $x$ runs $0$ to $1$, $y$ runs $0$ to $1$ *(A1)*.  \n$$V = \\pi\\int_0^1 y^{2/3}\\,dy = \\pi\\left[\\frac{3}{5}y^{5/3}\\right]_0^1 \\;(A1)$$  \n$$= \\frac{3\\pi}{5}. \\;(A1)$$  \nHere the limits happened to be unchanged because $y = x^3$ maps $[0,1]$ to itself — but the CONVERSION still had to be checked, not assumed.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.17",
+          "mono": true
+        },
+        {
+          "text": "[5 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(pi*integrate(y**Rational(2,3), (y, 0, 1)), 3*pi/5)",
+        "Eq(Rational(1,1)**3, 1)",
+        "Eq(integrate(y**Rational(2,3), (y, 0, 1)), Rational(3,5))"
+      ]
+    },
+    {
+      "id": "ibhl-calc-p09",
+      "statement": "Solve $\\dfrac{dy}{dx} = y\\cos x$ given that $y = 2$ when $x = 0$. **[6]**",
+      "solution": "The variables separate *(M1)*:  \n$$\\int \\frac{dy}{y} = \\int \\cos x\\,dx \\;\\Longrightarrow\\; \\ln|y| = \\sin x + C. \\;(A1\\,A1)$$  \nApply the condition *(M1)*: $x = 0$, $y = 2$ gives $\\ln 2 = 0 + C$, so $C = \\ln 2$ *(A1)*.  \n$$\\ln y = \\sin x + \\ln 2 \\;\\Longrightarrow\\; y = 2\\mathrm{e}^{\\sin x}. \\;(A1)$$  \nCheck: $\\frac{dy}{dx} = 2\\mathrm{e}^{\\sin x}\\cos x = y\\cos x$ ✓, and $y(0) = 2\\mathrm{e}^0 = 2$ ✓. The solution oscillates between $2\\mathrm{e}^{-1}$ and $2\\mathrm{e}$ — bounded, as a periodic growth rate demands.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.18",
+          "mono": true
+        },
+        {
+          "text": "[6 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(simplify(diff(2*exp(sin(x)), x) - 2*exp(sin(x))*cos(x)), 0)",
+        "Eq((2*exp(sin(x))).subs(x, 0), 2)",
+        "Eq(log(2), log(2))",
+        "Eq(simplify((2*exp(sin(x))).subs(x, pi/2)), 2*E)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ibhl-calc-q01",
+      "statement": "**(a)** Differentiate $f(x) = 2x^2 - x$ from first principles. **[5]**  \n**(b)** Evaluate $\\displaystyle\\lim_{x \\to 0} \\frac{1 - \\cos 2x}{x^2}$. **[5]**",
+      "solution": "**(a)** *(M1)* $$f'(x) = \\lim_{h \\to 0}\\frac{2(x+h)^2 - (x+h) - 2x^2 + x}{h}$$  \nExpanding *(A1)*: $2x^2 + 4xh + 2h^2 - x - h - 2x^2 + x = 4xh + 2h^2 - h$ *(A1)*. Cancelling *(M1)*:  \n$$f'(x) = \\lim_{h \\to 0}(4x + 2h - 1) = 4x - 1. \\;(A1)$$  \n**(b)** The form is $\\frac{0}{0}$ *(R1)*, so apply l'Hôpital *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{2\\sin 2x}{2x} = \\lim_{x \\to 0}\\frac{\\sin 2x}{x}$$  \nstill $\\frac{0}{0}$ *(M1)*:  \n$$\\lim_{x \\to 0}\\frac{2\\cos 2x}{1} \\;(A1) = 2. \\;(A1)$$  \n**Narrative:** compare with $\\lim\\frac{1 - \\cos x}{x^2} = \\frac{1}{2}$ — doubling the angle multiplied the limit by $4$, exactly as the series $1 - \\cos 2x = 2x^2 - \\cdots$ predicts.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.12",
+          "mono": true
+        },
+        {
+          "text": "[10 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(limit((2*(x + h)**2 - (x + h) - 2*x**2 + x)/h, h, 0), 4*x - 1)",
+        "Eq(expand(2*(x + h)**2 - (x + h) - 2*x**2 + x), 4*x*h + 2*h**2 - h)",
+        "Eq(limit((1 - cos(2*x))/x**2, x, 0), 2)",
+        "Eq(limit((1 - cos(x))/x**2, x, 0), Rational(1,2))",
+        "Eq(series(1 - cos(2*x), x, 0, 3).removeO(), 2*x**2)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-q02",
+      "statement": "**(a)** A curve has equation $x^2 + xy + 2y^2 = 16$. Show that $(2, 2)$ lies on the curve and find the gradient of the tangent there. **[6]**  \n**(b)** Water drains from a cone-shaped tank at $20\\text{ cm}^3\\text{ min}^{-1}$. The water surface always has radius equal to its depth $h$. Find the rate at which the depth is falling when $h = 5$ cm, correct to 3 significant figures. **[6]**",
+      "solution": "**(a)** $4 + 4 + 8 = 16$ ✓ *(A1)*. Differentiate implicitly *(M1)*:  \n$$2x + y + x\\frac{dy}{dx} + 4y\\frac{dy}{dx} = 0 \\;(A1\\,A1)$$  \n$$\\frac{dy}{dx} = -\\frac{2x + y}{x + 4y} \\;(A1)$$  \nAt $(2, 2)$: $-\\frac{6}{10} = -\\frac{3}{5}$ *(A1)*.  \n**(b)** With $r = h$, the volume is *(M1)*  \n$$V = \\tfrac{1}{3}\\pi r^2 h = \\tfrac{1}{3}\\pi h^3. \\;(A1)$$  \nDifferentiate in general *(M1)*: $\\frac{dV}{dt} = \\pi h^2 \\frac{dh}{dt}$ *(A1)*. Draining means $\\frac{dV}{dt} = -20$ *(R1)*, so at $h = 5$:  \n$$\\frac{dh}{dt} = \\frac{-20}{25\\pi} = -\\frac{4}{5\\pi} \\approx -0.255 \\text{ cm min}^{-1}. \\;(A1)$$  \n**Narrative:** the depth is falling at about $0.255$ cm per minute. The negative sign on $\\frac{dV}{dt}$ is supplied by the word 'drains' — putting $+20$ there reverses the whole answer, and it is the reasoning mark.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.14",
+          "mono": true
+        },
+        {
+          "text": "[12 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(2**2 + 2*2 + 2*2**2, 16)",
+        "Eq(-(2*2 + 2)/(2 + 4*2), Rational(-3,5))",
+        "Eq(simplify(-diff(x**2 + x*y + 2*y**2, x)/diff(x**2 + x*y + 2*y**2, y) - (-(2*x + y)/(x + 4*y))), 0)",
+        "Eq(diff(Rational(1,3)*pi*h**3, h), pi*h**2)",
+        "Eq(-20/(pi*5**2), -4/(5*pi))",
+        "Abs(-4/(5*pi) + 0.2546) < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-q03",
+      "statement": "**(a)** Show that $\\dfrac{d}{dx}\\left[x\\arcsin x + \\sqrt{1 - x^2}\\right] = \\arcsin x$. **[5]**  \n**(b)** Hence find the exact value of $\\displaystyle\\int_0^{1/2} \\arcsin x\\,dx$. **[5]**",
+      "solution": "**(a)** Product rule on the first term and chain rule on the second *(M1)*:  \n$$\\frac{d}{dx}\\left[x\\arcsin x\\right] = \\arcsin x + \\frac{x}{\\sqrt{1 - x^2}} \\;(A1\\,A1)$$  \n$$\\frac{d}{dx}\\left[\\sqrt{1 - x^2}\\right] = \\frac{-2x}{2\\sqrt{1 - x^2}} = -\\frac{x}{\\sqrt{1 - x^2}} \\;(A1)$$  \nThe two fractional terms cancel exactly, leaving $\\arcsin x$ *(AG A1)*.  \n**(b)** Part (a) says the bracket is an antiderivative of $\\arcsin x$ *(M1)*:  \n$$\\int_0^{1/2}\\arcsin x\\,dx = \\left[x\\arcsin x + \\sqrt{1 - x^2}\\right]_0^{1/2} \\;(A1)$$  \n$$= \\left(\\tfrac{1}{2}\\cdot\\tfrac{\\pi}{6} + \\tfrac{\\sqrt3}{2}\\right) - (0 + 1) \\;(A1\\,A1)$$  \n$$= \\frac{\\pi}{12} + \\frac{\\sqrt3}{2} - 1 \\approx 0.128. \\;(A1)$$  \n**Narrative:** part (a) is integration by parts run backwards — taking $u = \\arcsin x$ and $dv = 1\\,dx$ produces exactly that antiderivative. The 'show that' phrasing lets the paper hand you the result and test only whether you can USE it.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.16",
+          "mono": true
+        },
+        {
+          "text": "[10 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(simplify(diff(x*asin(x) + sqrt(1 - x**2), x) - asin(x)), 0)",
+        "Eq(simplify(integrate(asin(x), (x, 0, Rational(1,2))) - (pi/12 + sqrt(3)/2 - 1)), 0)",
+        "Eq(asin(Rational(1,2)), pi/6)",
+        "Eq(sqrt(1 - Rational(1,4)), sqrt(3)/2)",
+        "Abs(pi/12 + sqrt(3)/2 - 1 - 0.1278) < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-q04",
+      "statement": "The region $R$ is enclosed by the curve $y = 4 - x^2$ and the $x$-axis.  \n**(a)** Find the area of $R$. **[3]**  \n**(b)** Find the exact volume generated when $R$ is rotated $2\\pi$ about the $x$-axis. **[6]**  \n**(c)** Find the exact volume generated when $R$ is rotated $2\\pi$ about the $y$-axis. **[5]**",
+      "solution": "The curve meets the $x$-axis at $x = \\pm 2$.  \n**(a)** *(M1)* $$A = \\int_{-2}^{2}(4 - x^2)\\,dx = \\left[4x - \\frac{x^3}{3}\\right]_{-2}^{2} \\;(A1) = \\frac{32}{3}. \\;(A1)$$  \n**(b)** *(M1)* $$V = \\pi\\int_{-2}^{2}(4 - x^2)^2\\,dx = \\pi\\int_{-2}^{2}\\left(16 - 8x^2 + x^4\\right)dx \\;(A1)$$  \n$$= \\pi\\left[16x - \\frac{8x^3}{3} + \\frac{x^5}{5}\\right]_{-2}^{2} \\;(A1\\,A1)$$  \n$$= 2\\pi\\left(32 - \\frac{64}{3} + \\frac{32}{5}\\right) = 2\\pi \\cdot \\frac{256}{15} \\;(A1) = \\frac{512\\pi}{15}. \\;(A1)$$  \n**(c)** Rotating about the $y$-axis: $x^2 = 4 - y$, with $y$ running from $0$ to $4$ *(M1 A1)*.  \n$$V = \\pi\\int_0^4 (4 - y)\\,dy = \\pi\\left[4y - \\frac{y^2}{2}\\right]_0^4 \\;(A1\\,A1)$$  \n$$= \\pi(16 - 8) = 8\\pi. \\;(A1)$$  \n**Narrative:** expanding $(4 - x^2)^2$ BEFORE integrating is compulsory — there is no shortcut through a squared bracket. And in (c), note the region only extends to $y = 4$, the curve's maximum: the $y$-limits come from the SHAPE, not from the $x$-limits.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.17",
+          "mono": true
+        },
+        {
+          "text": "[14 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(integrate(4 - x**2, (x, -2, 2)), Rational(32,3))",
+        "Eq(pi*integrate((4 - x**2)**2, (x, -2, 2)), 512*pi/15)",
+        "Eq(expand((4 - x**2)**2), 16 - 8*x**2 + x**4)",
+        "Eq(pi*integrate(4 - y, (y, 0, 4)), 8*pi)",
+        "Eq(4 - 2**2, 0)"
+      ]
+    },
+    {
+      "id": "ibhl-calc-q05",
+      "statement": "**(a)** Solve $\\dfrac{dy}{dx} = \\dfrac{y + x}{x}$ for $x > 0$, given $y = 0$ when $x = 1$, using the substitution $y = vx$. **[7]**  \n**(b)** Solve $\\dfrac{dy}{dx} + 2y = \\mathrm{e}^{-x}$ given $y = 3$ when $x = 0$. **[6]**  \n**(c)** Use Euler's method with $h = 0.2$ to estimate $y(0.6)$ for $\\dfrac{dy}{dx} = x^2 + y$ with $y(0) = 1$. **[5]**",
+      "solution": "**(a)** The right side is $1 + \\frac{y}{x}$, a function of the ratio alone *(R1)*. With $y = vx$ and $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$ *(M1)*:  \n$$v + x\\frac{dv}{dx} = v + 1 \\;\\Longrightarrow\\; x\\frac{dv}{dx} = 1. \\;(A1)$$  \n$$\\int dv = \\int \\frac{dx}{x} \\;\\Longrightarrow\\; v = \\ln x + C \\;(M1\\,A1)$$  \nRestore $v = \\frac{y}{x}$: $y = x(\\ln x + C)$. At $x = 1$, $y = 0$: $0 = 1(0 + C)$, so $C = 0$ *(A1)*.  \n$$y = x\\ln x. \\;(A1)$$  \n**(b)** Linear, with $P = 2$, so $I = \\mathrm{e}^{2x}$ *(M1 A1)*:  \n$$\\frac{d}{dx}\\left(\\mathrm{e}^{2x}y\\right) = \\mathrm{e}^{2x}\\mathrm{e}^{-x} = \\mathrm{e}^{x} \\;(A1)$$  \n$$\\mathrm{e}^{2x}y = \\mathrm{e}^x + C \\;(A1)$$  \nAt $x = 0$, $y = 3$: $3 = 1 + C$, so $C = 2$ *(A1)*.  \n$$y = \\mathrm{e}^{-x} + 2\\mathrm{e}^{-2x}. \\;(A1)$$  \n**(c)** $y_{n+1} = y_n + 0.2\\left(x_n^2 + y_n\\right)$ *(M1)*:  \n$$y_1 = 1 + 0.2(0 + 1) = 1.2 \\;(A1)$$  \n$$y_2 = 1.2 + 0.2(0.04 + 1.2) = 1.448 \\;(A1)$$  \n$$y_3 = 1.448 + 0.2(0.16 + 1.448) = 1.7696 \\;(A1)$$  \n$$y(0.6) \\approx 1.77. \\;(A1)$$  \n**Narrative:** three techniques, three recognisable shapes. Part (a) depended on the ratio; (b) was linear in standard form; (c) had no analytic route on offer. Identifying the type before starting is most of the marks.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.18",
+          "mono": true
+        },
+        {
+          "text": "[18 marks]"
+        },
+        {
+          "text": "P2"
+        }
+      ],
+      "check": [
+        "Eq(simplify(diff(x*log(x), x) - (x*log(x) + x)/x), 0)",
+        "Eq((x*log(x)).subs(x, 1), 0)",
+        "Eq(simplify(diff(exp(-x) + 2*exp(-2*x), x) + 2*(exp(-x) + 2*exp(-2*x)) - exp(-x)), 0)",
+        "Eq((exp(-x) + 2*exp(-2*x)).subs(x, 0), 3)",
+        "Eq(1 + Rational(2,10)*(0 + 1), Rational(12,10))",
+        "Eq(Rational(12,10) + Rational(2,10)*(Rational(4,100) + Rational(12,10)), Rational(1448,1000))",
+        "Eq(Rational(1448,1000) + Rational(2,10)*(Rational(16,100) + Rational(1448,1000)), Rational(17696,10000))"
+      ]
+    },
+    {
+      "id": "ibhl-calc-q06",
+      "statement": "**(a)** Find the Maclaurin series for $\\sqrt{1 + x}$ up to and including the term in $x^3$. **[5]**  \n**(b)** Hence estimate $\\sqrt{1.1}$, giving your answer to 6 decimal places, and compare with the true value. **[4]**  \n**(c)** Find the Maclaurin series for $\\mathrm{e}^x\\cos x$ up to and including the term in $x^3$. **[5]**",
+      "solution": "**(a)** Use the binomial series with $p = \\frac{1}{2}$ *(M1)*:  \n$$(1 + x)^{1/2} = 1 + \\tfrac{1}{2}x + \\frac{\\frac{1}{2}\\left(-\\frac{1}{2}\\right)}{2}x^2 + \\frac{\\frac{1}{2}\\left(-\\frac{1}{2}\\right)\\left(-\\frac{3}{2}\\right)}{6}x^3 + \\cdots \\;(A1\\,A1)$$  \n$$= 1 + \\frac{x}{2} - \\frac{x^2}{8} + \\frac{x^3}{16} + \\cdots \\;(A1\\,A1)$$  \n**(b)** Put $x = 0.1$ *(M1)*:  \n$$\\sqrt{1.1} \\approx 1 + 0.05 - 0.00125 + 0.0000625 = 1.0488125 \\;(A1\\,A1)$$  \nThe true value is $1.0488088\\ldots$, so the estimate is high by about $3.7 \\times 10^{-6}$ *(A1)* — the next term, $-\\frac{5x^4}{128}$, is negative and of that size.  \n**(c)** Multiply the standard series, keeping terms to $x^3$ *(M1)*:  \n$$\\left(1 + x + \\frac{x^2}{2} + \\frac{x^3}{6}\\right)\\left(1 - \\frac{x^2}{2}\\right) \\;(A1)$$  \nConstant: $1$. Linear: $x$. Quadratic: $\\frac{x^2}{2} - \\frac{x^2}{2} = 0$ *(A1)*. Cubic: $\\frac{x^3}{6} - \\frac{x^3}{2} = -\\frac{x^3}{3}$ *(A1)*.  \n$$\\mathrm{e}^x\\cos x = 1 + x - \\frac{x^3}{3} + \\cdots \\;(A1)$$  \n**Narrative:** the vanishing $x^2$ term in (c) is genuine, not an error — the two contributions cancel exactly. Compare with $\\mathrm{e}^x\\sin x = x + x^2 + \\frac{x^3}{3}$: multiplying by cosine rather than sine changes the structure entirely.",
+      "badges": [
+        {
+          "text": "ib-aa-hl-5.19",
+          "mono": true
+        },
+        {
+          "text": "[14 marks]"
+        },
+        {
+          "text": "P1"
+        }
+      ],
+      "check": [
+        "Eq(series(sqrt(1 + x), x, 0, 4).removeO(), 1 + x/2 - x**2/8 + x**3/16)",
+        "Eq(1 + Rational(1,2)*Rational(1,10) - Rational(1,8)*Rational(1,100) + Rational(1,16)*Rational(1,1000), Rational(10488125,10000000))",
+        "Abs(Rational(10488125,10000000) - sqrt(Rational(11,10))) < Rational(1,100000)",
+        "Rational(10488125,10000000) > sqrt(Rational(11,10))",
+        "Eq(series(exp(x)*cos(x), x, 0, 4).removeO(), 1 + x - x**3/3)",
+        "Eq(series(exp(x)*sin(x), x, 0, 4).removeO(), x + x**2 + x**3/3)"
+      ]
+    }
+  ]
+}
