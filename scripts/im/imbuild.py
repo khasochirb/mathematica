@@ -82,6 +82,7 @@ WIDGET_CONFIG_KEYS = {
     "orderOfOps": (["stages"], ["stages", "color"]),
     "parabolaGraph": (["mode"], ["mode", "a", "h", "k", "b", "c", "v0", "interactive", "min", "max"]),
     "patternGrow": (["pattern"], ["pattern", "maxSteps"]),
+    "polyGraph": (["mode"], ["mode", "n", "negative", "color"]),
     "rateMeter": ([], ["topLabel", "topUnit", "top", "topMax", "topStep", "bottomLabel",
                        "bottomUnit", "bottom", "bottomMax", "bottomStep", "rateUnit", "color"]),
     "scatterPlot": (["mode"], ["mode", "dataset", "xLabel", "yLabel", "color"]),
