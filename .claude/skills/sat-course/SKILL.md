@@ -65,7 +65,7 @@ reviewed with the same severity as answers (`content-reviewer`).
 
 1. **Skill card**: what the College Board calls it, its domain, its test
    weight in questions ("~3 of 44"), prerequisite tags.
-2. **The concept**, taught the General Math way (concrete opener,
+2. **The concept**, taught the Courses way (concrete opener,
    concept paragraphs, key idea) but calibrated to SAT register —
    students here already know algebra; teach the SAT'S ANGLE on it.
 3. **The SAT patterns**: the 3–6 recurring question archetypes for this

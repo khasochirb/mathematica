@@ -37,7 +37,7 @@ This is the "only formulas, no explanation" gap. It is also the content backbone
 4. The topic-list fragmentation is reconciled onto the canonical set; no surface shows a different list.
 5. The data model + renderer generalize: adding the next topic = author one data file, no renderer changes.
 
-**Non-success (explicitly not promised here):** all 13 topics authored; the refinement loop; video; K-12 / General Math Hub; any launch/Supabase work.
+**Non-success (explicitly not promised here):** all 13 topics authored; the refinement loop; video; K-12 / Courses Hub; any launch/Supabase work.
 
 ## 3. The lesson content model (6 sections)
 

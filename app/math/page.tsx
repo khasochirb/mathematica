@@ -160,7 +160,7 @@ export default function MathLandingPage() {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
         {/* Header */}
-        <div className="eyebrow mb-4">General Math</div>
+        <div className="eyebrow mb-4">Courses</div>
         <h1
           className="serif"
           style={{
@@ -171,7 +171,7 @@ export default function MathLandingPage() {
             color: "var(--fg)",
           }}
         >
-          General Math
+          Courses
         </h1>
         <p
           className="mt-4 mb-10"
@@ -221,7 +221,13 @@ export default function MathLandingPage() {
             Full courses, easiest first. Level 1 → 3; the tags show which exams each
             course prepares you for.
           </p>
-          <div className="mb-12 space-y-3">
+          {/* Blocks, not a column — same grid treatment as the grade cards
+              below, one card per course. auto-fill keeps it 1-up on phones and
+              fills the row on wider screens without a breakpoint ladder. */}
+          <div
+            className="mb-12 grid gap-4"
+            style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}
+          >
             {COURSES.map((c) => (
               <Link
                 key={c.href}
@@ -230,14 +236,17 @@ export default function MathLandingPage() {
                 style={{ textDecoration: "none" }}
                 {...cardHover}
               >
-                <span className="flex flex-wrap items-center gap-2">
+                {/* Two fixed lines — level on one, chips on the next — so every
+                    card's header is the same height and the titles line up
+                    across a row regardless of how many exam tags a course has. */}
+                <span className="flex flex-col gap-1.5">
                   <span
                     className="mono text-[10px] uppercase"
                     style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
                   >
                     {c.isNew ? "New · " : ""}Level {c.level} · {c.units} units
                   </span>
-                  <span className="ml-auto flex gap-1.5 items-center">
+                  <span className="flex flex-wrap gap-1.5 items-center">
                     {(() => {
                       const chip = courseChip(c.href);
                       if (!chip) return null;
@@ -275,7 +284,7 @@ export default function MathLandingPage() {
                 </span>
                 <span
                   className="serif"
-                  style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
+                  style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.15 }}
                 >
                   {c.title}
                 </span>

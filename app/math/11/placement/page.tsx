@@ -11,7 +11,7 @@ export default function Grade11PlacementPage() {
         config={{
           bank: getGrade11PlacementBank(),
           namespace: "grade11",
-          crumb: "General Math · Grade 11 · Placement",
+          crumb: "Courses · Grade 11 · Placement",
           homeHref: "/math/11",
           homeLabel: "topics",
           subjectNoun: "Grade-11 topic",

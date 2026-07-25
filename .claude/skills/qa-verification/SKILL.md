@@ -21,7 +21,7 @@ scratch directory.
 | Change touches | Must pass before commit |
 |---|---|
 | Any TS/TSX | `npx tsc --noEmit` + `npx vitest run` |
-| General Math / Geometry content JSON | `npm run verify:genmath` (+ tsc if registry changed) |
+| Courses / Geometry content JSON | `npm run verify:genmath` (+ tsc if registry changed) |
 | MN mirrors | `verify:genmath` + tsc + regen proof (see `mn-translation`) |
 | Interactive lesson configs | `npm run verify:genmath-interactive` + `verify:lessons` |
 | Practice tests (ЭЕШ/SAT/IB) | `npm run verify:ptest` (`--strict` for new content) + `verify:figures-wired` + `verify:figure-extraction` if figures |

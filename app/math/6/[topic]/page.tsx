@@ -40,7 +40,7 @@ export default function GenMathTopicPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{mn ? "Ерөнхий математик · 6-р анги" : "General Math · Grade 6"}</div>
+          <div className="eyebrow">{mn ? "Хичээлүүд · 6-р анги" : "Courses · Grade 6"}</div>
         </div>
 
         {/* Topic heading */}

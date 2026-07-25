@@ -1504,7 +1504,7 @@ export default function LessonPlayer({
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div className="min-w-0">
-              <div className="eyebrow truncate">{crumb ?? `General Math · Grade 6 · ${topicTitle}`}</div>
+              <div className="eyebrow truncate">{crumb ?? `Courses · Grade 6 · ${topicTitle}`}</div>
               <div className="serif truncate" style={{ fontSize: 15, color: "var(--fg)" }}>
                 {lesson.title}
               </div>

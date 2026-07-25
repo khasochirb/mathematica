@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-General Math content-integrity gate.
+Courses content-integrity gate.
 
 For every topic marked status == "published", asserts:
   - every lesson has a non-empty concreteComparison (hard content-bar requirement);

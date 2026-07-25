@@ -90,7 +90,7 @@ the more specific one wins for its domain; this handbook wins on process.
 - **Theming:** CSS variables in `app/globals.css` (oklch), consumed by
   Tailwind via `tailwind.config.ts`. Light + dark are first-class.
 - **i18n:** `lib/lang-context.tsx`, `mp_lang` in localStorage; ЭЕШ hub is
-  Mongolian, SAT/IB English, General Math per-topic mirrored.
+  Mongolian, SAT/IB English, Courses per-topic mirrored.
 
 ## Standard workflows
 

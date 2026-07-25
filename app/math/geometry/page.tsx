@@ -32,7 +32,7 @@ export default function GeometryCoursePage() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Courses</div>
+          <div className="eyebrow">Courses</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(36px, 5vw, 60px)", letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>

@@ -56,7 +56,7 @@ function GenMathTestPageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{mn ? "Ерөнхий математик · 6-р анги" : "General Math · Grade 6"} · {topic.title}</div>
+          <div className="eyebrow">{mn ? "Хичээлүүд · 6-р анги" : "Courses · Grade 6"} · {topic.title}</div>
         </div>
 
         <h1

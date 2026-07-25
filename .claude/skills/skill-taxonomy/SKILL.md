@@ -31,7 +31,7 @@ Hub tag formats (each locked in its course manual):
 - ЭЕШ: `quadratic_equation` style, 51 tags (`memory/skill-tag-taxonomy.md`)
 - SAT: `sat-<skill>` kebab, 23 tags = College Board skill areas (`sat-course`)
 - IB: `ib-<track>-<tier>-<code>` syllabus codes (`ib-course`)
-- General Math: topic/subtopic slugs serve as coarse tags today;
+- Courses: topic/subtopic slugs serve as coarse tags today;
   fine-grained tagging is a future project — follow this manual when it
   starts.
 

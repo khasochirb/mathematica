@@ -37,7 +37,7 @@ export default function GenMathTopicPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 11</div>
+          <div className="eyebrow">Courses · Grade 11</div>
         </div>
 
         {/* Topic heading */}

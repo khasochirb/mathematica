@@ -36,7 +36,7 @@ export default function Grade9TopicsPage() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{mn ? "Ерөнхий математик · 9-р анги" : "General Math · Grade 9"}</div>
+          <div className="eyebrow">{mn ? "Хичээлүүд · 9-р анги" : "Courses · Grade 9"}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 5vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>

@@ -49,7 +49,7 @@ function GenMathLessonPageInner() {
   // Interactive lessons (e.g. Ratios) render the paced player; all other
   // lessons keep the static scroll renderer below. No regression.
   if (lesson.interactive) {
-    return <LessonPlayer lesson={lesson} topicSlug={topicSlug} topicTitle={topic.title} baseHref={`/math/10/${topicSlug}`} crumb={`General Math · Grade 10 · ${topic.title}`} />;
+    return <LessonPlayer lesson={lesson} topicSlug={topicSlug} topicTitle={topic.title} baseHref={`/math/10/${topicSlug}`} crumb={`Courses · Grade 10 · ${topic.title}`} />;
   }
 
   const hasAuthoredMistakes = lesson.commonMistakes.some((m) => m.authored);
@@ -66,7 +66,7 @@ function GenMathLessonPageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 10 · {topic.title}</div>
+          <div className="eyebrow">Courses · Grade 10 · {topic.title}</div>
         </div>
 
         {/* Lesson title */}

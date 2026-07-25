@@ -31,9 +31,9 @@ const mathHubs = [
   { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
 ];
 
-// The General Math hub (grades 6–12) is active and lives at /math.
+// The Courses hub (grades 6–12) is active and lives at /math.
 const genMathItems = [
-  { en: "General Math (Grades 6–12)", href: "/math" },
+  { en: "Courses (Grades 6–12)", mn: "Хичээлүүд (6–12 анги)", href: "/math" },
 ];
 
 const aboutItems = [
@@ -131,7 +131,7 @@ function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
             className="px-4 pb-2 mb-1 mt-2 eyebrow"
             style={{ borderTop: "1px solid var(--line)", paddingTop: 8 }}
           >
-            General Math · Active
+            Courses · Active
           </div>
           {genMathItems.map((item) => (
             <Link
@@ -149,7 +149,7 @@ function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              {item.en}
+              {lang === "mn" ? item.mn : item.en}
             </Link>
           ))}
         </div>
@@ -314,7 +314,7 @@ export default function Header() {
   const onPath = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   const onAnyPath = (hrefs: string[]) => hrefs.some(onPath);
-  // Resources groups the math hubs (ЭЕШ + SAT/IB/AP) and General Math.
+  // Resources groups the math hubs (ЭЕШ + SAT/IB/AP) and Courses.
   const resourcesActive = onAnyPath([
     "/math",
     "/practice/esh",
@@ -574,9 +574,9 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Resources — General Math active section */}
+            {/* Resources — Courses active section */}
             <div className="px-4 pt-2 eyebrow">
-              General Math · Active
+              Courses · Active
             </div>
             {genMathItems.map((item) => {
               const active = onPath(item.href);
@@ -592,7 +592,7 @@ export default function Header() {
                   }}
                   onClick={() => setMobileOpen(false)}
                 >
-                  {item.en}
+                  {lang === "mn" ? item.mn : item.en}
                 </Link>
               );
             })}

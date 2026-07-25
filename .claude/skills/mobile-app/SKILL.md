@@ -199,7 +199,7 @@ web flow runs as-is, and this is the fastest path. Harden it for native:
 
 - Language is `mp_lang` in `localStorage` (`lib/lang-context.tsx`), values
   `en` | `mn`. **Content language is a property of the hub, not the toggle**
-  (ЭЕШ = Mongolian content; General Math = per-topic EN/MN mirror; SAT/IB
+  (ЭЕШ = Mongolian content; Courses = per-topic EN/MN mirror; SAT/IB
   hubs = English) — see `memory/expansion-vision.md` §4.7. The app inherits
   this for free in a wrap.
 - In a WebView, `localStorage` persists, so the language choice survives.

@@ -46,7 +46,7 @@ function GenMathPracticePageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">General Math · Grade 10 · {topic.title}</div>
+          <div className="eyebrow">Courses · Grade 10 · {topic.title}</div>
         </div>
 
         <h1

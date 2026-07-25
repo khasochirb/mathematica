@@ -19,7 +19,7 @@ pedagogy, no EN/MN drift.
 
 ### Pass 1 — Machine truth (never skip)
 Run the gate for the touched surface:
-- General Math / Geometry topics: `npm run verify:genmath`
+- Courses / Geometry topics: `npm run verify:genmath`
 - Practice tests: `npm run verify:ptest` (add `--strict` for new content)
 The gate proves every `check[]` sympy assertion. **The gate checks final
 answers — it cannot check prose.** That's what passes 2–3 are for.

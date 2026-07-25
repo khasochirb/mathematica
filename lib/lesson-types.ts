@@ -1,5 +1,5 @@
 // Hub-agnostic lesson rendering types. Shared by the ЭЕШ hub (question-bank-backed)
-// and the General Math hub (authored-inline). Components in components/lesson/ render
+// and the Courses hub (authored-inline). Components in components/lesson/ render
 // these shapes; each hub maps its own data into them. This is the seam that lets both
 // hubs reuse one lesson system without one depending on the other.
 
@@ -29,7 +29,7 @@ export interface LessonProblem {
   // `figure` above. Used by figure-heavy course banks (Trigonometry).
   geoFigure?: import("@/lib/genmath-interactive").GeoDiagramSpec;
   // Sympy-verifiable boolean expressions. Each must evaluate True. Required for
-  // every authored (General Math) problem — enforced by scripts/verify-genmath.py.
+  // every authored (Courses) problem — enforced by scripts/verify-genmath.py.
   // Not used by ЭЕШ (bank-backed) problems.
   check?: string[];
 }

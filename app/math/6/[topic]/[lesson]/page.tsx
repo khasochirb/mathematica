@@ -48,7 +48,7 @@ function GenMathLessonPageInner() {
   // Interactive lessons (e.g. Ratios) render the paced player; all other
   // lessons keep the static scroll renderer below. No regression.
   if (lesson.interactive) {
-    return <LessonPlayer lesson={lesson} topicSlug={topicSlug} topicTitle={topic.title} crumb={`${mn ? "Ерөнхий математик · 6-р анги" : "General Math · Grade 6"} · ${topic.title}`} />;
+    return <LessonPlayer lesson={lesson} topicSlug={topicSlug} topicTitle={topic.title} crumb={`${mn ? "Хичээлүүд · 6-р анги" : "Courses · Grade 6"} · ${topic.title}`} />;
   }
 
   const hasAuthoredMistakes = lesson.commonMistakes.some((m) => m.authored);
@@ -65,7 +65,7 @@ function GenMathLessonPageInner() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{mn ? "Ерөнхий математик · 6-р анги" : "General Math · Grade 6"} · {topic.title}</div>
+          <div className="eyebrow">{mn ? "Хичээлүүд · 6-р анги" : "Courses · Grade 6"} · {topic.title}</div>
         </div>
 
         {/* Lesson title */}

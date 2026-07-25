@@ -10,7 +10,7 @@ function PlacementPageInner() {
       config={{
         bank: getPlacementBank(),
         namespace: "grade6",
-        crumb: "General Math · Grade 6 · Placement",
+        crumb: "Courses · Grade 6 · Placement",
         homeHref: "/math/6",
         homeLabel: "topics",
         subjectNoun: "Grade-6 topic",

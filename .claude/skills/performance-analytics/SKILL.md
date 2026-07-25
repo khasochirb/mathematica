@@ -6,7 +6,7 @@ description: >
   minimum-sample honesty rules, and report formats for students, parents,
   and the owner. Read before building any dashboard, recommendation,
   progress report, or analytics feature, and when interpreting a student's
-  data for any hub (ЭЕШ, SAT, IB, General Math).
+  data for any hub (ЭЕШ, SAT, IB, Courses).
 ---
 
 # Performance Analytics — Operating Manual
@@ -91,7 +91,7 @@ The pipeline every hub follows:
    band; next_review_at schedules spaced re-checks so "mastered"
    decays back to review, not assumed forever.
 5. Diagnostics seed the map for new students (2 per tag for SAT,
-   per-cluster for IB, placement tests for General Math) so day-one
+   per-cluster for IB, placement tests for Courses) so day-one
    recommendations aren't cold.
 
 Recommendation etiquette: at most 3 weak skills surfaced at once

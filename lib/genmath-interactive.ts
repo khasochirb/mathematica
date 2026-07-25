@@ -1,4 +1,4 @@
-// Interactive lesson model + pure interaction logic for the General Math hub.
+// Interactive lesson model + pure interaction logic for the Courses hub.
 // The manipulables are config-driven so later topics assemble interactives from
 // these parts. All live math goes through the pure functions below so it can be
 // unit-tested (scripts/verify-genmath-interactive.test.ts).

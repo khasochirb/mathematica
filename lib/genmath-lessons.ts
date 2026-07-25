@@ -1,4 +1,4 @@
-// General Math hub — data model + static registry.
+// Courses hub — data model + static registry.
 // Authored inline (no question-bank dependency). Shares the hub-agnostic
 // LessonProblem / LessonFact / LessonMistake types from lib/lesson-types.ts.
 
