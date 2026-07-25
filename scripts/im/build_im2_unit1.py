@@ -1397,14 +1397,29 @@ def lesson_rational_irrational():
                     "conjecture."
                 ),
                 "config": {
-                    "claim": "The sum of two irrational numbers is always irrational",
-                    "cases": [
-                        {"input": "√2 + √2 = 2√2", "holds": True},
-                        {"input": "√3 + √5", "holds": True},
-                        {"input": "√2 + (−√2) = 0", "holds": False},
-                        {"input": "(1 + √2) + (1 − √2) = 2", "holds": False},
+                    "conjecture": "The sum of two irrational numbers is always irrational",
+                    "items": [
+                        {
+                            "label": "√2 + √2",
+                            "holds": True,
+                            "note": "Equals 2√2, still irrational — the conjecture survives.",
+                        },
+                        {
+                            "label": "√3 + √5",
+                            "holds": True,
+                            "note": "No cancellation is possible; the sum is irrational.",
+                        },
+                        {
+                            "label": "√2 + (−√2)",
+                            "holds": False,
+                            "note": "Equals 0, which is rational. One counterexample is fatal.",
+                        },
+                        {
+                            "label": "(1 + √2) + (1 − √2)",
+                            "holds": False,
+                            "note": "Equals 2 — the irrational parts destroy each other.",
+                        },
                     ],
-                    "verdict": False,
                 },
             },
             tap(

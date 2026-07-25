@@ -343,7 +343,7 @@ def lesson_the_parabola():
                     "the amount ADDED grows by a constant each time — the growth has its own "
                     "growth rate, and that inner constant is the second difference."
                 ),
-                "config": {"start": 3, "step": 4, "stages": 5},
+                "config": {"pattern": "odds", "maxSteps": 6},
             },
             {
                 "kind": "worked",

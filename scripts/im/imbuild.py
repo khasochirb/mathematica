@@ -35,9 +35,11 @@ def find_math_in_bold(text):
 
 # Characters KaTeX has no glyph for. Inside math they produce a warning and a
 # blank box rather than an error node, so the render gate reports the file
-# clean and the defect ships. The tugrik sign is the one that matters here:
-# it belongs in the prose next to the math, never inside it.
-UNRENDERABLE_IN_MATH = "₮"
+# clean and the defect ships. The tugrik sign is the obvious one; the tick and
+# cross are the sneaky ones, because they read perfectly well in prose and are
+# a natural thing to append to a displayed equation. All three belong in the
+# text beside the math, never inside it.
+UNRENDERABLE_IN_MATH = "₮✓✗"
 
 
 def find_unrenderable_math(text):
@@ -47,6 +49,67 @@ def find_unrenderable_math(text):
         if token.startswith("$") and any(c in token for c in UNRENDERABLE_IN_MATH):
             bad.append(token)
     return bad
+
+
+# Required keys for every interactive widget kind used by the IM builders,
+# transcribed from the config interfaces in lib/genmath-interactive.ts. A widget
+# whose config is missing a required key still type-checks (the JSON is imported
+# and cast, so tsc never sees it) and still renders — it just silently falls
+# back to a default and shows the wrong thing. That failure mode is invisible to
+# every other gate in the chain, which is why it is checked here.
+WIDGET_REQUIRED_KEYS = {
+    "absoluteValue": [],
+    "algebraTiles": ["x", "units"],
+    "balanceScale": ["mode"],
+    "boxPlot": ["data"],
+    "congruentTriangles": [],
+    "conjectureTest": ["conjecture", "items"],
+    "coordGeo": ["mode"],
+    "coordinateGrid": ["mode"],
+    "dotPlot": ["data"],
+    "evaluator": ["a", "b"],
+    "expGraph": ["mode"],
+    "exponentBuilder": ["base", "exp"],
+    "factorTree": ["n"],
+    "histogramBins": ["data"],
+    "integerLine": [],
+    "orderOfOps": ["stages"],
+    "parabolaGraph": ["mode"],
+    "patternGrow": ["pattern"],
+    "rateMeter": [],
+    "scatterPlot": ["mode"],
+    "stepProof": ["given", "prove", "rows"],
+    "systemGraph": ["m1", "b1", "m2", "b2"],
+    "transformPlane": ["transform"],
+    "vennCounts": [],
+}
+
+# Steps that carry no `config` at all — prose and problem references.
+WIDGET_EXEMPT_KINDS = {"teach", "tip", "funFact", "recap", "worked", "tryIt", "tapQuestion"}
+
+
+def check_widget_configs(lessons):
+    """Missing required config keys, reported all at once."""
+    problems = []
+    for les in lessons:
+        for i, step in enumerate(les["interactive"]["steps"]):
+            kind = step["kind"]
+            if kind in WIDGET_EXEMPT_KINDS:
+                continue
+            if kind not in WIDGET_REQUIRED_KEYS:
+                problems.append(
+                    f"{les['slug']}.steps[{i}]: unknown widget kind {kind!r} — add it to "
+                    f"WIDGET_REQUIRED_KEYS after checking lib/genmath-interactive.ts"
+                )
+                continue
+            config = step.get("config", {})
+            missing = [key for key in WIDGET_REQUIRED_KEYS[kind] if key not in config]
+            if missing:
+                problems.append(
+                    f"{les['slug']}.steps[{i}] ({kind}): config missing {missing} "
+                    f"(has {sorted(config)})"
+                )
+    return problems
 
 
 def _walk_strings(node, path, visit):
@@ -146,6 +209,14 @@ def write_unit(course, slug, title, unit_number, blurb, builds_on, lessons, prac
         assert_checks(p["id"], p.get("check"))
     for p in test:
         assert_checks(p["id"], p.get("check"))
+
+    widget_problems = check_widget_configs(lessons)
+    if widget_problems:
+        lines = "\n".join(f"  {p}" for p in widget_problems)
+        raise SystemExit(
+            f"{len(widget_problems)} interactive step(s) have an invalid config. These "
+            f"render silently wrong rather than failing, so they are caught here:\n{lines}"
+        )
 
     n_checks = 0
     for les in lessons:

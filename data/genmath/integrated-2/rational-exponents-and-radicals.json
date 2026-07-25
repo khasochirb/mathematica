@@ -993,26 +993,29 @@
             "title": "Is a sum of two irrationals always irrational?",
             "teach": "The rational-plus-irrational theorem is airtight. But try the same claim for two irrationals: $\\sqrt{2} + \\sqrt{2}$ is irrational, while $\\sqrt{2} + (-\\sqrt{2}) = 0$ is not. One counterexample is enough to kill a conjecture.",
             "config": {
-              "claim": "The sum of two irrational numbers is always irrational",
-              "cases": [
+              "conjecture": "The sum of two irrational numbers is always irrational",
+              "items": [
                 {
-                  "input": "√2 + √2 = 2√2",
-                  "holds": true
+                  "label": "√2 + √2",
+                  "holds": true,
+                  "note": "Equals 2√2, still irrational — the conjecture survives."
                 },
                 {
-                  "input": "√3 + √5",
-                  "holds": true
+                  "label": "√3 + √5",
+                  "holds": true,
+                  "note": "No cancellation is possible; the sum is irrational."
                 },
                 {
-                  "input": "√2 + (−√2) = 0",
-                  "holds": false
+                  "label": "√2 + (−√2)",
+                  "holds": false,
+                  "note": "Equals 0, which is rational. One counterexample is fatal."
                 },
                 {
-                  "input": "(1 + √2) + (1 − √2) = 2",
-                  "holds": false
+                  "label": "(1 + √2) + (1 − √2)",
+                  "holds": false,
+                  "note": "Equals 2 — the irrational parts destroy each other."
                 }
-              ],
-              "verdict": false
+              ]
             }
           },
           {

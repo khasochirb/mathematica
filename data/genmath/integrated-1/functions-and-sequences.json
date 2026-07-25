@@ -690,14 +690,17 @@
             ]
           },
           {
-            "kind": "patternGrow",
-            "eyebrow": "Watch it build",
+            "kind": "evaluator",
+            "eyebrow": "Feel the constant step",
             "title": "Same amount added, every step",
-            "teach": "Each stage adds a fixed number of squares. Because the addition never changes size, the totals climb in a straight line — which is exactly why an arithmetic sequence turns out to be a linear function.",
+            "teach": "Drag the term number in $4n + 3$. Every step of $1$ moves the total by exactly $4$ — never more, never less. That unchanging step is the common difference, and it is why an arithmetic sequence turns out to be a linear function.",
             "config": {
-              "start": 3,
-              "step": 4,
-              "stages": 5
+              "a": 4,
+              "b": 3,
+              "varName": "n",
+              "min": 1,
+              "max": 10,
+              "start": 1
             }
           },
           {

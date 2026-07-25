@@ -941,7 +941,7 @@ def lesson_factoring_basics():
                     "they all share. Splitting $12$, $18$ and $30$ into primes shows a $2$ and a "
                     "$3$ in every one — and $2 \\times 3 = 6$ is the GCF."
                 ),
-                "config": {"number": 30},
+                "config": {"n": 30},
             },
             {
                 "kind": "teach",

@@ -1,0 +1,1920 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 2 — Unit 5: Similarity & Dilations.
+
+CCSS Integrated Math II: G-SRT.1 (verify experimentally the properties of
+dilations), G-SRT.2 (similarity in terms of transformations; corresponding
+angles equal and corresponding sides proportional), G-SRT.3 (establish the AA
+criterion), G-SRT.4 (prove the side-splitter theorem and the Pythagorean
+theorem using similarity), G-SRT.5 (use congruence and similarity criteria to
+solve problems and prove relationships).
+
+IM1 Unit 7 covered rigid motions, which preserve everything. This unit adds the
+one non-rigid transformation that still preserves shape — and similarity is
+DEFINED by it, rather than described as "same shape, different size".
+
+Run: python3 scripts/im/build_im2_unit5.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-2"
+
+
+# ===========================================================================
+# Lesson 1 — G-SRT.1: dilation
+# ===========================================================================
+def lesson_dilations():
+    return lesson(
+        slug="dilations",
+        title="Dilation: The One Transformation That Changes Size",
+        concrete=(
+            "A projector throws a slide onto a wall. Every point of the image lies on a straight "
+            "line from the lamp through the corresponding point of the slide, and every length is "
+            "multiplied by the same number. That is a dilation, exactly — the lamp is the centre "
+            "and the throw ratio is the scale factor."
+        ),
+        objective=(
+            "Perform a dilation given a centre and a scale factor, describe its effect on "
+            "lengths, angles and area, and find the scale factor from a pair of figures."
+        ),
+        concept=[
+            "**A dilation needs two things: a centre and a scale factor.** Every point $P$ moves "
+            "to the point $P'$ on ray $CP$ with $CP' = k \\cdot CP$. Change the centre and the "
+            "image lands somewhere else entirely, even with the same $k$ — so quoting a scale "
+            "factor without a centre describes only half a transformation.",
+            "**Lengths multiply by the scale factor; angles do not change at all.** This is the defining "
+            "combination. Rigid motions preserve both; dilations preserve angle only. Nothing else "
+            "in this course preserves angle while changing length, which is what makes dilation "
+            "the transformation behind similarity.",
+            "**With centre at the origin, the rule is simply multiplication.** "
+            "$(x, y) \\to (kx, ky)$. Every coordinate scales, so the whole figure grows or shrinks "
+            "away from the origin. This is the case worth memorising because it makes coordinate "
+            "problems immediate.",
+            "**The scale factor tells you the direction of the change.** $k > 1$ enlarges; "
+            "$0 < k < 1$ reduces; $k = 1$ does nothing. A negative $k$ sends the image through the "
+            "centre to the opposite side — a half-turn combined with a scaling.",
+            "**Area scales by the SQUARE of the scale factor.** A factor of $3$ triples every length "
+            "but makes the area NINE times larger, because area is a product of two lengths and "
+            "each one tripled. This is the single most useful and most forgotten consequence of "
+            "the definition.",
+            "**A dilation maps a line to a parallel line — unless the line passes through the "
+            "centre, in which case it maps to itself.** That parallelism is not an extra "
+            "assumption; it follows from the fact that corresponding triangles formed with the "
+            "centre have proportional sides, so their angles match.",
+        ],
+        key_idea=(
+            "A dilation multiplies every distance from the centre by $k$, leaves every angle "
+            "unchanged, and multiplies area by $k^{2}$."
+        ),
+        facts=[
+            fact(
+                "Dilation about the origin",
+                "(x, y) \\to (kx, ky)",
+                "The simplest case, and the one coordinate problems are usually arranged to use.",
+            ),
+            fact(
+                "Dilation about a general centre",
+                "P' = C + k(P - C)",
+                "Move to the centre, scale, move back. Equivalently $CP' = k \\cdot CP$.",
+            ),
+            fact(
+                "Effect on measurements",
+                "\\text{length} \\times k, \\quad \\text{angle unchanged}, \\quad \\text{area} \\times k^{2}",
+                "Area picks up the square because it is a product of two scaled lengths.",
+            ),
+            fact(
+                "Scale factor from two figures",
+                "k = \\frac{\\text{image length}}{\\text{original length}}",
+                "Image over original — reversing the ratio inverts the factor.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u5-l1-we1",
+                "Triangle $ABC$ has vertices $A(2, 1)$, $B(6, 1)$ and $C(2, 4)$. Dilate it about "
+                "the origin with scale factor $3$ and compare the two triangles.",
+                "**Apply the rule to each vertex.** With centre at the origin, multiply both "
+                "coordinates by $3$:"
+                "$$A' = (6, 3), \\qquad B' = (18, 3), \\qquad C' = (6, 12).$$"
+                "**Compare a pair of corresponding lengths.** $AB$ is horizontal with length "
+                "$6 - 2 = 4$; $A'B'$ has length $18 - 6 = 12$. The ratio is "
+                "$\\frac{12}{4} = 3 = k$ ✓"
+                "**Check a second pair.** $AC$ is vertical with length $4 - 1 = 3$; $A'C'$ has "
+                "length $12 - 3 = 9$, ratio $3$ ✓ Every length scaled by the same factor, which is "
+                "what 'scale factor' means."
+                "**Check the angles.** Both triangles have a right angle at $A$ and at $A'$, since "
+                "in each case one side is horizontal and the other vertical. Angles are "
+                "untouched ✓"
+                "**Compare the areas.** Original: $\\frac{1}{2}(4)(3) = 6$. Image: "
+                "$\\frac{1}{2}(12)(9) = 54$. The ratio is $\\frac{54}{6} = 9 = 3^{2}$ ✓ — the area "
+                "scaled by $k^{2}$, exactly as the two-lengths argument predicts.",
+                [
+                    "Eq(3*2, 6)",
+                    "Eq(3*6, 18)",
+                    "Eq(6 - 2, 4)",
+                    "Eq(18 - 6, 12)",
+                    "Eq(Rational(12,4), 3)",
+                    "Eq(Rational(1,2)*4*3, 6)",
+                    "Eq(Rational(1,2)*12*9, 54)",
+                    "Eq(Rational(54,6), 9)",
+                    "Eq(3**2, 9)",
+                ],
+            ),
+            problem(
+                "im2-u5-l1-we2",
+                "Dilate the point $P(7, 5)$ about the centre $C(1, 2)$ with scale factor "
+                "$\\frac{1}{3}$.",
+                "**Measure the displacement from the centre.** Subtract to find how far $P$ is "
+                "from $C$ in each direction:"
+                "$$P - C = (7 - 1,\\ 5 - 2) = (6, 3).$$"
+                "**Scale that displacement.** Multiply by $\\frac{1}{3}$:"
+                "$$\\tfrac{1}{3}(6, 3) = (2, 1).$$"
+                "**Add it back to the centre.**"
+                "$$P' = (1 + 2,\\ 2 + 1) = (3, 3).$$"
+                "**Check the distances.** $CP = \\sqrt{36 + 9} = \\sqrt{45}$ and "
+                "$CP' = \\sqrt{4 + 1} = \\sqrt{5}$. The ratio is "
+                "$\\frac{\\sqrt{5}}{\\sqrt{45}} = \\frac{1}{3}$ ✓"
+                "**Check the collinearity.** $C$, $P'$ and $P$ must lie on one straight line. From "
+                "$C$ to $P'$ is $(2, 1)$; from $C$ to $P$ is $(6, 3)$ — the same direction, three "
+                "times as far ✓"
+                "**Why the shift-scale-shift structure is necessary.** Multiplying $(7, 5)$ by "
+                "$\\frac{1}{3}$ directly would dilate about the ORIGIN, not about $C$. The "
+                "subtraction moves the centre temporarily to the origin so the simple rule "
+                "applies.",
+                [
+                    "Eq(7 - 1, 6)",
+                    "Eq(5 - 2, 3)",
+                    "Eq(Rational(1,3)*6, 2)",
+                    "Eq(1 + 2, 3)",
+                    "Eq(2 + 1, 3)",
+                    "Eq(simplify(sqrt(5)/sqrt(45)), Rational(1,3))",
+                    "Eq(6*Rational(1,3), 2)",
+                ],
+            ),
+            problem(
+                "im2-u5-l1-we3",
+                "A rectangle measures $8$ cm by $5$ cm. After a dilation it measures $20$ cm by "
+                "$12.5$ cm. Find the scale factor and the ratio of the areas.",
+                "**Find the scale factor from one pair of corresponding sides.**"
+                "$$k = \\frac{20}{8} = 2.5.$$"
+                "**Confirm with the other pair — this is what verifies it really was a "
+                "dilation.**"
+                "$$\\frac{12.5}{5} = 2.5 \\ \\checkmark$$"
+                "Both ratios agree, so a single scale factor accounts for both dimensions."
+                "**Compute the two areas.** Original: $8 \\times 5 = 40$ cm². Image: "
+                "$20 \\times 12.5 = 250$ cm²."
+                "**Take the ratio.**"
+                "$$\\frac{250}{40} = 6.25 = 2.5^{2} \\ \\checkmark$$"
+                "**Why the square, stated once more.** Area is length times width; both were "
+                "multiplied by $2.5$, so the product was multiplied by $2.5$ twice. Any question "
+                "asking for an area ratio from a length ratio is asking you to square it — and the "
+                "reverse question, an area ratio to a length ratio, asks for a square root."
+                "**A quick consequence worth knowing.** If the areas are in ratio $9 : 4$, the "
+                "lengths are in ratio $3 : 2$.",
+                [
+                    "Eq(Rational(20,8), Rational(5,2))",
+                    "Eq(Rational(25,2)/5, Rational(5,2))",
+                    "Eq(8*5, 40)",
+                    "Eq(20*Rational(25,2), 250)",
+                    "Eq(Rational(250,40), Rational(25,4))",
+                    "Eq(Rational(5,2)**2, Rational(25,4))",
+                    "Eq(sqrt(Rational(9,4)), Rational(3,2))",
+                ],
+            ),
+            problem(
+                "im2-u5-l1-we4",
+                "A dilation about the origin with scale factor $-2$ is applied to $A(3, 1)$ and "
+                "$B(5, 4)$. Find the images and describe the effect geometrically.",
+                "**Apply the rule.** Multiply both coordinates by $-2$:"
+                "$$A' = (-6, -2), \\qquad B' = (-10, -8).$$"
+                "**Describe what happened.** Each point moved to the OPPOSITE side of the origin, "
+                "twice as far away. A negative scale factor is a half-turn about the centre "
+                "combined with an enlargement by $|k|$."
+                "**Check the distances doubled.** $OA = \\sqrt{9 + 1} = \\sqrt{10}$ and "
+                "$OA' = \\sqrt{36 + 4} = \\sqrt{40} = 2\\sqrt{10}$ ✓"
+                "**Check the collinearity through the centre.** $A$, $O$ and $A'$ lie on one line, "
+                "with $O$ between $A$ and $A'$ — which is exactly what 'opposite side' means. The "
+                "direction from $O$ to $A$ is $(3, 1)$; to $A'$ it is $(-6, -2) = -2(3, 1)$ ✓"
+                "**Check the segment length.** $AB$ has length "
+                "$\\sqrt{4 + 9} = \\sqrt{13}$; $A'B'$ has length $\\sqrt{16 + 36} = \\sqrt{52} = "
+                "2\\sqrt{13}$ ✓ Lengths use the ABSOLUTE value of the scale factor — a length can "
+                "never be negative."
+                "**And the area?** It scales by $k^{2} = 4$, which is positive whichever sign $k$ "
+                "had. The half-turn does not shrink anything.",
+                [
+                    "Eq(-2*3, -6)",
+                    "Eq(-2*1, -2)",
+                    "Eq(simplify(sqrt(40)), 2*sqrt(10))",
+                    "Eq(simplify(sqrt(52)), 2*sqrt(13))",
+                    "Eq(simplify(sqrt(52)/sqrt(13)), 2)",
+                    "Eq((-2)**2, 4)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Dilating about a non-origin centre by multiplying the coordinates directly.",
+                "Multiplying $(7, 5)$ by $\\frac{1}{3}$ dilates about the ORIGIN. For centre "
+                "$C$, subtract $C$ first, scale, then add $C$ back.",
+            ),
+            mistake(
+                "Scaling area by $k$ instead of $k^{2}$.",
+                "A scale factor of $3$ makes the area NINE times larger. Area is a product of "
+                "two lengths and both were tripled — check with a concrete rectangle if unsure.",
+            ),
+            mistake(
+                "Believing a dilation changes the angles.",
+                "It never does. That is precisely what separates dilation from a shear or a "
+                "stretch in one direction only, and it is why shape is preserved.",
+            ),
+            mistake(
+                "Computing the scale factor as original over image.",
+                "$k$ is IMAGE over ORIGINAL. Getting it upside down turns an enlargement into a "
+                "reduction — check against whether the figure actually got bigger.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u5-l1-t1",
+                "Dilate $P(4, -6)$ about the origin with scale factor $\\frac{1}{2}$, and state "
+                "how the distance from the origin changes.",
+                "$(x, y) \\to \\left(\\frac{1}{2}x, \\frac{1}{2}y\\right)$ gives $P'(2, -3)$. "
+                "Distances: $OP = \\sqrt{16 + 36} = \\sqrt{52}$ and $OP' = \\sqrt{4 + 9} = "
+                "\\sqrt{13}$, and $\\frac{\\sqrt{13}}{\\sqrt{52}} = \\frac{1}{2}$ ✓ The point "
+                "moved halfway toward the origin along the same ray.",
+                [
+                    "Eq(Rational(1,2)*4, 2)",
+                    "Eq(Rational(1,2)*(-6), -3)",
+                    "Eq(simplify(sqrt(13)/sqrt(52)), Rational(1,2))",
+                ],
+            ),
+            problem(
+                "im2-u5-l1-t2",
+                "Two similar triangles have areas $18$ cm² and $50$ cm². Find the ratio of their "
+                "corresponding sides.",
+                "Areas scale by $k^{2}$, so $k^{2} = \\frac{50}{18} = \\frac{25}{9}$ and "
+                "$k = \\frac{5}{3}$. The sides are in ratio $5 : 3$. Check: "
+                "$\\left(\\frac{5}{3}\\right)^{2} = \\frac{25}{9}$, and "
+                "$18 \\times \\frac{25}{9} = 50$ ✓",
+                [
+                    "Eq(Rational(50,18), Rational(25,9))",
+                    "Eq(sqrt(Rational(25,9)), Rational(5,3))",
+                    "Eq(18*Rational(25,9), 50)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.1",
+                "title": "The transformation IM1 left out",
+                "body": (
+                    "Translations, rotations and reflections all preserve length. A dilation "
+                    "deliberately does not — but it still preserves every angle, and that is the "
+                    "combination that keeps shape while changing size."
+                ),
+                "beats": [
+                    "Centre: the fixed point",
+                    "Scale factor $k$: the multiplier",
+                    "Lengths $\\times k$, angles unchanged",
+                    "Area $\\times k^{2}$",
+                ],
+            },
+            {
+                "kind": "transformPlane",
+                "eyebrow": "Watch it grow",
+                "title": "Every point moves along its own ray",
+                "teach": (
+                    "Each vertex slides directly away from the centre, and each one travels far "
+                    "enough that its distance is multiplied by exactly $k$. The figure keeps its "
+                    "shape because every part is treated identically."
+                ),
+                "config": {"transform": "dilate", "k": 2, "min": -8, "max": 8},
+            },
+            {
+                "kind": "worked",
+                "title": "Dilating a triangle about the origin",
+                "problemId": "im2-u5-l1-we1",
+            },
+            tap(
+                "Apply the rule",
+                "Dilating $(6, -4)$ about the origin with scale factor $\\frac{3}{2}$ gives…",
+                ["$(9, -6)$", "$(4, -6)$", "$(9, 6)$", "$(4, -\\tfrac{8}{3})$"],
+                0,
+                "Multiply both coordinates by $\\frac{3}{2}$: $6 \\times \\frac{3}{2} = 9$ and "
+                "$-4 \\times \\frac{3}{2} = -6$. The sign of each coordinate is unchanged, since "
+                "$k$ is positive.",
+                [
+                    "Eq(6*Rational(3,2), 9)",
+                    "Eq(-4*Rational(3,2), -6)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "Non-origin centres",
+                "title": "Subtract, scale, add back",
+                "body": (
+                    "For a centre $C$ other than the origin: subtract $C$ from the point, multiply "
+                    "by $k$, add $C$ back. The subtraction temporarily moves the centre to the "
+                    "origin so the simple rule applies."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A dilation about a general centre",
+                "problemId": "im2-u5-l1-we2",
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The most-forgotten fact",
+                "title": "Area scales by the SQUARE",
+                "body": (
+                    "Triple every length and the area becomes nine times bigger, because area "
+                    "multiplies two lengths and both tripled. Going the other way, an area ratio "
+                    "of $16 : 9$ means a length ratio of $4 : 3$."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Scale factor and area ratio",
+                "problemId": "im2-u5-l1-we3",
+            },
+            tap(
+                "Scale the area",
+                "A shape is dilated with scale factor $4$. Its area is multiplied by…",
+                ["$4$", "$8$", "$16$", "$2$"],
+                2,
+                "Area scales by $k^{2} = 16$. Both dimensions were quadrupled, so the product was "
+                "quadrupled twice.",
+                ["Eq(4**2, 16)", "Eq(4*4, 16)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "A negative scale factor",
+                "problemId": "im2-u5-l1-we4",
+            },
+            {"kind": "tryIt", "title": "A reduction about the origin", "problemId": "im2-u5-l1-t1"},
+            {"kind": "tryIt", "title": "From area ratio to side ratio", "problemId": "im2-u5-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "A dilation needs a centre AND a scale factor — neither alone is enough",
+                    "About the origin: $(x, y) \\to (kx, ky)$; elsewhere subtract, scale, add back",
+                    "Lengths multiply by $|k|$; angles are unchanged",
+                    "Area multiplies by $k^{2}$ — and area ratios square-root back to length ratios",
+                    "$k > 1$ enlarges, $0 < k < 1$ reduces, $k < 0$ adds a half-turn",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — G-SRT.2/3: similarity and the AA criterion
+# ===========================================================================
+def lesson_similarity():
+    return lesson(
+        slug="similarity-and-aa",
+        title="Similarity and the AA Criterion",
+        concrete=(
+            "Two photographs of the same building, printed at different sizes, are similar. What "
+            "makes them so is not that they 'look alike' — it is that one can be obtained from the "
+            "other by a dilation followed by a rigid motion. Defining similarity by that recipe "
+            "makes it testable, which 'same shape' never was."
+        ),
+        objective=(
+            "Define similarity by transformations, write similarity statements with correct "
+            "correspondence, apply the AA criterion, and find missing lengths in similar figures."
+        ),
+        concept=[
+            "**The definition.** Two figures are SIMILAR when one can be mapped onto the other by "
+            "a sequence of rigid motions and dilations. This is a recipe, not an impression — to "
+            "prove similarity you exhibit the transformations, or you use a criterion that "
+            "guarantees they exist.",
+            "**The two consequences.** Similar figures have corresponding angles EQUAL and "
+            "corresponding sides PROPORTIONAL. The dilation supplies the proportionality; the "
+            "rigid motions supply the positioning; and neither ever disturbs an angle.",
+            "**Correspondence is carried by the letter order.** Writing "
+            "$\\triangle ABC \\sim \\triangle DEF$ asserts $A \\leftrightarrow D$, "
+            "$B \\leftrightarrow E$, $C \\leftrightarrow F$. Get the order wrong and every ratio "
+            "you write afterwards pairs the wrong sides — the statement is doing real work, not "
+            "just naming the triangles.",
+            "**AA is enough for triangles.** If two angles of one triangle equal two angles of "
+            "another, the triangles are similar. The third pair matches automatically because the "
+            "angles of any triangle sum to $180°$, so two equal pairs force the third.",
+            "**Why AA has no congruence analogue.** For congruence you need a SIDE somewhere — AA "
+            "alone fixes the shape but says nothing about the size. That is exactly the gap a "
+            "dilation fills, which is why AA works for similarity and not for congruence.",
+            "**SAS and SSS have similarity versions too.** SAS similarity: two pairs of sides in "
+            "proportion with the included angles equal. SSS similarity: all three pairs of sides "
+            "in proportion. Both are less commonly needed than AA, because angles are usually "
+            "easier to find than three ratios.",
+        ],
+        key_idea=(
+            "Similar means related by dilations and rigid motions; for triangles, two equal angle "
+            "pairs are enough to guarantee it."
+        ),
+        facts=[
+            fact(
+                "Definition of similarity",
+                "F \\sim G \\iff G \\text{ is the image of } F \\text{ under rigid motions and dilations}",
+                "A transformation recipe, which is why it can be proved rather than asserted.",
+            ),
+            fact(
+                "The AA criterion",
+                "\\angle A = \\angle D, \\ \\angle B = \\angle E \\ \\Rightarrow\\ \\triangle ABC \\sim \\triangle DEF",
+                "The third pair follows from the $180°$ angle sum.",
+            ),
+            fact(
+                "Proportional sides",
+                "\\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD} = k",
+                "One common ratio, the scale factor, for every corresponding pair.",
+            ),
+            fact(
+                "Similar areas",
+                "\\frac{[\\triangle ABC]}{[\\triangle DEF]} = k^{2}",
+                "The same squaring as for dilations — similarity IS a dilation plus rigid motion.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u5-l2-we1",
+                "In $\\triangle ABC$, $\\angle A = 50°$ and $\\angle B = 60°$. In "
+                "$\\triangle DEF$, $\\angle D = 50°$ and $\\angle F = 70°$. Are they similar? "
+                "Write the similarity statement correctly.",
+                "**Complete both angle sets.** In $\\triangle ABC$: "
+                "$\\angle C = 180 - 50 - 60 = 70°$. In $\\triangle DEF$: "
+                "$\\angle E = 180 - 50 - 70 = 60°$."
+                "**Match the angles.** Triangle $ABC$ has $50°, 60°, 70°$ at $A, B, C$. Triangle "
+                "$DEF$ has $50°, 60°, 70°$ at $D, E, F$. The same three angles appear in both."
+                "**Read off the correspondence.** $A \\leftrightarrow D$ (both $50°$), "
+                "$B \\leftrightarrow E$ (both $60°$), $C \\leftrightarrow F$ (both $70°$)."
+                "**Write the statement in that order.**"
+                "$$\\triangle ABC \\sim \\triangle DEF.$$"
+                "**Why AA suffices here.** Two matching pairs, $50°$ and $60°$, were enough; the "
+                "third was forced by the angle sum. Checking it was a confirmation, not a "
+                "requirement."
+                "**What the statement now licenses.** Because the correspondence is established, "
+                "$\\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{CA}{FD}$. Had the letters been written "
+                "in the wrong order, every one of those ratios would pair non-corresponding sides "
+                "and give wrong answers.",
+                [
+                    "Eq(180 - 50 - 60, 70)",
+                    "Eq(180 - 50 - 70, 60)",
+                    "Eq(50 + 60 + 70, 180)",
+                ],
+            ),
+            problem(
+                "im2-u5-l2-we2",
+                "$\\triangle PQR \\sim \\triangle STU$ with $PQ = 8$, $QR = 12$, $PR = 10$ and "
+                "$ST = 20$. Find $TU$ and $SU$, and the ratio of the areas.",
+                "**Find the scale factor from the one known pair.** The correspondence "
+                "$P \\leftrightarrow S$, $Q \\leftrightarrow T$ makes $PQ$ correspond to $ST$:"
+                "$$k = \\frac{ST}{PQ} = \\frac{20}{8} = 2.5.$$"
+                "**Apply it to the other sides.** $QR$ corresponds to $TU$, and $PR$ to $SU$:"
+                "$$TU = 2.5 \\times 12 = 30, \\qquad SU = 2.5 \\times 10 = 25.$$"
+                "**Check with a ratio that was not used to find the factor.** "
+                "$\\frac{TU}{QR} = \\frac{30}{12} = 2.5$ ✓ and $\\frac{SU}{PR} = \\frac{25}{10} = "
+                "2.5$ ✓ A single scale factor governs all three pairs, as similarity requires."
+                "**Ratio of areas.**"
+                "$$\\frac{[\\triangle STU]}{[\\triangle PQR]} = k^{2} = 6.25.$$"
+                "**A dimensional sanity check.** The perimeters are $8 + 12 + 10 = 30$ and "
+                "$20 + 30 + 25 = 75$, whose ratio is $\\frac{75}{30} = 2.5 = k$ ✓ Perimeter is a "
+                "LENGTH, so it scales by $k$, not $k^{2}$ — a distinction worth holding on to.",
+                [
+                    "Eq(Rational(20,8), Rational(5,2))",
+                    "Eq(Rational(5,2)*12, 30)",
+                    "Eq(Rational(5,2)*10, 25)",
+                    "Eq(Rational(30,12), Rational(5,2))",
+                    "Eq(8 + 12 + 10, 30)",
+                    "Eq(20 + 30 + 25, 75)",
+                    "Eq(Rational(75,30), Rational(5,2))",
+                    "Eq(Rational(5,2)**2, Rational(25,4))",
+                ],
+            ),
+            problem(
+                "im2-u5-l2-we3",
+                "A $1.8$ m person casts a $2.4$ m shadow at the same moment a flagpole casts a "
+                "$14$ m shadow. Find the height of the flagpole.",
+                "**Identify the two similar triangles.** Each object and its shadow form a right "
+                "triangle with the sun's ray as hypotenuse. Both have a right angle at the ground, "
+                "and the sun's rays are effectively parallel, so the elevation angles are equal. "
+                "Two equal angle pairs — AA gives similarity."
+                "**Set up the proportion, matching height to height and shadow to shadow.**"
+                "$$\\frac{\\text{height}}{\\text{shadow}}: \\qquad "
+                "\\frac{h}{14} = \\frac{1.8}{2.4}.$$"
+                "**Solve.**"
+                "$$h = 14 \\times \\frac{1.8}{2.4} = 14 \\times 0.75 = 10.5 \\text{ m}.$$"
+                "**Check the ratio the other way.** $\\frac{10.5}{1.8} = 5.8\\overline{3}$ and "
+                "$\\frac{14}{2.4} = 5.8\\overline{3}$ ✓ The scale factor between the two triangles "
+                "is the same whichever pair of corresponding sides you use."
+                "**Sanity-check the answer.** The person's shadow is longer than the person, so "
+                "shadows exceed heights here; the flagpole's $14$ m shadow should therefore belong "
+                "to something shorter than $14$ m — and $10.5$ m is ✓"
+                "**Why the parallel-rays assumption matters.** If the light source were close by, "
+                "the rays would not be parallel, the elevation angles would differ, and the "
+                "triangles would not be similar. The method depends on the sun being far away.",
+                [
+                    "Eq(14*Rational(18,24), Rational(21,2))",
+                    "Eq(Rational(18,24), Rational(3,4))",
+                    "Eq(Rational(21,2)/Rational(18,10), Rational(35,6))",
+                    "Eq(14/Rational(24,10), Rational(35,6))",
+                    "Rational(21,2) < 14",
+                ],
+            ),
+            problem(
+                "im2-u5-l2-we4",
+                "In the figure, $\\angle BAC = \\angle EDC$ and points $B$, $C$, $E$ are "
+                "collinear with $A$ and $D$ on opposite sides of that line. Given $AC = 6$, "
+                "$CD = 9$, $BC = 4$, find $CE$, stating the criterion used.",
+                "**Find the second pair of equal angles.** $\\angle ACB$ and $\\angle DCE$ are "
+                "vertical angles at $C$, so they are equal. Together with the given "
+                "$\\angle BAC = \\angle EDC$, that is two pairs."
+                "**Apply AA.**"
+                "$$\\triangle ACB \\sim \\triangle DCE.$$"
+                "The correspondence is $A \\leftrightarrow D$, $C \\leftrightarrow C$, "
+                "$B \\leftrightarrow E$ — read directly from which angles were matched."
+                "**Write the proportion using corresponding sides.** $AC$ corresponds to $DC$, "
+                "and $CB$ to $CE$:"
+                "$$\\frac{AC}{DC} = \\frac{CB}{CE} \\quad\\Longrightarrow\\quad "
+                "\\frac{6}{9} = \\frac{4}{CE}.$$"
+                "**Cross-multiply and solve.**"
+                "$$6 \\cdot CE = 36 \\quad\\Longrightarrow\\quad CE = 6.$$"
+                "**Check the scale factor is consistent.** From $\\triangle ACB$ to "
+                "$\\triangle DCE$ the factor is $\\frac{9}{6} = 1.5$, and $4 \\times 1.5 = 6$ ✓"
+                "**The structural point.** Vertical angles are free — whenever two segments cross, "
+                "one pair of equal angles is already present, so a single given angle equality is "
+                "enough to trigger AA. This configuration recurs constantly.",
+                [
+                    "Eq(Rational(6,9), Rational(2,3))",
+                    "Eq(6*6, 36)",
+                    "Eq(Rational(4,6), Rational(2,3))",
+                    "Eq(Rational(9,6)*4, 6)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Writing the similarity statement with the letters in any order.",
+                "$\\triangle ABC \\sim \\triangle DEF$ asserts a specific correspondence. Writing "
+                "$\\triangle ABC \\sim \\triangle EDF$ instead pairs different sides and every "
+                "subsequent ratio is wrong.",
+            ),
+            mistake(
+                "Adding a scale factor to a length instead of multiplying.",
+                "A scale factor of $2.5$ turns $12$ into $30$, not into $14.5$. Similarity is "
+                "multiplicative — check that the ratio, not the difference, is constant.",
+            ),
+            mistake(
+                "Using AA to claim congruence.",
+                "AA gives SIMILARITY only. Two triangles with the same three angles can be any "
+                "two sizes; congruence always needs at least one side.",
+            ),
+            mistake(
+                "Scaling perimeter by $k^2$.",
+                "Perimeter is a length, so it scales by $k$. Only area (and anything measured in "
+                "square units) picks up the square.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u5-l2-t1",
+                "$\\triangle ABC \\sim \\triangle XYZ$ with $AB = 9$, $BC = 15$, $XY = 6$. Find "
+                "$YZ$ and the ratio of the areas.",
+                "$k = \\frac{XY}{AB} = \\frac{6}{9} = \\frac{2}{3}$, a reduction. Then "
+                "$YZ = \\frac{2}{3} \\times 15 = 10$. The area ratio is "
+                "$\\left(\\frac{2}{3}\\right)^{2} = \\frac{4}{9}$. Check: "
+                "$\\frac{YZ}{BC} = \\frac{10}{15} = \\frac{2}{3}$ ✓ the same factor.",
+                [
+                    "Eq(Rational(6,9), Rational(2,3))",
+                    "Eq(Rational(2,3)*15, 10)",
+                    "Eq(Rational(10,15), Rational(2,3))",
+                    "Eq(Rational(2,3)**2, Rational(4,9))",
+                ],
+            ),
+            problem(
+                "im2-u5-l2-t2",
+                "A tree casts a $9$ m shadow while a $1.5$ m post casts a $1.2$ m shadow. How "
+                "tall is the tree?",
+                "AA similarity from the parallel sun rays and the two right angles. "
+                "$\\frac{h}{9} = \\frac{1.5}{1.2} = 1.25$, so $h = 11.25$ m. Check the other "
+                "ratio: $\\frac{11.25}{1.5} = 7.5$ and $\\frac{9}{1.2} = 7.5$ ✓ Here shadows are "
+                "shorter than heights, so the tree exceeding $9$ m is expected.",
+                [
+                    "Eq(Rational(15,12), Rational(5,4))",
+                    "Eq(9*Rational(5,4), Rational(45,4))",
+                    "Eq(Rational(45,4)/Rational(3,2), Rational(15,2))",
+                    "Eq(9/Rational(12,10), Rational(15,2))",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.2",
+                "title": "Similarity, defined rather than described",
+                "body": (
+                    "'Same shape, different size' is a description. 'Obtainable by dilations and "
+                    "rigid motions' is a definition — it can be checked, proved and disproved, "
+                    "which is what mathematics needs."
+                ),
+                "beats": [
+                    "Rigid motions move it",
+                    "A dilation resizes it",
+                    "Angles survive both",
+                    "Sides all scale by one factor",
+                ],
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "Notation matters",
+                "title": "The letter order IS the correspondence",
+                "body": (
+                    "$\\triangle ABC \\sim \\triangle DEF$ says $A$ matches $D$, $B$ matches $E$, "
+                    "$C$ matches $F$. Every ratio you write afterwards depends on that pairing, "
+                    "so the order is content, not decoration."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Establishing similarity from two angles",
+                "problemId": "im2-u5-l2-we1",
+            },
+            {
+                "kind": "congruentTriangles",
+                "eyebrow": "Compare with congruence",
+                "title": "Why AA is not a congruence criterion",
+                "teach": (
+                    "For congruence every criterion contains at least one side — SSS, SAS, ASA, "
+                    "AAS. Angles alone fix the shape but leave the size free, and that freedom is "
+                    "precisely the scale factor a dilation supplies."
+                ),
+                "config": {
+                    "sides": [1, 2, 0],
+                    "angles": [0, 1, 0],
+                    "answer": "SAS",
+                    "caption": "Congruence needs a side; similarity does not",
+                },
+            },
+            tap(
+                "Is AA enough?",
+                "Two triangles each have angles of $40°$ and $75°$. What can you conclude?",
+                [
+                    "they are congruent",
+                    "they are similar",
+                    "nothing — you need a side",
+                    "they are neither",
+                ],
+                1,
+                "Two matching angle pairs force the third ($65°$ each), so the triangles are "
+                "SIMILAR by AA. Without a side, nothing can be said about their sizes, so "
+                "congruence does not follow.",
+                ["Eq(180 - 40 - 75, 65)", "Eq(40 + 75 + 65, 180)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "Finding missing sides from the scale factor",
+                "problemId": "im2-u5-l2-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Two ratios, one factor",
+                "title": "Always verify with a second pair",
+                "body": (
+                    "Compute the scale factor from one pair of corresponding sides, then check it "
+                    "against another. If the two disagree, either the correspondence is wrong or "
+                    "the figures are not similar — and both are worth catching early."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Shadows: similarity outdoors",
+                "problemId": "im2-u5-l2-we3",
+            },
+            tap(
+                "Find the missing side",
+                "$\\triangle ABC \\sim \\triangle PQR$ with $AB = 12$, $PQ = 18$ and $BC = 10$. "
+                "What is $QR$?",
+                ["$15$", "$16$", "$\\frac{20}{3}$", "$13.5$"],
+                0,
+                "$k = \\frac{18}{12} = 1.5$, so $QR = 1.5 \\times 10 = 15$. Check: "
+                "$\\frac{15}{10} = 1.5$ ✓ the same factor as the first pair.",
+                [
+                    "Eq(Rational(18,12), Rational(3,2))",
+                    "Eq(Rational(3,2)*10, 15)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Vertical angles trigger AA for free",
+                "problemId": "im2-u5-l2-we4",
+            },
+            {"kind": "tryIt", "title": "A reduction", "problemId": "im2-u5-l2-t1"},
+            {"kind": "tryIt", "title": "Another shadow problem", "problemId": "im2-u5-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Similar means related by rigid motions and dilations — a testable recipe",
+                    "Corresponding angles equal, corresponding sides in one common ratio",
+                    "The letter order in $\\triangle ABC \\sim \\triangle DEF$ carries the correspondence",
+                    "AA is enough for triangles; the third angle is forced",
+                    "Perimeter scales by $k$; area scales by $k^{2}$",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — G-SRT.4: the side-splitter and midsegment theorems
+# ===========================================================================
+def lesson_side_splitter():
+    return lesson(
+        slug="side-splitter-and-midsegment",
+        title="What Similar Triangles Prove",
+        concrete=(
+            "Draw a line across a triangle parallel to one side and you have created a smaller "
+            "triangle sitting inside the original, sharing an angle and pointing the same way. "
+            "Everything in this lesson is a consequence of that one observation — the parallel "
+            "line manufactures similar triangles, and similar triangles hand you proportions."
+        ),
+        objective=(
+            "Prove and apply the side-splitter theorem and the triangle midsegment theorem, and "
+            "use similarity to prove the Pythagorean theorem."
+        ),
+        concept=[
+            "**The side-splitter theorem.** A line parallel to one side of a triangle divides the "
+            "other two sides proportionally. If $DE \\parallel BC$ with $D$ on $AB$ and $E$ on "
+            "$AC$, then $\\frac{AD}{DB} = \\frac{AE}{EC}$ — and equivalently "
+            "$\\frac{AD}{AB} = \\frac{AE}{AC}$.",
+            "**The proof is two lines of AA.** The parallel gives $\\angle ADE = \\angle ABC$ "
+            "(corresponding angles), and $\\angle A$ is shared. Two equal angle pairs means "
+            "$\\triangle ADE \\sim \\triangle ABC$, so the sides are proportional. Nothing beyond "
+            "last lesson is used.",
+            "**The two forms of the ratio differ and both are useful.** "
+            "$\\frac{AD}{AB} = \\frac{AE}{AC}$ compares each piece with the WHOLE side — this is "
+            "the form that comes straight from similarity. $\\frac{AD}{DB} = \\frac{AE}{EC}$ "
+            "compares the two PIECES — this is the form usually quoted. Confusing them is the "
+            "commonest error here.",
+            "**The midsegment theorem is the half-scale special case.** The segment "
+            "joining the midpoints of two sides is parallel to the third side and exactly half its "
+            "length. It is side-splitting with both ratios equal to $1$, plus the observation that "
+            "the small triangle is a half-scale copy.",
+            "**The converse holds too.** If a line divides two sides of a triangle "
+            "proportionally, then it is parallel to the third side. This direction is what lets "
+            "you PROVE lines parallel from measurements, rather than only computing lengths from a "
+            "given parallel.",
+            "**Similarity proves the Pythagorean theorem.** Drop the altitude to the hypotenuse "
+            "of a right triangle and it creates two smaller triangles, each similar to the "
+            "original and to each other. The proportions they generate add up to "
+            "$a^{2} + b^{2} = c^{2}$ — a proof with no rearranged squares and no diagrams to "
+            "trust.",
+        ],
+        key_idea=(
+            "A line parallel to a side creates a similar triangle, and every proportion in this "
+            "lesson is that similarity written down."
+        ),
+        facts=[
+            fact(
+                "Side-splitter theorem",
+                "DE \\parallel BC \\ \\Rightarrow\\ \\frac{AD}{DB} = \\frac{AE}{EC}",
+                "Equivalently $\\frac{AD}{AB} = \\frac{AE}{AC}$ — pieces-to-pieces, or piece-to-whole.",
+            ),
+            fact(
+                "Midsegment theorem",
+                "MN = \\tfrac{1}{2}BC \\quad\\text{and}\\quad MN \\parallel BC",
+                "The $k = \\frac{1}{2}$ case of side-splitting.",
+            ),
+            fact(
+                "Geometric mean relations",
+                "h^{2} = pq, \\qquad a^{2} = pc, \\qquad b^{2} = qc",
+                "From the altitude to the hypotenuse; $p$ and $q$ are the two pieces of $c$.",
+            ),
+            fact(
+                "Pythagoras from similarity",
+                "a^{2} + b^{2} = pc + qc = (p + q)c = c^{2}",
+                "Adding the last two relations, since $p + q = c$.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u5-l3-we1",
+                "In $\\triangle ABC$, $D$ lies on $AB$ and $E$ on $AC$ with $DE \\parallel BC$. "
+                "Given $AD = 6$, $DB = 4$ and $AE = 9$, find $EC$ and $AC$.",
+                "**Establish the similarity.** $DE \\parallel BC$ makes "
+                "$\\angle ADE = \\angle ABC$ (corresponding angles), and $\\angle A$ is common. By "
+                "AA, $\\triangle ADE \\sim \\triangle ABC$."
+                "**Write the side-splitter proportion in piece-to-piece form.**"
+                "$$\\frac{AD}{DB} = \\frac{AE}{EC} \\quad\\Longrightarrow\\quad "
+                "\\frac{6}{4} = \\frac{9}{EC}.$$"
+                "**Cross-multiply and solve.**"
+                "$$6 \\cdot EC = 36 \\quad\\Longrightarrow\\quad EC = 6.$$"
+                "**Find the whole side.** $AC = AE + EC = 9 + 6 = 15$."
+                "**Check with the piece-to-whole form.** $AB = 6 + 4 = 10$, so "
+                "$\\frac{AD}{AB} = \\frac{6}{10} = 0.6$ and "
+                "$\\frac{AE}{AC} = \\frac{9}{15} = 0.6$ ✓ The two forms agree, as they must — they "
+                "are the same similarity written two ways."
+                "**Note what the scale factor is.** From $\\triangle ADE$ to $\\triangle ABC$ it "
+                "is $\\frac{10}{6} = \\frac{5}{3}$, so $BC = \\frac{5}{3} DE$ — the parallel "
+                "segment is shorter than the side it parallels, by exactly that factor.",
+                [
+                    "Eq(Rational(6,4), Rational(3,2))",
+                    "Eq(6*6, 36)",
+                    "Eq(9 + 6, 15)",
+                    "Eq(6 + 4, 10)",
+                    "Eq(Rational(6,10), Rational(3,5))",
+                    "Eq(Rational(9,15), Rational(3,5))",
+                    "Eq(Rational(10,6), Rational(5,3))",
+                ],
+            ),
+            problem(
+                "im2-u5-l3-we2",
+                "Prove the side-splitter theorem: if $DE \\parallel BC$ with $D$ on $AB$ and $E$ "
+                "on $AC$, then $\\frac{AD}{AB} = \\frac{AE}{AC}$.",
+                "**Identify the shared angle.** $\\angle DAE$ and $\\angle BAC$ are the same "
+                "angle, since $D$ lies on $AB$ and $E$ on $AC$. So $\\angle A$ is common to both "
+                "triangles."
+                "**Use the parallel to get a second angle pair.** $DE \\parallel BC$ with "
+                "transversal $AB$ makes $\\angle ADE$ and $\\angle ABC$ corresponding angles, so "
+                "they are equal."
+                "**Apply AA.** Two pairs of equal angles gives"
+                "$$\\triangle ADE \\sim \\triangle ABC.$$"
+                "**Write the proportionality that similarity guarantees.** Corresponding sides:"
+                "$$\\frac{AD}{AB} = \\frac{AE}{AC} = \\frac{DE}{BC}.$$"
+                "The first equality is the theorem."
+                "**Derive the piece-to-piece form.** From $\\frac{AD}{AB} = \\frac{AE}{AC}$, "
+                "substitute $AB = AD + DB$ and $AC = AE + EC$, invert both sides, and subtract "
+                "one from each: $\\frac{DB}{AD} = \\frac{EC}{AE}$, hence "
+                "$\\frac{AD}{DB} = \\frac{AE}{EC}$."
+                "**A numerical instance to confirm the algebra.** With $AD = 6$, $DB = 4$, "
+                "$AE = 9$, $EC = 6$: piece-to-whole gives $\\frac{6}{10} = \\frac{9}{15}$ ✓ and "
+                "piece-to-piece gives $\\frac{6}{4} = \\frac{9}{6}$ ✓ Both hold simultaneously, "
+                "which is exactly what the derivation claimed.",
+                [
+                    "Eq(Rational(6,10), Rational(9,15))",
+                    "Eq(Rational(6,4), Rational(9,6))",
+                    "Eq(Rational(4,6), Rational(6,9))",
+                    "Eq(Rational(10,6) - 1, Rational(4,6))",
+                ],
+            ),
+            problem(
+                "im2-u5-l3-we3",
+                "In $\\triangle ABC$, $M$ is the midpoint of $AB$ and $N$ is the midpoint of "
+                "$AC$. Given $BC = 14$, find $MN$ and justify that $MN \\parallel BC$.",
+                "**Set up the ratios.** Since $M$ and $N$ are midpoints, "
+                "$\\frac{AM}{AB} = \\frac{1}{2}$ and $\\frac{AN}{AC} = \\frac{1}{2}$ — the two "
+                "ratios are equal."
+                "**Use SAS similarity.** The angle at $A$ is shared, and the two pairs of sides "
+                "around it are in the same ratio $\\frac{1}{2}$. So"
+                "$$\\triangle AMN \\sim \\triangle ABC$$"
+                "with scale factor $\\frac{1}{2}$."
+                "**Get the length.** Corresponding sides scale by $\\frac{1}{2}$:"
+                "$$MN = \\tfrac{1}{2} \\times 14 = 7.$$"
+                "**Justify the parallelism.** Similarity gives "
+                "$\\angle AMN = \\angle ABC$. These are corresponding angles for the lines $MN$ "
+                "and $BC$ cut by the transversal $AB$, and equal corresponding angles force the "
+                "lines to be parallel ✓"
+                "**Check the perimeter relationship.** Triangle $AMN$'s perimeter is half of "
+                "$\\triangle ABC$'s, since every side halved. If $\\triangle ABC$ had perimeter "
+                "$36$, then $\\triangle AMN$ has $18$ ✓"
+                "**And the areas.** They are in ratio $\\left(\\frac{1}{2}\\right)^{2} = "
+                "\\frac{1}{4}$ — the midpoint triangle occupies a QUARTER of the original, not a "
+                "half, which surprises most people the first time.",
+                [
+                    "Eq(Rational(1,2)*14, 7)",
+                    "Eq(Rational(1,2)*36, 18)",
+                    "Eq(Rational(1,2)**2, Rational(1,4))",
+                    "Eq(Rational(7,14), Rational(1,2))",
+                ],
+            ),
+            problem(
+                "im2-u5-l3-we4",
+                "In right triangle $ABC$ with the right angle at $C$, the altitude from $C$ meets "
+                "the hypotenuse at $H$, splitting it into $AH = p$ and $HB = q$. Use similarity "
+                "to prove $a^{2} + b^{2} = c^{2}$, then apply it with $p = 4$ and $q = 9$.",
+                "**Find the similar triangles.** In $\\triangle ACH$ and $\\triangle ABC$: both "
+                "contain $\\angle A$, and both have a right angle (at $H$ and at $C$). By AA they "
+                "are similar. The same argument gives "
+                "$\\triangle CBH \\sim \\triangle ABC$ using the shared $\\angle B$."
+                "**Write the proportion from the first pair.** With $b = AC$ and $c = AB$:"
+                "$$\\frac{AH}{AC} = \\frac{AC}{AB} \\quad\\Longrightarrow\\quad b^{2} = pc.$$"
+                "**And from the second pair.** With $a = BC$:"
+                "$$\\frac{BH}{BC} = \\frac{BC}{AB} \\quad\\Longrightarrow\\quad a^{2} = qc.$$"
+                "**Add them.**"
+                "$$a^{2} + b^{2} = qc + pc = (p + q)c = c \\cdot c = c^{2},$$"
+                "since $p + q = AH + HB = AB = c$. That is the Pythagorean theorem, proved from "
+                "similarity alone."
+                "**Now apply it.** With $p = 4$ and $q = 9$: $c = 13$, so $b^{2} = 4 \\times 13 = "
+                "52$ and $a^{2} = 9 \\times 13 = 117$."
+                "**Verify.** $a^{2} + b^{2} = 117 + 52 = 169 = 13^{2}$ ✓ And the altitude: "
+                "$h^{2} = pq = 36$, so $h = 6$ — the geometric mean of the two pieces."
+                "**A second check on the altitude.** The area of the triangle is "
+                "$\\frac{1}{2}ab = \\frac{1}{2}\\sqrt{117}\\sqrt{52} = \\frac{1}{2}\\sqrt{6084} = "
+                "39$, and also $\\frac{1}{2}ch = \\frac{1}{2}(13)(6) = 39$ ✓ Two routes to the "
+                "same area confirm both the altitude and the legs.",
+                [
+                    "Eq(4 + 9, 13)",
+                    "Eq(4*13, 52)",
+                    "Eq(9*13, 117)",
+                    "Eq(117 + 52, 169)",
+                    "Eq(13**2, 169)",
+                    "Eq(4*9, 36)",
+                    "Eq(sqrt(36), 6)",
+                    "Eq(simplify(sqrt(117)*sqrt(52)), 78)",
+                    "Eq(Rational(1,2)*13*6, 39)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Mixing the two forms of the side-splitter ratio.",
+                "$\\frac{AD}{DB} = \\frac{AE}{EC}$ compares the two PIECES; "
+                "$\\frac{AD}{AB} = \\frac{AE}{AC}$ compares a piece with the WHOLE. Writing "
+                "$\\frac{AD}{DB} = \\frac{AE}{AC}$ mixes them and gives a wrong answer.",
+            ),
+            mistake(
+                "Thinking the midsegment triangle has half the area.",
+                "Every length halved means the area is quartered: $\\left(\\frac{1}{2}\\right)^2 "
+                "= \\frac{1}{4}$.",
+            ),
+            mistake(
+                "Assuming any line across a triangle splits the sides proportionally.",
+                "It must be PARALLEL to the third side. Without the parallel there are no "
+                "corresponding angles and no similarity.",
+            ),
+            mistake(
+                "In the altitude relations, pairing a leg with the wrong hypotenuse piece.",
+                "$a^2 = qc$ uses the piece ADJACENT to leg $a$. Check with numbers: with "
+                "$p = 4$, $q = 9$, $c = 13$, the longer leg must sit against the longer piece.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u5-l3-t1",
+                "In $\\triangle ABC$, $DE \\parallel BC$ with $AD = 8$, $DB = 12$ and $EC = 15$. "
+                "Find $AE$.",
+                "Side-splitter, piece-to-piece: $\\frac{8}{12} = \\frac{AE}{15}$, so "
+                "$AE = 15 \\times \\frac{2}{3} = 10$. Check with the piece-to-whole form: "
+                "$\\frac{8}{20} = 0.4$ and $\\frac{10}{25} = 0.4$ ✓",
+                [
+                    "Eq(Rational(8,12), Rational(2,3))",
+                    "Eq(15*Rational(2,3), 10)",
+                    "Eq(Rational(8,20), Rational(2,5))",
+                    "Eq(Rational(10,25), Rational(2,5))",
+                ],
+            ),
+            problem(
+                "im2-u5-l3-t2",
+                "The altitude to the hypotenuse of a right triangle divides it into pieces of "
+                "$3$ and $12$. Find the altitude and both legs.",
+                "The hypotenuse is $c = 15$. Altitude: $h^{2} = 3 \\times 12 = 36$, so $h = 6$. "
+                "Legs: $a^{2} = 3 \\times 15 = 45$ gives $a = 3\\sqrt{5}$, and "
+                "$b^{2} = 12 \\times 15 = 180$ gives $b = 6\\sqrt{5}$. Check Pythagoras: "
+                "$45 + 180 = 225 = 15^{2}$ ✓",
+                [
+                    "Eq(3 + 12, 15)",
+                    "Eq(3*12, 36)",
+                    "Eq(3*15, 45)",
+                    "Eq(12*15, 180)",
+                    "Eq(45 + 180, 225)",
+                    "Eq(15**2, 225)",
+                    "Eq(simplify(sqrt(180)), 6*sqrt(5))",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.4",
+                "title": "One parallel line, several theorems",
+                "body": (
+                    "Draw a line across a triangle parallel to one side. It creates a smaller "
+                    "triangle similar to the original — and every result in this lesson is that "
+                    "similarity, written out in a different arrangement."
+                ),
+                "beats": [
+                    "Parallel gives corresponding angles",
+                    "Shared vertex angle",
+                    "AA gives similarity",
+                    "Similarity gives the proportions",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "Side-splitting with numbers",
+                "problemId": "im2-u5-l3-we1",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Two ratios, both true",
+                "title": "Piece-to-piece or piece-to-whole",
+                "body": (
+                    "$\\frac{AD}{DB} = \\frac{AE}{EC}$ and $\\frac{AD}{AB} = \\frac{AE}{AC}$ are "
+                    "both correct, and they are not the same equation. Decide which you are using "
+                    "before writing anything, and never mix one side of one with one side of the "
+                    "other."
+                ),
+            },
+            {
+                "kind": "stepProof",
+                "eyebrow": "The proof itself",
+                "title": "Side-splitter, in five lines",
+                "teach": (
+                    "Every step is either a given, a parallel-lines angle fact, or last lesson's "
+                    "AA criterion. Nothing new is needed — which is what makes this a genuine "
+                    "consequence of similarity rather than a separate fact."
+                ),
+                "config": {
+                    "given": "DE is parallel to BC, with D on AB and E on AC",
+                    "prove": "AD/AB = AE/AC",
+                    "rows": [
+                        {"statement": "angle A = angle A", "reason": "shared angle"},
+                        {
+                            "statement": "angle ADE = angle ABC",
+                            "reason": "corresponding angles, DE parallel to BC",
+                        },
+                        {
+                            "statement": "triangle ADE is similar to triangle ABC",
+                            "reason": "AA similarity",
+                        },
+                        {
+                            "statement": "AD/AB = AE/AC",
+                            "reason": "corresponding sides of similar triangles are proportional",
+                        },
+                    ],
+                },
+            },
+            {
+                "kind": "worked",
+                "title": "The proof, written out",
+                "problemId": "im2-u5-l3-we2",
+            },
+            tap(
+                "Apply side-splitting",
+                "$DE \\parallel BC$ with $AD = 5$, $DB = 10$ and $AE = 7$. What is $EC$?",
+                ["$14$", "$3.5$", "$12$", "$21$"],
+                0,
+                "$\\frac{AD}{DB} = \\frac{AE}{EC}$ gives $\\frac{5}{10} = \\frac{7}{EC}$, so "
+                "$EC = 14$. The piece nearer $A$ is half the piece nearer the base, on both "
+                "sides.",
+                [
+                    "Eq(Rational(5,10), Rational(7,14))",
+                    "Eq(5*14, 10*7)",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "The half-scale case",
+                "title": "Midsegments",
+                "body": (
+                    "Join the midpoints of two sides and you get a segment parallel to the third "
+                    "side and exactly half its length. It is side-splitting with both ratios equal "
+                    "to one — and the little triangle has a QUARTER of the area, not a half."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "The midsegment theorem",
+                "problemId": "im2-u5-l3-we3",
+            },
+            tap(
+                "Midsegment area",
+                "Joining the midpoints of two sides of a triangle cuts off a smaller triangle. "
+                "What fraction of the original area is it?",
+                ["$\\frac{1}{2}$", "$\\frac{1}{4}$", "$\\frac{1}{3}$", "$\\frac{3}{4}$"],
+                1,
+                "The scale factor is $\\frac{1}{2}$, so the area factor is "
+                "$\\left(\\frac{1}{2}\\right)^{2} = \\frac{1}{4}$. Halving every length quarters "
+                "the area.",
+                ["Eq(Rational(1,2)**2, Rational(1,4))"],
+            ),
+            {
+                "kind": "worked",
+                "title": "Pythagoras, proved by similarity",
+                "problemId": "im2-u5-l3-we4",
+            },
+            {"kind": "tryIt", "title": "Find the missing piece", "problemId": "im2-u5-l3-t1"},
+            {"kind": "tryIt", "title": "Altitude and legs", "problemId": "im2-u5-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "A parallel line creates a similar triangle — that is the whole engine",
+                    "$\\frac{AD}{DB} = \\frac{AE}{EC}$ and $\\frac{AD}{AB} = \\frac{AE}{AC}$ are both true and different",
+                    "A midsegment is half the third side and parallel to it; its triangle has a quarter of the area",
+                    "The converse proves lines parallel from measurements",
+                    "The altitude to the hypotenuse gives $h^{2} = pq$ and proves Pythagoras",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — G-SRT.5: similarity in problems and proofs
+# ===========================================================================
+def lesson_similarity_problems():
+    return lesson(
+        slug="applying-similarity",
+        title="Applying Similarity: Scale, Indirect Measurement and Proof",
+        concrete=(
+            "Nobody climbs a mountain with a tape measure. Heights, distances across rivers and "
+            "the sizes of things too far away to touch are all found the same way: build a small "
+            "triangle you CAN measure, show it is similar to the large one you cannot, and let the "
+            "proportion do the travelling."
+        ),
+        objective=(
+            "Use similarity to solve indirect-measurement problems, work with scale drawings, and "
+            "write short proofs that rely on similar triangles."
+        ),
+        concept=[
+            "**Indirect measurement is one idea used repeatedly.** Find or construct a small "
+            "triangle similar to the inaccessible one, measure what you can, and scale. Shadows, "
+            "mirrors, and sighting instruments are all ways of manufacturing the second triangle.",
+            "**The mirror method.** Place a mirror on the ground between you and a tall object. "
+            "The angle of incidence equals the angle of reflection, and both you and the object "
+            "stand vertically, so two right triangles with a matching angle appear — AA again.",
+            "**Scale drawings carry a stated ratio.** A map at $1 : 50\\,000$ means one unit on "
+            "the map is $50\\,000$ of the same units on the ground. Areas on such a map scale by "
+            "the SQUARE of that ratio, which is why a small map square can represent a very large "
+            "region.",
+            "**Set the proportion up by naming the correspondence first.** Write which triangle "
+            "is similar to which, in order, before writing any fraction. Most wrong answers in "
+            "these problems come from a correct proportion between the wrong pair of sides.",
+            "**Check the answer against physical plausibility.** If shadows are longer than the "
+            "objects casting them in your data, the answer must be shorter than the shadow you "
+            "measured. This one-line check catches inverted ratios instantly.",
+            "**Proofs with similarity have a standard shape.** Name the two triangles; find two "
+            "equal angle pairs (shared angles, vertical angles and parallel lines are the usual "
+            "sources); state AA; then write the proportion you actually need. Four lines is "
+            "typical.",
+        ],
+        key_idea=(
+            "Build a measurable triangle similar to the one you cannot reach, state the "
+            "correspondence, then let the proportion carry the answer across."
+        ),
+        facts=[
+            fact(
+                "Indirect measurement",
+                "\\frac{\\text{unknown height}}{\\text{known height}} = \\frac{\\text{its base}}{\\text{known base}}",
+                "Match height with height and base with base — the correspondence decides the pairing.",
+            ),
+            fact(
+                "Scale ratio",
+                "1 : n \\ \\Rightarrow\\ \\text{actual} = n \\times \\text{drawn}",
+                "Lengths multiply by $n$; areas multiply by $n^{2}$.",
+            ),
+            fact(
+                "Mirror method",
+                "\\frac{h}{d_{\\text{object}}} = \\frac{e}{d_{\\text{eye}}}",
+                "Equal incidence and reflection angles plus two vertical objects give AA.",
+            ),
+            fact(
+                "Similar perimeters and areas",
+                "\\frac{P_{1}}{P_{2}} = k, \\qquad \\frac{A_{1}}{A_{2}} = k^{2}",
+                "Perimeter is a length; area is not.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u5-l4-we1",
+                "A mirror is placed on level ground $12$ m from the base of a building. A person "
+                "whose eyes are $1.6$ m above the ground stands $2$ m from the mirror on the other "
+                "side and sees the top of the building in it. Find the building's height.",
+                "**Identify the two triangles.** Person-eye-to-mirror-to-ground is one right "
+                "triangle; building-top-to-mirror-to-ground is the other. Both have a right angle "
+                "at the ground, since both the person and the building are vertical."
+                "**Get the second angle pair.** The angle of incidence equals the angle of "
+                "reflection at the mirror, so the two angles at the mirror are equal. Two pairs — "
+                "AA gives similarity."
+                "**Set up the proportion, matching height to height and distance to distance.**"
+                "$$\\frac{h}{12} = \\frac{1.6}{2}.$$"
+                "**Solve.**"
+                "$$h = 12 \\times 0.8 = 9.6 \\text{ m}.$$"
+                "**Check the scale factor is consistent.** The building's triangle is "
+                "$\\frac{12}{2} = 6$ times the person's, and $6 \\times 1.6 = 9.6$ ✓"
+                "**Sanity-check the size.** The person is $1.6$ m tall and stands $2$ m from the "
+                "mirror, so their triangle is slightly wider than it is tall; the building at "
+                "$12$ m out should therefore be slightly under $12$ m tall — and $9.6$ is ✓"
+                "**Why the mirror method works where shadows do not.** It needs no sunshine and no "
+                "second object; the reflection law supplies the equal angle by itself.",
+                [
+                    "Eq(12*Rational(16,10)/2, Rational(48,5))",
+                    "Eq(Rational(48,5), Rational(96,10))",
+                    "Eq(Rational(12,2), 6)",
+                    "Eq(6*Rational(16,10), Rational(48,5))",
+                    "Rational(48,5) < 12",
+                ],
+            ),
+            problem(
+                "im2-u5-l4-we2",
+                "A map has scale $1 : 25\\,000$. Two towns are $8.4$ cm apart on the map, and a "
+                "forest covers $6$ cm² of it. Find the real distance in kilometres and the real "
+                "area in square kilometres.",
+                "**Scale the distance.** Every centimetre on the map is $25\\,000$ cm on the "
+                "ground:"
+                "$$8.4 \\times 25\\,000 = 210\\,000 \\text{ cm}.$$"
+                "**Convert to kilometres.** There are $100\\,000$ cm in a kilometre:"
+                "$$\\frac{210\\,000}{100\\,000} = 2.1 \\text{ km}.$$"
+                "**Scale the area — with the SQUARE of the ratio.** One square centimetre on the "
+                "map represents $25\\,000^{2} = 625\\,000\\,000$ cm²:"
+                "$$6 \\times 625\\,000\\,000 = 3\\,750\\,000\\,000 \\text{ cm}^{2}.$$"
+                "**Convert to square kilometres.** One km² is $10^{10}$ cm² (since "
+                "$100\\,000^{2} = 10^{10}$):"
+                "$$\\frac{3\\,750\\,000\\,000}{10^{10}} = 0.375 \\text{ km}^{2}.$$"
+                "**Check by an independent route.** A square of side $8.4$ cm on the map has area "
+                "$70.56$ cm² and represents a $2.1$ km square, of area $4.41$ km². Testing the "
+                "conversion: $70.56 \\times 625\\,000\\,000 = 4.41 \\times 10^{10}$ cm² "
+                "$= 4.41$ km² ✓ The same conversion factor works on a case computed two ways."
+                "**The error to avoid.** Multiplying the area by $25\\,000$ instead of "
+                "$25\\,000^{2}$ would give $0.000015$ km² — off by a factor of twenty-five "
+                "thousand.",
+                [
+                    "Eq(Rational(84,10)*25000, 210000)",
+                    "Eq(Rational(210000,100000), Rational(21,10))",
+                    "Eq(25000**2, 625000000)",
+                    "Eq(6*625000000, 3750000000)",
+                    "Eq(Rational(3750000000,10**10), Rational(375,1000))",
+                    "Eq(Rational(84,10)**2, Rational(7056,100))",
+                    "Eq(Rational(21,10)**2, Rational(441,100))",
+                ],
+            ),
+            problem(
+                "im2-u5-l4-we3",
+                "To find the width of a river, a surveyor marks a point $A$ directly across from "
+                "a tree $T$ on the far bank, walks $30$ m along the bank to $B$, then a further "
+                "$10$ m to $C$. From $C$ she walks away from the river to $D$ until $D$, $B$ and "
+                "$T$ are in line, measuring $CD = 12$ m. Find the river's width.",
+                "**Set up the two triangles.** $\\triangle BAT$ has the river's width $AT$ as one "
+                "leg and $AB = 30$ as the other. $\\triangle BCD$ has $CD = 12$ and $BC = 10$. "
+                "Both have a right angle at the bank ($A$ and $C$)."
+                "**Get the second angle pair.** $\\angle ABT$ and $\\angle CBD$ are vertical "
+                "angles at $B$, because $D$, $B$ and $T$ are collinear. Two pairs — AA."
+                "**State the similarity with the correspondence.**"
+                "$$\\triangle BAT \\sim \\triangle BCD.$$"
+                "$A$ pairs with $C$ (right angles), $T$ with $D$."
+                "**Write the proportion.**"
+                "$$\\frac{AT}{CD} = \\frac{AB}{CB} \\quad\\Longrightarrow\\quad "
+                "\\frac{AT}{12} = \\frac{30}{10} = 3.$$"
+                "**Solve.** $AT = 36$ m."
+                "**Check the scale factor.** The large triangle is $3$ times the small one, so "
+                "its legs should be $3 \\times 12 = 36$ and $3 \\times 10 = 30$ ✓ Both match the "
+                "figure."
+                "**Why the construction was arranged this way.** The surveyor never crosses the "
+                "river or measures anything on the far bank. Every measured length — $30$, $10$ "
+                "and $12$ — is on her own side.",
+                [
+                    "Eq(Rational(30,10), 3)",
+                    "Eq(3*12, 36)",
+                    "Eq(3*10, 30)",
+                    "Eq(Rational(36,12), Rational(30,10))",
+                ],
+            ),
+            problem(
+                "im2-u5-l4-we4",
+                "Two similar triangular gardens have perimeters $24$ m and $36$ m. The smaller "
+                "has area $30$ m². Find the area of the larger, and the length of the side "
+                "corresponding to a $9$ m side of the smaller.",
+                "**Find the scale factor from the perimeters.** Perimeter is a LENGTH, so it "
+                "scales by $k$:"
+                "$$k = \\frac{36}{24} = 1.5.$$"
+                "**Scale the side.** Corresponding sides use the same factor:"
+                "$$9 \\times 1.5 = 13.5 \\text{ m}.$$"
+                "**Scale the area — with the square.**"
+                "$$30 \\times 1.5^{2} = 30 \\times 2.25 = 67.5 \\text{ m}^{2}.$$"
+                "**Check the internal consistency.** If the smaller garden's three sides are "
+                "$9$, $x$ and $y$ with $9 + x + y = 24$, the larger's are $13.5$, $1.5x$ and "
+                "$1.5y$, summing to $1.5 \\times 24 = 36$ ✓ The perimeter scaling is exactly "
+                "consistent with every side scaling."
+                "**The mistake this problem is built to catch.** Scaling the area by $1.5$ would "
+                "give $45$ m², and scaling the side by $1.5^{2}$ would give $20.25$ m. Only ONE of "
+                "the two quantities picks up the square, and it is the area."
+                "**A last consistency check.** The area ratio $\\frac{67.5}{30} = 2.25$, and the "
+                "perimeter ratio squared is $1.5^{2} = 2.25$ ✓",
+                [
+                    "Eq(Rational(36,24), Rational(3,2))",
+                    "Eq(9*Rational(3,2), Rational(27,2))",
+                    "Eq(30*Rational(3,2)**2, Rational(135,2))",
+                    "Eq(Rational(3,2)*24, 36)",
+                    "Eq(Rational(135,2)/30, Rational(9,4))",
+                    "Eq(Rational(3,2)**2, Rational(9,4))",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Scaling a map area by the scale ratio instead of its square.",
+                "At $1 : 25\\,000$, one map cm² is $25\\,000^2$ ground cm². Using $25\\,000$ "
+                "under-reports the area by a factor of twenty-five thousand.",
+            ),
+            mistake(
+                "Pairing a height with a base in the proportion.",
+                "Match like with like: heights with heights, bases with bases. Naming the "
+                "correspondence before writing the fraction prevents this entirely.",
+            ),
+            mistake(
+                "Scaling perimeter by $k^2$ or area by $k$.",
+                "Perimeter is a length ($\\times k$); area is two lengths ($\\times k^2$). "
+                "Deciding which quantity you have before scaling is the whole discipline.",
+            ),
+            mistake(
+                "Not checking the answer for physical sense.",
+                "A building shorter than the person, or a river narrower than the walk along the "
+                "bank when the figure says otherwise, signals an inverted ratio. One sentence of "
+                "checking catches it.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u5-l4-t1",
+                "On a $1 : 200$ floor plan a room measures $4$ cm by $3$ cm. Find its real "
+                "dimensions in metres and its real area in square metres.",
+                "Lengths: $4 \\times 200 = 800$ cm $= 8$ m and $3 \\times 200 = 600$ cm $= 6$ m. "
+                "Area: the plan area is $12$ cm², and the real area is "
+                "$12 \\times 200^{2} = 480\\,000$ cm² $= 48$ m². Check directly: "
+                "$8 \\times 6 = 48$ ✓ Both routes agree, which confirms the square was used "
+                "correctly.",
+                [
+                    "Eq(4*200, 800)",
+                    "Eq(3*200, 600)",
+                    "Eq(12*200**2, 480000)",
+                    "Eq(Rational(480000,10000), 48)",
+                    "Eq(8*6, 48)",
+                ],
+            ),
+            problem(
+                "im2-u5-l4-t2",
+                "Two similar triangles have areas $27$ cm² and $48$ cm². The smaller has a "
+                "$6$ cm side. Find the corresponding side of the larger.",
+                "Area ratio $\\frac{48}{27} = \\frac{16}{9}$, so $k = \\sqrt{\\frac{16}{9}} = "
+                "\\frac{4}{3}$. The corresponding side is $6 \\times \\frac{4}{3} = 8$ cm. Check: "
+                "$27 \\times \\left(\\frac{4}{3}\\right)^{2} = 27 \\times \\frac{16}{9} = 48$ ✓",
+                [
+                    "Eq(Rational(48,27), Rational(16,9))",
+                    "Eq(sqrt(Rational(16,9)), Rational(4,3))",
+                    "Eq(6*Rational(4,3), 8)",
+                    "Eq(27*Rational(16,9), 48)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.5",
+                "title": "Measuring what you cannot reach",
+                "body": (
+                    "Build a small triangle you can measure. Show it is similar to the large one "
+                    "you cannot. Scale. Every indirect-measurement technique — shadows, mirrors, "
+                    "sighting — is a way of manufacturing that second triangle."
+                ),
+                "beats": [
+                    "Find the similar pair",
+                    "Name the correspondence",
+                    "Write the proportion",
+                    "Check it is physically sensible",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "The mirror method",
+                "problemId": "im2-u5-l4-we1",
+            },
+            tap(
+                "Which pairing is right?",
+                "A $2$ m post casts a $3$ m shadow; a tower casts a $45$ m shadow. Which "
+                "proportion finds the tower's height $h$?",
+                [
+                    "$\\frac{h}{45} = \\frac{2}{3}$",
+                    "$\\frac{h}{45} = \\frac{3}{2}$",
+                    "$\\frac{h}{3} = \\frac{45}{2}$",
+                    "$\\frac{45}{h} = \\frac{2}{3}$",
+                ],
+                0,
+                "Match height with height and shadow with shadow: "
+                "$\\frac{\\text{tower height}}{\\text{tower shadow}} = "
+                "\\frac{\\text{post height}}{\\text{post shadow}}$, giving $h = 30$ m. The "
+                "shadows are longer than the objects, so the tower must be shorter than $45$ m ✓",
+                [
+                    "Eq(45*Rational(2,3), 30)",
+                    "Eq(Rational(30,45), Rational(2,3))",
+                    "30 < 45",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "Scale drawings",
+                "title": "The ratio scales lengths; its square scales areas",
+                "body": (
+                    "A $1 : n$ drawing multiplies every length by $n$ and every area by $n^{2}$. "
+                    "The second factor is enormous for map scales — at $1 : 25\\,000$ a single "
+                    "square centimetre stands for over six hundred million."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A map, both length and area",
+                "problemId": "im2-u5-l4-we2",
+            },
+            {
+                "kind": "coordGeo",
+                "eyebrow": "Measuring by construction",
+                "title": "The river-width setup",
+                "teach": (
+                    "The surveyor never crosses the water. Two right triangles share a pair of "
+                    "vertical angles at the point where the sight-line crosses the bank, and every "
+                    "measured length lies on the near side."
+                ),
+                "config": {"mode": "distance", "a": {"x": 0, "y": 0}, "b": {"x": 30, "y": 36}, "min": -4, "max": 40},
+            },
+            {
+                "kind": "worked",
+                "title": "Finding a river's width without crossing it",
+                "problemId": "im2-u5-l4-we3",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Before you scale",
+                "title": "Ask what kind of quantity it is",
+                "body": (
+                    "Length or perimeter: multiply by $k$. Area or surface area: multiply by "
+                    "$k^{2}$. Naming the quantity type before scaling is the entire discipline, "
+                    "and it takes one second."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Perimeters, sides and areas together",
+                "problemId": "im2-u5-l4-we4",
+            },
+            tap(
+                "From areas back to lengths",
+                "Two similar figures have areas in ratio $49 : 25$. Their corresponding sides are "
+                "in ratio…",
+                ["$49 : 25$", "$7 : 5$", "$24 : 1$", "$2401 : 625$"],
+                1,
+                "Area ratio is $k^{2}$, so $k = \\sqrt{\\frac{49}{25}} = \\frac{7}{5}$. Going "
+                "from areas back to lengths means taking a square root.",
+                [
+                    "Eq(sqrt(Rational(49,25)), Rational(7,5))",
+                    "Eq(Rational(7,5)**2, Rational(49,25))",
+                ],
+            ),
+            {"kind": "tryIt", "title": "A floor plan", "problemId": "im2-u5-l4-t1"},
+            {"kind": "tryIt", "title": "Area ratio to side length", "problemId": "im2-u5-l4-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Manufacture a measurable triangle similar to the one you cannot reach",
+                    "Name the correspondence BEFORE writing the proportion",
+                    "Scale $1 : n$ multiplies lengths by $n$ and areas by $n^{2}$",
+                    "Perimeter scales by $k$; area scales by $k^{2}$ — decide which you have",
+                    "Check the answer against physical plausibility in one sentence",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Practice and test banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im2-u5-p1",
+            "Dilate $A(3, -2)$, $B(6, 4)$ about the origin with scale factor $2$, and check that "
+            "$A'B' = 2 \\cdot AB$.",
+            "$A'(6, -4)$ and $B'(12, 8)$. Original length: $AB = \\sqrt{9 + 36} = \\sqrt{45}$. "
+            "Image: $A'B' = \\sqrt{36 + 144} = \\sqrt{180} = 2\\sqrt{45}$ ✓ The ratio is exactly "
+            "$2$, as the scale factor requires.",
+            [
+                "Eq(2*3, 6)",
+                "Eq(2*(-2), -4)",
+                "Eq(simplify(sqrt(180)/sqrt(45)), 2)",
+                "Eq(simplify(sqrt(180)), 6*sqrt(5))",
+            ],
+        ),
+        problem(
+            "im2-u5-p2",
+            "A triangle with area $12$ cm² is dilated with scale factor $\\frac{5}{2}$. Find the "
+            "new area.",
+            "Area scales by $k^{2} = \\frac{25}{4}$, so the new area is "
+            "$12 \\times \\frac{25}{4} = 75$ cm². Check the reverse: "
+            "$\\sqrt{\\frac{75}{12}} = \\sqrt{\\frac{25}{4}} = \\frac{5}{2}$ ✓",
+            [
+                "Eq(Rational(5,2)**2, Rational(25,4))",
+                "Eq(12*Rational(25,4), 75)",
+                "Eq(sqrt(Rational(75,12)), Rational(5,2))",
+            ],
+        ),
+        problem(
+            "im2-u5-p3",
+            "Dilate $P(9, 7)$ about centre $C(3, 1)$ with scale factor $\\frac{2}{3}$.",
+            "Displacement: $P - C = (6, 6)$. Scaled: $\\frac{2}{3}(6, 6) = (4, 4)$. Add back: "
+            "$P' = (3 + 4, 1 + 4) = (7, 5)$. Check the distances: $CP = \\sqrt{72}$ and "
+            "$CP' = \\sqrt{32}$, and $\\frac{\\sqrt{32}}{\\sqrt{72}} = \\frac{2}{3}$ ✓",
+            [
+                "Eq(9 - 3, 6)",
+                "Eq(Rational(2,3)*6, 4)",
+                "Eq(3 + 4, 7)",
+                "Eq(1 + 4, 5)",
+                "Eq(simplify(sqrt(32)/sqrt(72)), Rational(2,3))",
+            ],
+        ),
+        problem(
+            "im2-u5-p4",
+            "$\\triangle ABC \\sim \\triangle DEF$ with $AB = 14$, $DE = 21$ and $EF = 27$. Find "
+            "$BC$ and the ratio of the perimeters.",
+            "$k = \\frac{21}{14} = \\frac{3}{2}$ from $\\triangle ABC$ to $\\triangle DEF$, so "
+            "$BC = 27 \\div \\frac{3}{2} = 18$. Perimeters are lengths, so they are in ratio "
+            "$\\frac{3}{2}$ as well. Check: $\\frac{27}{18} = \\frac{3}{2}$ ✓",
+            [
+                "Eq(Rational(21,14), Rational(3,2))",
+                "Eq(27/Rational(3,2), 18)",
+                "Eq(Rational(27,18), Rational(3,2))",
+            ],
+        ),
+        problem(
+            "im2-u5-p5",
+            "In $\\triangle ABC$, $\\angle A = 35°$ and $\\angle C = 85°$. In $\\triangle XYZ$, "
+            "$\\angle X = 35°$ and $\\angle Y = 60°$. Are they similar? Write the statement.",
+            "$\\angle B = 180 - 35 - 85 = 60°$ and $\\angle Z = 180 - 35 - 60 = 85°$. So the "
+            "matching is $A \\leftrightarrow X$ ($35°$), $B \\leftrightarrow Y$ ($60°$), "
+            "$C \\leftrightarrow Z$ ($85°$). Yes: $\\triangle ABC \\sim \\triangle XYZ$ by AA.",
+            [
+                "Eq(180 - 35 - 85, 60)",
+                "Eq(180 - 35 - 60, 85)",
+                "Eq(35 + 60 + 85, 180)",
+            ],
+        ),
+        problem(
+            "im2-u5-p6",
+            "In $\\triangle ABC$, $DE \\parallel BC$ with $AD = 4$, $AB = 10$ and $AE = 6$. Find "
+            "$AC$ and $EC$.",
+            "Piece-to-whole: $\\frac{AD}{AB} = \\frac{AE}{AC}$, so $\\frac{4}{10} = "
+            "\\frac{6}{AC}$ and $AC = 15$. Then $EC = 15 - 6 = 9$. Check piece-to-piece: "
+            "$\\frac{AD}{DB} = \\frac{4}{6} = \\frac{2}{3}$ and $\\frac{AE}{EC} = \\frac{6}{9} = "
+            "\\frac{2}{3}$ ✓",
+            [
+                "Eq(4*15, 10*6)",
+                "Eq(15 - 6, 9)",
+                "Eq(Rational(4,6), Rational(2,3))",
+                "Eq(Rational(6,9), Rational(2,3))",
+            ],
+        ),
+        problem(
+            "im2-u5-p7",
+            "$M$ and $N$ are the midpoints of $AB$ and $AC$ in $\\triangle ABC$. If $MN = 8.5$, "
+            "find $BC$, and state the ratio of the areas of $\\triangle AMN$ and "
+            "$\\triangle ABC$.",
+            "The midsegment is half the third side, so $BC = 2 \\times 8.5 = 17$. The scale "
+            "factor is $\\frac{1}{2}$, so the area ratio is $\\frac{1}{4}$. Check: "
+            "$\\frac{8.5}{17} = \\frac{1}{2}$ ✓",
+            [
+                "Eq(2*Rational(17,2), 17)",
+                "Eq(Rational(17,2)/17, Rational(1,2))",
+                "Eq(Rational(1,2)**2, Rational(1,4))",
+            ],
+        ),
+        problem(
+            "im2-u5-p8",
+            "The altitude to the hypotenuse of a right triangle divides it into pieces of $5$ and "
+            "$20$. Find the altitude, the hypotenuse and both legs.",
+            "Hypotenuse $c = 25$. Altitude: $h^{2} = 5 \\times 20 = 100$, so $h = 10$. Legs: "
+            "$a^{2} = 5 \\times 25 = 125$ gives $a = 5\\sqrt{5}$, and $b^{2} = 20 \\times 25 = "
+            "500$ gives $b = 10\\sqrt{5}$. Check: $125 + 500 = 625 = 25^{2}$ ✓",
+            [
+                "Eq(5 + 20, 25)",
+                "Eq(5*20, 100)",
+                "Eq(5*25, 125)",
+                "Eq(20*25, 500)",
+                "Eq(125 + 500, 625)",
+                "Eq(simplify(sqrt(500)), 10*sqrt(5))",
+            ],
+        ),
+        problem(
+            "im2-u5-p9",
+            "A $1.5$ m child casts a $2$ m shadow while a lamp post casts a $9$ m shadow. Find "
+            "the lamp post's height.",
+            "AA from the parallel rays and the two right angles. $\\frac{h}{9} = "
+            "\\frac{1.5}{2} = 0.75$, so $h = 6.75$ m. Check the other ratio: "
+            "$\\frac{6.75}{1.5} = 4.5$ and $\\frac{9}{2} = 4.5$ ✓ The shadow exceeds the height "
+            "in the child's case, so it should for the post too ✓",
+            [
+                "Eq(9*Rational(3,4), Rational(27,4))",
+                "Eq(Rational(15,10)/2, Rational(3,4))",
+                "Eq(Rational(27,4)/Rational(3,2), Rational(9,2))",
+                "Rational(27,4) < 9",
+            ],
+        ),
+        problem(
+            "im2-u5-p10",
+            "On a $1 : 500$ site plan a rectangular plot measures $6$ cm by $4$ cm. Find its real "
+            "dimensions in metres and its real area.",
+            "Lengths: $6 \\times 500 = 3000$ cm $= 30$ m and $4 \\times 500 = 2000$ cm $= 20$ m. "
+            "Area directly: $30 \\times 20 = 600$ m². By the square rule: the plan area is "
+            "$24$ cm², and $24 \\times 500^{2} = 6\\,000\\,000$ cm² $= 600$ m² ✓ Both routes "
+            "agree.",
+            [
+                "Eq(6*500, 3000)",
+                "Eq(4*500, 2000)",
+                "Eq(30*20, 600)",
+                "Eq(24*500**2, 6000000)",
+                "Eq(Rational(6000000,10000), 600)",
+            ],
+        ),
+        problem(
+            "im2-u5-p11",
+            "Two similar rectangles have areas $32$ cm² and $50$ cm². The smaller is $4$ cm wide. "
+            "Find the width of the larger.",
+            "$k^{2} = \\frac{50}{32} = \\frac{25}{16}$, so $k = \\frac{5}{4}$. The larger width "
+            "is $4 \\times \\frac{5}{4} = 5$ cm. Check: $32 \\times \\frac{25}{16} = 50$ ✓",
+            [
+                "Eq(Rational(50,32), Rational(25,16))",
+                "Eq(sqrt(Rational(25,16)), Rational(5,4))",
+                "Eq(4*Rational(5,4), 5)",
+                "Eq(32*Rational(25,16), 50)",
+            ],
+        ),
+        problem(
+            "im2-u5-p12",
+            "Segments $AB$ and $CD$ cross at $P$ with $\\angle A = \\angle D$. Given $AP = 8$, "
+            "$PB = 6$, $DP = 12$, find $PC$.",
+            "$\\angle APC$ and $\\angle DPB$ are vertical angles, so with the given pair AA gives "
+            "$\\triangle APC \\sim \\triangle DPB$. Then $\\frac{AP}{DP} = \\frac{PC}{PB}$, so "
+            "$\\frac{8}{12} = \\frac{PC}{6}$ and $PC = 4$. Check the factor: from the first "
+            "triangle to the second it is $\\frac{12}{8} = 1.5$, and $4 \\times 1.5 = 6$ ✓",
+            [
+                "Eq(Rational(8,12), Rational(2,3))",
+                "Eq(6*Rational(2,3), 4)",
+                "Eq(Rational(12,8)*4, 6)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im2-u5-ty-1",
+            "Triangle $PQR$ has vertices $P(1, 2)$, $Q(4, 2)$, $R(1, 6)$. Dilate it about the "
+            "origin with scale factor $\\frac{5}{2}$, then verify the effects on a side length, "
+            "an angle and the area.",
+            "**Apply the rule.** Multiply both coordinates of each vertex by $\\frac{5}{2}$:"
+            "$$P' = \\left(\\tfrac{5}{2}, 5\\right), \\qquad Q' = (10, 5), \\qquad "
+            "R' = \\left(\\tfrac{5}{2}, 15\\right).$$"
+            "**Check a length.** $PQ$ is horizontal with length $3$; $P'Q'$ has length "
+            "$10 - \\frac{5}{2} = \\frac{15}{2}$. The ratio is "
+            "$\\frac{15/2}{3} = \\frac{5}{2}$ ✓"
+            "**Check the angle at the right-angled vertex.** In the original, $PQ$ is horizontal and $PR$ vertical, "
+            "so the angle is $90°$. The same is true of $P'Q'$ and $P'R'$ ✓ Angles are "
+            "unchanged."
+            "**Check the area.** Original: $\\frac{1}{2}(3)(4) = 6$. Image: legs "
+            "$\\frac{15}{2}$ and $10$, so $\\frac{1}{2} \\cdot \\frac{15}{2} \\cdot 10 = "
+            "\\frac{75}{2} = 37.5$. The ratio is $\\frac{37.5}{6} = 6.25 = "
+            "\\left(\\frac{5}{2}\\right)^{2}$ ✓"
+            "**The summary.** Length $\\times \\frac{5}{2}$, angle unchanged, area "
+            "$\\times \\frac{25}{4}$ — the three signatures of a dilation, all confirmed on one "
+            "figure.",
+            [
+                "Eq(Rational(5,2)*4, 10)",
+                "Eq(Rational(5,2)*6, 15)",
+                "Eq(10 - Rational(5,2), Rational(15,2))",
+                "Eq(Rational(15,2)/3, Rational(5,2))",
+                "Eq(Rational(1,2)*3*4, 6)",
+                "Eq(Rational(1,2)*Rational(15,2)*10, Rational(75,2))",
+                "Eq(Rational(75,2)/6, Rational(25,4))",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-2",
+            "$\\triangle ABC \\sim \\triangle DEF$. Given $AB = 15$, $BC = 20$, $AC = 25$ and "
+            "$DE = 6$, find all three sides of $\\triangle DEF$, the ratio of the perimeters and "
+            "the ratio of the areas. Is $\\triangle ABC$ right-angled?",
+            "**Scale factor.** $AB$ corresponds to $DE$:"
+            "$$k = \\frac{6}{15} = \\frac{2}{5}.$$"
+            "**Scale the other sides.**"
+            "$$EF = \\tfrac{2}{5}(20) = 8, \\qquad DF = \\tfrac{2}{5}(25) = 10.$$"
+            "**Perimeters.** $\\triangle ABC$: $15 + 20 + 25 = 60$. $\\triangle DEF$: "
+            "$6 + 8 + 10 = 24$. Ratio $\\frac{24}{60} = \\frac{2}{5} = k$ ✓ — perimeter is a "
+            "length."
+            "**Areas.** Ratio $k^{2} = \\frac{4}{25}$."
+            "**Is it right-angled?** Test the largest side: $15^{2} + 20^{2} = 225 + 400 = 625$ "
+            "and $25^{2} = 625$ ✓ Yes — it is a $3$-$4$-$5$ triangle scaled by $5$."
+            "**And the image?** $6^{2} + 8^{2} = 36 + 64 = 100 = 10^{2}$ ✓ Right-angled too, "
+            "which it had to be — similarity preserves every angle, including the right one."
+            "**Confirm the area ratio numerically.** $\\triangle ABC$ has area "
+            "$\\frac{1}{2}(15)(20) = 150$; $\\triangle DEF$ has $\\frac{1}{2}(6)(8) = 24$; and "
+            "$\\frac{24}{150} = \\frac{4}{25}$ ✓",
+            [
+                "Eq(Rational(6,15), Rational(2,5))",
+                "Eq(Rational(2,5)*20, 8)",
+                "Eq(Rational(2,5)*25, 10)",
+                "Eq(15 + 20 + 25, 60)",
+                "Eq(6 + 8 + 10, 24)",
+                "Eq(Rational(24,60), Rational(2,5))",
+                "Eq(15**2 + 20**2, 25**2)",
+                "Eq(6**2 + 8**2, 10**2)",
+                "Eq(Rational(1,2)*15*20, 150)",
+                "Eq(Rational(24,150), Rational(4,25))",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-3",
+            "In $\\triangle ABC$, $D$ is on $AB$ and $E$ on $AC$ with $DE \\parallel BC$. Given "
+            "$AD = 2x$, $DB = x + 3$, $AE = 10$ and $EC = 9$, find $x$ and the length $AB$.",
+            "**Write the side-splitter proportion.** Piece-to-piece:"
+            "$$\\frac{AD}{DB} = \\frac{AE}{EC} \\quad\\Longrightarrow\\quad "
+            "\\frac{2x}{x + 3} = \\frac{10}{9}.$$"
+            "**Cross-multiply.**"
+            "$$18x = 10(x + 3) = 10x + 30.$$"
+            "**Solve.**"
+            "$$8x = 30 \\quad\\Longrightarrow\\quad x = \\tfrac{15}{4} = 3.75.$$"
+            "**Compute the lengths.** $AD = 2x = 7.5$ and $DB = x + 3 = 6.75$, so "
+            "$AB = 7.5 + 6.75 = 14.25$."
+            "**Check the original proportion.** "
+            "$\\frac{7.5}{6.75} = \\frac{10}{9}$? Cross-multiplying: $7.5 \\times 9 = 67.5$ and "
+            "$6.75 \\times 10 = 67.5$ ✓"
+            "**Cross-check with the piece-to-whole form.** $AC = 10 + 9 = 19$, and "
+            "$\\frac{AD}{AB} = \\frac{7.5}{14.25} = \\frac{10}{19} = \\frac{AE}{AC}$ ✓ Both forms "
+            "hold, as they must."
+            "**Sanity note.** A negative or zero solution would have had to be rejected, since "
+            "$AD$ and $DB$ are lengths; here $x = 3.75$ makes both positive ✓",
+            [
+                "Eq(18*Rational(15,4), 10*(Rational(15,4) + 3))",
+                "Eq(2*Rational(15,4), Rational(15,2))",
+                "Eq(Rational(15,4) + 3, Rational(27,4))",
+                "Eq(Rational(15,2) + Rational(27,4), Rational(57,4))",
+                "Eq(Rational(15,2)*9, Rational(27,4)*10)",
+                "Eq(Rational(15,2)/Rational(57,4), Rational(10,19))",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-4",
+            "Prove that the segment joining the midpoints of two sides of a triangle is parallel "
+            "to the third side and half its length.",
+            "**Set up.** In $\\triangle ABC$, let $M$ be the midpoint of $AB$ and $N$ the "
+            "midpoint of $AC$. To prove: $MN \\parallel BC$ and $MN = \\frac{1}{2}BC$."
+            "**Establish the two ratios.** By definition of midpoint, $AM = \\frac{1}{2}AB$ and "
+            "$AN = \\frac{1}{2}AC$, so"
+            "$$\\frac{AM}{AB} = \\frac{AN}{AC} = \\frac{1}{2}.$$"
+            "**Identify the included angle.** $\\angle MAN$ and $\\angle BAC$ are the same angle, "
+            "since $M$ lies on $AB$ and $N$ on $AC$."
+            "**Apply SAS similarity.** Two pairs of sides in the same ratio with the included "
+            "angles equal gives"
+            "$$\\triangle AMN \\sim \\triangle ABC, \\quad k = \\tfrac{1}{2}.$$"
+            "**Conclude the length.** Corresponding sides scale by $k$, so "
+            "$MN = \\frac{1}{2}BC$ ✓"
+            "**Conclude the parallelism.** Similarity gives $\\angle AMN = \\angle ABC$. These "
+            "are corresponding angles for lines $MN$ and $BC$ cut by transversal $AB$, and equal "
+            "corresponding angles imply the lines are parallel ✓"
+            "**A numerical instance.** If $BC = 18$, then $MN = 9$; and the area of "
+            "$\\triangle AMN$ is $\\frac{1}{4}$ of $\\triangle ABC$'s, since "
+            "$\\left(\\frac{1}{2}\\right)^{2} = \\frac{1}{4}$.",
+            [
+                "Eq(Rational(1,2)*18, 9)",
+                "Eq(Rational(1,2)**2, Rational(1,4))",
+                "Eq(Rational(9,18), Rational(1,2))",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-5",
+            "A surveyor stands $1.7$ m tall and places a mirror on flat ground $1.4$ m from her "
+            "feet. Looking into it she sees the top of a tower whose base is $35$ m from the "
+            "mirror. Find the tower's height, and state the two facts that make the triangles "
+            "similar.",
+            "**The two similarity facts.** First, the angle of incidence equals the angle of "
+            "reflection, so the angles at the mirror are equal. Second, both the surveyor and the "
+            "tower stand vertically on level ground, so both triangles have a right angle at the "
+            "ground. Two pairs — AA."
+            "**Set up the proportion.** Height with height, ground distance with ground "
+            "distance:"
+            "$$\\frac{h}{35} = \\frac{1.7}{1.4}.$$"
+            "**Solve.**"
+            "$$h = 35 \\times \\frac{17}{14} = \\frac{595}{14} = 42.5 \\text{ m}.$$"
+            "**Check the scale factor.** The tower's triangle is $\\frac{35}{1.4} = 25$ times the "
+            "surveyor's, and $25 \\times 1.7 = 42.5$ ✓"
+            "**Sanity-check the shape.** The surveyor is taller than her distance to the mirror "
+            "($1.7 > 1.4$), so the tower must be taller than ITS distance to the mirror — and "
+            "$42.5 > 35$ ✓ The check confirms the ratio was not inverted."
+            "**What would have gone wrong inverted.** Writing "
+            "$\\frac{h}{35} = \\frac{1.4}{1.7}$ gives $28.8$ m, which fails the plausibility "
+            "check immediately.",
+            [
+                "Eq(35*Rational(17,14), Rational(85,2))",
+                "Eq(Rational(85,2), Rational(425,10))",
+                "Eq(35/Rational(14,10), 25)",
+                "Eq(25*Rational(17,10), Rational(85,2))",
+                "Rational(85,2) > 35",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-6",
+            "In right triangle $ABC$ the right angle is at $C$, $AC = 9$ and $BC = 12$. The "
+            "altitude from $C$ meets $AB$ at $H$. Find $AB$, the altitude $CH$, and both segments "
+            "$AH$ and $HB$.",
+            "**Find the hypotenuse.**"
+            "$$AB = \\sqrt{81 + 144} = \\sqrt{225} = 15.$$"
+            "**Find the altitude by comparing two area expressions.** The area is "
+            "$\\frac{1}{2}(9)(12) = 54$ using the legs, and $\\frac{1}{2}(15)(CH)$ using the "
+            "hypotenuse as base:"
+            "$$\\tfrac{1}{2}(15)(CH) = 54 \\quad\\Longrightarrow\\quad CH = \\tfrac{108}{15} = "
+            "7.2.$$"
+            "**Find the segments with the leg relations.** $AC^{2} = AH \\cdot AB$ gives"
+            "$$81 = AH \\times 15 \\quad\\Longrightarrow\\quad AH = 5.4,$$"
+            "and $BC^{2} = HB \\cdot AB$ gives"
+            "$$144 = HB \\times 15 \\quad\\Longrightarrow\\quad HB = 9.6.$$"
+            "**Check they reassemble the hypotenuse.** $5.4 + 9.6 = 15$ ✓"
+            "**Check the altitude independently.** $CH^{2}$ should equal $AH \\cdot HB$: "
+            "$7.2^{2} = 51.84$ and $5.4 \\times 9.6 = 51.84$ ✓ The geometric-mean relation "
+            "confirms a value found by a completely different route."
+            "**Why this is all one theorem.** Every relation used here comes from the two "
+            "similar triangles the altitude creates — the area argument and the geometric means "
+            "are two faces of the same similarity.",
+            [
+                "Eq(9**2 + 12**2, 225)",
+                "Eq(sqrt(225), 15)",
+                "Eq(Rational(1,2)*9*12, 54)",
+                "Eq(Rational(108,15), Rational(36,5))",
+                "Eq(Rational(81,15), Rational(27,5))",
+                "Eq(Rational(144,15), Rational(48,5))",
+                "Eq(Rational(27,5) + Rational(48,5), 15)",
+                "Eq(Rational(36,5)**2, Rational(27,5)*Rational(48,5))",
+            ],
+        ),
+        problem(
+            "im2-u5-ty-7",
+            "A photograph $15$ cm by $10$ cm is enlarged so that its area becomes $540$ cm². "
+            "Find the scale factor, the new dimensions, and the ratio of the perimeters. Then "
+            "explain why enlarging to a $20$ cm by $15$ cm print would NOT be a similar "
+            "enlargement.",
+            "**Find the original area.** $15 \\times 10 = 150$ cm²."
+            "**Find the scale factor from the area ratio.**"
+            "$$k^{2} = \\frac{540}{150} = 3.6 \\quad\\Longrightarrow\\quad k = \\sqrt{3.6} = "
+            "\\frac{6}{\\sqrt{10}} = \\frac{6\\sqrt{10}}{10}.$$"
+            "Numerically $k \\approx 1.897$."
+            "**Find the new dimensions.**"
+            "$$15k = 9\\sqrt{10} \\approx 28.46 \\text{ cm}, \\qquad "
+            "10k = 6\\sqrt{10} \\approx 18.97 \\text{ cm}.$$"
+            "**Check the area.** $9\\sqrt{10} \\times 6\\sqrt{10} = 54 \\times 10 = 540$ ✓ "
+            "Exactly, with no rounding."
+            "**Ratio of perimeters.** Perimeter is a length, so it is $k$, the same "
+            "$\\sqrt{3.6} \\approx 1.897$ — NOT $3.6$."
+            "**Why the proposed print fails.** The original ratio of sides is "
+            "$\\frac{15}{10} = 1.5$; the proposed print has $\\frac{20}{15} \\approx 1.333$. "
+            "Different side ratios mean the two rectangles are not similar — the picture would "
+            "have to be stretched more in one direction than the other, which is exactly the "
+            "distortion a dilation never produces."
+            "**The general test for rectangles.** Two rectangles are similar exactly when their "
+            "length-to-width ratios are equal. Here $\\frac{3}{2} \\neq \\frac{4}{3}$, so they "
+            "are not.",
+            [
+                "Eq(15*10, 150)",
+                "Eq(Rational(540,150), Rational(18,5))",
+                "Eq(simplify((9*sqrt(10))*(6*sqrt(10))), 540)",
+                "Eq(simplify((9*sqrt(10))/(6*sqrt(10))), Rational(3,2))",
+                "Eq(Rational(15,10), Rational(3,2))",
+                "Eq(Rational(20,15), Rational(4,3))",
+                "Ne(Rational(3,2), Rational(4,3))",
+                "Abs(sqrt(Rational(18,5)) - Rational(1897,1000)) < Rational(1,1000)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="similarity-and-dilations",
+        title="Similarity & Dilations",
+        unit_number=5,
+        blurb=(
+            "Dilation as the one transformation that changes size while preserving angle; "
+            "similarity defined by transformations rather than described as 'same shape'; the AA "
+            "criterion and why it has no congruence analogue; and the side-splitter, midsegment "
+            "and Pythagorean theorems, all proved from similar triangles."
+        ),
+        builds_on=(
+            "Congruence and rigid motion from IM1 Unit 7 — similarity is what happens when you "
+            "add a scale factor to the toolkit."
+        ),
+        lessons=[
+            lesson_dilations(),
+            lesson_similarity(),
+            lesson_side_splitter(),
+            lesson_similarity_problems(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()
