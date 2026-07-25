@@ -1,0 +1,1308 @@
+{
+  "slug": "coordinate-geometry",
+  "title": "Connecting Algebra & Geometry",
+  "unit": 8,
+  "status": "published",
+  "blurb": "Distance and midpoint from coordinates, the slope criteria for parallel and perpendicular lines, partitioning a segment in a given ratio, and proving geometric theorems algebraically by placing a figure on axes and labelling it with letters.",
+  "buildsOn": "Slope and the equation of a line from Unit 4, and rigid motions from Unit 7 — which is what licenses placing a figure wherever the algebra is easiest.",
+  "lessons": [
+    {
+      "slug": "distance-and-midpoint",
+      "title": "Distance & Midpoint on the Plane",
+      "concreteComparison": "A phone showing two pins on a map can tell you how far apart they are without anyone walking between them. It subtracts the coordinates, squares, adds and takes a root — the Pythagorean theorem, applied to a right triangle nobody drew. Once points have coordinates, distance becomes arithmetic.",
+      "objective": "Compute the distance between two points and the midpoint of a segment from their coordinates, explain why each formula works, and use them to find the perimeter of a polygon.",
+      "concept": [
+        "**Distance is Pythagoras in disguise.** Between $(x_1, y_1)$ and $(x_2, y_2)$, draw the horizontal and vertical legs of a right triangle. Their lengths are $|x_2 - x_1|$ and $|y_2 - y_1|$, and the segment joining the points is the hypotenuse: $$d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}.$$ It is not a new formula to memorise — it is $a^2 + b^2 = c^2$ with the legs computed from coordinates.",
+        "**The order of subtraction does not matter.** $(x_2 - x_1)^2$ and $(x_1 - x_2)^2$ are equal, because squaring destroys the sign. So unlike slope, you cannot get distance wrong by taking the points in the wrong order — which is a genuine relief.",
+        "**Midpoint is an average.** The midpoint of a segment has the average of the endpoints' $x$-coordinates and the average of their $y$-coordinates: $$M = \\left(\\frac{x_1 + x_2}{2}, \\ \\frac{y_1 + y_2}{2}\\right).$$ It sits halfway across and halfway up, which is exactly what an average of each coordinate produces.",
+        "**Midpoint ADDS; distance SUBTRACTS.** This is the confusion worth heading off. The midpoint averages, so it adds and halves. The distance measures a gap, so it subtracts. If your midpoint came out beyond one of the endpoints, you subtracted where you should have added.",
+        "**Working backwards from a midpoint.** If $M$ is the midpoint of $AB$ and you know $A$ and $M$, then $B$ is as far past $M$ as $A$ is short of it: $B = (2M_x - A_x, \\ 2M_y - A_y)$. This falls straight out of the midpoint formula rearranged — the same literal-equation skill from Unit 1.",
+        "**Perimeter and area from coordinates.** The perimeter of a polygon is the sum of its side lengths, each found with the distance formula. Area is easy when sides are horizontal or vertical, and for a triangle you can often use a horizontal or vertical side as the base with the perpendicular distance to the opposite vertex as the height."
+      ],
+      "keyIdea": "Distance is $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$ — Pythagoras on the legs. Midpoint is the average of each coordinate. Distance subtracts; midpoint adds.",
+      "facts": [
+        {
+          "title": "Distance formula",
+          "latex": "d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}",
+          "explanation": "The hypotenuse of a right triangle whose legs are the coordinate differences. Order does not matter — squaring removes the sign."
+        },
+        {
+          "title": "Midpoint formula",
+          "latex": "M = \\left(\\frac{x_1 + x_2}{2}, \\ \\frac{y_1 + y_2}{2}\\right)",
+          "explanation": "The average of each coordinate. It ADDS, where distance subtracts."
+        },
+        {
+          "title": "Finding a missing endpoint",
+          "latex": "B = (2M_x - A_x, \\ 2M_y - A_y)",
+          "explanation": "The midpoint formula rearranged — go as far past M as A is short of it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u8-l1-we1",
+          "statement": "Find the distance between $A(2, 3)$ and $B(7, 15)$.",
+          "solution": "**Find the legs.** The horizontal gap is $7 - 2 = 5$; the vertical gap is $15 - 3 = 12$.**Apply Pythagoras.**$$d = \\sqrt{5^2 + 12^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13.$$**Check the order does not matter.** Taking the points the other way: $2 - 7 = -5$ and $3 - 15 = -12$, and $\\sqrt{(-5)^2 + (-12)^2} = \\sqrt{25 + 144} = 13$ ✓ — squaring removed both signs.**Sanity check.** The distance must exceed each leg (a hypotenuse is the longest side) and be less than their sum: $12 < 13 < 17$ ✓",
+          "check": [
+            "Eq(5**2 + 12**2, 169)",
+            "Eq(sqrt(169), 13)",
+            "Eq((-5)**2 + (-12)**2, 169)",
+            "13 > 12",
+            "13 < 5 + 12"
+          ]
+        },
+        {
+          "id": "im1-u8-l1-we2",
+          "statement": "Find the midpoint of the segment joining $P(-4, 9)$ and $Q(6, 1)$, then verify it is equidistant from both.",
+          "solution": "**Average each coordinate.**$$M = \\left(\\frac{-4 + 6}{2}, \\ \\frac{9 + 1}{2}\\right) = \\left(\\frac{2}{2}, \\ \\frac{10}{2}\\right) = (1, 5).$$**Verify with distances.** From $M$ to $P$:$$\\sqrt{(1 - (-4))^2 + (5 - 9)^2} = \\sqrt{25 + 16} = \\sqrt{41}.$$From $M$ to $Q$:$$\\sqrt{(6 - 1)^2 + (1 - 5)^2} = \\sqrt{25 + 16} = \\sqrt{41}.$$Equal ✓ — which is what being the midpoint means.**And the whole segment.** $PQ = \\sqrt{100 + 64} = \\sqrt{164} = 2\\sqrt{41}$, exactly twice each half ✓",
+          "check": [
+            "Eq(Rational(-4 + 6, 2), 1)",
+            "Eq(Rational(9 + 1, 2), 5)",
+            "Eq((1 - (-4))**2 + (5 - 9)**2, 41)",
+            "Eq((6 - 1)**2 + (1 - 5)**2, 41)",
+            "Eq((6 - (-4))**2 + (1 - 9)**2, 164)",
+            "Eq(164, 4*41)"
+          ]
+        },
+        {
+          "id": "im1-u8-l1-we3",
+          "statement": "The midpoint of $AB$ is $M(3, -2)$ and $A$ is $(-1, 4)$. Find $B$.",
+          "solution": "**Rearrange the midpoint formula.** From $M_x = \\frac{A_x + B_x}{2}$:$$B_x = 2M_x - A_x = 2(3) - (-1) = 6 + 1 = 7.$$$$B_y = 2M_y - A_y = 2(-2) - 4 = -4 - 4 = -8.$$So $B = (7, -8)$.**Check by recomputing the midpoint.**$$\\left(\\frac{-1 + 7}{2}, \\ \\frac{4 + (-8)}{2}\\right) = \\left(\\frac{6}{2}, \\ \\frac{-4}{2}\\right) = (3, -2) \\ \\checkmark$$**The intuition.** $A$ sits $4$ left of $M$, so $B$ must sit $4$ right of it: $3 + 4 = 7$ ✓. And $A$ is $6$ above $M$, so $B$ is $6$ below: $-2 - 6 = -8$ ✓. The formula is just that reasoning written down.",
+          "check": [
+            "Eq(2*3 - (-1), 7)",
+            "Eq(2*(-2) - 4, -8)",
+            "Eq(Rational(-1 + 7, 2), 3)",
+            "Eq(Rational(4 + (-8), 2), -2)"
+          ]
+        },
+        {
+          "id": "im1-u8-l1-we4",
+          "statement": "A triangle has vertices $A(0, 0)$, $B(6, 0)$ and $C(6, 8)$. Find its perimeter and area.",
+          "solution": "**Side lengths.**$$AB = \\sqrt{(6-0)^2 + (0-0)^2} = 6 \\quad \\text{(horizontal)}$$$$BC = \\sqrt{(6-6)^2 + (8-0)^2} = 8 \\quad \\text{(vertical)}$$$$CA = \\sqrt{(6-0)^2 + (8-0)^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$$**Perimeter.**$$6 + 8 + 10 = 24.$$**Area.** $AB$ is horizontal and $BC$ is vertical, so they meet at a right angle at $B$ — the triangle is right-angled and the two legs serve as base and height:$$\\text{Area} = \\frac{1}{2}(6)(8) = 24.$$**Confirm the right angle independently.** The slope of $AB$ is $0$ and $BC$ is vertical (undefined slope), so they are perpendicular ✓. And Pythagoras holds: $6^2 + 8^2 = 100 = 10^2$ ✓**A coincidence worth noticing.** The perimeter and area both come to $24$ here, in different units — one a length, one an area. They are not comparable quantities, and the match is an accident of these particular numbers.",
+          "check": [
+            "Eq(6**2 + 8**2, 100)",
+            "Eq(sqrt(100), 10)",
+            "Eq(6 + 8 + 10, 24)",
+            "Eq(Rational(1,2)*6*8, 24)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting to take the square root at the end of the distance formula.",
+          "correction": "√(25 + 144) = √169 = 13, not 169. The formula computes d², and you want d.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting in the midpoint formula instead of adding.",
+          "correction": "Midpoint AVERAGES: add the coordinates and halve. Subtracting gives a point nowhere near the segment.",
+          "authored": true
+        },
+        {
+          "text": "Adding the squares of the coordinates rather than of their differences.",
+          "correction": "It is (x₂ − x₁)² + (y₂ − y₁)², not x₂² + y₂². The formula measures a GAP, so the differences come first.",
+          "authored": true
+        },
+        {
+          "text": "Halving only one coordinate when finding a midpoint.",
+          "correction": "Both coordinates get averaged. Halving only one puts the point off the segment entirely.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u8-l1-t1",
+          "statement": "Find the distance between $(-3, 2)$ and $(5, 8)$.",
+          "solution": "The legs are $5 - (-3) = 8$ and $8 - 2 = 6$, so $d = \\sqrt{64 + 36} = \\sqrt{100} = 10$.",
+          "check": [
+            "Eq(8**2 + 6**2, 100)",
+            "Eq(sqrt(100), 10)"
+          ]
+        },
+        {
+          "id": "im1-u8-l1-t2",
+          "statement": "Find the midpoint of $(7, -5)$ and $(-1, 11)$.",
+          "solution": "$$M = \\left(\\frac{7 + (-1)}{2}, \\ \\frac{-5 + 11}{2}\\right) = \\left(\\frac{6}{2}, \\ \\frac{6}{2}\\right) = (3, 3).$$",
+          "check": [
+            "Eq(Rational(7 + (-1), 2), 3)",
+            "Eq(Rational(-5 + 11, 2), 3)"
+          ]
+        },
+        {
+          "id": "im1-u8-l1-t3",
+          "statement": "A rectangle has vertices $(1, 1)$, $(9, 1)$, $(9, 7)$, $(1, 7)$. Find its perimeter, area, and the length of a diagonal.",
+          "solution": "The width is $9 - 1 = 8$ and the height is $7 - 1 = 6$. Perimeter $= 2(8 + 6) = 28$; area $= 8 \\times 6 = 48$. The diagonal is $\\sqrt{64 + 36} = \\sqrt{100} = 10$.",
+          "check": [
+            "Eq(2*(8 + 6), 28)",
+            "Eq(8*6, 48)",
+            "Eq(8**2 + 6**2, 100)",
+            "Eq(sqrt(100), 10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.7",
+            "title": "Distance is Pythagoras with coordinates",
+            "body": "Between two points, the horizontal and vertical gaps are the legs of a right triangle and the segment is its hypotenuse. Nothing new is being invented — $a^2 + b^2 = c^2$ with the legs read off the coordinates.",
+            "beats": [
+              "Horizontal leg: $|x_2 - x_1|$",
+              "Vertical leg: $|y_2 - y_1|$",
+              "Hypotenuse: $\\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$",
+              "Order does not matter — squaring kills the sign"
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See the triangle",
+            "title": "The legs are the coordinate differences",
+            "teach": "From $(2, 3)$ to $(7, 15)$: across $5$, up $12$, and the direct distance is $\\sqrt{25 + 144} = 13$. The right triangle was always there — the formula just measures it.",
+            "config": {
+              "mode": "distance",
+              "a": {
+                "x": 2,
+                "y": 3
+              },
+              "b": {
+                "x": 7,
+                "y": 15
+              },
+              "min": 0,
+              "max": 18
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A 5-12-13 distance",
+            "problemId": "im1-u8-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which expression gives the distance?",
+            "prompt": "What is the distance between $(1, 2)$ and $(4, 6)$?",
+            "options": [
+              "$5$",
+              "$7$",
+              "$\\sqrt{7}$",
+              "$25$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The legs are $4 - 1 = 3$ and $6 - 2 = 4$, so $d = \\sqrt{9 + 16} = \\sqrt{25} = 5$. Answering $25$ forgets the square root; answering $7$ adds the legs instead of using Pythagoras — and $7$ would be the walking distance along the grid, not the straight line.",
+            "check": [
+              "Eq(3**2 + 4**2, 25)",
+              "Eq(sqrt(25), 5)",
+              "5 < 3 + 4"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The other formula",
+            "title": "Midpoint averages; distance subtracts",
+            "body": "The midpoint sits halfway across and halfway up, so it is the AVERAGE of each coordinate — add and halve. Distance measures a gap, so it SUBTRACTS. Mixing them up is the standard error, and the results look nothing alike."
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Halfway",
+            "title": "The midpoint of a segment",
+            "teach": "From $(-4, 9)$ to $(6, 1)$: average the $x$-values to get $1$, average the $y$-values to get $5$. The point $(1, 5)$ is equidistant from both ends — which is exactly what halfway means.",
+            "config": {
+              "mode": "midpoint",
+              "a": {
+                "x": -4,
+                "y": 9
+              },
+              "b": {
+                "x": 6,
+                "y": 1
+              },
+              "min": -6,
+              "max": 11
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A midpoint, checked both ways",
+            "problemId": "im1-u8-l1-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Find the midpoint",
+            "prompt": "What is the midpoint of $(2, 8)$ and $(10, 2)$?",
+            "options": [
+              "$(6, 5)$",
+              "$(8, 6)$",
+              "$(4, 3)$",
+              "$(12, 10)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Average each coordinate: $\\frac{2 + 10}{2} = 6$ and $\\frac{8 + 2}{2} = 5$, giving $(6, 5)$. Option B subtracts instead of averaging; option D adds without halving. Check: $(6,5)$ is $\\sqrt{16 + 9} = 5$ from each endpoint ✓",
+            "check": [
+              "Eq(Rational(2 + 10, 2), 6)",
+              "Eq(Rational(8 + 2, 2), 5)",
+              "Eq((6-2)**2 + (5-8)**2, 25)",
+              "Eq((10-6)**2 + (2-5)**2, 25)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Working backwards",
+            "title": "Given a midpoint and one end, find the other",
+            "body": "$B = (2M_x - A_x, \\ 2M_y - A_y)$ — the midpoint formula rearranged, using the same literal-equation move as Unit 1. The intuition: go as far past $M$ as $A$ is short of it."
+          },
+          {
+            "kind": "worked",
+            "title": "Recovering a missing endpoint",
+            "problemId": "im1-u8-l1-we3"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.7",
+            "title": "Perimeter and area from coordinates alone",
+            "body": "Perimeter is the sum of the side lengths, each from the distance formula. For area, look for a horizontal or vertical side to use as a base — the height is then just a coordinate difference."
+          },
+          {
+            "kind": "worked",
+            "title": "A right triangle, measured",
+            "problemId": "im1-u8-l1-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Sanity-check every distance",
+            "body": "A hypotenuse must be longer than each leg and shorter than their sum. If your distance came out smaller than a leg, or larger than the two added, something went wrong — and you know it before anyone marks it."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a distance",
+            "problemId": "im1-u8-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a rectangle",
+            "problemId": "im1-u8-l1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$d = \\sqrt{(\\Delta x)^2 + (\\Delta y)^2}$ — Pythagoras on the legs",
+              "Order of subtraction is irrelevant; squaring removes the sign",
+              "Midpoint averages each coordinate — it **adds**, distance subtracts",
+              "Missing endpoint: $B = (2M_x - A_x, \\ 2M_y - A_y)$",
+              "Perimeter sums the sides; area uses a horizontal or vertical base"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "parallel-and-perpendicular-lines",
+      "title": "Parallel & Perpendicular by Slope",
+      "concreteComparison": "A carpenter checking whether two shelves are level compares their rise across the same run. Checking whether a bracket is square is a different test entirely — and on the coordinate plane both tests reduce to arithmetic on two numbers. Parallel means equal slopes; perpendicular means their product is $-1$.",
+      "objective": "Determine whether two lines are parallel, perpendicular or neither from their slopes; write the equation of a line parallel or perpendicular to a given line through a given point; and use the criteria to classify quadrilaterals.",
+      "concept": [
+        "**Parallel means equal slopes.** Two distinct lines never meet exactly when they climb at the same rate — which is Unit 5's classification seen from the other side. If the intercepts also match, the lines coincide rather than being parallel.",
+        "**Perpendicular means the slopes multiply to negative one.** If one line has slope $m$, any line at right angles to it has slope $-\\frac{1}{m}$ — the NEGATIVE RECIPROCAL. Flip the fraction and change the sign; doing only one of the two is the most common error on this standard.",
+        "**Where that product comes from.** Rotating a line $90°$ about the origin sends a direction step of $(a, b)$ to $(-b, a)$, by the rotation rule from Unit 7. The original slope is $\\frac{b}{a}$ and the rotated slope is $\\frac{a}{-b} = -\\frac{a}{b}$, and $$\\frac{b}{a} \\times \\left(-\\frac{a}{b}\\right) = -1.$$ The criterion is a consequence of the rotation, not a rule from nowhere.",
+        "**The two exceptions.** A horizontal line (slope $0$) and a vertical line (undefined slope) are perpendicular, but their slopes cannot be multiplied — $0 \\times$ undefined is meaningless. Handle that pair by inspection rather than by formula.",
+        "**Writing the parallel or perpendicular line.** Take the given line's slope, adjust it (keep it for parallel, negative-reciprocal it for perpendicular), then use point-slope form with the given point. Two steps, both from Unit 4.",
+        "**Classifying a quadrilateral from coordinates.** Compute the four side slopes. Two pairs of equal slopes make a parallelogram. Add perpendicular adjacent sides and it is a rectangle. Add equal adjacent side LENGTHS and it is a rhombus; both, and it is a square. This turns a shape question into arithmetic — which is the point of the whole unit."
+      ],
+      "keyIdea": "Parallel ⟺ equal slopes. Perpendicular ⟺ slopes are negative reciprocals, product $-1$. Horizontal and vertical are the one perpendicular pair the product test cannot handle.",
+      "facts": [
+        {
+          "title": "Parallel",
+          "latex": "m_1 = m_2 \\ \\text{(and different intercepts)}",
+          "explanation": "Same climb rate, so the gap never closes. Equal intercepts too means one line, not two."
+        },
+        {
+          "title": "Perpendicular",
+          "latex": "m_1 \\cdot m_2 = -1 \\quad \\Longleftrightarrow \\quad m_2 = -\\frac{1}{m_1}",
+          "explanation": "Flip the fraction AND change the sign. Doing only one is the standard error."
+        },
+        {
+          "title": "The exception",
+          "latex": "\\text{horizontal } (m = 0) \\perp \\text{vertical (undefined)}",
+          "explanation": "Perpendicular, but the product test does not apply — recognise this pair by inspection."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u8-l2-we1",
+          "statement": "Are the lines $y = \\frac{2}{3}x + 5$ and $2x - 3y = 12$ parallel, perpendicular, or neither?",
+          "solution": "**Get both slopes.** The first is already in slope-intercept form: $m_1 = \\frac{2}{3}$.Rearrange the second:$$2x - 3y = 12 \\quad\\Longrightarrow\\quad -3y = -2x + 12 \\quad\\Longrightarrow\\quad y = \\frac{2}{3}x - 4,$$so $m_2 = \\frac{2}{3}$.**Compare.** The slopes are equal and the intercepts differ ($5$ against $-4$), so the lines are **parallel**.**Confirm they never meet.** At $x = 0$ they sit at $5$ and $-4$, a gap of $9$. At $x = 30$ they sit at $25$ and $16$ — still $9$ apart. A constant gap means no intersection ✓**Not perpendicular.** $\\frac{2}{3} \\times \\frac{2}{3} = \\frac{4}{9}$, which is not $-1$.",
+          "check": [
+            "Eq(Rational(2,3)*0 + 5 - (Rational(2,3)*0 - 4), 9)",
+            "Eq(Rational(2,3)*30 + 5 - (Rational(2,3)*30 - 4), 9)",
+            "Eq(Rational(2,3)*Rational(2,3), Rational(4,9))",
+            "Ne(Rational(4,9), -1)"
+          ]
+        },
+        {
+          "id": "im1-u8-l2-we2",
+          "statement": "Write the equation of the line through $(4, -1)$ perpendicular to $y = \\frac{3}{5}x + 2$.",
+          "solution": "**Find the perpendicular slope.** The given slope is $\\frac{3}{5}$, so the negative reciprocal is$$m = -\\frac{5}{3}.$$Flip the fraction AND change the sign — both operations.**Check the product.**$$\\frac{3}{5} \\times \\left(-\\frac{5}{3}\\right) = -\\frac{15}{15} = -1 \\ \\checkmark$$**Use point-slope form** with $(4, -1)$:$$y - (-1) = -\\frac{5}{3}(x - 4) \\quad\\Longrightarrow\\quad y + 1 = -\\frac{5}{3}x + \\frac{20}{3}.$$$$y = -\\frac{5}{3}x + \\frac{20}{3} - 1 = -\\frac{5}{3}x + \\frac{17}{3}.$$**Check the point.** At $x = 4$: $-\\frac{20}{3} + \\frac{17}{3} = -\\frac{3}{3} = -1$ ✓",
+          "check": [
+            "Eq(Rational(3,5)*Rational(-5,3), -1)",
+            "Eq(Rational(-5,3)*4 + Rational(17,3), -1)",
+            "Eq(Rational(20,3) - 1, Rational(17,3))"
+          ]
+        },
+        {
+          "id": "im1-u8-l2-we3",
+          "statement": "A quadrilateral has vertices $A(1, 1)$, $B(5, 2)$, $C(6, 6)$, $D(2, 5)$. Classify it using slopes and lengths.",
+          "solution": "**Slopes of the four sides.**$$m_{AB} = \\frac{2 - 1}{5 - 1} = \\frac{1}{4}, \\qquad m_{BC} = \\frac{6 - 2}{6 - 5} = 4,$$$$m_{CD} = \\frac{5 - 6}{2 - 6} = \\frac{-1}{-4} = \\frac{1}{4}, \\qquad m_{DA} = \\frac{1 - 5}{1 - 2} = \\frac{-4}{-1} = 4.$$**Parallelogram?** $m_{AB} = m_{CD}$ and $m_{BC} = m_{DA}$ — both pairs of opposite sides are parallel, so yes.**Rectangle?** Check adjacent sides: $m_{AB} \\times m_{BC} = \\frac{1}{4} \\times 4 = 1$, not $-1$. So the angles are NOT right angles — it is not a rectangle.**Rhombus?** Check adjacent side lengths:$$AB = \\sqrt{16 + 1} = \\sqrt{17}, \\qquad BC = \\sqrt{1 + 16} = \\sqrt{17}.$$Equal ✓ — and by the parallelogram property all four sides are $\\sqrt{17}$.**Conclusion.** A **rhombus** that is not a square: four equal sides, opposite sides parallel, but no right angles.**Cross-check with the diagonals.** In a rhombus the diagonals are perpendicular. $m_{AC} = \\frac{6-1}{6-1} = 1$ and $m_{BD} = \\frac{5-2}{2-5} = -1$, and $1 \\times (-1) = -1$ ✓",
+          "check": [
+            "Eq(Rational(2 - 1, 5 - 1), Rational(1,4))",
+            "Eq(Rational(6 - 2, 6 - 5), 4)",
+            "Eq(Rational(5 - 6, 2 - 6), Rational(1,4))",
+            "Eq(Rational(1 - 5, 1 - 2), 4)",
+            "Eq(Rational(1,4)*4, 1)",
+            "Eq((5-1)**2 + (2-1)**2, 17)",
+            "Eq((6-5)**2 + (6-2)**2, 17)",
+            "Eq(Rational(6-1, 6-1)*Rational(5-2, 2-5), -1)"
+          ]
+        },
+        {
+          "id": "im1-u8-l2-we4",
+          "statement": "Show that the triangle with vertices $P(1, 2)$, $Q(5, 4)$, $R(3, 8)$ is right-angled, and find its area.",
+          "solution": "**Compute all three slopes.**$$m_{PQ} = \\frac{4 - 2}{5 - 1} = \\frac{2}{4} = \\frac{1}{2},$$$$m_{QR} = \\frac{8 - 4}{3 - 5} = \\frac{4}{-2} = -2,$$$$m_{PR} = \\frac{8 - 2}{3 - 1} = \\frac{6}{2} = 3.$$**Test each pair for perpendicularity.**$$m_{PQ} \\cdot m_{QR} = \\frac{1}{2} \\times (-2) = -1 \\ \\checkmark$$So $PQ \\perp QR$, and the right angle is at $Q$.(The other pairs: $\\frac{1}{2} \\times 3 = \\frac{3}{2}$ and $-2 \\times 3 = -6$ — neither is $-1$, confirming $Q$ is the only right angle, as a triangle must have at most one.)**Area.** The legs meeting at the right angle are the base and height:$$PQ = \\sqrt{16 + 4} = \\sqrt{20}, \\qquad QR = \\sqrt{4 + 16} = \\sqrt{20}.$$$$\\text{Area} = \\frac{1}{2}\\sqrt{20} \\cdot \\sqrt{20} = \\frac{1}{2}(20) = 10.$$**Check with Pythagoras.** The hypotenuse $PR = \\sqrt{4 + 36} = \\sqrt{40}$, and $20 + 20 = 40$ ✓ — the right angle is confirmed independently.**Bonus.** The legs are equal, so this is an isosceles right triangle.",
+          "check": [
+            "Eq(Rational(4 - 2, 5 - 1), Rational(1,2))",
+            "Eq(Rational(8 - 4, 3 - 5), -2)",
+            "Eq(Rational(1,2)*(-2), -1)",
+            "Eq((5-1)**2 + (4-2)**2, 20)",
+            "Eq((3-5)**2 + (8-4)**2, 20)",
+            "Eq((3-1)**2 + (8-2)**2, 40)",
+            "Eq(20 + 20, 40)",
+            "Eq(Rational(1,2)*20, 10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the reciprocal without changing the sign, or the sign without the reciprocal.",
+          "correction": "Perpendicular to slope 3/5 is −5/3. Both operations, every time. Check by multiplying: the product must be exactly −1.",
+          "authored": true
+        },
+        {
+          "text": "Applying the product test to a horizontal and a vertical line.",
+          "correction": "They ARE perpendicular, but one slope is undefined and 0 × undefined means nothing. Recognise this pair by inspection instead.",
+          "authored": true
+        },
+        {
+          "text": "Calling two lines parallel when they are actually the same line.",
+          "correction": "Equal slopes AND equal intercepts means one line drawn twice. Parallel requires the intercepts to differ.",
+          "authored": true
+        },
+        {
+          "text": "Reading a slope off standard form without rearranging.",
+          "correction": "2x − 3y = 12 has slope 2/3, not 2. Solve for y first — the same point Unit 4 made.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u8-l2-t1",
+          "statement": "Are $y = -4x + 1$ and $y = \\frac{1}{4}x - 7$ parallel, perpendicular, or neither?",
+          "solution": "The slopes are $-4$ and $\\frac{1}{4}$. Their product is $-4 \\times \\frac{1}{4} = -1$, so the lines are **perpendicular**.",
+          "check": [
+            "Eq(-4*Rational(1,4), -1)",
+            "Ne(-4, Rational(1,4))"
+          ]
+        },
+        {
+          "id": "im1-u8-l2-t2",
+          "statement": "Write the equation of the line through $(2, 5)$ parallel to $y = 3x - 8$.",
+          "solution": "Parallel means the same slope, $m = 3$. Point-slope: $y - 5 = 3(x - 2)$, so $y = 3x - 1$. Check at $x = 2$: $6 - 1 = 5$ ✓, and the intercept $-1$ differs from $-8$, so they really are two distinct parallel lines.",
+          "check": [
+            "Eq(3*2 - 1, 5)",
+            "Ne(-1, -8)"
+          ]
+        },
+        {
+          "id": "im1-u8-l2-t3",
+          "statement": "Write the equation of the line through $(6, 3)$ perpendicular to $y = 2x + 9$.",
+          "solution": "The perpendicular slope is $-\\frac{1}{2}$, and $2 \\times \\left(-\\frac{1}{2}\\right) = -1$ ✓. Point-slope: $y - 3 = -\\frac{1}{2}(x - 6)$, so $y = -\\frac{1}{2}x + 6$. Check at $x = 6$: $-3 + 6 = 3$ ✓",
+          "check": [
+            "Eq(2*Rational(-1,2), -1)",
+            "Eq(Rational(-1,2)*6 + 6, 3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.5",
+            "title": "Parallel is equal slopes",
+            "body": "Two lines climbing at the same rate keep a constant gap, so they never meet. That is Unit 5's 'no solution' case, seen from the geometry side rather than the algebra side."
+          },
+          {
+            "kind": "systemGraph",
+            "eyebrow": "Same rate, constant gap",
+            "title": "Parallel lines",
+            "teach": "$y = \\frac{2}{3}x + 5$ and $y = \\frac{2}{3}x - 4$. They rise identically, so the vertical gap of $9$ is the same everywhere — and two lines that never close a gap never cross.",
+            "config": {
+              "m1": 0.6667,
+              "b1": 5,
+              "m2": 0.6667,
+              "b2": -4,
+              "min": -6,
+              "max": 10
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Parallel, confirmed two ways",
+            "problemId": "im1-u8-l2-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The right-angle test",
+            "title": "Perpendicular slopes multiply to −1",
+            "body": "Flip the fraction AND change the sign — the NEGATIVE RECIPROCAL. Perpendicular to $\\frac{3}{5}$ is $-\\frac{5}{3}$. Doing only one of the two operations is the standard error, and multiplying the pair catches it instantly.",
+            "beats": [
+              "$m_1 \\cdot m_2 = -1$",
+              "$\\frac{3}{5} \\to -\\frac{5}{3}$: flipped **and** negated",
+              "$2 \\to -\\frac{1}{2}$; $-4 \\to \\frac{1}{4}$",
+              "Always verify: the product must be exactly $-1$"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where it comes from",
+            "title": "It follows from the rotation rule",
+            "body": "A quarter turn about the origin sends a direction step $(a, b)$ to $(-b, a)$ — Unit 7's rule. The original slope is $\\frac{b}{a}$ and the turned one is $-\\frac{a}{b}$, whose product is $-1$. The criterion is a consequence, not a rule from nowhere."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What is the perpendicular slope?",
+            "prompt": "A line has slope $-\\frac{2}{7}$. What is the slope of any line perpendicular to it?",
+            "options": [
+              "$\\frac{7}{2}$",
+              "$-\\frac{7}{2}$",
+              "$\\frac{2}{7}$",
+              "$-\\frac{2}{7}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Flip to $-\\frac{7}{2}$, then change the sign to $\\frac{7}{2}$. Verify: $-\\frac{2}{7} \\times \\frac{7}{2} = -1$ ✓. Option B only flips; option C only changes the sign — and neither product comes to $-1$.",
+            "check": [
+              "Eq(Rational(-2,7)*Rational(7,2), -1)",
+              "Ne(Rational(-2,7)*Rational(-7,2), -1)",
+              "Ne(Rational(-2,7)*Rational(2,7), -1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Writing the perpendicular line",
+            "problemId": "im1-u8-l2-we2"
+          },
+          {
+            "kind": "tip",
+            "title": "The one pair the formula cannot handle",
+            "body": "A horizontal line and a vertical line meet at a right angle, but one has slope $0$ and the other has no slope at all — their product is meaningless. Recognise this pair by inspection; do not try to force the test onto it."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.4",
+            "title": "Classifying a shape becomes arithmetic",
+            "body": "Compute the four side slopes and the side lengths. Two pairs of equal slopes give a parallelogram; perpendicular adjacent sides make it a rectangle; equal adjacent lengths make it a rhombus; both make it a square.",
+            "beats": [
+              "Opposite slopes equal → **parallelogram**",
+              "+ adjacent slopes multiply to $-1$ → **rectangle**",
+              "+ adjacent sides equal in length → **rhombus**",
+              "Both extras → **square**"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A rhombus, identified from coordinates",
+            "problemId": "im1-u8-l2-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "Finding a right angle by slope",
+            "problemId": "im1-u8-l2-we4"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which quadrilateral is it?",
+            "prompt": "A quadrilateral has opposite sides with equal slopes, and adjacent sides whose slopes multiply to $-1$, but adjacent sides of DIFFERENT lengths. What is it?",
+            "options": [
+              "A square",
+              "A rectangle",
+              "A rhombus",
+              "A trapezoid only"
+            ],
+            "correctIndex": 1,
+            "explanation": "Equal opposite slopes make it a parallelogram; adjacent slopes multiplying to $-1$ add right angles, giving a rectangle. It is not a square, because that would also require the adjacent sides to be equal in length — and they are not.",
+            "check": [
+              "Eq(Rational(1,2)*(-2), -1)",
+              "Ne(3, 5)"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — classify the pair",
+            "problemId": "im1-u8-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a perpendicular line",
+            "problemId": "im1-u8-l2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Parallel ⟺ equal slopes (with different intercepts)",
+              "Perpendicular ⟺ product of slopes is $-1$ — flip **and** negate",
+              "It follows from the quarter-turn rule, not from memory",
+              "Horizontal and vertical are perpendicular but escape the product test",
+              "Slopes plus lengths classify any quadrilateral from its coordinates"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "partitioning-a-segment",
+      "title": "Partitioning a Segment in a Ratio",
+      "concreteComparison": "A road runs from a village to a town, and a service station is to be built one third of the way along. Where exactly? Not at the midpoint, and not by guessing — the point dividing a segment in a given ratio has a formula, and it generalises the midpoint you already know.",
+      "objective": "Find the point dividing a directed segment in a given ratio, recognise the midpoint as the special case $1:1$, and interpret the ratio correctly as parts of the whole.",
+      "concept": [
+        "**Move a fraction of the way from one end.** To find the point $P$ that is a fraction $t$ of the way from $A$ to $B$, add $t$ of the total change to $A$'s coordinates: $$P = \\big(x_A + t(x_B - x_A), \\ \\ y_A + t(y_B - y_A)\\big).$$ The differences are the total journey; $t$ is how much of it you take.",
+        "**Converting a ratio to a fraction.** A ratio $m : n$ from $A$ to $B$ means the segment is cut into $m + n$ equal parts, with $m$ of them before $P$. So $t = \\frac{m}{m + n}$. A ratio of $1 : 3$ gives $t = \\frac{1}{4}$ — a quarter of the way, NOT a third. Reading $1:3$ as \"one third\" is the single most common error here.",
+        "**The midpoint is the halfway case.** Substituting $t = \\frac{1}{2}$ gives $x_A + \\frac{1}{2}(x_B - x_A) = \\frac{x_A + x_B}{2}$ — the midpoint formula, recovered. Everything in the previous lesson is the special case $1:1$ of this one.",
+        "**Direction matters.** The segment is DIRECTED: a ratio $1:2$ from $A$ to $B$ gives a different point from $1:2$ from $B$ to $A$. Read which endpoint the problem starts at, and start your arithmetic there. Getting this backwards produces a point that is correct for the opposite journey.",
+        "**Check by measuring both pieces.** Once you have $P$, compute $AP$ and $PB$ with the distance formula and confirm their ratio matches what was asked. That check costs two lines and catches both the fraction error and the direction error."
+      ],
+      "keyIdea": "$P = A + t(B - A)$ coordinate-wise, with $t = \\frac{m}{m+n}$ for a ratio $m:n$ from $A$ to $B$. The midpoint is $t = \\frac{1}{2}$.",
+      "facts": [
+        {
+          "title": "The partition formula",
+          "latex": "P = \\big(x_A + t(x_B - x_A), \\ y_A + t(y_B - y_A)\\big)",
+          "explanation": "Start at A and take t of the total change. Applies to each coordinate separately."
+        },
+        {
+          "title": "Ratio to fraction",
+          "latex": "m : n \\ \\Longrightarrow\\ t = \\frac{m}{m + n}",
+          "explanation": "The segment splits into m + n parts. A ratio of 1:3 gives t = 1/4, a quarter — not a third."
+        },
+        {
+          "title": "Midpoint is the special case",
+          "latex": "t = \\tfrac{1}{2} \\ \\Longrightarrow\\ P = \\left(\\tfrac{x_A + x_B}{2}, \\tfrac{y_A + y_B}{2}\\right)",
+          "explanation": "Substituting a half recovers the midpoint formula exactly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u8-l3-we1",
+          "statement": "Find the point one third of the way from $A(2, 3)$ to $B(11, 15)$.",
+          "solution": "**The fraction.** \"One third of the way\" gives $t = \\frac{1}{3}$ directly.**The total change.** $x_B - x_A = 11 - 2 = 9$ and $y_B - y_A = 15 - 3 = 12$.**Take a third of each change, starting from the first point.**$$x_P = 2 + \\frac{1}{3}(9) = 2 + 3 = 5,$$$$y_P = 3 + \\frac{1}{3}(12) = 3 + 4 = 7.$$So $P = (5, 7)$.**Check with distances.** $AP = \\sqrt{9 + 16} = 5$ and $AB = \\sqrt{81 + 144} = \\sqrt{225} = 15$. Indeed $\\frac{AP}{AB} = \\frac{5}{15} = \\frac{1}{3}$ ✓**And the remaining piece.** $PB = \\sqrt{36 + 64} = 10$, so $AP : PB = 5 : 10 = 1 : 2$ — one part before, two parts after, which is what \"one third of the way\" means.",
+          "check": [
+            "Eq(2 + Rational(1,3)*9, 5)",
+            "Eq(3 + Rational(1,3)*12, 7)",
+            "Eq((5-2)**2 + (7-3)**2, 25)",
+            "Eq((11-2)**2 + (15-3)**2, 225)",
+            "Eq(Rational(5,15), Rational(1,3))",
+            "Eq((11-5)**2 + (15-7)**2, 100)"
+          ]
+        },
+        {
+          "id": "im1-u8-l3-we2",
+          "statement": "Find the point $P$ dividing the segment from $A(-3, 2)$ to $B(9, 8)$ in the ratio $1 : 3$.",
+          "solution": "**Convert the ratio.** The segment splits into $1 + 3 = 4$ equal parts, with $1$ before $P$:$$t = \\frac{1}{1 + 3} = \\frac{1}{4}.$$A QUARTER of the way — not a third. This is the step the ratio notation invites you to get wrong.**The total change.** $9 - (-3) = 12$ and $8 - 2 = 6$.**Apply the formula.**$$x_P = -3 + \\frac{1}{4}(12) = -3 + 3 = 0,$$$$y_P = 2 + \\frac{1}{4}(6) = 2 + 1.5 = 3.5.$$So $P = (0, 3.5)$.**Check the ratio of the pieces.** $AP = \\sqrt{9 + 2.25} = \\sqrt{11.25}$ and $PB = \\sqrt{81 + 20.25} = \\sqrt{101.25}$. Then $$\\frac{PB}{AP} = \\sqrt{\\frac{101.25}{11.25}} = \\sqrt{9} = 3,$$so $AP : PB = 1 : 3$ ✓ exactly as required.",
+          "check": [
+            "Eq(Rational(1, 1 + 3), Rational(1,4))",
+            "Eq(-3 + Rational(1,4)*12, 0)",
+            "Eq(2 + Rational(1,4)*6, Rational(7,2))",
+            "Eq((0 - (-3))**2 + (Rational(7,2) - 2)**2, Rational(45,4))",
+            "Eq((9 - 0)**2 + (8 - Rational(7,2))**2, Rational(405,4))",
+            "Eq(Rational(405,4)/Rational(45,4), 9)"
+          ]
+        },
+        {
+          "id": "im1-u8-l3-we3",
+          "statement": "Find the point dividing $A(1, 6)$ to $B(13, -2)$ in the ratio $3 : 1$, and compare with the point for $1 : 3$.",
+          "solution": "**The three-to-one split.** Four parts, three before $P$:$$t = \\frac{3}{3 + 1} = \\frac{3}{4}.$$The change is $13 - 1 = 12$ and $-2 - 6 = -8$.$$x_P = 1 + \\frac{3}{4}(12) = 1 + 9 = 10, \\qquad y_P = 6 + \\frac{3}{4}(-8) = 6 - 6 = 0.$$So $P = (10, 0)$ — three quarters of the way, close to $B$.**The one-to-three split.** Now $t = \\frac{1}{4}$:$$x = 1 + 3 = 4, \\qquad y = 6 - 2 = 4,$$giving $(4, 4)$ — a quarter of the way, close to $A$.**The comparison.** $3 : 1$ and $1 : 3$ give genuinely different points, on opposite sides of the midpoint. The midpoint itself would be $t = \\frac{1}{2}$: $(7, 2)$, and both answers sit symmetrically about it ✓**Which side to expect.** The FIRST number in the ratio is the piece nearest the starting point. A large first number pushes $P$ toward $B$; a small one keeps it near $A$.",
+          "check": [
+            "Eq(Rational(3, 3 + 1), Rational(3,4))",
+            "Eq(1 + Rational(3,4)*12, 10)",
+            "Eq(6 + Rational(3,4)*(-8), 0)",
+            "Eq(1 + Rational(1,4)*12, 4)",
+            "Eq(6 + Rational(1,4)*(-8), 4)",
+            "Eq(Rational(1 + 13, 2), 7)",
+            "Eq(Rational(6 + (-2), 2), 2)"
+          ]
+        },
+        {
+          "id": "im1-u8-l3-we4",
+          "statement": "A pipeline runs from a pump at $(0, 0)$ to a tank at $(20, 15)$. A valve is needed $60\\%$ of the way along. Find its position and its distance from the pump.",
+          "solution": "**The fraction.** $60\\% = 0.6$, so $t = \\frac{3}{5}$.**Apply the formula.** The total change is $20$ and $15$:$$x = 0 + \\frac{3}{5}(20) = 12, \\qquad y = 0 + \\frac{3}{5}(15) = 9.$$The valve goes at $(12, 9)$.**Distance from the pump.**$$\\sqrt{12^2 + 9^2} = \\sqrt{144 + 81} = \\sqrt{225} = 15.$$**Check against the whole pipeline.**$$\\text{total length} = \\sqrt{400 + 225} = \\sqrt{625} = 25.$$And $\\frac{15}{25} = \\frac{3}{5} = 60\\%$ ✓ — the valve really is sixty percent along.**Why the check matters.** Sixty percent of the way in DISTANCE is what the engineer wants, and it is what the formula gives — because taking $60\\%$ of both coordinate changes scales the whole displacement by $60\\%$. Had you taken $60\\%$ of only one coordinate, the point would have been off the pipeline entirely.",
+          "check": [
+            "Eq(Rational(3,5)*20, 12)",
+            "Eq(Rational(3,5)*15, 9)",
+            "Eq(12**2 + 9**2, 225)",
+            "Eq(20**2 + 15**2, 625)",
+            "Eq(Rational(15,25), Rational(3,5))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a ratio of 1:3 as one third of the way.",
+          "correction": "1:3 splits the segment into 1 + 3 = 4 parts, so it is one QUARTER of the way. The denominator is the SUM, not the second number.",
+          "authored": true
+        },
+        {
+          "text": "Starting from the wrong endpoint.",
+          "correction": "The segment is directed. A ratio from A to B is not the same as from B to A — read which endpoint the problem starts at and begin your arithmetic there.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying the coordinates by t instead of the differences.",
+          "correction": "It is x_A + t(x_B − x_A), not t·x_B. The fraction applies to the CHANGE, then gets added to the starting coordinate.",
+          "authored": true
+        },
+        {
+          "text": "Applying the fraction to only one coordinate.",
+          "correction": "Both coordinates take the same fraction of their own change. Scaling only one moves the point off the segment altogether.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u8-l3-t1",
+          "statement": "Find the point halfway from $A(3, 7)$ to $B(11, 1)$ using the partition formula, and confirm it matches the midpoint formula.",
+          "solution": "With $t = \\frac{1}{2}$: $x = 3 + \\frac{1}{2}(8) = 7$ and $y = 7 + \\frac{1}{2}(-6) = 4$, giving $(7, 4)$. The midpoint formula gives $\\left(\\frac{3+11}{2}, \\frac{7+1}{2}\\right) = (7, 4)$ ✓ — the same point, as it must be.",
+          "check": [
+            "Eq(3 + Rational(1,2)*8, 7)",
+            "Eq(7 + Rational(1,2)*(-6), 4)",
+            "Eq(Rational(3 + 11, 2), 7)",
+            "Eq(Rational(7 + 1, 2), 4)"
+          ]
+        },
+        {
+          "id": "im1-u8-l3-t2",
+          "statement": "Find the point dividing $A(0, 0)$ to $B(10, 5)$ in the ratio $2 : 3$.",
+          "solution": "Five parts with two before $P$, so $t = \\frac{2}{5}$. Then $x = 0 + \\frac{2}{5}(10) = 4$ and $y = 0 + \\frac{2}{5}(5) = 2$, giving $(4, 2)$.",
+          "check": [
+            "Eq(Rational(2, 2 + 3), Rational(2,5))",
+            "Eq(Rational(2,5)*10, 4)",
+            "Eq(Rational(2,5)*5, 2)"
+          ]
+        },
+        {
+          "id": "im1-u8-l3-t3",
+          "statement": "Find the point three quarters of the way from $A(-2, 8)$ to $B(10, -4)$.",
+          "solution": "With $t = \\frac{3}{4}$: the changes are $12$ and $-12$, so $x = -2 + 9 = 7$ and $y = 8 - 9 = -1$, giving $(7, -1)$. Check: this should be closer to $B$ than to $A$, and indeed $AP = \\sqrt{81 + 81}$ while $PB = \\sqrt{9 + 9}$, a ratio of $3 : 1$ ✓",
+          "check": [
+            "Eq(-2 + Rational(3,4)*12, 7)",
+            "Eq(8 + Rational(3,4)*(-12), -1)",
+            "Eq((7 - (-2))**2 + (-1 - 8)**2, 162)",
+            "Eq((10 - 7)**2 + (-4 - (-1))**2, 18)",
+            "Eq(Rational(162,18), 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.6",
+            "title": "Take a fraction of the journey",
+            "body": "To go $t$ of the way from $A$ to $B$, add $t$ of the total change to $A$. The differences $x_B - x_A$ and $y_B - y_A$ are the whole journey; $t$ is how much of it you travel.",
+            "beats": [
+              "Total change: $(x_B - x_A, \\ y_B - y_A)$",
+              "Take $t$ of each",
+              "Add to $A$'s coordinates",
+              "Both coordinates, same fraction"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The trap",
+            "title": "A ratio m:n gives t = m/(m+n)",
+            "body": "The segment is cut into $m + n$ equal parts, with $m$ of them before the point. So $1 : 3$ means a QUARTER of the way, not a third. The denominator is the SUM — this is the error the notation invites.",
+            "beats": [
+              "$1 : 1 \\to t = \\frac{1}{2}$ (the midpoint)",
+              "$1 : 3 \\to t = \\frac{1}{4}$, **not** $\\frac{1}{3}$",
+              "$2 : 3 \\to t = \\frac{2}{5}$",
+              "$3 : 1 \\to t = \\frac{3}{4}$"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "One third of the way",
+            "problemId": "im1-u8-l3-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What fraction is this?",
+            "prompt": "A point divides a segment from $A$ to $B$ in the ratio $2 : 5$. What fraction of the way from $A$ is it?",
+            "options": [
+              "$\\frac{2}{5}$",
+              "$\\frac{2}{7}$",
+              "$\\frac{5}{7}$",
+              "$\\frac{1}{2}$"
+            ],
+            "correctIndex": 1,
+            "explanation": "The segment splits into $2 + 5 = 7$ equal parts, with $2$ of them before the point, so $t = \\frac{2}{7}$. Choosing $\\frac{2}{5}$ uses the second number as the denominator instead of the sum — the classic slip. Note $\\frac{2}{7} < \\frac{1}{2}$, so the point is nearer $A$, which matches the smaller first number.",
+            "check": [
+              "Eq(Rational(2, 2 + 5), Rational(2,7))",
+              "Rational(2,7) < Rational(1,2)",
+              "Ne(Rational(2,7), Rational(2,5))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A ratio of 1 to 3",
+            "problemId": "im1-u8-l3-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The connection",
+            "title": "The midpoint is just t = one half",
+            "body": "Substitute $t = \\frac{1}{2}$ and the formula collapses to $\\frac{x_A + x_B}{2}$ — the midpoint formula. Everything in the last lesson is the special case $1 : 1$ of this one."
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Where the point lands",
+            "title": "A quarter, a half, three quarters",
+            "teach": "The same segment, three different partition points. A small first number in the ratio keeps the point near the start; a large one pushes it toward the end. The midpoint sits exactly between the two.",
+            "config": {
+              "mode": "midpoint",
+              "a": {
+                "x": 1,
+                "y": 6
+              },
+              "b": {
+                "x": 13,
+                "y": -2
+              },
+              "min": -4,
+              "max": 15
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "3:1 against 1:3",
+            "problemId": "im1-u8-l3-we3"
+          },
+          {
+            "kind": "tip",
+            "title": "Direction matters — read the endpoints",
+            "body": "A ratio \"from $A$ to $B$\" is not the same as \"from $B$ to $A$\". Start your arithmetic at the endpoint the problem names first. Getting this backwards gives a point that is correct for the opposite journey — plausible and wrong."
+          },
+          {
+            "kind": "worked",
+            "title": "A valve on a pipeline",
+            "problemId": "im1-u8-l3-we4"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which point is nearer B?",
+            "prompt": "Two points divide the same segment from $A$ to $B$: one in the ratio $1 : 4$, the other in the ratio $4 : 1$. Which is nearer $B$?",
+            "options": [
+              "The $1 : 4$ point",
+              "The $4 : 1$ point",
+              "They are the same distance",
+              "It depends on the coordinates"
+            ],
+            "correctIndex": 1,
+            "explanation": "The FIRST number is the piece before the point. For $4 : 1$, $t = \\frac{4}{5}$ — four fifths of the way, close to $B$. For $1 : 4$, $t = \\frac{1}{5}$, close to $A$. A large first number pushes the point toward the far end.",
+            "check": [
+              "Eq(Rational(4, 4 + 1), Rational(4,5))",
+              "Eq(Rational(1, 1 + 4), Rational(1,5))",
+              "Rational(4,5) > Rational(1,5)"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — recover the midpoint",
+            "problemId": "im1-u8-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a 2:3 split",
+            "problemId": "im1-u8-l3-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$P = A + t(B - A)$, coordinate by coordinate",
+              "Ratio $m : n$ gives $t = \\frac{m}{m+n}$ — the **sum** is the denominator",
+              "$1 : 3$ is a quarter of the way, not a third",
+              "The midpoint is $t = \\frac{1}{2}$, the case $1 : 1$",
+              "Check by measuring both pieces and comparing their ratio"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "coordinate-proof",
+      "title": "Proving Geometric Facts with Coordinates",
+      "concreteComparison": "A claim like \"the diagonals of a rectangle are equal\" can be checked by drawing one rectangle and measuring — which proves nothing about the next rectangle. Place it on axes with letters instead of numbers, and one computation settles every rectangle at once. That is what a coordinate proof buys you.",
+      "objective": "Prove a simple geometric theorem by placing a figure on coordinate axes and computing with the distance, midpoint and slope formulas, using variables so the argument covers every case.",
+      "concept": [
+        "**Place the figure conveniently.** You may put the figure anywhere on the axes, so choose the placement that makes the algebra easiest: a vertex at the origin, a side along the $x$-axis. This is not cheating — the claim is about the shape, and a shape does not change when you slide or turn it, which Unit 7 established.",
+        "**Use letters, not numbers.** A rectangle with corners at $(0,0)$, $(6,0)$, $(6,4)$, $(0,4)$ proves one fact about one rectangle. Corners at $(0,0)$, $(a,0)$, $(a,b)$, $(0,b)$ prove it for EVERY rectangle at once, because $a$ and $b$ stand for any positive lengths. That generality is the whole point.",
+        "**Pick the right tool for the claim.** Lengths equal? Distance formula. Bisecting or midpoints? Midpoint formula. Parallel or perpendicular? Slopes. Most coordinate proofs are one of these three applied once or twice.",
+        "**A worked template.** To prove a rectangle's diagonals are equal: place it at $(0,0), (a,0), (a,b), (0,b)$; compute both diagonals with the distance formula; observe they are both $\\sqrt{a^2 + b^2}$; conclude. Four lines, and it holds for every rectangle.",
+        "**Say what the algebra shows.** A coordinate proof is finished by a sentence, not by a final expression. \"Both diagonals have length $\\sqrt{a^2 + b^2}$, so they are equal for every rectangle\" is the proof; the algebra above it is the evidence.",
+        "**Know the limits.** A coordinate proof needs a figure you can place with coordinates, and it works best for claims about lengths, midpoints and directions. Claims about circles or angle measures other than right angles are usually cleaner with the synthetic methods of a later course."
+      ],
+      "keyIdea": "Place the figure conveniently, label with LETTERS so the proof covers every case, compute with distance, midpoint or slope, and finish with a sentence stating what was shown.",
+      "facts": [
+        {
+          "title": "Convenient placement",
+          "latex": "\\text{a vertex at } (0,0), \\ \\text{a side along the } x\\text{-axis}",
+          "explanation": "Zeros make the algebra short. The claim is unaffected, since a rigid motion changes no length or angle."
+        },
+        {
+          "title": "Letters, not numbers",
+          "latex": "(0,0), (a,0), (a,b), (0,b) \\ \\text{— every rectangle at once}",
+          "explanation": "Specific numbers prove one case. Variables prove all of them."
+        },
+        {
+          "title": "Tool by claim",
+          "latex": "\\text{lengths} \\to \\text{distance}; \\ \\text{halving} \\to \\text{midpoint}; \\ \\text{direction} \\to \\text{slope}",
+          "explanation": "Match the formula to what the theorem asserts."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u8-l4-we1",
+          "statement": "Prove that the diagonals of any rectangle are equal in length.",
+          "solution": "**Place the rectangle.** Put one vertex at the origin and two sides along the axes:$$A(0, 0), \\quad B(a, 0), \\quad C(a, b), \\quad D(0, b),$$with $a > 0$ and $b > 0$. This is a rectangle for any such $a$ and $b$: adjacent sides lie along perpendicular axes.**Compute the diagonals.**$$AC = \\sqrt{(a - 0)^2 + (b - 0)^2} = \\sqrt{a^2 + b^2},$$$$BD = \\sqrt{(0 - a)^2 + (b - 0)^2} = \\sqrt{a^2 + b^2}.$$**Conclude.** Both diagonals have length $\\sqrt{a^2 + b^2}$, so $AC = BD$ — and since $a$ and $b$ were arbitrary positive numbers, this holds for **every** rectangle.**Test with a specific case.** Take $a = 6$, $b = 8$: both diagonals come to $\\sqrt{36 + 64} = 10$ ✓. But the letters are what make it a proof rather than an example.",
+          "check": [
+            "Eq(6**2 + 8**2, 100)",
+            "Eq(sqrt(100), 10)",
+            "Eq(simplify((Symbol('a')**2 + Symbol('b')**2) - ((0 - Symbol('a'))**2 + Symbol('b')**2)), 0)"
+          ]
+        },
+        {
+          "id": "im1-u8-l4-we2",
+          "statement": "Prove that the diagonals of any parallelogram bisect each other.",
+          "solution": "**Place the parallelogram.** Put one vertex at the origin and one side along the $x$-axis:$$A(0, 0), \\quad B(a, 0), \\quad C(a + c, \\ d), \\quad D(c, d).$$This IS a parallelogram: $\\vec{AB}$ and $\\vec{DC}$ are both $(a, 0)$, and $\\vec{AD}$ and $\\vec{BC}$ are both $(c, d)$ — opposite sides equal and parallel.**Find the midpoint of each diagonal.**Diagonal $AC$, from $(0,0)$ to $(a + c, d)$:$$M_1 = \\left(\\frac{0 + a + c}{2}, \\ \\frac{0 + d}{2}\\right) = \\left(\\frac{a + c}{2}, \\ \\frac{d}{2}\\right).$$Diagonal $BD$, from $(a, 0)$ to $(c, d)$:$$M_2 = \\left(\\frac{a + c}{2}, \\ \\frac{0 + d}{2}\\right) = \\left(\\frac{a + c}{2}, \\ \\frac{d}{2}\\right).$$**Conclude.** $M_1 = M_2$ — the two diagonals share a midpoint, which is exactly what it means for them to bisect each other. True for every choice of $a$, $c$ and $d$, hence for every parallelogram.**Check numerically.** With $a = 6$, $c = 2$, $d = 4$: the vertices are $(0,0), (6,0), (8,4), (2,4)$. Midpoint of $AC$: $(4, 2)$. Midpoint of $BD$: $\\left(\\frac{6+2}{2}, \\frac{0+4}{2}\\right) = (4, 2)$ ✓ — the same point.",
+          "check": [
+            "Eq(Rational(0 + 8, 2), 4)",
+            "Eq(Rational(0 + 4, 2), 2)",
+            "Eq(Rational(6 + 2, 2), 4)",
+            "Eq(Rational(0 + 4, 2), 2)",
+            "Eq(simplify((Symbol('a') + Symbol('c'))/2 - (Symbol('a') + Symbol('c'))/2), 0)"
+          ]
+        },
+        {
+          "id": "im1-u8-l4-we3",
+          "statement": "Prove that the segment joining the midpoints of two sides of a triangle is parallel to the third side and half its length.",
+          "solution": "**Place the triangle.** One vertex at the origin, one side along the $x$-axis:$$A(0, 0), \\quad B(2a, 0), \\quad C(2b, 2c).$$Using $2a$, $2b$, $2c$ rather than $a$, $b$, $c$ keeps the midpoints free of fractions — a standard convenience, and legitimate since any triangle can be written this way.**Find the two midpoints.** Of $AC$:$$M = \\left(\\frac{0 + 2b}{2}, \\ \\frac{0 + 2c}{2}\\right) = (b, c).$$Of $BC$:$$N = \\left(\\frac{2a + 2b}{2}, \\ \\frac{0 + 2c}{2}\\right) = (a + b, \\ c).$$**Parallel?** $MN$ runs from $(b, c)$ to $(a+b, c)$ — both have $y = c$, so $MN$ is horizontal. And $AB$ runs from $(0,0)$ to $(2a, 0)$ — also horizontal. Two horizontal segments are parallel ✓**Half the length?**$$MN = |(a + b) - b| = |a|, \\qquad AB = |2a - 0| = |2a|.$$So $MN = \\frac{1}{2}AB$ ✓**Conclude.** The midsegment is parallel to the third side and exactly half its length — for every triangle, since $a$, $b$ and $c$ were arbitrary.**Numerical check.** With $a = 3$, $b = 1$, $c = 4$: the triangle is $(0,0), (6,0), (2,8)$; midpoints are $(1,4)$ and $(4,4)$; $MN = 3$ and $AB = 6$ ✓",
+          "check": [
+            "Eq(Rational(0 + 2, 2), 1)",
+            "Eq(Rational(0 + 8, 2), 4)",
+            "Eq(Rational(6 + 2, 2), 4)",
+            "Eq(Abs(4 - 1), 3)",
+            "Eq(Abs(6 - 0), 6)",
+            "Eq(3, Rational(1,2)*6)"
+          ]
+        },
+        {
+          "id": "im1-u8-l4-we4",
+          "statement": "Prove that a triangle with vertices $(0,0)$, $(a, 0)$ and $(0, b)$ has its hypotenuse's midpoint equidistant from all three vertices.",
+          "solution": "**The setup.** The triangle is right-angled at the origin, since one leg lies along each axis. The hypotenuse runs from $(a, 0)$ to $(0, b)$.**The midpoint of the hypotenuse.**$$M = \\left(\\frac{a + 0}{2}, \\ \\frac{0 + b}{2}\\right) = \\left(\\frac{a}{2}, \\ \\frac{b}{2}\\right).$$**Distance to each vertex.** To the origin:$$\\sqrt{\\left(\\frac{a}{2}\\right)^2 + \\left(\\frac{b}{2}\\right)^2} = \\frac{\\sqrt{a^2 + b^2}}{2}.$$To $(a, 0)$:$$\\sqrt{\\left(\\frac{a}{2} - a\\right)^2 + \\left(\\frac{b}{2}\\right)^2} = \\sqrt{\\frac{a^2}{4} + \\frac{b^2}{4}} = \\frac{\\sqrt{a^2 + b^2}}{2}.$$To $(0, b)$:$$\\sqrt{\\left(\\frac{a}{2}\\right)^2 + \\left(\\frac{b}{2} - b\\right)^2} = \\frac{\\sqrt{a^2 + b^2}}{2}.$$**Conclude.** All three distances equal $\\frac{\\sqrt{a^2+b^2}}{2}$ — half the hypotenuse. The midpoint of the hypotenuse is equidistant from every vertex, for every right triangle.**What this means geometrically.** That common distance is a radius: the three vertices lie on a circle centred at the hypotenuse's midpoint, with the hypotenuse as diameter. This is Thales' theorem, proved here by arithmetic alone.**Numerical check.** With $a = 6$, $b = 8$: $M = (3, 4)$, and the distances are $\\sqrt{9+16} = 5$, $\\sqrt{9+16} = 5$, $\\sqrt{9+16} = 5$ ✓ — all half the hypotenuse of $10$.",
+          "check": [
+            "Eq(3**2 + 4**2, 25)",
+            "Eq((3 - 6)**2 + 4**2, 25)",
+            "Eq(3**2 + (4 - 8)**2, 25)",
+            "Eq(sqrt(25), 5)",
+            "Eq(6**2 + 8**2, 100)",
+            "Eq(5, Rational(1,2)*10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Proving the theorem with specific numbers instead of letters.",
+          "correction": "Numbers prove one case. Letters prove every case — and only the general version is a proof.",
+          "authored": true
+        },
+        {
+          "text": "Placing the figure awkwardly and drowning in algebra.",
+          "correction": "You may place it anywhere. A vertex at the origin and a side on an axis introduces zeros that cancel most of the work.",
+          "authored": true
+        },
+        {
+          "text": "Stopping at the final expression without stating the conclusion.",
+          "correction": "Finish with a sentence: 'both diagonals equal √(a² + b²), so they are equal for every rectangle.' The algebra is evidence; the sentence is the proof.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a placement that is more special than the theorem allows.",
+          "correction": "Placing a parallelogram as (0,0), (a,0), (a,b), (0,b) makes it a RECTANGLE and proves less than claimed. Use (0,0), (a,0), (a+c,d), (c,d).",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u8-l4-t1",
+          "statement": "Verify with $a = 5$, $b = 12$ that the diagonals of the rectangle $(0,0), (a,0), (a,b), (0,b)$ are equal, and give their common length.",
+          "solution": "Both diagonals are $\\sqrt{25 + 144} = \\sqrt{169} = 13$. They are equal, as the general proof showed for every $a$ and $b$.",
+          "check": [
+            "Eq(5**2 + 12**2, 169)",
+            "Eq(sqrt(169), 13)",
+            "Eq((0 - 5)**2 + 12**2, 169)"
+          ]
+        },
+        {
+          "id": "im1-u8-l4-t2",
+          "statement": "A quadrilateral has vertices $(0,0)$, $(a, 0)$, $(a + c, d)$, $(c, d)$. Show its opposite sides are parallel.",
+          "solution": "The bottom side runs from $(0,0)$ to $(a,0)$: horizontal, slope $0$. The top runs from $(c,d)$ to $(a+c, d)$: also horizontal, slope $0$ — parallel ✓. The left side has slope $\\frac{d}{c}$ and the right side runs from $(a,0)$ to $(a+c, d)$, slope $\\frac{d}{c}$ — parallel ✓. So it is a parallelogram.",
+          "check": [
+            "Eq(Rational(4 - 0, 2 - 0), 2)",
+            "Eq(Rational(4 - 0, 8 - 6), 2)",
+            "Eq(0, 0)"
+          ]
+        },
+        {
+          "id": "im1-u8-l4-t3",
+          "statement": "Why is it wrong to prove a fact about all parallelograms using the placement $(0,0), (a,0), (a,b), (0,b)$?",
+          "solution": "Those four points form a RECTANGLE — the sides meet the axes at right angles. Proving something for that placement proves it only for rectangles, a special case. A general parallelogram needs $(0,0), (a,0), (a+c,d), (c,d)$, where the slanted side has slope $\\frac{d}{c}$ rather than being vertical.",
+          "check": [
+            "Eq(Rational(4 - 0, 2 - 0), 2)",
+            "Ne(2, 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "G-GPE.4",
+            "title": "Place the figure where the algebra is easiest",
+            "body": "You are free to put the shape anywhere on the axes — a rigid motion changes no length or angle, as Unit 7 established. So put a vertex at the origin and a side along an axis, and let the zeros do the work.",
+            "beats": [
+              "Vertex at $(0, 0)$",
+              "One side along the $x$-axis",
+              "Zeros cancel most of the algebra",
+              "The theorem is unaffected by where you put it"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The essential move",
+            "title": "Letters, not numbers",
+            "body": "A rectangle at $(0,0), (6,0), (6,4), (0,4)$ proves one fact about one rectangle. At $(0,0), (a,0), (a,b), (0,b)$ it proves the fact for EVERY rectangle — because $a$ and $b$ stand for any positive lengths."
+          },
+          {
+            "kind": "worked",
+            "title": "A rectangle's diagonals",
+            "problemId": "im1-u8-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which placement proves the most?",
+            "prompt": "You want to prove a fact about ALL parallelograms. Which placement should you use?",
+            "options": [
+              "$(0,0), (6,0), (8,4), (2,4)$",
+              "$(0,0), (a,0), (a,b), (0,b)$",
+              "$(0,0), (a,0), (a+c,d), (c,d)$",
+              "$(0,0), (1,0), (2,1), (1,1)$"
+            ],
+            "correctIndex": 2,
+            "explanation": "Option C uses letters throughout and allows a genuinely slanted side, so it covers every parallelogram. Option B is secretly a RECTANGLE — its sides run along the axes — and would prove less than claimed. Options A and D are single numerical cases, which prove nothing general.",
+            "check": [
+              "Eq(Rational(4, 2), 2)",
+              "Ne(2, 0)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Choosing the tool",
+            "title": "Match the formula to the claim",
+            "body": "Lengths equal? Distance formula. Something bisected, or a midpoint named? Midpoint formula. Parallel or perpendicular? Slopes. Almost every coordinate proof is one of these three, used once or twice."
+          },
+          {
+            "kind": "worked",
+            "title": "A parallelogram's diagonals bisect",
+            "problemId": "im1-u8-l4-we2"
+          },
+          {
+            "kind": "tip",
+            "title": "Double the letters to avoid fractions",
+            "body": "If a proof involves midpoints, place the figure with $2a$, $2b$, $2c$ instead of $a$, $b$, $c$. The midpoints then come out as whole letters, and the algebra stays clean. Perfectly legitimate — any triangle can be labelled that way."
+          },
+          {
+            "kind": "worked",
+            "title": "The midsegment theorem",
+            "problemId": "im1-u8-l4-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "Thales, proved by arithmetic",
+            "problemId": "im1-u8-l4-we4"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What finishes a coordinate proof?",
+            "prompt": "You have shown both diagonals of a general rectangle equal $\\sqrt{a^2 + b^2}$. What must you write next?",
+            "options": [
+              "Nothing — the algebra is the proof",
+              "A sentence stating that the diagonals are therefore equal for every rectangle",
+              "A numerical example to confirm it",
+              "The value of $a$ and $b$"
+            ],
+            "correctIndex": 1,
+            "explanation": "A proof ends with the claim, stated. The algebra is the evidence; the sentence is what it establishes — and it must say that the result holds generally, since $a$ and $b$ were arbitrary. A numerical example is a useful check but adds nothing to the proof.",
+            "check": [
+              "Eq(6**2 + 8**2, 100)",
+              "Eq(5**2 + 12**2, 169)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "title": "Know when to reach for something else",
+            "body": "Coordinate proof is excellent for lengths, midpoints and directions. Claims about circles or about angles other than right angles are usually cleaner with synthetic geometry. Choosing the right method is part of the skill."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — verify the diagonals",
+            "problemId": "im1-u8-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — why the placement matters",
+            "problemId": "im1-u8-l4-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Place the figure conveniently — a vertex at the origin, a side on an axis",
+              "Use **letters** so the proof covers every case, not one drawing",
+              "Distance for lengths, midpoint for bisection, slope for direction",
+              "Do not over-specialise the placement — check it is still general",
+              "Finish with a **sentence** stating what the algebra has shown"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "im1-u8-pr-1",
+      "statement": "Find the distance between $(1, 5)$ and $(9, 11)$.",
+      "solution": "The legs are $8$ and $6$, so $d = \\sqrt{64 + 36} = \\sqrt{100} = 10$.",
+      "check": [
+        "Eq(8**2 + 6**2, 100)",
+        "Eq(sqrt(100), 10)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-2",
+      "statement": "Find the distance between $(-2, -3)$ and $(3, 9)$.",
+      "solution": "The legs are $3 - (-2) = 5$ and $9 - (-3) = 12$, so $d = \\sqrt{25 + 144} = \\sqrt{169} = 13$.",
+      "check": [
+        "Eq(5**2 + 12**2, 169)",
+        "Eq(sqrt(169), 13)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-3",
+      "statement": "Find the midpoint of $(3, -7)$ and $(11, 5)$.",
+      "solution": "$$\\left(\\frac{3 + 11}{2}, \\ \\frac{-7 + 5}{2}\\right) = (7, -1).$$",
+      "check": [
+        "Eq(Rational(3 + 11, 2), 7)",
+        "Eq(Rational(-7 + 5, 2), -1)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-4",
+      "statement": "The midpoint of $CD$ is $(2, 6)$ and $C$ is $(-3, 1)$. Find $D$.",
+      "solution": "$D_x = 2(2) - (-3) = 7$ and $D_y = 2(6) - 1 = 11$, so $D = (7, 11)$. Check the midpoint: $\\left(\\frac{-3+7}{2}, \\frac{1+11}{2}\\right) = (2, 6)$ ✓",
+      "check": [
+        "Eq(2*2 - (-3), 7)",
+        "Eq(2*6 - 1, 11)",
+        "Eq(Rational(-3 + 7, 2), 2)",
+        "Eq(Rational(1 + 11, 2), 6)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-5",
+      "statement": "Are $y = \\frac{1}{3}x + 4$ and $y = -3x + 1$ parallel, perpendicular, or neither?",
+      "solution": "The product of the slopes is $\\frac{1}{3} \\times (-3) = -1$, so the lines are **perpendicular**.",
+      "check": [
+        "Eq(Rational(1,3)*(-3), -1)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-6",
+      "statement": "Write the equation of the line through $(-2, 7)$ parallel to $y = -4x + 5$.",
+      "solution": "Parallel means slope $-4$. Point-slope: $y - 7 = -4(x + 2)$, so $y = -4x - 1$. Check at $x = -2$: $8 - 1 = 7$ ✓",
+      "check": [
+        "Eq(-4*(-2) - 1, 7)",
+        "Ne(-1, 5)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-7",
+      "statement": "Write the equation of the line through $(3, -4)$ perpendicular to $y = \\frac{3}{2}x - 1$.",
+      "solution": "The perpendicular slope is $-\\frac{2}{3}$, and $\\frac{3}{2} \\times \\left(-\\frac{2}{3}\\right) = -1$ ✓. Point-slope: $y + 4 = -\\frac{2}{3}(x - 3)$, so $y = -\\frac{2}{3}x - 2$. Check at $x = 3$: $-2 - 2 = -4$ ✓",
+      "check": [
+        "Eq(Rational(3,2)*Rational(-2,3), -1)",
+        "Eq(Rational(-2,3)*3 - 2, -4)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-8",
+      "statement": "Find the point one quarter of the way from $A(0, 4)$ to $B(16, 20)$.",
+      "solution": "With $t = \\frac{1}{4}$ and changes of $16$ and $16$: $x = 0 + 4 = 4$ and $y = 4 + 4 = 8$, giving $(4, 8)$.",
+      "check": [
+        "Eq(0 + Rational(1,4)*16, 4)",
+        "Eq(4 + Rational(1,4)*16, 8)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-9",
+      "statement": "Find the point dividing $A(2, 1)$ to $B(14, 10)$ in the ratio $2 : 1$.",
+      "solution": "Three parts with two before the point, so $t = \\frac{2}{3}$. The changes are $12$ and $9$, so $x = 2 + 8 = 10$ and $y = 1 + 6 = 7$, giving $(10, 7)$.",
+      "check": [
+        "Eq(Rational(2, 2 + 1), Rational(2,3))",
+        "Eq(2 + Rational(2,3)*12, 10)",
+        "Eq(1 + Rational(2,3)*9, 7)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-10",
+      "statement": "A triangle has vertices $(0, 0)$, $(8, 0)$, $(0, 6)$. Find its perimeter and area.",
+      "solution": "The legs are $8$ and $6$; the hypotenuse is $\\sqrt{64 + 36} = 10$. Perimeter $= 8 + 6 + 10 = 24$; area $= \\frac{1}{2}(8)(6) = 24$.",
+      "check": [
+        "Eq(8**2 + 6**2, 100)",
+        "Eq(8 + 6 + 10, 24)",
+        "Eq(Rational(1,2)*8*6, 24)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-11",
+      "statement": "Show that the quadrilateral $(0,0)$, $(4,0)$, $(4,3)$, $(0,3)$ is a rectangle, and find its diagonal.",
+      "solution": "The bottom and top sides are horizontal (slope $0$); the left and right are vertical. Horizontal meets vertical at a right angle, so all four angles are right angles — a rectangle. The diagonal is $\\sqrt{16 + 9} = 5$, and the other diagonal from $(4,0)$ to $(0,3)$ is also $\\sqrt{16 + 9} = 5$ ✓",
+      "check": [
+        "Eq(4**2 + 3**2, 25)",
+        "Eq(sqrt(25), 5)",
+        "Eq((0-4)**2 + (3-0)**2, 25)"
+      ]
+    },
+    {
+      "id": "im1-u8-pr-12",
+      "statement": "Show that the triangle with vertices $(0,0)$, $(4,2)$, $(2,-4)$ is right-angled.",
+      "solution": "Slopes: from $(0,0)$ to $(4,2)$ is $\\frac{2}{4} = \\frac{1}{2}$; from $(0,0)$ to $(2,-4)$ is $\\frac{-4}{2} = -2$. Their product is $\\frac{1}{2} \\times (-2) = -1$, so those two sides are perpendicular and the right angle is at the origin. Confirm with Pythagoras: the legs are $\\sqrt{20}$ and $\\sqrt{20}$, the hypotenuse from $(4,2)$ to $(2,-4)$ is $\\sqrt{4 + 36} = \\sqrt{40}$, and $20 + 20 = 40$ ✓",
+      "check": [
+        "Eq(Rational(2,4)*Rational(-4,2), -1)",
+        "Eq(4**2 + 2**2, 20)",
+        "Eq(2**2 + (-4)**2, 20)",
+        "Eq((4-2)**2 + (2-(-4))**2, 40)",
+        "Eq(20 + 20, 40)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "im1-u8-ty-1",
+      "statement": "A quadrilateral has vertices $P(-1, 2)$, $Q(3, 4)$, $R(5, 0)$, $S(1, -2)$. Classify it as precisely as you can, using both slopes and lengths.",
+      "solution": "**Slopes.**$$m_{PQ} = \\frac{4-2}{3-(-1)} = \\frac{2}{4} = \\frac{1}{2}, \\qquad m_{QR} = \\frac{0-4}{5-3} = -2,$$$$m_{RS} = \\frac{-2-0}{1-5} = \\frac{-2}{-4} = \\frac{1}{2}, \\qquad m_{SP} = \\frac{2-(-2)}{-1-1} = \\frac{4}{-2} = -2.$$**Parallelogram?** Opposite sides have equal slopes ($\\frac{1}{2}$ twice, $-2$ twice), so yes.**Rectangle?** Adjacent slopes: $\\frac{1}{2} \\times (-2) = -1$ ✓ — the adjacent sides ARE perpendicular, so all four angles are right angles.**Square?** Compare adjacent side lengths:$$PQ = \\sqrt{16 + 4} = \\sqrt{20}, \\qquad QR = \\sqrt{4 + 16} = \\sqrt{20}.$$Equal — so all four sides are equal too.**Conclusion.** A parallelogram with right angles AND equal sides is a **square**.**Cross-check with the diagonals.** $PR = \\sqrt{36 + 4} = \\sqrt{40}$ and $QS = \\sqrt{4 + 36} = \\sqrt{40}$ — equal, as a square's diagonals must be ✓",
+      "check": [
+        "Eq(Rational(4-2, 3-(-1)), Rational(1,2))",
+        "Eq(Rational(0-4, 5-3), -2)",
+        "Eq(Rational(-2-0, 1-5), Rational(1,2))",
+        "Eq(Rational(1,2)*(-2), -1)",
+        "Eq((3-(-1))**2 + (4-2)**2, 20)",
+        "Eq((5-3)**2 + (0-4)**2, 20)",
+        "Eq((5-(-1))**2 + (0-2)**2, 40)",
+        "Eq((1-3)**2 + (-2-4)**2, 40)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-2",
+      "statement": "Find the equation of the perpendicular bisector of the segment joining $A(2, 1)$ and $B(8, 9)$.",
+      "solution": "**The bisector passes through the midpoint.**$$M = \\left(\\frac{2 + 8}{2}, \\ \\frac{1 + 9}{2}\\right) = (5, 5).$$**And it is perpendicular to the segment.** The slope of $AB$ is$$m_{AB} = \\frac{9 - 1}{8 - 2} = \\frac{8}{6} = \\frac{4}{3},$$so the bisector's slope is the negative reciprocal, $-\\frac{3}{4}$. Check: $\\frac{4}{3} \\times \\left(-\\frac{3}{4}\\right) = -1$ ✓**Point-slope through the midpoint.**$$y - 5 = -\\frac{3}{4}(x - 5) \\quad\\Longrightarrow\\quad y = -\\frac{3}{4}x + \\frac{15}{4} + 5 = -\\frac{3}{4}x + \\frac{35}{4}.$$**Verify the equidistance property.** A point on the perpendicular bisector should be the same distance from $A$ and $B$. Take $x = 1$: $y = \\frac{32}{4} = 8$, giving $(1, 8)$. Then $\\sqrt{1 + 49} = \\sqrt{50}$ to $A$, and $\\sqrt{49 + 1} = \\sqrt{50}$ to $B$ ✓ — equal, exactly as the construction in Unit 7 guaranteed.",
+      "check": [
+        "Eq(Rational(2 + 8, 2), 5)",
+        "Eq(Rational(1 + 9, 2), 5)",
+        "Eq(Rational(9 - 1, 8 - 2), Rational(4,3))",
+        "Eq(Rational(4,3)*Rational(-3,4), -1)",
+        "Eq(Rational(-3,4)*5 + Rational(35,4), 5)",
+        "Eq(Rational(-3,4)*1 + Rational(35,4), 8)",
+        "Eq((1-2)**2 + (8-1)**2, 50)",
+        "Eq((8-1)**2 + (9-8)**2, 50)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-3",
+      "statement": "Find the point that divides the segment from $A(-4, 10)$ to $B(8, -2)$ in the ratio $1 : 5$, and verify the ratio by measuring both pieces.",
+      "solution": "**Convert the ratio.** Six parts with one before the point:$$t = \\frac{1}{1 + 5} = \\frac{1}{6}.$$**Apply the formula.** The changes are $8 - (-4) = 12$ and $-2 - 10 = -12$:$$x = -4 + \\frac{1}{6}(12) = -4 + 2 = -2,$$$$y = 10 + \\frac{1}{6}(-12) = 10 - 2 = 8.$$So $P = (-2, 8)$.**Verify by measuring.**$$AP = \\sqrt{(-2+4)^2 + (8-10)^2} = \\sqrt{4 + 4} = \\sqrt{8},$$$$PB = \\sqrt{(8+2)^2 + (-2-8)^2} = \\sqrt{100 + 100} = \\sqrt{200}.$$$$\\frac{PB}{AP} = \\sqrt{\\frac{200}{8}} = \\sqrt{25} = 5,$$so $AP : PB = 1 : 5$ ✓ exactly as required.**The common error avoided.** Reading $1 : 5$ as \"one fifth\" would give $t = \\frac{1}{5}$ and the point $(-1.6, 7.6)$ — close enough to look plausible and wrong. The denominator is the SUM.",
+      "check": [
+        "Eq(Rational(1, 1 + 5), Rational(1,6))",
+        "Eq(-4 + Rational(1,6)*12, -2)",
+        "Eq(10 + Rational(1,6)*(-12), 8)",
+        "Eq((-2+4)**2 + (8-10)**2, 8)",
+        "Eq((8+2)**2 + (-2-8)**2, 200)",
+        "Eq(Rational(200,8), 25)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-4",
+      "statement": "Prove that the diagonals of a square are perpendicular, using a general coordinate placement.",
+      "solution": "**Place the square generally.** A square of side $a > 0$ with a vertex at the origin:$$A(0,0), \\quad B(a, 0), \\quad C(a, a), \\quad D(0, a).$$This is a square for any $a > 0$: all four sides have length $a$, and adjacent sides lie along perpendicular directions.**Compute the diagonal slopes.**$$m_{AC} = \\frac{a - 0}{a - 0} = 1, \\qquad m_{BD} = \\frac{a - 0}{0 - a} = \\frac{a}{-a} = -1.$$**Test perpendicularity.**$$m_{AC} \\cdot m_{BD} = 1 \\times (-1) = -1.$$**Conclude.** The product is $-1$, so the diagonals are perpendicular — and since $a$ was an arbitrary positive length, this holds for **every** square.**Note what the algebra did.** The $a$ cancelled in both slopes, which is why the result does not depend on the square's size. That cancellation IS the generality.**Numerical check.** With $a = 7$: diagonals from $(0,0)$ to $(7,7)$ and from $(7,0)$ to $(0,7)$, with slopes $1$ and $-1$ ✓",
+      "check": [
+        "Eq(Rational(7 - 0, 7 - 0), 1)",
+        "Eq(Rational(7 - 0, 0 - 7), -1)",
+        "Eq(1*(-1), -1)",
+        "Eq(simplify(Symbol('a')/Symbol('a')), 1)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-5",
+      "statement": "A triangle has vertices $A(1, 1)$, $B(7, 3)$, $C(3, 7)$. Find the length of the median from $A$, and the coordinates of the midpoint of $BC$.",
+      "solution": "**The median.** From $A$ it runs to the midpoint of the opposite side $BC$.**Find that midpoint.**$$M = \\left(\\frac{7 + 3}{2}, \\ \\frac{3 + 7}{2}\\right) = (5, 5).$$**Length of the median.**$$AM = \\sqrt{(5 - 1)^2 + (5 - 1)^2} = \\sqrt{16 + 16} = \\sqrt{32} = 4\\sqrt{2}.$$So the median from $A$ has length $4\\sqrt{2} \\approx 5.66$.**Sanity check.** The median should be shorter than the sum of the two sides it sits between. $AB = \\sqrt{36 + 4} = \\sqrt{40} \\approx 6.32$ and $AC = \\sqrt{4 + 36} = \\sqrt{40} \\approx 6.32$, and $5.66$ is comfortably less than either — reasonable for a segment running into the triangle's interior ✓**A bonus observation.** $AB = AC = \\sqrt{40}$, so the triangle is isosceles — and in an isosceles triangle the median from the apex is also the perpendicular bisector of the base. Check: $m_{BC} = \\frac{7-3}{3-7} = -1$ and $m_{AM} = \\frac{5-1}{5-1} = 1$, whose product is $-1$ ✓",
+      "check": [
+        "Eq(Rational(7 + 3, 2), 5)",
+        "Eq(Rational(3 + 7, 2), 5)",
+        "Eq((5-1)**2 + (5-1)**2, 32)",
+        "Eq((7-1)**2 + (3-1)**2, 40)",
+        "Eq((3-1)**2 + (7-1)**2, 40)",
+        "Eq(Rational(7-3, 3-7)*Rational(5-1, 5-1), -1)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-6",
+      "statement": "Prove that in any triangle, the segment joining the midpoints of two sides is half the length of the third side. Use a general placement.",
+      "solution": "**Place the triangle** with a vertex at the origin and a side along the $x$-axis, doubling the letters so midpoints stay whole:$$A(0, 0), \\quad B(2p, 0), \\quad C(2q, 2r).$$Any triangle can be labelled this way, so nothing is lost.**Midpoint of the first side.**$$M = \\left(\\frac{0 + 2q}{2}, \\ \\frac{0 + 2r}{2}\\right) = (q, r).$$**Midpoint of the second side.**$$N = \\left(\\frac{2p + 2q}{2}, \\ \\frac{0 + 2r}{2}\\right) = (p + q, \\ r).$$**Length of the midsegment.**$$MN = \\sqrt{\\big((p+q) - q\\big)^2 + (r - r)^2} = \\sqrt{p^2} = |p|.$$**Length of the third side.**$$AB = \\sqrt{(2p - 0)^2 + 0^2} = |2p|.$$**Conclude.**$$MN = |p| = \\frac{1}{2}|2p| = \\frac{1}{2}AB,$$so the midsegment is exactly half the third side — for every triangle, since $p$, $q$ and $r$ were arbitrary.**And it is parallel too.** Both $M$ and $N$ have $y$-coordinate $r$, so $MN$ is horizontal; $AB$ lies along the $x$-axis, also horizontal. Parallel ✓**Numerical check.** With $p = 4$, $q = 1$, $r = 3$: the triangle is $(0,0), (8,0), (2,6)$; the midpoints are $(1,3)$ and $(5,3)$; $MN = 4$ and $AB = 8$ ✓",
+      "check": [
+        "Eq(Rational(0 + 2, 2), 1)",
+        "Eq(Rational(0 + 6, 2), 3)",
+        "Eq(Rational(8 + 2, 2), 5)",
+        "Eq(Abs(5 - 1), 4)",
+        "Eq(Abs(8 - 0), 8)",
+        "Eq(4, Rational(1,2)*8)"
+      ]
+    },
+    {
+      "id": "im1-u8-ty-7",
+      "statement": "A park is a quadrilateral with corners at $(0, 0)$, $(12, 0)$, $(15, 8)$ and $(3, 8)$, in metres. Find its perimeter, show two sides are parallel, and find the point on the longer parallel side that is $\\frac{2}{3}$ of the way from its left end.",
+      "solution": "**Side lengths.**$$\\text{bottom}: \\sqrt{144 + 0} = 12, \\qquad \\text{right}: \\sqrt{9 + 64} = \\sqrt{73} \\approx 8.54,$$$$\\text{top}: \\sqrt{(15-3)^2 + 0} = 12, \\qquad \\text{left}: \\sqrt{9 + 64} = \\sqrt{73} \\approx 8.54.$$**Perimeter.**$$12 + 12 + 2\\sqrt{73} \\approx 24 + 17.09 = 41.09\\ \\text{m}.$$**Parallel sides.** The bottom runs from $(0,0)$ to $(12,0)$ — slope $0$. The top runs from $(3,8)$ to $(15,8)$ — also slope $0$. Both horizontal, hence parallel ✓ (The other pair have slope $\\frac{8}{3}$ each, so they are parallel too — this is in fact a parallelogram, and since all four sides are not equal, not a rhombus.)**The partition point.** Both parallel sides have length $12$, so take the bottom, from $(0,0)$ to $(12,0)$, with $t = \\frac{2}{3}$:$$x = 0 + \\frac{2}{3}(12) = 8, \\qquad y = 0 + \\frac{2}{3}(0) = 0.$$The point is $(8, 0)$ — eight metres along a twelve-metre side, which is indeed two thirds ✓",
+      "check": [
+        "Eq(12**2, 144)",
+        "Eq(3**2 + 8**2, 73)",
+        "Eq((15-3)**2, 144)",
+        "Eq(Rational(8 - 0, 15 - 12), Rational(8,3))",
+        "Eq(Rational(8 - 0, 3 - 0), Rational(8,3))",
+        "Eq(Rational(2,3)*12, 8)",
+        "Eq(Rational(8,12), Rational(2,3))"
+      ]
+    }
+  ]
+}

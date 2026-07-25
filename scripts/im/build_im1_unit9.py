@@ -1,0 +1,1996 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 1 — Unit 9: Describing Data.
+
+CCSS Integrated Math I: S-ID.1-3 (represent one-variable data; compare centre
+and spread; account for outliers), S-ID.5 (two-way frequency tables, joint,
+marginal and conditional relative frequencies), S-ID.6 (fit a function to
+bivariate data and analyse residuals), S-ID.7-9 (interpret slope and intercept
+in context, interpret the correlation coefficient, and distinguish correlation
+from causation).
+
+The last unit of IM1, and the one whose habits outlast the algebra. Every claim
+a student will meet in a newspaper for the rest of their life is a claim about
+data, and the difference between reading it and being fooled by it is here.
+
+Run: python3 scripts/im/build_im1_unit9.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-1"
+
+
+# ===========================================================================
+# Lesson 1 — S-ID.2, S-ID.3: centre and spread
+# ===========================================================================
+def lesson_centre_spread():
+    return lesson(
+        slug="centre-and-spread",
+        title="Centre & Spread",
+        concrete=(
+            "Two classes both average $70$ on a test. In one, every score is between $66$ and "
+            "$74$; in the other, half the class scored above $95$ and half below $45$. The same "
+            "average describes two completely different situations — which is why a centre alone "
+            "never describes a data set, and why spread is not an optional extra."
+        ),
+        objective=(
+            "Compute the mean, median, range and interquartile range of a data set, choose the "
+            "measure of centre that suits the distribution's shape, and identify outliers by the "
+            "$1.5 \\times \\text{IQR}$ rule."
+        ),
+        concept=[
+            "**Two measures of centre, two jobs.** The MEAN adds everything and divides by the "
+            "count — it uses every value, which is its strength and its weakness. The MEDIAN is "
+            "the middle value once the data is sorted — it ignores how extreme the extremes are, "
+            "which makes it robust.",
+            "**Outliers drag the mean and leave the median alone.** Add one salary of "
+            "$50$ million to a list of ordinary salaries and the mean jumps; the median barely "
+            "moves. So when a distribution is SKEWED or contains outliers, report the median. When "
+            "it is roughly symmetric with no extremes, the mean uses more of the information and "
+            "is the better summary.",
+            "**Range is the crudest spread.** Largest minus smallest. It is easy and it is "
+            "fragile: one unusual value sets it entirely, so it can describe a data set nobody "
+            "would recognise.",
+            "**The five-number summary and the IQR.** Sort the data, then find the minimum, the "
+            "first quartile $Q_1$ (median of the lower half), the median, the third quartile "
+            "$Q_3$ (median of the upper half), and the maximum. The INTERQUARTILE RANGE is "
+            "$Q_3 - Q_1$ — the width of the middle half of the data, and a spread measure that "
+            "outliers cannot inflate.",
+            "**The outlier rule.** A value is an outlier if it lies below "
+            "$Q_1 - 1.5 \\times \\text{IQR}$ or above $Q_3 + 1.5 \\times \\text{IQR}$. Those two "
+            "numbers are the FENCES. The rule is a convention, not a law of nature — but it is a "
+            "consistent one, which is what makes it useful.",
+            "**An outlier is a question, not a verdict.** Finding one does not mean deleting it. "
+            "It may be a recording error (investigate and fix), or it may be the most interesting "
+            "point in the data set. Removing values because they are inconvenient is how honest "
+            "analysis becomes dishonest.",
+        ],
+        key_idea=(
+            "Mean uses every value and is dragged by outliers; median ignores extremes and is "
+            "robust. IQR measures the middle half, and the $1.5 \\times \\text{IQR}$ fences flag "
+            "outliers for investigation — not deletion."
+        ),
+        facts=[
+            fact(
+                "Mean and median",
+                "\\bar{x} = \\frac{\\sum x}{n} \\qquad \\text{median} = \\text{the middle of the "
+                "sorted data}",
+                "Mean uses every value; median uses only position. That difference is the whole "
+                "lesson.",
+            ),
+            fact(
+                "Interquartile range",
+                "\\text{IQR} = Q_3 - Q_1",
+                "The width of the middle 50% of the data. Immune to how extreme the extremes are.",
+            ),
+            fact(
+                "The outlier fences",
+                "Q_1 - 1.5 \\times \\text{IQR} \\quad \\text{and} \\quad "
+                "Q_3 + 1.5 \\times \\text{IQR}",
+                "Values beyond either fence are flagged as outliers — a convention, applied "
+                "consistently.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u9-l1-we1",
+                "Find the mean and median of $4, 7, 7, 9, 13$. Then add the value $61$ and "
+                "recompute both.",
+                "**Original set.** Already sorted, five values."
+                "$$\\text{mean} = \\frac{4 + 7 + 7 + 9 + 13}{5} = \\frac{40}{5} = 8.$$"
+                "The median is the third value: $7$."
+                "**After adding 61.** The sorted set is $4, 7, 7, 9, 13, 61$ — six values."
+                "$$\\text{mean} = \\frac{40 + 61}{6} = \\frac{101}{6} \\approx 16.83.$$"
+                "With an even count, the median is the average of the two middle values, the third "
+                "and fourth:"
+                "$$\\text{median} = \\frac{7 + 9}{2} = 8.$$"
+                "**Compare the damage.** The mean more than DOUBLED, from $8$ to $16.83$. The "
+                "median moved from $7$ to $8$ — one unit."
+                "**Which describes the data better?** The median. Five of the six values sit "
+                "between $4$ and $13$, and a summary of $16.83$ is larger than all but one of "
+                "them. A single extreme value has made the mean unrepresentative.",
+                [
+                    "Eq(Rational(4 + 7 + 7 + 9 + 13, 5), 8)",
+                    "Eq(Rational(40 + 61, 6), Rational(101,6))",
+                    "Eq(Rational(7 + 9, 2), 8)",
+                    "Rational(101,6) > 13",
+                ],
+            ),
+            problem(
+                "im1-u9-l1-we2",
+                "For the data $12, 15, 18, 22, 25, 28, 31, 35$, find the five-number summary, the "
+                "range and the IQR.",
+                "**Sorted, eight values.** Minimum $12$, maximum $35$."
+                "**Median.** With eight values, average the fourth and fifth:"
+                "$$\\text{median} = \\frac{22 + 25}{2} = 23.5.$$"
+                "**Quartiles.** The lower half is $12, 15, 18, 22$; its median is"
+                "$$Q_1 = \\frac{15 + 18}{2} = 16.5.$$"
+                "The upper half is $25, 28, 31, 35$; its median is"
+                "$$Q_3 = \\frac{28 + 31}{2} = 29.5.$$"
+                "**Five-number summary.** $12$, $16.5$, $23.5$, $29.5$, $35$."
+                "**Range.**"
+                "$$35 - 12 = 23.$$"
+                "**IQR.**"
+                "$$29.5 - 16.5 = 13.$$"
+                "**Reading them.** The full data spans $23$ units, but the middle half spans only "
+                "$13$ — so the data is fairly evenly spread rather than clustered tightly with "
+                "distant stragglers.",
+                [
+                    "Eq(Rational(22 + 25, 2), Rational(47,2))",
+                    "Eq(Rational(15 + 18, 2), Rational(33,2))",
+                    "Eq(Rational(28 + 31, 2), Rational(59,2))",
+                    "Eq(35 - 12, 23)",
+                    "Eq(Rational(59,2) - Rational(33,2), 13)",
+                ],
+            ),
+            problem(
+                "im1-u9-l1-we3",
+                "For the data $3, 5, 6, 6, 7, 8, 9, 10, 25$, find the IQR and use the "
+                "$1.5 \\times \\text{IQR}$ rule to identify any outliers.",
+                "**Sorted, nine values.** The median is the fifth: $7$."
+                "**Quartiles.** With an odd count, exclude the median from each half. The lower "
+                "half is $3, 5, 6, 6$, so"
+                "$$Q_1 = \\frac{5 + 6}{2} = 5.5.$$"
+                "The upper half is $8, 9, 10, 25$, so"
+                "$$Q_3 = \\frac{9 + 10}{2} = 9.5.$$"
+                "**IQR.**"
+                "$$9.5 - 5.5 = 4.$$"
+                "**Fences.**"
+                "$$\\text{lower} = 5.5 - 1.5(4) = 5.5 - 6 = -0.5,$$"
+                "$$\\text{upper} = 9.5 + 1.5(4) = 9.5 + 6 = 15.5.$$"
+                "**Check every value.** Nothing falls below $-0.5$. Above $15.5$: only $25$."
+                "$$25 > 15.5 \\quad\\Longrightarrow\\quad 25 \\ \\text{is an outlier}.$$"
+                "**What to do about it.** Flag it and investigate — was it a typing error, or a "
+                "genuinely unusual observation? Note also that $10$, the next largest, is "
+                "comfortably inside the fence, so $25$ really is separated from the rest rather "
+                "than merely being the largest.",
+                [
+                    "Eq(Rational(5 + 6, 2), Rational(11,2))",
+                    "Eq(Rational(9 + 10, 2), Rational(19,2))",
+                    "Eq(Rational(19,2) - Rational(11,2), 4)",
+                    "Eq(Rational(19,2) + Rational(3,2)*4, Rational(31,2))",
+                    "25 > Rational(31,2)",
+                    "Not(10 > Rational(31,2))",
+                ],
+            ),
+            problem(
+                "im1-u9-l1-we4",
+                "A company reports a mean salary of $2\\,400\\,000$₮ but a median of "
+                "$1\\,100\\,000$₮ across $9$ employees. Explain what this tells you, and decide "
+                "which figure a job applicant should trust.",
+                "**The gap is the message.** The mean is more than twice the median, which happens "
+                "only when a few very large values pull the mean upward. The distribution is "
+                "SKEWED to the right."
+                "**Reconstruct a possible picture.** Eight employees on around $1\\,100\\,000$₮ "
+                "and one director on a much larger salary would do it. If eight earn "
+                "$1\\,100\\,000$₮ each, that is $8\\,800\\,000$₮; a total of "
+                "$9 \\times 2\\,400\\,000 = 21\\,600\\,000$₮ leaves"
+                "$$21\\,600\\,000 - 8\\,800\\,000 = 12\\,800\\,000$$"
+                "for the ninth person. One salary of nearly $13$ million alongside eight of "
+                "$1.1$ million — and the median is untouched by it."
+                "**Which figure should the applicant trust?** The **median**. It says that half "
+                "the staff earn below $1\\,100\\,000$₮, which is what an ordinary new hire should "
+                "expect. The mean describes a salary almost nobody at the company receives."
+                "**Why companies quote the mean.** Because it is larger. Recognising the gap "
+                "between mean and median is exactly how you avoid being misled by an honest "
+                "number used dishonestly.",
+                [
+                    "Eq(9*2400000, 21600000)",
+                    "Eq(8*1100000, 8800000)",
+                    "Eq(21600000 - 8800000, 12800000)",
+                    "2400000 > 2*1100000",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Finding the median without sorting the data first.",
+                "The median is the middle of the SORTED list. Taking the middle of an unsorted "
+                "list returns an arbitrary value.",
+            ),
+            mistake(
+                "Taking a single middle value when the count is even.",
+                "With an even count, average the two middle values. Eight values means averaging "
+                "the fourth and fifth.",
+            ),
+            mistake(
+                "Reporting the mean for a badly skewed data set.",
+                "A few extreme values drag the mean away from where the data actually sits. Report "
+                "the median when the distribution is skewed, and say why.",
+            ),
+            mistake(
+                "Deleting an outlier because it is inconvenient.",
+                "Flag it and investigate. It may be an error worth fixing, or the most informative "
+                "point you have. Removing values to tidy a result is not analysis.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u9-l1-t1",
+                "Find the mean and median of $6, 9, 11, 14, 20$.",
+                "Mean: $\\frac{6 + 9 + 11 + 14 + 20}{5} = \\frac{60}{5} = 12$. Median: the third "
+                "value of the sorted list, $11$. They are close, which suggests no strong skew.",
+                [
+                    "Eq(Rational(6 + 9 + 11 + 14 + 20, 5), 12)",
+                    "Eq(11, 11)",
+                ],
+            ),
+            problem(
+                "im1-u9-l1-t2",
+                "Find the IQR of $2, 4, 5, 7, 8, 10, 12, 15$.",
+                "Eight values. The lower half is $2, 4, 5, 7$, so $Q_1 = \\frac{4+5}{2} = 4.5$. "
+                "The upper half is $8, 10, 12, 15$, so $Q_3 = \\frac{10+12}{2} = 11$. "
+                "IQR $= 11 - 4.5 = 6.5$.",
+                [
+                    "Eq(Rational(4 + 5, 2), Rational(9,2))",
+                    "Eq(Rational(10 + 12, 2), 11)",
+                    "Eq(11 - Rational(9,2), Rational(13,2))",
+                ],
+            ),
+            problem(
+                "im1-u9-l1-t3",
+                "A data set has $Q_1 = 20$ and $Q_3 = 32$. Find the fences and decide whether "
+                "$52$ is an outlier.",
+                "IQR $= 32 - 20 = 12$, so $1.5 \\times 12 = 18$. The fences are "
+                "$20 - 18 = 2$ and $32 + 18 = 50$. Since $52 > 50$, the value $52$ **is** an "
+                "outlier — though only just, so it is worth checking rather than assuming it is "
+                "an error.",
+                [
+                    "Eq(32 - 20, 12)",
+                    "Eq(Rational(3,2)*12, 18)",
+                    "Eq(32 + 18, 50)",
+                    "52 > 50",
+                    "Not(49 > 50)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.2",
+                "title": "A centre alone never describes data",
+                "body": (
+                    "Two classes averaging $70$ can look nothing alike — one tightly bunched, the "
+                    "other split between $95$s and $45$s. You need a measure of SPREAD alongside "
+                    "the centre, always."
+                ),
+            },
+            {
+                "kind": "dotPlot",
+                "eyebrow": "Mean against median",
+                "title": "One extreme value moves only one of them",
+                "teach": (
+                    "Watch what the far-right value does. The mean is pulled toward it — it uses "
+                    "every number. The median barely notices, because it only cares about "
+                    "position."
+                ),
+                "config": {
+                    "mode": "meanMedian",
+                    "data": [4, 7, 7, 9, 13, 61],
+                    "min": 0,
+                    "max": 65,
+                    "xLabel": "value",
+                },
+            },
+            {"kind": "worked", "title": "Adding one extreme value", "problemId": "im1-u9-l1-we1"},
+            tap(
+                "Which centre should you report?",
+                "House prices in a town: most between $80$ and $120$ million tugriks, with three "
+                "mansions above $900$ million. Which measure of centre describes a typical house?",
+                [
+                    "The mean",
+                    "The median",
+                    "The range",
+                    "Either — they will be similar",
+                ],
+                1,
+                "The three mansions drag the mean far above what most houses cost, while the "
+                "median stays among the ordinary houses. For a skewed distribution the median is "
+                "the honest summary. The range is a spread measure, not a centre.",
+                [
+                    "Eq(Rational(80 + 100 + 120 + 900, 4), 300)",
+                    "Eq(Rational(100 + 120, 2), 110)",
+                    "300 > 120",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.2",
+                "title": "The five-number summary",
+                "body": (
+                    "Sort the data and read off five values: minimum, $Q_1$, median, $Q_3$, "
+                    "maximum. The middle three split the data into quarters, and the gap between "
+                    "$Q_1$ and $Q_3$ is where half the data lives."
+                ),
+                "beats": [
+                    "Minimum and maximum give the **range**",
+                    "$Q_1$ = median of the lower half",
+                    "$Q_3$ = median of the upper half",
+                    "$\\text{IQR} = Q_3 - Q_1$ — the middle half",
+                ],
+            },
+            {
+                "kind": "boxPlot",
+                "eyebrow": "See the quarters",
+                "title": "A box plot is the five-number summary drawn",
+                "teach": (
+                    "The box spans $Q_1$ to $Q_3$ — the middle half of the data — with the median "
+                    "marked inside it. The whiskers reach the extremes. Turn on the fences to see "
+                    "which points the outlier rule flags."
+                ),
+                "config": {
+                    "data": [3, 5, 6, 6, 7, 8, 9, 10, 25],
+                    "xLabel": "value",
+                    "showFences": True,
+                },
+            },
+            {"kind": "worked", "title": "A full five-number summary", "problemId": "im1-u9-l1-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.3",
+                "title": "The 1.5 × IQR fences",
+                "body": (
+                    "Go one and a half IQRs below $Q_1$ and above $Q_3$. Anything beyond those "
+                    "fences is flagged as an outlier. It is a convention rather than a law — but "
+                    "applied consistently, which is what makes it useful."
+                ),
+            },
+            {"kind": "worked", "title": "Finding an outlier by the rule", "problemId": "im1-u9-l1-we3"},
+            tap(
+                "Is this value an outlier?",
+                "A data set has $Q_1 = 30$, $Q_3 = 50$. Is the value $85$ an outlier?",
+                [
+                    "Yes",
+                    "No",
+                    "Only if it is the maximum",
+                    "There is not enough information",
+                ],
+                0,
+                "IQR $= 50 - 30 = 20$, so $1.5 \\times 20 = 30$. The upper fence is "
+                "$50 + 30 = 80$, and $85 > 80$, so yes — it is flagged. Note $79$ would not be, "
+                "which shows how much the verdict depends on the fence rather than on the value "
+                "merely looking large.",
+                [
+                    "Eq(50 - 30, 20)",
+                    "Eq(50 + Rational(3,2)*20, 80)",
+                    "85 > 80",
+                    "Not(79 > 80)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "title": "An outlier is a question, not a verdict",
+                "body": (
+                    "Flagging a value does not license deleting it. It may be a recording error "
+                    "worth fixing — or the single most interesting observation in the set. "
+                    "Removing data because it is inconvenient is where honest analysis stops being "
+                    "honest."
+                ),
+            },
+            {"kind": "worked", "title": "Mean versus median in a salary claim", "problemId": "im1-u9-l1-we4"},
+            {"kind": "tryIt", "title": "Your turn — mean and median", "problemId": "im1-u9-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn — the fences", "problemId": "im1-u9-l1-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Mean uses every value; median uses only position — so only the mean is dragged",
+                    "Skewed or outlier-heavy data → report the **median**, and say why",
+                    "Five-number summary: min, $Q_1$, median, $Q_3$, max",
+                    "$\\text{IQR} = Q_3 - Q_1$ measures the middle half and resists extremes",
+                    "Fences at $1.5 \\times \\text{IQR}$ flag outliers to **investigate**, not delete",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — S-ID.1, S-ID.3: comparing distributions
+# ===========================================================================
+def lesson_comparing():
+    return lesson(
+        slug="comparing-distributions",
+        title="Comparing Distributions",
+        concrete=(
+            "Two buses run the same route. One averages $28$ minutes, the other $30$. You might "
+            "take the first — until you learn that the first ranges from $18$ to $50$ minutes "
+            "while the second is always between $28$ and $32$. If you need to arrive on time, the "
+            "slower bus is the better bus. Comparing distributions means comparing centre AND "
+            "spread AND shape."
+        ),
+        objective=(
+            "Compare two data sets by centre, spread and shape; read a dot plot, histogram and box "
+            "plot; and describe a distribution as symmetric, skewed or clustered."
+        ),
+        concept=[
+            "**Always compare on three axes.** CENTRE — which is typically higher? SPREAD — which "
+            "is more consistent? SHAPE — is either one lopsided, or does it have gaps or clusters? "
+            "A comparison that mentions only the average has answered a third of the question.",
+            "**Shape has vocabulary.** A SYMMETRIC distribution looks roughly the same on both "
+            "sides of its centre. A distribution SKEWED RIGHT has a long tail toward the high "
+            "values — and its mean sits above its median. SKEWED LEFT is the mirror image. "
+            "UNIFORM means roughly flat, and BIMODAL means two separate peaks, usually a sign that "
+            "two different groups have been mixed together.",
+            "**Where the mean sits tells you the skew.** In a right-skewed set the long tail pulls "
+            "the mean above the median; in a left-skewed set it pulls it below. So comparing mean "
+            "and median diagnoses the shape without drawing anything — which is exactly the "
+            "reasoning that read the salary claim in the previous lesson.",
+            "**Each display shows something different.** A DOT PLOT shows every individual value "
+            "and works for small sets. A HISTOGRAM groups values into bins and reveals overall "
+            "shape, but the bin width changes the picture. A BOX PLOT compresses to five numbers "
+            "and is unbeatable for comparing several groups side by side — at the cost of hiding "
+            "gaps and clusters entirely.",
+            "**Bin width is a choice that changes the story.** Too few bins and the shape is "
+            "flattened into a single block; too many and every random wobble looks like a feature. "
+            "A histogram is not a neutral picture of the data — it is one of several possible "
+            "pictures, and an honest analysis says which was chosen.",
+            "**Consistency can beat performance.** Lower spread means more predictable. Which "
+            "matters more depends entirely on the question: for a bus you need to catch, "
+            "consistency wins; for a test score you want the high average. Say which criterion you "
+            "are using and why.",
+        ],
+        key_idea=(
+            "Compare centre, spread AND shape. Mean above median means right-skewed. Dot plots "
+            "show every value, histograms show shape (at a chosen bin width), box plots compare "
+            "groups."
+        ),
+        facts=[
+            fact(
+                "Skew and the mean",
+                "\\text{right-skewed}: \\bar{x} > \\text{median} \\qquad "
+                "\\text{left-skewed}: \\bar{x} < \\text{median}",
+                "The long tail pulls the mean toward it. Comparing the two diagnoses the shape "
+                "without a graph.",
+            ),
+            fact(
+                "What each display shows",
+                "\\text{dot plot: every value} \\quad \\text{histogram: shape} \\quad "
+                "\\text{box plot: five numbers}",
+                "Choose by what you need to see. Box plots compare groups; dot plots preserve "
+                "detail.",
+            ),
+            fact(
+                "Consistency",
+                "\\text{smaller IQR or range} \\Rightarrow \\text{more predictable}",
+                "Whether that beats a higher centre depends on the question being asked.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u9-l2-we1",
+                "Bus A's journey times (minutes): $18, 22, 26, 28, 30, 34, 38, 44, 50$. Bus B's: "
+                "$28, 29, 29, 30, 30, 30, 31, 31, 32$. Compare them fully.",
+                "**Centre — median.** Both sets have nine values, so the median is the fifth."
+                "$$\\text{A}: 30, \\qquad \\text{B}: 30.$$"
+                "Identical."
+                "**Centre — mean.**"
+                "$$\\text{A}: \\frac{290}{9} \\approx 32.2, \\qquad "
+                "\\text{B}: \\frac{270}{9} = 30.$$"
+                "**Spread — range.**"
+                "$$\\text{A}: 50 - 18 = 32, \\qquad \\text{B}: 32 - 28 = 4.$$"
+                "A enormous difference: bus A's times vary by half an hour, bus B's by four "
+                "minutes."
+                "**Shape.** For A the mean ($32.2$) exceeds the median ($30$), so it is skewed "
+                "right — a few very slow journeys stretch the tail. For B the mean equals the "
+                "median exactly, so it is symmetric."
+                "**Conclusion.** Both buses typically take $30$ minutes, but B is far more "
+                "reliable. If you must arrive by a fixed time, take B — with A you might arrive in "
+                "$18$ minutes or in $50$, and you cannot know which.",
+                [
+                    "Eq(18+22+26+28+30+34+38+44+50, 290)",
+                    "Eq(28+29+29+30+30+30+31+31+32, 270)",
+                    "Eq(Rational(270,9), 30)",
+                    "Eq(50 - 18, 32)",
+                    "Eq(32 - 28, 4)",
+                    "Rational(290,9) > 30",
+                ],
+            ),
+            problem(
+                "im1-u9-l2-we2",
+                "A data set has mean $46$ and median $61$. Describe its likely shape and sketch "
+                "what it looks like.",
+                "**Compare the two.** The mean is BELOW the median:"
+                "$$46 < 61.$$"
+                "**Diagnosis.** A mean pulled below the median means a long tail toward the LOW "
+                "values — the distribution is **skewed left**."
+                "**The picture.** Most of the data bunches at the high end, with a thin tail "
+                "trailing off toward small values. The few low values drag the mean down while "
+                "leaving the median among the bulk."
+                "**A plausible data set.** $5, 8, 55, 58, 61, 63, 65, 67, 70$ has median $61$ and "
+                "mean $\\frac{452}{9} \\approx 50.2$ — the same pattern, with two low stragglers "
+                "doing all the damage."
+                "**A real example.** Exam scores on an easy test look like this: most students "
+                "score highly, a few score very low, and the mean understates how the typical "
+                "student did.",
+                [
+                    "46 < 61",
+                    "Eq(5+8+55+58+61+63+65+67+70, 452)",
+                    "Rational(452,9) < 61",
+                ],
+            ),
+            problem(
+                "im1-u9-l2-we3",
+                "Class X scores: $55, 60, 62, 65, 68, 70, 72, 75, 80$. Class Y: "
+                "$40, 45, 62, 66, 68, 70, 88, 92, 95$. Both have median $68$. Compare and advise "
+                "which class the teaching worked better for.",
+                "**Centre.** Both medians are $68$ (the fifth value of nine). Means:"
+                "$$\\text{X}: \\frac{607}{9} \\approx 67.4, \\qquad "
+                "\\text{Y}: \\frac{626}{9} \\approx 69.6.$$"
+                "Close — Y is marginally higher."
+                "**Spread — range.**"
+                "$$\\text{X}: 80 - 55 = 25, \\qquad \\text{Y}: 95 - 40 = 55.$$"
+                "Y's scores are more than twice as spread out."
+                "**Spread — IQR.** For X the lower half is $55, 60, 62, 65$ giving "
+                "$Q_1 = 61$, and the upper half $70, 72, 75, 80$ giving $Q_3 = 73.5$, so "
+                "IQR $= 12.5$. For Y the lower half is $40, 45, 62, 66$ giving $Q_1 = 53.5$, and "
+                "the upper half $70, 88, 92, 95$ giving $Q_3 = 90$, so IQR $= 36.5$."
+                "**Shape.** X is tightly clustered and roughly symmetric. Y is much more spread, "
+                "with a visible gap: three low scores, a middle group, then three high scores — "
+                "close to bimodal."
+                "**Advice.** The medians are identical, so \"which class did better\" has no clean "
+                "answer on centre alone. But X's teaching reached everyone: nobody is far behind. "
+                "In Y, three students are struggling badly while three excel — the same median "
+                "hides two very different classrooms, and Y needs targeted help for the bottom "
+                "group rather than more of the same for everyone.",
+                [
+                    "Eq(55+60+62+65+68+70+72+75+80, 607)",
+                    "Eq(40+45+62+66+68+70+88+92+95, 626)",
+                    "Eq(80 - 55, 25)",
+                    "Eq(95 - 40, 55)",
+                    "Eq(Rational(60 + 62, 2), 61)",
+                    "Eq(Rational(72 + 75, 2), Rational(147,2))",
+                    "Eq(Rational(147,2) - 61, Rational(25,2))",
+                    "Eq(Rational(88 + 92, 2), 90)",
+                    "Eq(Rational(45 + 62, 2), Rational(107,2))",
+                    "Eq(90 - Rational(107,2), Rational(73,2))",
+                ],
+            ),
+            problem(
+                "im1-u9-l2-we4",
+                "Explain how changing the bin width of a histogram can change the story the data "
+                "appears to tell.",
+                "**The data.** Suppose ages are "
+                "$21, 22, 23, 24, 41, 42, 43, 44, 61, 62, 63, 64$ — twelve values in three clear "
+                "clusters."
+                "**A bin width of ten.** The bins run $20$–$30$, $30$–$40$, $40$–$50$, "
+                "$50$–$60$, $60$–$70$, giving counts of $4, 0, 4, 0, 4$. The gaps are visible, and "
+                "the three clusters stand out clearly."
+                "**A bin width of fifty.** There is essentially one bin, $20$–$70$, containing "
+                "all $12$ values. The histogram is a single block, and the clustering has "
+                "vanished entirely."
+                "**A bin width of one.** Each of the twelve values gets its own bin of height "
+                "$1$. Nothing is grouped, so nothing is revealed — the picture is as noisy as the "
+                "raw list."
+                "**The lesson.** A histogram is not a neutral photograph of the data. Too wide a "
+                "bin hides structure; too narrow a bin invents it. An honest analysis states the "
+                "bin width used, and a careful reader checks whether a different width would "
+                "change the conclusion.",
+                [
+                    "Eq(len([21,22,23,24,41,42,43,44,61,62,63,64]), 12)",
+                    "Eq(4 + 0 + 4 + 0 + 4, 12)",
+                    "Eq(12*1, 12)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Comparing two data sets by their means alone.",
+                "Centre, spread AND shape. Two sets with identical means can behave completely "
+                "differently, and the spread is often what the decision turns on.",
+            ),
+            mistake(
+                "Reading 'skewed right' as the bulk of the data being on the right.",
+                "The skew is named for the TAIL, not the bulk. Right-skewed means a long tail "
+                "toward high values, with most data on the left.",
+            ),
+            mistake(
+                "Treating a histogram's shape as a property of the data.",
+                "It depends on the bin width you chose. Different widths tell different stories, "
+                "so state which you used.",
+            ),
+            mistake(
+                "Assuming a box plot shows everything.",
+                "It shows five numbers. A gap in the middle of the data, or two distinct clusters, "
+                "is completely invisible on a box plot — use a dot plot or histogram to check.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u9-l2-t1",
+                "A distribution has mean $78$ and median $70$. What shape is it likely to be?",
+                "The mean exceeds the median, so a long tail stretches toward the HIGH values: the "
+                "distribution is **skewed right**. Most of the data sits below $78$, with a few "
+                "large values pulling the mean up.",
+                ["78 > 70"],
+            ),
+            problem(
+                "im1-u9-l2-t2",
+                "Set P: $10, 12, 14, 16, 18$. Set Q: $2, 8, 14, 20, 26$. Compare centre and "
+                "spread.",
+                "Both have median $14$ and mean $14$ — identical centres. But the ranges differ "
+                "sharply: P spans $18 - 10 = 8$ while Q spans $26 - 2 = 24$, three times as much. "
+                "Same centre, very different consistency.",
+                [
+                    "Eq(Rational(10+12+14+16+18, 5), 14)",
+                    "Eq(Rational(2+8+14+20+26, 5), 14)",
+                    "Eq(18 - 10, 8)",
+                    "Eq(26 - 2, 24)",
+                    "Eq(24, 3*8)",
+                ],
+            ),
+            problem(
+                "im1-u9-l2-t3",
+                "Two workers assemble parts per hour. Worker 1: mean $40$, IQR $3$. Worker 2: mean "
+                "$44$, IQR $18$. Which would you assign to a job needing exactly $40$ per hour?",
+                "**Worker 1.** Their output is far more consistent — an IQR of $3$ means the "
+                "middle half of their hours fall within a $3$-part band around $40$. Worker 2 "
+                "averages more but with an IQR of $18$ could deliver well under $40$ in a given "
+                "hour. For a target that must be met reliably, consistency beats a higher average.",
+                [
+                    "44 > 40",
+                    "3 < 18",
+                    "Eq(18, 6*3)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.2",
+                "title": "Centre, spread, shape — all three",
+                "body": (
+                    "Which is typically higher? Which is more consistent? Is either lopsided, or "
+                    "gapped, or split into two groups? A comparison mentioning only the average "
+                    "has answered a third of the question."
+                ),
+                "beats": [
+                    "**Centre** — mean or median",
+                    "**Spread** — range or IQR",
+                    "**Shape** — symmetric, skewed, clustered",
+                    "And say which one the decision turns on",
+                ],
+            },
+            {"kind": "worked", "title": "Two buses, same median", "problemId": "im1-u9-l2-we1"},
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.3",
+                "title": "The mean tells you the skew",
+                "body": (
+                    "A long tail pulls the mean toward it. Mean above median means the tail points "
+                    "right; mean below median means it points left. You can diagnose the shape "
+                    "without drawing anything."
+                ),
+                "beats": [
+                    "$\\bar{x} > \\text{median}$ → skewed **right**",
+                    "$\\bar{x} < \\text{median}$ → skewed **left**",
+                    "$\\bar{x} \\approx \\text{median}$ → roughly symmetric",
+                    "The skew is named for the **tail**, not the bulk",
+                ],
+            },
+            tap(
+                "Which way does it skew?",
+                "A data set has mean $52$ and median $65$. What shape is it?",
+                [
+                    "Skewed right",
+                    "Skewed left",
+                    "Symmetric",
+                    "Uniform",
+                ],
+                1,
+                "The mean sits BELOW the median, so the long tail points toward the low values — "
+                "skewed left. Most of the data bunches at the high end, with a few small values "
+                "dragging the mean down. Right-skew would show the opposite: mean above median.",
+                ["52 < 65", "Ne(52, 65)"],
+            ),
+            {"kind": "worked", "title": "Diagnosing shape from two numbers", "problemId": "im1-u9-l2-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.1",
+                "title": "Three displays, three different jobs",
+                "body": (
+                    "A dot plot keeps every individual value. A histogram groups them and reveals "
+                    "overall shape. A box plot compresses to five numbers and is unbeatable for "
+                    "comparing several groups at once — while hiding gaps completely."
+                ),
+            },
+            {
+                "kind": "histogramBins",
+                "eyebrow": "The bin-width problem",
+                "title": "The same data, several stories",
+                "teach": (
+                    "One data set, several bin widths. Watch the shape appear and disappear. A "
+                    "histogram is not a neutral picture — it is one of several possible pictures, "
+                    "and the width you choose decides which."
+                ),
+                "config": {
+                    "data": [21, 22, 23, 24, 41, 42, 43, 44, 61, 62, 63, 64],
+                    "min": 20,
+                    "max": 70,
+                    "widths": [2, 5, 10, 25],
+                    "start": 2,
+                    "xLabel": "age",
+                },
+            },
+            {"kind": "worked", "title": "How bin width changes the story", "problemId": "im1-u9-l2-we4"},
+            {
+                "kind": "boxPlot",
+                "eyebrow": "Compare at a glance",
+                "title": "A box plot for comparing groups",
+                "teach": (
+                    "The box holds the middle half; the line inside is the median; the whiskers "
+                    "reach the extremes. Two box plots side by side compare centre and spread "
+                    "instantly — but neither would show a gap in the middle of the data."
+                ),
+                "config": {
+                    "data": [40, 45, 62, 66, 68, 70, 88, 92, 95],
+                    "xLabel": "score",
+                    "showFences": False,
+                },
+            },
+            {"kind": "worked", "title": "Two classes, one median", "problemId": "im1-u9-l2-we3"},
+            tap(
+                "Which display would you choose?",
+                "You suspect a data set splits into two separate clusters. Which display would "
+                "show that most clearly?",
+                [
+                    "A box plot",
+                    "A dot plot or histogram",
+                    "The mean and median",
+                    "The five-number summary",
+                ],
+                1,
+                "A dot plot shows every value and a histogram shows the shape, so both reveal two "
+                "peaks with a gap between them. A box plot compresses everything to five numbers "
+                "and would show the same box whether the middle was full or empty — it cannot "
+                "display a gap at all.",
+                ["Eq(5, 5)", "Ne(2, 1)"],
+            ),
+            {
+                "kind": "tip",
+                "title": "Consistency can beat a higher average",
+                "body": (
+                    "A bus averaging $30$ minutes every time is better than one averaging $28$ "
+                    "with a range from $18$ to $50$ — if you have a train to catch. Which "
+                    "criterion matters depends on the question, and a good answer says which one "
+                    "it is using."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — diagnose the shape", "problemId": "im1-u9-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn — same centre, different spread", "problemId": "im1-u9-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Compare on **three** axes: centre, spread and shape",
+                    "Mean above median → right-skewed; below → left-skewed",
+                    "Skew is named for the **tail**, not where the data bunches",
+                    "Bin width changes a histogram's story — state which you used",
+                    "Box plots compare groups but hide gaps and clusters entirely",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — S-ID.5: two-way tables
+# ===========================================================================
+def lesson_two_way():
+    return lesson(
+        slug="two-way-tables",
+        title="Two-Way Frequency Tables",
+        concrete=(
+            "A survey finds that $70\\%$ of people who own a bicycle also cycle to work. A "
+            "different, equally true statement: $70\\%$ of people who cycle to work own a bicycle. "
+            "These are completely different claims about completely different groups, and mixing "
+            "them up is one of the most common statistical errors in public life. A two-way table "
+            "keeps them straight."
+        ),
+        objective=(
+            "Read a two-way frequency table; compute joint, marginal and conditional relative "
+            "frequencies; and use conditional frequencies to judge whether two variables appear "
+            "associated."
+        ),
+        concept=[
+            "**A two-way table cross-classifies by two variables.** Rows for one variable, columns "
+            "for the other, and each cell counts the individuals with that combination. The "
+            "margins hold the row and column totals, and the bottom-right corner holds the grand "
+            "total — which is a useful arithmetic check, since the row totals and the column "
+            "totals must both sum to it.",
+            "**Joint relative frequency: a cell over the GRAND total.** \"What fraction of "
+            "everyone is a female student who walks?\" — divide that one cell by the total number "
+            "of people surveyed.",
+            "**Marginal relative frequency: a margin over the grand total.** \"What fraction of "
+            "everyone walks?\" — take the column total for walking and divide by the grand total. "
+            "It ignores the other variable entirely.",
+            "**Conditional relative frequency: a cell over its ROW or COLUMN total.** \"Among "
+            "females, what fraction walk?\" — divide the female-walkers cell by the female ROW "
+            "total. This is the one that answers questions about a subgroup, and it is the one "
+            "students most often compute against the wrong denominator.",
+            "**The denominator IS the question.** \"What percent of cyclists are women?\" divides "
+            "by the number of cyclists. \"What percent of women cycle?\" divides by the number of "
+            "women. Same cell on top, different denominators, different answers — and swapping "
+            "them is how misleading headlines are made.",
+            "**Comparing conditionals detects association.** If the fraction of females who walk "
+            "is much larger than the fraction of males who walk, the two variables appear "
+            "associated. If the conditional fractions are close to equal, there is little "
+            "evidence of association — the variables look independent in this sample.",
+        ],
+        key_idea=(
+            "Joint divides by the grand total, marginal divides a margin by the grand total, "
+            "conditional divides by a ROW or COLUMN total. The denominator is what the question "
+            "asks about."
+        ),
+        facts=[
+            fact(
+                "The three relative frequencies",
+                "\\text{joint} = \\frac{\\text{cell}}{\\text{grand total}} \\qquad "
+                "\\text{marginal} = \\frac{\\text{margin}}{\\text{grand total}} \\qquad "
+                "\\text{conditional} = \\frac{\\text{cell}}{\\text{row or column total}}",
+                "They share numerators and differ in denominator — and the denominator is the "
+                "group the question is about.",
+            ),
+            fact(
+                "The arithmetic check",
+                "\\sum \\text{row totals} = \\sum \\text{column totals} = \\text{grand total}",
+                "Both margins must sum to the same figure. If they do not, the table is wrong.",
+            ),
+            fact(
+                "Detecting association",
+                "\\text{compare conditional frequencies across groups}",
+                "Very different conditionals suggest association; near-equal ones suggest none.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u9-l3-we1",
+                "A survey of $200$ students records travel to school. Of $110$ girls, $66$ walk "
+                "and $44$ take the bus. Of $90$ boys, $36$ walk and $54$ take the bus. Build the "
+                "table and check it.",
+                "**The table.**"
+                "$$\\begin{array}{c|c|c|c} & \\text{Walk} & \\text{Bus} & \\text{Total} \\\\ "
+                "\\hline \\text{Girls} & 66 & 44 & 110 \\\\ \\text{Boys} & 36 & 54 & 90 \\\\ "
+                "\\hline \\text{Total} & 102 & 98 & 200 \\end{array}$$"
+                "**Check the margins.** Row totals: $66 + 44 = 110$ ✓ and $36 + 54 = 90$ ✓. "
+                "Column totals: $66 + 36 = 102$ and $44 + 54 = 98$."
+                "**Check the grand total both ways.**"
+                "$$110 + 90 = 200 \\qquad \\text{and} \\qquad 102 + 98 = 200 \\ \\checkmark$$"
+                "Both margins agree, so the table is internally consistent."
+                "**What the margins already tell you.** Slightly more students walk ($102$) than "
+                "take the bus ($98$), and there are more girls ($110$) than boys ($90$) in the "
+                "survey — facts about each variable separately, before any comparison.",
+                [
+                    "Eq(66 + 44, 110)",
+                    "Eq(36 + 54, 90)",
+                    "Eq(66 + 36, 102)",
+                    "Eq(44 + 54, 98)",
+                    "Eq(110 + 90, 200)",
+                    "Eq(102 + 98, 200)",
+                ],
+            ),
+            problem(
+                "im1-u9-l3-we2",
+                "Using that table, find: (a) the joint relative frequency of being a girl who "
+                "walks; (b) the marginal relative frequency of walking; (c) the conditional "
+                "relative frequency of walking given a student is a girl.",
+                "**(a) Joint — divide the cell by the GRAND total.**"
+                "$$\\frac{66}{200} = 0.33 = 33\\%.$$"
+                "Thirty-three percent of ALL students surveyed are girls who walk."
+                "**(b) Marginal — divide the column total by the grand total.**"
+                "$$\\frac{102}{200} = 0.51 = 51\\%.$$"
+                "Fifty-one percent of all students walk, regardless of gender."
+                "**(c) Conditional — divide the cell by its ROW total.**"
+                "$$\\frac{66}{110} = 0.6 = 60\\%.$$"
+                "Sixty percent of GIRLS walk."
+                "**Three answers from one cell.** Parts (a) and (c) share the numerator $66$ and "
+                "differ only in denominator — $200$ against $110$ — and the answers are $33\\%$ "
+                "and $60\\%$. Reporting one when the question asked for the other is not a small "
+                "slip; it nearly doubles the figure.",
+                [
+                    "Eq(Rational(66,200), Rational(33,100))",
+                    "Eq(Rational(102,200), Rational(51,100))",
+                    "Eq(Rational(66,110), Rational(3,5))",
+                    "Ne(Rational(33,100), Rational(3,5))",
+                ],
+            ),
+            problem(
+                "im1-u9-l3-we3",
+                "Using the same table, compare the conditional frequency of walking for girls and "
+                "for boys, and say whether travel method appears associated with gender.",
+                "**Girls who walk.**"
+                "$$\\frac{66}{110} = 0.60 = 60\\%.$$"
+                "**Boys who walk.**"
+                "$$\\frac{36}{90} = 0.40 = 40\\%.$$"
+                "**Compare.** Sixty percent against forty percent — a difference of twenty "
+                "percentage points, which is substantial."
+                "**Conclusion.** Travel method DOES appear associated with gender in this sample: "
+                "girls in this survey are noticeably more likely to walk than boys."
+                "**Check the complements agree.** Girls taking the bus: "
+                "$\\frac{44}{110} = 40\\%$; boys: $\\frac{54}{90} = 60\\%$. Each pair sums to "
+                "$100\\%$ ✓, and the association shows up equally from the other side."
+                "**What this does NOT establish.** An association in one survey of $200$ students "
+                "is not proof of a general pattern, and it certainly does not explain WHY. Perhaps "
+                "the girls live closer to the school. Association is a starting point for a "
+                "question, not an answer to one.",
+                [
+                    "Eq(Rational(66,110), Rational(3,5))",
+                    "Eq(Rational(36,90), Rational(2,5))",
+                    "Eq(Rational(44,110), Rational(2,5))",
+                    "Eq(Rational(54,90), Rational(3,5))",
+                    "Eq(Rational(3,5) + Rational(2,5), 1)",
+                    "Eq(Rational(3,5) - Rational(2,5), Rational(1,5))",
+                ],
+            ),
+            problem(
+                "im1-u9-l3-we4",
+                "In a town, $180$ people were asked about owning a bicycle and cycling to work. "
+                "$120$ own a bicycle, of whom $84$ cycle to work. Of the $60$ non-owners, $6$ "
+                "cycle to work (borrowing one). Compute both directional claims and explain why "
+                "they differ.",
+                "**Build the table.**"
+                "$$\\begin{array}{c|c|c|c} & \\text{Cycles} & \\text{Does not} & \\text{Total} "
+                "\\\\ \\hline \\text{Owns} & 84 & 36 & 120 \\\\ \\text{Does not own} & 6 & 54 & "
+                "60 \\\\ \\hline \\text{Total} & 90 & 90 & 180 \\end{array}$$"
+                "Check: $84 + 36 = 120$ ✓, $6 + 54 = 60$ ✓, $84 + 6 = 90$, $36 + 54 = 90$, and "
+                "$120 + 60 = 90 + 90 = 180$ ✓"
+                "**Claim one: of bicycle owners, what fraction cycle to work?**"
+                "$$\\frac{84}{120} = 0.70 = 70\\%.$$"
+                "**Claim two: of those who cycle to work, what fraction own a bicycle?**"
+                "$$\\frac{84}{90} \\approx 0.933 = 93.3\\%.$$"
+                "**Why they differ.** Both use the cell $84$, but they divide by different groups "
+                "— $120$ owners against $90$ cyclists. The groups are different sizes, so the "
+                "fractions differ, and here by more than twenty percentage points."
+                "**The general lesson.** \"$70\\%$ of owners cycle\" and \"$70\\%$ of cyclists "
+                "own\" are different claims that happen to share a number in the opening example "
+                "of this lesson — and in real data they almost never coincide. Always ask: a "
+                "percentage OF WHAT?",
+                [
+                    "Eq(84 + 36, 120)",
+                    "Eq(6 + 54, 60)",
+                    "Eq(84 + 6, 90)",
+                    "Eq(120 + 60, 180)",
+                    "Eq(Rational(84,120), Rational(7,10))",
+                    "Eq(Rational(84,90), Rational(14,15))",
+                    "Rational(14,15) > Rational(7,10)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Dividing by the grand total when the question asks about a subgroup.",
+                "'Among girls, what fraction walk?' divides by the number of GIRLS, not by "
+                "everyone. The denominator is the group named in the question.",
+            ),
+            mistake(
+                "Treating 'X% of A are B' and 'X% of B are A' as the same statement.",
+                "They divide by different totals and are usually very different numbers. Read "
+                "which group the percentage is OF.",
+            ),
+            mistake(
+                "Building a table whose margins do not agree.",
+                "The row totals and the column totals must both sum to the grand total. If they "
+                "do not, a cell is wrong — check before computing anything.",
+            ),
+            mistake(
+                "Concluding causation from a difference in conditional frequencies.",
+                "An association says the variables move together in this sample. It says nothing "
+                "about why, and nothing about anyone outside the sample.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u9-l3-t1",
+                "In a table of $150$ people, $45$ are teenagers who play a sport and there are "
+                "$60$ teenagers in total. Find the joint and the conditional relative frequency "
+                "for teenagers who play a sport.",
+                "Joint: $\\frac{45}{150} = 0.30 = 30\\%$ of everyone. Conditional (given "
+                "teenager): $\\frac{45}{60} = 0.75 = 75\\%$ of teenagers. Same cell, different "
+                "denominators, very different answers.",
+                [
+                    "Eq(Rational(45,150), Rational(3,10))",
+                    "Eq(Rational(45,60), Rational(3,4))",
+                    "Ne(Rational(3,10), Rational(3,4))",
+                ],
+            ),
+            problem(
+                "im1-u9-l3-t2",
+                "Of $80$ cats, $32$ are black; of $120$ dogs, $30$ are black. Is colour associated "
+                "with species in this sample?",
+                "Black among cats: $\\frac{32}{80} = 40\\%$. Black among dogs: "
+                "$\\frac{30}{120} = 25\\%$. The conditional frequencies differ by $15$ percentage "
+                "points, so colour does appear associated with species here — cats in this sample "
+                "are more often black.",
+                [
+                    "Eq(Rational(32,80), Rational(2,5))",
+                    "Eq(Rational(30,120), Rational(1,4))",
+                    "Eq(Rational(2,5) - Rational(1,4), Rational(3,20))",
+                ],
+            ),
+            problem(
+                "im1-u9-l3-t3",
+                "A table has row totals $70$ and $130$, and column totals $85$ and $114$. Is it "
+                "consistent?",
+                "No. The row totals sum to $70 + 130 = 200$, but the column totals sum to "
+                "$85 + 114 = 199$. Both must equal the grand total, so at least one entry is "
+                "wrong and the table must be corrected before anything is computed from it.",
+                [
+                    "Eq(70 + 130, 200)",
+                    "Eq(85 + 114, 199)",
+                    "Ne(200, 199)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.5",
+                "title": "Two variables, one table",
+                "body": (
+                    "Rows for one variable, columns for the other, and each cell counts the people "
+                    "with that combination. The margins hold the totals, and both margins must sum "
+                    "to the same grand total — a free arithmetic check."
+                ),
+                "beats": [
+                    "Cells: the counts for each combination",
+                    "Margins: totals for each variable alone",
+                    "Grand total: the whole sample",
+                    "Row totals and column totals must **agree**",
+                ],
+            },
+            {"kind": "worked", "title": "Building and checking a table", "problemId": "im1-u9-l3-we1"},
+            {
+                "kind": "teach",
+                "eyebrow": "The three frequencies",
+                "title": "Same numerator, different denominator",
+                "body": (
+                    "Joint divides by the grand total. Marginal divides a margin by the grand "
+                    "total. Conditional divides by a ROW or COLUMN total. The choice of "
+                    "denominator is not a detail — it IS the question."
+                ),
+                "beats": [
+                    "Joint: $\\frac{\\text{cell}}{\\text{everyone}}$",
+                    "Marginal: $\\frac{\\text{margin}}{\\text{everyone}}$",
+                    "Conditional: $\\frac{\\text{cell}}{\\text{that row or column}}$",
+                    "Ask: a percentage **of what**?",
+                ],
+            },
+            {"kind": "worked", "title": "Three answers from one cell", "problemId": "im1-u9-l3-we2"},
+            tap(
+                "Which denominator?",
+                "A table shows $66$ girls walk out of $110$ girls, in a survey of $200$ students. "
+                "What fraction of girls walk?",
+                [
+                    "$\\frac{66}{200}$",
+                    "$\\frac{66}{110}$",
+                    "$\\frac{110}{200}$",
+                    "$\\frac{66}{102}$",
+                ],
+                1,
+                "\"Of girls\" names the group, so divide by the number of girls: "
+                "$\\frac{66}{110} = 60\\%$. Option A divides by everyone and answers a different "
+                "question ($33\\%$ of ALL students are girls who walk). The denominator follows "
+                "the words \"of\" in the question.",
+                [
+                    "Eq(Rational(66,110), Rational(3,5))",
+                    "Eq(Rational(66,200), Rational(33,100))",
+                    "Ne(Rational(3,5), Rational(33,100))",
+                ],
+            ),
+            {
+                "kind": "vennCounts",
+                "eyebrow": "See the groups",
+                "title": "Overlapping categories",
+                "teach": (
+                    "The same individuals belong to different groups depending on which variable "
+                    "you look at. A percentage means nothing until you say which group it is a "
+                    "percentage OF."
+                ),
+                "config": {"onlyA": 36, "both": 84, "onlyB": 6, "neither": 54},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The direction trap",
+                "title": "Of A who are B, or of B who are A?",
+                "body": (
+                    "\"$70\\%$ of cyclists own a bicycle\" and \"$70\\%$ of bicycle owners cycle\" "
+                    "are different claims about different groups. In real data they almost never "
+                    "give the same number — and swapping them is how misleading headlines get "
+                    "written."
+                ),
+            },
+            {"kind": "worked", "title": "Both directions, computed", "problemId": "im1-u9-l3-we4"},
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.5",
+                "title": "Comparing conditionals detects association",
+                "body": (
+                    "If the fraction of girls who walk is far from the fraction of boys who walk, "
+                    "the variables appear associated. If those fractions are close, there is "
+                    "little evidence of any relationship in this sample."
+                ),
+            },
+            {"kind": "worked", "title": "Is travel associated with gender?", "problemId": "im1-u9-l3-we3"},
+            tap(
+                "Do these look associated?",
+                "Among $50$ morning students, $20$ passed. Among $100$ evening students, $40$ "
+                "passed. Is passing associated with the session?",
+                [
+                    "Yes — twice as many evening students passed",
+                    "No — the pass rates are both $40\\%$",
+                    "Yes — evening has more students",
+                    "There is not enough information",
+                ],
+                1,
+                "Compare the CONDITIONAL rates, not the raw counts: "
+                "$\\frac{20}{50} = 40\\%$ and $\\frac{40}{100} = 40\\%$. Identical, so there is no "
+                "evidence of association. More evening students passed simply because there are "
+                "more evening students — which is exactly the trap raw counts set.",
+                [
+                    "Eq(Rational(20,50), Rational(2,5))",
+                    "Eq(Rational(40,100), Rational(2,5))",
+                    "Eq(Rational(20,50), Rational(40,100))",
+                ],
+            ),
+            {"kind": "tryIt", "title": "Your turn — joint and conditional", "problemId": "im1-u9-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn — is there association?", "problemId": "im1-u9-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Joint ÷ grand total; marginal ÷ grand total; conditional ÷ row or column",
+                    "The denominator is whatever group the question says \"of\"",
+                    "\"$X\\%$ of A are B\" ≠ \"$X\\%$ of B are A\"",
+                    "Both margins must sum to the grand total — check before computing",
+                    "Compare **rates**, not raw counts, to judge association",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — S-ID.6, S-ID.7, S-ID.9: scatter plots and lines of fit
+# ===========================================================================
+def lesson_scatter():
+    return lesson(
+        slug="scatter-plots-and-lines-of-fit",
+        title="Scatter Plots, Lines of Fit & Causation",
+        concrete=(
+            "Ice cream sales and drowning deaths rise together every summer. Nobody sensible "
+            "concludes that ice cream causes drowning — the hot weather drives both. That example "
+            "is famous because the absurdity is obvious; most real cases are not obvious at all, "
+            "and telling them apart is the last and most durable skill in this course."
+        ),
+        objective=(
+            "Describe the association in a scatter plot, fit and interpret a line of best fit, "
+            "read the correlation coefficient, and distinguish correlation from causation."
+        ),
+        concept=[
+            "**A scatter plot shows two variables at once.** Each point is one individual, placed "
+            "by its two measurements. The pattern of the cloud — its direction, its form and its "
+            "tightness — is what you describe.",
+            "**Direction, form, strength — and any outliers.** POSITIVE association means the "
+            "points trend upward; negative means downward. FORM is linear if a straight line fits, "
+            "curved if not. STRENGTH is how tightly the points hug that pattern. And a point far "
+            "from the cloud deserves a mention, since it can distort a fitted line badly.",
+            "**The line of best fit summarises a linear pattern.** Its slope and intercept are "
+            "interpreted exactly as in Unit 4: the slope is the predicted change in the output per "
+            "one-unit rise in the input, and the intercept is the predicted output at input zero — "
+            "which is often outside the data and therefore meaningless in context.",
+            "**Residuals measure the misses.** A RESIDUAL is the actual value minus the predicted "
+            "value. A positive residual means the point sits above the line. If the residuals show "
+            "no pattern — scattered randomly above and below — a line was a reasonable choice. If "
+            "they curve, the data was not linear and a line has hidden that.",
+            "**The correlation coefficient measures linear strength.** Written $r$, it runs from $-1$ to "
+            "$1$. Near $1$ is a tight upward line, near $-1$ a tight downward one, and near $0$ "
+            "means no LINEAR relationship. Crucially, $r$ near zero does not mean no relationship "
+            "at all — a perfect U-shape can have $r$ close to $0$, because $r$ only detects "
+            "straight-line association.",
+            "**Correlation is not causation.** Two variables moving together may be linked because "
+            "one causes the other, because a third LURKING variable drives both (ice cream and "
+            "drowning, both driven by heat), or by coincidence in a small sample. Only a "
+            "controlled experiment can establish cause — observational data, however strong the "
+            "correlation, cannot.",
+        ],
+        key_idea=(
+            "Describe direction, form, strength and outliers. The fitted line's slope is a "
+            "predicted change per unit. $r$ measures LINEAR strength only — and no value of $r$, "
+            "however close to $1$, establishes causation."
+        ),
+        facts=[
+            fact(
+                "The correlation coefficient",
+                "-1 \\le r \\le 1",
+                "Near ±1 means a tight straight-line pattern; near 0 means no LINEAR relationship "
+                "— which is not the same as no relationship.",
+            ),
+            fact(
+                "Residual",
+                "\\text{residual} = \\text{actual} - \\text{predicted}",
+                "Positive means the point is above the line. A pattern in the residuals means a "
+                "line was the wrong model.",
+            ),
+            fact(
+                "The three explanations for a correlation",
+                "\\text{causation} \\quad \\text{lurking variable} \\quad \\text{coincidence}",
+                "Observational data cannot distinguish them. Only a controlled experiment can.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u9-l4-we1",
+                "Study hours and test scores for six students: $(2, 55), (3, 60), (5, 70), "
+                "(6, 72), (8, 85), (9, 88)$. Describe the association and estimate a line of fit.",
+                "**Direction.** As hours rise, scores rise — a POSITIVE association."
+                "**Form.** The points climb steadily without bending, so the form looks LINEAR."
+                "**Strength.** The points sit close to a straight path, so the association is "
+                "STRONG. No point is far from the pattern, so there are no obvious outliers."
+                "**Estimate a line.** Use the first and last points as a rough guide:"
+                "$$m \\approx \\frac{88 - 55}{9 - 2} = \\frac{33}{7} \\approx 4.7.$$"
+                "Using the point $(2, 55)$:"
+                "$$y - 55 = 4.7(x - 2) \\quad\\Longrightarrow\\quad y \\approx 4.7x + 45.6.$$"
+                "**Interpret the slope.** Each additional hour of study is associated with about "
+                "$4.7$ more marks."
+                "**Interpret the intercept.** At $x = 0$ the line predicts about $45.6$ — a "
+                "student who studies not at all. That is just outside the data (which starts at "
+                "$2$ hours), so it is a plausible extension, but not one the data actually "
+                "supports."
+                "**Check the fit on a middle point.** At $x = 5$ the line predicts "
+                "$4.7(5) + 45.6 = 69.1$, and the actual score was $70$ — a residual of $+0.9$, "
+                "very small ✓",
+                [
+                    "Eq(Rational(88 - 55, 9 - 2), Rational(33,7))",
+                    "Abs(Rational(33,7) - Rational(47,10)) < Rational(1,10)",
+                    "Abs((Rational(47,10)*5 + Rational(456,10)) - 70) < 1",
+                    "Abs((Rational(47,10)*2 + Rational(456,10)) - 55) < 1",
+                ],
+            ),
+            problem(
+                "im1-u9-l4-we2",
+                "A line of fit for shoe size against height (cm) is $h = 3.2s + 130$. Interpret "
+                "both parameters, predict the height for size $42$, and comment on the intercept.",
+                "**Slope.** $3.2$ centimetres per shoe size — each increase of one shoe size is "
+                "associated with about $3.2$ cm more height. Note the wording: ASSOCIATED WITH, "
+                "not \"causes\". Bigger feet do not make you taller."
+                "**Intercept.** At $s = 0$ the line predicts $130$ cm. A shoe size of zero does "
+                "not exist, so this number has no interpretation in context — it is where the line "
+                "happens to cross the axis, nothing more. This is extremely common in fitted "
+                "lines and worth saying explicitly."
+                "**Predict for size 42.**"
+                "$$h = 3.2(42) + 130 = 134.4 + 130 = 264.4\\ \\text{cm}.$$"
+                "**Stop.** That is $2.6$ metres — taller than any person who has ever lived. The "
+                "model has been pushed far beyond the range it was fitted on, and it has broken. "
+                "If the data covered sizes $35$ to $45$ this prediction would be inside the range "
+                "and something is wrong with the fitted line; if the data covered only children's "
+                "sizes, then $42$ is a wild extrapolation."
+                "**The honest answer.** Report the arithmetic AND the judgement: the model gives "
+                "$264.4$ cm, which is impossible, so the model does not apply at size $42$. A "
+                "prediction that contradicts reality is information about the model, not about the "
+                "world.",
+                [
+                    "Eq(Rational(32,10)*42 + 130, Rational(2644,10))",
+                    "Rational(2644,10) > 250",
+                    "Eq(Rational(32,10)*0 + 130, 130)",
+                ],
+            ),
+            problem(
+                "im1-u9-l4-we3",
+                "For the line $y = 2x + 5$ fitted to data including the points $(3, 13)$, "
+                "$(4, 12)$ and $(6, 18)$, compute the residuals and comment on the fit.",
+                "**Residual = actual − predicted.**"
+                "At $x = 3$: predicted $2(3) + 5 = 11$, actual $13$, so"
+                "$$\\text{residual} = 13 - 11 = +2.$$"
+                "At $x = 4$: predicted $13$, actual $12$, so"
+                "$$\\text{residual} = 12 - 13 = -1.$$"
+                "At $x = 6$: predicted $17$, actual $18$, so"
+                "$$\\text{residual} = 18 - 17 = +1.$$"
+                "**Reading them.** The residuals are $+2$, $-1$, $+1$ — small, and mixed in sign. "
+                "Points fall above and below the line without an obvious pattern, which is what a "
+                "reasonable linear fit looks like."
+                "**What would be worrying.** Residuals of $-3, -1, +2, +4$ marching steadily "
+                "upward would mean the line is systematically wrong — too high at the start and "
+                "too low at the end — and that the data curves. A pattern in the residuals is the "
+                "signal that a line was the wrong model, and it is visible even when the fit looks "
+                "acceptable on the original scatter plot.",
+                [
+                    "Eq(2*3 + 5, 11)",
+                    "Eq(13 - 11, 2)",
+                    "Eq(2*4 + 5, 13)",
+                    "Eq(12 - 13, -1)",
+                    "Eq(2*6 + 5, 17)",
+                    "Eq(18 - 17, 1)",
+                    "Eq(2 + (-1) + 1, 2)",
+                ],
+            ),
+            problem(
+                "im1-u9-l4-we4",
+                "A study finds a strong positive correlation ($r = 0.87$) between the number of "
+                "firefighters sent to a fire and the damage caused. Should fire departments send "
+                "fewer firefighters? Explain.",
+                "**No — and the reasoning matters more than the answer.**"
+                "**What the correlation says.** Fires attended by more firefighters do, on "
+                "average, cause more damage. With $r = 0.87$ the relationship is strong and "
+                "genuinely present in the data. The statistic is not wrong."
+                "**What it does not say.** That firefighters cause damage. Reversing the sign of "
+                "the intervention would be catastrophic, and the data provides no support for it "
+                "whatsoever."
+                "**The lurking variable.** The SIZE OF THE FIRE drives both. A large fire causes "
+                "extensive damage AND requires many firefighters; a small one causes little and "
+                "needs few. Neither variable in the study causes the other — a third variable, "
+                "unmeasured, causes both."
+                "**How you would test it properly.** Only a controlled experiment could settle "
+                "the causal question: take fires of comparable size and randomly assign different "
+                "numbers of firefighters. That experiment is obviously unethical, which is exactly "
+                "why so many important questions can only ever be studied observationally — and "
+                "why the correlation-causation distinction matters so much in practice."
+                "**The habit to keep.** Whenever two things rise together, ask what third thing "
+                "might be driving both. In this case it takes seconds; in a real policy debate it "
+                "may take a career.",
+                [
+                    "Rational(87,100) > Rational(7,10)",
+                    "Rational(87,100) < 1",
+                    "Rational(87,100) > 0",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Concluding that one variable causes the other from a strong correlation.",
+                "A correlation has three possible explanations: causation, a lurking variable, or "
+                "coincidence. Observational data cannot tell them apart.",
+            ),
+            mistake(
+                "Reading r ≈ 0 as 'no relationship at all'.",
+                "r measures LINEAR strength only. A perfect U-shape can have r near 0 while being "
+                "completely determined — always look at the scatter plot too.",
+            ),
+            mistake(
+                "Interpreting the intercept of a fitted line when input zero is meaningless.",
+                "Shoe size zero, or age zero, may be outside any sensible range. Say so rather "
+                "than inventing an interpretation.",
+            ),
+            mistake(
+                "Extrapolating a fitted line far beyond the data.",
+                "The line was fitted to a range. Outside it the model may simply not apply — and a "
+                "prediction of a 2.6 metre person is information about the model, not the world.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u9-l4-t1",
+                "A line of fit is $y = -1.5x + 40$, where $x$ is hours of television and $y$ is "
+                "test score. Interpret the slope and predict the score for $6$ hours.",
+                "The slope $-1.5$ means each additional hour of television is associated with "
+                "about $1.5$ fewer marks — associated with, not causing. At $x = 6$: "
+                "$-9 + 40 = 31$ marks.",
+                [
+                    "Eq(Rational(-15,10)*6 + 40, 31)",
+                    "Eq(Rational(-15,10)*0 + 40, 40)",
+                ],
+            ),
+            problem(
+                "im1-u9-l4-t2",
+                "For the line $y = 3x + 2$ and the actual point $(5, 20)$, find the residual and "
+                "say what it means.",
+                "Predicted: $3(5) + 2 = 17$. Residual $= 20 - 17 = +3$. The positive sign means "
+                "the actual value sits $3$ units ABOVE the line — the model under-predicted this "
+                "point.",
+                [
+                    "Eq(3*5 + 2, 17)",
+                    "Eq(20 - 17, 3)",
+                ],
+            ),
+            problem(
+                "im1-u9-l4-t3",
+                "A town finds a correlation of $r = 0.91$ between the number of storks nesting and "
+                "the number of babies born. What is the most likely explanation?",
+                "Not causation. A lurking variable explains it: larger towns have both more "
+                "buildings for storks to nest on AND more people having babies. Town size drives "
+                "both counts. This is a classic example precisely because the correlation is "
+                "strong ($0.91$) and the causal story is absurd.",
+                [
+                    "Rational(91,100) > Rational(9,10)",
+                    "Rational(91,100) < 1",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.6",
+                "title": "Describe direction, form, strength, outliers",
+                "body": (
+                    "Every scatter-plot description has four parts. Which way does the cloud "
+                    "trend? Is it straight or curved? How tightly do the points hug the pattern? "
+                    "And is any point far from the rest?"
+                ),
+                "beats": [
+                    "**Direction** — positive or negative",
+                    "**Form** — linear or curved",
+                    "**Strength** — tight or loose",
+                    "**Outliers** — any point far from the cloud",
+                ],
+            },
+            {
+                "kind": "scatterPlot",
+                "eyebrow": "See the cloud",
+                "title": "Positive, negative, or none",
+                "teach": (
+                    "Switch between the data sets. An upward drift is positive association, a "
+                    "downward drift is negative, and a shapeless cloud means no linear association "
+                    "at all."
+                ),
+                "config": {
+                    "mode": "correlation",
+                    "dataset": "positive",
+                    "xLabel": "study hours",
+                    "yLabel": "test score",
+                },
+            },
+            {"kind": "worked", "title": "Study hours against scores", "problemId": "im1-u9-l4-we1"},
+            {
+                "kind": "scatterPlot",
+                "eyebrow": "Fit a line",
+                "title": "Drag the line through the cloud",
+                "teach": (
+                    "Adjust the slope and intercept and watch how far the points sit from the "
+                    "line. The best fit is the one that makes those gaps — the residuals — as "
+                    "small as possible overall."
+                ),
+                "config": {"mode": "fit", "dataset": "positive", "m0": 1, "b0": 2},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.7",
+                "title": "Interpret slope and intercept as in Unit 4",
+                "body": (
+                    "The slope is the predicted change in the output per one-unit rise in the "
+                    "input. The intercept is the predicted output at input zero — which is often "
+                    "outside the data, and then it means nothing in context. Say so rather than "
+                    "inventing a story."
+                ),
+            },
+            {"kind": "worked", "title": "When a prediction breaks the model", "problemId": "im1-u9-l4-we2"},
+            tap(
+                "What does this slope mean?",
+                "A line of fit for temperature against ice cream sales has slope $34$, with "
+                "temperature in degrees and sales in units. What does the $34$ say?",
+                [
+                    "Sales are $34$ units on a cold day",
+                    "Each degree warmer is associated with about $34$ more sales",
+                    "Temperature causes $34$ sales",
+                    "The correlation is $34\\%$",
+                ],
+                1,
+                "The slope is the predicted change in output per one-unit rise in input: one "
+                "degree warmer goes with about $34$ more units sold. Note \"associated with\" — "
+                "the fitted line describes a pattern, it does not establish that temperature "
+                "CAUSES the sales, even though here it plausibly does.",
+                ["Eq(34*1, 34)", "Eq(34*2, 68)"],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.6b",
+                "title": "Residuals reveal whether a line was right",
+                "body": (
+                    "A residual is actual minus predicted. Scattered randomly above and below? A "
+                    "line was reasonable. Curving systematically? The data was not linear, and the "
+                    "line has hidden that."
+                ),
+            },
+            {"kind": "worked", "title": "Computing and reading residuals", "problemId": "im1-u9-l4-we3"},
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.8",
+                "title": "r measures straight-line strength only",
+                "body": (
+                    "It runs from $-1$ to $1$. Near $\\pm 1$ is a tight line; near $0$ means no "
+                    "LINEAR pattern. But a perfect U-shape can have $r$ near zero while being "
+                    "completely determined — so always look at the plot as well."
+                ),
+                "beats": [
+                    "$r$ close to $1$ — tight upward line",
+                    "$r$ close to $-1$ — tight downward line",
+                    "$r$ close to $0$ — no **linear** pattern",
+                    "$r$ near $0$ does **not** mean no relationship",
+                ],
+            },
+            tap(
+                "What does this r tell you?",
+                "A data set has $r = 0.04$, but its scatter plot shows a perfect U-shape. What is "
+                "the right conclusion?",
+                [
+                    "There is no relationship between the variables",
+                    "There is a strong relationship, but not a linear one",
+                    "The correlation was computed incorrectly",
+                    "The data must contain an error",
+                ],
+                1,
+                "$r$ only detects STRAIGHT-line association. A U-shape has a perfectly definite "
+                "relationship — the output is completely determined by the input — but it is not "
+                "linear, so $r$ registers nothing. This is precisely why you look at the plot "
+                "rather than trusting a single number.",
+                [
+                    "Abs(Rational(4,100)) < Rational(1,10)",
+                    "Eq((-3)**2, 9)",
+                    "Eq(3**2, 9)",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "S-ID.9",
+                "title": "Correlation is not causation",
+                "body": (
+                    "Two variables moving together can mean one causes the other, a THIRD variable "
+                    "drives both, or pure coincidence. Observational data cannot distinguish them "
+                    "— only a controlled experiment can."
+                ),
+                "beats": [
+                    "Ice cream and drowning — both driven by heat",
+                    "Firefighters and damage — both driven by fire size",
+                    "Storks and babies — both driven by town size",
+                    "Always ask: what **third** thing could drive both?",
+                ],
+            },
+            {"kind": "worked", "title": "Firefighters and fire damage", "problemId": "im1-u9-l4-we4"},
+            {
+                "kind": "funFact",
+                "title": "Storks really do correlate with births",
+                "body": (
+                    "A well-known analysis of European data found a strong positive correlation "
+                    "between stork populations and human birth rates. The explanation is town "
+                    "size: bigger towns have more buildings for storks AND more people. The "
+                    "correlation is real, the statistic is correct, and the obvious conclusion is "
+                    "nonsense — which is the entire point."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — interpret a slope", "problemId": "im1-u9-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn — explain the correlation", "problemId": "im1-u9-l4-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Describe direction, form, strength and outliers — all four",
+                    "Slope = predicted change per unit; intercept often means nothing in context",
+                    "Residual = actual − predicted; a **pattern** in residuals means a line was wrong",
+                    "$r$ measures linear strength only — $r \\approx 0$ can still hide a strong curve",
+                    "Correlation has three explanations; only an experiment settles cause",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Unit banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im1-u9-pr-1",
+            "Find the mean and median of $8, 11, 13, 13, 20$.",
+            "Mean: $\\frac{8 + 11 + 13 + 13 + 20}{5} = \\frac{65}{5} = 13$. Median: the third "
+            "value, $13$. They agree, suggesting a roughly symmetric set.",
+            [
+                "Eq(Rational(8 + 11 + 13 + 13 + 20, 5), 13)",
+                "Eq(13, 13)",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-2",
+            "Find the five-number summary of $5, 9, 11, 14, 16, 20, 23, 30$.",
+            "Eight values. Min $5$, max $30$. Median $= \\frac{14 + 16}{2} = 15$. Lower half "
+            "$5, 9, 11, 14$ gives $Q_1 = 10$; upper half $16, 20, 23, 30$ gives "
+            "$Q_3 = 21.5$. Summary: $5$, $10$, $15$, $21.5$, $30$.",
+            [
+                "Eq(Rational(14 + 16, 2), 15)",
+                "Eq(Rational(9 + 11, 2), 10)",
+                "Eq(Rational(20 + 23, 2), Rational(43,2))",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-3",
+            "A data set has $Q_1 = 14$ and $Q_3 = 26$. Find the fences and decide whether $45$ is "
+            "an outlier.",
+            "IQR $= 26 - 14 = 12$, so $1.5 \\times 12 = 18$. Fences: $14 - 18 = -4$ and "
+            "$26 + 18 = 44$. Since $45 > 44$, the value **is** an outlier — narrowly, so worth "
+            "investigating rather than assuming it is wrong.",
+            [
+                "Eq(26 - 14, 12)",
+                "Eq(26 + Rational(3,2)*12, 44)",
+                "45 > 44",
+                "Not(43 > 44)",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-4",
+            "A distribution has mean $34$ and median $41$. Describe its shape.",
+            "The mean is below the median, so the long tail points toward the LOW values: the "
+            "distribution is **skewed left**. Most values sit at the high end with a few small "
+            "ones pulling the mean down.",
+            ["34 < 41"],
+        ),
+        problem(
+            "im1-u9-pr-5",
+            "Set A: $20, 22, 24, 26, 28$. Set B: $10, 18, 24, 30, 38$. Compare centre and spread.",
+            "Both have mean and median $24$ — identical centres. But A's range is $28 - 20 = 8$ "
+            "while B's is $38 - 10 = 28$, three and a half times as wide. Same centre, very "
+            "different consistency.",
+            [
+                "Eq(Rational(20+22+24+26+28, 5), 24)",
+                "Eq(Rational(10+18+24+30+38, 5), 24)",
+                "Eq(28 - 20, 8)",
+                "Eq(38 - 10, 28)",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-6",
+            "In a survey of $300$ people, $90$ are students who own a laptop, and there are $150$ "
+            "students in total. Find the joint and conditional relative frequencies.",
+            "Joint: $\\frac{90}{300} = 30\\%$ of everyone. Conditional (given student): "
+            "$\\frac{90}{150} = 60\\%$ of students. The same cell, two denominators, two very "
+            "different figures.",
+            [
+                "Eq(Rational(90,300), Rational(3,10))",
+                "Eq(Rational(90,150), Rational(3,5))",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-7",
+            "Of $60$ adults, $24$ prefer tea; of $90$ teenagers, $18$ prefer tea. Is preference "
+            "associated with age group?",
+            "Adults: $\\frac{24}{60} = 40\\%$. Teenagers: $\\frac{18}{90} = 20\\%$. The "
+            "conditional rates differ by $20$ percentage points, so preference **does** appear "
+            "associated with age group in this sample.",
+            [
+                "Eq(Rational(24,60), Rational(2,5))",
+                "Eq(Rational(18,90), Rational(1,5))",
+                "Eq(Rational(2,5) - Rational(1,5), Rational(1,5))",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-8",
+            "A two-way table has row totals $45$ and $75$, and column totals $52$ and $68$. Is it "
+            "consistent?",
+            "Rows sum to $45 + 75 = 120$ and columns to $52 + 68 = 120$. They agree, so the table "
+            "is consistent with a grand total of $120$.",
+            [
+                "Eq(45 + 75, 120)",
+                "Eq(52 + 68, 120)",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-9",
+            "A line of fit is $y = 4x + 12$. Find the residual for the actual point $(7, 35)$.",
+            "Predicted: $4(7) + 12 = 40$. Residual $= 35 - 40 = -5$ — the actual point sits five "
+            "units BELOW the line, so the model over-predicted it.",
+            [
+                "Eq(4*7 + 12, 40)",
+                "Eq(35 - 40, -5)",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-10",
+            "A line of fit for rainfall (mm) against crop yield (tonnes) is $y = 0.08x + 1.2$. "
+            "Interpret both numbers.",
+            "The slope $0.08$ means each additional millimetre of rain is associated with about "
+            "$0.08$ more tonnes of yield. The intercept $1.2$ predicts the yield with zero "
+            "rainfall — plausible if the data included very dry years, but meaningless "
+            "extrapolation if it did not.",
+            [
+                "Eq(Rational(8,100)*100 + Rational(12,10), Rational(92,10))",
+                "Eq(Rational(8,100)*0 + Rational(12,10), Rational(12,10))",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-11",
+            "A study finds $r = 0.82$ between shoe size and reading ability in children. What "
+            "explains it?",
+            "A lurking variable: **age**. Older children have bigger feet AND read better. Neither "
+            "variable causes the other. The correlation is real and strong, and the causal reading "
+            "of it is nonsense.",
+            [
+                "Rational(82,100) > Rational(8,10)",
+                "Rational(82,100) < 1",
+            ],
+        ),
+        problem(
+            "im1-u9-pr-12",
+            "A scatter plot has $r = -0.05$ but its points lie on a clear parabola. What does the "
+            "$r$ value tell you?",
+            "That there is no LINEAR association — which is correct, since a symmetric parabola "
+            "rises as much as it falls. It tells you nothing about the strong non-linear "
+            "relationship that clearly exists. This is why you look at the plot, not just at $r$.",
+            [
+                "Abs(Rational(-5,100)) < Rational(1,10)",
+                "Eq((-4)**2, 16)",
+                "Eq(4**2, 16)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im1-u9-ty-1",
+            "For the data $6, 8, 9, 11, 12, 14, 15, 18, 40$, find the mean, median, five-number "
+            "summary and IQR, identify any outliers, and say which measure of centre you would "
+            "report.",
+            "**Mean.**"
+            "$$\\frac{6+8+9+11+12+14+15+18+40}{9} = \\frac{133}{9} \\approx 14.8.$$"
+            "**Median.** Nine values, so the fifth: $12$."
+            "**Quartiles.** Excluding the median, the lower half is $6, 8, 9, 11$ so "
+            "$Q_1 = \\frac{8+9}{2} = 8.5$; the upper half is $14, 15, 18, 40$ so "
+            "$Q_3 = \\frac{15+18}{2} = 16.5$."
+            "**Five-number summary.** $6$, $8.5$, $12$, $16.5$, $40$."
+            "**IQR.** $16.5 - 8.5 = 8$."
+            "**Outliers.** Fences at $8.5 - 1.5(8) = -3.5$ and $16.5 + 1.5(8) = 28.5$. Only $40$ "
+            "exceeds the upper fence, so the value $40$ **is an outlier**."
+            "**Which centre to report.** The **median**, $12$. The mean of $14.8$ is larger than "
+            "six of the nine values, dragged up by the single extreme observation. The median "
+            "sits among the bulk of the data and describes a typical value honestly.",
+            [
+                "Eq(6+8+9+11+12+14+15+18+40, 133)",
+                "Eq(Rational(8 + 9, 2), Rational(17,2))",
+                "Eq(Rational(15 + 18, 2), Rational(33,2))",
+                "Eq(Rational(33,2) - Rational(17,2), 8)",
+                "Eq(Rational(33,2) + Rational(3,2)*8, Rational(57,2))",
+                "40 > Rational(57,2)",
+                "Rational(133,9) > 12",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-2",
+            "Machine A's output over eight hours: $48, 49, 50, 50, 51, 51, 52, 53$. Machine B's: "
+            "$30, 40, 48, 52, 54, 60, 68, 72$. Compare fully and recommend one for a job needing "
+            "at least $45$ units every hour.",
+            "**Centre — mean.**"
+            "$$\\text{A}: \\frac{404}{8} = 50.5, \\qquad \\text{B}: \\frac{424}{8} = 53.$$"
+            "B averages higher."
+            "**Centre — median.** A: $\\frac{50+51}{2} = 50.5$. B: $\\frac{52+54}{2} = 53$. Both "
+            "match their means, so both are roughly symmetric."
+            "**Spread — range.**"
+            "$$\\text{A}: 53 - 48 = 5, \\qquad \\text{B}: 72 - 30 = 42.$$"
+            "**Spread — IQR.** For A, $Q_1 = \\frac{49+50}{2} = 49.5$ and "
+            "$Q_3 = \\frac{51+52}{2} = 51.5$, so IQR $= 2$. For B, "
+            "$Q_1 = \\frac{40+48}{2} = 44$ and $Q_3 = \\frac{60+68}{2} = 64$, so IQR $= 20$ — ten "
+            "times A's."
+            "**Recommendation: Machine A.** The job requires at least $45$ units EVERY hour. "
+            "Machine A's lowest recorded output is $48$, comfortably above the threshold. Machine "
+            "B averages more but produced $30$ and $40$ in two of eight hours — it would have "
+            "failed the requirement a quarter of the time."
+            "**The principle.** A higher average is worth nothing when the requirement is a floor "
+            "that must be met every time. Consistency is the criterion here, and the spread "
+            "figures are what reveal it.",
+            [
+                "Eq(48+49+50+50+51+51+52+53, 404)",
+                "Eq(30+40+48+52+54+60+68+72, 424)",
+                "Eq(Rational(404,8), Rational(101,2))",
+                "Eq(Rational(424,8), 53)",
+                "Eq(53 - 48, 5)",
+                "Eq(72 - 30, 42)",
+                "Eq(Rational(51 + 52, 2) - Rational(49 + 50, 2), 2)",
+                "Eq(Rational(60 + 68, 2) - Rational(40 + 48, 2), 20)",
+                "48 > 45",
+                "Not(40 > 45)",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-3",
+            "A survey of $250$ commuters records car use by area. Of $150$ from the city, $60$ "
+            "drive. Of $100$ from the suburbs, $75$ drive. Build the table, compute the "
+            "conditional rates, and say whether area is associated with driving.",
+            "**The table.**"
+            "$$\\begin{array}{c|c|c|c} & \\text{Drives} & \\text{Does not} & \\text{Total} \\\\ "
+            "\\hline \\text{City} & 60 & 90 & 150 \\\\ \\text{Suburbs} & 75 & 25 & 100 \\\\ "
+            "\\hline \\text{Total} & 135 & 115 & 250 \\end{array}$$"
+            "**Check the margins.** $60 + 90 = 150$ ✓, $75 + 25 = 100$ ✓, $60 + 75 = 135$, "
+            "$90 + 25 = 115$, and $150 + 100 = 135 + 115 = 250$ ✓"
+            "**Conditional rates.**"
+            "$$\\text{City drivers}: \\frac{60}{150} = 0.40 = 40\\%,$$"
+            "$$\\text{Suburb drivers}: \\frac{75}{100} = 0.75 = 75\\%.$$"
+            "**Conclusion.** A gap of $35$ percentage points — area IS strongly associated with "
+            "driving in this sample. Suburban commuters are far more likely to drive."
+            "**A plausible explanation, and its status.** Suburbs probably have less public "
+            "transport and longer distances. That is a hypothesis suggested by the association, "
+            "not something the data establishes — the survey recorded where people live and "
+            "whether they drive, and nothing about why."
+            "**Note the raw-count trap.** More suburban commuters drive ($75$) than city ones "
+            "($60$) even though the city group is larger — so the counts and the rates point the "
+            "same way here. But it is the rates that justify the conclusion.",
+            [
+                "Eq(60 + 90, 150)",
+                "Eq(75 + 25, 100)",
+                "Eq(60 + 75, 135)",
+                "Eq(90 + 25, 115)",
+                "Eq(150 + 100, 250)",
+                "Eq(135 + 115, 250)",
+                "Eq(Rational(60,150), Rational(2,5))",
+                "Eq(Rational(75,100), Rational(3,4))",
+                "Eq(Rational(3,4) - Rational(2,5), Rational(7,20))",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-4",
+            "Using the table from the previous question, compute: (a) the joint relative frequency "
+            "of being a city commuter who drives; (b) the marginal relative frequency of driving; "
+            "(c) the fraction of drivers who come from the suburbs.",
+            "**(a) Joint — cell over the grand total.**"
+            "$$\\frac{60}{250} = 0.24 = 24\\%$$"
+            "of ALL commuters are city dwellers who drive."
+            "**(b) Marginal — column total over the grand total.**"
+            "$$\\frac{135}{250} = 0.54 = 54\\%$$"
+            "of all commuters drive, regardless of where they live."
+            "**(c) Conditional, the other direction — cell over the COLUMN total.**"
+            "$$\\frac{75}{135} \\approx 0.556 = 55.6\\%$$"
+            "of DRIVERS come from the suburbs."
+            "**Note the reversal in part (c).** The previous question found that $75\\%$ of "
+            "suburbanites drive. This question finds that $55.6\\%$ of drivers are suburbanites. "
+            "Both use the cell $75$, and they divide by $100$ and by $135$ respectively — "
+            "different groups, different answers. \"$75\\%$ of suburbanites drive\" and "
+            "\"$75\\%$ of drivers are suburbanites\" would be entirely different claims, and only "
+            "the first is true.",
+            [
+                "Eq(Rational(60,250), Rational(6,25))",
+                "Eq(Rational(6,25), Rational(24,100))",
+                "Eq(Rational(135,250), Rational(27,50))",
+                "Eq(Rational(27,50), Rational(54,100))",
+                "Eq(Rational(75,135), Rational(5,9))",
+                "Ne(Rational(5,9), Rational(3,4))",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-5",
+            "A line of fit for advertising spend (millions of tugriks) against sales (millions) is "
+            "$S = 2.4A + 18$. Interpret both parameters, predict sales for a spend of $5$, compute "
+            "the residual if actual sales were $32$, and comment.",
+            "**Slope.** Each additional million spent on advertising is associated with about "
+            "$2.4$ million more in sales."
+            "**Intercept.** With zero advertising the model predicts $18$ million in sales — "
+            "plausible here, since a business can sell something without advertising, and zero "
+            "spend is a realistic value rather than an extrapolation."
+            "**Predicting at a spend of five.**"
+            "$$S = 2.4(5) + 18 = 12 + 18 = 30\\ \\text{million}.$$"
+            "**Residual.**"
+            "$$\\text{residual} = 32 - 30 = +2\\ \\text{million}.$$"
+            "**Comment.** The positive residual means actual sales exceeded the prediction by "
+            "$2$ million — this particular campaign outperformed the trend. A single residual "
+            "says little; what matters is whether the residuals across all the data show a "
+            "PATTERN. Scattered signs mean a line was reasonable; a systematic drift would mean "
+            "the relationship curves and the line has hidden it."
+            "**And a caution.** Even a strong fit does not prove advertising CAUSES sales. A "
+            "successful year might increase both budgets and sales, making the third variable "
+            "'company health' the driver of each.",
+            [
+                "Eq(Rational(24,10)*5 + 18, 30)",
+                "Eq(32 - 30, 2)",
+                "Eq(Rational(24,10)*0 + 18, 18)",
+                "Eq(Rational(24,10)*10 + 18, 42)",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-6",
+            "A newspaper reports: \"Students who eat breakfast score $12\\%$ higher on exams — so "
+            "schools should serve breakfast.\" Evaluate this reasoning.",
+            "**What the data supports.** There is an association: in the sample, breakfast-eaters "
+            "scored higher. That much may be perfectly accurate."
+            "**What it does not support.** The causal leap. The study is observational — nobody "
+            "assigned students to eat or skip breakfast — so it cannot distinguish between three "
+            "explanations."
+            "**Explanation 1: causation.** Breakfast genuinely improves concentration and "
+            "therefore scores. Plausible, and quite possibly true."
+            "**Explanation 2: a lurking variable.** Household stability drives both. Families with "
+            "the time and money for breakfast are also more likely to provide quiet study space, "
+            "help with homework, and books at home. The breakfast would then be a MARKER of "
+            "advantage rather than a cause of the scores."
+            "**Explanation 3: reverse causation or coincidence.** Less likely here, but organised "
+            "students who plan their mornings may both eat breakfast and study effectively — the "
+            "habit causing both, rather than one causing the other."
+            "**The honest verdict.** The recommendation might well be right, and serving breakfast "
+            "has other justifications entirely. But the data as described does not establish that "
+            "breakfast causes the improvement. Only a controlled experiment — randomly providing "
+            "breakfast to some students and not others, then comparing — could settle it, and such "
+            "trials have in fact been run."
+            "**The habit worth keeping.** When a headline moves from \"associated with\" to "
+            "\"therefore we should\", check whether an experiment happened. Usually one did not.",
+            [
+                "Eq(Rational(12,100), Rational(3,25))",
+                "Rational(12,100) > 0",
+            ],
+        ),
+        problem(
+            "im1-u9-ty-7",
+            "Six students' weekly sport hours and resting heart rates: "
+            "$(0, 78), (2, 74), (4, 70), (6, 68), (8, 64), (10, 62)$. Describe the association, "
+            "estimate a line of fit, interpret it, and state clearly what it does and does not "
+            "show.",
+            "**Direction.** As sport hours rise, heart rate falls — a NEGATIVE association."
+            "**Form and strength.** The points descend very steadily, so the form is LINEAR and "
+            "the association is STRONG. No outliers."
+            "**Estimate the line.** Using the first and last points:"
+            "$$m = \\frac{62 - 78}{10 - 0} = \\frac{-16}{10} = -1.6.$$"
+            "The intercept is the value at $x = 0$, which the data gives directly as $78$:"
+            "$$y = -1.6x + 78.$$"
+            "**Check the fit.** At $x = 4$ the line predicts $-6.4 + 78 = 71.6$; the actual was "
+            "$70$, a residual of $-1.6$. At $x = 8$: predicted $65.2$, actual $64$, residual "
+            "$-1.2$. Small residuals, and the signs are consistently slightly negative in the "
+            "middle — a hint that the true relationship may curve very slightly, though with six "
+            "points that is not strong evidence."
+            "**Interpret.** Each additional weekly hour of sport is associated with a resting "
+            "heart rate about $1.6$ beats per minute lower. The intercept $78$ is the predicted "
+            "rate for someone doing no sport — and here $x = 0$ IS in the data, so it is a genuine "
+            "reading rather than an extrapolation."
+            "**What this shows.** A strong negative linear association in these six students."
+            "**What it does NOT show.** That exercise CAUSES the lower heart rate — even though, "
+            "in this case, the physiological mechanism is well established from controlled "
+            "studies elsewhere. This data alone is observational: perhaps people with naturally "
+            "lower heart rates find exercise easier and so do more of it. Six students is also far "
+            "too small a sample to generalise from. The correct claim is about association in this "
+            "sample, with the causal knowledge coming from experiments, not from this scatter "
+            "plot.",
+            [
+                "Eq(Rational(62 - 78, 10 - 0), Rational(-8,5))",
+                "Eq(Rational(-8,5)*0 + 78, 78)",
+                "Eq(Rational(-8,5)*4 + 78, Rational(358,5))",
+                "Eq(70 - Rational(358,5), Rational(-8,5))",
+                "Eq(Rational(-8,5)*8 + 78, Rational(326,5))",
+                "Eq(Rational(-8,5)*10 + 78, 62)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="data-and-statistics",
+        title="Describing Data",
+        unit_number=9,
+        blurb=(
+            "Centre and spread and when each measure lies, comparing distributions by shape as "
+            "well as by average, two-way tables and the denominator that answers the question, "
+            "and lines of fit — including why a correlation never establishes a cause."
+        ),
+        builds_on=(
+            "Linear models from Unit 4 — a line of best fit is one, and its slope and intercept "
+            "are interpreted exactly the same way."
+        ),
+        lessons=[
+            lesson_centre_spread(),
+            lesson_comparing(),
+            lesson_two_way(),
+            lesson_scatter(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

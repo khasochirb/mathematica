@@ -181,6 +181,9 @@ import im1Functions from "@/data/genmath/integrated-1/functions-and-sequences.js
 import im1LinearFn from "@/data/genmath/integrated-1/linear-functions.json";
 import im1Systems from "@/data/genmath/integrated-1/systems-of-equations-and-inequalities.json";
 import im1Exponential from "@/data/genmath/integrated-1/exponential-functions.json";
+import im1Transformations from "@/data/genmath/integrated-1/transformations-and-congruence.json";
+import im1CoordGeo from "@/data/genmath/integrated-1/coordinate-geometry.json";
+import im1Data from "@/data/genmath/integrated-1/data-and-statistics.json";
 
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
@@ -1268,7 +1271,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Translations, reflections and rotations as rigid motions; congruence defined by a sequence of them; the triangle congruence criteria; and compass constructions.",
     buildsOn: "The coordinate plane from Unit 4 — transformations are described by coordinate rules.",
-    live: false,
+    live: true,
   },
   {
     unit: 8,
@@ -1277,7 +1280,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Distance and midpoint on the plane, the slope criteria for parallel and perpendicular lines, partitioning a segment, and proving geometric facts with coordinates.",
     buildsOn: "Slope from Unit 4 and rigid motions from Unit 7.",
-    live: false,
+    live: true,
   },
   {
     unit: 9,
@@ -1286,7 +1289,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Centre and spread for one variable, comparing distributions, outliers, two-way tables, scatter plots and the line of best fit — and why correlation is not causation.",
     buildsOn: "Linear models from Unit 4 — the line of best fit is one.",
-    live: false,
+    live: true,
   },
 ];
 
@@ -1297,6 +1300,9 @@ const im1Units: CourseUnit[] = [
   im1LinearFn as unknown as CourseUnit,
   im1Systems as unknown as CourseUnit,
   im1Exponential as unknown as CourseUnit,
+  im1Transformations as unknown as CourseUnit,
+  im1CoordGeo as unknown as CourseUnit,
+  im1Data as unknown as CourseUnit,
 ];
 
 export function getIm1Spine(): GeometrySpineEntry[] {
