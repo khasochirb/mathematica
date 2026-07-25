@@ -1,0 +1,967 @@
+{
+  "meta": {
+    "course": "aa",
+    "level": "hl",
+    "paper": 1,
+    "testId": "ib-hl-practice-4",
+    "label": "AA HL Practice Paper 1",
+    "timeMinutes": 120,
+    "totalMarks": 110,
+    "calculator": false
+  },
+  "questions": [
+    {
+      "source": "IB-AAHL-P1-T4-Q1",
+      "number": 1,
+      "section": "A",
+      "maximumMark": 5,
+      "topic": "number_algebra",
+      "skill_tag": "binomial_theorem",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find the coefficient of $x^{3}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "general term $\\binom{7}{r}2^{7-r}x^{r}$ with $r = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\binom{7}{3}2^{4} = 35 \\times 16$"
+            },
+            {
+              "mark": "A1",
+              "note": "$560$"
+            }
+          ],
+          "answer": "$560$",
+          "solution": "The general term of $(2 + x)^{7}$ is$$\\binom{7}{r}2^{\\,7-r}x^{r}.$$ For $x^{3}$ take $r = 3$, so the coefficient is$$\\binom{7}{3}2^{4} = 35 \\times 16 = 560.$$ Note the power of $2$ is $7 - r$, not $r$ — that swap is the usual slip.",
+          "verify": [
+            "Eq(binomial(7, 3), 35)",
+            "Eq(35*2**4, 560)",
+            "Eq(expand((2 + x)**7).coeff(x, 3), 560)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coefficient of $x^{5}$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\binom{7}{5}2^{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$84$"
+            }
+          ],
+          "answer": "$84$",
+          "solution": "Now $r = 5$, so the coefficient is$$\\binom{7}{5}2^{2} = 21 \\times 4 = 84.$$",
+          "verify": [
+            "Eq(binomial(7, 5), 21)",
+            "Eq(21*2**2, 84)",
+            "Eq(expand((2 + x)**7).coeff(x, 5), 84)"
+          ]
+        }
+      ],
+      "contextIntro": "Consider the expansion of $(2 + x)^{7}$."
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q2",
+      "number": 2,
+      "section": "A",
+      "maximumMark": 9,
+      "topic": "functions",
+      "skill_tag": "inverse_functions",
+      "parts": [
+        {
+          "label": "a",
+          "body": "State the domain of $f$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "the argument of a logarithm must be positive"
+            },
+            {
+              "mark": "A1",
+              "note": "$x > 1$"
+            }
+          ],
+          "answer": "$x > 1$",
+          "solution": "A logarithm is defined only for a positive argument, so we need$$x - 1 > 0 \\;\\Rightarrow\\; x > 1.$$ The domain of $f$ is $\\{x \\in \\mathbb{R} : x > 1\\}$.",
+          "verify": [
+            "Eq(2 - 1, 1)",
+            "2 - 1 > 0",
+            "Eq(log(1), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Show that $(f \\circ g)(x) = x$ for all $x \\in \\mathbb{R}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute $g$ into $f$: $f(g(x)) = \\ln\\!\\left(\\mathrm{e}^{x} + 1 - 1\\right)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\ln\\!\\left(\\mathrm{e}^{x}\\right)$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$(f \\circ g)(x) = x$ (given)",
+          "solution": "Feed $g$ into $f$:$$f(g(x)) = \\ln\\!\\left(g(x) - 1\\right) = \\ln\\!\\left(\\mathrm{e}^{x} + 1 - 1\\right) = \\ln\\!\\left(\\mathrm{e}^{x}\\right) = x.$$ The composition is defined for every real $x$ because $\\mathrm{e}^{x} + 1 > 1$ always, so $g(x)$ always lands inside the domain of $f$.",
+          "verify": [
+            "Eq(simplify(log(exp(2) + 1 - 1)), 2)",
+            "Eq(simplify(log(exp(-3) + 1 - 1)), -3)",
+            "exp(0) + 1 > 1"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "State the range of $f$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "$\\ln u$ takes every real value as $u$ ranges over $(0, \\infty)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$f(x) \\in \\mathbb{R}$"
+            }
+          ],
+          "answer": "all real numbers, $f(x) \\in \\mathbb{R}$",
+          "solution": "As $x$ runs over the domain $(1, \\infty)$, the argument $x - 1$ runs over $(0, \\infty)$, and $\\ln u$ takes every real value on that interval:$$\\ln u \\to -\\infty \\text{ as } u \\to 0^{+}, \\qquad \\ln u \\to \\infty \\text{ as } u \\to \\infty.$$ So the range of $f$ is $\\mathbb{R}$.",
+          "verify": [
+            "Eq(limit(log(x), x, oo), oo)",
+            "Eq(log(exp(-5)), -5)",
+            "Eq(log(exp(5)), 5)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "State what part (b), together with the domain and range found above, shows about the relationship between $f$ and $g$.",
+          "marks": 2,
+          "markscheme": [
+            {
+              "mark": "R1",
+              "note": "the composition returns the input, and the domain of one is the range of the other"
+            },
+            {
+              "mark": "A1",
+              "note": "$g = f^{-1}$ (equivalently $f = g^{-1}$)"
+            }
+          ],
+          "answer": "$f$ and $g$ are inverses of each other: $g = f^{-1}$",
+          "solution": "Part (b) shows that applying $g$ and then $f$ returns the original input. Moreover the range of $g$ is $(1, \\infty)$, which is exactly the domain of $f$, and the range of $f$ is $\\mathbb{R}$, which is exactly the domain of $g$. Those two facts together mean the functions undo each other in both directions, so$$g = f^{-1} \\quad\\text{and}\\quad f = g^{-1}.$$ As a check the other way round: $g(f(x)) = \\mathrm{e}^{\\ln(x-1)} + 1 = (x - 1) + 1 = x$ for $x > 1$.",
+          "verify": [
+            "Eq(simplify(exp(log(5 - 1)) + 1), 5)",
+            "Eq(simplify(log(exp(2) + 1 - 1)), 2)"
+          ]
+        }
+      ],
+      "contextIntro": "The functions $f$ and $g$ are defined by $f(x) = \\ln(x - 1)$ and $g(x) = \\mathrm{e}^{x} + 1$."
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q3",
+      "number": 3,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "geometry_trig",
+      "skill_tag": "trig_identities",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $\\cos(A - B) - \\cos(A + B) = 2\\sin A \\sin B$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "expand both compound angles"
+            },
+            {
+              "mark": "A1",
+              "note": "$(\\cos A\\cos B + \\sin A\\sin B) - (\\cos A\\cos B - \\sin A\\sin B)$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "identity (given)",
+          "solution": "Expand each compound angle with the standard formulas:$$\\cos(A - B) = \\cos A\\cos B + \\sin A\\sin B,$$$$\\cos(A + B) = \\cos A\\cos B - \\sin A\\sin B.$$ Subtracting, the $\\cos A\\cos B$ terms cancel and the two sine products add:$$\\cos(A - B) - \\cos(A + B) = 2\\sin A\\sin B.$$",
+          "verify": [
+            "Eq(simplify(cos(x - y) - cos(x + y) - 2*sin(x)*sin(y)), 0)",
+            "Eq(simplify(cos(pi/3 - pi/4) - cos(pi/3 + pi/4) - 2*sin(pi/3)*sin(pi/4)), 0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence solve $\\cos\\!\\left(x - \\dfrac{\\pi}{6}\\right) - \\cos\\!\\left(x + \\dfrac{\\pi}{6}\\right) = \\dfrac{1}{2}$ for $0 \\le x < 2\\pi$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "apply part (a) with $A = x$, $B = \\dfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$2\\sin x \\sin\\dfrac{\\pi}{6} = \\sin x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\sin x = \\dfrac{1}{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{\\pi}{6}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\dfrac{5\\pi}{6}$"
+            }
+          ],
+          "answer": "$x = \\dfrac{\\pi}{6}$ or $x = \\dfrac{5\\pi}{6}$",
+          "solution": "Apply the identity from part (a) with $A = x$ and $B = \\dfrac{\\pi}{6}$:$$\\cos\\!\\left(x - \\frac{\\pi}{6}\\right) - \\cos\\!\\left(x + \\frac{\\pi}{6}\\right) = 2\\sin x \\sin\\frac{\\pi}{6} = 2\\sin x \\cdot \\frac{1}{2} = \\sin x.$$ The equation therefore collapses to$$\\sin x = \\frac{1}{2}.$$ On $[0, 2\\pi)$ the sine equals $\\tfrac12$ in the first and second quadrants:$$x = \\frac{\\pi}{6} \\quad\\text{or}\\quad x = \\pi - \\frac{\\pi}{6} = \\frac{5\\pi}{6}.$$",
+          "verify": [
+            "Eq(sin(pi/6), Rational(1,2))",
+            "Eq(sin(5*pi/6), Rational(1,2))",
+            "Eq(simplify(cos(pi/6 - pi/6) - cos(pi/6 + pi/6)), Rational(1,2))",
+            "Eq(simplify(cos(5*pi/6 - pi/6) - cos(5*pi/6 + pi/6)), Rational(1,2))"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q4",
+      "number": 4,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "stats_probability",
+      "skill_tag": "probability_rules",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $P(A \\cup B)$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "independence gives $P(A \\cap B) = P(A)P(B) = 0.2$"
+            },
+            {
+              "mark": "M1",
+              "note": "addition rule $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{7}{10}$"
+            }
+          ],
+          "answer": "$P(A \\cup B) = \\dfrac{7}{10} = 0.7$",
+          "solution": "Independence lets us multiply for the intersection:$$P(A \\cap B) = P(A)P(B) = 0.4 \\times 0.5 = 0.2.$$ Then the addition rule gives$$P(A \\cup B) = 0.4 + 0.5 - 0.2 = 0.7 = \\frac{7}{10}.$$ Subtracting the overlap matters — simply adding would double-count the $0.2$.",
+          "verify": [
+            "Eq(Rational(4,10)*Rational(5,10), Rational(2,10))",
+            "Eq(Rational(4,10) + Rational(5,10) - Rational(2,10), Rational(7,10))"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $P(A \\mid A \\cup B)$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$P(A \\mid A \\cup B) = \\dfrac{P(A \\cap (A \\cup B))}{P(A \\cup B)}$"
+            },
+            {
+              "mark": "R1",
+              "note": "$A \\subseteq A \\cup B$, so the numerator is $P(A)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{0.4}{0.7}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{4}{7}$"
+            }
+          ],
+          "answer": "$\\dfrac{4}{7}$",
+          "solution": "Use the definition of conditional probability:$$P(A \\mid A \\cup B) = \\frac{P\\big(A \\cap (A \\cup B)\\big)}{P(A \\cup B)}.$$ Every outcome in $A$ is already in $A \\cup B$, so $A \\cap (A \\cup B) = A$ and the numerator is simply $P(A) = 0.4$. Hence$$P(A \\mid A \\cup B) = \\frac{0.4}{0.7} = \\frac{4}{7}.$$ This exceeds $P(A) = 0.4$, as it must: knowing that at least one event occurred makes $A$ more likely.",
+          "verify": [
+            "Eq(Rational(4,10)/Rational(7,10), Rational(4,7))",
+            "Rational(4,7) > Rational(4,10)"
+          ]
+        }
+      ],
+      "contextIntro": "$A$ and $B$ are independent events with $P(A) = 0.4$ and $P(B) = 0.5$."
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q5",
+      "number": 5,
+      "section": "A",
+      "maximumMark": 7,
+      "topic": "calculus",
+      "skill_tag": "chain_rule",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Find $\\dfrac{dy}{dx}$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "chain rule: differentiate the outer power"
+            },
+            {
+              "mark": "A1",
+              "note": "$4\\left(3x^{2} - 1\\right)^{3}$"
+            },
+            {
+              "mark": "M1",
+              "note": "multiply by the derivative of the inside, $6x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{dy}{dx} = 24x\\left(3x^{2} - 1\\right)^{3}$"
+            }
+          ],
+          "answer": "$\\dfrac{dy}{dx} = 24x\\left(3x^{2} - 1\\right)^{3}$",
+          "solution": "Differentiate the outer fourth power first, then multiply by the derivative of the inside:$$\\frac{dy}{dx} = 4\\left(3x^{2} - 1\\right)^{3} \\cdot 6x = 24x\\left(3x^{2} - 1\\right)^{3}.$$ Forgetting the inner derivative $6x$ is the classic chain-rule omission.",
+          "verify": [
+            "Eq(simplify(diff((3*x**2 - 1)**4, x) - 24*x*(3*x**2 - 1)**3), 0)",
+            "Eq(diff(3*x**2 - 1, x), 6*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the equation of the tangent to the curve at the point where $x = 1$, giving your answer in the form $y = mx + c$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "evaluate the derivative at $x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "gradient $= 192$, and $y = 16$ there"
+            },
+            {
+              "mark": "A1",
+              "note": "$y = 192x - 176$"
+            }
+          ],
+          "answer": "$y = 192x - 176$",
+          "solution": "At $x = 1$ the inside is $3 - 1 = 2$, so the point on the curve is$$y = 2^{4} = 16,$$ and the gradient is$$\\left.\\frac{dy}{dx}\\right|_{x=1} = 24(1)(2)^{3} = 192.$$ The tangent through $(1, 16)$ with gradient $192$ is$$y - 16 = 192(x - 1) \\;\\Rightarrow\\; y = 192x - 176.$$",
+          "verify": [
+            "Eq((3*1**2 - 1)**4, 16)",
+            "Eq(24*1*(3*1**2 - 1)**3, 192)",
+            "Eq(192*1 - 176, 16)"
+          ]
+        }
+      ],
+      "contextIntro": "A curve has equation $y = \\left(3x^{2} - 1\\right)^{4}$."
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q6",
+      "number": 6,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "number_algebra",
+      "skill_tag": "logarithms",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Solve the simultaneous equations $\\log_2 x + \\log_2 y = 5$ and $\\log_2 x - \\log_2 y = 1$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "add the two equations to eliminate $\\log_2 y$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_2 x = 3$, so $x = 8$"
+            },
+            {
+              "mark": "M1",
+              "note": "substitute back"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\log_2 y = 2$, so $y = 4$"
+            }
+          ],
+          "answer": "$x = 8$, $y = 4$",
+          "solution": "Treat $\\log_2 x$ and $\\log_2 y$ as the two unknowns. Adding the equations,$$2\\log_2 x = 6 \\;\\Rightarrow\\; \\log_2 x = 3 \\;\\Rightarrow\\; x = 2^{3} = 8.$$ Subtracting them instead,$$2\\log_2 y = 4 \\;\\Rightarrow\\; \\log_2 y = 2 \\;\\Rightarrow\\; y = 4.$$ Check: $\\log_2 8 + \\log_2 4 = 3 + 2 = 5$ and $3 - 2 = 1$. Both values are positive, so both logarithms are defined.",
+          "verify": [
+            "Eq(log(8, 2) + log(4, 2), 5)",
+            "Eq(log(8, 2) - log(4, 2), 1)",
+            "Eq(2**3, 8)",
+            "Eq(2**2, 4)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Solve $\\log_3 x + \\log_3 (x - 2) = 1$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "combine into a single logarithm: $\\log_3\\big(x(x - 2)\\big) = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x^{2} - 2x - 3 = 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = 3$ or $x = -1$"
+            },
+            {
+              "mark": "R1",
+              "note": "$x = -1$ is rejected because $\\log_3(-1)$ is undefined, so $x = 3$"
+            }
+          ],
+          "answer": "$x = 3$",
+          "solution": "Combine the logarithms with $\\log a + \\log b = \\log(ab)$:$$\\log_3\\big(x(x - 2)\\big) = 1 \\;\\Rightarrow\\; x(x - 2) = 3^{1} = 3.$$ Rearranging,$$x^{2} - 2x - 3 = 0 \\;\\Rightarrow\\; (x - 3)(x + 1) = 0,$$ so $x = 3$ or $x = -1$. The value $x = -1$ makes both original logarithms undefined, so it is extraneous and$$x = 3$$ is the only solution. Checking: $\\log_3 3 + \\log_3 1 = 1 + 0 = 1$.",
+          "verify": [
+            "Eq(3*(3 - 2), 3)",
+            "Eq(expand((x - 3)*(x + 1)), x**2 - 2*x - 3)",
+            "Eq(log(3, 3) + log(1, 3), 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q7",
+      "number": 7,
+      "section": "A",
+      "maximumMark": 8,
+      "topic": "calculus",
+      "skill_tag": "integration_substitution",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Use the substitution $u = x^{2} + 1$ to show that $\\displaystyle\\int x\\left(x^{2} + 1\\right)^{3}dx = \\frac{1}{8}\\left(x^{2} + 1\\right)^{4} + c$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\dfrac{du}{dx} = 2x$, so $x\\,dx = \\tfrac{1}{2}du$"
+            },
+            {
+              "mark": "A1",
+              "note": "integral becomes $\\tfrac{1}{2}\\displaystyle\\int u^{3}\\,du$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\tfrac{1}{8}u^{4} + c$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$\\dfrac{1}{8}\\left(x^{2} + 1\\right)^{4} + c$ (given)",
+          "solution": "With $u = x^{2} + 1$ we get $\\dfrac{du}{dx} = 2x$, so $x\\,dx = \\tfrac{1}{2}\\,du$ and the integral becomes$$\\int x\\left(x^{2} + 1\\right)^{3}dx = \\frac{1}{2}\\int u^{3}\\,du = \\frac{1}{2}\\cdot\\frac{u^{4}}{4} + c = \\frac{u^{4}}{8} + c.$$ Substituting back,$$= \\frac{1}{8}\\left(x^{2} + 1\\right)^{4} + c.$$ Differentiating this result returns $\\tfrac{1}{8}\\cdot4\\left(x^{2}+1\\right)^{3}\\cdot 2x = x\\left(x^{2}+1\\right)^{3}$, which confirms it.",
+          "verify": [
+            "Eq(simplify(diff(Rational(1,8)*(x**2 + 1)**4, x) - x*(x**2 + 1)**3), 0)",
+            "Eq(diff(x**2 + 1, x), 2*x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Hence evaluate $\\displaystyle\\int_{0}^{1} x\\left(x^{2} + 1\\right)^{3}dx$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "substitute the limits into $\\tfrac{1}{8}\\left(x^{2} + 1\\right)^{4}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{8}(2)^{4} = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\tfrac{1}{8}(1)^{4} = \\tfrac{1}{8}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{15}{8}$"
+            }
+          ],
+          "answer": "$\\dfrac{15}{8}$",
+          "solution": "Evaluate the antiderivative at the two limits:$$\\left[\\frac{1}{8}\\left(x^{2} + 1\\right)^{4}\\right]_{0}^{1} = \\frac{1}{8}(2)^{4} - \\frac{1}{8}(1)^{4} = 2 - \\frac{1}{8} = \\frac{15}{8}.$$ (Working in $u$ instead, the limits become $u = 1$ and $u = 2$, giving the same $\\tfrac{1}{8}\\left[u^{4}\\right]_{1}^{2}$ — remember to change the limits if you do not substitute back.)",
+          "verify": [
+            "Eq(Rational(1,8)*2**4, 2)",
+            "Eq(2 - Rational(1,8), Rational(15,8))",
+            "Eq(integrate(x*(x**2 + 1)**3, (x, 0, 1)), Rational(15,8))"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q8",
+      "number": 8,
+      "section": "B",
+      "maximumMark": 20,
+      "topic": "geometry_trig",
+      "skill_tag": "vectors_3d",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $L_1$ and $L_2$ intersect, and find the coordinates of the point of intersection.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "equate the three coordinates"
+            },
+            {
+              "mark": "A1",
+              "note": "$1 + 2s = 3 + t$ and $2 - s = 1 + 2t$"
+            },
+            {
+              "mark": "M1",
+              "note": "solve the first two equations"
+            },
+            {
+              "mark": "A1",
+              "note": "$s = 1$, $t = 0$"
+            },
+            {
+              "mark": "AG",
+              "note": "both satisfy the third equation $3 + s = 4 + 2t$, so the lines meet at $(3, 1, 4)$"
+            }
+          ],
+          "answer": "the lines meet at $(3, 1, 4)$",
+          "solution": "Set the two position vectors equal, coordinate by coordinate:$$1 + 2s = 3 + t, \\qquad 2 - s = 1 + 2t, \\qquad 3 + s = 4 + 2t.$$ From the first equation $t = 2s - 2$. Substituting into the second,$$2 - s = 1 + 2(2s - 2) = 4s - 3 \\;\\Rightarrow\\; 5 = 5s \\;\\Rightarrow\\; s = 1,$$ and then $t = 0$. The THIRD equation must now be checked, since two equations can always be solved but three need not agree: $3 + 1 = 4$ and $4 + 2(0) = 4$, so it holds. The lines therefore intersect, at$$\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} + 1\\begin{pmatrix} 2 \\\\ -1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 4 \\end{pmatrix},$$ that is at the point $(3, 1, 4)$.",
+          "verify": [
+            "Eq(Matrix([1,2,3]) + Matrix([2,-1,1]), Matrix([3,1,4]))",
+            "Eq(Matrix([3,1,4]) + 0*Matrix([1,2,2]), Matrix([3,1,4]))",
+            "Eq(3 + 1, 4 + 2*0)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the exact value of $\\cos\\theta$, where $\\theta$ is the acute angle between the two lines.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\cos\\theta = \\dfrac{|\\mathbf{d}_1 \\cdot \\mathbf{d}_2|}{|\\mathbf{d}_1||\\mathbf{d}_2|}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathbf{d}_1 \\cdot \\mathbf{d}_2 = 2$"
+            },
+            {
+              "mark": "A1",
+              "note": "$|\\mathbf{d}_1| = \\sqrt{6}$, $|\\mathbf{d}_2| = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\cos\\theta = \\dfrac{\\sqrt{6}}{9}$"
+            }
+          ],
+          "answer": "$\\cos\\theta = \\dfrac{\\sqrt{6}}{9}$",
+          "solution": "The angle between two lines is the angle between their direction vectors, taken acute:$$\\cos\\theta = \\frac{|\\mathbf{d}_1 \\cdot \\mathbf{d}_2|}{|\\mathbf{d}_1|\\,|\\mathbf{d}_2|}.$$ Here$$\\mathbf{d}_1 \\cdot \\mathbf{d}_2 = 2(1) + (-1)(2) + 1(2) = 2,$$$$|\\mathbf{d}_1| = \\sqrt{4 + 1 + 1} = \\sqrt{6}, \\qquad |\\mathbf{d}_2| = \\sqrt{1 + 4 + 4} = 3.$$ Hence$$\\cos\\theta = \\frac{2}{3\\sqrt{6}} = \\frac{2\\sqrt{6}}{18} = \\frac{\\sqrt{6}}{9}.$$",
+          "verify": [
+            "Eq(Matrix([2,-1,1]).dot(Matrix([1,2,2])), 2)",
+            "Eq(sqrt(4 + 1 + 1), sqrt(6))",
+            "Eq(sqrt(1 + 4 + 4), 3)",
+            "Eq(simplify(2/(3*sqrt(6))), sqrt(6)/9)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find a Cartesian equation of the plane that contains both lines.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "a normal is $\\mathbf{d}_1 \\times \\mathbf{d}_2$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate the cross product"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\begin{pmatrix} -4 \\\\ -3 \\\\ 5 \\end{pmatrix}$"
+            },
+            {
+              "mark": "M1",
+              "note": "use a point on the plane, e.g. $(1, 2, 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$4x + 3y - 5z + 5 = 0$"
+            }
+          ],
+          "answer": "$4x + 3y - 5z + 5 = 0$",
+          "solution": "Because the lines intersect, they span a unique plane, and a normal to that plane is perpendicular to both directions:$$\\mathbf{n} = \\mathbf{d}_1 \\times \\mathbf{d}_2 = \\begin{pmatrix} (-1)(2) - (1)(2) \\\\ (1)(1) - (2)(2) \\\\ (2)(2) - (-1)(1) \\end{pmatrix} = \\begin{pmatrix} -4 \\\\ -3 \\\\ 5 \\end{pmatrix}.$$ Using the point $(1, 2, 3)$ from $L_1$,$$-4(x - 1) - 3(y - 2) + 5(z - 3) = 0.$$ Expanding and multiplying by $-1$,$$4x + 3y - 5z + 5 = 0.$$ Check with the intersection point $(3, 1, 4)$: $12 + 3 - 20 + 5 = 0$.",
+          "verify": [
+            "Eq(Matrix([2,-1,1]).cross(Matrix([1,2,2])), Matrix([-4,-3,5]))",
+            "Eq(4*1 + 3*2 - 5*3 + 5, 0)",
+            "Eq(4*3 + 3*1 - 5*4 + 5, 0)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the exact perpendicular distance from the point $D(2, 0, 1)$ to the line $L_1$.",
+          "marks": 6,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "use $\\dfrac{\\left|\\overrightarrow{AD} \\times \\mathbf{d}_1\\right|}{|\\mathbf{d}_1|}$ with $A(1, 2, 3)$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\overrightarrow{AD} = \\begin{pmatrix} 1 \\\\ -2 \\\\ -2 \\end{pmatrix}$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate the cross product"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\begin{pmatrix} -4 \\\\ -5 \\\\ 3 \\end{pmatrix}$"
+            },
+            {
+              "mark": "A1",
+              "note": "magnitude $5\\sqrt{2}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{5\\sqrt{3}}{3}$"
+            }
+          ],
+          "answer": "$\\dfrac{5\\sqrt{3}}{3}$",
+          "solution": "Take the known point $A(1, 2, 3)$ on $L_1$. The perpendicular distance from $D$ to the line is$$\\frac{\\left|\\overrightarrow{AD} \\times \\mathbf{d}_1\\right|}{|\\mathbf{d}_1|},$$ which measures the component of $\\overrightarrow{AD}$ across the line rather than along it. Here$$\\overrightarrow{AD} = \\begin{pmatrix} 2 \\\\ 0 \\\\ 1 \\end{pmatrix} - \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ -2 \\\\ -2 \\end{pmatrix},$$$$\\overrightarrow{AD} \\times \\mathbf{d}_1 = \\begin{pmatrix} (-2)(1) - (-2)(-1) \\\\ (-2)(2) - (1)(1) \\\\ (1)(-1) - (-2)(2) \\end{pmatrix} = \\begin{pmatrix} -4 \\\\ -5 \\\\ 3 \\end{pmatrix}.$$ Its magnitude is $\\sqrt{16 + 25 + 9} = \\sqrt{50} = 5\\sqrt{2}$, so the distance is$$\\frac{5\\sqrt{2}}{\\sqrt{6}} = \\frac{5}{\\sqrt{3}} = \\frac{5\\sqrt{3}}{3}.$$",
+          "verify": [
+            "Eq(Matrix([2,0,1]) - Matrix([1,2,3]), Matrix([1,-2,-2]))",
+            "Eq(Matrix([1,-2,-2]).cross(Matrix([2,-1,1])), Matrix([-4,-5,3]))",
+            "Eq(simplify(sqrt(16 + 25 + 9)), 5*sqrt(2))",
+            "Eq(simplify(5*sqrt(2)/sqrt(6)), 5*sqrt(3)/3)"
+          ]
+        }
+      ],
+      "contextIntro": "Two lines are given by $L_1: \\mathbf{r} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix} + s\\begin{pmatrix} 2 \\\\ -1 \\\\ 1 \\end{pmatrix}$ and $L_2: \\mathbf{r} = \\begin{pmatrix} 3 \\\\ 1 \\\\ 4 \\end{pmatrix} + t\\begin{pmatrix} 1 \\\\ 2 \\\\ 2 \\end{pmatrix}$, where $s, t \\in \\mathbb{R}$."
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q9",
+      "number": 9,
+      "section": "B",
+      "maximumMark": 21,
+      "topic": "calculus",
+      "skill_tag": "differentiation_applications",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $f'(x) = \\dfrac{1 - \\ln x}{x^{2}}$.",
+          "marks": 3,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "quotient rule with $u = \\ln x$, $v = x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{x\\cdot\\frac{1}{x} - \\ln x \\cdot 1}{x^{2}}$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$f'(x) = \\dfrac{1 - \\ln x}{x^{2}}$ (given)",
+          "solution": "Apply the quotient rule with $u = \\ln x$ and $v = x$, so $u' = \\dfrac{1}{x}$ and $v' = 1$:$$f'(x) = \\frac{v u' - u v'}{v^{2}} = \\frac{x \\cdot \\frac{1}{x} - \\ln x \\cdot 1}{x^{2}} = \\frac{1 - \\ln x}{x^{2}}.$$",
+          "verify": [
+            "Eq(simplify(diff(log(x)/x, x) - (1 - log(x))/x**2), 0)",
+            "Eq(diff(log(x), x), 1/x)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find the coordinates of the stationary point of the curve and justify that it is a maximum.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f'(x) = 0$, so $\\ln x = 1$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\left(\\mathrm{e}, \\dfrac{1}{\\mathrm{e}}\\right)$"
+            },
+            {
+              "mark": "M1",
+              "note": "find $f''(x) = \\dfrac{2\\ln x - 3}{x^{3}}$"
+            },
+            {
+              "mark": "R1",
+              "note": "$f''(\\mathrm{e}) = -\\dfrac{1}{\\mathrm{e}^{3}} < 0$, so it is a maximum"
+            }
+          ],
+          "answer": "$\\left(\\mathrm{e}, \\dfrac{1}{\\mathrm{e}}\\right)$, a local maximum",
+          "solution": "A fraction is zero when its numerator is zero, so$$1 - \\ln x = 0 \\;\\Rightarrow\\; \\ln x = 1 \\;\\Rightarrow\\; x = \\mathrm{e},$$ and there$$f(\\mathrm{e}) = \\frac{\\ln \\mathrm{e}}{\\mathrm{e}} = \\frac{1}{\\mathrm{e}}.$$ Differentiating again,$$f''(x) = \\frac{2\\ln x - 3}{x^{3}},$$ so$$f''(\\mathrm{e}) = \\frac{2 - 3}{\\mathrm{e}^{3}} = -\\frac{1}{\\mathrm{e}^{3}} < 0.$$ The curve is concave down there, so $\\left(\\mathrm{e}, \\dfrac{1}{\\mathrm{e}}\\right)$ is a local maximum.",
+          "verify": [
+            "Eq(simplify((1 - log(E))/E**2), 0)",
+            "Eq(simplify(log(E)/E), 1/E)",
+            "Eq(simplify(diff(log(x)/x, x, 2) - (2*log(x) - 3)/x**3), 0)",
+            "(2 - 3)/E**3 < 0"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find the exact coordinates of the point of inflexion of the curve.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "set $f''(x) = 0$: $2\\ln x = 3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$x = \\mathrm{e}^{3/2}$"
+            },
+            {
+              "mark": "R1",
+              "note": "$f''$ changes sign there"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\left(\\mathrm{e}^{3/2}, \\dfrac{3}{2\\mathrm{e}^{3/2}}\\right)$"
+            }
+          ],
+          "answer": "$\\left(\\mathrm{e}^{3/2}, \\dfrac{3}{2\\mathrm{e}^{3/2}}\\right)$",
+          "solution": "Set the second derivative to zero:$$2\\ln x - 3 = 0 \\;\\Rightarrow\\; \\ln x = \\frac{3}{2} \\;\\Rightarrow\\; x = \\mathrm{e}^{3/2}.$$ Because $x^{3} > 0$, the sign of $f''$ is the sign of $2\\ln x - 3$, which is negative for $x < \\mathrm{e}^{3/2}$ and positive after — a genuine change of concavity. The $y$-coordinate is$$f\\!\\left(\\mathrm{e}^{3/2}\\right) = \\frac{3/2}{\\mathrm{e}^{3/2}} = \\frac{3}{2\\mathrm{e}^{3/2}}.$$",
+          "verify": [
+            "Eq(simplify(2*log(E**Rational(3,2)) - 3), 0)",
+            "Eq(simplify(log(E**Rational(3,2))/E**Rational(3,2) - Rational(3,2)/E**Rational(3,2)), 0)"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find the exact area of the region $R$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "recognise the form $\\displaystyle\\int \\frac{\\ln x}{x}dx$ with $u = \\ln x$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\dfrac{(\\ln x)^{2}}{2} + c$"
+            },
+            {
+              "mark": "M1",
+              "note": "evaluate between $1$ and $\\mathrm{e}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{1}{2} - 0$"
+            },
+            {
+              "mark": "A1",
+              "note": "area $= \\dfrac{1}{2}$"
+            }
+          ],
+          "answer": "$\\dfrac{1}{2}$",
+          "solution": "The integrand is a derivative times a function of itself: with $u = \\ln x$ we get $du = \\dfrac{1}{x}dx$, so$$\\int \\frac{\\ln x}{x}\\,dx = \\int u\\,du = \\frac{u^{2}}{2} + c = \\frac{(\\ln x)^{2}}{2} + c.$$ The curve crosses the $x$-axis at $x = 1$ (where $\\ln 1 = 0$), so the region runs from $1$ to $\\mathrm{e}$:$$A = \\left[\\frac{(\\ln x)^{2}}{2}\\right]_{1}^{\\mathrm{e}} = \\frac{1}{2} - 0 = \\frac{1}{2}.$$",
+          "verify": [
+            "Eq(simplify(diff(log(x)**2/2, x) - log(x)/x), 0)",
+            "Eq(simplify(integrate(log(x)/x, (x, 1, E))), Rational(1,2))",
+            "Eq(log(1), 0)"
+          ]
+        },
+        {
+          "label": "e",
+          "body": "The region $R$ is rotated through $2\\pi$ about the $x$-axis. Find the exact volume of the solid formed.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$V = \\pi\\displaystyle\\int_{1}^{\\mathrm{e}} \\frac{(\\ln x)^{2}}{x^{2}}dx$"
+            },
+            {
+              "mark": "M1",
+              "note": "integrate by parts twice"
+            },
+            {
+              "mark": "A1",
+              "note": "antiderivative $-\\dfrac{(\\ln x)^{2} + 2\\ln x + 2}{x}$"
+            },
+            {
+              "mark": "A1",
+              "note": "definite value $2 - \\dfrac{5}{\\mathrm{e}}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$V = \\pi\\left(2 - \\dfrac{5}{\\mathrm{e}}\\right)$"
+            }
+          ],
+          "answer": "$V = \\pi\\left(2 - \\dfrac{5}{\\mathrm{e}}\\right)$",
+          "solution": "Rotating about the $x$-axis,$$V = \\pi\\int_{1}^{\\mathrm{e}}\\left(\\frac{\\ln x}{x}\\right)^{2}dx = \\pi\\int_{1}^{\\mathrm{e}} (\\ln x)^{2}x^{-2}\\,dx.$$ Integrating by parts with $u = (\\ln x)^{2}$ and $dv = x^{-2}dx$, then by parts once more on the remaining $\\int \\ln x \\cdot x^{-2}dx$, gives$$\\int (\\ln x)^{2}x^{-2}dx = -\\frac{(\\ln x)^{2} + 2\\ln x + 2}{x} + c.$$ At $x = \\mathrm{e}$ the bracket is $1 + 2 + 2 = 5$ and at $x = 1$ it is $2$, so$$\\int_{1}^{\\mathrm{e}} (\\ln x)^{2}x^{-2}dx = -\\frac{5}{\\mathrm{e}} + 2.$$ Therefore$$V = \\pi\\left(2 - \\frac{5}{\\mathrm{e}}\\right).$$ Since $\\mathrm{e} > 2.5$ this is positive, as a volume must be.",
+          "verify": [
+            "Eq(simplify(diff(-(log(x)**2 + 2*log(x) + 2)/x, x) - log(x)**2/x**2), 0)",
+            "Eq(simplify(integrate((log(x)/x)**2, (x, 1, E)) - (2 - 5/E)), 0)",
+            "2 - 5/E > 0"
+          ]
+        }
+      ],
+      "contextIntro": "The function $f$ is defined by $f(x) = \\dfrac{\\ln x}{x}$ for $x > 0$. The diagram shows the region $R$ bounded by the curve $y = f(x)$, the $x$-axis and the line $x = \\mathrm{e}$.",
+      "figure": {
+        "src": "/ib-figures/ib-aahl-p1-t4-q9.png",
+        "width": 794,
+        "height": 520,
+        "alt_en": "Region R bounded by the curve y = ln(x)/x, the x-axis and the line x = e"
+      }
+    },
+    {
+      "source": "IB-AAHL-P1-T4-Q10",
+      "number": 10,
+      "section": "B",
+      "maximumMark": 17,
+      "topic": "stats_probability",
+      "skill_tag": "continuous_random_variables",
+      "parts": [
+        {
+          "label": "a",
+          "body": "Show that $k = \\dfrac{3}{32}$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "a density integrates to $1$ over its support"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\displaystyle\\int_{0}^{4} x(4 - x)\\,dx = \\left[2x^{2} - \\frac{x^{3}}{3}\\right]_{0}^{4}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$= \\dfrac{32}{3}$"
+            },
+            {
+              "mark": "AG",
+              "note": "answer given"
+            }
+          ],
+          "answer": "$k = \\dfrac{3}{32}$ (given)",
+          "solution": "Every probability density integrates to $1$ over its support:$$\\int_{0}^{4} kx(4 - x)\\,dx = 1.$$ Compute the integral first:$$\\int_{0}^{4}\\left(4x - x^{2}\\right)dx = \\left[2x^{2} - \\frac{x^{3}}{3}\\right]_{0}^{4} = 32 - \\frac{64}{3} = \\frac{32}{3}.$$ Hence $k \\cdot \\dfrac{32}{3} = 1$, giving $k = \\dfrac{3}{32}$. Note $f(x) \\ge 0$ on $[0, 4]$, as a density must be.",
+          "verify": [
+            "Eq(integrate(x*(4 - x), (x, 0, 4)), Rational(32,3))",
+            "Eq(Rational(3,32)*Rational(32,3), 1)"
+          ]
+        },
+        {
+          "label": "b",
+          "body": "Find $\\mathrm{E}(X)$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\mathrm{E}(X) = \\displaystyle\\int_{0}^{4} x f(x)\\,dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{3}{32}\\displaystyle\\int_{0}^{4}\\left(4x^{2} - x^{3}\\right)dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{3}{32} \\cdot \\dfrac{64}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathrm{E}(X) = 2$"
+            }
+          ],
+          "answer": "$\\mathrm{E}(X) = 2$",
+          "solution": "The mean of a continuous variable is$$\\mathrm{E}(X) = \\int_{0}^{4} x f(x)\\,dx = \\frac{3}{32}\\int_{0}^{4}\\left(4x^{2} - x^{3}\\right)dx.$$ Evaluating,$$\\int_{0}^{4}\\left(4x^{2} - x^{3}\\right)dx = \\left[\\frac{4x^{3}}{3} - \\frac{x^{4}}{4}\\right]_{0}^{4} = \\frac{256}{3} - 64 = \\frac{64}{3},$$ so$$\\mathrm{E}(X) = \\frac{3}{32}\\cdot\\frac{64}{3} = 2.$$ This is no surprise: the density is symmetric about $x = 2$.",
+          "verify": [
+            "Eq(integrate(4*x**2 - x**3, (x, 0, 4)), Rational(64,3))",
+            "Eq(Rational(3,32)*Rational(64,3), 2)"
+          ]
+        },
+        {
+          "label": "c",
+          "body": "Find $\\mathrm{Var}(X)$.",
+          "marks": 5,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "$\\mathrm{Var}(X) = \\mathrm{E}(X^{2}) - \\left(\\mathrm{E}(X)\\right)^{2}$"
+            },
+            {
+              "mark": "M1",
+              "note": "$\\mathrm{E}(X^{2}) = \\dfrac{3}{32}\\displaystyle\\int_{0}^{4}\\left(4x^{3} - x^{4}\\right)dx$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\displaystyle\\int_{0}^{4}\\left(4x^{3} - x^{4}\\right)dx = \\dfrac{256}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathrm{E}(X^{2}) = \\dfrac{24}{5}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\mathrm{Var}(X) = \\dfrac{4}{5}$"
+            }
+          ],
+          "answer": "$\\mathrm{Var}(X) = \\dfrac{4}{5}$",
+          "solution": "First find the second moment:$$\\mathrm{E}(X^{2}) = \\frac{3}{32}\\int_{0}^{4}\\left(4x^{3} - x^{4}\\right)dx = \\frac{3}{32}\\left[x^{4} - \\frac{x^{5}}{5}\\right]_{0}^{4}.$$ The bracket is $256 - \\dfrac{1024}{5} = \\dfrac{256}{5}$, so$$\\mathrm{E}(X^{2}) = \\frac{3}{32}\\cdot\\frac{256}{5} = \\frac{24}{5}.$$ Then$$\\mathrm{Var}(X) = \\mathrm{E}(X^{2}) - \\left(\\mathrm{E}(X)\\right)^{2} = \\frac{24}{5} - 4 = \\frac{4}{5}.$$",
+          "verify": [
+            "Eq(integrate(4*x**3 - x**4, (x, 0, 4)), Rational(256,5))",
+            "Eq(Rational(3,32)*Rational(256,5), Rational(24,5))",
+            "Eq(Rational(24,5) - 4, Rational(4,5))"
+          ]
+        },
+        {
+          "label": "d",
+          "body": "Find $P(1 \\le X \\le 3)$.",
+          "marks": 4,
+          "markscheme": [
+            {
+              "mark": "M1",
+              "note": "integrate the density between $1$ and $3$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{3}{32}\\left[2x^{2} - \\dfrac{x^{3}}{3}\\right]_{1}^{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{3}{32} \\cdot \\dfrac{22}{3}$"
+            },
+            {
+              "mark": "A1",
+              "note": "$\\dfrac{11}{16}$"
+            }
+          ],
+          "answer": "$\\dfrac{11}{16}$",
+          "solution": "A probability over an interval is the area under the density there:$$P(1 \\le X \\le 3) = \\frac{3}{32}\\int_{1}^{3}\\left(4x - x^{2}\\right)dx = \\frac{3}{32}\\left[2x^{2} - \\frac{x^{3}}{3}\\right]_{1}^{3}.$$ At $x = 3$ the bracket is $18 - 9 = 9$; at $x = 1$ it is $2 - \\dfrac{1}{3} = \\dfrac{5}{3}$. The difference is $\\dfrac{22}{3}$, so$$P(1 \\le X \\le 3) = \\frac{3}{32}\\cdot\\frac{22}{3} = \\frac{22}{32} = \\frac{11}{16}.$$ Just over two thirds of the distribution lies in the middle half of the range, which fits the density's hump at $x = 2$.",
+          "verify": [
+            "Eq(integrate(4*x - x**2, (x, 1, 3)), Rational(22,3))",
+            "Eq(Rational(3,32)*Rational(22,3), Rational(11,16))"
+          ]
+        }
+      ],
+      "contextIntro": "A continuous random variable $X$ has probability density function $f(x) = kx(4 - x)$ for $0 \\le x \\le 4$, and $f(x) = 0$ otherwise, where $k$ is a constant."
+    }
+  ]
+}

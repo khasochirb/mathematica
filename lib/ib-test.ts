@@ -22,6 +22,8 @@ import ibHlPractice2Paper1 from "@/data/ib/aa-hl/ib-hl-practice-2/paper1.json";
 import ibHlPractice2Paper2 from "@/data/ib/aa-hl/ib-hl-practice-2/paper2.json";
 import ibHlPractice3Paper1 from "@/data/ib/aa-hl/ib-hl-practice-3/paper1.json";
 import ibHlPractice3Paper2 from "@/data/ib/aa-hl/ib-hl-practice-3/paper2.json";
+import ibHlPractice4Paper1 from "@/data/ib/aa-hl/ib-hl-practice-4/paper1.json";
+import ibHlPractice4Paper2 from "@/data/ib/aa-hl/ib-hl-practice-4/paper2.json";
 
 export type IbTopic =
   | "number_algebra"
@@ -95,6 +97,8 @@ const PAPERS: IbPaper[] = [
   ibHlPractice2Paper2 as unknown as IbPaper,
   ibHlPractice3Paper1 as unknown as IbPaper,
   ibHlPractice3Paper2 as unknown as IbPaper,
+  ibHlPractice4Paper1 as unknown as IbPaper,
+  ibHlPractice4Paper2 as unknown as IbPaper,
 ];
 
 export function listIbPapers(): IbPaperMeta[] {
