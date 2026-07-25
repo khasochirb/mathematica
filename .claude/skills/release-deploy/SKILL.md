@@ -35,6 +35,12 @@ Day-to-day work lands on the working branch
      instead of pushing the working branch wholesale.
    - No secrets/PII in the outgoing diff (`cybersecurity` sweep if auth
      or scripts changed).
+   - Read `memory/flags.md`. If anything shipping DEPENDS on an OPEN
+     flag, sequence per that flag's runbook (usually: owner action
+     first, verified, then deploy). After the deploy, check
+     `/api/health/flags` on prod (via the Vercel MCP web fetch) and
+     list open flags in the report — one line, pointing at the
+     registry. Protocol: `ops-flags` skill.
 2. **Ship:** `git push origin <working-branch>:main`
    (with retry: 2s/4s/8s/16s backoff on network failure).
 3. **Watch it land:** poll the Vercel deployment (MCP:
@@ -64,10 +70,11 @@ Vercel keeps previous deployments warm:
 Migrations under `supabase/migrations/` do NOT auto-apply on deploy —
 the owner applies them in the Supabase dashboard/CLI. Deploys that
 depend on un-applied migrations must be sequenced: migration applied
-first, verified (table exists), THEN code deploy. Flag this dependency
-loudly in the deploy report (current standing example: migration 008
-student_profiles is committed but not yet applied — student-account
-features are dormant until it is; see `student-ops`).
+first, verified (table/column exists), THEN code deploy. Every new
+migration file raises an ops flag in the same commit — registry
+`memory/flags.md`, sentinel in `lib/flags.ts`, protocol in the
+`ops-flags` skill. Applied-state is checked mechanically via
+`GET /api/health/flags` / `npm run verify:flags`, never from memory.
 
 ## Cadence and hygiene
 

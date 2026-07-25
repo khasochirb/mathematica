@@ -1,0 +1,109 @@
+# Ops Flags — the registry
+
+An **ops flag** is an external dependency only the owner can complete —
+a dashboard secret, a database migration, DNS, billing. Code that depends
+on one ships dark (gracefully degraded) until the owner acts.
+
+This file is the single source of truth for open flags. The protocol for
+raising, tracking and closing them is `.claude/skills/ops-flags/SKILL.md`.
+The mechanical check is:
+
+```
+npm run verify:flags -- https://www.mongolpotential.com     # owner machine
+node scripts/verify-flags.mjs                               # against local dev
+```
+
+which reads `GET /api/health/flags` (secretless enums; also reachable from
+remote Claude sessions via the Vercel MCP web fetch). Note: the endpoint
+exists on prod only after the first deploy that includes it.
+
+Rule zero: **a flag may only move to Resolved after its verification
+passes.** "I set it" is not evidence; the probe output is.
+
+---
+
+## OPEN
+
+### FLAG-001 — `ANTHROPIC_API_KEY` not set in Vercel
+
+| | |
+|---|---|
+| **Since** | AI tutor shipped (task #164–167) |
+| **Dormant** | `/api/tutor`: in-lesson AI tutor + missed-question explainer |
+| **Degradation** | Verified 2026-07-25: the route returns a friendly bilingual 503 *before* auth (`app/api/tutor/route.ts:26`); `TutorPanel` shows that message as a notice. Nothing else is affected. |
+| **Owner action** | ~3 minutes, below |
+| **Verify** | `curl -s -o /dev/null -w '%{http_code}' -X POST https://www.mongolpotential.com/api/tutor` → **401** = key set (closed) · **503** = still missing. After the health endpoint deploys: `verify:flags` shows `anthropic_api_key: configured`. |
+
+**Runbook**
+
+1. Create a key: console.anthropic.com → API keys → Create key
+   (name it e.g. `mongolpotential-prod`).
+2. Vercel dashboard → project **imathhub** → Settings → Environment
+   Variables → Add: name `ANTHROPIC_API_KEY`, value the key, environment
+   **Production** (add Preview too if you want the tutor on previews).
+   Mark it Sensitive.
+3. Env vars apply on the **next deployment** — redeploy (Deployments →
+   ⋯ on the latest → Redeploy) or wait for the next push to main.
+4. Run the verify probe above. 401 (or `configured`) = done; move this
+   entry to Resolved with the date and the probe output.
+
+Cost note: the route caps usage at `FREE_DAILY_AI_LIMIT` questions per
+student per day, so spend is bounded per active student.
+
+### FLAG-002 — migration `008_student_profiles.sql` not applied
+
+| | |
+|---|---|
+| **Since** | student provisioning shipped (task #103) |
+| **Dormant** | `scripts/create-students.mjs` (teacher-provisioned accounts); grade/focus personalization in `/api/auth/me` |
+| **Degradation** | Verified 2026-07-25: the ME route reads `select("*")` and falls back to `null` for the absent columns; the migration is purely additive (`ADD COLUMN IF NOT EXISTS`, nullable / defaulted), so applying it cannot affect existing rows or self-signup. |
+| **Owner action** | ~2 minutes, below |
+| **Verify** | After the health endpoint deploys: `verify:flags` shows `migration_008_student_profiles: applied`. Immediately after running the SQL, the verification query in step 3 returns 4 rows. |
+
+**Runbook**
+
+1. Supabase dashboard → project → SQL Editor → New query.
+2. Paste the entire contents of
+   `supabase/migrations/008_student_profiles.sql` and Run.
+   (Idempotent — safe to run twice.)
+3. Verify in the same editor:
+   ```sql
+   select column_name from information_schema.columns
+   where table_name = 'profiles'
+     and column_name in ('grade','focus','focus_href','role','notes');
+   ```
+   Expect 5 rows.
+4. Optional but recommended first: a snapshot via
+   `scripts/backup-prod.sh` (needs `~/.mp-backup-env`).
+5. Move this entry to Resolved with the date and the row count.
+
+---
+
+## WATCH (not blocking, verified by the same endpoint)
+
+- **migration 009_attempts_context** — believed applied: the deployed
+  client has written `context` on attempts since the perf-context era,
+  the code carries a no-column fallback (`lib/use-performance.ts:138`),
+  and prod runtime errors are clean over the last 7 days (checked
+  2026-07-25). The health endpoint reports it so belief becomes fact
+  after the next deploy. If it reports `missing`, apply
+  `009_attempts_context.sql` by the FLAG-002 runbook — until then every
+  attempt is written by the fallback path without a context, which
+  silently degrades per-course analytics.
+
+---
+
+## RESOLVED
+
+*(move entries here with date + verification evidence; never delete)*
+
+---
+
+## Session log
+
+- **2026-07-25** — Registry created. Both flags' live prod status is not
+  directly probeable from the cloud sandbox (proxy denies CONNECT to
+  mongolpotential.com; the Vercel MCP fetch is GET-only and the health
+  endpoint is not yet deployed). Status recorded per standing owner
+  reports + code inspection; degradation paths verified in code; prod
+  runtime errors clean over 7d.
