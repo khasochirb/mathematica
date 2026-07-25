@@ -1,0 +1,1774 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 1 — Unit 5: Systems of Equations & Inequalities.
+
+CCSS Integrated Math I: A-REI.5 (why replacing one equation by a sum leaves the
+solutions unchanged), A-REI.6 (solve systems exactly and approximately),
+A-REI.11 (the intersection as the solution), A-REI.12 (graph the solution set of
+a linear inequality and of a system), A-CED.3 (represent constraints and
+interpret solutions as viable or not).
+
+Unit 4 gave one line and its meaning. This unit puts two on the same plane and
+asks where they agree — which turns "compare two plans" from an arithmetic
+exercise into a method.
+
+Run: python3 scripts/im/build_im1_unit5.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-1"
+
+
+# ===========================================================================
+# Lesson 1 — A-REI.11: the intersection is the solution
+# ===========================================================================
+def lesson_graphing():
+    return lesson(
+        slug="solving-systems-by-graphing",
+        title="Two Lines, One Question",
+        concrete=(
+            "Two taxi firms quote different prices. One is cheaper for short trips, the other for "
+            "long ones. Somewhere there is a distance where they charge exactly the same — and "
+            "that distance is where their two lines cross. A system of equations is that question "
+            "written down, and its solution is a point, not a number."
+        ),
+        objective=(
+            "Interpret the solution of a two-variable system as the intersection point of two "
+            "graphs, solve a system graphically, and classify a system as having one solution, no "
+            "solution, or infinitely many by comparing slopes and intercepts."
+        ),
+        concept=[
+            "**A solution satisfies BOTH equations at once.** For a single equation like "
+            "$y = 2x + 1$, every point on the line is a solution. For a SYSTEM, a point must lie "
+            "on both lines — so the solution set is exactly the intersection. That is why the "
+            "answer is a pair $(x, y)$ rather than a single number: it names a place, not a "
+            "quantity.",
+            "**Graphing solves it, and shows you why.** Draw both lines, read off where they "
+            "cross, and check the point in both original equations. The check is not optional "
+            "here: a graph read by eye can be off by a whole unit, and only substitution "
+            "distinguishes $(3, 7)$ from $(3.1, 7.2)$.",
+            "**Three outcomes, decided by slopes.** Two lines with DIFFERENT slopes must cross "
+            "exactly once — one solution. Two lines with the same slope but different "
+            "$y$-intercepts are parallel and never meet — no solution. Two lines with the same "
+            "slope AND the same intercept are the same line drawn twice, so every point on it "
+            "works — infinitely many solutions.",
+            "**You can classify without drawing anything.** Put both equations in slope-intercept "
+            "form and compare. $y = 3x + 1$ and $y = 3x - 4$ share a slope and differ in "
+            "intercept: parallel, no solution. This is the graphical twin of Unit 2's "
+            "contradiction, where the variable cancelled and left $1 = -4$ — the same fact seen "
+            "from a different angle.",
+            "**Graphing is exact only when the crossing is exact.** If the lines meet at "
+            "$\\left(\\frac{7}{3}, \\frac{5}{2}\\right)$ you will not read that off a grid. "
+            "Graphing is for seeing the situation and for checking an answer; the algebraic "
+            "methods in the next two lessons are for getting the answer right.",
+        ],
+        key_idea=(
+            "The solution of a system is the point lying on BOTH lines. Different slopes → one "
+            "solution; same slope, different intercept → none; identical equations → infinitely "
+            "many."
+        ),
+        facts=[
+            fact(
+                "What a solution is",
+                "(x, y) \\ \\text{satisfies every equation in the system}",
+                "A pair, not a number — it names the point where the graphs agree.",
+            ),
+            fact(
+                "Classifying by slope",
+                "m_1 \\ne m_2: \\text{one} \\qquad m_1 = m_2, b_1 \\ne b_2: \\text{none} "
+                "\\qquad m_1 = m_2, b_1 = b_2: \\text{infinitely many}",
+                "Rewrite both in y = mx + b and compare. No drawing required.",
+            ),
+            fact(
+                "Always check both",
+                "\\text{substitute } (x, y) \\text{ into BOTH original equations}",
+                "A point on only one line is not a solution. Checking one equation proves "
+                "nothing.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u5-l1-we1",
+                "Solve the system graphically and check: $y = 2x - 1$ and $y = -x + 5$.",
+                "**Graph both.** The first starts at $(0, -1)$ and rises $2$ for each step right. "
+                "The second starts at $(0, 5)$ and falls $1$ for each step right."
+                "**Read the crossing.** They meet at $(2, 3)$."
+                "**Check in BOTH equations** — this is the step that makes a graphical reading "
+                "trustworthy:"
+                "$$y = 2(2) - 1 = 3 \\ \\checkmark, \\qquad y = -(2) + 5 = 3 \\ \\checkmark.$$"
+                "The point $(2, 3)$ satisfies both, so it is the solution."
+                "**Why exactly one.** The slopes are $2$ and $-1$ — different, so the lines are "
+                "not parallel and must cross exactly once.",
+                [
+                    "Eq(2*2 - 1, 3)",
+                    "Eq(-2 + 5, 3)",
+                    "Ne(2, -1)",
+                ],
+            ),
+            problem(
+                "im1-u5-l1-we2",
+                "Classify the system $y = 3x + 1$ and $6x - 2y = -2$ without graphing.",
+                "**Put the second in slope-intercept form.**"
+                "$$6x - 2y = -2 \\quad\\Longrightarrow\\quad -2y = -6x - 2 \\quad\\Longrightarrow"
+                "\\quad y = 3x + 1.$$"
+                "**Compare.** Both equations are $y = 3x + 1$ — the same slope AND the same "
+                "intercept. They are the same line written two ways."
+                "**Conclusion.** Infinitely many solutions: every point on $y = 3x + 1$ satisfies "
+                "both."
+                "**Spot-check two of them.** At $x = 0$: $(0, 1)$, and $6(0) - 2(1) = -2$ ✓. At "
+                "$x = 2$: $(2, 7)$, and $12 - 14 = -2$ ✓. Two different points both working is "
+                "the signature of this case — a system with one solution could not do that.",
+                [
+                    "Eq(6*0 - 2*1, -2)",
+                    "Eq(6*2 - 2*7, -2)",
+                    "Eq(3*0 + 1, 1)",
+                    "Eq(3*2 + 1, 7)",
+                ],
+            ),
+            problem(
+                "im1-u5-l1-we3",
+                "Classify the system $y = -2x + 5$ and $4x + 2y = 3$, and explain what its graph "
+                "looks like.",
+                "**Rewrite the second.**"
+                "$$4x + 2y = 3 \\quad\\Longrightarrow\\quad 2y = -4x + 3 \\quad\\Longrightarrow"
+                "\\quad y = -2x + \\frac{3}{2}.$$"
+                "**Compare.** Both have slope $-2$, but the intercepts are $5$ and "
+                "$\\frac{3}{2}$ — different."
+                "**Conclusion.** The lines are parallel and never meet: **no solution**."
+                "**The graph.** Two lines falling at exactly the same rate, one permanently "
+                "$3.5$ units above the other. Since they descend together, the gap never closes."
+                "**Confirm at two inputs.** At $x = 0$: the lines are at $5$ and $1.5$, a gap of "
+                "$3.5$. At $x = 10$: they are at $-15$ and $-18.5$ — still $3.5$ apart. A constant "
+                "gap is precisely why there is no crossing.",
+                [
+                    "Eq(-2*0 + 5 - (-2*0 + Rational(3,2)), Rational(7,2))",
+                    "Eq(-2*10 + 5 - (-2*10 + Rational(3,2)), Rational(7,2))",
+                    "Ne(5, Rational(3,2))",
+                ],
+            ),
+            problem(
+                "im1-u5-l1-we4",
+                "Firm X charges $2000$₮ plus $800$₮ per km. Firm Y charges $5000$₮ plus $500$₮ per "
+                "km. Set up the system, find where they agree, and say which is cheaper when.",
+                "**Model.** With $d$ kilometres and $C$ tugriks,"
+                "$$C = 800d + 2000, \\qquad C = 500d + 5000.$$"
+                "**Find the crossing.** Both expressions equal $C$, so they equal each other:"
+                "$$800d + 2000 = 500d + 5000 \\quad\\Longrightarrow\\quad 300d = 3000 "
+                "\\quad\\Longrightarrow\\quad d = 10.$$"
+                "The fare there is $800(10) + 2000 = 10\\,000$, so the lines cross at "
+                "$(10, 10\\,000)$."
+                "**Check in both.** $500(10) + 5000 = 10\\,000$ ✓"
+                "**Which is cheaper when.** Test each side. At $d = 5$: X costs $6000$, Y costs "
+                "$7500$ — X wins. At $d = 20$: X costs $18\\,000$, Y costs $15\\,000$ — Y wins."
+                "**Answer in the nouns of the question.** Firm X is cheaper for trips under $10$ "
+                "km, firm Y for trips over $10$ km, and at exactly $10$ km they cost the same. X "
+                "has the lower base charge but the higher per-kilometre rate, so it loses once the "
+                "trip is long enough for the rate to dominate.",
+                [
+                    "Eq(800*10 + 2000, 500*10 + 5000)",
+                    "Eq(800*10 + 2000, 10000)",
+                    "800*5 + 2000 < 500*5 + 5000",
+                    "800*20 + 2000 > 500*20 + 5000",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reporting a single number as the solution of a two-variable system.",
+                "The solution is an ordered pair (x, y) — a point. Reporting only x leaves the "
+                "question half answered.",
+            ),
+            mistake(
+                "Checking the answer in only one of the two equations.",
+                "A point on one line is not a solution. Both equations must be satisfied, and only "
+                "checking both proves it.",
+            ),
+            mistake(
+                "Reading a crossing off a graph and reporting it as exact.",
+                "Graphing shows the situation; it does not produce exact fractions. Confirm "
+                "algebraically or check by substitution.",
+            ),
+            mistake(
+                "Calling a system with the same slope 'no solution' without checking intercepts.",
+                "Same slope AND same intercept means the same line — infinitely many solutions. "
+                "Compare both numbers before deciding.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u5-l1-t1",
+                "Verify that $(4, 1)$ solves the system $y = -x + 5$ and $y = 2x - 7$.",
+                "First equation: $-(4) + 5 = 1$ ✓. Second: $2(4) - 7 = 1$ ✓. It satisfies both, so "
+                "it is the solution.",
+                [
+                    "Eq(-4 + 5, 1)",
+                    "Eq(2*4 - 7, 1)",
+                ],
+            ),
+            problem(
+                "im1-u5-l1-t2",
+                "Classify the system $y = \\frac{1}{2}x - 3$ and $x - 2y = 10$ without solving.",
+                "Rewrite the second: $-2y = -x + 10$, so $y = \\frac{1}{2}x - 5$. Same slope "
+                "$\\frac{1}{2}$, different intercepts ($-3$ and $-5$), so the lines are parallel: "
+                "**no solution**.",
+                [
+                    "Eq(Rational(1,2)*0 - 3, -3)",
+                    "Eq(Rational(1,2)*0 - 5, -5)",
+                    "Ne(-3, -5)",
+                ],
+            ),
+            problem(
+                "im1-u5-l1-t3",
+                "Two candles burn: one is $20$ cm losing $2$ cm/h, the other $32$ cm losing "
+                "$4$ cm/h. When are they the same height?",
+                "Set the heights equal: $20 - 2t = 32 - 4t$, so $2t = 12$ and $t = 6$ hours. Both "
+                "are then $20 - 12 = 8$ cm tall. Check: $32 - 24 = 8$ ✓. Both candles still exist "
+                "at $t = 6$ (the first lasts $10$ h, the second $8$ h), so the answer is "
+                "meaningful.",
+                [
+                    "Eq(20 - 2*6, 32 - 4*6)",
+                    "Eq(20 - 2*6, 8)",
+                    "20 - 2*6 > 0",
+                    "32 - 4*6 > 0",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.11",
+                "title": "The solution is where the graphs agree",
+                "body": (
+                    "Every point on a line satisfies that line's equation. A point satisfying TWO "
+                    "equations must lie on both lines at once — so the solution set of a system is "
+                    "exactly the intersection."
+                ),
+                "beats": [
+                    "One equation → a whole line of solutions",
+                    "Two equations → only the shared points",
+                    "The answer is a **pair** $(x, y)$",
+                    "Check it in **both** equations",
+                ],
+            },
+            {
+                "kind": "systemGraph",
+                "eyebrow": "See the crossing",
+                "title": "Two lines, one meeting point",
+                "teach": (
+                    "$y = 2x - 1$ and $y = -x + 5$. They have different slopes, so they cannot "
+                    "stay apart — they meet exactly once, at $(2, 3)$."
+                ),
+                "config": {"m1": 2, "b1": -1, "m2": -1, "b2": 5, "interactive": True, "min": -4, "max": 8},
+            },
+            {"kind": "worked", "title": "Read it, then check it", "problemId": "im1-u5-l1-we1"},
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.6",
+                "title": "Three outcomes, and the slope decides",
+                "body": (
+                    "Different slopes force a crossing — exactly one solution. Equal slopes with "
+                    "different intercepts run parallel forever — none. Equal slopes AND equal "
+                    "intercepts are one line drawn twice — infinitely many."
+                ),
+                "beats": [
+                    "$m_1 \\ne m_2$ → **one** solution",
+                    "$m_1 = m_2$, $b_1 \\ne b_2$ → **no** solution",
+                    "$m_1 = m_2$, $b_1 = b_2$ → **infinitely many**",
+                    "Rewrite both as $y = mx + b$ and just look",
+                ],
+            },
+            tap(
+                "How many solutions?",
+                "How many solutions does the system $y = 4x - 3$ and $8x - 2y = 6$ have?",
+                ["Exactly one", "None", "Infinitely many", "Exactly two"],
+                2,
+                "Rewrite the second: $-2y = -8x + 6$, so $y = 4x - 3$ — identical to the first. "
+                "One line drawn twice, so every point on it solves both. Spot-check two: "
+                "$(0, -3)$ gives $0 + 6 = 6$ ✓ and $(1, 1)$ gives $8 - 2 = 6$ ✓.",
+                [
+                    "Eq(8*0 - 2*(-3), 6)",
+                    "Eq(8*1 - 2*1, 6)",
+                    "Eq(4*0 - 3, -3)",
+                    "Eq(4*1 - 3, 1)",
+                ],
+            ),
+            {"kind": "worked", "title": "The same line, twice", "problemId": "im1-u5-l1-we2"},
+            {
+                "kind": "systemGraph",
+                "eyebrow": "Never meeting",
+                "title": "Parallel: the gap never closes",
+                "teach": (
+                    "$y = -2x + 5$ and $y = -2x + 1.5$ fall at exactly the same rate, so the "
+                    "vertical gap between them is the same everywhere. Lines that descend together "
+                    "cannot cross."
+                ),
+                "config": {"m1": -2, "b1": 5, "m2": -2, "b2": 1.5, "min": -4, "max": 8},
+            },
+            {"kind": "worked", "title": "Parallel, and why it means no solution", "problemId": "im1-u5-l1-we3"},
+            {
+                "kind": "tip",
+                "title": "This is Unit 2's special cases, drawn",
+                "body": (
+                    "When the variable cancelled and left $1 = -4$, that was a contradiction — no "
+                    "solution. On a graph that is two parallel lines. When it left $6 = 6$, that "
+                    "was an identity — every number works. On a graph that is one line drawn "
+                    "twice. Same two facts, seen from a different angle."
+                ),
+            },
+            {"kind": "worked", "title": "Two taxi firms", "problemId": "im1-u5-l1-we4"},
+            tap(
+                "What does the crossing mean here?",
+                "Two gyms' yearly costs cross at $(8, 260\\,000)$, where the input is months. What "
+                "does the point say?",
+                [
+                    "Both gyms cost $8$₮ per month",
+                    "At $8$ months both have cost $260\\,000$₮",
+                    "Gym A is always cheaper",
+                    "The gyms cost $260\\,000$₮ per month",
+                ],
+                1,
+                "The first coordinate is the input (months) and the second is the output (total "
+                "cost), so at $8$ months the two running totals are equal at $260\\,000$₮. Which "
+                "gym is cheaper depends on which SIDE of $8$ months you are on — the crossing "
+                "alone does not say.",
+                ["Eq(8, 8)", "Eq(260000, 260000)"],
+            ),
+            {
+                "kind": "tip",
+                "title": "Graphing shows; algebra decides",
+                "body": (
+                    "If two lines meet at $\\left(\\frac{7}{3}, \\frac{5}{2}\\right)$, no grid "
+                    "will tell you that. Use a graph to see the shape of the situation and to "
+                    "sanity-check an answer — then get the exact values with substitution or "
+                    "elimination."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — verify a solution", "problemId": "im1-u5-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn — two candles", "problemId": "im1-u5-l1-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "A system's solution is the point on **both** lines — a pair, not a number",
+                    "Check every candidate in **both** original equations",
+                    "Different slopes → one solution; parallel → none; identical → infinitely many",
+                    "Classify by rewriting as $y = mx + b$ and comparing $m$ then $b$",
+                    "Graph to see it; use algebra to get it exactly right",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — A-REI.6: substitution
+# ===========================================================================
+def lesson_substitution():
+    return lesson(
+        slug="substitution",
+        title="Solving Systems by Substitution",
+        concrete=(
+            "If someone tells you \"the second number is three more than the first\", you stop "
+            "tracking two unknowns and start tracking one. That is the whole idea: when one "
+            "equation already says what a variable EQUALS, put that expression into the other "
+            "equation and the system collapses to something you solved in Unit 2."
+        ),
+        objective=(
+            "Solve a linear system by substitution, choosing the variable that is cheapest to "
+            "isolate, and recognise the algebraic signatures of no solution and infinitely many."
+        ),
+        concept=[
+            "**Substitution trades two variables for one.** If $y = 3x - 4$, then wherever the "
+            "other equation says $y$, it might as well say $3x - 4$. Making that swap produces a "
+            "single equation in $x$ alone — and a single-variable linear equation is exactly what "
+            "Unit 2 was about.",
+            "**Choose the cheapest variable to isolate.** Look for a variable whose coefficient is "
+            "already $1$ or $-1$: solving for it introduces no fractions. In "
+            "$x + 4y = 9$ and $3x - 2y = 1$, isolating $x$ from the first gives $x = 9 - 4y$ "
+            "cleanly. Isolating $y$ instead would give $y = \\frac{9 - x}{4}$ and drag a "
+            "denominator through every later line.",
+            "**Substitute the whole expression, in brackets.** Replacing $x$ by $9 - 4y$ in "
+            "$3x - 2y = 1$ gives $3(9 - 4y) - 2y = 1$. The brackets are essential: without them "
+            "the $3$ multiplies only the $9$, and the answer is quietly wrong.",
+            "**Finish by back-substituting.** Solving gives one variable; put it back into the "
+            "SIMPLEST of the two equations — usually the one you rearranged — to get the other. "
+            "Then state the answer as a pair, and check it in both ORIGINAL equations, not in the "
+            "rearranged version where an error may already be baked in.",
+            "**The special cases have algebraic signatures.** If substituting makes both variables "
+            "vanish and leaves something false like $7 = 2$, the lines are parallel: no solution. "
+            "If it leaves something true like $5 = 5$, they are the same line: infinitely many. "
+            "These are the same two outcomes Unit 2 met in one variable, now arriving through a "
+            "system.",
+        ],
+        key_idea=(
+            "Isolate the variable with coefficient $1$ or $-1$, substitute that whole expression "
+            "in brackets into the other equation, solve, then back-substitute — and check the pair "
+            "in both originals."
+        ),
+        facts=[
+            fact(
+                "The method",
+                "\\text{isolate} \\to \\text{substitute} \\to \\text{solve} \\to "
+                "\\text{back-substitute}",
+                "Four steps, always in this order. The last one is the half students most often "
+                "forget.",
+            ),
+            fact(
+                "Pick the cheap variable",
+                "\\text{coefficient } \\pm 1 \\ \\Rightarrow\\ \\text{no fractions}",
+                "Isolating a variable whose coefficient is 1 or −1 keeps the arithmetic clean all "
+                "the way through.",
+            ),
+            fact(
+                "The two signatures",
+                "\\text{false statement} \\Rightarrow \\text{no solution}; \\quad "
+                "\\text{true statement} \\Rightarrow \\text{infinitely many}",
+                "Both variables vanishing is information, not failure — read what is left.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u5-l2-we1",
+                "Solve by substitution: $y = 3x - 4$ and $2x + y = 11$.",
+                "**Already isolated.** The first equation states what $y$ equals, so substitute it "
+                "into the second:"
+                "$$2x + (3x - 4) = 11.$$"
+                "**Solve the one-variable equation.**"
+                "$$5x - 4 = 11 \\quad\\Longrightarrow\\quad 5x = 15 \\quad\\Longrightarrow\\quad "
+                "x = 3.$$"
+                "**Back-substitute** into the simplest equation:"
+                "$$y = 3(3) - 4 = 5.$$"
+                "**Answer.** $(3, 5)$."
+                "**Check in BOTH originals.** $y = 3(3) - 4 = 5$ ✓ and "
+                "$2(3) + 5 = 11$ ✓",
+                [
+                    "Eq(3*3 - 4, 5)",
+                    "Eq(2*3 + 5, 11)",
+                    "Eq(solve([Eq(Symbol('y'), 3*Symbol('x') - 4), Eq(2*Symbol('x') + Symbol('y'), 11)], [Symbol('x'), Symbol('y')])[Symbol('x')], 3)",
+                ],
+            ),
+            problem(
+                "im1-u5-l2-we2",
+                "Solve by substitution: $x + 4y = 9$ and $3x - 2y = 1$.",
+                "**Choose the cheap variable.** In the first equation $x$ has coefficient $1$, so "
+                "isolating it costs nothing:"
+                "$$x = 9 - 4y.$$"
+                "**Substitute into the other equation, in brackets.**"
+                "$$3(9 - 4y) - 2y = 1.$$"
+                "The brackets matter — the $3$ multiplies the whole expression."
+                "$$27 - 12y - 2y = 1 \\quad\\Longrightarrow\\quad 27 - 14y = 1.$$"
+                "$$-14y = -26 \\quad\\Longrightarrow\\quad y = \\frac{13}{7}.$$"
+                "**Back-substitute.**"
+                "$$x = 9 - 4\\left(\\frac{13}{7}\\right) = 9 - \\frac{52}{7} = \\frac{11}{7}.$$"
+                "**Answer.** $\\left(\\frac{11}{7}, \\frac{13}{7}\\right)$."
+                "**Check in both originals.** "
+                "$\\frac{11}{7} + 4 \\cdot \\frac{13}{7} = \\frac{11 + 52}{7} = 9$ ✓ and "
+                "$3 \\cdot \\frac{11}{7} - 2 \\cdot \\frac{13}{7} = \\frac{33 - 26}{7} = 1$ ✓. "
+                "Fractional answers are perfectly normal — this is exactly the kind of crossing no "
+                "graph could have given you.",
+                [
+                    "Eq(Rational(11,7) + 4*Rational(13,7), 9)",
+                    "Eq(3*Rational(11,7) - 2*Rational(13,7), 1)",
+                ],
+            ),
+            problem(
+                "im1-u5-l2-we3",
+                "Solve by substitution: $y = 2x + 3$ and $6x - 3y = 5$.",
+                "Substitute the first into the second:"
+                "$$6x - 3(2x + 3) = 5.$$"
+                "$$6x - 6x - 9 = 5 \\quad\\Longrightarrow\\quad -9 = 5.$$"
+                "**Both variables have vanished, and what remains is FALSE.** No value of $x$ can "
+                "make $-9$ equal $5$, so the system has **no solution**."
+                "**Confirm graphically.** Rewriting the second equation: $-3y = -6x + 5$, so "
+                "$y = 2x - \\frac{5}{3}$. Both lines have slope $2$ but intercepts $3$ and "
+                "$-\\frac{5}{3}$ — parallel, as the algebra said."
+                "**The gap.** At any $x$ the two lines differ by "
+                "$3 - \\left(-\\frac{5}{3}\\right) = \\frac{14}{3}$, constant and never zero.",
+                [
+                    "Eq(simplify((2*Symbol('x') + 3) - (2*Symbol('x') - Rational(5,3))), Rational(14,3))",
+                    "Ne(-9, 5)",
+                    "Eq(6*0 - 3*(2*0 + 3), -9)",
+                ],
+            ),
+            problem(
+                "im1-u5-l2-we4",
+                "A cinema sells adult tickets at $12\\,000$₮ and student tickets at $7000$₮. One "
+                "screening sold $80$ tickets and took $760\\,000$₮. How many of each?",
+                "**Define.** Let $a$ = adult tickets and $s$ = student tickets, both non-negative "
+                "whole numbers."
+                "**Two facts, two equations.**"
+                "$$a + s = 80 \\qquad \\text{(the count)}$$"
+                "$$12\\,000a + 7000s = 760\\,000 \\qquad \\text{(the money)}$$"
+                "**Isolate the cheap variable.** The first equation has coefficients of $1$:"
+                "$$s = 80 - a.$$"
+                "**Substitute.**"
+                "$$12\\,000a + 7000(80 - a) = 760\\,000$$"
+                "$$12\\,000a + 560\\,000 - 7000a = 760\\,000$$"
+                "$$5000a = 200\\,000 \\quad\\Longrightarrow\\quad a = 40.$$"
+                "**Back-substitute.** $s = 80 - 40 = 40$."
+                "**Answer.** Forty adult and forty student tickets."
+                "**Check both originals.** $40 + 40 = 80$ ✓ and "
+                "$12\\,000(40) + 7000(40) = 480\\,000 + 280\\,000 = 760\\,000$ ✓"
+                "**Context check.** Both counts are whole and non-negative, as ticket counts must "
+                "be — a fractional answer here would have signalled an error in the setup.",
+                [
+                    "Eq(40 + 40, 80)",
+                    "Eq(12000*40 + 7000*40, 760000)",
+                    "Eq(7000*80, 560000)",
+                    "Eq(760000 - 560000, 200000)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Substituting without brackets: writing 3·9 − 4y for 3(9 − 4y).",
+                "The coefficient multiplies the WHOLE expression. Write the brackets, then "
+                "distribute.",
+            ),
+            mistake(
+                "Solving for one variable and stopping.",
+                "The answer is a pair. Back-substitute to find the second value before reporting.",
+            ),
+            mistake(
+                "Isolating the variable with the ugliest coefficient.",
+                "Look for a coefficient of 1 or −1 first. Choosing badly does not make the answer "
+                "wrong, but it drags fractions through every remaining line.",
+            ),
+            mistake(
+                "Reporting 'no solution' when the leftover statement is TRUE.",
+                "A true leftover (5 = 5) means infinitely many solutions — the same line twice. "
+                "Only a false leftover means none.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u5-l2-t1",
+                "Solve by substitution: $y = x - 2$ and $3x + y = 14$.",
+                "Substitute: $3x + (x - 2) = 14$, so $4x = 16$ and $x = 4$. Back-substitute: "
+                "$y = 2$. Answer $(4, 2)$. Check: $4 - 2 = 2$ ✓ and $12 + 2 = 14$ ✓",
+                [
+                    "Eq(4 - 2, 2)",
+                    "Eq(3*4 + 2, 14)",
+                ],
+            ),
+            problem(
+                "im1-u5-l2-t2",
+                "Solve by substitution: $2x + y = 7$ and $x - 3y = 14$.",
+                "Isolate $y$ from the first ($y$ has coefficient $1$): $y = 7 - 2x$. Substitute: "
+                "$x - 3(7 - 2x) = 14$, so $x - 21 + 6x = 14$, giving $7x = 35$ and $x = 5$. Then "
+                "$y = 7 - 10 = -3$. Answer $(5, -3)$. Check: $10 - 3 = 7$ ✓ and "
+                "$5 + 9 = 14$ ✓",
+                [
+                    "Eq(2*5 + (-3), 7)",
+                    "Eq(5 - 3*(-3), 14)",
+                ],
+            ),
+            problem(
+                "im1-u5-l2-t3",
+                "A shop sells pens at $1500$₮ and notebooks at $4000$₮. A customer buys $9$ items "
+                "for $26\\,000$₮. How many of each?",
+                "Let $p$ = pens and $n$ = notebooks. Then $p + n = 9$ and "
+                "$1500p + 4000n = 26\\,000$. Substituting $p = 9 - n$: "
+                "$1500(9 - n) + 4000n = 26\\,000$, so $13\\,500 + 2500n = 26\\,000$, giving "
+                "$2500n = 12\\,500$ and $n = 5$. Then $p = 4$. Four pens and five notebooks. "
+                "Check: $4 + 5 = 9$ ✓ and $6000 + 20\\,000 = 26\\,000$ ✓",
+                [
+                    "Eq(4 + 5, 9)",
+                    "Eq(1500*4 + 4000*5, 26000)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.6",
+                "title": "If you know what y equals, stop writing y",
+                "body": (
+                    "When one equation says $y = 3x - 4$, the other equation might as well say "
+                    "$3x - 4$ wherever it says $y$. That single swap turns a two-variable system "
+                    "into a one-variable equation you already know how to solve."
+                ),
+                "beats": [
+                    "**Isolate** one variable",
+                    "**Substitute** that expression into the other equation",
+                    "**Solve** the single-variable equation",
+                    "**Back-substitute** to get the second value",
+                ],
+            },
+            {"kind": "worked", "title": "When one is already isolated", "problemId": "im1-u5-l2-we1"},
+            {
+                "kind": "teach",
+                "eyebrow": "Working smart",
+                "title": "Isolate the variable that costs nothing",
+                "body": (
+                    "Scan for a coefficient of $1$ or $-1$. In $x + 4y = 9$, solving for $x$ gives "
+                    "$x = 9 - 4y$ with no fractions anywhere. Solving for $y$ instead would put a "
+                    "denominator of $4$ into every subsequent line."
+                ),
+            },
+            tap(
+                "Which variable should you isolate?",
+                "For the system $5x + 3y = 22$ and $x - 2y = -4$, which choice keeps the "
+                "arithmetic cleanest?",
+                [
+                    "Isolate $x$ in the second equation",
+                    "Isolate $y$ in the first equation",
+                    "Isolate $x$ in the first equation",
+                    "Isolate $y$ in the second equation",
+                ],
+                0,
+                "In the second equation $x$ has coefficient $1$, so $x = 2y - 4$ — no fractions. "
+                "Every other choice introduces a denominator of $3$, $5$ or $2$. Substituting "
+                "gives $5(2y - 4) + 3y = 22$, so $13y = 42$... and checking the final answer "
+                "$(x, y) = \\left(\\frac{32}{13}, \\frac{42}{13}\\right)$ against the second "
+                "equation: $\\frac{32}{13} - \\frac{84}{13} = -4$ ✓",
+                [
+                    "Eq(Rational(32,13) - 2*Rational(42,13), -4)",
+                    "Eq(5*Rational(32,13) + 3*Rational(42,13), 22)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "title": "Brackets around the whole substituted expression",
+                "body": (
+                    "Replacing $x$ by $9 - 4y$ in $3x - 2y = 1$ gives $3(9 - 4y) - 2y = 1$. "
+                    "Without the brackets the $3$ multiplies only the $9$ and the answer is "
+                    "silently wrong — silently, because nothing later in the working looks "
+                    "unusual."
+                ),
+            },
+            {"kind": "worked", "title": "Choosing well, and a fractional answer", "problemId": "im1-u5-l2-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "The special cases",
+                "title": "Both variables vanished — read what is left",
+                "body": (
+                    "Substitution can eliminate BOTH variables. That is not a failure; it is the "
+                    "answer. A false leftover means parallel lines and no solution; a true one "
+                    "means the same line twice and infinitely many."
+                ),
+                "beats": [
+                    "$-9 = 5$ — **false** → no solution (parallel)",
+                    "$5 = 5$ — **true** → infinitely many (same line)",
+                    "Never report $x = 0$ from a vanished variable",
+                    "Exactly Unit 2's two cases, arriving via a system",
+                ],
+            },
+            {"kind": "worked", "title": "When it vanishes and lies", "problemId": "im1-u5-l2-we3"},
+            tap(
+                "What does this leftover mean?",
+                "Substituting into a system leaves you with $8 = 8$. What is the solution set?",
+                [
+                    "$x = 8$",
+                    "No solution",
+                    "Infinitely many solutions",
+                    "$(8, 8)$",
+                ],
+                2,
+                "The variables cancelled and the leftover statement is TRUE, so the two equations "
+                "describe the same line — every point on it satisfies both. There is no $x$ in "
+                "$8 = 8$, so no value can be read out of it.",
+                ["Eq(8, 8)"],
+            ),
+            {"kind": "worked", "title": "Tickets: two facts, two equations", "problemId": "im1-u5-l2-we4"},
+            {
+                "kind": "tip",
+                "title": "Two unknowns need two facts",
+                "body": (
+                    "A word problem with two unknowns will always hand you two independent pieces "
+                    "of information — usually a COUNT and a TOTAL. Write one equation for each, "
+                    "and the system builds itself."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — already isolated", "problemId": "im1-u5-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn — pens and notebooks", "problemId": "im1-u5-l2-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Isolate, substitute, solve, **back-substitute** — all four steps",
+                    "Choose the variable with coefficient $1$ or $-1$ to avoid fractions",
+                    "Substitute the whole expression **in brackets**",
+                    "False leftover → no solution; true leftover → infinitely many",
+                    "Check the finished pair in **both original** equations",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — A-REI.5: elimination, and why it is legal
+# ===========================================================================
+def lesson_elimination():
+    return lesson(
+        slug="elimination",
+        title="Elimination, and Why Adding Equations Is Legal",
+        concrete=(
+            "Two balanced scales. Tip the contents of the second onto the first — both pans at "
+            "once — and the result is still balanced, because you added equal masses to equal "
+            "masses. Adding one equation to another is exactly that move, and it is legal for "
+            "exactly that reason."
+        ),
+        objective=(
+            "Solve a linear system by elimination, scale one or both equations to create opposite "
+            "coefficients, and justify why adding two true equations produces a third true "
+            "equation with the same solutions."
+        ),
+        concept=[
+            "**Why you may add two equations.** If $A = B$ and $C = D$ are both true, then adding "
+            "equals to equals gives $A + C = B + D$, which is also true. Any pair $(x, y)$ "
+            "satisfying the original two must satisfy the sum — so no solution is lost. And "
+            "because you can subtract the second equation again to recover the first, no solution "
+            "is gained either. The system's solution set is untouched, which is precisely what "
+            "A-REI.5 asks you to understand.",
+            "**Aim for opposite coefficients.** If one equation has $+3y$ and the other has "
+            "$-3y$, adding them removes $y$ entirely and leaves a single-variable equation. When "
+            "the coefficients match in sign instead, SUBTRACT — or multiply one equation by $-1$ "
+            "and add, which is the same thing and less error-prone.",
+            "**Scale to manufacture the opposites.** Coefficients rarely cooperate on their own. "
+            "Multiply an entire equation by a constant — every term, both sides — until they do. "
+            "For $2x + 3y = 12$ and $5x - 2y = 1$, multiply the first by $2$ and the second by "
+            "$3$ to get $+6y$ and $-6y$. Multiplying an equation by a non-zero constant is the "
+            "multiplication property of equality, so the line it describes does not move.",
+            "**Elimination beats substitution when nothing is isolated.** If both equations are in "
+            "standard form with awkward coefficients, isolating a variable means fractions from "
+            "the first line onward. Elimination scales instead, and scaling keeps everything in "
+            "whole numbers. Choose the method that matches the shape you were given.",
+            "**The special cases look the same as before.** Eliminating can kill BOTH variables. "
+            "A leftover like $0 = 7$ is false — no solution, parallel lines. A leftover like "
+            "$0 = 0$ is true — infinitely many, the same line twice. Three lessons, three routes, "
+            "and the same two special cases each time, because they are facts about the lines "
+            "rather than about the method.",
+        ],
+        key_idea=(
+            "Scale one or both equations until a variable's coefficients are opposites, add to "
+            "eliminate it, solve, then back-substitute. Adding equals to equals preserves the "
+            "solution set."
+        ),
+        facts=[
+            fact(
+                "Why the sum is legal",
+                "A = B, \\ C = D \\ \\Longrightarrow\\ A + C = B + D",
+                "Adding equals to equals. Every solution of the pair solves the sum, and "
+                "subtracting recovers the original — so nothing is lost or gained.",
+            ),
+            fact(
+                "Scaling an equation",
+                "A = B \\ \\Longrightarrow\\ kA = kB \\quad (k \\ne 0)",
+                "Multiply every term on both sides. The line is unchanged; only the coefficients "
+                "move.",
+            ),
+            fact(
+                "Manufacturing opposites",
+                "2x + 3y = 12 \\ (\\times 2), \\quad 5x - 2y = 1 \\ (\\times 3) "
+                "\\ \\Rightarrow\\ \\pm 6y",
+                "Scale by the other equation's coefficient — the least common multiple keeps the "
+                "numbers small.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u5-l3-we1",
+                "Solve by elimination: $3x + 2y = 16$ and $5x - 2y = 8$.",
+                "**The y-coefficients are already opposites** — $+2$ and $-2$ — so add the "
+                "equations term by term:"
+                "$$(3x + 5x) + (2y - 2y) = 16 + 8$$"
+                "$$8x = 24 \\quad\\Longrightarrow\\quad x = 3.$$"
+                "The $y$ terms cancelled, which is the entire point of the method."
+                "**Back-substitute** into either original:"
+                "$$3(3) + 2y = 16 \\quad\\Longrightarrow\\quad 2y = 7 \\quad\\Longrightarrow\\quad "
+                "y = \\frac{7}{2}.$$"
+                "**Answer.** $\\left(3, \\frac{7}{2}\\right)$."
+                "**Check in BOTH.** $3(3) + 2\\left(\\frac{7}{2}\\right) = 9 + 7 = 16$ ✓ and "
+                "$5(3) - 2\\left(\\frac{7}{2}\\right) = 15 - 7 = 8$ ✓",
+                [
+                    "Eq(3*3 + 2*Rational(7,2), 16)",
+                    "Eq(5*3 - 2*Rational(7,2), 8)",
+                    "Eq(3 + 5, 8)",
+                ],
+            ),
+            problem(
+                "im1-u5-l3-we2",
+                "Solve by elimination: $4x + 3y = 10$ and $2x + 5y = 16$.",
+                "**No coefficients are opposites yet — scale to make some.** The $x$ coefficients "
+                "are $4$ and $2$. Multiply the SECOND equation by $-2$:"
+                "$$-2(2x + 5y) = -2(16) \\quad\\Longrightarrow\\quad -4x - 10y = -32.$$"
+                "Every term on both sides was multiplied, so the line is unchanged."
+                "**Add to the first equation.**"
+                "$$(4x - 4x) + (3y - 10y) = 10 - 32$$"
+                "$$-7y = -22 \\quad\\Longrightarrow\\quad y = \\frac{22}{7}.$$"
+                "**Back-substitute** into the simpler original:"
+                "$$2x + 5\\left(\\frac{22}{7}\\right) = 16 \\quad\\Longrightarrow\\quad "
+                "2x = 16 - \\frac{110}{7} = \\frac{2}{7} \\quad\\Longrightarrow\\quad "
+                "x = \\frac{1}{7}.$$"
+                "**Answer.** $\\left(\\frac{1}{7}, \\frac{22}{7}\\right)$."
+                "**Check in both.** "
+                "$4 \\cdot \\frac{1}{7} + 3 \\cdot \\frac{22}{7} = \\frac{4 + 66}{7} = 10$ ✓ and "
+                "$2 \\cdot \\frac{1}{7} + 5 \\cdot \\frac{22}{7} = \\frac{2 + 110}{7} = 16$ ✓",
+                [
+                    "Eq(4*Rational(1,7) + 3*Rational(22,7), 10)",
+                    "Eq(2*Rational(1,7) + 5*Rational(22,7), 16)",
+                ],
+            ),
+            problem(
+                "im1-u5-l3-we3",
+                "Solve by elimination: $2x + 3y = 12$ and $5x - 2y = 1$.",
+                "**Scale BOTH equations** so the $y$ coefficients become opposites. The least "
+                "common multiple of $3$ and $2$ is $6$:"
+                "$$2 \\times (2x + 3y = 12) \\quad\\Longrightarrow\\quad 4x + 6y = 24$$"
+                "$$3 \\times (5x - 2y = 1) \\quad\\Longrightarrow\\quad 15x - 6y = 3$$"
+                "**Add.**"
+                "$$19x = 27 \\quad\\Longrightarrow\\quad x = \\frac{27}{19}.$$"
+                "**Back-substitute** into the first original:"
+                "$$2\\left(\\frac{27}{19}\\right) + 3y = 12 \\quad\\Longrightarrow\\quad "
+                "3y = 12 - \\frac{54}{19} = \\frac{174}{19} \\quad\\Longrightarrow\\quad "
+                "y = \\frac{58}{19}.$$"
+                "**Answer.** $\\left(\\frac{27}{19}, \\frac{58}{19}\\right)$."
+                "**Check in both.** "
+                "$2 \\cdot \\frac{27}{19} + 3 \\cdot \\frac{58}{19} = \\frac{54 + 174}{19} = "
+                "\\frac{228}{19} = 12$ ✓ and "
+                "$5 \\cdot \\frac{27}{19} - 2 \\cdot \\frac{58}{19} = \\frac{135 - 116}{19} = "
+                "\\frac{19}{19} = 1$ ✓"
+                "**Why elimination here.** Isolating any variable in either equation would have "
+                "produced a fraction immediately; scaling kept every intermediate line in whole "
+                "numbers until the very end.",
+                [
+                    "Eq(2*Rational(27,19) + 3*Rational(58,19), 12)",
+                    "Eq(5*Rational(27,19) - 2*Rational(58,19), 1)",
+                    "Eq(4 + 15, 19)",
+                    "Eq(24 + 3, 27)",
+                ],
+            ),
+            problem(
+                "im1-u5-l3-we4",
+                "A workshop makes chairs and tables. Each chair needs $3$ hours of labour and "
+                "$2$ kg of timber; each table needs $5$ hours and $8$ kg. In one week it used "
+                "$79$ hours and $86$ kg. How many of each were made?",
+                "**Define.** Let $c$ = chairs and $t$ = tables, both non-negative whole numbers."
+                "**Two constraints, two equations.**"
+                "$$3c + 5t = 79 \\qquad \\text{(labour hours)}$$"
+                "$$2c + 8t = 86 \\qquad \\text{(timber, kg)}$$"
+                "**Eliminate the chair count.** The least common multiple of $3$ and $2$ is $6$:"
+                "$$2 \\times (3c + 5t = 79) \\quad\\Longrightarrow\\quad 6c + 10t = 158$$"
+                "$$-3 \\times (2c + 8t = 86) \\quad\\Longrightarrow\\quad -6c - 24t = -258$$"
+                "**Add.**"
+                "$$-14t = -100 \\quad\\Longrightarrow\\quad t = \\frac{100}{14} = \\frac{50}{7}.$$"
+                "**Interpret.** $\\frac{50}{7} \\approx 7.14$ tables — not a whole number. The "
+                "algebra is correct, but a workshop cannot produce a seventh of a table, so **no "
+                "whole-number production plan matches these figures exactly**. Either a "
+                "measurement is slightly off or some material was used elsewhere."
+                "**Verify the arithmetic before blaming the data.** With $t = \\frac{50}{7}$, the "
+                "first equation gives $3c = 79 - \\frac{250}{7} = \\frac{303}{7}$, so "
+                "$c = \\frac{101}{7}$. Checking the second: "
+                "$2 \\cdot \\frac{101}{7} + 8 \\cdot \\frac{50}{7} = \\frac{202 + 400}{7} = "
+                "\\frac{602}{7} = 86$ ✓ — the solution really is that pair, and it really is "
+                "fractional."
+                "**The lesson.** A-CED.3 asks you to judge whether a solution is VIABLE, not just "
+                "whether it is correct. Here it is correct and not viable, and saying so is the "
+                "complete answer.",
+                [
+                    "Eq(3*Rational(101,7) + 5*Rational(50,7), 79)",
+                    "Eq(2*Rational(101,7) + 8*Rational(50,7), 86)",
+                    "Ne(Rational(50,7), 7)",
+                    "Ne(Rational(50,7), 8)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Scaling only the left side of an equation.",
+                "Multiply EVERY term, both sides. 2 × (2x + 3y = 12) is 4x + 6y = 24, not "
+                "4x + 6y = 12.",
+            ),
+            mistake(
+                "Adding when the coefficients have the same sign.",
+                "Adding +3y to +3y gives 6y — nothing is eliminated. Make one negative first, then "
+                "add.",
+            ),
+            mistake(
+                "Eliminating a variable and forgetting to find it.",
+                "Back-substitute. The solution is a pair, and the eliminated variable still needs "
+                "a value.",
+            ),
+            mistake(
+                "Reporting a fractional count of physical objects as the final answer.",
+                "State the solution, then judge whether it is viable. 50/7 tables is arithmetically "
+                "right and physically impossible, and the answer must say so.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u5-l3-t1",
+                "Solve by elimination: $x + y = 10$ and $x - y = 4$.",
+                "The $y$ coefficients are already opposites. Adding: $2x = 14$, so $x = 7$. "
+                "Back-substituting: $y = 3$. Answer $(7, 3)$. Check: $7 + 3 = 10$ ✓ and "
+                "$7 - 3 = 4$ ✓",
+                [
+                    "Eq(7 + 3, 10)",
+                    "Eq(7 - 3, 4)",
+                ],
+            ),
+            problem(
+                "im1-u5-l3-t2",
+                "Solve by elimination: $3x + 4y = 26$ and $x - 2y = 2$.",
+                "Multiply the second by $2$: $2x - 4y = 4$. Add to the first: $5x = 30$, so "
+                "$x = 6$. Then $6 - 2y = 2$ gives $y = 2$. Answer $(6, 2)$. Check: "
+                "$18 + 8 = 26$ ✓ and $6 - 4 = 2$ ✓",
+                [
+                    "Eq(3*6 + 4*2, 26)",
+                    "Eq(6 - 2*2, 2)",
+                ],
+            ),
+            problem(
+                "im1-u5-l3-t3",
+                "Solve by elimination: $2x + 5y = 1$ and $3x - 2y = 27$.",
+                "Scale to eliminate $y$: multiply the first by $2$ and the second by $5$, giving "
+                "$4x + 10y = 2$ and $15x - 10y = 135$. Adding: $19x = 137$... let us instead "
+                "eliminate $x$: multiply the first by $3$ and the second by $-2$, giving "
+                "$6x + 15y = 3$ and $-6x + 4y = -54$. Adding: $19y = -51$, so "
+                "$y = -\\frac{51}{19}$. Hmm — check against the other route: $19x = 137$ gives "
+                "$x = \\frac{137}{19}$. Verify in the first equation: "
+                "$2 \\cdot \\frac{137}{19} + 5 \\cdot \\left(-\\frac{51}{19}\\right) = "
+                "\\frac{274 - 255}{19} = 1$ ✓ and in the second: "
+                "$3 \\cdot \\frac{137}{19} - 2 \\cdot \\left(-\\frac{51}{19}\\right) = "
+                "\\frac{411 + 102}{19} = \\frac{513}{19} = 27$ ✓",
+                [
+                    "Eq(2*Rational(137,19) + 5*Rational(-51,19), 1)",
+                    "Eq(3*Rational(137,19) - 2*Rational(-51,19), 27)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.5",
+                "title": "Adding equals to equals keeps things true",
+                "body": (
+                    "If $A = B$ and $C = D$ are both true, then $A + C = B + D$ must be true too. "
+                    "Any pair solving the original two solves the sum — and subtracting the second "
+                    "again recovers the first, so nothing is lost or gained."
+                ),
+                "beats": [
+                    "Two true equations, added → a third true equation",
+                    "Every original solution survives the addition",
+                    "Subtracting recovers the original — nothing is gained",
+                    "So the solution set is **unchanged**",
+                ],
+            },
+            {
+                "kind": "balanceScale",
+                "eyebrow": "The physical picture",
+                "title": "Pour one balanced scale onto another",
+                "teach": (
+                    "Two scales, each level. Add the second scale's left pan to the first's left "
+                    "pan and its right to the right. Equal masses joined equal masses, so the "
+                    "result is still balanced. That is the entire justification for elimination."
+                ),
+                "config": {"mode": "add", "b": 8, "rhs": 24},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The move",
+                "title": "Aim for opposite coefficients",
+                "body": (
+                    "$+2y$ in one equation and $-2y$ in the other: add, and $y$ disappears. If the "
+                    "signs already match, multiply one equation by $-1$ first — safer than trying "
+                    "to subtract equations term by term in your head."
+                ),
+            },
+            {"kind": "worked", "title": "When they already oppose", "problemId": "im1-u5-l3-we1"},
+            tap(
+                "What should you multiply by?",
+                "For $3x + 4y = 5$ and $6x - 2y = 1$, what is the cleanest way to eliminate $x$?",
+                [
+                    "Multiply the first by $-2$ and add",
+                    "Multiply the second by $2$ and add",
+                    "Multiply the first by $2$ and add",
+                    "Add them as they are",
+                ],
+                0,
+                "Multiplying the first by $-2$ gives $-6x - 8y = -10$, whose $x$ coefficient is "
+                "the opposite of the second equation's $+6x$. Adding leaves $-10y = -9$. "
+                "Multiplying the first by $+2$ would give $+6x$, which adds to $12x$ and "
+                "eliminates nothing.",
+                [
+                    "Eq(-2*3, -6)",
+                    "Eq(-6 + 6, 0)",
+                    "Eq(-2*5 + 1, -9)",
+                    "Eq(-2*4 - 2, -10)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "title": "Scale every term, both sides",
+                "body": (
+                    "$2 \\times (2x + 3y = 12)$ is $4x + 6y = 24$. The right-hand side gets "
+                    "multiplied too. Forgetting it produces a different line entirely, and the "
+                    "working afterwards looks perfectly normal."
+                ),
+            },
+            {"kind": "worked", "title": "Scaling one equation", "problemId": "im1-u5-l3-we2"},
+            {"kind": "worked", "title": "Scaling both equations", "problemId": "im1-u5-l3-we3"},
+            {
+                "kind": "teach",
+                "eyebrow": "Choosing a method",
+                "title": "Substitution or elimination?",
+                "body": (
+                    "If a variable is already isolated, or has coefficient $1$, substitute — it is "
+                    "faster. If both equations sit in standard form with awkward coefficients, "
+                    "eliminate — scaling keeps whole numbers where isolating would introduce "
+                    "fractions on the first line."
+                ),
+                "beats": [
+                    "$y = 3x - 4$ given → **substitute**",
+                    "$x + 4y = 9$ (coefficient $1$) → **substitute**",
+                    "$2x + 3y = 12$ and $5x - 2y = 1$ → **eliminate**",
+                    "Both give the same answer; one gives it faster",
+                ],
+            },
+            tap(
+                "Which leftover means what?",
+                "Eliminating a variable leaves you with $0 = 7$. What does the system look like?",
+                [
+                    "Two lines crossing at the origin",
+                    "Two parallel lines — no solution",
+                    "One line drawn twice — infinitely many",
+                    "Two lines crossing at $(0, 7)$",
+                ],
+                1,
+                "Both variables vanished and the leftover is FALSE, so no pair can satisfy both "
+                "equations — the lines are parallel. A leftover of $0 = 0$ would instead be true "
+                "and mean one line drawn twice. Neither leftover contains a variable, so no "
+                "coordinates can be read from it.",
+                ["Ne(0, 7)", "Eq(0, 0)"],
+            ),
+            {"kind": "worked", "title": "A production plan that is not viable", "problemId": "im1-u5-l3-we4"},
+            {"kind": "tryIt", "title": "Your turn — already opposite", "problemId": "im1-u5-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn — scale one", "problemId": "im1-u5-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Adding equals to equals is legal, and it preserves the solution set",
+                    "Scale entire equations — every term, both sides — to create opposites",
+                    "Add to eliminate, solve, then **back-substitute**",
+                    "Substitute when a coefficient is $1$; eliminate when neither is",
+                    "$0 = 7$ → no solution; $0 = 0$ → infinitely many",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — A-REI.12, A-CED.3: inequalities in two variables
+# ===========================================================================
+def lesson_inequalities():
+    return lesson(
+        slug="systems-of-inequalities",
+        title="Systems of Inequalities & Feasible Regions",
+        concrete=(
+            "A delivery van has a mass limit AND a volume limit. Neither alone tells you what you "
+            "can load — you need the loads satisfying both, which is a whole REGION of "
+            "possibilities rather than a single answer. Planning problems almost never have one "
+            "right answer; they have a region of workable ones, and finding it is the point."
+        ),
+        objective=(
+            "Graph the solution set of a linear inequality in two variables, find the region "
+            "satisfying a system of them, and interpret that region as the set of viable options "
+            "in a real constraint problem."
+        ),
+        concept=[
+            "**One inequality shades half the plane.** The line $y = 2x + 1$ splits the plane in "
+            "two. Points above it satisfy $y > 2x + 1$; points below satisfy $y < 2x + 1$. So the "
+            "solution set of a two-variable inequality is not a line but a half-plane — infinitely "
+            "many points, all of them equally valid answers.",
+            "**Solid or dashed says whether the edge counts.** For $\\le$ or $\\ge$, draw the "
+            "boundary SOLID: the points on the line satisfy the inequality. For strict $<$ or "
+            "$>$, draw it DASHED: the edge is excluded. This is the two-dimensional twin of the "
+            "filled and open circles from Unit 2.",
+            "**Test a point to decide which side.** Pick any point not on the line — the origin is "
+            "easiest whenever the line misses it — and substitute. If it satisfies the inequality, "
+            "shade its side; if not, shade the other. This one test beats any rule about "
+            "'above means greater', which fails as soon as the inequality is not solved for $y$.",
+            "**A system is the OVERLAP.** Graph each inequality's half-plane and keep only the "
+            "region belonging to all of them. That common region is the FEASIBLE REGION — the set "
+            "of options meeting every constraint at once. Its corners, where boundary lines cross, "
+            "are found by solving the corresponding system of equations, which is what the "
+            "previous two lessons were for.",
+            "**Real constraints add invisible boundaries.** A problem about counts of things "
+            "carries $x \\ge 0$ and $y \\ge 0$ whether or not anyone writes them down, and often "
+            "the counts must be whole numbers too. The feasible region is then not a smooth patch "
+            "but the LATTICE POINTS inside it — and a solution at a fractional corner may be "
+            "correct and still unusable, exactly as in the previous lesson.",
+        ],
+        key_idea=(
+            "Each inequality shades a half-plane — solid edge for $\\le$ or $\\ge$, dashed for "
+            "strict. A system's solution is the overlap, and in a real problem it is clipped by "
+            "the constraints the situation imposes."
+        ),
+        facts=[
+            fact(
+                "Boundary style",
+                "\\le, \\ge: \\text{solid} \\qquad <, >: \\text{dashed}",
+                "Solid means the edge is included; dashed means it is not. The 2-D version of "
+                "filled and open circles.",
+            ),
+            fact(
+                "The test point",
+                "\\text{substitute } (0,0) \\ \\text{when the line misses the origin}",
+                "True → shade the origin's side. False → shade the other. Works regardless of the "
+                "inequality's form.",
+            ),
+            fact(
+                "A system's solution",
+                "\\text{the region satisfying EVERY inequality — the overlap}",
+                "Corners come from solving the boundary lines pairwise, using substitution or "
+                "elimination.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u5-l4-we1",
+                "Graph the solution set of $y \\le 2x + 1$.",
+                "**Draw the boundary.** The line $y = 2x + 1$ passes through $(0, 1)$ and rises "
+                "$2$ per step right. Because the inequality is $\\le$, draw it SOLID — points on "
+                "the line are included."
+                "**Test a point off the line.** The origin $(0, 0)$ is not on it, so use that:"
+                "$$0 \\le 2(0) + 1 \\quad\\Longrightarrow\\quad 0 \\le 1 \\ \\checkmark.$$"
+                "True, so shade the side containing the origin — below and right of the line."
+                "**Confirm with a point on the other side.** Try $(0, 5)$: "
+                "$5 \\le 1$ is false ✗, so that side is correctly excluded."
+                "**And an edge point.** Try $(1, 3)$, which lies exactly on the line: "
+                "$3 \\le 3$ ✓ — included, which is what the solid boundary indicates.",
+                [
+                    "0 <= 2*0 + 1",
+                    "Not(5 <= 2*0 + 1)",
+                    "3 <= 2*1 + 1",
+                ],
+            ),
+            problem(
+                "im1-u5-l4-we2",
+                "Graph the solution set of $2x + 3y > 12$ and identify whether $(6, 1)$ belongs.",
+                "**Boundary.** The line $2x + 3y = 12$ passes through $(6, 0)$ and $(0, 4)$ — set "
+                "each variable to zero in turn. Because the inequality is STRICT, draw it DASHED."
+                "**Test the origin.** It is not on the line:"
+                "$$2(0) + 3(0) = 0 > 12 \\ \\text{is false} \\ ✗.$$"
+                "So shade the side AWAY from the origin — up and to the right."
+                "**Testing the given point.**"
+                "$$2(6) + 3(1) = 15 > 12 \\ \\checkmark.$$"
+                "Yes, it belongs."
+                "**A point on the boundary.** $(6, 0)$ gives $12 > 12$, which is false — excluded, "
+                "as the dashed line indicates. Had the inequality been $\\ge$, that same point "
+                "would have been included.",
+                [
+                    "Not(2*0 + 3*0 > 12)",
+                    "2*6 + 3*1 > 12",
+                    "Not(2*6 + 3*0 > 12)",
+                    "2*0 + 3*5 > 12",
+                ],
+            ),
+            problem(
+                "im1-u5-l4-we3",
+                "Find the region satisfying $y \\ge x - 2$ and $y \\le -x + 6$, and give the "
+                "corner where the boundaries meet.",
+                "**First inequality.** Boundary $y = x - 2$, solid. Test the origin: "
+                "$0 \\ge -2$ ✓, so shade the origin's side — above the line."
+                "**Second inequality.** Boundary $y = -x + 6$, solid. Test the origin: "
+                "$0 \\le 6$ ✓, so shade the origin's side — below that line."
+                "**The overlap** is the wedge between them, containing the origin: above the first "
+                "line and below the second."
+                "**The corner.** Solve the boundary lines as a system:"
+                "$$x - 2 = -x + 6 \\quad\\Longrightarrow\\quad 2x = 8 \\quad\\Longrightarrow\\quad "
+                "x = 4, \\quad y = 2.$$"
+                "The corner is $(4, 2)$, and both boundaries are solid so the corner belongs to "
+                "the region."
+                "**Check a point inside and one outside.** $(0, 0)$: $0 \\ge -2$ ✓ and "
+                "$0 \\le 6$ ✓ — inside. $(0, -5)$: $-5 \\ge -2$ is false ✗ — outside, failing the "
+                "first constraint only, which is enough to exclude it.",
+                [
+                    "0 >= 0 - 2",
+                    "0 <= -0 + 6",
+                    "Eq(4 - 2, 2)",
+                    "Eq(-4 + 6, 2)",
+                    "Not(-5 >= 0 - 2)",
+                ],
+            ),
+            problem(
+                "im1-u5-l4-we4",
+                "A student has $60\\,000$₮ and at most $8$ hours. Each maths workbook costs "
+                "$9000$₮ and takes $1$ hour to work through; each practice test costs $5000$₮ and "
+                "takes $2$ hours. Write the constraints and find the feasible region's corners.",
+                "**Define.** Let $w$ = workbooks and $t$ = practice tests."
+                "**Constraints.**"
+                "$$9000w + 5000t \\le 60\\,000 \\qquad \\text{(money)}$$"
+                "$$w + 2t \\le 8 \\qquad \\text{(time, hours)}$$"
+                "$$w \\ge 0, \\qquad t \\ge 0 \\qquad \\text{(you cannot buy a negative number)}$$"
+                "The last two are the constraints nobody writes down and everybody needs."
+                "**Simplify the money constraint** by dividing by $1000$:"
+                "$$9w + 5t \\le 60.$$"
+                "**Corners.** Three come free from the axes. Setting $t = 0$: the time constraint "
+                "allows $w \\le 8$ and money allows $w \\le \\frac{60}{9} \\approx 6.67$, so the "
+                "binding one is money — corner at $\\left(\\frac{20}{3}, 0\\right)$. Setting "
+                "$w = 0$: time allows $t \\le 4$ and money allows $t \\le 12$, so time binds — "
+                "corner at $(0, 4)$. And the origin $(0, 0)$."
+                "**The interior corner** is where the two boundary lines cross. From "
+                "$w + 2t = 8$ we get $w = 8 - 2t$; substituting into $9w + 5t = 60$:"
+                "$$9(8 - 2t) + 5t = 60 \\quad\\Longrightarrow\\quad 72 - 13t = 60 "
+                "\\quad\\Longrightarrow\\quad t = \\frac{12}{13}.$$"
+                "**Viability.** The corners are mostly fractional, but $w$ and $t$ count physical "
+                "items and must be whole. So the real answers are the LATTICE points inside the "
+                "region — for example $(6, 1)$: cost $59\\,000$₮ ✓ and time $8$ hours ✓, using "
+                "both budgets almost exactly. Meanwhile $(7, 0)$ costs $63\\,000$₮ ✗ and fails on "
+                "money. The corners locate the region; the whole-number points inside it are the "
+                "actual plans.",
+                [
+                    "9000*6 + 5000*1 <= 60000",
+                    "6 + 2*1 <= 8",
+                    "Not(9000*7 + 5000*0 <= 60000)",
+                    "Eq(9*6 + 5*1, 59)",
+                    "9*0 + 5*4 <= 60",
+                    "0 + 2*4 <= 8",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Shading above whenever the symbol is > without testing.",
+                "That rule only works when the inequality is solved for y. For 2x + 3y > 12, test "
+                "a point instead — the origin fails, so you shade away from it.",
+            ),
+            mistake(
+                "Drawing a solid boundary for a strict inequality.",
+                "Strict < or > excludes the edge — draw it dashed. Solid is for ≤ and ≥ only.",
+            ),
+            mistake(
+                "Shading each half-plane and calling the union the answer.",
+                "A system's solution is the OVERLAP, not the combination. A point must satisfy "
+                "every inequality, not just one.",
+            ),
+            mistake(
+                "Forgetting the x ≥ 0 and y ≥ 0 constraints in a counting problem.",
+                "They are always there when the variables count real objects, and they usually cut "
+                "the region down substantially.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u5-l4-t1",
+                "Is $(3, 4)$ in the solution set of $y < 2x - 1$? Is $(1, 5)$?",
+                "For $(3, 4)$: $2(3) - 1 = 5$, and $4 < 5$ ✓ — yes. For $(1, 5)$: $2(1) - 1 = 1$, "
+                "and $5 < 1$ is false ✗ — no.",
+                [
+                    "4 < 2*3 - 1",
+                    "Not(5 < 2*1 - 1)",
+                ],
+            ),
+            problem(
+                "im1-u5-l4-t2",
+                "Which side of $x + y = 5$ should be shaded for $x + y \\ge 5$, and is the "
+                "boundary solid or dashed?",
+                "Test the origin: $0 + 0 = 0 \\ge 5$ is false ✗, so shade the side AWAY from the "
+                "origin. The symbol is $\\ge$, so the boundary is SOLID — points like $(2, 3)$ "
+                "with $2 + 3 = 5$ are included.",
+                [
+                    "Not(0 + 0 >= 5)",
+                    "2 + 3 >= 5",
+                    "4 + 4 >= 5",
+                ],
+            ),
+            problem(
+                "im1-u5-l4-t3",
+                "A baker has $12$ kg of flour and $9$ hours. A cake uses $2$ kg and $1$ hour; a "
+                "batch of bread uses $1$ kg and $1.5$ hours. Write the constraints and check "
+                "whether $(4, 3)$ — four cakes, three batches — is feasible.",
+                "Constraints: $2c + b \\le 12$ (flour), $c + 1.5b \\le 9$ (time), with "
+                "$c \\ge 0$ and $b \\ge 0$. Testing $(4, 3)$: flour $8 + 3 = 11 \\le 12$ ✓ and "
+                "time $4 + 4.5 = 8.5 \\le 9$ ✓. Both hold, so it is feasible.",
+                [
+                    "2*4 + 3 <= 12",
+                    "4 + Rational(3,2)*3 <= 9",
+                    "Eq(4 + Rational(3,2)*3, Rational(17,2))",
+                    "Not(2*6 + 3 <= 12)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.12",
+                "title": "An inequality shades half the plane",
+                "body": (
+                    "A line divides the plane in two. One side satisfies the inequality and the "
+                    "other does not, so the solution set is a half-plane — infinitely many points, "
+                    "every one of them a valid answer."
+                ),
+                "beats": [
+                    "Draw the boundary line first",
+                    "$\\le$ or $\\ge$ → **solid** edge (included)",
+                    "$<$ or $>$ → **dashed** edge (excluded)",
+                    "Then decide which side to shade",
+                ],
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The reliable method",
+                "title": "Test a point — do not guess the side",
+                "body": (
+                    "Pick any point off the line and substitute. True? Shade its side. False? "
+                    "Shade the other. The origin is the easiest test point whenever the boundary "
+                    "misses it — and this works no matter what form the inequality is in."
+                ),
+            },
+            {"kind": "worked", "title": "Solid edge, origin included", "problemId": "im1-u5-l4-we1"},
+            tap(
+                "Which side gets shaded?",
+                "For $3x + y > 6$, does the region containing the origin get shaded?",
+                [
+                    "Yes — the origin satisfies it",
+                    "No — the origin fails, so shade the other side",
+                    "Yes — $>$ always shades toward the origin",
+                    "It cannot be decided without graphing",
+                ],
+                1,
+                "Substituting the origin: $3(0) + 0 = 0 > 6$ is false, so the origin is NOT in the "
+                "solution set and you shade away from it. Check a point on the far side: "
+                "$(3, 0)$ gives $9 > 6$ ✓ — correctly included.",
+                [
+                    "Not(3*0 + 0 > 6)",
+                    "3*3 + 0 > 6",
+                    "Not(3*2 + 0 > 6)",
+                ],
+            ),
+            {"kind": "worked", "title": "Dashed edge, shade away", "problemId": "im1-u5-l4-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.12, systems",
+                "title": "The solution is the overlap, not the union",
+                "body": (
+                    "Shade each inequality's half-plane, then keep only what ALL of them cover. A "
+                    "point satisfying just one constraint is not a solution — it must satisfy "
+                    "every one at once."
+                ),
+            },
+            {
+                "kind": "systemGraph",
+                "eyebrow": "The corner",
+                "title": "Where two boundaries meet",
+                "teach": (
+                    "The boundaries $y = x - 2$ and $y = -x + 6$ cross at $(4, 2)$. Corners of a "
+                    "feasible region are found exactly this way — by solving the boundary lines as "
+                    "a system, which is what the last two lessons taught."
+                ),
+                "config": {"m1": 1, "b1": -2, "m2": -1, "b2": 6, "min": -3, "max": 9},
+            },
+            {"kind": "worked", "title": "Two constraints and their corner", "problemId": "im1-u5-l4-we3"},
+            {
+                "kind": "teach",
+                "eyebrow": "A-CED.3",
+                "title": "The constraints nobody writes down",
+                "body": (
+                    "If $x$ counts workbooks, then $x \\ge 0$ whether or not the problem says so — "
+                    "and usually $x$ must be a whole number too. Those hidden constraints cut the "
+                    "feasible region down, sometimes drastically."
+                ),
+                "beats": [
+                    "Counts are non-negative: $x \\ge 0$, $y \\ge 0$",
+                    "Counts of objects are **whole numbers**",
+                    "So the real answers are the lattice points inside",
+                    "A fractional corner can be correct and unusable",
+                ],
+            },
+            {"kind": "worked", "title": "A study budget with four constraints", "problemId": "im1-u5-l4-we4"},
+            tap(
+                "Is this option feasible?",
+                "Constraints are $2c + b \\le 12$ and $c + b \\le 8$, with $c, b \\ge 0$. Is "
+                "$(5, 3)$ feasible?",
+                [
+                    "Yes — it satisfies both",
+                    "No — it fails the first",
+                    "No — it fails the second",
+                    "No — it fails both",
+                ],
+                1,
+                "First constraint: $2(5) + 3 = 13 \\le 12$ is FALSE ✗. Second: $5 + 3 = 8 \\le 8$ "
+                "is true ✓. Failing even one constraint puts the point outside the feasible "
+                "region — every constraint must hold at once.",
+                [
+                    "Not(2*5 + 3 <= 12)",
+                    "5 + 3 <= 8",
+                    "2*4 + 3 <= 12",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "title": "Check every constraint before declaring a plan workable",
+                "body": (
+                    "A plan that fits the budget but blows the time limit is not a plan. Test each "
+                    "inequality separately and only call the option feasible when all of them "
+                    "hold — the first failure is enough to rule it out."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — is the point in?", "problemId": "im1-u5-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn — a baker's constraints", "problemId": "im1-u5-l4-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "One inequality shades a half-plane; the boundary is solid for $\\le$/$\\ge$",
+                    "**Test a point** — never guess the side from the symbol",
+                    "A system's solution is the **overlap** of all the half-planes",
+                    "Corners come from solving the boundary lines pairwise",
+                    "Add $x \\ge 0$, $y \\ge 0$ and whole-number constraints in real problems",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Unit banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im1-u5-pr-1",
+            "Verify that $(2, -1)$ solves the system $3x + y = 5$ and $x - 2y = 4$.",
+            "First: $3(2) + (-1) = 5$ ✓. Second: $2 - 2(-1) = 4$ ✓. It satisfies both, so it is "
+            "the solution.",
+            ["Eq(3*2 + (-1), 5)", "Eq(2 - 2*(-1), 4)"],
+        ),
+        problem(
+            "im1-u5-pr-2",
+            "Classify the system $y = 5x - 2$ and $10x - 2y = 4$ without solving.",
+            "Rewrite the second: $-2y = -10x + 4$, so $y = 5x - 2$ — identical to the first. Same "
+            "line twice, so **infinitely many solutions**. Spot-check $(0, -2)$: "
+            "$0 + 4 = 4$ ✓ and $(1, 3)$: $10 - 6 = 4$ ✓",
+            [
+                "Eq(10*0 - 2*(-2), 4)",
+                "Eq(10*1 - 2*3, 4)",
+                "Eq(5*1 - 2, 3)",
+            ],
+        ),
+        problem(
+            "im1-u5-pr-3",
+            "Solve by substitution: $y = 4x + 1$ and $3x + y = 15$.",
+            "Substitute: $3x + (4x + 1) = 15$, so $7x = 14$ and $x = 2$. Then $y = 9$. Answer "
+            "$(2, 9)$. Check: $4(2) + 1 = 9$ ✓ and $6 + 9 = 15$ ✓",
+            ["Eq(4*2 + 1, 9)", "Eq(3*2 + 9, 15)"],
+        ),
+        problem(
+            "im1-u5-pr-4",
+            "Solve by substitution: $x - 3y = 7$ and $2x + y = 7$.",
+            "Isolate $x$ from the first: $x = 7 + 3y$. Substitute: $2(7 + 3y) + y = 7$, so "
+            "$14 + 7y = 7$, giving $y = -1$ and $x = 4$. Answer $(4, -1)$. Check: "
+            "$4 + 3 = 7$ ✓ and $8 - 1 = 7$ ✓",
+            ["Eq(4 - 3*(-1), 7)", "Eq(2*4 + (-1), 7)"],
+        ),
+        problem(
+            "im1-u5-pr-5",
+            "Solve by elimination: $2x + y = 11$ and $3x - y = 9$.",
+            "The $y$ coefficients are opposites, so add: $5x = 20$, giving $x = 4$. Then "
+            "$y = 11 - 8 = 3$. Answer $(4, 3)$. Check: $8 + 3 = 11$ ✓ and $12 - 3 = 9$ ✓",
+            ["Eq(2*4 + 3, 11)", "Eq(3*4 - 3, 9)"],
+        ),
+        problem(
+            "im1-u5-pr-6",
+            "Solve by elimination: $3x + 2y = 19$ and $x + 4y = 23$.",
+            "Multiply the second by $-3$: $-3x - 12y = -69$. Add to the first: $-10y = -50$, so "
+            "$y = 5$ and $x = 23 - 20 = 3$. Answer $(3, 5)$. Check: $9 + 10 = 19$ ✓ and "
+            "$3 + 20 = 23$ ✓",
+            ["Eq(3*3 + 2*5, 19)", "Eq(3 + 4*5, 23)"],
+        ),
+        problem(
+            "im1-u5-pr-7",
+            "Solve: $4x - 6y = 10$ and $2x - 3y = 5$.",
+            "Multiply the second by $-2$: $-4x + 6y = -10$. Adding gives $0 = 0$ — true, so the "
+            "equations describe the same line and there are **infinitely many solutions**. "
+            "Spot-check $(4, 1)$: $16 - 6 = 10$ ✓ and $8 - 3 = 5$ ✓",
+            [
+                "Eq(4*4 - 6*1, 10)",
+                "Eq(2*4 - 3*1, 5)",
+                "Eq(4*Rational(5,2) - 6*0, 10)",
+            ],
+        ),
+        problem(
+            "im1-u5-pr-8",
+            "Solve: $x + y = 6$ and $2x + 2y = 15$.",
+            "Multiply the first by $-2$: $-2x - 2y = -12$. Adding gives $0 = 3$ — false, so there "
+            "is **no solution**. The lines are parallel: dividing the second by $2$ gives "
+            "$x + y = 7.5$, the same slope with a different intercept.",
+            [
+                "Ne(0, 3)",
+                "Eq(Rational(15,2), 7.5)",
+                "Ne(6, Rational(15,2))",
+            ],
+        ),
+        problem(
+            "im1-u5-pr-9",
+            "Is $(2, 5)$ in the solution set of $y \\ge 3x - 2$?",
+            "Substitute: $3(2) - 2 = 4$, and $5 \\ge 4$ ✓. Yes, it belongs. The boundary is solid, "
+            "so even a point exactly on the line would count.",
+            ["5 >= 3*2 - 2", "Not(1 >= 3*2 - 2)"],
+        ),
+        problem(
+            "im1-u5-pr-10",
+            "For $4x - y < 8$, decide whether the origin's side is shaded and whether the boundary "
+            "is solid.",
+            "Testing the origin: $0 - 0 = 0 < 8$ ✓, so shade the side containing the origin. The "
+            "symbol is strict, so the boundary is **dashed** — a point like $(2, 0)$ with "
+            "$8 < 8$ false is excluded.",
+            [
+                "0 - 0 < 8",
+                "Not(4*2 - 0 < 8)",
+                "4*1 - 0 < 8",
+            ],
+        ),
+        problem(
+            "im1-u5-pr-11",
+            "Two printers: A costs $150\\,000$₮ plus $60$₮ a page; B costs $90\\,000$₮ plus "
+            "$110$₮ a page. Find the crossover and say which is cheaper for $2000$ pages.",
+            "Set equal: $60p + 150\\,000 = 110p + 90\\,000$, so $50p = 60\\,000$ and $p = 1200$ "
+            "pages. At $p = 2000$: A costs $270\\,000$₮ and B costs $310\\,000$₮, so **A is "
+            "cheaper**. Below $1200$ pages B wins.",
+            [
+                "Eq(60*1200 + 150000, 110*1200 + 90000)",
+                "Eq(60*2000 + 150000, 270000)",
+                "Eq(110*2000 + 90000, 310000)",
+                "60*2000 + 150000 < 110*2000 + 90000",
+                "60*500 + 150000 > 110*500 + 90000",
+            ],
+        ),
+        problem(
+            "im1-u5-pr-12",
+            "A farmer has $100$ hectares and $240$ hours. Wheat needs $1$ hectare and $2$ hours "
+            "per unit; barley needs $1$ hectare and $3$ hours. Write the constraints and check "
+            "whether $60$ wheat and $40$ barley is feasible.",
+            "Constraints: $w + b \\le 100$ (land), $2w + 3b \\le 240$ (time), $w, b \\ge 0$. "
+            "Testing $(60, 40)$: land $60 + 40 = 100 \\le 100$ ✓ and time "
+            "$120 + 120 = 240 \\le 240$ ✓. Both are exactly at their limits, so it is feasible — "
+            "and it uses every hectare and every hour.",
+            [
+                "60 + 40 <= 100",
+                "2*60 + 3*40 <= 240",
+                "Eq(2*60 + 3*40, 240)",
+                "Not(2*70 + 3*40 <= 240)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im1-u5-ty-1",
+            "Solve the system $y = 3x - 7$ and $2x + 3y = 1$ by substitution, and verify your "
+            "answer.",
+            "**Substitute** the first into the second:"
+            "$$2x + 3(3x - 7) = 1.$$"
+            "$$2x + 9x - 21 = 1 \\quad\\Longrightarrow\\quad 11x = 22 \\quad\\Longrightarrow\\quad "
+            "x = 2.$$"
+            "**Back-substitute.**"
+            "$$y = 3(2) - 7 = -1.$$"
+            "**Answer.** $(2, -1)$."
+            "**Verify in both originals.** $y = 3(2) - 7 = -1$ ✓ and "
+            "$2(2) + 3(-1) = 4 - 3 = 1$ ✓",
+            [
+                "Eq(3*2 - 7, -1)",
+                "Eq(2*2 + 3*(-1), 1)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-2",
+            "Solve the system $5x + 3y = 1$ and $2x - 4y = 18$ by elimination.",
+            "**Eliminate the second variable.** The least common multiple of $3$ and $4$ is $12$:"
+            "$$4 \\times (5x + 3y = 1) \\quad\\Longrightarrow\\quad 20x + 12y = 4$$"
+            "$$3 \\times (2x - 4y = 18) \\quad\\Longrightarrow\\quad 6x - 12y = 54$$"
+            "**Add.**"
+            "$$26x = 58 \\quad\\Longrightarrow\\quad x = \\frac{29}{13}.$$"
+            "**Back-substitute** into the second original:"
+            "$$2\\left(\\frac{29}{13}\\right) - 4y = 18 \\quad\\Longrightarrow\\quad "
+            "-4y = 18 - \\frac{58}{13} = \\frac{176}{13} \\quad\\Longrightarrow\\quad "
+            "y = -\\frac{44}{13}.$$"
+            "**Answer.** $\\left(\\frac{29}{13}, -\\frac{44}{13}\\right)$."
+            "**Check in both.** "
+            "$5 \\cdot \\frac{29}{13} + 3 \\cdot \\left(-\\frac{44}{13}\\right) = "
+            "\\frac{145 - 132}{13} = 1$ ✓ and "
+            "$2 \\cdot \\frac{29}{13} - 4 \\cdot \\left(-\\frac{44}{13}\\right) = "
+            "\\frac{58 + 176}{13} = \\frac{234}{13} = 18$ ✓",
+            [
+                "Eq(5*Rational(29,13) + 3*Rational(-44,13), 1)",
+                "Eq(2*Rational(29,13) - 4*Rational(-44,13), 18)",
+                "Eq(20 + 6, 26)",
+                "Eq(4 + 54, 58)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-3",
+            "Classify each system and justify: (a) $y = 2x + 3$ and $4x - 2y = -6$; "
+            "(b) $y = -x + 4$ and $3x + 3y = 6$.",
+            "**(a)** Rewrite the second: $-2y = -4x - 6$, so $y = 2x + 3$ — identical to the "
+            "first. Same slope, same intercept: **infinitely many solutions**, one line drawn "
+            "twice. Spot-check two points: $(0, 3)$ gives $0 - 6 = -6$ ✓ and $(1, 5)$ gives "
+            "$4 - 10 = -6$ ✓."
+            "**(b)** Rewrite the second: $3y = -3x + 6$, so $y = -x + 2$. Same slope $-1$ as the "
+            "first, but intercepts $4$ and $2$ differ: **no solution**, parallel lines. The "
+            "vertical gap is a constant $2$ at every $x$ — at $x = 0$ the lines sit at $4$ and "
+            "$2$; at $x = 10$ they sit at $-6$ and $-8$.",
+            [
+                "Eq(4*0 - 2*3, -6)",
+                "Eq(4*1 - 2*5, -6)",
+                "Eq((-0 + 4) - (-0 + 2), 2)",
+                "Eq((-10 + 4) - (-10 + 2), 2)",
+                "Ne(4, 2)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-4",
+            "A concert sold adult tickets at $15\\,000$₮ and child tickets at $6000$₮. It sold "
+            "$220$ tickets and took $2\\,478\\,000$₮. Find how many of each, and confirm the "
+            "answer is viable.",
+            "**Define.** Let $a$ = adult tickets and $c$ = child tickets."
+            "**Two facts, two equations.**"
+            "$$a + c = 220 \\qquad \\text{(count)}$$"
+            "$$15\\,000a + 6000c = 2\\,478\\,000 \\qquad \\text{(money)}$$"
+            "**Substitute** $c = 220 - a$ into the money equation:"
+            "$$15\\,000a + 6000(220 - a) = 2\\,478\\,000$$"
+            "$$15\\,000a + 1\\,320\\,000 - 6000a = 2\\,478\\,000$$"
+            "$$9000a = 1\\,158\\,000 \\quad\\Longrightarrow\\quad a = 128\\tfrac{2}{3}.$$"
+            "**Judge viability.** The result is not a whole number, and ticket counts must be. So "
+            "**no whole-number pair matches these figures exactly** — the takings figure is "
+            "inconsistent with $220$ tickets at those two prices."
+            "**Confirm the nearest whole options bracket it.** At $a = 128$, $c = 92$: takings "
+            "are $1\\,920\\,000 + 552\\,000 = 2\\,472\\,000$₮, which is $6000$₮ short. At "
+            "$a = 129$, $c = 91$: $1\\,935\\,000 + 546\\,000 = 2\\,481\\,000$₮, which is "
+            "$3000$₮ over. The true figure falls between them, so no exact whole-number "
+            "solution exists — the correct answer is to say so.",
+            [
+                "Eq(15000*128 + 6000*92, 2472000)",
+                "Eq(15000*129 + 6000*91, 2481000)",
+                "2472000 < 2478000",
+                "2481000 > 2478000",
+                "Ne(Rational(1158000, 9000), 128)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-5",
+            "Graph the solution set of the system $y > x - 3$ and $y \\le -2x + 6$, describing "
+            "the boundaries and finding the corner.",
+            "**First inequality.** Boundary $y = x - 3$, DASHED because the symbol is strict. Test "
+            "the origin: $0 > -3$ ✓, so shade the origin's side — above the line."
+            "**Second inequality.** Boundary $y = -2x + 6$, SOLID because of the $\\le$. Test the "
+            "origin: $0 \\le 6$ ✓, so shade the origin's side — below that line."
+            "**The region** is the wedge above the dashed line and below the solid one, containing "
+            "the origin."
+            "**The corner.** Solve the boundaries as a system:"
+            "$$x - 3 = -2x + 6 \\quad\\Longrightarrow\\quad 3x = 9 \\quad\\Longrightarrow\\quad "
+            "x = 3, \\quad y = 0.$$"
+            "The corner is $(3, 0)$ — but it lies on the DASHED boundary, so it is NOT part of the "
+            "solution set. The region approaches that corner without containing it."
+            "**Check.** $(0, 0)$: $0 > -3$ ✓ and $0 \\le 6$ ✓ — inside. $(0, -5)$: "
+            "$-5 > -3$ is false ✗ — outside. $(3, 0)$: $0 > 0$ is false ✗ — excluded, as the "
+            "dashed edge requires.",
+            [
+                "0 > 0 - 3",
+                "0 <= -2*0 + 6",
+                "Eq(3 - 3, 0)",
+                "Eq(-2*3 + 6, 0)",
+                "Not(0 > 3 - 3)",
+                "Not(-5 > 0 - 3)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-6",
+            "A workshop makes stools and benches. A stool needs $2$ hours and $3$ planks; a bench "
+            "needs $5$ hours and $8$ planks. The workshop has $40$ hours and $67$ planks. Write "
+            "the constraints, and determine whether making $10$ stools and $4$ benches is "
+            "feasible.",
+            "**Define.** Let $s$ = stools and $b$ = benches, both non-negative whole numbers."
+            "**Constraints.**"
+            "$$2s + 5b \\le 40 \\qquad \\text{(hours)}$$"
+            "$$3s + 8b \\le 67 \\qquad \\text{(planks)}$$"
+            "$$s \\ge 0, \\qquad b \\ge 0$$"
+            "**Testing ten stools and four benches.**"
+            "$$\\text{Hours: } 2(10) + 5(4) = 40 \\le 40 \\ \\checkmark$$"
+            "$$\\text{Planks: } 3(10) + 8(4) = 62 \\le 67 \\ \\checkmark$$"
+            "Both hold, so the plan is **feasible**. It uses every available hour and leaves "
+            "$5$ planks spare — so time, not timber, is the binding constraint here."
+            "**And one that is not.** $(12, 4)$ would need $44$ hours, exceeding the limit, so it "
+            "is infeasible even though its plank requirement of $68$... also exceeds $67$. Both "
+            "constraints fail, and either alone is enough to rule it out.",
+            [
+                "2*10 + 5*4 <= 40",
+                "3*10 + 8*4 <= 67",
+                "Eq(2*10 + 5*4, 40)",
+                "Eq(67 - (3*10 + 8*4), 5)",
+                "Not(2*12 + 5*4 <= 40)",
+                "Not(3*12 + 8*4 <= 67)",
+            ],
+        ),
+        problem(
+            "im1-u5-ty-7",
+            "Two water tanks are being managed. Tank A holds $900$ litres and drains at $30$ "
+            "litres per minute. Tank B holds $500$ litres and is filled at $20$ litres per minute. "
+            "When do they hold the same amount, and is that moment within both tanks' valid "
+            "ranges?",
+            "**Models.** With $t$ in minutes,"
+            "$$A = 900 - 30t, \\qquad B = 500 + 20t.$$"
+            "**Set equal.**"
+            "$$900 - 30t = 500 + 20t \\quad\\Longrightarrow\\quad 400 = 50t "
+            "\\quad\\Longrightarrow\\quad t = 8.$$"
+            "**The shared volume.** $A = 900 - 240 = 660$ litres, and $B = 500 + 160 = 660$ "
+            "litres ✓"
+            "**Check both domains.** Tank A empties at $900 - 30t = 0$, i.e. $t = 30$ minutes, so "
+            "$t = 8$ is comfortably within its draining period ✓. Tank B is filling, and whether "
+            "$t = 8$ is valid depends on its capacity — at $660$ litres it must hold at least "
+            "that much, which the problem implies since it is still being filled."
+            "**Answer.** After $8$ minutes both tanks hold $660$ litres, and that moment lies "
+            "inside tank A's valid draining window. Before $8$ minutes A holds more; after "
+            "$8$ minutes B does — check at $t = 0$ ($900$ against $500$) and at $t = 20$ "
+            "($300$ against $900$).",
+            [
+                "Eq(900 - 30*8, 500 + 20*8)",
+                "Eq(900 - 30*8, 660)",
+                "Eq(900 - 30*30, 0)",
+                "900 - 30*0 > 500 + 20*0",
+                "900 - 30*20 < 500 + 20*20",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="systems-of-equations-and-inequalities",
+        title="Systems of Equations & Inequalities",
+        unit_number=5,
+        blurb=(
+            "The intersection as the solution, classifying by slope, substitution and elimination "
+            "with a justification for why adding equations is legal, and shaded feasible regions "
+            "for real constraint problems."
+        ),
+        builds_on=(
+            "Linear equations from Unit 2 and the graph of a line from Unit 4 — a system is two of "
+            "them asked about at once."
+        ),
+        lessons=[
+            lesson_graphing(),
+            lesson_substitution(),
+            lesson_elimination(),
+            lesson_inequalities(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

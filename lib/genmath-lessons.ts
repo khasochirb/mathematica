@@ -179,6 +179,8 @@ import im1Quantities from "@/data/genmath/integrated-1/quantities-and-expression
 import im1LinearEq from "@/data/genmath/integrated-1/linear-equations-and-inequalities.json";
 import im1Functions from "@/data/genmath/integrated-1/functions-and-sequences.json";
 import im1LinearFn from "@/data/genmath/integrated-1/linear-functions.json";
+import im1Systems from "@/data/genmath/integrated-1/systems-of-equations-and-inequalities.json";
+import im1Exponential from "@/data/genmath/integrated-1/exponential-functions.json";
 
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
@@ -1248,7 +1250,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Graphical, substitution and elimination methods; why adding equations is legal; systems with no or infinitely many solutions; and shaded feasible regions.",
     buildsOn: "Linear equations from Unit 2 and the graph of a line from Unit 4.",
-    live: false,
+    live: true,
   },
   {
     unit: 6,
@@ -1257,7 +1259,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Repeated multiplication as a function, growth and decay factors, comparing exponential against linear growth, and fitting a model to data.",
     buildsOn: "Geometric sequences from Unit 3 and function notation from Unit 4.",
-    live: false,
+    live: true,
   },
   {
     unit: 7,
@@ -1293,6 +1295,8 @@ const im1Units: CourseUnit[] = [
   im1LinearEq as unknown as CourseUnit,
   im1Functions as unknown as CourseUnit,
   im1LinearFn as unknown as CourseUnit,
+  im1Systems as unknown as CourseUnit,
+  im1Exponential as unknown as CourseUnit,
 ];
 
 export function getIm1Spine(): GeometrySpineEntry[] {

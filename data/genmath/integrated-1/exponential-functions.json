@@ -1,0 +1,1302 @@
+{
+  "slug": "exponential-functions",
+  "title": "Exponential Functions & Growth",
+  "unit": 6,
+  "status": "published",
+  "blurb": "Growth and decay factors from percent rates, the shape of an exponential graph and its asymptote, why exponential growth eventually beats any linear growth, and building a model from a description, a table, or two data points.",
+  "buildsOn": "Geometric sequences from Unit 3 — the same repeated multiplication, now with the exponent free to run continuously — and the linear models of Unit 4, which this unit races against.",
+  "lessons": [
+    {
+      "slug": "exponential-growth-and-decay",
+      "title": "Growth & Decay Factors",
+      "concreteComparison": "Two savings accounts, both starting at $100\\,000$₮. One adds $10\\,000$₮ a year. The other adds ten percent a year. After one year they are identical. After thirty years the second holds nearly twice the first — because adding a fixed amount and multiplying by a fixed factor are different engines, and only one of them accelerates.",
+      "objective": "Recognise a constant percent rate of change, convert a percent to a growth or decay factor, write the model $y = a \\cdot b^{x}$, and interpret $a$ and $b$ in context.",
+      "concept": [
+        "**Linear adds; exponential multiplies.** A linear model changes by the same AMOUNT each step: $+900$₮ per kilometre, whatever the total so far. An exponential model changes by the same PERCENT each step: $+10\\%$ per year, which is a bigger and bigger amount as the total grows. That difference is the whole unit.",
+        "**The model.** Written $y = a \\cdot b^{x}$, where $a$ is the starting value — the output at $x = 0$, since $b^0 = 1$ — and $b$ is the factor applied once per step. The variable sits in the EXPONENT, which is what makes the function exponential rather than merely curved.",
+        "**Converting a percent to a factor.** Growing by $p\\%$ means keeping everything and adding $p\\%$, so $b = 1 + \\frac{p}{100}$: growth of $8\\%$ gives $b = 1.08$. Decaying by $p\\%$ means keeping the rest, so $b = 1 - \\frac{p}{100}$: a loss of $15\\%$ gives $b = 0.85$. The factor is always what SURVIVES one step, never what is gained or lost.",
+        "**Reading the factor backwards.** Given $b = 1.06$, the growth rate is $6\\%$. Given $b = 0.92$, the quantity keeps $92\\%$ and therefore loses $8\\%$. Given $b = 2$, it doubles — a $100\\%$ increase, which is worth pausing on: doubling is $+100\\%$, not $+200\\%$.",
+        "**Percent changes compound; they do not add.** Three years of $10\\%$ growth multiplies by $1.1^3 = 1.331$, a $33.1\\%$ increase — not $30\\%$. Two years of $12\\%$ decay leaves $0.88^2 = 0.7744$, so $22.56\\%$ is lost, not $24\\%$. Each step acts on the result of the last, and that is exactly why the curve bends.",
+        "**Spotting the model from a table.** Compute DIFFERENCES between consecutive outputs; constant means linear. If they are not constant, compute RATIOS; constant means exponential. This is the same two-step test as Unit 3's sequences, now applied to any table of values."
+      ],
+      "keyIdea": "$y = a \\cdot b^{x}$: $a$ is the starting value, $b$ is the factor per step. Growth of $p\\%$ gives $b = 1 + p/100$; decay gives $b = 1 - p/100$. The factor is what survives, and repeated steps compound.",
+      "facts": [
+        {
+          "title": "The exponential model",
+          "latex": "y = a \\cdot b^{x}, \\qquad a = \\text{start}, \\quad b = \\text{factor per step}",
+          "explanation": "At x = 0 the factor is b⁰ = 1, so y = a — the starting value."
+        },
+        {
+          "title": "Percent to factor",
+          "latex": "\\text{grow } p\\%: b = 1 + \\tfrac{p}{100} \\qquad \\text{decay } p\\%: b = 1 - \\tfrac{p}{100}",
+          "explanation": "The factor is what SURVIVES one step. Losing 15% gives 0.85, not 0.15."
+        },
+        {
+          "title": "Compounding, not adding",
+          "latex": "(1.1)^3 = 1.331 \\ne 1.30",
+          "explanation": "Each step acts on the previous result, so three years of 10% is a 33.1% rise."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u6-l1-we1",
+          "statement": "A town of $40\\,000$ people grows $3\\%$ a year. Write the model and find the population after $5$ years.",
+          "solution": "**Find the factor.** Growing $3\\%$ means keeping everything and adding three percent:$$b = 1 + 0.03 = 1.03.$$**Write the model.** With $a = 40\\,000$ as the starting population and $t$ in years,$$P(t) = 40\\,000 \\cdot (1.03)^{t}.$$Check the start: $P(0) = 40\\,000 \\cdot 1 = 40\\,000$ ✓**After 5 years.**$$P(5) = 40\\,000 \\times 1.03^{5} = 40\\,000 \\times 1.159274074 \\approx 46\\,371.$$About $46\\,371$ people.**Not a fifteen percent rise.** Five years of $3\\%$ gives $15.93\\%$ growth, not $15\\%$, because each year's increase is computed on a larger population than the last.",
+          "check": [
+            "Eq(40000*Rational(103,100)**0, 40000)",
+            "Abs(40000*Rational(103,100)**5 - 46371) < 1",
+            "Rational(103,100)**5 > Rational(115,100)"
+          ]
+        },
+        {
+          "id": "im1-u6-l1-we2",
+          "statement": "A car bought for $32\\,000\\,000$₮ loses $18\\%$ of its value each year. Write the model and find its value after $4$ years.",
+          "solution": "**Find the factor.** Losing $18\\%$ means KEEPING $82\\%$:$$b = 1 - 0.18 = 0.82.$$Since $0 < b < 1$, this is decay — the values fall.**Model.**$$V(t) = 32\\,000\\,000 \\cdot (0.82)^{t}.$$**After 4 years.**$$0.82^{4} = 0.45212176, \\qquad V(4) = 32\\,000\\,000 \\times 0.45212176 = 14\\,467\\,896.32.$$The car is worth about $14\\,467\\,896$₮.**Why the losses do not simply add.** Four years at $18\\%$ leaves $45.2\\%$, not $100 - 4(18) = 28\\%$. Each year's loss is taken from a smaller base, so the value decays toward zero without ever quite reaching it — a linear model would have hit zero at year $5.6$ and gone negative after.",
+          "check": [
+            "Eq(Rational(82,100)**0, 1)",
+            "Abs(Rational(82,100)**4 - Rational(45212176, 100000000)) < Rational(1, 1000000000)",
+            "Rational(82,100)**4 > Rational(28,100)",
+            "Abs(32000000*Rational(82,100)**4 - 14467896) < 1"
+          ]
+        },
+        {
+          "id": "im1-u6-l1-we3",
+          "statement": "Decide whether each table is linear or exponential, and give its model. Table A: $(0, 5), (1, 8), (2, 11), (3, 14)$. Table B: $(0, 5), (1, 15), (2, 45), (3, 135)$.",
+          "solution": "**Table A — differences first.**$$8 - 5 = 3, \\qquad 11 - 8 = 3, \\qquad 14 - 11 = 3.$$Constant, so it is **linear** with slope $3$ and starting value $5$:$$y = 3x + 5.$$**Table B — differences.**$$15 - 5 = 10, \\qquad 45 - 15 = 30, \\qquad 135 - 45 = 90.$$Not constant, so not linear. **Now ratios.**$$\\frac{15}{5} = 3, \\qquad \\frac{45}{15} = 3, \\qquad \\frac{135}{45} = 3.$$Constant, so it is **exponential** with $a = 5$ and $b = 3$:$$y = 5 \\cdot 3^{x}.$$Check at $x = 3$: $5 \\cdot 27 = 135$ ✓**The habit.** Differences, then ratios. A table that fails both is neither, and no model from this unit will fit it.",
+          "check": [
+            "Eq(8 - 5, 3)",
+            "Eq(14 - 11, 3)",
+            "Eq(3*3 + 5, 14)",
+            "Eq(15 - 5, 10)",
+            "Ne(10, 30)",
+            "Eq(Rational(135,45), 3)",
+            "Eq(5*3**3, 135)"
+          ]
+        },
+        {
+          "id": "im1-u6-l1-we4",
+          "statement": "A model reads $N = 250 \\cdot (1.4)^{t}$. State the starting value, the percent growth per period, and the value after $3$ periods. Then say how the answer would change if the model were $N = 250 \\cdot (0.6)^{t}$.",
+          "solution": "**Starting value.** At $t = 0$: $N = 250 \\cdot 1 = 250$.**Percent growth.** The factor is $1.4 = 1 + 0.4$, so the quantity grows $40\\%$ per period.**After 3 periods.**$$N(3) = 250 \\times 1.4^{3} = 250 \\times 2.744 = 686.$$**The decay version.** A factor of $0.6 = 1 - 0.4$ means the quantity LOSES $40\\%$ per period, keeping $60\\%$:$$N(3) = 250 \\times 0.6^{3} = 250 \\times 0.216 = 54.$$**The symmetry that is not there.** Growing $40\\%$ and then shrinking $40\\%$ does NOT return you to the start: $250 \\times 1.4 \\times 0.6 = 210$, not $250$. The two percentages are taken from different bases, which is one of the most consistently surprising facts in this unit.",
+          "check": [
+            "Eq(250*Rational(14,10)**0, 250)",
+            "Eq(Rational(14,10)**3, Rational(2744, 1000))",
+            "Eq(250*Rational(14,10)**3, 686)",
+            "Eq(250*Rational(6,10)**3, 54)",
+            "Eq(250*Rational(14,10)*Rational(6,10), 210)",
+            "Ne(210, 250)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using 0.15 as the factor for a 15% loss.",
+          "correction": "The factor is what SURVIVES: 1 − 0.15 = 0.85. Using 0.15 models keeping only fifteen percent, a 85% loss.",
+          "authored": true
+        },
+        {
+          "text": "Treating five years of 3% growth as a 15% rise.",
+          "correction": "Percent changes compound: 1.03⁵ = 1.1593, a 15.93% rise. Multiplying the rate by the number of years is the linear answer to an exponential question.",
+          "authored": true
+        },
+        {
+          "text": "Applying the arithmetic-sequence formula to a table with constant ratios.",
+          "correction": "Test differences first; if they drift, test ratios. A constant ratio means y = a·bˣ, and no linear model will fit.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a 40% rise followed by a 40% fall returns to the start.",
+          "correction": "1.4 × 0.6 = 0.84, so you end 16% down. The two percentages are taken from different bases.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u6-l1-t1",
+          "statement": "A colony of $600$ bacteria grows $25\\%$ each hour. Write the model and find the count after $3$ hours.",
+          "solution": "The factor is $1.25$, so $N(t) = 600 \\cdot (1.25)^{t}$. After $3$ hours: $600 \\times 1.953125 = 1171.875$, about $1172$ bacteria.",
+          "check": [
+            "Eq(600*Rational(125,100)**0, 600)",
+            "Eq(Rational(125,100)**3, Rational(1953125, 1000000))",
+            "Abs(600*Rational(125,100)**3 - Rational(1171875, 1000)) < Rational(1,1000)"
+          ]
+        },
+        {
+          "id": "im1-u6-l1-t2",
+          "statement": "A drug's concentration falls $30\\%$ every hour from an initial $80$ mg. Write the model and find the amount after $2$ hours.",
+          "solution": "Keeping $70\\%$ gives a factor of $0.7$, so $C(t) = 80 \\cdot (0.7)^{t}$. After $2$ hours: $80 \\times 0.49 = 39.2$ mg.",
+          "check": [
+            "Eq(Rational(7,10)**2, Rational(49,100))",
+            "Eq(80*Rational(49,100), Rational(196,5))",
+            "Eq(Rational(196,5), 39.2)"
+          ]
+        },
+        {
+          "id": "im1-u6-l1-t3",
+          "statement": "Is $(0, 7), (1, 21), (2, 63), (3, 189)$ linear or exponential? Give the model.",
+          "solution": "Differences $14, 42, 126$ are not constant. Ratios $\\frac{21}{7} = \\frac{63}{21} = \\frac{189}{63} = 3$ are, so it is exponential with $a = 7$ and $b = 3$: $y = 7 \\cdot 3^{x}$. Check at $x = 3$: $7 \\times 27 = 189$ ✓",
+          "check": [
+            "Ne(21 - 7, 63 - 21)",
+            "Eq(Rational(21,7), 3)",
+            "Eq(Rational(189,63), 3)",
+            "Eq(7*3**3, 189)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.1",
+            "title": "Adding a fixed amount, or multiplying by a fixed factor",
+            "body": "A linear model changes by the same AMOUNT each step. An exponential model changes by the same PERCENT — which is a bigger and bigger amount as the quantity grows. Two engines, and only one accelerates.",
+            "beats": [
+              "Linear: $+10\\,000$₮ a year, always",
+              "Exponential: $+10\\%$ a year — a growing amount",
+              "Year 1 they agree; year 30 they do not",
+              "The variable sits in the **exponent**"
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Watch it bend",
+            "title": "The curve of repeated multiplication",
+            "teach": "$y = a \\cdot b^{x}$. Change the base and watch the shape: above $1$ it climbs faster and faster; below $1$ it falls toward zero without ever reaching it.",
+            "config": {
+              "mode": "growth",
+              "a": 2,
+              "b": 2,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.8b",
+            "title": "The factor is what survives one step",
+            "body": "Growing $8\\%$ keeps everything and adds eight percent: $b = 1.08$. Losing $15\\%$ keeps eighty-five percent: $b = 0.85$. The factor is never the percentage itself — it is what remains after the step.",
+            "beats": [
+              "Grow $p\\%$ → $b = 1 + \\frac{p}{100}$",
+              "Decay $p\\%$ → $b = 1 - \\frac{p}{100}$",
+              "$b > 1$ grows, $0 < b < 1$ decays",
+              "Doubling is $b = 2$, a $100\\%$ increase"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What is the factor?",
+            "prompt": "A population falls by $12\\%$ each year. What is $b$ in the model $y = a \\cdot b^{t}$?",
+            "options": [
+              "$0.12$",
+              "$0.88$",
+              "$1.12$",
+              "$-0.12$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Losing $12\\%$ means keeping $88\\%$, so $b = 1 - 0.12 = 0.88$. Check on a population of $500$: after one year $500 \\times 0.88 = 440$, a loss of $60$, which is indeed $12\\%$ of $500$ ✓. A factor of $0.12$ would model losing $88\\%$.",
+            "check": [
+              "Eq(500*Rational(88,100), 440)",
+              "Eq(500 - 440, 60)",
+              "Eq(Rational(60,500), Rational(12,100))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A growing town",
+            "problemId": "im1-u6-l1-we1"
+          },
+          {
+            "kind": "worked",
+            "title": "A depreciating car",
+            "problemId": "im1-u6-l1-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The compounding trap",
+            "title": "Percent changes multiply, they do not add",
+            "body": "Three years of $10\\%$ growth is $1.1^3 = 1.331$ — a $33.1\\%$ rise, not $30\\%$. Each year's increase is computed on the previous year's total, and that extra bit is where the curve comes from."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "How much after two years?",
+            "prompt": "A quantity of $1000$ grows $20\\%$ a year. What is it worth after two years?",
+            "options": [
+              "$1400$",
+              "$1440$",
+              "$1200$",
+              "$1420$"
+            ],
+            "correctIndex": 1,
+            "explanation": "$1000 \\times 1.2 = 1200$ after one year, then $1200 \\times 1.2 = 1440$ after two. Equivalently $1000 \\times 1.2^2 = 1440$. The answer $1400$ comes from adding $20\\% + 20\\% = 40\\%$ — the linear answer, which misses the $40$ earned on the first year's gain.",
+            "check": [
+              "Eq(1000*Rational(12,10), 1200)",
+              "Eq(1200*Rational(12,10), 1440)",
+              "Eq(1000*Rational(12,10)**2, 1440)",
+              "Ne(1440, 1400)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.1, from a table",
+            "title": "Differences, then ratios",
+            "body": "Given a table, subtract consecutive outputs. Constant → linear. Not constant → divide consecutive outputs instead. Constant → exponential. The same two-step test you used on sequences in Unit 3."
+          },
+          {
+            "kind": "worked",
+            "title": "One linear table, one exponential",
+            "problemId": "im1-u6-l1-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "Reading a model both ways",
+            "problemId": "im1-u6-l1-we4"
+          },
+          {
+            "kind": "funFact",
+            "title": "A 40% rise and a 40% fall lose you money",
+            "body": "Gain forty percent, then lose forty percent: $1.4 \\times 0.6 = 0.84$. You end sixteen percent DOWN, not level. The rise was taken on the small number and the fall on the large one — which is why percentage changes must always be multiplied, never added."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — growing bacteria",
+            "problemId": "im1-u6-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — classify the table",
+            "problemId": "im1-u6-l1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Linear adds a fixed amount; exponential multiplies by a fixed factor",
+              "$y = a \\cdot b^{x}$: $a$ is the start, $b$ is the factor per step",
+              "Grow $p\\%$ → $b = 1 + p/100$; decay $p\\%$ → $b = 1 - p/100$",
+              "Percent changes **compound** — never multiply the rate by the periods",
+              "Classify a table by differences first, then ratios"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "graphs-of-exponential-functions",
+      "title": "Graphing Exponential Functions",
+      "concreteComparison": "A rumour spreads through a school. On day one two people know it; by the end of the week it is everywhere. Plotted, that is not a ramp — it is a curve that lies almost flat and then turns almost vertical. Recognising that shape on sight tells you what kind of model you are looking at before you compute anything.",
+      "objective": "Graph $y = a \\cdot b^{x}$ from a table of values, identify the $y$-intercept and the horizontal asymptote, and describe the end behaviour of a growth curve and a decay curve.",
+      "concept": [
+        "**The vertical intercept is always the starting value.** Since $b^0 = 1$ for any positive base, $y = a \\cdot b^{0} = a$. Every exponential curve of this form crosses the vertical axis at its starting value, and it does so exactly once.",
+        "**There is no horizontal intercept.** A positive $a$ times a positive power is always positive, so the curve NEVER touches the horizontal axis. It approaches $y = 0$ without arriving — the axis is a horizontal ASYMPTOTE. This is the sharpest visual difference from a line, which crosses the axis exactly once.",
+        "**Growth and decay are mirror images.** For $b > 1$ the curve rises to the right and flattens toward the axis on the left. For $0 < b < 1$ it does the opposite: falls to the right and climbs steeply on the left. Both hug the axis at one end and run away at the other.",
+        "**Read the end behaviour in words.** For $y = 3 \\cdot 2^{x}$: as $x$ grows large the output grows without bound; as $x$ becomes very negative the output approaches zero. For a decay curve the two statements swap. Saying which end approaches zero is usually the mark on offer.",
+        "**A table makes the shape obvious.** Compute a few values either side of zero. For $y = 2^{x}$: at $x = -2$ it is $\\frac{1}{4}$, at $x = 0$ it is $1$, at $x = 3$ it is $8$, at $x = 6$ it is $64$. Negative inputs give small positive outputs — never negative ones — which is the fact that makes the asymptote visible.",
+        "**In context, the asymptote has a meaning.** A cooling cup of tea approaches room temperature; a drug's concentration approaches zero. The horizontal asymptote is usually the value the situation settles toward but never quite reaches, and naming it is part of interpreting the model."
+      ],
+      "keyIdea": "$y = a \\cdot b^{x}$ crosses the vertical axis at $a$, never crosses the horizontal axis, and approaches $y = 0$ at one end while growing without bound at the other.",
+      "facts": [
+        {
+          "title": "The intercept",
+          "latex": "y = a \\cdot b^{0} = a",
+          "explanation": "Any positive base to the power zero is 1, so the curve always meets the vertical axis at its starting value."
+        },
+        {
+          "title": "The asymptote",
+          "latex": "a > 0, \\ b > 0 \\ \\Rightarrow\\ y > 0 \\ \\text{ for every } x",
+          "explanation": "The output can get arbitrarily close to zero but never reaches it — so there is no x-intercept."
+        },
+        {
+          "title": "Negative exponents are small, not negative",
+          "latex": "2^{-3} = \\frac{1}{2^{3}} = \\frac{1}{8}",
+          "explanation": "A negative exponent flips to a reciprocal. The result stays positive, which is why the curve stays above the axis."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u6-l2-we1",
+          "statement": "Make a table for $y = 2^{x}$ at $x = -2, -1, 0, 1, 2, 3$ and describe the graph.",
+          "solution": "**Table.**$$2^{-2} = \\frac{1}{4}, \\quad 2^{-1} = \\frac{1}{2}, \\quad 2^{0} = 1, \\quad 2^{1} = 2, \\quad 2^{2} = 4, \\quad 2^{3} = 8.$$**The shape.** Reading left to right, the outputs are tiny and positive, then cross the vertical axis at $1$, then double with every step. The curve is almost flat on the left and almost vertical on the right.**Key features.** The $y$-intercept is $1$ (which is $a$). There is no $x$-intercept — every output listed is positive, and that is true for every input, since a power of $2$ is never zero or negative.**End behaviour.** As $x \\to \\infty$ the output grows without bound; as $x \\to -\\infty$ it approaches $0$, so $y = 0$ is a horizontal asymptote.",
+          "check": [
+            "Eq(2**(-2), Rational(1,4))",
+            "Eq(2**0, 1)",
+            "Eq(2**3, 8)",
+            "2**(-10) > 0",
+            "2**(-10) < Rational(1,1000)"
+          ]
+        },
+        {
+          "id": "im1-u6-l2-we2",
+          "statement": "Describe the graph of $y = 5 \\cdot \\left(\\frac{1}{2}\\right)^{x}$, including its intercept, asymptote and end behaviour.",
+          "solution": "**Intercept.** At $x = 0$: $y = 5 \\cdot 1 = 5$, so the curve crosses the vertical axis at $(0, 5)$.**Values.** At $x = 1$: $2.5$. At $x = 2$: $1.25$. At $x = 3$: $0.625$. Each step right halves the output.**Left of zero.** At $x = -1$: $5 \\cdot \\left(\\frac{1}{2}\\right)^{-1} = 5 \\cdot 2 = 10$. At $x = -2$: $5 \\cdot 4 = 20$. A negative exponent flips the fraction, so the curve climbs steeply to the left.**Asymptote and end behaviour.** Since $0 < b < 1$, this is decay: as $x \\to \\infty$ the output approaches $0$ without reaching it, so $y = 0$ is the horizontal asymptote. As $x \\to -\\infty$ the output grows without bound.**The mirror.** This is the growth picture reflected left-to-right, which is what $b < 1$ always does.",
+          "check": [
+            "Eq(5*Rational(1,2)**0, 5)",
+            "Eq(5*Rational(1,2)**1, Rational(5,2))",
+            "Eq(5*Rational(1,2)**(-1), 10)",
+            "Eq(5*Rational(1,2)**(-2), 20)",
+            "5*Rational(1,2)**20 > 0",
+            "5*Rational(1,2)**20 < Rational(1,1000)"
+          ]
+        },
+        {
+          "id": "im1-u6-l2-we3",
+          "statement": "Two functions: $f(x) = 3 \\cdot 2^{x}$ and $g(x) = 3 \\cdot 4^{x}$. Compare their graphs.",
+          "solution": "**Same intercept.** Both have $a = 3$, so both cross the vertical axis at $(0, 3)$ — the base does not affect where the curve starts.**Different steepness.** Compare a few values:$$f(1) = 6, \\quad g(1) = 12; \\qquad f(2) = 12, \\quad g(2) = 48; \\qquad f(3) = 24, \\quad g(3) = 192.$$The larger base climbs far faster — by $x = 3$, $g$ is eight times $f$.**On the left.** At $x = -2$: $f(-2) = \\frac{3}{4} = 0.75$ and $g(-2) = \\frac{3}{16} = 0.1875$. The larger base also approaches the asymptote FASTER going left, hugging the axis more tightly.**Summary.** A bigger base makes the curve steeper in both directions: it rises more sharply to the right and flattens onto the asymptote more quickly to the left. Both still share the intercept $3$ and the asymptote $y = 0$.",
+          "check": [
+            "Eq(3*2**0, 3*4**0)",
+            "Eq(3*2**3, 24)",
+            "Eq(3*4**3, 192)",
+            "Eq(3*4**3, 8*(3*2**3))",
+            "Eq(3*2**(-2), Rational(3,4))",
+            "Eq(3*4**(-2), Rational(3,16))",
+            "3*4**(-2) < 3*2**(-2)"
+          ]
+        },
+        {
+          "id": "im1-u6-l2-we4",
+          "statement": "A cup of tea cools so that its temperature above room temperature is $T = 60 \\cdot (0.8)^{m}$ degrees, with $m$ in minutes and room temperature $20°$C. Sketch the behaviour and say what the asymptote means.",
+          "solution": "**What the model gives.** $T$ is the temperature ABOVE room temperature, so the actual temperature is $20 + T$.**Values.** At $m = 0$: $T = 60$, so the tea is at $80°$C. At $m = 5$: $60 \\times 0.32768 = 19.66$, so about $39.7°$C. At $m = 15$: $60 \\times 0.035184 = 2.11$, so about $22.1°$C.**The asymptote.** As $m$ grows, $T \\to 0$ — so the actual temperature approaches $20°$C, room temperature, without ever quite reaching it. That is what the horizontal asymptote MEANS here: the tea cannot cool below the room, and it gets arbitrarily close.**Why the model is realistic.** The tea cools fastest when it is hottest, because each minute removes twenty percent of a shrinking gap. A linear cooling model would have the tea reaching room temperature at a specific time and then continuing to cool below it, which is physically wrong.",
+          "check": [
+            "Eq(60*Rational(8,10)**0, 60)",
+            "Eq(20 + 60*Rational(8,10)**0, 80)",
+            "Abs(60*Rational(8,10)**5 - Rational(1966, 100)) < 1",
+            "60*Rational(8,10)**30 > 0",
+            "60*Rational(8,10)**30 < Rational(1,10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Claiming an exponential graph has an x-intercept.",
+          "correction": "a·bˣ with a and b positive is always positive. The curve approaches the axis but never crosses it — that is the asymptote.",
+          "authored": true
+        },
+        {
+          "text": "Reading 2⁻³ as a negative number.",
+          "correction": "A negative exponent means a reciprocal: 2⁻³ = 1/8, positive and small. That is exactly why the curve stays above the axis on the left.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a bigger base moves the y-intercept.",
+          "correction": "The intercept is a, whatever the base. Both 3·2ˣ and 3·4ˣ cross at (0, 3); the base only changes how steeply they leave it.",
+          "authored": true
+        },
+        {
+          "text": "Drawing an exponential curve as a straight line through the plotted points.",
+          "correction": "Join the points with a smooth curve. The whole content of the model is that the rate of change is not constant.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u6-l2-t1",
+          "statement": "For $y = 4 \\cdot 3^{x}$, give the $y$-intercept and the values at $x = 2$ and $x = -1$.",
+          "solution": "The intercept is $a = 4$, at $(0, 4)$. At $x = 2$: $4 \\times 9 = 36$. At $x = -1$: $4 \\times \\frac{1}{3} = \\frac{4}{3}$ — small and positive, not negative.",
+          "check": [
+            "Eq(4*3**0, 4)",
+            "Eq(4*3**2, 36)",
+            "Eq(4*3**(-1), Rational(4,3))",
+            "4*3**(-1) > 0"
+          ]
+        },
+        {
+          "id": "im1-u6-l2-t2",
+          "statement": "Describe the end behaviour of $y = 100 \\cdot (0.5)^{x}$.",
+          "solution": "Since $0 < b < 1$ this is decay. As $x \\to \\infty$ the output approaches $0$ (the horizontal asymptote $y = 0$) without reaching it; as $x \\to -\\infty$ it grows without bound. Check: at $x = 10$ it is $0.0977$, at $x = -3$ it is $800$.",
+          "check": [
+            "Eq(100*Rational(1,2)**(-3), 800)",
+            "100*Rational(1,2)**10 > 0",
+            "100*Rational(1,2)**10 < 1"
+          ]
+        },
+        {
+          "id": "im1-u6-l2-t3",
+          "statement": "Which grows faster for large $x$: $y = 50 \\cdot 1.5^{x}$ or $y = 5 \\cdot 3^{x}$? Check at $x = 2$ and $x = 8$.",
+          "solution": "At $x = 2$: the first gives $50 \\times 2.25 = 112.5$, the second $5 \\times 9 = 45$ — the first leads. At $x = 8$: the first gives $50 \\times 25.63 \\approx 1281$, the second $5 \\times 6561 = 32\\,805$ — the second has overtaken decisively. The larger BASE wins eventually, whatever the starting values.",
+          "check": [
+            "Eq(50*Rational(3,2)**2, Rational(225,2))",
+            "Eq(5*3**2, 45)",
+            "50*Rational(3,2)**2 > 5*3**2",
+            "Eq(5*3**8, 32805)",
+            "5*3**8 > 50*Rational(3,2)**8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.7e",
+            "title": "The curve always starts at a",
+            "body": "Any positive base to the power zero is $1$, so $y = a \\cdot b^{0} = a$. Every exponential of this form crosses the vertical axis at its starting value — the base has nothing to do with it."
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "Compare the bases",
+            "title": "Same start, different steepness",
+            "teach": "Change the base and watch. The intercept never moves — it is $a$ — but a larger base makes the curve leave it far more sharply, and hug the asymptote more tightly on the other side.",
+            "config": {
+              "mode": "growth",
+              "a": 3,
+              "b": 2,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A table for 2 to the x",
+            "problemId": "im1-u6-l2-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The defining feature",
+            "title": "It never crosses the horizontal axis",
+            "body": "A positive $a$ times a positive power is positive, always. So the curve approaches $y = 0$ and never arrives — the axis is a horizontal ASYMPTOTE. A line crosses the axis exactly once; an exponential never does.",
+            "beats": [
+              "$2^{3} = 8$, $2^{0} = 1$, $2^{-3} = \\frac{1}{8}$",
+              "Every output is **positive**",
+              "It gets arbitrarily close to $0$…",
+              "…but there is no $x$-intercept"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What is the value here?",
+            "prompt": "What is $3^{-2}$?",
+            "options": [
+              "$-9$",
+              "$-6$",
+              "$\\frac{1}{9}$",
+              "$\\frac{1}{6}$"
+            ],
+            "correctIndex": 2,
+            "explanation": "A negative exponent means a reciprocal, not a negative number: $3^{-2} = \\frac{1}{3^{2}} = \\frac{1}{9}$. Small and positive — which is exactly why an exponential curve stays above the axis for negative inputs instead of dropping below it.",
+            "check": [
+              "Eq(3**(-2), Rational(1,9))",
+              "3**(-2) > 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two shapes",
+            "title": "Growth rises right; decay rises left",
+            "body": "For $b > 1$ the curve climbs to the right and flattens onto the axis going left. For $0 < b < 1$ it does the reverse. They are mirror images, and both hug the axis at one end."
+          },
+          {
+            "kind": "worked",
+            "title": "A decay curve, read fully",
+            "problemId": "im1-u6-l2-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which end approaches zero?",
+            "prompt": "For $y = 7 \\cdot (0.4)^{x}$, at which end does the curve approach the horizontal asymptote?",
+            "options": [
+              "As $x$ becomes large and positive",
+              "As $x$ becomes large and negative",
+              "At both ends",
+              "It never approaches an asymptote"
+            ],
+            "correctIndex": 0,
+            "explanation": "The base $0.4$ is below $1$, so each step right multiplies by less than one and the output shrinks toward zero. Check: $y(5) = 7 \\times 0.01024 = 0.072$, already tiny. Going LEFT, negative exponents flip the fraction and the output grows: $y(-2) = 7 \\times 6.25 = 43.75$.",
+            "check": [
+              "Eq(7*Rational(4,10)**(-2), Rational(175,4))",
+              "7*Rational(4,10)**5 < 1",
+              "7*Rational(4,10)**5 > 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Two bases side by side",
+            "problemId": "im1-u6-l2-we3"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.4 in context",
+            "title": "The asymptote usually means something",
+            "body": "Tea cools toward room temperature. A drug clears toward zero concentration. The horizontal asymptote is the value the situation settles toward but never quite reaches — and naming it is part of reading the model."
+          },
+          {
+            "kind": "worked",
+            "title": "Cooling tea and its asymptote",
+            "problemId": "im1-u6-l2-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Join the points with a curve, not a ruler",
+            "body": "The entire content of an exponential model is that the rate of change is not constant. Drawing straight segments between plotted points draws a shape the model does not have — and loses the mark for the graph."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — intercept and values",
+            "problemId": "im1-u6-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — end behaviour",
+            "problemId": "im1-u6-l2-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "The $y$-intercept is $a$, whatever the base",
+              "There is **no** $x$-intercept — $y = 0$ is a horizontal asymptote",
+              "A negative exponent gives a small **positive** value, not a negative one",
+              "$b > 1$ rises to the right; $0 < b < 1$ falls to the right",
+              "In context the asymptote is what the situation approaches but never reaches"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "linear-versus-exponential",
+      "title": "Linear vs Exponential: Who Wins",
+      "concreteComparison": "Offered a job at $1$₮ on day one, doubling daily for a month, or a flat $1\\,000\\,000$₮ a day — most people take the million. By day $25$ the doubling wage passes it, and by day $31$ it pays over a billion tugriks in that single day. Linear growth is steady and legible. Exponential growth is patient and then overwhelming.",
+      "objective": "Compare linear and exponential models numerically and graphically, locate the crossover, and state why an exponential quantity eventually exceeds any linear one.",
+      "concept": [
+        "**Exponential always wins eventually.** This is F-LE.3, and it holds without exception: for any linear function $mx + c$ and any exponential $a \\cdot b^{x}$ with $b > 1$ and $a > 0$, there is some input beyond which the exponential is larger and stays larger. Not usually, not typically — always. The only question is WHEN.",
+        "**But it can start far behind.** $y = 2^{x}$ begins at $1$ while $y = 1000x$ begins climbing by a thousand a step. For a long stretch the line is far ahead. Then the curve catches it and the gap reverses permanently — and the reversal, once it starts, is fast.",
+        "**Why the curve must win.** Each step of a linear model ADDS $m$, a fixed amount. Each step of an exponential MULTIPLIES by $b$, and multiplying a large number by $b > 1$ adds a large amount. So the exponential's step size keeps growing while the linear one never changes. Once the exponential's step exceeds $m$, it gains ground every step thereafter and never gives it back.",
+        "**Finding the crossover.** In IM1 you locate it by table or by graph — trying values until the winner flips, then narrowing. Solving $2^{x} = 1000x$ exactly requires logarithms, which arrive in IM2. Being able to say \"between $x = 13$ and $x = 14$\" from a table is the expected answer here, and it is a genuinely useful skill.",
+        "**Which model fits which situation.** Ask what stays constant. A wage of $900$₮ per extra kilometre, a candle losing $4$ cm an hour, a fee per item — constant AMOUNT, so linear. Interest at $6\\%$, a population growing $3\\%$, a drug clearing $30\\%$ an hour — constant PERCENT, so exponential. The phrase \"per year\" appears in both; what matters is whether it is followed by a unit or a percent sign."
+      ],
+      "keyIdea": "An exponential with base above $1$ eventually exceeds ANY linear function, because its step size grows while the line's stays fixed. It may start far behind, and the crossover is found by table or graph.",
+      "facts": [
+        {
+          "title": "The eventual-dominance fact",
+          "latex": "b > 1 \\ \\Longrightarrow\\ a b^{x} > mx + c \\ \\text{ for all large enough } x",
+          "explanation": "F-LE.3. True for every linear function, no matter how steep — only the crossover point changes."
+        },
+        {
+          "title": "Why",
+          "latex": "\\text{linear step} = m \\ \\text{(fixed)}; \\quad \\text{exponential step} = a b^{x}(b - 1) \\ \\text{(growing)}",
+          "explanation": "The exponential's own step size grows without bound, so it must overtake a fixed step eventually."
+        },
+        {
+          "title": "Which model to choose",
+          "latex": "\\text{constant amount} \\to \\text{linear}; \\quad \\text{constant percent} \\to \\text{exponential}",
+          "explanation": "'+900₮ per km' is linear. '+6% per year' is exponential. Read what follows the 'per'."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u6-l3-we1",
+          "statement": "Compare $L(x) = 100x + 50$ with $E(x) = 2 \\cdot 3^{x}$ at $x = 1, 3, 5$ and $7$. Where does the exponential overtake?",
+          "solution": "**Evaluate both.**$$x = 1: \\quad L = 150, \\qquad E = 6.$$$$x = 3: \\quad L = 350, \\qquad E = 54.$$$$x = 5: \\quad L = 550, \\qquad E = 486.$$$$x = 7: \\quad L = 750, \\qquad E = 4374.$$**The crossover.** The line leads at $x = 5$ ($550$ against $486$) but has been overtaken by $x = 7$. Narrowing: at $x = 6$, $L = 650$ and $E = 1458$ — the exponential has already won. So the crossover lies between $x = 5$ and $x = 6$.**After that.** The gap only widens: at $x = 10$, $L = 1050$ while $E = 118\\,098$ — over a hundred times larger. Once the curve passes the line it never returns.",
+          "check": [
+            "Eq(100*1 + 50, 150)",
+            "Eq(2*3**1, 6)",
+            "Eq(100*5 + 50, 550)",
+            "Eq(2*3**5, 486)",
+            "100*5 + 50 > 2*3**5",
+            "Eq(2*3**6, 1458)",
+            "2*3**6 > 100*6 + 50",
+            "2*3**10 > 100*10 + 50"
+          ]
+        },
+        {
+          "id": "im1-u6-l3-we2",
+          "statement": "A job pays $1$₮ on day $1$, doubling each day. Another pays $1\\,000\\,000$₮ flat per day. Compare the DAILY pay on days $10$, $20$, $25$ and $31$.",
+          "solution": "**Models.** Doubling: $D(n) = 2^{\\,n-1}$ tugriks on day $n$. Flat: $F(n) = 1\\,000\\,000$ every day.**Day 10.** $D = 2^{9} = 512$₮ against $1\\,000\\,000$₮. The flat wage is nearly two thousand times better.**Day 20.** $D = 2^{19} = 524\\,288$₮ — still behind, but only just.**Day 21.** $D = 2^{20} = 1\\,048\\,576$₮ — the doubling wage has overtaken.**Day 31.** $D = 2^{30} = 1\\,073\\,741\\,824$₮, over a billion tugriks in a single day, against the same one million.**The point.** For twenty days the flat wage looks obviously better, and it is. Then eleven more days turn a $1$₮ start into more than a thousand times the flat rate. Nothing about the first twenty days hints at this — which is precisely why exponential growth is so consistently underestimated.",
+          "check": [
+            "Eq(2**9, 512)",
+            "Eq(2**19, 524288)",
+            "2**19 < 1000000",
+            "Eq(2**20, 1048576)",
+            "2**20 > 1000000",
+            "Eq(2**30, 1073741824)"
+          ]
+        },
+        {
+          "id": "im1-u6-l3-we3",
+          "statement": "Decide whether each situation is linear or exponential, and say why. (a) A phone plan charges $18\\,000$₮ plus $40$₮ a minute. (b) A savings account pays $7\\%$ interest a year. (c) A tank loses $12$ litres a minute. (d) A rumour: each person who knows it tells two new people every hour.",
+          "solution": "**(a) Linear.** Each extra minute adds the same $40$₮, whatever the bill so far — a constant AMOUNT. Model: $C = 40m + 18\\,000$.**(b) Exponential.** Seven percent of a growing balance is a growing amount — a constant PERCENT. Model: $B = P \\cdot (1.07)^{t}$.**(c) Linear.** Twelve litres leave every minute regardless of how full the tank is — a constant amount. Model: $V = V_0 - 12t$.**(d) Exponential.** The number of new tellers is proportional to how many already know, so the count multiplies each hour — with each person telling two new people, the total triples: $N = N_0 \\cdot 3^{t}$.**The test.** Ask what stays the same from step to step. A fixed quantity of something means linear; a fixed proportion of the current total means exponential.",
+          "check": [
+            "Eq(40*(10 + 1) + 18000 - (40*10 + 18000), 40)",
+            "Eq(40*(100 + 1) + 18000 - (40*100 + 18000), 40)",
+            "Ne(1000*Rational(107,100)**2 - 1000*Rational(107,100), 1000*Rational(107,100) - 1000)",
+            "Eq(3**1, 3)",
+            "Eq(3**2, 9)"
+          ]
+        },
+        {
+          "id": "im1-u6-l3-we4",
+          "statement": "Investment A starts at $5\\,000\\,000$₮ and adds $400\\,000$₮ a year. Investment B starts at $3\\,000\\,000$₮ and grows $12\\%$ a year. Which is worth more after $5$ years? After $15$?",
+          "solution": "**Models.**$$A(t) = 5\\,000\\,000 + 400\\,000t, \\qquad B(t) = 3\\,000\\,000 \\cdot (1.12)^{t}.$$**After 5 years.**$$A(5) = 5\\,000\\,000 + 2\\,000\\,000 = 7\\,000\\,000.$$$$B(5) = 3\\,000\\,000 \\times 1.7623416832 = 5\\,287\\,025.$$**A leads**, by over $1.7$ million.**After 15 years.**$$A(15) = 5\\,000\\,000 + 6\\,000\\,000 = 11\\,000\\,000.$$$$B(15) = 3\\,000\\,000 \\times 5.4735665 = 16\\,420\\,700.$$**B leads**, and by a growing margin.**Crossover.** Testing between: at $t = 10$, $A = 9\\,000\\,000$ and $B = 3\\,000\\,000 \\times 3.1058 = 9\\,317\\,467$ — B has just passed. At $t = 9$, $A = 8\\,600\\,000$ and $B = 8\\,319\\,167$ — A still leads. So the crossover is between years $9$ and $10$.**The advice.** For a short horizon A is better and safer to predict. Past about ten years B dominates, and the longer the horizon the more decisively — which is the whole argument for starting to save early.",
+          "check": [
+            "Eq(5000000 + 400000*5, 7000000)",
+            "Abs(3000000*Rational(112,100)**5 - 5287025) < 1",
+            "5000000 + 400000*5 > 3000000*Rational(112,100)**5",
+            "Eq(5000000 + 400000*15, 11000000)",
+            "3000000*Rational(112,100)**15 > 5000000 + 400000*15",
+            "5000000 + 400000*9 > 3000000*Rational(112,100)**9",
+            "3000000*Rational(112,100)**10 > 5000000 + 400000*10"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Concluding the linear model wins because it leads over the range you checked.",
+          "correction": "Check further out. An exponential with base above 1 always overtakes eventually — the table just has not reached the crossover yet.",
+          "authored": true
+        },
+        {
+          "text": "Reading '7% per year' as a constant amount and modelling it linearly.",
+          "correction": "A percent of a changing total is a changing amount. Constant percent means exponential; only a constant quantity per step is linear.",
+          "authored": true
+        },
+        {
+          "text": "Trying to solve 2ˣ = 1000x algebraically in IM1.",
+          "correction": "That needs logarithms (IM2). Here, locate the crossover by table or graph and state the interval it falls in.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a steeper line must beat a shallow curve.",
+          "correction": "Slope is irrelevant to the eventual outcome. A line of slope one million still loses to 2ˣ — it just takes longer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u6-l3-t1",
+          "statement": "Compare $L(x) = 20x$ with $E(x) = 2^{x}$ at $x = 4, 6$ and $8$. Where is the crossover?",
+          "solution": "At $x = 4$: $L = 80$, $E = 16$ — the line leads. At $x = 6$: $L = 120$, $E = 64$ — still the line. At $x = 8$: $L = 160$, $E = 256$ — the exponential has won. Checking $x = 7$: $L = 140$, $E = 128$ — the line still leads, so the crossover is between $x = 7$ and $x = 8$.",
+          "check": [
+            "20*4 > 2**4",
+            "20*6 > 2**6",
+            "20*7 > 2**7",
+            "20*8 < 2**8"
+          ]
+        },
+        {
+          "id": "im1-u6-l3-t2",
+          "statement": "Classify: (a) a taxi charging $700$₮ per km; (b) a bacterial culture doubling every $20$ minutes.",
+          "solution": "(a) **Linear** — each kilometre adds the same $700$₮, a constant amount. (b) **Exponential** — the population multiplies by $2$ each period, a constant factor, so the increase grows as the culture grows.",
+          "check": [
+            "Eq(700*(5 + 1) - 700*5, 700)",
+            "Eq(700*(50 + 1) - 700*50, 700)",
+            "Ne(100*2**2 - 100*2**1, 100*2**1 - 100*2**0)"
+          ]
+        },
+        {
+          "id": "im1-u6-l3-t3",
+          "statement": "A city of $200\\,000$ grows $2\\%$ a year; another of $260\\,000$ grows by $3000$ people a year. Which is larger after $10$ years? After $30$?",
+          "solution": "After $10$: the first is $200\\,000 \\times 1.2190 = 243\\,799$; the second is $260\\,000 + 30\\,000 = 290\\,000$ — the **second** leads. After $30$: the first is $200\\,000 \\times 1.8114 = 362\\,272$; the second is $260\\,000 + 90\\,000 = 350\\,000$ — the **first** has overtaken.",
+          "check": [
+            "260000 + 3000*10 > 200000*Rational(102,100)**10",
+            "200000*Rational(102,100)**30 > 260000 + 3000*30",
+            "Eq(260000 + 3000*30, 350000)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.3",
+            "title": "The curve always wins — eventually",
+            "body": "For ANY linear function and any exponential with base above $1$, there is a point past which the exponential is larger and stays larger. Not usually — always. The only open question is when.",
+            "beats": [
+              "Slope of the line: irrelevant to the outcome",
+              "A line of slope $1\\,000\\,000$ still loses",
+              "Only the **crossover point** changes",
+              "After it, the gap widens without limit"
+            ]
+          },
+          {
+            "kind": "expGraph",
+            "eyebrow": "The race",
+            "title": "Behind, level, then gone",
+            "teach": "A line and a curve on the same axes. The line leads for a long stretch, they meet, and then the curve pulls away and never comes back. Drag the parameters and watch the crossover move — but never disappear.",
+            "config": {
+              "mode": "race",
+              "b": 2,
+              "m": 20,
+              "interactive": true
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A line and a curve, side by side",
+            "problemId": "im1-u6-l3-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The reason",
+            "title": "The step size is what differs",
+            "body": "A linear model ADDS the same $m$ every step, forever. An exponential MULTIPLIES, so its step is a fraction of a growing total — and therefore grows too. Once its step exceeds $m$, it gains ground every step and never gives any back."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Who leads here?",
+            "prompt": "Compare $L(x) = 500x$ and $E(x) = 2^{x}$ at $x = 10$. Which is larger?",
+            "options": [
+              "$L$, by a large margin",
+              "$E$, by a large margin",
+              "They are equal",
+              "$E$, but only just"
+            ],
+            "correctIndex": 0,
+            "explanation": "$L(10) = 5000$ while $E(10) = 1024$ — the line leads by nearly five to one. But check further out: at $x = 20$, $L = 10\\,000$ and $E = 1\\,048\\,576$. The exponential has not merely caught up, it is a hundred times ahead. Leading at $x = 10$ says nothing about the long run.",
+            "check": [
+              "Eq(500*10, 5000)",
+              "Eq(2**10, 1024)",
+              "500*10 > 2**10",
+              "2**20 > 500*20"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "One tugrik, doubled daily",
+            "problemId": "im1-u6-l3-we2"
+          },
+          {
+            "kind": "funFact",
+            "title": "Why the doubling wage sounds absurd",
+            "body": "Day $20$ of the doubling job pays $524\\,288$₮ — still less than the flat million. Day $31$ pays over a BILLION. Eleven days turned a losing offer into a fortune, and nothing in the first twenty days hinted at it. This is why exponential growth is the single most under-estimated pattern in mathematics."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.1",
+            "title": "Which model does a situation need?",
+            "body": "Ask what stays the same from one step to the next. A fixed QUANTITY — $900$₮ a kilometre, $4$ cm an hour — is linear. A fixed PROPORTION of the current total — $7\\%$ a year — is exponential.",
+            "beats": [
+              "\"$40$₮ per minute\" → constant amount → **linear**",
+              "\"$7\\%$ per year\" → constant percent → **exponential**",
+              "Both say \"per\" — read what follows it",
+              "A unit means linear; a percent sign means exponential"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Four situations, classified",
+            "problemId": "im1-u6-l3-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which model fits?",
+            "prompt": "A savings account pays $5\\%$ interest a year on the balance. Which model?",
+            "options": [
+              "Linear, because the rate is fixed",
+              "Exponential, because the increase is a percent of a growing balance",
+              "Linear, because interest is added each year",
+              "Neither — it needs a new kind of model"
+            ],
+            "correctIndex": 1,
+            "explanation": "Five percent of a growing balance is a growing amount, so the increase is not constant. On $1000$: year one adds $50$, year two adds $52.50$, year three adds $55.13$. Constant percent means exponential — $B = P(1.05)^{t}$.",
+            "check": [
+              "Eq(1000*Rational(105,100) - 1000, 50)",
+              "Eq(1000*Rational(105,100)**2 - 1000*Rational(105,100), Rational(105,2))",
+              "Ne(50, Rational(105,2))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Two investments over fifteen years",
+            "problemId": "im1-u6-l3-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Locate the crossover by table, not by algebra",
+            "body": "Solving $2^{x} = 1000x$ exactly needs logarithms, which arrive in IM2. Here, try values until the winner flips, then narrow. \"Between $x = 13$ and $x = 14$\" is the expected answer — and it is genuinely useful."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — find the crossover",
+            "problemId": "im1-u6-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — two cities",
+            "problemId": "im1-u6-l3-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "An exponential with $b > 1$ eventually exceeds **any** linear function",
+              "It can start far behind — the slope of the line changes only the timing",
+              "Why: the line's step is fixed, the curve's step grows",
+              "Constant amount → linear; constant percent → exponential",
+              "Find the crossover by table or graph; the algebra waits for IM2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "modelling-with-exponentials",
+      "title": "Building an Exponential Model",
+      "concreteComparison": "A doctor knows a drug's concentration halves every four hours and that a dose starts at $200$ mg. From those two facts alone she can predict the level at any future hour — and decide when the next dose is safe. Two data points is all an exponential model needs, and this lesson is how to extract it from them.",
+      "objective": "Construct $y = a \\cdot b^{x}$ from a description, a table, or two data points; handle doubling time and half-life; and use the model to predict and to solve backwards by table.",
+      "concept": [
+        "**From a description, read the two numbers off.** \"Starts at $8000$ and grows $5\\%$ a year\" gives $a = 8000$ and $b = 1.05$ immediately. Most modelling questions in IM1 are this direct, and the only real skill is converting the percent to the factor correctly.",
+        "**From a table.** The starting value is the output at zero and the base is the ratio. If the table includes $x = 0$, that output IS $a$. Then divide any output by the one before it to get $b$ — and check the ratio is the same for every consecutive pair, or the model does not apply at all.",
+        "**From two points that skip steps.** Given $(0, 5)$ and $(3, 40)$, the value has multiplied by $\\frac{40}{5} = 8$ over THREE steps, so $b^{3} = 8$ and $b = 2$. Take the appropriate root of the total factor — that is the general move whenever the data points are not adjacent.",
+        "**Doubling time and half-life are the same idea.** \"Doubles every $6$ hours\" means the factor is $2$ per six hours, so with $t$ in hours the model is $y = a \\cdot 2^{\\,t/6}$. \"Halves every $4$ hours\" gives $y = a \\cdot \\left(\\frac{1}{2}\\right)^{t/4}$. Dividing the exponent by the period converts the clock into a count of periods, which is what the base expects.",
+        "**Check the model against every data point you were given.** Fit it using two, then test it on the rest. A model that reproduces the data it was built from and fails everything else is not a model — and this check costs one line per point.",
+        "**Solve backwards by table.** \"When does the population reach $10\\,000$?\" cannot be solved algebraically without logarithms. Compute values until you bracket the target, then state the interval: \"between year $8$ and year $9$\". That is the honest and expected IM1 answer."
+      ],
+      "keyIdea": "$a$ is the value at $x = 0$; $b$ is the factor per step, found by dividing consecutive values — or by taking the $n$-th root when the points are $n$ steps apart. Check the finished model on every data point.",
+      "facts": [
+        {
+          "title": "From two adjacent points",
+          "latex": "b = \\frac{y_{n+1}}{y_n}",
+          "explanation": "Divide consecutive outputs. Confirm the ratio repeats before trusting it."
+        },
+        {
+          "title": "From points n steps apart",
+          "latex": "b^{\\,n} = \\frac{y_2}{y_1} \\ \\Longrightarrow\\ b = \\sqrt[n]{\\frac{y_2}{y_1}}",
+          "explanation": "The total factor spread over n steps. Take the n-th root."
+        },
+        {
+          "title": "Doubling time and half-life",
+          "latex": "y = a \\cdot 2^{\\,t/T} \\qquad y = a \\cdot \\left(\\tfrac{1}{2}\\right)^{t/H}",
+          "explanation": "Divide the elapsed time by the period, turning a clock reading into a count of periods."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u6-l4-we1",
+          "statement": "A table shows $(0, 6), (1, 18), (2, 54), (3, 162)$. Build the exponential model and predict the value at $x = 6$.",
+          "solution": "**The starting value.** The table includes $x = 0$, so $a = 6$.**The base.** Divide consecutive outputs — and check the ratio repeats:$$\\frac{18}{6} = 3, \\qquad \\frac{54}{18} = 3, \\qquad \\frac{162}{54} = 3.$$Constant, so $b = 3$.**The model.**$$y = 6 \\cdot 3^{x}.$$**Check on every given point.** $y(1) = 18$ ✓, $y(2) = 54$ ✓, $y(3) = 162$ ✓ — the model reproduces all four, not just the two it was built from.**Predict.**$$y(6) = 6 \\cdot 3^{6} = 6 \\times 729 = 4374.$$",
+          "check": [
+            "Eq(Rational(18,6), 3)",
+            "Eq(Rational(162,54), 3)",
+            "Eq(6*3**1, 18)",
+            "Eq(6*3**3, 162)",
+            "Eq(6*3**6, 4374)"
+          ]
+        },
+        {
+          "id": "im1-u6-l4-we2",
+          "statement": "An exponential model passes through $(0, 5)$ and $(3, 40)$. Find $b$ and write the model.",
+          "solution": "**The starting value comes free.** The point at $x = 0$ gives $a = 5$.**The total factor over three steps.**$$\\frac{40}{5} = 8.$$That $8$ is $b$ applied THREE times, not once:$$b^{3} = 8 \\quad\\Longrightarrow\\quad b = \\sqrt[3]{8} = 2.$$**The model.**$$y = 5 \\cdot 2^{x}.$$**Check both given points.** $y(0) = 5$ ✓ and $y(3) = 5 \\times 8 = 40$ ✓**The trap.** Taking $b = 8$ would give $y(3) = 5 \\times 512 = 2560$, wildly wrong. When two points are $n$ steps apart, the ratio between them is $b^{n}$, and you must take the $n$-th root.",
+          "check": [
+            "Eq(Rational(40,5), 8)",
+            "Eq(2**3, 8)",
+            "Eq(5*2**3, 40)",
+            "Eq(5*2**0, 5)",
+            "Ne(5*8**3, 40)"
+          ]
+        },
+        {
+          "id": "im1-u6-l4-we3",
+          "statement": "A drug's concentration starts at $200$ mg and halves every $4$ hours. Write the model and find the concentration after $10$ hours.",
+          "solution": "**Set up the period.** The factor is $\\frac{1}{2}$ per FOUR hours, so with $t$ in hours the exponent must count periods, not hours:$$C(t) = 200 \\cdot \\left(\\frac{1}{2}\\right)^{t/4}.$$**Check the period.** At $t = 4$: $200 \\times \\frac{1}{2} = 100$ ✓, halved as promised. At $t = 8$: $200 \\times \\frac{1}{4} = 50$ ✓**After 10 hours.** That is $\\frac{10}{4} = 2.5$ half-lives:$$C(10) = 200 \\times \\left(\\frac{1}{2}\\right)^{2.5} = 200 \\times 0.176777 = 35.36\\ \\text{mg}.$$**Sanity-check the size.** Ten hours is between two half-lives ($50$ mg) and three ($25$ mg), so an answer of $35.4$ mg sits sensibly between them ✓**Why divide the exponent.** Writing $200 \\cdot (0.5)^{10}$ would treat ten HOURS as ten halvings and give $0.195$ mg — off by a factor of nearly two hundred.",
+          "check": [
+            "Eq(200*Rational(1,2)**1, 100)",
+            "Eq(200*Rational(1,2)**2, 50)",
+            "Eq(200*Rational(1,2)**3, 25)",
+            "200*Rational(1,2)**Rational(5,2) < 50",
+            "200*Rational(1,2)**Rational(5,2) > 25",
+            "Abs(200*Rational(1,2)**Rational(5,2) - Rational(3536, 100)) < Rational(1,100)"
+          ]
+        },
+        {
+          "id": "im1-u6-l4-we4",
+          "statement": "A town's population was $18\\,000$ in $2015$ and $22\\,500$ in $2020$. Assuming exponential growth, find the annual rate and predict $2030$.",
+          "solution": "**Set the clock.** Let $t$ be years since $2015$, so $a = 18\\,000$ and the second reading is at $t = 5$.**Total factor over five years.**$$\\frac{22\\,500}{18\\,000} = 1.25.$$**Annual factor.** That growth is spread over five years:$$b^{5} = 1.25 \\quad\\Longrightarrow\\quad b = \\sqrt[5]{1.25} \\approx 1.0456.$$So the town grows about $4.56\\%$ a year.**Check.** $18\\,000 \\times 1.0456^{5} = 18\\,000 \\times 1.25 = 22\\,500$ ✓**Predict 2030** — that is $t = 15$, three of the five-year periods:$$P(15) = 18\\,000 \\times (1.25)^{3} = 18\\,000 \\times 1.953125 = 35\\,156.25,$$about $35\\,156$ people.**The caveat.** This extrapolates ten years past the data on the assumption that the growth rate holds. Towns change — a factory closes, a road opens — so the prediction is what the MODEL says, and any answer worth full marks says so.",
+          "check": [
+            "Eq(Rational(22500, 18000), Rational(5,4))",
+            "Eq(18000*Rational(5,4), 22500)",
+            "Eq(Rational(5,4)**3, Rational(125,64))",
+            "Eq(18000*Rational(5,4)**3, Rational(140625, 4))",
+            "Abs(Rational(140625,4) - 35156) < 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the ratio between two points that are several steps apart as b.",
+          "correction": "From (0, 5) to (3, 40) the total factor is 8 over three steps, so b = ∛8 = 2. Taking b = 8 overshoots enormously.",
+          "authored": true
+        },
+        {
+          "text": "Writing y = a·(0.5)ᵗ for a quantity that halves every 4 hours.",
+          "correction": "Divide the exponent by the period: y = a·(0.5)^(t/4). Otherwise every hour is treated as a full half-life.",
+          "authored": true
+        },
+        {
+          "text": "Fitting to two points and never checking the rest of the data.",
+          "correction": "Any two points determine a model. Testing the others is what shows the model actually fits — and costs one line per point.",
+          "authored": true
+        },
+        {
+          "text": "Reporting a long extrapolation with no caveat.",
+          "correction": "A model fitted to five years of data and pushed out fifteen assumes the rate held throughout. Say so — it is part of the answer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u6-l4-t1",
+          "statement": "Build the model for the table $(0, 4), (1, 12), (2, 36)$ and find $y(5)$.",
+          "solution": "$a = 4$ from the value at zero; ratios $\\frac{12}{4} = \\frac{36}{12} = 3$ give $b = 3$. So $y = 4 \\cdot 3^{x}$, and $y(5) = 4 \\times 243 = 972$.",
+          "check": [
+            "Eq(Rational(12,4), 3)",
+            "Eq(Rational(36,12), 3)",
+            "Eq(4*3**2, 36)",
+            "Eq(4*3**5, 972)"
+          ]
+        },
+        {
+          "id": "im1-u6-l4-t2",
+          "statement": "An exponential model passes through $(0, 7)$ and $(2, 63)$. Find $b$.",
+          "solution": "The total factor is $\\frac{63}{7} = 9$ over two steps, so $b^{2} = 9$ and $b = 3$. The model is $y = 7 \\cdot 3^{x}$, and checking: $7 \\times 9 = 63$ ✓",
+          "check": [
+            "Eq(Rational(63,7), 9)",
+            "Eq(3**2, 9)",
+            "Eq(7*3**2, 63)"
+          ]
+        },
+        {
+          "id": "im1-u6-l4-t3",
+          "statement": "A sample of $80$ g decays with a half-life of $6$ years. Write the model and find the mass after $18$ years.",
+          "solution": "$M(t) = 80 \\cdot \\left(\\frac{1}{2}\\right)^{t/6}$. After $18$ years that is $\\frac{18}{6} = 3$ half-lives, so $M = 80 \\times \\frac{1}{8} = 10$ g.",
+          "check": [
+            "Eq(80*Rational(1,2)**1, 40)",
+            "Eq(80*Rational(1,2)**3, 10)",
+            "Eq(Rational(18,6), 3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.2",
+            "title": "From a description, the model reads itself",
+            "body": "\"Starts at $8000$, grows $5\\%$ a year\" is already $a = 8000$ and $b = 1.05$. The only place to go wrong is the percent-to-factor step — and Lesson 1 settled that.",
+            "beats": [
+              "Starting value → $a$",
+              "Grow $p\\%$ → $b = 1 + \\frac{p}{100}$",
+              "Decay $p\\%$ → $b = 1 - \\frac{p}{100}$",
+              "Write $y = a \\cdot b^{x}$ and check at $x = 0$"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "From a table",
+            "title": "The value at zero, and the repeating ratio",
+            "body": "If the table has $x = 0$, that output IS $a$. Divide consecutive outputs for $b$ — and confirm the ratio is the SAME every time, or the data is not exponential and none of this applies."
+          },
+          {
+            "kind": "worked",
+            "title": "A table, fitted and checked",
+            "problemId": "im1-u6-l4-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The root step",
+            "title": "Points several steps apart need a root",
+            "body": "From $(0, 5)$ to $(3, 40)$ the value multiplied by $8$ — but over THREE steps. So $b^{3} = 8$ and $b = 2$. Whenever the data points are $n$ apart, take the $n$-th root of the total factor.",
+            "beats": [
+              "Total factor $= \\frac{y_2}{y_1}$",
+              "That equals $b^{n}$, not $b$",
+              "So $b = \\sqrt[n]{\\text{total factor}}$",
+              "Then check the model on both points"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Two points, three steps apart",
+            "problemId": "im1-u6-l4-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Find the base",
+            "prompt": "An exponential passes through $(0, 3)$ and $(4, 48)$. What is $b$?",
+            "options": [
+              "$16$",
+              "$4$",
+              "$2$",
+              "$12$"
+            ],
+            "correctIndex": 2,
+            "explanation": "The total factor is $\\frac{48}{3} = 16$, spread over FOUR steps, so $b^{4} = 16$ and $b = 2$. Check: $3 \\cdot 2^{4} = 3 \\times 16 = 48$ ✓. Answering $16$ treats the whole growth as one step and would predict $3 \\cdot 16^{4} = 196\\,608$ at $x = 4$.",
+            "check": [
+              "Eq(Rational(48,3), 16)",
+              "Eq(2**4, 16)",
+              "Eq(3*2**4, 48)",
+              "Ne(3*16**4, 48)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Periods",
+            "title": "Doubling time and half-life divide the exponent",
+            "body": "\"Doubles every $6$ hours\" is a factor of $2$ per six hours, so the exponent must count SIX-HOUR PERIODS: $y = a \\cdot 2^{\\,t/6}$. Dividing by the period converts a clock reading into the count the base expects."
+          },
+          {
+            "kind": "worked",
+            "title": "A drug with a four-hour half-life",
+            "problemId": "im1-u6-l4-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which model is right?",
+            "prompt": "A sample halves every $5$ years and starts at $60$ g. Which model gives the mass after $t$ years?",
+            "options": [
+              "$60 \\cdot (0.5)^{t}$",
+              "$60 \\cdot (0.5)^{t/5}$",
+              "$60 \\cdot (0.5)^{5t}$",
+              "$60 \\cdot (0.5) \\cdot t$"
+            ],
+            "correctIndex": 1,
+            "explanation": "The exponent must count five-year periods, so divide $t$ by $5$. Check at $t = 5$: $60 \\times (0.5)^{1} = 30$ g — halved, as required ✓. Option A would halve every YEAR, giving $1.875$ g at $t = 5$ instead of $30$.",
+            "check": [
+              "Eq(60*Rational(1,2)**1, 30)",
+              "Eq(60*Rational(1,2)**2, 15)",
+              "Ne(60*Rational(1,2)**5, 30)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A town, fitted from two census figures",
+            "problemId": "im1-u6-l4-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Solve backwards with a table",
+            "body": "\"When does it reach $10\\,000$?\" needs logarithms to solve exactly, and those arrive in IM2. Compute values until you bracket the target and report the interval — \"between year $8$ and year $9$\" is a complete IM1 answer."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — from a table",
+            "problemId": "im1-u6-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a half-life",
+            "problemId": "im1-u6-l4-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$a$ is the value at $x = 0$; $b$ is the factor per step",
+              "Points $n$ steps apart: take the $n$-th root of the total factor",
+              "Doubling time or half-life $T$ → divide the exponent by $T$",
+              "Check the finished model against **every** data point you were given",
+              "Solve backwards by table, and state the bracketing interval"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "im1-u6-pr-1",
+      "statement": "A population of $12\\,000$ grows $4\\%$ a year. Write the model and find the population after $3$ years.",
+      "solution": "The factor is $1.04$, so $P(t) = 12\\,000 \\cdot (1.04)^{t}$. After $3$ years: $12\\,000 \\times 1.124864 = 13\\,498.368$, about $13\\,498$ people.",
+      "check": [
+        "Eq(12000*Rational(104,100)**0, 12000)",
+        "Eq(Rational(104,100)**3, Rational(1124864, 1000000))",
+        "Abs(12000*Rational(104,100)**3 - 13498) < 1"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-2",
+      "statement": "A machine worth $6\\,000\\,000$₮ loses $20\\%$ of its value each year. Find its value after $3$ years.",
+      "solution": "Keeping $80\\%$ gives a factor of $0.8$: $V(3) = 6\\,000\\,000 \\times 0.512 = 3\\,072\\,000$₮. Note this is not a $60\\%$ loss — it retains $51.2\\%$.",
+      "check": [
+        "Eq(Rational(8,10)**3, Rational(512,1000))",
+        "Eq(6000000*Rational(8,10)**3, 3072000)",
+        "Rational(512,1000) > Rational(40,100)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-3",
+      "statement": "Classify and model the table $(0, 9), (1, 13), (2, 17), (3, 21)$.",
+      "solution": "Differences are $4, 4, 4$ — constant, so it is **linear** with slope $4$ and intercept $9$: $y = 4x + 9$. Check at $x = 3$: $12 + 9 = 21$ ✓",
+      "check": [
+        "Eq(13 - 9, 4)",
+        "Eq(21 - 17, 4)",
+        "Eq(4*3 + 9, 21)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-4",
+      "statement": "Classify and model the table $(0, 2), (1, 10), (2, 50), (3, 250)$.",
+      "solution": "Differences $8, 40, 200$ are not constant; ratios $\\frac{10}{2} = \\frac{50}{10} = \\frac{250}{50} = 5$ are. So it is **exponential**: $y = 2 \\cdot 5^{x}$. Check at $x = 3$: $2 \\times 125 = 250$ ✓",
+      "check": [
+        "Ne(10 - 2, 50 - 10)",
+        "Eq(Rational(10,2), 5)",
+        "Eq(Rational(250,50), 5)",
+        "Eq(2*5**3, 250)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-5",
+      "statement": "For $y = 8 \\cdot 2^{x}$, give the $y$-intercept and the values at $x = 3$ and $x = -2$.",
+      "solution": "The intercept is $8$. At $x = 3$: $8 \\times 8 = 64$. At $x = -2$: $8 \\times \\frac{1}{4} = 2$ — positive, as every output of this function is.",
+      "check": [
+        "Eq(8*2**0, 8)",
+        "Eq(8*2**3, 64)",
+        "Eq(8*2**(-2), 2)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-6",
+      "statement": "Describe the end behaviour and asymptote of $y = 40 \\cdot (0.25)^{x}$.",
+      "solution": "The base is below $1$, so this is decay: as $x \\to \\infty$ the output approaches $0$, making $y = 0$ a horizontal asymptote; as $x \\to -\\infty$ it grows without bound. Check: $y(4) = 40 \\times 0.0039 = 0.156$, and $y(-2) = 40 \\times 16 = 640$.",
+      "check": [
+        "Eq(40*Rational(1,4)**(-2), 640)",
+        "40*Rational(1,4)**6 > 0",
+        "40*Rational(1,4)**6 < 1"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-7",
+      "statement": "Build the exponential model through $(0, 3)$ and $(2, 27)$.",
+      "solution": "$a = 3$. The total factor is $\\frac{27}{3} = 9$ over two steps, so $b^{2} = 9$ and $b = 3$. The model is $y = 3 \\cdot 3^{x}$. Check: $3 \\times 9 = 27$ ✓",
+      "check": [
+        "Eq(Rational(27,3), 9)",
+        "Eq(3**2, 9)",
+        "Eq(3*3**2, 27)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-8",
+      "statement": "A culture doubles every $3$ hours from $500$ cells. Write the model and find the count after $12$ hours.",
+      "solution": "$N(t) = 500 \\cdot 2^{\\,t/3}$. After $12$ hours that is $4$ doublings: $500 \\times 16 = 8000$ cells.",
+      "check": [
+        "Eq(500*2**1, 1000)",
+        "Eq(Rational(12,3), 4)",
+        "Eq(500*2**4, 8000)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-9",
+      "statement": "Compare $L(x) = 60x$ with $E(x) = 3^{x}$ at $x = 3, 5$ and $7$. Where is the crossover?",
+      "solution": "At $x = 3$: $L = 180$, $E = 27$ — the line leads. At $x = 5$: $L = 300$, $E = 243$ — still the line, barely. At $x = 7$: $L = 420$, $E = 2187$ — the curve has won. Checking $x = 6$: $L = 360$, $E = 729$ — already won, so the crossover is between $x = 5$ and $x = 6$.",
+      "check": [
+        "60*3 > 3**3",
+        "60*5 > 3**5",
+        "60*6 < 3**6",
+        "60*7 < 3**7"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-10",
+      "statement": "Classify each: (a) a courier charging $1200$₮ per kilogram; (b) a savings account at $8\\%$ a year; (c) a candle burning $3$ cm an hour.",
+      "solution": "(a) **Linear** — a constant amount per kilogram. (b) **Exponential** — a constant percent of a changing balance. (c) **Linear** — a constant amount per hour.",
+      "check": [
+        "Eq(1200*(4 + 1) - 1200*4, 1200)",
+        "Ne(1000*Rational(108,100)**2 - 1000*Rational(108,100), 1000*Rational(108,100) - 1000)",
+        "Eq((30 - 3*2) - (30 - 3*3), 3)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-11",
+      "statement": "A sample of $240$ g has a half-life of $8$ days. How much remains after $24$ days?",
+      "solution": "$24$ days is $\\frac{24}{8} = 3$ half-lives, so the mass is $240 \\times \\left(\\frac{1}{2}\\right)^{3} = 240 \\times \\frac{1}{8} = 30$ g.",
+      "check": [
+        "Eq(Rational(24,8), 3)",
+        "Eq(240*Rational(1,2)**3, 30)",
+        "Eq(240*Rational(1,2)**1, 120)"
+      ]
+    },
+    {
+      "id": "im1-u6-pr-12",
+      "statement": "A quantity grows $15\\%$ then falls $15\\%$. What is the net change?",
+      "solution": "Multiply the factors: $1.15 \\times 0.85 = 0.9775$. The quantity ends at $97.75\\%$ of where it started — a net LOSS of $2.25\\%$, not a return to the start. The rise was taken on the smaller number and the fall on the larger one.",
+      "check": [
+        "Eq(Rational(115,100)*Rational(85,100), Rational(9775, 10000))",
+        "Rational(9775,10000) < 1",
+        "Eq(1000*Rational(115,100)*Rational(85,100), Rational(9775,10))"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "im1-u6-ty-1",
+      "statement": "A town of $25\\,000$ grows $6\\%$ a year. Write the model, find the population after $4$ years, and explain why the answer is not a $24\\%$ increase.",
+      "solution": "**Model.** Growing $6\\%$ keeps everything and adds six percent, so $b = 1.06$:$$P(t) = 25\\,000 \\cdot (1.06)^{t}.$$Check the start: $P(0) = 25\\,000$ ✓**After 4 years.**$$1.06^{4} = 1.26247696, \\qquad P(4) = 25\\,000 \\times 1.26247696 = 31\\,561.924,$$about $31\\,562$ people.**Why the rates do not simply add.** Four years at $6\\%$ produces a $26.25\\%$ increase, not $4 \\times 6 = 24\\%$. Each year's growth is computed on the previous year's larger population, so the extra growth compounds. The linear answer would have been $25\\,000 \\times 1.24 = 31\\,000$ — about $562$ people short.",
+      "check": [
+        "Eq(Rational(106,100)**4, Rational(126247696, 100000000))",
+        "Abs(25000*Rational(106,100)**4 - Rational(31561924, 1000)) < Rational(1,1000)",
+        "Rational(126247696, 100000000) > Rational(124,100)",
+        "Eq(25000*Rational(124,100), 31000)"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-2",
+      "statement": "Classify each table and give its model. A: $(0, 100), (1, 85), (2, 70), (3, 55)$. B: $(0, 100), (1, 85), (2, 72.25), (3, 61.4125)$.",
+      "solution": "**Table A — differences.**$$85 - 100 = -15, \\quad 70 - 85 = -15, \\quad 55 - 70 = -15.$$Constant, so **linear** with slope $-15$: $y = 100 - 15x$. Check at $x = 3$: $100 - 45 = 55$ ✓**Table B — differences.**$$-15, \\quad -12.75, \\quad -10.8375.$$Not constant. **Ratios:**$$\\frac{85}{100} = 0.85, \\quad \\frac{72.25}{85} = 0.85, \\quad \\frac{61.4125}{72.25} = 0.85.$$Constant, so **exponential**: $y = 100 \\cdot (0.85)^{x}$, a $15\\%$ decay per step.**The instructive contrast.** Both start at $100$ and both drop by $15$ on the first step. A tells you a fixed $15$ leaves every time; B tells you $15\\%$ leaves every time, which is a shrinking amount. Table A reaches zero at $x = \\frac{20}{3}$; table B never does.",
+      "check": [
+        "Eq(85 - 100, -15)",
+        "Eq(55 - 70, -15)",
+        "Eq(100 - 15*3, 55)",
+        "Eq(Rational(7225,100)/85, Rational(85,100))",
+        "Eq(100*Rational(85,100)**2, Rational(7225,100))",
+        "Eq(100*Rational(85,100)**3, Rational(614125, 10000))",
+        "100*Rational(85,100)**20 > 0"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-3",
+      "statement": "For $y = 6 \\cdot \\left(\\frac{1}{3}\\right)^{x}$, give the $y$-intercept, the values at $x = 2$ and $x = -2$, the asymptote, and the end behaviour.",
+      "solution": "**Intercept.** At $x = 0$: $y = 6 \\cdot 1 = 6$, so $(0, 6)$.**Two steps right.** $6 \\times \\frac{1}{9} = \\frac{2}{3}$.**Two steps left.** A negative exponent flips the fraction: $6 \\times 3^{2} = 54$. Positive and large — the curve climbs steeply to the left.**Asymptote.** $y = 0$. Since $6$ and $\\frac{1}{3}$ are both positive, every output is positive, so the curve never touches the horizontal axis.**End behaviour.** The base is below $1$, so as $x \\to \\infty$ the output approaches $0$; as $x \\to -\\infty$ it grows without bound.",
+      "check": [
+        "Eq(6*Rational(1,3)**0, 6)",
+        "Eq(6*Rational(1,3)**2, Rational(2,3))",
+        "Eq(6*Rational(1,3)**(-2), 54)",
+        "6*Rational(1,3)**10 > 0",
+        "6*Rational(1,3)**10 < Rational(1,1000)"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-4",
+      "statement": "An exponential model passes through $(0, 4)$ and $(3, 108)$. Find $b$, write the model, and predict $y(5)$.",
+      "solution": "**Starting value.** The point at $x = 0$ gives $a = 4$.**Total factor over three steps.**$$\\frac{108}{4} = 27.$$**Annual factor.** That is $b$ applied three times:$$b^{3} = 27 \\quad\\Longrightarrow\\quad b = \\sqrt[3]{27} = 3.$$**Model.**$$y = 4 \\cdot 3^{x}.$$**Check both given points.** $y(0) = 4$ ✓ and $y(3) = 4 \\times 27 = 108$ ✓**Predict.**$$y(5) = 4 \\times 3^{5} = 4 \\times 243 = 972.$$",
+      "check": [
+        "Eq(Rational(108,4), 27)",
+        "Eq(3**3, 27)",
+        "Eq(4*3**3, 108)",
+        "Eq(4*3**5, 972)"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-5",
+      "statement": "A radioactive sample of $500$ g has a half-life of $12$ years. Write the model, find the mass after $36$ years, and after $18$ years.",
+      "solution": "**Model.** The factor is $\\frac{1}{2}$ per twelve years, so the exponent counts twelve-year periods:$$M(t) = 500 \\cdot \\left(\\frac{1}{2}\\right)^{t/12}.$$**After 36 years.** That is $\\frac{36}{12} = 3$ half-lives:$$M(36) = 500 \\times \\frac{1}{8} = 62.5\\ \\text{g}.$$**After 18 years.** That is $1.5$ half-lives:$$M(18) = 500 \\times \\left(\\frac{1}{2}\\right)^{1.5} = 500 \\times 0.353553 = 176.78\\ \\text{g}.$$**Sanity check.** Eighteen years lies between one half-life ($250$ g) and two ($125$ g), and $176.8$ g sits between them ✓**Why the model never reaches zero.** Each period removes half of what remains, so the mass approaches zero without arriving — the horizontal asymptote made physical.",
+      "check": [
+        "Eq(500*Rational(1,2)**3, Rational(125,2))",
+        "Eq(Rational(125,2), 62.5)",
+        "Eq(500*Rational(1,2)**1, 250)",
+        "Eq(500*Rational(1,2)**2, 125)",
+        "500*Rational(1,2)**Rational(3,2) < 250",
+        "500*Rational(1,2)**Rational(3,2) > 125"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-6",
+      "statement": "Plan A pays $2\\,000\\,000$₮ now and adds $150\\,000$₮ each year. Plan B pays $1\\,200\\,000$₮ now and grows $15\\%$ each year. Compare at years $3$, $8$ and $15$, and advise someone choosing for a $20$-year horizon.",
+      "solution": "**Models.**$$A(t) = 2\\,000\\,000 + 150\\,000t, \\qquad B(t) = 1\\,200\\,000 \\cdot (1.15)^{t}.$$**Year 3.** $A = 2\\,450\\,000$; $B = 1\\,200\\,000 \\times 1.520875 = 1\\,825\\,050$. **A leads.****Year 8.** $A = 3\\,200\\,000$; $B = 1\\,200\\,000 \\times 3.0590 = 3\\,670\\,844$. **B leads** — it has overtaken between years $3$ and $8$.**Year 15.** $A = 4\\,250\\,000$; $B = 1\\,200\\,000 \\times 8.1371 = 9\\,764\\,502$. **B leads decisively**, by more than double.**Advice for 20 years.** Choose B. At year $20$, $A = 5\\,000\\,000$ while $B = 1\\,200\\,000 \\times 16.3665 = 19\\,639\\,844$ — nearly four times as much. A starts higher and is more predictable, but a fixed annual addition cannot compete with compounding over two decades. The crossover falls between years $6$ and $7$, so any horizon past about seven years favours B.",
+      "check": [
+        "Eq(2000000 + 150000*3, 2450000)",
+        "2000000 + 150000*3 > 1200000*Rational(115,100)**3",
+        "1200000*Rational(115,100)**8 > 2000000 + 150000*8",
+        "1200000*Rational(115,100)**15 > 2000000 + 150000*15",
+        "Eq(2000000 + 150000*20, 5000000)",
+        "1200000*Rational(115,100)**20 > 3*(2000000 + 150000*20)",
+        "2000000 + 150000*6 > 1200000*Rational(115,100)**6",
+        "1200000*Rational(115,100)**7 > 2000000 + 150000*7"
+      ]
+    },
+    {
+      "id": "im1-u6-ty-7",
+      "statement": "A lake's fish population was $8000$ in $2018$ and $5120$ in $2021$. Assuming exponential decay, find the annual factor and percent loss, predict $2024$, and comment on the prediction.",
+      "solution": "**Set the clock.** Let $t$ be years since $2018$, so $a = 8000$ and the second reading is at $t = 3$.**Total factor over three years.**$$\\frac{5120}{8000} = 0.64.$$**Annual factor.**$$b^{3} = 0.64 \\quad\\Longrightarrow\\quad b = \\sqrt[3]{0.64} \\approx 0.8618.$$So the population keeps about $86.2\\%$ each year, losing about $13.8\\%$ annually.**Check.** $8000 \\times 0.64 = 5120$ ✓ at $t = 3$.**Predict 2024** — that is $t = 6$, two of the three-year periods:$$P(6) = 8000 \\times (0.64)^{2} = 8000 \\times 0.4096 = 3276.8,$$about $3277$ fish.**Comment.** The model assumes the same decay rate continues for three more years beyond the data. A lake population may stabilise as competition eases, or crash faster if the cause worsens — so $3277$ is what the MODEL predicts, not a measurement. Two data points also cannot distinguish exponential decay from several other shapes that pass through the same pair; more readings would be needed to justify the choice of model.",
+      "check": [
+        "Eq(Rational(5120,8000), Rational(64,100))",
+        "Eq(8000*Rational(64,100), 5120)",
+        "Eq(Rational(64,100)**2, Rational(4096, 10000))",
+        "Eq(8000*Rational(64,100)**2, Rational(32768, 10))",
+        "Abs(Rational(32768,10) - 3277) < 1"
+      ]
+    }
+  ]
+}
