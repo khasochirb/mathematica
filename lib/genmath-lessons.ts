@@ -1323,6 +1323,110 @@ export function getIm1Lesson(
 }
 
 // ---------------------------------------------------------------------------
+// Integrated Mathematics 2 — /math/integrated-2
+// The middle year of the integrated pathway (CCSS Integrated Mathematics II).
+// Quadratics end to end, the number system extended to rational exponents and
+// complex numbers, similarity and right-triangle trigonometry, circles, and
+// probability. Where IM1 was linear and exponential, IM2 is quadratic — and
+// where IM1 defined congruence by rigid motion, IM2 defines similarity by
+// dilation and proves with it.
+// ---------------------------------------------------------------------------
+
+export const IM2_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "rational-exponents-and-radicals",
+    title: "Rational Exponents & Radicals",
+    blurb:
+      "Extending the exponent rules to fractional powers, simplifying radicals, and why the sum of a rational and an irrational number is always irrational.",
+    buildsOn: "Exponential functions from IM1 Unit 6 — now with the exponent allowed to be a fraction.",
+    live: false,
+  },
+  {
+    unit: 2,
+    slug: "polynomials-and-factoring",
+    title: "Polynomials & Factoring",
+    blurb:
+      "Adding, subtracting and multiplying polynomials; the closure of the system; and every factoring technique from a common factor to the difference of squares.",
+    buildsOn: "The structure of expressions from IM1 Unit 1.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "quadratic-functions",
+    title: "Quadratic Functions",
+    blurb:
+      "The parabola and its vertex, the three forms of a quadratic and what each reveals, transformations of the graph, and comparing quadratic against linear and exponential growth.",
+    buildsOn: "Function notation and linear models from IM1 Units 3 and 4.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "solving-quadratic-equations",
+    title: "Solving Quadratic Equations",
+    blurb:
+      "Factoring, square roots, completing the square and the quadratic formula; the discriminant; and complex numbers, which arrive because some parabolas never cross the axis.",
+    buildsOn: "Factoring from Unit 2 and the shape of a parabola from Unit 3.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "similarity-and-dilations",
+    title: "Similarity & Dilations",
+    blurb:
+      "Dilation as the one non-rigid transformation, similarity defined by it, the AA criterion, and how similar triangles prove the side-splitter and midsegment theorems.",
+    buildsOn: "Congruence and rigid motion from IM1 Unit 7 — similarity is what happens when you add a scale factor.",
+    live: false,
+  },
+  {
+    unit: 6,
+    slug: "right-triangle-trigonometry",
+    title: "Right-Triangle Trigonometry",
+    blurb:
+      "Sine, cosine and tangent as ratios that similarity makes well defined, the special triangles, solving right triangles, and the complementary-angle relationship.",
+    buildsOn: "Similarity from Unit 5 — the trigonometric ratios exist BECAUSE similar triangles share them.",
+    live: false,
+  },
+  {
+    unit: 7,
+    slug: "circles",
+    title: "Circles",
+    blurb:
+      "Central and inscribed angles, tangents and chords, arc length and sector area, and the equation of a circle derived from the distance formula.",
+    buildsOn: "The distance formula from IM1 Unit 8 — a circle is the set of points at a fixed distance from a centre.",
+    live: false,
+  },
+  {
+    unit: 8,
+    slug: "probability",
+    title: "Probability",
+    blurb:
+      "Sample spaces and events, unions and intersections, conditional probability and independence, two-way tables as probability models, and the addition and multiplication rules.",
+    buildsOn: "Two-way tables from IM1 Unit 9 — the same tables, now read as probabilities.",
+    live: false,
+  },
+];
+
+const im2Units: CourseUnit[] = [];
+
+export function getIm2Spine(): GeometrySpineEntry[] {
+  return IM2_SPINE;
+}
+
+export function getIm2Unit(unitSlug: string): CourseUnit | null {
+  return im2Units.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getIm2Lesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getIm2Unit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Algebra 2 course — /math/algebra-2
 // The bridge between Algebra 1 and Precalculus: transformations and
 // piecewise functions, quadratics with complex numbers, advanced systems,
@@ -1968,6 +2072,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:vectors-matrices": { spine: getVecMatSpine, unit: getVecMatUnit },
   "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
   "course:integrated-1": { spine: getIm1Spine, unit: getIm1Unit },
+  "course:integrated-2": { spine: getIm2Spine, unit: getIm2Unit },
   "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
