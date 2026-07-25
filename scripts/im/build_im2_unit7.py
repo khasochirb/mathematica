@@ -1,0 +1,1880 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 2 — Unit 7: Circles.
+
+CCSS Integrated Math II: G-C.1 (all circles are similar), G-C.2 (identify and
+describe relationships among inscribed angles, radii and chords), G-C.5 (derive
+the fact that the length of an arc intercepted by an angle is proportional to
+the radius, and define the radian measure; derive the formula for the area of a
+sector), G-GPE.1 (derive the equation of a circle using the Pythagorean theorem
+and complete the square to find the centre and radius).
+
+The unit's organising claim is that the circle theorems are not a list to
+memorise. The central-angle relationship is the source, the inscribed-angle
+theorem is proved from it with an isosceles triangle, and everything else —
+angles in a semicircle, cyclic quadrilaterals, the tangent-radius right angle —
+follows from those two.
+
+Run: python3 scripts/im/build_im2_unit7.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-2"
+
+
+# ===========================================================================
+# Lesson 1 — G-C.2: central and inscribed angles
+# ===========================================================================
+def lesson_angles():
+    return lesson(
+        slug="central-and-inscribed-angles",
+        title="Central and Inscribed Angles",
+        concrete=(
+            "Stand at the centre of a circular room and look at a doorway: you turn through some "
+            "angle. Now stand anywhere on the wall and look at the same doorway: you turn through "
+            "exactly HALF that angle, and it makes no difference where on the wall you stand. "
+            "That fixed halving is the most useful fact about circles."
+        ),
+        objective=(
+            "Relate central angles, inscribed angles and their intercepted arcs, prove the "
+            "inscribed-angle theorem, and apply it to semicircles and cyclic quadrilaterals."
+        ),
+        concept=[
+            "**A central angle equals its arc.** An angle with its vertex at the centre cuts off "
+            "an arc of exactly the same degree measure. This is a definition rather than a "
+            "theorem: arc measure IS defined by the central angle, and a full circle is $360°$ "
+            "because a full turn is.",
+            "**An inscribed angle is half its arc.** An angle whose vertex lies ON the circle, "
+            "with both sides as chords, measures half the arc it intercepts. So it is also half "
+            "the central angle standing on the same arc — the theorem that generates every other "
+            "result in this lesson.",
+            "**The proof, in the easy case.** Put one side through the centre. The radii to the "
+            "vertex and to the far endpoint are equal, so the triangle is isosceles and its two "
+            "base angles are equal, each $x$. The central angle is the exterior angle of that "
+            "triangle, so it equals $2x$ — which is the theorem.",
+            "**Angles on the same arc are equal.** Every inscribed angle intercepting a given "
+            "arc is half of the SAME central angle, so all of them are equal to each other. This "
+            "is why the doorway looks the same width from anywhere on the wall.",
+            "**An angle in a semicircle is a right angle.** The diameter's arc is $180°$, so any "
+            "inscribed angle standing on it is $90°$. This is the single most useful special "
+            "case — it manufactures right triangles inside circles wherever a diameter appears.",
+            "**Opposite angles of a cyclic quadrilateral are supplementary.** The two angles "
+            "intercept arcs that together make the whole circle, so their halves sum to half of "
+            "$360°$. A quadrilateral whose vertices all lie on one circle is called cyclic, and "
+            "this is its signature.",
+        ],
+        key_idea=(
+            "An inscribed angle is half the central angle on the same arc — and the semicircle "
+            "right angle, equal angles on one arc, and cyclic quadrilaterals are all corollaries."
+        ),
+        facts=[
+            fact(
+                "Central angle",
+                "\\angle \\text{central} = \\text{arc}",
+                "Arc measure is defined by the central angle; a full circle is $360°$.",
+            ),
+            fact(
+                "Inscribed-angle theorem",
+                "\\angle \\text{inscribed} = \\tfrac{1}{2}\\,\\text{arc}",
+                "So it is half the central angle standing on the same arc.",
+            ),
+            fact(
+                "Angle in a semicircle",
+                "\\text{arc} = 180° \\ \\Rightarrow\\ \\angle \\text{inscribed} = 90°",
+                "A diameter manufactures a right angle at every point of the circle.",
+            ),
+            fact(
+                "Cyclic quadrilateral",
+                "\\angle A + \\angle C = 180°",
+                "Opposite angles intercept complementary arcs totalling $360°$.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u7-l1-we1",
+                "A central angle of $\\;84°$ stands on arc $AB$. Find the arc's measure and the "
+                "measure of any inscribed angle standing on the same arc.",
+                "**Read the arc from the central angle.** They are equal by definition:"
+                "$$\\text{arc } AB = 84°.$$"
+                "**Halve it for the inscribed angle.**"
+                "$$\\angle ACB = \\tfrac{1}{2}(84) = 42°.$$"
+                "**Note what the answer does NOT depend on.** The point $C$ can sit anywhere on "
+                "the major arc and the answer is still $42°$. Every such angle intercepts the "
+                "same arc, so every one of them is half the same central angle."
+                "**Check the whole circle adds up.** The remaining arc is "
+                "$360 - 84 = 276°$, and an inscribed angle standing on THAT arc would be "
+                "$138°$ ✓ Together the two inscribed angles give $42 + 138 = 180°$ — which is the "
+                "cyclic-quadrilateral relationship appearing already."
+                "**A warning about which arc.** 'The arc $AB$' is ambiguous unless you say minor "
+                "or major. The inscribed angle is half the arc it INTERCEPTS — the one it opens "
+                "toward, not the one behind it.",
+                [
+                    "Eq(Rational(1,2)*84, 42)",
+                    "Eq(360 - 84, 276)",
+                    "Eq(Rational(1,2)*276, 138)",
+                    "Eq(42 + 138, 180)",
+                ],
+            ),
+            problem(
+                "im2-u7-l1-we2",
+                "Prove the inscribed-angle theorem in the case where one side of the angle passes "
+                "through the centre.",
+                "**Set up.** Let the circle have centre $O$, let the inscribed angle be "
+                "$\\angle BAC$ with $A$ on the circle, and suppose the side $AB$ passes through "
+                "$O$ — so $AB$ is a diameter."
+                "**Find the isosceles triangle.** $OA$ and $OC$ are both radii, so "
+                "$OA = OC$ and triangle $OAC$ is isosceles."
+                "**Use the base angles.** In an isosceles triangle the angles opposite the equal "
+                "sides are equal, so"
+                "$$\\angle OAC = \\angle OCA = x.$$"
+                "**Apply the exterior-angle theorem.** $\\angle BOC$ is the exterior angle of "
+                "triangle $OAC$ at $O$, so it equals the sum of the two remote interior angles:"
+                "$$\\angle BOC = x + x = 2x.$$"
+                "**Conclude.** $\\angle BOC$ is the central angle and $\\angle BAC = x$ is the "
+                "inscribed angle, so"
+                "$$\\angle \\text{inscribed} = \\tfrac{1}{2}\\angle \\text{central}. \\qquad "
+                "\\blacksquare$$"
+                "**A numerical instance.** If $x = 35°$, the central angle is $70°$ and the "
+                "isosceles triangle has angles $35°$, $35°$ and $110°$, summing to $180°$ ✓ And "
+                "the exterior angle at $O$ is $180 - 110 = 70$ ✓"
+                "**Why the general case follows.** Any inscribed angle can be split by the "
+                "diameter through its vertex into two angles of this type, and the two halves "
+                "either add or subtract. The special case does the real work.",
+                [
+                    "Eq(35 + 35, 70)",
+                    "Eq(180 - 70, 110)",
+                    "Eq(35 + 35 + 110, 180)",
+                    "Eq(180 - 110, 70)",
+                    "Eq(Rational(1,2)*70, 35)",
+                ],
+            ),
+            problem(
+                "im2-u7-l1-we3",
+                "$AB$ is a diameter of a circle and $C$ is another point on it, with "
+                "$\\angle CAB = 34°$. Find $\\angle ACB$ and $\\angle ABC$.",
+                "**Use the semicircle right angle.** $AB$ is a diameter, so arc $ACB$ is $180°$ "
+                "and the inscribed angle at $C$ is half of that:"
+                "$$\\angle ACB = 90°.$$"
+                "**Find the third angle by the angle sum.**"
+                "$$\\angle ABC = 180 - 90 - 34 = 56°.$$"
+                "**Check with the complementary relationship.** In a right triangle the two acute "
+                "angles are complementary: $34 + 56 = 90$ ✓"
+                "**What this construction gives you for free.** Any diameter plus any third point "
+                "on the circle produces a RIGHT triangle. So all of Unit 6's trigonometry becomes "
+                "available inside a circle the moment a diameter is drawn — and if the diameter "
+                "is, say, $10$, then $BC = 10\\sin 34° \\approx 5.59$ and "
+                "$AC = 10\\cos 34° \\approx 8.29$."
+                "**Verify with Pythagoras.** $5.59^{2} + 8.29^{2} \\approx 31.2 + 68.7 = 99.9 "
+                "\\approx 10^{2}$ ✓",
+                [
+                    "Eq(180 - 90 - 34, 56)",
+                    "Eq(34 + 56, 90)",
+                    "Abs(10*sin(34*pi/180) - Rational(559,100)) < Rational(1,100)",
+                    "Abs(10*cos(34*pi/180) - Rational(829,100)) < Rational(1,100)",
+                    "Abs((10*sin(34*pi/180))**2 + (10*cos(34*pi/180))**2 - 100) < Rational(1,1000000)",
+                ],
+            ),
+            problem(
+                "im2-u7-l1-we4",
+                "A quadrilateral $ABCD$ has all four vertices on a circle. Given "
+                "$\\angle A = 76°$ and $\\angle B = 105°$, find $\\angle C$ and $\\angle D$, and "
+                "explain why the opposite angles must sum to $180°$.",
+                "**Apply the cyclic relationship to the first pair.**"
+                "$$\\angle C = 180 - 76 = 104°.$$"
+                "**And to the second pair.**"
+                "$$\\angle D = 180 - 105 = 75°.$$"
+                "**Check the quadrilateral's angle sum.** $76 + 105 + 104 + 75 = 360$ ✓ as any "
+                "quadrilateral must."
+                "**Why opposite angles must be supplementary.** $\\angle A$ is inscribed and "
+                "intercepts arc $BCD$; $\\angle C$ is inscribed and intercepts arc $DAB$. Those "
+                "two arcs together make the entire circle, $360°$. Each angle is half its arc, so"
+                "$$\\angle A + \\angle C = \\tfrac{1}{2}(360) = 180°. \\qquad \\blacksquare$$"
+                "**A check on the arcs.** $\\angle A = 76°$ means arc $BCD = 152°$, and "
+                "$\\angle C = 104°$ means arc $DAB = 208°$. Their sum: $152 + 208 = 360$ ✓"
+                "**The converse is true and useful.** If a quadrilateral's opposite angles sum to "
+                "$180°$, its four vertices DO lie on a common circle. That is how you prove four "
+                "points concyclic without constructing the circle.",
+                [
+                    "Eq(180 - 76, 104)",
+                    "Eq(180 - 105, 75)",
+                    "Eq(76 + 105 + 104 + 75, 360)",
+                    "Eq(2*76, 152)",
+                    "Eq(2*104, 208)",
+                    "Eq(152 + 208, 360)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Doubling instead of halving an inscribed angle.",
+                "The inscribed angle is HALF the arc and half the central angle. If the central "
+                "angle is $84°$, the inscribed one is $42°$ — the smaller of the two, since it "
+                "sits further from the arc.",
+            ),
+            mistake(
+                "Using the wrong arc for an inscribed angle.",
+                "The angle is half the arc it INTERCEPTS — the one it opens toward. The other "
+                "arc gives the supplementary angle instead.",
+            ),
+            mistake(
+                "Assuming any quadrilateral has supplementary opposite angles.",
+                "Only CYCLIC ones do. A general quadrilateral's angles sum to $360°$ but the "
+                "opposite pairs can split that sum any way at all.",
+            ),
+            mistake(
+                "Missing the right angle when a diameter is drawn.",
+                "Any point on the circle sees a diameter at $90°$. Spotting this turns many "
+                "circle problems into right-triangle problems immediately.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u7-l1-t1",
+                "An inscribed angle measures $37°$. Find its intercepted arc and the central "
+                "angle on that arc.",
+                "The arc is twice the inscribed angle: $2 \\times 37 = 74°$. The central angle "
+                "equals the arc, so it is also $74°$. Check: half of $74$ is $37$ ✓ The remaining "
+                "arc is $360 - 74 = 286°$.",
+                [
+                    "Eq(2*37, 74)",
+                    "Eq(Rational(1,2)*74, 37)",
+                    "Eq(360 - 74, 286)",
+                ],
+            ),
+            problem(
+                "im2-u7-l1-t2",
+                "In a cyclic quadrilateral, $\\angle P = 3x$ and the opposite angle "
+                "$\\angle R = 2x + 20°$. Find $x$ and both angles.",
+                "Opposite angles are supplementary: $3x + 2x + 20 = 180$, so $5x = 160$ and "
+                "$x = 32$. Then $\\angle P = 96°$ and $\\angle R = 84°$. Check: "
+                "$96 + 84 = 180$ ✓",
+                [
+                    "Eq(5*32 + 20, 180)",
+                    "Eq(3*32, 96)",
+                    "Eq(2*32 + 20, 84)",
+                    "Eq(96 + 84, 180)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-C.2",
+                "title": "One theorem, four corollaries",
+                "body": (
+                    "An inscribed angle is half the central angle on the same arc. Every other "
+                    "result in this lesson — equal angles on one arc, the semicircle right angle, "
+                    "cyclic quadrilaterals — is that single statement applied to a special case."
+                ),
+                "beats": [
+                    "Central angle = arc",
+                    "Inscribed angle = half the arc",
+                    "Same arc $\\to$ equal angles",
+                    "Diameter $\\to$ right angle",
+                ],
+            },
+            {
+                "kind": "circleAngle",
+                "eyebrow": "See the halving",
+                "title": "Move the vertex, keep the angle",
+                "teach": (
+                    "Drag the inscribed vertex around the circle. The angle does not budge — it "
+                    "is half the central angle, and moving along the arc changes neither. Then "
+                    "drag an endpoint and watch both angles change together, always in a two-to-"
+                    "one ratio."
+                ),
+                "config": {"mode": "inscribed", "start": 84},
+            },
+            {
+                "kind": "worked",
+                "title": "Central to arc to inscribed",
+                "problemId": "im2-u7-l1-we1",
+            },
+            tap(
+                "Halve or double?",
+                "A central angle measures $110°$. What does an inscribed angle on the same arc "
+                "measure?",
+                ["$220°$", "$55°$", "$110°$", "$70°$"],
+                1,
+                "Inscribed is HALF of central on the same arc: $\\frac{110}{2} = 55°$. The "
+                "vertex sits further from the arc, so the angle it subtends is smaller.",
+                ["Eq(Rational(1,2)*110, 55)", "Eq(2*55, 110)"],
+            ),
+            {
+                "kind": "stepProof",
+                "eyebrow": "The proof",
+                "title": "Isosceles triangle, exterior angle, done",
+                "teach": (
+                    "With one side through the centre, two radii make an isosceles triangle. Its "
+                    "equal base angles and the exterior-angle theorem give the doubling "
+                    "immediately — no new machinery is needed."
+                ),
+                "config": {
+                    "given": "circle with centre O; AB is a diameter; C is on the circle",
+                    "prove": "angle BOC = 2 times angle BAC",
+                    "rows": [
+                        {"statement": "OA = OC", "reason": "both are radii"},
+                        {
+                            "statement": "triangle OAC is isosceles",
+                            "reason": "two sides equal",
+                        },
+                        {
+                            "statement": "angle OAC = angle OCA",
+                            "reason": "base angles of an isosceles triangle",
+                        },
+                        {
+                            "statement": "angle BOC = angle OAC + angle OCA",
+                            "reason": "exterior angle equals the sum of the remote interior angles",
+                        },
+                        {
+                            "statement": "angle BOC = 2 times angle BAC",
+                            "reason": "substitution, since angle BAC = angle OAC",
+                        },
+                    ],
+                },
+            },
+            {
+                "kind": "worked",
+                "title": "The proof, written out",
+                "problemId": "im2-u7-l1-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Look for the diameter",
+                "title": "A diameter is a right angle waiting to happen",
+                "body": (
+                    "Any point on the circle sees a diameter at exactly $90°$. So the moment a "
+                    "diameter appears in a problem, every right-triangle tool from Unit 6 becomes "
+                    "available — Pythagoras, the ratios, all of it."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "The angle in a semicircle",
+                "problemId": "im2-u7-l1-we3",
+            },
+            tap(
+                "Find the missing angle",
+                "In cyclic quadrilateral $WXYZ$, $\\angle W = 118°$. What is $\\angle Y$?",
+                ["$118°$", "$62°$", "$242°$", "$59°$"],
+                1,
+                "Opposite angles of a cyclic quadrilateral are supplementary: "
+                "$180 - 118 = 62°$. Their intercepted arcs together make the whole circle.",
+                ["Eq(180 - 118, 62)", "Eq(118 + 62, 180)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "A cyclic quadrilateral, and why the rule holds",
+                "problemId": "im2-u7-l1-we4",
+            },
+            {"kind": "tryIt", "title": "From an inscribed angle", "problemId": "im2-u7-l1-t1"},
+            {"kind": "tryIt", "title": "An algebraic cyclic quadrilateral", "problemId": "im2-u7-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Central angle equals its arc; inscribed angle is half of it",
+                    "All inscribed angles on one arc are equal — the vertex's position does not matter",
+                    "A diameter subtends a right angle at every point of the circle",
+                    "Opposite angles of a cyclic quadrilateral sum to $180°$, and the converse holds",
+                    "The proof is one isosceles triangle plus the exterior-angle theorem",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — G-C.2: chords, tangents and secants
+# ===========================================================================
+def lesson_chords_and_tangents():
+    return lesson(
+        slug="chords-tangents-and-secants",
+        title="Chords, Tangents and Secants",
+        concrete=(
+            "Roll a ball along a straight groove past a circular hole. The line either misses "
+            "entirely, grazes at one point, or cuts clean through. Those three cases — no "
+            "intersection, tangent, secant — are the whole classification, and each has its own "
+            "small set of consequences."
+        ),
+        objective=(
+            "Use the tangent-radius right angle, the perpendicular-bisector property of chords, "
+            "and the intersecting-chords and secant-tangent length relationships."
+        ),
+        concept=[
+            "**A tangent is perpendicular to the radius at the point of contact.** If it were "
+            "not, the line would lean toward the circle on one side and cut it — so the "
+            "perpendicularity is forced, not decorative. This single fact converts most tangent "
+            "problems into right-triangle problems.",
+            "**Two tangents from an external point are equal in length.** The two right triangles "
+            "formed with the radii share the hypotenuse (the line to the centre) and have equal "
+            "legs (the radii), so they are congruent by Pythagoras — and the tangent lengths "
+            "match.",
+            "**A radius perpendicular to a chord bisects it.** Drop a perpendicular from the "
+            "centre to a chord and it lands exactly at the chord's midpoint. The two triangles "
+            "formed have equal radii as hypotenuses and share the perpendicular leg, so their "
+            "third sides are equal.",
+            "**Equal chords are equidistant from the centre, and conversely.** The distance from "
+            "the centre to a chord is what determines the chord's length: closer means longer, "
+            "and the longest chord of all is the diameter, at distance zero.",
+            "**Intersecting chords: the products of the pieces are equal.** If chords $AB$ and "
+            "$CD$ meet at $P$, then $PA \\cdot PB = PC \\cdot PD$. The reason is similar "
+            "triangles — the inscribed angles on the same arcs are equal, so AA applies.",
+            "**From an external point, the same product rule holds.** For two secants, "
+            "$PA \\cdot PB = PC \\cdot PD$ using whole-secant times external-part. For a tangent, "
+            "the two pieces coincide and the rule becomes $PT^{2} = PA \\cdot PB$ — the tangent "
+            "length is the geometric mean of the secant's two parts.",
+        ],
+        key_idea=(
+            "The tangent-radius right angle and the perpendicular bisection of chords convert "
+            "circle problems into right triangles; the product rules come from similar triangles."
+        ),
+        facts=[
+            fact(
+                "Tangent-radius",
+                "\\text{tangent} \\perp \\text{radius at the point of contact}",
+                "Forced: any other angle would let the line cut the circle.",
+            ),
+            fact(
+                "Perpendicular from the centre",
+                "\\text{radius} \\perp \\text{chord} \\ \\Rightarrow\\ \\text{it bisects the chord}",
+                "Two congruent right triangles, sharing the perpendicular leg.",
+            ),
+            fact(
+                "Intersecting chords",
+                "PA \\cdot PB = PC \\cdot PD",
+                "From similar triangles — equal inscribed angles give AA.",
+            ),
+            fact(
+                "Tangent-secant",
+                "PT^{2} = PA \\cdot PB",
+                "The tangent length is the geometric mean of the whole secant and its external part.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u7-l2-we1",
+                "A tangent from an external point $P$ touches a circle of radius $9$ at $T$, and "
+                "$OP = 15$ where $O$ is the centre. Find the tangent length $PT$.",
+                "**Use the tangent-radius right angle.** $OT \\perp PT$, so triangle $OTP$ is "
+                "right-angled at $T$, with the radius as one leg and $OP$ as the hypotenuse."
+                "**Apply Pythagoras.**"
+                "$$PT = \\sqrt{OP^{2} - OT^{2}} = \\sqrt{225 - 81} = \\sqrt{144} = 12.$$"
+                "**Check the triangle is sensible.** $9$-$12$-$15$ is a $3$-$4$-$5$ triangle "
+                "scaled by $3$ ✓ and the hypotenuse $15$ is indeed the longest side."
+                "**Note which side is the hypotenuse.** $OP$, the line to the centre, must be the "
+                "hypotenuse because the right angle is at $T$. Treating the radius as the "
+                "hypotenuse would give $\\sqrt{81 - 225}$, which is not a real number — the "
+                "impossibility is itself a check."
+                "**A second tangent, for free.** From the same $P$ there is a second tangent "
+                "touching at $T'$, and its length is also $12$ by the identical argument. The "
+                "angle $\\angle OPT$ is "
+                "$\\sin^{-1}\\!\\left(\\frac{9}{15}\\right) \\approx 36.9°$, so the full angle "
+                "between the two tangents is about $73.7°$.",
+                [
+                    "Eq(sqrt(225 - 81), 12)",
+                    "Eq(9**2 + 12**2, 15**2)",
+                    "Abs(asin(Rational(9,15))*180/pi - Rational(369,10)) < Rational(1,10)",
+                    "Abs(2*asin(Rational(9,15))*180/pi - Rational(737,10)) < Rational(1,10)",
+                    "15 > 12",
+                ],
+            ),
+            problem(
+                "im2-u7-l2-we2",
+                "A chord of length $24$ lies in a circle of radius $13$. Find its distance from "
+                "the centre. Then find the length of a chord that is $12$ from the centre.",
+                "**Drop the perpendicular from the centre.** It bisects the chord, so each half "
+                "is $12$."
+                "**Form the right triangle.** Its hypotenuse is the radius $13$, one leg is the "
+                "half-chord $12$, and the other leg is the distance $d$ we want:"
+                "$$d = \\sqrt{13^{2} - 12^{2}} = \\sqrt{169 - 144} = \\sqrt{25} = 5.$$"
+                "**Now the second part, running the same triangle backwards.** With $d = 12$ and "
+                "radius $13$, the half-chord is"
+                "$$\\sqrt{169 - 144} = 5,$$"
+                "so the full chord is $10$."
+                "**Compare the two.** The chord at distance $5$ has length $24$; the chord at "
+                "distance $12$ has length $10$. Further from the centre means shorter ✓ — exactly "
+                "as the equal-chords principle predicts."
+                "**Check the extremes.** At distance $0$ the chord is the diameter, $26$; at "
+                "distance $13$ it degenerates to a single point, length $0$. Both computed values "
+                "lie between ✓"
+                "**The step people skip.** Halving the chord BEFORE using Pythagoras. Using the "
+                "full $24$ would give $\\sqrt{169 - 576}$, an impossibility that at least "
+                "announces itself.",
+                [
+                    "Eq(sqrt(169 - 144), 5)",
+                    "Eq(5**2 + 12**2, 13**2)",
+                    "Eq(2*5, 10)",
+                    "Eq(2*13, 26)",
+                    "10 < 24",
+                ],
+            ),
+            problem(
+                "im2-u7-l2-we3",
+                "Two chords intersect inside a circle at $P$. One is divided into pieces $6$ and "
+                "$x$; the other into $4$ and $9$. Find $x$, and explain why the product rule "
+                "holds.",
+                "**Apply the intersecting-chords relationship.**"
+                "$$6x = 4 \\times 9 = 36 \\quad\\Longrightarrow\\quad x = 6.$$"
+                "**Why the rule is true.** Label the chords $AB$ and $CD$ meeting at $P$. Then "
+                "$\\angle A$ and $\\angle C$ are inscribed angles on the same arc $BD$, so they "
+                "are equal. The angles at $P$ are vertical angles, so they are equal too. By AA, "
+                "$\\triangle APC \\sim \\triangle DPB$."
+                "**Write the proportion the similarity gives.**"
+                "$$\\frac{PA}{PD} = \\frac{PC}{PB} \\quad\\Longrightarrow\\quad "
+                "PA \\cdot PB = PC \\cdot PD. \\qquad \\blacksquare$$"
+                "**Check the numbers against the similarity.** With $PA = 6$, $PB = 6$, "
+                "$PC = 4$, $PD = 9$: $\\frac{6}{9} = \\frac{4}{6}$? Cross-multiplying, "
+                "$36 = 36$ ✓"
+                "**A geometric note on this particular answer.** The first chord is split into "
+                "$6$ and $6$ — equal pieces, so $P$ is its midpoint. That is allowed; the rule "
+                "does not require the pieces to differ."
+                "**Sanity-check the chord lengths.** The first chord is $12$ and the second is "
+                "$13$. Both must fit inside the circle, so the radius is at least $6.5$ ✓ "
+                "consistent with any circle large enough to contain them.",
+                [
+                    "Eq(6*6, 4*9)",
+                    "Eq(4*9, 36)",
+                    "Eq(Rational(6,9), Rational(4,6))",
+                    "Eq(6 + 6, 12)",
+                    "Eq(4 + 9, 13)",
+                ],
+            ),
+            problem(
+                "im2-u7-l2-we4",
+                "From an external point $P$, a tangent touches a circle at $T$ with $PT = 8$, and "
+                "a secant through $P$ meets the circle at $A$ (near) and $B$ (far) with "
+                "$PA = 4$. Find $PB$ and the length of the chord $AB$.",
+                "**Apply the tangent-secant relationship.** The tangent squared equals the whole "
+                "secant times its external part:"
+                "$$PT^{2} = PA \\cdot PB \\quad\\Longrightarrow\\quad 64 = 4 \\cdot PB.$$"
+                "**Solve.**"
+                "$$PB = 16.$$"
+                "**Find the chord.** $PB$ runs from $P$ through $A$ to $B$, so"
+                "$$AB = PB - PA = 16 - 4 = 12.$$"
+                "**Why the rule is a special case of the secant one.** For two secants, "
+                "$PA \\cdot PB = PC \\cdot PD$. Slide the second secant until its two "
+                "intersection points merge — it becomes a tangent, $PC = PD = PT$, and the "
+                "relationship collapses to $PT^{2} = PA \\cdot PB$."
+                "**Check the geometric-mean reading.** $PT = 8$ should be the geometric mean of "
+                "$4$ and $16$: $\\sqrt{4 \\times 16} = \\sqrt{64} = 8$ ✓"
+                "**Sanity-check the ordering.** $PA < PT < PB$, i.e. $4 < 8 < 16$ ✓ The geometric "
+                "mean always lies between the two values, so this ordering is guaranteed rather "
+                "than lucky.",
+                [
+                    "Eq(8**2, 64)",
+                    "Eq(64, 4*16)",
+                    "Eq(16 - 4, 12)",
+                    "Eq(sqrt(4*16), 8)",
+                    "4 < 8",
+                    "8 < 16",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Using the full chord length in the perpendicular-from-centre triangle.",
+                "The perpendicular BISECTS the chord, so the leg is HALF the chord. Using the "
+                "full length usually produces a negative under the square root.",
+            ),
+            mistake(
+                "Treating the radius as the hypotenuse in a tangent problem.",
+                "The right angle is at the point of contact, so the line from the external point "
+                "to the CENTRE is the hypotenuse. The radius is a leg.",
+            ),
+            mistake(
+                "Using only the external part of a secant on both sides of the product rule.",
+                "It is WHOLE secant times EXTERNAL part. For $PT^2 = PA \\cdot PB$, the $PB$ is "
+                "the full distance from $P$ to the far point, not the chord $AB$.",
+            ),
+            mistake(
+                "Assuming two chords that cross must be bisected by the crossing.",
+                "Only the products of the pieces are equal, not the pieces themselves. Equal "
+                "pieces happen only in special configurations.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u7-l2-t1",
+                "A chord of length $16$ lies $6$ from the centre of a circle. Find the radius.",
+                "Half the chord is $8$. The right triangle has legs $8$ and $6$, so the radius is "
+                "$\\sqrt{64 + 36} = \\sqrt{100} = 10$. Check: a $6$-$8$-$10$ triangle ✓ And the "
+                "chord ($16$) is shorter than the diameter ($20$), as it must be ✓",
+                [
+                    "Eq(sqrt(64 + 36), 10)",
+                    "Eq(6**2 + 8**2, 10**2)",
+                    "Eq(2*10, 20)",
+                    "16 < 20",
+                ],
+            ),
+            problem(
+                "im2-u7-l2-t2",
+                "Two chords cross inside a circle. One is split into $3$ and $10$; the other into "
+                "$5$ and $y$. Find $y$.",
+                "The products are equal: $3 \\times 10 = 5y$, so $30 = 5y$ and $y = 6$. Check: "
+                "$3 \\times 10 = 30$ and $5 \\times 6 = 30$ ✓ The chords are $13$ and $11$.",
+                [
+                    "Eq(3*10, 5*6)",
+                    "Eq(3 + 10, 13)",
+                    "Eq(5 + 6, 11)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-C.2",
+                "title": "Three ways a line meets a circle",
+                "body": (
+                    "It misses, it touches at one point, or it cuts through at two. Tangent and "
+                    "secant each carry their own relationships — and both reduce to right "
+                    "triangles or similar triangles you already know."
+                ),
+                "beats": [
+                    "Miss: nothing to say",
+                    "Tangent: perpendicular to the radius",
+                    "Secant: a chord, plus product rules",
+                    "All of it via right or similar triangles",
+                ],
+            },
+            {
+                "kind": "tangentCircle",
+                "eyebrow": "The right angle",
+                "title": "A tangent meets the radius square-on",
+                "teach": (
+                    "Drag the point of contact. The radius and the tangent stay perpendicular, "
+                    "always. Any other angle would tilt the line into the circle, so it would cut "
+                    "rather than touch — the perpendicularity is forced by the definition."
+                ),
+                "config": {},
+            },
+            {
+                "kind": "worked",
+                "title": "Tangent length from the centre distance",
+                "problemId": "im2-u7-l2-we1",
+            },
+            tap(
+                "Which side is the hypotenuse?",
+                "A tangent from $P$ touches at $T$; $O$ is the centre. In triangle $OTP$, which "
+                "side is the hypotenuse?",
+                ["$OT$, the radius", "$PT$, the tangent", "$OP$, to the centre", "it varies"],
+                2,
+                "The right angle is at $T$, so the hypotenuse is the side opposite it — $OP$. "
+                "The radius and the tangent are the two legs.",
+                ["Eq(9**2 + 12**2, 15**2)", "15 > 9"],
+            ),
+            {
+                "kind": "circleFigure",
+                "eyebrow": "Chords",
+                "title": "The perpendicular from the centre bisects",
+                "teach": (
+                    "Drop a perpendicular from the centre to a chord and it lands on the "
+                    "midpoint. Two right triangles appear, sharing that perpendicular leg and "
+                    "having equal radii as hypotenuses — so their third sides must match."
+                ),
+                "config": {
+                    "radius": 13,
+                    "showCenter": True,
+                    "points": [
+                        {"id": "A", "deg": 155, "label": "A"},
+                        {"id": "B", "deg": 25, "label": "B"},
+                    ],
+                    "objects": [
+                        {"kind": "chord", "from": "A", "to": "B"},
+                        {"kind": "radius", "from": "A", "to": "A"},
+                    ],
+                    "caption": "A chord of length 24 in a circle of radius 13",
+                },
+            },
+            {
+                "kind": "worked",
+                "title": "Chord length and distance from the centre",
+                "problemId": "im2-u7-l2-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "The halving step",
+                "title": "Halve the chord before Pythagoras",
+                "body": (
+                    "The right triangle's leg is HALF the chord, not the whole thing. Forgetting "
+                    "this usually produces a negative number under the square root — which is at "
+                    "least an honest error message."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Intersecting chords, and the similar triangles behind them",
+                "problemId": "im2-u7-l2-we3",
+            },
+            tap(
+                "Apply the product rule",
+                "Two chords cross, splitting one into $8$ and $3$ and the other into $6$ and "
+                "$z$. What is $z$?",
+                ["$4$", "$5$", "$24$", "$2$"],
+                0,
+                "$8 \\times 3 = 6z$, so $24 = 6z$ and $z = 4$. The products of the two pieces of "
+                "each chord are equal.",
+                ["Eq(8*3, 6*4)", "Eq(8*3, 24)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "Tangent and secant from one external point",
+                "problemId": "im2-u7-l2-we4",
+            },
+            {"kind": "tryIt", "title": "Radius from a chord", "problemId": "im2-u7-l2-t1"},
+            {"kind": "tryIt", "title": "Crossing chords", "problemId": "im2-u7-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Tangent $\\perp$ radius at the contact point — the line to the centre is the hypotenuse",
+                    "A perpendicular from the centre bisects a chord; use HALF the chord",
+                    "Closer to the centre means a longer chord; the diameter is the longest",
+                    "Crossing chords: $PA \\cdot PB = PC \\cdot PD$, from similar triangles",
+                    "Tangent from outside: $PT^{2} = PA \\cdot PB$ — a geometric mean",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — G-C.5: arc length and sector area
+# ===========================================================================
+def lesson_arcs_and_sectors():
+    return lesson(
+        slug="arc-length-and-sector-area",
+        title="Arc Length and Sector Area",
+        concrete=(
+            "A pizza cut into eight slices: each slice is an eighth of the pie and its curved "
+            "crust is an eighth of the total crust. Every arc-length and sector-area question is "
+            "that observation, with the fraction written as $\\frac{\\theta}{360}$ instead of "
+            "$\\frac{1}{8}$."
+        ),
+        objective=(
+            "Compute arc length and sector area as fractions of a circle, and understand why arc "
+            "length is proportional to radius — which is what makes radian measure possible."
+        ),
+        concept=[
+            "**Everything is a fraction of the whole.** A central angle of $\\theta$ degrees cuts "
+            "off $\\frac{\\theta}{360}$ of the circle. Multiply that fraction by the "
+            "circumference for arc length, or by the area for sector area. There is only one "
+            "idea here, applied twice.",
+            "**Arc length.** The formula is $s = \\frac{\\theta}{360} \\cdot 2\\pi r$. For a $90°$ arc of a "
+            "circle of radius $6$: a quarter of $12\\pi$, which is $3\\pi$. Keeping $\\pi$ "
+            "symbolic until the end avoids rounding error and often lets it cancel.",
+            "**Sector area.** The formula is $A = \\frac{\\theta}{360} \\cdot \\pi r^{2}$ — same fraction, "
+            "different whole. A sector is the pie slice — the region bounded by two radii and the "
+            "arc — as distinct from a SEGMENT, which is bounded by a chord and the arc.",
+            "**Arc length is proportional to the radius, for a fixed angle.** Double the radius "
+            "and the arc doubles. So the ratio $\\frac{s}{r}$ depends only on the angle — and "
+            "that ratio is the RADIAN measure of the angle, a definition that needs no units at "
+            "all.",
+            "**One radian is the angle whose arc equals the radius.** Since a full circle has "
+            "arc $2\\pi r$, a full turn is $2\\pi$ radians, so $180° = \\pi$ radians. In radians "
+            "the formulas simplify to $s = r\\theta$ and $A = \\frac{1}{2}r^{2}\\theta$, with no "
+            "fractions of $360$ anywhere.",
+            "**A segment is a sector minus a triangle.** To find the area between a chord and its "
+            "arc, compute the sector and subtract the triangle formed by the two radii and the "
+            "chord. Keeping the two words straight — sector for the slice, segment for the "
+            "off-cut — prevents most of the errors here.",
+        ],
+        key_idea=(
+            "Arc and sector are the same fraction $\\frac{\\theta}{360}$ of the circumference and "
+            "of the area — and because arc scales with radius, $\\frac{s}{r}$ defines the radian."
+        ),
+        facts=[
+            fact(
+                "Arc length in degrees",
+                "s = \\frac{\\theta}{360} \\cdot 2\\pi r",
+                "The fraction of the circle times the whole circumference.",
+            ),
+            fact(
+                "Sector area in degrees",
+                "A = \\frac{\\theta}{360} \\cdot \\pi r^{2}",
+                "The same fraction, applied to the area instead.",
+            ),
+            fact(
+                "Radian measure",
+                "\\theta_{\\text{rad}} = \\frac{s}{r}, \\qquad 180° = \\pi \\text{ rad}",
+                "The ratio depends only on the angle, which is what makes it a measure.",
+            ),
+            fact(
+                "In radians the formulas simplify",
+                "s = r\\theta, \\qquad A = \\tfrac{1}{2}r^{2}\\theta",
+                "No fractions of $360$ — this is why radians are used past this course.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u7-l3-we1",
+                "A circle has radius $12$ cm. Find the length of a $75°$ arc and the area of the "
+                "corresponding sector, exactly and to two decimal places.",
+                "**Find the fraction of the circle.**"
+                "$$\\frac{75}{360} = \\frac{5}{24}.$$"
+                "**Arc length.** Multiply that fraction by the full circumference "
+                "$2\\pi(12) = 24\\pi$:"
+                "$$s = \\frac{5}{24} \\times 24\\pi = 5\\pi \\approx 15.71 \\text{ cm}.$$"
+                "The $24$ cancelled exactly — which it would not have done had the $\\pi$ been "
+                "turned into a decimal early."
+                "**Sector area.** Same fraction, applied to $\\pi(12)^{2} = 144\\pi$:"
+                "$$A = \\frac{5}{24} \\times 144\\pi = 30\\pi \\approx 94.25 \\text{ cm}^{2}.$$"
+                "**Check by proportion.** The sector is $\\frac{5}{24}$ of the circle, so its "
+                "area should be $\\frac{5}{24}$ of $144\\pi$: "
+                "$\\frac{30\\pi}{144\\pi} = \\frac{5}{24}$ ✓"
+                "**Check the arc against the radius.** A $75°$ arc is a bit over a fifth of the "
+                "circle, so $15.71$ against a circumference of $75.40$ ✓ about a fifth."
+                "**Note the units.** Arc length is a LENGTH (cm); sector area is an AREA (cm²). "
+                "Mixing them up is caught instantly by the units.",
+                [
+                    "Eq(Rational(75,360), Rational(5,24))",
+                    "Eq(Rational(5,24)*24*pi, 5*pi)",
+                    "Eq(Rational(5,24)*144*pi, 30*pi)",
+                    "Abs(5*pi - Rational(1571,100)) < Rational(1,100)",
+                    "Abs(30*pi - Rational(9425,100)) < Rational(1,100)",
+                    "Eq(Rational(30,144), Rational(5,24))",
+                ],
+            ),
+            problem(
+                "im2-u7-l3-we2",
+                "Two circles have radii $5$ and $15$. For a central angle of $40°$ in each, find "
+                "both arc lengths and the ratio $\\frac{s}{r}$ in each case. What do you notice?",
+                "**The fraction of the circle is the same for both.**"
+                "$$\\frac{40}{360} = \\frac{1}{9}.$$"
+                "**First arc.** Circumference $10\\pi$:"
+                "$$s_{1} = \\tfrac{1}{9}(10\\pi) = \\tfrac{10\\pi}{9} \\approx 3.49.$$"
+                "**Second arc.** Circumference $30\\pi$:"
+                "$$s_{2} = \\tfrac{1}{9}(30\\pi) = \\tfrac{30\\pi}{9} \\approx 10.47.$$"
+                "**Compute the two ratios.**"
+                "$$\\frac{s_{1}}{r_{1}} = \\frac{10\\pi/9}{5} = \\frac{2\\pi}{9}, \\qquad "
+                "\\frac{s_{2}}{r_{2}} = \\frac{30\\pi/9}{15} = \\frac{2\\pi}{9}.$$"
+                "**What this shows.** The ratio is IDENTICAL, even though the arcs differ by a "
+                "factor of three. Arc length is proportional to radius, so dividing by the radius "
+                "removes the circle entirely and leaves something depending only on the angle."
+                "**That ratio is the angle in radians.** $\\frac{2\\pi}{9} \\approx 0.698$ rad, "
+                "and converting directly: $40° \\times \\frac{\\pi}{180} = \\frac{2\\pi}{9}$ ✓"
+                "**Why this matters.** Radian measure is not an arbitrary alternative to degrees. "
+                "It is the ratio that the circle's own geometry hands you, with no $360$ chosen "
+                "by anybody."
+                "**Check the arcs scale correctly.** "
+                "$\\frac{s_{2}}{s_{1}} = \\frac{30\\pi/9}{10\\pi/9} = 3 = \\frac{r_{2}}{r_{1}}$ ✓",
+                [
+                    "Eq(Rational(40,360), Rational(1,9))",
+                    "Eq(Rational(1,9)*10*pi, 10*pi/9)",
+                    "Eq(Rational(1,9)*30*pi, 30*pi/9)",
+                    "Eq(simplify((10*pi/9)/5), 2*pi/9)",
+                    "Eq(simplify((30*pi/9)/15), 2*pi/9)",
+                    "Eq(40*pi/180, 2*pi/9)",
+                    "Eq(simplify((30*pi/9)/(10*pi/9)), 3)",
+                ],
+            ),
+            problem(
+                "im2-u7-l3-we3",
+                "Convert $135°$ to radians and $\\frac{5\\pi}{6}$ radians to degrees. Then find "
+                "the arc length and sector area for a $\\frac{5\\pi}{6}$ radian angle in a circle "
+                "of radius $8$.",
+                "**Degrees to radians.** Multiply by $\\frac{\\pi}{180}$:"
+                "$$135 \\times \\frac{\\pi}{180} = \\frac{135\\pi}{180} = \\frac{3\\pi}{4}.$$"
+                "**Radians to degrees.** Multiply by $\\frac{180}{\\pi}$:"
+                "$$\\frac{5\\pi}{6} \\times \\frac{180}{\\pi} = \\frac{900}{6} = 150°.$$"
+                "**Arc length, using the radian formula.** No fractions of $360$ are needed:"
+                "$$s = r\\theta = 8 \\times \\frac{5\\pi}{6} = \\frac{20\\pi}{3} \\approx 20.94.$$"
+                "**Sector area, likewise.**"
+                "$$A = \\tfrac{1}{2}r^{2}\\theta = \\tfrac{1}{2}(64)\\left(\\frac{5\\pi}{6}\\right) "
+                "= \\frac{80\\pi}{3} \\approx 83.78.$$"
+                "**Cross-check with the degree formulas.** $150°$ is $\\frac{150}{360} = "
+                "\\frac{5}{12}$ of the circle. Arc: $\\frac{5}{12}(16\\pi) = \\frac{20\\pi}{3}$ ✓ "
+                "Area: $\\frac{5}{12}(64\\pi) = \\frac{80\\pi}{3}$ ✓ Both agree exactly."
+                "**Why the radian versions are shorter.** The $\\frac{\\theta}{360}$ and the "
+                "$2\\pi$ in the circumference cancel against each other once the angle is measured "
+                "as $\\frac{s}{r}$ in the first place. The simplification is structural, not "
+                "cosmetic.",
+                [
+                    "Eq(135*pi/180, 3*pi/4)",
+                    "Eq(Rational(5,6)*180, 150)",
+                    "Eq(8*5*pi/6, 20*pi/3)",
+                    "Eq(Rational(1,2)*64*5*pi/6, 80*pi/3)",
+                    "Eq(Rational(150,360)*16*pi, 20*pi/3)",
+                    "Eq(Rational(150,360)*64*pi, 80*pi/3)",
+                    "Abs(20*pi/3 - Rational(2094,100)) < Rational(1,100)",
+                ],
+            ),
+            problem(
+                "im2-u7-l3-we4",
+                "A circle has radius $10$. A chord subtends a central angle of $90°$. Find the "
+                "area of the SEGMENT cut off by that chord.",
+                "**Name the two pieces.** The SECTOR is the pie slice bounded by two radii and the "
+                "arc. The SEGMENT is what remains after removing the triangle formed by the two "
+                "radii and the chord."
+                "**Find the sector area.** A $90°$ angle is a quarter of the circle:"
+                "$$A_{\\text{sector}} = \\tfrac{1}{4}\\pi(100) = 25\\pi \\approx 78.54.$$"
+                "**Find the triangle's area.** The two radii are perpendicular (the angle is "
+                "$90°$), so they are the base and height of a right triangle:"
+                "$$A_{\\text{triangle}} = \\tfrac{1}{2}(10)(10) = 50.$$"
+                "**Subtract.**"
+                "$$A_{\\text{segment}} = 25\\pi - 50 \\approx 78.54 - 50 = 28.54.$$"
+                "**Sanity-check the size.** The segment must be smaller than the sector, and "
+                "$28.54 < 78.54$ ✓ It should also be a modest fraction of the whole circle "
+                "($100\\pi \\approx 314.16$), and it is about $9\\%$ ✓"
+                "**Check the chord for completeness.** The chord is the hypotenuse of that right "
+                "triangle: $\\sqrt{100 + 100} = 10\\sqrt{2} \\approx 14.14$."
+                "**Why the exact form is worth keeping.** $25\\pi - 50$ is precise; $28.54$ is a "
+                "rounding. If this segment area feeds into a later calculation, carrying the exact "
+                "form prevents the rounding from compounding.",
+                [
+                    "Eq(Rational(1,4)*100*pi, 25*pi)",
+                    "Eq(Rational(1,2)*10*10, 50)",
+                    "Abs(25*pi - 50 - Rational(2854,100)) < Rational(1,100)",
+                    "25*pi - 50 < 25*pi",
+                    "Eq(simplify(sqrt(200)), 10*sqrt(2))",
+                    "Abs(100*pi - Rational(31416,100)) < Rational(1,100)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Confusing sector with segment.",
+                "A sector is the pie slice (two radii plus arc). A segment is the off-cut (chord "
+                "plus arc). Segment = sector minus triangle.",
+            ),
+            mistake(
+                "Using $\\frac{\\theta}{360}$ when the angle is already in radians.",
+                "In radians use $s = r\\theta$ and $A = \\frac{1}{2}r^2\\theta$ directly. Mixing "
+                "the two systems produces answers off by a factor of about $57$.",
+            ),
+            mistake(
+                "Converting $\\pi$ to a decimal early.",
+                "Keep it symbolic. In the $75°$ example the $24$ cancelled exactly — an "
+                "opportunity that disappears the moment $\\pi$ becomes $3.14159$.",
+            ),
+            mistake(
+                "Using the arc-length formula and reporting square units.",
+                "Arc length is a length. If your answer to an arc question carries cm², you used "
+                "$r^2$ where you needed $r$.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u7-l3-t1",
+                "Find the arc length and sector area for a $120°$ angle in a circle of radius $9$, "
+                "exactly.",
+                "The fraction is $\\frac{120}{360} = \\frac{1}{3}$. Circumference $18\\pi$, so the "
+                "arc is $6\\pi \\approx 18.85$. Area $81\\pi$, so the sector is $27\\pi \\approx "
+                "84.82$. Check: the sector is a third of the circle ✓ and $\\frac{27}{81} = "
+                "\\frac{1}{3}$ ✓",
+                [
+                    "Eq(Rational(120,360), Rational(1,3))",
+                    "Eq(Rational(1,3)*18*pi, 6*pi)",
+                    "Eq(Rational(1,3)*81*pi, 27*pi)",
+                    "Abs(6*pi - Rational(1885,100)) < Rational(1,100)",
+                ],
+            ),
+            problem(
+                "im2-u7-l3-t2",
+                "An arc of length $14\\pi$ lies in a circle of radius $21$. Find the central "
+                "angle in radians and in degrees.",
+                "In radians, $\\theta = \\frac{s}{r} = \\frac{14\\pi}{21} = \\frac{2\\pi}{3}$. In "
+                "degrees, $\\frac{2\\pi}{3} \\times \\frac{180}{\\pi} = 120°$. Check with the "
+                "degree formula: $\\frac{120}{360}(42\\pi) = \\frac{1}{3}(42\\pi) = 14\\pi$ ✓",
+                [
+                    "Eq(simplify(14*pi/21), 2*pi/3)",
+                    "Eq(Rational(2,3)*180, 120)",
+                    "Eq(Rational(120,360)*42*pi, 14*pi)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-C.5",
+                "title": "One fraction, applied twice",
+                "body": (
+                    "A central angle of $\\theta$ degrees claims $\\frac{\\theta}{360}$ of the "
+                    "circle. Multiply that fraction by the circumference for arc length, or by "
+                    "the area for sector area. There is no second idea in this lesson."
+                ),
+                "beats": [
+                    "Fraction: $\\frac{\\theta}{360}$",
+                    "Times $2\\pi r$: arc length",
+                    "Times $\\pi r^{2}$: sector area",
+                    "Keep $\\pi$ symbolic",
+                ],
+            },
+            {
+                "kind": "arcSector",
+                "eyebrow": "Sweep the angle",
+                "title": "Watch the fraction grow",
+                "teach": (
+                    "Drag the central angle and watch both the arc and the shaded slice grow in "
+                    "step. At $90°$ you have a quarter of each; at $180°$ a half. The same "
+                    "fraction governs both, which is why one idea covers two formulas."
+                ),
+                "config": {"start": 75, "radius": 12},
+            },
+            {
+                "kind": "worked",
+                "title": "Arc and sector from one fraction",
+                "problemId": "im2-u7-l3-we1",
+            },
+            tap(
+                "Which formula?",
+                "You need the LENGTH of a $60°$ arc in a circle of radius $9$. Which computation?",
+                [
+                    "$\\frac{60}{360} \\times \\pi(9)^{2}$",
+                    "$\\frac{60}{360} \\times 2\\pi(9)$",
+                    "$\\frac{60}{360} \\times 9$",
+                    "$60 \\times 2\\pi(9)$",
+                ],
+                1,
+                "Length needs the circumference $2\\pi r$, not the area. The answer is "
+                "$\\frac{1}{6}(18\\pi) = 3\\pi$ — a length, in the same units as the radius.",
+                [
+                    "Eq(Rational(60,360)*2*pi*9, 3*pi)",
+                    "Eq(Rational(60,360), Rational(1,6))",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "The proportionality",
+                "title": "Arc scales with radius — so the ratio is an angle measure",
+                "body": (
+                    "Double the radius and a fixed angle's arc doubles too. So $\\frac{s}{r}$ "
+                    "does not depend on the circle at all — only on the angle. That number IS the "
+                    "angle in radians, handed to you by the geometry rather than chosen."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Two circles, one angle, one ratio",
+                "problemId": "im2-u7-l3-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Converting",
+                "title": "Multiply by $\\frac{\\pi}{180}$ or by $\\frac{180}{\\pi}$",
+                "body": (
+                    "Degrees to radians: times $\\frac{\\pi}{180}$. Radians to degrees: times "
+                    "$\\frac{180}{\\pi}$. If you cannot remember which, check against "
+                    "$180° = \\pi$ — the conversion that gets it wrong will produce something "
+                    "absurd."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Both directions, and the radian formulas",
+                "problemId": "im2-u7-l3-we3",
+            },
+            tap(
+                "Sector or segment?",
+                "The region bounded by a CHORD and its arc is called…",
+                ["a sector", "a segment", "an arc", "a chord"],
+                1,
+                "A segment. A sector is bounded by two RADII and the arc — the pie slice. "
+                "Segment = sector minus the triangle.",
+                [
+                    "Eq(Rational(1,4)*100*pi - 50, 25*pi - 50)",
+                    "25*pi - 50 < 25*pi",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "A segment: sector minus triangle",
+                "problemId": "im2-u7-l3-we4",
+            },
+            {"kind": "tryIt", "title": "A third of a circle", "problemId": "im2-u7-l3-t1"},
+            {"kind": "tryIt", "title": "From arc length back to the angle", "problemId": "im2-u7-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "$s = \\frac{\\theta}{360}(2\\pi r)$ and $A = \\frac{\\theta}{360}(\\pi r^{2})$ — one fraction, two wholes",
+                    "Arc length is proportional to radius, so $\\frac{s}{r}$ measures the angle alone",
+                    "$180° = \\pi$ radians; in radians $s = r\\theta$ and $A = \\frac{1}{2}r^{2}\\theta$",
+                    "Segment = sector minus the triangle on the two radii",
+                    "Keep $\\pi$ symbolic; it usually cancels",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — G-GPE.1: the equation of a circle
+# ===========================================================================
+def lesson_circle_equation():
+    return lesson(
+        slug="the-equation-of-a-circle",
+        title="The Equation of a Circle",
+        concrete=(
+            "A circle is not a shape you have to describe — it is the set of all points a fixed "
+            "distance from a centre. Write that sentence with the distance formula and you have "
+            "the equation, with nothing invented along the way. Every circle equation in "
+            "existence is Pythagoras."
+        ),
+        objective=(
+            "Derive the equation of a circle from the distance formula, read the centre and "
+            "radius from standard form, and complete the square to convert from general form."
+        ),
+        concept=[
+            "**The definition, written down.** A point $(x, y)$ is on the circle exactly when its "
+            "distance from the centre $(h, k)$ equals $r$. The distance formula gives "
+            "$\\sqrt{(x - h)^{2} + (y - k)^{2}} = r$, and squaring both sides removes the "
+            "radical.",
+            "**Standard form.** It reads $(x - h)^{2} + (y - k)^{2} = r^{2}$. The centre is $(h, k)$ — with "
+            "the SIGN FLIP, so $(x + 3)^{2}$ means $h = -3$, exactly as in vertex form for "
+            "parabolas. And the right side is $r^{2}$, not $r$: an equation ending in $25$ has "
+            "radius $5$.",
+            "**Why it is Pythagoras.** The horizontal distance from centre to point is "
+            "$|x - h|$, the vertical is $|y - k|$, and the direct distance is the hypotenuse of "
+            "that right triangle. Squaring both legs and adding IS the Pythagorean theorem — "
+            "there is no separate circle formula to learn.",
+            "**General form hides the centre.** $x^{2} + y^{2} + Dx + Ey + F = 0$ is the expanded "
+            "version. The centre and radius are not readable from it, which is why completing the "
+            "square — once in $x$ and once in $y$ — is the standard first move.",
+            "**Complete the square in both variables independently.** Group the $x$ terms and the "
+            "$y$ terms separately, halve-and-square each middle coefficient, and add both "
+            "constants to BOTH sides. The two completions do not interact.",
+            "**Not every such equation is a circle.** If the right side comes out negative after "
+            "completing the square, no real points satisfy it. If it comes out zero, the 'circle' "
+            "is a single point. Checking the sign of $r^{2}$ is part of the answer.",
+        ],
+        key_idea=(
+            "$(x - h)^{2} + (y - k)^{2} = r^{2}$ is the distance formula squared — so reading a "
+            "circle's centre and radius is reading a right triangle."
+        ),
+        facts=[
+            fact(
+                "Standard form",
+                "(x - h)^{2} + (y - k)^{2} = r^{2}",
+                "Centre $(h, k)$ with the sign flip; the right side is the radius SQUARED.",
+            ),
+            fact(
+                "Centre at the origin",
+                "x^{2} + y^{2} = r^{2}",
+                "The case $h = k = 0$ — visibly Pythagoras with the radius as hypotenuse.",
+            ),
+            fact(
+                "General form",
+                "x^{2} + y^{2} + Dx + Ey + F = 0",
+                "Complete the square in $x$ and in $y$ to recover the centre and radius.",
+            ),
+            fact(
+                "Centre and radius from general form",
+                "\\left(-\\tfrac{D}{2}, -\\tfrac{E}{2}\\right), \\qquad r^{2} = \\tfrac{D^{2} + E^{2}}{4} - F",
+                "A shortcut worth knowing, but derive it by completing the square when unsure.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u7-l4-we1",
+                "Derive the equation of a circle with centre $(h, k)$ and radius $r$, then write "
+                "the equation of the circle with centre $(3, -2)$ and radius $7$.",
+                "**Start from the definition.** A point $(x, y)$ lies on the circle exactly when "
+                "its distance from the centre is $r$:"
+                "$$\\sqrt{(x - h)^{2} + (y - k)^{2}} = r.$$"
+                "**Square both sides.** Legal because both sides are non-negative, so no solutions "
+                "are gained:"
+                "$$(x - h)^{2} + (y - k)^{2} = r^{2}.$$"
+                "That is the derivation — the distance formula and one squaring."
+                "**Apply it.** With $h = 3$, $k = -2$ and $r = 7$, and remembering that "
+                "$(y - (-2)) = (y + 2)$:"
+                "$$(x - 3)^{2} + (y + 2)^{2} = 49.$$"
+                "**Check with a point that should be on it.** The point $(10, -2)$ is $7$ units "
+                "right of the centre: $(10 - 3)^{2} + (-2 + 2)^{2} = 49 + 0 = 49$ ✓"
+                "**Check another, not on an axis through the centre.** Is $(3, 5)$ on it? "
+                "$0 + 49 = 49$ ✓ — it is $7$ above the centre."
+                "**Check a point that should NOT be on it.** $(0, 0)$: "
+                "$9 + 4 = 13 \\neq 49$, so the origin is inside the circle, since $13 < 49$ ✓ "
+                "That comparison also tells you which side of the circle any point lies on.",
+                [
+                    "Eq((10 - 3)**2 + (-2 + 2)**2, 49)",
+                    "Eq((3 - 3)**2 + (5 + 2)**2, 49)",
+                    "Eq((0 - 3)**2 + (0 + 2)**2, 13)",
+                    "13 < 49",
+                    "Eq(7**2, 49)",
+                ],
+            ),
+            problem(
+                "im2-u7-l4-we2",
+                "State the centre and radius of $(x + 5)^{2} + (y - 1)^{2} = 20$, and find where "
+                "it crosses the vertical line through its centre.",
+                "**Read the centre, minding the sign flip.** Standard form subtracts, so "
+                "$(x + 5) = (x - (-5))$ gives $h = -5$, and $(y - 1)$ gives $k = 1$:"
+                "$$\\text{centre } (-5, 1).$$"
+                "**Read the radius.** The right side is $r^{2}$, not $r$:"
+                "$$r = \\sqrt{20} = 2\\sqrt{5} \\approx 4.47.$$"
+                "Leaving it as $20$ would be the classic error — the radius is not $20$."
+                "**Find the crossings on the vertical line through the centre.** Substituting $x = -5$:"
+                "$$0 + (y - 1)^{2} = 20 \\quad\\Longrightarrow\\quad y = 1 \\pm 2\\sqrt{5}.$$"
+                "So the circle crosses at $\\left(-5,\\ 1 + 2\\sqrt{5}\\right) \\approx "
+                "(-5, 5.47)$ and $\\left(-5,\\ 1 - 2\\sqrt{5}\\right) \\approx (-5, -3.47)$."
+                "**Check the two points are symmetric about the centre.** Their midpoint is "
+                "$\\left(-5, 1\\right)$ ✓ the centre, as any diameter's endpoints must be."
+                "**Check the separation is a diameter.** "
+                "$(1 + 2\\sqrt{5}) - (1 - 2\\sqrt{5}) = 4\\sqrt{5} = 2r$ ✓",
+                [
+                    "Eq(simplify(sqrt(20)), 2*sqrt(5))",
+                    "Abs(2*sqrt(5) - Rational(447,100)) < Rational(1,100)",
+                    "Eq(((1 + 2*sqrt(5)) + (1 - 2*sqrt(5)))/2, 1)",
+                    "Eq(simplify((1 + 2*sqrt(5)) - (1 - 2*sqrt(5))), 4*sqrt(5))",
+                    "Eq(simplify((-5 + 5)**2 + (1 + 2*sqrt(5) - 1)**2), 20)",
+                ],
+            ),
+            problem(
+                "im2-u7-l4-we3",
+                "Convert $x^{2} + y^{2} - 6x + 10y + 18 = 0$ to standard form, and state the "
+                "centre and radius.",
+                "**Group the variables and move the constant.**"
+                "$$(x^{2} - 6x) + (y^{2} + 10y) = -18.$$"
+                "**Complete the square in the first variable.** Half of $-6$ is $-3$; squared is $9$."
+                "**Complete the square in the second variable.** Half of $10$ is $5$; squared is $25$."
+                "**Add both constants to BOTH sides.** This is where errors live — the right side "
+                "must receive both:"
+                "$$(x^{2} - 6x + 9) + (y^{2} + 10y + 25) = -18 + 9 + 25 = 16.$$"
+                "**Factor each group.**"
+                "$$(x - 3)^{2} + (y + 5)^{2} = 16.$$"
+                "**Read the answer.** Centre $(3, -5)$, radius $\\sqrt{16} = 4$."
+                "**Check by expanding back.** "
+                "$(x - 3)^{2} + (y + 5)^{2} = x^{2} - 6x + 9 + y^{2} + 10y + 25 = "
+                "x^{2} + y^{2} - 6x + 10y + 34$. Setting that equal to $16$ gives "
+                "$x^{2} + y^{2} - 6x + 10y + 18 = 0$ ✓ the original."
+                "**Check with a point.** $(7, -5)$ is $4$ right of the centre: "
+                "$49 + 25 - 42 - 50 + 18 = 0$ ✓ It satisfies the general form exactly."
+                "**Verify the shortcut formula agrees.** Centre "
+                "$\\left(-\\frac{-6}{2}, -\\frac{10}{2}\\right) = (3, -5)$ ✓ and "
+                "$r^{2} = \\frac{36 + 100}{4} - 18 = 34 - 18 = 16$ ✓",
+                [
+                    "Eq(-18 + 9 + 25, 16)",
+                    "Eq(sqrt(16), 4)",
+                    "Eq(7**2 + (-5)**2 - 6*7 + 10*(-5) + 18, 0)",
+                    "Eq((7 - 3)**2 + (-5 + 5)**2, 16)",
+                    "Eq(Rational(36 + 100, 4) - 18, 16)",
+                    "Eq(9 + 25 - 18, 16)",
+                ],
+            ),
+            problem(
+                "im2-u7-l4-we4",
+                "Classify each equation: (a) $x^{2} + y^{2} + 4x - 8y + 25 = 0$; "
+                "(b) $x^{2} + y^{2} - 2x + 6y + 10 = 0$; "
+                "(c) $x^{2} + y^{2} + 8x - 2y - 8 = 0$.",
+                "**Part (a).** Completing both squares: half of $4$ is $2$ (square $4$); half of "
+                "$-8$ is $-4$ (square $16$):"
+                "$$(x + 2)^{2} + (y - 4)^{2} = -25 + 4 + 16 = -5.$$"
+                "A sum of two squares cannot be negative, so NO real points satisfy this. It is "
+                "not a circle at all."
+                "**Part (b).** Half of $-2$ is $-1$ (square $1$); half of $6$ is $3$ (square $9$):"
+                "$$(x - 1)^{2} + (y + 3)^{2} = -10 + 1 + 9 = 0.$$"
+                "A sum of two squares is zero only when both are zero, so the only solution is the "
+                "single POINT $(1, -3)$ — a degenerate circle of radius zero."
+                "**Part (c).** Half of $8$ is $4$ (square $16$); half of $-2$ is $-1$ (square "
+                "$1$):"
+                "$$(x + 4)^{2} + (y - 1)^{2} = 8 + 16 + 1 = 25.$$"
+                "A genuine circle: centre $(-4, 1)$, radius $5$."
+                "**The classification rule.** After completing both squares, look at the right "
+                "side: positive gives a circle, zero gives a point, negative gives nothing. "
+                "Reporting 'radius $\\sqrt{-5}$' is not an answer."
+                "**Check (c) with a point.** $(1, 1)$ is $5$ right of the centre: "
+                "$1 + 1 + 8 - 2 - 8 = 0$ ✓",
+                [
+                    "Eq(-25 + 4 + 16, -5)",
+                    "Eq(-10 + 1 + 9, 0)",
+                    "Eq(8 + 16 + 1, 25)",
+                    "Eq(1**2 + 1**2 + 8*1 - 2*1 - 8, 0)",
+                    "Eq((1 + 4)**2 + (1 - 1)**2, 25)",
+                    "-5 < 0",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reading the radius directly off the right side.",
+                "The right side is $r^2$. An equation ending in $= 20$ has radius "
+                "$\\sqrt{20} = 2\\sqrt{5}$, not $20$.",
+            ),
+            mistake(
+                "Getting the centre's signs backwards.",
+                "$(x + 5)^2$ is $(x - (-5))^2$, so $h = -5$. Standard form always subtracts — "
+                "rewrite the plus as a minus of a negative if it helps.",
+            ),
+            mistake(
+                "Adding the completing constants to only the left side.",
+                "Both constants must be added to BOTH sides. Forgetting the right side changes "
+                "the radius, silently.",
+            ),
+            mistake(
+                "Reporting a circle when the right side came out negative.",
+                "A negative right side means no real points at all. Zero means a single point. "
+                "Checking the sign is part of the answer, not an afterthought.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u7-l4-t1",
+                "Write the equation of the circle with centre $(-4, 6)$ passing through the point "
+                "$(0, 3)$.",
+                "The radius is the distance from centre to point: "
+                "$\\sqrt{(0 + 4)^{2} + (3 - 6)^{2}} = \\sqrt{16 + 9} = 5$. So the equation is "
+                "$(x + 4)^{2} + (y - 6)^{2} = 25$. Check the given point: "
+                "$16 + 9 = 25$ ✓",
+                [
+                    "Eq(sqrt(16 + 9), 5)",
+                    "Eq((0 + 4)**2 + (3 - 6)**2, 25)",
+                    "Eq(5**2, 25)",
+                ],
+            ),
+            problem(
+                "im2-u7-l4-t2",
+                "Find the centre and radius of $x^{2} + y^{2} + 12x - 4y + 15 = 0$.",
+                "Half of $12$ is $6$ (square $36$); half of $-4$ is $-2$ (square $4$). So "
+                "$(x + 6)^{2} + (y - 2)^{2} = -15 + 36 + 4 = 25$. Centre $(-6, 2)$, radius $5$. "
+                "Check with the point $(-1, 2)$, five to the right: "
+                "$1 + 4 - 12 - 8 + 15 = 0$ ✓",
+                [
+                    "Eq(-15 + 36 + 4, 25)",
+                    "Eq((-1)**2 + 2**2 + 12*(-1) - 4*2 + 15, 0)",
+                    "Eq((-1 + 6)**2 + (2 - 2)**2, 25)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-GPE.1",
+                "title": "The equation IS the definition",
+                "body": (
+                    "A circle is the set of points at a fixed distance from a centre. Write that "
+                    "with the distance formula, square both sides, and you have the equation — "
+                    "nothing was invented, and nothing needs memorising."
+                ),
+                "beats": [
+                    "Distance from centre $= r$",
+                    "Distance formula",
+                    "Square both sides",
+                    "$(x - h)^{2} + (y - k)^{2} = r^{2}$",
+                ],
+            },
+            {
+                "kind": "coordGeo",
+                "eyebrow": "It is Pythagoras",
+                "title": "The right triangle inside every circle",
+                "teach": (
+                    "From the centre to any point on the circle, the horizontal and vertical gaps "
+                    "are the legs of a right triangle and the radius is the hypotenuse. Squaring "
+                    "and adding the legs is the Pythagorean theorem, written as an equation in "
+                    "$x$ and $y$."
+                ),
+                "config": {"mode": "circle", "center": {"x": 3, "y": -2}, "r": 7, "min": -8, "max": 12},
+            },
+            {
+                "kind": "worked",
+                "title": "Deriving and applying standard form",
+                "problemId": "im2-u7-l4-we1",
+            },
+            tap(
+                "Read the circle",
+                "What are the centre and radius of $(x - 2)^{2} + (y + 7)^{2} = 36$?",
+                [
+                    "centre $(2, -7)$, radius $6$",
+                    "centre $(-2, 7)$, radius $6$",
+                    "centre $(2, -7)$, radius $36$",
+                    "centre $(2, 7)$, radius $6$",
+                ],
+                0,
+                "The form subtracts, so $(y + 7) = (y - (-7))$ gives $k = -7$. And the right side "
+                "is $r^{2} = 36$, so $r = 6$.",
+                ["Eq(sqrt(36), 6)", "Eq((2 + 6 - 2)**2 + (-7 + 7)**2, 36)"],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "Two easy slips",
+                "title": "Square-root the right side; flip the signs",
+                "body": (
+                    "The right side is $r^{2}$, so take its square root. And $(x + a)$ means the "
+                    "centre coordinate is $-a$. Both errors are silent — the equation still looks "
+                    "reasonable, so check with a point you expect to be on the circle."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Reading centre, radius and intercepts",
+                "problemId": "im2-u7-l4-we2",
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "General form",
+                "title": "Complete the square, twice, independently",
+                "body": (
+                    "$x^{2} + y^{2} + Dx + Ey + F = 0$ hides the centre. Group the $x$ terms and "
+                    "the $y$ terms separately, complete each square, and add BOTH new constants "
+                    "to both sides. The two completions never interact."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "General form to standard form",
+                "problemId": "im2-u7-l4-we3",
+            },
+            tap(
+                "What did you get?",
+                "After completing both squares an equation reads "
+                "$(x - 1)^{2} + (y + 2)^{2} = -4$. What does this describe?",
+                [
+                    "a circle of radius $2$",
+                    "a circle of radius $-2$",
+                    "a single point",
+                    "no real points at all",
+                ],
+                3,
+                "A sum of two squares can never be negative, so no real $(x, y)$ satisfies it. "
+                "A right side of zero would give a single point; only a positive right side gives "
+                "a circle.",
+                [
+                    "(1 - 1)**2 + (-2 + 2)**2 >= 0",
+                    "-4 < 0",
+                    "Eq((0 - 1)**2 + (0 + 2)**2, 5)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Circle, point, or nothing",
+                "problemId": "im2-u7-l4-we4",
+            },
+            {"kind": "tryIt", "title": "From a centre and a point", "problemId": "im2-u7-l4-t1"},
+            {"kind": "tryIt", "title": "Completing both squares", "problemId": "im2-u7-l4-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "$(x - h)^{2} + (y - k)^{2} = r^{2}$ is the distance formula, squared",
+                    "Centre $(h, k)$ with the sign flip; the right side is the radius SQUARED",
+                    "General form needs completing the square in $x$ and in $y$, independently",
+                    "Add both new constants to BOTH sides",
+                    "Right side positive: circle. Zero: a point. Negative: nothing real",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Practice and test banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im2-u7-p1",
+            "A central angle measures $126°$. Find the intercepted arc and an inscribed angle on "
+            "the same arc.",
+            "The arc equals the central angle: $126°$. The inscribed angle is half of it: $63°$. "
+            "Check: the remaining arc is $360 - 126 = 234°$, whose inscribed angle is $117°$, and "
+            "$63 + 117 = 180$ ✓",
+            [
+                "Eq(Rational(1,2)*126, 63)",
+                "Eq(360 - 126, 234)",
+                "Eq(Rational(1,2)*234, 117)",
+                "Eq(63 + 117, 180)",
+            ],
+        ),
+        problem(
+            "im2-u7-p2",
+            "$PQ$ is a diameter and $R$ is on the circle with $\\angle RPQ = 28°$. Find the other "
+            "two angles of triangle $PQR$.",
+            "The angle at $R$ is $90°$ (angle in a semicircle). The third angle is "
+            "$180 - 90 - 28 = 62°$. Check the complementary pair: $28 + 62 = 90$ ✓",
+            [
+                "Eq(180 - 90 - 28, 62)",
+                "Eq(28 + 62, 90)",
+            ],
+        ),
+        problem(
+            "im2-u7-p3",
+            "In a cyclic quadrilateral, one angle is $94°$. Find its opposite angle, and if a "
+            "second angle is $67°$, find the fourth.",
+            "Opposite angles are supplementary: $180 - 94 = 86°$ and $180 - 67 = 113°$. Check the "
+            "total: $94 + 86 + 67 + 113 = 360$ ✓",
+            [
+                "Eq(180 - 94, 86)",
+                "Eq(180 - 67, 113)",
+                "Eq(94 + 86 + 67 + 113, 360)",
+            ],
+        ),
+        problem(
+            "im2-u7-p4",
+            "A tangent from an external point is $24$ long and the circle's radius is $7$. Find "
+            "the distance from the external point to the centre.",
+            "The tangent-radius right angle makes the distance the hypotenuse: "
+            "$\\sqrt{576 + 49} = \\sqrt{625} = 25$. Check: $7$-$24$-$25$ is a Pythagorean "
+            "triple ✓ and $25 > 24$, as a hypotenuse must be ✓",
+            [
+                "Eq(sqrt(576 + 49), 25)",
+                "Eq(7**2 + 24**2, 25**2)",
+                "25 > 24",
+            ],
+        ),
+        problem(
+            "im2-u7-p5",
+            "A chord of length $30$ lies in a circle of radius $17$. Find its distance from the "
+            "centre.",
+            "Half the chord is $15$. The distance is $\\sqrt{289 - 225} = \\sqrt{64} = 8$. Check: "
+            "$8$-$15$-$17$ is a Pythagorean triple ✓ The chord ($30$) is less than the diameter "
+            "($34$) ✓",
+            [
+                "Eq(sqrt(289 - 225), 8)",
+                "Eq(8**2 + 15**2, 17**2)",
+                "Eq(2*17, 34)",
+                "30 < 34",
+            ],
+        ),
+        problem(
+            "im2-u7-p6",
+            "Two chords cross inside a circle, splitting one into $9$ and $4$ and the other into "
+            "$6$ and $w$. Find $w$.",
+            "Products are equal: $9 \\times 4 = 6w$, so $36 = 6w$ and $w = 6$. Check: "
+            "$36 = 36$ ✓ The chords are $13$ and $12$.",
+            [
+                "Eq(9*4, 6*6)",
+                "Eq(9 + 4, 13)",
+                "Eq(6 + 6, 12)",
+            ],
+        ),
+        problem(
+            "im2-u7-p7",
+            "From an external point, a tangent has length $15$ and a secant's near intersection "
+            "is $9$ from the point. Find the secant's far intersection distance.",
+            "$PT^{2} = PA \\cdot PB$ gives $225 = 9 \\cdot PB$, so $PB = 25$. The chord inside "
+            "the circle is $25 - 9 = 16$. Check the geometric mean: "
+            "$\\sqrt{9 \\times 25} = \\sqrt{225} = 15$ ✓ and $9 < 15 < 25$ ✓",
+            [
+                "Eq(15**2, 225)",
+                "Eq(225, 9*25)",
+                "Eq(25 - 9, 16)",
+                "Eq(sqrt(9*25), 15)",
+            ],
+        ),
+        problem(
+            "im2-u7-p8",
+            "Find the arc length and sector area for a $150°$ angle in a circle of radius $6$, "
+            "exactly.",
+            "The fraction is $\\frac{150}{360} = \\frac{5}{12}$. Circumference $12\\pi$, so the "
+            "arc is $5\\pi \\approx 15.71$. Area $36\\pi$, so the sector is $15\\pi \\approx "
+            "47.12$. Check: the sector is $\\frac{15}{36} = \\frac{5}{12}$ of the circle ✓",
+            [
+                "Eq(Rational(150,360), Rational(5,12))",
+                "Eq(Rational(5,12)*12*pi, 5*pi)",
+                "Eq(Rational(5,12)*36*pi, 15*pi)",
+                "Eq(Rational(15,36), Rational(5,12))",
+            ],
+        ),
+        problem(
+            "im2-u7-p9",
+            "Convert $210°$ to radians and $\\frac{3\\pi}{5}$ radians to degrees.",
+            "$210 \\times \\frac{\\pi}{180} = \\frac{7\\pi}{6}$. And "
+            "$\\frac{3\\pi}{5} \\times \\frac{180}{\\pi} = 108°$. Check the first against "
+            "$180° = \\pi$: $\\frac{7\\pi}{6}$ is a bit more than $\\pi$, matching $210 > 180$ ✓",
+            [
+                "Eq(210*pi/180, 7*pi/6)",
+                "Eq(Rational(3,5)*180, 108)",
+                "7*pi/6 > pi",
+            ],
+        ),
+        problem(
+            "im2-u7-p10",
+            "An arc of length $8\\pi$ subtends a central angle of $\\frac{2\\pi}{5}$ radians. "
+            "Find the radius.",
+            "In radians $s = r\\theta$, so $r = \\frac{s}{\\theta} = "
+            "\\frac{8\\pi}{2\\pi/5} = 20$. Check: $20 \\times \\frac{2\\pi}{5} = 8\\pi$ ✓ In "
+            "degrees the angle is $72°$, and $\\frac{72}{360}(40\\pi) = 8\\pi$ ✓",
+            [
+                "Eq(simplify(8*pi/(2*pi/5)), 20)",
+                "Eq(20*2*pi/5, 8*pi)",
+                "Eq(Rational(2,5)*180, 72)",
+                "Eq(Rational(72,360)*40*pi, 8*pi)",
+            ],
+        ),
+        problem(
+            "im2-u7-p11",
+            "Write the equation of the circle with centre $(-2, 5)$ and radius $\\sqrt{13}$, and "
+            "say whether $(1, 3)$ lies on it.",
+            "The equation is $(x + 2)^{2} + (y - 5)^{2} = 13$. Testing $(1, 3)$: "
+            "$9 + 4 = 13$ ✓ so yes, it lies on the circle. (The radius squared is $13$, not "
+            "$\\sqrt{13}$ — the right side always holds $r^{2}$.)",
+            [
+                "Eq((1 + 2)**2 + (3 - 5)**2, 13)",
+                "Eq(sqrt(13)**2, 13)",
+                "Eq(9 + 4, 13)",
+            ],
+        ),
+        problem(
+            "im2-u7-p12",
+            "Find the centre and radius of $x^{2} + y^{2} - 10x + 2y - 23 = 0$.",
+            "Half of $-10$ is $-5$ (square $25$); half of $2$ is $1$ (square $1$). So "
+            "$(x - 5)^{2} + (y + 1)^{2} = 23 + 25 + 1 = 49$. Centre $(5, -1)$, radius $7$. Check "
+            "with $(12, -1)$: $144 + 1 - 120 - 2 - 23 = 0$ ✓",
+            [
+                "Eq(23 + 25 + 1, 49)",
+                "Eq(sqrt(49), 7)",
+                "Eq(12**2 + (-1)**2 - 10*12 + 2*(-1) - 23, 0)",
+                "Eq((12 - 5)**2 + (-1 + 1)**2, 49)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im2-u7-ty-1",
+            "In a circle, $\\angle ABC$ is inscribed and intercepts arc $AC$, which measures "
+            "$132°$. $D$ is another point on the major arc. Find $\\angle ABC$, $\\angle ADC$, "
+            "and the central angle $\\angle AOC$, justifying each.",
+            "**The central angle equals its arc.**"
+            "$$\\angle AOC = 132°.$$"
+            "**The inscribed angle is half its arc.**"
+            "$$\\angle ABC = \\tfrac{1}{2}(132) = 66°.$$"
+            "**The second inscribed angle is the same.** $D$ lies on the same major arc, so "
+            "$\\angle ADC$ intercepts the same arc $AC$ and is therefore also"
+            "$$\\angle ADC = 66°.$$"
+            "**Why the vertex position does not matter.** Every inscribed angle on arc $AC$ is "
+            "half the SAME central angle, so all of them are equal. This is the 'angles in the "
+            "same segment' result."
+            "**Check with the other arc.** The major arc measures $360 - 132 = 228°$, so an "
+            "inscribed angle standing on IT measures $114°$. And $66 + 114 = 180$ ✓ — the two "
+            "angles are supplementary, which is exactly the cyclic-quadrilateral relationship.",
+            [
+                "Eq(Rational(1,2)*132, 66)",
+                "Eq(360 - 132, 228)",
+                "Eq(Rational(1,2)*228, 114)",
+                "Eq(66 + 114, 180)",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-2",
+            "A circle has radius $10$. A chord $AB$ is $12$ from the centre. Find the chord's "
+            "length, the central angle it subtends (to one decimal place), and the arc length of "
+            "the minor arc — or explain why the question is impossible.",
+            "**Check the configuration first.** The distance from the centre to a chord must be "
+            "LESS than the radius. Here the distance is $12$ and the radius is $10$, so "
+            "$12 > 10$ — the line lies entirely outside the circle."
+            "**Conclude.** There is no such chord. The question is impossible as stated, and "
+            "saying so IS the answer."
+            "**Confirm algebraically.** The half-chord would be "
+            "$\\sqrt{r^{2} - d^{2}} = \\sqrt{100 - 144} = \\sqrt{-44}$, which is not real. The "
+            "impossibility announces itself the moment you set up Pythagoras."
+            "**Repair the question and solve it.** Take the distance as $6$ instead. Then the "
+            "half-chord is $\\sqrt{100 - 36} = 8$, so the chord is $16$."
+            "**Find the central angle for the repaired case.** Half the central angle satisfies "
+            "$\\sin\\theta = \\frac{8}{10} = 0.8$, so $\\theta \\approx 53.1°$ and the full "
+            "central angle is about $106.3°$."
+            "**Find the minor arc.**"
+            "$$s = \\frac{106.3}{360}(20\\pi) \\approx 18.55.$$"
+            "**Check the arc is longer than the chord.** $18.55 > 16$ ✓ — a curve between two "
+            "points is always longer than the straight line, so this comparison is a genuine "
+            "test.",
+            [
+                "12 > 10",
+                "100 - 144 < 0",
+                "Eq(sqrt(100 - 36), 8)",
+                "Eq(2*8, 16)",
+                "Abs(2*asin(Rational(8,10))*180/pi - Rational(1063,10)) < Rational(1,5)",
+                "Abs(2*asin(Rational(8,10))*10 - Rational(1855,100)) < Rational(1,50)",
+                "2*asin(Rational(8,10))*10 > 16",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-3",
+            "From an external point $P$, one secant meets a circle at $A$ then $B$ with "
+            "$PA = 5$ and $AB = 11$; a second secant meets it at $C$ then $D$ with $PC = 4$. "
+            "Find $PD$ and $CD$, and the length of the tangent from $P$.",
+            "**Compute the whole first secant.**"
+            "$$PB = PA + AB = 5 + 11 = 16.$$"
+            "**Apply the two-secant rule.** Whole times external part, on each secant:"
+            "$$PA \\cdot PB = PC \\cdot PD \\quad\\Longrightarrow\\quad 5 \\times 16 = 4 \\cdot "
+            "PD.$$"
+            "**Solve.**"
+            "$$PD = \\frac{80}{4} = 20, \\qquad CD = 20 - 4 = 16.$$"
+            "**Find the tangent length.** The tangent squared equals the same product:"
+            "$$PT^{2} = 80 \\quad\\Longrightarrow\\quad PT = \\sqrt{80} = 4\\sqrt{5} \\approx "
+            "8.94.$$"
+            "**Check the geometric-mean ordering.** The tangent must lie between the near and far "
+            "intersections of either secant: $5 < 8.94 < 16$ ✓ and $4 < 8.94 < 20$ ✓"
+            "**Check both secants give the same product.** $5 \\times 16 = 80$ and "
+            "$4 \\times 20 = 80$ ✓ — the product is a property of the POINT $P$ and the circle, "
+            "not of which line you drew. That invariance is what the theorem really says.",
+            [
+                "Eq(5 + 11, 16)",
+                "Eq(5*16, 80)",
+                "Eq(Rational(80,4), 20)",
+                "Eq(20 - 4, 16)",
+                "Eq(4*20, 80)",
+                "Eq(simplify(sqrt(80)), 4*sqrt(5))",
+                "Abs(4*sqrt(5) - Rational(894,100)) < Rational(1,100)",
+                "4*sqrt(5) > 5",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-4",
+            "A circular pizza of diameter $36$ cm is cut into $8$ equal slices. Find the arc "
+            "length of the crust on one slice, the area of one slice, and the angle of a slice "
+            "in both degrees and radians.",
+            "**Find the radius.** $r = \\frac{36}{2} = 18$ cm."
+            "**Find the angle.** Eight equal slices means"
+            "$$\\frac{360}{8} = 45° = \\frac{\\pi}{4} \\text{ radians}.$$"
+            "**Find the crust length.** One eighth of the circumference $36\\pi$:"
+            "$$s = \\tfrac{1}{8}(36\\pi) = \\tfrac{9\\pi}{2} \\approx 14.14 \\text{ cm}.$$"
+            "**Find the slice area.** One eighth of the area $324\\pi$:"
+            "$$A = \\tfrac{1}{8}(324\\pi) = \\tfrac{81\\pi}{2} \\approx 127.23 \\text{ cm}^{2}.$$"
+            "**Cross-check with the radian formulas.** $s = r\\theta = 18 \\times \\frac{\\pi}{4} "
+            "= \\frac{9\\pi}{2}$ ✓ and $A = \\frac{1}{2}r^{2}\\theta = \\frac{1}{2}(324)"
+            "\\left(\\frac{\\pi}{4}\\right) = \\frac{81\\pi}{2}$ ✓ Both agree with the degree "
+            "route exactly."
+            "**Check the eight slices reassemble the pizza.** "
+            "$8 \\times \\frac{81\\pi}{2} = 324\\pi$ ✓ the full area."
+            "**A note on what the crust is not.** The $14.14$ cm is only the CURVED edge. The "
+            "slice's full perimeter also includes two straight edges of $18$ cm each, giving "
+            "about $50.14$ cm in total.",
+            [
+                "Eq(Rational(36,2), 18)",
+                "Eq(Rational(360,8), 45)",
+                "Eq(45*pi/180, pi/4)",
+                "Eq(Rational(1,8)*36*pi, 9*pi/2)",
+                "Eq(Rational(1,8)*324*pi, 81*pi/2)",
+                "Eq(18*pi/4, 9*pi/2)",
+                "Eq(Rational(1,2)*324*pi/4, 81*pi/2)",
+                "Eq(8*81*pi/2, 324*pi)",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-5",
+            "Convert $x^{2} + y^{2} + 14x - 6y + 22 = 0$ to standard form. State the centre and "
+            "radius, and find the two points where the circle meets the horizontal line through "
+            "its centre.",
+            "**Group and move the constant.**"
+            "$$(x^{2} + 14x) + (y^{2} - 6y) = -22.$$"
+            "**Complete both squares.** Half of $14$ is $7$ (square $49$); half of $-6$ is $-3$ "
+            "(square $9$). Add both to both sides:"
+            "$$(x + 7)^{2} + (y - 3)^{2} = -22 + 49 + 9 = 36.$$"
+            "**Read the answer.** Centre $(-7, 3)$, radius $\\sqrt{36} = 6$."
+            "**Find the crossings on the horizontal line through the centre.** Substituting $y = 3$:"
+            "$$(x + 7)^{2} + 0 = 36 \\quad\\Longrightarrow\\quad x + 7 = \\pm 6,$$"
+            "so $x = -1$ and $x = -13$. The points are $(-1, 3)$ and $(-13, 3)$."
+            "**Check they are a diameter apart.** $-1 - (-13) = 12 = 2r$ ✓ and their midpoint is "
+            "$(-7, 3)$, the centre ✓"
+            "**Verify one point in the ORIGINAL equation.** At $(-1, 3)$: "
+            "$1 + 9 - 14 - 18 + 22 = 0$ ✓ Checking in the original rather than the completed form "
+            "catches any slip made during the completion.",
+            [
+                "Eq(-22 + 49 + 9, 36)",
+                "Eq(sqrt(36), 6)",
+                "Eq((-1)**2 + 3**2 + 14*(-1) - 6*3 + 22, 0)",
+                "Eq((-13)**2 + 3**2 + 14*(-13) - 6*3 + 22, 0)",
+                "Eq(-1 - (-13), 12)",
+                "Eq((-1 + (-13))/2, -7)",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-6",
+            "A circular garden of radius $14$ m has a straight path cut across it as a chord "
+            "$8$ m from the centre. Find the path's length, the central angle it subtends, and "
+            "the area of the smaller region the path cuts off.",
+            "**Find the path's length.** Half the chord is "
+            "$\\sqrt{196 - 64} = \\sqrt{132} = 2\\sqrt{33} \\approx 11.49$, so the path is"
+            "$$4\\sqrt{33} \\approx 22.98 \\text{ m}.$$"
+            "**Find the central angle.** Half of it satisfies "
+            "$\\cos\\alpha = \\frac{8}{14} = \\frac{4}{7}$, so $\\alpha \\approx 55.15°$ and the "
+            "full central angle is about $110.3°$."
+            "**Find the sector area.**"
+            "$$A_{\\text{sector}} = \\frac{110.3}{360}\\pi(196) \\approx 188.6 \\text{ m}^{2}.$$"
+            "**Find the triangle's area.** Base the chord, height the distance from the centre:"
+            "$$A_{\\text{triangle}} = \\tfrac{1}{2}\\left(4\\sqrt{33}\\right)(8) = "
+            "16\\sqrt{33} \\approx 91.9 \\text{ m}^{2}.$$"
+            "**Subtract for the smaller region — the SEGMENT.**"
+            "$$188.6 - 91.9 = 96.7 \\text{ m}^{2}.$$"
+            "**Check the size.** The whole garden is $196\\pi \\approx 615.8$ m², so the segment "
+            "is about $16\\%$ of it ✓ plausible for a chord well off centre."
+            "**Check the segment is smaller than the sector.** $96.7 < 188.6$ ✓ It must be, "
+            "since the triangle was removed."
+            "**Check the chord is shorter than the diameter.** $22.98 < 28$ ✓",
+            [
+                "Eq(simplify(sqrt(196 - 64)), 2*sqrt(33))",
+                "Eq(2*2*sqrt(33), 4*sqrt(33))",
+                "Abs(4*sqrt(33) - Rational(2298,100)) < Rational(1,100)",
+                "Eq(Rational(8,14), Rational(4,7))",
+                "Abs(2*acos(Rational(4,7))*180/pi - Rational(1103,10)) < Rational(1,5)",
+                "Eq(Rational(1,2)*4*sqrt(33)*8, 16*sqrt(33))",
+                "Abs(16*sqrt(33) - Rational(919,10)) < Rational(1,5)",
+                "4*sqrt(33) < 28",
+            ],
+        ),
+        problem(
+            "im2-u7-ty-7",
+            "Two circles have equations $(x - 1)^{2} + (y - 2)^{2} = 25$ and "
+            "$x^{2} + y^{2} + 6x - 8y - 11 = 0$. Find both centres and radii, the distance "
+            "between the centres, and state whether the circles intersect.",
+            "**Read the first circle directly.** Centre $(1, 2)$, radius $5$."
+            "**Convert the second.** Half of $6$ is $3$ (square $9$); half of $-8$ is $-4$ "
+            "(square $16$):"
+            "$$(x + 3)^{2} + (y - 4)^{2} = 11 + 9 + 16 = 36,$$"
+            "so its centre is $(-3, 4)$ and its radius is $6$."
+            "**Find the distance between the centres.**"
+            "$$d = \\sqrt{(1 - (-3))^{2} + (2 - 4)^{2}} = \\sqrt{16 + 4} = \\sqrt{20} = "
+            "2\\sqrt{5} \\approx 4.47.$$"
+            "**Apply the intersection test.** Two circles meet at two points exactly when"
+            "$$|r_{1} - r_{2}| < d < r_{1} + r_{2}.$$"
+            "Here $|5 - 6| = 1$ and $5 + 6 = 11$, so the condition is $1 < 4.47 < 11$ ✓"
+            "**Conclude.** The circles intersect at two points."
+            "**Interpret the two failure modes it rules out.** If $d$ had exceeded $11$ the "
+            "circles would be entirely separate; if $d$ had been below $1$ the smaller would sit "
+            "wholly inside the larger without touching. Both are excluded."
+            "**A confirming observation.** The distance between centres ($4.47$) is less than "
+            "either radius, so each centre lies INSIDE the other circle — a configuration that "
+            "forces two crossings. Checking that the centre $(1, 2)$ satisfies "
+            "$(1 + 3)^{2} + (2 - 4)^{2} = 20 < 36$ ✓ confirms it.",
+            [
+                "Eq(11 + 9 + 16, 36)",
+                "Eq(sqrt(36), 6)",
+                "Eq(simplify(sqrt(16 + 4)), 2*sqrt(5))",
+                "Abs(2*sqrt(5) - Rational(447,100)) < Rational(1,100)",
+                "2*sqrt(5) > 1",
+                "2*sqrt(5) < 11",
+                "Eq((1 + 3)**2 + (2 - 4)**2, 20)",
+                "20 < 36",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="circles",
+        title="Circles",
+        unit_number=7,
+        blurb=(
+            "The inscribed-angle theorem and the corollaries it generates — equal angles on one "
+            "arc, the semicircle right angle, cyclic quadrilaterals; the tangent-radius right "
+            "angle and the chord and secant product rules; arc length, sector area and where "
+            "radians come from; and the equation of a circle, which is the distance formula "
+            "squared."
+        ),
+        builds_on=(
+            "The distance formula from IM1 Unit 8 and the similar triangles of Unit 5 — a circle "
+            "is the set of points at a fixed distance from a centre, and the product rules are "
+            "similarity in disguise."
+        ),
+        lessons=[
+            lesson_angles(),
+            lesson_chords_and_tangents(),
+            lesson_arcs_and_sectors(),
+            lesson_circle_equation(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

@@ -58,11 +58,10 @@ const COURSES: {
     href: "/math/integrated-2",
     title: "Integrated Math 2",
     blurb:
-      "Quadratics end to end, similarity and right-triangle trigonometry, circles, probability, and formal proof — the middle year of the integrated pathway.",
-    units: 7,
+      "Quadratics end to end — including the complex numbers a negative discriminant forces — plus rational exponents, similarity and right-triangle trigonometry, circles, and probability.",
+    units: 8,
     level: 2,
     exams: ["SAT"],
-    upcoming: true,
   },
   {
     href: "/math/integrated-3",

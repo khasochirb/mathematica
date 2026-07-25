@@ -1,0 +1,1868 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 2 — Unit 6: Right-Triangle Trigonometry.
+
+CCSS Integrated Math II: G-SRT.6 (define the trigonometric ratios for acute
+angles, understanding that side ratios in right triangles are properties of the
+ANGLE because of similarity), G-SRT.7 (explain and use the relationship between
+the sine and cosine of complementary angles), G-SRT.8 (use trigonometric ratios
+and the Pythagorean theorem to solve right triangles in applied problems).
+
+The unit's opening move is Unit 5's payoff: the ratios are well defined ONLY
+because all right triangles with a given acute angle are similar. Without that,
+"the sine of 30 degrees" would not be a number at all.
+
+Run: python3 scripts/im/build_im2_unit6.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-2"
+
+
+# ===========================================================================
+# Lesson 1 — G-SRT.6: the ratios exist because of similarity
+# ===========================================================================
+def lesson_the_ratios():
+    return lesson(
+        slug="the-trigonometric-ratios",
+        title="Why the Ratios Depend Only on the Angle",
+        concrete=(
+            "A wheelchair ramp rising at $5°$ has the same steepness whether it is two metres "
+            "long or twenty. The RATIO of rise to length is fixed by the angle alone — and that "
+            "is not obvious until you notice every such ramp is a scaled copy of every other. "
+            "Similarity is what makes trigonometry possible."
+        ),
+        objective=(
+            "Define sine, cosine and tangent as side ratios, explain why they depend only on the "
+            "angle, and compute them from a labelled right triangle."
+        ),
+        concept=[
+            "**The ratios are defined relative to a chosen acute angle.** For angle $\\theta$: "
+            "the OPPOSITE side faces it, the ADJACENT side touches it (and is not the "
+            "hypotenuse), and the hypotenuse is always opposite the right angle. Change which "
+            "acute angle you are looking at and opposite and adjacent swap.",
+            "**The three ratios.** $\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}$, "
+            "$\\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}}$, "
+            "$\\tan\\theta = \\frac{\\text{opp}}{\\text{adj}}$. The mnemonic SOH-CAH-TOA is only "
+            "a filing system; the content is that these three numbers are determined by "
+            "$\\theta$ alone.",
+            "**Why they depend only on the angle — the whole point of the lesson.** Two right "
+            "triangles sharing an acute angle also share the right angle, so by AA they are "
+            "SIMILAR. Similar triangles have proportional sides, so the ratio "
+            "$\\frac{\\text{opp}}{\\text{hyp}}$ is the same in both. Without Unit 5, "
+            "$\\sin 30°$ would not be a well-defined number.",
+            "**Sine and cosine of an acute angle always lie strictly between zero and one.** Each is a leg "
+            "divided by the hypotenuse, and in a right triangle the hypotenuse is strictly the "
+            "longest side. Any computed sine above $1$ is an arithmetic error, and the check "
+            "costs nothing.",
+            "**Tangent has no upper bound.** It is one leg over the other, and either can be the "
+            "larger. As the angle approaches $90°$ the opposite side grows without limit relative "
+            "to the adjacent one, so the tangent runs off to infinity.",
+            "**The ratios connect to slope.** The tangent of the angle a line makes with the "
+            "horizontal is exactly the line's slope: rise over run is opposite over adjacent. "
+            "Gradients on road signs, roof pitches and ramp regulations are all tangents in "
+            "disguise.",
+        ],
+        key_idea=(
+            "For a right triangle the three side ratios depend only on the acute angle, because "
+            "any two such triangles are similar by AA."
+        ),
+        facts=[
+            fact(
+                "The three ratios",
+                "\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}, \\quad \\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}}, \\quad \\tan\\theta = \\frac{\\text{opp}}{\\text{adj}}",
+                "Defined relative to one chosen acute angle; opposite and adjacent swap if you switch angles.",
+            ),
+            fact(
+                "Tangent from sine and cosine",
+                "\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}",
+                "The hypotenuses cancel — so only two of the three ratios are independent.",
+            ),
+            fact(
+                "Bounds for an acute angle",
+                "0 < \\sin\\theta < 1, \\quad 0 < \\cos\\theta < 1",
+                "A leg is always shorter than the hypotenuse. Tangent has no such bound.",
+            ),
+            fact(
+                "Tangent is slope",
+                "\\tan\\theta = \\frac{\\text{rise}}{\\text{run}} = m",
+                "The angle a line makes with the horizontal has the line's slope as its tangent.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u6-l1-we1",
+                "A right triangle has legs $3$ and $4$ and hypotenuse $5$. Let $\\theta$ be the "
+                "angle opposite the side of length $3$. Find $\\sin\\theta$, $\\cos\\theta$ and "
+                "$\\tan\\theta$, and then the same three ratios for the other acute angle.",
+                "**Label the sides relative to the chosen angle.** Opposite $= 3$, adjacent $= 4$, hypotenuse "
+                "$= 5$."
+                "**Write the three ratios.**"
+                "$$\\sin\\theta = \\tfrac{3}{5}, \\qquad \\cos\\theta = \\tfrac{4}{5}, "
+                "\\qquad \\tan\\theta = \\tfrac{3}{4}.$$"
+                "**Now switch to the other acute angle.** Opposite and adjacent "
+                "exchange roles; the hypotenuse does not move:"
+                "$$\\sin\\phi = \\tfrac{4}{5}, \\qquad \\cos\\phi = \\tfrac{3}{5}, "
+                "\\qquad \\tan\\phi = \\tfrac{4}{3}.$$"
+                "**Notice the exchange.** $\\sin\\theta = \\cos\\phi$ and "
+                "$\\cos\\theta = \\sin\\phi$. The two acute angles sum to $90°$, and this swap is "
+                "the complementary relationship Lesson 3 will make explicit."
+                "**Check the bounds.** Both sines and both cosines are less than $1$ ✓ while the "
+                "tangents, $\\frac{3}{4}$ and $\\frac{4}{3}$, straddle $1$ — one angle is below "
+                "$45°$ and the other above."
+                "**Check the identity.** "
+                "$\\frac{\\sin\\theta}{\\cos\\theta} = \\frac{3/5}{4/5} = \\frac{3}{4} = "
+                "\\tan\\theta$ ✓",
+                [
+                    "Eq(3**2 + 4**2, 5**2)",
+                    "Eq(Rational(3,5)/Rational(4,5), Rational(3,4))",
+                    "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)",
+                    "Rational(3,5) < 1",
+                    "Eq(Rational(4,3)*Rational(3,4), 1)",
+                ],
+            ),
+            problem(
+                "im2-u6-l1-we2",
+                "Two right triangles share an acute angle $\\theta$. The first has opposite $6$ "
+                "and hypotenuse $10$; the second has opposite $9$. Find the second triangle's "
+                "hypotenuse, and confirm the sines agree.",
+                "**Establish the similarity.** Both triangles contain $\\theta$ and both contain "
+                "a right angle, so by AA they are similar. That is the fact doing all the work "
+                "here."
+                "**Use the proportion.** Corresponding sides are in one ratio:"
+                "$$\\frac{9}{6} = \\frac{h}{10} \\quad\\Longrightarrow\\quad h = 15.$$"
+                "**Confirm the sines agree.**"
+                "$$\\sin\\theta = \\frac{6}{10} = 0.6 \\qquad\\text{and}\\qquad "
+                "\\frac{9}{15} = 0.6 \\ \\checkmark$$"
+                "**Why this had to happen.** The scale factor between the triangles is "
+                "$\\frac{3}{2}$, and BOTH the opposite side and the hypotenuse were multiplied by "
+                "it. A ratio is unchanged when numerator and denominator are scaled equally — "
+                "that is the entire reason $\\sin\\theta$ is a number rather than a triangle-"
+                "dependent quantity."
+                "**Complete both triangles.** The adjacent sides are "
+                "$\\sqrt{100 - 36} = 8$ and $\\sqrt{225 - 81} = 12$, and "
+                "$\\frac{12}{8} = \\frac{3}{2}$ ✓ the same factor again.",
+                [
+                    "Eq(Rational(9,6), Rational(3,2))",
+                    "Eq(Rational(3,2)*10, 15)",
+                    "Eq(Rational(6,10), Rational(9,15))",
+                    "Eq(sqrt(100 - 36), 8)",
+                    "Eq(sqrt(225 - 81), 12)",
+                    "Eq(Rational(12,8), Rational(3,2))",
+                ],
+            ),
+            problem(
+                "im2-u6-l1-we3",
+                "In a right triangle, $\\sin\\theta = \\frac{7}{25}$. Find $\\cos\\theta$ and "
+                "$\\tan\\theta$ exactly, without a calculator.",
+                "**Interpret the given ratio as side lengths.** $\\sin\\theta = "
+                "\\frac{\\text{opp}}{\\text{hyp}}$, so a triangle with opposite $7$ and "
+                "hypotenuse $25$ has this angle. Any similar triangle would do — the ratios are "
+                "what matter."
+                "**Find the third side by Pythagoras.**"
+                "$$\\text{adj} = \\sqrt{25^{2} - 7^{2}} = \\sqrt{625 - 49} = \\sqrt{576} = 24.$$"
+                "**Read off the other two ratios.**"
+                "$$\\cos\\theta = \\tfrac{24}{25}, \\qquad \\tan\\theta = \\tfrac{7}{24}.$$"
+                "**Check with the Pythagorean identity.** Squaring and adding the sine and "
+                "cosine:"
+                "$$\\left(\\tfrac{7}{25}\\right)^{2} + \\left(\\tfrac{24}{25}\\right)^{2} = "
+                "\\frac{49 + 576}{625} = \\frac{625}{625} = 1 \\ \\checkmark$$"
+                "This is Pythagoras divided through by the square of the hypotenuse — the same "
+                "theorem, rewritten in ratios."
+                "**Check the quotient identity.** "
+                "$\\frac{7/25}{24/25} = \\frac{7}{24} = \\tan\\theta$ ✓"
+                "**A note on size.** $\\sin\\theta = 0.28$ is small, so $\\theta$ is a small "
+                "angle — under $17°$. The cosine being near $1$ agrees: a small angle has a "
+                "nearly-horizontal adjacent side almost as long as the hypotenuse.",
+                [
+                    "Eq(sqrt(625 - 49), 24)",
+                    "Eq(Rational(7,25)**2 + Rational(24,25)**2, 1)",
+                    "Eq(Rational(7,25)/Rational(24,25), Rational(7,24))",
+                    "Eq(7**2 + 24**2, 25**2)",
+                    "Rational(24,25) > Rational(7,25)",
+                ],
+            ),
+            problem(
+                "im2-u6-l1-we4",
+                "A road sign says the gradient is $12\\%$. Express this as a tangent, find the "
+                "angle to the nearest degree, and find how much height is gained over $500$ m "
+                "measured along the road.",
+                "**Interpret the percentage.** A $12\\%$ gradient means $12$ m of rise per $100$ "
+                "m of horizontal run:"
+                "$$\\tan\\theta = \\frac{12}{100} = 0.12.$$"
+                "**Find the angle.** $\\theta = \\arctan(0.12) \\approx 6.84°$, so about $7°$ to "
+                "the nearest degree. Road gradients are gentler than they sound — a $12\\%$ hill "
+                "is steep to cycle up but is a shallow angle."
+                "**Be careful about what the given distance measures.** The gradient uses the HORIZONTAL "
+                "run, but distance along a road is measured along the SLOPE — the hypotenuse. So "
+                "the height gained is $500\\sin\\theta$, not $500\\tan\\theta$."
+                "**Compute it.** $\\sin(6.84°) \\approx 0.11914$, so"
+                "$$500 \\times 0.11914 \\approx 59.6 \\text{ m}.$$"
+                "**Compare with the careless answer.** Using the tangent would give "
+                "$500 \\times 0.12 = 60$ m — close here, but only because the angle is small. At "
+                "$30°$ the two would differ by a seventh."
+                "**Check with Pythagoras.** With hypotenuse $500$ and rise $59.6$, the run is "
+                "$\\sqrt{500^{2} - 59.6^{2}} \\approx 496.4$, and "
+                "$\\frac{59.6}{496.4} \\approx 0.120$ ✓ — the gradient is recovered, confirming "
+                "the sine was the right ratio.",
+                [
+                    "Eq(Rational(12,100), Rational(3,25))",
+                    "Abs(atan(Rational(12,100)) - Rational(684,100)*pi/180) < Rational(1,100)",
+                    "Abs(sin(atan(Rational(12,100))) - Rational(11914,100000)) < Rational(1,10000)",
+                    "Abs(500*sin(atan(Rational(12,100))) - Rational(596,10)) < Rational(1,10)",
+                    "500*sin(atan(Rational(12,100))) < 60",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Keeping 'opposite' and 'adjacent' fixed when switching angles.",
+                "They are defined relative to the chosen angle and swap when you switch to the "
+                "other acute angle. Only the hypotenuse stays put.",
+            ),
+            mistake(
+                "Accepting a sine or cosine greater than $1$.",
+                "Impossible for an acute angle — a leg cannot exceed the hypotenuse. If you "
+                "compute $\\sin\\theta = 1.25$, you divided the wrong way round.",
+            ),
+            mistake(
+                "Treating a percentage gradient as an angle in degrees.",
+                "A $12\\%$ gradient is $\\tan\\theta = 0.12$, giving about $7°$ — not $12°$. The "
+                "percentage is a ratio, not an angle.",
+            ),
+            mistake(
+                "Using the tangent when the given distance is along the slope.",
+                "Distance along a road is the hypotenuse, so the rise is $d\\sin\\theta$. The "
+                "tangent needs the horizontal run, which is rarely what is measured.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u6-l1-t1",
+                "A right triangle has legs $8$ and $15$. For the angle opposite the $8$, find all "
+                "three ratios.",
+                "The hypotenuse is $\\sqrt{64 + 225} = \\sqrt{289} = 17$. Then "
+                "$\\sin\\theta = \\frac{8}{17}$, $\\cos\\theta = \\frac{15}{17}$, "
+                "$\\tan\\theta = \\frac{8}{15}$. Check: "
+                "$\\left(\\frac{8}{17}\\right)^{2} + \\left(\\frac{15}{17}\\right)^{2} = "
+                "\\frac{64 + 225}{289} = 1$ ✓",
+                [
+                    "Eq(sqrt(64 + 225), 17)",
+                    "Eq(Rational(8,17)**2 + Rational(15,17)**2, 1)",
+                    "Eq(Rational(8,17)/Rational(15,17), Rational(8,15))",
+                ],
+            ),
+            problem(
+                "im2-u6-l1-t2",
+                "If $\\cos\\theta = \\frac{20}{29}$, find $\\sin\\theta$ and $\\tan\\theta$ "
+                "exactly.",
+                "Adjacent $20$, hypotenuse $29$, so opposite $= \\sqrt{841 - 400} = \\sqrt{441} = "
+                "21$. Then $\\sin\\theta = \\frac{21}{29}$ and $\\tan\\theta = \\frac{21}{20}$. "
+                "Check: $\\frac{441 + 400}{841} = 1$ ✓ And since the tangent exceeds $1$, the "
+                "angle is above $45°$.",
+                [
+                    "Eq(sqrt(841 - 400), 21)",
+                    "Eq(Rational(21,29)**2 + Rational(20,29)**2, 1)",
+                    "Eq(Rational(21,29)/Rational(20,29), Rational(21,20))",
+                    "Rational(21,20) > 1",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.6",
+                "title": "Unit 5 is why this unit exists",
+                "body": (
+                    "Two right triangles with the same acute angle are similar, so their side "
+                    "ratios match. That is the only reason $\\sin 30°$ can be a NUMBER rather "
+                    "than something that depends on which triangle you drew."
+                ),
+                "beats": [
+                    "Same acute angle + right angle",
+                    "AA gives similarity",
+                    "Similar means proportional sides",
+                    "So the ratio depends on the angle alone",
+                ],
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The three names",
+                "title": "Opposite, adjacent, hypotenuse",
+                "body": (
+                    "The hypotenuse faces the right angle and never changes. Opposite and "
+                    "adjacent are named relative to the angle you have chosen — pick the other "
+                    "acute angle and the two labels swap."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Both acute angles of a 3-4-5 triangle",
+                "problemId": "im2-u6-l1-we1",
+            },
+            tap(
+                "Which ratio?",
+                "For angle $\\theta$ you know the opposite side and the hypotenuse. Which ratio "
+                "uses exactly those two?",
+                ["cosine", "sine", "tangent", "none of them"],
+                1,
+                "$\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}$. Cosine uses adjacent over "
+                "hypotenuse; tangent uses opposite over adjacent.",
+                ["Eq(Rational(3,5), Rational(3,5))", "Eq(Rational(3,5)*5, 3)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "Two similar triangles, one sine",
+                "problemId": "im2-u6-l1-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "A free error check",
+                "title": "Sine and cosine can never exceed 1",
+                "body": (
+                    "Both are a leg over the hypotenuse, and the hypotenuse is the longest side "
+                    "of a right triangle. A value above $1$ means the fraction was written upside "
+                    "down. Tangent has no such limit."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "From one ratio to the other two",
+                "problemId": "im2-u6-l1-we3",
+            },
+            tap(
+                "Spot the impossible value",
+                "Which of these CANNOT be the cosine of an acute angle?",
+                ["$0.98$", "$1.04$", "$0.5$", "$0.03$"],
+                1,
+                "Cosine is adjacent over hypotenuse, and a leg is always shorter than the "
+                "hypotenuse — so the value is strictly between $0$ and $1$. $1.04$ is impossible.",
+                ["Rational(104,100) > 1", "Rational(98,100) < 1"],
+            ),
+            {
+                "kind": "coordGeo",
+                "eyebrow": "Tangent is slope",
+                "title": "The angle a line makes with the horizontal",
+                "teach": (
+                    "Rise over run is opposite over adjacent — so the slope of a line IS the "
+                    "tangent of its angle of inclination. Road gradients, roof pitches and ramp "
+                    "regulations are all tangents written as percentages."
+                ),
+                "config": {"mode": "slope", "a": {"x": 0, "y": 0}, "b": {"x": 4, "y": 3}, "min": -2, "max": 8},
+            },
+            {
+                "kind": "worked",
+                "title": "A road gradient, and the trap in it",
+                "problemId": "im2-u6-l1-we4",
+            },
+            {"kind": "tryIt", "title": "All three from two legs", "problemId": "im2-u6-l1-t1"},
+            {"kind": "tryIt", "title": "From a cosine", "problemId": "im2-u6-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "The ratios depend only on the angle — because AA makes the triangles similar",
+                    "$\\sin = \\frac{\\text{opp}}{\\text{hyp}}$, $\\cos = \\frac{\\text{adj}}{\\text{hyp}}$, $\\tan = \\frac{\\text{opp}}{\\text{adj}}$",
+                    "Opposite and adjacent swap when you switch acute angles",
+                    "Acute sine and cosine are strictly between $0$ and $1$; tangent is unbounded",
+                    "$\\sin^{2}\\theta + \\cos^{2}\\theta = 1$ is Pythagoras in ratio form",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — G-SRT.6: the special triangles
+# ===========================================================================
+def lesson_special_triangles():
+    return lesson(
+        slug="special-right-triangles",
+        title="The Special Triangles: Exact Values Without a Calculator",
+        concrete=(
+            "Cut a square along its diagonal and you get a $45$-$45$-$90$ triangle. Cut an "
+            "equilateral triangle down its middle and you get a $30$-$60$-$90$. Because both come "
+            "from figures whose side lengths you already know, their ratios can be written down "
+            "exactly — no decimals, no calculator, no approximation."
+        ),
+        objective=(
+            "Derive the side ratios of the $45$-$45$-$90$ and $30$-$60$-$90$ triangles and use "
+            "them to write exact trigonometric values."
+        ),
+        concept=[
+            "**The half-square triangle.** Cut a unit square along its diagonal: "
+            "the legs are $1$ and $1$, and Pythagoras gives a hypotenuse of $\\sqrt{2}$. So the "
+            "ratio is $1 : 1 : \\sqrt{2}$, and to find the hypotenuse you multiply a leg by "
+            "$\\sqrt{2}$.",
+            "**The half-equilateral triangle.** Drop the altitude of an "
+            "equilateral triangle of side $2$: it bisects the base into two halves of length $1$ "
+            "and bisects the $60°$ apex into two $30°$ angles. Pythagoras gives the altitude as "
+            "$\\sqrt{3}$, so the ratio is $1 : \\sqrt{3} : 2$.",
+            "**Match sides to angles, not to positions.** In the $30$-$60$-$90$, the shortest "
+            "side ($1$) faces the smallest angle ($30°$), the middle side ($\\sqrt{3}$) faces "
+            "$60°$, and the longest ($2$) faces the right angle. Reading the ratio by position on "
+            "the page is how people get $\\sqrt{3}$ and $1$ the wrong way round.",
+            "**The exact values worth knowing.** $\\sin 30° = \\frac{1}{2}$, "
+            "$\\cos 30° = \\frac{\\sqrt{3}}{2}$, $\\tan 30° = \\frac{1}{\\sqrt{3}}$; "
+            "$\\sin 45° = \\cos 45° = \\frac{\\sqrt{2}}{2}$, $\\tan 45° = 1$; "
+            "$\\sin 60° = \\frac{\\sqrt{3}}{2}$, $\\cos 60° = \\frac{1}{2}$, "
+            "$\\tan 60° = \\sqrt{3}$.",
+            "**The tangent of forty-five degrees is worth a moment.** A $45°$ right triangle has equal legs, so "
+            "opposite over adjacent is $1$ exactly. Any angle below $45°$ has tangent under $1$; "
+            "any angle above has tangent over $1$ — a fast plausibility check on any tangent "
+            "computation.",
+            "**Exact beats decimal.** $\\frac{\\sqrt{3}}{2}$ is a number; $0.866$ is a rounding of "
+            "it. Carrying the exact form through a multi-step problem prevents rounding error "
+            "from accumulating, and often lets radicals cancel and disappear.",
+        ],
+        key_idea=(
+            "Half a square gives $1 : 1 : \\sqrt{2}$ and half an equilateral triangle gives "
+            "$1 : \\sqrt{3} : 2$ — every exact trigonometric value at $30°$, $45°$ and $60°$ "
+            "comes from those two pictures."
+        ),
+        facts=[
+            fact(
+                "The 45-45-90 ratio",
+                "1 : 1 : \\sqrt{2}",
+                "Half a square. Hypotenuse is a leg times $\\sqrt{2}$.",
+            ),
+            fact(
+                "The 30-60-90 ratio",
+                "1 : \\sqrt{3} : 2",
+                "Half an equilateral triangle. Shortest side faces the $30°$ angle.",
+            ),
+            fact(
+                "Exact values at 30 and 60",
+                "\\sin 30° = \\tfrac{1}{2}, \\quad \\cos 30° = \\tfrac{\\sqrt{3}}{2}, \\quad \\tan 60° = \\sqrt{3}",
+                "Read straight off the $1 : \\sqrt{3} : 2$ triangle.",
+            ),
+            fact(
+                "Exact values at 45",
+                "\\sin 45° = \\cos 45° = \\tfrac{\\sqrt{2}}{2}, \\quad \\tan 45° = 1",
+                "Equal legs force the sine and cosine to agree.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u6-l2-we1",
+                "Derive the $45$-$45$-$90$ ratio from a square, then find the hypotenuse of such "
+                "a triangle whose legs are $7$.",
+                "**Start from a unit square.** Its diagonal cuts it into two triangles. "
+                "Each has the two sides of the square as legs, so the legs are $1$ and $1$, and "
+                "the two acute angles are equal — hence $45°$ each, since they sum to $90°$."
+                "**Find the diagonal with Pythagoras.**"
+                "$$d^{2} = 1^{2} + 1^{2} = 2 \\quad\\Longrightarrow\\quad d = \\sqrt{2}.$$"
+                "So the ratio is $1 : 1 : \\sqrt{2}$."
+                "**Scale it to legs of 7.** Every $45$-$45$-$90$ triangle is similar to this one, "
+                "so multiply the whole ratio by $7$:"
+                "$$7 : 7 : 7\\sqrt{2}.$$"
+                "The hypotenuse is $7\\sqrt{2} \\approx 9.90$."
+                "**Check with Pythagoras directly.** $49 + 49 = 98$, and "
+                "$\\left(7\\sqrt{2}\\right)^{2} = 49 \\times 2 = 98$ ✓"
+                "**Read off the exact ratios.** $\\sin 45° = \\frac{7}{7\\sqrt{2}} = "
+                "\\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$, and the same for the cosine — the "
+                "legs are equal, so the two ratios must be ✓ And "
+                "$\\tan 45° = \\frac{7}{7} = 1$.",
+                [
+                    "Eq(1**2 + 1**2, 2)",
+                    "Eq((7*sqrt(2))**2, 98)",
+                    "Eq(49 + 49, 98)",
+                    "Eq(simplify(7/(7*sqrt(2))), sqrt(2)/2)",
+                    "Eq(sin(pi/4), sqrt(2)/2)",
+                    "Eq(tan(pi/4), 1)",
+                ],
+            ),
+            problem(
+                "im2-u6-l2-we2",
+                "Derive the $30$-$60$-$90$ ratio from an equilateral triangle, and write the "
+                "exact values of $\\sin 30°$, $\\cos 30°$ and $\\tan 60°$.",
+                "**Start from an equilateral triangle of side 2.** All three angles are $60°$. "
+                "Drop the altitude from one vertex to the opposite side."
+                "**See what the altitude does.** It bisects the base, giving two halves of length "
+                "$1$, and it bisects the apex angle, giving two angles of $30°$. Each half is a "
+                "right triangle with angles $30°$, $60°$ and $90°$."
+                "**Find the altitude with Pythagoras.**"
+                "$$h^{2} = 2^{2} - 1^{2} = 3 \\quad\\Longrightarrow\\quad h = \\sqrt{3}.$$"
+                "So the ratio is $1 : \\sqrt{3} : 2$, with $1$ opposite the $30°$ angle."
+                "**Read the ratios for the smaller acute angle.** For $30°$: Opposite $1$, adjacent $\\sqrt{3}$, "
+                "hypotenuse $2$:"
+                "$$\\sin 30° = \\tfrac{1}{2}, \\qquad \\cos 30° = \\tfrac{\\sqrt{3}}{2}.$$"
+                "**And for the larger acute angle.** For $60°$: Opposite $\\sqrt{3}$, adjacent $1$:"
+                "$$\\tan 60° = \\frac{\\sqrt{3}}{1} = \\sqrt{3}.$$"
+                "**Check the identity.** "
+                "$\\sin^{2}30° + \\cos^{2}30° = \\frac{1}{4} + \\frac{3}{4} = 1$ ✓"
+                "**Sanity-check the sizes.** $\\sin 30° = 0.5$ is the smaller value and "
+                "$\\cos 30° \\approx 0.866$ the larger, which is right: $30°$ is a small angle, "
+                "so its opposite side is short and its adjacent side long.",
+                [
+                    "Eq(2**2 - 1**2, 3)",
+                    "Eq(sin(pi/6), Rational(1,2))",
+                    "Eq(cos(pi/6), sqrt(3)/2)",
+                    "Eq(tan(pi/3), sqrt(3))",
+                    "Eq(sin(pi/6)**2 + cos(pi/6)**2, 1)",
+                    "cos(pi/6) > sin(pi/6)",
+                ],
+            ),
+            problem(
+                "im2-u6-l2-we3",
+                "A $30$-$60$-$90$ triangle has its shorter leg equal to $9$. Find the other two "
+                "sides. Then a second such triangle has HYPOTENUSE $9$; find its sides.",
+                "**First triangle: the shorter leg is the leading term of the ratio.** Multiply the "
+                "whole ratio $1 : \\sqrt{3} : 2$ by $9$:"
+                "$$9 : 9\\sqrt{3} : 18.$$"
+                "So the longer leg is $9\\sqrt{3} \\approx 15.59$ and the hypotenuse is $18$."
+                "**Second triangle: the hypotenuse is the last term of the ratio.** So the scale "
+                "factor is $\\frac{9}{2} = 4.5$:"
+                "$$4.5 : 4.5\\sqrt{3} : 9.$$"
+                "The shorter leg is $4.5$ and the longer is $4.5\\sqrt{3} \\approx 7.79$."
+                "**Why the two answers are so different.** The same number $9$ played two "
+                "different roles in the ratio. Identifying WHICH element of the ratio you have "
+                "been given is the whole task; the scaling is arithmetic."
+                "**Check both with Pythagoras.** First: "
+                "$81 + 243 = 324 = 18^{2}$ ✓ Second: "
+                "$20.25 + 60.75 = 81 = 9^{2}$ ✓"
+                "**The identifying question, stated once.** Is the given side opposite $30°$, "
+                "opposite $60°$, or the hypotenuse? Answer that before scaling anything.",
+                [
+                    "Eq(81 + (9*sqrt(3))**2, 324)",
+                    "Eq(18**2, 324)",
+                    "Eq(Rational(9,2)**2 + (Rational(9,2)*sqrt(3))**2, 81)",
+                    "Eq(9**2, 81)",
+                    "Eq(Rational(9,2), Rational(45,10))",
+                ],
+            ),
+            problem(
+                "im2-u6-l2-we4",
+                "A ladder leans against a wall at $60°$ to the ground, reaching $4.5$ m up the "
+                "wall. Find the ladder's length and how far its foot is from the wall, exactly "
+                "and then to one decimal place.",
+                "**Identify the triangle.** The wall is vertical, the ground horizontal, so the "
+                "angle at the ground is $60°$ and the remaining angle is $30°$. This is a "
+                "$30$-$60$-$90$."
+                "**Match the given side to the ratio.** The $4.5$ m up the wall is OPPOSITE the "
+                "$60°$ angle, so it corresponds to the $\\sqrt{3}$ of the ratio "
+                "$1 : \\sqrt{3} : 2$."
+                "**Find the scale factor.**"
+                "$$k\\sqrt{3} = 4.5 \\quad\\Longrightarrow\\quad k = \\frac{4.5}{\\sqrt{3}} = "
+                "\\frac{4.5\\sqrt{3}}{3} = 1.5\\sqrt{3}.$$"
+                "**Find the two unknown sides.** The distance from the wall is $k$ itself, since "
+                "it is opposite the $30°$ angle:"
+                "$$\\text{foot distance} = 1.5\\sqrt{3} \\approx 2.6 \\text{ m},$$"
+                "and the ladder is the hypotenuse, $2k$:"
+                "$$\\text{ladder} = 3\\sqrt{3} \\approx 5.2 \\text{ m}.$$"
+                "**Check with Pythagoras.** "
+                "$\\left(1.5\\sqrt{3}\\right)^{2} + 4.5^{2} = 6.75 + 20.25 = 27$, and "
+                "$\\left(3\\sqrt{3}\\right)^{2} = 9 \\times 3 = 27$ ✓"
+                "**Sanity-check the shape.** At a steep $60°$ the ladder's foot should be much "
+                "closer to the wall than the height it reaches — $2.6$ against $4.5$ ✓ And the "
+                "ladder must exceed the height it reaches: $5.2 > 4.5$ ✓",
+                [
+                    "Eq(simplify(Rational(45,10)/sqrt(3)), Rational(3,2)*sqrt(3))",
+                    "Eq(simplify((Rational(3,2)*sqrt(3))**2 + Rational(45,10)**2), 27)",
+                    "Eq((3*sqrt(3))**2, 27)",
+                    "Abs(Rational(3,2)*sqrt(3) - Rational(26,10)) < Rational(1,10)",
+                    "Abs(3*sqrt(3) - Rational(52,10)) < Rational(1,10)",
+                    "3*sqrt(3) > Rational(45,10)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Putting the $\\sqrt{3}$ opposite the $30°$ angle.",
+                "The shortest side faces the smallest angle. In $1 : \\sqrt{3} : 2$, the $1$ is "
+                "opposite $30°$ and the $\\sqrt{3}$ opposite $60°$.",
+            ),
+            mistake(
+                "Multiplying the hypotenuse by $\\sqrt{2}$ in a 45-45-90 triangle.",
+                "The hypotenuse is a LEG times $\\sqrt{2}$. To go the other way, divide: "
+                "leg $= \\frac{\\text{hyp}}{\\sqrt{2}}$.",
+            ),
+            mistake(
+                "Rounding to decimals mid-problem.",
+                "Carry $\\sqrt{3}$ through to the end. Rounding early accumulates error, and "
+                "radicals often cancel exactly if you let them.",
+            ),
+            mistake(
+                "Assuming the given side is always the shortest one.",
+                "Ask which element of the ratio you were handed — opposite $30°$, opposite "
+                "$60°$, or the hypotenuse. The scale factor depends entirely on that answer.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u6-l2-t1",
+                "A $45$-$45$-$90$ triangle has hypotenuse $10$. Find the legs exactly.",
+                "The ratio is $1 : 1 : \\sqrt{2}$, and the hypotenuse is the $\\sqrt{2}$ part, so "
+                "$k\\sqrt{2} = 10$ and $k = \\frac{10}{\\sqrt{2}} = 5\\sqrt{2}$. Both legs are "
+                "$5\\sqrt{2} \\approx 7.07$. Check: $50 + 50 = 100 = 10^{2}$ ✓",
+                [
+                    "Eq(simplify(10/sqrt(2)), 5*sqrt(2))",
+                    "Eq((5*sqrt(2))**2 + (5*sqrt(2))**2, 100)",
+                    "Abs(5*sqrt(2) - Rational(707,100)) < Rational(1,100)",
+                ],
+            ),
+            problem(
+                "im2-u6-l2-t2",
+                "A $30$-$60$-$90$ triangle has its LONGER leg equal to $12$. Find the other two "
+                "sides exactly.",
+                "The longer leg is the $\\sqrt{3}$ part, so $k\\sqrt{3} = 12$ and "
+                "$k = \\frac{12}{\\sqrt{3}} = 4\\sqrt{3}$. The shorter leg is $4\\sqrt{3} \\approx "
+                "6.93$ and the hypotenuse is $8\\sqrt{3} \\approx 13.86$. Check: "
+                "$48 + 144 = 192$, and $(8\\sqrt{3})^{2} = 192$ ✓",
+                [
+                    "Eq(simplify(12/sqrt(3)), 4*sqrt(3))",
+                    "Eq((4*sqrt(3))**2 + 144, 192)",
+                    "Eq((8*sqrt(3))**2, 192)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.6",
+                "title": "Two cuts, every exact value",
+                "body": (
+                    "Cut a square in half diagonally and cut an equilateral triangle down the "
+                    "middle. Those two pictures supply every exact trigonometric value you are "
+                    "expected to know, and they supply them by Pythagoras alone."
+                ),
+                "beats": [
+                    "Square $\\to$ $1 : 1 : \\sqrt{2}$",
+                    "Equilateral $\\to$ $1 : \\sqrt{3} : 2$",
+                    "Read the ratios off",
+                    "Scale to any size",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "The 45-45-90, derived and used",
+                "problemId": "im2-u6-l2-we1",
+            },
+            {
+                "kind": "worked",
+                "title": "The 30-60-90, derived from an equilateral triangle",
+                "problemId": "im2-u6-l2-we2",
+            },
+            tap(
+                "Which side faces which angle?",
+                "In a $30$-$60$-$90$ triangle with ratio $1 : \\sqrt{3} : 2$, the side of length "
+                "$\\sqrt{3}$ is opposite which angle?",
+                ["$30°$", "$60°$", "$90°$", "it depends on the drawing"],
+                1,
+                "The sides order the same way the angles do: shortest faces smallest. So $1$ "
+                "faces $30°$, $\\sqrt{3} \\approx 1.73$ faces $60°$, and $2$ faces the right "
+                "angle.",
+                [
+                    "sqrt(3) > 1",
+                    "2 > sqrt(3)",
+                    "Eq(sin(pi/6), Rational(1,2))",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "Before scaling",
+                "title": "Which element of the ratio were you given?",
+                "body": (
+                    "The same number, say $9$, gives completely different triangles depending on "
+                    "whether it is the short leg, the long leg or the hypotenuse. Identify its "
+                    "role first; the arithmetic afterwards is trivial."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "The same number in two different roles",
+                "problemId": "im2-u6-l2-we3",
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "A useful landmark",
+                "title": "Tangent 45 is exactly 1",
+                "body": (
+                    "Equal legs mean opposite over adjacent is $1$. So any angle under $45°$ has "
+                    "tangent under $1$, and any angle over $45°$ has tangent over $1$ — a "
+                    "one-second check on every tangent you compute."
+                ),
+            },
+            tap(
+                "Exact value",
+                "What is $\\cos 60°$ exactly?",
+                ["$\\frac{\\sqrt{3}}{2}$", "$\\frac{1}{2}$", "$\\frac{\\sqrt{2}}{2}$", "$\\sqrt{3}$"],
+                1,
+                "For the $60°$ angle in the $1 : \\sqrt{3} : 2$ triangle, the adjacent side is "
+                "$1$ and the hypotenuse is $2$, so $\\cos 60° = \\frac{1}{2}$. Note "
+                "$\\cos 60° = \\sin 30°$ — the complementary swap.",
+                [
+                    "Eq(cos(pi/3), Rational(1,2))",
+                    "Eq(cos(pi/3), sin(pi/6))",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "A ladder at 60 degrees",
+                "problemId": "im2-u6-l2-we4",
+            },
+            {"kind": "tryIt", "title": "From the hypotenuse of a 45-45-90", "problemId": "im2-u6-l2-t1"},
+            {"kind": "tryIt", "title": "From the longer leg of a 30-60-90", "problemId": "im2-u6-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "$45$-$45$-$90$ is $1 : 1 : \\sqrt{2}$ — half a square",
+                    "$30$-$60$-$90$ is $1 : \\sqrt{3} : 2$ — half an equilateral triangle",
+                    "Shortest side faces the smallest angle, always",
+                    "$\\sin 30° = \\frac{1}{2}$, $\\cos 30° = \\frac{\\sqrt{3}}{2}$, $\\tan 45° = 1$, $\\tan 60° = \\sqrt{3}$",
+                    "Identify which element of the ratio you were given BEFORE scaling",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — G-SRT.7: complementary angles and inverse trig
+# ===========================================================================
+def lesson_complements_and_inverses():
+    return lesson(
+        slug="complements-and-inverse-ratios",
+        title="Complementary Angles and Finding the Angle",
+        concrete=(
+            "Stand at one end of a ramp and its rise is 'opposite'; walk to the other end and the "
+            "same segment is now 'adjacent'. Nothing about the ramp changed — only which angle "
+            "you are standing at. That is the whole content of the sine-cosine relationship "
+            "between complementary angles."
+        ),
+        objective=(
+            "Explain and use $\\sin\\theta = \\cos(90° - \\theta)$, and use inverse trigonometric "
+            "functions to find an angle from a ratio."
+        ),
+        concept=[
+            "**The two acute angles of a right triangle are complementary.** They sum to $90°$, "
+            "because all three angles sum to $180°$ and one of them is the right angle. So "
+            "naming one acute angle $\\theta$ makes the other $90° - \\theta$ automatically.",
+            "**Sine and cosine swap between complements.** "
+            "$\\sin\\theta = \\cos(90° - \\theta)$ and $\\cos\\theta = \\sin(90° - \\theta)$. The "
+            "reason is not algebraic: the side opposite one acute angle is the side adjacent to "
+            "the other, so the two fractions are literally the same fraction.",
+            "**This is where the 'co' in cosine comes from.** Cosine is the sine of the "
+            "COMPLEMENT. The same relationship links tangent and cotangent, and secant and "
+            "cosecant — the 'co' prefix always means 'of the complementary angle'.",
+            "**To find an ANGLE from a ratio, use the inverse function.** "
+            "$\\sin^{-1}$, $\\cos^{-1}$ and $\\tan^{-1}$ (also written arcsin, arccos, arctan) "
+            "take a ratio and return the acute angle that produces it. They undo the "
+            "trigonometric functions, which is exactly what the notation means.",
+            "**The superscript minus one is NOT an exponent.** $\\sin^{-1}(x)$ means the inverse function, not "
+            "$\\frac{1}{\\sin x}$. This notation is genuinely unfortunate and is the single "
+            "biggest source of confusion in the topic — the reciprocal has its own name, "
+            "cosecant.",
+            "**Choose the ratio by what you know.** Given the opposite and the hypotenuse, use "
+            "$\\sin^{-1}$. Given both legs, use $\\tan^{-1}$. Picking the ratio that uses your two "
+            "known sides avoids computing a third side you do not need.",
+        ],
+        key_idea=(
+            "The sine of an angle is the cosine of its complement, because one angle's opposite "
+            "side is the other's adjacent side; and inverse functions run the ratios backwards to "
+            "recover the angle."
+        ),
+        facts=[
+            fact(
+                "The cofunction identity",
+                "\\sin\\theta = \\cos(90° - \\theta), \\qquad \\cos\\theta = \\sin(90° - \\theta)",
+                "One angle's opposite side is the other's adjacent side — same fraction.",
+            ),
+            fact(
+                "Complementary acute angles",
+                "\\theta + \\phi = 90°",
+                "Forced by the $180°$ angle sum and the right angle.",
+            ),
+            fact(
+                "Inverse functions",
+                "\\sin^{-1}\\!\\left(\\tfrac{\\text{opp}}{\\text{hyp}}\\right) = \\theta",
+                "Ratio in, angle out. The $-1$ is inverse notation, never a reciprocal.",
+            ),
+            fact(
+                "Tangent of complements",
+                "\\tan\\theta \\cdot \\tan(90° - \\theta) = 1",
+                "The two tangents are reciprocals, since opposite and adjacent swap.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u6-l3-we1",
+                "In a right triangle the legs are $5$ and $12$. Find both acute angles to one "
+                "decimal place, and verify they are complementary.",
+                "**Pick the ratio that uses what you have.** Both legs are known, so the tangent "
+                "is the efficient choice — no third side is needed."
+                "**Find the first angle.** Taking $\\theta$ opposite the side of length $5$:"
+                "$$\\tan\\theta = \\tfrac{5}{12} \\quad\\Longrightarrow\\quad "
+                "\\theta = \\tan^{-1}\\!\\left(\\tfrac{5}{12}\\right) \\approx 22.6°.$$"
+                "**Find the second angle.** For $\\phi$, opposite and adjacent swap:"
+                "$$\\tan\\phi = \\tfrac{12}{5} \\quad\\Longrightarrow\\quad \\phi \\approx 67.4°.$$"
+                "**Verify the complement.** $22.6 + 67.4 = 90.0$ ✓ exactly as the angle sum "
+                "requires."
+                "**A faster second angle.** Once $\\theta$ is known, $\\phi = 90 - \\theta$ "
+                "directly — no second inverse-tangent computation at all. Computing it "
+                "independently, as above, is a check rather than a necessity."
+                "**Check the tangents are reciprocals.** "
+                "$\\frac{5}{12} \\times \\frac{12}{5} = 1$ ✓ which is the complementary "
+                "relationship for tangent."
+                "**Plausibility.** The side of length $5$ is the shorter leg, so the angle facing "
+                "it should be the smaller one — $22.6° < 45°$ ✓ and correspondingly its tangent "
+                "is below $1$.",
+                [
+                    "Eq(Rational(5,12)*Rational(12,5), 1)",
+                    "Abs(atan(Rational(5,12))*180/pi - Rational(226,10)) < Rational(1,10)",
+                    "Abs(atan(Rational(12,5))*180/pi - Rational(674,10)) < Rational(1,10)",
+                    "Abs(atan(Rational(5,12)) + atan(Rational(12,5)) - pi/2) < Rational(1,1000000)",
+                    "Rational(5,12) < 1",
+                ],
+            ),
+            problem(
+                "im2-u6-l3-we2",
+                "Explain why $\\sin 35° = \\cos 55°$, without computing either, and use the "
+                "relationship to solve $\\sin(2x) = \\cos(3x + 10°)$ for an acute $x$.",
+                "**Draw the triangle.** In a right triangle with one acute angle $35°$, the other "
+                "acute angle must be $90 - 35 = 55°$."
+                "**Look at one particular side.** The side opposite the $35°$ angle is exactly the "
+                "side ADJACENT to the $55°$ angle — one segment, two descriptions depending on "
+                "which corner you stand in."
+                "**Write both ratios.**"
+                "$$\\sin 35° = \\frac{\\text{that side}}{\\text{hyp}} = \\cos 55°.$$"
+                "They are not merely equal in value; they are the same fraction written twice."
+                "**Now solve the equation.** Sine equals cosine exactly when the angles are "
+                "complementary:"
+                "$$2x + (3x + 10) = 90.$$"
+                "**Simplify and solve.**"
+                "$$5x + 10 = 90 \\quad\\Longrightarrow\\quad 5x = 80 \\quad\\Longrightarrow\\quad "
+                "x = 16°.$$"
+                "**Check.** $2x = 32°$ and $3x + 10 = 58°$, and $32 + 58 = 90$ ✓ so "
+                "$\\sin 32° = \\cos 58°$, and both are about $0.5299$ ✓"
+                "**Check both angles are acute**, as the right-triangle picture requires: $32°$ "
+                "and $58°$ ✓",
+                [
+                    "Abs(sin(35*pi/180) - cos(55*pi/180)) < Rational(1,1000000)",
+                    "Eq(5*16 + 10, 90)",
+                    "Eq(2*16 + 3*16 + 10, 90)",
+                    "Abs(sin(32*pi/180) - cos(58*pi/180)) < Rational(1,1000000)",
+                    "Abs(sin(32*pi/180) - Rational(5299,10000)) < Rational(1,10000)",
+                ],
+            ),
+            problem(
+                "im2-u6-l3-we3",
+                "A $6$ m ladder leans against a wall with its foot $2$ m from the base. Find the "
+                "angle it makes with the ground, and how high it reaches.",
+                "**Identify what is known.** The ladder is the hypotenuse ($6$) and the distance "
+                "from the wall is ADJACENT to the ground angle ($2$). Adjacent and hypotenuse "
+                "means cosine."
+                "**Find the angle.**"
+                "$$\\cos\\theta = \\tfrac{2}{6} = \\tfrac{1}{3} \\quad\\Longrightarrow\\quad "
+                "\\theta = \\cos^{-1}\\!\\left(\\tfrac{1}{3}\\right) \\approx 70.5°.$$"
+                "**Find the height by Pythagoras.** No trigonometry needed once two sides are "
+                "known:"
+                "$$h = \\sqrt{36 - 4} = \\sqrt{32} = 4\\sqrt{2} \\approx 5.66 \\text{ m}.$$"
+                "**Cross-check with the sine.** $\\sin(70.5°) \\approx 0.9428$, and "
+                "$6 \\times 0.9428 \\approx 5.66$ ✓ Two independent routes to the same height."
+                "**A safety note the mathematics supplies.** Ladder guidance recommends about "
+                "$75°$ — roughly a $1 : 4$ base-to-height ratio. At $70.5°$ this ladder is "
+                "slightly shallower than ideal, which the computation tells you immediately."
+                "**Plausibility.** The ladder reaches $5.66$ m, less than its own length of "
+                "$6$ m ✓ — it must, since the height is a leg and the ladder is the hypotenuse.",
+                [
+                    "Eq(Rational(2,6), Rational(1,3))",
+                    "Abs(acos(Rational(1,3))*180/pi - Rational(705,10)) < Rational(1,10)",
+                    "Eq(simplify(sqrt(36 - 4)), 4*sqrt(2))",
+                    "Abs(4*sqrt(2) - Rational(566,100)) < Rational(1,100)",
+                    "Abs(6*sin(acos(Rational(1,3))) - 4*sqrt(2)) < Rational(1,1000000)",
+                    "4*sqrt(2) < 6",
+                ],
+            ),
+            problem(
+                "im2-u6-l3-we4",
+                "From a point $80$ m from the base of a tower, the angle of elevation to the top "
+                "is $32°$. From a point further back the elevation is $19°$. Find the tower's "
+                "height and the distance between the two observation points.",
+                "**Set up the first triangle.** The $80$ m is adjacent to the $32°$ angle and the "
+                "height is opposite it, so use the tangent:"
+                "$$\\tan 32° = \\frac{h}{80} \\quad\\Longrightarrow\\quad "
+                "h = 80\\tan 32° \\approx 49.99 \\text{ m}.$$"
+                "So the tower is about $50$ m tall."
+                "**Set up the second triangle.** Same height, smaller angle, so a larger distance:"
+                "$$\\tan 19° = \\frac{h}{d} \\quad\\Longrightarrow\\quad "
+                "d = \\frac{49.99}{\\tan 19°} \\approx 145.1 \\text{ m}.$$"
+                "**Find the separation.**"
+                "$$145.1 - 80 = 65.1 \\text{ m}.$$"
+                "**Check the direction of the change.** A smaller angle of elevation must mean a "
+                "greater distance — $145.1 > 80$ ✓ If the second distance had come out smaller, "
+                "the ratio would have been inverted."
+                "**Check by recomputing the first angle.** "
+                "$\\tan^{-1}\\!\\left(\\frac{49.99}{80}\\right) \\approx 32.0°$ ✓"
+                "**Why the height came first.** The two triangles share only the height, so it is "
+                "the bridge between them. Finding the shared quantity from the better-determined "
+                "triangle, then using it in the other, is the standard shape of these problems.",
+                [
+                    "Abs(80*tan(32*pi/180) - Rational(4999,100)) < Rational(1,100)",
+                    "Abs(80*tan(32*pi/180)/tan(19*pi/180) - Rational(1451,10)) < Rational(1,5)",
+                    "80*tan(32*pi/180)/tan(19*pi/180) > 80",
+                    "Abs(atan(80*tan(32*pi/180)/80)*180/pi - 32) < Rational(1,100)",
+                    "tan(19*pi/180) < tan(32*pi/180)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reading $\\sin^{-1}(x)$ as $\\frac{1}{\\sin x}$.",
+                "The $-1$ marks the INVERSE FUNCTION. The reciprocal of sine is cosecant, a "
+                "different thing entirely. $\\sin^{-1}(0.5) = 30°$, while $\\frac{1}{\\sin 30°} "
+                "= 2$.",
+            ),
+            mistake(
+                "Computing a third side when the inverse ratio would use the two you have.",
+                "Both legs known? Use $\\tan^{-1}$ directly. Computing the hypotenuse first adds "
+                "work and a rounding step for nothing.",
+            ),
+            mistake(
+                "Writing $\\sin\\theta = \\cos\\theta$ instead of $\\cos(90° - \\theta)$.",
+                "They are equal only at $45°$. The identity involves the COMPLEMENT, and dropping "
+                "it makes the statement false everywhere else.",
+            ),
+            mistake(
+                "Using the distance along the ground as the hypotenuse in an elevation problem.",
+                "The ground distance is ADJACENT to the elevation angle; the line of sight is the "
+                "hypotenuse. Sketching the triangle before choosing the ratio prevents this.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u6-l3-t1",
+                "Solve $\\cos(4x) = \\sin(x + 20°)$ for an acute $x$.",
+                "Cosine equals sine exactly when the angles are complementary: "
+                "$4x + (x + 20) = 90$, so $5x = 70$ and $x = 14°$. Check: $4x = 56°$ and "
+                "$x + 20 = 34°$, and $56 + 34 = 90$ ✓ Both angles are acute ✓",
+                [
+                    "Eq(5*14 + 20, 90)",
+                    "Eq(4*14 + 14 + 20, 90)",
+                    "Abs(cos(56*pi/180) - sin(34*pi/180)) < Rational(1,1000000)",
+                ],
+            ),
+            problem(
+                "im2-u6-l3-t2",
+                "A ramp rises $0.8$ m over a horizontal run of $9.6$ m. Find its angle to one "
+                "decimal place, and say whether it meets a $1 : 12$ accessibility guideline.",
+                "Both legs known, so use the tangent: $\\tan\\theta = \\frac{0.8}{9.6} = "
+                "\\frac{1}{12}$, giving $\\theta = \\tan^{-1}\\!\\left(\\frac{1}{12}\\right) "
+                "\\approx 4.8°$. The rise-to-run ratio is exactly $1 : 12$, so it meets the "
+                "guideline at the limit — no steeper. Check: $12 \\times 0.8 = 9.6$ ✓",
+                [
+                    "Eq(Rational(8,96), Rational(1,12))",
+                    "Abs(atan(Rational(1,12))*180/pi - Rational(48,10)) < Rational(1,10)",
+                    "Eq(12*Rational(8,10), Rational(96,10))",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.7",
+                "title": "One side, two descriptions",
+                "body": (
+                    "The side opposite one acute angle is the side adjacent to the other. So "
+                    "$\\sin\\theta$ and $\\cos(90° - \\theta)$ are not merely equal — they are "
+                    "the same fraction, written from two corners of the same triangle."
+                ),
+                "beats": [
+                    "Acute angles sum to $90°$",
+                    "Opposite for one is adjacent for the other",
+                    "So $\\sin\\theta = \\cos(90° - \\theta)$",
+                    "'Co' means 'of the complement'",
+                ],
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "Running it backwards",
+                "title": "Inverse functions turn a ratio into an angle",
+                "body": (
+                    "$\\sin\\theta$ takes an angle and returns a ratio. $\\sin^{-1}$ takes the "
+                    "ratio and returns the angle. The $-1$ is inverse notation — it is NOT an "
+                    "exponent, and it does not mean one over sine."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Both angles from the two legs",
+                "problemId": "im2-u6-l3-we1",
+            },
+            tap(
+                "Read the notation",
+                "What does $\\sin^{-1}(0.5)$ mean?",
+                [
+                    "$\\frac{1}{\\sin 0.5}$",
+                    "the angle whose sine is $0.5$, namely $30°$",
+                    "$\\sin(0.5)$ raised to the power $-1$",
+                    "$-\\sin(0.5)$",
+                ],
+                1,
+                "It is the inverse function: ratio in, angle out. $\\sin 30° = 0.5$, so "
+                "$\\sin^{-1}(0.5) = 30°$. The reciprocal of sine has its own name, cosecant.",
+                [
+                    "Eq(sin(pi/6), Rational(1,2))",
+                    "Eq(asin(Rational(1,2)), pi/6)",
+                    "Eq(asin(Rational(1,2))*180/pi, 30)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "The cofunction identity, and an equation it solves",
+                "problemId": "im2-u6-l3-we2",
+            },
+            tap(
+                "Use the complement",
+                "If $\\sin 27° \\approx 0.454$, what is $\\cos 63°$?",
+                ["$0.454$", "$0.891$", "$2.203$", "$0.546$"],
+                0,
+                "$27°$ and $63°$ are complementary, so $\\cos 63° = \\sin 27° \\approx 0.454$. "
+                "No calculation is needed beyond noticing the angles sum to $90°$.",
+                [
+                    "Eq(27 + 63, 90)",
+                    "Abs(sin(27*pi/180) - cos(63*pi/180)) < Rational(1,1000000)",
+                    "Abs(sin(27*pi/180) - Rational(454,1000)) < Rational(1,1000)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "Choosing the ratio",
+                "title": "Let the sides you have pick the function",
+                "body": (
+                    "Opposite and hypotenuse: sine. Adjacent and hypotenuse: cosine. Both legs: "
+                    "tangent. Computing a third side first is extra work and an extra rounding "
+                    "step you did not need."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A ladder: angle and reach",
+                "problemId": "im2-u6-l3-we3",
+            },
+            {
+                "kind": "coordGeo",
+                "eyebrow": "Angles of elevation",
+                "title": "Two sightings, one shared height",
+                "teach": (
+                    "Two observation points and one tower give two right triangles sharing the "
+                    "height. Find the shared quantity from the triangle you know best, then carry "
+                    "it into the other — that is the shape of nearly every two-sighting problem."
+                ),
+                "config": {"mode": "slope", "a": {"x": 0, "y": 0}, "b": {"x": 80, "y": 50}, "min": -10, "max": 160},
+            },
+            {
+                "kind": "worked",
+                "title": "A tower from two distances",
+                "problemId": "im2-u6-l3-we4",
+            },
+            {"kind": "tryIt", "title": "A cofunction equation", "problemId": "im2-u6-l3-t1"},
+            {"kind": "tryIt", "title": "A ramp against a guideline", "problemId": "im2-u6-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "The acute angles of a right triangle are complementary",
+                    "$\\sin\\theta = \\cos(90° - \\theta)$ — one side, described from two corners",
+                    "$\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$ turn a ratio into an angle",
+                    "The $-1$ is inverse notation, never a reciprocal",
+                    "Pick the ratio that uses the two sides you already have",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — G-SRT.8: solving right triangles in context
+# ===========================================================================
+def lesson_solving_triangles():
+    return lesson(
+        slug="solving-right-triangles",
+        title="Solving Right Triangles in Context",
+        concrete=(
+            "A surveyor, a pilot and a builder all ask the same question in different clothes: "
+            "given some parts of a right triangle, find the rest. The mathematics never changes. "
+            "What changes is which words in the problem name which side, and getting that right "
+            "is most of the work."
+        ),
+        objective=(
+            "Solve a right triangle completely from two given parts, and translate elevation, "
+            "depression and bearing problems into triangles."
+        ),
+        concept=[
+            "**'Solving a triangle' means finding all six parts.** Three sides and three angles. "
+            "For a right triangle you already have one angle, so ANY two further parts (as long "
+            "as one is a side) determine everything else.",
+            "**Angle of elevation and angle of depression are both measured from the "
+            "HORIZONTAL.** Elevation looks up, depression looks down. They are equal when two "
+            "observers look at each other, because they are alternate angles between parallel "
+            "horizontals — a fact that turns many problems inside out usefully.",
+            "**Draw the triangle before choosing a ratio.** Mark the right angle, label the given "
+            "parts, and identify which side is opposite and which is adjacent to the angle you "
+            "care about. Nearly every wrong answer in this lesson traces to a mislabelled "
+            "sketch rather than to arithmetic.",
+            "**Use given values rather than computed ones where you can.** If a problem gives you "
+            "the hypotenuse and you have computed one leg, find the second leg from the GIVEN "
+            "hypotenuse, not from your computed leg. Errors compound otherwise.",
+            "**Bearings are measured clockwise from north, in three digits.** A bearing of "
+            "$040°$ is $40°$ east of north; $130°$ is $40°$ south of east. Converting a bearing "
+            "into an angle inside your triangle is a separate step, and it is worth writing down "
+            "explicitly.",
+            "**Round only at the end, and say what you rounded to.** Intermediate values keep "
+            "full precision. A height reported as $49.99$ m when the data had two significant "
+            "figures should be stated as $50$ m — precision beyond the input is not accuracy.",
+        ],
+        key_idea=(
+            "Sketch the triangle, label opposite and adjacent relative to the angle you want, "
+            "pick the ratio that uses two known parts, and round only at the end."
+        ),
+        facts=[
+            fact(
+                "Elevation equals depression",
+                "\\text{elevation from A to B} = \\text{depression from B to A}",
+                "Alternate angles between two parallel horizontal lines.",
+            ),
+            fact(
+                "Solving from two parts",
+                "\\text{one side} + \\text{one more part} \\Rightarrow \\text{all six}",
+                "The right angle counts as one of the three angles already known.",
+            ),
+            fact(
+                "Bearings",
+                "\\text{three digits, clockwise from north}",
+                "$040°$ is north-east-ish; $270°$ is due west.",
+            ),
+            fact(
+                "Area of a right triangle",
+                "A = \\tfrac{1}{2}(\\text{leg})(\\text{leg})",
+                "The two legs are perpendicular, so either can serve as the base.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u6-l4-we1",
+                "Solve the right triangle with hypotenuse $20$ and one acute angle $37°$. Give "
+                "all six parts.",
+                "**List what is known.** Right angle $90°$, acute angle $37°$, hypotenuse $20$. "
+                "That is one side and two angles — enough."
+                "**Find the third angle immediately.**"
+                "$$90 - 37 = 53°.$$"
+                "**Find the side opposite the given angle.** Opposite and hypotenuse means sine:"
+                "$$a = 20\\sin 37° \\approx 20 \\times 0.60182 = 12.04.$$"
+                "**Find the other leg from the GIVEN hypotenuse.** Adjacent and hypotenuse means "
+                "cosine:"
+                "$$b = 20\\cos 37° \\approx 20 \\times 0.79864 = 15.97.$$"
+                "Using the given $20$ rather than the computed $12.04$ keeps the two answers "
+                "independent, so a slip in one does not infect the other."
+                "**The six parts.** Angles $37°$, $53°$, $90°$; sides $12.04$, $15.97$, $20$."
+                "**Check with Pythagoras.** $12.04^{2} + 15.97^{2} \\approx 144.96 + 255.04 = "
+                "400.00 = 20^{2}$ ✓ The check works precisely because the two legs were computed "
+                "independently — had the second been derived from the first, this would confirm "
+                "nothing."
+                "**Plausibility.** $37° < 45°$, so the side opposite it should be the shorter "
+                "leg — $12.04 < 15.97$ ✓",
+                [
+                    "Eq(90 - 37, 53)",
+                    "Abs(20*sin(37*pi/180) - Rational(1204,100)) < Rational(1,100)",
+                    "Abs(20*cos(37*pi/180) - Rational(1597,100)) < Rational(1,100)",
+                    "Abs((20*sin(37*pi/180))**2 + (20*cos(37*pi/180))**2 - 400) < Rational(1,1000000)",
+                    "20*sin(37*pi/180) < 20*cos(37*pi/180)",
+                ],
+            ),
+            problem(
+                "im2-u6-l4-we2",
+                "From the top of a $45$ m cliff, the angle of depression to a boat is $23°$. Find "
+                "the boat's distance from the base of the cliff, and its distance from the "
+                "observer.",
+                "**Draw and place the angle correctly.** The angle of depression is measured from "
+                "the HORIZONTAL at the top, downward to the line of sight. The triangle's angle "
+                "at the top, between the cliff and the line of sight, is therefore "
+                "$90 - 23 = 67°$."
+                "**Use the alternate-angle shortcut instead.** The angle of elevation from the "
+                "boat up to the observer equals the angle of depression, $23°$ — the horizontals "
+                "at top and bottom are parallel. Working at the boat's corner is easier."
+                "**Find the horizontal distance.** At the boat, the cliff height is opposite and "
+                "the horizontal distance is adjacent, so use the tangent:"
+                "$$\\tan 23° = \\frac{45}{d} \\quad\\Longrightarrow\\quad "
+                "d = \\frac{45}{\\tan 23°} \\approx 106.0 \\text{ m}.$$"
+                "**Find the line-of-sight distance.** That is the hypotenuse; use the sine at the "
+                "boat's corner:"
+                "$$\\frac{45}{\\sin 23°} \\approx 115.2 \\text{ m}.$$"
+                "**Check with Pythagoras.** $106.0^{2} + 45^{2} = 11236 + 2025 = 13261$, and "
+                "$115.2^{2} \\approx 13271$ — agreeing to within rounding ✓"
+                "**Plausibility.** A shallow $23°$ depression should put the boat far out — much "
+                "further than the cliff is high, and $106$ against $45$ ✓ And the hypotenuse must "
+                "exceed both legs: $115.2 > 106.0$ ✓",
+                [
+                    "Abs(45/tan(23*pi/180) - 106) < Rational(1,5)",
+                    "Abs(45/sin(23*pi/180) - Rational(1152,10)) < Rational(1,5)",
+                    "45/sin(23*pi/180) > 45/tan(23*pi/180)",
+                    "Eq(90 - 23, 67)",
+                    "45/tan(23*pi/180) > 45",
+                ],
+            ),
+            problem(
+                "im2-u6-l4-we3",
+                "A ship sails $30$ km on a bearing of $062°$, then turns and sails on a bearing "
+                "of $152°$ for $40$ km. How far is it from its starting point, and on what "
+                "bearing?",
+                "**Check the turn.** The two bearings differ by $152 - 62 = 90°$, so the second "
+                "leg is perpendicular to the first — the path forms a RIGHT triangle. Spotting "
+                "this is the whole problem."
+                "**Find the direct distance.** The two legs are $30$ and $40$:"
+                "$$d = \\sqrt{900 + 1600} = \\sqrt{2500} = 50 \\text{ km}.$$"
+                "A $3$-$4$-$5$ triangle, scaled by $10$."
+                "**Find the angle between the first leg and the direct line.**"
+                "$$\\tan\\theta = \\tfrac{40}{30} = \\tfrac{4}{3} \\quad\\Longrightarrow\\quad "
+                "\\theta = \\tan^{-1}\\!\\left(\\tfrac{4}{3}\\right) \\approx 53.1°.$$"
+                "**Convert to a bearing.** The first leg was on a bearing of $062°$, and the "
+                "direct line lies $53.1°$ clockwise from it:"
+                "$$62 + 53.1 = 115.1°,$$"
+                "so the bearing is about $115°$."
+                "**Check the direction makes sense.** The final bearing must lie between the two "
+                "sailed bearings, $062°$ and $152°$ — and $115°$ does ✓ It is also closer to "
+                "$152°$ than to $062°$, which fits: the second leg was the longer one."
+                "**Check the distance is plausible.** The direct distance must be less than the "
+                "total sailed ($70$ km) and more than the difference ($10$ km) — and "
+                "$10 < 50 < 70$ ✓",
+                [
+                    "Eq(152 - 62, 90)",
+                    "Eq(sqrt(900 + 1600), 50)",
+                    "Eq(30**2 + 40**2, 50**2)",
+                    "Abs(atan(Rational(4,3))*180/pi - Rational(531,10)) < Rational(1,10)",
+                    "Abs(62 + atan(Rational(4,3))*180/pi - Rational(1151,10)) < Rational(1,10)",
+                    "50 < 70",
+                    "50 > 10",
+                ],
+            ),
+            problem(
+                "im2-u6-l4-we4",
+                "A roof has a span of $12$ m and a pitch (the angle between the rafter and the "
+                "horizontal) of $28°$. Find the ridge height above the wall plate, the rafter "
+                "length, and the cross-sectional area of the roof triangle.",
+                "**Split the roof at the ridge.** A symmetric roof splits into two congruent right "
+                "triangles, each with a horizontal leg of half the span:"
+                "$$\\frac{12}{2} = 6 \\text{ m}.$$"
+                "This halving is the step most often missed — the pitch angle sits in a triangle "
+                "whose base is HALF the span."
+                "**Find the ridge height.** Opposite and adjacent means tangent:"
+                "$$h = 6\\tan 28° \\approx 6 \\times 0.53171 = 3.19 \\text{ m}.$$"
+                "**Find the rafter length.** That is the hypotenuse; adjacent and hypotenuse means "
+                "cosine:"
+                "$$\\ell = \\frac{6}{\\cos 28°} \\approx \\frac{6}{0.88295} = 6.80 \\text{ m}.$$"
+                "**Find the area of the whole roof triangle.** Base $12$, height $3.19$:"
+                "$$A = \\tfrac{1}{2}(12)(3.19) \\approx 19.1 \\text{ m}^{2}.$$"
+                "**Check the rafter with Pythagoras.** $6^{2} + 3.19^{2} = 36 + 10.18 = 46.18$, "
+                "and $6.80^{2} = 46.24$ — agreeing to rounding ✓"
+                "**Plausibility.** The rafter must exceed the horizontal run it spans: "
+                "$6.80 > 6$ ✓ And a shallow $28°$ pitch should give a height well under the "
+                "half-span: $3.19 < 6$ ✓"
+                "**A practical note.** Rafters are cut longer than this to overhang the wall, so "
+                "$6.80$ m is the structural minimum rather than the ordering length — a reminder "
+                "that a model answers the question asked, not the whole job.",
+                [
+                    "Eq(Rational(12,2), 6)",
+                    "Abs(6*tan(28*pi/180) - Rational(319,100)) < Rational(1,100)",
+                    "Abs(6/cos(28*pi/180) - Rational(680,100)) < Rational(1,100)",
+                    "Abs(Rational(1,2)*12*6*tan(28*pi/180) - Rational(191,10)) < Rational(1,5)",
+                    "6/cos(28*pi/180) > 6",
+                    "6*tan(28*pi/180) < 6",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Measuring the angle of depression from the vertical.",
+                "Both elevation and depression are measured from the HORIZONTAL. From the "
+                "vertical you would get the complement, and every answer downstream shifts.",
+            ),
+            mistake(
+                "Using the full span instead of half in a roof-pitch problem.",
+                "The pitch angle lives in a right triangle whose base is half the span. Using "
+                "the full span doubles the height.",
+            ),
+            mistake(
+                "Building later answers on earlier rounded ones.",
+                "Compute each unknown from the GIVEN data where possible. Chaining rounded "
+                "values compounds the error and destroys the Pythagoras check.",
+            ),
+            mistake(
+                "Reporting more precision than the data supports.",
+                "If the inputs have two significant figures, an answer of $49.9873$ m is "
+                "$50$ m. State what you rounded to.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u6-l4-t1",
+                "Solve the right triangle with one leg $9$ and the angle opposite it $41°$.",
+                "The other acute angle is $90 - 41 = 49°$. Hypotenuse: "
+                "$\\frac{9}{\\sin 41°} \\approx 13.72$. Other leg: "
+                "$\\frac{9}{\\tan 41°} \\approx 10.35$. Check with Pythagoras: "
+                "$81 + 107.1 = 188.1$, and $13.72^{2} \\approx 188.2$ ✓ And since $41° < 45°$, "
+                "the given leg should be the shorter one — $9 < 10.35$ ✓",
+                [
+                    "Eq(90 - 41, 49)",
+                    "Abs(9/sin(41*pi/180) - Rational(1372,100)) < Rational(1,100)",
+                    "Abs(9/tan(41*pi/180) - Rational(1035,100)) < Rational(1,100)",
+                    "9/tan(41*pi/180) > 9",
+                ],
+            ),
+            problem(
+                "im2-u6-l4-t2",
+                "A kite string $60$ m long makes an angle of $54°$ with the ground. How high is "
+                "the kite, assuming the string is straight and the person holds it at ground "
+                "level?",
+                "The string is the hypotenuse and the height is opposite the angle, so use the "
+                "sine: $h = 60\\sin 54° \\approx 60 \\times 0.80902 = 48.5$ m. Check the height "
+                "is less than the string length: $48.5 < 60$ ✓ The horizontal distance is "
+                "$60\\cos 54° \\approx 35.3$ m, and $48.5^{2} + 35.3^{2} \\approx 3600 = "
+                "60^{2}$ ✓",
+                [
+                    "Abs(60*sin(54*pi/180) - Rational(485,10)) < Rational(1,10)",
+                    "Abs(60*cos(54*pi/180) - Rational(353,10)) < Rational(1,10)",
+                    "Abs((60*sin(54*pi/180))**2 + (60*cos(54*pi/180))**2 - 3600) < Rational(1,1000000)",
+                    "60*sin(54*pi/180) < 60",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "G-SRT.8",
+                "title": "Every context, one triangle",
+                "body": (
+                    "Surveying, navigation, construction and aviation all reduce to the same "
+                    "task: given two parts of a right triangle, find the other four. The "
+                    "vocabulary changes; the mathematics does not."
+                ),
+                "beats": [
+                    "Sketch and mark the right angle",
+                    "Label opposite and adjacent",
+                    "Pick the ratio using two knowns",
+                    "Round once, at the end",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "Solving completely from an angle and the hypotenuse",
+                "problemId": "im2-u6-l4-we1",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Independence buys you a check",
+                "title": "Compute from given values, not computed ones",
+                "body": (
+                    "Find both legs from the GIVEN hypotenuse rather than deriving the second "
+                    "from the first. Then Pythagoras genuinely tests your work — if the second "
+                    "leg came from the first, the check confirms nothing at all."
+                ),
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The vocabulary",
+                "title": "Elevation and depression, both from the horizontal",
+                "body": (
+                    "Elevation looks up from the horizontal; depression looks down from it. When "
+                    "two observers look at each other the two angles are EQUAL, because the "
+                    "horizontals are parallel — which lets you move the angle to whichever corner "
+                    "is easier to work in."
+                ),
+            },
+            tap(
+                "Where is the angle?",
+                "From a cliff top, the angle of depression to a boat is $23°$. What is the angle "
+                "of elevation from the boat to the cliff top?",
+                ["$67°$", "$23°$", "$46°$", "it cannot be determined"],
+                1,
+                "They are equal — alternate angles between the two parallel horizontal lines. "
+                "The $67°$ is the angle at the top BETWEEN the cliff face and the line of sight, "
+                "which is a different angle.",
+                ["Eq(90 - 23, 67)", "Eq(23, 23)"],
+            ),
+            {
+                "kind": "worked",
+                "title": "A cliff, a boat, and two distances",
+                "problemId": "im2-u6-l4-we2",
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "Navigation",
+                "title": "Bearings: three digits, clockwise from north",
+                "body": (
+                    "$000°$ is north, $090°$ east, $180°$ south, $270°$ west. Converting a "
+                    "bearing into an angle INSIDE your triangle is a separate step from the "
+                    "trigonometry — write it down explicitly rather than doing it in your head."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A ship's course, and why it makes a right angle",
+                "problemId": "im2-u6-l4-we3",
+            },
+            tap(
+                "Half or whole?",
+                "A symmetric roof has a span of $10$ m and a pitch of $30°$. Which triangle "
+                "contains the pitch angle?",
+                [
+                    "base $10$, height the ridge height",
+                    "base $5$, height the ridge height",
+                    "base $10$, height twice the ridge height",
+                    "base $5$, height half the ridge height",
+                ],
+                1,
+                "The roof splits at the ridge into two congruent right triangles, each with a "
+                "base of half the span. Using the full span would double the computed height.",
+                [
+                    "Eq(Rational(10,2), 5)",
+                    "Abs(5*tan(30*pi/180) - 5*sqrt(3)/3) < Rational(1,1000000)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "A roof: height, rafter and area",
+                "problemId": "im2-u6-l4-we4",
+            },
+            {"kind": "tryIt", "title": "From a leg and its opposite angle", "problemId": "im2-u6-l4-t1"},
+            {"kind": "tryIt", "title": "A kite on a straight string", "problemId": "im2-u6-l4-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Two parts (one a side) determine every part of a right triangle",
+                    "Elevation and depression are measured from the horizontal, and are equal between two observers",
+                    "Sketch and label BEFORE choosing a ratio",
+                    "Compute from given values so Pythagoras is a real check",
+                    "A roof pitch sits on HALF the span; round once, at the end",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Practice and test banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im2-u6-p1",
+            "A right triangle has legs $9$ and $12$. Find the three ratios for the angle "
+            "opposite the $9$.",
+            "Hypotenuse $= \\sqrt{81 + 144} = \\sqrt{225} = 15$. So "
+            "$\\sin\\theta = \\frac{9}{15} = \\frac{3}{5}$, "
+            "$\\cos\\theta = \\frac{12}{15} = \\frac{4}{5}$, "
+            "$\\tan\\theta = \\frac{9}{12} = \\frac{3}{4}$. Check: "
+            "$\\frac{9}{25} + \\frac{16}{25} = 1$ ✓ It is a $3$-$4$-$5$ triangle scaled by $3$.",
+            [
+                "Eq(sqrt(81 + 144), 15)",
+                "Eq(Rational(9,15), Rational(3,5))",
+                "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)",
+                "Eq(Rational(9,12), Rational(3,4))",
+            ],
+        ),
+        problem(
+            "im2-u6-p2",
+            "If $\\tan\\theta = \\frac{40}{9}$, find $\\sin\\theta$ and $\\cos\\theta$ exactly.",
+            "Opposite $40$, adjacent $9$, so the hypotenuse is $\\sqrt{1600 + 81} = \\sqrt{1681} "
+            "= 41$. Then $\\sin\\theta = \\frac{40}{41}$ and $\\cos\\theta = \\frac{9}{41}$. "
+            "Check: $\\frac{1600 + 81}{1681} = 1$ ✓ The tangent exceeds $1$, so the angle is "
+            "above $45°$ — consistent with the large sine.",
+            [
+                "Eq(sqrt(1600 + 81), 41)",
+                "Eq(Rational(40,41)**2 + Rational(9,41)**2, 1)",
+                "Eq(Rational(40,41)/Rational(9,41), Rational(40,9))",
+                "Rational(40,9) > 1",
+            ],
+        ),
+        problem(
+            "im2-u6-p3",
+            "A $45$-$45$-$90$ triangle has legs of $11$. Find the hypotenuse exactly and to two "
+            "decimal places.",
+            "The ratio is $1 : 1 : \\sqrt{2}$, so the hypotenuse is $11\\sqrt{2} \\approx 15.56$. "
+            "Check: $121 + 121 = 242$, and $(11\\sqrt{2})^{2} = 121 \\times 2 = 242$ ✓",
+            [
+                "Eq((11*sqrt(2))**2, 242)",
+                "Eq(121 + 121, 242)",
+                "Abs(11*sqrt(2) - Rational(1556,100)) < Rational(1,100)",
+            ],
+        ),
+        problem(
+            "im2-u6-p4",
+            "A $30$-$60$-$90$ triangle has hypotenuse $14$. Find both legs exactly.",
+            "The hypotenuse is the $2$ of the ratio $1 : \\sqrt{3} : 2$, so the scale factor is "
+            "$7$. Shorter leg $7$, longer leg $7\\sqrt{3} \\approx 12.12$. Check: "
+            "$49 + 147 = 196 = 14^{2}$ ✓",
+            [
+                "Eq(Rational(14,2), 7)",
+                "Eq(49 + (7*sqrt(3))**2, 196)",
+                "Eq(14**2, 196)",
+                "Abs(7*sqrt(3) - Rational(1212,100)) < Rational(1,100)",
+            ],
+        ),
+        problem(
+            "im2-u6-p5",
+            "Write $\\sin 18°$ as a cosine, and $\\cos 71°$ as a sine.",
+            "Complements: $\\sin 18° = \\cos(90 - 18)° = \\cos 72°$, and "
+            "$\\cos 71° = \\sin(90 - 71)° = \\sin 19°$. Check numerically: both sides of the "
+            "first are about $0.309$ ✓",
+            [
+                "Abs(sin(18*pi/180) - cos(72*pi/180)) < Rational(1,1000000)",
+                "Abs(cos(71*pi/180) - sin(19*pi/180)) < Rational(1,1000000)",
+                "Abs(sin(18*pi/180) - Rational(309,1000)) < Rational(1,1000)",
+            ],
+        ),
+        problem(
+            "im2-u6-p6",
+            "Solve $\\sin(3x + 5°) = \\cos(x + 25°)$ for an acute $x$.",
+            "Sine equals cosine when the angles are complementary: $(3x + 5) + (x + 25) = 90$, so "
+            "$4x + 30 = 90$ and $x = 15°$. Check: the angles are $50°$ and $40°$, summing to "
+            "$90$ ✓ and $\\sin 50° = \\cos 40°$ ✓",
+            [
+                "Eq(4*15 + 30, 90)",
+                "Eq(3*15 + 5 + 15 + 25, 90)",
+                "Abs(sin(50*pi/180) - cos(40*pi/180)) < Rational(1,1000000)",
+            ],
+        ),
+        problem(
+            "im2-u6-p7",
+            "Find both acute angles of a right triangle with legs $7$ and $24$, to one decimal "
+            "place.",
+            "Both legs known, so use the tangent. "
+            "$\\tan^{-1}\\!\\left(\\frac{7}{24}\\right) \\approx 16.3°$ and the other is "
+            "$90 - 16.3 = 73.7°$. Check by the second inverse: "
+            "$\\tan^{-1}\\!\\left(\\frac{24}{7}\\right) \\approx 73.7°$ ✓ (The hypotenuse, if "
+            "needed, is $25$.)",
+            [
+                "Abs(atan(Rational(7,24))*180/pi - Rational(163,10)) < Rational(1,10)",
+                "Abs(atan(Rational(24,7))*180/pi - Rational(737,10)) < Rational(1,10)",
+                "Abs(atan(Rational(7,24)) + atan(Rational(24,7)) - pi/2) < Rational(1,1000000)",
+                "Eq(7**2 + 24**2, 25**2)",
+            ],
+        ),
+        problem(
+            "im2-u6-p8",
+            "A $10$ m ladder leans against a wall at $65°$ to the ground. How high does it reach, "
+            "and how far is its foot from the wall?",
+            "Height: $10\\sin 65° \\approx 9.06$ m. Foot distance: $10\\cos 65° \\approx 4.23$ m. "
+            "Check with Pythagoras: $82.1 + 17.9 = 100 = 10^{2}$ ✓ At a steep $65°$ the foot "
+            "should be much closer than the reach — $4.23 < 9.06$ ✓",
+            [
+                "Abs(10*sin(65*pi/180) - Rational(906,100)) < Rational(1,100)",
+                "Abs(10*cos(65*pi/180) - Rational(423,100)) < Rational(1,100)",
+                "Abs((10*sin(65*pi/180))**2 + (10*cos(65*pi/180))**2 - 100) < Rational(1,1000000)",
+                "10*cos(65*pi/180) < 10*sin(65*pi/180)",
+            ],
+        ),
+        problem(
+            "im2-u6-p9",
+            "From a point $120$ m from a building, the angle of elevation to the roof is $34°$. "
+            "Find the building's height.",
+            "The $120$ m is adjacent and the height opposite, so use the tangent: "
+            "$h = 120\\tan 34° \\approx 80.9$ m. Check by the inverse: "
+            "$\\tan^{-1}\\!\\left(\\frac{80.9}{120}\\right) \\approx 34.0°$ ✓ Since $34° < 45°$, "
+            "the height should be less than the distance — $80.9 < 120$ ✓",
+            [
+                "Abs(120*tan(34*pi/180) - Rational(809,10)) < Rational(1,10)",
+                "120*tan(34*pi/180) < 120",
+                "Abs(atan(120*tan(34*pi/180)/120)*180/pi - 34) < Rational(1,100)",
+            ],
+        ),
+        problem(
+            "im2-u6-p10",
+            "A slide descends at $38°$ and its ladder is $3.5$ m tall. Find the length of the "
+            "slide and its horizontal reach.",
+            "The height is opposite the $38°$ angle. Slide length (hypotenuse): "
+            "$\\frac{3.5}{\\sin 38°} \\approx 5.68$ m. Horizontal reach: "
+            "$\\frac{3.5}{\\tan 38°} \\approx 4.48$ m. Check: "
+            "$3.5^{2} + 4.48^{2} = 12.25 + 20.07 = 32.32$, and $5.68^{2} \\approx 32.26$ ✓",
+            [
+                "Abs(Rational(35,10)/sin(38*pi/180) - Rational(568,100)) < Rational(1,100)",
+                "Abs(Rational(35,10)/tan(38*pi/180) - Rational(448,100)) < Rational(1,100)",
+                "Rational(35,10)/sin(38*pi/180) > Rational(35,10)/tan(38*pi/180)",
+            ],
+        ),
+        problem(
+            "im2-u6-p11",
+            "A road rises $1$ m for every $8$ m measured along the road surface. Find the angle "
+            "of inclination and the horizontal run over that $8$ m.",
+            "The $8$ m is along the slope, so it is the hypotenuse: "
+            "$\\sin\\theta = \\frac{1}{8}$, giving $\\theta \\approx 7.2°$. Horizontal run: "
+            "$\\sqrt{64 - 1} = \\sqrt{63} \\approx 7.94$ m. Note the gradient as a percentage "
+            "uses the RUN: $\\frac{1}{7.94} \\approx 12.6\\%$, not $12.5\\%$.",
+            [
+                "Abs(asin(Rational(1,8))*180/pi - Rational(72,10)) < Rational(1,10)",
+                "Eq(simplify(sqrt(64 - 1)), 3*sqrt(7))",
+                "Abs(sqrt(63) - Rational(794,100)) < Rational(1,100)",
+                "1/sqrt(63) > Rational(1,8)",
+            ],
+        ),
+        problem(
+            "im2-u6-p12",
+            "A symmetric roof spans $9$ m with a ridge height of $2.7$ m. Find the pitch angle "
+            "and the rafter length.",
+            "Half the span is $4.5$ m. Pitch: "
+            "$\\tan^{-1}\\!\\left(\\frac{2.7}{4.5}\\right) = \\tan^{-1}(0.6) \\approx 31.0°$. "
+            "Rafter: $\\sqrt{4.5^{2} + 2.7^{2}} = \\sqrt{20.25 + 7.29} = \\sqrt{27.54} \\approx "
+            "5.25$ m. Check: the rafter exceeds the half-span ✓",
+            [
+                "Eq(Rational(27,10)/Rational(45,10), Rational(3,5))",
+                "Abs(atan(Rational(3,5))*180/pi - 31) < Rational(1,5)",
+                "Abs(sqrt(Rational(2754,100)) - Rational(525,100)) < Rational(1,100)",
+                "sqrt(Rational(2754,100)) > Rational(45,10)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im2-u6-ty-1",
+            "In a right triangle, $\\sin\\theta = \\frac{20}{29}$. Find $\\cos\\theta$, "
+            "$\\tan\\theta$ and $\\theta$ to one decimal place, and explain why the answer does "
+            "not depend on the triangle's size.",
+            "**Read the given ratio as sides.** Opposite $20$, hypotenuse $29$."
+            "**Find the adjacent side.**"
+            "$$\\sqrt{29^{2} - 20^{2}} = \\sqrt{841 - 400} = \\sqrt{441} = 21.$$"
+            "**Write the other two ratios.**"
+            "$$\\cos\\theta = \\tfrac{21}{29}, \\qquad \\tan\\theta = \\tfrac{20}{21}.$$"
+            "**Find the angle.** $\\theta = \\sin^{-1}\\!\\left(\\frac{20}{29}\\right) \\approx "
+            "43.6°$."
+            "**Why size is irrelevant.** Any triangle with this angle is SIMILAR to this one by "
+            "AA, and similar triangles have proportional sides — so every one of them gives "
+            "$\\frac{20}{29}$ for the same ratio. A triangle with sides $40$, $42$, $58$ has the "
+            "identical angle."
+            "**Check the identity.** $\\frac{400 + 441}{841} = 1$ ✓"
+            "**Plausibility.** The tangent $\\frac{20}{21}$ is just under $1$, so the angle "
+            "should be just under $45°$ — and $43.6°$ ✓",
+            [
+                "Eq(sqrt(841 - 400), 21)",
+                "Eq(Rational(20,29)**2 + Rational(21,29)**2, 1)",
+                "Eq(Rational(20,29)/Rational(21,29), Rational(20,21))",
+                "Abs(asin(Rational(20,29))*180/pi - Rational(436,10)) < Rational(1,10)",
+                "Rational(20,21) < 1",
+                "Eq(40**2 + 42**2, 58**2)",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-2",
+            "Find the exact perimeter and area of a $30$-$60$-$90$ triangle whose longer leg is "
+            "$6\\sqrt{3}$.",
+            "**Identify the given side's role.** The longer leg corresponds to the $\\sqrt{3}$ in "
+            "the ratio $1 : \\sqrt{3} : 2$."
+            "**Find the scale factor.**"
+            "$$k\\sqrt{3} = 6\\sqrt{3} \\quad\\Longrightarrow\\quad k = 6.$$"
+            "**Write the three sides.**"
+            "$$6, \\qquad 6\\sqrt{3}, \\qquad 12.$$"
+            "**Perimeter.**"
+            "$$6 + 6\\sqrt{3} + 12 = 18 + 6\\sqrt{3} \\approx 28.39.$$"
+            "**Area.** The two legs are perpendicular, so either serves as base:"
+            "$$A = \\tfrac{1}{2}(6)\\left(6\\sqrt{3}\\right) = 18\\sqrt{3} \\approx 31.18.$$"
+            "**Check with Pythagoras.** $36 + 108 = 144 = 12^{2}$ ✓"
+            "**Check the exact values.** $\\sin 30° = \\frac{6}{12} = \\frac{1}{2}$ ✓ and "
+            "$\\tan 60° = \\frac{6\\sqrt{3}}{6} = \\sqrt{3}$ ✓ — the triangle really is a "
+            "$30$-$60$-$90$.",
+            [
+                "Eq(36 + (6*sqrt(3))**2, 144)",
+                "Eq(12**2, 144)",
+                "Eq(Rational(1,2)*6*6*sqrt(3), 18*sqrt(3))",
+                "Abs(18 + 6*sqrt(3) - Rational(2839,100)) < Rational(1,100)",
+                "Abs(18*sqrt(3) - Rational(3118,100)) < Rational(1,100)",
+                "Eq(Rational(6,12), Rational(1,2))",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-3",
+            "Solve $\\cos(2x + 8°) = \\sin(4x - 20°)$ for an acute $x$, then verify both angles "
+            "are acute and that the identity holds.",
+            "**Use the cofunction relationship.** Cosine equals sine exactly when the two angles "
+            "are complementary:"
+            "$$(2x + 8) + (4x - 20) = 90.$$"
+            "**Simplify.**"
+            "$$6x - 12 = 90 \\quad\\Longrightarrow\\quad 6x = 102 \\quad\\Longrightarrow\\quad "
+            "x = 17°.$$"
+            "**Compute the two angles.** $2x + 8 = 42°$ and $4x - 20 = 48°$."
+            "**Verify they are complementary.** $42 + 48 = 90$ ✓"
+            "**Verify both are acute**, as the right-triangle interpretation requires: $42°$ and "
+            "$48°$, both under $90°$ ✓"
+            "**Verify the identity numerically.** $\\cos 42° \\approx 0.7431$ and "
+            "$\\sin 48° \\approx 0.7431$ ✓"
+            "**Why one equation sufficed.** For acute angles, cosine and sine agree only at "
+            "complements — there is exactly one solution, so no second case needs checking.",
+            [
+                "Eq(6*17 - 12, 90)",
+                "Eq(2*17 + 8, 42)",
+                "Eq(4*17 - 20, 48)",
+                "Eq(42 + 48, 90)",
+                "Abs(cos(42*pi/180) - sin(48*pi/180)) < Rational(1,1000000)",
+                "Abs(cos(42*pi/180) - Rational(7431,10000)) < Rational(1,10000)",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-4",
+            "A surveyor stands $150$ m from the base of a tower. The angle of elevation to the "
+            "top of the tower is $27°$ and to the top of an antenna mounted on it is $34°$. Find "
+            "the tower's height, the total height, and the antenna's length.",
+            "**Find the tower's height.** The $150$ m is adjacent, the height opposite:"
+            "$$h_{\\text{tower}} = 150\\tan 27° \\approx 150 \\times 0.50953 = 76.4 \\text{ m}.$$"
+            "**Find the total height to the antenna's tip.** Same horizontal distance, larger "
+            "angle:"
+            "$$h_{\\text{total}} = 150\\tan 34° \\approx 150 \\times 0.67451 = 101.2 \\text{ m}.$$"
+            "**Subtract for the antenna.**"
+            "$$101.2 - 76.4 = 24.8 \\text{ m}.$$"
+            "**Check the direction.** A larger elevation angle from the same spot must mean a "
+            "greater height — $101.2 > 76.4$ ✓ so the antenna length is positive, as it must be."
+            "**Check by the inverse.** "
+            "$\\tan^{-1}\\!\\left(\\frac{101.2}{150}\\right) \\approx 34.0°$ ✓"
+            "**Note what the subtraction relies on.** Both triangles share the same $150$ m "
+            "base, so the two heights are directly comparable. Had the surveyor moved between "
+            "readings, subtracting would have been meaningless — a point worth checking in every "
+            "two-angle problem.",
+            [
+                "Abs(150*tan(27*pi/180) - Rational(764,10)) < Rational(1,10)",
+                "Abs(150*tan(34*pi/180) - Rational(1012,10)) < Rational(1,10)",
+                "Abs(150*tan(34*pi/180) - 150*tan(27*pi/180) - Rational(248,10)) < Rational(1,5)",
+                "150*tan(34*pi/180) > 150*tan(27*pi/180)",
+                "Abs(atan(150*tan(34*pi/180)/150)*180/pi - 34) < Rational(1,100)",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-5",
+            "An aeroplane at an altitude of $2400$ m begins its descent, aiming to touch down at "
+            "a point $30$ km away horizontally. Find the angle of depression, and how far the "
+            "plane travels along its glide path.",
+            "**Convert to consistent units.** $30$ km is $30\\,000$ m."
+            "**Find the angle.** The altitude is opposite and the horizontal distance adjacent, "
+            "so use the tangent:"
+            "$$\\tan\\theta = \\frac{2400}{30000} = 0.08 \\quad\\Longrightarrow\\quad "
+            "\\theta = \\tan^{-1}(0.08) \\approx 4.6°.$$"
+            "**Find the glide-path length.** That is the hypotenuse:"
+            "$$\\sqrt{30000^{2} + 2400^{2}} = \\sqrt{900{,}000{,}000 + 5{,}760{,}000} = "
+            "\\sqrt{905{,}760{,}000} \\approx 30\\,096 \\text{ m}.$$"
+            "So about $30.1$ km."
+            "**Interpret the shallowness.** A typical approach angle is about $3°$, so $4.6°$ is "
+            "a slightly steep but ordinary descent. The glide path is only $96$ m longer than the "
+            "horizontal distance — at such a shallow angle the hypotenuse and the adjacent side "
+            "are nearly equal."
+            "**Check by the sine.** $\\frac{2400}{30096} \\approx 0.0798$, and "
+            "$\\sin^{-1}(0.0798) \\approx 4.6°$ ✓ The same angle from a different ratio."
+            "**The unit trap.** Leaving the $30$ as kilometres against $2400$ metres would give "
+            "$\\tan\\theta = 80$ and an angle near $89°$ — a vertical dive. Converting units "
+            "first is not optional.",
+            [
+                "Eq(Rational(2400,30000), Rational(2,25))",
+                "Abs(atan(Rational(2,25))*180/pi - Rational(46,10)) < Rational(1,10)",
+                "Eq(30000**2 + 2400**2, 905760000)",
+                "Abs(sqrt(905760000) - 30096) < 1",
+                "sqrt(905760000) > 30000",
+                "Abs(asin(2400/sqrt(905760000))*180/pi - Rational(46,10)) < Rational(1,10)",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-6",
+            "A ship sails $18$ km due east, then $24$ km due north. Find its distance from the "
+            "start, the bearing of its final position from the start, and the bearing it would "
+            "sail to return directly.",
+            "**Recognise the right angle.** East and north are perpendicular, so the path forms a "
+            "right triangle."
+            "**Find the direct distance.**"
+            "$$\\sqrt{18^{2} + 24^{2}} = \\sqrt{324 + 576} = \\sqrt{900} = 30 \\text{ km}.$$"
+            "A $3$-$4$-$5$ triangle scaled by $6$."
+            "**Find the bearing from the start.** Bearings are measured clockwise from north. The "
+            "displacement is $24$ north and $18$ east, so the angle east of north is"
+            "$$\\tan^{-1}\\!\\left(\\frac{18}{24}\\right) = \\tan^{-1}(0.75) \\approx 36.9°,$$"
+            "giving a bearing of $037°$ to the nearest degree."
+            "**Find the return bearing.** Sailing back is the exact opposite direction, so add "
+            "$180°$:"
+            "$$36.9 + 180 = 216.9°,$$"
+            "a bearing of $217°$."
+            "**Check the return bearing makes sense.** From a position north-east of the start, "
+            "the way home is south-west — and $217°$ lies between $180°$ (south) and $270°$ "
+            "(west) ✓"
+            "**Check the distance is plausible.** It must be less than the $42$ km sailed and "
+            "more than the $24$ km northward leg: $24 < 30 < 42$ ✓"
+            "**Check the bearing against the shape.** The northward leg is longer than the "
+            "eastward one, so the direction should be closer to north than to east — and $37°$ "
+            "is under $45°$ ✓",
+            [
+                "Eq(sqrt(324 + 576), 30)",
+                "Eq(18**2 + 24**2, 30**2)",
+                "Eq(Rational(18,24), Rational(3,4))",
+                "Abs(atan(Rational(3,4))*180/pi - Rational(369,10)) < Rational(1,10)",
+                "Abs(atan(Rational(3,4))*180/pi + 180 - Rational(2169,10)) < Rational(1,10)",
+                "30 < 42",
+                "30 > 24",
+            ],
+        ),
+        problem(
+            "im2-u6-ty-7",
+            "Two buildings stand $40$ m apart. From the roof of the shorter one, the angle of "
+            "elevation to the top of the taller is $28°$ and the angle of depression to its base "
+            "is $46°$. Find the height of each building.",
+            "**Find the shorter building's height first.** The depression to the base of the "
+            "taller building forms a right triangle whose vertical leg IS the shorter building's "
+            "height, since both stand on the same level ground:"
+            "$$\\tan 46° = \\frac{h_{\\text{short}}}{40} \\quad\\Longrightarrow\\quad "
+            "h_{\\text{short}} = 40\\tan 46° \\approx 41.4 \\text{ m}.$$"
+            "**Find the extra height of the taller building.** The elevation triangle sits above "
+            "the roof line, with the same $40$ m horizontal separation:"
+            "$$\\text{extra} = 40\\tan 28° \\approx 21.3 \\text{ m}.$$"
+            "**Add for the total.**"
+            "$$h_{\\text{tall}} = 41.4 + 21.3 = 62.7 \\text{ m}.$$"
+            "**Why the two triangles stack.** Both share the same horizontal $40$ m, and the "
+            "observer's eye is at the roof level of the shorter building — so the depression "
+            "triangle measures everything below that line and the elevation triangle everything "
+            "above it. The heights add because the roof line is the boundary between them."
+            "**Check the ordering.** The taller building must exceed the shorter: "
+            "$62.7 > 41.4$ ✓ And the elevation angle ($28°$) is smaller than the depression "
+            "angle ($46°$), which fits: the extra height above the roof is less than the drop "
+            "below it, over the same horizontal distance."
+            "**Check by recomputing an angle.** "
+            "$\\tan^{-1}\\!\\left(\\frac{21.3}{40}\\right) \\approx 28.0°$ ✓",
+            [
+                "Abs(40*tan(46*pi/180) - Rational(414,10)) < Rational(1,10)",
+                "Abs(40*tan(28*pi/180) - Rational(213,10)) < Rational(1,10)",
+                "Abs(40*tan(46*pi/180) + 40*tan(28*pi/180) - Rational(627,10)) < Rational(1,5)",
+                "40*tan(46*pi/180) > 40*tan(28*pi/180)",
+                "Abs(atan(40*tan(28*pi/180)/40)*180/pi - 28) < Rational(1,100)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="right-triangle-trigonometry",
+        title="Right-Triangle Trigonometry",
+        unit_number=6,
+        blurb=(
+            "Sine, cosine and tangent as side ratios that similarity makes well defined; the two "
+            "special triangles and the exact values they supply; the complementary relationship "
+            "that gives cosine its name; and solving right triangles in surveying, navigation "
+            "and construction contexts."
+        ),
+        builds_on=(
+            "Similarity from Unit 5 — the trigonometric ratios exist BECAUSE all right triangles "
+            "with a given acute angle are similar."
+        ),
+        lessons=[
+            lesson_the_ratios(),
+            lesson_special_triangles(),
+            lesson_complements_and_inverses(),
+            lesson_solving_triangles(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

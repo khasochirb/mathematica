@@ -1462,7 +1462,12 @@ def lesson_scatter():
                     "line. The best fit is the one that makes those gaps — the residuals — as "
                     "small as possible overall."
                 ),
-                "config": {"mode": "fit", "dataset": "positive", "m0": 1, "b0": 2},
+                "config": {
+                    "mode": "fit",
+                    "dataset": "positive",
+                    "xLabel": "study hours",
+                    "yLabel": "test score",
+                },
             },
             {
                 "kind": "teach",

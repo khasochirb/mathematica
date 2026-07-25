@@ -1,0 +1,2011 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 2 — Unit 8: Probability.
+
+CCSS Integrated Math II: S-CP.1 (describe events as subsets of a sample space,
+using unions, intersections and complements), S-CP.2 (two events are independent
+exactly when the probability of both equals the product), S-CP.3 (conditional
+probability and its relationship to independence), S-CP.4/5 (two-way tables as
+probability models; explain conditional probability and independence in everyday
+language), S-CP.6/7 (the conditional-probability and addition rules).
+
+IM1 Unit 9 built two-way tables as a way of organising counts. This unit reads
+exactly the same tables as probability models — which is why conditional
+probability arrives as "restrict to a row" rather than as a formula.
+
+Run: python3 scripts/im/build_im2_unit8.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-2"
+
+
+# ===========================================================================
+# Lesson 1 — S-CP.1: sample spaces, events, and the language of sets
+# ===========================================================================
+def lesson_sample_spaces():
+    return lesson(
+        slug="sample-spaces-and-events",
+        title="Sample Spaces, Events and Their Combinations",
+        concrete=(
+            "Before you can say how likely something is, you have to be able to list everything "
+            "that could happen. Roll two dice and there are $36$ outcomes, not $11$ — the sums "
+            "run from $2$ to $12$, but they are not equally likely, and the reason is visible the "
+            "moment you write the $36$ pairs down."
+        ),
+        objective=(
+            "List a sample space, describe events as subsets of it, and compute probabilities of "
+            "unions, intersections and complements."
+        ),
+        concept=[
+            "**The sample space is the set of ALL possible outcomes.** Write it down first, and "
+            "make sure the outcomes are equally likely if you intend to count them. For two "
+            "distinguishable dice the sample space has $36$ elements, not $11$ — the sums are "
+            "summaries, not outcomes.",
+            "**An event is a subset of the sample space.** 'The sum is $7$' is the set "
+            "$\\{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)\\}$, which has $6$ elements. With "
+            "equally likely outcomes, $P(E) = \\frac{|E|}{|S|}$ — the probability is just a count "
+            "divided by a count.",
+            "**The complement is everything else.** $P(\\text{not } A) = 1 - P(A)$, because $A$ "
+            "and its complement partition the sample space. When 'at least one' appears in a "
+            "question, the complement ('none') is almost always the faster route.",
+            "**Intersection means BOTH; union means AT LEAST ONE.** $A \\cap B$ is the set of "
+            "outcomes in both; $A \\cup B$ is the set in either or both. The English words 'and' "
+            "and 'or' map onto them — but 'or' in mathematics always INCLUDES the both case.",
+            "**The addition rule subtracts the overlap.** "
+            "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. Adding the two probabilities counts "
+            "every outcome in both events twice, so one copy has to come back off. Forgetting the "
+            "subtraction is the commonest error in the whole unit.",
+            "**Mutually exclusive events cannot both happen.** Then $A \\cap B$ is empty, "
+            "$P(A \\cap B) = 0$, and the addition rule simplifies to $P(A) + P(B)$. Drawing a "
+            "single card that is both a king and a queen is impossible; being both a king and a "
+            "heart is not.",
+        ],
+        key_idea=(
+            "List the sample space, describe events as subsets, and remember that "
+            "$P(A \\cup B)$ always subtracts the overlap — unless the events cannot overlap at "
+            "all."
+        ),
+        facts=[
+            fact(
+                "Equally likely outcomes",
+                "P(E) = \\frac{|E|}{|S|}",
+                "A count divided by a count — but only when the outcomes really are equally likely.",
+            ),
+            fact(
+                "Complement rule",
+                "P(A') = 1 - P(A)",
+                "The fast route whenever the question says 'at least one'.",
+            ),
+            fact(
+                "Addition rule",
+                "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+                "Subtract the overlap, which the first two terms counted twice.",
+            ),
+            fact(
+                "Mutually exclusive",
+                "P(A \\cap B) = 0 \\ \\Rightarrow\\ P(A \\cup B) = P(A) + P(B)",
+                "The special case where nothing overlaps.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u8-l1-we1",
+                "Two fair six-sided dice are rolled. Find the probability that the sum is $7$, "
+                "and the probability that the sum is $2$. Why are they different?",
+                "**Write down the sample space's size.** Each die has $6$ faces and the dice are "
+                "distinguishable, so there are"
+                "$$6 \\times 6 = 36$$"
+                "equally likely outcomes."
+                "**Count the ways to make 7.**"
+                "$$(1,6),\\ (2,5),\\ (3,4),\\ (4,3),\\ (5,2),\\ (6,1)$$"
+                "— six outcomes, so $P(\\text{sum } 7) = \\frac{6}{36} = \\frac{1}{6}$."
+                "**Count the ways to make 2.** Only $(1,1)$, so "
+                "$P(\\text{sum } 2) = \\frac{1}{36}$."
+                "**Why they differ.** The SUMS are not the outcomes. There are eleven possible "
+                "sums but $36$ outcomes, and the sums claim wildly different numbers of them. "
+                "Treating the eleven sums as equally likely would give $\\frac{1}{11}$ for both — "
+                "wrong for both."
+                "**Check the whole distribution adds to 1.** The counts for sums $2$ through $12$ "
+                "are $1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1$, and"
+                "$$1 + 2 + 3 + 4 + 5 + 6 + 5 + 4 + 3 + 2 + 1 = 36 \\ \\checkmark$$"
+                "Every outcome is accounted for exactly once, which is what confirms the sample "
+                "space was listed correctly.",
+                [
+                    "Eq(6*6, 36)",
+                    "Eq(Rational(6,36), Rational(1,6))",
+                    "Eq(1 + 2 + 3 + 4 + 5 + 6 + 5 + 4 + 3 + 2 + 1, 36)",
+                    "Ne(Rational(1,36), Rational(1,6))",
+                    "Eq(Rational(1,36) + Rational(6,36), Rational(7,36))",
+                ],
+            ),
+            problem(
+                "im2-u8-l1-we2",
+                "One card is drawn from a standard $52$-card deck. Find the probability it is a "
+                "king OR a heart.",
+                "**Identify the two events.** There are $4$ kings and $13$ hearts."
+                "**Notice the overlap.** The king of hearts is BOTH, so it belongs to both events "
+                "and would be counted twice by a naive addition."
+                "**Apply the addition rule.**"
+                "$$P(K \\cup H) = \\frac{4}{52} + \\frac{13}{52} - \\frac{1}{52} = "
+                "\\frac{16}{52} = \\frac{4}{13}.$$"
+                "**Check by direct counting.** The kings are $4$ cards; the hearts are $13$; the "
+                "king of hearts is in both lists. So the union contains "
+                "$4 + 13 - 1 = 16$ distinct cards ✓ The rule and the count agree, as they must."
+                "**What goes wrong without the subtraction.** "
+                "$\\frac{4}{52} + \\frac{13}{52} = \\frac{17}{52}$ — one card too many, because "
+                "the king of hearts was counted in both terms."
+                "**Contrast with a mutually exclusive pair.** King or queen: no card is both, so "
+                "$P = \\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}$, with "
+                "nothing to subtract.",
+                [
+                    "Eq(Rational(4,52) + Rational(13,52) - Rational(1,52), Rational(4,13))",
+                    "Eq(4 + 13 - 1, 16)",
+                    "Eq(Rational(16,52), Rational(4,13))",
+                    "Eq(Rational(4,52) + Rational(4,52), Rational(2,13))",
+                    "Ne(Rational(17,52), Rational(16,52))",
+                ],
+            ),
+            problem(
+                "im2-u8-l1-we3",
+                "A fair coin is tossed four times. Find the probability of getting at least one "
+                "head.",
+                "**Size the sample space.** Each toss has $2$ outcomes and there are four tosses:"
+                "$$2^{4} = 16.$$"
+                "**Notice the complement is much easier.** 'At least one head' includes exactly "
+                "one, two, three or four heads — four cases to count. But its complement, 'no "
+                "heads at all', is a single outcome: TTTT."
+                "**Compute the complement.**"
+                "$$P(\\text{no heads}) = \\frac{1}{16}.$$"
+                "**Subtract from 1.**"
+                "$$P(\\text{at least one head}) = 1 - \\tfrac{1}{16} = \\tfrac{15}{16}.$$"
+                "**Verify the long way.** The counts for exactly $1, 2, 3, 4$ heads are "
+                "$4, 6, 4, 1$, totalling $15$ ✓ — and $\\frac{15}{16}$ agrees."
+                "**Why the complement trick generalises.** With $n$ tosses, 'at least one head' "
+                "would need $n$ separate counts, while 'no heads' is always exactly one outcome. "
+                "The saving grows with $n$: for ten tosses it is one count instead of ten, and "
+                "$P = 1 - \\frac{1}{1024}$."
+                "**The rule of thumb.** Whenever a question says 'at least one', compute the "
+                "complement first.",
+                [
+                    "Eq(2**4, 16)",
+                    "Eq(1 - Rational(1,16), Rational(15,16))",
+                    "Eq(4 + 6 + 4 + 1, 15)",
+                    "Eq(Rational(15,16), Rational(15,16))",
+                    "Eq(2**10, 1024)",
+                ],
+            ),
+            problem(
+                "im2-u8-l1-we4",
+                "In a class of $30$ students, $18$ study French, $15$ study German, and $7$ study "
+                "both. Find how many study neither, and the probability a randomly chosen student "
+                "studies exactly one language.",
+                "**Find the size of the union with the addition rule.**"
+                "$$|F \\cup G| = 18 + 15 - 7 = 26.$$"
+                "**Find how many study neither.** Everyone not in the union:"
+                "$$30 - 26 = 4.$$"
+                "**Find 'exactly one'.** This is the union minus the overlap — students in "
+                "exactly one language:"
+                "$$26 - 7 = 19,$$"
+                "so the probability is $\\frac{19}{30}$."
+                "**Cross-check by building the four regions.** French only: $18 - 7 = 11$. "
+                "German only: $15 - 7 = 8$. Both: $7$. Neither: $4$. Total:"
+                "$$11 + 8 + 7 + 4 = 30 \\ \\checkmark$$"
+                "**And 'exactly one' from the regions.** $11 + 8 = 19$ ✓ — the same answer by an "
+                "independent route."
+                "**Why the four-region breakdown is worth doing.** Every 'and', 'or', 'only' and "
+                "'neither' question about two categories is answered by reading one or more of "
+                "those four numbers. Building them once answers everything the problem can ask.",
+                [
+                    "Eq(18 + 15 - 7, 26)",
+                    "Eq(30 - 26, 4)",
+                    "Eq(26 - 7, 19)",
+                    "Eq(18 - 7, 11)",
+                    "Eq(15 - 7, 8)",
+                    "Eq(11 + 8 + 7 + 4, 30)",
+                    "Eq(11 + 8, 19)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Treating the eleven dice SUMS as equally likely.",
+                "The outcomes are the $36$ ordered pairs. A sum of $7$ has six of them and a sum "
+                "of $2$ has one, so they are not remotely equally likely.",
+            ),
+            mistake(
+                "Adding probabilities without subtracting the overlap.",
+                "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. Skipping the subtraction "
+                "double-counts everything in both events — and can even push the total above $1$.",
+            ),
+            mistake(
+                "Counting 'at least one' case by case when the complement is one line.",
+                "'No heads' is a single outcome; 'at least one head' is four separate counts. "
+                "Compute the complement and subtract from $1$.",
+            ),
+            mistake(
+                "Reading 'or' as exclusive.",
+                "In mathematics $A \\cup B$ INCLUDES outcomes in both. 'Exactly one' is a "
+                "different, smaller event: the union minus the intersection.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u8-l1-t1",
+                "A card is drawn from a standard deck. Find the probability it is a face card "
+                "(J, Q, K) or a spade.",
+                "Face cards: $12$. Spades: $13$. Both (face spades): $3$. So the union has "
+                "$12 + 13 - 3 = 22$ cards and the probability is $\\frac{22}{52} = "
+                "\\frac{11}{26}$. Check by counting: $9$ non-spade face cards $+$ $13$ spades $= "
+                "22$ ✓",
+                [
+                    "Eq(12 + 13 - 3, 22)",
+                    "Eq(Rational(22,52), Rational(11,26)),"[:-1] + "",
+                    "Eq(12 - 3 + 13, 22)",
+                ],
+            ),
+            problem(
+                "im2-u8-l1-t2",
+                "A fair die is rolled three times. Find the probability of getting at least one "
+                "six.",
+                "The sample space has $6^{3} = 216$ outcomes. The complement — no six on any "
+                "roll — has $5^{3} = 125$. So the answer is $1 - \\frac{125}{216} = "
+                "\\frac{91}{216} \\approx 0.421$. Check the complement is plausible: missing a "
+                "six three times running should be a bit more likely than not, and "
+                "$\\frac{125}{216} \\approx 0.579$ ✓",
+                [
+                    "Eq(6**3, 216)",
+                    "Eq(5**3, 125)",
+                    "Eq(1 - Rational(125,216), Rational(91,216))",
+                    "Abs(Rational(91,216) - Rational(421,1000)) < Rational(1,1000)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-CP.1",
+                "title": "List everything first",
+                "body": (
+                    "The sample space is every outcome that could occur. Get it right and most "
+                    "probability questions become counting; get it wrong and no amount of correct "
+                    "arithmetic afterwards will save the answer."
+                ),
+                "beats": [
+                    "Sample space: all outcomes",
+                    "Event: a subset of it",
+                    "$P(E) = \\frac{|E|}{|S|}$ when equally likely",
+                    "Check the outcomes really ARE equally likely",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "Two dice: why sums are not outcomes",
+                "problemId": "im2-u8-l1-we1",
+            },
+            tap(
+                "How big is the sample space?",
+                "Three fair coins are tossed. How many equally likely outcomes are there?",
+                ["$3$", "$6$", "$8$", "$4$"],
+                2,
+                "Each coin has $2$ outcomes and there are three coins: $2^{3} = 8$. Listing them "
+                "as 'number of heads' would give only four categories, and they are not equally "
+                "likely.",
+                ["Eq(2**3, 8)", "Ne(2*3, 2**3)"],
+            ),
+            {
+                "kind": "vennCounts",
+                "eyebrow": "Two categories, four regions",
+                "title": "Only-A, both, only-B, neither",
+                "teach": (
+                    "Every question about two overlapping categories is answered by one or more "
+                    "of these four numbers. Build them once and 'and', 'or', 'only' and 'neither' "
+                    "all become reading rather than calculating."
+                ),
+                "config": {"onlyA": 11, "both": 7, "onlyB": 8, "neither": 4},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The addition rule",
+                "title": "Subtract what you counted twice",
+                "body": (
+                    "$P(A) + P(B)$ counts everything in both events twice, so "
+                    "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. If the events cannot both "
+                    "happen, the overlap is zero and the subtraction disappears — but check that "
+                    "rather than assuming it."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "King or heart: the overlap matters",
+                "problemId": "im2-u8-l1-we2",
+            },
+            tap(
+                "Mutually exclusive?",
+                "Drawing one card: which pair of events CANNOT both happen?",
+                [
+                    "king and heart",
+                    "red card and face card",
+                    "heart and spade",
+                    "ace and red card",
+                ],
+                2,
+                "A single card has exactly one suit, so it cannot be both a heart and a spade — "
+                "mutually exclusive. Each of the other pairs has cards belonging to both.",
+                [
+                    "Eq(Rational(13,52) + Rational(13,52), Rational(1,2))",
+                    "Eq(Rational(4,52) + Rational(13,52) - Rational(1,52), Rational(4,13))",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "The fast route",
+                "title": "'At least one' means compute the complement",
+                "body": (
+                    "'At least one' usually needs several separate counts. Its complement — "
+                    "'none' — is almost always a single case. Compute that and subtract from $1$."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "At least one head, via the complement",
+                "problemId": "im2-u8-l1-we3",
+            },
+            {
+                "kind": "worked",
+                "title": "Two languages, four regions",
+                "problemId": "im2-u8-l1-we4",
+            },
+            {"kind": "tryIt", "title": "Face card or spade", "problemId": "im2-u8-l1-t1"},
+            {"kind": "tryIt", "title": "At least one six", "problemId": "im2-u8-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "List the sample space first, and check the outcomes are equally likely",
+                    "An event is a subset; with equal likelihood, probability is a ratio of counts",
+                    "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$ — subtract the overlap",
+                    "Mutually exclusive means the overlap is empty, not that it is ignorable",
+                    "'At least one' is fastest through the complement",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — S-CP.4/5: two-way tables as probability models
+# ===========================================================================
+def lesson_two_way_tables():
+    return lesson(
+        slug="two-way-tables-and-conditional-probability",
+        title="Two-Way Tables and Conditional Probability",
+        concrete=(
+            "A survey table already contains every probability the data can support. The whole "
+            "skill is knowing which number to divide by: the grand total for an ordinary "
+            "probability, a row total for a probability conditional on that row. Nothing else "
+            "changes."
+        ),
+        objective=(
+            "Read joint, marginal and conditional probabilities from a two-way table, and use "
+            "the conditional-probability formula."
+        ),
+        concept=[
+            "**Three kinds of probability live in one table.** JOINT probabilities divide a cell "
+            "by the grand total. MARGINAL probabilities divide a row or column total by the grand "
+            "total. CONDITIONAL probabilities divide a cell by its ROW or COLUMN total. Same "
+            "table, three different denominators.",
+            "**Conditional probability restricts the sample space.** $P(A \\mid B)$ asks: given "
+            "that we are already inside $B$, how much of $B$ is also $A$? So the denominator "
+            "becomes $B$ rather than everything:"
+            " $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$.",
+            "**In a table, conditioning means covering everything outside the given row.** "
+            "'Given the student is in Year 12' means physically ignoring the other rows. Once you "
+            "see it that way, the formula stops being something to memorise.",
+            "**The order matters enormously.** $P(A \\mid B)$ and $P(B \\mid A)$ are different "
+            "questions with different denominators, and they are usually different numbers. "
+            "Confusing them is not a small slip — it is the error behind most misread medical and "
+            "legal statistics.",
+            "**The multiplication rule is the same formula rearranged.** "
+            "$P(A \\cap B) = P(B) \\cdot P(A \\mid B)$. Reading a chain of events left to right — "
+            "the first happens, then the second given the first — is what makes tree diagrams "
+            "work.",
+            "**Every row of conditional probabilities sums to one.** Given a row, the outcomes "
+            "within it are exhaustive. This is a free check on any set of conditional "
+            "probabilities you compute, and it catches a wrong denominator immediately.",
+        ],
+        key_idea=(
+            "Conditional probability changes the denominator: $P(A \\mid B)$ divides by $B$ "
+            "instead of by everything, which in a table means restricting to one row."
+        ),
+        facts=[
+            fact(
+                "Conditional probability",
+                "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+                "The intersection over the CONDITION, not over the total.",
+            ),
+            fact(
+                "Multiplication rule",
+                "P(A \\cap B) = P(B) \\cdot P(A \\mid B)",
+                "The same statement rearranged; the engine behind tree diagrams.",
+            ),
+            fact(
+                "Joint, marginal, conditional",
+                "\\frac{\\text{cell}}{\\text{total}}, \\quad \\frac{\\text{row total}}{\\text{total}}, \\quad \\frac{\\text{cell}}{\\text{row total}}",
+                "One table, three denominators. Choosing the denominator IS the skill.",
+            ),
+            fact(
+                "Rows sum to one",
+                "\\sum_{i} P(A_{i} \\mid B) = 1",
+                "Given the condition, the outcomes are exhaustive — a free check.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u8-l2-we1",
+                "A survey of $200$ students records whether they cycle to school and whether they "
+                "live within $2$ km. Cyclists living near: $60$. Cyclists living far: $20$. "
+                "Non-cyclists near: $40$. Non-cyclists far: $80$. Find the probability a randomly "
+                "chosen student cycles, and the probability a student cycles GIVEN they live near.",
+                "**Build the margins first.** Cyclists: $60 + 20 = 80$. Non-cyclists: "
+                "$40 + 80 = 120$. Living near: $60 + 40 = 100$. Living far: $20 + 80 = 100$. "
+                "Grand total: $80 + 120 = 200$ ✓ and also $100 + 100 = 200$ ✓ — the two ways of "
+                "totalling must agree."
+                "**The unconditional probability of cycling.** Divide the row total by the grand "
+                "total:"
+                "$$P(\\text{cycles}) = \\frac{80}{200} = 0.4.$$"
+                "**The conditional probability, given they live near.** Now the denominator is "
+                "the $100$ students who live near, not all $200$:"
+                "$$P(\\text{cycles} \\mid \\text{near}) = \\frac{60}{100} = 0.6.$$"
+                "**Compare the two.** Among all students $40\\%$ cycle; among those living near, "
+                "$60\\%$ do. Knowing a student lives nearby genuinely changes the estimate — the "
+                "two variables are not independent."
+                "**Check the conditional row sums to 1.** Given 'lives near', the student either "
+                "cycles or does not: $\\frac{60}{100} + \\frac{40}{100} = 1$ ✓"
+                "**Compute the reverse conditional, to show it differs.** "
+                "$P(\\text{near} \\mid \\text{cycles}) = \\frac{60}{80} = 0.75$, which is not "
+                "$0.6$. Same cell, different denominator, different question.",
+                [
+                    "Eq(60 + 20, 80)",
+                    "Eq(40 + 80, 120)",
+                    "Eq(60 + 40, 100)",
+                    "Eq(80 + 120, 200)",
+                    "Eq(Rational(80,200), Rational(2,5))",
+                    "Eq(Rational(60,100), Rational(3,5))",
+                    "Eq(Rational(60,100) + Rational(40,100), 1)",
+                    "Eq(Rational(60,80), Rational(3,4))",
+                    "Ne(Rational(60,80), Rational(60,100))",
+                ],
+            ),
+            problem(
+                "im2-u8-l2-we2",
+                "Using the same survey ($60$ near cyclists, $20$ far cyclists, $40$ near "
+                "non-cyclists, $80$ far non-cyclists), verify the conditional-probability formula "
+                "gives the same answer as reading the table directly.",
+                "**Read the answer off the table.** Restricting to the $100$ students who live "
+                "near, $60$ cycle:"
+                "$$P(C \\mid N) = \\frac{60}{100} = 0.6.$$"
+                "**Now use the formula instead.** First the joint probability:"
+                "$$P(C \\cap N) = \\frac{60}{200} = 0.3.$$"
+                "Then the marginal:"
+                "$$P(N) = \\frac{100}{200} = 0.5.$$"
+                "**Divide.**"
+                "$$P(C \\mid N) = \\frac{0.3}{0.5} = 0.6 \\ \\checkmark$$"
+                "**Why they must agree.** The $200$ in the numerator and the $200$ in the "
+                "denominator cancel, leaving $\\frac{60}{100}$ exactly. The formula is the "
+                "table-reading, written with probabilities instead of counts."
+                "**Which to use when.** If you have the table, read it — the counts are simpler. "
+                "The formula matters when you are GIVEN probabilities and never see the counts, "
+                "which is the usual situation in a worded problem."
+                "**One more instance, to be sure.** "
+                "$P(N \\mid C) = \\frac{P(N \\cap C)}{P(C)} = \\frac{0.3}{0.4} = 0.75$, matching "
+                "$\\frac{60}{80}$ ✓",
+                [
+                    "Eq(Rational(60,200), Rational(3,10))",
+                    "Eq(Rational(100,200), Rational(1,2))",
+                    "Eq(Rational(3,10)/Rational(1,2), Rational(3,5))",
+                    "Eq(Rational(3,10)/Rational(2,5), Rational(3,4))",
+                    "Eq(Rational(60,80), Rational(3,4))",
+                ],
+            ),
+            problem(
+                "im2-u8-l2-we3",
+                "A test for a condition affecting $2\\%$ of a population is $95\\%$ accurate on "
+                "those who have it and $90\\%$ accurate on those who do not. In a group of "
+                "$10{,}000$, find how many test positive, and the probability someone who tests "
+                "positive actually has the condition.",
+                "**Build the table from the percentages.** Of $10{,}000$ people, $2\\%$ — that is "
+                "$200$ — have the condition, and $9{,}800$ do not."
+                "**Fill in the four cells.** Among the $200$ with the condition, $95\\%$ test "
+                "positive: $190$ true positives, $10$ false negatives. Among the $9{,}800$ "
+                "without, $90\\%$ test negative: $8{,}820$ true negatives, and $980$ FALSE "
+                "positives."
+                "**Total the positives.**"
+                "$$190 + 980 = 1{,}170.$$"
+                "**Compute the conditional probability.** Restricting to those who tested "
+                "positive:"
+                "$$P(\\text{has it} \\mid \\text{positive}) = \\frac{190}{1170} \\approx 0.162.$$"
+                "**Read the result carefully.** The test is $95\\%$ accurate on carriers, yet "
+                "fewer than one in six positives is genuine. The reason is arithmetic, not a flaw "
+                "in the test: there are so many more healthy people that even a $10\\%$ error rate "
+                "among them produces $980$ false positives, swamping the $190$ true ones."
+                "**Check the two conditionals are different.** "
+                "$P(\\text{positive} \\mid \\text{has it}) = \\frac{190}{200} = 0.95$ — the "
+                "advertised accuracy. But "
+                "$P(\\text{has it} \\mid \\text{positive}) \\approx 0.162$. Same table, opposite "
+                "conditioning, answers differing by a factor of nearly six."
+                "**Check the table totals.** $190 + 10 + 980 + 8820 = 10{,}000$ ✓",
+                [
+                    "Eq(Rational(2,100)*10000, 200)",
+                    "Eq(10000 - 200, 9800)",
+                    "Eq(Rational(95,100)*200, 190)",
+                    "Eq(Rational(10,100)*9800, 980)",
+                    "Eq(190 + 980, 1170)",
+                    "Abs(Rational(190,1170) - Rational(162,1000)) < Rational(1,1000)",
+                    "Eq(Rational(190,200), Rational(19,20))",
+                    "Eq(190 + 10 + 980 + 8820, 10000)",
+                ],
+            ),
+            problem(
+                "im2-u8-l2-we4",
+                "Two cards are drawn from a standard deck WITHOUT replacement. Find the "
+                "probability both are hearts, and the probability the second is a heart given the "
+                "first was.",
+                "**The first draw.** There are $13$ hearts in $52$ cards:"
+                "$$P(H_{1}) = \\frac{13}{52} = \\frac{1}{4}.$$"
+                "**The second draw, given the first was a heart.** One heart has gone and one "
+                "card has gone, so"
+                "$$P(H_{2} \\mid H_{1}) = \\frac{12}{51} = \\frac{4}{17}.$$"
+                "**Apply the multiplication rule.**"
+                "$$P(H_{1} \\cap H_{2}) = \\frac{13}{52} \\times \\frac{12}{51} = "
+                "\\frac{1}{17} \\approx 0.0588.$$"
+                "**Check by direct counting.** The number of ordered pairs of hearts is "
+                "$13 \\times 12 = 156$, and the number of ordered pairs of cards is "
+                "$52 \\times 51 = 2652$. And $\\frac{156}{2652} = \\frac{1}{17}$ ✓"
+                "**Compare with replacement.** If the first card were put back, the second draw "
+                "would again have $\\frac{13}{52} = \\frac{1}{4}$, giving "
+                "$\\frac{1}{16} = 0.0625$. Slightly higher — removing a heart makes the second "
+                "heart marginally less likely, which is exactly what 'without replacement' "
+                "means."
+                "**The structural point.** Without replacement the draws are DEPENDENT, so the "
+                "second probability must be conditioned on the first. With replacement they are "
+                "independent and the conditioning does nothing.",
+                [
+                    "Eq(Rational(13,52), Rational(1,4))",
+                    "Eq(Rational(12,51), Rational(4,17))",
+                    "Eq(Rational(13,52)*Rational(12,51), Rational(1,17))",
+                    "Eq(13*12, 156)",
+                    "Eq(52*51, 2652)",
+                    "Eq(Rational(156,2652), Rational(1,17))",
+                    "Eq(Rational(1,4)*Rational(1,4), Rational(1,16))",
+                    "Rational(1,16) > Rational(1,17)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Dividing by the grand total when the question says 'given'.",
+                "Conditioning restricts the sample space. 'Given they live near' means dividing "
+                "by the $100$ who live near, not by the $200$ surveyed.",
+            ),
+            mistake(
+                "Swapping $P(A \\mid B)$ for $P(B \\mid A)$.",
+                "They have different denominators and are usually different numbers — $0.95$ "
+                "against $0.162$ in the medical-test example. Read which event is the GIVEN one.",
+            ),
+            mistake(
+                "Using the same probability for both draws without replacement.",
+                "After a heart is removed there are $12$ hearts in $51$ cards, not $13$ in $52$. "
+                "The second draw must be conditioned on the first.",
+            ),
+            mistake(
+                "Forgetting to check that a conditional row sums to $1$.",
+                "Given a condition, the outcomes are exhaustive. If your conditional "
+                "probabilities do not total $1$, the denominator is wrong.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u8-l2-t1",
+                "In a group of $150$ people, $90$ own a car; of those, $54$ also own a bicycle. "
+                "Of the non-car-owners, $36$ own a bicycle. Find $P(\\text{bike})$ and "
+                "$P(\\text{bike} \\mid \\text{car})$.",
+                "Total bicycle owners: $54 + 36 = 90$, so $P(\\text{bike}) = \\frac{90}{150} = "
+                "0.6$. Conditioning on car owners, the denominator becomes $90$: "
+                "$P(\\text{bike} \\mid \\text{car}) = \\frac{54}{90} = 0.6$. The two are EQUAL, "
+                "which means owning a car tells you nothing about owning a bicycle — the events "
+                "are independent. Check the other conditional: "
+                "$P(\\text{bike} \\mid \\text{no car}) = \\frac{36}{60} = 0.6$ ✓ the same again.",
+                [
+                    "Eq(54 + 36, 90)",
+                    "Eq(Rational(90,150), Rational(3,5))",
+                    "Eq(Rational(54,90), Rational(3,5))",
+                    "Eq(150 - 90, 60)",
+                    "Eq(Rational(36,60), Rational(3,5))",
+                ],
+            ),
+            problem(
+                "im2-u8-l2-t2",
+                "A bag holds $5$ red and $7$ blue marbles. Two are drawn without replacement. "
+                "Find the probability both are red.",
+                "First draw: $\\frac{5}{12}$. Second, given the first was red: $\\frac{4}{11}$. "
+                "Multiplying: $\\frac{5}{12} \\times \\frac{4}{11} = \\frac{20}{132} = "
+                "\\frac{5}{33} \\approx 0.152$. Check by counting ordered pairs: "
+                "$\\frac{5 \\times 4}{12 \\times 11} = \\frac{20}{132}$ ✓",
+                [
+                    "Eq(Rational(5,12)*Rational(4,11), Rational(5,33))",
+                    "Eq(Rational(20,132), Rational(5,33))",
+                    "Eq(5*4, 20)",
+                    "Eq(12*11, 132)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-CP.4",
+                "title": "One table, three denominators",
+                "body": (
+                    "Joint divides a cell by the grand total. Marginal divides a row total by the "
+                    "grand total. Conditional divides a cell by its ROW total. Choosing the "
+                    "denominator is the entire skill."
+                ),
+                "beats": [
+                    "Joint: cell $\\div$ total",
+                    "Marginal: row total $\\div$ total",
+                    "Conditional: cell $\\div$ row total",
+                    "The word 'given' picks the third",
+                ],
+            },
+            {
+                "kind": "vennCounts",
+                "eyebrow": "The survey",
+                "title": "Cycling and living nearby",
+                "teach": (
+                    "Sixty students cycle and live near; twenty cycle and live far; forty live "
+                    "near without cycling; eighty do neither. Every probability in this lesson is "
+                    "one of these four numbers over one of the totals."
+                ),
+                "config": {"onlyA": 20, "both": 60, "onlyB": 40, "neither": 80},
+            },
+            {
+                "kind": "worked",
+                "title": "Unconditional against conditional",
+                "problemId": "im2-u8-l2-we1",
+            },
+            tap(
+                "Which denominator?",
+                "A table has $200$ people in total, $80$ of whom exercise daily; $30$ of those "
+                "$80$ also sleep eight hours. What is $P(\\text{sleeps } 8 \\mid "
+                "\\text{exercises})$?",
+                [
+                    "$\\frac{30}{200}$",
+                    "$\\frac{30}{80}$",
+                    "$\\frac{80}{200}$",
+                    "$\\frac{80}{30}$",
+                ],
+                1,
+                "'Given they exercise' restricts the sample space to those $80$ people. The "
+                "answer is $\\frac{30}{80} = 0.375$. Dividing by $200$ would answer a different "
+                "question — the JOINT probability.",
+                [
+                    "Eq(Rational(30,80), Rational(3,8))",
+                    "Eq(Rational(30,200), Rational(3,20))",
+                    "Ne(Rational(30,80), Rational(30,200))",
+                ],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "The formula",
+                "title": "Why $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$",
+                "body": (
+                    "Divide both the cell and the row total by the grand total and nothing "
+                    "changes — the grand totals cancel. So the formula in probabilities and the "
+                    "table-reading in counts are the same operation."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Formula and table agree",
+                "problemId": "im2-u8-l2-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "The order matters",
+                "title": "Read which event is the GIVEN one",
+                "body": (
+                    "$P(A \\mid B)$ and $P(B \\mid A)$ answer different questions and usually "
+                    "differ in value. Underline the word after 'given' before writing anything "
+                    "down — that event is the denominator."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "A medical test, and why positives mislead",
+                "problemId": "im2-u8-l2-we3",
+            },
+            tap(
+                "Without replacement",
+                "A bag has $4$ red and $6$ blue marbles. One red is drawn and NOT replaced. What "
+                "is the probability the next is red?",
+                [
+                    "$\\frac{4}{10}$",
+                    "$\\frac{3}{9}$",
+                    "$\\frac{4}{9}$",
+                    "$\\frac{3}{10}$",
+                ],
+                1,
+                "One red is gone and one marble is gone, so $3$ reds remain among $9$ marbles: "
+                "$\\frac{3}{9} = \\frac{1}{3}$. Both the numerator and the denominator drop.",
+                [
+                    "Eq(Rational(3,9), Rational(1,3))",
+                    "Eq(10 - 1, 9)",
+                    "Eq(4 - 1, 3)",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Two draws without replacement",
+                "problemId": "im2-u8-l2-we4",
+            },
+            {"kind": "tryIt", "title": "A table where nothing changes", "problemId": "im2-u8-l2-t1"},
+            {"kind": "tryIt", "title": "Two red marbles", "problemId": "im2-u8-l2-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Joint, marginal and conditional differ only in the denominator",
+                    "$P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$ — divide by the CONDITION",
+                    "In a table, conditioning means restricting to one row",
+                    "$P(A \\mid B) \\neq P(B \\mid A)$, often dramatically",
+                    "Without replacement, both numerator and denominator drop",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — S-CP.2/3: independence
+# ===========================================================================
+def lesson_independence():
+    return lesson(
+        slug="independence",
+        title="Independence: When Knowing One Thing Tells You Nothing",
+        concrete=(
+            "A coin does not remember. After nine heads the tenth toss is still an even chance, "
+            "because nothing physical connects the tosses. But drawing cards without replacement "
+            "does remember — the deck has changed. Independence is exactly the question of "
+            "whether the first event moved the odds on the second."
+        ),
+        objective=(
+            "Test independence using both the product rule and the conditional definition, and "
+            "distinguish independence from mutual exclusivity."
+        ),
+        concept=[
+            "**The definition.** $A$ and $B$ are independent when "
+            "$P(A \\cap B) = P(A) \\cdot P(B)$. This is a TEST to be applied, not a property to "
+            "be assumed — two events either satisfy the equation or they do not.",
+            "**The equivalent conditional form.** Independence also means "
+            "$P(A \\mid B) = P(A)$: knowing that $B$ happened does not change the probability of "
+            "$A$. The two definitions are algebraically identical, and this one says what "
+            "independence MEANS.",
+            "**Independent is not the same as mutually exclusive — they are close to "
+            "opposites.** Mutually exclusive events cannot both occur, so knowing one happened "
+            "tells you the other definitely did NOT. That is maximal information, which is the "
+            "opposite of telling you nothing.",
+            "**Two events with non-zero probability cannot be both.** If $A$ and $B$ are mutually "
+            "exclusive then $P(A \\cap B) = 0$, but independence would require "
+            "$P(A)P(B) > 0$. So they can only be both if one is impossible.",
+            "**Physical independence usually implies statistical independence, but check anyway.** "
+            "Separate coins, separate dice and sampling WITH replacement are independent. "
+            "Sampling without replacement is not. When in doubt, compute both sides of the "
+            "product rule.",
+            "**For independent events the multiplication rule loses its conditional.** "
+            "$P(A \\cap B) = P(A)P(B)$ rather than $P(A)P(B \\mid A)$. This is why long chains of "
+            "independent events are easy: the probabilities simply multiply.",
+        ],
+        key_idea=(
+            "Independent means $P(A \\cap B) = P(A)P(B)$, equivalently $P(A \\mid B) = P(A)$ — "
+            "and it is nearly the opposite of mutually exclusive, not a synonym."
+        ),
+        facts=[
+            fact(
+                "Product test",
+                "A \\perp B \\iff P(A \\cap B) = P(A) \\cdot P(B)",
+                "A test to apply, never an assumption to make.",
+            ),
+            fact(
+                "Conditional form",
+                "A \\perp B \\iff P(A \\mid B) = P(A)",
+                "Knowing $B$ changes nothing about $A$. This is what independence MEANS.",
+            ),
+            fact(
+                "Mutually exclusive is different",
+                "P(A \\cap B) = 0",
+                "Knowing one happened tells you the other did not — maximal information.",
+            ),
+            fact(
+                "Independent chains multiply",
+                "P(A_{1} \\cap \\cdots \\cap A_{n}) = P(A_{1}) \\cdots P(A_{n})",
+                "No conditioning needed, which is what makes long chains tractable.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u8-l3-we1",
+                "A card is drawn from a standard deck. Are the events 'the card is a king' and "
+                "'the card is a heart' independent?",
+                "**Compute the three probabilities.**"
+                "$$P(K) = \\tfrac{4}{52} = \\tfrac{1}{13}, \\qquad "
+                "P(H) = \\tfrac{13}{52} = \\tfrac{1}{4}, \\qquad "
+                "P(K \\cap H) = \\tfrac{1}{52}.$$"
+                "The intersection is a single card, the king of hearts."
+                "**Apply the product test.**"
+                "$$P(K) \\cdot P(H) = \\tfrac{1}{13} \\times \\tfrac{1}{4} = \\tfrac{1}{52}.$$"
+                "This equals $P(K \\cap H)$, so the events ARE independent."
+                "**Confirm with the conditional form.** "
+                "$P(K \\mid H) = \\frac{1}{13}$ — among the $13$ hearts, exactly one is a king. "
+                "And $P(K) = \\frac{1}{13}$ too ✓ Knowing the card is a heart tells you nothing "
+                "about whether it is a king."
+                "**Why this is not a coincidence.** The deck is built as a $4 \\times 13$ grid of "
+                "suit against rank, with every combination present exactly once. That structure "
+                "forces suit and rank to be independent."
+                "**A contrast.** 'King' and 'face card' are NOT independent: "
+                "$P(K \\mid \\text{face}) = \\frac{4}{12} = \\frac{1}{3}$, while "
+                "$P(K) = \\frac{1}{13}$. Knowing it is a face card changes the odds enormously.",
+                [
+                    "Eq(Rational(4,52)*Rational(13,52), Rational(1,52))",
+                    "Eq(Rational(1,52), Rational(1,52))",
+                    "Eq(Rational(1,13), Rational(4,52))",
+                    "Eq(Rational(4,12), Rational(1,3))",
+                    "Ne(Rational(1,3), Rational(1,13))",
+                ],
+            ),
+            problem(
+                "im2-u8-l3-we2",
+                "A survey of $400$ people finds $240$ own a smartphone and $150$ subscribe to a "
+                "streaming service; $90$ do both. Are ownership and subscription independent?",
+                "**Compute the three probabilities.**"
+                "$$P(S) = \\tfrac{240}{400} = 0.6, \\qquad P(T) = \\tfrac{150}{400} = 0.375, "
+                "\\qquad P(S \\cap T) = \\tfrac{90}{400} = 0.225.$$"
+                "**Apply the product test.**"
+                "$$P(S) \\cdot P(T) = 0.6 \\times 0.375 = 0.225.$$"
+                "Equal to the joint probability, so the events ARE independent."
+                "**Confirm conditionally.** Among the $240$ smartphone owners, $90$ subscribe:"
+                "$$P(T \\mid S) = \\tfrac{90}{240} = 0.375 = P(T) \\ \\checkmark$$"
+                "Owning a smartphone does not change the subscription rate at all."
+                "**Check the other direction too.** Among the $150$ subscribers, "
+                "$P(S \\mid T) = \\frac{90}{150} = 0.6 = P(S)$ ✓ Independence is symmetric — if "
+                "it holds one way it holds the other, which the algebra guarantees."
+                "**What a dependent result would have looked like.** Had the overlap been $120$ "
+                "instead of $90$, then $P(T \\mid S) = \\frac{120}{240} = 0.5 \\neq 0.375$, and "
+                "smartphone owners would be subscribing at a noticeably higher rate.",
+                [
+                    "Eq(Rational(240,400), Rational(3,5))",
+                    "Eq(Rational(150,400), Rational(3,8))",
+                    "Eq(Rational(90,400), Rational(9,40))",
+                    "Eq(Rational(3,5)*Rational(3,8), Rational(9,40))",
+                    "Eq(Rational(90,240), Rational(3,8))",
+                    "Eq(Rational(90,150), Rational(3,5))",
+                    "Ne(Rational(120,240), Rational(3,8))",
+                ],
+            ),
+            problem(
+                "im2-u8-l3-we3",
+                "Explain why 'the card is red' and 'the card is a spade' are mutually exclusive "
+                "but NOT independent, and why no two events with non-zero probability can be "
+                "both.",
+                "**Show they are mutually exclusive.** No card is both red and a spade — spades "
+                "are black. So"
+                "$$P(R \\cap S) = 0.$$"
+                "**Apply the product test.**"
+                "$$P(R) \\cdot P(S) = \\tfrac{1}{2} \\times \\tfrac{1}{4} = \\tfrac{1}{8} "
+                "\\neq 0.$$"
+                "The product does not match the joint probability, so the events are NOT "
+                "independent."
+                "**Say what that means in words.** Learning the card is a spade tells you it is "
+                "definitely NOT red — the probability collapses from $\\frac{1}{2}$ to $0$. That "
+                "is the largest possible change, which is the opposite of 'tells you nothing'."
+                "**The general argument.** Suppose $A$ and $B$ are mutually exclusive with "
+                "$P(A) > 0$ and $P(B) > 0$. Then $P(A \\cap B) = 0$ but "
+                "$P(A) \\cdot P(B) > 0$, so the product test fails. Mutually exclusive events "
+                "with non-zero probability are NEVER independent. $\\blacksquare$"
+                "**The confusion this dissolves.** The two terms sound similar and are often "
+                "swapped, but they describe opposite situations: mutually exclusive means maximum "
+                "information, independent means none."
+                "**A concrete check.** $P(R \\mid S) = 0$ while $P(R) = \\frac{1}{2}$ — as "
+                "different as two probabilities can be.",
+                [
+                    "Eq(Rational(1,2)*Rational(1,4), Rational(1,8))",
+                    "Ne(Rational(1,8), 0)",
+                    "Eq(Rational(26,52), Rational(1,2))",
+                    "Eq(Rational(13,52), Rational(1,4))",
+                ],
+            ),
+            problem(
+                "im2-u8-l3-we4",
+                "A machine produces components with a $3\\%$ defect rate, independently. Find the "
+                "probability that a batch of $10$ contains no defects, and that it contains at "
+                "least one.",
+                "**Find the probability one component is good.**"
+                "$$1 - 0.03 = 0.97.$$"
+                "**Use independence to chain them.** Because the components are independent, the "
+                "probabilities simply multiply — no conditioning is needed:"
+                "$$P(\\text{all } 10 \\text{ good}) = 0.97^{10} \\approx 0.7374.$$"
+                "**Use the complement for 'at least one'.**"
+                "$$P(\\text{at least one defective}) = 1 - 0.7374 = 0.2626.$$"
+                "**Interpret it.** A $3\\%$ defect rate sounds small, but over a batch of ten it "
+                "produces a bad batch more than a quarter of the time. Small per-item risks "
+                "accumulate quickly, which is why quality targets are set per batch rather than "
+                "per item."
+                "**Check the direction of the trend.** For a batch of $20$: "
+                "$0.97^{20} \\approx 0.5438$, so the chance of a defect exceeds $45\\%$. Doubling "
+                "the batch nearly doubled the risk ✓ as expected."
+                "**Where independence was essential.** If a jam made defects cluster, the "
+                "components would NOT be independent and $0.97^{10}$ would be wrong. The "
+                "assumption is doing real work and should be stated, not buried.",
+                [
+                    "Eq(1 - Rational(3,100), Rational(97,100))",
+                    "Abs(Rational(97,100)**10 - Rational(7374,10000)) < Rational(1,10000)",
+                    "Abs(1 - Rational(97,100)**10 - Rational(2626,10000)) < Rational(1,10000)",
+                    "Abs(Rational(97,100)**20 - Rational(5438,10000)) < Rational(1,10000)",
+                    "Rational(97,100)**20 < Rational(97,100)**10",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Treating 'independent' and 'mutually exclusive' as the same thing.",
+                "They are near opposites. Mutually exclusive means knowing one tells you the "
+                "other did NOT happen; independent means knowing one tells you nothing.",
+            ),
+            mistake(
+                "Assuming independence because the events 'feel unrelated'.",
+                "Independence is a numerical test: $P(A \\cap B) = P(A)P(B)$. Compute both sides. "
+                "Plenty of intuitively unrelated variables turn out to be dependent in data.",
+            ),
+            mistake(
+                "Multiplying probabilities for draws without replacement.",
+                "That requires independence. Without replacement the second probability must be "
+                "conditioned on the first: $P(A)P(B \\mid A)$.",
+            ),
+            mistake(
+                "Believing a coin is 'due' after a run of heads.",
+                "Tosses are independent, so the next toss is still $\\frac{1}{2}$. The coin has "
+                "no memory of the run — this is the gambler's fallacy.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u8-l3-t1",
+                "In a group of $500$, $200$ wear glasses and $150$ are left-handed; $60$ are "
+                "both. Are the two independent?",
+                "$P(G) = \\frac{200}{500} = 0.4$ and $P(L) = \\frac{150}{500} = 0.3$, so the "
+                "product is $0.12$. But $P(G \\cap L) = \\frac{60}{500} = 0.12$ ✓ They match, so "
+                "the events ARE independent. Confirm conditionally: "
+                "$P(L \\mid G) = \\frac{60}{200} = 0.3 = P(L)$ ✓",
+                [
+                    "Eq(Rational(200,500), Rational(2,5))",
+                    "Eq(Rational(150,500), Rational(3,10))",
+                    "Eq(Rational(2,5)*Rational(3,10), Rational(3,25))",
+                    "Eq(Rational(60,500), Rational(3,25))",
+                    "Eq(Rational(60,200), Rational(3,10))",
+                ],
+            ),
+            problem(
+                "im2-u8-l3-t2",
+                "A fair coin is tossed five times. Find the probability of five heads, and the "
+                "probability of at least one tail.",
+                "The tosses are independent, so the probabilities multiply: "
+                "$\\left(\\frac{1}{2}\\right)^{5} = \\frac{1}{32}$. 'At least one tail' is the "
+                "complement of 'all heads': $1 - \\frac{1}{32} = \\frac{31}{32} \\approx 0.969$. "
+                "Check the sample space: $2^{5} = 32$ outcomes, exactly one of which is all "
+                "heads ✓",
+                [
+                    "Eq(Rational(1,2)**5, Rational(1,32))",
+                    "Eq(1 - Rational(1,32), Rational(31,32))",
+                    "Eq(2**5, 32)",
+                    "Abs(Rational(31,32) - Rational(969,1000)) < Rational(1,1000)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-CP.2",
+                "title": "Does knowing one change the other?",
+                "body": (
+                    "That is the whole question. If knowing $B$ leaves the probability of $A$ "
+                    "exactly where it was, the events are independent. The product rule is that "
+                    "statement written as an equation you can check."
+                ),
+                "beats": [
+                    "Test: $P(A \\cap B) = P(A)P(B)$",
+                    "Equivalently: $P(A \\mid B) = P(A)$",
+                    "Apply it — never assume it",
+                    "NOT the same as mutually exclusive",
+                ],
+            },
+            {
+                "kind": "worked",
+                "title": "King and heart: independent, and why",
+                "problemId": "im2-u8-l3-we1",
+            },
+            tap(
+                "Apply the test",
+                "$P(A) = 0.4$, $P(B) = 0.5$ and $P(A \\cap B) = 0.2$. Are $A$ and $B$ "
+                "independent?",
+                [
+                    "yes — the product matches",
+                    "no — the product is too small",
+                    "no — they are mutually exclusive",
+                    "there is not enough information",
+                ],
+                0,
+                "$P(A)P(B) = 0.4 \\times 0.5 = 0.2 = P(A \\cap B)$ ✓ Independent. Note also that "
+                "the intersection is non-zero, so they are certainly NOT mutually exclusive.",
+                [
+                    "Eq(Rational(4,10)*Rational(5,10), Rational(2,10))",
+                    "Ne(Rational(2,10), 0)",
+                ],
+            ),
+            {
+                "kind": "vennCounts",
+                "eyebrow": "Independence in a table",
+                "title": "The overlap lands exactly where the product predicts",
+                "teach": (
+                    "Two hundred and forty smartphone owners, one hundred and fifty subscribers, "
+                    "ninety doing both — out of four hundred. The overlap is precisely $0.6 "
+                    "\\times 0.375$ of the total, which is what independence looks like in a "
+                    "table."
+                ),
+                "config": {"onlyA": 150, "both": 90, "onlyB": 60, "neither": 100},
+            },
+            {
+                "kind": "worked",
+                "title": "Testing independence in survey data",
+                "problemId": "im2-u8-l3-we2",
+            },
+            {
+                "kind": "tip",
+                "eyebrow": "Two words, opposite meanings",
+                "title": "Independent versus mutually exclusive",
+                "body": (
+                    "Mutually exclusive: knowing one happened tells you the other did NOT — "
+                    "maximum information. Independent: knowing one tells you NOTHING. Two events "
+                    "with non-zero probability can never be both."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Why they are near opposites",
+                "problemId": "im2-u8-l3-we3",
+            },
+            tap(
+                "The gambler's fallacy",
+                "A fair coin has landed heads nine times. What is the probability the tenth toss "
+                "is heads?",
+                [
+                    "less than $\\frac{1}{2}$ — tails is due",
+                    "exactly $\\frac{1}{2}$",
+                    "more than $\\frac{1}{2}$ — the coin is hot",
+                    "$\\frac{1}{1024}$",
+                ],
+                1,
+                "The tosses are independent, so the tenth is still $\\frac{1}{2}$. The coin has "
+                "no memory. (The $\\frac{1}{1024}$ is the probability of ten heads BEFORE any "
+                "were tossed — a different question entirely.)",
+                [
+                    "Eq(Rational(1,2)**10, Rational(1,1024))",
+                    "Eq(Rational(1,2), Rational(1,2))",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "A batch of ten, and why small risks add up",
+                "problemId": "im2-u8-l3-we4",
+            },
+            {"kind": "tryIt", "title": "Testing survey independence", "problemId": "im2-u8-l3-t1"},
+            {"kind": "tryIt", "title": "Five independent tosses", "problemId": "im2-u8-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "Independent means $P(A \\cap B) = P(A)P(B)$ — a test, not an assumption",
+                    "Equivalently $P(A \\mid B) = P(A)$: knowing $B$ changes nothing",
+                    "Mutually exclusive is nearly the opposite, and the two are never both",
+                    "Independent chains multiply, with no conditioning",
+                    "Without replacement is NOT independent — condition on the earlier draw",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — S-CP.6/7: putting the rules together
+# ===========================================================================
+def lesson_combining_rules():
+    return lesson(
+        slug="combining-the-probability-rules",
+        title="Putting the Rules Together",
+        concrete=(
+            "By this point you have four tools: complement, addition, multiplication and "
+            "conditioning. Real problems rarely announce which one they want. This lesson is "
+            "about reading a question and knowing which rule the wording is asking for — and "
+            "about tree diagrams, which apply several of them at once without you having to "
+            "notice."
+        ),
+        objective=(
+            "Choose the appropriate rule from a problem's wording, build and read tree diagrams, "
+            "and combine rules across multi-stage situations."
+        ),
+        concept=[
+            "**The wording tells you the rule.** 'Or' or 'at least one of these categories' means "
+            "the addition rule. 'And' or 'both' means multiplication. 'Given', 'of those', or "
+            "'among the' means conditioning. 'At least one' of several trials means the "
+            "complement.",
+            "**A tree diagram organises a multi-stage experiment.** Each branch carries a "
+            "conditional probability, each complete path is multiplied along, and the paths that "
+            "satisfy the event are added. Multiplication ALONG a path, addition ACROSS paths.",
+            "**Every set of branches from one node sums to one.** That is a free check on the "
+            "whole diagram — a set that does not total $1$ has a missing case or a wrong "
+            "denominator, and finding it early saves everything downstream.",
+            "**Second-stage branches change when there is no replacement.** With replacement the "
+            "second-stage probabilities repeat the first; without replacement they are "
+            "conditioned on which branch you came down. Drawing the tree makes this impossible to "
+            "forget.",
+            "**The total-probability rule sums the paths.** If the first stage splits into cases "
+            "$B_{1}, B_{2}, \\ldots$, then "
+            "$P(A) = \\sum_{i} P(B_{i}) P(A \\mid B_{i})$. This is just 'add across the paths', "
+            "written formally.",
+            "**Reversing a conditional needs the whole tree.** To go from "
+            "$P(\\text{positive} \\mid \\text{ill})$ to $P(\\text{ill} \\mid \\text{positive})$, "
+            "compute both positive paths, add them for the denominator, and take the relevant one "
+            "as the numerator. That is Bayes' rule, arrived at by construction rather than by "
+            "formula.",
+        ],
+        key_idea=(
+            "Multiply along a path, add across paths — and check that every set of branches from "
+            "a node sums to one."
+        ),
+        facts=[
+            fact(
+                "Along a path",
+                "P(\\text{path}) = P(B) \\cdot P(A \\mid B)",
+                "Multiplication, using the conditional probability on the second branch.",
+            ),
+            fact(
+                "Across paths",
+                "P(A) = \\sum_{i} P(B_{i}) \\, P(A \\mid B_{i})",
+                "The total-probability rule — add every path that satisfies the event.",
+            ),
+            fact(
+                "Branches sum to one",
+                "\\sum_{i} P(B_{i}) = 1",
+                "At every node. A free structural check on the whole diagram.",
+            ),
+            fact(
+                "Reversing the conditional",
+                "P(B_{1} \\mid A) = \\frac{P(B_{1})P(A \\mid B_{1})}{P(A)}",
+                "One path over the sum of all paths reaching $A$.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im2-u8-l4-we1",
+                "A bag holds $4$ red and $6$ green counters. Two are drawn without replacement. "
+                "Draw the tree and find the probability that the two counters are different "
+                "colours.",
+                "**First-stage branches.** $P(R_{1}) = \\frac{4}{10} = 0.4$ and "
+                "$P(G_{1}) = \\frac{6}{10} = 0.6$. They sum to $1$ ✓"
+                "**Second-stage branches, conditioned on the first.** After a red: $3$ reds and "
+                "$6$ greens remain, so $P(R_{2} \\mid R_{1}) = \\frac{3}{9}$ and "
+                "$P(G_{2} \\mid R_{1}) = \\frac{6}{9}$, summing to $1$ ✓ After a green: $4$ reds "
+                "and $5$ greens, so $\\frac{4}{9}$ and $\\frac{5}{9}$, summing to $1$ ✓"
+                "**Multiply along the two mixed paths.**"
+                "$$P(RG) = \\tfrac{4}{10} \\times \\tfrac{6}{9} = \\tfrac{24}{90}, \\qquad "
+                "P(GR) = \\tfrac{6}{10} \\times \\tfrac{4}{9} = \\tfrac{24}{90}.$$"
+                "**Add across the paths.**"
+                "$$P(\\text{different}) = \\tfrac{24}{90} + \\tfrac{24}{90} = \\tfrac{48}{90} = "
+                "\\tfrac{8}{15} \\approx 0.533.$$"
+                "**Check with the complement.** The same-colour paths are "
+                "$\\frac{4}{10} \\times \\frac{3}{9} = \\frac{12}{90}$ and "
+                "$\\frac{6}{10} \\times \\frac{5}{9} = \\frac{30}{90}$, totalling "
+                "$\\frac{42}{90}$. And $\\frac{48}{90} + \\frac{42}{90} = 1$ ✓ All four paths "
+                "account for everything."
+                "**Why the two mixed paths are equal.** Both compute $\\frac{4 \\times 6}{90}$ — "
+                "the same two counters in the two possible orders. That symmetry is a useful "
+                "shortcut, and its failure would signal an arithmetic slip.",
+                [
+                    "Eq(Rational(4,10) + Rational(6,10), 1)",
+                    "Eq(Rational(3,9) + Rational(6,9), 1)",
+                    "Eq(Rational(4,10)*Rational(6,9), Rational(24,90))",
+                    "Eq(Rational(6,10)*Rational(4,9), Rational(24,90))",
+                    "Eq(Rational(48,90), Rational(8,15))",
+                    "Eq(Rational(4,10)*Rational(3,9) + Rational(6,10)*Rational(5,9), Rational(42,90))",
+                    "Eq(Rational(48,90) + Rational(42,90), 1)",
+                ],
+            ),
+            problem(
+                "im2-u8-l4-we2",
+                "Factory A makes $60\\%$ of a company's output with a $2\\%$ defect rate; factory "
+                "B makes the remaining $40\\%$ with a $5\\%$ defect rate. Find the overall defect "
+                "rate, and the probability a defective item came from factory B.",
+                "**Set up the tree.** First stage: which factory. Second stage: defective or not."
+                "**Multiply along the two defective paths.**"
+                "$$P(A \\cap D) = 0.6 \\times 0.02 = 0.012, \\qquad "
+                "P(B \\cap D) = 0.4 \\times 0.05 = 0.020.$$"
+                "**Add across paths for the overall defect rate.**"
+                "$$P(D) = 0.012 + 0.020 = 0.032,$$"
+                "so $3.2\\%$ of output is defective."
+                "**Sanity-check the total.** It must lie between the two individual rates, "
+                "$2\\%$ and $5\\%$, and closer to $2\\%$ because factory A makes more — and "
+                "$3.2\\%$ ✓"
+                "**Reverse the conditional.** Restricting to defective items, the fraction from "
+                "factory B is that path over the total:"
+                "$$P(B \\mid D) = \\frac{0.020}{0.032} = 0.625.$$"
+                "**Read the result.** Factory B makes only $40\\%$ of the output but is "
+                "responsible for $62.5\\%$ of the defects — its higher rate more than "
+                "compensates for its smaller share."
+                "**Check the two reverse conditionals sum to 1.** "
+                "$P(A \\mid D) = \\frac{0.012}{0.032} = 0.375$, and "
+                "$0.375 + 0.625 = 1$ ✓ Every defective item came from one factory or the other.",
+                [
+                    "Eq(Rational(6,10)*Rational(2,100), Rational(12,1000))",
+                    "Eq(Rational(4,10)*Rational(5,100), Rational(20,1000))",
+                    "Eq(Rational(12,1000) + Rational(20,1000), Rational(32,1000))",
+                    "Eq(Rational(20,1000)/Rational(32,1000), Rational(5,8))",
+                    "Eq(Rational(12,1000)/Rational(32,1000), Rational(3,8))",
+                    "Eq(Rational(5,8) + Rational(3,8), 1)",
+                    "Rational(32,1000) > Rational(2,100)",
+                    "Rational(32,1000) < Rational(5,100)",
+                ],
+            ),
+            problem(
+                "im2-u8-l4-we3",
+                "In a school, $70\\%$ of students take mathematics, $50\\%$ take physics, and "
+                "$40\\%$ take both. Find the probability a student takes at least one, takes "
+                "neither, takes mathematics given they take physics, and decide whether the "
+                "subjects are independent.",
+                "**At least one — the addition rule.**"
+                "$$P(M \\cup P) = 0.7 + 0.5 - 0.4 = 0.8.$$"
+                "**Neither — the complement.**"
+                "$$P(\\text{neither}) = 1 - 0.8 = 0.2.$$"
+                "**Mathematics given physics — conditioning.**"
+                "$$P(M \\mid P) = \\frac{P(M \\cap P)}{P(P)} = \\frac{0.4}{0.5} = 0.8.$$"
+                "**Test independence.** $P(M) \\cdot P(P) = 0.7 \\times 0.5 = 0.35$, but "
+                "$P(M \\cap P) = 0.4$. These differ, so the subjects are NOT independent."
+                "**Say what the dependence means.** Among all students $70\\%$ take mathematics; "
+                "among physics students $80\\%$ do. Taking physics raises the odds of taking "
+                "mathematics — unsurprising, since the subjects are often timetabled together."
+                "**Check the four regions.** Both: $0.4$. Mathematics only: $0.7 - 0.4 = 0.3$. "
+                "Physics only: $0.5 - 0.4 = 0.1$. Neither: $0.2$. Total:"
+                "$$0.4 + 0.3 + 0.1 + 0.2 = 1 \\ \\checkmark$$"
+                "**Notice how many rules one problem used.** Addition, complement, conditioning "
+                "and the independence test — four tools, chosen by four different phrasings in "
+                "the same question.",
+                [
+                    "Eq(Rational(7,10) + Rational(5,10) - Rational(4,10), Rational(8,10))",
+                    "Eq(1 - Rational(8,10), Rational(2,10))",
+                    "Eq(Rational(4,10)/Rational(5,10), Rational(4,5))",
+                    "Eq(Rational(7,10)*Rational(5,10), Rational(35,100))",
+                    "Ne(Rational(35,100), Rational(4,10))",
+                    "Eq(Rational(4,10) + Rational(3,10) + Rational(1,10) + Rational(2,10), 1)",
+                ],
+            ),
+            problem(
+                "im2-u8-l4-we4",
+                "A student answers a multiple-choice question with $4$ options. They know the "
+                "answer with probability $0.7$; otherwise they guess. Find the probability they "
+                "answer correctly, and the probability they knew the answer given that they "
+                "answered correctly.",
+                "**Set up the tree.** First stage: knew it ($0.7$) or did not ($0.3$). Second "
+                "stage: correct or not."
+                "**Fill the second-stage branches.** If they knew it, they are certainly correct: "
+                "$P(C \\mid K) = 1$. If they guessed, one option in four is right: "
+                "$P(C \\mid K') = 0.25$."
+                "**Multiply along the two correct paths.**"
+                "$$P(K \\cap C) = 0.7 \\times 1 = 0.7, \\qquad "
+                "P(K' \\cap C) = 0.3 \\times 0.25 = 0.075.$$"
+                "**Add across paths.**"
+                "$$P(C) = 0.7 + 0.075 = 0.775.$$"
+                "**Reverse the conditional.**"
+                "$$P(K \\mid C) = \\frac{0.7}{0.775} \\approx 0.903.$$"
+                "**Interpret the gap.** The student knows $70\\%$ of the material but answers "
+                "$77.5\\%$ correctly, because guessing rescues a quarter of the unknown ones. And "
+                "given a correct answer, there is about a $90\\%$ chance it was genuine knowledge "
+                "rather than a lucky guess."
+                "**Check the complementary conditional.** "
+                "$P(K' \\mid C) = \\frac{0.075}{0.775} \\approx 0.097$, and "
+                "$0.903 + 0.097 = 1$ ✓"
+                "**A design observation the arithmetic supplies.** With more options the guessing "
+                "branch shrinks: at eight options $P(C) = 0.7 + 0.3(0.125) = 0.7375$, closer to "
+                "the true knowledge level. That is precisely why tests use more options rather "
+                "than fewer.",
+                [
+                    "Eq(Rational(7,10)*1, Rational(7,10))",
+                    "Eq(Rational(3,10)*Rational(1,4), Rational(3,40))",
+                    "Eq(Rational(7,10) + Rational(3,40), Rational(31,40))",
+                    "Abs(Rational(7,10)/Rational(31,40) - Rational(903,1000)) < Rational(1,1000)",
+                    "Abs(Rational(3,40)/Rational(31,40) - Rational(97,1000)) < Rational(1,1000)",
+                    "Eq(Rational(7,10)/Rational(31,40) + Rational(3,40)/Rational(31,40), 1)",
+                    "Eq(Rational(7,10) + Rational(3,10)*Rational(1,8), Rational(59,80))",
+                    "Rational(59,80) < Rational(31,40)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Adding along a tree path instead of multiplying.",
+                "Multiply ALONG a path (both stages happen) and add ACROSS paths (either route "
+                "would do). Getting these backwards produces probabilities above $1$.",
+            ),
+            mistake(
+                "Repeating the first-stage probabilities on the second stage without replacement.",
+                "The second branches must be conditioned on which branch you came down. Drawing "
+                "the tree and checking each node sums to $1$ catches this immediately.",
+            ),
+            mistake(
+                "Reversing a conditional by simply swapping the events.",
+                "$P(B \\mid D)$ needs the whole tree: that path divided by the SUM of all paths "
+                "reaching $D$. It is not $P(D \\mid B)$ rearranged by inspection.",
+            ),
+            mistake(
+                "Assuming independence to multiply, when the data says otherwise.",
+                "Test it first. In the mathematics-and-physics example the product gives $0.35$ "
+                "while the true joint probability is $0.4$ — a $14\\%$ error from one unchecked "
+                "assumption.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u8-l4-t1",
+                "A box holds $3$ faulty and $7$ working bulbs. Two are taken without replacement. "
+                "Find the probability at least one is faulty.",
+                "Use the complement. Both working: $\\frac{7}{10} \\times \\frac{6}{9} = "
+                "\\frac{42}{90} = \\frac{7}{15}$. So at least one faulty is "
+                "$1 - \\frac{7}{15} = \\frac{8}{15} \\approx 0.533$. Check the long way: "
+                "$P(FW) + P(WF) + P(FF) = \\frac{21}{90} + \\frac{21}{90} + \\frac{6}{90} = "
+                "\\frac{48}{90} = \\frac{8}{15}$ ✓",
+                [
+                    "Eq(Rational(7,10)*Rational(6,9), Rational(7,15))",
+                    "Eq(1 - Rational(7,15), Rational(8,15))",
+                    "Eq(Rational(3,10)*Rational(7,9) + Rational(7,10)*Rational(3,9) + Rational(3,10)*Rational(2,9), Rational(8,15))",
+                ],
+            ),
+            problem(
+                "im2-u8-l4-t2",
+                "Two machines make widgets: X makes $75\\%$ with a $4\\%$ fault rate, Y makes "
+                "$25\\%$ with a $12\\%$ fault rate. Find the overall fault rate and the "
+                "probability a faulty widget came from Y.",
+                "Paths: $0.75 \\times 0.04 = 0.03$ and $0.25 \\times 0.12 = 0.03$. Overall: "
+                "$0.03 + 0.03 = 0.06$, so $6\\%$. Reversing: "
+                "$P(Y \\mid \\text{faulty}) = \\frac{0.03}{0.06} = 0.5$. Machine Y makes a "
+                "quarter of the widgets but half of the faults. Check the rate lies between "
+                "$4\\%$ and $12\\%$ ✓",
+                [
+                    "Eq(Rational(75,100)*Rational(4,100), Rational(3,100))",
+                    "Eq(Rational(25,100)*Rational(12,100), Rational(3,100))",
+                    "Eq(Rational(3,100) + Rational(3,100), Rational(6,100))",
+                    "Eq(Rational(3,100)/Rational(6,100), Rational(1,2))",
+                    "Rational(6,100) > Rational(4,100)",
+                    "Rational(6,100) < Rational(12,100)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "S-CP.6",
+                "title": "The wording picks the rule",
+                "body": (
+                    "'Or' means addition. 'Both' means multiplication. 'Given' or 'of those' "
+                    "means conditioning. 'At least one' means the complement. Reading the "
+                    "question carefully is most of the method."
+                ),
+                "beats": [
+                    "'or' $\\to$ addition, subtract the overlap",
+                    "'both' $\\to$ multiply",
+                    "'given' $\\to$ change the denominator",
+                    "'at least one' $\\to$ complement",
+                ],
+            },
+            {
+                "kind": "treeDiagram",
+                "eyebrow": "Two stages",
+                "title": "Multiply along, add across",
+                "teach": (
+                    "Each branch carries a conditional probability. Multiply along a complete "
+                    "path to get that path's probability, then add the paths that satisfy your "
+                    "event. Every set of branches from a node must sum to one."
+                ),
+                "config": {
+                    "mode": "prob",
+                    "caption": "Two counters drawn from 4 red and 6 green, without replacement",
+                    "stages": [
+                        {
+                            "name": "first counter",
+                            "options": [
+                                {"label": "R", "p": 0.4, "pLabel": "4/10"},
+                                {"label": "G", "p": 0.6, "pLabel": "6/10"},
+                            ],
+                        },
+                        {
+                            "name": "second counter",
+                            "byPath": {
+                                "R": [
+                                    {"label": "R", "p": 3 / 9, "pLabel": "3/9"},
+                                    {"label": "G", "p": 6 / 9, "pLabel": "6/9"},
+                                ],
+                                "G": [
+                                    {"label": "R", "p": 4 / 9, "pLabel": "4/9"},
+                                    {"label": "G", "p": 5 / 9, "pLabel": "5/9"},
+                                ],
+                            },
+                        },
+                    ],
+                },
+            },
+            {
+                "kind": "worked",
+                "title": "Two counters, four paths",
+                "problemId": "im2-u8-l4-we1",
+            },
+            tap(
+                "Along or across?",
+                "On a tree diagram, to find the probability of one particular complete path you…",
+                [
+                    "add the branch probabilities along it",
+                    "multiply the branch probabilities along it",
+                    "take the largest branch probability",
+                    "add the paths that end the same way",
+                ],
+                1,
+                "Multiply ALONG a path — both stages have to happen. Adding is for combining "
+                "several different paths that all satisfy the event.",
+                [
+                    "Eq(Rational(4,10)*Rational(3,9), Rational(12,90))",
+                    "Rational(12,90) < Rational(4,10)",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "eyebrow": "A free check",
+                "title": "Every node's branches sum to one",
+                "body": (
+                    "Check each set of branches before going further. A set that does not total "
+                    "$1$ has a missing case or a wrong denominator — and finding it at the node "
+                    "is far cheaper than finding it three multiplications later."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Two factories, and reversing the conditional",
+                "problemId": "im2-u8-l4-we2",
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "Total probability",
+                "title": "Add every path that gets there",
+                "body": (
+                    "If the first stage splits into cases, the probability of a later event is "
+                    "the sum over cases of $P(\\text{case}) \\times P(\\text{event} \\mid "
+                    "\\text{case})$. To reverse the conditioning, take one path over that sum."
+                ),
+            },
+            {
+                "kind": "worked",
+                "title": "Four rules in one question",
+                "problemId": "im2-u8-l4-we3",
+            },
+            tap(
+                "Reverse the conditional",
+                "Two paths reach 'defective': $0.012$ from A and $0.020$ from B. What is "
+                "$P(B \\mid \\text{defective})$?",
+                ["$0.020$", "$0.625$", "$0.375$", "$0.032$"],
+                1,
+                "One path over the sum of all paths reaching the event: "
+                "$\\frac{0.020}{0.032} = 0.625$. The $0.032$ is the overall defect rate, not a "
+                "conditional probability.",
+                [
+                    "Eq(Rational(20,1000)/Rational(32,1000), Rational(5,8))",
+                    "Eq(Rational(12,1000) + Rational(20,1000), Rational(32,1000))",
+                ],
+            ),
+            {
+                "kind": "worked",
+                "title": "Knowing against guessing",
+                "problemId": "im2-u8-l4-we4",
+            },
+            {"kind": "tryIt", "title": "At least one faulty bulb", "problemId": "im2-u8-l4-t1"},
+            {"kind": "tryIt", "title": "Two machines, one fault rate", "problemId": "im2-u8-l4-t2"},
+            {
+                "kind": "recap",
+                "title": "What to carry forward",
+                "points": [
+                    "The wording picks the rule — 'or', 'both', 'given', 'at least one'",
+                    "Multiply along a path; add across paths",
+                    "Every node's branches sum to $1$ — check it before continuing",
+                    "Without replacement, second-stage branches depend on the first",
+                    "Reversing a conditional is one path over the sum of all paths",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Practice and test banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im2-u8-p1",
+            "Two fair dice are rolled. Find the probability the sum is $9$, and the probability "
+            "the sum is at least $10$.",
+            "Sum $9$: $(3,6), (4,5), (5,4), (6,3)$ — four outcomes, so $\\frac{4}{36} = "
+            "\\frac{1}{9}$. At least $10$: sums of $10$, $11$, $12$ give $3 + 2 + 1 = 6$ "
+            "outcomes, so $\\frac{6}{36} = \\frac{1}{6}$. Check the counts against the full "
+            "distribution ✓",
+            [
+                "Eq(Rational(4,36), Rational(1,9))",
+                "Eq(3 + 2 + 1, 6)",
+                "Eq(Rational(6,36), Rational(1,6))",
+            ],
+        ),
+        problem(
+            "im2-u8-p2",
+            "A card is drawn. Find $P(\\text{ace or diamond})$.",
+            "Aces: $4$. Diamonds: $13$. Overlap (ace of diamonds): $1$. So "
+            "$\\frac{4 + 13 - 1}{52} = \\frac{16}{52} = \\frac{4}{13}$. Check by counting: $3$ "
+            "non-diamond aces $+$ $13$ diamonds $= 16$ ✓",
+            [
+                "Eq(4 + 13 - 1, 16)",
+                "Eq(Rational(16,52), Rational(4,13))",
+                "Eq(3 + 13, 16)",
+            ],
+        ),
+        problem(
+            "im2-u8-p3",
+            "A fair coin is tossed six times. Find the probability of at least one tail.",
+            "The complement is all heads: $\\left(\\frac{1}{2}\\right)^{6} = \\frac{1}{64}$. So "
+            "the answer is $1 - \\frac{1}{64} = \\frac{63}{64} \\approx 0.984$. Check the sample "
+            "space: $2^{6} = 64$ outcomes, one of which is all heads ✓",
+            [
+                "Eq(Rational(1,2)**6, Rational(1,64))",
+                "Eq(1 - Rational(1,64), Rational(63,64))",
+                "Eq(2**6, 64)",
+            ],
+        ),
+        problem(
+            "im2-u8-p4",
+            "Of $250$ people surveyed, $140$ like tea, $120$ like coffee, and $60$ like both. How "
+            "many like neither, and what is $P(\\text{exactly one})$?",
+            "Union: $140 + 120 - 60 = 200$, so neither is $250 - 200 = 50$. Exactly one: "
+            "$200 - 60 = 140$, giving $\\frac{140}{250} = 0.56$. Check the four regions: "
+            "$80 + 60 + 60 + 50 = 250$ ✓",
+            [
+                "Eq(140 + 120 - 60, 200)",
+                "Eq(250 - 200, 50)",
+                "Eq(200 - 60, 140)",
+                "Eq(Rational(140,250), Rational(14,25))",
+                "Eq(80 + 60 + 60 + 50, 250)",
+            ],
+        ),
+        problem(
+            "im2-u8-p5",
+            "A table of $300$ people: $120$ men of whom $45$ exercise daily; $180$ women of whom "
+            "$90$ do. Find $P(\\text{exercises})$ and $P(\\text{exercises} \\mid "
+            "\\text{woman})$.",
+            "Total exercisers: $45 + 90 = 135$, so $P = \\frac{135}{300} = 0.45$. Conditioning on "
+            "women, the denominator is $180$: $\\frac{90}{180} = 0.5$. Women exercise at a higher "
+            "rate than the population, so the two variables are not independent ✓",
+            [
+                "Eq(45 + 90, 135)",
+                "Eq(Rational(135,300), Rational(9,20))",
+                "Eq(Rational(90,180), Rational(1,2))",
+                "Ne(Rational(1,2), Rational(9,20))",
+            ],
+        ),
+        problem(
+            "im2-u8-p6",
+            "Given $P(A) = 0.35$, $P(B) = 0.6$ and $P(A \\cap B) = 0.21$, decide whether $A$ and "
+            "$B$ are independent, and find $P(A \\cup B)$.",
+            "Product test: $0.35 \\times 0.6 = 0.21$, which matches the joint probability — so "
+            "they ARE independent. Union: $0.35 + 0.6 - 0.21 = 0.74$. Check conditionally: "
+            "$P(A \\mid B) = \\frac{0.21}{0.6} = 0.35 = P(A)$ ✓",
+            [
+                "Eq(Rational(35,100)*Rational(6,10), Rational(21,100))",
+                "Eq(Rational(35,100) + Rational(6,10) - Rational(21,100), Rational(74,100))",
+                "Eq(Rational(21,100)/Rational(6,10), Rational(35,100))",
+            ],
+        ),
+        problem(
+            "im2-u8-p7",
+            "Explain why 'rolls a $2$' and 'rolls an odd number' on one die are mutually "
+            "exclusive but not independent.",
+            "They cannot both happen, since $2$ is even: $P(A \\cap B) = 0$. But "
+            "$P(A) \\cdot P(B) = \\frac{1}{6} \\times \\frac{1}{2} = \\frac{1}{12} \\neq 0$, so "
+            "the product test fails and they are not independent. Knowing the roll is odd tells "
+            "you it is definitely not a $2$ — maximum information, not none.",
+            [
+                "Eq(Rational(1,6)*Rational(1,2), Rational(1,12))",
+                "Ne(Rational(1,12), 0)",
+                "Eq(Rational(3,6), Rational(1,2))",
+            ],
+        ),
+        problem(
+            "im2-u8-p8",
+            "Two cards are drawn without replacement. Find the probability both are aces.",
+            "First: $\\frac{4}{52} = \\frac{1}{13}$. Second, given the first: $\\frac{3}{51} = "
+            "\\frac{1}{17}$. Product: $\\frac{1}{13} \\times \\frac{1}{17} = \\frac{1}{221} "
+            "\\approx 0.0045$. Check by counting ordered pairs: "
+            "$\\frac{4 \\times 3}{52 \\times 51} = \\frac{12}{2652} = \\frac{1}{221}$ ✓",
+            [
+                "Eq(Rational(4,52)*Rational(3,51), Rational(1,221))",
+                "Eq(4*3, 12)",
+                "Eq(52*51, 2652)",
+                "Eq(Rational(12,2652), Rational(1,221))",
+            ],
+        ),
+        problem(
+            "im2-u8-p9",
+            "A component fails with probability $0.04$, independently of others. Find the "
+            "probability that none of $8$ components fails.",
+            "Independence lets the probabilities multiply: $0.96^{8} \\approx 0.7214$. So there "
+            "is about a $27.9\\%$ chance at least one fails. Check the trend: for $16$ "
+            "components $0.96^{16} \\approx 0.5204$, roughly the square ✓",
+            [
+                "Eq(1 - Rational(4,100), Rational(96,100))",
+                "Abs(Rational(96,100)**8 - Rational(7214,10000)) < Rational(1,10000)",
+                "Abs(Rational(96,100)**16 - Rational(5204,10000)) < Rational(1,10000)",
+            ],
+        ),
+        problem(
+            "im2-u8-p10",
+            "A bag holds $5$ white and $3$ black balls. Two are drawn without replacement. Find "
+            "the probability they are the same colour.",
+            "Both white: $\\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56}$. Both black: "
+            "$\\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56}$. Sum: $\\frac{26}{56} = "
+            "\\frac{13}{28} \\approx 0.464$. Check with the complement: the mixed paths give "
+            "$\\frac{15}{56} + \\frac{15}{56} = \\frac{30}{56}$, and "
+            "$\\frac{26}{56} + \\frac{30}{56} = 1$ ✓",
+            [
+                "Eq(Rational(5,8)*Rational(4,7), Rational(20,56))",
+                "Eq(Rational(3,8)*Rational(2,7), Rational(6,56))",
+                "Eq(Rational(26,56), Rational(13,28))",
+                "Eq(Rational(26,56) + Rational(30,56), 1)",
+            ],
+        ),
+        problem(
+            "im2-u8-p11",
+            "Supplier P provides $80\\%$ of parts with a $1\\%$ defect rate; supplier Q provides "
+            "$20\\%$ with a $6\\%$ rate. Find the overall defect rate.",
+            "Paths: $0.8 \\times 0.01 = 0.008$ and $0.2 \\times 0.06 = 0.012$. Total: "
+            "$0.008 + 0.012 = 0.02$, so $2\\%$. Check it lies between $1\\%$ and $6\\%$ ✓ and "
+            "note supplier Q supplies a fifth of parts but $60\\%$ of defects: "
+            "$\\frac{0.012}{0.02} = 0.6$.",
+            [
+                "Eq(Rational(8,10)*Rational(1,100), Rational(8,1000))",
+                "Eq(Rational(2,10)*Rational(6,100), Rational(12,1000))",
+                "Eq(Rational(8,1000) + Rational(12,1000), Rational(2,100))",
+                "Eq(Rational(12,1000)/Rational(2,100), Rational(3,5))",
+            ],
+        ),
+        problem(
+            "im2-u8-p12",
+            "Given $P(A) = 0.5$, $P(B \\mid A) = 0.3$ and $P(B \\mid A') = 0.7$, find $P(B)$ and "
+            "$P(A \\mid B)$.",
+            "Total probability: $P(B) = 0.5(0.3) + 0.5(0.7) = 0.15 + 0.35 = 0.5$. Reversing: "
+            "$P(A \\mid B) = \\frac{0.15}{0.5} = 0.3$. Check the complement: "
+            "$P(A' \\mid B) = \\frac{0.35}{0.5} = 0.7$, and $0.3 + 0.7 = 1$ ✓",
+            [
+                "Eq(Rational(1,2)*Rational(3,10) + Rational(1,2)*Rational(7,10), Rational(1,2))",
+                "Eq(Rational(15,100)/Rational(1,2), Rational(3,10))",
+                "Eq(Rational(35,100)/Rational(1,2), Rational(7,10))",
+                "Eq(Rational(3,10) + Rational(7,10), 1)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im2-u8-ty-1",
+            "Two fair dice are rolled. Find the probability that the sum is even, that at least "
+            "one die shows a $6$, and that the sum is even AND at least one six appears. Are the "
+            "two events independent?",
+            "**Sum is even.** An even sum needs both dice even or both odd: "
+            "$3 \\times 3 + 3 \\times 3 = 18$ outcomes, so "
+            "$P(E) = \\frac{18}{36} = \\frac{1}{2}$."
+            "**At least one six — use the complement.** No six on either die is "
+            "$5 \\times 5 = 25$ outcomes, so"
+            "$$P(S) = 1 - \\tfrac{25}{36} = \\tfrac{11}{36}.$$"
+            "**Both events together.** An even sum with at least one six means both dice even "
+            "with at least one six: the pairs are $(6,2), (6,4), (6,6), (2,6), (4,6)$ — five "
+            "outcomes. So $P(E \\cap S) = \\frac{5}{36}$."
+            "**Test independence.**"
+            "$$P(E) \\cdot P(S) = \\tfrac{1}{2} \\times \\tfrac{11}{36} = \\tfrac{11}{72} "
+            "\\approx 0.1528,$$"
+            "while $P(E \\cap S) = \\frac{5}{36} \\approx 0.1389$. These differ, so the events "
+            "are NOT independent."
+            "**Confirm conditionally.** $P(E \\mid S) = \\frac{5}{11} \\approx 0.4545$, against "
+            "$P(E) = 0.5$. Knowing a six appeared makes an even sum slightly LESS likely ✓ "
+            "consistent with the failed product test."
+            "**Sanity-check the counts.** $18 + 18 = 36$ for even and odd sums ✓ and "
+            "$11 + 25 = 36$ for at-least-one-six and no-six ✓",
+            [
+                "Eq(3*3 + 3*3, 18)",
+                "Eq(Rational(18,36), Rational(1,2))",
+                "Eq(5*5, 25)",
+                "Eq(1 - Rational(25,36), Rational(11,36))",
+                "Eq(Rational(1,2)*Rational(11,36), Rational(11,72))",
+                "Ne(Rational(11,72), Rational(5,36))",
+                "Eq(Rational(5,11), Rational(5,11))",
+                "Rational(5,11) < Rational(1,2)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-2",
+            "A survey of $500$ commuters records mode of travel against whether the journey takes "
+            "over an hour. Bus, over an hour: $120$. Bus, under: $80$. Train, over: $90$. Train, "
+            "under: $210$. Find $P(\\text{bus})$, $P(\\text{over an hour})$, "
+            "$P(\\text{over} \\mid \\text{bus})$ and $P(\\text{bus} \\mid \\text{over})$, and "
+            "decide whether mode and duration are independent.",
+            "**Build the margins.** Bus: $120 + 80 = 200$. Train: $90 + 210 = 300$. Over an hour: "
+            "$120 + 90 = 210$. Under: $80 + 210 = 290$. Totals: $200 + 300 = 500$ ✓ and "
+            "$210 + 290 = 500$ ✓"
+            "**The two marginal probabilities.**"
+            "$$P(\\text{bus}) = \\tfrac{200}{500} = 0.4, \\qquad "
+            "P(\\text{over}) = \\tfrac{210}{500} = 0.42.$$"
+            "**The two conditionals, with different denominators.**"
+            "$$P(\\text{over} \\mid \\text{bus}) = \\tfrac{120}{200} = 0.6, \\qquad "
+            "P(\\text{bus} \\mid \\text{over}) = \\tfrac{120}{210} \\approx 0.571.$$"
+            "**Test independence.** $0.4 \\times 0.42 = 0.168$, but "
+            "$P(\\text{bus} \\cap \\text{over}) = \\frac{120}{500} = 0.24$. They differ, so the "
+            "variables are NOT independent."
+            "**Say what the dependence means.** Overall $42\\%$ of journeys exceed an hour; among "
+            "bus journeys $60\\%$ do. Taking the bus substantially raises the chance of a long "
+            "commute."
+            "**Check a conditional row sums to 1.** Given 'bus': "
+            "$\\frac{120}{200} + \\frac{80}{200} = 1$ ✓"
+            "**Note the two conditionals differ**, as they generally must: $0.6$ against "
+            "$0.571$ — same cell, different denominators.",
+            [
+                "Eq(120 + 80, 200)",
+                "Eq(90 + 210, 300)",
+                "Eq(120 + 90, 210)",
+                "Eq(200 + 300, 500)",
+                "Eq(Rational(200,500), Rational(2,5))",
+                "Eq(Rational(210,500), Rational(21,50))",
+                "Eq(Rational(120,200), Rational(3,5))",
+                "Ne(Rational(2,5)*Rational(21,50), Rational(120,500))",
+                "Eq(Rational(120,200) + Rational(80,200), 1)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-3",
+            "A bag holds $6$ red, $4$ blue and $2$ green counters. Three are drawn without "
+            "replacement. Find the probability all three are red, and the probability none is "
+            "green.",
+            "**All three red.** The counts drop with each draw:"
+            "$$\\frac{6}{12} \\times \\frac{5}{11} \\times \\frac{4}{10} = "
+            "\\frac{120}{1320} = \\frac{1}{11} \\approx 0.0909.$$"
+            "**None green.** There are $10$ non-green counters out of $12$:"
+            "$$\\frac{10}{12} \\times \\frac{9}{11} \\times \\frac{8}{10} = "
+            "\\frac{720}{1320} = \\frac{6}{11} \\approx 0.5455.$$"
+            "**Check the first by counting.** Ordered triples of reds: "
+            "$6 \\times 5 \\times 4 = 120$. Ordered triples of any counters: "
+            "$12 \\times 11 \\times 10 = 1320$. Ratio $\\frac{120}{1320} = \\frac{1}{11}$ ✓"
+            "**Check the second is larger**, as it must be — every all-red draw is also a "
+            "no-green draw, so its probability cannot exceed the other: "
+            "$\\frac{1}{11} < \\frac{6}{11}$ ✓"
+            "**Compare with replacement.** All red would be "
+            "$\\left(\\frac{1}{2}\\right)^{3} = \\frac{1}{8} = 0.125$, higher than "
+            "$\\frac{1}{11} \\approx 0.091$. Removing reds makes later reds less likely — "
+            "exactly what dependence means here.",
+            [
+                "Eq(Rational(6,12)*Rational(5,11)*Rational(4,10), Rational(1,11))",
+                "Eq(Rational(10,12)*Rational(9,11)*Rational(8,10), Rational(6,11))",
+                "Eq(6*5*4, 120)",
+                "Eq(12*11*10, 1320)",
+                "Eq(Rational(120,1320), Rational(1,11))",
+                "Rational(1,11) < Rational(6,11)",
+                "Rational(1,8) > Rational(1,11)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-4",
+            "A screening test detects a condition in $90\\%$ of those who have it and gives a "
+            "false positive in $5\\%$ of those who do not. The condition affects $1\\%$ of the "
+            "population. For $20{,}000$ people, build the table and find the probability someone "
+            "who tests positive has the condition.",
+            "**Split the population.** $1\\%$ of $20{,}000$ is $200$ with the condition; "
+            "$19{,}800$ without."
+            "**Fill the four cells.** Of the $200$ with it, $90\\%$ test positive: $180$ true "
+            "positives and $20$ false negatives. Of the $19{,}800$ without, $5\\%$ test positive: "
+            "$990$ false positives and $18{,}810$ true negatives."
+            "**Total the positives.**"
+            "$$180 + 990 = 1{,}170.$$"
+            "**Compute the conditional probability.**"
+            "$$P(\\text{has it} \\mid \\text{positive}) = \\frac{180}{1170} \\approx 0.1538.$$"
+            "**Interpret it.** Only about $15\\%$ of positive results are genuine, despite the "
+            "test catching $90\\%$ of true cases. The condition is rare, so the far larger "
+            "healthy group generates $990$ false positives from just a $5\\%$ error rate — five "
+            "times the number of true ones."
+            "**Check the table totals.** $180 + 20 + 990 + 18{,}810 = 20{,}000$ ✓"
+            "**Check the two conditionals really are different.** "
+            "$P(\\text{positive} \\mid \\text{has it}) = \\frac{180}{200} = 0.9$, against "
+            "$0.1538$ — a factor of nearly six, from the same table."
+            "**What would improve it.** Halving the false-positive rate to $2.5\\%$ gives $495$ "
+            "false positives and raises the answer to "
+            "$\\frac{180}{675} \\approx 0.267$ — the specificity matters far more than the "
+            "sensitivity when the condition is rare.",
+            [
+                "Eq(Rational(1,100)*20000, 200)",
+                "Eq(20000 - 200, 19800)",
+                "Eq(Rational(90,100)*200, 180)",
+                "Eq(Rational(5,100)*19800, 990)",
+                "Eq(180 + 990, 1170)",
+                "Abs(Rational(180,1170) - Rational(1538,10000)) < Rational(1,10000)",
+                "Eq(180 + 20 + 990 + 18810, 20000)",
+                "Eq(Rational(25,1000)*19800, 495)",
+                "Abs(Rational(180,675) - Rational(267,1000)) < Rational(1,1000)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-5",
+            "In a town, $60\\%$ of households own a car, $30\\%$ own a bicycle, and $20\\%$ own "
+            "both. Find the probability a household owns at least one, owns neither, owns a "
+            "bicycle given it owns a car, and decide whether the two are independent.",
+            "**At least one — the addition rule.**"
+            "$$P(C \\cup B) = 0.6 + 0.3 - 0.2 = 0.7.$$"
+            "**Neither — the complement.**"
+            "$$1 - 0.7 = 0.3.$$"
+            "**Bicycle given car — conditioning.**"
+            "$$P(B \\mid C) = \\frac{0.2}{0.6} = \\frac{1}{3} \\approx 0.333.$$"
+            "**Test independence.** $P(C)P(B) = 0.6 \\times 0.3 = 0.18$, while "
+            "$P(C \\cap B) = 0.2$. Not equal, so NOT independent — though only slightly: the "
+            "joint probability exceeds the product by $0.02$."
+            "**Interpret the direction.** $P(B \\mid C) = 0.333$ against $P(B) = 0.3$: car-owning "
+            "households are marginally more likely to own bicycles, perhaps because both track "
+            "household income."
+            "**Check the four regions.** Both: $0.2$. Car only: $0.4$. Bicycle only: $0.1$. "
+            "Neither: $0.3$. Total: $0.2 + 0.4 + 0.1 + 0.3 = 1$ ✓"
+            "**Check the reverse conditional.** "
+            "$P(C \\mid B) = \\frac{0.2}{0.3} = \\frac{2}{3} \\approx 0.667$, against "
+            "$P(C) = 0.6$ — also raised, and by a proportionally identical amount, as "
+            "independence's failure must be symmetric.",
+            [
+                "Eq(Rational(6,10) + Rational(3,10) - Rational(2,10), Rational(7,10))",
+                "Eq(1 - Rational(7,10), Rational(3,10))",
+                "Eq(Rational(2,10)/Rational(6,10), Rational(1,3))",
+                "Eq(Rational(6,10)*Rational(3,10), Rational(18,100))",
+                "Ne(Rational(18,100), Rational(2,10))",
+                "Eq(Rational(2,10)/Rational(3,10), Rational(2,3))",
+                "Eq(Rational(2,10) + Rational(4,10) + Rational(1,10) + Rational(3,10), 1)",
+                "Rational(1,3) > Rational(3,10)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-6",
+            "A quiz has three independent questions, each answered correctly with probability "
+            "$0.8$. Find the probability of all three correct, exactly two correct, and at least "
+            "one correct.",
+            "**All three correct.** Independence lets the probabilities multiply:"
+            "$$0.8^{3} = 0.512.$$"
+            "**Exactly two correct.** There are three ways to choose which one is wrong, and each "
+            "way has probability $0.8^{2}(0.2)$:"
+            "$$3 \\times 0.64 \\times 0.2 = 0.384.$$"
+            "**At least one correct — the complement.** All three wrong is "
+            "$0.2^{3} = 0.008$, so"
+            "$$1 - 0.008 = 0.992.$$"
+            "**Check the full distribution sums to 1.** Exactly one correct is "
+            "$3 \\times 0.8 \\times 0.04 = 0.096$, and none is $0.008$. Then"
+            "$$0.512 + 0.384 + 0.096 + 0.008 = 1 \\ \\checkmark$$"
+            "**Why the factor of three appears.** 'Exactly two' does not specify WHICH two, so "
+            "the three arrangements must be counted. Omitting it — writing $0.128$ instead of "
+            "$0.384$ — is the commonest error here, and the sum-to-one check catches it "
+            "immediately."
+            "**Sanity-check the ordering.** With a high success rate, three correct should be the "
+            "most likely single outcome, and it is: $0.512$ exceeds all the others ✓",
+            [
+                "Eq(Rational(8,10)**3, Rational(512,1000))",
+                "Eq(3*Rational(64,100)*Rational(2,10), Rational(384,1000))",
+                "Eq(Rational(2,10)**3, Rational(8,1000))",
+                "Eq(1 - Rational(8,1000), Rational(992,1000))",
+                "Eq(3*Rational(8,10)*Rational(4,100), Rational(96,1000))",
+                "Eq(Rational(512,1000) + Rational(384,1000) + Rational(96,1000) + Rational(8,1000), 1)",
+                "Rational(512,1000) > Rational(384,1000)",
+            ],
+        ),
+        problem(
+            "im2-u8-ty-7",
+            "Two email filters run in sequence. The first catches $85\\%$ of spam; whatever it "
+            "misses goes to the second, which catches $70\\%$ of what reaches it. Both "
+            "occasionally flag legitimate mail: the first flags $2\\%$ of it, the second flags "
+            "$3\\%$ of what reaches it. If $40\\%$ of incoming mail is spam, find the proportion "
+            "of all mail that gets flagged, and the probability that a flagged message really is "
+            "spam.",
+            "**Trace the spam path.** Of the $0.4$ that is spam, the first filter catches "
+            "$0.85$:"
+            "$$0.4 \\times 0.85 = 0.34.$$"
+            "The remaining spam, $0.4 \\times 0.15 = 0.06$, reaches the second filter, which "
+            "catches $70\\%$:"
+            "$$0.06 \\times 0.7 = 0.042.$$"
+            "So spam flagged in total is $0.34 + 0.042 = 0.382$."
+            "**Trace the legitimate path.** Of the $0.6$ that is legitimate, the first flags "
+            "$2\\%$:"
+            "$$0.6 \\times 0.02 = 0.012.$$"
+            "The remaining $0.6 \\times 0.98 = 0.588$ reaches the second, which flags $3\\%$:"
+            "$$0.588 \\times 0.03 = 0.01764.$$"
+            "So legitimate mail flagged is $0.012 + 0.01764 = 0.02964$."
+            "**Total flagged.**"
+            "$$0.382 + 0.02964 = 0.41164,$$"
+            "about $41.2\\%$ of all mail."
+            "**Reverse the conditional.**"
+            "$$P(\\text{spam} \\mid \\text{flagged}) = \\frac{0.382}{0.41164} \\approx 0.928.$$"
+            "**Interpret it.** About $93\\%$ of flagged messages are genuine spam. The two "
+            "filters together catch $\\frac{0.382}{0.4} = 95.5\\%$ of all spam, while wrongly "
+            "flagging under $3\\%$ of legitimate mail."
+            "**Check the spam accounting.** Caught: $0.382$. Missed: "
+            "$0.06 \\times 0.3 = 0.018$. Total: $0.382 + 0.018 = 0.4$ ✓ all the spam is "
+            "accounted for."
+            "**Check the legitimate accounting.** Flagged: $0.02964$. Passed: "
+            "$0.588 \\times 0.97 = 0.57036$. Total: $0.02964 + 0.57036 = 0.6$ ✓"
+            "**Why sequencing matters.** The second filter only sees what the first missed, so "
+            "its percentages apply to a reduced pool. Applying $70\\%$ to all the spam rather "
+            "than to the $0.06$ that survived would overstate the catch enormously.",
+            [
+                "Eq(Rational(4,10)*Rational(85,100), Rational(34,100))",
+                "Eq(Rational(4,10)*Rational(15,100), Rational(6,100))",
+                "Eq(Rational(6,100)*Rational(7,10), Rational(42,1000))",
+                "Eq(Rational(34,100) + Rational(42,1000), Rational(382,1000))",
+                "Eq(Rational(6,10)*Rational(2,100), Rational(12,1000))",
+                "Eq(Rational(6,10)*Rational(98,100), Rational(588,1000))",
+                "Eq(Rational(588,1000)*Rational(3,100), Rational(1764,100000))",
+                "Eq(Rational(382,1000) + Rational(2964,100000), Rational(41164,100000))",
+                "Abs(Rational(382,1000)/Rational(41164,100000) - Rational(928,1000)) < Rational(1,1000)",
+                "Eq(Rational(382,1000) + Rational(6,100)*Rational(3,10), Rational(4,10))",
+                "Eq(Rational(2964,100000) + Rational(588,1000)*Rational(97,100), Rational(6,10))",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="probability",
+        title="Probability",
+        unit_number=8,
+        blurb=(
+            "Sample spaces and events as sets, the addition rule and why the overlap must be "
+            "subtracted, two-way tables read as probability models, conditional probability as a "
+            "change of denominator, independence as a test rather than an assumption, and tree "
+            "diagrams that combine every rule at once."
+        ),
+        builds_on=(
+            "Two-way tables from IM1 Unit 9 — the same tables, now read as probabilities rather "
+            "than counts."
+        ),
+        lessons=[
+            lesson_sample_spaces(),
+            lesson_two_way_tables(),
+            lesson_independence(),
+            lesson_combining_rules(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

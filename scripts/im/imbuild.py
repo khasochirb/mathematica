@@ -57,31 +57,40 @@ def find_unrenderable_math(text):
 # and cast, so tsc never sees it) and still renders — it just silently falls
 # back to a default and shows the wrong thing. That failure mode is invisible to
 # every other gate in the chain, which is why it is checked here.
-WIDGET_REQUIRED_KEYS = {
-    "absoluteValue": [],
-    "algebraTiles": ["x", "units"],
-    "balanceScale": ["mode"],
-    "boxPlot": ["data"],
-    "congruentTriangles": [],
-    "conjectureTest": ["conjecture", "items"],
-    "coordGeo": ["mode"],
-    "coordinateGrid": ["mode"],
-    "dotPlot": ["data"],
-    "evaluator": ["a", "b"],
-    "expGraph": ["mode"],
-    "exponentBuilder": ["base", "exp"],
-    "factorTree": ["n"],
-    "histogramBins": ["data"],
-    "integerLine": [],
-    "orderOfOps": ["stages"],
-    "parabolaGraph": ["mode"],
-    "patternGrow": ["pattern"],
-    "rateMeter": [],
-    "scatterPlot": ["mode"],
-    "stepProof": ["given", "prove", "rows"],
-    "systemGraph": ["m1", "b1", "m2", "b2"],
-    "transformPlane": ["transform"],
-    "vennCounts": [],
+# Each entry is (required keys, every legal key). Unknown keys matter as much as
+# missing ones: a config of {"r": 13, "chord": 24} has no required key missing
+# and is still completely inert, because the component reads neither name.
+WIDGET_CONFIG_KEYS = {
+    "absoluteValue": ([], ["min", "max", "start", "color"]),
+    "algebraTiles": (["x", "units"], ["x", "units", "mode", "maxX", "maxUnits", "color"]),
+    "arcSector": ([], ["start", "radius", "color"]),
+    "balanceScale": (["mode"], ["mode", "b", "rhs", "color"]),
+    "boxPlot": (["data"], ["data", "xLabel", "showFences", "color"]),
+    "circleAngle": (["mode"], ["mode", "start", "color"]),
+    "circleFigure": ([], ["radius", "points", "objects", "angles", "arcs", "external", "showCenter", "caption"]),
+    "congruentTriangles": ([], ["sides", "angles", "answer", "caption", "color"]),
+    "conjectureTest": (["conjecture", "items"], ["conjecture", "items"]),
+    "coordGeo": (["mode"], ["mode", "a", "b", "m", "yint", "center", "r", "min", "max", "color"]),
+    "coordinateGrid": (["mode"], ["mode", "min", "max", "points", "color"]),
+    "dotPlot": (["data"], ["mode", "data", "min", "max", "xLabel", "color"]),
+    "evaluator": (["a", "b"], ["a", "b", "varName", "min", "max", "start", "color"]),
+    "expGraph": (["mode"], ["mode", "a", "b", "m", "p", "r", "years", "interactive"]),
+    "exponentBuilder": (["base", "exp"], ["base", "exp", "minBase", "maxBase", "minExp", "maxExp", "color"]),
+    "factorTree": (["n"], ["n", "color"]),
+    "histogramBins": (["data"], ["data", "min", "max", "widths", "start", "xLabel", "color"]),
+    "integerLine": ([], ["min", "max", "start", "color"]),
+    "orderOfOps": (["stages"], ["stages", "color"]),
+    "parabolaGraph": (["mode"], ["mode", "a", "h", "k", "b", "c", "v0", "interactive", "min", "max"]),
+    "patternGrow": (["pattern"], ["pattern", "maxSteps"]),
+    "rateMeter": ([], ["topLabel", "topUnit", "top", "topMax", "topStep", "bottomLabel",
+                       "bottomUnit", "bottom", "bottomMax", "bottomStep", "rateUnit", "color"]),
+    "scatterPlot": (["mode"], ["mode", "dataset", "xLabel", "yLabel", "color"]),
+    "stepProof": (["given", "prove", "rows"], ["given", "prove", "rows", "color"]),
+    "systemGraph": (["m1", "b1", "m2", "b2"], ["m1", "b1", "m2", "b2", "interactive", "min", "max", "color"]),
+    "tangentCircle": ([], ["color"]),
+    "treeDiagram": (["mode", "stages"], ["mode", "stages", "caption"]),
+    "transformPlane": (["transform"], ["transform", "shape", "dx", "dy", "deg", "k", "min", "max", "color"]),
+    "vennCounts": ([], ["onlyA", "both", "onlyB", "neither", "color"]),
 }
 
 # Steps that carry no `config` at all — prose and problem references.
@@ -96,18 +105,25 @@ def check_widget_configs(lessons):
             kind = step["kind"]
             if kind in WIDGET_EXEMPT_KINDS:
                 continue
-            if kind not in WIDGET_REQUIRED_KEYS:
+            if kind not in WIDGET_CONFIG_KEYS:
                 problems.append(
                     f"{les['slug']}.steps[{i}]: unknown widget kind {kind!r} — add it to "
-                    f"WIDGET_REQUIRED_KEYS after checking lib/genmath-interactive.ts"
+                    f"WIDGET_CONFIG_KEYS after checking lib/genmath-interactive.ts"
                 )
                 continue
+            required, allowed = WIDGET_CONFIG_KEYS[kind]
             config = step.get("config", {})
-            missing = [key for key in WIDGET_REQUIRED_KEYS[kind] if key not in config]
+            missing = [key for key in required if key not in config]
+            unknown = [key for key in sorted(config) if key not in allowed]
             if missing:
                 problems.append(
                     f"{les['slug']}.steps[{i}] ({kind}): config missing {missing} "
                     f"(has {sorted(config)})"
+                )
+            if unknown:
+                problems.append(
+                    f"{les['slug']}.steps[{i}] ({kind}): config has unknown key(s) {unknown} "
+                    f"— the component ignores them, so the widget silently uses defaults"
                 )
     return problems
 

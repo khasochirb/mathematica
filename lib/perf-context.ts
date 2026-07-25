@@ -44,6 +44,7 @@ export function contextLabel(context: string): string {
   if (context === "course:algebra-1") return "Алгебр 1";
   if (context === "course:algebra-2") return "Алгебр 2";
   if (context === "course:integrated-1") return "Нэгдсэн математик 1";
+  if (context === "course:integrated-2") return "Нэгдсэн математик 2";
   if (context === "course:precalculus") return "Прекалькулюс";
   if (context === "course:calculus") return "Математик анализ";
   if (context === "course:trigonometry") return "Тригонометр";
@@ -65,6 +66,7 @@ export function contextHref(context: string): string | null {
   if (context === "course:algebra-1") return "/math/algebra-1";
   if (context === "course:algebra-2") return "/math/algebra-2";
   if (context === "course:integrated-1") return "/math/integrated-1";
+  if (context === "course:integrated-2") return "/math/integrated-2";
   if (context === "course:precalculus") return "/math/precalculus";
   if (context === "course:calculus") return "/math/calculus";
   if (context === "course:trigonometry") return "/math/trigonometry";

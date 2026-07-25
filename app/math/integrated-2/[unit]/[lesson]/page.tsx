@@ -1,0 +1,8 @@
+"use client";
+
+import { CourseLessonPage } from "@/components/course/CourseShell";
+import { INTEGRATED_2 } from "@/lib/courses/integrated-2";
+
+export default function Page() {
+  return <CourseLessonPage course={INTEGRATED_2} />;
+}
