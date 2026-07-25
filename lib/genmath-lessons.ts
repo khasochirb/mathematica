@@ -174,6 +174,9 @@ import a1Systems from "@/data/genmath/algebra-1/systems-of-equations.json";
 import a1Polynomials from "@/data/genmath/algebra-1/polynomials-and-factoring.json";
 import a1Quadratics from "@/data/genmath/algebra-1/quadratic-equations.json";
 
+// Integrated Mathematics 1 unit JSON imports
+import im1Quantities from "@/data/genmath/integrated-1/quantities-and-expressions.json";
+
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
 import a2Quadratics from "@/data/genmath/algebra-2/quadratics-and-complex-numbers.json";
@@ -1189,6 +1192,119 @@ export function getAlg1Lesson(
 }
 
 // ---------------------------------------------------------------------------
+// Integrated Mathematics 1 — /math/integrated-1
+// The first year of the integrated pathway (CCSS Integrated Mathematics I).
+// Where Algebra 1 → Geometry → Algebra 2 teaches one subject at a time, the
+// integrated pathway mixes algebra, geometry and statistics inside every year:
+// IM1 runs from quantities and linear models through congruence and coordinate
+// proof to one-variable data. Same lesson schema, same widget library, same
+// verify:genmath gate as every other course here.
+// ---------------------------------------------------------------------------
+
+export const IM1_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "quantities-and-expressions",
+    title: "Quantities & the Structure of Expressions",
+    blurb:
+      "Units, conversion and precision; the terms, factors and coefficients of an expression; writing equations from a situation; rearranging formulas.",
+    buildsOn: "Nothing — the course starts here, from zero.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "linear-equations-and-inequalities",
+    title: "Linear Equations & Inequalities",
+    blurb:
+      "Solving one-variable equations with a reason for every step, special cases, inequalities and the negative-flip rule, and compound statements.",
+    buildsOn: "Rearranging formulas from Unit 1 — the same moves, now with a number as the target.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "functions-and-sequences",
+    title: "Functions & Sequences",
+    blurb:
+      "The one-output rule, function notation, domain and range, and arithmetic and geometric sequences read as functions on the whole numbers.",
+    buildsOn: "Creating equations from Unit 1 and solving them from Unit 2.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "linear-functions",
+    title: "Linear Functions & Modelling",
+    blurb:
+      "Slope as a rate of change, the three forms of a line, graphing from each, and interpreting the parameters of a linear model in context.",
+    buildsOn: "Function notation and the sequence-as-function idea from Unit 3.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "systems-of-equations-and-inequalities",
+    title: "Systems of Equations & Inequalities",
+    blurb:
+      "Graphical, substitution and elimination methods; why adding equations is legal; systems with no or infinitely many solutions; and shaded feasible regions.",
+    buildsOn: "Linear equations from Unit 2 and the graph of a line from Unit 4.",
+    live: false,
+  },
+  {
+    unit: 6,
+    slug: "exponential-functions",
+    title: "Exponential Functions & Growth",
+    blurb:
+      "Repeated multiplication as a function, growth and decay factors, comparing exponential against linear growth, and fitting a model to data.",
+    buildsOn: "Geometric sequences from Unit 3 and function notation from Unit 4.",
+    live: false,
+  },
+  {
+    unit: 7,
+    slug: "transformations-and-congruence",
+    title: "Transformations & Congruence",
+    blurb:
+      "Translations, reflections and rotations as rigid motions; congruence defined by a sequence of them; the triangle congruence criteria; and compass constructions.",
+    buildsOn: "The coordinate plane from Unit 4 — transformations are described by coordinate rules.",
+    live: false,
+  },
+  {
+    unit: 8,
+    slug: "coordinate-geometry",
+    title: "Connecting Algebra & Geometry",
+    blurb:
+      "Distance and midpoint on the plane, the slope criteria for parallel and perpendicular lines, partitioning a segment, and proving geometric facts with coordinates.",
+    buildsOn: "Slope from Unit 4 and rigid motions from Unit 7.",
+    live: false,
+  },
+  {
+    unit: 9,
+    slug: "data-and-statistics",
+    title: "Describing Data",
+    blurb:
+      "Centre and spread for one variable, comparing distributions, outliers, two-way tables, scatter plots and the line of best fit — and why correlation is not causation.",
+    buildsOn: "Linear models from Unit 4 — the line of best fit is one.",
+    live: false,
+  },
+];
+
+const im1Units: CourseUnit[] = [im1Quantities as unknown as CourseUnit];
+
+export function getIm1Spine(): GeometrySpineEntry[] {
+  return IM1_SPINE;
+}
+
+export function getIm1Unit(unitSlug: string): CourseUnit | null {
+  return im1Units.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getIm1Lesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getIm1Unit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Algebra 2 course — /math/algebra-2
 // The bridge between Algebra 1 and Precalculus: transformations and
 // piecewise functions, quadratics with complex numbers, advanced systems,
@@ -1833,6 +1949,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:prob-stats": { spine: getProbStatSpine, unit: getProbStatUnit },
   "course:vectors-matrices": { spine: getVecMatSpine, unit: getVecMatUnit },
   "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
+  "course:integrated-1": { spine: getIm1Spine, unit: getIm1Unit },
   "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },

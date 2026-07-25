@@ -1,0 +1,1263 @@
+{
+  "slug": "quantities-and-expressions",
+  "title": "Quantities & the Structure of Expressions",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Units, conversion and precision; reading the terms, factors and coefficients of an expression; turning a described situation into an equation or inequality; and rearranging a formula for any variable it contains.",
+  "buildsOn": "Nothing — Integrated Math 1 starts here. Arithmetic with fractions and decimals is assumed; everything algebraic is built from zero.",
+  "lessons": [
+    {
+      "slug": "units-and-quantities",
+      "title": "Units, Conversion & Precision",
+      "concreteComparison": "A recipe that says **add 2** is useless. Two what — cups, teaspoons, kilograms? The number 2 carries no information on its own. Every measurement in this course is a number AND a unit welded together, and most modelling mistakes are not arithmetic mistakes at all: they are two quantities added that were never in the same unit.",
+      "objective": "Attach units to every quantity, convert between units by multiplying by a fraction equal to $1$, use units to decide which operation a problem calls for, and report an answer to a precision the measurements actually support.",
+      "concept": [
+        "**A quantity is a number with a unit.** $34$ is a number. $34$ metres is a quantity. When you model a situation, every variable you introduce needs a unit written down next to it — $t$ in hours, $C$ in tugriks, $h$ in metres. Half the work of a modelling problem is done the moment the units are labelled, because units tell you what you are allowed to do with the numbers.",
+        "**Only like units add.** You can add metres to metres, never metres to seconds. But you can multiply or divide ANY two quantities, and the units come along for the ride: $$\\text{metres} \\div \\text{seconds} = \\text{metres per second}.$$ That is where every rate comes from — a rate is not a special kind of number, it is just a quotient whose unit happens to be a fraction.",
+        "**Converting = multiplying by 1.** Since $1000\\text{ m} = 1\\text{ km}$, the fraction $\\frac{1000\\text{ m}}{1\\text{ km}}$ equals $1$, and multiplying by $1$ changes nothing except the unit. Write the conversion so the unit you want to LOSE sits diagonally opposite and cancels: $$90\\ \\frac{\\text{km}}{\\text{h}} \\times \\frac{1000\\text{ m}}{1\\text{ km}} \\times \\frac{1\\text{ h}}{3600\\text{ s}} = 25\\ \\frac{\\text{m}}{\\text{s}}.$$ The km cancel, the h cancel, m and s survive. You never have to remember whether to multiply or divide — you arrange the fractions so the wrong units cancel and the arithmetic follows.",
+        "**Area and volume scale by the POWER of the factor.** $1\\text{ m} = 100\\text{ cm}$, so $1\\text{ m}^2 = (100\\text{ cm})^2 = 10\\,000\\text{ cm}^2$ and $1\\text{ m}^3 = 1\\,000\\,000\\text{ cm}^3$. Squaring a length squares its conversion factor too. This single fact accounts for more wrong answers on area problems than any formula error.",
+        "**Precision: your answer cannot be sharper than your data.** A field measured as $34.2$ m by $18.5$ m has an area of $632.7\\text{ m}^2$ on the calculator, but the measurements were only good to three digits, so the honest report is $633\\text{ m}^2$. Reporting $632.70\\text{ m}^2$ claims a precision nobody measured. Rule of thumb: keep extra digits through the middle of a calculation, round only at the end, and match the least precise measurement you started with."
+      ],
+      "keyIdea": "Multiply by a fraction that equals $1$, arranged so the unit you want to lose cancels. Then round the final answer to the precision your measurements support — not to the precision your calculator offers.",
+      "facts": [
+        {
+          "title": "A conversion factor is a disguised 1",
+          "latex": "a\\ \\text{unit}_1 = b\\ \\text{unit}_2 \\ \\Longrightarrow\\ \\frac{b\\ \\text{unit}_2}{a\\ \\text{unit}_1} = 1",
+          "explanation": "Any true equation between two measurements gives you two fractions equal to 1 — pick whichever one cancels the unit you are trying to get rid of."
+        },
+        {
+          "title": "Speed conversion, km/h to m/s",
+          "latex": "1\\ \\frac{\\text{km}}{\\text{h}} = \\frac{1000}{3600}\\ \\frac{\\text{m}}{\\text{s}} = \\frac{5}{18}\\ \\frac{\\text{m}}{\\text{s}}",
+          "explanation": "Divide km/h by 3.6 to get m/s; multiply by 3.6 to go back. Worth memorising — it appears in physics, in rate problems, and on every exam this site prepares for."
+        },
+        {
+          "title": "Squared and cubed units",
+          "latex": "1\\ \\text{m}^2 = 10^4\\ \\text{cm}^2, \\qquad 1\\ \\text{m}^3 = 10^6\\ \\text{cm}^3",
+          "explanation": "The linear factor is 100; the area factor is 100² and the volume factor is 100³."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u1-l1-we1",
+          "statement": "A bus travels at $90$ km/h. Express this speed in metres per second.",
+          "solution": "Multiply by two fractions that each equal $1$, arranged so km and h cancel:$$90\\ \\frac{\\text{km}}{\\text{h}} \\times \\frac{1000\\text{ m}}{1\\text{ km}} \\times \\frac{1\\text{ h}}{3600\\text{ s}}= \\frac{90 \\times 1000}{3600}\\ \\frac{\\text{m}}{\\text{s}}.$$$$\\frac{90\\,000}{3600} = 25.$$So the bus travels at $25$ m/s. Sanity check: m/s numbers are always smaller than the km/h number, by a factor of $3.6$ — and $90 \\div 3.6 = 25$. ✓",
+          "check": [
+            "Eq(Rational(90*1000, 3600), 25)",
+            "Eq(Rational(90, 36)*10, 25)"
+          ]
+        },
+        {
+          "id": "im1-u1-l1-we2",
+          "statement": "A car's fuel use is rated at $7.5$ litres per $100$ km. How much fuel does a $340$ km trip need?",
+          "solution": "The rating is a rate with unit $\\frac{\\text{L}}{100\\text{ km}}$. Multiply the distance by it so km cancels:$$340\\ \\text{km} \\times \\frac{7.5\\ \\text{L}}{100\\ \\text{km}} = \\frac{340 \\times 7.5}{100}\\ \\text{L}.$$$$\\frac{2550}{100} = 25.5.$$The trip needs $25.5$ litres. Notice the units did the thinking: km on top cancels km on the bottom, leaving L — which is exactly what the question asked for.",
+          "check": [
+            "Eq(340*Rational(75,10)/100, Rational(51,2))",
+            "Eq(Rational(51,2), 25.5)"
+          ]
+        },
+        {
+          "id": "im1-u1-l1-we3",
+          "statement": "A rectangular plot is measured as $34.2$ m by $18.5$ m. Report its area with an appropriate precision.",
+          "solution": "First the exact arithmetic:$$34.2 \\times 18.5 = 632.7\\ \\text{m}^2.$$Now the honesty check. Each measurement carries three significant digits, so the product is trustworthy to three significant digits at best. Rounding $632.7$ to three significant digits gives$$633\\ \\text{m}^2.$$Report $633\\ \\text{m}^2$. Writing $632.7\\ \\text{m}^2$ would claim the plot's area is known to a tenth of a square metre, which two three-digit measurements cannot support.",
+          "check": [
+            "Eq(Rational(342,10)*Rational(185,10), Rational(6327,10))",
+            "Abs(Rational(6327,10) - 633) < Rational(1,2)"
+          ]
+        },
+        {
+          "id": "im1-u1-l1-we4",
+          "statement": "A room's floor measures $4.5\\text{ m} \\times 3.2\\text{ m}$. Express its area in square centimetres.",
+          "solution": "Find the area in the given unit first:$$4.5 \\times 3.2 = 14.4\\ \\text{m}^2.$$Now convert. The length factor is $1\\text{ m} = 100\\text{ cm}$, so the AREA factor is its square:$$1\\ \\text{m}^2 = (100\\ \\text{cm})^2 = 10\\,000\\ \\text{cm}^2.$$$$14.4\\ \\text{m}^2 \\times \\frac{10\\,000\\ \\text{cm}^2}{1\\ \\text{m}^2} = 144\\,000\\ \\text{cm}^2.$$Using $100$ instead of $10\\,000$ would give $1440\\text{ cm}^2$ — about the area of a sheet of paper, which is visibly not a room.",
+          "check": [
+            "Eq(Rational(45,10)*Rational(32,10), Rational(144,10))",
+            "Eq(Rational(144,10)*10000, 144000)",
+            "Eq(100**2, 10000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping the conversion factor — multiplying by 3.6 to turn km/h into m/s.",
+          "correction": "Check the direction with a sanity number: 36 km/h is 10 m/s, a jogger's sprint. If your answer came out bigger than the km/h figure, you used the fraction upside down.",
+          "authored": true
+        },
+        {
+          "text": "Converting an area with the LINEAR factor: writing 1 m² = 100 cm².",
+          "correction": "Square the factor: 1 m² = 100² cm² = 10 000 cm². For volume, cube it.",
+          "authored": true
+        },
+        {
+          "text": "Reporting every digit the calculator shows — 632.7000 m² from three-digit data.",
+          "correction": "Round the final answer to the precision of the least precise measurement. Keep extra digits only in the middle of a multi-step calculation.",
+          "authored": true
+        },
+        {
+          "text": "Adding quantities with different units — 2 hours + 30 minutes = 32.",
+          "correction": "Convert first: 2 h = 120 min, so the total is 150 min (or 2.5 h). Only like units add.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u1-l1-t1",
+          "statement": "Convert $72$ km/h to metres per second.",
+          "solution": "$$72 \\times \\frac{1000}{3600} = \\frac{72\\,000}{3600} = 20\\ \\text{m/s}.$$",
+          "check": [
+            "Eq(Rational(72*1000, 3600), 20)"
+          ]
+        },
+        {
+          "id": "im1-u1-l1-t2",
+          "statement": "A tap fills a tank at $2.5$ litres per minute. How many litres in $1.5$ hours?",
+          "solution": "Convert the time to minutes, then multiply by the rate:$$1.5\\ \\text{h} = 90\\ \\text{min}, \\qquad 90 \\times 2.5 = 225\\ \\text{L}.$$",
+          "check": [
+            "Eq(Rational(3,2)*60, 90)",
+            "Eq(90*Rational(25,10), 225)"
+          ]
+        },
+        {
+          "id": "im1-u1-l1-t3",
+          "statement": "A tile is $15\\,000\\ \\text{cm}^2$. What is its area in square metres?",
+          "solution": "Divide by the area factor $10\\,000$:$$\\frac{15\\,000}{10\\,000} = 1.5\\ \\text{m}^2.$$",
+          "check": [
+            "Eq(Rational(15000, 10000), Rational(3,2))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "N-Q.1",
+            "title": "A number without a unit says nothing",
+            "body": "$34$ could be a temperature, a price, a distance or a class size. $34$ **metres** is a fact about the world. In every modelling problem in this course, write the unit next to the variable the moment you introduce it.",
+            "beats": [
+              "$t$ = time in **hours** — not just \"time\"",
+              "$C$ = cost in **tugriks**",
+              "$d$ = distance in **kilometres**",
+              "Now $\\frac{d}{t}$ has unit km/h automatically"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Where rates come from",
+            "title": "Divide two quantities and you get a rate",
+            "body": "A rate is not a special kind of number. Divide a distance by a time and the units divide too: $\\frac{\\text{km}}{\\text{h}}$. Divide a price by a mass and you get $\\frac{\\text{tugriks}}{\\text{kg}}$. The unit of the answer tells you whether you set the problem up correctly."
+          },
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Feel it",
+            "title": "Distance over time",
+            "teach": "Drag either bar. The rate underneath is the distance divided by the time — and its unit is km per hour because that is literally what the division produced.",
+            "config": {
+              "topLabel": "Distance",
+              "topUnit": "km",
+              "top": 90,
+              "topMax": 180,
+              "topStep": 10,
+              "bottomLabel": "Time",
+              "bottomUnit": "h",
+              "bottom": 1,
+              "bottomMax": 6,
+              "bottomStep": 1,
+              "rateUnit": "km per hour"
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The one technique",
+            "title": "Convert by multiplying by 1",
+            "body": "$1000\\text{ m} = 1\\text{ km}$, so $\\frac{1000\\text{ m}}{1\\text{ km}} = 1$. Multiplying by $1$ cannot change a quantity — only how it is written. Arrange the fraction so the unit you want gone cancels diagonally.",
+            "beats": [
+              "$90\\ \\frac{\\text{km}}{\\text{h}} \\times \\frac{1000\\text{ m}}{1\\text{ km}}$ — km cancels",
+              "$\\times \\frac{1\\text{ h}}{3600\\text{ s}}$ — h cancels",
+              "What survives: $\\frac{\\text{m}}{\\text{s}}$",
+              "$\\frac{90 \\times 1000}{3600} = 25$"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "90 km/h in metres per second",
+            "problemId": "im1-u1-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which fraction cancels the hours?",
+            "prompt": "You are converting $54$ km/h into metres per second. After multiplying by $\\frac{1000\\text{ m}}{1\\text{ km}}$, which fraction do you multiply by next?",
+            "options": [
+              "$\\frac{1\\text{ h}}{3600\\text{ s}}$",
+              "$\\frac{3600\\text{ s}}{1\\text{ h}}$",
+              "$\\frac{60\\text{ min}}{1\\text{ h}}$",
+              "$\\frac{1\\text{ h}}{60\\text{ min}}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Hours sit in the DENOMINATOR of km/h, so to cancel them the next fraction needs hours in its NUMERATOR: $\\frac{1\\text{ h}}{3600\\text{ s}}$. That leaves seconds in the denominator, which is what m/s needs. The result is $\\frac{54 \\times 1000}{3600} = 15$ m/s.",
+            "check": [
+              "Eq(Rational(54*1000, 3600), 15)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Fuel for a 340 km trip",
+            "problemId": "im1-u1-l1-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "N-Q.1 · the classic trap",
+            "title": "Squaring a length squares its conversion factor",
+            "body": "$1\\text{ m} = 100\\text{ cm}$, so $1\\text{ m}^2 = (100\\text{ cm})^2 = 10\\,000\\text{ cm}^2$, and $1\\text{ m}^3 = 1\\,000\\,000\\text{ cm}^3$. Picture a square metre ruled into a $100 \\times 100$ grid of centimetre squares — ten thousand of them, not one hundred."
+          },
+          {
+            "kind": "worked",
+            "title": "A floor in square centimetres",
+            "problemId": "im1-u1-l1-we4"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "How many cm³ in a cubic metre?",
+            "prompt": "A crate holds $1\\ \\text{m}^3$. How many cubic centimetres is that?",
+            "options": [
+              "$100$",
+              "$10\\,000$",
+              "$1\\,000\\,000$",
+              "$1000$"
+            ],
+            "correctIndex": 2,
+            "explanation": "The linear factor is $100$, so the volume factor is $100^3 = 1\\,000\\,000$. A cubic metre is a $100 \\times 100 \\times 100$ stack of centimetre cubes.",
+            "check": [
+              "Eq(100**3, 1000000)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "N-Q.3",
+            "title": "Do not claim precision you never measured",
+            "body": "Two measurements good to three digits cannot produce an answer good to five. Carry extra digits through the middle of a calculation so rounding errors do not accumulate, then round ONCE at the end to match your least precise measurement."
+          },
+          {
+            "kind": "worked",
+            "title": "Area, reported honestly",
+            "problemId": "im1-u1-l1-we3"
+          },
+          {
+            "kind": "tip",
+            "title": "Let the units check your work",
+            "body": "Before you compute, cancel the units symbolically. If the surviving unit is not the one the question asked for, the setup is wrong and no amount of careful arithmetic will save it. Units are a free error-detector — use them."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — 72 km/h",
+            "problemId": "im1-u1-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — filling a tank",
+            "problemId": "im1-u1-l1-t2"
+          },
+          {
+            "kind": "funFact",
+            "title": "A unit mix-up lost a Mars orbiter",
+            "body": "In 1999 the Mars Climate Orbiter burned up because one team supplied thrust figures in pound-seconds while the navigation software expected newton-seconds. Every individual number was correct. The mission was lost to a missing conversion factor — the exact error this lesson is about."
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "A quantity is a number **and** a unit; label units when you define a variable",
+              "Convert by multiplying by a fraction equal to $1$, arranged so units cancel",
+              "km/h $\\div\\ 3.6$ = m/s; $1\\text{ m}^2 = 10^4\\text{ cm}^2$; $1\\text{ m}^3 = 10^6\\text{ cm}^3$",
+              "Round once, at the end, to the precision your data supports"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "structure-of-expressions",
+      "title": "Reading the Structure of an Expression",
+      "concreteComparison": "A sentence is not a bag of letters — it has a subject, a verb, an object, and you read those parts before you read the words. An expression works the same way. $1200(1.05)^{t}$ is not \"some numbers\": it is a starting amount, a growth factor, and a count of periods. Students who read expressions structurally can interpret a model they have never seen before; students who see only symbols cannot.",
+      "objective": "Break an expression into its terms, factors and coefficients, interpret each part in the context it models, and read a compound part as a single object when doing so makes the structure clearer.",
+      "concept": [
+        "**Terms are separated by the plus and minus signs.** In $5x + 3y - 8$ there are three terms: $5x$, $3y$ and $-8$. Carry the sign INTO the term — the third term is $-8$, not $8$. Terms are the top-level pieces; everything else lives inside one of them.",
+        "**Inside a term: factors and coefficients.** A term is a product. In $5x$, the factors are $5$ and $x$, and $5$ is the coefficient of $x$. In $-7ab^2$, the factors are $-7$, $a$, $b$ and $b$; the coefficient is $-7$. A term with no visible number has coefficient $1$ — $x$ means $1x$ — and this matters the moment you start collecting like terms.",
+        "**Reading a part as a single object.** In $P(1 + r)^{n}$, do not see four separate letters. See three roles: $P$ is the starting amount, $(1 + r)$ is ONE thing — the growth factor per period — and $n$ counts the periods. If $r = 0.05$, the growth factor is $1.05$, which means *keep all of it and add five percent*. Chunking $(1+r)$ into a single object is what turns an intimidating formula into a sentence you can read aloud.",
+        "**Structure tells you what changes what.** In the cost model $C = 15n + 400$, the $400$ is a fixed cost that does not care about $n$, and the $15$ is what each extra unit adds. Change $n$ by $1$ and $C$ changes by exactly $15$. You can answer that without solving anything, purely by reading which part $n$ touches.",
+        "**Equivalent expressions, different stories.** $15n + 400$ and $5(3n + 80)$ are the same number for every $n$, but the first says \"a fixed cost plus a per-unit cost\" and the second says \"five identical groups\". Rewriting an expression is how you make a different feature of the situation visible — which is the whole point of factoring, and the reason Unit 2 of every algebra course exists."
+      ],
+      "keyIdea": "Split at $+$ and $-$ to find the terms; inside a term the pieces multiplied together are the factors and the number in front is the coefficient. Then ask what each part MEANS in the situation — a starting value, a rate, a growth factor, a count.",
+      "facts": [
+        {
+          "title": "Terms, factors, coefficient",
+          "latex": "\\underbrace{5x}_{\\text{term}} + \\underbrace{3y}_{\\text{term}} \\underbrace{-\\ 8}_{\\text{term}}",
+          "explanation": "Three terms. In the term 5x the factors are 5 and x, and 5 is the coefficient."
+        },
+        {
+          "title": "An invisible coefficient is 1",
+          "latex": "x = 1x, \\qquad -y = -1y",
+          "explanation": "A bare variable has coefficient 1 and a leading minus means coefficient −1. Forgetting this is the most common like-terms error."
+        },
+        {
+          "title": "The linear model's two roles",
+          "latex": "y = mx + b: \\quad b = \\text{starting value}, \\quad m = \\text{change per unit}",
+          "explanation": "Every linear situation in IM1 reduces to these two roles — read them off the expression rather than deriving them."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u1-l2-we1",
+          "statement": "For the expression $7x^2 - 4x + 9$, list the terms, and give the coefficient of each variable term.",
+          "solution": "Split at the $+$ and $-$ signs, carrying each sign into its term:$$7x^2, \\qquad -4x, \\qquad 9.$$Three terms. The coefficient of $x^2$ is $7$; the coefficient of $x$ is $-4$ (the minus belongs to the coefficient, not to the operation). The term $9$ is the constant term — it has no variable, so it does not change when $x$ does. A quick check at $x = 1$: $7 - 4 + 9 = 12$.",
+          "check": [
+            "Eq(7*1**2 - 4*1 + 9, 12)",
+            "Eq(7*2**2 - 4*2 + 9, 29)"
+          ]
+        },
+        {
+          "id": "im1-u1-l2-we2",
+          "statement": "A phone plan costs $12\\,000$₮ per month plus $45$₮ for each minute of calls. The monthly bill is $B = 45m + 12\\,000$. Interpret each part, and find how much the bill rises if you talk one minute more.",
+          "solution": "Read the two terms:$$\\underbrace{45m}_{\\text{depends on usage}} + \\underbrace{12\\,000}_{\\text{fixed, every month}}.$$The $12\\,000$ is the base charge — it is there even at $m = 0$, since $B(0) = 12\\,000$. The coefficient $45$ is the cost of one minute, in ₮ per minute.$$B(m+1) - B(m) = \\big(45(m+1) + 12\\,000\\big) - \\big(45m + 12\\,000\\big) = 45.$$One extra minute costs $45$₮, whatever $m$ already was. That constancy IS what makes the model linear.",
+          "check": [
+            "Eq(45*0 + 12000, 12000)",
+            "Eq(simplify((45*(Symbol('m')+1) + 12000) - (45*Symbol('m') + 12000)), 45)",
+            "Eq(45*100 + 12000, 16500)"
+          ]
+        },
+        {
+          "id": "im1-u1-l2-we3",
+          "statement": "In the savings model $A = P(1 + r)^{n}$, identify the role of each part when $P = 500\\,000$₮, $r = 0.08$ and $n = 3$. Then compute $A$.",
+          "solution": "Read $(1 + r)$ as ONE object — the growth factor per year:$$1 + r = 1 + 0.08 = 1.08,$$which says *keep the whole amount and add eight percent*. So $P = 500\\,000$ is the starting deposit, $1.08$ is the yearly multiplier, and $n = 3$ counts how many times that multiplier is applied.$$A = 500\\,000 \\times 1.08^{3} = 500\\,000 \\times 1.259712 = 629\\,856.$$The account holds $629\\,856$₮ after three years. Note $1.08^3 \\neq 1.24$: growth compounds, so three years of $8\\%$ beats $24\\%$ once.",
+          "check": [
+            "Eq(Rational(108,100)**3, Rational(1259712, 1000000))",
+            "Eq(500000*Rational(108,100)**3, 629856)",
+            "500000*Rational(108,100)**3 > 500000*Rational(124,100)"
+          ]
+        },
+        {
+          "id": "im1-u1-l2-we4",
+          "statement": "Show that $15n + 400$ and $5(3n + 80)$ are equivalent, and say what each form makes obvious.",
+          "solution": "Expand the second form:$$5(3n + 80) = 5 \\cdot 3n + 5 \\cdot 80 = 15n + 400. \\checkmark$$They agree for every $n$ — check $n = 4$: $15(4) + 400 = 460$ and $5(12 + 80) = 5(92) = 460$.The forms tell different stories. $15n + 400$ says *a fixed cost of $400$ plus $15$ per item*: you can read the starting value and the rate straight off it. $5(3n + 80)$ says *five identical groups, each costing $3n + 80$* — the form you want if the situation really does split into five equal parts. Same numbers, different features made visible.",
+          "check": [
+            "Eq(simplify(5*(3*Symbol('n') + 80) - (15*Symbol('n') + 400)), 0)",
+            "Eq(15*4 + 400, 460)",
+            "Eq(5*(3*4 + 80), 460)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the coefficient of x in 7 − 4x as 4.",
+          "correction": "The sign belongs to the coefficient: the term is −4x and the coefficient is −4. Split at the signs and carry each sign into its term.",
+          "authored": true
+        },
+        {
+          "text": "Treating x as having coefficient 0 because no number is written.",
+          "correction": "x means 1x and −x means −1x. An absent number is a 1, never a 0.",
+          "authored": true
+        },
+        {
+          "text": "Calling 3(x + 5) a single term with coefficient 3 and then adding 5 separately.",
+          "correction": "3(x + 5) is one term whose factors are 3 and (x + 5). If you want two terms, expand first: 3x + 15.",
+          "authored": true
+        },
+        {
+          "text": "Reading P(1 + r)ⁿ as P + rⁿ or as P(1) + rⁿ.",
+          "correction": "(1 + r) is one object, raised to the n-th power, and P multiplies the whole thing. Chunk the parentheses before you read anything else.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u1-l2-t1",
+          "statement": "How many terms does $6a - b + 2ab - 9$ have, and what is the coefficient of $b$?",
+          "solution": "Splitting at the signs gives four terms: $6a$, $-b$, $2ab$, $-9$. The term $-b$ means $-1 \\cdot b$, so the coefficient of $b$ is $-1$.",
+          "check": [
+            "Eq(6*2 - 3 + 2*2*3 - 9, 12)",
+            "Eq(-1*5, -5)"
+          ]
+        },
+        {
+          "id": "im1-u1-l2-t2",
+          "statement": "A taxi charges $1500$₮ to start plus $900$₮ per kilometre: $F = 900d + 1500$. What does the fare rise by over one extra kilometre, and what is the fare at $d = 0$?",
+          "solution": "The coefficient $900$ is the per-kilometre rate, so each extra kilometre adds $900$₮. At $d = 0$ the fare is $F = 1500$₮ — the flag-fall you pay before moving.",
+          "check": [
+            "Eq(900*0 + 1500, 1500)",
+            "Eq(simplify((900*(Symbol('d')+1) + 1500) - (900*Symbol('d') + 1500)), 900)"
+          ]
+        },
+        {
+          "id": "im1-u1-l2-t3",
+          "statement": "A population model is $N = 240(1.1)^{t}$ with $t$ in years. What is the starting population, and by what percent does it grow each year?",
+          "solution": "At $t = 0$, $N = 240 \\cdot 1 = 240$, so the population starts at $240$. The growth factor is $1.1 = 1 + 0.1$, so the population grows by $10\\%$ per year.",
+          "check": [
+            "Eq(240*Rational(11,10)**0, 240)",
+            "Eq(Rational(11,10) - 1, Rational(1,10))",
+            "Eq(240*Rational(11,10)**1, 264)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A-SSE.1a",
+            "title": "Split at the plus and minus signs",
+            "body": "The top-level pieces of an expression are its **terms**, and they are separated by $+$ and $-$. Carry each sign into its term as you split, so nothing changes meaning on the way.",
+            "beats": [
+              "$5x + 3y - 8$ splits into $5x$, $3y$, $-8$",
+              "Three terms — the sign travels with the term",
+              "Inside $5x$: the **factors** are $5$ and $x$",
+              "The number in front is the **coefficient**"
+            ]
+          },
+          {
+            "kind": "algebraTiles",
+            "eyebrow": "See a term",
+            "title": "What 3x + 5 actually is",
+            "teach": "Three $x$-tiles and five unit squares. The coefficient $3$ counts the $x$-tiles; the constant $5$ counts the units. Change the steppers and watch which part of the picture responds.",
+            "config": {
+              "x": 3,
+              "units": 5,
+              "mode": "build",
+              "maxX": 6,
+              "maxUnits": 8
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Find the coefficient",
+            "prompt": "In the expression $9 - 4x + x^2$, what is the coefficient of $x$?",
+            "options": [
+              "$4$",
+              "$-4$",
+              "$9$",
+              "$1$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Split at the signs: $9$, $-4x$, $x^2$. The sign belongs to the term, so the coefficient of $x$ is $-4$. Checking at $x = 2$: $9 - 8 + 4 = 5$, which only comes out right if the $x$-term is negative.",
+            "check": [
+              "Eq(9 - 4*2 + 2**2, 5)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Terms and coefficients",
+            "problemId": "im1-u1-l2-we1"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A-SSE.1a in context",
+            "title": "Each part plays a role in the story",
+            "body": "A model is a sentence. In $B = 45m + 12\\,000$ the constant term is the part that is true even when nothing happens, and the coefficient is what one more unit costs. Read those two roles before you compute anything."
+          },
+          {
+            "kind": "worked",
+            "title": "A phone bill, part by part",
+            "problemId": "im1-u1-l2-we2"
+          },
+          {
+            "kind": "evaluator",
+            "eyebrow": "Watch the roles",
+            "title": "The constant holds still; the coefficient drives",
+            "teach": "Drag the value of $x$ in $45x + 120$. The $120$ never moves — it is the starting value. Every step of $1$ in $x$ moves the total by exactly $45$, because that is what a coefficient does.",
+            "config": {
+              "a": 45,
+              "b": 120,
+              "varName": "x",
+              "min": 0,
+              "max": 12,
+              "start": 3
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A-SSE.1b",
+            "title": "Chunk a compound part into one object",
+            "body": "In $P(1 + r)^{n}$, resist reading four symbols. Read three roles: a starting amount $P$, a growth factor $(1 + r)$ treated as ONE number, and a count $n$. With $r = 0.08$ the growth factor is $1.08$ — *keep it all and add eight percent*.",
+            "beats": [
+              "$P$ — what you start with",
+              "$(1 + r)$ — one multiplier per period",
+              "$n$ — how many times it is applied",
+              "$r = 0.08 \\Rightarrow$ factor $1.08$"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Reading a savings formula",
+            "problemId": "im1-u1-l2-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What is the growth factor?",
+            "prompt": "A model reads $V = 8000(0.85)^{t}$, with $t$ in years. What does the $0.85$ say about the quantity?",
+            "options": [
+              "It grows by $85\\%$ each year",
+              "It loses $15\\%$ of its value each year",
+              "It loses $85\\%$ of its value each year",
+              "It grows by $15\\%$ each year"
+            ],
+            "correctIndex": 1,
+            "explanation": "A factor below $1$ is decay. $0.85 = 1 - 0.15$, so each year keeps $85\\%$ and therefore LOSES $15\\%$. After one year: $8000 \\times 0.85 = 6800$, a drop of $1200$, which is indeed $15\\%$ of $8000$.",
+            "check": [
+              "Eq(8000*Rational(85,100), 6800)",
+              "Eq(8000 - 6800, 1200)",
+              "Eq(Rational(1200, 8000), Rational(15, 100))"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A-SSE.1b",
+            "title": "Same value, different story",
+            "body": "$15n + 400$ and $5(3n + 80)$ are equal for every $n$, but they advertise different features: a fixed cost plus a rate, versus five equal groups. Rewriting an expression is how you make the feature you need visible."
+          },
+          {
+            "kind": "worked",
+            "title": "Two forms, two stories",
+            "problemId": "im1-u1-l2-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Read before you compute",
+            "body": "On a modelling question, name every part in words before touching the arithmetic — \"$400$ is the fixed cost, $15$ is per item\". Half the exam questions on this standard ask ONLY for that interpretation, and the other half become easy once you have it."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — count the terms",
+            "problemId": "im1-u1-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a growth model",
+            "problemId": "im1-u1-l2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Terms split at $+$ and $-$, with the sign travelling into the term",
+              "Inside a term: factors multiplied together, the number in front is the coefficient",
+              "A bare $x$ has coefficient $1$; a leading minus makes it $-1$",
+              "Chunk $(1 + r)$ as one growth factor; below $1$ means decay",
+              "Equivalent forms are equal in value but different in what they reveal"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "creating-equations",
+      "title": "Creating Equations from a Situation",
+      "concreteComparison": "Nobody hands you an equation in real life. They hand you a sentence: *the taxi charges 1500₮ to start and 900₮ a kilometre, and I have 12 000₮.* Turning that sentence into $900d + 1500 \\le 12\\,000$ is the single most valuable skill in this course — and it is a skill, with a procedure, not a talent you either have or lack.",
+      "objective": "Define a variable with its unit, translate a described situation into a one-variable equation or inequality, or into a two-variable equation relating two quantities, and check the model against a case you can verify by hand.",
+      "concept": [
+        "**Step one is always: define the variable, with its unit.** Write \"let $d$ = distance in kilometres\" before anything else. An undefined variable is where sign errors and unit errors hide. If two things vary, define both: \"let $x$ = number of adult tickets, $y$ = number of child tickets\".",
+        "**Translate phrase by phrase.** *Per*, *each* and *every* signal a coefficient — multiply. *Plus a fee*, *starting*, *already has* signal a constant. *Is*, *equals*, *totals* is the $=$ sign. *At most* is $\\le$, *at least* is $\\ge$, *more than* is $>$ (strict — it excludes the boundary). Build the expression left to right as you read the sentence; do not try to see the whole equation at once.",
+        "**One variable or two?** If the question asks for ONE unknown number, you want one variable and an equation to solve. If it describes how two quantities move together — cost against items, height against time — you want a two-variable equation you can graph, and its graph is the set of all pairs that satisfy the situation.",
+        "**Constraints are part of the model.** $900d + 1500 \\le 12\\,000$ has solutions like $d = -4$ that are algebraically fine and physically meaningless. A model is not finished until you state the domain the situation allows: here $d \\ge 0$. In counting problems the variable must additionally be a whole number — you cannot buy $3.5$ tickets.",
+        "**Always test the model on a case you can check by hand.** Put in a value you can reason about independently — zero kilometres should give the flag-fall, one item should give the base plus one unit price. If the model fails that test, fix it now, before building a whole solution on a broken equation."
+      ],
+      "keyIdea": "Define the variable and its unit, translate the sentence phrase by phrase into symbols, state the constraint the situation imposes, and then test the model on one case you can verify without it.",
+      "facts": [
+        {
+          "title": "The two-role linear template",
+          "latex": "\\text{total} = (\\text{rate}) \\times (\\text{count}) + (\\text{fixed part})",
+          "explanation": "Almost every one-variable IM1 modelling problem is this template with different nouns. Find the rate, find the fixed part, and you are done."
+        },
+        {
+          "title": "Inequality words",
+          "latex": "\\text{at most} \\to \\le, \\quad \\text{at least} \\to \\ge, \\quad \\text{more than} \\to >, \\quad \\text{fewer than} \\to <",
+          "explanation": "\"At most\" and \"at least\" INCLUDE the boundary value; \"more/fewer than\" exclude it. Budget problems are almost always ≤."
+        },
+        {
+          "title": "Two quantities, two variables",
+          "latex": "ax + by = c",
+          "explanation": "When two counts trade off against a fixed total — adult and child tickets summing to a fixed takings figure — this is the shape of the model."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u1-l3-we1",
+          "statement": "A taxi charges $1500$₮ to start and $900$₮ per kilometre. You have $12\\,000$₮. Write an inequality for the distance you can afford, and solve it.",
+          "solution": "**Define the variable.** Let $d$ = distance travelled, in kilometres.**Translate.** *Per kilometre* means multiply: $900d$. *To start* is a fixed charge: $+1500$. *You have $12\\,000$* is a ceiling — you can spend at most that:$$900d + 1500 \\le 12\\,000.$$**Solve.**$$900d \\le 10\\,500 \\quad\\Longrightarrow\\quad d \\le \\frac{10\\,500}{900} = \\frac{35}{3} = 11\\tfrac{2}{3}.$$**Constrain.** Distance cannot be negative, so the answer is $0 \\le d \\le \\frac{35}{3}$ — about $11.67$ km.**Test it.** At $d = 0$ the fare is $1500$₮, the flag-fall. ✓ At $d = \\frac{35}{3}$ the fare is $900 \\cdot \\frac{35}{3} + 1500 = 10\\,500 + 1500 = 12\\,000$₮ — exactly the budget. ✓",
+          "check": [
+            "Eq(900*0 + 1500, 1500)",
+            "Eq(900*Rational(35,3) + 1500, 12000)",
+            "Eq(Rational(10500, 900), Rational(35,3))",
+            "900*11 + 1500 <= 12000",
+            "900*12 + 1500 > 12000"
+          ]
+        },
+        {
+          "id": "im1-u1-l3-we2",
+          "statement": "A theatre sells adult tickets at $8000$₮ and child tickets at $3000$₮. One evening the takings were $604\\,000$₮. Write an equation relating the two ticket counts, and find how many child tickets were sold if $53$ adult tickets were sold.",
+          "solution": "**Define.** Let $x$ = number of adult tickets, $y$ = number of child tickets. Both are whole numbers, both at least $0$.**Translate.** Adult takings are $8000x$, child takings are $3000y$, and together they total the evening's figure:$$8000x + 3000y = 604\\,000.$$**Use the given value.** Substitute $x = 53$:$$8000(53) + 3000y = 604\\,000 \\quad\\Longrightarrow\\quad 424\\,000 + 3000y = 604\\,000.$$$$3000y = 180\\,000 \\quad\\Longrightarrow\\quad y = 60.$$Sixty child tickets. The count is a whole number, as a ticket count must be — a fractional answer here would signal an arithmetic error or an impossible takings figure.",
+          "check": [
+            "Eq(8000*53 + 3000*60, 604000)",
+            "Eq(604000 - 8000*53, 180000)",
+            "Eq(Rational(180000, 3000), 60)"
+          ]
+        },
+        {
+          "id": "im1-u1-l3-we3",
+          "statement": "A water tank holds $450$ litres and is draining at $12$ litres per minute. Write a two-variable equation for the volume $V$ remaining after $t$ minutes, and state the domain the situation allows.",
+          "solution": "**Define.** $t$ = time in minutes since draining began; $V$ = volume remaining, in litres.**Translate.** The tank starts at $450$ and LOSES $12$ each minute, so the rate is negative:$$V = 450 - 12t.$$**Domain.** Time cannot run backwards, so $t \\ge 0$; and the tank cannot hold a negative volume, so we need $450 - 12t \\ge 0$, i.e.$$t \\le \\frac{450}{12} = 37.5.$$The model is valid for $0 \\le t \\le 37.5$ minutes; after that the tank is simply empty and the formula no longer describes anything.**Test.** At $t = 0$: $V = 450$. ✓ At $t = 37.5$: $V = 450 - 450 = 0$. ✓ At $t = 10$: $V = 330$, and $120$ litres have indeed left in ten minutes.",
+          "check": [
+            "Eq(450 - 12*0, 450)",
+            "Eq(450 - 12*Rational(75,2), 0)",
+            "Eq(450 - 12*10, 330)",
+            "Eq(Rational(450,12), Rational(75,2))"
+          ]
+        },
+        {
+          "id": "im1-u1-l3-we4",
+          "statement": "A student has $9$ more $500$₮ coins than $100$₮ coins, and the coins are worth $16\\,500$₮ altogether. How many of each does the student have?",
+          "solution": "**Define.** Let $n$ = number of $100$₮ coins. Then the number of $500$₮ coins is $n + 9$ — the phrase *nine more than* attaches to the OTHER count, so writing it in terms of $n$ keeps the problem to one variable.**Translate.** Value in tugriks:$$100n + 500(n + 9) = 16\\,500.$$**Solve.**$$100n + 500n + 4500 = 16\\,500$$$$600n = 12\\,000 \\quad\\Longrightarrow\\quad n = 20.$$So $20$ coins of $100$₮ and $29$ coins of $500$₮.**Test.** $20 \\times 100 = 2000$ and $29 \\times 500 = 14\\,500$; together $16\\,500$₮. ✓ And $29$ is nine more than $20$. ✓",
+          "check": [
+            "Eq(100*20 + 500*29, 16500)",
+            "Eq(29 - 20, 9)",
+            "Eq(solve(Eq(100*Symbol('n') + 500*(Symbol('n')+9), 16500), Symbol('n'))[0], 20)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Starting to write symbols before defining what the letter means.",
+          "correction": "Write \"let d = distance in km\" first, every time. It costs one line and prevents most sign and unit errors.",
+          "authored": true
+        },
+        {
+          "text": "Reading \"9 more 500₮ coins than 100₮ coins\" as n + 9 = the 100₮ count.",
+          "correction": "The larger count is the one with 'more'. If n is the 100₮ count, the 500₮ count is n + 9. Test with a small number: if there were 2 hundreds, there would be 11 five-hundreds.",
+          "authored": true
+        },
+        {
+          "text": "Solving the algebra and reporting d = −4 km or 3.5 tickets.",
+          "correction": "State the constraint the situation imposes — non-negative, whole number — and discard solutions outside it. A model without a domain is only half a model.",
+          "authored": true
+        },
+        {
+          "text": "Using = when the sentence says \"at most\" or \"no more than\".",
+          "correction": "A budget is a ceiling, not a target: use ≤. Reserve = for sentences that say 'is', 'totals' or 'exactly'.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u1-l3-t1",
+          "statement": "A gym charges $60\\,000$₮ to join plus $25\\,000$₮ a month. Write an equation for the total cost $C$ after $m$ months, and find the cost after $8$ months.",
+          "solution": "The joining fee is fixed and the monthly charge is a rate:$$C = 25\\,000m + 60\\,000.$$At $m = 8$: $C = 200\\,000 + 60\\,000 = 260\\,000$₮.",
+          "check": [
+            "Eq(25000*8 + 60000, 260000)",
+            "Eq(25000*0 + 60000, 60000)"
+          ]
+        },
+        {
+          "id": "im1-u1-l3-t2",
+          "statement": "You have $40\\,000$₮ and notebooks cost $2500$₮ each. Write and solve an inequality for the number $n$ you can buy.",
+          "solution": "$$2500n \\le 40\\,000 \\quad\\Longrightarrow\\quad n \\le 16.$$Since $n$ counts notebooks it must be a whole number, so $0 \\le n \\le 16$ and the most you can buy is $16$.",
+          "check": [
+            "Eq(Rational(40000, 2500), 16)",
+            "2500*16 <= 40000",
+            "2500*17 > 40000"
+          ]
+        },
+        {
+          "id": "im1-u1-l3-t3",
+          "statement": "A candle is $28$ cm tall and burns down $3$ cm per hour. Write an equation for its height $h$ after $t$ hours, and say for how long the model is valid.",
+          "solution": "The candle loses height, so the rate is negative:$$h = 28 - 3t.$$It is valid until the candle is gone: $28 - 3t \\ge 0$, so $t \\le \\frac{28}{3} \\approx 9.33$ hours. The domain is $0 \\le t \\le \\frac{28}{3}$.",
+          "check": [
+            "Eq(28 - 3*0, 28)",
+            "Eq(28 - 3*Rational(28,3), 0)",
+            "Eq(28 - 3*4, 16)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A-CED.1",
+            "title": "Define the variable before anything else",
+            "body": "One line, every time — **name it, letter it, unit it**: let $d$ = distance in kilometres. It takes three seconds and it is where most modelling errors would otherwise hide. If two things vary, define both.",
+            "beats": [
+              "Name the quantity",
+              "Give it a letter",
+              "Write its **unit**",
+              "Only then start translating"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The dictionary",
+            "title": "Translate phrase by phrase",
+            "body": "Read the sentence left to right and write symbols as you go. Do not try to see the finished equation in one glance — build it in the order the sentence arrives.",
+            "beats": [
+              "*per*, *each*, *every* → a coefficient (multiply)",
+              "*plus a fee*, *starting*, *already has* → a constant",
+              "*is*, *totals*, *equals* → $=$",
+              "*at most* → $\\le$ · *at least* → $\\ge$ · *more than* → $>$"
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which symbol does the sentence need?",
+            "prompt": "\"The total cost must not go over $50\\,000$₮.\" Which relation belongs in the model?",
+            "options": [
+              "$= 50\\,000$",
+              "$\\le 50\\,000$",
+              "$< 50\\,000$",
+              "$\\ge 50\\,000$"
+            ],
+            "correctIndex": 1,
+            "explanation": "*Must not go over* is a ceiling that INCLUDES the ceiling itself — spending exactly $50\\,000$₮ is allowed. That is $\\le$. A strict $<$ would wrongly forbid the boundary case, and $=$ would force you to spend every last tugrik.",
+            "check": [
+              "50000 <= 50000",
+              "Not(50000 < 50000)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "The taxi budget",
+            "problemId": "im1-u1-l3-we1"
+          },
+          {
+            "kind": "balanceScale",
+            "eyebrow": "Why the algebra is legal",
+            "title": "Whatever you do to one side, do to the other",
+            "teach": "Solving $900d + 1500 = 12\\,000$ is exactly this balance: remove the same amount from both pans and the scale stays level. The equation stays true because both sides changed identically.",
+            "config": {
+              "mode": "add",
+              "b": 1500,
+              "rhs": 12000
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "A-CED.2",
+            "title": "Two quantities that move together need two variables",
+            "body": "If the question asks for one unknown number, use one variable and solve. If it describes a RELATIONSHIP — cost against items, volume against time — use two variables and write an equation whose graph is every pair the situation allows."
+          },
+          {
+            "kind": "worked",
+            "title": "Two ticket prices, one takings figure",
+            "problemId": "im1-u1-l3-we2"
+          },
+          {
+            "kind": "worked",
+            "title": "A draining tank",
+            "problemId": "im1-u1-l3-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What is the domain?",
+            "prompt": "A candle $20$ cm tall burns $4$ cm per hour, modelled by $h = 20 - 4t$. For which values of $t$ does the model describe reality?",
+            "options": [
+              "all real $t$",
+              "$t \\ge 0$",
+              "$0 \\le t \\le 5$",
+              "$0 \\le t \\le 20$"
+            ],
+            "correctIndex": 2,
+            "explanation": "Time cannot be negative, so $t \\ge 0$. And the candle is gone when $h = 0$, i.e. $20 - 4t = 0$, so $t = 5$. Beyond five hours the formula returns negative heights, which describes nothing. The valid domain is $0 \\le t \\le 5$.",
+            "check": [
+              "Eq(20 - 4*5, 0)",
+              "Eq(20 - 4*0, 20)",
+              "20 - 4*6 < 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The habit that saves you",
+            "title": "Test the model on a case you can check by hand",
+            "body": "Put in $t = 0$, or one item, or the largest value the situation permits — something whose answer you already know. If the model disagrees with your common sense, the model is wrong, and finding that out now costs one line instead of a whole page."
+          },
+          {
+            "kind": "worked",
+            "title": "Coins: nine more of one kind",
+            "problemId": "im1-u1-l3-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "\"More than\" attaches to the bigger count",
+            "body": "If there are $9$ more $500$₮ coins than $100$₮ coins and $n$ is the $100$₮ count, the $500$₮ count is $n + 9$. When in doubt, try a tiny number: two hundreds would mean eleven five-hundreds. That test settles the direction instantly."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a gym membership",
+            "problemId": "im1-u1-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a burning candle",
+            "problemId": "im1-u1-l3-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Define the variable **with its unit** before writing anything else",
+              "Translate phrase by phrase: *per* → coefficient, *fee* → constant, *at most* → $\\le$",
+              "One unknown → one variable and solve; a relationship → two variables and graph",
+              "State the domain the situation allows — non-negative, whole, bounded above",
+              "Test the finished model on a case you can verify without it"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rearranging-formulas",
+      "title": "Rearranging Formulas",
+      "concreteComparison": "A recipe converter that only goes from cups to grams is half a tool. You want it both ways. $A = \\pi r^{2}$ answers *given the radius, what is the area* — but a builder with a fixed area who needs the radius has to run the formula backwards. Rearranging is how you turn one formula into every formula hiding inside it.",
+      "objective": "Solve a literal equation for any variable it contains, using the same operations that solve a numerical equation, and recognise that the letters change nothing about the method.",
+      "concept": [
+        "**The method is identical to solving a numerical equation.** Undo whatever is being done to your target variable, applying the same operation to both sides. The only difference is that the answer is an expression instead of a number — you cannot simplify $\\frac{2A}{h}$ into a single symbol, and you are not supposed to.",
+        "**Isolate in the reverse order of operations.** To free a variable, peel off what was applied LAST first. In $C = 2\\pi r$, $r$ was multiplied by $2\\pi$, so divide by $2\\pi$. In $v = u + at$, $t$ was multiplied by $a$ and then $u$ was added, so subtract $u$ first, then divide by $a$. Reverse order — the same rule as unwrapping a parcel.",
+        "**When the target appears in more than one place, collect it first.** To solve $S = 2\\pi r^{2} + 2\\pi rh$ for $h$, notice $h$ appears once, so it is easy: subtract $2\\pi r^{2}$ and divide by $2\\pi r$. But to solve $ax + b = cx + d$ for $x$, gather all $x$-terms on one side FIRST: $ax - cx = d - b$, then factor: $x(a - c) = d - b$, then divide. Factoring out the target is the move that makes it solvable.",
+        "**Squares need roots, and roots need care.** From $A = \\pi r^{2}$, dividing gives $r^{2} = \\frac{A}{\\pi}$ and then $r = \\pm\\sqrt{\\frac{A}{\\pi}}$. Algebraically both signs are solutions; in context a radius is positive, so you keep $r = \\sqrt{\\frac{A}{\\pi}}$ and say why. Dropping the $\\pm$ without a reason is an error; keeping a negative radius is a different one.",
+        "**Rearrange before substituting, not after.** If you need the radius for five different areas, rearrange once and substitute five times. Substituting first forces you to solve the same equation five times over, and each pass is a fresh chance to slip. This is also exactly what a spreadsheet or a program needs — a formula with the unknown alone on the left."
+      ],
+      "keyIdea": "Peel operations off the target variable in reverse order, doing the same thing to both sides. If the target appears more than once, gather those terms and factor it out — then divide by what is left.",
+      "facts": [
+        {
+          "title": "Circumference, solved for r",
+          "latex": "C = 2\\pi r \\ \\Longrightarrow\\ r = \\frac{C}{2\\pi}",
+          "explanation": "r was multiplied by 2π, so divide both sides by 2π. One step, because only one thing was done to r."
+        },
+        {
+          "title": "Trapezoid area, solved for h",
+          "latex": "A = \\frac{1}{2}(a+b)h \\ \\Longrightarrow\\ h = \\frac{2A}{a+b}",
+          "explanation": "Multiply both sides by 2 to clear the fraction, then divide by (a+b) — treat the whole bracket as one factor."
+        },
+        {
+          "title": "The target in two places",
+          "latex": "ax + b = cx + d \\ \\Longrightarrow\\ x = \\frac{d-b}{a-c}",
+          "explanation": "Collect the x-terms, factor x out, then divide. Valid whenever a ≠ c."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u1-l4-we1",
+          "statement": "The area of a triangle is $A = \\frac{1}{2}bh$. Solve for $h$, then find $h$ when $A = 84$ and $b = 12$.",
+          "solution": "$h$ is multiplied by $\\frac{1}{2}$ and by $b$. Clear the fraction first by multiplying both sides by $2$:$$2A = bh.$$Now divide both sides by $b$:$$h = \\frac{2A}{b}.$$That is the rearranged formula — an expression, not a number, and that is the finished answer to the first part. Substituting:$$h = \\frac{2(84)}{12} = \\frac{168}{12} = 14.$$Check it forwards: $\\frac{1}{2}(12)(14) = 84$. ✓",
+          "check": [
+            "Eq(Rational(2*84, 12), 14)",
+            "Eq(Rational(1,2)*12*14, 84)",
+            "Eq(simplify(2*(Rational(1,2)*Symbol('b')*Symbol('h'))/Symbol('b')), Symbol('h'))"
+          ]
+        },
+        {
+          "id": "im1-u1-l4-we2",
+          "statement": "The formula $v = u + at$ gives velocity after time $t$. Solve for $t$, then find $t$ when $v = 47$, $u = 5$ and $a = 6$.",
+          "solution": "Work in reverse order of operations. Last thing done to $t$'s term: $u$ was added. So subtract $u$ from both sides:$$v - u = at.$$Now $t$ is multiplied by $a$, so divide:$$t = \\frac{v - u}{a}.$$Substituting:$$t = \\frac{47 - 5}{6} = \\frac{42}{6} = 7.$$Check forwards: $5 + 6(7) = 5 + 42 = 47$. ✓ Notice the order mattered — dividing by $a$ before subtracting $u$ would have needed dividing $u$ by $a$ too.",
+          "check": [
+            "Eq(Rational(47 - 5, 6), 7)",
+            "Eq(5 + 6*7, 47)",
+            "Eq(simplify(((Symbol('u') + Symbol('a')*Symbol('t')) - Symbol('u'))/Symbol('a')), Symbol('t'))"
+          ]
+        },
+        {
+          "id": "im1-u1-l4-we3",
+          "statement": "A circle's area is $A = \\pi r^{2}$. Solve for $r$, stating why you keep only one sign, and find $r$ when $A = 49\\pi$.",
+          "solution": "Divide both sides by $\\pi$:$$r^{2} = \\frac{A}{\\pi}.$$Take the square root. Algebraically a square has two roots:$$r = \\pm\\sqrt{\\frac{A}{\\pi}}.$$But $r$ is a radius, and a length cannot be negative, so the negative root is rejected on physical grounds:$$r = \\sqrt{\\frac{A}{\\pi}}.$$Substituting $A = 49\\pi$:$$r = \\sqrt{\\frac{49\\pi}{\\pi}} = \\sqrt{49} = 7.$$Check forwards: $\\pi(7)^2 = 49\\pi$. ✓",
+          "check": [
+            "Eq(sqrt(Rational(49,1)), 7)",
+            "Eq(pi*7**2, 49*pi)",
+            "Eq(simplify(sqrt(49*pi/pi)), 7)"
+          ]
+        },
+        {
+          "id": "im1-u1-l4-we4",
+          "statement": "Solve $5x + 3 = 2x + 18$ for $x$ — then solve the general form $ax + b = cx + d$ for $x$.",
+          "solution": "**The numerical case.** Gather the $x$-terms on one side:$$5x - 2x = 18 - 3 \\quad\\Longrightarrow\\quad 3x = 15 \\quad\\Longrightarrow\\quad x = 5.$$Check: $5(5) + 3 = 28$ and $2(5) + 18 = 28$. ✓**The general case, same moves.** Gather:$$ax - cx = d - b.$$The target now appears in two terms, so FACTOR it out — this is the step that makes it solvable:$$x(a - c) = d - b \\quad\\Longrightarrow\\quad x = \\frac{d - b}{a - c}.$$Check against the numbers: $a=5$, $b=3$, $c=2$, $d=18$ gives $\\frac{18-3}{5-2} = \\frac{15}{3} = 5$. ✓ The formula requires $a \\neq c$; if $a = c$ the $x$-terms cancel entirely and the equation has either no solution or infinitely many.",
+          "check": [
+            "Eq(5*5 + 3, 2*5 + 18)",
+            "Eq(Rational(18 - 3, 5 - 2), 5)",
+            "Eq(solve(Eq(5*Symbol('x') + 3, 2*Symbol('x') + 18), Symbol('x'))[0], 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Undoing operations in the wrong order — dividing by a before subtracting u in v = u + at.",
+          "correction": "Peel off the LAST operation first. Addition of u happened last, so it comes off first. Reverse order of operations, always.",
+          "authored": true
+        },
+        {
+          "text": "Dividing only part of a side: from 2A = bh writing h = 2A/b but from v − u = at writing t = v − u/a.",
+          "correction": "Division applies to the WHOLE side. Write the whole numerator over the denominator: t = (v − u)/a, with the brackets visible.",
+          "authored": true
+        },
+        {
+          "text": "Solving ax + b = cx + d by dividing before collecting the x-terms.",
+          "correction": "Collect first: ax − cx = d − b. Then factor x out. You cannot divide away an x that still appears on both sides.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the ± when taking a square root, with no reason given — or keeping a negative radius.",
+          "correction": "State the reason: algebraically r = ±√(A/π); a radius is a length, so the negative root is rejected. Saying WHY is part of the answer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u1-l4-t1",
+          "statement": "Solve $C = 2\\pi r$ for $r$, then find $r$ when $C = 31.4$ (use $\\pi \\approx 3.14$).",
+          "solution": "Divide both sides by $2\\pi$:$$r = \\frac{C}{2\\pi}.$$Then $r = \\frac{31.4}{2(3.14)} = \\frac{31.4}{6.28} = 5$.",
+          "check": [
+            "Eq(Rational(314,10)/(2*Rational(314,100)), 5)",
+            "Eq(2*Rational(314,100)*5, Rational(314,10))"
+          ]
+        },
+        {
+          "id": "im1-u1-l4-t2",
+          "statement": "The perimeter of a rectangle is $P = 2l + 2w$. Solve for $w$, then find $w$ when $P = 46$ and $l = 14$.",
+          "solution": "Subtract $2l$, then divide by $2$:$$w = \\frac{P - 2l}{2}.$$So $w = \\frac{46 - 28}{2} = \\frac{18}{2} = 9$. Check: $2(14) + 2(9) = 46$. ✓",
+          "check": [
+            "Eq(Rational(46 - 2*14, 2), 9)",
+            "Eq(2*14 + 2*9, 46)"
+          ]
+        },
+        {
+          "id": "im1-u1-l4-t3",
+          "statement": "Solve $A = \\frac{1}{2}(a + b)h$ for $b$.",
+          "solution": "Multiply both sides by $2$: $2A = (a + b)h$. Divide by $h$: $\\frac{2A}{h} = a + b$. Subtract $a$:$$b = \\frac{2A}{h} - a.$$Check with $a = 4$, $b = 6$, $h = 5$: then $A = 25$, and $\\frac{2(25)}{5} - 4 = 10 - 4 = 6$. ✓",
+          "check": [
+            "Eq(Rational(1,2)*(4 + 6)*5, 25)",
+            "Eq(Rational(2*25, 5) - 4, 6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "A-CED.4",
+            "title": "Same method, letters instead of numbers",
+            "body": "Solving $2x = 10$ and solving $bh = 2A$ for $h$ use the identical move: divide both sides by what multiplies the target. The only difference is that the answer is an expression, and an expression is a perfectly good answer.",
+            "beats": [
+              "$2x = 10 \\Rightarrow x = \\frac{10}{2}$",
+              "$bh = 2A \\Rightarrow h = \\frac{2A}{b}$",
+              "Same operation, both times",
+              "$\\frac{2A}{b}$ **is** the answer — do not look for a number"
+            ]
+          },
+          {
+            "kind": "orderOfOps",
+            "eyebrow": "Which came last?",
+            "title": "Read the build order before you unbuild",
+            "teach": "To free $t$ from $v = u + at$, ask what happened to $t$, in order. It was multiplied by $a$, then $u$ was added. Undo in reverse: subtract $u$, then divide by $a$.",
+            "config": {
+              "stages": [
+                {
+                  "expr": "t",
+                  "did": "start with the target"
+                },
+                {
+                  "expr": "a \\cdot t",
+                  "did": "multiplied by a"
+                },
+                {
+                  "expr": "u + a \\cdot t",
+                  "did": "added u — this happened LAST"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which operation comes off first?",
+            "prompt": "To solve $y = 3x - 7$ for $x$, what is the first move?",
+            "options": [
+              "Divide both sides by $3$",
+              "Add $7$ to both sides",
+              "Subtract $y$ from both sides",
+              "Multiply both sides by $3$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Subtracting $7$ happened LAST when the expression was built, so undoing it comes first: $y + 7 = 3x$, then $x = \\frac{y+7}{3}$. Dividing by $3$ first would force you to divide the $7$ as well, which is legal but messier. Check with $x = 5$: $y = 8$, and $\\frac{8+7}{3} = 5$. ✓",
+            "check": [
+              "Eq(3*5 - 7, 8)",
+              "Eq(Rational(8 + 7, 3), 5)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Triangle area, solved for h",
+            "problemId": "im1-u1-l4-we1"
+          },
+          {
+            "kind": "worked",
+            "title": "v = u + at, solved for t",
+            "problemId": "im1-u1-l4-we2"
+          },
+          {
+            "kind": "tip",
+            "title": "Brackets around the whole numerator",
+            "body": "From $v - u = at$, the answer is $t = \\frac{v-u}{a}$ — the ENTIRE left side goes over $a$. Written on one line it must be $(v-u)/a$. Losing those brackets turns a correct rearrangement into a wrong formula, and it is the single most common error on this standard."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The hard case",
+            "title": "Target in two places? Collect, then factor",
+            "body": "You cannot divide away an $x$ that still sits on both sides. Gather the $x$-terms on one side, factor $x$ out of them, and only then divide by what is left in the bracket.",
+            "beats": [
+              "$ax + b = cx + d$",
+              "Gather: $ax - cx = d - b$",
+              "Factor: $x(a - c) = d - b$",
+              "Divide: $x = \\frac{d-b}{a-c}$, valid when $a \\ne c$"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "From numbers to the general form",
+            "problemId": "im1-u1-l4-we4"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Roots",
+            "title": "A square root brings two signs — and context picks one",
+            "body": "$r^{2} = \\frac{A}{\\pi}$ gives $r = \\pm\\sqrt{\\frac{A}{\\pi}}$. Both are algebraically correct. A radius is a length, so you keep the positive root **and you say why**. Silently dropping a sign is an error; the justification is what makes it correct."
+          },
+          {
+            "kind": "worked",
+            "title": "Circle area, solved for r",
+            "problemId": "im1-u1-l4-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Rearrange for the base",
+            "prompt": "The formula $A = \\frac{1}{2}bh$ is solved for $b$. Which is correct?",
+            "options": [
+              "$b = \\dfrac{2A}{h}$",
+              "$b = \\dfrac{A}{2h}$",
+              "$b = 2Ah$",
+              "$b = \\dfrac{A - h}{2}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Multiply both sides by $2$ to clear the fraction: $2A = bh$. Then divide by $h$: $b = \\frac{2A}{h}$. Test with $b = 10$, $h = 6$: then $A = 30$, and $\\frac{2(30)}{6} = 10$. ✓ Option B halves instead of doubling — the classic slip when clearing a $\\frac{1}{2}$.",
+            "check": [
+              "Eq(Rational(1,2)*10*6, 30)",
+              "Eq(Rational(2*30, 6), 10)",
+              "Ne(Rational(30, 2*6), 10)"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — solve C = 2πr for r",
+            "problemId": "im1-u1-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a rectangle's width",
+            "problemId": "im1-u1-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "title": "Why programmers rearrange first",
+            "body": "A spreadsheet cell or a line of code needs the unknown alone on the left — `h = 2*A/b` is executable, `A = 0.5*b*h` is not, if $h$ is what you want. Rearranging once and reusing the result is exactly how every engineering calculation is built."
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Solving for a letter uses the same moves as solving for a number",
+              "Undo operations in **reverse** order — last applied comes off first",
+              "Division applies to the whole side: $t = \\frac{v-u}{a}$, brackets and all",
+              "Target in two places → gather, factor it out, then divide",
+              "$\\sqrt{\\ }$ gives $\\pm$; context rejects one root, and you state why"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "im1-u1-pr-1",
+      "statement": "Convert $108$ km/h to metres per second.",
+      "solution": "$$108 \\times \\frac{1000}{3600} = \\frac{108\\,000}{3600} = 30\\ \\text{m/s}.$$",
+      "check": [
+        "Eq(Rational(108*1000, 3600), 30)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-2",
+      "statement": "A sheet of metal measures $2.4\\text{ m} \\times 1.5\\text{ m}$. Give its area in square centimetres.",
+      "solution": "Area in m²: $2.4 \\times 1.5 = 3.6$. The area conversion factor is $100^2 = 10\\,000$:$$3.6 \\times 10\\,000 = 36\\,000\\ \\text{cm}^2.$$",
+      "check": [
+        "Eq(Rational(24,10)*Rational(15,10), Rational(36,10))",
+        "Eq(Rational(36,10)*10000, 36000)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-3",
+      "statement": "For $-3x^2 + x - 11$, how many terms are there and what is the coefficient of $x^2$?",
+      "solution": "Three terms: $-3x^2$, $x$ and $-11$. The coefficient of $x^2$ is $-3$ — the sign belongs to the coefficient. (The bare $x$ has coefficient $1$.)",
+      "check": [
+        "Eq(-3*2**2 + 2 - 11, -21)",
+        "Eq(-3*1**2 + 1 - 11, -13)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-4",
+      "statement": "A model reads $P = 1800(1.04)^{t}$ with $t$ in years. State the starting value and the annual percent growth, then find $P$ after $2$ years.",
+      "solution": "At $t = 0$, $P = 1800$. The growth factor $1.04 = 1 + 0.04$ means $4\\%$ growth per year.$$P = 1800 \\times 1.04^{2} = 1800 \\times 1.0816 = 1946.88.$$",
+      "check": [
+        "Eq(1800*Rational(104,100)**0, 1800)",
+        "Eq(Rational(104,100)**2, Rational(10816, 10000))",
+        "Eq(1800*Rational(104,100)**2, Rational(194688, 100))"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-5",
+      "statement": "A printer charges $8000$₮ setup plus $250$₮ per page. Write the cost equation and find the cost of $120$ pages.",
+      "solution": "Let $p$ = number of pages. Then$$C = 250p + 8000.$$At $p = 120$: $C = 30\\,000 + 8000 = 38\\,000$₮.",
+      "check": [
+        "Eq(250*120 + 8000, 38000)",
+        "Eq(250*0 + 8000, 8000)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-6",
+      "statement": "You have $75\\,000$₮ and each ticket costs $9000$₮. Write and solve an inequality for the number of tickets $n$ you can buy.",
+      "solution": "$$9000n \\le 75\\,000 \\quad\\Longrightarrow\\quad n \\le \\frac{75\\,000}{9000} = \\frac{25}{3} \\approx 8.33.$$Tickets come whole, so $0 \\le n \\le 8$: at most $8$ tickets.",
+      "check": [
+        "Eq(Rational(75000, 9000), Rational(25,3))",
+        "9000*8 <= 75000",
+        "9000*9 > 75000"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-7",
+      "statement": "Solve $P = 2l + 2w$ for $l$.",
+      "solution": "Subtract $2w$: $P - 2w = 2l$. Divide by $2$:$$l = \\frac{P - 2w}{2}.$$Check with $l = 7$, $w = 3$: $P = 20$, and $\\frac{20 - 6}{2} = 7$. ✓",
+      "check": [
+        "Eq(2*7 + 2*3, 20)",
+        "Eq(Rational(20 - 2*3, 2), 7)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-8",
+      "statement": "Solve $S = \\frac{n}{2}(a + l)$ for $l$.",
+      "solution": "Multiply by $2$: $2S = n(a + l)$. Divide by $n$: $\\frac{2S}{n} = a + l$. Subtract $a$:$$l = \\frac{2S}{n} - a.$$Check with $n = 6$, $a = 2$, $l = 17$: $S = 3(19) = 57$, and $\\frac{2(57)}{6} - 2 = 19 - 2 = 17$. ✓",
+      "check": [
+        "Eq(Rational(6,2)*(2 + 17), 57)",
+        "Eq(Rational(2*57, 6) - 2, 17)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-9",
+      "statement": "A tank holds $600$ litres and drains at $15$ litres per minute. Write $V$ in terms of $t$ and give the domain over which the model is valid.",
+      "solution": "$$V = 600 - 15t.$$Valid while $V \\ge 0$: $600 - 15t \\ge 0$, so $t \\le 40$. The domain is $0 \\le t \\le 40$ minutes.",
+      "check": [
+        "Eq(600 - 15*0, 600)",
+        "Eq(600 - 15*40, 0)",
+        "Eq(600 - 15*10, 450)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-10",
+      "statement": "Show that $6x + 24$ and $6(x + 4)$ are equivalent, and state what the factored form makes obvious.",
+      "solution": "Expanding: $6(x + 4) = 6x + 24$. ✓ They agree for every $x$ — at $x = 5$ both give $54$.The factored form makes the common factor $6$ visible: the quantity is six equal groups of $(x + 4)$. The expanded form instead makes the constant $24$ visible as a starting value.",
+      "check": [
+        "Eq(simplify(6*(Symbol('x') + 4) - (6*Symbol('x') + 24)), 0)",
+        "Eq(6*5 + 24, 54)",
+        "Eq(6*(5 + 4), 54)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-11",
+      "statement": "A rope $2.4$ m long is cut into pieces $30$ cm long. How many pieces, and how much is left over?",
+      "solution": "Convert to a common unit first: $2.4\\text{ m} = 240\\text{ cm}$.$$240 \\div 30 = 8.$$Exactly $8$ pieces, with nothing left over.",
+      "check": [
+        "Eq(Rational(24,10)*100, 240)",
+        "Eq(Rational(240, 30), 8)",
+        "Eq(240 - 8*30, 0)"
+      ]
+    },
+    {
+      "id": "im1-u1-pr-12",
+      "statement": "A student has $7$ fewer $1000$₮ notes than $500$₮ notes, and the notes are worth $32\\,000$₮ in total. How many of each?",
+      "solution": "Let $n$ = number of $500$₮ notes. Then the number of $1000$₮ notes is $n - 7$.$$500n + 1000(n - 7) = 32\\,000$$$$1500n - 7000 = 32\\,000 \\quad\\Longrightarrow\\quad 1500n = 39\\,000 \\quad\\Longrightarrow\\quad n = 26.$$So $26$ notes of $500$₮ and $19$ of $1000$₮. Check: $13\\,000 + 19\\,000 = 32\\,000$₮ ✓ and $19$ is seven fewer than $26$ ✓.",
+      "check": [
+        "Eq(500*26 + 1000*19, 32000)",
+        "Eq(26 - 19, 7)",
+        "Eq(solve(Eq(500*Symbol('n') + 1000*(Symbol('n')-7), 32000), Symbol('n'))[0], 26)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "im1-u1-ty-1",
+      "statement": "A cyclist rides at $8$ m/s. Express this speed in kilometres per hour, and say how far she travels in $45$ minutes.",
+      "solution": "**Speed.** Multiply by $3.6$ (or convert both units explicitly):$$8\\ \\frac{\\text{m}}{\\text{s}} \\times \\frac{1\\text{ km}}{1000\\text{ m}} \\times \\frac{3600\\text{ s}}{1\\text{ h}} = \\frac{8 \\times 3600}{1000} = 28.8\\ \\frac{\\text{km}}{\\text{h}}.$$**Distance.** $45$ minutes is $\\frac{3}{4}$ of an hour:$$28.8 \\times \\frac{3}{4} = 21.6\\ \\text{km}.$$",
+      "check": [
+        "Eq(Rational(8*3600, 1000), Rational(144, 5))",
+        "Eq(Rational(144,5), 28.8)",
+        "Eq(Rational(144,5)*Rational(3,4), Rational(108,5))",
+        "Eq(Rational(108,5), 21.6)"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-2",
+      "statement": "A car is worth $18\\,000\\,000$₮ and loses $12\\%$ of its value each year, modelled by $V = 18\\,000\\,000(0.88)^{t}$. Explain what the $0.88$ represents and find the value after $2$ years.",
+      "solution": "The factor $0.88 = 1 - 0.12$ says the car KEEPS $88\\%$ of its value each year, which is the same as losing $12\\%$. It is below $1$, so this is decay.$$V = 18\\,000\\,000 \\times 0.88^{2} = 18\\,000\\,000 \\times 0.7744 = 13\\,939\\,200.$$After two years the car is worth $13\\,939\\,200$₮. Note this is NOT a $24\\%$ loss: two years of $12\\%$ decay leaves $77.44\\%$, not $76\\%$, because the second year's loss is taken from an already-reduced value.",
+      "check": [
+        "Eq(Rational(88,100)**2, Rational(7744, 10000))",
+        "Eq(18000000*Rational(88,100)**2, 13939200)",
+        "Rational(7744,10000) > Rational(76,100)"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-3",
+      "statement": "A hall rents for $150\\,000$₮ plus $9000$₮ per guest. A committee has a budget of $500\\,000$₮. Write an inequality for the number of guests, solve it, and state the largest number the committee can invite.",
+      "solution": "**Define.** Let $g$ = number of guests (a whole number, $g \\ge 0$).**Model.**$$9000g + 150\\,000 \\le 500\\,000.$$**Solve.**$$9000g \\le 350\\,000 \\quad\\Longrightarrow\\quad g \\le \\frac{350\\,000}{9000} = \\frac{350}{9} \\approx 38.9.$$**Answer.** Guests are whole, so the committee can invite at most $38$.**Check.** $38$ guests cost $342\\,000 + 150\\,000 = 492\\,000$₮ ✓ (within budget), while $39$ would cost $501\\,000$₮ ✗ (over).",
+      "check": [
+        "Eq(Rational(350000, 9000), Rational(350, 9))",
+        "9000*38 + 150000 <= 500000",
+        "9000*39 + 150000 > 500000",
+        "Eq(9000*38 + 150000, 492000)"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-4",
+      "statement": "Solve the formula $A = P + Prt$ for $r$.",
+      "solution": "Only the last term contains $r$, so isolate it first:$$A - P = Prt.$$Now $r$ is multiplied by $P$ and by $t$, so divide by both:$$r = \\frac{A - P}{Pt}.$$The whole of $A - P$ goes over the denominator — brackets matter.Check with $P = 200$, $r = \\frac{1}{10}$, $t = 3$: then $A = 200 + 60 = 260$, and $\\frac{260 - 200}{200 \\cdot 3} = \\frac{60}{600} = \\frac{1}{10}$. ✓",
+      "check": [
+        "Eq(200 + 200*Rational(1,10)*3, 260)",
+        "Eq(Rational(260 - 200, 200*3), Rational(1,10))"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-5",
+      "statement": "A rectangular garden is measured as $12.4$ m by $7.5$ m. Find its area, report it to an appropriate precision, and then give the area in square centimetres.",
+      "solution": "**Area.**$$12.4 \\times 7.5 = 93\\ \\text{m}^2.$$Both measurements carry three significant digits, so three digits are supportable — and $93.0\\ \\text{m}^2$ is exactly what the arithmetic gives, so no rounding is needed here.**In cm².** The area factor is $100^2 = 10\\,000$:$$93 \\times 10\\,000 = 930\\,000\\ \\text{cm}^2.$$Using $100$ instead would give $9300\\ \\text{cm}^2$ — about a square metre, far too small for a garden.",
+      "check": [
+        "Eq(Rational(124,10)*Rational(75,10), 93)",
+        "Eq(93*10000, 930000)",
+        "Eq(100**2, 10000)"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-6",
+      "statement": "Two mobile plans: Plan A costs $20\\,000$₮ a month plus $30$₮ per minute; Plan B costs $8000$₮ a month plus $70$₮ per minute. Write an expression for each monthly bill, then find the number of minutes at which the two plans cost the same.",
+      "solution": "**Define.** Let $m$ = minutes used in the month.**Model.**$$A = 30m + 20\\,000, \\qquad B = 70m + 8000.$$**Set equal and collect.** The unknown appears on both sides, so gather it:$$30m + 20\\,000 = 70m + 8000$$$$20\\,000 - 8000 = 70m - 30m \\quad\\Longrightarrow\\quad 12\\,000 = 40m \\quad\\Longrightarrow\\quad m = 300.$$**Answer.** At $300$ minutes both plans cost $29\\,000$₮.**Interpret.** Below $300$ minutes Plan B is cheaper (its base is lower); above $300$ minutes Plan A wins (its per-minute rate is lower). Check at $m = 100$: $A = 23\\,000$ but $B = 15\\,000$ ✓, and at $m = 500$: $A = 35\\,000$ but $B = 43\\,000$ ✓.",
+      "check": [
+        "Eq(30*300 + 20000, 70*300 + 8000)",
+        "Eq(30*300 + 20000, 29000)",
+        "30*100 + 20000 > 70*100 + 8000",
+        "30*500 + 20000 < 70*500 + 8000"
+      ]
+    },
+    {
+      "id": "im1-u1-ty-7",
+      "statement": "A concert sold $x$ standing tickets at $25\\,000$₮ and $y$ seated tickets at $40\\,000$₮, taking $9\\,650\\,000$₮ in total. Write the equation relating $x$ and $y$, and find $y$ when $x = 250$.",
+      "solution": "**Model.**$$25\\,000x + 40\\,000y = 9\\,650\\,000.$$**Substitute the known count.** With $x = 250$,$$6\\,250\\,000 + 40\\,000y = 9\\,650\\,000$$$$40\\,000y = 3\\,400\\,000 \\quad\\Longrightarrow\\quad y = 85.$$So $85$ seated tickets were sold. Check: $6\\,250\\,000 + 3\\,400\\,000 = 9\\,650\\,000$₮ ✓, and $85$ is a whole number, as a ticket count must be.",
+      "check": [
+        "Eq(25000*250 + 40000*85, 9650000)",
+        "Eq(9650000 - 25000*250, 3400000)",
+        "Eq(Rational(3400000, 40000), 85)"
+      ]
+    }
+  ]
+}

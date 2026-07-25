@@ -50,10 +50,9 @@ const COURSES: {
     title: "Integrated Math 1",
     blurb:
       "Linear equations and functions, systems, exponential growth, transformations and congruence, coordinate geometry, and one-variable statistics — algebra and geometry together, not in sequence.",
-    units: 7,
+    units: 9,
     level: 1,
     exams: ["SAT"],
-    upcoming: true,
   },
   {
     href: "/math/integrated-2",
