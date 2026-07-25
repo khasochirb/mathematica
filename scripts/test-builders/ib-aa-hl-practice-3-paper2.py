@@ -1,0 +1,798 @@
+"""AA HL Practice Paper 2 (ib-hl-practice-3) — 120 min, 110 marks, GDC required.
+
+Blueprint (topic x marks):
+    Section A (52): Q1 number_algebra 7  | Q2 functions 7
+                    Q3 number_algebra 8  | Q4 stats_probability 7
+                    Q5 calculus 8        | Q6 functions 7
+                    Q7 number_algebra 8
+    Section B (58): Q8 calculus 20 | Q9 geometry_trig 20
+                    Q10 stats_probability 18
+    Paper totals: number_algebra 23 | functions 14 | geometry_trig 20 |
+                  stats_probability 25 | calculus 28 = 110.
+
+Paired with Paper 1 the two papers hit the HL blueprint: number_algebra
+46/220, functions 30/220, geometry_trig 48/220, stats_probability 40/220,
+calculus 56/220.
+
+Fresh HL archetypes versus Sets 1 and 2: compound interest solved for the
+year count, a two-parameter exponential pinned by two points, a quadratic
+fitted through three points via a 3x3 system, a normal distribution
+inverted for a cut-off, kinematics with a total-distance integral, a
+Newton-cooling model, a sigma sum pushed past a threshold, area between
+two curves with a volume of revolution and an unequal-area split, a
+sinusoidal tide model with a duration inequality, and a normal-feeding
+binomial with an expected count. GDC conventions: exact where possible,
+otherwise 3 significant figures.
+Figures: Q8 (region between the curves), Q9 (tide graph).
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from ibbuild import ROOT, A1, AG, M1, R1, part, question, write_paper  # noqa: E402
+
+from sympy import (Rational, sqrt, pi, Eq, N, exp, log, sin, cos, asin,  # noqa: F401,E402
+                   acos, atan, integrate, diff, expand, solve, simplify,
+                   binomial, symbols, Abs, nsolve, erf, Integer)
+
+x, t, n, a, b, c = symbols("x t n a b c")
+
+
+def png(name, alt_en):
+    from PIL import Image
+    p = os.path.join(ROOT, "public", "ib-figures", name)
+    assert os.path.isfile(p), f"figure missing on disk: {p} — run the figure script first"
+    with Image.open(p) as im_:
+        w, h = im_.size
+    return {"src": f"/ib-figures/{name}", "width": w, "height": h, "alt_en": alt_en}
+
+
+QS = []
+
+# ── Q1 [7] number_algebra: compound interest, then a threshold year ──────
+assert abs(float(8000 * Rational(1045, 1000) ** 10) - 12423.76) < 0.5
+assert 8000 * 1.045 ** 14 < 15000 < 8000 * 1.045 ** 15
+QS.append(question(
+    "IB-AAHL-P2-T3-Q1", 1, "A", "number_algebra", "financial_applications",
+    contextIntro=("An amount of $\\$8000$ is invested in an account paying"
+                  " $4.5\\%$ interest per year, compounded annually. No"
+                  " further deposits or withdrawals are made."),
+    parts=[
+        part("a", "Find the value of the investment after $10$ years,"
+             " correct to the nearest dollar.", 3,
+             [M1("$8000(1.045)^{10}$"),
+              A1("$12423.7\\ldots$"),
+              A1("$\\$12{,}424$")],
+             answer="$\\$12{,}424$",
+             solution=("Each year multiplies the balance by $1.045$, so"
+                       " after $10$ years"
+                       "$$V = 8000(1.045)^{10} = 12423.76\\ldots$$"
+                       " To the nearest dollar the investment is worth"
+                       " $\\$12{,}424$. Note that simple interest would"
+                       " have given only $8000(1 + 10 \\times 0.045)"
+                       " = \\$11{,}600$ — compounding adds the difference."),
+             verify=["Abs(8000*Rational(1045,1000)**10 - 12424) < 1",
+                     "Eq(8000*(1 + 10*Rational(45,1000)), 11600)"]),
+        part("b", "Find the least number of complete years for the value of"
+             " the investment to exceed $\\$15{,}000$.", 4,
+             [M1("set up $8000(1.045)^{n} > 15000$"),
+              A1("$(1.045)^{n} > 1.875$"),
+              M1("solve, e.g. $n > \\dfrac{\\ln 1.875}{\\ln 1.045}"
+                 " = 14.28\\ldots$"),
+              A1("$n = 15$")],
+             answer="$15$ years",
+             solution=("The condition is"
+                       "$$8000(1.045)^{n} > 15000 \\;\\Rightarrow\\;"
+                       " (1.045)^{n} > \\frac{15000}{8000} = 1.875.$$"
+                       " Taking natural logarithms of both sides (the"
+                       " logarithm is increasing, so the inequality"
+                       " direction is preserved),"
+                       "$$n > \\frac{\\ln 1.875}{\\ln 1.045}"
+                       " = 14.28\\ldots$$"
+                       " Since $n$ counts complete years it must be an"
+                       " integer, so $n = 15$. Checking:"
+                       " $8000(1.045)^{14} = 14802\\ldots < 15000$ while"
+                       " $8000(1.045)^{15} = 15468\\ldots > 15000$."),
+             verify=["Eq(Rational(15000, 8000), Rational(15,8))",
+                     "8000*Rational(1045,1000)**14 < 15000",
+                     "8000*Rational(1045,1000)**15 > 15000"]),
+    ]))
+
+# ── Q2 [7] functions: a two-parameter exponential through two points ─────
+assert solve([Eq(a + b, 5), Eq(8 * a + b, 33)], [a, b]) == {a: 4, b: 1}
+assert abs(4 * 2 ** 4.6295 + 1 - 100) < 0.05
+QS.append(question(
+    "IB-AAHL-P2-T3-Q2", 2, "A", "functions", "exponential_functions",
+    contextIntro=("The function $f$ is defined by"
+                  " $f(x) = a \\cdot 2^{x} + b$, where $a$ and $b$ are"
+                  " constants. The graph of $f$ passes through the points"
+                  " $(0, 5)$ and $(3, 33)$."),
+    parts=[
+        part("a", "Find the value of $a$ and the value of $b$.", 4,
+             [M1("substitute both points: $a + b = 5$ and $8a + b = 33$"),
+              M1("subtract to eliminate $b$"),
+              A1("$a = 4$"),
+              A1("$b = 1$")],
+             answer="$a = 4$, $b = 1$",
+             solution=("Substituting the two points, and using"
+                       " $2^{0} = 1$ and $2^{3} = 8$,"
+                       "$$a + b = 5, \\qquad 8a + b = 33.$$"
+                       " Subtracting the first equation from the second"
+                       " removes $b$:"
+                       "$$7a = 28 \\;\\Rightarrow\\; a = 4,$$"
+                       " and then $b = 5 - 4 = 1$. So"
+                       " $f(x) = 4 \\cdot 2^{x} + 1$."),
+             verify=["Eq(4*2**0 + 1, 5)", "Eq(4*2**3 + 1, 33)",
+                     "Eq(33 - 5, 28)"]),
+        part("b", "Find the value of $x$ for which $f(x) = 100$, giving your"
+             " answer correct to three significant figures.", 3,
+             [M1("$4 \\cdot 2^{x} = 99$"),
+              M1("$x = \\dfrac{\\ln 24.75}{\\ln 2}$ (or by GDC)"),
+              A1("$x = 4.63$")],
+             answer="$x = 4.63$",
+             solution=("Set the rule equal to $100$:"
+                       "$$4 \\cdot 2^{x} + 1 = 100 \\;\\Rightarrow\\;"
+                       " 2^{x} = \\frac{99}{4} = 24.75.$$"
+                       " Taking logarithms,"
+                       "$$x = \\frac{\\ln 24.75}{\\ln 2}"
+                       " = 4.62954\\ldots$$"
+                       " To three significant figures $x = 4.63$."
+                       " (A GDC intersection of $y = f(x)$ with $y = 100$"
+                       " gives the same value and earns full marks.)"),
+             verify=["Eq(Rational(99, 4), Rational(99,4))",
+                     "Abs(4*2**Rational(46295,10000) + 1 - 100) < Rational(1,10)",
+                     "Eq(100 - 1, 99)"]),
+    ]))
+
+# ── Q3 [8] number_algebra: a quadratic through three points (3x3 system) ─
+_sol3 = solve([Eq(a + b + c, 6), Eq(4 * a + 2 * b + c, 3),
+               Eq(16 * a + 4 * b + c, 9)], [a, b, c])
+assert _sol3 == {a: 2, b: -9, c: 13}
+assert 2 * Rational(9, 4) ** 2 - 9 * Rational(9, 4) + 13 == Rational(23, 8)
+QS.append(question(
+    "IB-AAHL-P2-T3-Q3", 3, "A", "number_algebra", "systems_of_equations",
+    contextIntro=("The graph of $y = ax^{2} + bx + c$ passes through the"
+                  " points $(1, 6)$, $(2, 3)$ and $(4, 9)$, where $a$, $b$"
+                  " and $c$ are constants."),
+    parts=[
+        part("a", "Write down a system of three linear equations in $a$,"
+             " $b$ and $c$, and hence find their values.", 5,
+             [M1("substitute each point into $y = ax^2 + bx + c$"),
+              A1("$a + b + c = 6$, $4a + 2b + c = 3$, $16a + 4b + c = 9$"),
+              M1("solve the system (by elimination or GDC)"),
+              A1("$a = 2$, $b = -9$"),
+              A1("$c = 13$")],
+             answer="$a = 2$, $b = -9$, $c = 13$",
+             solution=("Substituting each point in turn gives"
+                       "$$a + b + c = 6, \\quad 4a + 2b + c = 3, \\quad"
+                       " 16a + 4b + c = 9.$$"
+                       " Subtracting the first equation from the second and"
+                       " the second from the third eliminates $c$:"
+                       "$$3a + b = -3, \\qquad 12a + 2b = 6.$$"
+                       " Halving the second of these gives $6a + b = 3$, and"
+                       " subtracting the first leaves"
+                       "$$3a = 6 \\;\\Rightarrow\\; a = 2.$$"
+                       " Then $b = -3 - 3(2) = -9$ and"
+                       " $c = 6 - 2 + 9 = 13$."
+                       " Check with the third point:"
+                       " $16(2) + 4(-9) + 13 = 32 - 36 + 13 = 9$."),
+             verify=["Eq(2 + (-9) + 13, 6)", "Eq(4*2 + 2*(-9) + 13, 3)",
+                     "Eq(16*2 + 4*(-9) + 13, 9)"]),
+        part("b", "Hence find the minimum value of $y$.", 3,
+             [M1("the vertex is at $x = -\\dfrac{b}{2a} = \\dfrac{9}{4}$"),
+              M1("evaluate $y$ there"),
+              A1("$\\dfrac{23}{8} = 2.875$")],
+             answer="$y_{\\min} = \\dfrac{23}{8} = 2.875$",
+             solution=("The curve is $y = 2x^{2} - 9x + 13$. Since"
+                       " $a = 2 > 0$ the parabola opens upwards and its"
+                       " vertex is the minimum, at"
+                       "$$x = -\\frac{b}{2a} = \\frac{9}{4}.$$"
+                       " Evaluating there,"
+                       "$$y = 2\\left(\\frac{81}{16}\\right)"
+                       " - 9\\left(\\frac{9}{4}\\right) + 13"
+                       " = \\frac{81}{8} - \\frac{81}{4} + 13"
+                       " = \\frac{81 - 162 + 104}{8} = \\frac{23}{8}.$$"
+                       " That is $2.875$ exactly."),
+             verify=["Eq(Rational(9, 4), Rational(9,4))",
+                     "Eq(2*Rational(9,4)**2 - 9*Rational(9,4) + 13,"
+                     " Rational(23,8))",
+                     "Eq(Rational(23,8), Rational(2875,1000))"]),
+    ]))
+
+# ── Q4 [7] stats_probability: the normal distribution, forwards and back ─
+assert abs(float((1 - erf(Rational(4, 3) / sqrt(2))) / 2) - 0.0912) < 0.0005
+QS.append(question(
+    "IB-AAHL-P2-T3-Q4", 4, "A", "stats_probability", "normal_distribution",
+    contextIntro=("The mass, in grams, of an apple picked in an orchard is"
+                  " modelled by a normal distribution with mean $120$ and"
+                  " standard deviation $15$."),
+    parts=[
+        part("a", "Find the probability that a randomly chosen apple has a"
+             " mass greater than $140$ grams.", 3,
+             [M1("standardise: $z = \\dfrac{140 - 120}{15}"
+                 " = 1.333\\ldots$"),
+              M1("$P(Z > 1.333\\ldots)$ from the GDC"),
+              A1("$0.0912$")],
+             answer="$0.0912$ (3 s.f.)",
+             solution=("Standardise the cut-off:"
+                       "$$z = \\frac{140 - 120}{15} = \\frac{4}{3}"
+                       " = 1.3333\\ldots$$"
+                       " The upper-tail probability is"
+                       "$$P(X > 140) = P(Z > 1.3333\\ldots)"
+                       " = 0.09121\\ldots,$$"
+                       " so $0.0912$ to three significant figures. About one"
+                       " apple in eleven exceeds $140$ g."),
+             verify=["Eq(Rational(140 - 120, 15), Rational(4,3))",
+                     "Abs((1 - erf(Rational(4,3)/sqrt(2)))/2 -"
+                     " Rational(912,10000)) < Rational(5,10000)"]),
+        part("b", "Find the mass $m$, in grams, such that $10\\%$ of apples"
+             " have a mass greater than $m$.", 4,
+             [M1("recognise an inverse-normal problem:"
+                 " $P(X > m) = 0.1$"),
+              A1("$z = 1.2816\\ldots$"),
+              M1("$m = 120 + 15z$"),
+              A1("$m = 139$ grams")],
+             answer="$m = 139$ grams (3 s.f.)",
+             solution=("This is an inverse-normal problem: find the value"
+                       " with $10\\%$ of the distribution above it. The"
+                       " corresponding standard score satisfies"
+                       " $P(Z > z) = 0.1$, so"
+                       "$$z = 1.28155\\ldots$$"
+                       " Converting back to the original scale,"
+                       "$$m = \\mu + \\sigma z = 120 + 15(1.28155\\ldots)"
+                       " = 139.22\\ldots$$"
+                       " To three significant figures $m = 139$ grams."
+                       " Sanity check: $139$ g is above the mean, as it must"
+                       " be when only $10\\%$ of apples exceed it."),
+             verify=["Abs((1 - erf(Rational(128155,100000)/sqrt(2)))/2"
+                     " - Rational(1,10)) < Rational(1,1000)",
+                     "Abs(120 + 15*Rational(128155,100000) - 139) < 1"]),
+    ]))
+
+# ── Q5 [8] calculus: kinematics with a total-distance integral ───────────
+assert solve(Eq(3 * t**2 - 12 * t + 9, 0), t) == [1, 3]
+assert (1**3 - 6 * 1**2 + 9 * 1) == 4 and (3**3 - 6 * 3**2 + 9 * 3) == 0
+assert (4**3 - 6 * 4**2 + 9 * 4) == 4
+QS.append(question(
+    "IB-AAHL-P2-T3-Q5", 5, "A", "calculus", "kinematics",
+    contextIntro=("A particle moves along a straight line so that its"
+                  " velocity, in metres per second, is given by"
+                  " $v(t) = 3t^{2} - 12t + 9$ for $0 \\le t \\le 5$, where"
+                  " $t$ is measured in seconds. The particle starts at the"
+                  " origin."),
+    parts=[
+        part("a", "Find the times at which the particle is at rest.", 3,
+             [M1("solve $v(t) = 0$"),
+              A1("$t = 1$"),
+              A1("$t = 3$")],
+             answer="$t = 1$ and $t = 3$ seconds",
+             solution=("The particle is at rest when its velocity is zero:"
+                       "$$3t^{2} - 12t + 9 = 3\\left(t^{2} - 4t + 3\\right)"
+                       " = 3(t - 1)(t - 3) = 0.$$"
+                       " Both roots lie in the interval $0 \\le t \\le 5$,"
+                       " so the particle is momentarily at rest at $t = 1$"
+                       " and again at $t = 3$ seconds."),
+             verify=["Eq(3*1**2 - 12*1 + 9, 0)", "Eq(3*3**2 - 12*3 + 9, 0)",
+                     "Eq(expand(3*(t - 1)*(t - 3)), 3*t**2 - 12*t + 9)"]),
+        part("b", "Find the acceleration of the particle when $t = 4$.", 2,
+             [M1("$a(t) = v'(t) = 6t - 12$"),
+              A1("$12$ m s$^{-2}$")],
+             answer="$12$ metres per second squared",
+             solution=("Acceleration is the derivative of velocity:"
+                       "$$a(t) = \\frac{dv}{dt} = 6t - 12.$$"
+                       " At $t = 4$,"
+                       "$$a(4) = 24 - 12 = 12\\ \\text{m s}^{-2}.$$"),
+             verify=["Eq(diff(3*t**2 - 12*t + 9, t), 6*t - 12)",
+                     "Eq(6*4 - 12, 12)"]),
+        part("c", "Find the total distance travelled by the particle during"
+             " the first $4$ seconds.", 3,
+             [M1("recognise that the velocity changes sign, so split the"
+                 " integral at $t = 1$ and $t = 3$"),
+              A1("displacements $4$, $-4$, $4$"),
+              A1("total distance $12$ metres")],
+             answer="$12$ metres",
+             solution=("Integrating the velocity gives the displacement"
+                       " function"
+                       "$$s(t) = t^{3} - 6t^{2} + 9t,$$"
+                       " with $s(0) = 0$. Because $v$ changes sign at"
+                       " $t = 1$ and $t = 3$, evaluate $s$ at those turning"
+                       " points:"
+                       "$$s(1) = 4, \\quad s(3) = 0, \\quad s(4) = 4.$$"
+                       " The particle moves $4$ m forwards, then $4$ m"
+                       " back, then $4$ m forwards again, so the total"
+                       " DISTANCE is"
+                       "$$|4 - 0| + |0 - 4| + |4 - 0| = 12\\ \\text{m}.$$"
+                       " (The net displacement is only $4$ m — that is the"
+                       " distinction the question is testing.)"),
+             verify=["Eq(integrate(3*t**2 - 12*t + 9, (t, 0, 1)), 4)",
+                     "Eq(integrate(3*t**2 - 12*t + 9, (t, 1, 3)), -4)",
+                     "Eq(integrate(3*t**2 - 12*t + 9, (t, 3, 4)), 4)",
+                     "Eq(4 + 4 + 4, 12)"]),
+    ]))
+
+# ── Q6 [7] functions: a Newton-cooling model ────────────────────────────
+assert 20 + 60 * exp(0) == 80
+assert abs(float(20 + 60 * exp(Rational(-75, 100))) - 48.3) < 0.05
+assert abs(float(log(3) / Rational(5, 100)) - 21.97) < 0.05
+QS.append(question(
+    "IB-AAHL-P2-T3-Q6", 6, "A", "functions", "exponential_models",
+    contextIntro=("A hot liquid is left to cool. Its temperature $T$, in"
+                  " degrees Celsius, $t$ minutes after cooling begins is"
+                  " modelled by"
+                  " $T(t) = 20 + 60\\mathrm{e}^{-0.05t}$, $t \\ge 0$."),
+    parts=[
+        part("a", "Write down the temperature of the liquid at the moment"
+             " cooling begins.", 2,
+             [M1("substitute $t = 0$"),
+              A1("$80\\ ^\\circ$C")],
+             answer="$80\\ ^\\circ$C",
+             solution=("At $t = 0$ the exponential factor is"
+                       " $\\mathrm{e}^{0} = 1$, so"
+                       "$$T(0) = 20 + 60(1) = 80\\ ^\\circ\\text{C}.$$"),
+             verify=["Eq(20 + 60*exp(0), 80)"]),
+        part("b", "Find the temperature of the liquid after $15$ minutes,"
+             " correct to three significant figures.", 2,
+             [M1("$20 + 60\\mathrm{e}^{-0.75}$"),
+              A1("$48.3\\ ^\\circ$C")],
+             answer="$48.3\\ ^\\circ$C",
+             solution=("Substitute $t = 15$, so the exponent is"
+                       " $-0.05(15) = -0.75$:"
+                       "$$T(15) = 20 + 60\\mathrm{e}^{-0.75}"
+                       " = 20 + 60(0.47237\\ldots) = 48.34\\ldots$$"
+                       " To three significant figures the temperature is"
+                       " $48.3\\ ^\\circ$C."),
+             verify=["Abs(20 + 60*exp(Rational(-75,100))"
+                     " - Rational(483,10)) < Rational(5,100)"]),
+        part("c", "Find the time taken for the liquid to cool to"
+             " $40\\ ^\\circ$C, correct to three significant figures.", 3,
+             [M1("$60\\mathrm{e}^{-0.05t} = 20$"),
+              M1("$-0.05t = \\ln\\dfrac{1}{3}$"),
+              A1("$t = 22.0$ minutes")],
+             answer="$t = 22.0$ minutes",
+             solution=("Set $T(t) = 40$ and isolate the exponential:"
+                       "$$20 + 60\\mathrm{e}^{-0.05t} = 40"
+                       " \\;\\Rightarrow\\; \\mathrm{e}^{-0.05t}"
+                       " = \\frac{20}{60} = \\frac{1}{3}.$$"
+                       " Taking natural logarithms,"
+                       "$$-0.05t = \\ln\\frac{1}{3} = -\\ln 3"
+                       " \\;\\Rightarrow\\; t = \\frac{\\ln 3}{0.05}"
+                       " = 21.97\\ldots$$"
+                       " So $t = 22.0$ minutes to three significant"
+                       " figures. Note the model has a horizontal asymptote"
+                       " at $T = 20$: the liquid approaches room"
+                       " temperature but never reaches it."),
+             verify=["Eq(Rational(20, 60), Rational(1,3))",
+                     "Abs(log(3)/Rational(5,100) - 22) < Rational(1,10)",
+                     "Abs(20 + 60*exp(Rational(-5,100)*log(3)"
+                     "/Rational(5,100)) - 40) < Rational(1,1000)"]),
+    ]))
+
+# ── Q7 [8] number_algebra: an arithmetic sigma sum past a threshold ──────
+assert sum(3 * i + 2 for i in range(1, 21)) == 670
+assert sum(3 * i + 2 for i in range(1, 25)) == 948
+assert sum(3 * i + 2 for i in range(1, 26)) == 1025
+QS.append(question(
+    "IB-AAHL-P2-T3-Q7", 7, "A", "number_algebra", "arithmetic_series",
+    parts=[
+        part("a", "Find the value of"
+             " $\\displaystyle\\sum_{r=1}^{20} (3r + 2)$.", 3,
+             [M1("split the sum: $3\\sum r + \\sum 2$"),
+              A1("$3(210) + 40$"),
+              A1("$670$")],
+             answer="$670$",
+             solution=("Split the sum into two familiar pieces:"
+                       "$$\\sum_{r=1}^{20}(3r + 2)"
+                       " = 3\\sum_{r=1}^{20} r + \\sum_{r=1}^{20} 2.$$"
+                       " Using $\\sum_{r=1}^{n} r = \\dfrac{n(n+1)}{2}$ with"
+                       " $n = 20$ gives $210$, so"
+                       "$$= 3(210) + 20(2) = 630 + 40 = 670.$$"
+                       " (Equivalently, this is an arithmetic series with"
+                       " first term $5$, last term $62$ and $20$ terms:"
+                       " $\\tfrac{20}{2}(5 + 62) = 670$.)"),
+             verify=["Eq(Rational(20*21, 2), 210)",
+                     "Eq(3*210 + 40, 670)",
+                     "Eq(Rational(20, 2)*(5 + 62), 670)"]),
+        part("b", "Find the least value of $n$ for which"
+             " $\\displaystyle\\sum_{r=1}^{n} (3r + 2) > 1000$.", 5,
+             [M1("write the sum as a function of $n$"),
+              A1("$\\dfrac{3n(n + 1)}{2} + 2n = \\dfrac{3n^{2} + 7n}{2}$"),
+              M1("solve $3n^{2} + 7n - 2000 > 0$ (GDC or formula)"),
+              A1("critical value $n = 24.68\\ldots$"),
+              A1("$n = 25$")],
+             answer="$n = 25$",
+             solution=("In general"
+                       "$$\\sum_{r=1}^{n}(3r + 2)"
+                       " = \\frac{3n(n + 1)}{2} + 2n"
+                       " = \\frac{3n^{2} + 7n}{2}.$$"
+                       " The condition becomes"
+                       "$$\\frac{3n^{2} + 7n}{2} > 1000"
+                       " \\;\\Rightarrow\\; 3n^{2} + 7n - 2000 > 0.$$"
+                       " The positive root of the quadratic is"
+                       "$$n = \\frac{-7 + \\sqrt{49 + 24000}}{6}"
+                       " = 24.68\\ldots,$$"
+                       " so the inequality first holds at the next integer,"
+                       " $n = 25$. Checking directly: at $n = 24$ the sum is"
+                       " $948$, and at $n = 25$ it is $1025$."),
+             verify=["Eq(Rational(3*24**2 + 7*24, 2), 948)",
+                     "Eq(Rational(3*25**2 + 7*25, 2), 1025)",
+                     "948 < 1000", "1025 > 1000"]),
+    ]))
+
+# ── Q8 [20] calculus: area between curves, volume, unequal split ─────────
+assert solve(Eq(x**2, 6 * x - x**2), x) == [0, 3]
+assert integrate(6 * x - 2 * x**2, (x, 0, 3)) == 9
+assert integrate((6 * x - x**2) ** 2 - (x**2) ** 2, (x, 0, 3)) == 81
+_a8 = nsolve(Eq(3 * x**2 - Rational(2, 3) * x**3, Rational(9, 4)), x, 1.0)
+assert abs(float(_a8) - 0.979) < 0.001
+QS.append(question(
+    "IB-AAHL-P2-T3-Q8", 8, "B", "calculus", "integration_applications",
+    contextIntro=("The diagram shows the region $R$ enclosed by the curves"
+                  " $y = x^{2}$ and $y = 6x - x^{2}$."),
+    parts=[
+        part("a", "Find the coordinates of the two points where the curves"
+             " intersect.", 3,
+             [M1("set $x^{2} = 6x - x^{2}$"),
+              A1("$2x^{2} - 6x = 0$, so $x = 0$ or $x = 3$"),
+              A1("$(0, 0)$ and $(3, 9)$")],
+             answer="$(0, 0)$ and $(3, 9)$",
+             solution=("The curves meet where their $y$-values agree:"
+                       "$$x^{2} = 6x - x^{2} \\;\\Rightarrow\\;"
+                       " 2x^{2} - 6x = 0 \\;\\Rightarrow\\; 2x(x - 3) = 0.$$"
+                       " So $x = 0$ or $x = 3$, and the corresponding"
+                       " $y$-values are $0$ and $9$. The intersection points"
+                       " are $(0, 0)$ and $(3, 9)$."),
+             verify=["Eq(0**2, 6*0 - 0**2)", "Eq(3**2, 6*3 - 3**2)",
+                     "Eq(expand(2*x*(x - 3)), 2*x**2 - 6*x)"]),
+        part("b", "Find the area of the region $R$.", 5,
+             [M1("integrate the difference of the two curves"),
+              A1("$\\displaystyle\\int_{0}^{3}\\left(6x - 2x^{2}\\right)dx$"),
+              M1("antiderivative"
+                 " $3x^{2} - \\dfrac{2x^{3}}{3}$"),
+              A1("$27 - 18$"),
+              A1("area $= 9$")],
+             answer="$9$",
+             solution=("Between $x = 0$ and $x = 3$ the parabola"
+                       " $y = 6x - x^{2}$ lies above $y = x^{2}$, so"
+                       "$$A = \\int_{0}^{3}\\left[(6x - x^{2}) - x^{2}"
+                       "\\right]dx = \\int_{0}^{3}\\left(6x - 2x^{2}"
+                       "\\right)dx.$$"
+                       " Antidifferentiating,"
+                       "$$A = \\left[3x^{2} - \\frac{2x^{3}}{3}"
+                       "\\right]_{0}^{3} = 27 - 18 = 9.$$"),
+             verify=["Eq(integrate(6*x - 2*x**2, (x, 0, 3)), 9)",
+                     "Eq(3*3**2 - Rational(2*3**3, 3), 9)"]),
+        part("c", "The region $R$ is rotated through $2\\pi$ about the"
+             " $x$-axis. Find the exact volume of the solid formed.", 6,
+             [M1("$V = \\pi\\displaystyle\\int_{0}^{3}\\left[(6x - x^{2})^{2}"
+                 " - (x^{2})^{2}\\right]dx$"),
+              M1("expand the integrand"),
+              A1("$36x^{2} - 12x^{3}$ (the $x^{4}$ terms cancel)"),
+              M1("antiderivative $12x^{3} - 3x^{4}$"),
+              A1("$324 - 243 = 81$"),
+              A1("$V = 81\\pi$")],
+             answer="$V = 81\\pi$",
+             solution=("Rotating the region between two curves about the"
+                       " $x$-axis gives a washer, so subtract the inner"
+                       " squared radius from the outer one:"
+                       "$$V = \\pi\\int_{0}^{3}\\left[(6x - x^{2})^{2}"
+                       " - \\left(x^{2}\\right)^{2}\\right]dx.$$"
+                       " Expanding,"
+                       " $(6x - x^{2})^{2} = 36x^{2} - 12x^{3} + x^{4}$, and"
+                       " the $x^{4}$ terms cancel against"
+                       " $\\left(x^{2}\\right)^{2}$:"
+                       "$$V = \\pi\\int_{0}^{3}\\left(36x^{2}"
+                       " - 12x^{3}\\right)dx"
+                       " = \\pi\\left[12x^{3} - 3x^{4}\\right]_{0}^{3}.$$"
+                       " Therefore"
+                       "$$V = \\pi(324 - 243) = 81\\pi.$$"),
+             verify=["Eq(expand((6*x - x**2)**2), 36*x**2 - 12*x**3 + x**4)",
+                     "Eq(integrate(36*x**2 - 12*x**3, (x, 0, 3)), 81)",
+                     "Eq(12*3**3 - 3*3**4, 81)"]),
+        part("d", "The vertical line $x = k$, where $0 < k < 3$, divides $R$"
+             " into two parts whose areas are in the ratio $1 : 3$, with the"
+             " smaller part on the left. Find the value of $k$, correct to"
+             " three significant figures.", 6,
+             [M1("the left-hand part has area $\\dfrac{9}{4}$"),
+              A1("$\\displaystyle\\int_{0}^{k}\\left(6x - 2x^{2}\\right)dx"
+                 " = \\dfrac{9}{4}$"),
+              M1("$3k^{2} - \\dfrac{2k^{3}}{3} = \\dfrac{9}{4}$"),
+              A1("$8k^{3} - 36k^{2} + 27 = 0$"),
+              M1("solve on the GDC for the root in $(0, 3)$ nearest $0$"),
+              A1("$k = 0.979$")],
+             answer="$k = 0.979$",
+             solution=("The total area is $9$, so the left-hand piece must"
+                       " have area $\\dfrac{1}{4}(9) = \\dfrac{9}{4}$:"
+                       "$$\\int_{0}^{k}\\left(6x - 2x^{2}\\right)dx"
+                       " = 3k^{2} - \\frac{2k^{3}}{3} = \\frac{9}{4}.$$"
+                       " Multiplying through by $12$ clears the fractions:"
+                       "$$36k^{2} - 8k^{3} = 27 \\;\\Rightarrow\\;"
+                       " 8k^{3} - 36k^{2} + 27 = 0.$$"
+                       " Solving this cubic on a GDC and keeping the root"
+                       " with $0 < k < 3$ that leaves the SMALLER area on"
+                       " the left gives"
+                       "$$k = 0.97905\\ldots \\approx 0.979.$$"
+                       " Check: at $k = 0.979$ the left-hand area is"
+                       " $2.2497\\ldots$, which is $\\dfrac{9}{4}$ to three"
+                       " decimal places, one quarter of the total $9$."),
+             verify=["Abs(8*Rational(979,1000)**3 - 36*Rational(979,1000)**2"
+                     " + 27) < Rational(1,100)",
+                     "Eq(Rational(9, 4)*4, 9)",
+                     "Abs(3*Rational(979,1000)**2"
+                     " - Rational(2,3)*Rational(979,1000)**3"
+                     " - Rational(9,4)) < Rational(1,500)"]),
+    ]))
+
+# ── Q9 [20] geometry_trig: a sinusoidal tide model ──────────────────────
+assert 12 + 4 * sin(pi * 3 / 6) == 16
+assert simplify(12 + 4 * sin(pi * 4 / 6)) == 12 + 2 * sqrt(3)
+assert solve(Eq(4 * sin(pi * t / 6), 2), t)[0] == 1
+assert abs(float(6 * (pi - asin(Rational(3, 8))) / pi
+                 - 6 * asin(Rational(3, 8)) / pi) - 4.5317) < 0.001
+QS.append(question(
+    "IB-AAHL-P2-T3-Q9", 9, "B", "geometry_trig", "trig_modelling",
+    contextIntro=("The depth of water, $d$ metres, in a harbour $t$ hours"
+                  " after midnight is modelled by"
+                  " $d(t) = 12 + 4\\sin\\!\\left(\\dfrac{\\pi t}{6}\\right)$"
+                  " for $0 \\le t \\le 24$. The diagram shows the graph of"
+                  " $d$ against $t$."),
+    parts=[
+        part("a", "Write down the maximum depth of the water and the period"
+             " of the model.", 2,
+             [A1("maximum depth $16$ m"),
+              A1("period $12$ hours")],
+             answer="maximum $16$ m; period $12$ hours",
+             solution=("The sine function ranges between $-1$ and $1$, so"
+                       " $d$ ranges between $12 - 4 = 8$ and"
+                       " $12 + 4 = 16$; the maximum depth is $16$ m."
+                       " For a model of the form"
+                       " $\\sin\\!\\left(\\dfrac{2\\pi t}{T}\\right)$ the"
+                       " period is $T = \\dfrac{2\\pi}{\\pi/6} = 12$ hours."),
+             verify=["Eq(12 + 4*sin(pi*3/6), 16)",
+                     "Eq(2*pi/(pi/6), 12)"]),
+        part("b", "Find the exact depth of the water at $t = 4$.", 3,
+             [M1("substitute $t = 4$:"
+                 " $12 + 4\\sin\\dfrac{2\\pi}{3}$"),
+              A1("$\\sin\\dfrac{2\\pi}{3} = \\dfrac{\\sqrt{3}}{2}$"),
+              A1("$12 + 2\\sqrt{3}$ metres")],
+             answer="$12 + 2\\sqrt{3}$ metres $\\approx 15.5$ m",
+             solution=("At $t = 4$ the argument is"
+                       " $\\dfrac{4\\pi}{6} = \\dfrac{2\\pi}{3}$, and"
+                       "$$\\sin\\frac{2\\pi}{3} = \\frac{\\sqrt{3}}{2},$$"
+                       " so"
+                       "$$d(4) = 12 + 4\\cdot\\frac{\\sqrt{3}}{2}"
+                       " = 12 + 2\\sqrt{3} \\approx 15.5\\ \\text{m}.$$"),
+             verify=["Eq(sin(2*pi/3), sqrt(3)/2)",
+                     "Eq(simplify(12 + 4*sin(pi*4/6)), 12 + 2*sqrt(3))"]),
+        part("c", "Find the two times in the first $12$ hours at which the"
+             " depth is exactly $14$ metres.", 4,
+             [M1("$4\\sin\\!\\left(\\dfrac{\\pi t}{6}\\right) = 2$"),
+              A1("$\\sin\\!\\left(\\dfrac{\\pi t}{6}\\right)"
+                 " = \\dfrac{1}{2}$"),
+              A1("$t = 1$"),
+              A1("$t = 5$")],
+             answer="$t = 1$ and $t = 5$ hours",
+             solution=("Set $d(t) = 14$:"
+                       "$$12 + 4\\sin\\!\\left(\\frac{\\pi t}{6}\\right)"
+                       " = 14 \\;\\Rightarrow\\;"
+                       " \\sin\\!\\left(\\frac{\\pi t}{6}\\right)"
+                       " = \\frac{1}{2}.$$"
+                       " Within one period the sine equals $\\tfrac12$ at"
+                       " two angles:"
+                       "$$\\frac{\\pi t}{6} = \\frac{\\pi}{6}"
+                       " \\quad\\text{or}\\quad \\frac{\\pi t}{6}"
+                       " = \\frac{5\\pi}{6},$$"
+                       " giving $t = 1$ and $t = 5$ hours — that is, at"
+                       " 01:00 and at 05:00."),
+             verify=["Eq(12 + 4*sin(pi*1/6), 14)",
+                     "Eq(12 + 4*sin(pi*5/6), 14)",
+                     "Eq(sin(pi/6), Rational(1,2))"]),
+        part("d", "A boat can enter the harbour only when the depth is at"
+             " least $13.5$ metres. Find, correct to three significant"
+             " figures, the length of time in the first $12$ hours during"
+             " which the boat can enter.", 5,
+             [M1("$\\sin\\!\\left(\\dfrac{\\pi t}{6}\\right) \\ge"
+                 " \\dfrac{3}{8}$"),
+              M1("find the two endpoint times"),
+              A1("$t = 0.7341\\ldots$"),
+              A1("$t = 5.2659\\ldots$"),
+              A1("$4.53$ hours")],
+             answer="$4.53$ hours",
+             solution=("The condition $d(t) \\ge 13.5$ becomes"
+                       "$$4\\sin\\!\\left(\\frac{\\pi t}{6}\\right)"
+                       " \\ge 1.5 \\;\\Rightarrow\\;"
+                       " \\sin\\!\\left(\\frac{\\pi t}{6}\\right)"
+                       " \\ge \\frac{3}{8}.$$"
+                       " Within the first period the sine is at least"
+                       " $\\tfrac{3}{8}$ between the two angles"
+                       " $\\arcsin\\tfrac{3}{8}$ and"
+                       " $\\pi - \\arcsin\\tfrac{3}{8}$, so"
+                       "$$t_1 = \\frac{6}{\\pi}\\arcsin\\frac{3}{8}"
+                       " = 0.7341\\ldots, \\qquad"
+                       " t_2 = \\frac{6}{\\pi}\\left(\\pi"
+                       " - \\arcsin\\frac{3}{8}\\right) = 5.2659\\ldots$$"
+                       " The window lasts"
+                       "$$t_2 - t_1 = 4.5317\\ldots \\approx 4.53"
+                       " \\text{ hours}.$$"
+                       " (The depth also rises above $13.5$ m again later in"
+                       " the day, but the question restricts attention to"
+                       " the first $12$ hours.)"),
+             verify=["Eq(Rational(15,10)/4, Rational(3,8))",
+                     "Abs(6*asin(Rational(3,8))/pi"
+                     " - Rational(7341,10000)) < Rational(1,1000)",
+                     "Abs((6*(pi - asin(Rational(3,8)))/pi"
+                     " - 6*asin(Rational(3,8))/pi)"
+                     " - Rational(453,100)) < Rational(1,100)"]),
+        part("e", "Find $d'(3)$ and interpret this value in context.", 6,
+             [M1("differentiate:"
+                 " $d'(t) = \\dfrac{2\\pi}{3}"
+                 "\\cos\\!\\left(\\dfrac{\\pi t}{6}\\right)$"),
+              A1("chain rule factor $\\dfrac{\\pi}{6}$ applied"),
+              M1("substitute $t = 3$"),
+              A1("$\\cos\\dfrac{\\pi}{2} = 0$"),
+              A1("$d'(3) = 0$"),
+              R1("the depth is instantaneously neither rising nor falling —"
+                 " it is at its maximum of $16$ m (high tide)")],
+             answer="$d'(3) = 0$; the water is at high tide, momentarily"
+                    " neither rising nor falling",
+             solution=("Differentiate, remembering the chain-rule factor"
+                       " $\\dfrac{\\pi}{6}$ from the inside function:"
+                       "$$d'(t) = 4\\cdot\\frac{\\pi}{6}"
+                       "\\cos\\!\\left(\\frac{\\pi t}{6}\\right)"
+                       " = \\frac{2\\pi}{3}"
+                       "\\cos\\!\\left(\\frac{\\pi t}{6}\\right).$$"
+                       " At $t = 3$ the argument is $\\dfrac{\\pi}{2}$, and"
+                       " $\\cos\\dfrac{\\pi}{2} = 0$, so"
+                       "$$d'(3) = 0.$$"
+                       " In context: three hours after midnight the depth is"
+                       " changing at $0$ metres per hour. This is exactly"
+                       " the moment of high tide — $d(3) = 16$ m, the model's"
+                       " maximum — where the water stops rising before it"
+                       " begins to fall."),
+             verify=["Eq(diff(12 + 4*sin(pi*t/6), t),"
+                     " 2*pi*cos(pi*t/6)/3)",
+                     "Eq(cos(pi/2), 0)",
+                     "Eq(diff(12 + 4*sin(pi*t/6), t).subs(t, 3), 0)",
+                     "Eq(12 + 4*sin(pi*3/6), 16)"]),
+    ]))
+
+# ── Q10 [18] stats_probability: normal feeding a binomial ───────────────
+_p_rej = (1 - erf(Rational(2, 1) / sqrt(2))) / 2
+assert abs(float(_p_rej) - 0.02275) < 0.00002
+assert abs(float(12 * _p_rej * (1 - _p_rej) ** 11) - 0.2120) < 0.001
+assert abs(float(1 - (1 - _p_rej) ** 12 - 12 * _p_rej * (1 - _p_rej) ** 11)
+           - 0.0293577) < 0.000001
+QS.append(question(
+    "IB-AAHL-P2-T3-Q10", 10, "B", "stats_probability", "binomial_normal",
+    contextIntro=("A machine fills bottles. The volume of liquid in a"
+                  " bottle, in millilitres, is modelled by a normal"
+                  " distribution with mean $502$ and standard deviation"
+                  " $3$. A bottle is rejected if it contains less than"
+                  " $496$ millilitres."),
+    parts=[
+        part("a", "Find the probability that a randomly chosen bottle is"
+             " rejected.", 3,
+             [M1("standardise: $z = \\dfrac{496 - 502}{3} = -2$"),
+              M1("$P(Z < -2)$"),
+              A1("$0.0228$")],
+             answer="$0.0228$ (3 s.f.)",
+             solution=("Standardise the rejection threshold:"
+                       "$$z = \\frac{496 - 502}{3} = -2.$$"
+                       " The lower-tail probability is"
+                       "$$P(X < 496) = P(Z < -2) = 0.02275\\ldots,$$"
+                       " so $0.0228$ to three significant figures — a"
+                       " rejection rate of about $2.3\\%$."),
+             verify=["Eq(Rational(496 - 502, 3), -2)",
+                     "Abs((1 - erf(2/sqrt(2)))/2 - Rational(228,10000))"
+                     " < Rational(5,100000)"]),
+        part("b", "A box contains $12$ bottles, chosen independently. Find"
+             " the probability that exactly one of them is rejected.", 4,
+             [M1("recognise a binomial model"
+                 " $B(12,\\ 0.02275\\ldots)$"),
+              A1("$\\binom{12}{1}p(1 - p)^{11}$"),
+              M1("substitute $p = 0.02275\\ldots$"),
+              A1("$0.212$")],
+             answer="$0.212$ (3 s.f.)",
+             solution=("Each bottle is rejected independently with the same"
+                       " probability $p = 0.02275\\ldots$, so the number"
+                       " rejected in a box of $12$ follows"
+                       " $B(12,\\ p)$. Then"
+                       "$$P(X = 1) = \\binom{12}{1}p(1 - p)^{11}"
+                       " = 12(0.02275\\ldots)(0.97725\\ldots)^{11}"
+                       " = 0.211947\\ldots,$$"
+                       " which is $0.212$ to three significant figures."
+                       " Keep the unrounded $p$ in the calculation —"
+                       " rounding it to $0.023$ first shifts the answer in"
+                       " the third figure."),
+             verify=["Eq(binomial(12, 1), 12)",
+                     "Abs(12*((1 - erf(2/sqrt(2)))/2)"
+                     "*(1 - (1 - erf(2/sqrt(2)))/2)**11"
+                     " - Rational(212,1000)) < Rational(1,1000)"]),
+        part("c", "Find the probability that at least two bottles in the box"
+             " are rejected.", 4,
+             [M1("use the complement:"
+                 " $1 - P(X = 0) - P(X = 1)$"),
+              A1("$P(X = 0) = (1 - p)^{12} = 0.7587\\ldots$"),
+              M1("subtract both terms from $1$"),
+              A1("$0.0294$")],
+             answer="$0.0294$ (3 s.f.)",
+             solution=("\"At least two\" is easiest through the"
+                       " complement:"
+                       "$$P(X \\ge 2) = 1 - P(X = 0) - P(X = 1).$$"
+                       " Here"
+                       "$$P(X = 0) = (1 - p)^{12} = 0.758695\\ldots,$$"
+                       " and $P(X = 1) = 0.211947\\ldots$ from part (b), so"
+                       "$$P(X \\ge 2) = 1 - 0.758695 - 0.211947"
+                       " = 0.029358\\ldots$$"
+                       " To three significant figures this is $0.0294$ —"
+                       " the fourth decimal rounds the third significant"
+                       " figure up, so carrying the unrounded values"
+                       " through matters here."),
+             verify=["Abs((1 - (1 - erf(2/sqrt(2)))/2)**12"
+                     " - Rational(758695,1000000)) < Rational(1,100000)",
+                     "Abs(1 - (1 - (1 - erf(2/sqrt(2)))/2)**12"
+                     " - 12*((1 - erf(2/sqrt(2)))/2)"
+                     "*(1 - (1 - erf(2/sqrt(2)))/2)**11"
+                     " - Rational(294,10000)) < Rational(5,100000)"]),
+        part("d", "The machine is adjusted so that only $1\\%$ of bottles"
+             " are rejected, with the standard deviation unchanged at $3$."
+             " Find the new mean volume, correct to three significant"
+             " figures.", 3,
+             [M1("inverse normal: $P(Z < z) = 0.01$ gives"
+                 " $z = -2.3263\\ldots$"),
+              M1("$496 = \\mu - 2.3263\\ldots \\times 3$"),
+              A1("$\\mu = 503$ millilitres")],
+             answer="$\\mu = 503$ millilitres (3 s.f.)",
+             solution=("Requiring $P(X < 496) = 0.01$ fixes the standard"
+                       " score of the threshold:"
+                       "$$z = -2.32634\\ldots$$"
+                       " Converting back with $\\sigma = 3$,"
+                       "$$496 = \\mu + 3(-2.32634\\ldots)"
+                       " \\;\\Rightarrow\\; \\mu = 496 + 6.979\\ldots"
+                       " = 502.98\\ldots$$"
+                       " So the mean must be raised to $503$ millilitres to"
+                       " three significant figures — a shift of only about"
+                       " $1$ ml cuts the rejection rate from $2.3\\%$ to"
+                       " $1\\%$."),
+             verify=["Abs((1 - erf(Rational(232634,100000)/sqrt(2)))/2"
+                     " - Rational(1,100)) < Rational(1,10000)",
+                     "Abs(496 + 3*Rational(232634,100000) - 503) < 1"]),
+        part("e", "With the adjusted machine, a production run consists of"
+             " $5000$ bottles. Find the expected number of rejected bottles"
+             " and the standard deviation of that number.", 4,
+             [M1("binomial $B(5000,\\ 0.01)$"),
+              A1("$\\mathrm{E}(X) = 5000 \\times 0.01 = 50$"),
+              M1("$\\sqrt{np(1 - p)}$"),
+              A1("$7.04$")],
+             answer="$\\mathrm{E}(X) = 50$; standard deviation $7.04$"
+                    " (3 s.f.)",
+             solution=("With each bottle independently rejected with"
+                       " probability $0.01$, the number rejected follows"
+                       " $B(5000,\\ 0.01)$. Then"
+                       "$$\\mathrm{E}(X) = np = 5000(0.01) = 50,$$"
+                       "$$\\mathrm{sd}(X) = \\sqrt{np(1 - p)}"
+                       " = \\sqrt{5000(0.01)(0.99)} = \\sqrt{49.5}"
+                       " = 7.0356\\ldots$$"
+                       " To three significant figures the standard deviation"
+                       " is $7.04$ bottles. So a run typically produces"
+                       " around $50$ rejects, give or take about $7$."),
+             verify=["Eq(5000*Rational(1,100), 50)",
+                     "Eq(5000*Rational(1,100)*Rational(99,100),"
+                     " Rational(99,2))",
+                     "Abs(sqrt(Rational(99,2)) - Rational(704,100))"
+                     " < Rational(1,100)"]),
+    ]))
+
+META = {"course": "aa", "level": "hl", "paper": 2, "testId": "ib-hl-practice-3",
+        "label": "AA HL Practice Paper 2", "timeMinutes": 120,
+        "totalMarks": 110, "calculator": True}
+
+if __name__ == "__main__":
+    QS[7]["figure"] = png("ib-aahl-p2-t3-q8.png",
+                          "Region enclosed by the curves y = x squared and "
+                          "y = 6x minus x squared, meeting at the origin and "
+                          "at (3, 9)")
+    QS[8]["figure"] = png("ib-aahl-p2-t3-q9.png",
+                          "Graph of harbour depth d against time t over 24 "
+                          "hours, oscillating between 8 and 16 metres with "
+                          "period 12 hours")
+    write_paper(META, QS, "data/ib/aa-hl/ib-hl-practice-3/paper2.json")
