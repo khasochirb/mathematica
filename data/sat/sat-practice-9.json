@@ -1,0 +1,1445 @@
+{
+  "meta": {
+    "testId": "sat-practice-9",
+    "label": "SAT Math Practice Test 9",
+    "minutesPerModule": 35,
+    "module2Threshold": 15
+  },
+  "module1": [
+    {
+      "source": "SAT-P9-M1-Q01",
+      "module": "1",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $4x - 9 = 27$, what is the value of $x$?",
+      "options": {
+        "A": "$4.5$",
+        "B": "$7$",
+        "C": "$9$",
+        "D": "$36$"
+      },
+      "answer": "C",
+      "solution": "Add 9 to both sides, then divide by 4: $$4x = 36 \\;\\Rightarrow\\; x = 9.$$ Subtracting 9 instead gives $4x = 18$, or $4.5$, and stopping at $4x = 36$ gives 36. The correct answer is **C**.",
+      "verify": [
+        "Eq(4*9 - 9, 27)",
+        "Eq((27 + 9)/4, 9)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q02",
+      "module": "1",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "Which of the following is equivalent to $x^3 + 5x^2 + 3x + 15$?",
+      "options": {
+        "A": "$(x + 3)(x^2 + 5)$",
+        "B": "$(x + 5)(x^2 + 3)$",
+        "C": "$(x - 5)(x^2 + 3)$",
+        "D": "$(x^2 + 5)(x + 3)$"
+      },
+      "answer": "B",
+      "solution": "Group the four terms in pairs and factor each pair: $$x^3 + 5x^2 + 3x + 15 = x^2(x + 5) + 3(x + 5).$$ Both pairs now share the factor $x + 5$, so factor it out: $$(x + 5)(x^2 + 3).$$ Swapping which number goes with which factor gives $(x + 3)(x^2 + 5)$, which expands to $x^3 + 3x^2 + 5x + 15$ — check the middle terms to tell them apart. The correct answer is **B**.",
+      "verify": [
+        "Eq(expand((x + 5)*(x**2 + 3)), x**3 + 5*x**2 + 3*x + 15)",
+        "Eq(expand((x + 3)*(x**2 + 5)), x**3 + 3*x**2 + 5*x + 15)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q03",
+      "module": "1",
+      "questionNumber": 3,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "sample_stats_margin_error",
+      "difficulty": "easy",
+      "body": "In a random sample of $200$ students at a school, $40$ said they ride a bicycle to school. Based on this sample, which is the best estimate of the number of the school's $3{,}000$ students who ride a bicycle to school?",
+      "options": {
+        "A": "$40$",
+        "B": "$200$",
+        "C": "$600$",
+        "D": "$1500$"
+      },
+      "answer": "C",
+      "solution": "The sample proportion is $$\\frac{40}{200} = 0.2 = 20\\%.$$ Applying that proportion to the whole school: $$0.2 \\times 3000 = 600.$$ Reporting the sample count gives 40, and scaling by the number of samples rather than the proportion gives 3000 or 200. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(40,200), Rational(1,5))",
+        "Eq(Rational(1,5)*3000, 600)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q04",
+      "module": "1",
+      "questionNumber": 4,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "$$5(x - 2) = 3x$$ What is the solution to the equation above?",
+      "acceptedAnswers": [
+        "5"
+      ],
+      "solution": "Distribute, then gather like terms: $$5x - 10 = 3x \\;\\Rightarrow\\; 2x = 10 \\;\\Rightarrow\\; x = 5.$$ Check: $5(5 - 2) = 15$ and $3(5) = 15$. The correct answer is **5**.",
+      "verify": [
+        "Eq(5*(5 - 2), 3*5)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q05",
+      "module": "1",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "easy",
+      "body": "What is the measure, in degrees, of one interior angle of a regular hexagon?",
+      "options": {
+        "A": "$60$",
+        "B": "$90$",
+        "C": "$120$",
+        "D": "$720$"
+      },
+      "answer": "C",
+      "solution": "The interior angles of a hexagon sum to $$(6 - 2)(180) = 720,$$ and a REGULAR polygon has all angles equal, so divide by 6: $$\\frac{720}{6} = 120.$$ Reporting the total gives 720, and $\\frac{360}{6} = 60$ is one EXTERIOR angle — its supplement, $180 - 60 = 120$, confirms the answer. The correct answer is **C**.",
+      "verify": [
+        "Eq((6 - 2)*180, 720)",
+        "Eq(Rational(720,6), 120)",
+        "Eq(180 - Rational(360,6), 120)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q06",
+      "module": "1",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The function $f$ is defined by $f(x) = \\sqrt{x - 7}$. What is the domain of $f$?",
+      "options": {
+        "A": "$x \\le 7$",
+        "B": "$x \\ge -7$",
+        "C": "$x \\ge 0$",
+        "D": "$x \\ge 7$"
+      },
+      "answer": "D",
+      "solution": "A square root is defined only when what is inside it is not negative: $$x - 7 \\ge 0 \\;\\Rightarrow\\; x \\ge 7.$$ Testing confirms it: $f(7) = \\sqrt{0} = 0$ is fine, while $f(3) = \\sqrt{-4}$ is not a real number. Solving the inequality backwards gives $x \\le 7$, and moving 7 the wrong way gives $x \\ge -7$. The correct answer is **D**.",
+      "verify": [
+        "Eq(sqrt(7 - 7), 0)",
+        "Eq(sqrt(16 - 7), 3)",
+        "16 - 7 >= 0",
+        "Not(3 - 7 >= 0)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q07",
+      "module": "1",
+      "questionNumber": 7,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The quantity $y$ is directly proportional to $x$, and $y = 42$ when $x = 7$. What is the value of $y$ when $x = 11$?",
+      "options": {
+        "A": "$6$",
+        "B": "$46$",
+        "C": "$53$",
+        "D": "$66$"
+      },
+      "answer": "D",
+      "solution": "Direct proportion means $y = kx$ for a constant $k$: $$42 = k(7) \\;\\Rightarrow\\; k = 6.$$ Then at $x = 11$: $$y = 6(11) = 66.$$ Adding the change in $x$ to $y$ instead — $42 + 4 = 46$ — treats the relationship as a constant DIFFERENCE rather than a constant ratio. The correct answer is **D**.",
+      "verify": [
+        "Eq(Rational(42,7), 6)",
+        "Eq(6*11, 66)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q08",
+      "module": "1",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The functions $f$ and $g$ are defined by $f(x) = 2x - 1$ and $g(x) = 3x$. What is the value of $g(f(4))$?",
+      "options": {
+        "A": "$11$",
+        "B": "$12$",
+        "C": "$21$",
+        "D": "$23$"
+      },
+      "answer": "C",
+      "solution": "Work from the inside out: $$f(4) = 2(4) - 1 = 7, \\qquad g(7) = 3(7) = 21.$$ Composing in the other order gives $f(g(4)) = f(12) = 23$, a different value — the order of composition matters. The correct answer is **C**.",
+      "verify": [
+        "Eq(2*4 - 1, 7)",
+        "Eq(3*7, 21)",
+        "Eq(2*(3*4) - 1, 23)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q09",
+      "module": "1",
+      "questionNumber": 9,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "A population is modeled by $P(t) = 500 \\cdot 2^{\\,t/4}$, where $t$ is measured in years. After how many years does the population first reach $4{,}000$?",
+      "acceptedAnswers": [
+        "12"
+      ],
+      "solution": "Divide both sides by the starting value to isolate the power: $$2^{\\,t/4} = \\frac{4000}{500} = 8 = 2^3.$$ With equal bases the exponents match: $$\\frac{t}{4} = 3 \\;\\Rightarrow\\; t = 12.$$ The model doubles every 4 years, and reaching 8 times the start takes three doublings — $4 \\times 3 = 12$ years. Answering 3 gives the number of doublings, not the years. The correct answer is **12**.",
+      "verify": [
+        "Eq(Rational(4000,500), 8)",
+        "Eq(2**3, 8)",
+        "Eq(500*2**Rational(12,4), 4000)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q10",
+      "module": "1",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "medium",
+      "body": "The table shows the number of siblings reported by each of $25$ students. What is the median number of siblings?",
+      "options": {
+        "A": "$1$",
+        "B": "$2$",
+        "C": "$2.4$",
+        "D": "$3$"
+      },
+      "answer": "B",
+      "solution": "With 25 values the median is the $13$th when they are listed in order. Accumulate the frequencies from the smallest value: $$5, \\quad 5 + 9 = 14, \\quad 14 + 7 = 21, \\quad 21 + 4 = 25.$$ The running total first reaches 13 in the second row, so the $13$th student reported 2 siblings. The value 2 also has the largest frequency here, but that makes it the MODE; the running total is what identifies the median. The mean is $\\frac{60}{25} = 2.4$, a third distinct measure. The correct answer is **B**.",
+      "verify": [
+        "Eq(5 + 9 + 7 + 4, 25)",
+        "Eq(5 + 9, 14)",
+        "5 < 13",
+        "14 >= 13",
+        "Eq(1*5 + 2*9 + 3*7 + 4*4, 60)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p9-m1-q10.png",
+        "alt_en": "Two-row table of siblings 1, 2, 3, 4 against number of students 5, 9, 7, 4",
+        "width": 816,
+        "height": 189
+      }
+    },
+    {
+      "source": "SAT-P9-M1-Q11",
+      "module": "1",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "medium",
+      "body": "$$ax + 12 = 4x + 12$$ In the equation above, $a$ is a constant. If the equation has infinitely many solutions, what is the value of $a$?",
+      "options": {
+        "A": "$-4$",
+        "B": "$0$",
+        "C": "$4$",
+        "D": "$12$"
+      },
+      "answer": "C",
+      "solution": "An equation in one variable has infinitely many solutions only when the two sides are IDENTICAL — every $x$ must work. The constants already agree, so the coefficients of $x$ must agree too: $$a = 4.$$ Any other value of $a$ gives $(a - 4)x = 0$, which has the single solution $x = 0$ — one solution, not infinitely many. That is the distinction the question tests. The correct answer is **C**.",
+      "verify": [
+        "Eq(4*7 + 12, 4*7 + 12)",
+        "Eq(4*(-3) + 12, 4*(-3) + 12)",
+        "Eq(expand((5 - 4)*x), x)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q12",
+      "module": "1",
+      "questionNumber": 12,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The function $f$ is defined by $f(x) = 3x + 8$. If $f^{-1}$ is the inverse of $f$, what is the value of $f^{-1}(23)$?",
+      "options": {
+        "A": "$5$",
+        "B": "$15$",
+        "C": "$31$",
+        "D": "$77$"
+      },
+      "answer": "A",
+      "solution": "$f^{-1}(23)$ asks: which input to $f$ PRODUCES 23? Solve $$3x + 8 = 23 \\;\\Rightarrow\\; 3x = 15 \\;\\Rightarrow\\; x = 5.$$ No formula for the inverse is needed — reading the definition backwards is enough. Evaluating $f(23) = 77$ answers the forward question instead, and $\\frac{1}{f(23)}$ confuses the inverse FUNCTION with a reciprocal. The correct answer is **A**.",
+      "verify": [
+        "Eq(3*5 + 8, 23)",
+        "Eq(3*23 + 8, 77)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q13",
+      "module": "1",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "medium",
+      "body": "In the $xy$-plane, what is the distance between the points $(3, 5)$ and $(9, 13)$?",
+      "options": {
+        "A": "$8$",
+        "B": "$10$",
+        "C": "$14$",
+        "D": "$100$"
+      },
+      "answer": "B",
+      "solution": "The horizontal and vertical gaps are the legs of a right triangle, and the distance is its hypotenuse: $$d = \\sqrt{(9 - 3)^2 + (13 - 5)^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10.$$ Adding the gaps without squaring gives $6 + 8 = 14$, and taking only one gap gives 6 or 8. The correct answer is **B**.",
+      "verify": [
+        "Eq((9 - 3)**2 + (13 - 5)**2, 100)",
+        "Eq(sqrt(100), 10)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q14",
+      "module": "1",
+      "questionNumber": 14,
+      "format": "spr",
+      "domain": "psda",
+      "skill_tag": "percentages",
+      "difficulty": "medium",
+      "body": "Of the $180$ tickets sold for a concert, $63$ were student tickets. What percent of the tickets sold were student tickets? (Disregard the percent sign when entering your answer.)",
+      "acceptedAnswers": [
+        "35"
+      ],
+      "solution": "Divide the part by the whole and convert: $$\\frac{63}{180} = 0.35 = 35\\%.$$ The remaining $117$ tickets are $65\\%$, and $35 + 65 = 100$ as a check. The correct answer is **35**.",
+      "verify": [
+        "Eq(Rational(63,180)*100, 35)",
+        "Eq(180 - 63, 117)",
+        "Eq(Rational(117,180)*100, 65)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q15",
+      "module": "1",
+      "questionNumber": 15,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_inequalities",
+      "difficulty": "medium",
+      "body": "Which of the following gives all solutions of $11 - 4x \\ge 31$?",
+      "options": {
+        "A": "$x \\le -5$",
+        "B": "$x \\le 5$",
+        "C": "$x \\ge -5$",
+        "D": "$x \\ge 5$"
+      },
+      "answer": "A",
+      "solution": "Subtract 11 from both sides: $$-4x \\ge 20.$$ Now divide by $-4$. Dividing an inequality by a NEGATIVE number reverses the direction of the sign: $$x \\le -5.$$ Forgetting to flip gives $x \\ge -5$, the exact opposite set. Check with $x = -6$: $11 - 4(-6) = 35 \\ge 31$ — true, and $-6 \\le -5$, so the direction is right. The correct answer is **A**.",
+      "verify": [
+        "11 - 4*(-6) >= 31",
+        "Not(11 - 4*0 >= 31)",
+        "Eq(Rational(20,-4), -5)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q16",
+      "module": "1",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "medium",
+      "body": "What is the greater of the two solutions to $2x^2 - 11x + 12 = 0$?",
+      "options": {
+        "A": "$1.5$",
+        "B": "$2$",
+        "C": "$3$",
+        "D": "$4$"
+      },
+      "answer": "D",
+      "solution": "Split the middle term using two numbers whose product is $2 \\cdot 12 = 24$ and whose sum is $-11$: those are $-3$ and $-8$. $$2x^2 - 8x - 3x + 12 = 2x(x - 4) - 3(x - 4) = (2x - 3)(x - 4) = 0.$$ The solutions are $x = \\frac{3}{2}$ and $x = 4$, and the greater is 4. Reporting the smaller gives $1.5$. The correct answer is **D**.",
+      "verify": [
+        "Eq(expand((2*x - 3)*(x - 4)), 2*x**2 - 11*x + 12)",
+        "Eq(2*4**2 - 11*4 + 12, 0)",
+        "Eq(2*Rational(3,2)**2 - 11*Rational(3,2) + 12, 0)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q17",
+      "module": "1",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "medium",
+      "body": "A right pyramid has a square base with sides of length $9$ and a height of $10$. What is the volume of the pyramid?",
+      "options": {
+        "A": "$90$",
+        "B": "$243$",
+        "C": "$270$",
+        "D": "$810$"
+      },
+      "answer": "C",
+      "solution": "The reference sheet gives $V = \\frac{1}{3}Bh$, where $B$ is the area of the base: $$B = 9^2 = 81, \\qquad V = \\frac{1}{3}(81)(10) = 270.$$ Omitting the $\\frac{1}{3}$ gives 810 — that is the volume of the PRISM with the same base and height, exactly three times as large. The correct answer is **C**.",
+      "verify": [
+        "Eq(9**2, 81)",
+        "Eq(Rational(1,3)*81*10, 270)",
+        "Eq(81*10, 810)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q18",
+      "module": "1",
+      "questionNumber": 18,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "$$y = x^2 + 2x - 5$$ $$y = 3x + 1$$ The graphs of the equations above intersect at two points in the $xy$-plane. What is the sum of the $x$-coordinates of those points?",
+      "acceptedAnswers": [
+        "1"
+      ],
+      "solution": "Set the expressions equal and collect on one side: $$x^2 + 2x - 5 = 3x + 1 \\;\\Rightarrow\\; x^2 - x - 6 = 0.$$ Factoring gives $(x - 3)(x + 2) = 0$, so $x = 3$ and $x = -2$, and $$3 + (-2) = 1.$$ Faster: for $x^2 + bx + c = 0$ the solutions sum to $-b$, and here $-(-1) = 1$. The correct answer is **1**.",
+      "verify": [
+        "Eq(expand((x - 3)*(x + 2)), x**2 - x - 6)",
+        "Eq(3**2 + 2*3 - 5, 3*3 + 1)",
+        "Eq((-2)**2 + 2*(-2) - 5, 3*(-2) + 1)",
+        "Eq(3 + (-2), 1)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q19",
+      "module": "1",
+      "questionNumber": 19,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "probability_conditional",
+      "difficulty": "hard",
+      "body": "The two-way table shows how $80$ people responded to a survey, by age group. If one of the people who answered NO is selected at random, what is the probability that the person is under $40$?",
+      "options": {
+        "A": "$\\dfrac{18}{80}$",
+        "B": "$\\dfrac{18}{40}$",
+        "C": "$\\dfrac{18}{27}$",
+        "D": "$\\dfrac{27}{80}$"
+      },
+      "answer": "C",
+      "solution": "The condition selects the NO group, so the denominator is that COLUMN's total: $$18 + 9 = 27.$$ Of those 27, the 18 who are under 40 give $$\\frac{18}{27}.$$ Dividing by the under-40 ROW total 40 answers the reversed question, and dividing by 80 ignores the condition entirely. Identifying which total the condition selects is the whole task. The correct answer is **C**.",
+      "verify": [
+        "Eq(22 + 18 + 31 + 9, 80)",
+        "Eq(18 + 9, 27)",
+        "Eq(22 + 18, 40)",
+        "Rational(18,27) != Rational(18,40)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p9-m1-q19.png",
+        "alt_en": "Two-way table of age group (under 40, 40 or older) against response (yes, no) with row and column totals",
+        "width": 792,
+        "height": 322
+      }
+    },
+    {
+      "source": "SAT-P9-M1-Q20",
+      "module": "1",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "right_triangles_trig",
+      "difficulty": "hard",
+      "body": "In right triangle $ABC$, the right angle is at $C$, and the altitude from $C$ meets the hypotenuse $AB$ at $D$. If $AD = 4$ and $DB = 9$, what is the length of the altitude $CD$?",
+      "options": {
+        "A": "$5$",
+        "B": "$6$",
+        "C": "$6.5$",
+        "D": "$13$"
+      },
+      "answer": "B",
+      "solution": "The altitude to the hypotenuse splits a right triangle into two triangles SIMILAR to the original and to each other. Matching corresponding sides in the two small triangles gives $$\\frac{AD}{CD} = \\frac{CD}{DB} \\;\\Rightarrow\\; CD^2 = AD \\cdot DB.$$ So $$CD^2 = 4 \\times 9 = 36 \\;\\Rightarrow\\; CD = 6.$$ The altitude is the GEOMETRIC mean of the two pieces, not the arithmetic one — averaging gives $6.5$, and the full hypotenuse is $4 + 9 = 13$. The correct answer is **B**.",
+      "verify": [
+        "Eq(4*9, 36)",
+        "Eq(sqrt(36), 6)",
+        "Eq(4 + 9, 13)",
+        "Ne(Rational(4 + 9, 2), 6)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q21",
+      "module": "1",
+      "questionNumber": 21,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "hard",
+      "body": "The perimeter of a rectangle is given by $P = 2(L + W)$. A rectangle has perimeter $46$ and width $W = 15$. What is its length $L$?",
+      "acceptedAnswers": [
+        "8"
+      ],
+      "solution": "Substitute the known values and undo the operations from the outside in: $$46 = 2(L + 15) \\;\\Rightarrow\\; 23 = L + 15 \\;\\Rightarrow\\; L = 8.$$ Check: $2(8 + 15) = 2(23) = 46$. Subtracting 15 from 46 before halving gives $15.5$ — the division by 2 must come first because the 2 multiplies the WHOLE sum. The correct answer is **8**.",
+      "verify": [
+        "Eq(2*(8 + 15), 46)",
+        "Eq(Rational(46,2) - 15, 8)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M1-Q22",
+      "module": "1",
+      "questionNumber": 22,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "$$\\frac{1}{2}x + \\frac{1}{3}y = 8$$ $$x - y = 6$$ If $(x, y)$ is the solution to the system above, what is the value of $x$?",
+      "options": {
+        "A": "$6$",
+        "B": "$10$",
+        "C": "$12$",
+        "D": "$14$"
+      },
+      "answer": "C",
+      "solution": "Clear the fractions first by multiplying the first equation by 6, the least common denominator of 2 and 3: $$3x + 2y = 48.$$ The second equation gives $y = x - 6$. Substitute: $$3x + 2(x - 6) = 48 \\;\\Rightarrow\\; 5x - 12 = 48 \\;\\Rightarrow\\; 5x = 60 \\;\\Rightarrow\\; x = 12.$$ Then $y = 6$, and the original first equation checks out: $\\frac{1}{2}(12) + \\frac{1}{3}(6) = 6 + 2 = 8$. Reporting $y$ gives 6, and multiplying the first equation by 2 instead of 6 leaves the $y$-term fractional. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(1,2)*12 + Rational(1,3)*6, 8)",
+        "Eq(12 - 6, 6)",
+        "Eq(3*12 + 2*6, 48)"
+      ]
+    }
+  ],
+  "module2Easy": [
+    {
+      "source": "SAT-P9-M2E-Q01",
+      "module": "2E",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $x + 9 = 4$, what is the value of $x$?",
+      "options": {
+        "A": "$-5$",
+        "B": "$4$",
+        "C": "$5$",
+        "D": "$13$"
+      },
+      "answer": "A",
+      "solution": "Subtract 9 from both sides: $$x = 4 - 9 = -5.$$ Reversing the subtraction gives 5, and adding gives 13. The correct answer is **A**.",
+      "verify": [
+        "Eq(-5 + 9, 4)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q02",
+      "module": "2E",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "Which of the following is equivalent to $2(3x + 4)$?",
+      "options": {
+        "A": "$5x + 6$",
+        "B": "$6x + 4$",
+        "C": "$6x + 8$",
+        "D": "$6x + 42$"
+      },
+      "answer": "C",
+      "solution": "Distribute the 2 across BOTH terms: $$2 \\cdot 3x = 6x, \\qquad 2 \\cdot 4 = 8.$$ So the result is $6x + 8$. Multiplying only the first term leaves $6x + 4$. The correct answer is **C**.",
+      "verify": [
+        "Eq(expand(2*(3*x + 4)), 6*x + 8)",
+        "Eq(2*(3*1 + 4), 14)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q03",
+      "module": "2E",
+      "questionNumber": 3,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "The function $f$ is defined by $f(x) = 5x + 2$. What is the value of $f(6)$?",
+      "acceptedAnswers": [
+        "32"
+      ],
+      "solution": "Substitute $x = 6$: $$f(6) = 5(6) + 2 = 30 + 2 = 32.$$ The correct answer is **32**.",
+      "verify": [
+        "Eq(5*6 + 2, 32)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q04",
+      "module": "2E",
+      "questionNumber": 4,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "percentages",
+      "difficulty": "easy",
+      "body": "A basket holds $36$ pieces of fruit, of which $9$ are pears. What percent of the fruit are pears?",
+      "options": {
+        "A": "$9$",
+        "B": "$25$",
+        "C": "$27$",
+        "D": "$75$"
+      },
+      "answer": "B",
+      "solution": "Divide the part by the whole: $$\\frac{9}{36} = 0.25 = 25\\%.$$ Reporting the count gives 9, and the percent that are NOT pears is $75\\%$. The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(9,36)*100, 25)",
+        "Eq(Rational(27,36)*100, 75)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q05",
+      "module": "2E",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "easy",
+      "body": "A rectangle has a length of $7$ and a width of $5$. What is the perimeter of the rectangle?",
+      "options": {
+        "A": "$12$",
+        "B": "$24$",
+        "C": "$35$",
+        "D": "$70$"
+      },
+      "answer": "B",
+      "solution": "Perimeter adds all four sides, which is twice the sum of the length and width: $$P = 2(7 + 5) = 24.$$ Multiplying instead gives the AREA, 35, and adding the two dimensions once gives 12. The correct answer is **B**.",
+      "verify": [
+        "Eq(2*(7 + 5), 24)",
+        "Eq(7*5, 35)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q06",
+      "module": "2E",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The function $g$ is defined by $g(x) = x^2 - 5x$. What is the value of $g(-1)$?",
+      "options": {
+        "A": "$-6$",
+        "B": "$-4$",
+        "C": "$4$",
+        "D": "$6$"
+      },
+      "answer": "D",
+      "solution": "Substitute $x = -1$, squaring first: $$g(-1) = (-1)^2 - 5(-1) = 1 + 5 = 6.$$ Subtracting rather than recognising the double negative gives $1 - 5 = -4$. The correct answer is **D**.",
+      "verify": [
+        "Eq((-1)**2 - 5*(-1), 6)",
+        "Eq((-1)**2, 1)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q07",
+      "module": "2E",
+      "questionNumber": 7,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "easy",
+      "body": "The point $(k, 4)$ lies on the graph of $2x + 3y = 20$ in the $xy$-plane. What is the value of $k$?",
+      "acceptedAnswers": [
+        "4"
+      ],
+      "solution": "A point on the graph satisfies the equation. Substitute $y = 4$: $$2k + 12 = 20 \\;\\Rightarrow\\; 2k = 8 \\;\\Rightarrow\\; k = 4.$$ The correct answer is **4**.",
+      "verify": [
+        "Eq(2*4 + 3*4, 20)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q08",
+      "module": "2E",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "easy",
+      "body": "The function $f$ is defined by $f(x) = (x - 6)(x + 1)$. What are the zeros of $f$?",
+      "options": {
+        "A": "$-6$ and $1$",
+        "B": "$-6$ and $-1$",
+        "C": "$-1$ and $6$",
+        "D": "$1$ and $6$"
+      },
+      "answer": "C",
+      "solution": "A product equals zero when one of its factors does: $$x - 6 = 0 \\;\\Rightarrow\\; x = 6, \\qquad x + 1 = 0 \\;\\Rightarrow\\; x = -1.$$ Each zero has the OPPOSITE sign of the number written in its factor. The correct answer is **C**.",
+      "verify": [
+        "Eq((6 - 6)*(6 + 1), 0)",
+        "Eq((-1 - 6)*(-1 + 1), 0)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q09",
+      "module": "2E",
+      "questionNumber": 9,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_functions",
+      "difficulty": "easy",
+      "body": "A gym charges a $\\$30$ joining fee plus $\\$12$ for each month of membership. What is the total cost for $4$ months?",
+      "options": {
+        "A": "$\\$42$",
+        "B": "$\\$48$",
+        "C": "$\\$78$",
+        "D": "$\\$168$"
+      },
+      "answer": "C",
+      "solution": "The joining fee is paid once; the monthly charge scales with the months: $$30 + 12(4) = 30 + 48 = 78.$$ Omitting the joining fee gives 48, and charging the fee monthly gives $4(30 + 12) = 168$. The correct answer is **C**.",
+      "verify": [
+        "Eq(30 + 12*4, 78)",
+        "Eq(4*(30 + 12), 168)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q10",
+      "module": "2E",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "For $x \\ne 0$, which of the following is equivalent to $\\dfrac{x^{9}}{x^{4}}$?",
+      "options": {
+        "A": "$x^{2}$",
+        "B": "$x^{5}$",
+        "C": "$x^{13}$",
+        "D": "$x^{36}$"
+      },
+      "answer": "B",
+      "solution": "Dividing powers with the same base SUBTRACTS the exponents: $$\\frac{x^{9}}{x^{4}} = x^{9 - 4} = x^{5}.$$ Adding them gives $x^{13}$ and multiplying gives $x^{36}$ — those are the rules for multiplying and for a power of a power. The correct answer is **B**.",
+      "verify": [
+        "Eq(simplify(x**9/x**4 - x**5), 0)",
+        "Eq(2**9/2**4, 2**5)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q11",
+      "module": "2E",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "easy",
+      "body": "What is the mean of the data set $3$, $7$, $7$, $10$, $13$?",
+      "options": {
+        "A": "$7$",
+        "B": "$8$",
+        "C": "$10$",
+        "D": "$40$"
+      },
+      "answer": "B",
+      "solution": "Add the values and divide by how many there are: $$\\frac{3 + 7 + 7 + 10 + 13}{5} = \\frac{40}{5} = 8.$$ The MEDIAN — the middle value in order — is 7, and the MODE is also 7; the mean is pulled up by the 13. The correct answer is **B**.",
+      "verify": [
+        "Eq(3 + 7 + 7 + 10 + 13, 40)",
+        "Eq(Rational(40,5), 8)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q12",
+      "module": "2E",
+      "questionNumber": 12,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "medium",
+      "body": "What is the greater of the two solutions to $x^2 - 6x + 5 = 0$?",
+      "acceptedAnswers": [
+        "5"
+      ],
+      "solution": "Two numbers with product 5 and sum $-6$ are $-1$ and $-5$: $$x^2 - 6x + 5 = (x - 1)(x - 5) = 0.$$ The solutions are 1 and 5, and the greater is 5. The correct answer is **5**.",
+      "verify": [
+        "Eq(expand((x - 1)*(x - 5)), x**2 - 6*x + 5)",
+        "Eq(5**2 - 6*5 + 5, 0)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q13",
+      "module": "2E",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "medium",
+      "body": "$$x + y = 30$$ $$x - y = 8$$ If $(x, y)$ is the solution to the system above, what is the value of $x$?",
+      "options": {
+        "A": "$11$",
+        "B": "$15$",
+        "C": "$19$",
+        "D": "$38$"
+      },
+      "answer": "C",
+      "solution": "Adding the two equations eliminates $y$ at once: $$2x = 38 \\;\\Rightarrow\\; x = 19.$$ Then $y = 11$, and both originals check. Subtracting instead gives $2y = 22$, or $y = 11$ — the other variable. The correct answer is **C**.",
+      "verify": [
+        "Eq(19 + 11, 30)",
+        "Eq(19 - 11, 8)",
+        "Eq(30 + 8, 38)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q14",
+      "module": "2E",
+      "questionNumber": 14,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The graph of $y = x^2$ is shifted $4$ units DOWN to produce the graph of $y = g(x)$. Which equation defines $g$?",
+      "options": {
+        "A": "$g(x) = (x - 4)^2$",
+        "B": "$g(x) = (x + 4)^2$",
+        "C": "$g(x) = x^2 - 4$",
+        "D": "$g(x) = x^2 + 4$"
+      },
+      "answer": "C",
+      "solution": "A VERTICAL shift changes the output, so it is applied outside the squaring — subtract 4 from the whole expression: $$g(x) = x^2 - 4.$$ Putting the 4 inside the parentheses, as in $(x - 4)^2$, shifts the graph HORIZONTALLY instead. Checking one point settles it: the vertex $(0, 0)$ must move to $(0, -4)$, and only $x^2 - 4$ does that. The correct answer is **C**.",
+      "verify": [
+        "Eq(0**2 - 4, -4)",
+        "Eq((0 - 4)**2, 16)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q15",
+      "module": "2E",
+      "questionNumber": 15,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "medium",
+      "body": "$$\\frac{x}{4} + 3 = 11$$ What is the solution to the equation above?",
+      "acceptedAnswers": [
+        "32"
+      ],
+      "solution": "Subtract 3, then multiply by 4: $$\\frac{x}{4} = 8 \\;\\Rightarrow\\; x = 32.$$ Check: $\\frac{32}{4} + 3 = 8 + 3 = 11$. The correct answer is **32**.",
+      "verify": [
+        "Eq(Rational(32,4) + 3, 11)",
+        "Eq((11 - 3)*4, 32)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q16",
+      "module": "2E",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "ratios_rates_units",
+      "difficulty": "medium",
+      "body": "A car uses $8$ liters of fuel to travel $56$ kilometers. At this rate, how many liters are needed to travel $189$ kilometers?",
+      "options": {
+        "A": "$7$",
+        "B": "$24$",
+        "C": "$27$",
+        "D": "$32$"
+      },
+      "answer": "C",
+      "solution": "Find the distance per liter, then divide: $$\\frac{56}{8} = 7 \\text{ km per liter}, \\qquad \\frac{189}{7} = 27 \\text{ liters}.$$ Multiplying by 7 instead of dividing gives $1323$, and using 8 liters per 189 km gives about 24. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(56,8), 7)",
+        "Eq(Rational(189,7), 27)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q17",
+      "module": "2E",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "A quantity begins at $800$ and decreases by $15\\%$ each year. Which function gives the quantity after $t$ years?",
+      "options": {
+        "A": "$q(t) = 800(0.15)^t$",
+        "B": "$q(t) = 800(0.85)^t$",
+        "C": "$q(t) = 800(1.15)^t$",
+        "D": "$q(t) = 800 - 15t$"
+      },
+      "answer": "B",
+      "solution": "Decreasing by $15\\%$ leaves $85\\%$ of the previous amount, so each year multiplies by $$1 - 0.15 = 0.85.$$ After $t$ years the factor applies $t$ times, giving $q(t) = 800(0.85)^t$. A base of $0.15$ would keep only $15\\%$ each year, and $800 - 15t$ is LINEAR — it subtracts a fixed 15, not $15\\%$ of a shrinking amount. The correct answer is **B**.",
+      "verify": [
+        "Eq(1 - Rational(15,100), Rational(85,100))",
+        "Eq(800*Rational(85,100), 680)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q18",
+      "module": "2E",
+      "questionNumber": 18,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "right_triangles_trig",
+      "difficulty": "medium",
+      "body": "A right triangle has legs of length $5$ and $12$. What is the length of the hypotenuse?",
+      "options": {
+        "A": "$6$",
+        "B": "$7$",
+        "C": "$13$",
+        "D": "$17$"
+      },
+      "answer": "C",
+      "solution": "By the Pythagorean theorem: $$h^2 = 5^2 + 12^2 = 25 + 144 = 169 \\;\\Rightarrow\\; h = 13.$$ Adding the legs gives 17, which would be the perimeter contribution of the two legs, not the hypotenuse. The correct answer is **C**.",
+      "verify": [
+        "Eq(5**2 + 12**2, 169)",
+        "Eq(sqrt(169), 13)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q19",
+      "module": "2E",
+      "questionNumber": 19,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "medium",
+      "body": "A line in the $xy$-plane passes through $(1, 7)$ and $(5, 19)$. What is the slope of the line?",
+      "acceptedAnswers": [
+        "3"
+      ],
+      "solution": "Slope is the change in $y$ over the change in $x$: $$m = \\frac{19 - 7}{5 - 1} = \\frac{12}{4} = 3.$$ The correct answer is **3**.",
+      "verify": [
+        "Eq(Rational(19 - 7, 5 - 1), 3)",
+        "Eq(7 + 3*(5 - 1), 19)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q20",
+      "module": "2E",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "medium",
+      "body": "Which of the following is equivalent to $\\sqrt{50}$?",
+      "options": {
+        "A": "$2\\sqrt{5}$",
+        "B": "$5\\sqrt{2}$",
+        "C": "$10\\sqrt{5}$",
+        "D": "$25\\sqrt{2}$"
+      },
+      "answer": "B",
+      "solution": "Pull out the largest perfect-square factor of 50: $$\\sqrt{50} = \\sqrt{25 \\cdot 2} = \\sqrt{25}\\sqrt{2} = 5\\sqrt{2}.$$ A quick check: $5\\sqrt{2} \\approx 7.07$ and $\\sqrt{50} \\approx 7.07$, while $2\\sqrt{5} \\approx 4.47$. The correct answer is **B**.",
+      "verify": [
+        "Eq(simplify(sqrt(50)), 5*sqrt(2))",
+        "Eq(simplify((5*sqrt(2))**2), 50)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q21",
+      "module": "2E",
+      "questionNumber": 21,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "circles",
+      "difficulty": "hard",
+      "body": "A circle has a radius of $5$. What is the length of an arc intercepted by a central angle of $72^\\circ$?",
+      "options": {
+        "A": "$\\pi$",
+        "B": "$2\\pi$",
+        "C": "$5\\pi$",
+        "D": "$10\\pi$"
+      },
+      "answer": "B",
+      "solution": "An arc is the same fraction of the circumference that its central angle is of a full turn: $$\\frac{72}{360} = \\frac{1}{5}.$$ The circumference is $2\\pi(5) = 10\\pi$, so $$\\text{arc} = \\frac{1}{5}(10\\pi) = 2\\pi.$$ Applying the fraction to the AREA $25\\pi$ instead gives $5\\pi$, a different quantity with different units. The correct answer is **B**.",
+      "verify": [
+        "Eq(Rational(72,360), Rational(1,5))",
+        "Eq(2*5, 10)",
+        "Eq(Rational(10,5), 2)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2E-Q22",
+      "module": "2E",
+      "questionNumber": 22,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "hard",
+      "body": "$$3(x - 4) = 2x + 1$$ What is the solution to the equation above?",
+      "acceptedAnswers": [
+        "13"
+      ],
+      "solution": "Distribute, then gather like terms: $$3x - 12 = 2x + 1 \\;\\Rightarrow\\; x = 13.$$ Check: $3(13 - 4) = 27$ and $2(13) + 1 = 27$. The correct answer is **13**.",
+      "verify": [
+        "Eq(3*(13 - 4), 2*13 + 1)",
+        "Eq(3*(13 - 4), 27)"
+      ]
+    }
+  ],
+  "module2Hard": [
+    {
+      "source": "SAT-P9-M2H-Q01",
+      "module": "2H",
+      "questionNumber": 1,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "easy",
+      "body": "If $7x + 3 = 3x + 27$, what is the value of $x$?",
+      "options": {
+        "A": "$6$",
+        "B": "$7.5$",
+        "C": "$10$",
+        "D": "$24$"
+      },
+      "answer": "A",
+      "solution": "Gather like terms: $$4x = 24 \\;\\Rightarrow\\; x = 6.$$ Stopping at $4x = 24$ gives 24. The correct answer is **A**.",
+      "verify": [
+        "Eq(7*6 + 3, 3*6 + 27)",
+        "Eq((27 - 3)/(7 - 3), 6)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q02",
+      "module": "2H",
+      "questionNumber": 2,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "easy",
+      "body": "Which of the following is equivalent to $(2x + 1)(2x - 1)$?",
+      "options": {
+        "A": "$4x^2 - 1$",
+        "B": "$4x^2 + 1$",
+        "C": "$4x^2 - 4x - 1$",
+        "D": "$4x^2 + 4x - 1$"
+      },
+      "answer": "A",
+      "solution": "The two middle products cancel because the constants are opposites: $$(2x + 1)(2x - 1) = 4x^2 - 2x + 2x - 1 = 4x^2 - 1.$$ This is the difference-of-squares pattern, so no $x$-term survives. The correct answer is **A**.",
+      "verify": [
+        "Eq(expand((2*x + 1)*(2*x - 1)), 4*x**2 - 1)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q03",
+      "module": "2H",
+      "questionNumber": 3,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "medium",
+      "body": "$$3x + y = 22$$ $$x + y = 10$$ If $(x, y)$ is the solution to the system above, what is the value of $x$?",
+      "acceptedAnswers": [
+        "6"
+      ],
+      "solution": "The $y$-terms already match, so subtract the second equation from the first: $$2x = 12 \\;\\Rightarrow\\; x = 6.$$ Then $y = 4$, and both originals check: $3(6) + 4 = 22$ and $6 + 4 = 10$. The correct answer is **6**.",
+      "verify": [
+        "Eq(3*6 + 4, 22)",
+        "Eq(6 + 4, 10)",
+        "Eq(22 - 10, 12)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q04",
+      "module": "2H",
+      "questionNumber": 4,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "area_volume",
+      "difficulty": "medium",
+      "body": "A right triangle has legs of length $8$ and $15$. What is the area of the triangle?",
+      "options": {
+        "A": "$17$",
+        "B": "$23$",
+        "C": "$60$",
+        "D": "$120$"
+      },
+      "answer": "C",
+      "solution": "In a right triangle the two legs are perpendicular, so they serve as base and height: $$A = \\frac{1}{2}(8)(15) = 60.$$ Omitting the $\\frac{1}{2}$ gives 120, and 17 is the HYPOTENUSE (from the $8$-$15$-$17$ triple), not the area. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(1,2)*8*15, 60)",
+        "Eq(8**2 + 15**2, 17**2)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q05",
+      "module": "2H",
+      "questionNumber": 5,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "probability_conditional",
+      "difficulty": "medium",
+      "body": "A bag holds $50$ tokens: $14$ are gold and the rest are silver. Two tokens are drawn at random WITHOUT replacement. What is the probability that both are gold?",
+      "options": {
+        "A": "$\\dfrac{14}{50} \\cdot \\dfrac{14}{50}$",
+        "B": "$\\dfrac{14}{50} \\cdot \\dfrac{13}{49}$",
+        "C": "$\\dfrac{14}{50} + \\dfrac{13}{49}$",
+        "D": "$\\dfrac{14}{50} \\cdot \\dfrac{13}{50}$"
+      },
+      "answer": "B",
+      "solution": "The first draw is gold with probability $\\frac{14}{50}$. Because the token is NOT replaced, both counts drop for the second draw: 13 gold remain out of 49 tokens. Multiply, since both must happen: $$\\frac{14}{50} \\cdot \\frac{13}{49}.$$ Choice A treats the draws as independent — that would be correct WITH replacement. Choice D reduces the numerator but forgets the denominator, and adding probabilities answers an ''or'' question. The correct answer is **B**.",
+      "verify": [
+        "Eq(50 - 14, 36)",
+        "Eq(Rational(14,50)*Rational(13,49), Rational(13,175))",
+        "Ne(Rational(14,50)*Rational(13,49), Rational(14,50)*Rational(14,50))"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q06",
+      "module": "2H",
+      "questionNumber": 6,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "medium",
+      "body": "The function $f$ is defined by $f(x) = 2x^2 - 4x + 1$. What is the value of $f(-3)$?",
+      "options": {
+        "A": "$-5$",
+        "B": "$7$",
+        "C": "$19$",
+        "D": "$31$"
+      },
+      "answer": "D",
+      "solution": "Substitute $x = -3$, squaring before multiplying: $$f(-3) = 2(9) - 4(-3) + 1 = 18 + 12 + 1 = 31.$$ Treating $-4(-3)$ as $-12$ gives $18 - 12 + 1 = 7$, and squaring $-3$ as $-9$ gives $-18 + 12 + 1 = -5$. The correct answer is **D**.",
+      "verify": [
+        "Eq(2*(-3)**2 - 4*(-3) + 1, 31)",
+        "Eq((-3)**2, 9)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q07",
+      "module": "2H",
+      "questionNumber": 7,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "medium",
+      "body": "The solutions to $x^2 + 4x - 21 = 0$ are $p$ and $q$. What is the value of $|p - q|$?",
+      "acceptedAnswers": [
+        "10"
+      ],
+      "solution": "Factor with two numbers whose product is $-21$ and sum is $+4$: those are $+7$ and $-3$. $$x^2 + 4x - 21 = (x + 7)(x - 3) = 0,$$ so the solutions are $-7$ and $3$. Their positive difference is $$|{-7} - 3| = 10.$$ The SUM of the solutions is $-4$ — a different quantity, and the one the coefficient $b$ gives directly. The correct answer is **10**.",
+      "verify": [
+        "Eq(expand((x + 7)*(x - 3)), x**2 + 4*x - 21)",
+        "Eq(Abs(-7 - 3), 10)",
+        "Eq(-7 + 3, -4)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q08",
+      "module": "2H",
+      "questionNumber": 8,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_inequalities",
+      "difficulty": "medium",
+      "body": "What is the least integer value of $x$ that satisfies $6x - 5 > 2x + 19$?",
+      "options": {
+        "A": "$5$",
+        "B": "$6$",
+        "C": "$7$",
+        "D": "$24$"
+      },
+      "answer": "C",
+      "solution": "Collect terms: $$4x > 24 \\;\\Rightarrow\\; x > 6.$$ The inequality is STRICT, so $x = 6$ does not satisfy it — $6(6) - 5 = 31$ and $2(6) + 19 = 31$ are equal, not greater. The least integer strictly above 6 is 7. The correct answer is **C**.",
+      "verify": [
+        "Eq(6*6 - 5, 2*6 + 19)",
+        "6*7 - 5 > 2*7 + 19",
+        "Not(6*6 - 5 > 2*6 + 19)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q09",
+      "module": "2H",
+      "questionNumber": 9,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "lines_angles_triangles",
+      "difficulty": "medium",
+      "body": "In the figure, parallel lines $\\ell$ and $m$ are cut by a transversal. One interior angle on the same side of the transversal measures $118^\\circ$. What is the measure, in degrees, of the other same-side interior angle?",
+      "options": {
+        "A": "$59$",
+        "B": "$62$",
+        "C": "$118$",
+        "D": "$242$"
+      },
+      "answer": "B",
+      "solution": "Same-side interior angles between parallel lines are SUPPLEMENTARY, not equal: $$180 - 118 = 62.$$ Alternate interior angles and corresponding angles would be equal to $118^\\circ$ — recognising which pair the figure shows is the whole task. Halving gives 59. The correct answer is **B**.",
+      "verify": [
+        "Eq(180 - 118, 62)",
+        "Eq(118 + 62, 180)"
+      ],
+      "figure": {
+        "src": "/sat-figures/sat-p9-m2h-q09.png",
+        "alt_en": "Two parallel lines cut by a transversal with one same-side interior angle labeled 118 degrees and the other labeled x degrees",
+        "width": 814,
+        "height": 362
+      }
+    },
+    {
+      "source": "SAT-P9-M2H-Q10",
+      "module": "2H",
+      "questionNumber": 10,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "A farm has only chickens and sheep, $26$ animals in all. Together they have $76$ legs. How many sheep are there?",
+      "options": {
+        "A": "$12$",
+        "B": "$13$",
+        "C": "$14$",
+        "D": "$19$"
+      },
+      "answer": "A",
+      "solution": "Let $s$ be the sheep (4 legs each) and $c$ the chickens (2 legs each): $$s + c = 26, \\qquad 4s + 2c = 76.$$ Substitute $c = 26 - s$: $$4s + 2(26 - s) = 76 \\;\\Rightarrow\\; 2s + 52 = 76 \\;\\Rightarrow\\; s = 12.$$ So there are 12 sheep and 14 chickens; the check holds: $4(12) + 2(14) = 48 + 28 = 76$. Reporting the chickens gives 14. The correct answer is **A**.",
+      "verify": [
+        "Eq(12 + 14, 26)",
+        "Eq(4*12 + 2*14, 76)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q11",
+      "module": "2H",
+      "questionNumber": 11,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_equations_systems",
+      "difficulty": "hard",
+      "body": "How many distinct real solutions does $x^2 - 4x + 4 = 0$ have?",
+      "options": {
+        "A": "$0$",
+        "B": "$1$",
+        "C": "$2$",
+        "D": "$4$"
+      },
+      "answer": "B",
+      "solution": "The discriminant decides: $$b^2 - 4ac = 16 - 16 = 0,$$ and a zero discriminant means exactly ONE distinct real solution. Factoring confirms it: $x^2 - 4x + 4 = (x - 2)^2$, whose only root is $x = 2$ — a repeated root, but a single distinct value. Answering 2 counts the repeated root twice. The correct answer is **B**.",
+      "verify": [
+        "Eq((-4)**2 - 4*1*4, 0)",
+        "Eq(expand((x - 2)**2), x**2 - 4*x + 4)",
+        "Eq(2**2 - 4*2 + 4, 0)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q12",
+      "module": "2H",
+      "questionNumber": 12,
+      "format": "spr",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "The function $h$ is defined by $h(x) = a \\cdot 2^{\\,x}$, where $a$ is a constant. If $h(1) = 6$, what is the value of $h(4)$?",
+      "acceptedAnswers": [
+        "48"
+      ],
+      "solution": "Use the given value to find $a$: $$a \\cdot 2^1 = 6 \\;\\Rightarrow\\; a = 3.$$ Then $$h(4) = 3 \\cdot 2^4 = 3 \\cdot 16 = 48.$$ Shortcut: from $x = 1$ to $x = 4$ is three steps, and each step doubles, so $6 \\cdot 2^3 = 48$. Adding instead of doubling would wrongly give 24. The correct answer is **48**.",
+      "verify": [
+        "Eq(3*2**1, 6)",
+        "Eq(3*2**4, 48)",
+        "Eq(6*2**3, 48)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q13",
+      "module": "2H",
+      "questionNumber": 13,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "hard",
+      "body": "$$2(x - 1) + 3(x + 2) = 29$$ What is the solution to the equation above?",
+      "options": {
+        "A": "$4.2$",
+        "B": "$5$",
+        "C": "$5.8$",
+        "D": "$9$"
+      },
+      "answer": "B",
+      "solution": "Distribute both products, then combine: $$2x - 2 + 3x + 6 = 29 \\;\\Rightarrow\\; 5x + 4 = 29 \\;\\Rightarrow\\; 5x = 25 \\;\\Rightarrow\\; x = 5.$$ Check: $2(4) + 3(7) = 8 + 21 = 29$. Mis-signing the $-2$ gives $5x + 8 = 29$, or $4.2$. The correct answer is **B**.",
+      "verify": [
+        "Eq(2*(5 - 1) + 3*(5 + 2), 29)",
+        "Eq(2*4 + 3*7, 29)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q14",
+      "module": "2H",
+      "questionNumber": 14,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "hard",
+      "body": "For $x \\ne -5$, which of the following is equivalent to $\\dfrac{x^2 - 25}{x + 5}$?",
+      "options": {
+        "A": "$x - 5$",
+        "B": "$x + 5$",
+        "C": "$x - 25$",
+        "D": "$\\dfrac{x - 25}{5}$"
+      },
+      "answer": "A",
+      "solution": "The numerator is a difference of squares: $$\\frac{x^2 - 25}{x + 5} = \\frac{(x - 5)(x + 5)}{x + 5} = x - 5,$$ cancelling the common factor $x + 5$, which is nonzero by the stated restriction. Cancelling the 25 against the 5 — a common but invalid move, since they are terms, not factors — would give $x - 5$ by accident here but fails in general. Check at $x = 0$: the original is $\\frac{-25}{5} = -5$, and $x - 5 = -5$. The correct answer is **A**.",
+      "verify": [
+        "Eq(simplify((x**2 - 25)/(x + 5) - (x - 5)), 0)",
+        "Eq(expand((x - 5)*(x + 5)), x**2 - 25)",
+        "Eq(Rational(0 - 25, 0 + 5), -5)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q15",
+      "module": "2H",
+      "questionNumber": 15,
+      "format": "spr",
+      "domain": "psda",
+      "skill_tag": "one_var_data",
+      "difficulty": "hard",
+      "body": "On a test, $6$ students scored a mean of $82$ and $4$ students scored a mean of $92$. What is the mean score of all $10$ students?",
+      "acceptedAnswers": [
+        "86"
+      ],
+      "solution": "Combine totals rather than averaging the two means, since the groups differ in size: $$6(82) = 492, \\qquad 4(92) = 368,$$ $$\\text{mean} = \\frac{492 + 368}{10} = \\frac{860}{10} = 86.$$ Averaging $82$ and $92$ gives 87, which is too high — the larger group scored lower, so the combined mean must sit closer to 82. The correct answer is **86**.",
+      "verify": [
+        "Eq(6*82, 492)",
+        "Eq(4*92, 368)",
+        "Eq(Rational(860,10), 86)",
+        "86 < Rational(82 + 92, 2)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q16",
+      "module": "2H",
+      "questionNumber": 16,
+      "format": "mcq",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_one_var",
+      "difficulty": "hard",
+      "body": "Three-fifths of a number is $42$. What is one-half of that number?",
+      "options": {
+        "A": "$21$",
+        "B": "$25$",
+        "C": "$35$",
+        "D": "$70$"
+      },
+      "answer": "C",
+      "solution": "Recover the number first: $$\\frac{3}{5}n = 42 \\;\\Rightarrow\\; n = 42 \\cdot \\frac{5}{3} = 70.$$ Then take half: $$\\frac{70}{2} = 35.$$ Reporting the number itself gives 70, and halving 42 directly gives 21 — that skips recovering $n$. The correct answer is **C**.",
+      "verify": [
+        "Eq(Rational(3,5)*70, 42)",
+        "Eq(Rational(70,2), 35)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q17",
+      "module": "2H",
+      "questionNumber": 17,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "equivalent_expressions",
+      "difficulty": "hard",
+      "body": "What is the value of $4^{\\,3/2}$?",
+      "options": {
+        "A": "$2$",
+        "B": "$6$",
+        "C": "$8$",
+        "D": "$64$"
+      },
+      "answer": "C",
+      "solution": "A fractional exponent means root then power: the denominator is the root, the numerator the power. $$4^{3/2} = \\left(\\sqrt{4}\\right)^3 = 2^3 = 8.$$ Multiplying the base by the exponent gives 6, and reading the fraction upside down gives $4^{2/3} \\approx 2.5$. The correct answer is **C**.",
+      "verify": [
+        "Eq(4**Rational(3,2), 8)",
+        "Eq(sqrt(4)**3, 8)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q18",
+      "module": "2H",
+      "questionNumber": 18,
+      "format": "mcq",
+      "domain": "geometry_trig",
+      "skill_tag": "circles",
+      "difficulty": "hard",
+      "body": "In the $xy$-plane, a circle has its center at $(2, 2)$ and passes through $(7, 14)$. What is the radius of the circle?",
+      "options": {
+        "A": "$5$",
+        "B": "$12$",
+        "C": "$13$",
+        "D": "$17$"
+      },
+      "answer": "C",
+      "solution": "The radius is the distance from the center to any point on the circle: $$r = \\sqrt{(7 - 2)^2 + (14 - 2)^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13.$$ The legs 5 and 12 are the horizontal and vertical gaps, not the radius, and adding them gives 17. The correct answer is **C**.",
+      "verify": [
+        "Eq((7 - 2)**2 + (14 - 2)**2, 169)",
+        "Eq(sqrt(169), 13)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q19",
+      "module": "2H",
+      "questionNumber": 19,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "systems_two_linear",
+      "difficulty": "hard",
+      "body": "A shop sells notebooks for $\\$5$ and folders for $\\$2$. A customer buys some notebooks and buys $4$ fewer than three times as many folders as notebooks, spending $\\$47$ in total. How many notebooks were bought?",
+      "acceptedAnswers": [
+        "5"
+      ],
+      "solution": "Let $n$ be the notebooks. The folders number $3n - 4$, so the money equation is $$5n + 2(3n - 4) = 47.$$ Expand and solve: $$5n + 6n - 8 = 47 \\;\\Rightarrow\\; 11n = 55 \\;\\Rightarrow\\; n = 5.$$ Check: 5 notebooks cost $\\$25$, and $3(5) - 4 = 11$ folders cost $\\$22$, totalling $\\$47$. The correct answer is **5**.",
+      "verify": [
+        "Eq(5*5 + 2*(3*5 - 4), 47)",
+        "Eq(3*5 - 4, 11)",
+        "Eq(25 + 22, 47)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q20",
+      "module": "2H",
+      "questionNumber": 20,
+      "format": "mcq",
+      "domain": "psda",
+      "skill_tag": "percentages",
+      "difficulty": "hard",
+      "body": "A quantity of $200$ is increased by $50\\%$, and the result is then decreased by $40\\%$. What is the final value?",
+      "options": {
+        "A": "$120$",
+        "B": "$180$",
+        "C": "$210$",
+        "D": "$220$"
+      },
+      "answer": "B",
+      "solution": "Percent changes multiply, each applied to the value BEFORE it: $$200 \\times 1.50 = 300, \\qquad 300 \\times 0.60 = 180.$$ The overall factor is $1.5 \\times 0.6 = 0.9$, a net $10\\%$ DECREASE — the $40\\%$ cut is taken from the larger 300, so it outweighs the earlier $50\\%$ rise. Cancelling the percents as $+50 - 40 = +10\\%$ would wrongly give 220. The correct answer is **B**.",
+      "verify": [
+        "Eq(200*Rational(150,100), 300)",
+        "Eq(300*Rational(60,100), 180)",
+        "Eq(Rational(150,100)*Rational(60,100), Rational(9,10))"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q21",
+      "module": "2H",
+      "questionNumber": 21,
+      "format": "mcq",
+      "domain": "advanced_math",
+      "skill_tag": "nonlinear_functions",
+      "difficulty": "hard",
+      "body": "The functions $f$ and $g$ are defined by $f(x) = 2x^2$ and $g(x) = 2x + 1$. What is the value of $f(g(3))$?",
+      "options": {
+        "A": "$37$",
+        "B": "$49$",
+        "C": "$98$",
+        "D": "$196$"
+      },
+      "answer": "C",
+      "solution": "Evaluate the inner function first: $$g(3) = 2(3) + 1 = 7.$$ Then apply $f$ to that output: $$f(7) = 2(7)^2 = 2(49) = 98.$$ Squaring before doubling inside $f$ is the order that matters: $2 \\cdot 7^2 = 98$, not $(2 \\cdot 7)^2 = 196$. Composing the other way gives $g(f(3)) = g(18) = 37$. The correct answer is **C**.",
+      "verify": [
+        "Eq(2*3 + 1, 7)",
+        "Eq(2*7**2, 98)",
+        "Eq(2*(3**2)*2 + 1, 37)"
+      ]
+    },
+    {
+      "source": "SAT-P9-M2H-Q22",
+      "module": "2H",
+      "questionNumber": 22,
+      "format": "spr",
+      "domain": "algebra",
+      "skill_tag": "linear_equations_two_var",
+      "difficulty": "hard",
+      "body": "In the $xy$-plane, the line $y = mx + 4$ passes through the point $(6, 22)$. What is the value of $m$?",
+      "acceptedAnswers": [
+        "3"
+      ],
+      "solution": "Substitute the point into the equation: $$22 = m(6) + 4 \\;\\Rightarrow\\; 6m = 18 \\;\\Rightarrow\\; m = 3.$$ Check: $3(6) + 4 = 22$. The correct answer is **3**.",
+      "verify": [
+        "Eq(3*6 + 4, 22)",
+        "Eq(Rational(22 - 4, 6), 3)"
+      ]
+    }
+  ]
+}
