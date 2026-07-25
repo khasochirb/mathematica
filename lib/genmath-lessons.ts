@@ -176,6 +176,9 @@ import a1Quadratics from "@/data/genmath/algebra-1/quadratic-equations.json";
 
 // Integrated Mathematics 1 unit JSON imports
 import im1Quantities from "@/data/genmath/integrated-1/quantities-and-expressions.json";
+import im1LinearEq from "@/data/genmath/integrated-1/linear-equations-and-inequalities.json";
+import im1Functions from "@/data/genmath/integrated-1/functions-and-sequences.json";
+import im1LinearFn from "@/data/genmath/integrated-1/linear-functions.json";
 
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
@@ -1218,7 +1221,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Solving one-variable equations with a reason for every step, special cases, inequalities and the negative-flip rule, and compound statements.",
     buildsOn: "Rearranging formulas from Unit 1 — the same moves, now with a number as the target.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -1227,7 +1230,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "The one-output rule, function notation, domain and range, and arithmetic and geometric sequences read as functions on the whole numbers.",
     buildsOn: "Creating equations from Unit 1 and solving them from Unit 2.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -1236,7 +1239,7 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Slope as a rate of change, the three forms of a line, graphing from each, and interpreting the parameters of a linear model in context.",
     buildsOn: "Function notation and the sequence-as-function idea from Unit 3.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -1285,7 +1288,12 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
   },
 ];
 
-const im1Units: CourseUnit[] = [im1Quantities as unknown as CourseUnit];
+const im1Units: CourseUnit[] = [
+  im1Quantities as unknown as CourseUnit,
+  im1LinearEq as unknown as CourseUnit,
+  im1Functions as unknown as CourseUnit,
+  im1LinearFn as unknown as CourseUnit,
+];
 
 export function getIm1Spine(): GeometrySpineEntry[] {
   return IM1_SPINE;

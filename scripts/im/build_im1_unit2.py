@@ -1,0 +1,1597 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 1 — Unit 2: Linear Equations & Inequalities.
+
+CCSS Integrated Math I: A-REI.1 (justify each solving step), A-REI.3 (solve
+linear equations and inequalities in one variable, including coefficients
+represented by letters), A-CED.1 (create equations and inequalities and use
+them to solve problems).
+
+Unit 1 rearranged formulas for a letter. This unit does the same moves with a
+number as the target, and adds the two things that make equation-solving a
+subject rather than a procedure: knowing WHY each step is legal, and knowing
+what it means when the variable disappears.
+
+Run: python3 scripts/im/build_im1_unit2.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-1"
+
+
+# ===========================================================================
+# Lesson 1 — A-REI.1, A-REI.3: solving, with a reason for every step
+# ===========================================================================
+def lesson_solving():
+    return lesson(
+        slug="solving-linear-equations",
+        title="Solving Linear Equations, Step by Justified Step",
+        concrete=(
+            "A balance scale holds the same mass on both pans. Remove three kilograms from the "
+            "left and the scale tips — unless you remove three from the right at the same instant. "
+            "An equation is that scale. Every legal step is a thing you did to BOTH sides, and the "
+            "reason it is legal is that the balance survived it."
+        ),
+        objective=(
+            "Solve a multi-step linear equation, name the property that justifies each step, and "
+            "verify the solution by substituting it back into the original equation."
+        ),
+        concept=[
+            "**An equation is a claim about a balance.** $3x + 4 = 19$ claims that the left pile "
+            "and the right pile weigh the same. Solving means shrinking the left pile down to a "
+            "bare $x$ while keeping the claim true — and the only way to keep it true is to do "
+            "the same thing to both sides at once.",
+            "**The four legal moves, and their names.** Add the same quantity to both sides "
+            "(*addition property of equality*). Subtract the same quantity (*subtraction "
+            "property*). Multiply both sides by the same number (*multiplication property*). "
+            "Divide both sides by the same NON-ZERO number (*division property*). Dividing by "
+            "zero is not a move — it is where an argument goes to die.",
+            "**Simplify each side first, then move things across.** Distribute, collect like "
+            "terms, and only then start undoing. In $5(x - 2) + 3x = 30$, distribute to "
+            "$5x - 10 + 3x = 30$, collect to $8x - 10 = 30$, and now it is a two-step equation. "
+            "Trying to move terms before simplifying is how sign errors get in.",
+            "**Undo in reverse order of operations.** The expression $3x + 4$ was built by "
+            "multiplying, then adding. So undo by subtracting first, then dividing. Peel from the "
+            "outside in, exactly as in Unit 1 — the method has not changed, only the target.",
+            "**Variables on both sides: gather, then divide.** $7x - 5 = 3x + 11$ has $x$ in two "
+            "places. Subtract $3x$ from both sides to bring them together: $4x - 5 = 11$. Now it "
+            "is an ordinary two-step equation. You cannot divide away an $x$ that still appears "
+            "on the other side.",
+            "**Checking is not optional.** Substitute your answer into the ORIGINAL equation — not "
+            "into a line you wrote halfway down, which may already carry the error. If both sides "
+            "come out equal, you are done and you know it. One line of arithmetic converts a "
+            "guess into a certainty.",
+        ],
+        key_idea=(
+            "Simplify each side, gather the variable terms on one side, then undo the operations "
+            "in reverse order — doing the same thing to both sides every time. Check by "
+            "substituting into the original."
+        ),
+        facts=[
+            fact(
+                "The properties of equality",
+                "a = b \\ \\Longrightarrow\\ a + c = b + c, \\quad a - c = b - c, \\quad "
+                "ac = bc, \\quad \\tfrac{a}{c} = \\tfrac{b}{c}\\ (c \\ne 0)",
+                "These four are the entire licence for solving. Every step you write is one of "
+                "them, and naming which one is what A-REI.1 asks for.",
+            ),
+            fact(
+                "The two-step template",
+                "ax + b = c \\ \\Longrightarrow\\ x = \\frac{c - b}{a}",
+                "Subtract b, then divide by a. Most of this course reduces to this template after "
+                "simplifying.",
+            ),
+            fact(
+                "Distribute before you move",
+                "a(x + b) = ax + ab",
+                "Clear the brackets first. A term still inside brackets cannot be moved across the "
+                "equals sign on its own.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u2-l1-we1",
+                "Solve $3x + 4 = 19$, naming the property used at each step.",
+                "The expression $3x + 4$ was built by multiplying by $3$ and then adding $4$, so "
+                "undo in reverse."
+                "$$3x + 4 - 4 = 19 - 4 \\qquad \\text{(subtraction property of equality)}$$"
+                "$$3x = 15$$"
+                "$$\\frac{3x}{3} = \\frac{15}{3} \\qquad \\text{(division property of equality)}$$"
+                "$$x = 5.$$"
+                "**Check in the original.** $3(5) + 4 = 15 + 4 = 19$ ✓ — the right-hand side "
+                "exactly.",
+                [
+                    "Eq(3*5 + 4, 19)",
+                    "Eq(solve(Eq(3*Symbol('x') + 4, 19), Symbol('x'))[0], 5)",
+                ],
+            ),
+            problem(
+                "im1-u2-l1-we2",
+                "Solve $5(x - 2) + 3x = 30$.",
+                "**Simplify the left side first.** Distribute the $5$:"
+                "$$5x - 10 + 3x = 30.$$"
+                "Collect like terms — $5x$ and $3x$ are like terms because both are a number times "
+                "$x$:"
+                "$$8x - 10 = 30.$$"
+                "**Now it is a two-step equation.** Add $10$, then divide by $8$:"
+                "$$8x = 40 \\quad\\Longrightarrow\\quad x = 5.$$"
+                "**Check in the original.** $5(5 - 2) + 3(5) = 5(3) + 15 = 15 + 15 = 30$ ✓",
+                [
+                    "Eq(5*(5 - 2) + 3*5, 30)",
+                    "Eq(solve(Eq(5*(Symbol('x') - 2) + 3*Symbol('x'), 30), Symbol('x'))[0], 5)",
+                    "Eq(simplify(5*(Symbol('x') - 2) + 3*Symbol('x')), 8*Symbol('x') - 10)",
+                ],
+            ),
+            problem(
+                "im1-u2-l1-we3",
+                "Solve $7x - 5 = 3x + 11$.",
+                "The variable is on both sides, so gather it first. Subtract $3x$ from both sides "
+                "— the smaller coefficient, which keeps the surviving coefficient positive:"
+                "$$7x - 3x - 5 = 3x - 3x + 11 \\quad\\Longrightarrow\\quad 4x - 5 = 11.$$"
+                "Now the familiar two steps:"
+                "$$4x = 16 \\quad\\Longrightarrow\\quad x = 4.$$"
+                "**Check in the original.** Left: $7(4) - 5 = 28 - 5 = 23$. Right: "
+                "$3(4) + 11 = 12 + 11 = 23$. Equal ✓ — and checking BOTH sides separately is the "
+                "point when the variable started on both.",
+                [
+                    "Eq(7*4 - 5, 23)",
+                    "Eq(3*4 + 11, 23)",
+                    "Eq(solve(Eq(7*Symbol('x') - 5, 3*Symbol('x') + 11), Symbol('x'))[0], 4)",
+                ],
+            ),
+            problem(
+                "im1-u2-l1-we4",
+                "Solve $2(3x - 1) = 4(x + 3) - 2$.",
+                "Distribute on both sides before anything else:"
+                "$$6x - 2 = 4x + 12 - 2 \\quad\\Longrightarrow\\quad 6x - 2 = 4x + 10.$$"
+                "Gather the variable terms — subtract $4x$:"
+                "$$2x - 2 = 10.$$"
+                "Add $2$, then divide by $2$:"
+                "$$2x = 12 \\quad\\Longrightarrow\\quad x = 6.$$"
+                "**Check in the original.** Left: $2(3 \\cdot 6 - 1) = 2(17) = 34$. Right: "
+                "$4(6 + 3) - 2 = 36 - 2 = 34$. Equal ✓",
+                [
+                    "Eq(2*(3*6 - 1), 34)",
+                    "Eq(4*(6 + 3) - 2, 34)",
+                    "Eq(solve(Eq(2*(3*Symbol('x') - 1), 4*(Symbol('x') + 3) - 2), Symbol('x'))[0], 6)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Doing something to one side only — subtracting 4 from the left and forgetting the right.",
+                "Write both sides of every step on the same line. The moment the two pans stop "
+                "matching, the equation you are solving is no longer the one you were given.",
+            ),
+            mistake(
+                "Moving a term out of brackets: from 3(x + 2) = 15 writing 3x = 15 − 2.",
+                "Distribute first: 3x + 6 = 15. A term inside brackets is multiplied by what is "
+                "outside; it cannot leave on its own.",
+            ),
+            mistake(
+                "Dividing by the variable to 'cancel' it — from 4x = 2x + 6 dividing by x.",
+                "Subtract 2x instead: 2x = 6, so x = 3. Dividing by a variable can destroy a "
+                "solution (and is illegal if that variable is 0).",
+            ),
+            mistake(
+                "Checking against a middle line instead of the original equation.",
+                "If your error happened in line two, every line after it is wrong together and the "
+                "check passes anyway. Always substitute into the equation you were given.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u2-l1-t1",
+                "Solve $5x - 7 = 28$.",
+                "Add $7$: $5x = 35$. Divide by $5$: $x = 7$. Check: $5(7) - 7 = 28$ ✓",
+                [
+                    "Eq(5*7 - 7, 28)",
+                    "Eq(solve(Eq(5*Symbol('x') - 7, 28), Symbol('x'))[0], 7)",
+                ],
+            ),
+            problem(
+                "im1-u2-l1-t2",
+                "Solve $4(x + 3) = 2x + 22$.",
+                "Distribute: $4x + 12 = 2x + 22$. Subtract $2x$: $2x + 12 = 22$. Subtract $12$: "
+                "$2x = 10$, so $x = 5$. Check: $4(8) = 32$ and $2(5) + 22 = 32$ ✓",
+                [
+                    "Eq(4*(5 + 3), 32)",
+                    "Eq(2*5 + 22, 32)",
+                    "Eq(solve(Eq(4*(Symbol('x') + 3), 2*Symbol('x') + 22), Symbol('x'))[0], 5)",
+                ],
+            ),
+            problem(
+                "im1-u2-l1-t3",
+                "Solve $9 - 2x = 3x - 16$.",
+                "Add $2x$ to both sides: $9 = 5x - 16$. Add $16$: $25 = 5x$, so $x = 5$. Check: "
+                "$9 - 10 = -1$ and $15 - 16 = -1$ ✓",
+                [
+                    "Eq(9 - 2*5, -1)",
+                    "Eq(3*5 - 16, -1)",
+                    "Eq(solve(Eq(9 - 2*Symbol('x'), 3*Symbol('x') - 16), Symbol('x'))[0], 5)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.1",
+                "title": "An equation is a balance, and every step keeps it level",
+                "body": (
+                    "$3x + 4 = 19$ says the two pans weigh the same. You may remove $4$ from the "
+                    "left only if you remove $4$ from the right in the same breath. That is not a "
+                    "rule to memorise — it is the only thing that keeps the claim true."
+                ),
+                "beats": [
+                    "Add the same amount to both sides",
+                    "Subtract the same amount from both sides",
+                    "Multiply both sides by the same number",
+                    "Divide both sides by the same **non-zero** number",
+                ],
+            },
+            {
+                "kind": "balanceScale",
+                "eyebrow": "Watch it stay level",
+                "title": "Remove 4 from both pans",
+                "teach": (
+                    "The scale holds $x + 4$ against $19$. Take $4$ off the left and the scale "
+                    "tips — until you take $4$ off the right too. Then it is level again, and now "
+                    "it reads $x$ against $15$."
+                ),
+                "config": {"mode": "add", "b": 4, "rhs": 19},
+            },
+            {"kind": "worked", "title": "Two steps, two properties", "problemId": "im1-u2-l1-we1"},
+            tap(
+                "Which property justifies this step?",
+                "From $x - 6 = 10$ a student writes $x = 16$. Which property of equality did they "
+                "use?",
+                [
+                    "Addition property",
+                    "Subtraction property",
+                    "Multiplication property",
+                    "Division property",
+                ],
+                0,
+                "They added $6$ to both sides: $x - 6 + 6 = 10 + 6$, giving $x = 16$. It is the "
+                "ADDITION property, even though the original equation contained a subtraction — "
+                "the property is named for what you DID, not for what was already there. "
+                "Check: $16 - 6 = 10$ ✓",
+                ["Eq(16 - 6, 10)"],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "Order matters",
+                "title": "Simplify each side, then start moving",
+                "body": (
+                    "Distribute and collect like terms BEFORE you move anything across the equals "
+                    "sign. $5(x-2) + 3x = 30$ becomes $8x - 10 = 30$, and a two-step equation is "
+                    "something you already know how to finish."
+                ),
+            },
+            {
+                "kind": "algebraTiles",
+                "eyebrow": "Collect like terms",
+                "title": "Five x-tiles and three more make eight",
+                "teach": (
+                    "$5x$ and $3x$ combine because both are piles of the same tile. The $-10$ is a "
+                    "different kind of object and stays separate — which is exactly what 'like "
+                    "terms' means."
+                ),
+                "config": {"x": 8, "units": 4, "mode": "collect", "maxX": 10, "maxUnits": 10},
+            },
+            {"kind": "worked", "title": "Distribute, collect, solve", "problemId": "im1-u2-l1-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "The both-sides case",
+                "title": "Gather the variable before you divide",
+                "body": (
+                    "$7x - 5 = 3x + 11$ has $x$ in two places. Subtract $3x$ from both sides to "
+                    "bring them together, then finish as usual. Subtract the SMALLER coefficient "
+                    "and the one that survives stays positive — less sign-wrangling later."
+                ),
+            },
+            {"kind": "worked", "title": "Variables on both sides", "problemId": "im1-u2-l1-we3"},
+            tap(
+                "Which move comes first?",
+                "To solve $6x + 2 = 2x + 18$, what is the cleanest first step?",
+                [
+                    "Divide both sides by $6$",
+                    "Subtract $2x$ from both sides",
+                    "Subtract $6x$ from both sides",
+                    "Subtract $2$ from both sides",
+                ],
+                1,
+                "Subtracting $2x$ gathers the variable on the left and keeps its coefficient "
+                "positive: $4x + 2 = 18$, then $4x = 16$ and $x = 4$. Subtracting $6x$ also works "
+                "but leaves $2 = -4x + 18$ with a negative coefficient to manage. Dividing by $6$ "
+                "first is legal but drags fractions through every later line. "
+                "Check: $6(4) + 2 = 26$ and $2(4) + 18 = 26$ ✓",
+                [
+                    "Eq(6*4 + 2, 26)",
+                    "Eq(2*4 + 18, 26)",
+                ],
+            ),
+            {"kind": "worked", "title": "Brackets on both sides", "problemId": "im1-u2-l1-we4"},
+            {
+                "kind": "tip",
+                "title": "Check in the original, always",
+                "body": (
+                    "If your slip was on line two, lines three onward are consistently wrong and a "
+                    "check against line four will happily agree with itself. Substituting into the "
+                    "equation you were GIVEN is the only check that can catch you."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — one step each way", "problemId": "im1-u2-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn — brackets and both sides", "problemId": "im1-u2-l1-t2"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Same operation to both sides — that is the whole licence",
+                    "Name the property: addition, subtraction, multiplication, division",
+                    "Simplify each side first: distribute, then collect like terms",
+                    "Variable on both sides → gather it, then divide",
+                    "Check by substituting into the **original** equation",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — A-REI.3: fractions, and what it means when x disappears
+# ===========================================================================
+def lesson_fractions_and_cases():
+    return lesson(
+        slug="fractions-and-special-cases",
+        title="Fractions, No Solution & Every Number",
+        concrete=(
+            "Ask \"what number is both bigger and smaller than 5?\" and there is no answer — the "
+            "question contradicts itself. Ask \"what number equals itself?\" and EVERY number "
+            "answers. Equations do the same two things, and when they do, the variable vanishes "
+            "from your page. Knowing which of the two happened is the whole skill."
+        ),
+        objective=(
+            "Clear fractions from an equation by multiplying through by the LCD, and interpret an "
+            "equation whose variable cancels as either no solution or all real numbers."
+        ),
+        concept=[
+            "**Fractions: multiply everything by the LCD.** The equation "
+            "$\\frac{x}{3} + \\frac{1}{2} = \\frac{5}{6}$ has denominators $3$, $2$ and $6$, whose "
+            "least common denominator is $6$. Multiply EVERY term — including the ones without a "
+            "fraction — by $6$, and every denominator disappears at once: "
+            "$2x + 3 = 5$. This is the multiplication property of equality applied to the whole "
+            "equation, so it is completely legal, and it converts a fraction problem into an "
+            "ordinary one in a single line.",
+            "**Every term, no exceptions.** The most common error here is multiplying the "
+            "fractions but not the whole numbers. In $\\frac{x}{4} + 3 = 7$, multiplying by $4$ "
+            "gives $x + 12 = 28$, not $x + 3 = 28$. The $3$ was a term of the equation, so it gets "
+            "multiplied like everything else.",
+            "**When the variable cancels, read what is left.** Solve $2(x + 3) = 2x + 6$ and you "
+            "get $2x + 6 = 2x + 6$, then $6 = 6$. The variable is gone and what remains is TRUE. "
+            "That means the two sides were never different — the equation is an identity, and "
+            "EVERY real number is a solution.",
+            "**The other case: a false statement.** Solve $3x + 5 = 3x + 8$ and you get $5 = 8$. "
+            "The variable is gone and what remains is FALSE. No number can rescue it, because the "
+            "left side is always exactly three less than the right. The equation has NO solution.",
+            "**Reading the structure predicts the answer.** Two expressions that are the same "
+            "after simplifying give infinitely many solutions; two expressions with the same "
+            "variable part but different constants give none. You can often see it before you "
+            "solve: $3x + 5$ and $3x + 8$ grow at the same rate from different starting points, so "
+            "they can never meet — which is exactly the picture of two parallel lines you will "
+            "meet again in Unit 5.",
+        ],
+        key_idea=(
+            "Multiply every term by the LCD to clear fractions. If the variable cancels, look at "
+            "what is left: a true statement means every number works, a false statement means none "
+            "do."
+        ),
+        facts=[
+            fact(
+                "Clearing fractions",
+                "\\text{multiply every term by the LCD of all denominators}",
+                "One multiplication removes all denominators at once. Miss a term and the equation "
+                "you keep solving is a different one.",
+            ),
+            fact(
+                "Identity — every real number",
+                "2(x+3) = 2x + 6 \\ \\Longrightarrow\\ 6 = 6 \\ \\text{(true)}",
+                "The two sides were the same expression written differently. Solution set: all "
+                "real numbers.",
+            ),
+            fact(
+                "Contradiction — no solution",
+                "3x + 5 = 3x + 8 \\ \\Longrightarrow\\ 5 = 8 \\ \\text{(false)}",
+                "Same variable part, different constants. The gap never closes. Solution set: "
+                "empty.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u2-l2-we1",
+                "Solve $\\dfrac{x}{3} + \\dfrac{1}{2} = \\dfrac{5}{6}$.",
+                "The denominators are $3$, $2$ and $6$; their least common denominator is $6$. "
+                "Multiply every term by $6$:"
+                "$$6 \\cdot \\frac{x}{3} + 6 \\cdot \\frac{1}{2} = 6 \\cdot \\frac{5}{6}$$"
+                "$$2x + 3 = 5.$$"
+                "Every denominator is gone in one line. Now finish:"
+                "$$2x = 2 \\quad\\Longrightarrow\\quad x = 1.$$"
+                "**Check in the original.** "
+                "$\\frac{1}{3} + \\frac{1}{2} = \\frac{2}{6} + \\frac{3}{6} = \\frac{5}{6}$ ✓",
+                [
+                    "Eq(Rational(1,3) + Rational(1,2), Rational(5,6))",
+                    "Eq(solve(Eq(Symbol('x')/3 + Rational(1,2), Rational(5,6)), Symbol('x'))[0], 1)",
+                ],
+            ),
+            problem(
+                "im1-u2-l2-we2",
+                "Solve $\\dfrac{2x - 1}{5} = \\dfrac{x + 4}{3}$.",
+                "The LCD of $5$ and $3$ is $15$. Multiply both sides by $15$:"
+                "$$15 \\cdot \\frac{2x-1}{5} = 15 \\cdot \\frac{x+4}{3}$$"
+                "$$3(2x - 1) = 5(x + 4).$$"
+                "Note the whole numerator travels inside brackets — that is what the fraction bar "
+                "was already doing. Distribute:"
+                "$$6x - 3 = 5x + 20.$$"
+                "Gather and finish:"
+                "$$x = 23.$$"
+                "**Check in the original.** Left: $\\frac{2(23)-1}{5} = \\frac{45}{5} = 9$. "
+                "Right: $\\frac{23+4}{3} = \\frac{27}{3} = 9$. Equal ✓",
+                [
+                    "Eq(Rational(2*23 - 1, 5), 9)",
+                    "Eq(Rational(23 + 4, 3), 9)",
+                    "Eq(solve(Eq((2*Symbol('x') - 1)/5, (Symbol('x') + 4)/3), Symbol('x'))[0], 23)",
+                ],
+            ),
+            problem(
+                "im1-u2-l2-we3",
+                "Solve $4(x - 3) + 2 = 4x - 10$ and describe its solution set.",
+                "Simplify the left side:"
+                "$$4x - 12 + 2 = 4x - 10 \\quad\\Longrightarrow\\quad 4x - 10 = 4x - 10.$$"
+                "The two sides are now identical. Subtract $4x$ from both:"
+                "$$-10 = -10.$$"
+                "The variable has vanished and what remains is TRUE. That is not a failure — it is "
+                "the answer. The two expressions were the same all along, just written "
+                "differently, so **every real number is a solution**."
+                "**Spot-check two values.** At $x = 0$: $4(-3) + 2 = -10$ and $0 - 10 = -10$ ✓. "
+                "At $x = 7$: $4(4) + 2 = 18$ and $28 - 10 = 18$ ✓.",
+                [
+                    "Eq(4*(0 - 3) + 2, 4*0 - 10)",
+                    "Eq(4*(7 - 3) + 2, 4*7 - 10)",
+                    "Eq(simplify((4*(Symbol('x') - 3) + 2) - (4*Symbol('x') - 10)), 0)",
+                ],
+            ),
+            problem(
+                "im1-u2-l2-we4",
+                "Solve $6x + 1 = 2(3x + 5)$ and describe its solution set.",
+                "Distribute on the right:"
+                "$$6x + 1 = 6x + 10.$$"
+                "Subtract $6x$ from both sides:"
+                "$$1 = 10.$$"
+                "The variable is gone and what remains is FALSE. No number can make $1$ equal "
+                "$10$, so the equation has **no solution** — the solution set is empty."
+                "**Why, structurally.** Both sides climb at the same rate of $6$ per unit of $x$, "
+                "but the right side starts nine higher. A gap of nine that never changes cannot "
+                "close. At $x = 0$: $1$ versus $10$. At $x = 100$: $601$ versus $610$. Still nine "
+                "apart.",
+                [
+                    "Eq(6*0 + 1, 1)",
+                    "Eq(2*(3*0 + 5), 10)",
+                    "Eq((2*(3*100 + 5)) - (6*100 + 1), 9)",
+                    "Eq(simplify((2*(3*Symbol('x') + 5)) - (6*Symbol('x') + 1)), 9)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Multiplying only the fractional terms by the LCD: from x/4 + 3 = 7 writing x + 3 = 28.",
+                "Every term gets multiplied: x + 12 = 28, so x = 16. The 3 is a term of the "
+                "equation like any other.",
+            ),
+            mistake(
+                "Losing the brackets when clearing a fraction with a multi-term numerator.",
+                "15 · (2x − 1)/5 is 3(2x − 1), not 3·2x − 1. The fraction bar was grouping the "
+                "numerator; when it goes, brackets take over the job.",
+            ),
+            mistake(
+                "Writing 'x = 0' or 'no answer' when the variable cancels and 6 = 6 remains.",
+                "A true statement left over means EVERY real number is a solution. The variable "
+                "cancelling is information, not an error.",
+            ),
+            mistake(
+                "Writing 'x = 5' from a leftover statement like 5 = 8.",
+                "Nothing there is a value of x. A false leftover statement means the solution set "
+                "is empty — say 'no solution'.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u2-l2-t1",
+                "Solve $\\dfrac{x}{4} + 3 = 7$.",
+                "Multiply every term by $4$: $x + 12 = 28$. Subtract $12$: $x = 16$. "
+                "Check: $\\frac{16}{4} + 3 = 4 + 3 = 7$ ✓",
+                [
+                    "Eq(Rational(16,4) + 3, 7)",
+                    "Eq(solve(Eq(Symbol('x')/4 + 3, 7), Symbol('x'))[0], 16)",
+                ],
+            ),
+            problem(
+                "im1-u2-l2-t2",
+                "Solve $5x - 3 = 5x + 4$ and describe the solution set.",
+                "Subtract $5x$ from both sides: $-3 = 4$, which is false. The variable is gone and "
+                "the leftover statement cannot be repaired, so there is **no solution**. Both "
+                "sides rise at the same rate but the right starts seven higher.",
+                [
+                    "Eq((5*0 + 4) - (5*0 - 3), 7)",
+                    "Eq(simplify((5*Symbol('x') + 4) - (5*Symbol('x') - 3)), 7)",
+                ],
+            ),
+            problem(
+                "im1-u2-l2-t3",
+                "Solve $3(2x + 4) = 6x + 12$ and describe the solution set.",
+                "Distribute: $6x + 12 = 6x + 12$. The two sides are identical, so subtracting $6x$ "
+                "leaves $12 = 12$ — true. **Every real number is a solution.** Spot-check at "
+                "$x = 2$: $3(8) = 24$ and $12 + 12 = 24$ ✓",
+                [
+                    "Eq(3*(2*2 + 4), 24)",
+                    "Eq(6*2 + 12, 24)",
+                    "Eq(simplify(3*(2*Symbol('x') + 4) - (6*Symbol('x') + 12)), 0)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.3",
+                "title": "Fractions? Multiply the whole equation by the LCD",
+                "body": (
+                    "Denominators of $3$, $2$ and $6$ have LCD $6$. Multiply EVERY term by $6$ and "
+                    "all three denominators vanish in one line, leaving an ordinary equation."
+                ),
+                "beats": [
+                    "$\\frac{x}{3} + \\frac{1}{2} = \\frac{5}{6}$",
+                    "LCD of $3, 2, 6$ is $6$",
+                    "Multiply every term: $2x + 3 = 5$",
+                    "Finish as usual: $x = 1$",
+                ],
+            },
+            {
+                "kind": "tip",
+                "title": "Every term — including the ones without fractions",
+                "body": (
+                    "In $\\frac{x}{4} + 3 = 7$, multiplying by $4$ gives $x + 12 = 28$. The $3$ "
+                    "became $12$. Skipping it is the single most common error in this lesson, and "
+                    "it silently changes the equation you are solving."
+                ),
+            },
+            {"kind": "worked", "title": "Clearing three denominators at once", "problemId": "im1-u2-l2-we1"},
+            tap(
+                "What does the LCD do to this term?",
+                "You multiply $\\dfrac{x}{6} + 2 = \\dfrac{5}{3}$ through by the LCD $6$. What "
+                "does the term $2$ become?",
+                ["$2$", "$12$", "$\\frac{1}{3}$", "$8$"],
+                1,
+                "Every term is multiplied by $6$, so $2$ becomes $12$. The equation is "
+                "$x + 12 = 10$, giving $x = -2$. Check in the original: "
+                "$\\frac{-2}{6} + 2 = -\\frac{1}{3} + 2 = \\frac{5}{3}$ ✓",
+                [
+                    "Eq(6*2, 12)",
+                    "Eq(Rational(-2,6) + 2, Rational(5,3))",
+                    "Eq(solve(Eq(Symbol('x')/6 + 2, Rational(5,3)), Symbol('x'))[0], -2)",
+                ],
+            ),
+            {"kind": "worked", "title": "A fraction on each side", "problemId": "im1-u2-l2-we2"},
+            {
+                "kind": "teach",
+                "eyebrow": "The variable vanished",
+                "title": "Two things this can mean — and only two",
+                "body": (
+                    "Sometimes the $x$ terms cancel and you are left with a bare numerical "
+                    "statement. Do not panic and do not write $x = 0$. Read the statement: if it "
+                    "is true, every number works; if it is false, none do."
+                ),
+                "beats": [
+                    "$6 = 6$ — **true** → all real numbers",
+                    "$5 = 8$ — **false** → no solution",
+                    "Never $x = 0$; there is no $x$ left to be $0$",
+                    "The leftover statement IS the answer",
+                ],
+            },
+            {"kind": "worked", "title": "When every number works", "problemId": "im1-u2-l2-we3"},
+            {"kind": "worked", "title": "When no number works", "problemId": "im1-u2-l2-we4"},
+            tap(
+                "Read the leftover statement",
+                "Solving an equation, a student correctly reaches $-4 = -4$. What is the solution "
+                "set?",
+                [
+                    "$x = -4$",
+                    "$x = 0$",
+                    "All real numbers",
+                    "No solution",
+                ],
+                2,
+                "The variable cancelled and the leftover statement is TRUE, so the two sides were "
+                "the same expression all along — an identity. Every real number satisfies it. "
+                "There is no $x$ in $-4 = -4$, so neither $x = -4$ nor $x = 0$ can be read out of "
+                "it.",
+                ["Eq(-4, -4)"],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "See it coming",
+                "title": "The structure tells you before you solve",
+                "body": (
+                    "$3x + 5$ and $3x + 8$ climb at the same rate from different starting points — "
+                    "a gap of three that never closes, so no solution. $2(x+3)$ and $2x + 6$ are "
+                    "the same expression, so every number works. In Unit 5 these become parallel "
+                    "lines and a single line drawn twice."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — clear the fraction", "problemId": "im1-u2-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn — read the leftover", "problemId": "im1-u2-l2-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Multiply **every** term by the LCD to clear fractions in one line",
+                    "A multi-term numerator keeps its grouping — use brackets",
+                    "Variable cancels, statement TRUE → all real numbers",
+                    "Variable cancels, statement FALSE → no solution",
+                    "Never report $x = 0$ from an equation with no $x$ left in it",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — A-REI.3: inequalities and the flip
+# ===========================================================================
+def lesson_inequalities():
+    return lesson(
+        slug="linear-inequalities",
+        title="Linear Inequalities & the Flip Rule",
+        concrete=(
+            "Two people stand on a number line: you at $3$, a friend at $5$. You are to the LEFT. "
+            "Now both of you multiply your position by $-1$: you land on $-3$, your friend on "
+            "$-5$ — and now your friend is to the left. Multiplying by a negative turns the line "
+            "around, and any statement about who is bigger has to turn with it."
+        ),
+        objective=(
+            "Solve a linear inequality, apply the flip rule correctly when multiplying or dividing "
+            "by a negative, graph the solution set on a number line, and read the answer back into "
+            "a real context."
+        ),
+        concept=[
+            "**Inequalities solve almost exactly like equations.** Adding or subtracting the same "
+            "quantity on both sides never disturbs the order: if $x < 7$ then $x + 2 < 9$. "
+            "Multiplying or dividing by a POSITIVE number is equally safe. So most of the work is "
+            "identical to the previous two lessons.",
+            "**The one difference: negatives reverse the order.** $3 < 5$ is true. Multiply both "
+            "sides by $-1$ and you get $-3$ and $-5$ — but $-3 > -5$. The inequality symbol must "
+            "FLIP. So whenever you multiply or divide both sides by a negative number, reverse the "
+            "symbol: $-2x < 8$ becomes $x > -4$.",
+            "**Solutions are sets, not single numbers.** $x > -4$ is not one answer but every "
+            "number to the right of $-4$. On a number line, draw an OPEN circle at $-4$ (because "
+            "$-4$ itself does not satisfy a strict $>$) and shade to the right. For $\\ge$ or "
+            "$\\le$, fill the circle — the endpoint is included.",
+            "**Reversing the whole statement is the safe alternative.** If flipping makes you "
+            "nervous, avoid creating the negative at all: solve $8 - 3x > 2$ by adding $3x$ to "
+            "both sides instead of subtracting $8$, giving $8 > 2 + 3x$, then $6 > 3x$, then "
+            "$2 > x$ — which reads $x < 2$. Same answer, no flip needed, because you never "
+            "divided by a negative.",
+            "**Context clamps the solution set.** \"At most $8.33$ tickets\" is not an answer a "
+            "shop can act on. If the variable counts objects it must also be a non-negative whole "
+            "number, so the honest report is \"at most $8$ tickets\". The algebra gives you the "
+            "boundary; the situation gives you the rest.",
+        ],
+        key_idea=(
+            "Solve an inequality exactly like an equation, with one exception: multiplying or "
+            "dividing both sides by a negative flips the symbol. Then graph the set, and clamp it "
+            "to what the situation allows."
+        ),
+        facts=[
+            fact(
+                "Safe moves",
+                "a < b \\ \\Longrightarrow\\ a + c < b + c \\quad\\text{and}\\quad "
+                "ac < bc \\ \\ (c > 0)",
+                "Adding, subtracting, and multiplying or dividing by a positive leave the order "
+                "alone.",
+            ),
+            fact(
+                "The flip rule",
+                "a < b \\ \\text{and}\\ c < 0 \\ \\Longrightarrow\\ ac > bc",
+                "Multiplying or dividing by a negative reverses the inequality. This is the only "
+                "rule that separates inequalities from equations.",
+            ),
+            fact(
+                "Endpoint notation",
+                "x > a: \\text{open circle} \\qquad x \\ge a: \\text{filled circle}",
+                "Strict symbols exclude the endpoint; the 'or equal to' symbols include it.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u2-l3-we1",
+                "Solve $3x - 7 \\le 8$ and graph the solution.",
+                "Add $7$ to both sides — adding never disturbs the order:"
+                "$$3x \\le 15.$$"
+                "Divide by $3$, which is positive, so the symbol stays:"
+                "$$x \\le 5.$$"
+                "**Graph.** A FILLED circle at $5$ (because $\\le$ includes the endpoint), shaded "
+                "to the left."
+                "**Check the boundary and one interior point.** At $x = 5$: "
+                "$15 - 7 = 8 \\le 8$ ✓ (the endpoint belongs). At $x = 0$: $-7 \\le 8$ ✓. At "
+                "$x = 6$: $11 \\le 8$ is false ✗, as it should be.",
+                [
+                    "3*5 - 7 <= 8",
+                    "3*0 - 7 <= 8",
+                    "Not(3*6 - 7 <= 8)",
+                ],
+            ),
+            problem(
+                "im1-u2-l3-we2",
+                "Solve $-2x < 8$ and graph the solution.",
+                "To free $x$ you must divide both sides by $-2$. That is a NEGATIVE, so the symbol "
+                "flips:"
+                "$$\\frac{-2x}{-2} > \\frac{8}{-2} \\quad\\Longrightarrow\\quad x > -4.$$"
+                "**Graph.** An OPEN circle at $-4$ (strict $>$ excludes it), shaded to the right."
+                "**Check that the flip was right.** Try $x = 0$, which IS greater than $-4$: "
+                "$-2(0) = 0 < 8$ ✓. Now try $x = -10$, which is NOT: "
+                "$-2(-10) = 20 < 8$ is false ✗. The solution set really is the numbers above "
+                "$-4$ — had you forgotten to flip you would have claimed the opposite, and "
+                "$x = 0$ would have been excluded despite obviously working.",
+                [
+                    "-2*0 < 8",
+                    "Not(-2*(-10) < 8)",
+                    "-2*(-3) < 8",
+                    "Not(-2*(-4) < 8)",
+                ],
+            ),
+            problem(
+                "im1-u2-l3-we3",
+                "Solve $8 - 3x > 2$ two ways: once with a flip, once without.",
+                "**Way one — subtract the constant first.**"
+                "$$-3x > -6.$$"
+                "Divide by $-3$, a negative, so flip:"
+                "$$x < 2.$$"
+                "**Way two — never make a negative coefficient.** Add $3x$ to both sides instead:"
+                "$$8 > 2 + 3x.$$"
+                "Subtract $2$:"
+                "$$6 > 3x.$$"
+                "Divide by $3$, which is positive, so no flip:"
+                "$$2 > x, \\ \\text{ i.e. } \\ x < 2.$$"
+                "Same answer. The second route never divides by a negative, so there is no flip to "
+                "forget — worth knowing if the rule keeps catching you."
+                "**Check.** At $x = 0$: $8 > 2$ ✓. At $x = 3$: $8 - 9 = -1 > 2$ is false ✗.",
+                [
+                    "8 - 3*0 > 2",
+                    "Not(8 - 3*3 > 2)",
+                    "8 - 3*1 > 2",
+                    "Not(8 - 3*2 > 2)",
+                ],
+            ),
+            problem(
+                "im1-u2-l3-we4",
+                "A delivery van weighs $1400$ kg empty and may not exceed $2600$ kg loaded. Each "
+                "crate weighs $75$ kg. How many crates can it carry?",
+                "**Define.** Let $c$ = number of crates, a non-negative whole number."
+                "**Model.** The loaded mass must not exceed the limit:"
+                "$$75c + 1400 \\le 2600.$$"
+                "**Solve.**"
+                "$$75c \\le 1200 \\quad\\Longrightarrow\\quad c \\le 16.$$"
+                "**Clamp to the context.** Crates come whole and cannot be negative, so "
+                "$0 \\le c \\le 16$: the van can carry at most $16$ crates."
+                "**Check the boundary.** $16$ crates: $75(16) + 1400 = 1200 + 1400 = 2600$ kg — "
+                "exactly at the limit, and $\\le$ allows it ✓. $17$ crates: $2675$ kg, over ✗.",
+                [
+                    "Eq(75*16 + 1400, 2600)",
+                    "75*16 + 1400 <= 2600",
+                    "Not(75*17 + 1400 <= 2600)",
+                    "Eq(Rational(1200, 75), 16)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Forgetting to flip when dividing by a negative: from −2x < 8 writing x < −4.",
+                "Test one value. x = 0 satisfies −2x < 8, but 0 < −4 is false — so the answer must "
+                "be x > −4. One substitution catches every missed flip.",
+            ),
+            mistake(
+                "Flipping when only ADDING or subtracting a negative number.",
+                "The flip is triggered by multiplying or dividing by a negative, never by adding "
+                "one. From x − 5 < 3 you get x < 8, symbol unchanged.",
+            ),
+            mistake(
+                "Drawing a filled circle for a strict > or <.",
+                "Strict symbols exclude the endpoint — open circle. Fill it only for ≤ and ≥.",
+            ),
+            mistake(
+                "Reporting 'at most 8.33 tickets' as a final answer.",
+                "State the boundary from the algebra, then clamp it to the situation: a count must "
+                "be a whole number, so the answer is 8.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u2-l3-t1",
+                "Solve $4x + 5 \\ge 21$ and describe the graph.",
+                "Subtract $5$: $4x \\ge 16$. Divide by $4$ (positive, no flip): $x \\ge 4$. "
+                "Filled circle at $4$, shaded right. Check at $x = 4$: $21 \\ge 21$ ✓; at "
+                "$x = 3$: $17 \\ge 21$ is false ✗.",
+                [
+                    "4*4 + 5 >= 21",
+                    "Not(4*3 + 5 >= 21)",
+                ],
+            ),
+            problem(
+                "im1-u2-l3-t2",
+                "Solve $-5x \\ge 20$.",
+                "Divide by $-5$, a negative, so flip the symbol: $x \\le -4$. Check at $x = -4$: "
+                "$20 \\ge 20$ ✓; at $x = 0$: $0 \\ge 20$ is false ✗, so $0$ is correctly excluded.",
+                [
+                    "-5*(-4) >= 20",
+                    "Not(-5*0 >= 20)",
+                    "-5*(-6) >= 20",
+                ],
+            ),
+            problem(
+                "im1-u2-l3-t3",
+                "A lift carries at most $600$ kg. The operator weighs $70$ kg and each box weighs "
+                "$45$ kg. How many boxes can go up with the operator?",
+                "Let $b$ = number of boxes. Then $45b + 70 \\le 600$, so $45b \\le 530$ and "
+                "$b \\le \\frac{530}{45} \\approx 11.8$. Boxes are whole, so at most $11$ boxes. "
+                "Check: $11$ boxes give $495 + 70 = 565$ kg ✓; $12$ give $610$ kg ✗.",
+                [
+                    "45*11 + 70 <= 600",
+                    "Not(45*12 + 70 <= 600)",
+                    "Eq(45*11 + 70, 565)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "A-REI.3",
+                "title": "Almost everything transfers from equations",
+                "body": (
+                    "Add or subtract the same quantity: order untouched. Multiply or divide by a "
+                    "POSITIVE: order untouched. So the first two lessons of this unit still apply, "
+                    "line for line."
+                ),
+            },
+            {
+                "kind": "integerLine",
+                "eyebrow": "Why negatives are different",
+                "title": "The line turns around",
+                "teach": (
+                    "Drag along the line. $3$ sits left of $5$, so $3 < 5$. Now picture both "
+                    "multiplied by $-1$: $-3$ sits RIGHT of $-5$. The order reversed, and so must "
+                    "the symbol."
+                ),
+                "config": {"min": -8, "max": 8, "start": 3},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "The one rule",
+                "title": "Multiply or divide by a negative → flip the symbol",
+                "body": (
+                    "$-2x < 8$. To free $x$ you divide by $-2$, so the $<$ becomes $>$: "
+                    "$x > -4$. This is the ONLY difference between solving an inequality and "
+                    "solving an equation."
+                ),
+                "beats": [
+                    "$3 < 5$ is true",
+                    "$\\times(-1)$: $-3$ and $-5$",
+                    "But $-3 > -5$ — the order reversed",
+                    "So the symbol must reverse too",
+                ],
+            },
+            {"kind": "worked", "title": "No flip needed", "problemId": "im1-u2-l3-we1"},
+            {"kind": "worked", "title": "The flip, and how to check it", "problemId": "im1-u2-l3-we2"},
+            tap(
+                "Does this one flip?",
+                "Solving $-\\dfrac{x}{4} \\ge 3$, you multiply both sides by $-4$. What is the "
+                "result?",
+                [
+                    "$x \\ge -12$",
+                    "$x \\le -12$",
+                    "$x \\ge 12$",
+                    "$x \\le 12$",
+                ],
+                1,
+                "Multiplying by $-4$ is multiplying by a negative, so the $\\ge$ flips to $\\le$, "
+                "giving $x \\le -12$. Check the endpoint: $-\\frac{-12}{4} = 3 \\ge 3$ ✓. Check a "
+                "value that should fail: $x = 0$ gives $0 \\ge 3$, false ✗ — correctly excluded.",
+                [
+                    "-Rational(-12,4) >= 3",
+                    "Not(-Rational(0,4) >= 3)",
+                    "-Rational(-20,4) >= 3",
+                ],
+            ),
+            {
+                "kind": "tip",
+                "title": "Test one number and the flip can never bite you",
+                "body": (
+                    "After solving, pick any number your answer claims works and substitute it "
+                    "into the ORIGINAL inequality. If it fails, you missed a flip. This costs one "
+                    "line and catches the error every single time."
+                ),
+            },
+            {"kind": "worked", "title": "Two routes, one answer", "problemId": "im1-u2-l3-we3"},
+            {
+                "kind": "teach",
+                "eyebrow": "Graphing",
+                "title": "The answer is a set — draw it",
+                "body": (
+                    "$x > -4$ means every number to the right of $-4$. Open circle at $-4$ because "
+                    "strict $>$ excludes it; shade right. For $x \\ge -4$, fill the circle — the "
+                    "endpoint is in."
+                ),
+            },
+            {"kind": "worked", "title": "A van, a mass limit, and whole crates", "problemId": "im1-u2-l3-we4"},
+            tap(
+                "Where does the context cut in?",
+                "You solve a ticket-budget inequality and get $n \\le 8.33$, where $n$ counts "
+                "tickets. What do you report?",
+                [
+                    "$n \\le 8.33$",
+                    "at most $8$ tickets",
+                    "at most $9$ tickets",
+                    "exactly $8.33$ tickets",
+                ],
+                1,
+                "Tickets are whole objects, so the largest whole number satisfying $n \\le 8.33$ "
+                "is $8$. Rounding UP to $9$ would break the budget — $9 > 8.33$ — which is why "
+                "this is one of the few places you always round DOWN regardless of the decimal.",
+                [
+                    "8 <= Rational(833,100)",
+                    "Not(9 <= Rational(833,100))",
+                ],
+            ),
+            {"kind": "tryIt", "title": "Your turn — no flip", "problemId": "im1-u2-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn — with a flip", "problemId": "im1-u2-l3-t2"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "Adding, subtracting, and multiplying by a positive leave the symbol alone",
+                    "Multiplying or dividing by a **negative** flips the symbol — the only new rule",
+                    "Avoid the flip entirely by moving the variable to the positive side",
+                    "Open circle for $<$ and $>$; filled for $\\le$ and $\\ge$",
+                    "Clamp the set to what the situation allows — whole, non-negative, bounded",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — compound inequalities and absolute value
+# ===========================================================================
+def lesson_compound():
+    return lesson(
+        slug="compound-and-absolute-value",
+        title="Compound Inequalities & Absolute Value",
+        concrete=(
+            "A thermostat holds a room between $19°$ and $23°$ — two conditions at once, and both "
+            "must hold. A security alarm triggers if the door opens more than $2$ cm in EITHER "
+            "direction — one condition, but satisfied two different ways. AND and OR are the two "
+            "shapes every compound statement takes, and absolute value is just OR and AND wearing "
+            "a disguise."
+        ),
+        objective=(
+            "Solve and graph compound inequalities joined by *and* and by *or*, and convert an "
+            "absolute-value equation or inequality into the compound statement it stands for."
+        ),
+        concept=[
+            "**AND means both, and the graph is an overlap.** $x > 2$ AND $x < 7$ describes the "
+            "numbers that satisfy both — the segment between $2$ and $7$, written compactly as "
+            "$2 < x < 7$. Solve a three-part inequality by operating on all THREE parts at once: "
+            "from $-1 < 2x + 3 < 9$, subtract $3$ everywhere to get $-4 < 2x < 6$, then halve "
+            "everywhere to get $-2 < x < 3$.",
+            "**OR means either, and the graph is two pieces.** $x < -1$ OR $x > 4$ cannot be "
+            "compressed into one three-part statement, because no number is both. Its graph is "
+            "two rays pointing away from each other, and its solution set is genuinely in two "
+            "parts.",
+            "**Absolute value is distance from zero.** $|x| = 5$ asks which numbers sit five units "
+            "from $0$, and there are two: $x = 5$ and $x = -5$. So $|A| = b$ (with $b > 0$) always "
+            "splits into $A = b$ OR $A = -b$. If $b < 0$ there is no solution at all — a distance "
+            "cannot be negative.",
+            "**Less-than becomes AND; greater-than becomes OR.** $|x| < 3$ asks for the numbers "
+            "closer than three units to zero — a single interval, $-3 < x < 3$: an AND. "
+            "$|x| > 3$ asks for the numbers FARTHER than three units away — two pieces, "
+            "$x < -3$ OR $x > 3$: an OR. Remember it by the shape: 'less than' squeezes inward "
+            "into one block, 'greater than' pushes outward into two.",
+            "**Solve the compound form, never the bars.** Turn $|2x - 1| \\le 7$ into "
+            "$-7 \\le 2x - 1 \\le 7$ FIRST, then solve all three parts together. Trying to "
+            "manipulate an expression while it is still inside absolute-value bars is where the "
+            "errors live; the bars come off in exactly one step, at the very start.",
+        ],
+        key_idea=(
+            "AND is an overlap (one interval), OR is two separate pieces. Absolute value means "
+            "distance from zero: $|A| < b$ is an AND, $|A| > b$ is an OR, and $|A| = b$ splits "
+            "into two equations."
+        ),
+        facts=[
+            fact(
+                "Absolute-value equation",
+                "|A| = b \\ (b > 0) \\ \\Longleftrightarrow\\ A = b \\ \\text{ or } \\ A = -b",
+                "Two numbers sit any given distance from zero. If b < 0 there is no solution; if "
+                "b = 0 there is exactly one.",
+            ),
+            fact(
+                "Less than — an AND",
+                "|A| < b \\ \\Longleftrightarrow\\ -b < A < b",
+                "Closer than b to zero: one interval, squeezed between −b and b.",
+            ),
+            fact(
+                "Greater than — an OR",
+                "|A| > b \\ \\Longleftrightarrow\\ A < -b \\ \\text{ or } \\ A > b",
+                "Farther than b from zero: two pieces heading in opposite directions.",
+            ),
+        ],
+        worked=[
+            problem(
+                "im1-u2-l4-we1",
+                "Solve $-1 < 2x + 3 < 9$ and graph the solution.",
+                "This is an AND compressed into one line: $2x + 3$ must be above $-1$ and below "
+                "$9$ at the same time. Operate on all three parts together."
+                "Subtract $3$ from each part:"
+                "$$-4 < 2x < 6.$$"
+                "Divide each part by $2$ — positive, so no flips:"
+                "$$-2 < x < 3.$$"
+                "**Graph.** Open circles at $-2$ and $3$, shaded between them."
+                "**Check.** At $x = 0$ (inside): $2(0) + 3 = 3$, and $-1 < 3 < 9$ ✓. At $x = 4$ "
+                "(outside): $11$, and $11 < 9$ is false ✗.",
+                [
+                    "And(-1 < 2*0 + 3, 2*0 + 3 < 9)",
+                    "Not(And(-1 < 2*4 + 3, 2*4 + 3 < 9))",
+                    "And(-1 < 2*(-1) + 3, 2*(-1) + 3 < 9)",
+                    "Not(And(-1 < 2*(-3) + 3, 2*(-3) + 3 < 9))",
+                ],
+            ),
+            problem(
+                "im1-u2-l4-we2",
+                "Solve $|x - 4| = 6$.",
+                "Read it as distance: $x - 4$ must sit six units from zero, and two numbers do. "
+                "Split into two equations:"
+                "$$x - 4 = 6 \\qquad \\text{or} \\qquad x - 4 = -6.$$"
+                "Solve each:"
+                "$$x = 10 \\qquad \\text{or} \\qquad x = -2.$$"
+                "**Check both.** $|10 - 4| = |6| = 6$ ✓ and $|-2 - 4| = |-6| = 6$ ✓."
+                "Geometrically these are the two numbers exactly six units from $4$ on the line — "
+                "which is what $|x - 4|$ measures.",
+                [
+                    "Eq(Abs(10 - 4), 6)",
+                    "Eq(Abs(-2 - 4), 6)",
+                    "Eq(10 - 4, 6)",
+                    "Eq(-2 - 4, -6)",
+                ],
+            ),
+            problem(
+                "im1-u2-l4-we3",
+                "Solve $|2x - 1| \\le 7$ and graph the solution.",
+                "Less-than means AND. Take the bars off first, in one step:"
+                "$$-7 \\le 2x - 1 \\le 7.$$"
+                "Now operate on all three parts. Add $1$ everywhere:"
+                "$$-6 \\le 2x \\le 8.$$"
+                "Divide everywhere by $2$:"
+                "$$-3 \\le x \\le 4.$$"
+                "**Graph.** Filled circles at $-3$ and $4$ (the $\\le$ includes them), shaded "
+                "between."
+                "**Check the endpoints and a miss.** At $x = -3$: $|-7| = 7 \\le 7$ ✓. At "
+                "$x = 4$: $|7| = 7 \\le 7$ ✓. At $x = 5$: $|9| = 9 \\le 7$ is false ✗.",
+                [
+                    "Abs(2*(-3) - 1) <= 7",
+                    "Abs(2*4 - 1) <= 7",
+                    "Not(Abs(2*5 - 1) <= 7)",
+                    "Abs(2*0 - 1) <= 7",
+                ],
+            ),
+            problem(
+                "im1-u2-l4-we4",
+                "A machine cuts rods to $50$ cm with a tolerance of $0.4$ cm. Write this as an "
+                "absolute-value inequality, and find the acceptable range of lengths.",
+                "**Model.** \"Within $0.4$ of $50$\" is a distance statement: the gap between the "
+                "actual length $L$ and the target $50$ must be at most $0.4$:"
+                "$$|L - 50| \\le 0.4.$$"
+                "**Solve.** Less-than is an AND, so remove the bars into a three-part inequality:"
+                "$$-0.4 \\le L - 50 \\le 0.4.$$"
+                "Add $50$ to all three parts:"
+                "$$49.6 \\le L \\le 50.4.$$"
+                "Acceptable rods measure between $49.6$ cm and $50.4$ cm inclusive."
+                "**Check.** A $50.4$ cm rod: $|0.4| \\le 0.4$ ✓, just acceptable. A $50.5$ cm rod: "
+                "$|0.5| \\le 0.4$ is false ✗, rejected. Note the tolerance $0.4$ is the RADIUS of "
+                "the acceptable band, so the band itself is $0.8$ cm wide.",
+                [
+                    "Abs(Rational(504,10) - 50) <= Rational(4,10)",
+                    "Not(Abs(Rational(505,10) - 50) <= Rational(4,10))",
+                    "Abs(Rational(496,10) - 50) <= Rational(4,10)",
+                    "Eq(Rational(504,10) - Rational(496,10), Rational(8,10))",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Turning |x| > 3 into −3 < x < 3.",
+                "Greater-than is an OR, not an AND: x < −3 or x > 3. Test x = 10 — it satisfies "
+                "|x| > 3 but is nowhere near the interval (−3, 3).",
+            ),
+            mistake(
+                "Solving only the positive case of |x − 4| = 6 and reporting x = 10.",
+                "Two numbers sit any distance from zero. The other case, x − 4 = −6, gives x = −2, "
+                "and it is a genuine solution.",
+            ),
+            mistake(
+                "Operating on only two of the three parts: from −4 < 2x < 6 writing −4 < x < 3.",
+                "Every part gets the same operation. Halving all three gives −2 < x < 3.",
+            ),
+            mistake(
+                "Distributing a coefficient into the bars: writing |2x − 1| as 2|x| − 1.",
+                "Absolute value is not linear. |2(−1) − 1| = 3, but 2|−1| − 1 = 1. Take the bars "
+                "off by splitting into cases, never by distributing through them.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u2-l4-t1",
+                "Solve $-5 \\le 3x + 1 \\le 13$.",
+                "Subtract $1$ from all three parts: $-6 \\le 3x \\le 12$. Divide all three by $3$: "
+                "$-2 \\le x \\le 4$. Check at $x = 4$: $13 \\le 13$ ✓; at $x = 5$: $16 \\le 13$ is "
+                "false ✗.",
+                [
+                    "And(-5 <= 3*4 + 1, 3*4 + 1 <= 13)",
+                    "Not(And(-5 <= 3*5 + 1, 3*5 + 1 <= 13))",
+                    "And(-5 <= 3*(-2) + 1, 3*(-2) + 1 <= 13)",
+                ],
+            ),
+            problem(
+                "im1-u2-l4-t2",
+                "Solve $|x + 3| = 8$.",
+                "Split into two cases: $x + 3 = 8$ gives $x = 5$; $x + 3 = -8$ gives $x = -11$. "
+                "Check: $|5 + 3| = 8$ ✓ and $|-11 + 3| = |-8| = 8$ ✓.",
+                [
+                    "Eq(Abs(5 + 3), 8)",
+                    "Eq(Abs(-11 + 3), 8)",
+                ],
+            ),
+            problem(
+                "im1-u2-l4-t3",
+                "Solve $|x - 2| > 5$ and describe the graph.",
+                "Greater-than is an OR: $x - 2 > 5$ or $x - 2 < -5$, giving $x > 7$ or $x < -3$. "
+                "The graph is two rays — open circle at $-3$ shaded left, open circle at $7$ "
+                "shaded right, with a gap between. Check at $x = 0$ (in the gap): "
+                "$|-2| = 2 > 5$ is false ✗, correctly excluded.",
+                [
+                    "Abs(8 - 2) > 5",
+                    "Abs(-4 - 2) > 5",
+                    "Not(Abs(0 - 2) > 5)",
+                ],
+            ),
+        ],
+        steps=[
+            {
+                "kind": "teach",
+                "eyebrow": "Two shapes",
+                "title": "AND overlaps; OR splits",
+                "body": (
+                    "AND asks for numbers meeting both conditions — the overlap, one interval. OR "
+                    "asks for numbers meeting either — two separate pieces. Every compound "
+                    "statement is one of these two, and the graph tells you which."
+                ),
+                "beats": [
+                    "$x > 2$ **and** $x < 7$ → the block $2 < x < 7$",
+                    "$x < -1$ **or** $x > 4$ → two rays, a gap between",
+                    "An AND can be written as one three-part line",
+                    "An OR cannot — no number is both",
+                ],
+            },
+            {"kind": "worked", "title": "A three-part inequality", "problemId": "im1-u2-l4-we1"},
+            {
+                "kind": "tip",
+                "title": "All three parts, every time",
+                "body": (
+                    "In $-4 < 2x < 6$ the division by $2$ applies to $-4$, to $2x$ AND to $6$. "
+                    "Treating the middle differently from the ends produces an answer that looks "
+                    "reasonable and is wrong."
+                ),
+            },
+            {
+                "kind": "absoluteValue",
+                "eyebrow": "What the bars mean",
+                "title": "Absolute value is distance from zero",
+                "teach": (
+                    "Drag the point. The reading is how far it sits from $0$, ignoring direction. "
+                    "That is why two different numbers can share one absolute value — and why "
+                    "every absolute-value problem splits into two cases."
+                ),
+                "config": {"min": -10, "max": 10, "start": -6},
+            },
+            {
+                "kind": "teach",
+                "eyebrow": "Equations",
+                "title": "|A| = b splits into two",
+                "body": (
+                    "Two numbers sit any given distance from zero, so $|A| = b$ becomes "
+                    "$A = b$ OR $A = -b$. If $b$ is negative there is no solution — a distance "
+                    "cannot be negative. If $b = 0$ there is exactly one."
+                ),
+            },
+            {"kind": "worked", "title": "Two solutions, both real", "problemId": "im1-u2-l4-we2"},
+            tap(
+                "How many solutions?",
+                "How many real solutions does $|3x + 2| = -5$ have?",
+                ["Two", "One", "None", "Infinitely many"],
+                2,
+                "Absolute value measures a distance, and a distance is never negative — the left "
+                "side is at least $0$ for every $x$, so it can never equal $-5$. No solution. "
+                "Splitting into cases here would produce two numbers that fail the original "
+                "equation, which is why you check the sign of the right-hand side FIRST.",
+                ["Abs(3*0 + 2) >= 0", "Abs(3*(-7) + 2) >= 0", "Not(Eq(Abs(3*0 + 2), -5))"],
+            ),
+            {
+                "kind": "teach",
+                "eyebrow": "The direction rule",
+                "title": "Less-than squeezes in; greater-than pushes out",
+                "body": (
+                    "$|x| < 3$ wants the numbers CLOSER than three to zero — a single block, "
+                    "$-3 < x < 3$, an AND. $|x| > 3$ wants the numbers FARTHER than three — two "
+                    "pieces, $x < -3$ or $x > 3$, an OR. Picture the distance and the shape "
+                    "follows."
+                ),
+                "beats": [
+                    "$|A| < b$ → $-b < A < b$ (**and**, one block)",
+                    "$|A| > b$ → $A < -b$ or $A > b$ (**or**, two pieces)",
+                    "Take the bars off FIRST, then solve",
+                    "Never distribute a coefficient through the bars",
+                ],
+            },
+            {"kind": "worked", "title": "Less-than: one interval", "problemId": "im1-u2-l4-we3"},
+            tap(
+                "Which compound statement?",
+                "Which is equivalent to $|x - 5| \\ge 2$?",
+                [
+                    "$3 \\le x \\le 7$",
+                    "$x \\le 3$ or $x \\ge 7$",
+                    "$x \\ge 3$ and $x \\le 7$",
+                    "$-2 \\le x - 5 \\le 2$",
+                ],
+                1,
+                "Greater-than-or-equal is an OR: $x - 5 \\ge 2$ or $x - 5 \\le -2$, giving "
+                "$x \\ge 7$ or $x \\le 3$. Test $x = 5$, which the other options would accept: "
+                "$|0| = 0 \\ge 2$ is false ✗, so the middle must be EXCLUDED — the answer is the "
+                "two outer pieces.",
+                [
+                    "Abs(7 - 5) >= 2",
+                    "Abs(3 - 5) >= 2",
+                    "Not(Abs(5 - 5) >= 2)",
+                    "Abs(10 - 5) >= 2",
+                ],
+            ),
+            {"kind": "worked", "title": "A manufacturing tolerance", "problemId": "im1-u2-l4-we4"},
+            {
+                "kind": "funFact",
+                "title": "Every tolerance is an absolute value",
+                "body": (
+                    "\"$50$ cm ± $0.4$ cm\" on an engineering drawing IS the inequality "
+                    "$|L - 50| \\le 0.4$. The ± notation and the absolute-value notation say the "
+                    "same thing — one is how a workshop writes it, the other is how you solve it."
+                ),
+            },
+            {"kind": "tryIt", "title": "Your turn — three parts at once", "problemId": "im1-u2-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn — greater-than", "problemId": "im1-u2-l4-t3"},
+            {
+                "kind": "recap",
+                "title": "What you now own",
+                "points": [
+                    "AND → one interval; OR → two pieces with a gap",
+                    "In a three-part inequality, every operation hits **all three** parts",
+                    "$|A| = b$ splits into $A = b$ or $A = -b$; no solution if $b < 0$",
+                    "$|A| < b$ is an AND; $|A| > b$ is an OR",
+                    "Remove the bars first — never distribute through them",
+                ],
+            },
+        ],
+    )
+
+
+# ===========================================================================
+# Unit banks
+# ===========================================================================
+def practice_bank():
+    return [
+        problem(
+            "im1-u2-pr-1",
+            "Solve $7x + 9 = 51$.",
+            "Subtract $9$: $7x = 42$. Divide by $7$: $x = 6$. Check: $42 + 9 = 51$ ✓",
+            ["Eq(7*6 + 9, 51)", "Eq(solve(Eq(7*Symbol('x') + 9, 51), Symbol('x'))[0], 6)"],
+        ),
+        problem(
+            "im1-u2-pr-2",
+            "Solve $6(x - 4) = 2x + 8$.",
+            "Distribute: $6x - 24 = 2x + 8$. Subtract $2x$: $4x - 24 = 8$. Add $24$: $4x = 32$, "
+            "so $x = 8$. Check: $6(4) = 24$ and $2(8) + 8 = 24$ ✓",
+            [
+                "Eq(6*(8 - 4), 24)",
+                "Eq(2*8 + 8, 24)",
+                "Eq(solve(Eq(6*(Symbol('x') - 4), 2*Symbol('x') + 8), Symbol('x'))[0], 8)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-3",
+            "Solve $\\dfrac{x}{5} - \\dfrac{1}{2} = \\dfrac{7}{10}$.",
+            "LCD of $5$, $2$, $10$ is $10$. Multiply every term by $10$: $2x - 5 = 7$. Add $5$: "
+            "$2x = 12$, so $x = 6$. Check: "
+            "$\\frac{6}{5} - \\frac{1}{2} = \\frac{12 - 5}{10} = \\frac{7}{10}$ ✓",
+            [
+                "Eq(Rational(6,5) - Rational(1,2), Rational(7,10))",
+                "Eq(solve(Eq(Symbol('x')/5 - Rational(1,2), Rational(7,10)), Symbol('x'))[0], 6)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-4",
+            "Solve $2x + 7 = 2x - 3$ and describe the solution set.",
+            "Subtract $2x$: $7 = -3$, which is false. The variable cancelled and the leftover "
+            "statement cannot hold, so there is **no solution**. Both sides rise at the same rate "
+            "with a permanent gap of $10$.",
+            [
+                "Eq((2*0 + 7) - (2*0 - 3), 10)",
+                "Eq(simplify((2*Symbol('x') + 7) - (2*Symbol('x') - 3)), 10)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-5",
+            "Solve $5(2x - 3) = 10x - 15$ and describe the solution set.",
+            "Distribute: $10x - 15 = 10x - 15$. The sides are identical, so every real number is a "
+            "solution. Spot-check at $x = 1$: $5(-1) = -5$ and $10 - 15 = -5$ ✓",
+            [
+                "Eq(5*(2*1 - 3), -5)",
+                "Eq(10*1 - 15, -5)",
+                "Eq(simplify(5*(2*Symbol('x') - 3) - (10*Symbol('x') - 15)), 0)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-6",
+            "Solve $2x - 9 \\le 5$ and describe the graph.",
+            "Add $9$: $2x \\le 14$. Divide by $2$: $x \\le 7$. Filled circle at $7$, shaded left. "
+            "Check at $x = 7$: $5 \\le 5$ ✓; at $x = 8$: $7 \\le 5$ is false ✗.",
+            ["2*7 - 9 <= 5", "Not(2*8 - 9 <= 5)"],
+        ),
+        problem(
+            "im1-u2-pr-7",
+            "Solve $-3x + 4 > 19$.",
+            "Subtract $4$: $-3x > 15$. Divide by $-3$ — a negative, so flip: $x < -5$. Check at "
+            "$x = -6$: $18 + 4 = 22 > 19$ ✓; at $x = 0$: $4 > 19$ is false ✗.",
+            ["-3*(-6) + 4 > 19", "Not(-3*0 + 4 > 19)", "Not(-3*(-5) + 4 > 19)"],
+        ),
+        problem(
+            "im1-u2-pr-8",
+            "Solve $-4 \\le 5x + 6 < 21$.",
+            "Subtract $6$ from all three parts: $-10 \\le 5x < 15$. Divide all three by $5$: "
+            "$-2 \\le x < 3$. Filled circle at $-2$, open at $3$. Check at $x = -2$: $-4 \\le -4$ "
+            "✓; at $x = 3$: $21 < 21$ is false ✗.",
+            [
+                "And(-4 <= 5*(-2) + 6, 5*(-2) + 6 < 21)",
+                "Not(And(-4 <= 5*3 + 6, 5*3 + 6 < 21))",
+                "And(-4 <= 5*0 + 6, 5*0 + 6 < 21)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-9",
+            "Solve $|4x - 2| = 14$.",
+            "Split: $4x - 2 = 14$ gives $x = 4$; $4x - 2 = -14$ gives $x = -3$. Check: "
+            "$|16 - 2| = 14$ ✓ and $|-12 - 2| = 14$ ✓",
+            ["Eq(Abs(4*4 - 2), 14)", "Eq(Abs(4*(-3) - 2), 14)"],
+        ),
+        problem(
+            "im1-u2-pr-10",
+            "Solve $|x + 1| < 6$ and describe the graph.",
+            "Less-than is an AND: $-6 < x + 1 < 6$. Subtract $1$ from all three parts: "
+            "$-7 < x < 5$. Open circles at $-7$ and $5$, shaded between. Check at $x = 5$: "
+            "$|6| < 6$ is false ✗, correctly excluded.",
+            ["Abs(0 + 1) < 6", "Not(Abs(5 + 1) < 6)", "Not(Abs(-7 + 1) < 6)"],
+        ),
+        problem(
+            "im1-u2-pr-11",
+            "A taxi charges $2000$₮ plus $700$₮ per kilometre. You have $16\\,000$₮. Write and "
+            "solve an inequality for the distance you can travel.",
+            "Let $d$ = distance in km. Then $700d + 2000 \\le 16\\,000$, so $700d \\le 14\\,000$ "
+            "and $d \\le 20$. With $d \\ge 0$ from the context, the range is "
+            "$0 \\le d \\le 20$ km. Check at $d = 20$: $14\\,000 + 2000 = 16\\,000$ ✓, exactly "
+            "the budget.",
+            [
+                "Eq(700*20 + 2000, 16000)",
+                "700*20 + 2000 <= 16000",
+                "Not(700*21 + 2000 <= 16000)",
+            ],
+        ),
+        problem(
+            "im1-u2-pr-12",
+            "A bag of rice is labelled $25$ kg with a tolerance of $0.3$ kg. Write the acceptable "
+            "mass as an absolute-value inequality and find the range.",
+            "Let $m$ be the actual mass. Then $|m - 25| \\le 0.3$, so "
+            "$-0.3 \\le m - 25 \\le 0.3$ and $24.7 \\le m \\le 25.3$ kg. Check: a $25.3$ kg bag "
+            "gives $|0.3| \\le 0.3$ ✓; a $25.4$ kg bag gives $|0.4| \\le 0.3$, false ✗.",
+            [
+                "Abs(Rational(253,10) - 25) <= Rational(3,10)",
+                "Not(Abs(Rational(254,10) - 25) <= Rational(3,10))",
+                "Abs(Rational(247,10) - 25) <= Rational(3,10)",
+            ],
+        ),
+    ]
+
+
+def test_bank():
+    return [
+        problem(
+            "im1-u2-ty-1",
+            "Solve $3(2x - 5) + 4 = 5(x + 2) - 3$, showing each step.",
+            "Distribute on both sides:"
+            "$$6x - 15 + 4 = 5x + 10 - 3.$$"
+            "Collect on each side:"
+            "$$6x - 11 = 5x + 7.$$"
+            "Subtract $5x$ (subtraction property):"
+            "$$x - 11 = 7.$$"
+            "Add $11$ (addition property):"
+            "$$x = 18.$$"
+            "**Check in the original.** Left: $3(36 - 5) + 4 = 3(31) + 4 = 97$. Right: "
+            "$5(20) - 3 = 97$. Equal ✓",
+            [
+                "Eq(3*(2*18 - 5) + 4, 97)",
+                "Eq(5*(18 + 2) - 3, 97)",
+                "Eq(solve(Eq(3*(2*Symbol('x') - 5) + 4, 5*(Symbol('x') + 2) - 3), Symbol('x'))[0], 18)",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-2",
+            "Solve $\\dfrac{3x + 1}{4} - \\dfrac{x}{2} = \\dfrac{5}{8}$.",
+            "The LCD of $4$, $2$ and $8$ is $8$. Multiply every term by $8$:"
+            "$$2(3x + 1) - 4x = 5.$$"
+            "Note the numerator $3x + 1$ keeps its grouping. Distribute and collect:"
+            "$$6x + 2 - 4x = 5 \\quad\\Longrightarrow\\quad 2x + 2 = 5.$$"
+            "$$2x = 3 \\quad\\Longrightarrow\\quad x = \\frac{3}{2}.$$"
+            "**Check in the original.** "
+            "$\\frac{3(3/2) + 1}{4} - \\frac{3/2}{2} = \\frac{11/2}{4} - \\frac{3}{4} "
+            "= \\frac{11}{8} - \\frac{6}{8} = \\frac{5}{8}$ ✓",
+            [
+                "Eq((3*Rational(3,2) + 1)/4 - Rational(3,2)/2, Rational(5,8))",
+                "Eq(solve(Eq((3*Symbol('x') + 1)/4 - Symbol('x')/2, Rational(5,8)), Symbol('x'))[0], Rational(3,2))",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-3",
+            "Solve $4(x + 2) - 3 = 4x + 5$ and describe its solution set, explaining why.",
+            "Simplify the left side:"
+            "$$4x + 8 - 3 = 4x + 5 \\quad\\Longrightarrow\\quad 4x + 5 = 4x + 5.$$"
+            "Subtract $4x$ from both sides:"
+            "$$5 = 5.$$"
+            "The variable has cancelled and the leftover statement is TRUE, so the equation is an "
+            "identity: **every real number is a solution**."
+            "**Why.** $4(x + 2) - 3$ simplifies to exactly $4x + 5$ — the two sides were never "
+            "two different expressions, only two spellings of one. Spot-check at $x = -1$: "
+            "$4(1) - 3 = 1$ and $-4 + 5 = 1$ ✓; at $x = 10$: $48 - 3 = 45$ and $45$ ✓.",
+            [
+                "Eq(4*(-1 + 2) - 3, 4*(-1) + 5)",
+                "Eq(4*(10 + 2) - 3, 4*10 + 5)",
+                "Eq(simplify((4*(Symbol('x') + 2) - 3) - (4*Symbol('x') + 5)), 0)",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-4",
+            "Solve $7 - 2x \\ge 4x - 11$ and graph the solution set.",
+            "Gather the variable on the side that keeps its coefficient positive — add $2x$ to "
+            "both sides:"
+            "$$7 \\ge 6x - 11.$$"
+            "Add $11$:"
+            "$$18 \\ge 6x.$$"
+            "Divide by $6$ — positive, so no flip:"
+            "$$3 \\ge x, \\ \\text{ i.e. } \\ x \\le 3.$$"
+            "**Graph.** Filled circle at $3$, shaded left."
+            "**Check.** At $x = 3$: $7 - 6 = 1$ and $12 - 11 = 1$, so $1 \\ge 1$ ✓ — the endpoint "
+            "belongs. At $x = 4$: $-1 \\ge 5$ is false ✗. Note that routing the variable to the "
+            "right avoided the flip entirely.",
+            [
+                "7 - 2*3 >= 4*3 - 11",
+                "Not(7 - 2*4 >= 4*4 - 11)",
+                "7 - 2*0 >= 4*0 - 11",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-5",
+            "Solve $|3x + 6| > 9$ and graph the solution set.",
+            "Greater-than is an OR — two pieces:"
+            "$$3x + 6 > 9 \\qquad \\text{or} \\qquad 3x + 6 < -9.$$"
+            "Solve each:"
+            "$$3x > 3 \\Rightarrow x > 1 \\qquad \\text{or} \\qquad 3x < -15 \\Rightarrow "
+            "x < -5.$$"
+            "**Graph.** Open circle at $-5$ shaded left, open circle at $1$ shaded right, with a "
+            "gap between $-5$ and $1$."
+            "**Check.** At $x = 2$: $|12| = 12 > 9$ ✓. At $x = -6$: $|-12| = 12 > 9$ ✓. At "
+            "$x = 0$ (in the gap): $|6| = 6 > 9$ is false ✗ — correctly excluded, which is the "
+            "check that distinguishes this from the AND answer.",
+            [
+                "Abs(3*2 + 6) > 9",
+                "Abs(3*(-6) + 6) > 9",
+                "Not(Abs(3*0 + 6) > 9)",
+                "Not(Abs(3*1 + 6) > 9)",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-6",
+            "A phone plan costs $18\\,000$₮ a month plus $40$₮ per minute. A student's monthly "
+            "budget for the phone is $30\\,000$₮. Write an inequality for the minutes available, "
+            "solve it, and say how many whole minutes the student can use.",
+            "**Define.** Let $m$ = minutes used, a non-negative whole number."
+            "**Model.**"
+            "$$40m + 18\\,000 \\le 30\\,000.$$"
+            "**Solve.**"
+            "$$40m \\le 12\\,000 \\quad\\Longrightarrow\\quad m \\le 300.$$"
+            "**Clamp.** With $m \\ge 0$ from the context, the range is $0 \\le m \\le 300$, so "
+            "the student can use up to $300$ minutes."
+            "**Check the boundary.** $300$ minutes cost $12\\,000 + 18\\,000 = 30\\,000$₮ — "
+            "exactly the budget, and $\\le$ permits it ✓. $301$ minutes cost $30\\,040$₮ ✗.",
+            [
+                "Eq(40*300 + 18000, 30000)",
+                "40*300 + 18000 <= 30000",
+                "Not(40*301 + 18000 <= 30000)",
+            ],
+        ),
+        problem(
+            "im1-u2-ty-7",
+            "A thermostat keeps a greenhouse within $1.5°$C of $22°$C. Write this as an "
+            "absolute-value inequality, solve it, and state the acceptable temperature range. "
+            "Then say whether $23.6°$C is acceptable.",
+            "**Model.** The gap between the actual temperature $T$ and the target $22$ must be at "
+            "most $1.5$:"
+            "$$|T - 22| \\le 1.5.$$"
+            "**Solve.** Less-than is an AND, so remove the bars into three parts:"
+            "$$-1.5 \\le T - 22 \\le 1.5.$$"
+            "Add $22$ everywhere:"
+            "$$20.5 \\le T \\le 23.5.$$"
+            "**Range.** From $20.5°$C to $23.5°$C inclusive — a band $3°$ wide, since the "
+            "tolerance $1.5$ is its radius, not its width."
+            "**Is 23.6 degrees acceptable?** $|23.6 - 22| = 1.6$, and $1.6 \\le 1.5$ is false, so no — "
+            "it is $0.1°$ outside the band.",
+            [
+                "Abs(Rational(235,10) - 22) <= Rational(15,10)",
+                "Abs(Rational(205,10) - 22) <= Rational(15,10)",
+                "Not(Abs(Rational(236,10) - 22) <= Rational(15,10))",
+                "Eq(Rational(235,10) - Rational(205,10), 3)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="linear-equations-and-inequalities",
+        title="Linear Equations & Inequalities",
+        unit_number=2,
+        blurb=(
+            "Solving one-variable equations with a reason for every step, clearing fractions, the "
+            "two special cases where the variable disappears, inequalities and the negative-flip "
+            "rule, and compound and absolute-value statements."
+        ),
+        builds_on=(
+            "Rearranging formulas from Unit 1 — the same moves, now with a number as the target "
+            "instead of a letter."
+        ),
+        lessons=[
+            lesson_solving(),
+            lesson_fractions_and_cases(),
+            lesson_inequalities(),
+            lesson_compound(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

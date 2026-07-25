@@ -1,0 +1,1276 @@
+{
+  "slug": "linear-functions",
+  "title": "Linear Functions & Modelling",
+  "unit": 4,
+  "status": "published",
+  "blurb": "Slope as a rate of change with units, graphing from slope-intercept form, both intercepts and what they mean, writing a line from a point or from two points, and interpreting a linear model in the language of its situation.",
+  "buildsOn": "Function notation from Unit 3, and the constant difference of an arithmetic sequence — which is what slope becomes once the input is allowed to vary continuously.",
+  "lessons": [
+    {
+      "slug": "slope-as-rate-of-change",
+      "title": "Slope as a Rate of Change",
+      "concreteComparison": "A wheelchair ramp that rises $1$ metre over $12$ metres of floor is usable; one that rises $1$ metre over $2$ metres is a wall. Both rise the same height. What separates them is the rise measured AGAINST the run — and that single ratio is the most reused number in this course.",
+      "objective": "Compute slope from two points, from a table, and from a graph; interpret it as a rate of change with units; and recognise a constant rate of change as the signature of a linear relationship.",
+      "concept": [
+        "**Slope is rise over run.** Between two points $(x_1, y_1)$ and $(x_2, y_2)$, $$m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{\\text{change in output}}{\\text{change in input}}.$$ Take the coordinates in the SAME order top and bottom. Reversing one but not the other flips the sign, which turns an uphill line into a downhill one.",
+        "**Slope is a rate, and rates carry units.** If $y$ is cost in tugriks and $x$ is kilometres, then $m$ is measured in tugriks per kilometre. Reading the units off the axes turns an abstract number into a sentence: \"each extra kilometre costs $900$₮\". That sentence is what almost every exam question on this standard is actually asking for.",
+        "**Sign and steepness.** A positive slope climbs left to right; a negative slope falls. A slope of $0$ is a horizontal line — the output never changes. A VERTICAL line has an undefined slope, because its run is zero and you cannot divide by zero; it is also not a function, which Unit 3 already told you.",
+        "**Constant rate of change is what makes it linear.** Take a table and compute the change in output per unit change in input between EVERY consecutive pair. If that ratio is the same every time, the relationship is linear. If it drifts, it is not, and no line will describe it — this is the test that decides whether the rest of this unit applies at all.",
+        "**Average rate of change generalises it.** For a curve, $\\frac{f(b) - f(a)}{b - a}$ measures the average climb between two points — the slope of the straight line joining them. For a genuinely linear function that number is the same whichever pair you pick, which is another way of saying the graph is straight."
+      ],
+      "keyIdea": "Slope = change in output ÷ change in input, with units attached. A relationship is linear exactly when that ratio is the same for every pair of points.",
+      "facts": [
+        {
+          "title": "The slope formula",
+          "latex": "m = \\frac{y_2 - y_1}{x_2 - x_1}",
+          "explanation": "Same order top and bottom. Reversing one only flips the sign of the answer."
+        },
+        {
+          "title": "Slope carries units",
+          "latex": "m = \\frac{\\Delta y}{\\Delta x} \\ \\left[\\frac{\\text{y-units}}{\\text{x-units}}\\right]",
+          "explanation": "Tugriks per kilometre, litres per minute, centimetres per hour — read them off the axes."
+        },
+        {
+          "title": "Special slopes",
+          "latex": "\\text{horizontal}: m = 0 \\qquad \\text{vertical}: m \\ \\text{undefined}",
+          "explanation": "A horizontal line has zero rise; a vertical line has zero run, and division by zero is undefined."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u4-l1-we1",
+          "statement": "Find the slope of the line through $(2, 5)$ and $(6, 17)$.",
+          "solution": "Label consistently: $(x_1, y_1) = (2, 5)$ and $(x_2, y_2) = (6, 17)$.$$m = \\frac{17 - 5}{6 - 2} = \\frac{12}{4} = 3.$$**Check by reversing the labels.** Taking $(6, 17)$ first:$$m = \\frac{5 - 17}{2 - 6} = \\frac{-12}{-4} = 3.$$Same answer — as long as you reverse BOTH the numerator and the denominator. Reversing only one would give $-3$, an uphill line reported as downhill.",
+          "check": [
+            "Eq(Rational(17 - 5, 6 - 2), 3)",
+            "Eq(Rational(5 - 17, 2 - 6), 3)",
+            "Eq(Rational(17 - 5, 2 - 6), -3)"
+          ]
+        },
+        {
+          "id": "im1-u4-l1-we2",
+          "statement": "A taxi's fare is $3200$₮ after $2$ km and $8600$₮ after $8$ km. Find the rate per kilometre and state its units.",
+          "solution": "Treat the two readings as points $(2, 3200)$ and $(8, 8600)$, with distance as the input.$$m = \\frac{8600 - 3200}{8 - 2} = \\frac{5400}{6} = 900.$$**Units.** The numerator is tugriks and the denominator is kilometres, so$$m = 900 \\ \\frac{\\text{tugriks}}{\\text{km}}.$$**In words.** Each additional kilometre costs $900$₮ — and this holds anywhere along the trip, not just between $2$ and $8$ km, because the fare is linear.**Check with a third point.** If the fare is linear, at $5$ km it should be $3200 + 3(900) = 5900$₮, and going on to $8$ km adds $3(900) = 2700$₮ more, reaching $8600$₮ ✓",
+          "check": [
+            "Eq(Rational(8600 - 3200, 8 - 2), 900)",
+            "Eq(3200 + 3*900, 5900)",
+            "Eq(5900 + 3*900, 8600)"
+          ]
+        },
+        {
+          "id": "im1-u4-l1-we3",
+          "statement": "Decide whether each table is linear. Table A: $(0, 4), (1, 7), (2, 10), (3, 13)$. Table B: $(0, 2), (1, 4), (2, 8), (3, 16)$.",
+          "solution": "**Table A.** Compute the change in output for each unit step in input:$$7 - 4 = 3, \\qquad 10 - 7 = 3, \\qquad 13 - 10 = 3.$$Constant, and the input steps are all $1$, so the rate of change is $3$ throughout. **Linear**, with slope $3$.**Table B.** The same computation:$$4 - 2 = 2, \\qquad 8 - 4 = 4, \\qquad 16 - 8 = 8.$$The changes grow, so the rate is not constant. **Not linear** — no straight line passes through all four points.**What Table B is instead.** Its RATIOS are constant: $\\frac{4}{2} = \\frac{8}{4} = \\frac{16}{8} = 2$. That is exponential growth, the subject of Unit 6 — and the same differences-then-ratios test you used on sequences in Unit 3.",
+          "check": [
+            "Eq(7 - 4, 3)",
+            "Eq(13 - 10, 3)",
+            "Eq(4 - 2, 2)",
+            "Eq(8 - 4, 4)",
+            "Ne(2, 4)",
+            "Eq(Rational(16,8), 2)"
+          ]
+        },
+        {
+          "id": "im1-u4-l1-we4",
+          "statement": "A tank drains from $450$ litres at time $0$ to $210$ litres after $20$ minutes. Find the rate of change, interpret its sign, and predict the volume at $30$ minutes.",
+          "solution": "**Rate.** The points are $(0, 450)$ and $(20, 210)$.$$m = \\frac{210 - 450}{20 - 0} = \\frac{-240}{20} = -12.$$**Units and sign.** Litres per minute, and NEGATIVE — the tank is losing $12$ litres every minute. The sign is not a decoration; it is the difference between filling and draining.**Predict at 30 minutes.** Starting from $450$ and losing $12$ per minute:$$V(30) = 450 - 12(30) = 450 - 360 = 90\\ \\text{litres}.$$**Check the domain.** The tank empties when $450 - 12t = 0$, i.e. at $t = 37.5$ minutes, so the prediction at $30$ minutes is inside the valid range ✓ — a prediction at $t = 50$ would not be.",
+          "check": [
+            "Eq(Rational(210 - 450, 20 - 0), -12)",
+            "Eq(450 - 12*20, 210)",
+            "Eq(450 - 12*30, 90)",
+            "Eq(450 - 12*Rational(75,2), 0)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reversing only the numerator: writing (y₂ − y₁)/(x₁ − x₂).",
+          "correction": "Both fractions must run the same direction. Mixing them flips the sign and turns an uphill line into a downhill one.",
+          "authored": true
+        },
+        {
+          "text": "Computing run over rise instead of rise over run.",
+          "correction": "Slope is CHANGE IN OUTPUT over CHANGE IN INPUT — the y-difference on top. Checking the units catches it: cost per kilometre, not kilometres per tugrik.",
+          "authored": true
+        },
+        {
+          "text": "Calling a vertical line's slope zero.",
+          "correction": "A horizontal line has slope 0 (no rise). A vertical line has an UNDEFINED slope (no run, and you cannot divide by zero).",
+          "authored": true
+        },
+        {
+          "text": "Declaring a table linear after checking only one pair of rows.",
+          "correction": "Check every consecutive pair. (0,2), (1,4), (2,8) starts out looking linear and is not.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u4-l1-t1",
+          "statement": "Find the slope through $(-1, 8)$ and $(3, -4)$.",
+          "solution": "$$m = \\frac{-4 - 8}{3 - (-1)} = \\frac{-12}{4} = -3.$$ Negative, so the line falls from left to right.",
+          "check": [
+            "Eq(Rational(-4 - 8, 3 - (-1)), -3)",
+            "Eq(3 - (-1), 4)"
+          ]
+        },
+        {
+          "id": "im1-u4-l1-t2",
+          "statement": "A phone's battery is at $86\\%$ after $10$ minutes of use and $50\\%$ after $70$ minutes. Find the rate of change with units.",
+          "solution": "$$m = \\frac{50 - 86}{70 - 10} = \\frac{-36}{60} = -0.6.$$ The battery falls by $0.6$ percentage points per minute.",
+          "check": [
+            "Eq(Rational(50 - 86, 70 - 10), Rational(-3,5))",
+            "Eq(Rational(-3,5), -0.6)"
+          ]
+        },
+        {
+          "id": "im1-u4-l1-t3",
+          "statement": "Is the table $(1, 5), (3, 11), (6, 20), (8, 26)$ linear? Justify.",
+          "solution": "Compute change in output over change in input for each pair: $\\frac{11-5}{3-1} = 3$, $\\frac{20-11}{6-3} = 3$, $\\frac{26-20}{8-6} = 3$. The rate is constant at $3$, so yes — linear with slope $3$. Note the input steps are uneven, which is exactly why you must divide rather than just subtract.",
+          "check": [
+            "Eq(Rational(11 - 5, 3 - 1), 3)",
+            "Eq(Rational(20 - 11, 6 - 3), 3)",
+            "Eq(Rational(26 - 20, 8 - 6), 3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.6",
+            "title": "Rise over run, in that order",
+            "body": "Between two points, slope is the change in output divided by the change in input. Label the points once and keep the order consistent top and bottom — that is the whole discipline.",
+            "beats": [
+              "$m = \\dfrac{y_2 - y_1}{x_2 - x_1}$",
+              "Output change on **top**",
+              "Same order in both differences",
+              "Reversing both is fine; reversing one flips the sign"
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "See the triangle",
+            "title": "The rise and the run",
+            "teach": "Two points, and the right triangle between them. The vertical leg is the rise, the horizontal leg is the run, and the slope is their ratio — here $\\frac{12}{4} = 3$.",
+            "config": {
+              "mode": "slope",
+              "a": {
+                "x": 2,
+                "y": 5
+              },
+              "b": {
+                "x": 6,
+                "y": 17
+              },
+              "min": 0,
+              "max": 20
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Two points, one slope",
+            "problemId": "im1-u4-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which fraction is the slope?",
+            "prompt": "For the points $(1, 4)$ and $(5, 16)$, which expression gives the slope?",
+            "options": [
+              "$\\dfrac{16 - 4}{5 - 1}$",
+              "$\\dfrac{5 - 1}{16 - 4}$",
+              "$\\dfrac{16 - 4}{1 - 5}$",
+              "$\\dfrac{4 - 16}{5 - 1}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Output change on top, input change on the bottom, both taken second-minus-first: $\\frac{12}{4} = 3$. Option B inverts the ratio; options C and D reverse only one difference and give $-3$, which would describe a line falling instead of rising.",
+            "check": [
+              "Eq(Rational(16 - 4, 5 - 1), 3)",
+              "Eq(Rational(16 - 4, 1 - 5), -3)",
+              "Eq(Rational(5 - 1, 16 - 4), Rational(1,3))"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.5",
+            "title": "A slope is a rate, and it has units",
+            "body": "Read the units off the axes and the number becomes a sentence. Tugriks over kilometres is \"cost per kilometre\". Litres over minutes is \"the drain rate\". Most exam questions on this standard want the sentence, not the number."
+          },
+          {
+            "kind": "rateMeter",
+            "eyebrow": "Feel the rate",
+            "title": "Cost against distance",
+            "teach": "Drag either bar. The reading underneath is the cost divided by the distance — tugriks per kilometre. When the relationship is linear, that ratio stays the same no matter which stretch of the trip you measure.",
+            "config": {
+              "topLabel": "Fare",
+              "topUnit": "₮ (thousands)",
+              "top": 9,
+              "topMax": 20,
+              "topStep": 1,
+              "bottomLabel": "Distance",
+              "bottomUnit": "km",
+              "bottom": 10,
+              "bottomMax": 20,
+              "bottomStep": 1,
+              "rateUnit": "thousand ₮ per km"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A taxi fare, per kilometre",
+            "problemId": "im1-u4-l1-we2"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.1b",
+            "title": "Constant rate is what makes it linear",
+            "body": "Take a table and compute the rate between EVERY consecutive pair. Same number every time? Linear. Drifting? Not linear, and no straight line will fit it — which decides whether the rest of this unit even applies."
+          },
+          {
+            "kind": "worked",
+            "title": "One table linear, one not",
+            "problemId": "im1-u4-l1-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which table is linear?",
+            "prompt": "Which of these tables has a constant rate of change?",
+            "options": [
+              "$(0,1), (1,3), (2,9), (3,27)$",
+              "$(0,1), (1,3), (2,5), (3,7)$",
+              "$(0,1), (1,4), (2,9), (3,16)$",
+              "$(0,1), (1,2), (2,6), (3,24)$"
+            ],
+            "correctIndex": 1,
+            "explanation": "In option B the output rises by $2$ at every unit step: $3-1 = 2$, $5-3 = 2$, $7-5 = 2$. Constant, so linear with slope $2$. Option A triples each time (geometric), option C gives differences $3, 5, 7$ (the squares), and option D multiplies by $2$, then $3$, then $4$.",
+            "check": [
+              "Eq(3 - 1, 2)",
+              "Eq(5 - 3, 2)",
+              "Eq(7 - 5, 2)",
+              "Ne(4 - 1, 9 - 4)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Sign and shape",
+            "title": "Positive climbs, negative falls, zero is flat",
+            "body": "A negative slope is not an error — it is a quantity going down, and the minus sign carries that information. Slope $0$ is a horizontal line whose output never changes. A vertical line has NO slope at all: its run is zero."
+          },
+          {
+            "kind": "worked",
+            "title": "A draining tank, with a negative rate",
+            "problemId": "im1-u4-l1-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Say the slope out loud",
+            "body": "\"Every extra kilometre costs $900$ more tugriks.\" \"Every minute the tank loses $12$ litres.\" If you can say the sentence, you have understood the slope — and you have almost certainly answered the interpretation question that follows."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — two points",
+            "problemId": "im1-u4-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — is it linear?",
+            "problemId": "im1-u4-l1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$m = \\frac{y_2 - y_1}{x_2 - x_1}$ — same order top and bottom",
+              "A slope is a rate with units read off the axes",
+              "Positive climbs, negative falls, $0$ is flat, vertical is undefined",
+              "Constant rate of change ⇔ linear — check **every** consecutive pair",
+              "Say the rate as a sentence; that sentence is usually the answer"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "slope-intercept-form",
+      "title": "Slope-Intercept Form & Graphing",
+      "concreteComparison": "Give someone a starting point and a walking instruction — \"begin at the third lamppost, then go two metres forward and one metre up for every step\" — and they can reproduce your entire path without seeing it. $y = mx + b$ is that instruction: $b$ is where you begin, $m$ is the repeated step.",
+      "objective": "Read the slope and $y$-intercept from $y = mx + b$, graph a line from them, find both intercepts, and write the equation of a line from its graph.",
+      "concept": [
+        "**Two numbers, one line.** In $y = mx + b$, The number $b$ is the value of $y$ when $x = 0$ — the $y$-intercept, where the line crosses the vertical axis. The number $m$ is the slope, the step you repeat. Every non-vertical line in the plane can be written this way, and no two different pairs $(m, b)$ give the same line.",
+        "**Graphing takes two moves.** Plot $(0, b)$ first — that point is handed to you. Then use the slope as a set of directions from there: for $m = \\frac{3}{4}$, go $4$ right and $3$ up, and mark the new point. Join them. Do the slope move twice if you want a third point as a check; the three should be collinear.",
+        "**A negative slope goes down as you go right.** For $m = -2$, read it as $\\frac{-2}{1}$: one right, two DOWN. Writing the negative in the numerator keeps the run positive and stops you accidentally moving left, which would produce the mirror image of the line you wanted.",
+        "**Two intercepts, two different questions.** The $y$-intercept answers \"what is the output when the input is zero?\" — set $x = 0$. The $x$-intercept answers \"what input makes the output zero?\" — set $y = 0$ and SOLVE. In a model these are usually the two most meaningful points: the starting value, and the moment the quantity runs out.",
+        "**Reading a line off its graph.** Find where it crosses the vertical axis to get $b$. Then pick two points the line passes through cleanly — lattice points, where the gridlines meet — and compute rise over run for $m$. Reading the slope off a point the line only nearly touches is where the errors come from."
+      ],
+      "keyIdea": "In $y = mx + b$, plot $(0, b)$ and then step by the slope. The $y$-intercept is the value at $x = 0$; the $x$-intercept is found by setting $y = 0$ and solving.",
+      "facts": [
+        {
+          "title": "Slope-intercept form",
+          "latex": "y = mx + b",
+          "explanation": "m is the slope, b is the y-intercept — the output when the input is zero."
+        },
+        {
+          "title": "The two intercepts",
+          "latex": "y\\text{-int}: \\ x = 0 \\ \\Rightarrow\\ y = b \\qquad x\\text{-int}: \\ y = 0 \\ \\Rightarrow\\ x = -\\tfrac{b}{m}",
+          "explanation": "One is read off; the other must be solved for. They answer different questions."
+        },
+        {
+          "title": "Stepping by the slope",
+          "latex": "m = \\frac{p}{q}: \\ \\text{run } q \\text{ right, rise } p",
+          "explanation": "Keep the run positive and put any minus sign in the rise, so you always move rightward."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u4-l2-we1",
+          "statement": "Graph $y = \\frac{3}{4}x - 2$ by identifying its slope and $y$-intercept, and give a third point as a check.",
+          "solution": "**Read the two numbers.** Comparing with $y = mx + b$:$$m = \\frac{3}{4}, \\qquad b = -2.$$**Start point.** Plot $(0, -2)$ — the $y$-intercept is handed to you by the equation.**Step by the slope.** From $(0, -2)$, run $4$ right and rise $3$ up, landing on $(4, 1)$. Verify with the equation: $\\frac{3}{4}(4) - 2 = 3 - 2 = 1$ ✓**Third point as a check.** Step again: from $(4, 1)$ go $4$ right and $3$ up to $(8, 4)$. Verify: $\\frac{3}{4}(8) - 2 = 6 - 2 = 4$ ✓Three points on one straight line — draw it through all of them.",
+          "check": [
+            "Eq(Rational(3,4)*0 - 2, -2)",
+            "Eq(Rational(3,4)*4 - 2, 1)",
+            "Eq(Rational(3,4)*8 - 2, 4)"
+          ]
+        },
+        {
+          "id": "im1-u4-l2-we2",
+          "statement": "Find both intercepts of $y = -2x + 10$ and say what each would mean if $x$ were hours worked and $y$ were litres of fuel remaining.",
+          "solution": "**The vertical intercept.** Set $x = 0$:$$y = -2(0) + 10 = 10.$$The point is $(0, 10)$ — read straight off, since $b = 10$.**The horizontal intercept.** Set $y = 0$ and solve:$$0 = -2x + 10 \\quad\\Longrightarrow\\quad 2x = 10 \\quad\\Longrightarrow\\quad x = 5.$$The point is $(5, 0)$.**In context.** The $y$-intercept says the machine starts with $10$ litres of fuel. The $x$-intercept says it runs dry after $5$ hours. The slope $-2$ says it burns $2$ litres an hour — and $10 \\div 2 = 5$ confirms the two agree.**Domain check.** The model is only meaningful for $0 \\le x \\le 5$; past five hours it would report negative fuel.",
+          "check": [
+            "Eq(-2*0 + 10, 10)",
+            "Eq(-2*5 + 10, 0)",
+            "Eq(Rational(10,2), 5)",
+            "-2*6 + 10 < 0"
+          ]
+        },
+        {
+          "id": "im1-u4-l2-we3",
+          "statement": "A line passes through $(0, 7)$ and $(4, -1)$. Write its equation in slope-intercept form.",
+          "solution": "**The intercept comes free.** One of the given points has $x = 0$, so $b = 7$ immediately.**Compute the slope.**$$m = \\frac{-1 - 7}{4 - 0} = \\frac{-8}{4} = -2.$$**Assemble.**$$y = -2x + 7.$$**Check BOTH given points.** At $x = 0$: $y = 7$ ✓. At $x = 4$: $-8 + 7 = -1$ ✓. Checking both is what confirms the slope and intercept together — one check alone could pass with a wrong pair.",
+          "check": [
+            "Eq(Rational(-1 - 7, 4 - 0), -2)",
+            "Eq(-2*0 + 7, 7)",
+            "Eq(-2*4 + 7, -1)"
+          ]
+        },
+        {
+          "id": "im1-u4-l2-we4",
+          "statement": "Rewrite $3x + 2y = 12$ in slope-intercept form, then find both intercepts.",
+          "solution": "**Rearrange for the output variable** — the same move as Unit 1, with $y$ as the target.$$2y = -3x + 12$$$$y = -\\frac{3}{2}x + 6.$$So the slope is $-\\frac{3}{2}$ and the $y$-intercept is $6$.**The vertical intercept.** $(0, 6)$ — read off.**The horizontal intercept.** Set $y = 0$:$$0 = -\\frac{3}{2}x + 6 \\quad\\Longrightarrow\\quad \\frac{3}{2}x = 6 \\quad\\Longrightarrow\\quad x = 4.$$The point is $(4, 0)$.**Shortcut worth knowing.** In the original form $3x + 2y = 12$, setting $y = 0$ gives $3x = 12$ and $x = 4$ in one line; setting $x = 0$ gives $2y = 12$ and $y = 6$. Standard form hands you both intercepts almost instantly, which is one reason it survives alongside slope-intercept form.",
+          "check": [
+            "Eq(3*0 + 2*6, 12)",
+            "Eq(3*4 + 2*0, 12)",
+            "Eq(-Rational(3,2)*0 + 6, 6)",
+            "Eq(-Rational(3,2)*4 + 6, 0)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading b as the x-intercept.",
+          "correction": "b is where the line crosses the VERTICAL axis — the output at input zero. The x-intercept must be found by setting y = 0 and solving.",
+          "authored": true
+        },
+        {
+          "text": "Stepping a negative slope leftward and upward.",
+          "correction": "Write m = −2 as −2/1: one right, two DOWN. Keeping the run positive means you always move rightward, and the minus sign lives in the rise.",
+          "authored": true
+        },
+        {
+          "text": "Reading m straight off 3x + 2y = 12 as 3.",
+          "correction": "Solve for y first: y = −(3/2)x + 6, so the slope is −3/2. Slope-intercept form is the only form you can read m directly from.",
+          "authored": true
+        },
+        {
+          "text": "Reading slope off a graph using points the line does not pass through exactly.",
+          "correction": "Use lattice points where the line clearly crosses a grid intersection. Estimating from a near-miss introduces an error you cannot detect afterwards.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u4-l2-t1",
+          "statement": "State the slope and $y$-intercept of $y = -\\frac{1}{3}x + 5$, and find the point reached by one slope-step from the intercept.",
+          "solution": "Slope $-\\frac{1}{3}$, $y$-intercept $5$, so start at $(0, 5)$. One step is $3$ right and $1$ down, landing on $(3, 4)$. Check: $-\\frac{1}{3}(3) + 5 = 4$ ✓",
+          "check": [
+            "Eq(-Rational(1,3)*0 + 5, 5)",
+            "Eq(-Rational(1,3)*3 + 5, 4)"
+          ]
+        },
+        {
+          "id": "im1-u4-l2-t2",
+          "statement": "Find both intercepts of $y = 4x - 12$.",
+          "solution": "$y$-intercept: set $x = 0$, giving $(0, -12)$. $x$-intercept: set $y = 0$, so $4x = 12$ and $x = 3$, giving $(3, 0)$.",
+          "check": [
+            "Eq(4*0 - 12, -12)",
+            "Eq(4*3 - 12, 0)"
+          ]
+        },
+        {
+          "id": "im1-u4-l2-t3",
+          "statement": "Rewrite $5x - y = 8$ in slope-intercept form and state the slope.",
+          "solution": "Subtract $5x$: $-y = -5x + 8$. Multiply by $-1$: $y = 5x - 8$. The slope is $5$ and the $y$-intercept is $-8$. Check at $x = 2$: $y = 2$, and $5(2) - 2 = 8$ ✓",
+          "check": [
+            "Eq(5*2 - 8, 2)",
+            "Eq(5*2 - 2, 8)",
+            "Eq(5*0 - 8, -8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.7a",
+            "title": "y = mx + b is a set of walking directions",
+            "body": "$b$ tells you where to start — the point $(0, b)$ on the vertical axis. $m$ tells you the step to repeat. Two numbers reconstruct the entire line.",
+            "beats": [
+              "$b$ — the **starting** height, at $x = 0$",
+              "$m$ — the **step**, rise over run",
+              "Plot $(0, b)$, then step once",
+              "Step again for a third point as a check"
+            ]
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Build it",
+            "title": "Start at the intercept, then step",
+            "teach": "The line $y = \\frac{3}{4}x - 2$. It begins at $(0, -2)$, and each step of $4$ right and $3$ up lands on another point of the line — $(4, 1)$, then $(8, 4)$.",
+            "config": {
+              "mode": "line",
+              "m": 0.75,
+              "yint": -2,
+              "min": -4,
+              "max": 10
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Graphing from m and b",
+            "problemId": "im1-u4-l2-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which way does this slope step?",
+            "prompt": "For $y = -2x + 5$, starting at the $y$-intercept, where does one slope-step land?",
+            "options": [
+              "$(1, 3)$",
+              "$(1, 7)$",
+              "$(-1, 7)$",
+              "$(2, 5)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The intercept is $(0, 5)$. Reading $m = -2$ as $\\frac{-2}{1}$ means one right and two DOWN, landing on $(1, 3)$. Check with the equation: $-2(1) + 5 = 3$ ✓. Option B goes up instead of down; option C goes left.",
+            "check": [
+              "Eq(-2*0 + 5, 5)",
+              "Eq(-2*1 + 5, 3)",
+              "Eq(-2*(-1) + 5, 7)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.4",
+            "title": "The two intercepts answer different questions",
+            "body": "The $y$-intercept: what is the output when the input is zero? Read it off. The $x$-intercept: what input drives the output to zero? Set $y = 0$ and SOLVE. In a model those are the starting value and the moment it runs out."
+          },
+          {
+            "kind": "worked",
+            "title": "Both intercepts, both meanings",
+            "problemId": "im1-u4-l2-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Find the x-intercept",
+            "prompt": "What is the $x$-intercept of $y = 3x - 12$?",
+            "options": [
+              "$(0, -12)$",
+              "$(4, 0)$",
+              "$(-4, 0)$",
+              "$(12, 0)$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Set $y = 0$: $0 = 3x - 12$, so $3x = 12$ and $x = 4$, giving $(4, 0)$. Option A is the $y$-intercept — a different question. Option C drops a sign; check it: $3(-4) - 12 = -24 \\ne 0$ ✗.",
+            "check": [
+              "Eq(3*4 - 12, 0)",
+              "Eq(3*0 - 12, -12)",
+              "Ne(3*(-4) - 12, 0)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Reading backwards",
+            "title": "From a graph to an equation",
+            "body": "Find the crossing on the vertical axis for $b$. Then pick two points where the line passes cleanly through a grid intersection and compute rise over run for $m$. Never read a slope off a point the line only nearly touches."
+          },
+          {
+            "kind": "worked",
+            "title": "Two points to an equation",
+            "problemId": "im1-u4-l2-we3"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Other forms",
+            "title": "Solve for y before reading the slope",
+            "body": "$3x + 2y = 12$ does not show its slope. Rearrange for $y$ — the same move as Unit 1 — to get $y = -\\frac{3}{2}x + 6$. Only then are $m$ and $b$ visible."
+          },
+          {
+            "kind": "worked",
+            "title": "Standard form, rearranged",
+            "problemId": "im1-u4-l2-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Standard form hands you both intercepts",
+            "body": "In $3x + 2y = 12$, set $y = 0$ to get $x = 4$ in one line, and set $x = 0$ to get $y = 6$. That is the fastest way to sketch a line from standard form — no rearranging needed if intercepts are all you want."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — read and step",
+            "problemId": "im1-u4-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — rearrange",
+            "problemId": "im1-u4-l2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$y = mx + b$: $b$ is where you start, $m$ is the step you repeat",
+              "Plot $(0, b)$, step by the slope, step again to check",
+              "Write a negative slope as $\\frac{-p}{q}$ so the run stays positive",
+              "$y$-intercept: set $x = 0$. $x$-intercept: set $y = 0$ and **solve**",
+              "Rearrange for $y$ before reading a slope off any other form"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "point-slope-and-standard-form",
+      "title": "Writing a Line: Point-Slope & Standard Form",
+      "concreteComparison": "A GPS does not need your starting address to describe your route — it needs any one place you have been, plus your heading. Point-slope form is exactly that: one point the line passes through, and its direction. It is the form you reach for when the $y$-intercept is not one of the facts you were given.",
+      "objective": "Write the equation of a line from a point and a slope, or from two points, using point-slope form; convert between point-slope, slope-intercept and standard form; and choose the form that fits the information available.",
+      "concept": [
+        "**Point-slope form.** A line through $(x_1, y_1)$ with slope $m$ is $$y - y_1 = m(x - x_1).$$ It comes straight from the slope formula: if $(x, y)$ is any other point on the line, then $\\frac{y - y_1}{x - x_1} = m$, and multiplying up gives the form. Nothing is being memorised — it is the slope definition with the fraction cleared.",
+        "**Mind the minus signs.** Through $(-3, 5)$ with slope $2$, the form is $y - 5 = 2(x - (-3))$, which simplifies to $y - 5 = 2(x + 3)$. The formula subtracts the coordinates, so a negative coordinate becomes a PLUS in the bracket. Substituting carelessly here is the single most common error in this lesson.",
+        "**Two points: find the slope, then use either point.** Compute $m$ first, then feed ONE of the two points into point-slope form. Either point gives the same line — a useful check, since simplifying both should produce identical slope-intercept forms.",
+        "**Standard form.** Written $Ax + By = C$, with $A$, $B$, $C$ integers and $A$ conventionally non-negative. It has two virtues: it hands you both intercepts in one line each, and it can describe a VERTICAL line ($x = 4$ is $1x + 0y = 4$), which $y = mx + b$ cannot. It hides the slope, which is why it is not the default.",
+        "**Choose the form that fits what you were given.** Given the $y$-intercept and the slope, write $y = mx + b$ directly. Given a point that is not the intercept, use point-slope. Given two points, find $m$ and then use point-slope. Given a context about two quantities summing to a fixed total, standard form is often the natural shape."
+      ],
+      "keyIdea": "Point-slope $y - y_1 = m(x - x_1)$ is the slope formula with the fraction cleared. Use it whenever you have a point that is not the $y$-intercept, then simplify to $y = mx + b$ if you want to graph.",
+      "facts": [
+        {
+          "title": "Point-slope form",
+          "latex": "y - y_1 = m(x - x_1)",
+          "explanation": "Any one point plus the slope determines the line. Derived from the slope formula, not memorised."
+        },
+        {
+          "title": "Standard form",
+          "latex": "Ax + By = C",
+          "explanation": "Integer coefficients. Gives both intercepts instantly, and is the only form that can express a vertical line."
+        },
+        {
+          "title": "Signs in the bracket",
+          "latex": "\\text{through } (-3, 5): \\quad y - 5 = m\\big(x - (-3)\\big) = m(x + 3)",
+          "explanation": "The formula subtracts the coordinate, so a negative coordinate turns into a plus."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u4-l3-we1",
+          "statement": "Write the equation of the line through $(2, -1)$ with slope $4$, in point-slope form and then in slope-intercept form.",
+          "solution": "**Point-slope.** Substitute $x_1 = 2$, $y_1 = -1$, $m = 4$:$$y - (-1) = 4(x - 2) \\quad\\Longrightarrow\\quad y + 1 = 4(x - 2).$$The $y_1 = -1$ became a $+1$ on the left, because the form subtracts it.**Slope-intercept.** Expand and solve for $y$:$$y + 1 = 4x - 8 \\quad\\Longrightarrow\\quad y = 4x - 9.$$**Check the given point.** At $x = 2$: $8 - 9 = -1$ ✓, which is exactly the $y$-value we were given. Note the $y$-intercept is $-9$, a point we were never told about — point-slope found it for us.",
+          "check": [
+            "Eq(4*2 - 9, -1)",
+            "Eq(simplify(4*(Symbol('x') - 2) - 1), 4*Symbol('x') - 9)",
+            "Eq(4*0 - 9, -9)"
+          ]
+        },
+        {
+          "id": "im1-u4-l3-we2",
+          "statement": "Write the equation of the line through $(-3, 5)$ and $(1, -7)$.",
+          "solution": "**Slope first.**$$m = \\frac{-7 - 5}{1 - (-3)} = \\frac{-12}{4} = -3.$$**Point-slope, using the first point.**$$y - 5 = -3\\big(x - (-3)\\big) = -3(x + 3).$$**Simplify.**$$y - 5 = -3x - 9 \\quad\\Longrightarrow\\quad y = -3x - 4.$$**Check with the OTHER point** — the one we did not use. At $x = 1$: $-3 - 4 = -7$ ✓. That is the real test: using one point guarantees the line passes through it, so only the unused point can confirm the slope.**And using the other point instead** would give $y + 7 = -3(x - 1)$, which simplifies to $y = -3x - 4$ — the same line, as it must.",
+          "check": [
+            "Eq(Rational(-7 - 5, 1 - (-3)), -3)",
+            "Eq(-3*(-3) - 4, 5)",
+            "Eq(-3*1 - 4, -7)",
+            "Eq(simplify(-3*(Symbol('x') + 3) + 5), -3*Symbol('x') - 4)",
+            "Eq(simplify(-3*(Symbol('x') - 1) - 7), -3*Symbol('x') - 4)"
+          ]
+        },
+        {
+          "id": "im1-u4-l3-we3",
+          "statement": "Convert $y = \\frac{2}{5}x - 3$ to standard form with integer coefficients.",
+          "solution": "**Clear the fraction.** Multiply every term by $5$:$$5y = 2x - 15.$$**Collect the variables on the left.** Subtract $2x$:$$-2x + 5y = -15.$$**Make the leading coefficient non-negative** by multiplying through by $-1$:$$2x - 5y = 15.$$**Check both forms agree.** At $x = 5$ the original gives $y = 2 - 3 = -1$; substituting $(5, -1)$ into $2x - 5y$ gives $10 + 5 = 15$ ✓**Bonus — the intercepts fall out.** Setting $y = 0$: $2x = 15$, so $x = 7.5$. Setting $x = 0$: $-5y = 15$, so $y = -3$, matching the $b$ we started with ✓",
+          "check": [
+            "Eq(Rational(2,5)*5 - 3, -1)",
+            "Eq(2*5 - 5*(-1), 15)",
+            "Eq(2*0 - 5*(-3), 15)",
+            "Eq(2*Rational(15,2) - 5*0, 15)"
+          ]
+        },
+        {
+          "id": "im1-u4-l3-we4",
+          "statement": "A student sells notebooks at $3000$₮ and pens at $1200$₮, taking $60\\,000$₮ in total. Write the relationship in standard form, find both intercepts, and say what they mean.",
+          "solution": "**Model.** Let $n$ be notebooks sold and $p$ pens sold:$$3000n + 1200p = 60\\,000.$$This is standard form already — and standard form is the natural shape here, because the situation is two quantities contributing to a fixed total, not one quantity driving another.**Simplify** by dividing through by $600$:$$5n + 2p = 100.$$**Intercepts.** Setting $p = 0$: $5n = 100$, so $n = 20$. Setting $n = 0$: $2p = 100$, so $p = 50$.**Meaning.** Selling only notebooks would need $20$ of them; selling only pens would need $50$. Every whole-number pair on the segment between those two — $(20, 0), (18, 5), (16, 10), \\dots, (0, 50)$ — is a possible sales day.**Context clamp.** Both counts must be whole and non-negative, so only the lattice points on that segment are real answers; the line itself contains infinitely many pairs the situation cannot use.",
+          "check": [
+            "Eq(3000*20 + 1200*0, 60000)",
+            "Eq(3000*0 + 1200*50, 60000)",
+            "Eq(5*20 + 2*0, 100)",
+            "Eq(5*0 + 2*50, 100)",
+            "Eq(5*18 + 2*5, 100)",
+            "Eq(3000*18 + 1200*5, 60000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing y − 5 = m(x − 3) for a line through (−3, 5).",
+          "correction": "The form subtracts the coordinate, so x − (−3) becomes x + 3. Write the subtraction explicitly before simplifying.",
+          "authored": true
+        },
+        {
+          "text": "Checking the answer against the point you already used.",
+          "correction": "Using a point guarantees the line passes through it. Only the OTHER point can confirm the slope is right.",
+          "authored": true
+        },
+        {
+          "text": "Leaving fractions in standard form.",
+          "correction": "Standard form wants integer coefficients. Multiply through by the LCD, then fix the sign so the leading coefficient is non-negative.",
+          "authored": true
+        },
+        {
+          "text": "Trying to write a vertical line as y = mx + b.",
+          "correction": "A vertical line has undefined slope and cannot be written that way. It is x = 4 — or in standard form, 1x + 0y = 4.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u4-l3-t1",
+          "statement": "Write the equation of the line through $(4, 3)$ with slope $-2$, in slope-intercept form.",
+          "solution": "Point-slope: $y - 3 = -2(x - 4)$. Expand: $y - 3 = -2x + 8$, so $y = -2x + 11$. Check at $x = 4$: $-8 + 11 = 3$ ✓",
+          "check": [
+            "Eq(-2*4 + 11, 3)",
+            "Eq(simplify(-2*(Symbol('x') - 4) + 3), -2*Symbol('x') + 11)"
+          ]
+        },
+        {
+          "id": "im1-u4-l3-t2",
+          "statement": "Write the equation of the line through $(-2, 1)$ and $(2, 9)$.",
+          "solution": "Slope: $m = \\frac{9 - 1}{2 - (-2)} = \\frac{8}{4} = 2$. Using $(-2, 1)$: $y - 1 = 2(x + 2)$, so $y = 2x + 5$. Check with the unused point: at $x = 2$, $4 + 5 = 9$ ✓",
+          "check": [
+            "Eq(Rational(9 - 1, 2 - (-2)), 2)",
+            "Eq(2*(-2) + 5, 1)",
+            "Eq(2*2 + 5, 9)"
+          ]
+        },
+        {
+          "id": "im1-u4-l3-t3",
+          "statement": "Convert $y = \\frac{3}{4}x + 2$ to standard form with integer coefficients.",
+          "solution": "Multiply by $4$: $4y = 3x + 8$. Rearrange: $-3x + 4y = 8$, then multiply by $-1$ for a non-negative leading coefficient: $3x - 4y = -8$. Check at $x = 4$: the original gives $y = 5$, and $3(4) - 4(5) = -8$ ✓",
+          "check": [
+            "Eq(Rational(3,4)*4 + 2, 5)",
+            "Eq(3*4 - 4*5, -8)",
+            "Eq(3*0 - 4*2, -8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Where it comes from",
+            "title": "Point-slope is the slope formula, rearranged",
+            "body": "If $(x, y)$ lies on the line through $(x_1, y_1)$ with slope $m$, then $\\frac{y - y_1}{x - x_1} = m$. Multiply both sides by $(x - x_1)$ and you have the form. Nothing new is being memorised.",
+            "beats": [
+              "$\\frac{y - y_1}{x - x_1} = m$ — the slope definition",
+              "Multiply up: $y - y_1 = m(x - x_1)$",
+              "One point + one slope = one line",
+              "The $y$-intercept is not needed"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A point and a slope",
+            "problemId": "im1-u4-l3-we1"
+          },
+          {
+            "kind": "tip",
+            "title": "Write the subtraction before you simplify",
+            "body": "Through $(-3, 5)$: write $y - 5 = m(x - (-3))$ FIRST, then simplify the double negative to $x + 3$. Skipping the intermediate line is where the sign gets lost, and a lost sign here produces a line through the wrong point entirely."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which point-slope equation?",
+            "prompt": "Which equation describes the line through $(-4, 7)$ with slope $\\frac{1}{2}$?",
+            "options": [
+              "$y - 7 = \\frac{1}{2}(x + 4)$",
+              "$y - 7 = \\frac{1}{2}(x - 4)$",
+              "$y + 7 = \\frac{1}{2}(x + 4)$",
+              "$y + 7 = \\frac{1}{2}(x - 4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The form subtracts each coordinate: $y - 7 = \\frac{1}{2}(x - (-4))$, and the double negative becomes $x + 4$. Check by substituting $x = -4$: the bracket vanishes, giving $y = 7$ ✓ — exactly the point we were given. Option C would pass through $(-4, -7)$ instead.",
+            "check": [
+              "Eq(Rational(1,2)*(-4 + 4) + 7, 7)",
+              "Eq(Rational(1,2)*(-4 - 4) + 7, 3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two points",
+            "title": "Slope first, then either point",
+            "body": "Compute $m$ from the two points, then feed ONE of them into point-slope form. Either choice gives the same line — and simplifying both is a genuine check that costs one extra line."
+          },
+          {
+            "kind": "worked",
+            "title": "Two points, checked with the unused one",
+            "problemId": "im1-u4-l3-we2"
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "One line, two descriptions",
+            "title": "The same line either way",
+            "teach": "$y = -3x - 4$ drawn from its slope and intercept. It passes through both $(-3, 5)$ and $(1, -7)$ — the two points we started from — which is what confirms the point-slope work was right.",
+            "config": {
+              "mode": "line",
+              "m": -3,
+              "yint": -4,
+              "min": -6,
+              "max": 6
+            }
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The third form",
+            "title": "Standard form: Ax + By = C",
+            "body": "Integer coefficients, $A$ non-negative. It hides the slope but hands you both intercepts in one line each — and it is the ONLY form that can write a vertical line, since $x = 4$ is $1x + 0y = 4$.",
+            "beats": [
+              "Clear fractions by multiplying through",
+              "Move the variable terms to the left",
+              "Fix the sign so $A \\ge 0$",
+              "Set $y = 0$ and $x = 0$ for the two intercepts"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Converting to standard form",
+            "problemId": "im1-u4-l3-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which form fits the information?",
+            "prompt": "You are told a line passes through $(6, -2)$ and has slope $\\frac{1}{3}$, and you need its equation. Which form should you start with?",
+            "options": [
+              "Slope-intercept, $y = mx + b$",
+              "Point-slope, $y - y_1 = m(x - x_1)$",
+              "Standard, $Ax + By = C$",
+              "You cannot; the $y$-intercept is missing"
+            ],
+            "correctIndex": 1,
+            "explanation": "You have a point and a slope, which is exactly what point-slope form consumes: $y + 2 = \\frac{1}{3}(x - 6)$, simplifying to $y = \\frac{1}{3}x - 4$. The $y$-intercept was never needed — point-slope produced it. Check at $x = 6$: $2 - 4 = -2$ ✓",
+            "check": [
+              "Eq(Rational(1,3)*6 - 4, -2)",
+              "Eq(simplify(Rational(1,3)*(Symbol('x') - 6) - 2), Rational(1,3)*Symbol('x') - 4)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "When standard form is the natural shape",
+            "problemId": "im1-u4-l3-we4"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — point and slope",
+            "problemId": "im1-u4-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — two points",
+            "problemId": "im1-u4-l3-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "$y - y_1 = m(x - x_1)$ — the slope formula with the fraction cleared",
+              "The form **subtracts** each coordinate; a negative one becomes a plus",
+              "Two points: find $m$, use either point, check with the **unused** one",
+              "Standard form $Ax + By = C$ gives both intercepts and handles vertical lines",
+              "Pick the form that matches the facts you were handed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "interpreting-linear-models",
+      "title": "Interpreting a Linear Model",
+      "concreteComparison": "A doctor reading a chart does not care that the line has slope $-0.6$. She cares that the patient is losing $0.6$ kg a week, that at this rate they hit a target in eleven weeks, and that the model stops meaning anything below a healthy weight. Every number in a model has a job in the world, and naming those jobs is the skill.",
+      "objective": "Interpret the slope, intercepts and domain of a linear model in the language of the situation; use the model to predict and to solve backwards; and judge when a prediction has left the range the model can support.",
+      "concept": [
+        "**The intercept is the starting value.** In $C = 900d + 1500$, the $1500$ is the cost before you move — the flag-fall. In $h = 24 - 4t$ the $24$ is the candle's original height. Ask: what is true at input zero? That question has a real answer in almost every model, and it is usually the easiest mark on the page.",
+        "**The slope is the per-unit change.** Not \"the steepness\" — that describes the picture, not the situation. Say what one more unit of input does to the output, with units: \"each extra kilometre adds $900$₮\", \"the candle loses $4$ cm every hour\". A negative slope means the quantity falls, and saying so is part of the interpretation.",
+        "**The horizontal intercept is when the quantity runs out.** Set the output to zero and solve. For the candle, $24 - 4t = 0$ gives $t = 6$ — it burns for six hours. In a cost model an $x$-intercept may be meaningless (a negative number of items), and saying THAT is also a legitimate interpretation.",
+        "**Predicting forwards, solving backwards.** Substituting an input predicts an output; setting the output and solving finds the input that produces it. \"What will it cost for $12$ km?\" is a substitution. \"How far can I go on $12\\,000$₮?\" is an equation. Recognising which question you have been asked is half the work.",
+        "**Interpolation is safe; extrapolation is a claim.** Predicting inside the range of your data is interpolation and is usually reliable. Predicting far outside it is extrapolation — the model may simply stop applying. A child's height grows about $6$ cm a year between ages $5$ and $10$; extending that line to age $40$ predicts a three-metre adult. The arithmetic is fine and the conclusion is nonsense, which is the point.",
+        "**Comparing two models.** Set them equal to find where they agree, then test a value on each side to see which wins where. \"Plan A is cheaper below $300$ minutes, Plan B above\" is a complete answer; \"they are equal at $300$\" is only half of one."
+      ],
+      "keyIdea": "Intercept = the starting value; slope = the change per unit, with units and a sign; $x$-intercept = when the quantity hits zero. Predict inside your data, and be honest about extrapolation.",
+      "facts": [
+        {
+          "title": "The two parameters, in words",
+          "latex": "y = mx + b: \\quad b = \\text{value at start}, \\quad m = \\text{change per unit of } x",
+          "explanation": "Every linear-model question is asking you to say these two sentences with the right nouns."
+        },
+        {
+          "title": "Running out",
+          "latex": "\\text{set } y = 0 \\ \\Rightarrow\\ \\text{the input at which the quantity is gone}",
+          "explanation": "For a decreasing model this is usually the end of the valid domain."
+        },
+        {
+          "title": "Where two models agree",
+          "latex": "m_1x + b_1 = m_2x + b_2 \\ \\Rightarrow\\ x = \\frac{b_2 - b_1}{m_1 - m_2}",
+          "explanation": "Then test a value on each side to say which model wins where."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im1-u4-l4-we1",
+          "statement": "A gym charges a joining fee plus a monthly rate, modelled by $C = 25\\,000m + 60\\,000$ where $m$ is months. Interpret both numbers, find the cost of a year, and find how long $310\\,000$₮ buys.",
+          "solution": "**Interpret the intercept.** At $m = 0$, $C = 60\\,000$ — the joining fee, paid before any month has passed.**Interpret the slope.** Each additional month adds $25\\,000$₮. Positive, so the total climbs.**Predict forwards** — a substitution:$$C(12) = 25\\,000(12) + 60\\,000 = 300\\,000 + 60\\,000 = 360\\,000.$$ That is $360\\,000$₮.**Solve backwards** — an equation:$$310\\,000 = 25\\,000m + 60\\,000 \\quad\\Longrightarrow\\quad 25\\,000m = 250\\,000 \\quad\\Longrightarrow\\quad m = 10.$$$310\\,000$₮ buys exactly ten months.**Note which question is which.** The first gave an input and wanted an output; the second gave an output and wanted an input. Same model, opposite directions.",
+          "check": [
+            "Eq(25000*0 + 60000, 60000)",
+            "Eq(25000*12 + 60000, 360000)",
+            "Eq(25000*10 + 60000, 310000)"
+          ]
+        },
+        {
+          "id": "im1-u4-l4-we2",
+          "statement": "A candle's height is $h = 24 - 4t$ (cm, hours). Interpret each number, find when it burns out, and state the valid domain and range.",
+          "solution": "**Intercept.** At $t = 0$, $h = 24$ — the candle starts $24$ cm tall.**Slope.** $-4$ centimetres per hour: the candle LOSES $4$ cm every hour. The minus sign is the whole content of \"burning down\".**When it runs out.** Set $h = 0$:$$0 = 24 - 4t \\quad\\Longrightarrow\\quad 4t = 24 \\quad\\Longrightarrow\\quad t = 6.$$The candle lasts six hours.**Domain.** Time cannot be negative and the candle is gone at $t = 6$, so $0 \\le t \\le 6$.**Range.** Over that domain the height falls from $24$ to $0$, so $0 \\le h \\le 24$ cm.**A prediction outside the domain.** $h(10) = -16$, a negative height — the arithmetic works and the answer is meaningless. Stating the domain is what stops you reporting it.",
+          "check": [
+            "Eq(24 - 4*0, 24)",
+            "Eq(24 - 4*6, 0)",
+            "Eq(24 - 4*10, -16)",
+            "24 - 4*10 < 0"
+          ]
+        },
+        {
+          "id": "im1-u4-l4-we3",
+          "statement": "A child's height between ages $5$ and $10$ fits $H = 6a + 80$ (cm, years). Predict the height at age $8$, then at age $40$, and comment on both.",
+          "solution": "**At age 8 — inside the data range.**$$H(8) = 6(8) + 80 = 128\\ \\text{cm}.$$This is INTERPOLATION: age $8$ sits between $5$ and $10$, where the model was built. The prediction is reasonable.**At age 40 — far outside it.**$$H(40) = 6(40) + 80 = 320\\ \\text{cm}.$$The arithmetic is correct and the answer is absurd — a $3.2$ metre adult. This is EXTRAPOLATION, and it fails because the model's assumption (a constant $6$ cm a year) stops being true in the real world long before age $40$. Growth slows and then stops; the line does not.**The honest statement.** The model is valid for roughly $5 \\le a \\le 10$. Outside that, it makes a claim the data never supported, and a correct answer says so rather than reporting $320$ cm.",
+          "check": [
+            "Eq(6*8 + 80, 128)",
+            "Eq(6*5 + 80, 110)",
+            "Eq(6*10 + 80, 140)",
+            "Eq(6*40 + 80, 320)",
+            "6*40 + 80 > 250"
+          ]
+        },
+        {
+          "id": "im1-u4-l4-we4",
+          "statement": "Printer A costs $40\\,000$₮ plus $80$₮ per page; printer B costs $100\\,000$₮ plus $30$₮ per page. Which is cheaper, and when?",
+          "solution": "**Two models.** With $p$ pages,$$A = 80p + 40\\,000, \\qquad B = 30p + 100\\,000.$$**Where they agree.** Set them equal:$$80p + 40\\,000 = 30p + 100\\,000$$$$50p = 60\\,000 \\quad\\Longrightarrow\\quad p = 1200.$$At $1200$ pages both cost $80(1200) + 40\\,000 = 136\\,000$₮.**Which wins where — test each side.** At $p = 500$: $A = 80\\,000$, $B = 115\\,000$, so A is cheaper. At $p = 2000$: $A = 200\\,000$, $B = 160\\,000$, so B is cheaper.**The complete answer.** Printer A is cheaper below $1200$ pages; printer B is cheaper above it; at exactly $1200$ they cost the same. A has the lower setup cost but the higher per-page rate, so it loses once the volume is large enough — and the crossover is where the cheaper running cost has repaid the higher setup.",
+          "check": [
+            "Eq(80*1200 + 40000, 30*1200 + 100000)",
+            "Eq(80*1200 + 40000, 136000)",
+            "80*500 + 40000 < 30*500 + 100000",
+            "80*2000 + 40000 > 30*2000 + 100000"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Describing the slope as 'steepness' instead of a rate in context.",
+          "correction": "Say what one more unit does: 'each extra kilometre costs 900₮'. Steepness describes the picture; the question asks about the situation.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the sign when interpreting a negative slope.",
+          "correction": "−4 cm per hour means the candle SHRINKS by 4 cm each hour. The sign carries the direction and must appear in the sentence.",
+          "authored": true
+        },
+        {
+          "text": "Reporting an extrapolated value with no caveat.",
+          "correction": "H(40) = 320 cm is arithmetically right and physically absurd. State the range the model was built on, and say when a prediction leaves it.",
+          "authored": true
+        },
+        {
+          "text": "Answering 'they are equal at 1200 pages' and stopping.",
+          "correction": "That is half an answer. Test a value on each side and say which model wins where — that is what the question is for.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im1-u4-l4-t1",
+          "statement": "A pool drains by $V = 5000 - 250t$ (litres, minutes). Interpret both numbers and find when it is empty.",
+          "solution": "The pool starts with $5000$ litres and loses $250$ litres per minute. It is empty when $5000 - 250t = 0$, i.e. $t = 20$ minutes. The valid domain is $0 \\le t \\le 20$.",
+          "check": [
+            "Eq(5000 - 250*0, 5000)",
+            "Eq(5000 - 250*20, 0)",
+            "Eq(5000 - 250*10, 2500)"
+          ]
+        },
+        {
+          "id": "im1-u4-l4-t2",
+          "statement": "A courier charges $C = 1200w + 4500$ (₮, kg). What does a $6$ kg parcel cost, and what mass costs $16\\,500$₮?",
+          "solution": "Forwards: $C(6) = 7200 + 4500 = 11\\,700$₮. Backwards: $16\\,500 = 1200w + 4500$ gives $1200w = 12\\,000$, so $w = 10$ kg.",
+          "check": [
+            "Eq(1200*6 + 4500, 11700)",
+            "Eq(1200*10 + 4500, 16500)"
+          ]
+        },
+        {
+          "id": "im1-u4-l4-t3",
+          "statement": "Two taxi firms: X charges $2500$₮ plus $600$₮/km; Y charges $1000$₮ plus $900$₮/km. At what distance do they cost the same, and which is cheaper for a $3$ km trip?",
+          "solution": "Set equal: $600d + 2500 = 900d + 1000$, so $300d = 1500$ and $d = 5$ km. At $d = 3$: X costs $4300$₮, Y costs $3700$₮, so **Y is cheaper** on short trips. Beyond $5$ km X wins.",
+          "check": [
+            "Eq(600*5 + 2500, 900*5 + 1000)",
+            "Eq(600*3 + 2500, 4300)",
+            "Eq(900*3 + 1000, 3700)",
+            "900*3 + 1000 < 600*3 + 2500",
+            "900*8 + 1000 > 600*8 + 2500"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "F-LE.5",
+            "title": "Every number in a model has a job",
+            "body": "The intercept is what is true before anything happens. The slope is what one more unit does. Naming those two, with units, answers most of the questions this standard asks.",
+            "beats": [
+              "$b$ — the value at input **zero**",
+              "$m$ — the change per **one unit** of input",
+              "The sign of $m$ says rising or falling",
+              "Say it as a sentence, with units"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A gym: forwards and backwards",
+            "problemId": "im1-u4-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What does the slope mean here?",
+            "prompt": "A delivery model is $C = 1500w + 8000$, with $C$ in tugriks and $w$ in kilograms. What does the $1500$ mean?",
+            "options": [
+              "The base charge for any delivery",
+              "Each extra kilogram costs $1500$₮",
+              "The delivery costs $1500$₮ in total",
+              "The parcel weighs $1500$ kg"
+            ],
+            "correctIndex": 1,
+            "explanation": "The coefficient of $w$ is the change per kilogram: each additional kilogram adds $1500$₮. The base charge is the intercept, $8000$₮ — that is what you pay at $w = 0$. Check: a $1$ kg parcel costs $9500$₮ and a $2$ kg parcel $11\\,000$₮, a difference of exactly $1500$ ✓",
+            "check": [
+              "Eq(1500*0 + 8000, 8000)",
+              "Eq(1500*1 + 8000, 9500)",
+              "Eq((1500*2 + 8000) - (1500*1 + 8000), 1500)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "F-IF.4",
+            "title": "Two directions, two kinds of question",
+            "body": "\"What does $12$ km cost?\" hands you an input and wants an output — substitute. \"How far can $12\\,000$₮ take me?\" hands you an output and wants an input — set up an equation and solve. Spotting which you have been asked is half the work."
+          },
+          {
+            "kind": "worked",
+            "title": "A candle: slope, intercepts, domain",
+            "problemId": "im1-u4-l4-we2"
+          },
+          {
+            "kind": "coordGeo",
+            "eyebrow": "Both intercepts matter",
+            "title": "Starting value and running out",
+            "teach": "$h = 24 - 4t$. The line meets the vertical axis at $24$ — the starting height — and the horizontal axis at $t = 6$ — the moment the candle is gone. Everything left of $0$ and right of $6$ is outside the model.",
+            "config": {
+              "mode": "line",
+              "m": -4,
+              "yint": 24,
+              "min": -2,
+              "max": 10
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "What does the x-intercept mean?",
+            "prompt": "A fuel model is $F = 60 - 8t$ (litres, hours). What does its $x$-intercept say?",
+            "options": [
+              "The tank holds $60$ litres",
+              "The engine burns $8$ litres per hour",
+              "The tank runs dry after $7.5$ hours",
+              "The tank is empty at the start"
+            ],
+            "correctIndex": 2,
+            "explanation": "The $x$-intercept is where the output hits zero: $60 - 8t = 0$ gives $t = 7.5$ hours. That is when the fuel runs out. Option A is the $y$-intercept and option B is the slope — three different numbers answering three different questions.",
+            "check": [
+              "Eq(60 - 8*Rational(15,2), 0)",
+              "Eq(60 - 8*0, 60)",
+              "Eq(Rational(60,8), Rational(15,2))"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "The honesty clause",
+            "title": "Inside your data is prediction; outside is a claim",
+            "body": "A model built on ages $5$ to $10$ can reasonably predict age $8$. Pushed to age $40$ it predicts a $3.2$-metre adult. The arithmetic never fails — the ASSUMPTION does. Say which range your model covers."
+          },
+          {
+            "kind": "worked",
+            "title": "When extrapolation goes wrong",
+            "problemId": "im1-u4-l4-we3"
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Comparing",
+            "title": "Find where they agree, then say who wins where",
+            "body": "Setting two models equal locates the crossover. But the useful answer is what happens on each SIDE of it — test one value below and one above, and report both."
+          },
+          {
+            "kind": "worked",
+            "title": "Two printers, one crossover",
+            "problemId": "im1-u4-l4-we4"
+          },
+          {
+            "kind": "tip",
+            "title": "Answer in the nouns of the question",
+            "body": "If the question is about printers and pages, the answer says printers and pages — not $x$ and $y$. \"Printer A is cheaper below $1200$ pages\" earns the mark; \"$x < 1200$\" usually does not."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — a draining pool",
+            "problemId": "im1-u4-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn — two taxi firms",
+            "problemId": "im1-u4-l4-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What you now own",
+            "points": [
+              "Intercept = the value before anything happens; slope = change per unit",
+              "Keep the sign: a negative slope means the quantity **falls**",
+              "$x$-intercept = when the quantity reaches zero, and often the end of the domain",
+              "Substitute to predict forwards; solve an equation to work backwards",
+              "Interpolate freely; extrapolate only with a stated caveat"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "im1-u4-pr-1",
+      "statement": "Find the slope of the line through $(1, -2)$ and $(5, 10)$.",
+      "solution": "$$m = \\frac{10 - (-2)}{5 - 1} = \\frac{12}{4} = 3.$$",
+      "check": [
+        "Eq(Rational(10 - (-2), 5 - 1), 3)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-2",
+      "statement": "Find the slope of the line through $(-2, 6)$ and $(4, -3)$.",
+      "solution": "$$m = \\frac{-3 - 6}{4 - (-2)} = \\frac{-9}{6} = -\\frac{3}{2}.$$",
+      "check": [
+        "Eq(Rational(-3 - 6, 4 - (-2)), Rational(-3,2))"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-3",
+      "statement": "State the slope and $y$-intercept of $y = -\\frac{2}{3}x + 7$, and find $y$ when $x = 9$.",
+      "solution": "Slope $-\\frac{2}{3}$, $y$-intercept $7$. At $x = 9$: $-\\frac{2}{3}(9) + 7 = -6 + 7 = 1$.",
+      "check": [
+        "Eq(-Rational(2,3)*0 + 7, 7)",
+        "Eq(-Rational(2,3)*9 + 7, 1)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-4",
+      "statement": "Find both intercepts of $y = 5x - 20$.",
+      "solution": "$y$-intercept at $x = 0$: $(0, -20)$. $x$-intercept: $0 = 5x - 20$ gives $x = 4$, so $(4, 0)$.",
+      "check": [
+        "Eq(5*0 - 20, -20)",
+        "Eq(5*4 - 20, 0)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-5",
+      "statement": "Write the equation of the line through $(3, 8)$ with slope $-1$, in slope-intercept form.",
+      "solution": "Point-slope: $y - 8 = -1(x - 3)$. Expand: $y - 8 = -x + 3$, so $y = -x + 11$. Check at $x = 3$: $-3 + 11 = 8$ ✓",
+      "check": [
+        "Eq(-1*3 + 11, 8)",
+        "Eq(simplify(-1*(Symbol('x') - 3) + 8), -Symbol('x') + 11)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-6",
+      "statement": "Write the equation of the line through $(-1, 2)$ and $(3, 14)$.",
+      "solution": "Slope: $\\frac{14 - 2}{3 - (-1)} = \\frac{12}{4} = 3$. Using $(-1, 2)$: $y - 2 = 3(x + 1)$, so $y = 3x + 5$. Check with the unused point: $3(3) + 5 = 14$ ✓",
+      "check": [
+        "Eq(Rational(14 - 2, 3 - (-1)), 3)",
+        "Eq(3*(-1) + 5, 2)",
+        "Eq(3*3 + 5, 14)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-7",
+      "statement": "Rewrite $4x - 3y = 18$ in slope-intercept form.",
+      "solution": "Subtract $4x$: $-3y = -4x + 18$. Divide by $-3$: $y = \\frac{4}{3}x - 6$. Check at $x = 3$: $y = -2$, and $4(3) - 3(-2) = 18$ ✓",
+      "check": [
+        "Eq(Rational(4,3)*3 - 6, -2)",
+        "Eq(4*3 - 3*(-2), 18)",
+        "Eq(Rational(4,3)*0 - 6, -6)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-8",
+      "statement": "Convert $y = -\\frac{1}{2}x + 4$ to standard form with integer coefficients and a non-negative leading coefficient.",
+      "solution": "Multiply by $2$: $2y = -x + 8$. Rearrange: $x + 2y = 8$. Check at $x = 2$: the original gives $y = 3$, and $2 + 6 = 8$ ✓",
+      "check": [
+        "Eq(-Rational(1,2)*2 + 4, 3)",
+        "Eq(2 + 2*3, 8)",
+        "Eq(0 + 2*4, 8)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-9",
+      "statement": "Is the table $(0, 3), (2, 9), (5, 18), (7, 24)$ linear? If so, give the equation.",
+      "solution": "Rates: $\\frac{9-3}{2-0} = 3$, $\\frac{18-9}{5-2} = 3$, $\\frac{24-18}{7-5} = 3$. Constant, so linear with slope $3$ and $y$-intercept $3$: $y = 3x + 3$. Check at $x = 5$: $18$ ✓",
+      "check": [
+        "Eq(Rational(9 - 3, 2 - 0), 3)",
+        "Eq(Rational(24 - 18, 7 - 5), 3)",
+        "Eq(3*5 + 3, 18)",
+        "Eq(3*0 + 3, 3)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-10",
+      "statement": "A water tank holds $800$ litres and is filled at $25$ litres per minute. Write the model, and find when it is full.",
+      "solution": "Starting empty at $0$ and gaining $25$ per minute: $V = 25t$. It is full when $25t = 800$, i.e. $t = 32$ minutes. The domain is $0 \\le t \\le 32$.",
+      "check": [
+        "Eq(25*32, 800)",
+        "Eq(25*0, 0)",
+        "Eq(25*16, 400)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-11",
+      "statement": "A model reads $P = -3t + 45$, with $P$ in thousands of people and $t$ in years since $2010$. Interpret both numbers and say when the population reaches zero.",
+      "solution": "In $2010$ the population was $45$ thousand, and it falls by $3$ thousand per year. It reaches zero when $-3t + 45 = 0$, i.e. $t = 15$ — in the year $2025$. Whether the model remains realistic that far out is a separate question worth flagging.",
+      "check": [
+        "Eq(-3*0 + 45, 45)",
+        "Eq(-3*15 + 45, 0)",
+        "Eq(2010 + 15, 2025)"
+      ]
+    },
+    {
+      "id": "im1-u4-pr-12",
+      "statement": "Two courier firms: P charges $5000$₮ plus $800$₮/kg; Q charges $9000$₮ plus $300$₮/kg. Find the crossover mass and say which is cheaper for a $4$ kg parcel.",
+      "solution": "Set equal: $800w + 5000 = 300w + 9000$, so $500w = 4000$ and $w = 8$ kg. At $w = 4$: P costs $8200$₮, Q costs $10\\,200$₮, so **P is cheaper** for light parcels. Above $8$ kg, Q wins.",
+      "check": [
+        "Eq(800*8 + 5000, 300*8 + 9000)",
+        "Eq(800*4 + 5000, 8200)",
+        "Eq(300*4 + 9000, 10200)",
+        "800*4 + 5000 < 300*4 + 9000",
+        "800*12 + 5000 > 300*12 + 9000"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "im1-u4-ty-1",
+      "statement": "A line passes through $(-2, 11)$ and $(4, -7)$. Find its slope, write its equation in slope-intercept form, and give both intercepts.",
+      "solution": "**Slope.**$$m = \\frac{-7 - 11}{4 - (-2)} = \\frac{-18}{6} = -3.$$**Equation.** Point-slope with $(-2, 11)$:$$y - 11 = -3\\big(x - (-2)\\big) = -3(x + 2).$$$$y - 11 = -3x - 6 \\quad\\Longrightarrow\\quad y = -3x + 5.$$**Check with the unused point.** At $x = 4$: $-12 + 5 = -7$ ✓**Intercepts.** $y$-intercept $(0, 5)$, read off. For the $x$-intercept set $y = 0$: $3x = 5$, so $x = \\frac{5}{3}$, giving $\\left(\\frac{5}{3}, 0\\right)$.",
+      "check": [
+        "Eq(Rational(-7 - 11, 4 - (-2)), -3)",
+        "Eq(-3*(-2) + 5, 11)",
+        "Eq(-3*4 + 5, -7)",
+        "Eq(-3*0 + 5, 5)",
+        "Eq(-3*Rational(5,3) + 5, 0)"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-2",
+      "statement": "Rewrite $6x + 4y = 24$ in slope-intercept form, state the slope and both intercepts, then convert your answer back to standard form.",
+      "solution": "**To slope-intercept.**$$4y = -6x + 24 \\quad\\Longrightarrow\\quad y = -\\frac{3}{2}x + 6.$$The slope is $-\\frac{3}{2}$ and the $y$-intercept is $6$.**Intercepts from the original, in one line each.** Setting $y = 0$: $6x = 24$, so $x = 4$, giving $(4, 0)$. Setting $x = 0$: $4y = 24$, so $y = 6$, giving $(0, 6)$ — matching the $b$ above ✓**Back to standard form.** Multiply $y = -\\frac{3}{2}x + 6$ by $2$: $2y = -3x + 12$, so $3x + 2y = 12$. This is the original divided through by $2$ — the same line in lowest terms, which is the conventional standard form.**Verify.** $(4, 0)$: $12 + 0 = 12$ ✓. $(0, 6)$: $0 + 12 = 12$ ✓",
+      "check": [
+        "Eq(-Rational(3,2)*0 + 6, 6)",
+        "Eq(-Rational(3,2)*4 + 6, 0)",
+        "Eq(6*4 + 4*0, 24)",
+        "Eq(3*4 + 2*0, 12)",
+        "Eq(3*0 + 2*6, 12)"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-3",
+      "statement": "Decide whether each table is linear, and give the equation if it is. Table A: $(2, 7), (5, 16), (9, 28)$. Table B: $(1, 3), (2, 6), (3, 12)$.",
+      "solution": "**Table A.** Rates between consecutive pairs:$$\\frac{16 - 7}{5 - 2} = 3, \\qquad \\frac{28 - 16}{9 - 5} = 3.$$Constant, so **linear** with slope $3$. Using point-slope at $(2, 7)$: $y - 7 = 3(x - 2)$, so $y = 3x + 1$. Check all three: $3(2)+1 = 7$ ✓, $3(5)+1 = 16$ ✓, $3(9)+1 = 28$ ✓**Table B.** Rates:$$\\frac{6 - 3}{2 - 1} = 3, \\qquad \\frac{12 - 6}{3 - 2} = 6.$$Not constant, so **not linear**. Its ratios are constant at $2$, so it is exponential — the Unit 6 pattern.",
+      "check": [
+        "Eq(Rational(16 - 7, 5 - 2), 3)",
+        "Eq(Rational(28 - 16, 9 - 5), 3)",
+        "Eq(3*2 + 1, 7)",
+        "Eq(3*9 + 1, 28)",
+        "Ne(Rational(6 - 3, 2 - 1), Rational(12 - 6, 3 - 2))",
+        "Eq(Rational(12,6), 2)"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-4",
+      "statement": "A machine's value is modelled by $V = 8\\,000\\,000 - 650\\,000t$ (₮, years). Interpret both numbers, find the value after $4$ years, find when the model reaches zero, and state a sensible domain.",
+      "solution": "**Intercept.** At $t = 0$ the machine is worth $8\\,000\\,000$₮ — its purchase price.**Slope.** It loses $650\\,000$₮ of value every year. Negative, so the value falls.**After 4 years.**$$V(4) = 8\\,000\\,000 - 650\\,000(4) = 8\\,000\\,000 - 2\\,600\\,000 = 5\\,400\\,000.$$ The machine is worth $5\\,400\\,000$₮.**When it reaches zero.**$$8\\,000\\,000 - 650\\,000t = 0 \\quad\\Longrightarrow\\quad t = \\frac{8\\,000\\,000}{650\\,000} = \\frac{160}{13} \\approx 12.3\\ \\text{years}.$$**Domain.** The model is meaningful for $0 \\le t \\le \\frac{160}{13}$; beyond that it reports a negative value, which no machine has. In practice a real depreciation model would also flatten out at a scrap value rather than reaching exactly zero, so predictions near the end of the range deserve caution.",
+      "check": [
+        "Eq(8000000 - 650000*0, 8000000)",
+        "Eq(8000000 - 650000*4, 5400000)",
+        "Eq(Rational(8000000, 650000), Rational(160,13))",
+        "8000000 - 650000*13 < 0"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-5",
+      "statement": "A tutor charges a fixed booking fee plus an hourly rate. Three hours costs $95\\,000$₮ and seven hours costs $187\\,000$₮. Find the hourly rate and the booking fee, write the model, and find the cost of five hours.",
+      "solution": "**Treat the two facts as points** $(3, 95\\,000)$ and $(7, 187\\,000)$.**Hourly rate = slope.**$$m = \\frac{187\\,000 - 95\\,000}{7 - 3} = \\frac{92\\,000}{4} = 23\\,000.$$The rate is $23\\,000$₮ per hour.**Booking fee = intercept.** Use point-slope at $(3, 95\\,000)$:$$C - 95\\,000 = 23\\,000(h - 3) \\quad\\Longrightarrow\\quad C = 23\\,000h + 26\\,000.$$The booking fee is $26\\,000$₮ — the cost at $h = 0$, which neither given fact told us directly.**Check with the unused point.** At $h = 7$: $161\\,000 + 26\\,000 = 187\\,000$ ✓**Five hours.**$$C(5) = 115\\,000 + 26\\,000 = 141\\,000.$$ Five hours cost $141\\,000$₮.",
+      "check": [
+        "Eq(Rational(187000 - 95000, 7 - 3), 23000)",
+        "Eq(23000*3 + 26000, 95000)",
+        "Eq(23000*7 + 26000, 187000)",
+        "Eq(23000*5 + 26000, 141000)",
+        "Eq(23000*0 + 26000, 26000)"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-6",
+      "statement": "Two mobile plans: Plan A is $15\\,000$₮ a month plus $25$₮ per minute; Plan B is $27\\,000$₮ a month plus $10$₮ per minute. Write both models, find the crossover, and advise a student who talks about $600$ minutes a month.",
+      "solution": "**Models.** With $m$ minutes,$$A = 25m + 15\\,000, \\qquad B = 10m + 27\\,000.$$**Crossover.**$$25m + 15\\,000 = 10m + 27\\,000 \\quad\\Longrightarrow\\quad 15m = 12\\,000 \\quad\\Longrightarrow\\quad m = 800.$$At $800$ minutes both cost $25(800) + 15\\,000 = 35\\,000$₮.**Which side is the student on?** $600 < 800$, so test there: $A = 15\\,000 + 15\\,000 = 30\\,000$₮ and $B = 6000 + 27\\,000 = 33\\,000$₮.**Advice.** At $600$ minutes a month, **Plan A** is cheaper by $3000$₮. Plan A has the lower monthly base but the higher per-minute rate, so it stays cheaper up to $800$ minutes; a student whose usage crept above that should switch to Plan B.",
+      "check": [
+        "Eq(25*800 + 15000, 10*800 + 27000)",
+        "Eq(25*800 + 15000, 35000)",
+        "Eq(25*600 + 15000, 30000)",
+        "Eq(10*600 + 27000, 33000)",
+        "25*600 + 15000 < 10*600 + 27000",
+        "25*1000 + 15000 > 10*1000 + 27000"
+      ]
+    },
+    {
+      "id": "im1-u4-ty-7",
+      "statement": "A biologist models a seedling's height between weeks $2$ and $8$ as $H = 1.4w + 3$ (cm, weeks). Predict the height at week $5$ and at week $60$, and comment on the reliability of each prediction.",
+      "solution": "**Week 5 — interpolation.**$$H(5) = 1.4(5) + 3 = 7 + 3 = 10\\ \\text{cm}.$$Week $5$ lies between $2$ and $8$, the range the model was built on, so this is interpolation and the prediction is reasonable.**Week 60 — extrapolation.**$$H(60) = 1.4(60) + 3 = 84 + 3 = 87\\ \\text{cm}.$$The arithmetic is correct, but week $60$ is more than seven times beyond the data. Plants do not grow at a constant rate indefinitely — growth typically slows and then levels off — so the model's core assumption has almost certainly failed by then.**The honest report.** $10$ cm at week $5$ is a sound prediction. $87$ cm at week $60$ is what the LINE says, not what the plant will do, and any answer that reports it without that caveat is overstating what the model can support.",
+      "check": [
+        "Eq(Rational(14,10)*5 + 3, 10)",
+        "Eq(Rational(14,10)*2 + 3, Rational(58,10))",
+        "Eq(Rational(14,10)*8 + 3, Rational(142,10))",
+        "Eq(Rational(14,10)*60 + 3, 87)",
+        "60 > 8"
+      ]
+    }
+  ]
+}

@@ -13,10 +13,51 @@ a broken problem crashes at authoring time, before it can reach a JSON file.
 """
 import json
 import os
+import re
 
 from sympy import sympify  # noqa: F401  (re-exported for builders)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# The exact splitter from components/esh/MathText.tsx. The alternation is
+# leftmost-first, so a **bold** run that contains inline math is matched AS
+# BOLD and the math inside it never reaches KaTeX — it renders as literal
+# dollar signs in production. The pattern is copied verbatim rather than
+# approximated, because an approximation would flag different strings than the
+# renderer actually breaks on.
+MATHTEXT_SPLIT = re.compile(r"(\$\$[^$]+\$\$|\$[^$]+\$|\*\*[^*]+\*\*)")
+
+
+def find_math_in_bold(text):
+    """Bold runs containing inline math — they render as literal dollar signs."""
+    return [t for t in MATHTEXT_SPLIT.findall(text) if t.startswith("**") and "$" in t]
+
+
+# Characters KaTeX has no glyph for. Inside math they produce a warning and a
+# blank box rather than an error node, so the render gate reports the file
+# clean and the defect ships. The tugrik sign is the one that matters here:
+# it belongs in the prose next to the math, never inside it.
+UNRENDERABLE_IN_MATH = "₮"
+
+
+def find_unrenderable_math(text):
+    """Math segments containing a character KaTeX cannot draw."""
+    bad = []
+    for token in MATHTEXT_SPLIT.findall(text):
+        if token.startswith("$") and any(c in token for c in UNRENDERABLE_IN_MATH):
+            bad.append(token)
+    return bad
+
+
+def _walk_strings(node, path, visit):
+    if isinstance(node, str):
+        visit(path, node)
+    elif isinstance(node, dict):
+        for key, value in node.items():
+            _walk_strings(value, f"{path}.{key}", visit)
+    elif isinstance(node, list):
+        for i, value in enumerate(node):
+            _walk_strings(value, f"{path}[{i}]", visit)
 
 
 def out_path(course, unit_slug):
@@ -128,6 +169,33 @@ def write_unit(course, slug, title, unit_number, blurb, builds_on, lessons, prac
         "practice": practice,
         "testYourself": test,
     }
+
+    # Every rendered string in the file, checked before it is written. All
+    # violations are reported together — fixing them one crash at a time is
+    # needlessly slow when a lesson has a dozen.
+    bold_math = []
+    bad_glyphs = []
+
+    def collect(path, text):
+        for token in find_math_in_bold(text):
+            bold_math.append((path, token))
+        for token in find_unrenderable_math(text):
+            bad_glyphs.append((path, token))
+
+    _walk_strings(data, slug, collect)
+    if bold_math:
+        lines = "\n".join(f"  {path}: {token!r}" for path, token in bold_math)
+        raise SystemExit(
+            f"{len(bold_math)} bold run(s) contain inline math, which MathText "
+            f"renders as literal dollar signs. Rewrite the bold text without "
+            f"math:\n{lines}"
+        )
+    if bad_glyphs:
+        lines = "\n".join(f"  {path}: {token!r}" for path, token in bad_glyphs)
+        raise SystemExit(
+            f"{len(bad_glyphs)} math segment(s) contain a character KaTeX cannot "
+            f"render. Move it into the surrounding prose:\n{lines}"
+        )
 
     path = out_path(course, slug)
     os.makedirs(os.path.dirname(path), exist_ok=True)
