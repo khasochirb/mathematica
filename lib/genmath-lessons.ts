@@ -1444,6 +1444,109 @@ export function getIm2Lesson(
 }
 
 // ---------------------------------------------------------------------------
+// Integrated Mathematics 3 — /math/integrated-3
+// The final year of the integrated pathway (CCSS Integrated Mathematics III).
+// IM1 was linear and exponential, IM2 quadratic; IM3 widens the function
+// catalogue to polynomial, rational, radical, logarithmic and trigonometric,
+// and closes with the inference half of statistics — the year that opens
+// Precalculus.
+// ---------------------------------------------------------------------------
+
+export const IM3_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "polynomial-functions",
+    title: "Polynomial Functions",
+    blurb:
+      "End behaviour from the leading term, zeros and multiplicity, the remainder and factor theorems, and polynomial arithmetic beyond the quadratic.",
+    buildsOn: "Factoring from IM2 Unit 2 — the same techniques, now on cubics and beyond.",
+    live: false,
+  },
+  {
+    unit: 2,
+    slug: "rational-and-radical-functions",
+    title: "Rational & Radical Functions",
+    blurb:
+      "Simplifying and combining rational expressions, asymptotes and holes, solving rational and radical equations, and why extraneous solutions appear.",
+    buildsOn: "Rational exponents from IM2 Unit 1 and factoring from IM2 Unit 2.",
+    live: false,
+  },
+  {
+    unit: 3,
+    slug: "exponential-and-logarithmic-functions",
+    title: "Exponential & Logarithmic Functions",
+    blurb:
+      "The logarithm as the inverse of an exponential, the three laws and where they come from, solving equations in the exponent, and modelling growth and decay.",
+    buildsOn: "Exponential functions from IM1 Unit 6 — now with a way to solve for the exponent.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "trigonometric-functions",
+    title: "Trigonometric Functions",
+    blurb:
+      "Radian measure and the unit circle, extending the ratios beyond acute angles, the graphs of sine and cosine with amplitude and period, and the Pythagorean identity.",
+    buildsOn: "Right-triangle trigonometry from IM2 Unit 6 and radians from IM2 Unit 7.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "function-families-and-inverses",
+    title: "Function Families & Inverses",
+    blurb:
+      "Transformations applied to every family at once, even and odd symmetry, composing functions, and inverses — what they undo and when they exist.",
+    buildsOn: "Transformations of parabolas from IM2 Unit 3, generalised to every function.",
+    live: false,
+  },
+  {
+    unit: 6,
+    slug: "sequences-series-and-the-binomial-theorem",
+    title: "Sequences, Series & the Binomial Theorem",
+    blurb:
+      "Arithmetic and geometric series and their sum formulas, infinite geometric series and when they converge, and the binomial theorem from Pascal's triangle.",
+    buildsOn: "Sequences from IM1 Unit 3 — now summed rather than only listed.",
+    live: false,
+  },
+  {
+    unit: 7,
+    slug: "statistical-inference",
+    title: "Statistical Inference",
+    blurb:
+      "Populations against samples, random sampling and why it matters, the normal model, simulation, margin of error, and what an experiment can conclude that an observational study cannot.",
+    buildsOn: "Describing data from IM1 Unit 9 — from summarising a sample to inferring about a population.",
+    live: false,
+  },
+  {
+    unit: 8,
+    slug: "modelling-with-functions",
+    title: "Modelling with Functions",
+    blurb:
+      "Choosing a function family from a situation, fitting it to data, judging a model against its residuals, and knowing the range over which it can be trusted.",
+    buildsOn: "Every function family in the pathway — this unit is about choosing between them.",
+    live: false,
+  },
+];
+
+const im3Units: CourseUnit[] = [];
+
+export function getIm3Spine(): GeometrySpineEntry[] {
+  return IM3_SPINE;
+}
+
+export function getIm3Unit(unitSlug: string): CourseUnit | null {
+  return im3Units.find((u) => u.slug === unitSlug) ?? null;
+}
+
+export function getIm3Lesson(
+  unitSlug: string,
+  lessonSlug: string
+): GenMathLesson | null {
+  const unit = getIm3Unit(unitSlug);
+  if (!unit) return null;
+  return unit.lessons.find((l) => l.slug === lessonSlug) ?? null;
+}
+
+// ---------------------------------------------------------------------------
 // Algebra 2 course — /math/algebra-2
 // The bridge between Algebra 1 and Precalculus: transformations and
 // piecewise functions, quadratics with complex numbers, advanced systems,
@@ -2090,6 +2193,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:algebra-1": { spine: getAlg1Spine, unit: getAlg1Unit },
   "course:integrated-1": { spine: getIm1Spine, unit: getIm1Unit },
   "course:integrated-2": { spine: getIm2Spine, unit: getIm2Unit },
+  "course:integrated-3": { spine: getIm3Spine, unit: getIm3Unit },
   "course:algebra-2": { spine: getAlg2Spine, unit: getAlg2Unit },
   "course:precalculus": { spine: getPrecalcSpine, unit: getPrecalcUnit },
   "course:calculus": { spine: getCalcSpine, unit: getCalcUnit },
