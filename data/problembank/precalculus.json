@@ -3589,6 +3589,1962 @@
           ]
         }
       ]
+    },
+    {
+      "id": "pc-composition",
+      "title": "Composing functions",
+      "level": 2,
+      "unit": "functions-and-their-graphs",
+      "skill": "Work inside out; f(g(x)) and g(f(x)) are generally different.",
+      "variants": [
+        {
+          "id": "PCX-comp-v01",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = x + 4$, find $f(g(1))$.",
+          "options": [
+            "$13$",
+            "$9$",
+            "$25$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(1) = 5$, then $f(5) = 13$. Composing the other way, $g(f(1))$, gives $9$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(1*1 + 4) + 3), 13)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v02",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = x + 4$, find $f(g(2))$.",
+          "options": [
+            "$11$",
+            "$15$",
+            "$42$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(2) = 6$, then $f(6) = 15$. Composing the other way, $g(f(2))$, gives $11$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(1*2 + 4) + 3), 15)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v03",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = x + 4$, find $f(g(-1))$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(-1) = 3$, then $f(3) = 9$. Composing the other way, $g(f(-1))$, gives $5$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(1*-1 + 4) + 3), 9)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v04",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = x + 4$, find $f(g(3))$.",
+          "options": [
+            "$13$",
+            "$63$",
+            "$16$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(3) = 7$, then $f(7) = 17$. Composing the other way, $g(f(3))$, gives $13$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(1*3 + 4) + 3), 17)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v05",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 2x - 3$, find $f(g(1))$.",
+          "options": [
+            "$1$",
+            "$7$",
+            "$-5$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(1) = -1$, then $f(-1) = 1$. Composing the other way, $g(f(1))$, gives $7$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(2*1 + -3) + 3), 1)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v06",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 2x - 3$, find $f(g(2))$.",
+          "options": [
+            "$11$",
+            "$5$",
+            "$7$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(2) = 1$, then $f(1) = 5$. Composing the other way, $g(f(2))$, gives $11$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(2*2 + -3) + 3), 5)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v07",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 2x - 3$, find $f(g(-1))$.",
+          "options": [
+            "$-1$",
+            "$-5$",
+            "$-7$",
+            "$-4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(-1) = -5$, then $f(-5) = -7$. Composing the other way, $g(f(-1))$, gives $-1$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(2*-1 + -3) + 3), -7)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v08",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 2x - 3$, find $f(g(3))$.",
+          "options": [
+            "$15$",
+            "$27$",
+            "$12$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(3) = 3$, then $f(3) = 9$. Composing the other way, $g(f(3))$, gives $15$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(2*3 + -3) + 3), 9)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v09",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 3x + 1$, find $f(g(1))$.",
+          "options": [
+            "$11$",
+            "$16$",
+            "$20$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(1) = 4$, then $f(4) = 11$. Composing the other way, $g(f(1))$, gives $16$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(3*1 + 1) + 3), 11)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v10",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 3x + 1$, find $f(g(2))$.",
+          "options": [
+            "$22$",
+            "$17$",
+            "$49$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(2) = 7$, then $f(7) = 17$. Composing the other way, $g(f(2))$, gives $22$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(3*2 + 1) + 3), 17)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v11",
+          "statement": "If $f(x) = 2x + 3$ and $g(x) = 3x + 1$, find $f(g(3))$.",
+          "options": [
+            "$28$",
+            "$90$",
+            "$23$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(3) = 10$, then $f(10) = 23$. Composing the other way, $g(f(3))$, gives $28$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((2*(3*3 + 1) + 3), 23)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v12",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = x + 4$, find $f(g(1))$.",
+          "options": [
+            "$6$",
+            "$10$",
+            "$7$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(1) = 5$, then $f(5) = 14$. Composing the other way, $g(f(1))$, gives $6$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(1*1 + 4) + -1), 14)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v13",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = x + 4$, find $f(g(2))$.",
+          "options": [
+            "$17$",
+            "$9$",
+            "$30$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(2) = 6$, then $f(6) = 17$. Composing the other way, $g(f(2))$, gives $9$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(1*2 + 4) + -1), 17)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v14",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = x + 4$, find $f(g(-1))$.",
+          "options": [
+            "$0$",
+            "$8$",
+            "$-12$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(-1) = 3$, then $f(3) = 8$. Composing the other way, $g(f(-1))$, gives $0$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(1*-1 + 4) + -1), 8)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v15",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = x + 4$, find $f(g(3))$.",
+          "options": [
+            "$12$",
+            "$56$",
+            "$20$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(3) = 7$, then $f(7) = 20$. Composing the other way, $g(f(3))$, gives $12$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(1*3 + 4) + -1), 20)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v16",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 2x - 3$, find $f(g(2))$.",
+          "options": [
+            "$7$",
+            "$5$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 1$, then $f(1) = 2$. Composing the other way, $g(f(2))$, gives $7$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(2*2 + -3) + -1), 2)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v17",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 2x - 3$, find $f(g(-1))$.",
+          "options": [
+            "$-16$",
+            "$-11$",
+            "$20$",
+            "$-9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(-1) = -5$, then $f(-5) = -16$. Composing the other way, $g(f(-1))$, gives $-11$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(2*-1 + -3) + -1), -16)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v18",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 2x - 3$, find $f(g(3))$.",
+          "options": [
+            "$13$",
+            "$8$",
+            "$24$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(3) = 3$, then $f(3) = 8$. Composing the other way, $g(f(3))$, gives $13$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(2*3 + -3) + -1), 8)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v19",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 3x + 1$, find $f(g(1))$.",
+          "options": [
+            "$7$",
+            "$8$",
+            "$11$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(1) = 4$, then $f(4) = 11$. Composing the other way, $g(f(1))$, gives $7$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(3*1 + 1) + -1), 11)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v20",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 3x + 1$, find $f(g(2))$.",
+          "options": [
+            "$16$",
+            "$35$",
+            "$12$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 7$, then $f(7) = 20$. Composing the other way, $g(f(2))$, gives $16$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(3*2 + 1) + -1), 20)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v21",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 3x + 1$, find $f(g(-1))$.",
+          "options": [
+            "$-7$",
+            "$-11$",
+            "$8$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(-1) = -2$, then $f(-2) = -7$. Composing the other way, $g(f(-1))$, gives $-11$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(3*-1 + 1) + -1), -7)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v22",
+          "statement": "If $f(x) = 3x - 1$ and $g(x) = 3x + 1$, find $f(g(3))$.",
+          "options": [
+            "$25$",
+            "$29$",
+            "$80$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(3) = 10$, then $f(10) = 29$. Composing the other way, $g(f(3))$, gives $25$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((3*(3*3 + 1) + -1), 29)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v23",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = x + 4$, find $f(g(1))$.",
+          "options": [
+            "$13$",
+            "$45$",
+            "$25$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(1) = 5$, then $f(5) = 25$. Composing the other way, $g(f(1))$, gives $13$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(1*1 + 4) + 5), 25)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v24",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = x + 4$, find $f(g(2))$.",
+          "options": [
+            "$17$",
+            "$78$",
+            "$19$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 6$, then $f(6) = 29$. Composing the other way, $g(f(2))$, gives $17$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(1*2 + 4) + 5), 29)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v25",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = x + 4$, find $f(g(-1))$.",
+          "options": [
+            "$17$",
+            "$5$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(-1) = 3$, then $f(3) = 17$. Composing the other way, $g(f(-1))$, gives $5$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(1*-1 + 4) + 5), 17)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v26",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = x + 4$, find $f(g(3))$.",
+          "options": [
+            "$21$",
+            "$33$",
+            "$119$",
+            "$24$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(3) = 7$, then $f(7) = 33$. Composing the other way, $g(f(3))$, gives $21$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(1*3 + 4) + 5), 33)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v27",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 2x - 3$, find $f(g(1))$.",
+          "options": [
+            "$15$",
+            "$-9$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(1) = -1$, then $f(-1) = 1$. Composing the other way, $g(f(1))$, gives $15$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(2*1 + -3) + 5), 1)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v28",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 2x - 3$, find $f(g(2))$.",
+          "options": [
+            "$23$",
+            "$13$",
+            "$14$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 1$, then $f(1) = 9$. Composing the other way, $g(f(2))$, gives $23$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(2*2 + -3) + 5), 9)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v29",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 2x - 3$, find $f(g(-1))$.",
+          "options": [
+            "$-15$",
+            "$-1$",
+            "$-5$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(-1) = -5$, then $f(-5) = -15$. Composing the other way, $g(f(-1))$, gives $-1$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(2*-1 + -3) + 5), -15)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v30",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 2x - 3$, find $f(g(3))$.",
+          "options": [
+            "$31$",
+            "$17$",
+            "$51$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(3) = 3$, then $f(3) = 17$. Composing the other way, $g(f(3))$, gives $31$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(2*3 + -3) + 5), 17)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v31",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 3x + 1$, find $f(g(1))$.",
+          "options": [
+            "$28$",
+            "$36$",
+            "$21$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(1) = 4$, then $f(4) = 21$. Composing the other way, $g(f(1))$, gives $28$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(3*1 + 1) + 5), 21)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v32",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 3x + 1$, find $f(g(2))$.",
+          "options": [
+            "$40$",
+            "$91$",
+            "$20$",
+            "$33$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 7$, then $f(7) = 33$. Composing the other way, $g(f(2))$, gives $40$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(3*2 + 1) + 5), 33)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v33",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 3x + 1$, find $f(g(-1))$.",
+          "options": [
+            "$-3$",
+            "$4$",
+            "$-2$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Work from the INSIDE out: $g(-1) = -2$, then $f(-2) = -3$. Composing the other way, $g(f(-1))$, gives $4$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(3*-1 + 1) + 5), -3)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v34",
+          "statement": "If $f(x) = 4x + 5$ and $g(x) = 3x + 1$, find $f(g(3))$.",
+          "options": [
+            "$52$",
+            "$45$",
+            "$170$",
+            "$27$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Work from the INSIDE out: $g(3) = 10$, then $f(10) = 45$. Composing the other way, $g(f(3))$, gives $52$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((4*(3*3 + 1) + 5), 45)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v35",
+          "statement": "If $f(x) = -2x + 7$ and $g(x) = x + 4$, find $f(g(1))$.",
+          "options": [
+            "$9$",
+            "$25$",
+            "$-3$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Work from the INSIDE out: $g(1) = 5$, then $f(5) = -3$. Composing the other way, $g(f(1))$, gives $9$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((-2*(1*1 + 4) + 7), -3)"
+          ]
+        },
+        {
+          "id": "PCX-comp-v36",
+          "statement": "If $f(x) = -2x + 7$ and $g(x) = x + 4$, find $f(g(2))$.",
+          "options": [
+            "$7$",
+            "$18$",
+            "$9$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Work from the INSIDE out: $g(2) = 6$, then $f(6) = -5$. Composing the other way, $g(f(2))$, gives $7$ — composition is not commutative, which is exactly what this tests.",
+          "check": [
+            "Eq((-2*(1*2 + 4) + 7), -5)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pc-log-evaluate",
+      "title": "Evaluating logarithms",
+      "level": 1,
+      "unit": "exponentials-and-logarithms",
+      "skill": "A logarithm returns the EXPONENT, never the number itself.",
+      "variants": [
+        {
+          "id": "PCX-log-v01",
+          "statement": "Evaluate $\\log_{2} 8$.",
+          "options": [
+            "$3$",
+            "$8$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{2} 8$ asks: to what power must $2$ be raised to give $8$? Since $2^{3} = 8$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(8, 2), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v02",
+          "statement": "Evaluate $\\log_{2} 16$.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{2} 16$ asks: to what power must $2$ be raised to give $16$? Since $2^{4} = 16$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(16, 2), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v03",
+          "statement": "Evaluate $\\log_{2} 32$.",
+          "options": [
+            "$32$",
+            "$10$",
+            "$5$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{2} 32$ asks: to what power must $2$ be raised to give $32$? Since $2^{5} = 32$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(32, 2), 5)"
+          ]
+        },
+        {
+          "id": "PCX-log-v04",
+          "statement": "Evaluate $\\log_{3} 9$.",
+          "options": [
+            "$9$",
+            "$6$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{3} 9$ asks: to what power must $3$ be raised to give $9$? Since $3^{2} = 9$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(9, 3), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v05",
+          "statement": "Evaluate $\\log_{3} 81$.",
+          "options": [
+            "$4$",
+            "$81$",
+            "$12$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{3} 81$ asks: to what power must $3$ be raised to give $81$? Since $3^{4} = 81$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(81, 3), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v06",
+          "statement": "Evaluate $\\log_{3} 243$.",
+          "options": [
+            "$243$",
+            "$5$",
+            "$15$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{3} 243$ asks: to what power must $3$ be raised to give $243$? Since $3^{5} = 243$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(243, 3), 5)"
+          ]
+        },
+        {
+          "id": "PCX-log-v07",
+          "statement": "Evaluate $\\log_{5} 25$.",
+          "options": [
+            "$25$",
+            "$10$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{5} 25$ asks: to what power must $5$ be raised to give $25$? Since $5^{2} = 25$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(25, 5), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v08",
+          "statement": "Evaluate $\\log_{5} 125$.",
+          "options": [
+            "$125$",
+            "$15$",
+            "$5$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{5} 125$ asks: to what power must $5$ be raised to give $125$? Since $5^{3} = 125$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(125, 5), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v09",
+          "statement": "Evaluate $\\log_{5} 625$.",
+          "options": [
+            "$4$",
+            "$625$",
+            "$20$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{5} 625$ asks: to what power must $5$ be raised to give $625$? Since $5^{4} = 625$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(625, 5), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v10",
+          "statement": "Evaluate $\\log_{10} 100$.",
+          "options": [
+            "$100$",
+            "$2$",
+            "$20$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{10} 100$ asks: to what power must $10$ be raised to give $100$? Since $10^{2} = 100$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(100, 10), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v11",
+          "statement": "Evaluate $\\log_{10} 1000$.",
+          "options": [
+            "$1000$",
+            "$30$",
+            "$3$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{10} 1000$ asks: to what power must $10$ be raised to give $1000$? Since $10^{3} = 1000$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(1000, 10), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v12",
+          "statement": "Evaluate $\\log_{10} 10000$.",
+          "options": [
+            "$10000$",
+            "$40$",
+            "$10$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{10} 10000$ asks: to what power must $10$ be raised to give $10000$? Since $10^{4} = 10000$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(10000, 10), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v13",
+          "statement": "Evaluate $\\log_{10} 100000$.",
+          "options": [
+            "$5$",
+            "$100000$",
+            "$50$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{10} 100000$ asks: to what power must $10$ be raised to give $100000$? Since $10^{5} = 100000$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(100000, 10), 5)"
+          ]
+        },
+        {
+          "id": "PCX-log-v14",
+          "statement": "Evaluate $\\log_{4} 16$.",
+          "options": [
+            "$16$",
+            "$2$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{4} 16$ asks: to what power must $4$ be raised to give $16$? Since $4^{2} = 16$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(16, 4), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v15",
+          "statement": "Evaluate $\\log_{4} 64$.",
+          "options": [
+            "$64$",
+            "$12$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{4} 64$ asks: to what power must $4$ be raised to give $64$? Since $4^{3} = 64$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(64, 4), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v16",
+          "statement": "Evaluate $\\log_{4} 1024$.",
+          "options": [
+            "$1024$",
+            "$20$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{4} 1024$ asks: to what power must $4$ be raised to give $1024$? Since $4^{5} = 1024$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(1024, 4), 5)"
+          ]
+        },
+        {
+          "id": "PCX-log-v17",
+          "statement": "Evaluate $\\log_{6} 36$.",
+          "options": [
+            "$2$",
+            "$36$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{6} 36$ asks: to what power must $6$ be raised to give $36$? Since $6^{2} = 36$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(36, 6), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v18",
+          "statement": "Evaluate $\\log_{6} 216$.",
+          "options": [
+            "$216$",
+            "$3$",
+            "$18$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{6} 216$ asks: to what power must $6$ be raised to give $216$? Since $6^{3} = 216$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(216, 6), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v19",
+          "statement": "Evaluate $\\log_{6} 1296$.",
+          "options": [
+            "$1296$",
+            "$24$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{6} 1296$ asks: to what power must $6$ be raised to give $1296$? Since $6^{4} = 1296$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(1296, 6), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v20",
+          "statement": "Evaluate $\\log_{6} 7776$.",
+          "options": [
+            "$7776$",
+            "$30$",
+            "$6$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{6} 7776$ asks: to what power must $6$ be raised to give $7776$? Since $6^{5} = 7776$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(7776, 6), 5)"
+          ]
+        },
+        {
+          "id": "PCX-log-v21",
+          "statement": "Evaluate $\\log_{7} 49$.",
+          "options": [
+            "$2$",
+            "$49$",
+            "$14$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\log_{7} 49$ asks: to what power must $7$ be raised to give $49$? Since $7^{2} = 49$, the answer is $2$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(49, 7), 2)"
+          ]
+        },
+        {
+          "id": "PCX-log-v22",
+          "statement": "Evaluate $\\log_{7} 343$.",
+          "options": [
+            "$343$",
+            "$3$",
+            "$21$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\log_{7} 343$ asks: to what power must $7$ be raised to give $343$? Since $7^{3} = 343$, the answer is $3$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(343, 7), 3)"
+          ]
+        },
+        {
+          "id": "PCX-log-v23",
+          "statement": "Evaluate $\\log_{7} 2401$.",
+          "options": [
+            "$2401$",
+            "$28$",
+            "$4$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\log_{7} 2401$ asks: to what power must $7$ be raised to give $2401$? Since $7^{4} = 2401$, the answer is $4$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(2401, 7), 4)"
+          ]
+        },
+        {
+          "id": "PCX-log-v24",
+          "statement": "Evaluate $\\log_{7} 16807$.",
+          "options": [
+            "$16807$",
+            "$35$",
+            "$7$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\log_{7} 16807$ asks: to what power must $7$ be raised to give $16807$? Since $7^{5} = 16807$, the answer is $5$. A logarithm returns the EXPONENT, never the number itself.",
+          "check": [
+            "Eq(log(16807, 7), 5)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pc-exp-equation",
+      "title": "Exponential equations with a matched base",
+      "level": 2,
+      "unit": "exponentials-and-logarithms",
+      "skill": "Write both sides as powers of one base, then equate the exponents.",
+      "variants": [
+        {
+          "id": "PCX-exp-v01",
+          "statement": "Solve $2^{\\,x - 1} = 4$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $2$, and $4 = 2^{2}$, so the exponents must match: $x - 1 = 2$, giving $x = 3$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((3) - (1)), 4)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v02",
+          "statement": "Solve $2^{\\,x - 3} = 4$.",
+          "options": [
+            "$2$",
+            "$5$",
+            "$-1$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $2$, and $4 = 2^{2}$, so the exponents must match: $x - 3 = 2$, giving $x = 5$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((5) - (3)), 4)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v03",
+          "statement": "Solve $2^{\\,x + 1} = 4$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $2$, and $4 = 2^{2}$, so the exponents must match: $x + 1 = 2$, giving $x = 1$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((1) - (-1)), 4)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v04",
+          "statement": "Solve $2^{\\,x - 1} = 8$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $2$, and $8 = 2^{3}$, so the exponents must match: $x - 1 = 3$, giving $x = 4$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((4) - (1)), 8)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v05",
+          "statement": "Solve $2^{\\,x - 2} = 8$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $2$, and $8 = 2^{3}$, so the exponents must match: $x - 2 = 3$, giving $x = 5$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((5) - (2)), 8)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v06",
+          "statement": "Solve $2^{\\,x - 3} = 8$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$0$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $2$, and $8 = 2^{3}$, so the exponents must match: $x - 3 = 3$, giving $x = 6$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((6) - (3)), 8)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v07",
+          "statement": "Solve $2^{\\,x + 1} = 8$.",
+          "options": [
+            "$3$",
+            "$4$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $2$, and $8 = 2^{3}$, so the exponents must match: $x + 1 = 3$, giving $x = 2$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((2) - (-1)), 8)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v08",
+          "statement": "Solve $2^{\\,x + 2} = 8$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$8$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $2$, and $8 = 2^{3}$, so the exponents must match: $x + 2 = 3$, giving $x = 1$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((1) - (-2)), 8)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v09",
+          "statement": "Solve $2^{\\,x - 1} = 16$.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$3$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $2$, and $16 = 2^{4}$, so the exponents must match: $x - 1 = 4$, giving $x = 5$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((5) - (1)), 16)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v10",
+          "statement": "Solve $2^{\\,x - 2} = 16$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$2$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $2$, and $16 = 2^{4}$, so the exponents must match: $x - 2 = 4$, giving $x = 6$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((6) - (2)), 16)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v11",
+          "statement": "Solve $2^{\\,x - 3} = 16$.",
+          "options": [
+            "$4$",
+            "$1$",
+            "$7$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $2$, and $16 = 2^{4}$, so the exponents must match: $x - 3 = 4$, giving $x = 7$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((7) - (3)), 16)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v12",
+          "statement": "Solve $2^{\\,x + 1} = 16$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$16$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $2$, and $16 = 2^{4}$, so the exponents must match: $x + 1 = 4$, giving $x = 3$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((3) - (-1)), 16)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v13",
+          "statement": "Solve $2^{\\,x + 2} = 16$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$6$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $2$, and $16 = 2^{4}$, so the exponents must match: $x + 2 = 4$, giving $x = 2$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((2) - (-2)), 16)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v14",
+          "statement": "Solve $2^{\\,x - 1} = 32$.",
+          "options": [
+            "$5$",
+            "$6$",
+            "$4$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $2$, and $32 = 2^{5}$, so the exponents must match: $x - 1 = 5$, giving $x = 6$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((6) - (1)), 32)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v15",
+          "statement": "Solve $2^{\\,x - 2} = 32$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$7$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $2$, and $32 = 2^{5}$, so the exponents must match: $x - 2 = 5$, giving $x = 7$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((7) - (2)), 32)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v16",
+          "statement": "Solve $2^{\\,x - 3} = 32$.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$32$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $2$, and $32 = 2^{5}$, so the exponents must match: $x - 3 = 5$, giving $x = 8$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((8) - (3)), 32)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v17",
+          "statement": "Solve $2^{\\,x + 1} = 32$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$6$",
+            "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $2$, and $32 = 2^{5}$, so the exponents must match: $x + 1 = 5$, giving $x = 4$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((4) - (-1)), 32)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v18",
+          "statement": "Solve $2^{\\,x + 2} = 32$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$7$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $2$, and $32 = 2^{5}$, so the exponents must match: $x + 2 = 5$, giving $x = 3$. Equating the exponents is legal precisely because $y = 2^x$ is one-to-one.",
+          "check": [
+            "Eq(2**((3) - (-2)), 32)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v19",
+          "statement": "Solve $3^{\\,x - 1} = 9$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $3$, and $9 = 3^{2}$, so the exponents must match: $x - 1 = 2$, giving $x = 3$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((3) - (1)), 9)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v20",
+          "statement": "Solve $3^{\\,x - 2} = 9$.",
+          "options": [
+            "$2$",
+            "$0$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $3$, and $9 = 3^{2}$, so the exponents must match: $x - 2 = 2$, giving $x = 4$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((4) - (2)), 9)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v21",
+          "statement": "Solve $3^{\\,x - 3} = 9$.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$-1$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $3$, and $9 = 3^{2}$, so the exponents must match: $x - 3 = 2$, giving $x = 5$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((5) - (3)), 9)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v22",
+          "statement": "Solve $3^{\\,x + 1} = 9$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $3$, and $9 = 3^{2}$, so the exponents must match: $x + 1 = 2$, giving $x = 1$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((1) - (-1)), 9)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v23",
+          "statement": "Solve $3^{\\,x + 2} = 9$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$0$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $3$, and $9 = 3^{2}$, so the exponents must match: $x + 2 = 2$, giving $x = 0$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((0) - (-2)), 9)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v24",
+          "statement": "Solve $3^{\\,x - 1} = 27$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$27$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $3$, and $27 = 3^{3}$, so the exponents must match: $x - 1 = 3$, giving $x = 4$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((4) - (1)), 27)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v25",
+          "statement": "Solve $3^{\\,x - 2} = 27$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$1$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $3$, and $27 = 3^{3}$, so the exponents must match: $x - 2 = 3$, giving $x = 5$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((5) - (2)), 27)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v26",
+          "statement": "Solve $3^{\\,x - 3} = 27$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$0$",
+            "$27$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $3$, and $27 = 3^{3}$, so the exponents must match: $x - 3 = 3$, giving $x = 6$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((6) - (3)), 27)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v27",
+          "statement": "Solve $3^{\\,x + 1} = 27$.",
+          "options": [
+            "$3$",
+            "$4$",
+            "$2$",
+            "$27$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $3$, and $27 = 3^{3}$, so the exponents must match: $x + 1 = 3$, giving $x = 2$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((2) - (-1)), 27)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v28",
+          "statement": "Solve $3^{\\,x + 2} = 27$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$27$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $3$, and $27 = 3^{3}$, so the exponents must match: $x + 2 = 3$, giving $x = 1$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((1) - (-2)), 27)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v29",
+          "statement": "Solve $3^{\\,x - 1} = 81$.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$3$",
+            "$81$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $3$, and $81 = 3^{4}$, so the exponents must match: $x - 1 = 4$, giving $x = 5$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((5) - (1)), 81)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v30",
+          "statement": "Solve $3^{\\,x - 2} = 81$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$2$",
+            "$81$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $3$, and $81 = 3^{4}$, so the exponents must match: $x - 2 = 4$, giving $x = 6$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((6) - (2)), 81)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v31",
+          "statement": "Solve $3^{\\,x - 3} = 81$.",
+          "options": [
+            "$4$",
+            "$1$",
+            "$7$",
+            "$81$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $3$, and $81 = 3^{4}$, so the exponents must match: $x - 3 = 4$, giving $x = 7$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((7) - (3)), 81)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v32",
+          "statement": "Solve $3^{\\,x + 1} = 81$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$81$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $3$, and $81 = 3^{4}$, so the exponents must match: $x + 1 = 4$, giving $x = 3$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((3) - (-1)), 81)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v33",
+          "statement": "Solve $3^{\\,x + 2} = 81$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$6$",
+            "$81$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Both sides are powers of $3$, and $81 = 3^{4}$, so the exponents must match: $x + 2 = 4$, giving $x = 2$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((2) - (-2)), 81)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v34",
+          "statement": "Solve $3^{\\,x - 1} = 243$.",
+          "options": [
+            "$5$",
+            "$6$",
+            "$4$",
+            "$243$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Both sides are powers of $3$, and $243 = 3^{5}$, so the exponents must match: $x - 1 = 5$, giving $x = 6$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((6) - (1)), 243)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v35",
+          "statement": "Solve $3^{\\,x - 2} = 243$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$7$",
+            "$243$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Both sides are powers of $3$, and $243 = 3^{5}$, so the exponents must match: $x - 2 = 5$, giving $x = 7$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((7) - (2)), 243)"
+          ]
+        },
+        {
+          "id": "PCX-exp-v36",
+          "statement": "Solve $3^{\\,x - 3} = 243$.",
+          "options": [
+            "$5$",
+            "$2$",
+            "$243$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Both sides are powers of $3$, and $243 = 3^{5}$, so the exponents must match: $x - 3 = 5$, giving $x = 8$. Equating the exponents is legal precisely because $y = 3^x$ is one-to-one.",
+          "check": [
+            "Eq(3**((8) - (3)), 243)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pc-unit-circle",
+      "title": "Exact values on the unit circle",
+      "level": 1,
+      "unit": "the-unit-circle",
+      "skill": "Quadrant fixes the sign; the reference angle fixes the magnitude.",
+      "variants": [
+        {
+          "id": "PCX-uc-v01",
+          "statement": "Give the exact value of $\\sin 0°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $0°$ has coordinates $(\\cos 0°,\\ \\sin 0°) = (1,\\ 0)$, so $\\sin 0° = 0$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(0,180)*pi) - (0)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v02",
+          "statement": "Give the exact value of $\\cos 0°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $0°$ has coordinates $(\\cos 0°,\\ \\sin 0°) = (1,\\ 0)$, so $\\cos 0° = 1$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(0,180)*pi) - (1)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v03",
+          "statement": "Give the exact value of $\\sin 30°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $30°$ has coordinates $(\\cos 30°,\\ \\sin 30°) = (\\frac{\\sqrt{3}}{2},\\ \\frac{1}{2})$, so $\\sin 30° = \\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(30,180)*pi) - (Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v04",
+          "statement": "Give the exact value of $\\cos 30°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $30°$ has coordinates $(\\cos 30°,\\ \\sin 30°) = (\\frac{\\sqrt{3}}{2},\\ \\frac{1}{2})$, so $\\cos 30° = \\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(30,180)*pi) - (sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v05",
+          "statement": "Give the exact value of $\\sin 45°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $45°$ has coordinates $(\\cos 45°,\\ \\sin 45°) = (\\frac{\\sqrt{2}}{2},\\ \\frac{\\sqrt{2}}{2})$, so $\\sin 45° = \\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(45,180)*pi) - (sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v06",
+          "statement": "Give the exact value of $\\cos 45°$.",
+          "options": [
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $45°$ has coordinates $(\\cos 45°,\\ \\sin 45°) = (\\frac{\\sqrt{2}}{2},\\ \\frac{\\sqrt{2}}{2})$, so $\\cos 45° = \\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(45,180)*pi) - (sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v07",
+          "statement": "Give the exact value of $\\sin 60°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $60°$ has coordinates $(\\cos 60°,\\ \\sin 60°) = (\\frac{1}{2},\\ \\frac{\\sqrt{3}}{2})$, so $\\sin 60° = \\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(60,180)*pi) - (sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v08",
+          "statement": "Give the exact value of $\\cos 60°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $60°$ has coordinates $(\\cos 60°,\\ \\sin 60°) = (\\frac{1}{2},\\ \\frac{\\sqrt{3}}{2})$, so $\\cos 60° = \\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(60,180)*pi) - (Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v09",
+          "statement": "Give the exact value of $\\sin 90°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $90°$ has coordinates $(\\cos 90°,\\ \\sin 90°) = (0,\\ 1)$, so $\\sin 90° = 1$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(90,180)*pi) - (1)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v10",
+          "statement": "Give the exact value of $\\cos 90°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $90°$ has coordinates $(\\cos 90°,\\ \\sin 90°) = (0,\\ 1)$, so $\\cos 90° = 0$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(90,180)*pi) - (0)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v11",
+          "statement": "Give the exact value of $\\sin 120°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$\\frac{\\sqrt{3}}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $120°$ has coordinates $(\\cos 120°,\\ \\sin 120°) = (-\\frac{1}{2},\\ \\frac{\\sqrt{3}}{2})$, so $\\sin 120° = \\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(120,180)*pi) - (sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v12",
+          "statement": "Give the exact value of $\\cos 120°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$-\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $120°$ has coordinates $(\\cos 120°,\\ \\sin 120°) = (-\\frac{1}{2},\\ \\frac{\\sqrt{3}}{2})$, so $\\cos 120° = -\\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(120,180)*pi) - (-Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v13",
+          "statement": "Give the exact value of $\\sin 135°$.",
+          "options": [
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $135°$ has coordinates $(\\cos 135°,\\ \\sin 135°) = (-\\frac{\\sqrt{2}}{2},\\ \\frac{\\sqrt{2}}{2})$, so $\\sin 135° = \\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(135,180)*pi) - (sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v14",
+          "statement": "Give the exact value of $\\cos 135°$.",
+          "options": [
+            "$0$",
+            "$-\\frac{\\sqrt{2}}{2}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $135°$ has coordinates $(\\cos 135°,\\ \\sin 135°) = (-\\frac{\\sqrt{2}}{2},\\ \\frac{\\sqrt{2}}{2})$, so $\\cos 135° = -\\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(135,180)*pi) - (-sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v15",
+          "statement": "Give the exact value of $\\sin 150°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $150°$ has coordinates $(\\cos 150°,\\ \\sin 150°) = (-\\frac{\\sqrt{3}}{2},\\ \\frac{1}{2})$, so $\\sin 150° = \\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(150,180)*pi) - (Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v16",
+          "statement": "Give the exact value of $\\cos 150°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $150°$ has coordinates $(\\cos 150°,\\ \\sin 150°) = (-\\frac{\\sqrt{3}}{2},\\ \\frac{1}{2})$, so $\\cos 150° = -\\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(150,180)*pi) - (-sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v17",
+          "statement": "Give the exact value of $\\sin 180°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $180°$ has coordinates $(\\cos 180°,\\ \\sin 180°) = (-1,\\ 0)$, so $\\sin 180° = 0$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(180,180)*pi) - (0)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v18",
+          "statement": "Give the exact value of $\\cos 180°$.",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $180°$ has coordinates $(\\cos 180°,\\ \\sin 180°) = (-1,\\ 0)$, so $\\cos 180° = -1$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(180,180)*pi) - (-1)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v19",
+          "statement": "Give the exact value of $\\sin 210°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $210°$ has coordinates $(\\cos 210°,\\ \\sin 210°) = (-\\frac{\\sqrt{3}}{2},\\ -\\frac{1}{2})$, so $\\sin 210° = -\\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(210,180)*pi) - (-Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v20",
+          "statement": "Give the exact value of $\\cos 210°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$-\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $210°$ has coordinates $(\\cos 210°,\\ \\sin 210°) = (-\\frac{\\sqrt{3}}{2},\\ -\\frac{1}{2})$, so $\\cos 210° = -\\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(210,180)*pi) - (-sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v21",
+          "statement": "Give the exact value of $\\sin 225°$.",
+          "options": [
+            "$-\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $225°$ has coordinates $(\\cos 225°,\\ \\sin 225°) = (-\\frac{\\sqrt{2}}{2},\\ -\\frac{\\sqrt{2}}{2})$, so $\\sin 225° = -\\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(225,180)*pi) - (-sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v22",
+          "statement": "Give the exact value of $\\cos 225°$.",
+          "options": [
+            "$0$",
+            "$-\\frac{\\sqrt{2}}{2}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $225°$ has coordinates $(\\cos 225°,\\ \\sin 225°) = (-\\frac{\\sqrt{2}}{2},\\ -\\frac{\\sqrt{2}}{2})$, so $\\cos 225° = -\\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(225,180)*pi) - (-sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v23",
+          "statement": "Give the exact value of $\\sin 240°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-\\frac{\\sqrt{3}}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $240°$ has coordinates $(\\cos 240°,\\ \\sin 240°) = (-\\frac{1}{2},\\ -\\frac{\\sqrt{3}}{2})$, so $\\sin 240° = -\\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(240,180)*pi) - (-sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v24",
+          "statement": "Give the exact value of $\\cos 240°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$-\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $240°$ has coordinates $(\\cos 240°,\\ \\sin 240°) = (-\\frac{1}{2},\\ -\\frac{\\sqrt{3}}{2})$, so $\\cos 240° = -\\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(240,180)*pi) - (-Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v25",
+          "statement": "Give the exact value of $\\sin 270°$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $270°$ has coordinates $(\\cos 270°,\\ \\sin 270°) = (0,\\ -1)$, so $\\sin 270° = -1$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(270,180)*pi) - (-1)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v26",
+          "statement": "Give the exact value of $\\cos 270°$.",
+          "options": [
+            "$1$",
+            "$0$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $270°$ has coordinates $(\\cos 270°,\\ \\sin 270°) = (0,\\ -1)$, so $\\cos 270° = 0$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(270,180)*pi) - (0)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v27",
+          "statement": "Give the exact value of $\\sin 300°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-\\frac{\\sqrt{3}}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $300°$ has coordinates $(\\cos 300°,\\ \\sin 300°) = (\\frac{1}{2},\\ -\\frac{\\sqrt{3}}{2})$, so $\\sin 300° = -\\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(300,180)*pi) - (-sqrt(3)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v28",
+          "statement": "Give the exact value of $\\cos 300°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $300°$ has coordinates $(\\cos 300°,\\ \\sin 300°) = (\\frac{1}{2},\\ -\\frac{\\sqrt{3}}{2})$, so $\\cos 300° = \\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(300,180)*pi) - (Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v29",
+          "statement": "Give the exact value of $\\sin 315°$.",
+          "options": [
+            "$-\\frac{\\sqrt{2}}{2}$",
+            "$0$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the point at $315°$ has coordinates $(\\cos 315°,\\ \\sin 315°) = (\\frac{\\sqrt{2}}{2},\\ -\\frac{\\sqrt{2}}{2})$, so $\\sin 315° = -\\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(315,180)*pi) - (-sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v30",
+          "statement": "Give the exact value of $\\cos 315°$.",
+          "options": [
+            "$0$",
+            "$\\frac{\\sqrt{2}}{2}$",
+            "$1$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the point at $315°$ has coordinates $(\\cos 315°,\\ \\sin 315°) = (\\frac{\\sqrt{2}}{2},\\ -\\frac{\\sqrt{2}}{2})$, so $\\cos 315° = \\frac{\\sqrt{2}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(315,180)*pi) - (sqrt(2)/2)), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v31",
+          "statement": "Give the exact value of $\\sin 330°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-\\frac{1}{2}$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the point at $330°$ has coordinates $(\\cos 330°,\\ \\sin 330°) = (\\frac{\\sqrt{3}}{2},\\ -\\frac{1}{2})$, so $\\sin 330° = -\\frac{1}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(sin(Rational(330,180)*pi) - (-Rational(1,2))), 0)"
+          ]
+        },
+        {
+          "id": "PCX-uc-v32",
+          "statement": "Give the exact value of $\\cos 330°$.",
+          "options": [
+            "$0$",
+            "$1$",
+            "$-1$",
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the point at $330°$ has coordinates $(\\cos 330°,\\ \\sin 330°) = (\\frac{\\sqrt{3}}{2},\\ -\\frac{1}{2})$, so $\\cos 330° = \\frac{\\sqrt{3}}{2}$. The sign follows the quadrant and the magnitude follows the reference angle.",
+          "check": [
+            "Eq(simplify(cos(Rational(330,180)*pi) - (sqrt(3)/2)), 0)"
+          ]
+        }
+      ]
     }
   ]
 }

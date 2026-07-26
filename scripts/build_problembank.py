@@ -38,6 +38,17 @@ SUBJECTS = [
 ]
 
 
+def load_extras():
+    """scripts/pb/extras.py adds dense forms to the subjects authored before
+    the ~36-variants-per-form standard. One integration point, so the older
+    generators need no surgery."""
+    path = os.path.join(PB_DIR, "extras.py")
+    spec = importlib.util.spec_from_file_location("pb_extras", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.extra_forms
+
+
 def load_build(modname):
     path = os.path.join(PB_DIR, f"{modname}.py")
     spec = importlib.util.spec_from_file_location(f"pb_{modname}", path)
@@ -48,8 +59,10 @@ def load_build(modname):
 
 def main():
     grand_forms = grand_vars = 0
+    extra_forms = load_extras()
     for slug, modname in SUBJECTS:
         topic = load_build(modname)()
+        topic["forms"] = topic["forms"] + extra_forms(slug)
         assert topic["slug"] == slug, f"{slug}: build() returned slug {topic['slug']!r}"
         n_forms = len(topic["forms"])
         n_vars = sum(len(f["variants"]) for f in topic["forms"])

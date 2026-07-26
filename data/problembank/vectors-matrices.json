@@ -4094,6 +4094,1992 @@
           ]
         }
       ]
+    },
+    {
+      "id": "vm-magnitude",
+      "title": "Magnitude of a vector",
+      "level": 1,
+      "unit": "vectors-and-coordinates",
+      "skill": "√(x² + y²) — signs disappear under the squares.",
+      "variants": [
+        {
+          "id": "VMX-mag-v01",
+          "statement": "Find the magnitude of the vector $\\langle 3,\\ 4 \\rangle$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$4$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$. Signs vanish under the squares, so $\\langle 3,\\ 4 \\rangle$ is exactly as long as $\\langle 3,\\ 4 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((3)**2 + (4)**2, 5**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v02",
+          "statement": "Find the magnitude of the vector $\\langle -3,\\ 4 \\rangle$.",
+          "options": [
+            "$7$",
+            "$5$",
+            "$4$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$. Signs vanish under the squares, so $\\langle -3,\\ 4 \\rangle$ is exactly as long as $\\langle 3,\\ 4 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-3)**2 + (4)**2, 5**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v03",
+          "statement": "Find the magnitude of the vector $\\langle 3,\\ -4 \\rangle$.",
+          "options": [
+            "$7$",
+            "$4$",
+            "$5$",
+            "$25$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$. Signs vanish under the squares, so $\\langle 3,\\ -4 \\rangle$ is exactly as long as $\\langle 3,\\ 4 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((3)**2 + (-4)**2, 5**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v04",
+          "statement": "Find the magnitude of the vector $\\langle 6,\\ 8 \\rangle$.",
+          "options": [
+            "$14$",
+            "$8$",
+            "$100$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$. Signs vanish under the squares, so $\\langle 6,\\ 8 \\rangle$ is exactly as long as $\\langle 6,\\ 8 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((6)**2 + (8)**2, 10**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v05",
+          "statement": "Find the magnitude of the vector $\\langle -6,\\ 8 \\rangle$.",
+          "options": [
+            "$10$",
+            "$14$",
+            "$8$",
+            "$100$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$. Signs vanish under the squares, so $\\langle -6,\\ 8 \\rangle$ is exactly as long as $\\langle 6,\\ 8 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-6)**2 + (8)**2, 10**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v06",
+          "statement": "Find the magnitude of the vector $\\langle 6,\\ -8 \\rangle$.",
+          "options": [
+            "$14$",
+            "$10$",
+            "$8$",
+            "$100$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10$. Signs vanish under the squares, so $\\langle 6,\\ -8 \\rangle$ is exactly as long as $\\langle 6,\\ 8 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((6)**2 + (-8)**2, 10**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v07",
+          "statement": "Find the magnitude of the vector $\\langle 5,\\ 12 \\rangle$.",
+          "options": [
+            "$17$",
+            "$12$",
+            "$13$",
+            "$169$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$. Signs vanish under the squares, so $\\langle 5,\\ 12 \\rangle$ is exactly as long as $\\langle 5,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((5)**2 + (12)**2, 13**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v08",
+          "statement": "Find the magnitude of the vector $\\langle -5,\\ 12 \\rangle$.",
+          "options": [
+            "$17$",
+            "$12$",
+            "$169$",
+            "$13$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$. Signs vanish under the squares, so $\\langle -5,\\ 12 \\rangle$ is exactly as long as $\\langle 5,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-5)**2 + (12)**2, 13**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v09",
+          "statement": "Find the magnitude of the vector $\\langle 5,\\ -12 \\rangle$.",
+          "options": [
+            "$13$",
+            "$17$",
+            "$12$",
+            "$169$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{25 + 144} = \\sqrt{169} = 13$. Signs vanish under the squares, so $\\langle 5,\\ -12 \\rangle$ is exactly as long as $\\langle 5,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((5)**2 + (-12)**2, 13**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v10",
+          "statement": "Find the magnitude of the vector $\\langle 8,\\ 15 \\rangle$.",
+          "options": [
+            "$23$",
+            "$17$",
+            "$15$",
+            "$289$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{64 + 225} = \\sqrt{289} = 17$. Signs vanish under the squares, so $\\langle 8,\\ 15 \\rangle$ is exactly as long as $\\langle 8,\\ 15 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((8)**2 + (15)**2, 17**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v11",
+          "statement": "Find the magnitude of the vector $\\langle -8,\\ 15 \\rangle$.",
+          "options": [
+            "$23$",
+            "$15$",
+            "$17$",
+            "$289$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{64 + 225} = \\sqrt{289} = 17$. Signs vanish under the squares, so $\\langle -8,\\ 15 \\rangle$ is exactly as long as $\\langle 8,\\ 15 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-8)**2 + (15)**2, 17**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v12",
+          "statement": "Find the magnitude of the vector $\\langle 8,\\ -15 \\rangle$.",
+          "options": [
+            "$23$",
+            "$15$",
+            "$289$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{64 + 225} = \\sqrt{289} = 17$. Signs vanish under the squares, so $\\langle 8,\\ -15 \\rangle$ is exactly as long as $\\langle 8,\\ 15 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((8)**2 + (-15)**2, 17**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v13",
+          "statement": "Find the magnitude of the vector $\\langle 9,\\ 12 \\rangle$.",
+          "options": [
+            "$15$",
+            "$21$",
+            "$12$",
+            "$225$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$. Signs vanish under the squares, so $\\langle 9,\\ 12 \\rangle$ is exactly as long as $\\langle 9,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((9)**2 + (12)**2, 15**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v14",
+          "statement": "Find the magnitude of the vector $\\langle -9,\\ 12 \\rangle$.",
+          "options": [
+            "$21$",
+            "$15$",
+            "$12$",
+            "$225$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$. Signs vanish under the squares, so $\\langle -9,\\ 12 \\rangle$ is exactly as long as $\\langle 9,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-9)**2 + (12)**2, 15**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v15",
+          "statement": "Find the magnitude of the vector $\\langle 9,\\ -12 \\rangle$.",
+          "options": [
+            "$21$",
+            "$12$",
+            "$15$",
+            "$225$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15$. Signs vanish under the squares, so $\\langle 9,\\ -12 \\rangle$ is exactly as long as $\\langle 9,\\ 12 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((9)**2 + (-12)**2, 15**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v16",
+          "statement": "Find the magnitude of the vector $\\langle 7,\\ 24 \\rangle$.",
+          "options": [
+            "$31$",
+            "$24$",
+            "$625$",
+            "$25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{49 + 576} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle 7,\\ 24 \\rangle$ is exactly as long as $\\langle 7,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((7)**2 + (24)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v17",
+          "statement": "Find the magnitude of the vector $\\langle -7,\\ 24 \\rangle$.",
+          "options": [
+            "$25$",
+            "$31$",
+            "$24$",
+            "$625$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{49 + 576} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle -7,\\ 24 \\rangle$ is exactly as long as $\\langle 7,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-7)**2 + (24)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v18",
+          "statement": "Find the magnitude of the vector $\\langle 7,\\ -24 \\rangle$.",
+          "options": [
+            "$31$",
+            "$25$",
+            "$24$",
+            "$625$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{49 + 576} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle 7,\\ -24 \\rangle$ is exactly as long as $\\langle 7,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((7)**2 + (-24)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v19",
+          "statement": "Find the magnitude of the vector $\\langle 12,\\ 16 \\rangle$.",
+          "options": [
+            "$28$",
+            "$16$",
+            "$20$",
+            "$400$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20$. Signs vanish under the squares, so $\\langle 12,\\ 16 \\rangle$ is exactly as long as $\\langle 12,\\ 16 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((12)**2 + (16)**2, 20**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v20",
+          "statement": "Find the magnitude of the vector $\\langle -12,\\ 16 \\rangle$.",
+          "options": [
+            "$28$",
+            "$16$",
+            "$400$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20$. Signs vanish under the squares, so $\\langle -12,\\ 16 \\rangle$ is exactly as long as $\\langle 12,\\ 16 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-12)**2 + (16)**2, 20**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v21",
+          "statement": "Find the magnitude of the vector $\\langle 12,\\ -16 \\rangle$.",
+          "options": [
+            "$20$",
+            "$28$",
+            "$16$",
+            "$400$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20$. Signs vanish under the squares, so $\\langle 12,\\ -16 \\rangle$ is exactly as long as $\\langle 12,\\ 16 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((12)**2 + (-16)**2, 20**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v22",
+          "statement": "Find the magnitude of the vector $\\langle 20,\\ 21 \\rangle$.",
+          "options": [
+            "$41$",
+            "$29$",
+            "$21$",
+            "$841$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{400 + 441} = \\sqrt{841} = 29$. Signs vanish under the squares, so $\\langle 20,\\ 21 \\rangle$ is exactly as long as $\\langle 20,\\ 21 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((20)**2 + (21)**2, 29**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v23",
+          "statement": "Find the magnitude of the vector $\\langle -20,\\ 21 \\rangle$.",
+          "options": [
+            "$41$",
+            "$21$",
+            "$29$",
+            "$841$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{400 + 441} = \\sqrt{841} = 29$. Signs vanish under the squares, so $\\langle -20,\\ 21 \\rangle$ is exactly as long as $\\langle 20,\\ 21 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-20)**2 + (21)**2, 29**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v24",
+          "statement": "Find the magnitude of the vector $\\langle 20,\\ -21 \\rangle$.",
+          "options": [
+            "$41$",
+            "$21$",
+            "$841$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{400 + 441} = \\sqrt{841} = 29$. Signs vanish under the squares, so $\\langle 20,\\ -21 \\rangle$ is exactly as long as $\\langle 20,\\ 21 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((20)**2 + (-21)**2, 29**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v25",
+          "statement": "Find the magnitude of the vector $\\langle 10,\\ 24 \\rangle$.",
+          "options": [
+            "$26$",
+            "$34$",
+            "$24$",
+            "$676$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{100 + 576} = \\sqrt{676} = 26$. Signs vanish under the squares, so $\\langle 10,\\ 24 \\rangle$ is exactly as long as $\\langle 10,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((10)**2 + (24)**2, 26**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v26",
+          "statement": "Find the magnitude of the vector $\\langle -10,\\ 24 \\rangle$.",
+          "options": [
+            "$34$",
+            "$26$",
+            "$24$",
+            "$676$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{100 + 576} = \\sqrt{676} = 26$. Signs vanish under the squares, so $\\langle -10,\\ 24 \\rangle$ is exactly as long as $\\langle 10,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-10)**2 + (24)**2, 26**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v27",
+          "statement": "Find the magnitude of the vector $\\langle 10,\\ -24 \\rangle$.",
+          "options": [
+            "$34$",
+            "$24$",
+            "$26$",
+            "$676$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{100 + 576} = \\sqrt{676} = 26$. Signs vanish under the squares, so $\\langle 10,\\ -24 \\rangle$ is exactly as long as $\\langle 10,\\ 24 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((10)**2 + (-24)**2, 26**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v28",
+          "statement": "Find the magnitude of the vector $\\langle 15,\\ 20 \\rangle$.",
+          "options": [
+            "$35$",
+            "$20$",
+            "$625$",
+            "$25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{225 + 400} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle 15,\\ 20 \\rangle$ is exactly as long as $\\langle 15,\\ 20 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((15)**2 + (20)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v29",
+          "statement": "Find the magnitude of the vector $\\langle -15,\\ 20 \\rangle$.",
+          "options": [
+            "$25$",
+            "$35$",
+            "$20$",
+            "$625$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{225 + 400} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle -15,\\ 20 \\rangle$ is exactly as long as $\\langle 15,\\ 20 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-15)**2 + (20)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v30",
+          "statement": "Find the magnitude of the vector $\\langle 15,\\ -20 \\rangle$.",
+          "options": [
+            "$35$",
+            "$25$",
+            "$20$",
+            "$625$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{225 + 400} = \\sqrt{625} = 25$. Signs vanish under the squares, so $\\langle 15,\\ -20 \\rangle$ is exactly as long as $\\langle 15,\\ 20 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((15)**2 + (-20)**2, 25**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v31",
+          "statement": "Find the magnitude of the vector $\\langle 9,\\ 40 \\rangle$.",
+          "options": [
+            "$49$",
+            "$40$",
+            "$41$",
+            "$1681$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 1600} = \\sqrt{1681} = 41$. Signs vanish under the squares, so $\\langle 9,\\ 40 \\rangle$ is exactly as long as $\\langle 9,\\ 40 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((9)**2 + (40)**2, 41**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v32",
+          "statement": "Find the magnitude of the vector $\\langle -9,\\ 40 \\rangle$.",
+          "options": [
+            "$49$",
+            "$40$",
+            "$1681$",
+            "$41$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 1600} = \\sqrt{1681} = 41$. Signs vanish under the squares, so $\\langle -9,\\ 40 \\rangle$ is exactly as long as $\\langle 9,\\ 40 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-9)**2 + (40)**2, 41**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v33",
+          "statement": "Find the magnitude of the vector $\\langle 9,\\ -40 \\rangle$.",
+          "options": [
+            "$41$",
+            "$49$",
+            "$40$",
+            "$1681$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{81 + 1600} = \\sqrt{1681} = 41$. Signs vanish under the squares, so $\\langle 9,\\ -40 \\rangle$ is exactly as long as $\\langle 9,\\ 40 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((9)**2 + (-40)**2, 41**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v34",
+          "statement": "Find the magnitude of the vector $\\langle 12,\\ 35 \\rangle$.",
+          "options": [
+            "$47$",
+            "$37$",
+            "$35$",
+            "$1369$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 1225} = \\sqrt{1369} = 37$. Signs vanish under the squares, so $\\langle 12,\\ 35 \\rangle$ is exactly as long as $\\langle 12,\\ 35 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((12)**2 + (35)**2, 37**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v35",
+          "statement": "Find the magnitude of the vector $\\langle -12,\\ 35 \\rangle$.",
+          "options": [
+            "$47$",
+            "$35$",
+            "$37$",
+            "$1369$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 1225} = \\sqrt{1369} = 37$. Signs vanish under the squares, so $\\langle -12,\\ 35 \\rangle$ is exactly as long as $\\langle 12,\\ 35 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((-12)**2 + (35)**2, 37**2)"
+          ]
+        },
+        {
+          "id": "VMX-mag-v36",
+          "statement": "Find the magnitude of the vector $\\langle 12,\\ -35 \\rangle$.",
+          "options": [
+            "$47$",
+            "$35$",
+            "$1369$",
+            "$37$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Magnitude is $\\sqrt{x^2 + y^2} = \\sqrt{144 + 1225} = \\sqrt{1369} = 37$. Signs vanish under the squares, so $\\langle 12,\\ -35 \\rangle$ is exactly as long as $\\langle 12,\\ 35 \\rangle$ — adding the components instead measures the path along the axes.",
+          "check": [
+            "Eq((12)**2 + (-35)**2, 37**2)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vm-linear-combination",
+      "title": "Adding and scaling vectors",
+      "level": 1,
+      "unit": "vector-arithmetic",
+      "skill": "The scalar attaches to its own vector, then components add.",
+      "variants": [
+        {
+          "id": "VMX-add-v01",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$5$",
+            "$7$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 2(1) = 5$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 2*1, 5)"
+          ]
+        },
+        {
+          "id": "VMX-add-v02",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$11$",
+            "$13$",
+            "$8$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 2(5) = 13$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 2*5, 13)"
+          ]
+        },
+        {
+          "id": "VMX-add-v03",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$14$",
+            "$8$",
+            "$18$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 3(5) = 18$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 3*5, 18)"
+          ]
+        },
+        {
+          "id": "VMX-add-v04",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$2$",
+            "$8$",
+            "$7$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + -1(5) = -2$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + -1*5, -2)"
+          ]
+        },
+        {
+          "id": "VMX-add-v05",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$-1$",
+            "$4$",
+            "$1$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 2(-2) = -1$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 2*-2, -1)"
+          ]
+        },
+        {
+          "id": "VMX-add-v06",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$7$",
+            "$-3$",
+            "$1$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 3(-2) = -3$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 3*-2, -3)"
+          ]
+        },
+        {
+          "id": "VMX-add-v07",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$-5$",
+            "$1$",
+            "$5$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + -1(-2) = 5$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + -1*-2, 5)"
+          ]
+        },
+        {
+          "id": "VMX-add-v08",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 6,\\ 1 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$12$",
+            "$9$",
+            "$6$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 2(6) = 15$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 2*6, 15)"
+          ]
+        },
+        {
+          "id": "VMX-add-v09",
+          "statement": "If $\\vec{u} = \\langle 3,\\ 4 \\rangle$ and $\\vec{v} = \\langle 6,\\ 1 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$21$",
+            "$15$",
+            "$9$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $3 + 3(6) = 21$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(3 + 3*6, 21)"
+          ]
+        },
+        {
+          "id": "VMX-add-v10",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 2(1) = 4$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 2*1, 4)"
+          ]
+        },
+        {
+          "id": "VMX-add-v11",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$5$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 3(1) = 5$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 3*1, 5)"
+          ]
+        },
+        {
+          "id": "VMX-add-v12",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$9$",
+            "$7$",
+            "$-1$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 2(5) = 12$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 2*5, 12)"
+          ]
+        },
+        {
+          "id": "VMX-add-v13",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$17$",
+            "$11$",
+            "$7$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 3(5) = 17$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 3*5, 17)"
+          ]
+        },
+        {
+          "id": "VMX-add-v14",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$7$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + -1(5) = -3$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + -1*5, -3)"
+          ]
+        },
+        {
+          "id": "VMX-add-v15",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$2$",
+            "$0$",
+            "$-2$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 2(-2) = -2$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 2*-2, -2)"
+          ]
+        },
+        {
+          "id": "VMX-add-v16",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$4$",
+            "$0$",
+            "$17$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 3(-2) = -4$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 3*-2, -4)"
+          ]
+        },
+        {
+          "id": "VMX-add-v17",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + -1(-2) = 4$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + -1*-2, 4)"
+          ]
+        },
+        {
+          "id": "VMX-add-v18",
+          "statement": "If $\\vec{u} = \\langle 2,\\ 5 \\rangle$ and $\\vec{v} = \\langle 6,\\ 1 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$10$",
+            "$14$",
+            "$8$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $2 + 2(6) = 14$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(2 + 2*6, 14)"
+          ]
+        },
+        {
+          "id": "VMX-add-v19",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$-1$",
+            "$0$",
+            "$1$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 2(1) = 1$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 2*1, 1)"
+          ]
+        },
+        {
+          "id": "VMX-add-v20",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$-2$",
+            "$0$",
+            "$12$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 3(1) = 2$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 3*1, 2)"
+          ]
+        },
+        {
+          "id": "VMX-add-v21",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$-2$",
+            "$2$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + -1(1) = -2$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + -1*1, -2)"
+          ]
+        },
+        {
+          "id": "VMX-add-v22",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$4$",
+            "$0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 2(5) = 9$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 2*5, 9)"
+          ]
+        },
+        {
+          "id": "VMX-add-v23",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$14$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 3(5) = 14$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 3*5, 14)"
+          ]
+        },
+        {
+          "id": "VMX-add-v24",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$9$",
+            "$-6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + -1(5) = -6$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + -1*5, -6)"
+          ]
+        },
+        {
+          "id": "VMX-add-v25",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$-5$",
+            "$-4$",
+            "$-3$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 2(-2) = -5$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 2*-2, -5)"
+          ]
+        },
+        {
+          "id": "VMX-add-v26",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$-5$",
+            "$-7$",
+            "$-3$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 3(-2) = -7$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 3*-2, -7)"
+          ]
+        },
+        {
+          "id": "VMX-add-v27",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$-1$",
+            "$-3$",
+            "$1$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + -1(-2) = 1$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + -1*-2, 1)"
+          ]
+        },
+        {
+          "id": "VMX-add-v28",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 6,\\ 1 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$4$",
+            "$5$",
+            "$8$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 2(6) = 11$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 2*6, 11)"
+          ]
+        },
+        {
+          "id": "VMX-add-v29",
+          "statement": "If $\\vec{u} = \\langle -1,\\ 6 \\rangle$ and $\\vec{v} = \\langle 6,\\ 1 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$17$",
+            "$3$",
+            "$5$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $-1 + 3(6) = 17$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(-1 + 3*6, 17)"
+          ]
+        },
+        {
+          "id": "VMX-add-v30",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$15$",
+            "$9$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + 2(1) = 9$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + 2*1, 9)"
+          ]
+        },
+        {
+          "id": "VMX-add-v31",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$22$",
+            "$8$",
+            "$10$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + 3(1) = 10$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + 3*1, 10)"
+          ]
+        },
+        {
+          "id": "VMX-add-v32",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 1,\\ 2 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$-6$",
+            "$8$",
+            "$-4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + -1(1) = 6$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + -1*1, 6)"
+          ]
+        },
+        {
+          "id": "VMX-add-v33",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$17$",
+            "$19$",
+            "$12$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + 2(5) = 17$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + 2*5, 17)"
+          ]
+        },
+        {
+          "id": "VMX-add-v34",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + 3\\vec{v}$.",
+          "options": [
+            "$26$",
+            "$22$",
+            "$12$",
+            "$-11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + 3(5) = 22$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + 3*5, 22)"
+          ]
+        },
+        {
+          "id": "VMX-add-v35",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle 5,\\ -3 \\rangle$, find the $x$-component of $\\vec{u} + -1\\vec{v}$.",
+          "options": [
+            "$-2$",
+            "$12$",
+            "$2$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + -1(5) = 2$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + -1*5, 2)"
+          ]
+        },
+        {
+          "id": "VMX-add-v36",
+          "statement": "If $\\vec{u} = \\langle 7,\\ -2 \\rangle$ and $\\vec{v} = \\langle -2,\\ 4 \\rangle$, find the $x$-component of $\\vec{u} + 2\\vec{v}$.",
+          "options": [
+            "$12$",
+            "$5$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scalar multiplication scales EVERY component, then addition is componentwise: the $x$-component is $7 + 2(-2) = 3$. The scalar attaches to $\\vec{v}$, not to $\\vec{u}$.",
+          "check": [
+            "Eq(7 + 2*-2, 3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vm-dot-product",
+      "title": "The dot product",
+      "level": 2,
+      "unit": "the-dot-product",
+      "skill": "Multiply MATCHING components and add; pairing across is a different operation.",
+      "variants": [
+        {
+          "id": "VMX-dot-v01",
+          "statement": "Find $\\langle 3,\\ 4 \\rangle \\cdot \\langle 5,\\ -3 \\rangle$.",
+          "options": [
+            "$3$",
+            "$11$",
+            "$27$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(3)(5) + (4)(-3) = 15 + -12 = 3$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(3*5 + 4*-3, 3)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v02",
+          "statement": "Find $\\langle 3,\\ 4 \\rangle \\cdot \\langle -2,\\ 4 \\rangle$.",
+          "options": [
+            "$4$",
+            "$10$",
+            "$-22$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(3)(-2) + (4)(4) = -6 + 16 = 10$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(3*-2 + 4*4, 10)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v03",
+          "statement": "Find $\\langle 3,\\ 4 \\rangle \\cdot \\langle 0,\\ 7 \\rangle$.",
+          "options": [
+            "$21$",
+            "$-28$",
+            "$28$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(3)(0) + (4)(7) = 0 + 28 = 28$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(3*0 + 4*7, 28)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v04",
+          "statement": "Find $\\langle 3,\\ 4 \\rangle \\cdot \\langle 3,\\ -6 \\rangle$.",
+          "options": [
+            "$-6$",
+            "$33$",
+            "$4$",
+            "$-15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(3)(3) + (4)(-6) = 9 + -24 = -15$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(3*3 + 4*-6, -15)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v05",
+          "statement": "Find $\\langle 2,\\ 5 \\rangle \\cdot \\langle 1,\\ 2 \\rangle$.",
+          "options": [
+            "$12$",
+            "$9$",
+            "$-8$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(2)(1) + (5)(2) = 2 + 10 = 12$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(2*1 + 5*2, 12)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v06",
+          "statement": "Find $\\langle 2,\\ 5 \\rangle \\cdot \\langle 5,\\ -3 \\rangle$.",
+          "options": [
+            "$19$",
+            "$-5$",
+            "$25$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(2)(5) + (5)(-3) = 10 + -15 = -5$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(2*5 + 5*-3, -5)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v07",
+          "statement": "Find $\\langle 2,\\ 5 \\rangle \\cdot \\langle -2,\\ 4 \\rangle$.",
+          "options": [
+            "$-2$",
+            "$-24$",
+            "$16$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(2)(-2) + (5)(4) = -4 + 20 = 16$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(2*-2 + 5*4, 16)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v08",
+          "statement": "Find $\\langle 2,\\ 5 \\rangle \\cdot \\langle 6,\\ 1 \\rangle$.",
+          "options": [
+            "$32$",
+            "$7$",
+            "$14$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(2)(6) + (5)(1) = 12 + 5 = 17$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(2*6 + 5*1, 17)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v09",
+          "statement": "Find $\\langle 2,\\ 5 \\rangle \\cdot \\langle 3,\\ -6 \\rangle$.",
+          "options": [
+            "$-24$",
+            "$3$",
+            "$36$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(2)(3) + (5)(-6) = 6 + -30 = -24$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(2*3 + 5*-6, -24)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v10",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle 1,\\ 2 \\rangle$.",
+          "options": [
+            "$4$",
+            "$11$",
+            "$-13$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(1) + (6)(2) = -1 + 12 = 11$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*1 + 6*2, 11)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v11",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle 5,\\ -3 \\rangle$.",
+          "options": [
+            "$33$",
+            "$13$",
+            "$-23$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(5) + (6)(-3) = -5 + -18 = -23$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*5 + 6*-3, -23)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v12",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle -2,\\ 4 \\rangle$.",
+          "options": [
+            "$-16$",
+            "$-22$",
+            "$7$",
+            "$26$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(-2) + (6)(4) = 2 + 24 = 26$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*-2 + 6*4, 26)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v13",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle 6,\\ 1 \\rangle$.",
+          "options": [
+            "$0$",
+            "$35$",
+            "$-12$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(6) + (6)(1) = -6 + 6 = 0$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*6 + 6*1, 0)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v14",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle 0,\\ 7 \\rangle$.",
+          "options": [
+            "$-7$",
+            "$42$",
+            "$-42$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(0) + (6)(7) = 0 + 42 = 42$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*0 + 6*7, 42)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v15",
+          "statement": "Find $\\langle -1,\\ 6 \\rangle \\cdot \\langle 3,\\ -6 \\rangle$.",
+          "options": [
+            "$24$",
+            "$33$",
+            "$-39$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-1)(3) + (6)(-6) = -3 + -36 = -39$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-1*3 + 6*-6, -39)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v16",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle 1,\\ 2 \\rangle$.",
+          "options": [
+            "$12$",
+            "$11$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(1) + (-2)(2) = 7 + -4 = 3$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*1 + -2*2, 3)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v17",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle 5,\\ -3 \\rangle$.",
+          "options": [
+            "$41$",
+            "$-31$",
+            "$29$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(5) + (-2)(-3) = 35 + 6 = 41$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*5 + -2*-3, 41)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v18",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle -2,\\ 4 \\rangle$.",
+          "options": [
+            "$32$",
+            "$-22$",
+            "$-6$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(-2) + (-2)(4) = -14 + -8 = -22$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*-2 + -2*4, -22)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v19",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle 6,\\ 1 \\rangle$.",
+          "options": [
+            "$-5$",
+            "$44$",
+            "$40$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(6) + (-2)(1) = 42 + -2 = 40$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*6 + -2*1, 40)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v20",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle 0,\\ 7 \\rangle$.",
+          "options": [
+            "$49$",
+            "$14$",
+            "$12$",
+            "$-14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(0) + (-2)(7) = 0 + -14 = -14$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*0 + -2*7, -14)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v21",
+          "statement": "Find $\\langle 7,\\ -2 \\rangle \\cdot \\langle 3,\\ -6 \\rangle$.",
+          "options": [
+            "$33$",
+            "$-48$",
+            "$9$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(7)(3) + (-2)(-6) = 21 + 12 = 33$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(7*3 + -2*-6, 33)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v22",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle 1,\\ 2 \\rangle$.",
+          "options": [
+            "$-11$",
+            "$-13$",
+            "$7$",
+            "$-5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(1) + (-5)(2) = -3 + -10 = -13$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*1 + -5*2, -13)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v23",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle 5,\\ -3 \\rangle$.",
+          "options": [
+            "$-16$",
+            "$-30$",
+            "$0$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(5) + (-5)(-3) = -15 + 15 = 0$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*5 + -5*-3, 0)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v24",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle -2,\\ 4 \\rangle$.",
+          "options": [
+            "$-2$",
+            "$26$",
+            "$-6$",
+            "$-14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(-2) + (-5)(4) = 6 + -20 = -14$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*-2 + -5*4, -14)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v25",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle 6,\\ 1 \\rangle$.",
+          "options": [
+            "$-23$",
+            "$-33$",
+            "$-13$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(6) + (-5)(1) = -18 + -5 = -23$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*6 + -5*1, -23)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v26",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle 0,\\ 7 \\rangle$.",
+          "options": [
+            "$-21$",
+            "$-35$",
+            "$35$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(0) + (-5)(7) = 0 + -35 = -35$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*0 + -5*7, -35)"
+          ]
+        },
+        {
+          "id": "VMX-dot-v27",
+          "statement": "Find $\\langle -3,\\ -5 \\rangle \\cdot \\langle 3,\\ -6 \\rangle$.",
+          "options": [
+            "$3$",
+            "$-39$",
+            "$21$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The dot product multiplies MATCHING components and adds: $(-3)(3) + (-5)(-6) = -9 + 30 = 21$. Pairing across ($ad + bc$) is the determinant-style pattern, not the dot product.",
+          "check": [
+            "Eq(-3*3 + -5*-6, 21)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vm-determinant",
+      "title": "Determinant of a 2x2 matrix",
+      "level": 2,
+      "unit": "determinants-and-inverses",
+      "skill": "ad - bc, main diagonal first — reversing the order flips the sign.",
+      "variants": [
+        {
+          "id": "VMX-det-v01",
+          "statement": "Find the determinant of $\\begin{pmatrix} 3 & 4 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$-11$",
+            "$29$",
+            "$11$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(3)(3) - (4)(5) = 9 - 20 = -11$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(3*3 - 4*5, -11)"
+          ]
+        },
+        {
+          "id": "VMX-det-v02",
+          "statement": "Find the determinant of $\\begin{pmatrix} 3 & 4 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$20$",
+            "$4$",
+            "$-4$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(3)(4) - (4)(2) = 12 - 8 = 4$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(3*4 - 4*2, 4)"
+          ]
+        },
+        {
+          "id": "VMX-det-v03",
+          "statement": "Find the determinant of $\\begin{pmatrix} 3 & 4 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$27$",
+            "$21$",
+            "$-21$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(3)(1) - (4)(6) = 3 - 24 = -21$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(3*1 - 4*6, -21)"
+          ]
+        },
+        {
+          "id": "VMX-det-v04",
+          "statement": "Find the determinant of $\\begin{pmatrix} 3 & 4 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$33$",
+            "$-9$",
+            "$17$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(3)(7) - (4)(3) = 21 - 12 = 9$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(3*7 - 4*3, 9)"
+          ]
+        },
+        {
+          "id": "VMX-det-v05",
+          "statement": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$-1$",
+            "$9$",
+            "$1$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(2)(2) - (5)(1) = 4 - 5 = -1$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(2*2 - 5*1, -1)"
+          ]
+        },
+        {
+          "id": "VMX-det-v06",
+          "statement": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$31$",
+            "$-19$",
+            "$19$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(2)(3) - (5)(5) = 6 - 25 = -19$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(2*3 - 5*5, -19)"
+          ]
+        },
+        {
+          "id": "VMX-det-v07",
+          "statement": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$18$",
+            "$2$",
+            "$-2$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(2)(4) - (5)(2) = 8 - 10 = -2$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(2*4 - 5*2, -2)"
+          ]
+        },
+        {
+          "id": "VMX-det-v08",
+          "statement": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$32$",
+            "$28$",
+            "$14$",
+            "$-28$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(2)(1) - (5)(6) = 2 - 30 = -28$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(2*1 - 5*6, -28)"
+          ]
+        },
+        {
+          "id": "VMX-det-v09",
+          "statement": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$-1$",
+            "$29$",
+            "$1$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(2)(7) - (5)(3) = 14 - 15 = -1$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(2*7 - 5*3, -1)"
+          ]
+        },
+        {
+          "id": "VMX-det-v10",
+          "statement": "Find the determinant of $\\begin{pmatrix} 1 & 6 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$8$",
+            "$-4$",
+            "$4$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(1)(2) - (6)(1) = 2 - 6 = -4$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(1*2 - 6*1, -4)"
+          ]
+        },
+        {
+          "id": "VMX-det-v11",
+          "statement": "Find the determinant of $\\begin{pmatrix} 1 & 6 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$33$",
+            "$27$",
+            "$-27$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(1)(3) - (6)(5) = 3 - 30 = -27$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(1*3 - 6*5, -27)"
+          ]
+        },
+        {
+          "id": "VMX-det-v12",
+          "statement": "Find the determinant of $\\begin{pmatrix} 1 & 6 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$16$",
+            "$8$",
+            "$13$",
+            "$-8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(1)(4) - (6)(2) = 4 - 12 = -8$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(1*4 - 6*2, -8)"
+          ]
+        },
+        {
+          "id": "VMX-det-v13",
+          "statement": "Find the determinant of $\\begin{pmatrix} 1 & 6 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$-35$",
+            "$37$",
+            "$35$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(1)(1) - (6)(6) = 1 - 36 = -35$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(1*1 - 6*6, -35)"
+          ]
+        },
+        {
+          "id": "VMX-det-v14",
+          "statement": "Find the determinant of $\\begin{pmatrix} 1 & 6 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$25$",
+            "$-11$",
+            "$11$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(1)(7) - (6)(3) = 7 - 18 = -11$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(1*7 - 6*3, -11)"
+          ]
+        },
+        {
+          "id": "VMX-det-v15",
+          "statement": "Find the determinant of $\\begin{pmatrix} 7 & 2 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$31$",
+            "$-11$",
+            "$11$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(7)(3) - (2)(5) = 21 - 10 = 11$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(7*3 - 2*5, 11)"
+          ]
+        },
+        {
+          "id": "VMX-det-v16",
+          "statement": "Find the determinant of $\\begin{pmatrix} 7 & 2 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$32$",
+            "$-24$",
+            "$15$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(7)(4) - (2)(2) = 28 - 4 = 24$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(7*4 - 2*2, 24)"
+          ]
+        },
+        {
+          "id": "VMX-det-v17",
+          "statement": "Find the determinant of $\\begin{pmatrix} 7 & 2 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$-5$",
+            "$19$",
+            "$5$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(7)(1) - (2)(6) = 7 - 12 = -5$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(7*1 - 2*6, -5)"
+          ]
+        },
+        {
+          "id": "VMX-det-v18",
+          "statement": "Find the determinant of $\\begin{pmatrix} 7 & 2 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$55$",
+            "$43$",
+            "$-43$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(7)(7) - (2)(3) = 49 - 6 = 43$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(7*7 - 2*3, 43)"
+          ]
+        },
+        {
+          "id": "VMX-det-v19",
+          "statement": "Find the determinant of $\\begin{pmatrix} 4 & 3 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$11$",
+            "$-5$",
+            "$5$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(4)(2) - (3)(1) = 8 - 3 = 5$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(4*2 - 3*1, 5)"
+          ]
+        },
+        {
+          "id": "VMX-det-v20",
+          "statement": "Find the determinant of $\\begin{pmatrix} 4 & 3 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$27$",
+            "$3$",
+            "$15$",
+            "$-3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(4)(3) - (3)(5) = 12 - 15 = -3$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(4*3 - 3*5, -3)"
+          ]
+        },
+        {
+          "id": "VMX-det-v21",
+          "statement": "Find the determinant of $\\begin{pmatrix} 4 & 3 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$10$",
+            "$22$",
+            "$-10$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(4)(4) - (3)(2) = 16 - 6 = 10$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(4*4 - 3*2, 10)"
+          ]
+        },
+        {
+          "id": "VMX-det-v22",
+          "statement": "Find the determinant of $\\begin{pmatrix} 4 & 3 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$37$",
+            "$19$",
+            "$-19$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(4)(7) - (3)(3) = 28 - 9 = 19$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(4*7 - 3*3, 19)"
+          ]
+        },
+        {
+          "id": "VMX-det-v23",
+          "statement": "Find the determinant of $\\begin{pmatrix} 5 & 1 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$20$",
+            "$-10$",
+            "$10$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(5)(3) - (1)(5) = 15 - 5 = 10$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(5*3 - 1*5, 10)"
+          ]
+        },
+        {
+          "id": "VMX-det-v24",
+          "statement": "Find the determinant of $\\begin{pmatrix} 5 & 1 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$22$",
+            "$-18$",
+            "$12$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(5)(4) - (1)(2) = 20 - 2 = 18$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(5*4 - 1*2, 18)"
+          ]
+        },
+        {
+          "id": "VMX-det-v25",
+          "statement": "Find the determinant of $\\begin{pmatrix} 5 & 1 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$-1$",
+            "$11$",
+            "$1$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(5)(1) - (1)(6) = 5 - 6 = -1$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(5*1 - 1*6, -1)"
+          ]
+        },
+        {
+          "id": "VMX-det-v26",
+          "statement": "Find the determinant of $\\begin{pmatrix} 5 & 1 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$38$",
+            "$32$",
+            "$-32$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(5)(7) - (1)(3) = 35 - 3 = 32$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(5*7 - 1*3, 32)"
+          ]
+        },
+        {
+          "id": "VMX-det-v27",
+          "statement": "Find the determinant of $\\begin{pmatrix} 6 & 7 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$19$",
+            "$-5$",
+            "$5$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(6)(2) - (7)(1) = 12 - 7 = 5$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(6*2 - 7*1, 5)"
+          ]
+        },
+        {
+          "id": "VMX-det-v28",
+          "statement": "Find the determinant of $\\begin{pmatrix} 6 & 7 \\\\ 5 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$53$",
+            "$17$",
+            "$21$",
+            "$-17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(6)(3) - (7)(5) = 18 - 35 = -17$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(6*3 - 7*5, -17)"
+          ]
+        },
+        {
+          "id": "VMX-det-v29",
+          "statement": "Find the determinant of $\\begin{pmatrix} 6 & 7 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$10$",
+            "$38$",
+            "$-10$",
+            "$19$"
+          ],
+          "correctIndex": 0,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(6)(4) - (7)(2) = 24 - 14 = 10$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(6*4 - 7*2, 10)"
+          ]
+        },
+        {
+          "id": "VMX-det-v30",
+          "statement": "Find the determinant of $\\begin{pmatrix} 6 & 7 \\\\ 6 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$48$",
+            "$-36$",
+            "$36$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(6)(1) - (7)(6) = 6 - 42 = -36$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(6*1 - 7*6, -36)"
+          ]
+        },
+        {
+          "id": "VMX-det-v31",
+          "statement": "Find the determinant of $\\begin{pmatrix} 6 & 7 \\\\ 3 & 7 \\end{pmatrix}$.",
+          "options": [
+            "$63$",
+            "$-21$",
+            "$21$",
+            "$23$"
+          ],
+          "correctIndex": 2,
+          "explanation": "For a $2 \\times 2$ matrix the determinant is $ad - bc$: $(6)(7) - (7)(3) = 42 - 21 = 21$. The MAIN diagonal product comes first and the anti-diagonal is subtracted — reversing them flips the sign.",
+          "check": [
+            "Eq(6*7 - 7*3, 21)"
+          ]
+        }
+      ]
     }
   ]
 }

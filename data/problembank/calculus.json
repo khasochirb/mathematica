@@ -3291,6 +3291,2202 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cal-power-rule",
+      "title": "The power rule",
+      "level": 1,
+      "unit": "the-derivative",
+      "skill": "Multiply by the exponent, drop it by one; constants vanish.",
+      "variants": [
+        {
+          "id": "CALX-pow-v01",
+          "statement": "Differentiate $f(x) = 2x^{3} + 1$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$2$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{3}\\right) = 6x^{2}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 3 = 6$.",
+          "check": [
+            "Eq(diff(2*x**3 + (1), x), 6*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v02",
+          "statement": "Differentiate $f(x) = 2x^{3} + -3$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{3}\\right) = 6x^{2}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 3 = 6$.",
+          "check": [
+            "Eq(diff(2*x**3 + (-3), x), 6*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v03",
+          "statement": "Differentiate $f(x) = 2x^{3} + 7$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$6$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{3}\\right) = 6x^{2}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 3 = 6$.",
+          "check": [
+            "Eq(diff(2*x**3 + (7), x), 6*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v04",
+          "statement": "Differentiate $f(x) = 2x^{4} + 1$.",
+          "options": [
+            "$6$",
+            "$2$",
+            "$9$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{4}\\right) = 8x^{3}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 4 = 8$.",
+          "check": [
+            "Eq(diff(2*x**4 + (1), x), 8*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v05",
+          "statement": "Differentiate $f(x) = 2x^{4} + -3$.",
+          "options": [
+            "$8$",
+            "$6$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{4}\\right) = 8x^{3}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 4 = 8$.",
+          "check": [
+            "Eq(diff(2*x**4 + (-3), x), 8*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v06",
+          "statement": "Differentiate $f(x) = 2x^{4} + 7$.",
+          "options": [
+            "$6$",
+            "$8$",
+            "$2$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{4}\\right) = 8x^{3}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 4 = 8$.",
+          "check": [
+            "Eq(diff(2*x**4 + (7), x), 8*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v07",
+          "statement": "Differentiate $f(x) = 2x^{5} + 1$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$10$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{5}\\right) = 10x^{4}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 5 = 10$.",
+          "check": [
+            "Eq(diff(2*x**5 + (1), x), 10*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v08",
+          "statement": "Differentiate $f(x) = 2x^{5} + -3$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$7$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{5}\\right) = 10x^{4}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 5 = 10$.",
+          "check": [
+            "Eq(diff(2*x**5 + (-3), x), 10*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v09",
+          "statement": "Differentiate $f(x) = 2x^{5} + 7$.",
+          "options": [
+            "$10$",
+            "$8$",
+            "$2$",
+            "$17$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{5}\\right) = 10x^{4}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 5 = 10$.",
+          "check": [
+            "Eq(diff(2*x**5 + (7), x), 10*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v10",
+          "statement": "Differentiate $f(x) = 2x^{6} + 1$.",
+          "options": [
+            "$10$",
+            "$12$",
+            "$2$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{6}\\right) = 12x^{5}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 6 = 12$.",
+          "check": [
+            "Eq(diff(2*x**6 + (1), x), 12*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v11",
+          "statement": "Differentiate $f(x) = 2x^{6} + -3$.",
+          "options": [
+            "$10$",
+            "$2$",
+            "$12$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{6}\\right) = 12x^{5}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 6 = 12$.",
+          "check": [
+            "Eq(diff(2*x**6 + (-3), x), 12*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v12",
+          "statement": "Differentiate $f(x) = 2x^{6} + 7$.",
+          "options": [
+            "$10$",
+            "$2$",
+            "$19$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(2x^{6}\\right) = 12x^{5}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $2 \\times 6 = 12$.",
+          "check": [
+            "Eq(diff(2*x**6 + (7), x), 12*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v13",
+          "statement": "Differentiate $f(x) = 3x^{3} + 1$.",
+          "options": [
+            "$9$",
+            "$6$",
+            "$3$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{3}\\right) = 9x^{2}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 3 = 9$.",
+          "check": [
+            "Eq(diff(3*x**3 + (1), x), 9*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v14",
+          "statement": "Differentiate $f(x) = 3x^{3} + 7$.",
+          "options": [
+            "$6$",
+            "$9$",
+            "$3$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{3}\\right) = 9x^{2}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 3 = 9$.",
+          "check": [
+            "Eq(diff(3*x**3 + (7), x), 9*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v15",
+          "statement": "Differentiate $f(x) = 3x^{4} + 1$.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$12$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{4}\\right) = 12x^{3}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 4 = 12$.",
+          "check": [
+            "Eq(diff(3*x**4 + (1), x), 12*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v16",
+          "statement": "Differentiate $f(x) = 3x^{4} + 7$.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$19$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{4}\\right) = 12x^{3}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 4 = 12$.",
+          "check": [
+            "Eq(diff(3*x**4 + (7), x), 12*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v17",
+          "statement": "Differentiate $f(x) = 3x^{5} + 1$.",
+          "options": [
+            "$15$",
+            "$12$",
+            "$3$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{5}\\right) = 15x^{4}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 5 = 15$.",
+          "check": [
+            "Eq(diff(3*x**5 + (1), x), 15*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v18",
+          "statement": "Differentiate $f(x) = 3x^{5} + 7$.",
+          "options": [
+            "$12$",
+            "$15$",
+            "$3$",
+            "$22$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{5}\\right) = 15x^{4}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 5 = 15$.",
+          "check": [
+            "Eq(diff(3*x**5 + (7), x), 15*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v19",
+          "statement": "Differentiate $f(x) = 3x^{6} + 1$.",
+          "options": [
+            "$15$",
+            "$3$",
+            "$18$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{6}\\right) = 18x^{5}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 6 = 18$.",
+          "check": [
+            "Eq(diff(3*x**6 + (1), x), 18*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v20",
+          "statement": "Differentiate $f(x) = 3x^{6} + 7$.",
+          "options": [
+            "$15$",
+            "$3$",
+            "$25$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(3x^{6}\\right) = 18x^{5}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $3 \\times 6 = 18$.",
+          "check": [
+            "Eq(diff(3*x**6 + (7), x), 18*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v21",
+          "statement": "Differentiate $f(x) = 4x^{3} + 1$.",
+          "options": [
+            "$12$",
+            "$8$",
+            "$4$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{3}\\right) = 12x^{2}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 3 = 12$.",
+          "check": [
+            "Eq(diff(4*x**3 + (1), x), 12*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v22",
+          "statement": "Differentiate $f(x) = 4x^{3} + -3$.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$4$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{3}\\right) = 12x^{2}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 3 = 12$.",
+          "check": [
+            "Eq(diff(4*x**3 + (-3), x), 12*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v23",
+          "statement": "Differentiate $f(x) = 4x^{3} + 7$.",
+          "options": [
+            "$8$",
+            "$4$",
+            "$12$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{3}\\right) = 12x^{2}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 3 = 12$.",
+          "check": [
+            "Eq(diff(4*x**3 + (7), x), 12*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v24",
+          "statement": "Differentiate $f(x) = 4x^{4} + 1$.",
+          "options": [
+            "$12$",
+            "$4$",
+            "$17$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{4}\\right) = 16x^{3}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 4 = 16$.",
+          "check": [
+            "Eq(diff(4*x**4 + (1), x), 16*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v25",
+          "statement": "Differentiate $f(x) = 4x^{4} + -3$.",
+          "options": [
+            "$16$",
+            "$12$",
+            "$4$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{4}\\right) = 16x^{3}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 4 = 16$.",
+          "check": [
+            "Eq(diff(4*x**4 + (-3), x), 16*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v26",
+          "statement": "Differentiate $f(x) = 4x^{4} + 7$.",
+          "options": [
+            "$12$",
+            "$16$",
+            "$4$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{4}\\right) = 16x^{3}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 4 = 16$.",
+          "check": [
+            "Eq(diff(4*x**4 + (7), x), 16*x**3)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v27",
+          "statement": "Differentiate $f(x) = 4x^{5} + 1$.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$20$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{5}\\right) = 20x^{4}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 5 = 20$.",
+          "check": [
+            "Eq(diff(4*x**5 + (1), x), 20*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v28",
+          "statement": "Differentiate $f(x) = 4x^{5} + -3$.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$17$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{5}\\right) = 20x^{4}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 5 = 20$.",
+          "check": [
+            "Eq(diff(4*x**5 + (-3), x), 20*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v29",
+          "statement": "Differentiate $f(x) = 4x^{5} + 7$.",
+          "options": [
+            "$20$",
+            "$16$",
+            "$4$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{5}\\right) = 20x^{4}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 5 = 20$.",
+          "check": [
+            "Eq(diff(4*x**5 + (7), x), 20*x**4)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v30",
+          "statement": "Differentiate $f(x) = 4x^{6} + 1$.",
+          "options": [
+            "$20$",
+            "$24$",
+            "$4$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{6}\\right) = 24x^{5}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 6 = 24$.",
+          "check": [
+            "Eq(diff(4*x**6 + (1), x), 24*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v31",
+          "statement": "Differentiate $f(x) = 4x^{6} + -3$.",
+          "options": [
+            "$20$",
+            "$4$",
+            "$24$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{6}\\right) = 24x^{5}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 6 = 24$.",
+          "check": [
+            "Eq(diff(4*x**6 + (-3), x), 24*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v32",
+          "statement": "Differentiate $f(x) = 4x^{6} + 7$.",
+          "options": [
+            "$20$",
+            "$4$",
+            "$31$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(4x^{6}\\right) = 24x^{5}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $4 \\times 6 = 24$.",
+          "check": [
+            "Eq(diff(4*x**6 + (7), x), 24*x**5)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v33",
+          "statement": "Differentiate $f(x) = 5x^{3} + 1$.",
+          "options": [
+            "$15$",
+            "$10$",
+            "$5$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(5x^{3}\\right) = 15x^{2}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $5 \\times 3 = 15$.",
+          "check": [
+            "Eq(diff(5*x**3 + (1), x), 15*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v34",
+          "statement": "Differentiate $f(x) = 5x^{3} + -3$.",
+          "options": [
+            "$10$",
+            "$15$",
+            "$5$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(5x^{3}\\right) = 15x^{2}$, and the constant $-3$ differentiates to zero. The COEFFICIENT of the derivative is $5 \\times 3 = 15$.",
+          "check": [
+            "Eq(diff(5*x**3 + (-3), x), 15*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v35",
+          "statement": "Differentiate $f(x) = 5x^{3} + 7$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$15$",
+            "$22$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(5x^{3}\\right) = 15x^{2}$, and the constant $7$ differentiates to zero. The COEFFICIENT of the derivative is $5 \\times 3 = 15$.",
+          "check": [
+            "Eq(diff(5*x**3 + (7), x), 15*x**2)"
+          ]
+        },
+        {
+          "id": "CALX-pow-v36",
+          "statement": "Differentiate $f(x) = 5x^{4} + 1$.",
+          "options": [
+            "$15$",
+            "$5$",
+            "$21$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The power rule multiplies by the exponent and drops it by one: $\\frac{d}{dx}\\left(5x^{4}\\right) = 20x^{3}$, and the constant $1$ differentiates to zero. The COEFFICIENT of the derivative is $5 \\times 4 = 20$.",
+          "check": [
+            "Eq(diff(5*x**4 + (1), x), 20*x**3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cal-tangent-slope",
+      "title": "Slope of a tangent line",
+      "level": 2,
+      "unit": "applications-of-derivatives",
+      "skill": "The derivative IS the slope — not the height of the curve.",
+      "variants": [
+        {
+          "id": "CALX-tan-v01",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 4x$ at $x = 2$.",
+          "options": [
+            "$0$",
+            "$-4$",
+            "$4$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 4$, so $f'(2) = 0$. The value $f(2) = -4$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-4)*x, x).subs(x, 2), 0)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v02",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 4x$ at $x = 3$.",
+          "options": [
+            "$-3$",
+            "$2$",
+            "$6$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 4$, so $f'(3) = 2$. The value $f(3) = -3$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-4)*x, x).subs(x, 3), 2)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v03",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 4x$ at $x = -1$.",
+          "options": [
+            "$5$",
+            "$-2$",
+            "$-6$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 4$, so $f'(-1) = -6$. The value $f(-1) = 5$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-4)*x, x).subs(x, -1), -6)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v04",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 4x$ at $x = -2$.",
+          "options": [
+            "$12$",
+            "$-4$",
+            "$-6$",
+            "$-8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 4$, so $f'(-2) = -8$. The value $f(-2) = 12$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-4)*x, x).subs(x, -2), -8)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v05",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 2x$ at $x = 3$.",
+          "options": [
+            "$4$",
+            "$3$",
+            "$6$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 2$, so $f'(3) = 4$. The value $f(3) = 3$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-2)*x, x).subs(x, 3), 4)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v06",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 - 2x$ at $x = -1$.",
+          "options": [
+            "$3$",
+            "$-4$",
+            "$-2$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x - 2$, so $f'(-1) = -4$. The value $f(-1) = 3$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (-2)*x, x).subs(x, -1), -4)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v07",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + x$ at $x = 2$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$5$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 1$, so $f'(2) = 5$. The value $f(2) = 6$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (1)*x, x).subs(x, 2), 5)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v08",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + x$ at $x = 3$.",
+          "options": [
+            "$12$",
+            "$6$",
+            "$4$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 1$, so $f'(3) = 7$. The value $f(3) = 12$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (1)*x, x).subs(x, 3), 7)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v09",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + x$ at $x = -2$.",
+          "options": [
+            "$-3$",
+            "$2$",
+            "$-4$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 1$, so $f'(-2) = -3$. The value $f(-2) = 2$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (1)*x, x).subs(x, -2), -3)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v10",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 3x$ at $x = 2$.",
+          "options": [
+            "$10$",
+            "$7$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 3$, so $f'(2) = 7$. The value $f(2) = 10$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (3)*x, x).subs(x, 2), 7)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v11",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 3x$ at $x = -2$.",
+          "options": [
+            "$-2$",
+            "$-4$",
+            "$-1$",
+            "$1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 3$, so $f'(-2) = -1$. The value $f(-2) = -2$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (3)*x, x).subs(x, -2), -1)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v12",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 5x$ at $x = 2$.",
+          "options": [
+            "$14$",
+            "$4$",
+            "$7$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 5$, so $f'(2) = 9$. The value $f(2) = 14$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (5)*x, x).subs(x, 2), 9)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v13",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 5x$ at $x = 3$.",
+          "options": [
+            "$11$",
+            "$24$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 5$, so $f'(3) = 11$. The value $f(3) = 24$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (5)*x, x).subs(x, 3), 11)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v14",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 5x$ at $x = -1$.",
+          "options": [
+            "$-4$",
+            "$3$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 5$, so $f'(-1) = 3$. The value $f(-1) = -4$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (5)*x, x).subs(x, -1), 3)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v15",
+          "statement": "Find the slope of the tangent to $f(x) = x^2 + 5x$ at $x = -2$.",
+          "options": [
+            "$-6$",
+            "$-4$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 2x + 5$, so $f'(-2) = 1$. The value $f(-2) = -6$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(1*x**2 + (5)*x, x).subs(x, -2), 1)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v16",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 - 4x$ at $x = 3$.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x - 4$, so $f'(3) = 8$. The value $f(3) = 6$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (-4)*x, x).subs(x, 3), 8)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v17",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 - 4x$ at $x = -1$.",
+          "options": [
+            "$-8$",
+            "$6$",
+            "$-4$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x - 4$, so $f'(-1) = -8$. The value $f(-1) = 6$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (-4)*x, x).subs(x, -1), -8)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v18",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 - 2x$ at $x = 2$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x - 2$, so $f'(2) = 6$. The value $f(2) = 4$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (-2)*x, x).subs(x, 2), 6)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v19",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 - 2x$ at $x = -2$.",
+          "options": [
+            "$12$",
+            "$-8$",
+            "$-10$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x - 2$, so $f'(-2) = -10$. The value $f(-2) = 12$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (-2)*x, x).subs(x, -2), -10)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v20",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + x$ at $x = 2$.",
+          "options": [
+            "$10$",
+            "$8$",
+            "$5$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 1$, so $f'(2) = 9$. The value $f(2) = 10$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (1)*x, x).subs(x, 2), 9)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v21",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + x$ at $x = 3$.",
+          "options": [
+            "$13$",
+            "$21$",
+            "$12$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 1$, so $f'(3) = 13$. The value $f(3) = 21$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (1)*x, x).subs(x, 3), 13)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v22",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + x$ at $x = -1$.",
+          "options": [
+            "$1$",
+            "$-3$",
+            "$-4$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 1$, so $f'(-1) = -3$. The value $f(-1) = 1$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (1)*x, x).subs(x, -1), -3)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v23",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + x$ at $x = -2$.",
+          "options": [
+            "$6$",
+            "$-8$",
+            "$-7$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 1$, so $f'(-2) = -7$. The value $f(-2) = 6$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (1)*x, x).subs(x, -2), -7)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v24",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 3x$ at $x = 2$.",
+          "options": [
+            "$14$",
+            "$8$",
+            "$7$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 3$, so $f'(2) = 11$. The value $f(2) = 14$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (3)*x, x).subs(x, 2), 11)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v25",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 3x$ at $x = 3$.",
+          "options": [
+            "$15$",
+            "$27$",
+            "$12$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 3$, so $f'(3) = 15$. The value $f(3) = 27$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (3)*x, x).subs(x, 3), 15)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v26",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 3x$ at $x = -2$.",
+          "options": [
+            "$2$",
+            "$-5$",
+            "$-8$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 3$, so $f'(-2) = -5$. The value $f(-2) = 2$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (3)*x, x).subs(x, -2), -5)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v27",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 5x$ at $x = 2$.",
+          "options": [
+            "$18$",
+            "$8$",
+            "$13$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 5$, so $f'(2) = 13$. The value $f(2) = 18$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (5)*x, x).subs(x, 2), 13)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v28",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 5x$ at $x = 3$.",
+          "options": [
+            "$33$",
+            "$12$",
+            "$11$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 5$, so $f'(3) = 17$. The value $f(3) = 33$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (5)*x, x).subs(x, 3), 17)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v29",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 5x$ at $x = -1$.",
+          "options": [
+            "$1$",
+            "$-3$",
+            "$-4$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 5$, so $f'(-1) = 1$. The value $f(-1) = -3$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (5)*x, x).subs(x, -1), 1)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v30",
+          "statement": "Find the slope of the tangent to $f(x) = 2x^2 + 5x$ at $x = -2$.",
+          "options": [
+            "$-2$",
+            "$-3$",
+            "$-8$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 4x + 5$, so $f'(-2) = -3$. The value $f(-2) = -2$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(2*x**2 + (5)*x, x).subs(x, -2), -3)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v31",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 4x$ at $x = 2$.",
+          "options": [
+            "$4$",
+            "$12$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 4$, so $f'(2) = 8$. The value $f(2) = 4$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-4)*x, x).subs(x, 2), 8)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v32",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 4x$ at $x = 3$.",
+          "options": [
+            "$15$",
+            "$18$",
+            "$5$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 4$, so $f'(3) = 14$. The value $f(3) = 15$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-4)*x, x).subs(x, 3), 14)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v33",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 4x$ at $x = -1$.",
+          "options": [
+            "$-10$",
+            "$7$",
+            "$-6$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 4$, so $f'(-1) = -10$. The value $f(-1) = 7$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-4)*x, x).subs(x, -1), -10)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v34",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 4x$ at $x = -2$.",
+          "options": [
+            "$20$",
+            "$-16$",
+            "$-12$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 4$, so $f'(-2) = -16$. The value $f(-2) = 20$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-4)*x, x).subs(x, -2), -16)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v35",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 2x$ at $x = 2$.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$10$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 2$, so $f'(2) = 10$. The value $f(2) = 8$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-2)*x, x).subs(x, 2), 10)"
+          ]
+        },
+        {
+          "id": "CALX-tan-v36",
+          "statement": "Find the slope of the tangent to $f(x) = 3x^2 - 2x$ at $x = 3$.",
+          "options": [
+            "$21$",
+            "$18$",
+            "$7$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The slope of the tangent IS the derivative: $f'(x) = 6x - 2$, so $f'(3) = 16$. The value $f(3) = 21$ is the HEIGHT of the curve there, not its steepness — that is the confusion this question tests.",
+          "check": [
+            "Eq(diff(3*x**2 + (-2)*x, x).subs(x, 3), 16)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cal-product-expand",
+      "title": "Differentiating a product",
+      "level": 2,
+      "unit": "differentiation-techniques",
+      "skill": "Expand or apply the product rule — both must give the same coefficient.",
+      "variants": [
+        {
+          "id": "CALX-prod-v01",
+          "statement": "Differentiate $f(x) = (2x + 1)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$5$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(2x + 1)(x + 2) = 2x^2 + 5x + 2$, whose derivative is $4x + 5$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (1))*(x + (2)), x)), 4*x + (5))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v02",
+          "statement": "Differentiate $f(x) = (2x + 1)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$7$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(2x + 1)(x + 3) = 2x^2 + 7x + 3$, whose derivative is $4x + 7$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (1))*(x + (3)), x)), 4*x + (7))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v03",
+          "statement": "Differentiate $f(x) = (2x + 1)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$-1$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(2x + 1)(x - 1) = 2x^2 + -1x - 1$, whose derivative is $4x + -1$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (1))*(x + (-1)), x)), 4*x + (-1))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v04",
+          "statement": "Differentiate $f(x) = (2x + 1)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$9$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(2x + 1)(x + 4) = 2x^2 + 9x + 4$, whose derivative is $4x + 9$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (1))*(x + (4)), x)), 4*x + (9))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v05",
+          "statement": "Differentiate $f(x) = (2x - 2)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$-4$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(2x - 2)(x - 1) = 2x^2 + -4x + 2$, whose derivative is $4x + -4$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (-2))*(x + (-1)), x)), 4*x + (-4))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v06",
+          "statement": "Differentiate $f(x) = (2x - 2)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(2x - 2)(x + 4) = 2x^2 + 6x - 8$, whose derivative is $4x + 6$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (-2))*(x + (4)), x)), 4*x + (6))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v07",
+          "statement": "Differentiate $f(x) = (2x + 3)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$7$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(2x + 3)(x + 2) = 2x^2 + 7x + 6$, whose derivative is $4x + 7$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (3))*(x + (2)), x)), 4*x + (7))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v08",
+          "statement": "Differentiate $f(x) = (2x + 3)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$9$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(2x + 3)(x + 3) = 2x^2 + 9x + 9$, whose derivative is $4x + 9$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (3))*(x + (3)), x)), 4*x + (9))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v09",
+          "statement": "Differentiate $f(x) = (2x + 3)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(2x + 3)(x - 1) = 2x^2 + 1x - 3$, whose derivative is $4x + 1$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (3))*(x + (-1)), x)), 4*x + (1))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v10",
+          "statement": "Differentiate $f(x) = (2x + 3)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$11$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(2x + 3)(x + 4) = 2x^2 + 11x + 12$, whose derivative is $4x + 11$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (3))*(x + (4)), x)), 4*x + (11))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v11",
+          "statement": "Differentiate $f(x) = (2x - 4)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$0$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(2x - 4)(x + 2) = 2x^2 + 0x - 8$, whose derivative is $4x + 0$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (-4))*(x + (2)), x)), 4*x + (0))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v12",
+          "statement": "Differentiate $f(x) = (2x - 4)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$-6$",
+            "$3$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(2x - 4)(x - 1) = 2x^2 + -6x + 4$, whose derivative is $4x + -6$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (-4))*(x + (-1)), x)), 4*x + (-6))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v13",
+          "statement": "Differentiate $f(x) = (2x + 5)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$9$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(2x + 5)(x + 2) = 2x^2 + 9x + 10$, whose derivative is $4x + 9$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (5))*(x + (2)), x)), 4*x + (9))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v14",
+          "statement": "Differentiate $f(x) = (2x + 5)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$11$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(2x + 5)(x + 3) = 2x^2 + 11x + 15$, whose derivative is $4x + 11$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (5))*(x + (3)), x)), 4*x + (11))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v15",
+          "statement": "Differentiate $f(x) = (2x + 5)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$2$",
+            "$13$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(2x + 5)(x + 4) = 2x^2 + 13x + 20$, whose derivative is $4x + 13$. The coefficient of $x$ is $4$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((2*x + (5))*(x + (4)), x)), 4*x + (13))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v16",
+          "statement": "Differentiate $f(x) = (3x + 1)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$7$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(3x + 1)(x + 2) = 3x^2 + 7x + 2$, whose derivative is $6x + 7$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (1))*(x + (2)), x)), 6*x + (7))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v17",
+          "statement": "Differentiate $f(x) = (3x + 1)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$10$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(3x + 1)(x + 3) = 3x^2 + 10x + 3$, whose derivative is $6x + 10$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (1))*(x + (3)), x)), 6*x + (10))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v18",
+          "statement": "Differentiate $f(x) = (3x + 1)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(3x + 1)(x - 1) = 3x^2 + -2x - 1$, whose derivative is $6x + -2$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (1))*(x + (-1)), x)), 6*x + (-2))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v19",
+          "statement": "Differentiate $f(x) = (3x + 1)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$13$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(3x + 1)(x + 4) = 3x^2 + 13x + 4$, whose derivative is $6x + 13$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (1))*(x + (4)), x)), 6*x + (13))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v20",
+          "statement": "Differentiate $f(x) = (3x - 2)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$7$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(3x - 2)(x + 3) = 3x^2 + 7x - 6$, whose derivative is $6x + 7$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-2))*(x + (3)), x)), 6*x + (7))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v21",
+          "statement": "Differentiate $f(x) = (3x - 2)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$-5$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(3x - 2)(x - 1) = 3x^2 + -5x + 2$, whose derivative is $6x + -5$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-2))*(x + (-1)), x)), 6*x + (-5))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v22",
+          "statement": "Differentiate $f(x) = (3x - 2)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$10$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(3x - 2)(x + 4) = 3x^2 + 10x - 8$, whose derivative is $6x + 10$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-2))*(x + (4)), x)), 6*x + (10))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v23",
+          "statement": "Differentiate $f(x) = (3x + 3)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(3x + 3)(x + 2) = 3x^2 + 9x + 6$, whose derivative is $6x + 9$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (3))*(x + (2)), x)), 6*x + (9))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v24",
+          "statement": "Differentiate $f(x) = (3x + 3)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$12$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(3x + 3)(x + 3) = 3x^2 + 12x + 9$, whose derivative is $6x + 12$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (3))*(x + (3)), x)), 6*x + (12))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v25",
+          "statement": "Differentiate $f(x) = (3x + 3)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$0$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(3x + 3)(x - 1) = 3x^2 + 0x - 3$, whose derivative is $6x + 0$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (3))*(x + (-1)), x)), 6*x + (0))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v26",
+          "statement": "Differentiate $f(x) = (3x + 3)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$15$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(3x + 3)(x + 4) = 3x^2 + 15x + 12$, whose derivative is $6x + 15$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (3))*(x + (4)), x)), 6*x + (15))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v27",
+          "statement": "Differentiate $f(x) = (3x - 4)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(3x - 4)(x + 2) = 3x^2 + 2x - 8$, whose derivative is $6x + 2$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-4))*(x + (2)), x)), 6*x + (2))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v28",
+          "statement": "Differentiate $f(x) = (3x - 4)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(3x - 4)(x + 3) = 3x^2 + 5x - 12$, whose derivative is $6x + 5$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-4))*(x + (3)), x)), 6*x + (5))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v29",
+          "statement": "Differentiate $f(x) = (3x - 4)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$-7$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(3x - 4)(x - 1) = 3x^2 + -7x + 4$, whose derivative is $6x + -7$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-4))*(x + (-1)), x)), 6*x + (-7))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v30",
+          "statement": "Differentiate $f(x) = (3x - 4)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(3x - 4)(x + 4) = 3x^2 + 8x - 16$, whose derivative is $6x + 8$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (-4))*(x + (4)), x)), 6*x + (8))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v31",
+          "statement": "Differentiate $f(x) = (3x + 5)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$11$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(3x + 5)(x + 2) = 3x^2 + 11x + 10$, whose derivative is $6x + 11$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (5))*(x + (2)), x)), 6*x + (11))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v32",
+          "statement": "Differentiate $f(x) = (3x + 5)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$14$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(3x + 5)(x + 3) = 3x^2 + 14x + 15$, whose derivative is $6x + 14$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (5))*(x + (3)), x)), 6*x + (14))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v33",
+          "statement": "Differentiate $f(x) = (3x + 5)(x - 1)$ and give the coefficient of $x$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding first is legitimate: $(3x + 5)(x - 1) = 3x^2 + 2x - 5$, whose derivative is $6x + 2$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (5))*(x + (-1)), x)), 6*x + (2))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v34",
+          "statement": "Differentiate $f(x) = (3x + 5)(x + 4)$ and give the coefficient of $x$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$17$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding first is legitimate: $(3x + 5)(x + 4) = 3x^2 + 17x + 20$, whose derivative is $6x + 17$. The coefficient of $x$ is $6$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((3*x + (5))*(x + (4)), x)), 6*x + (17))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v35",
+          "statement": "Differentiate $f(x) = (4x + 1)(x + 2)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$9$",
+            "$8$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding first is legitimate: $(4x + 1)(x + 2) = 4x^2 + 9x + 2$, whose derivative is $8x + 9$. The coefficient of $x$ is $8$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((4*x + (1))*(x + (2)), x)), 8*x + (9))"
+          ]
+        },
+        {
+          "id": "CALX-prod-v36",
+          "statement": "Differentiate $f(x) = (4x + 1)(x + 3)$ and give the coefficient of $x$.",
+          "options": [
+            "$4$",
+            "$13$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding first is legitimate: $(4x + 1)(x + 3) = 4x^2 + 13x + 3$, whose derivative is $8x + 13$. The coefficient of $x$ is $8$ — twice the leading coefficient, because the $x^2$ term dominates the differentiation.",
+          "check": [
+            "Eq(expand(diff((4*x + (1))*(x + (3)), x)), 8*x + (13))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cal-definite-integral",
+      "title": "Definite integrals of powers",
+      "level": 2,
+      "unit": "integrals",
+      "skill": "Raise the exponent, divide by the new one, then evaluate at the limits.",
+      "variants": [
+        {
+          "id": "CALX-int-v01",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 1x^{1}\\,dx$.",
+          "options": [
+            "$\\frac{9}{2}$",
+            "$9$",
+            "$3$",
+            "$\\frac{3}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{1}dx = \\frac{1}{2}x^{2}$, and at $x = 3$ this is $\\frac{1 \\cdot 9}{2} = \\frac{9}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**1, (x, 0, 3)), Rational(9,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v02",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 1x^{1}\\,dx$.",
+          "options": [
+            "$16$",
+            "$8$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{1}dx = \\frac{1}{2}x^{2}$, and at $x = 4$ this is $\\frac{1 \\cdot 16}{2} = 8$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**1, (x, 0, 4)), Rational(8,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v03",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 1x^{1}\\,dx$.",
+          "options": [
+            "$25$",
+            "$5$",
+            "$\\frac{25}{2}$",
+            "$\\frac{5}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{1}dx = \\frac{1}{2}x^{2}$, and at $x = 5$ this is $\\frac{1 \\cdot 25}{2} = \\frac{25}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**1, (x, 0, 5)), Rational(25,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v04",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 1x^{2}\\,dx$.",
+          "options": [
+            "$8$",
+            "$4$",
+            "$\\frac{4}{3}$",
+            "$\\frac{8}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{2}dx = \\frac{1}{3}x^{3}$, and at $x = 2$ this is $\\frac{1 \\cdot 8}{3} = \\frac{8}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**2, (x, 0, 2)), Rational(8,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v05",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 1x^{2}\\,dx$.",
+          "options": [
+            "$9$",
+            "$27$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{2}dx = \\frac{1}{3}x^{3}$, and at $x = 3$ this is $\\frac{1 \\cdot 27}{3} = 9$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**2, (x, 0, 3)), Rational(9,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v06",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 1x^{2}\\,dx$.",
+          "options": [
+            "$64$",
+            "$\\frac{64}{3}$",
+            "$8$",
+            "$\\frac{16}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{2}dx = \\frac{1}{3}x^{3}$, and at $x = 4$ this is $\\frac{1 \\cdot 64}{3} = \\frac{64}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**2, (x, 0, 4)), Rational(64,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v07",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 1x^{2}\\,dx$.",
+          "options": [
+            "$125$",
+            "$10$",
+            "$\\frac{125}{3}$",
+            "$\\frac{25}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{2}dx = \\frac{1}{3}x^{3}$, and at $x = 5$ this is $\\frac{1 \\cdot 125}{3} = \\frac{125}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**2, (x, 0, 5)), Rational(125,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v08",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 1x^{3}\\,dx$.",
+          "options": [
+            "$16$",
+            "$6$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{3}dx = \\frac{1}{4}x^{4}$, and at $x = 2$ this is $\\frac{1 \\cdot 16}{4} = 4$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**3, (x, 0, 2)), Rational(4,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v09",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 1x^{3}\\,dx$.",
+          "options": [
+            "$\\frac{81}{4}$",
+            "$81$",
+            "$9$",
+            "$\\frac{27}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{3}dx = \\frac{1}{4}x^{4}$, and at $x = 3$ this is $\\frac{1 \\cdot 81}{4} = \\frac{81}{4}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**3, (x, 0, 3)), Rational(81,4))"
+          ]
+        },
+        {
+          "id": "CALX-int-v10",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 1x^{3}\\,dx$.",
+          "options": [
+            "$256$",
+            "$64$",
+            "$12$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{3}dx = \\frac{1}{4}x^{4}$, and at $x = 4$ this is $\\frac{1 \\cdot 256}{4} = 64$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**3, (x, 0, 4)), Rational(64,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v11",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 1x^{3}\\,dx$.",
+          "options": [
+            "$625$",
+            "$15$",
+            "$\\frac{625}{4}$",
+            "$\\frac{125}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 1x^{3}dx = \\frac{1}{4}x^{4}$, and at $x = 5$ this is $\\frac{1 \\cdot 625}{4} = \\frac{625}{4}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(1*x**3, (x, 0, 5)), Rational(625,4))"
+          ]
+        },
+        {
+          "id": "CALX-int-v12",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 2x^{1}\\,dx$.",
+          "options": [
+            "$18$",
+            "$6$",
+            "$3$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{1}dx = \\frac{2}{2}x^{2}$, and at $x = 3$ this is $\\frac{2 \\cdot 9}{2} = 9$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**1, (x, 0, 3)), Rational(9,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v13",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 2x^{1}\\,dx$.",
+          "options": [
+            "$16$",
+            "$32$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{1}dx = \\frac{2}{2}x^{2}$, and at $x = 4$ this is $\\frac{2 \\cdot 16}{2} = 16$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**1, (x, 0, 4)), Rational(16,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v14",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 2x^{1}\\,dx$.",
+          "options": [
+            "$50$",
+            "$25$",
+            "$10$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{1}dx = \\frac{2}{2}x^{2}$, and at $x = 5$ this is $\\frac{2 \\cdot 25}{2} = 25$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**1, (x, 0, 5)), Rational(25,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v15",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 2x^{2}\\,dx$.",
+          "options": [
+            "$16$",
+            "$8$",
+            "$\\frac{16}{3}$",
+            "$\\frac{8}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{2}dx = \\frac{2}{3}x^{3}$, and at $x = 2$ this is $\\frac{2 \\cdot 8}{3} = \\frac{16}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**2, (x, 0, 2)), Rational(16,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v16",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 2x^{2}\\,dx$.",
+          "options": [
+            "$54$",
+            "$12$",
+            "$6$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{2}dx = \\frac{2}{3}x^{3}$, and at $x = 3$ this is $\\frac{2 \\cdot 27}{3} = 18$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**2, (x, 0, 3)), Rational(18,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v17",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 2x^{2}\\,dx$.",
+          "options": [
+            "$\\frac{128}{3}$",
+            "$128$",
+            "$16$",
+            "$\\frac{32}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{2}dx = \\frac{2}{3}x^{3}$, and at $x = 4$ this is $\\frac{2 \\cdot 64}{3} = \\frac{128}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**2, (x, 0, 4)), Rational(128,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v18",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 2x^{2}\\,dx$.",
+          "options": [
+            "$250$",
+            "$\\frac{250}{3}$",
+            "$20$",
+            "$\\frac{50}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{2}dx = \\frac{2}{3}x^{3}$, and at $x = 5$ this is $\\frac{2 \\cdot 125}{3} = \\frac{250}{3}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**2, (x, 0, 5)), Rational(250,3))"
+          ]
+        },
+        {
+          "id": "CALX-int-v19",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 2x^{3}\\,dx$.",
+          "options": [
+            "$32$",
+            "$12$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{3}dx = \\frac{2}{4}x^{4}$, and at $x = 2$ this is $\\frac{2 \\cdot 16}{4} = 8$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**3, (x, 0, 2)), Rational(8,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v20",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 2x^{3}\\,dx$.",
+          "options": [
+            "$162$",
+            "$18$",
+            "$\\frac{27}{2}$",
+            "$\\frac{81}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{3}dx = \\frac{2}{4}x^{4}$, and at $x = 3$ this is $\\frac{2 \\cdot 81}{4} = \\frac{81}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**3, (x, 0, 3)), Rational(81,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v21",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 2x^{3}\\,dx$.",
+          "options": [
+            "$128$",
+            "$512$",
+            "$24$",
+            "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{3}dx = \\frac{2}{4}x^{4}$, and at $x = 4$ this is $\\frac{2 \\cdot 256}{4} = 128$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**3, (x, 0, 4)), Rational(128,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v22",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 2x^{3}\\,dx$.",
+          "options": [
+            "$1250$",
+            "$\\frac{625}{2}$",
+            "$30$",
+            "$\\frac{125}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 2x^{3}dx = \\frac{2}{4}x^{4}$, and at $x = 5$ this is $\\frac{2 \\cdot 625}{4} = \\frac{625}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(2*x**3, (x, 0, 5)), Rational(625,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v23",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 3x^{1}\\,dx$.",
+          "options": [
+            "$27$",
+            "$9$",
+            "$\\frac{27}{2}$",
+            "$\\frac{9}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{1}dx = \\frac{3}{2}x^{2}$, and at $x = 3$ this is $\\frac{3 \\cdot 9}{2} = \\frac{27}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**1, (x, 0, 3)), Rational(27,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v24",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 3x^{1}\\,dx$.",
+          "options": [
+            "$48$",
+            "$12$",
+            "$6$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{1}dx = \\frac{3}{2}x^{2}$, and at $x = 4$ this is $\\frac{3 \\cdot 16}{2} = 24$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**1, (x, 0, 4)), Rational(24,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v25",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 3x^{1}\\,dx$.",
+          "options": [
+            "$\\frac{75}{2}$",
+            "$75$",
+            "$15$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{1}dx = \\frac{3}{2}x^{2}$, and at $x = 5$ this is $\\frac{3 \\cdot 25}{2} = \\frac{75}{2}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**1, (x, 0, 5)), Rational(75,2))"
+          ]
+        },
+        {
+          "id": "CALX-int-v26",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 3x^{2}\\,dx$.",
+          "options": [
+            "$24$",
+            "$8$",
+            "$12$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{2}dx = \\frac{3}{3}x^{3}$, and at $x = 2$ this is $\\frac{3 \\cdot 8}{3} = 8$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**2, (x, 0, 2)), Rational(8,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v27",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 3x^{2}\\,dx$.",
+          "options": [
+            "$81$",
+            "$18$",
+            "$27$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{2}dx = \\frac{3}{3}x^{3}$, and at $x = 3$ this is $\\frac{3 \\cdot 27}{3} = 27$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**2, (x, 0, 3)), Rational(27,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v28",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 3x^{2}\\,dx$.",
+          "options": [
+            "$192$",
+            "$24$",
+            "$16$",
+            "$64$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{2}dx = \\frac{3}{3}x^{3}$, and at $x = 4$ this is $\\frac{3 \\cdot 64}{3} = 64$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**2, (x, 0, 4)), Rational(64,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v29",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 3x^{2}\\,dx$.",
+          "options": [
+            "$125$",
+            "$375$",
+            "$30$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{2}dx = \\frac{3}{3}x^{3}$, and at $x = 5$ this is $\\frac{3 \\cdot 125}{3} = 125$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**2, (x, 0, 5)), Rational(125,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v30",
+          "statement": "Evaluate $\\displaystyle\\int_0^{2} 3x^{3}\\,dx$.",
+          "options": [
+            "$48$",
+            "$12$",
+            "$18$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{3}dx = \\frac{3}{4}x^{4}$, and at $x = 2$ this is $\\frac{3 \\cdot 16}{4} = 12$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**3, (x, 0, 2)), Rational(12,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v31",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 3x^{3}\\,dx$.",
+          "options": [
+            "$243$",
+            "$27$",
+            "$\\frac{243}{4}$",
+            "$\\frac{81}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{3}dx = \\frac{3}{4}x^{4}$, and at $x = 3$ this is $\\frac{3 \\cdot 81}{4} = \\frac{243}{4}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**3, (x, 0, 3)), Rational(243,4))"
+          ]
+        },
+        {
+          "id": "CALX-int-v32",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 3x^{3}\\,dx$.",
+          "options": [
+            "$768$",
+            "$36$",
+            "$48$",
+            "$192$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{3}dx = \\frac{3}{4}x^{4}$, and at $x = 4$ this is $\\frac{3 \\cdot 256}{4} = 192$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**3, (x, 0, 4)), Rational(192,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v33",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 3x^{3}\\,dx$.",
+          "options": [
+            "$\\frac{1875}{4}$",
+            "$1875$",
+            "$45$",
+            "$\\frac{375}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate then evaluate: $\\int 3x^{3}dx = \\frac{3}{4}x^{4}$, and at $x = 5$ this is $\\frac{3 \\cdot 625}{4} = \\frac{1875}{4}$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(3*x**3, (x, 0, 5)), Rational(1875,4))"
+          ]
+        },
+        {
+          "id": "CALX-int-v34",
+          "statement": "Evaluate $\\displaystyle\\int_0^{3} 4x^{1}\\,dx$.",
+          "options": [
+            "$36$",
+            "$18$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate then evaluate: $\\int 4x^{1}dx = \\frac{4}{2}x^{2}$, and at $x = 3$ this is $\\frac{4 \\cdot 9}{2} = 18$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(4*x**1, (x, 0, 3)), Rational(18,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v35",
+          "statement": "Evaluate $\\displaystyle\\int_0^{4} 4x^{1}\\,dx$.",
+          "options": [
+            "$64$",
+            "$16$",
+            "$32$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate then evaluate: $\\int 4x^{1}dx = \\frac{4}{2}x^{2}$, and at $x = 4$ this is $\\frac{4 \\cdot 16}{2} = 32$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(4*x**1, (x, 0, 4)), Rational(32,1))"
+          ]
+        },
+        {
+          "id": "CALX-int-v36",
+          "statement": "Evaluate $\\displaystyle\\int_0^{5} 4x^{1}\\,dx$.",
+          "options": [
+            "$100$",
+            "$20$",
+            "$10$",
+            "$50$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate then evaluate: $\\int 4x^{1}dx = \\frac{4}{2}x^{2}$, and at $x = 5$ this is $\\frac{4 \\cdot 25}{2} = 50$ (the lower limit contributes $0$). Forgetting to divide by the new exponent is the usual slip.",
+          "check": [
+            "Eq(integrate(4*x**1, (x, 0, 5)), Rational(50,1))"
+          ]
+        }
+      ]
     }
   ]
 }
