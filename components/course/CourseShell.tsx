@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { getCourseExams } from "@/lib/course-exam";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { CourseUnit, GenMathLesson, GeometrySpineEntry } from "@/lib/genmath-lessons";
@@ -189,6 +190,38 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
           );
         })}
       </ol>
+
+      {/* Full-course exams, where they exist. Placed after the spine because
+          they only make sense once some of the course has been worked. */}
+      {getCourseExams(course.slug).length > 0 && (
+        <>
+          <div className="eyebrow mt-12 mb-3">When you have finished the course</div>
+          <Link
+            className="card-edit p-5 flex items-start gap-4 transition-colors"
+            style={{ textDecoration: "none" }}
+            href={`/math/${course.slug}/exam`}
+          >
+            <span className="flex-1 min-w-0">
+              <span
+                className="serif block"
+                style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}
+              >
+                Practice Exams
+              </span>
+              <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+                {getCourseExams(course.slug).length} full-course papers, every unit represented.
+                The result breaks down by unit, so it names what to go back to.
+              </span>
+            </span>
+            <span
+              className="mono text-[10px] uppercase mt-1 flex-shrink-0"
+              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+            >
+              Open
+            </span>
+          </Link>
+        </>
+      )}
     </Shell>
   );
 }

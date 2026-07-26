@@ -1,0 +1,22 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const p = await b.newPage();
+const errs = [];
+p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+p.on('pageerror', e => errs.push('PAGEERROR ' + e.message));
+await p.goto('http://localhost:3000/math/integrated-1/exam/integrated-1-exam-1', { waitUntil: 'networkidle' });
+const q = await p.locator('text=/Question 1 ·/').first().textContent().catch(() => null);
+const opts = await p.locator('button:has-text("A"), button:has-text("B")').count();
+const katex = await p.locator('.katex').count();
+// answer question 1, then jump to the last question via the navigator
+await p.locator('button').filter({ hasText: /^A$/ }).first().click().catch(()=>{});
+const nav = await p.locator('button[aria-label="Question 36"]').count();
+await p.locator('button[aria-label="Question 36"]').click().catch(()=>{});
+const last = await p.locator('text=/Question 36 ·/').first().textContent().catch(() => null);
+const submit = await p.locator('button:has-text("Submit exam")').count();
+await p.locator('button:has-text("Submit exam")').click().catch(()=>{});
+await p.waitForTimeout(1200);
+const result = await p.locator('text=/By unit/').count();
+const perUnit = await p.locator('text=/Start here/').count();
+console.log(JSON.stringify({ q, opts, katex, nav, last, submit, result, perUnit, errs: errs.slice(0,4) }, null, 1));
+await b.close();
