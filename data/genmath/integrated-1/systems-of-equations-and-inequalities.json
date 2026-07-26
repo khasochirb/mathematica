@@ -1197,7 +1197,7 @@
     },
     {
       "id": "im1-u5-ty-4",
-      "statement": "A concert sold adult tickets at $15\\,000$₮ and child tickets at $6000$₮. It sold $220$ tickets and took $2\\,478\\,000$₮. Find how many of each, and confirm the answer is viable.",
+      "statement": "A concert sold adult tickets at $15\\,000$₮ and child tickets at $6000$₮. It sold $220$ tickets and took $2\\,478\\,000$₮. Find how many of each, and judge whether the answer is viable.",
       "solution": "**Define.** Let $a$ = adult tickets and $c$ = child tickets.**Two facts, two equations.**$$a + c = 220 \\qquad \\text{(count)}$$$$15\\,000a + 6000c = 2\\,478\\,000 \\qquad \\text{(money)}$$**Substitute** $c = 220 - a$ into the money equation:$$15\\,000a + 6000(220 - a) = 2\\,478\\,000$$$$15\\,000a + 1\\,320\\,000 - 6000a = 2\\,478\\,000$$$$9000a = 1\\,158\\,000 \\quad\\Longrightarrow\\quad a = 128\\tfrac{2}{3}.$$**Judge viability.** The result is not a whole number, and ticket counts must be. So **no whole-number pair matches these figures exactly** — the takings figure is inconsistent with $220$ tickets at those two prices.**Confirm the nearest whole options bracket it.** At $a = 128$, $c = 92$: takings are $1\\,920\\,000 + 552\\,000 = 2\\,472\\,000$₮, which is $6000$₮ short. At $a = 129$, $c = 91$: $1\\,935\\,000 + 546\\,000 = 2\\,481\\,000$₮, which is $3000$₮ over. The true figure falls between them, so no exact whole-number solution exists — the correct answer is to say so.",
       "check": [
         "Eq(15000*128 + 6000*92, 2472000)",

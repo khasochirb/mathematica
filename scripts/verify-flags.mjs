@@ -35,6 +35,7 @@ try {
 }
 
 const checks = payload?.checks ?? {};
+const details = payload?.details ?? {};
 let open = 0;
 
 console.log(`verify:flags — ${url} (generated ${payload.generatedAt ?? "?"})`);
@@ -42,7 +43,11 @@ for (const [key, healthy] of Object.entries(HEALTHY)) {
   const actual = checks[key] ?? "(absent)";
   const ok = actual === healthy;
   if (!ok) open += 1;
-  console.log(`  ${ok ? "✓" : "✗"} ${key}: ${actual}${ok ? "" : `  (healthy: ${healthy})`}`);
+  // On a non-healthy probe the endpoint reports the error code it saw
+  // ("42703", "PGRST205", "42501", …). Printing it here is the difference
+  // between "unknown" and knowing which runbook to open.
+  const why = !ok && details[key] ? `, code ${details[key]}` : "";
+  console.log(`  ${ok ? "✓" : "✗"} ${key}: ${actual}${ok ? "" : `  (healthy: ${healthy}${why})`}`);
 }
 
 // Surface any checks the endpoint reports that this script doesn't know —

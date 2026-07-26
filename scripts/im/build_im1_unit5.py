@@ -1632,8 +1632,8 @@ def test_bank():
         problem(
             "im1-u5-ty-4",
             "A concert sold adult tickets at $15\\,000$₮ and child tickets at $6000$₮. It sold "
-            "$220$ tickets and took $2\\,478\\,000$₮. Find how many of each, and confirm the "
-            "answer is viable.",
+            "$220$ tickets and took $2\\,478\\,000$₮. Find how many of each, and judge whether "
+            "the answer is viable.",
             "**Define.** Let $a$ = adult tickets and $c$ = child tickets."
             "**Two facts, two equations.**"
             "$$a + c = 220 \\qquad \\text{(count)}$$"
