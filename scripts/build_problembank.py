@@ -33,6 +33,7 @@ SUBJECTS = [
     ("precalculus", "precalculus"),
     ("calculus", "calculus"),
     ("vectors-matrices", "vectors_matrices"),
+    ("integrated-1", "integrated_1"),
 ]
 
 

@@ -24,6 +24,7 @@ import probStats from "@/data/problembank/prob-stats.json";
 import precalculus from "@/data/problembank/precalculus.json";
 import calculus from "@/data/problembank/calculus.json";
 import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
+import integrated1 from "@/data/problembank/integrated-1.json";
 
 export type BankVariant = {
   id: string;
@@ -69,6 +70,7 @@ const TOPICS: BankTopic[] = [
   precalculus,
   calculus,
   vectorsMatrices,
+  integrated1,
 ] as unknown as BankTopic[];
 
 export function getBankTopics(): BankTopic[] {
