@@ -18,6 +18,7 @@ Run: npm run verify:bank
 import glob
 import json
 import os
+import re
 import sys
 
 from sympy import sympify
@@ -29,11 +30,51 @@ failures = []
 topics = forms = variants = checks_run = 0
 seen_ids = set()
 
+# --- Render safety (mirrors components/esh/MathText.tsx) -------------------
+# The same three defect classes verify-genmath.py gates for, which the bank
+# was never checked against:
+#   1. A **bold** run containing a complete $...$ pair. MathText's splitter is
+#      leftmost-first, so the run matches AS BOLD and the math renders as
+#      literal dollar signs. (A lone $ in bold is currency and is fine.)
+#   2. A glyph KaTeX cannot draw inside math (₮, ✗) — it emits a blank box and
+#      a console warning, not an error node, so nothing else would catch it.
+#   3. An odd number of unescaped $, i.e. a delimiter left open.
+# `check` strings are skipped: they are sympy source and are never rendered.
+MATHTEXT_TOKEN = re.compile(r"(\$\$[^$]+\$\$|\$[^$]+\$|\*\*[^*]+\*\*)")
+MATH_PAIR = re.compile(r"\$\$[^$]+\$\$|\$[^$]+\$")
+DOLLAR_SENTINEL = "\x00"
+UNRENDERABLE_IN_MATH = "₮✗"
+render_strings = 0
+
+
+def check_render_safety(label, node):
+    global render_strings
+    if isinstance(node, str):
+        render_strings += 1
+        protected = node.replace("\\$", DOLLAR_SENTINEL)
+        if protected.count("$") % 2 != 0:
+            failures.append(f"{label}: odd number of $ delimiters: {node[:70]!r}")
+        for tok in MATHTEXT_TOKEN.findall(protected):
+            shown = tok.replace(DOLLAR_SENTINEL, "\\$")[:70]
+            if tok.startswith("**") and MATH_PAIR.search(tok[2:-2]):
+                failures.append(f"{label}: bold run swallows inline math: {shown!r}")
+            elif tok.startswith("$") and any(c in tok for c in UNRENDERABLE_IN_MATH):
+                failures.append(f"{label}: character KaTeX cannot draw inside math: {shown!r}")
+    elif isinstance(node, dict):
+        for key, value in node.items():
+            if key == "check":
+                continue
+            check_render_safety(label, value)
+    elif isinstance(node, list):
+        for value in node:
+            check_render_safety(label, value)
+
 for path in FILES:
     with open(path) as fh:
         t = json.load(fh)
     topics += 1
     slug = t.get("slug", os.path.basename(path))
+    check_render_safety(os.path.basename(path), t)
     for field in ("slug", "title", "titleMn", "blurb"):
         if not t.get(field):
             failures.append(f"{slug}: missing topic field '{field}'")
@@ -109,7 +150,8 @@ for path in FILES:
         elif unit_variant_count.get(uid, 0) < 24:
             failures.append(f"{slug}/{uid}: unit has only {unit_variant_count[uid]} problems (< 24)")
 
-print(f"verify:bank — subjects: {topics}, forms: {forms}, variants: {variants}, sympy checks run: {checks_run}")
+print(f"verify:bank — subjects: {topics}, forms: {forms}, variants: {variants}, "
+      f"sympy checks run: {checks_run}, render-safety strings: {render_strings}")
 if failures:
     for f in failures:
         print(f"  ✗ {f}")

@@ -1,0 +1,969 @@
+# -*- coding: utf-8 -*-
+"""Problem-bank subject: Integrated Math 2 — mirrors /math/integrated-2.
+
+Same construction as integrated_1.py: library archetypes are REUSED where
+they drill exactly what an IM2 unit teaches (re-identified with an `im2-`
+prefix, since variant ids are globally unique across the bank), and the
+IM2-specific material is authored fresh below.
+
+Every generator sweeps a parameter grid wide enough to fill a form after
+degenerate draws are discarded, and every value stays exact — sympy checks
+are built from Rational, never from Python float division, and never from
+fmt() output (which is LaTeX and will not sympify).
+
+Self-check:  python3 scripts/pb/integrated_2.py
+Regenerate:  python3 scripts/build_problembank.py
+"""
+import copy
+import importlib.util
+import os
+import sys
+
+from sympy import Integer, Rational, sqrt
+
+PB = os.path.dirname(os.path.abspath(__file__))
+if PB not in sys.path:
+    sys.path.insert(0, PB)
+
+from imbank import (P, closed, figure, fmt, form, mk_num, mk_txt,  # noqa: E402
+                    on_circle, pt, quad, radical, seg, xpm)
+
+SLUG = "integrated-2"
+TITLE = "Integrated Math 2"
+TITLE_MN = "Нэгдсэн математик 2"
+BLURB = ("Unit-by-unit practice for Integrated Math 2 — rational exponents "
+         "and quadratics through similarity, right-triangle trigonometry, "
+         "circles and probability.")
+
+UNITS = [
+    {"id": "rational-exponents-and-radicals", "title": "Rational Exponents & Radicals",
+     "blurb": "Fractional powers forced by the exponent rules, simplifying radicals, and rational versus irrational sums."},
+    {"id": "polynomials-and-factoring", "title": "Polynomials & Factoring",
+     "blurb": "Polynomial arithmetic and closure, then every factoring technique from a common factor to the difference of squares."},
+    {"id": "quadratic-functions", "title": "Quadratic Functions",
+     "blurb": "The parabola and its vertex, the three forms and what each reveals, and quadratic against linear and exponential growth."},
+    {"id": "solving-quadratic-equations", "title": "Solving Quadratic Equations",
+     "blurb": "Factoring, square roots, completing the square and the formula; the discriminant; and the complex numbers it forces."},
+    {"id": "similarity-and-dilations", "title": "Similarity & Dilations",
+     "blurb": "Dilation as the one non-rigid transformation, the AA criterion, and the side-splitter and midsegment theorems."},
+    {"id": "right-triangle-trigonometry", "title": "Right-Triangle Trigonometry",
+     "blurb": "Sine, cosine and tangent as ratios similarity makes well defined, the special triangles, and complementary angles."},
+    {"id": "circles", "title": "Circles",
+     "blurb": "Central and inscribed angles, tangents and chords, arc length and sector area, and the equation of a circle."},
+    {"id": "probability", "title": "Probability",
+     "blurb": "Sample spaces, unions and intersections, conditional probability and independence, and two-way tables."},
+]
+
+REMAP = {
+    "exponent-laws": "rational-exponents-and-radicals",
+    "vertex-read": "quadratic-functions",
+    "complete-square-min": "quadratic-functions",
+    "factored-roots": "solving-quadratic-equations",
+    "discriminant": "solving-quadratic-equations",
+    "quadratic-inequality": "solving-quadratic-equations",
+    "tangency-parameter": "solving-quadratic-equations",
+    "similar-triangles": "similarity-and-dilations",
+    "right-triangle-side": "right-triangle-trigonometry",
+    "special-triangles": "right-triangle-trigonometry",
+    "sin-to-cos-tan": "right-triangle-trigonometry",
+    "circle-basics": "circles",
+    "sector-area": "circles",
+}
+
+SOURCES = ["algebra", "functions", "geometry", "trigonometry"]
+
+
+def _load(name):
+    spec = importlib.util.spec_from_file_location(
+        "pbsrc2_%s" % name, os.path.join(PB, "%s.py" % name))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _remapped_forms():
+    src = {}
+    for name in SOURCES:
+        for f in _load(name).build()["forms"]:
+            src[f["id"]] = f
+    out = []
+    for fid, unit in REMAP.items():
+        f = copy.deepcopy(src[fid])   # all subjects build in one process
+        f["unit"] = unit
+        f["id"] = "im2-%s" % fid
+        for v in f["variants"]:
+            v["id"] = "im2-%s" % v["id"]
+        out.append(f)
+    return out
+
+
+# ===========================================================================
+# Unit 1 — Rational Exponents & Radicals
+# ===========================================================================
+
+def _g_simplify_radical():
+    raws = []
+    for a in (2, 3, 4, 5, 6, 7, 10):
+        for b in (2, 3, 5, 6, 7, 10, 11, 13):
+            n = a * a * b
+            if n > 900:
+                continue
+            raws.append({
+                "statement": "Simplify $\\sqrt{%d}$ completely." % n,
+                "correct": "$%s$" % radical(a, b),
+                "dvals": ["$%s$" % radical(b, a), "$%s$" % radical(a * b, 1),
+                          "$%s$" % radical(1, n)],
+                "explanation": ("Pull out the largest square factor: $%d = %d^2 \\times %d$, so "
+                                "$\\sqrt{%d} = %s$. Leaving it as $\\sqrt{%d}$ is not simplified, "
+                                "and swapping which part comes out changes the value."
+                                % (n, a, b, n, radical(a, b), n)),
+                "check": ["Eq(sqrt(%d), %d*sqrt(%d))" % (n, a, b)],
+            })
+    return raws
+
+
+def _g_rational_exponent():
+    raws = []
+    # Built FORWARD from the root r, so `base` is a perfect power by
+    # construction — no float nth-root and no rounding to check.
+    grid = []
+    for r in (2, 3, 4, 5, 6, 7, 10):
+        for root in (2, 3, 4, 5):
+            base = r ** root
+            if base > 1000:
+                continue
+            for power in (2, 3, 5):
+                grid.append((base, root, power, r))
+    for base, root, power, r in grid:
+        val = Integer(r) ** power
+        if val > 100000:
+            continue
+        raws.append({
+            "statement": "Evaluate $%d^{%d/%d}$." % (base, power, root),
+            "correct": val,
+            # error models: multiplied instead of powering the root; took the
+            # root only; applied the exponent to the base first then rooted wrong
+            "dvals": [Integer(r) * power, Integer(r), Integer(base) * power],
+            "explanation": ("The denominator is the ROOT and the numerator is the POWER: "
+                            "$%d^{%d/%d} = \\left(\\sqrt[%d]{%d}\\right)^{%d} = %d^{%d} = %s$. "
+                            "Taking the root and stopping ignores the numerator."
+                            % (base, power, root, root, base, power, r, power, fmt(val))),
+            "check": ["Eq(Integer(%d)**Rational(%d,%d), %s)" % (base, power, root, val)],
+        })
+    return raws
+
+
+def _g_radical_arithmetic():
+    raws = []
+    for c1, c2, b in [(3, 5, 2), (7, 2, 3), (4, 9, 5), (6, 1, 7), (8, 3, 2), (5, 5, 6),
+                      (2, 11, 3), (9, 4, 10), (6, 7, 5), (10, 3, 2), (4, 4, 11), (7, 6, 3)]:
+        s = c1 + c2
+        raws.append({
+            "statement": "Simplify $%s + %s$." % (radical(c1, b), radical(c2, b)),
+            "correct": "$%s$" % radical(s, b),
+            "dvals": ["$%s$" % radical(s, b * 2), "$%s$" % radical(c1 * c2, b),
+                      "$\\sqrt{%d}$" % ((c1 + c2) * b)],
+            "explanation": ("Like radicals add like terms — the $\\sqrt{%d}$ is the 'unit': "
+                            "$%d\\sqrt{%d} + %d\\sqrt{%d} = %d\\sqrt{%d}$. The radicand does "
+                            "NOT change; adding it is the classic error."
+                            % (b, c1, b, c2, b, s, b)),
+            "check": ["Eq(%d*sqrt(%d) + %d*sqrt(%d), %d*sqrt(%d))" % (c1, b, c2, b, s, b)],
+        })
+    for a, b in [(2, 3), (3, 5), (5, 2), (7, 3), (2, 11), (3, 7), (5, 6), (6, 5),
+                 (10, 3), (2, 13), (7, 2), (11, 3)]:
+        raws.append({
+            "statement": "Simplify $\\sqrt{%d} \\times \\sqrt{%d}$." % (a, b),
+            "correct": "$\\sqrt{%d}$" % (a * b),
+            "dvals": ["$\\sqrt{%d}$" % (a + b), "$%d\\sqrt{%d}$" % (a, b),
+                      "$%d$" % (a * b)],
+            "explanation": ("Radicals MULTIPLY under one root: "
+                            "$\\sqrt{%d}\\sqrt{%d} = \\sqrt{%d \\times %d} = \\sqrt{%d}$. "
+                            "Adding the radicands is the mirror-image of the addition error."
+                            % (a, b, a, b, a * b)),
+            "check": ["Eq(sqrt(%d)*sqrt(%d), sqrt(%d))" % (a, b, a * b)],
+        })
+    return raws
+
+
+def _g_rational_irrational():
+    raws = []
+    for n, r in [(3, 2), (5, 3), (7, 5), (2, 7), (11, 6), (4, 10), (9, 3), (6, 11),
+                 (8, 5), (12, 2), (10, 13), (1, 15)]:
+        raws.append({
+            "statement": ("Is $%d + \\sqrt{%d}$ rational or irrational, and why?" % (n, r)),
+            "correct": "irrational — a rational plus an irrational is always irrational",
+            "dvals": ["rational — the sum of two reals is rational",
+                      "rational — $%d$ is rational so the sum is too" % n,
+                      "it depends on the value of $\\sqrt{%d}$" % r],
+            "explanation": ("$\\sqrt{%d}$ is irrational. If $%d + \\sqrt{%d}$ were rational, "
+                            "subtracting the rational $%d$ would make $\\sqrt{%d}$ rational too "
+                            "— a contradiction. So the sum must be irrational."
+                            % (r, n, r, n, r)),
+            "check": ["Eq(sqrt(%d)**2, %d)" % (r, r)],
+        })
+    for a, b in [(4, 9), (16, 25), (36, 49), (9, 64), (25, 81), (100, 4), (144, 9),
+                 (49, 16), (121, 36), (169, 25), (196, 49), (225, 64)]:
+        v = Integer(int(a ** 0.5)) + Integer(int(b ** 0.5))
+        raws.append({
+            "statement": ("Is $\\sqrt{%d} + \\sqrt{%d}$ rational or irrational?" % (a, b)),
+            "correct": "rational — it equals $%s$" % fmt(v),
+            "dvals": ["irrational — it contains square roots",
+                      "irrational — a sum of roots is never rational",
+                      "rational — it equals $\\sqrt{%d}$" % (a + b)],
+            "explanation": ("Both are PERFECT squares: $\\sqrt{%d} = %d$ and $\\sqrt{%d} = %d$, "
+                            "so the sum is $%s$ — rational. A radical sign does not by itself "
+                            "make a number irrational, and roots do not add under one radical."
+                            % (a, int(a ** 0.5), b, int(b ** 0.5), fmt(v))),
+            "check": ["Eq(sqrt(%d) + sqrt(%d), %s)" % (a, b, v)],
+        })
+    return raws
+
+
+# ===========================================================================
+# Unit 2 — Polynomials & Factoring
+# ===========================================================================
+
+def _g_multiply_binomials():
+    raws = []
+    grid = [(p, q) for p in (2, 3, 4, 5, -2, -3, -4, 6, -5, 7)
+            for q in (3, -4, 5, 7, -6, 2)]
+    for p, q in grid:
+        b, c = p + q, p * q
+        raws.append({
+            "statement": "Expand $%s%s$." % (xpm(p), xpm(q)),
+            "correct": "$%s$" % quad(1, b, c),
+            "dvals": ["$%s$" % quad(1, p * q, p + q), "$%s$" % quad(1, 0, c),
+                      "$%s$" % quad(1, b, p * q + 1)],
+            "explanation": ("Each term of the first bracket multiplies each of the second: "
+                            "$x^2 %s %dx %s %dx %s %d$, and the middle terms combine to give "
+                            "$%s$. The constant is the PRODUCT $%d$ and the middle coefficient "
+                            "is the SUM $%d$ — swapping them is the usual slip."
+                            % ("+" if p >= 0 else "-", abs(p), "+" if q >= 0 else "-", abs(q),
+                               "+" if c >= 0 else "-", abs(c), quad(1, b, c), c, b)),
+            "check": ["Eq(expand((x + (%d))*(x + (%d))), x**2 + (%d)*x + (%d))" % (p, q, b, c)],
+        })
+    return raws
+
+
+def _g_factor_trinomial():
+    raws = []
+    grid = [(p, q) for p in (2, 3, 4, 5, -2, -3, -4, 6, -5, 7, -6, 8)
+            for q in (3, -4, 5, 7, -6)]
+    for p, q in grid:
+        b, c = p + q, p * q
+        raws.append({
+            "statement": "Factor $%s$ completely." % quad(1, b, c),
+            "correct": "$%s%s$" % (xpm(p), xpm(q)),
+            "dvals": ["$%s%s$" % (xpm(-p), xpm(-q)), "$%s%s$" % (xpm(b), xpm(c)),
+                      "$%s%s$" % (xpm(p), xpm(-q))],
+            "explanation": ("Find two numbers multiplying to $%d$ and adding to $%d$: "
+                            "$%d$ and $%d$. So the factorisation is $%s%s$. Check by "
+                            "expanding — the signs must reproduce BOTH the middle term and "
+                            "the constant." % (c, b, p, q, xpm(p), xpm(q))),
+            "check": ["Eq(expand((x + (%d))*(x + (%d))), x**2 + (%d)*x + (%d))" % (p, q, b, c)],
+        })
+    return raws
+
+
+def _g_difference_squares():
+    raws = []
+    for a in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12):
+        for b in (1, 2, 3, 4, 5, 6, 7):
+            if a == b:
+                continue
+            raws.append({
+                "statement": "Factor $%s$." % quad(a * a, 0, -(b * b)),
+                "correct": "$(%dx - %d)(%dx + %d)$" % (a, b, a, b),
+                "dvals": ["$(%dx - %d)^2$" % (a, b), "$(%dx + %d)^2$" % (a, b),
+                          "$(%dx - %d)(%dx - %d)$" % (a, b, a, b)],
+                "explanation": ("Both parts are squares: $%dx^2 = (%dx)^2$ and $%d = %d^2$. "
+                                "A difference of squares factors as a SUM times a DIFFERENCE: "
+                                "$(%dx - %d)(%dx + %d)$. A repeated bracket would give a middle "
+                                "term, which this expression does not have."
+                                % (a * a, a, b * b, b, a, b, a, b)),
+                "check": ["Eq(expand((%d*x - %d)*(%d*x + %d)), %d*x**2 - %d)"
+                          % (a, b, a, b, a * a, b * b)],
+            })
+    return raws
+
+
+def _g_gcf_factor():
+    raws = []
+    for g in (2, 3, 4, 5, 6, 7, 8, 9, 10, 12):
+        for p, q in [(3, 5), (2, 7), (4, 9), (5, 3), (6, 11), (7, 2)]:
+            raws.append({
+                "statement": "Factor out the greatest common factor: $%dx^2 + %dx$."
+                             % (g * p, g * q),
+                "correct": "$%dx(%dx + %d)$" % (g, p, q),
+                "dvals": ["$%d(%dx^2 + %dx)$" % (g, p, q), "$x(%dx + %d)$" % (g * p, g * q),
+                          "$%dx(%dx + %d)$" % (g * p, 1, q)],
+                "explanation": ("The numeric GCF of $%d$ and $%d$ is $%d$, and both terms carry "
+                                "at least one $x$, so the full common factor is $%dx$: "
+                                "$%dx(%dx + %d)$. Pulling out only the number leaves an $x$ "
+                                "behind." % (g * p, g * q, g, g, g, p, q)),
+                "check": ["Eq(expand(%d*x*(%d*x + %d)), %d*x**2 + %d*x)"
+                          % (g, p, q, g * p, g * q)],
+            })
+    return raws
+
+
+# ===========================================================================
+# Unit 3 — Quadratic Functions
+# ===========================================================================
+
+def _g_axis_vertex():
+    raws = []
+    grid = [(a, b, c) for a in (1, 2, -1, 3, -2, 4, -3, 5)
+            for b, c in ((-8, 3), (6, -5), (12, 7), (-4, 1), (10, -2), (-6, 4))]
+    for a, b, c in grid:
+        ax = Rational(-b, 2 * a)
+        vy = a * ax * ax + b * ax + c
+        raws.append({
+            "statement": "Find the axis of symmetry of $y = %s$." % quad(a, b, c),
+            "correct": ax,
+            # error models: dropped the minus; halved b only; used c
+            "dvals": [Rational(b, 2 * a), Rational(-b, 2), Rational(c, a)],
+            "explanation": ("The axis is $x = -\\frac{b}{2a} = -\\frac{%d}{2(%d)} = %s$. The "
+                            "MINUS is part of the formula — dropping it reflects the axis to "
+                            "the wrong side of the $y$-axis." % (b, a, fmt(ax))),
+            "check": ["Eq(Rational(-(%d), 2*(%d)), Rational(%d,%d))" % (b, a, ax.p, ax.q)],
+        })
+        raws.append({
+            "statement": "Find the $y$-coordinate of the vertex of $y = %s$." % quad(a, b, c),
+            "correct": vy,
+            "dvals": [ax, Integer(c), vy + a],
+            "explanation": ("The vertex sits at $x = %s$; substituting gives $y = %s$. The "
+                            "$x$-coordinate $%s$ answers a different question, and $c = %d$ is "
+                            "the $y$-INTERCEPT, not the vertex."
+                            % (fmt(ax), fmt(vy), fmt(ax), c)),
+            "check": ["Eq((%d)*Rational(%d,%d)**2 + (%d)*Rational(%d,%d) + (%d), Rational(%d,%d))"
+                      % (a, ax.p, ax.q, b, ax.p, ax.q, c, Rational(vy).p, Rational(vy).q)],
+        })
+    return raws
+
+
+def _g_which_form():
+    raws = []
+    setups = [
+        ("standard form $y = ax^2 + bx + c$", "the $y$-intercept, read straight off as $c$",
+         ["the roots, read straight off", "the vertex, read straight off",
+          "the axis of symmetry, read straight off"]),
+        ("factored form $y = a(x - p)(x - q)$", "the roots, read straight off as $p$ and $q$",
+         ["the vertex, read straight off", "the $y$-intercept, read straight off",
+          "the maximum value, read straight off"]),
+        ("vertex form $y = a(x - h)^2 + k$", "the vertex, read straight off as $(h, k)$",
+         ["the roots, read straight off", "the $y$-intercept, read straight off",
+          "the leading coefficient's sign only"]),
+    ]
+    params = [(1, 2, 3), (2, -3, 5), (-1, 4, 1), (3, 1, -2), (-2, 5, 4), (4, -1, 6),
+              (1, -5, 2), (2, 3, -4), (-3, 2, 7), (5, -2, 1), (1, 6, -3), (-4, 1, 2)]
+    for a, u, v in params:
+        for formname, ans, ds in setups:
+            raws.append({
+                "statement": ("A quadratic is written in %s, with $a = %d$. Which feature does "
+                              "this form reveal WITHOUT any algebra?" % (formname, a)),
+                "correct": ans,
+                "dvals": ds,
+                "explanation": ("Each form is chosen for what it exposes. %s Getting a different "
+                                "feature out of this form always costs you some work — "
+                                "expanding, factoring, or completing the square."
+                                % ans.capitalize().replace(", read straight off", " is immediate")),
+                "check": ["Eq(%d, %d)" % (a, a)],
+            })
+    return raws
+
+
+# ===========================================================================
+# Unit 4 — Solving Quadratic Equations
+# ===========================================================================
+
+def _g_quadratic_formula():
+    raws = []
+    # built backwards from integer roots so the arithmetic stays humane
+    for r1 in (-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6):
+        for a in (1, 2, 3):
+            for r2 in (2, -3, 5):
+                if r1 == r2:
+                    continue
+                b, c = -a * (r1 + r2), a * r1 * r2
+                bigger = max(r1, r2)
+                raws.append({
+                    "statement": "Solve $%s = 0$. Give the LARGER root." % quad(a, b, c),
+                    "correct": bigger,
+                    "dvals": [min(r1, r2), -bigger, bigger + 1],
+                    "explanation": ("The discriminant is $%d^2 - 4(%d)(%d) = %d$, so "
+                                    "$x = \\frac{%d \\pm \\sqrt{%d}}{%d}$ gives roots $%d$ and "
+                                    "$%d$. The larger is $%d$."
+                                    % (b, a, c, b * b - 4 * a * c, -b, b * b - 4 * a * c,
+                                       2 * a, min(r1, r2), max(r1, r2), bigger)),
+                    "check": ["Eq(%d*(%d)**2 + (%d)*(%d) + (%d), 0)" % (a, bigger, b, bigger, c),
+                              "Eq(%d*(%d)**2 + (%d)*(%d) + (%d), 0)"
+                              % (a, min(r1, r2), b, min(r1, r2), c)],
+                })
+    return raws
+
+
+def _g_complex_roots():
+    raws = []
+    # b^2 - 4ac < 0 forces a complex pair
+    for a in (1, 2, 3, 4):
+        for b in (2, 4, 6, -2, -4, -6):
+            for c in (5, 7, 10, 13):
+                disc = b * b - 4 * a * c
+                if disc >= 0:
+                    continue
+                raws.append({
+                    "statement": ("How many REAL solutions does $%s = 0$ have, and what does "
+                                  "that mean for its graph?" % quad(a, b, c)),
+                    "correct": "none — the parabola never crosses the $x$-axis",
+                    "dvals": ["one — the parabola touches the $x$-axis",
+                              "two — the parabola crosses twice",
+                              "infinitely many"],
+                    "explanation": ("The discriminant is $%d^2 - 4(%d)(%d) = %d < 0$, so there "
+                                    "are no real roots — the solutions are a complex conjugate "
+                                    "pair. Graphically the parabola sits entirely off the "
+                                    "$x$-axis." % (b, a, c, disc)),
+                    "check": ["%d < 0" % disc],
+                })
+    return raws
+
+
+# ===========================================================================
+# Unit 5 — Similarity & Dilations  (figure-bearing)
+# ===========================================================================
+
+def _g_dilation():
+    raws = []
+    grid = [(x, y, k) for x, y in [(2, 3), (-4, 2), (3, -5), (6, 1), (-2, -6), (5, 4)]
+            for k in (2, 3, Rational(1, 2), 4, Rational(1, 3), Rational(3, 2))]
+    for x, y, k in grid:
+        k = Rational(k)
+        ix, iy = Rational(x) * k, Rational(y) * k
+        pts_ = [P("O", 0, 0, "O"), P("A", x, y, "A"), P("B", float(ix), float(iy), "A'")]
+        fig = figure(pts_, [seg("O", "A"), seg("O", "B", dashed=True)])
+        raws.append({
+            "statement": ("Dilate $A%s$ about the origin with scale factor $%s$. Where does it "
+                          "land?" % (pt(x, y), fmt(k))),
+            "correct": "$%s$" % pt(ix, iy),
+            "dvals": ["$%s$" % pt(Rational(x) + k, Rational(y) + k),
+                      "$%s$" % pt(Rational(x) / k, Rational(y) / k),
+                      "$%s$" % pt(ix, y)],
+            "explanation": ("A dilation about the origin MULTIPLIES both coordinates by the "
+                            "scale factor: $(%s \\cdot %s,\\ %s \\cdot %s) = %s$. Adding the "
+                            "factor is a translation, and dividing shrinks when you meant to "
+                            "grow." % (fmt(x), fmt(k), fmt(y), fmt(k), pt(ix, iy))),
+            "check": ["Eq(%d*Rational(%d,%d), Rational(%d,%d))"
+                      % (x, k.p, k.q, Rational(ix).p, Rational(ix).q),
+                      "Eq(%d*Rational(%d,%d), Rational(%d,%d))"
+                      % (y, k.p, k.q, Rational(iy).p, Rational(iy).q)],
+            "geoFigure": fig,
+        })
+    return raws
+
+
+def _g_scale_factor():
+    raws = []
+    grid = [(a, k) for a in (3, 4, 5, 6, 7, 8, 9, 10, 12, 15)
+            for k in (2, 3, Rational(1, 2), Rational(3, 2), 4)]
+    for a, k in grid:
+        k = Rational(k)
+        b = Rational(a) * k
+        area_k = k * k
+        raws.append({
+            "statement": ("Two similar figures have corresponding sides $%s$ and $%s$. What is "
+                          "the ratio of their AREAS?" % (fmt(a), fmt(b))),
+            "correct": area_k,
+            "dvals": [k, Rational(1) / k, k * 3],
+            "explanation": ("Lengths scale by $%s$, so AREAS scale by the SQUARE of that: "
+                            "$%s^2 = %s$. Using the length ratio for area is the single most "
+                            "common similarity error." % (fmt(k), fmt(k), fmt(area_k))),
+            "check": ["Eq(Rational(%d,%d)**2, Rational(%d,%d))"
+                      % (k.p, k.q, area_k.p, area_k.q)],
+        })
+    return raws
+
+
+def _g_side_splitter():
+    raws = []
+    grid = [(a, b, c) for a, b in [(3, 6), (4, 8), (5, 10), (6, 9), (2, 8), (7, 14),
+                                   (4, 6), (5, 15), (3, 12), (8, 12)]
+            for c in (4, 6, 10)]
+    for a, b, c in grid:
+        d = Rational(b * c, a)
+        pts_ = [P("A", 0, 6, "A"), P("B", -4, 0, "B"), P("C", 4, 0, "C"),
+                P("D", -2, 3, "D"), P("E", 2, 3, "E")]
+        fig = figure(pts_, closed(["A", "B", "C"]) + [seg("D", "E")])
+        raws.append({
+            "statement": ("In $\\triangle ABC$, $DE \\parallel BC$ with $D$ on $AB$ and $E$ on "
+                          "$AC$. If $AD = %d$, $DB = %d$ and $AE = %d$, find $EC$."
+                          % (a, b, c)),
+            "correct": d,
+            "dvals": [Rational(a * c, b), Rational(b, a) + c, Rational(a + b + c)],
+            "explanation": ("The side-splitter theorem gives $\\frac{AD}{DB} = \\frac{AE}{EC}$, "
+                            "so $\\frac{%d}{%d} = \\frac{%d}{EC}$ and $EC = %s$. Inverting one "
+                            "of the ratios is the usual slip." % (a, b, c, fmt(d))),
+            "check": ["Eq(Rational(%d,%d), Rational(%d, %d)/Rational(%d,%d))"
+                      % (a, b, c, 1, d.p, d.q)],
+            "geoFigure": fig,
+        })
+    return raws
+
+
+# ===========================================================================
+# Unit 6 — Right-Triangle Trigonometry  (figure-bearing)
+# ===========================================================================
+
+_TRIP = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15), (7, 24, 25),
+         (12, 16, 20), (20, 21, 29), (10, 24, 26), (15, 20, 25), (9, 40, 41), (12, 35, 37)]
+
+
+def _g_pick_ratio():
+    raws = []
+    for opp, adj, hyp in _TRIP:
+        pts_ = [P("A", 0, 0, "A"), P("B", adj / 4.0, 0, "B"), P("C", adj / 4.0, opp / 4.0, "C")]
+        fig = figure(pts_, closed(["A", "B", "C"]) + [
+            {"kind": "angle", "at": "B", "from": "A", "to": "C", "right": True}])
+        for name, val, why in [
+            ("\\sin A", Rational(opp, hyp), "opposite over hypotenuse"),
+            ("\\cos A", Rational(adj, hyp), "adjacent over hypotenuse"),
+            ("\\tan A", Rational(opp, adj), "opposite over adjacent"),
+        ]:
+            others = [v for v in (Rational(opp, hyp), Rational(adj, hyp), Rational(opp, adj),
+                                  Rational(hyp, opp)) if v != val]
+            raws.append({
+                "statement": ("In right triangle $ABC$ the right angle is at $B$, the side "
+                              "opposite $A$ is $%d$, the side adjacent to $A$ is $%d$ and the "
+                              "hypotenuse is $%d$. Find $%s$." % (opp, adj, hyp, name)),
+                "correct": val,
+                "dvals": others[:3],
+                "explanation": ("$%s$ is %s: $\\frac{%s}{%s} = %s$. SOH-CAH-TOA — the wrong "
+                                "options are the OTHER two ratios, so naming the sides before "
+                                "dividing is what protects you."
+                                % (name, why,
+                                   fmt(val.p if val.q else 0) if False else str(val.p),
+                                   str(val.q), fmt(val))),
+                "check": ["Eq(Rational(%d,%d), Rational(%d,%d))" % (val.p, val.q, val.p, val.q),
+                          "Eq(%d**2 + %d**2, %d**2)" % (opp, adj, hyp)],
+                "geoFigure": fig,
+            })
+    return raws
+
+
+def _g_complementary():
+    raws = []
+    for ang in (10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80):
+        comp = 90 - ang
+        raws.append({
+            "statement": ("Given $\\sin %d° = k$, which expression also equals $k$?" % ang),
+            "correct": "$\\cos %d°$" % comp,
+            "dvals": ["$\\cos %d°$" % ang, "$\\sin %d°$" % comp, "$\\tan %d°$" % ang],
+            "explanation": ("Sine and cosine of COMPLEMENTARY angles are equal: "
+                            "$\\sin \\theta = \\cos(90° - \\theta)$, so "
+                            "$\\sin %d° = \\cos %d°$. This holds because the side opposite one "
+                            "acute angle is adjacent to the other."
+                            % (ang, comp)),
+            "check": ["Eq(%d + %d, 90)" % (ang, comp)],
+        })
+    for ang in (10, 20, 25, 35, 40, 50, 55, 65, 70, 80):
+        comp = 90 - ang
+        raws.append({
+            "statement": ("In a right triangle one acute angle is $%d°$. What is the other?" % ang),
+            "correct": comp,
+            "dvals": [ang, 180 - ang, 90 + ang],
+            "explanation": ("The angles of a triangle sum to $180°$ and one is $90°$, so the two "
+                            "acute angles sum to $90°$: the other is $90 - %d = %d°$."
+                            % (ang, comp)),
+            "check": ["Eq(90 + %d + %d, 180)" % (ang, comp)],
+        })
+    return raws
+
+
+# ===========================================================================
+# Unit 7 — Circles  (figure-bearing)
+# ===========================================================================
+
+def _g_inscribed_angle():
+    raws = []
+    for central in (20, 24, 30, 36, 40, 44, 50, 56, 60, 64, 70, 76, 80, 84, 90, 96,
+                    100, 104, 110, 116, 120, 124, 130, 136, 140, 144, 150, 156, 160, 170):
+        ins = Rational(central, 2)
+        pts_ = [P("O", 0, 0, "O"), on_circle("A", 0, 0, 4, 200, "A"),
+                on_circle("B", 0, 0, 4, 340, "B"), on_circle("C", 0, 0, 4, 90, "C")]
+        fig = figure(pts_, [seg("O", "A"), seg("O", "B"), seg("C", "A"), seg("C", "B"),
+                            {"kind": "angle", "at": "O", "from": "A", "to": "B",
+                             "label": "%d°" % central}])
+        raws.append({
+            "statement": ("A central angle subtends arc $AB$ and measures $%d°$. What is the "
+                          "measure of an inscribed angle subtending the SAME arc?" % central),
+            "correct": ins,
+            "dvals": [Integer(central), Integer(central) * 2, Integer(180 - central)],
+            "explanation": ("An inscribed angle is HALF the central angle on the same arc: "
+                            "$\\frac{%d}{2} = %s°$. Doubling instead of halving reverses the "
+                            "theorem." % (central, fmt(ins))),
+            "check": ["Eq(Rational(%d,2), Rational(%d,%d))" % (central, ins.p, ins.q)],
+            "geoFigure": fig,
+        })
+    return raws
+
+
+def _g_circle_equation():
+    raws = []
+    grid = [(h, k, r) for h, k in [(0, 0), (2, 3), (-1, 4), (5, -2), (-3, -5), (1, 6),
+                                   (4, 1), (-2, 2), (3, -4), (-6, 3)]
+            for r in (2, 3, 5, 7, 4, 6)]
+    for h, k, r in grid:
+        raws.append({
+            "statement": ("Write the equation of the circle with centre $%s$ and radius $%d$."
+                          % (pt(h, k), r)),
+            "correct": "$%s^2 + %s^2 = %d$" % (xpm(-h), xpm(-k, "y"), r * r),
+            "dvals": ["$%s^2 + %s^2 = %d$" % (xpm(h), xpm(k, "y"), r * r),
+                      "$%s^2 + %s^2 = %d$" % (xpm(-h), xpm(-k, "y"), r),
+                      "$%s^2 + %s^2 = %d$" % (xpm(-h), xpm(-k, "y"), 2 * r)],
+            "explanation": ("The standard form is $(x - h)^2 + (y - k)^2 = r^2$. With centre "
+                            "$%s$ the signs INVERT inside the brackets, and the right side is "
+                            "$%d^2 = %d$ — the radius squared, not the radius."
+                            % (pt(h, k), r, r * r)),
+            "check": ["Eq((%d - (%d))**2 + (%d - (%d))**2, %d)"
+                      % (h + r, h, k, k, r * r)],
+        })
+    return raws
+
+
+def _g_arc_length():
+    raws = []
+    grid = [(r, deg) for r in (3, 4, 6, 9, 12, 5, 10, 8)
+            for deg in (30, 45, 60, 90, 120, 180)]
+    for r, deg in grid:
+        arc = Rational(deg, 360) * 2 * r        # coefficient of pi
+        raws.append({
+            "statement": ("A circle has radius $%d$. Find the length of an arc subtending a "
+                          "central angle of $%d°$, as a multiple of $\\pi$." % (r, deg)),
+            "correct": arc,
+            "dvals": [Rational(deg, 360) * r * r, Rational(deg, 360) * r, Rational(2 * r)],
+            "explanation": ("Arc length is the fraction $\\frac{%d}{360}$ of the whole "
+                            "circumference $2\\pi r = %d\\pi$: $%s\\pi$. Using $\\pi r^2$ there "
+                            "would give a sector AREA instead."
+                            % (deg, 2 * r, fmt(arc))),
+            "check": ["Eq(Rational(%d,360)*2*%d, Rational(%d,%d))"
+                      % (deg, r, arc.p, arc.q)],
+        })
+    return raws
+
+
+def _g_tangent_radius():
+    raws = []
+    # both leg assignments: radius short/tangent long and the reverse. They are
+    # genuinely different questions, not the same one relabelled.
+    for a, b, c in _TRIP + [(b0, a0, c0) for a0, b0, c0 in _TRIP]:
+        pts_ = [P("O", 0, 0, "O"), P("T", a / 2.0, 0, "T"), P("P", a / 2.0, b / 2.0, "P")]
+        fig = figure(pts_, [seg("O", "T"), seg("T", "P"), seg("O", "P"),
+                            {"kind": "angle", "at": "T", "from": "O", "to": "P", "right": True}])
+        raws.append({
+            "statement": ("$PT$ is tangent to a circle of centre $O$ at $T$. If the radius "
+                          "$OT = %d$ and the tangent length $PT = %d$, find $OP$." % (a, b)),
+            "correct": c,
+            "dvals": [a + b, b - a, a * b],
+            "explanation": ("A tangent meets the radius at the point of contact at $90°$, so "
+                            "$\\triangle OTP$ is right-angled at $T$: "
+                            "$OP = \\sqrt{%d^2 + %d^2} = %d$. That right angle is the whole "
+                            "reason Pythagoras applies here." % (a, b, c)),
+            "check": ["Eq(%d**2 + %d**2, %d**2)" % (a, b, c)],
+            "geoFigure": fig,
+        })
+    return raws
+
+
+# ===========================================================================
+# Unit 8 — Probability
+# ===========================================================================
+
+def _g_basic_probability():
+    raws = []
+    for tot, fav in [(52, 13), (52, 4), (36, 6), (20, 5), (30, 12), (24, 8), (50, 15),
+                     (40, 10), (60, 18), (25, 5), (48, 16), (100, 35)]:
+        p = Rational(fav, tot)
+        raws.append({
+            "statement": ("A box holds $%d$ items, of which $%d$ are red. One is drawn at "
+                          "random. Find $P(\\text{red})$." % (tot, fav)),
+            "correct": p,
+            "dvals": [Rational(tot, fav), Rational(fav, tot - fav), 1 - p],
+            "explanation": ("Probability is favourable over total: $\\frac{%d}{%d} = %s$. "
+                            "Dividing by the NON-red count gives odds, not probability, and "
+                            "$%s$ is the complement." % (fav, tot, fmt(p), fmt(1 - p))),
+            "check": ["Eq(Rational(%d,%d), Rational(%d,%d))" % (fav, tot, p.p, p.q)],
+        })
+        raws.append({
+            "statement": ("A box holds $%d$ items, of which $%d$ are red. Find "
+                          "$P(\\text{not red})$." % (tot, fav)),
+            "correct": 1 - p,
+            "dvals": [p, Rational(tot, tot - fav), -p],
+            "explanation": ("The complement rule: $P(\\text{not red}) = 1 - %s = %s$. "
+                            "Equivalently $\\frac{%d}{%d}$ — the non-red count over the total."
+                            % (fmt(p), fmt(1 - p), tot - fav, tot)),
+            "check": ["Eq(1 - Rational(%d,%d), Rational(%d,%d))"
+                      % (fav, tot, (1 - p).p, (1 - p).q)],
+        })
+    return raws
+
+
+def _g_union_conditional():
+    raws = []
+    tables = [(30, 20, 10, 40), (25, 15, 35, 25), (18, 12, 22, 48), (40, 10, 20, 30),
+              (16, 24, 32, 8), (45, 15, 25, 15), (12, 28, 36, 24), (50, 30, 10, 10),
+              (21, 9, 27, 43), (14, 26, 30, 30), (36, 24, 12, 28), (20, 40, 25, 15)]
+    for a, b, c, d in tables:
+        tot = a + b + c + d
+        pa = Rational(a + b, tot)        # P(group 1)
+        pb = Rational(a + c, tot)        # P(yes)
+        pab = Rational(a, tot)           # P(both)
+        union = pa + pb - pab
+        cond = Rational(a, a + c)        # P(group 1 | yes)
+        tbl = ("In a survey — Group 1: $%d$ yes, $%d$ no; Group 2: $%d$ yes, $%d$ no."
+               % (a, b, c, d))
+        raws.append({
+            "statement": "%s Find $P(\\text{Group 1 OR yes})$." % tbl,
+            "correct": union,
+            "dvals": [pa + pb, pab, pa * pb],
+            "explanation": ("The addition rule subtracts the overlap so it is not counted "
+                            "twice: $%s + %s - %s = %s$. Adding without subtracting "
+                            "double-counts the $%d$ people who are both."
+                            % (fmt(pa), fmt(pb), fmt(pab), fmt(union), a)),
+            "check": ["Eq(Rational(%d,%d) + Rational(%d,%d) - Rational(%d,%d), Rational(%d,%d))"
+                      % (pa.p, pa.q, pb.p, pb.q, pab.p, pab.q, union.p, union.q)],
+        })
+        raws.append({
+            "statement": "%s Find $P(\\text{Group 1} \\mid \\text{yes})$." % tbl,
+            "correct": cond,
+            "dvals": [pab, Rational(a, a + b), pa],
+            "explanation": ("Conditioning on 'yes' RESTRICTS the sample space to the $%d$ yes "
+                            "answers, of which $%d$ are Group 1: $\\frac{%d}{%d} = %s$. Using "
+                            "the grand total instead gives the joint probability $%s$."
+                            % (a + c, a, a, a + c, fmt(cond), fmt(pab))),
+            "check": ["Eq(Rational(%d,%d), Rational(%d,%d))" % (a, a + c, cond.p, cond.q)],
+        })
+        indep = pab == pa * pb
+        raws.append({
+            "statement": "%s Are 'Group 1' and 'yes' independent?" % tbl,
+            "correct": "yes — $P(A \\cap B) = P(A)P(B)$" if indep
+                       else "no — $P(A \\cap B) \\ne P(A)P(B)$",
+            "dvals": (["no — $P(A \\cap B) \\ne P(A)P(B)$",
+                       "independence cannot be decided from a table",
+                       "yes — because the groups are separate"] if indep else
+                      ["yes — $P(A \\cap B) = P(A)P(B)$",
+                       "independence cannot be decided from a table",
+                       "no — because the groups are separate"]),
+            "explanation": ("Test the definition: $P(A \\cap B) = %s$ while "
+                            "$P(A)P(B) = %s \\times %s = %s$. They %s, so the events are %s."
+                            % (fmt(pab), fmt(pa), fmt(pb), fmt(pa * pb),
+                               "match" if indep else "differ",
+                               "independent" if indep else "dependent")),
+            "check": ["%s(Rational(%d,%d), Rational(%d,%d))"
+                      % ("Eq" if indep else "Ne", pab.p, pab.q,
+                         (pa * pb).p, (pa * pb).q)],
+        })
+    return raws
+
+
+def _g_multiplication_rule():
+    raws = []
+    for tot, r in [(10, 4), (12, 5), (8, 3), (15, 6), (20, 8), (9, 4), (14, 6), (18, 7),
+                   (11, 5), (16, 7), (13, 5), (25, 10)]:
+        with_rep = Rational(r, tot) * Rational(r, tot)
+        without = Rational(r, tot) * Rational(r - 1, tot - 1)
+        raws.append({
+            "statement": ("A bag has $%d$ balls, $%d$ red. Two are drawn WITH replacement. Find "
+                          "$P(\\text{both red})$." % (tot, r)),
+            "correct": with_rep,
+            "dvals": [without, Rational(r, tot), Rational(2 * r, tot)],
+            "explanation": ("Replacement leaves the bag unchanged, so the draws are independent "
+                            "and the probabilities simply multiply: "
+                            "$\\frac{%d}{%d} \\times \\frac{%d}{%d} = %s$."
+                            % (r, tot, r, tot, fmt(with_rep))),
+            "check": ["Eq(Rational(%d,%d)*Rational(%d,%d), Rational(%d,%d))"
+                      % (r, tot, r, tot, with_rep.p, with_rep.q)],
+        })
+        raws.append({
+            "statement": ("A bag has $%d$ balls, $%d$ red. Two are drawn WITHOUT replacement. "
+                          "Find $P(\\text{both red})$." % (tot, r)),
+            "correct": without,
+            "dvals": [with_rep, Rational(r, tot), Rational(r - 1, tot - 1)],
+            "explanation": ("The first draw removes a red ball AND shrinks the bag, so the "
+                            "second probability is $\\frac{%d}{%d}$: "
+                            "$\\frac{%d}{%d} \\times \\frac{%d}{%d} = %s$. Using $\\frac{%d}{%d}$ "
+                            "twice would assume replacement."
+                            % (r - 1, tot - 1, r, tot, r - 1, tot - 1, fmt(without), r, tot)),
+            "check": ["Eq(Rational(%d,%d)*Rational(%d,%d), Rational(%d,%d))"
+                      % (r, tot, r - 1, tot - 1, without.p, without.q)],
+        })
+    return raws
+
+
+def _g_sample_space():
+    raws = []
+    # size of a compound sample space, and a probability read off it
+    combos = [("a coin and a six-sided die", 2, 6), ("two six-sided dice", 6, 6),
+              ("a coin and a spinner with $4$ equal sectors", 2, 4),
+              ("a spinner with $3$ sectors and a six-sided die", 3, 6),
+              ("two spinners with $5$ sectors each", 5, 5),
+              ("a coin and a card drawn from $13$ hearts", 2, 13),
+              ("a four-sided die and a six-sided die", 4, 6),
+              ("three coins", 2, 4), ("a spinner with $8$ sectors and a coin", 8, 2),
+              ("two four-sided dice", 4, 4), ("a six-sided die and a spinner with $10$ sectors", 6, 10),
+              ("a spinner with $7$ sectors and a four-sided die", 7, 4),
+              ("a coin and a spinner with $12$ sectors", 2, 12),
+              ("a five-sided spinner and a six-sided die", 5, 6),
+              ("two eight-sided dice", 8, 8),
+              ("a three-sided spinner and a coin", 3, 2)]
+    for desc, m, n in combos:
+        tot = m * n
+        raws.append({
+            "statement": "How many equally likely outcomes are there when you use %s?" % desc,
+            "correct": tot,
+            "dvals": [m + n, tot + 1, max(m, n)],
+            "explanation": ("Each of the $%d$ outcomes of the first can pair with each of the "
+                            "$%d$ of the second, so the counting principle MULTIPLIES: "
+                            "$%d \\times %d = %d$. Adding would count the two experiments as "
+                            "alternatives rather than as a pair." % (m, n, m, n, tot)),
+            "check": ["Eq(%d*%d, %d)" % (m, n, tot)],
+        })
+    # dice sums — a genuinely different question shape on the same unit
+    for target, ways in [(2, 1), (3, 2), (4, 3), (5, 4), (6, 5), (7, 6),
+                         (8, 5), (9, 4), (10, 3), (11, 2), (12, 1)]:
+        p = Rational(ways, 36)
+        raws.append({
+            "statement": ("Two fair six-sided dice are rolled. Find $P(\\text{sum} = %d)$." % target),
+            "correct": p,
+            # "all 11 sums equally likely"; off-by-one count; wrong denominator
+            "dvals": [Rational(ways, 11), Rational(ways + 1, 36), Rational(ways, 6)],
+            "explanation": ("There are $36$ equally likely ordered outcomes, and $%d$ of them "
+                            "sum to $%d$, so $P = \\frac{%d}{36} = %s$. Treating the $11$ "
+                            "possible sums as equally likely is the classic error — they are "
+                            "not." % (ways, target, ways, fmt(p))),
+            "check": ["Eq(Rational(%d,36), Rational(%d,%d))" % (ways, p.p, p.q)],
+        })
+    return raws
+
+
+def build():
+    forms = _remapped_forms()
+
+    U1 = "rational-exponents-and-radicals"
+    forms += [
+        form("im2-simplify-radical", "Simplifying radicals", 1, U1,
+             "Pull out the largest perfect-square factor — anything less is not simplified.",
+             mk_txt("im2-rad", _g_simplify_radical())),
+        form("im2-rational-exponent", "Evaluating rational exponents", 1, U1,
+             "Denominator is the root, numerator is the power.",
+             mk_num("im2-rex", _g_rational_exponent())),
+        form("im2-radical-arithmetic", "Adding and multiplying radicals", 2, U1,
+             "Like radicals add like terms; multiplication combines under one root.",
+             mk_txt("im2-rar", _g_radical_arithmetic())),
+        form("im2-rational-irrational", "Rational or irrational?", 2, U1,
+             "A rational plus an irrational is always irrational — but a radical is not automatically irrational.",
+             mk_txt("im2-rir", _g_rational_irrational())),
+    ]
+
+    U2 = "polynomials-and-factoring"
+    forms += [
+        form("im2-multiply-binomials", "Multiplying binomials", 1, U2,
+             "The constant is the product of the two numbers; the middle coefficient is their sum.",
+             mk_txt("im2-mb", _g_multiply_binomials())),
+        form("im2-gcf-factor", "Factoring out the greatest common factor", 1, U2,
+             "Take the numeric GCF and every shared variable — always the FIRST factoring step.",
+             mk_txt("im2-gcf", _g_gcf_factor())),
+        form("im2-factor-trinomial", "Factoring trinomials", 2, U2,
+             "Two numbers multiplying to c and adding to b — multiplication read backwards.",
+             mk_txt("im2-ft", _g_factor_trinomial())),
+        form("im2-difference-squares", "The difference of two squares", 2, U2,
+             "a² - b² = (a - b)(a + b); a repeated bracket would create a middle term.",
+             mk_txt("im2-ds", _g_difference_squares())),
+    ]
+
+    U3 = "quadratic-functions"
+    forms += [
+        form("im2-axis-vertex", "The axis of symmetry and the vertex", 2, U3,
+             "x = -b/2a, minus included; substitute back for the y-coordinate.",
+             mk_num("im2-av", _g_axis_vertex())),
+        form("im2-which-form", "Which form reveals which feature", 1, U3,
+             "Standard shows the intercept, factored shows the roots, vertex form shows the vertex.",
+             mk_txt("im2-wf", _g_which_form())),
+    ]
+
+    U4 = "solving-quadratic-equations"
+    forms += [
+        form("im2-quadratic-formula", "Solving with the quadratic formula", 2, U4,
+             "Compute the discriminant first, then read both roots off the formula.",
+             mk_num("im2-qf", _g_quadratic_formula())),
+        form("im2-complex-roots", "When the discriminant goes negative", 3, U4,
+             "b² - 4ac < 0 means no real roots — and a parabola that misses the axis entirely.",
+             mk_txt("im2-cx", _g_complex_roots())),
+    ]
+
+    U5 = "similarity-and-dilations"
+    forms += [
+        form("im2-dilation", "Dilating a point about the origin", 1, U5,
+             "Multiply both coordinates by the scale factor — adding it would be a translation.",
+             mk_txt("im2-dil", _g_dilation())),
+        form("im2-scale-factor", "Length ratio against area ratio", 2, U5,
+             "Areas scale by the SQUARE of the length ratio.",
+             mk_num("im2-sf", _g_scale_factor())),
+        form("im2-side-splitter", "The side-splitter theorem", 2, U5,
+             "A line parallel to one side cuts the other two proportionally.",
+             mk_num("im2-ss", _g_side_splitter())),
+    ]
+
+    U6 = "right-triangle-trigonometry"
+    forms += [
+        form("im2-pick-ratio", "Choosing the right trig ratio", 1, U6,
+             "SOH-CAH-TOA: name the sides relative to the angle BEFORE dividing.",
+             mk_num("im2-pr", _g_pick_ratio())),
+        form("im2-complementary", "Complementary angles in a right triangle", 2, U6,
+             "sin θ = cos(90° - θ), because one angle's opposite is the other's adjacent.",
+             mk_txt("im2-comp", _g_complementary())),
+    ]
+
+    U7 = "circles"
+    forms += [
+        form("im2-inscribed-angle", "Central and inscribed angles", 1, U7,
+             "An inscribed angle is half the central angle on the same arc.",
+             mk_num("im2-ia", _g_inscribed_angle())),
+        form("im2-arc-length", "Arc length as a fraction of the circumference", 2, U7,
+             "The angle's share of 360° times 2πr — not πr², which is area.",
+             mk_num("im2-arc", _g_arc_length())),
+        form("im2-tangent-radius", "Tangent meets radius at a right angle", 2, U7,
+             "That right angle is what lets Pythagoras into a circle problem.",
+             mk_num("im2-tan", _g_tangent_radius())),
+        form("im2-circle-equation", "The equation of a circle", 2, U7,
+             "(x - h)² + (y - k)² = r²: signs invert inside, and the right side is r SQUARED.",
+             mk_txt("im2-ceq", _g_circle_equation())),
+    ]
+
+    U8 = "probability"
+    forms += [
+        form("im2-basic-probability", "Probability and its complement", 1, U8,
+             "Favourable over total; the complement is 1 minus the probability.",
+             mk_num("im2-bp", _g_basic_probability())),
+        form("im2-union-conditional", "Unions, conditionals and independence", 2, U8,
+             "Add and subtract the overlap; conditioning restricts the sample space.",
+             mk_txt("im2-uc", _g_union_conditional())),
+        form("im2-sample-space", "Counting the sample space", 1, U8,
+             "The counting principle multiplies; not every visible total is equally likely.",
+             mk_num("im2-ss2", _g_sample_space())),
+        form("im2-multiplication-rule", "With and without replacement", 2, U8,
+             "Without replacement, the second draw sees a smaller bag.",
+             mk_num("im2-mr", _g_multiplication_rule())),
+    ]
+
+    return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,
+            "units": UNITS, "forms": forms}
+
+
+if __name__ == "__main__":
+    t = build()
+    per = {u["id"]: 0 for u in t["units"]}
+    for f in t["forms"]:
+        per[f["unit"]] += len(f["variants"])
+    print("%s: %d forms, %d variants" %
+          (t["slug"], len(t["forms"]), sum(len(f["variants"]) for f in t["forms"])))
+    for u in t["units"]:
+        print("   %-40s %4d" % (u["id"], per[u["id"]]))
