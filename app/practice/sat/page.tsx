@@ -62,7 +62,7 @@ export default function SatHubPage() {
             weakness practice, then study-by-topic into the shared courses. */}
         <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
         <Link
-          href="/practice/sat/progress"
+          href="/sat-analytics"
           className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
           style={{ display: "flex" }}
         >

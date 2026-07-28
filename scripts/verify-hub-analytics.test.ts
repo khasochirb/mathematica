@@ -24,7 +24,9 @@ describe("exam-hub analytics vocabulary", () => {
       expect(HUB_NATIVE_METRIC_NOTE[hub]).toBeTruthy();
       expect(contextLabel(hub)).not.toBe(hub);
       expect(contextHref(hub)).toBe(`/practice/${hub}`);
-      expect(contextProgressHref(hub)).toBe(`/practice/${hub}/progress`);
+      // Each hub's report lives at /<hub>-analytics; the old /progress
+      // route redirects there (one report, many doors).
+      expect(contextProgressHref(hub)).toBe(`/${hub}-analytics`);
     }
   });
 

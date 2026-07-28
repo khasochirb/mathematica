@@ -109,8 +109,10 @@ export function contextProgressHref(context: string): string | null {
   // Course-shaped, but it lives in the exam hub — must not fall through to
   // /math/progress?course=esh, which is not a course /math knows about.
   if (context === ESH_COURSE_CONTEXT) return "/analytics";
-  if (context === "sat") return "/practice/sat/progress";
-  if (context === "ib") return "/practice/ib/progress";
+  // Each exam hub has ONE analytics report; the hub's /progress route
+  // redirects to it. Same rule as ЭЕШ above.
+  if (context === "sat") return "/sat-analytics";
+  if (context === "ib") return "/ib-analytics";
   if (context.startsWith("course:") && contextHref(context)) {
     return `/math/progress?course=${context.slice("course:".length)}`;
   }

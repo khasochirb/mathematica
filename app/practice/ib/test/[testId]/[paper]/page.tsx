@@ -290,7 +290,7 @@ export default function IbPaperRunnerPage() {
         </section>
 
         <div className="flex items-center gap-3 mt-8">
-          <Link href="/practice/ib/progress" className="btn btn-primary inline-flex items-center gap-1.5">
+          <Link href="/ib-analytics" className="btn btn-primary inline-flex items-center gap-1.5">
             <BarChart3 className="h-4 w-4" /> View IB progress
           </Link>
           <button

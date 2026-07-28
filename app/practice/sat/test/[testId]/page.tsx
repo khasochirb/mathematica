@@ -354,7 +354,7 @@ export default function SatTestRunnerPage() {
         </section>
 
         <div className="flex items-center gap-3 mt-8">
-          <Link href="/practice/sat/progress" className="btn btn-primary inline-flex items-center gap-1.5">
+          <Link href="/sat-analytics" className="btn btn-primary inline-flex items-center gap-1.5">
             <BarChart3 className="h-4 w-4" /> View SAT progress
           </Link>
           <button
