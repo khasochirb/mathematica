@@ -38,8 +38,8 @@ export default function ESHHubPage() {
   // Anonymous click on the progress banner falls through to sign-in with a
   // next-path back to progress, matching the 5a/5b/5c gating pattern.
   const progressBannerHref = isAuthenticated
-    ? "/practice/esh/progress"
-    : `/sign-in?next=${encodeURIComponent("/practice/esh/progress")}`;
+    ? "/analytics"
+    : `/sign-in?next=${encodeURIComponent("/analytics")}`;
 
   // Free first (top-left where eyes land), Premium second. The reorder is
   // the bigger funnel win — users used to click "Дадлага тестүүд" expecting
@@ -182,7 +182,7 @@ export default function ESHHubPage() {
         )}
 
         {/* Progress banner — visually distinct destination, not an action card.
-            Full-width, accent-tinted, links to /practice/esh/progress (or /sign-in
+            Full-width, accent-tinted, links to /analytics (or /sign-in
             for anonymous). Sits above the 2x2 action grid. */}
         <Link
           href={progressBannerHref}

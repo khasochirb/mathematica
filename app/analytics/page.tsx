@@ -8,6 +8,7 @@ import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import DataErasePanel from "@/components/settings/DataErasePanel";
+import EshStudyReport from "@/components/esh/progress/EshStudyReport";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
 import { eshSeverity, BAND_LABELS, type Band } from "@/lib/ratings";
@@ -897,9 +898,13 @@ export default function AnalyticsPage() {
           </>
         )}
 
+        {/* The ЭЕШ study report — per-sitting review, topic mastery, and the
+            weak-topic → course routing. Moved here from the hub's own progress
+            page so ЭЕШ has ONE report reached from two doors, like SAT and IB. */}
+        <EshStudyReport />
+
         {/* Erasure lives here, at the account level, because this page is the
-            only one that sees every hub at once. The per-hub pages delete
-            only their own scope. */}
+            only one that sees every hub at once. */}
         <DataErasePanel />
       </section>
     </div>

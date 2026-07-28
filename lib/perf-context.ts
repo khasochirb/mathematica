@@ -104,10 +104,11 @@ export function contextHref(context: string): string | null {
 // deep-dive pages; courses share one report page keyed by query param.
 // The dashboard only ever links, never inlines.
 export function contextProgressHref(context: string): string | null {
-  if (context === ESH_CONTEXT) return "/practice/esh/progress";
+  // ЭЕШ has ONE report, at /analytics; the hub route redirects there.
+  if (context === ESH_CONTEXT) return "/analytics";
   // Course-shaped, but it lives in the exam hub — must not fall through to
   // /math/progress?course=esh, which is not a course /math knows about.
-  if (context === ESH_COURSE_CONTEXT) return "/practice/esh/progress";
+  if (context === ESH_COURSE_CONTEXT) return "/analytics";
   if (context === "sat") return "/practice/sat/progress";
   if (context === "ib") return "/practice/ib/progress";
   if (context.startsWith("course:") && contextHref(context)) {

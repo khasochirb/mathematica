@@ -136,8 +136,8 @@ describe("ЭЕШ course performance context", () => {
     });
   });
 
-  it("links the course context into the ЭЕШ hub, never into /math/progress", () => {
+  it("links the course context into the ЭЕШ hub, and its report to the single ЭЕШ report", () => {
     expect(contextHref(ESH_COURSE_CONTEXT)).toBe("/practice/esh/learn");
-    expect(contextProgressHref(ESH_COURSE_CONTEXT)).toBe("/practice/esh/progress");
+    expect(contextProgressHref(ESH_COURSE_CONTEXT)).toBe("/analytics");
   });
 });
