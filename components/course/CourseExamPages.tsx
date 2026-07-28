@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Layers, FileText } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import ExamRunner from "@/components/course/ExamRunner";
+import ExamList from "@/components/course/ExamList";
 import { getCourseExam, getCourseExams } from "@/lib/course-exam";
 
 // Server components for the two exam routes. The runner itself is a client
@@ -41,49 +42,7 @@ export function CourseExamListPage({ course }: { course: string }) {
           {exams[0].meta.intro} The three papers share no questions, so you can sit all of them.
         </p>
 
-        <ol className="space-y-3">
-          {exams.map((e, i) => (
-            <li key={e.meta.examId}>
-              <Link
-                className="card-edit p-5 flex items-start gap-4 transition-colors"
-                style={{ textDecoration: "none" }}
-                href={`/math/${course}/exam/${e.meta.examId}`}
-              >
-                <span
-                  className="mono text-[11px] flex-shrink-0 tabular mt-1"
-                  style={{ color: "var(--accent)", letterSpacing: "0.04em", minWidth: 24 }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="flex-1 min-w-0">
-                  <span
-                    className="serif block"
-                    style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}
-                  >
-                    {e.meta.label}
-                  </span>
-                  <span className="flex gap-4 mt-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-                    <span className="flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5" /> {e.meta.totalQuestions} questions
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5" /> {e.meta.unitsCovered} units
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" /> ~{e.meta.minutes} min
-                    </span>
-                  </span>
-                </span>
-                <span
-                  className="mono text-[10px] uppercase mt-1 flex-shrink-0"
-                  style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-                >
-                  Start
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <ExamList course={course} exams={exams} />
       </div>
     </div>
   );
