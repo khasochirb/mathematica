@@ -11,15 +11,89 @@ import ContentGate from "@/components/genmath/ContentGate";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
-// The five pages every named course under /math needs — hub, unit, lesson,
-// practice, test — as one parameterized shell.
+// The five pages every named course needs — hub, unit, lesson, practice,
+// test — as one parameterized shell.
 //
 // The eleven courses that predate this file each carry their own copy of these
 // five pages; the copies differ only in the course slug, the display name, and
 // which getter they call. New courses take the shell instead, so a change to
 // the course chrome lands once rather than once per course.
+//
+// Two things are parameterized beyond the content getters, because the exam
+// hubs need them: `basePath` (an ЭЕШ course lives under /practice/esh/learn,
+// not /math) and `labels` (ЭЕШ content is Mongolian by hub policy, never by
+// the site toggle — see memory/expansion-vision.md §4.7).
+
+/** Every visible string in the shell, so a hub can serve its own language. */
+export interface CourseLabels {
+  /** Crumb back to the course catalog — e.g. "Courses". */
+  root: string;
+  /** Word before the unit number in crumbs — e.g. "Unit". */
+  unitWord: string;
+  /** Heading above the spine, given the number of live units. */
+  spineHeading: (liveCount: number) => string;
+  start: string;
+  soon: string;
+  buildsOn: string;
+  lessons: string;
+  readyHeading: string;
+  practice: string;
+  testYourself: string;
+  backToCourse: string;
+  backToUnit: string;
+  /** NotFound copy: "<lead> <em>notFound</em>." */
+  unitLead: string;
+  lessonLead: string;
+  notFound: string;
+  practiceTitle: string;
+  testTitle: string;
+  practiceIntro: string;
+  selfGraded: string;
+  selfGradedBody: string;
+  examsHeading: string;
+  examsTitle: string;
+  examsBody: (n: number) => string;
+  open: string;
+  reveal: { reveal: string; hide: string; revealAria: string; hideAria: string };
+}
+
+export const EN_COURSE_LABELS: CourseLabels = {
+  root: "Courses",
+  unitWord: "Unit",
+  spineHeading: (n) => `The course — ${n} unit${n === 1 ? "" : "s"}, in order`,
+  start: "Start",
+  soon: "Soon",
+  buildsOn: "Builds on",
+  lessons: "Lessons",
+  readyHeading: "Ready to check yourself?",
+  practice: "Practice",
+  testYourself: "Test yourself",
+  backToCourse: "Back to the course",
+  backToUnit: "Back to unit",
+  unitLead: "Unit",
+  lessonLead: "Lesson",
+  notFound: "not found",
+  practiceTitle: "Practice",
+  testTitle: "Test Yourself",
+  practiceIntro: "Work through each problem, then reveal the solution to check your answer.",
+  selfGraded: "Self-graded",
+  selfGradedBody:
+    "Attempt each problem on paper, reveal the solution, and grade yourself honestly — your self-checks feed your progress stats.",
+  examsHeading: "When you have finished the course",
+  examsTitle: "Practice Exams",
+  examsBody: (n) =>
+    `${n} full-course papers, every unit represented. The result breaks down by unit, so it names what to go back to.`,
+  open: "Open",
+  reveal: {
+    reveal: "Show solution",
+    hide: "Hide",
+    revealAria: "Show solution",
+    hideAria: "Hide solution",
+  },
+};
+
 export interface CourseDef {
-  /** Path segment under /math — e.g. "integrated-1". */
+  /** Path segment identifying the course — e.g. "integrated-1". */
   slug: string;
   /** Display name in headings and crumbs — e.g. "Integrated Math 1". */
   title: string;
@@ -32,14 +106,23 @@ export interface CourseDef {
   lesson: (unitSlug: string, lessonSlug: string) => GenMathLesson | null;
   /** Placement namespace + route, when the course has a placement test. */
   placement?: string;
+  /** URL root for this course. Defaults to `/math/<slug>`. */
+  basePath?: string;
+  /** Where the crumb on the hub page goes. Defaults to `/math`. */
+  rootHref?: string;
+  /** Visible strings. Defaults to English. */
+  labels?: CourseLabels;
+  /** Set false to hide the ratings-driven plan (needs perf-context wiring). */
+  personalize?: boolean;
 }
 
-const REVEAL_LABELS = {
-  reveal: "Show solution",
-  hide: "Hide",
-  revealAria: "Show solution",
-  hideAria: "Hide solution",
-};
+function base(course: CourseDef): string {
+  return course.basePath ?? `/math/${course.slug}`;
+}
+
+function labelsOf(course: CourseDef): CourseLabels {
+  return course.labels ?? EN_COURSE_LABELS;
+}
 
 const BACK_BUTTON_STYLE = {
   background: "var(--bg-2)",
@@ -55,14 +138,24 @@ function hoverAccent(on: boolean) {
   };
 }
 
-function NotFound({ what, href, label }: { what: string; href: string; label: string }) {
+function NotFound({
+  lead,
+  missing,
+  href,
+  label,
+}: {
+  lead: string;
+  missing: string;
+  href: string;
+  label: string;
+}) {
   return (
     <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
       <div className="text-center">
         <p className="serif" style={{ fontWeight: 400, fontSize: 22, color: "var(--fg)" }}>
-          {what}{" "}
+          {lead}{" "}
           <em className="serif-italic" style={{ color: "var(--accent)" }}>
-            not found
+            {missing}
           </em>
           .
         </p>
@@ -93,46 +186,17 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-// --- Hub: the course spine, in order --------------------------------------
-export function CourseHubPage({ course }: { course: CourseDef }) {
+// --- The ordered unit list -------------------------------------------------
+// Exported on its own because the ЭЕШ hub embeds a course spine inside a page
+// that also carries the topic's formula sheet, rather than on a bare hub page.
+export function CourseSpineList({ course }: { course: CourseDef }) {
   const spine = course.spine();
-  const liveCount = spine.filter((u) => u.live).length;
+  const L = labelsOf(course);
+  const root = base(course);
 
   return (
-    <Shell>
-      <Crumb href="/math" label="Courses" />
-
-      <h1
-        className="serif"
-        style={{
-          fontWeight: 400,
-          fontSize: "clamp(32px, 5vw, 54px)",
-          letterSpacing: "-0.04em",
-          lineHeight: 1.05,
-          color: "var(--fg)",
-        }}
-      >
-        {course.title}
-      </h1>
-      <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
-        {course.intro}
-      </p>
-
-      {course.placement && (
-        <CoursePlacementCta
-          namespace={course.placement}
-          href={`/math/${course.slug}/placement`}
-          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
-        />
-      )}
-
-      <CoursePersonalization context={course.context} />
-
-      <div className="eyebrow mb-4">
-        The course — {liveCount} unit{liveCount === 1 ? "" : "s"}, in order
-      </div>
-      <ol className="space-y-3">
-        {spine.map((u) => {
+    <ol className="space-y-3">
+      {spine.map((u) => {
           const number = (
             <span
               className="mono text-[11px] flex-shrink-0 tabular mt-1"
@@ -159,7 +223,7 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
             <li key={u.slug}>
               {u.live ? (
                 <Link
-                  href={`/math/${course.slug}/${u.slug}`}
+                  href={`${root}/${u.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none" }}
                   onMouseEnter={hoverAccent(true)}
@@ -171,7 +235,7 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
                     className="mono text-[10px] uppercase mt-1 flex-shrink-0"
                     style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
                   >
-                    Start
+                    {L.start}
                   </span>
                 </Link>
               ) : (
@@ -182,46 +246,95 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
                     className="mono text-[10px] uppercase mt-1 flex-shrink-0"
                     style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}
                   >
-                    Soon
+                    {L.soon}
                   </span>
                 </div>
               )}
             </li>
           );
         })}
-      </ol>
+    </ol>
+  );
+}
 
-      {/* Full-course exams, where they exist. Placed after the spine because
-          they only make sense once some of the course has been worked. */}
-      {getCourseExams(course.slug).length > 0 && (
-        <>
-          <div className="eyebrow mt-12 mb-3">When you have finished the course</div>
-          <Link
-            className="card-edit p-5 flex items-start gap-4 transition-colors"
-            style={{ textDecoration: "none" }}
-            href={`/math/${course.slug}/exam`}
+// --- Course exams card, where the course has papers ------------------------
+function CourseExamsCard({ course }: { course: CourseDef }) {
+  const L = labelsOf(course);
+  const count = getCourseExams(course.slug).length;
+  if (count === 0) return null;
+
+  return (
+    <>
+      <div className="eyebrow mt-12 mb-3">{L.examsHeading}</div>
+      <Link
+        className="card-edit p-5 flex items-start gap-4 transition-colors"
+        style={{ textDecoration: "none" }}
+        href={`${base(course)}/exam`}
+      >
+        <span className="flex-1 min-w-0">
+          <span
+            className="serif block"
+            style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}
           >
-            <span className="flex-1 min-w-0">
-              <span
-                className="serif block"
-                style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}
-              >
-                Practice Exams
-              </span>
-              <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-                {getCourseExams(course.slug).length} full-course papers, every unit represented.
-                The result breaks down by unit, so it names what to go back to.
-              </span>
-            </span>
-            <span
-              className="mono text-[10px] uppercase mt-1 flex-shrink-0"
-              style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-            >
-              Open
-            </span>
-          </Link>
-        </>
+            {L.examsTitle}
+          </span>
+          <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+            {L.examsBody(count)}
+          </span>
+        </span>
+        <span
+          className="mono text-[10px] uppercase mt-1 flex-shrink-0"
+          style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
+        >
+          {L.open}
+        </span>
+      </Link>
+    </>
+  );
+}
+
+// --- Hub: the course spine, in order --------------------------------------
+export function CourseHubPage({ course }: { course: CourseDef }) {
+  const spine = course.spine();
+  const liveCount = spine.filter((u) => u.live).length;
+  const L = labelsOf(course);
+
+  return (
+    <Shell>
+      <Crumb href={course.rootHref ?? "/math"} label={L.root} />
+
+      <h1
+        className="serif"
+        style={{
+          fontWeight: 400,
+          fontSize: "clamp(32px, 5vw, 54px)",
+          letterSpacing: "-0.04em",
+          lineHeight: 1.05,
+          color: "var(--fg)",
+        }}
+      >
+        {course.title}
+      </h1>
+      <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
+        {course.intro}
+      </p>
+
+      {course.placement && (
+        <CoursePlacementCta
+          namespace={course.placement}
+          href={`${base(course)}/placement`}
+          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+        />
       )}
+
+      {course.personalize !== false && <CoursePersonalization context={course.context} />}
+
+      <div className="eyebrow mb-4">{L.spineHeading(liveCount)}</div>
+      <CourseSpineList course={course} />
+
+      {/* Full-course exams. Placed after the spine because they only make
+          sense once some of the course has been worked. */}
+      <CourseExamsCard course={course} />
     </Shell>
   );
 }
@@ -232,16 +345,18 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
   const unitSlug = params.unit as string;
   const unit = course.unit(unitSlug);
   const spineEntry = course.spine().find((u) => u.slug === unitSlug);
+  const L = labelsOf(course);
+  const root = base(course);
 
   if (!unit) {
-    return <NotFound what="Unit" href={`/math/${course.slug}`} label="Back to the course" />;
+    return <NotFound lead={L.unitLead} missing={L.notFound} href={root} label={L.backToCourse} />;
   }
 
   const buildsOn = unit.buildsOn ?? spineEntry?.buildsOn;
 
   return (
     <Shell>
-      <Crumb href={`/math/${course.slug}`} label={`${course.title} · Unit ${unit.unit}`} />
+      <Crumb href={root} label={`${course.title} · ${L.unitWord} ${unit.unit}`} />
 
       <h1
         className="serif"
@@ -265,7 +380,7 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
           style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
         >
           <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>
-            Builds on
+            {L.buildsOn}
           </div>
           <p className="text-[14px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
             {buildsOn}
@@ -273,12 +388,12 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
         </div>
       )}
 
-      <div className="eyebrow mb-4">Lessons</div>
+      <div className="eyebrow mb-4">{L.lessons}</div>
       <ol className="space-y-3">
         {unit.lessons.map((lesson, i) => (
           <li key={lesson.slug}>
             <Link
-              href={`/math/${course.slug}/${unitSlug}/${lesson.slug}`}
+              href={`${root}/${unitSlug}/${lesson.slug}`}
               className="card-edit p-5 flex items-center gap-4 transition-colors"
               style={{ textDecoration: "none" }}
               onMouseEnter={hoverAccent(true)}
@@ -303,16 +418,16 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
 
       {(unit.practice.length > 0 || unit.testYourself.length > 0) && (
         <>
-          <div className="eyebrow mt-10 mb-3">Ready to check yourself?</div>
+          <div className="eyebrow mt-10 mb-3">{L.readyHeading}</div>
           <div className="flex flex-wrap gap-3">
             {unit.practice.length > 0 && (
-              <Link href={`/math/${course.slug}/${unitSlug}/practice`} className="btn btn-primary">
-                Practice
+              <Link href={`${root}/${unitSlug}/practice`} className="btn btn-primary">
+                {L.practice}
               </Link>
             )}
             {unit.testYourself.length > 0 && (
-              <Link href={`/math/${course.slug}/${unitSlug}/test`} className="btn btn-line">
-                Test yourself
+              <Link href={`${root}/${unitSlug}/test`} className="btn btn-line">
+                {L.testYourself}
               </Link>
             )}
           </div>
@@ -330,9 +445,18 @@ function LessonInner({ course }: { course: CourseDef }) {
 
   const unit = course.unit(unitSlug);
   const lesson = course.lesson(unitSlug, lessonSlug);
+  const L = labelsOf(course);
+  const root = base(course);
 
   if (!lesson || !unit || !lesson.interactive) {
-    return <NotFound what="Lesson" href={`/math/${course.slug}/${unitSlug}`} label="Back to unit" />;
+    return (
+      <NotFound
+        lead={L.lessonLead}
+        missing={L.notFound}
+        href={`${root}/${unitSlug}`}
+        label={L.backToUnit}
+      />
+    );
   }
 
   return (
@@ -340,8 +464,8 @@ function LessonInner({ course }: { course: CourseDef }) {
       lesson={lesson}
       topicSlug={unitSlug}
       topicTitle={unit.title}
-      baseHref={`/math/${course.slug}/${unitSlug}`}
-      crumb={`${course.title} · Unit ${unit.unit} · ${unit.title}`}
+      baseHref={`${root}/${unitSlug}`}
+      crumb={`${course.title} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
     />
   );
 }
@@ -350,8 +474,9 @@ function LessonInner({ course }: { course: CourseDef }) {
 export function CourseLessonPage({ course }: { course: CourseDef }) {
   const params = useParams();
   const unitSlug = params.unit as string;
+  const L = labelsOf(course);
   return (
-    <ContentGate backHref={`/math/${course.slug}/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <LessonInner course={course} />
     </ContentGate>
   );
@@ -362,9 +487,11 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
   const params = useParams();
   const unitSlug = params.unit as string;
   const unit = course.unit(unitSlug);
+  const L = labelsOf(course);
+  const root = base(course);
 
   if (!unit) {
-    return <NotFound what="Unit" href={`/math/${course.slug}`} label="Back to the course" />;
+    return <NotFound lead={L.unitLead} missing={L.notFound} href={root} label={L.backToCourse} />;
   }
 
   const problems = kind === "practice" ? unit.practice : unit.testYourself;
@@ -372,8 +499,8 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
   return (
     <Shell>
       <Crumb
-        href={`/math/${course.slug}/${unitSlug}`}
-        label={`${course.title} · Unit ${unit.unit} · ${unit.title}`}
+        href={`${root}/${unitSlug}`}
+        label={`${course.title} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
       />
 
       <h1
@@ -386,27 +513,26 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
           color: "var(--fg)",
         }}
       >
-        {kind === "practice" ? "Practice" : "Test Yourself"} — {unit.title}
+        {kind === "practice" ? L.practiceTitle : L.testTitle} — {unit.title}
       </h1>
 
       {kind === "practice" ? (
         <p className="mt-3 mb-8" style={{ color: "var(--fg-2)", fontSize: 14 }}>
-          Work through each problem, then reveal the solution to check your answer.
+          {L.practiceIntro}
         </p>
       ) : (
         <div className="card-edit p-4 mt-4 mb-8" style={{ background: "var(--bg-1)" }}>
           <p className="mono text-[11px] uppercase mb-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-            Self-graded
+            {L.selfGraded}
           </p>
           <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            Attempt each problem on paper, reveal the solution, and grade yourself honestly — your self-checks feed
-            your progress stats.
+            {L.selfGradedBody}
           </p>
         </div>
       )}
 
       <div className="space-y-4">
-        <GradedProblemList problems={problems} labels={REVEAL_LABELS} kind={kind} />
+        <GradedProblemList problems={problems} labels={L.reveal} kind={kind} />
       </div>
     </Shell>
   );
@@ -415,8 +541,9 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
 export function CoursePracticePage({ course }: { course: CourseDef }) {
   const params = useParams();
   const unitSlug = params.unit as string;
+  const L = labelsOf(course);
   return (
-    <ContentGate backHref={`/math/${course.slug}/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="practice" />
     </ContentGate>
   );
@@ -425,8 +552,9 @@ export function CoursePracticePage({ course }: { course: CourseDef }) {
 export function CourseTestPage({ course }: { course: CourseDef }) {
   const params = useParams();
   const unitSlug = params.unit as string;
+  const L = labelsOf(course);
   return (
-    <ContentGate backHref={`/math/${course.slug}/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="test" />
     </ContentGate>
   );

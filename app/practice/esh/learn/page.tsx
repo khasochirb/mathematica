@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Play, Lock } from "lucide-react";
 import { TOPICS } from "@/lib/esh-questions";
+import { getEshTopicCourse, liveUnitCount, totalUnitCount } from "@/lib/esh-course";
 import topicsData from "@/data/learn/topics.json";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
 import { useAuth } from "@/lib/auth-context";
@@ -111,7 +112,8 @@ export default function LearnPage() {
           Сэдвээр <em className="serif-italic" style={{ color: "var(--accent)" }}>суралцах</em>.
         </h1>
         <p className="serif mt-4 max-w-2xl" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
-          Томьёо, зөвлөгөө — сэдэв тус бүрээр.
+          Сэдэв бүр өөрийн курстэй: хичээл, дадлага, өөрийгөө шалгах тест, дээр
+          нь гол томьёоны хураангуй.
         </p>
 
         {/* Coming-soon disclosure — video lessons are the next layer on top of the current text content. */}
@@ -167,7 +169,15 @@ export default function LearnPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10">
           {TOPICS.map((topic, i) => {
             const data = (topicsData as Record<string, { title: string; overview: string; formulas: unknown[]; tips: unknown[] }>)[topic.value];
-            if (!data) return null;
+            const course = getEshTopicCourse(topic.value);
+            // A topic shows up if it has a course, a formula sheet, or both —
+            // the four topics with no formula sheet used to be invisible here.
+            if (!data && !course) return null;
+
+            const title = course?.title ?? data?.title ?? topic.label;
+            const overview = course?.intro ?? data?.overview ?? "";
+            const live = liveUnitCount(topic.value);
+            const total = totalUnitCount(topic.value);
 
             return (
               <Link
@@ -182,28 +192,39 @@ export default function LearnPage() {
                   <ArrowRight className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
                 </div>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                  {data.title}
+                  {title}
                 </h3>
                 <p className="text-[13px] mt-2 line-clamp-2" style={{ color: "var(--fg-2)" }}>
-                  {data.overview}
+                  {overview}
                 </p>
                 <div className="flex items-center gap-4 mt-4">
-                  <div className="flex items-baseline gap-1">
-                    <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
-                      {data.formulas.length}
-                    </span>
-                    <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
-                      томьёо
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
-                      {data.tips.length}
-                    </span>
-                    <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
-                      зөвлөгөө
-                    </span>
-                  </div>
+                  {total > 0 && (
+                    <div className="flex items-baseline gap-1">
+                      <span
+                        className="serif tabular"
+                        style={{
+                          fontSize: 18,
+                          color: live > 0 ? "var(--accent)" : "var(--fg-3)",
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {live}/{total}
+                      </span>
+                      <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                        нэгж бэлэн
+                      </span>
+                    </div>
+                  )}
+                  {data && (
+                    <div className="flex items-baseline gap-1">
+                      <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                        {data.formulas.length}
+                      </span>
+                      <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                        томьёо
+                      </span>
+                    </div>
+                  )}
                 </div>
               </Link>
             );

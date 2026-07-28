@@ -11,11 +11,21 @@
 
 export const ESH_CONTEXT = "esh";
 
+// The taught ЭЕШ courses at /practice/esh/learn. Kept apart from ESH_CONTEXT
+// (past papers and topic drills) so neither pollutes the other's accuracy.
+export const ESH_COURSE_CONTEXT = "course:esh";
+
 // Course contexts are derived from the lesson URL, so the player needs no
 // per-page wiring: /math/prob-stats/... → "course:prob-stats",
 // /math/6/... → "course:grade-6". Non-course paths return null (record
 // nothing rather than guess).
 export function contextFromPathname(pathname: string): string | null {
+  // The ЭЕШ prep courses live inside the exam hub, not under /math. They are
+  // course work, not exam practice, so they get their own course context
+  // rather than folding into "esh" — accuracy on a taught lesson and accuracy
+  // on a past-paper MCQ are not comparable populations.
+  if (/^\/practice\/esh\/learn\/[^/]+\/[^/]+/.test(pathname)) return ESH_COURSE_CONTEXT;
+
   const m = /^\/math\/(solid-geometry|geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|integrated-1|integrated-2|integrated-3|precalculus|calculus|trigonometry|ib-sl|ib-hl|\d+)\//.exec(pathname);
   if (!m) return null;
   const seg = m[1];
@@ -29,6 +39,13 @@ export function lessonSlugsFromPathname(
   pathname: string,
 ): { unit: string; lesson: string } | null {
   const parts = pathname.split("/").filter(Boolean);
+  // /practice/esh/learn/<topic>/<unit>/<lesson> — one segment deeper than the
+  // /math courses, because the exam topic is part of the path.
+  if (parts.length === 6 && parts[0] === "practice" && parts[1] === "esh" && parts[2] === "learn") {
+    const [, , , , unit, lesson] = parts;
+    if (["practice", "test"].includes(lesson)) return null;
+    return { unit, lesson };
+  }
   if (parts.length !== 4 || parts[0] !== "math") return null;
   const [, , unit, lesson] = parts;
   if (["practice", "test", "placement"].includes(lesson)) return null;
@@ -38,6 +55,7 @@ export function lessonSlugsFromPathname(
 // Student-facing Mongolian name for a context (dashboard section titles).
 export function contextLabel(context: string): string {
   if (context === ESH_CONTEXT) return "ЭЕШ бэлтгэл";
+  if (context === ESH_COURSE_CONTEXT) return "ЭЕШ курс";
   if (context === "course:geometry") return "Геометр";
   if (context === "course:prob-stats") return "Магадлал ба Статистик";
   if (context === "course:vectors-matrices") return "Вектор ба Матриц";
@@ -60,6 +78,7 @@ export function contextLabel(context: string): string {
 
 // Where a context's course lives, for dashboard links.
 export function contextHref(context: string): string | null {
+  if (context === ESH_COURSE_CONTEXT) return "/practice/esh/learn";
   if (context === "course:geometry") return "/math/geometry";
   if (context === "course:prob-stats") return "/math/prob-stats";
   if (context === "course:vectors-matrices") return "/math/vectors-matrices";
@@ -86,6 +105,9 @@ export function contextHref(context: string): string | null {
 // The dashboard only ever links, never inlines.
 export function contextProgressHref(context: string): string | null {
   if (context === ESH_CONTEXT) return "/practice/esh/progress";
+  // Course-shaped, but it lives in the exam hub — must not fall through to
+  // /math/progress?course=esh, which is not a course /math knows about.
+  if (context === ESH_COURSE_CONTEXT) return "/practice/esh/progress";
   if (context === "sat") return "/practice/sat/progress";
   if (context === "ib") return "/practice/ib/progress";
   if (context.startsWith("course:") && contextHref(context)) {
