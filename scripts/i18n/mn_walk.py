@@ -107,7 +107,11 @@ def walk(topic, visit):
                 t(p, "label")
     def t_prob(p):
         t(p, "statement"); t(p, "solution"); t(p, "note")
-    t(topic, "title"); t(topic, "blurb")
+    # buildsOn exists only on named-course units (algebra-1, geometry, ...),
+    # never on the grade topics — so adding it here does not shift the index
+    # of any already-shipped grade mirror. It was missing until a translated
+    # unit shipped with an English "Builds on" sentence on a Mongolian page.
+    t(topic, "title"); t(topic, "blurb"); t(topic, "buildsOn")
     for les in topic["lessons"]:
         t(les, "title"); t(les, "concreteComparison"); t(les, "objective")
         t_list(les, "concept"); t(les, "keyIdea")

@@ -75,6 +75,30 @@ describe("ЭЕШ course registry", () => {
     }
   });
 
+  it("no live unit shows untranslated English prose", () => {
+    // The 'Builds on' sentence shipped in English on a Mongolian page because
+    // the mn pipeline's walker never visited buildsOn. Guard the whole
+    // student-visible surface of every live unit, not just that one field.
+    const cyrillic = /[Ѐ-ӿ]/;
+    for (const course of ESH_COURSES) {
+      for (const u of course.units) {
+        if (!u.live) continue;
+        const unit = getEshUnit(course.topic, u.slug)!;
+        for (const [field, value] of [
+          ["title", unit.title],
+          ["blurb", unit.blurb],
+          ["buildsOn", unit.buildsOn],
+        ] as const) {
+          if (!value) continue;
+          expect(cyrillic.test(value), `${course.topic}/${u.slug} ${field} is not Mongolian: ${value}`).toBe(true);
+        }
+        for (const l of unit.lessons) {
+          expect(cyrillic.test(l.title), `${u.slug}/${l.slug} lesson title`).toBe(true);
+        }
+      }
+    }
+  });
+
   it("a unit that is not live is not openable", () => {
     const algebra = getEshTopicCourse("algebra")!;
     const pending = algebra.units.find((u) => !u.live);
