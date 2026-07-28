@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Play, Lock } from "lucide-react";
 import { TOPICS } from "@/lib/esh-questions";
 import { getEshTopicCourse, liveUnitCount, totalUnitCount } from "@/lib/esh-course";
 import topicsData from "@/data/learn/topics.json";
+import EshLevelAdvisor from "@/components/esh/course/EshLevelAdvisor";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
@@ -164,6 +165,9 @@ export default function LearnPage() {
             Мэдэгдэх →
           </span>
         </button>
+
+        {/* Readiness routing: below ~650 → General Math first. */}
+        <EshLevelAdvisor />
 
         {/* Topic grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10">

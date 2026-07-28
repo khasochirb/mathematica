@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   ESH_COURSES,
+  ESH_COURSE_READY_SCORE,
   eshCourseDef,
   getEshTopicCourse,
   getEshUnit,
@@ -60,50 +61,50 @@ describe("ЭЕШ course registry", () => {
         }
       }
     }
-    expect(liveTotal).toBeGreaterThan(0);
+    // Exam-level curation over the existing English catalog: a registry
+    // regression that silently drops sources should trip this floor.
+    expect(liveTotal).toBeGreaterThanOrEqual(60);
   });
 
-  it("live content is Mongolian — the hub's language is not the site toggle", () => {
-    const cyrillic = /[Ѐ-ӿ]/;
+  it("course content is English-first (owner decision 2026-07-28)", () => {
+    // Content ships in English until the translation pass; the exam's own
+    // name (ЭЕШ) is the one Cyrillic token allowed in English prose.
+    const cyrillic = (s: string) => /[Ѐ-ӿ]/.test(s.replace(/ЭЕШ/g, ""));
     for (const course of ESH_COURSES) {
-      expect(cyrillic.test(course.title), `${course.topic} title`).toBe(true);
-      expect(cyrillic.test(course.intro), `${course.topic} intro`).toBe(true);
+      expect(cyrillic(course.title), `${course.topic} title`).toBe(false);
+      expect(cyrillic(course.intro), `${course.topic} intro`).toBe(false);
       for (const u of course.units) {
-        expect(cyrillic.test(u.title), `${course.topic}/${u.slug} title`).toBe(true);
-        expect(cyrillic.test(u.blurb), `${course.topic}/${u.slug} blurb`).toBe(true);
+        expect(cyrillic(u.title), `${course.topic}/${u.slug} title`).toBe(false);
+        expect(cyrillic(u.blurb), `${course.topic}/${u.slug} blurb`).toBe(false);
+        if (!u.live) continue;
+        const unit = getEshUnit(course.topic, u.slug)!;
+        for (const l of unit.lessons) {
+          expect(cyrillic(l.title), `${u.slug}/${l.slug} lesson title`).toBe(false);
+        }
       }
     }
   });
 
-  it("no live unit shows untranslated English prose", () => {
-    // The 'Builds on' sentence shipped in English on a Mongolian page because
-    // the mn pipeline's walker never visited buildsOn. Guard the whole
-    // student-visible surface of every live unit, not just that one field.
-    const cyrillic = /[Ѐ-ӿ]/;
+  it("stamps the ЭЕШ position and strips the home course's buildsOn", () => {
+    // A unit's own buildsOn names unit numbers of its HOME course
+    // ("Factoring (Unit 7)") — shipped once as an English sentence citing
+    // the wrong units. On this spine, buildsOn comes only from the entry.
     for (const course of ESH_COURSES) {
-      for (const u of course.units) {
-        if (!u.live) continue;
-        const unit = getEshUnit(course.topic, u.slug)!;
-        for (const [field, value] of [
-          ["title", unit.title],
-          ["blurb", unit.blurb],
-          ["buildsOn", unit.buildsOn],
-        ] as const) {
-          if (!value) continue;
-          expect(cyrillic.test(value), `${course.topic}/${u.slug} ${field} is not Mongolian: ${value}`).toBe(true);
-        }
-        for (const l of unit.lessons) {
-          expect(cyrillic.test(l.title), `${u.slug}/${l.slug} lesson title`).toBe(true);
-        }
+      for (const entry of course.units) {
+        if (!entry.live) continue;
+        const unit = getEshUnit(course.topic, entry.slug)!;
+        expect(unit.unit, `${course.topic}/${entry.slug} position`).toBe(entry.unit);
+        expect(unit.buildsOn, `${course.topic}/${entry.slug} buildsOn`).toBe(entry.buildsOn);
       }
     }
   });
 
   it("a unit that is not live is not openable", () => {
-    const algebra = getEshTopicCourse("algebra")!;
-    const pending = algebra.units.find((u) => !u.live);
+    const sets = getEshTopicCourse("set_theory")!;
+    const pending = sets.units.find((u) => !u.live);
     expect(pending).toBeTruthy();
-    expect(getEshUnit("algebra", pending!.slug)).toBeNull();
+    expect(pending!.source).toBe("authored");
+    expect(getEshUnit("set_theory", pending!.slug)).toBeNull();
   });
 
   it("counts agree with the spine", () => {
@@ -115,17 +116,21 @@ describe("ЭЕШ course registry", () => {
     expect(totalUnitCount("nope")).toBe(0);
   });
 
-  it("builds a CourseDef rooted in the ЭЕШ hub, in Mongolian", () => {
+  it("builds a CourseDef rooted in the ЭЕШ hub, with English chrome", () => {
     const def = eshCourseDef("algebra")!;
     expect(def.basePath).toBe("/practice/esh/learn/algebra");
     expect(def.rootHref).toBe("/practice/esh/learn");
     expect(def.context).toBe(ESH_COURSE_CONTEXT);
-    expect(def.labels?.start).toBe("Эхлэх");
-    // the shell must not link a ЭЕШ unit back into /math
+    // English-first: no labels override means the shell's English defaults.
+    expect(def.labels).toBeUndefined();
     for (const u of def.spine()) {
       expect(`${def.basePath}/${u.slug}`.startsWith("/practice/esh/learn/")).toBe(true);
     }
     expect(eshCourseDef("nope")).toBeNull();
+  });
+
+  it("publishes the readiness bar the advisor routes around", () => {
+    expect(ESH_COURSE_READY_SCORE).toBe(650);
   });
 });
 

@@ -97,7 +97,7 @@ export default function TopicLearnPage() {
           <Section n={num()} label="Курс">
             <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)" }}>
               {live > 0
-                ? `${total} нэгжээс ${live} нь бэлэн. Нэгж бүр хичээл, дадлага, өөрийгөө шалгах тесттэй.`
+                ? `${total} нэгжээс ${live} нь бэлэн — хичээл, дадлага, өөрийгөө шалгах тесттэй. Хичээлүүд одоогоор англи хэлээр; монгол орчуулга дараа нэмэгдэнэ.`
                 : `${total} нэгж бэлтгэгдэж байна. Одоохондоо доорх томьёо ба зөвлөгөөг ашиглаарай.`}
             </p>
             <CourseSpineList course={courseDef} />
