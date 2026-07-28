@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -59,6 +60,7 @@ export default function PracticePage() {
   const [topicFilter, setTopicFilter] = useState("");
   const [practiceQuestions, setPracticeQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  useScrollToTop(currentIndex);
   const [results, setResults] = useState<
     Record<string, { selected: string; correct: string; isCorrect: boolean }>
   >({});

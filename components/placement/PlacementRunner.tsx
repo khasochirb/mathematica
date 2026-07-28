@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, X, Sparkles, RotateCcw } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -39,6 +40,8 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
   const [current, setCurrent] = useState<PlacementQuestion | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
   const [result, setResult] = useState<StoredPlacement | null>(null);
+  // Placement swaps one question for the next in place — same scroll trap.
+  useScrollToTop(current?.id ?? phase);
 
   const total = totalQuestions(state);
   const answered = state.answers.length;

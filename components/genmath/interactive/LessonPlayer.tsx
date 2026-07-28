@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Sparkles, Lightbulb } from "lucide-react";
@@ -1475,12 +1476,10 @@ export default function LessonPlayer({
     [pathname, perf, topicSlug, lesson.slug],
   );
 
-  // On every step change, bring the page back to the top so the learner starts
-  // the next step at its heading instead of wherever they'd scrolled to answer.
+  // On every step change, start the learner at the new step's heading rather
+  // than wherever they had scrolled to answer the previous one.
+  useScrollToTop(i);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
     setLastMiss(null);
   }, [i]);
 

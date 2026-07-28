@@ -7,6 +7,7 @@ import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
+import DataErasePanel from "@/components/settings/DataErasePanel";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
 import { eshSeverity, BAND_LABELS, type Band } from "@/lib/ratings";
@@ -895,6 +896,11 @@ export default function AnalyticsPage() {
             </div>
           </>
         )}
+
+        {/* Erasure lives here, at the account level, because this page is the
+            only one that sees every hub at once. The per-hub pages delete
+            only their own scope. */}
+        <DataErasePanel />
       </section>
     </div>
   );

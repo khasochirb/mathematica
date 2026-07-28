@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, ArrowRight, BarChart3, Check, ChevronDown } from "lucide-react";
@@ -75,6 +76,9 @@ export default function IbPaperRunnerPage() {
 
   const [mounted, setMounted] = useState(false);
   const [run, setRun] = useState<RunState>(FRESH);
+  // IB questions are multi-part and long; without this the student lands
+  // mid-question after every Next.
+  useScrollToTop(`${run.phase}:${run.index}`);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {

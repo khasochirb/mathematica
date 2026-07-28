@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -48,6 +49,9 @@ export default function TestRunnerPage() {
   const perf = usePerformance();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  // A long question leaves the page scrolled down; the next one must start
+  // at its own heading, not mid-problem.
+  useScrollToTop(currentIndex);
   const [showNav, setShowNav] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [showQuitModal, setShowQuitModal] = useState(false);

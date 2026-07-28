@@ -20,6 +20,7 @@ import { TOPIC_LABELS, getTestInfo } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
 import { getSkillStudyTarget } from "@/lib/skill-study-map";
 import { eshSeverity, BAND_LABELS, type Band } from "@/lib/ratings";
+import { eraseLocalScope, eraseSummary } from "@/lib/data-erase";
 
 const BAND_COLOR: Record<Band, string> = {
   beginner: "var(--danger)",
@@ -31,6 +32,8 @@ const BAND_COLOR: Record<Band, string> = {
 export default function ProgressPage() {
   const [mounted, setMounted] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [clearing, setClearing] = useState(false);
+  const [clearFailed, setClearFailed] = useState(false);
   const [openEntry, setOpenEntry] = useState<Record<string, boolean>>({});
   const progress = useESHProgress();
   const perf = usePerformance();
@@ -39,11 +42,20 @@ export default function ProgressPage() {
 
   useEffect(() => setMounted(true), []);
 
-  const handleClearAll = () => {
-    perf.clearAll();
+  // Erases ЭЕШ data ONLY. This button used to call perf.clearAll(), which
+  // deleted the shared attempts stream — taking SAT, IB and course work with
+  // it from a page that never mentioned them.
+  const handleClearEsh = async () => {
+    setClearing(true);
+    const { serverOk } = await perf.clearScope("esh");
+    eraseLocalScope("esh");
     testSession.clearAll();
     flaggedHook.clearAll();
+    setClearing(false);
     setShowClearConfirm(false);
+    // A silent server failure would resurrect everything on the next fetch,
+    // so say so rather than let the student believe it is gone.
+    if (!serverOk) setClearFailed(true);
   };
 
   if (!mounted) {
@@ -410,27 +422,74 @@ export default function ProgressPage() {
           <div className="card-edit p-6 max-w-sm w-full" style={{ background: "var(--bg-1)" }}>
             <div className="eyebrow mb-2">Баталгаажуулах</div>
             <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-              Бүх мэдээлэл <em className="serif-italic" style={{ color: "var(--danger)" }}>арилгах</em> уу?
+              ЭЕШ-ийн мэдээллээ <em className="serif-italic" style={{ color: "var(--danger)" }}>арилгах</em> уу?
             </h3>
-            <p className="text-[13px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
-              Шалгалтын түүх, дадлагын мэдээлэл, тэмдэглэсэн бодлогууд бүгд арилна. Энэ үйлдлийг буцаах боломжгүй.
+            <p className="text-[13px] mt-3" style={{ color: "var(--fg-2)" }}>
+              Дараах зүйлс арилна. Энэ үйлдлийг буцаах боломжгүй.
+            </p>
+            <ul className="text-[13px] mt-2 mb-3 space-y-1" style={{ color: "var(--fg-1)" }}>
+              {eraseSummary("esh").map((w) => (
+                <li key={w} className="flex gap-2">
+                  <span style={{ color: "var(--danger)" }}>·</span>
+                  {w}
+                </li>
+              ))}
+            </ul>
+            <p
+              className="text-[12px] mb-6 rounded-md p-3"
+              style={{ color: "var(--fg-2)", background: "var(--bg-2)", border: "1px solid var(--line)" }}
+            >
+              SAT, IB болон курсын мэдээлэлд <strong style={{ color: "var(--fg)" }}>нөлөөлөхгүй</strong>. Бүх
+              хэсгийн мэдээллийг устгахыг хүсвэл хяналтын самбараас устгана уу.
             </p>
             <div className="flex gap-2">
-              <button onClick={() => setShowClearConfirm(false)} className="btn btn-line flex-1">
+              <button
+                onClick={() => setShowClearConfirm(false)}
+                className="btn btn-line flex-1"
+                disabled={clearing}
+              >
                 Болих
               </button>
               <button
-                onClick={handleClearAll}
+                onClick={handleClearEsh}
+                disabled={clearing}
                 className="btn flex-1"
                 style={{
                   background: "color-mix(in oklch, var(--danger) 18%, transparent)",
                   border: "1px solid color-mix(in oklch, var(--danger) 35%, transparent)",
                   color: "var(--danger)",
+                  opacity: clearing ? 0.6 : 1,
                 }}
               >
-                Арилгах
+                {clearing ? "Арилгаж байна..." : "Арилгах"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* The local copy is gone but the server still holds the rows, so the
+          data WILL come back on the next sync. Saying nothing here would be
+          the worst outcome: the student believes it is deleted. */}
+      {clearFailed && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "color-mix(in oklch, var(--bg) 70%, black 30% / 60%)", backdropFilter: "blur(8px)" }}
+        >
+          <div className="card-edit p-6 max-w-sm w-full" style={{ background: "var(--bg-1)" }}>
+            <div className="eyebrow mb-2" style={{ color: "var(--danger)" }}>
+              Бүрэн устгагдсангүй
+            </div>
+            <h3 className="serif" style={{ fontWeight: 400, fontSize: 20, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+              Сервер лүү холбогдож чадсангүй
+            </h3>
+            <p className="text-[13px] mt-3 mb-6" style={{ color: "var(--fg-2)" }}>
+              Энэ төхөөрөмж дээрх мэдээлэл арилсан ч сервер дээрх хуулбар үлдсэн тул дараагийн
+              нэвтрэлтээр эргэн гарч ирнэ. Интернэт холболтоо шалгаад дахин оролдоно уу.
+            </p>
+            <button onClick={() => setClearFailed(false)} className="btn btn-line w-full">
+              Ойлголоо
+            </button>
           </div>
         </div>
       )}

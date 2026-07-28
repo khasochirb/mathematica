@@ -9,6 +9,7 @@ import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 import { parseTestId } from "./test-history";
+import { attemptContextsForScope, attemptInScope, type EraseScope } from "./data-erase";
 
 export interface AttemptRecord {
   questionSource: string;
@@ -773,25 +774,77 @@ export default function usePerformance() {
     [attempts],
   );
 
-  const clearAll = useCallback(() => {
-    // Local first (instant UI), server in background.
-    setAttempts([]);
-    localStorage.removeItem(currentKeyRef.current);
-    if (userId) {
-      localStorage.removeItem(queueKeyFor(userId));
-      const token = getMpToken();
-      if (!token) return;
-      (async () => {
+  // Erase only the attempts belonging to one scope. The attempts stream is
+  // shared by every hub, so a scoped erase FILTERS it — removing the key (as
+  // the old clearAll did) took SAT, IB and course work with it.
+  //
+  // Returns the number of attempts removed locally. The server delete is
+  // awaited so callers can report a real outcome rather than assuming one:
+  // a silent server failure would resurrect the data on the next fetch.
+  const clearScope = useCallback(
+    async (scope: EraseScope): Promise<{ localRemoved: number; serverOk: boolean }> => {
+      const kept = attempts.filter((a) => !attemptInScope(a.context, scope));
+      const localRemoved = attempts.length - kept.length;
+
+      // Local first, so the UI updates instantly.
+      setAttempts(kept);
+      if (kept.length > 0) saveAttemptsTo(currentKeyRef.current, kept);
+      else localStorage.removeItem(currentKeyRef.current);
+
+      if (!userId) return { localRemoved, serverOk: true };
+
+      // The outbound queue is per-user and holds rows of every scope; drop it
+      // wholesale only on a full erase, otherwise filter it the same way.
+      const qKey = queueKeyFor(userId);
+      if (scope === "all") {
+        localStorage.removeItem(qKey);
+      } else {
         try {
-          const supabase = getSupabaseClient();
-          const { error } = await supabase.from("attempts").delete().eq("user_id", userId);
-          if (error && IS_DEV) console.warn("[attempts sync] clearAll delete failed:", error.message);
-        } catch (err) {
-          if (IS_DEV) console.warn("[attempts sync] clearAll network error:", err);
+          const raw = localStorage.getItem(qKey);
+          if (raw) {
+            const queued = JSON.parse(raw) as OutgoingRow[];
+            const keptQueue = queued.filter((r) => !attemptInScope(r.context ?? undefined, scope));
+            if (keptQueue.length > 0) localStorage.setItem(qKey, JSON.stringify(keptQueue));
+            else localStorage.removeItem(qKey);
+          }
+        } catch {
+          // A corrupt queue is not worth blocking an erase over — drop it.
+          localStorage.removeItem(qKey);
         }
-      })();
-    }
-  }, [userId]);
+      }
+
+      const token = getMpToken();
+      if (!token) return { localRemoved, serverOk: false };
+
+      try {
+        const supabase = getSupabaseClient();
+        let query = supabase.from("attempts").delete().eq("user_id", userId);
+
+        if (scope === "courses") {
+          query = query.like("context", "course:%");
+        } else if (scope !== "all") {
+          const contexts = attemptContextsForScope(scope) ?? [];
+          const named = contexts.filter((c): c is string => c !== null);
+          // ЭЕШ owns the context-less rows written before the column existed;
+          // without the is.null branch the oldest attempts are undeletable.
+          query = contexts.includes(null)
+            ? query.or(`context.is.null,context.in.(${named.join(",")})`)
+            : query.in("context", named);
+        }
+
+        const { error } = await query;
+        if (error) {
+          if (IS_DEV) console.warn("[attempts sync] clearScope delete failed:", error.message);
+          return { localRemoved, serverOk: false };
+        }
+        return { localRemoved, serverOk: true };
+      } catch (err) {
+        if (IS_DEV) console.warn("[attempts sync] clearScope network error:", err);
+        return { localRemoved, serverOk: false };
+      }
+    },
+    [userId, attempts],
+  );
 
   return {
     attempts,
@@ -809,6 +862,6 @@ export default function usePerformance() {
     getContextSummaries,
     getLessonsWorked,
     getLastAttempt,
-    clearAll,
+    clearScope,
   };
 }

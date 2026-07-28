@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, ArrowRight, BarChart3, Check, ChevronDown, X } from "lucide-react";
@@ -71,6 +72,10 @@ export default function SatTestRunnerPage() {
 
   const [mounted, setMounted] = useState(false);
   const [run, setRun] = useState<RunState>(FRESH);
+  // Question changes swap content in place, so the browser keeps the previous
+  // question's scroll offset. Reset on both the index and the phase, since
+  // module 1 -> module 2 also replaces the whole screen.
+  useScrollToTop(`${run.phase}:${run.index}`);
   const [confirmSubmit, setConfirmSubmit] = useState(false);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 

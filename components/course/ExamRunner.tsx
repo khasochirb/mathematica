@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, X, Clock, Layers, Flag } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -25,6 +26,7 @@ export default function ExamRunner({ exam }: { exam: CourseExam }) {
   const [answers, setAnswers] = useState<ExamAnswers>(() => Array(n).fill(null));
   const [flagged, setFlagged] = useState<Set<number>>(() => new Set());
   const [at, setAt] = useState(0);
+  useScrollToTop(at);
   const [submitted, setSubmitted] = useState(false);
 
   const q = exam.questions[at];
