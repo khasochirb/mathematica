@@ -63,7 +63,7 @@ describe("ЭЕШ course registry", () => {
     }
     // Exam-level curation over the existing English catalog: a registry
     // regression that silently drops sources should trip this floor.
-    expect(liveTotal).toBeGreaterThanOrEqual(60);
+    expect(liveTotal).toBe(70);
   });
 
   it("course content is English-first (owner decision 2026-07-28)", () => {
@@ -99,12 +99,16 @@ describe("ЭЕШ course registry", () => {
     }
   });
 
-  it("a unit that is not live is not openable", () => {
-    const sets = getEshTopicCourse("set_theory")!;
-    const pending = sets.units.find((u) => !u.live);
-    expect(pending).toBeTruthy();
-    expect(pending!.source).toBe("authored");
-    expect(getEshUnit("set_theory", pending!.slug)).toBeNull();
+  it("the curriculum is COMPLETE — every unit of every topic is live", () => {
+    // The 800/800 coverage goal: nothing on any spine may be a placeholder.
+    // Sets & Logic was the last gap, closed by scripts/esh/build_sets_logic.py.
+    for (const course of ESH_COURSES) {
+      for (const u of course.units) {
+        expect(u.live, `${course.topic}/${u.slug} is not live`).toBe(true);
+      }
+    }
+    // and an unknown unit slug still resolves to nothing, not a crash
+    expect(getEshUnit("set_theory", "not-a-unit")).toBeNull();
   });
 
   it("counts agree with the spine", () => {

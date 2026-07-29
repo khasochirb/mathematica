@@ -1,0 +1,708 @@
+{
+  "slug": "number-sets-and-intervals",
+  "title": "Number Sets & Intervals",
+  "unit": 3,
+  "status": "published",
+  "blurb": "The nested family ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ with the irrationals in the gap, interval notation and integer counts, intersections and unions on the number line, and absolute value read as distance — the language every inequality answer is written in.",
+  "buildsOn": "Set operations and counting from Units 1–2.",
+  "lessons": [
+    {
+      "slug": "the-family-of-number-sets",
+      "title": "ℕ, ℤ, ℚ, ℝ — the Nested Family",
+      "concreteComparison": "Russian dolls: the naturals sit inside the integers, the integers inside the rationals, the rationals inside the reals — and the irrationals are the gap between the last two dolls.",
+      "objective": "Classify numbers into $\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$, recognizing disguised members and the irrationals in the gap.",
+      "concept": [
+        "$\\mathbb{N} = \\{1, 2, 3, \\ldots\\}$, $\\mathbb{Z}$ adds zero and negatives, $\\mathbb{Q}$ is all ratios $p/q$ with $q \\ne 0$ — equivalently the decimals that terminate or repeat — and $\\mathbb{R}$ fills the line. Each is a subset of the next.",
+        "The **irrationals** are $\\mathbb{R} \\setminus \\mathbb{Q}$: decimals that never terminate or repeat, like $\\sqrt{2}$ and $\\pi$. They are a set DIFFERENCE, not a fifth doll — a number is rational or irrational, never both.",
+        "Exam classification items hide members in disguise: $\\sqrt{49} = 7$ is a natural number, $\\frac{18}{6} = 3$ is an integer, $0.75 = \\frac{3}{4}$ is rational. Simplify FIRST, classify second."
+      ],
+      "keyIdea": "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$; irrational = real but not rational. Simplify before classifying.",
+      "facts": [
+        {
+          "title": "The chain",
+          "latex": "\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}",
+          "explanation": "Every natural is an integer, every integer rational, every rational real."
+        },
+        {
+          "title": "Rational means",
+          "latex": "x = \\tfrac{p}{q},\\ q \\ne 0 \\iff \\text{decimal terminates or repeats}",
+          "explanation": "Two equivalent tests — use whichever the number's costume invites."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-int-l1-we1",
+          "statement": "Classify each: $\\sqrt{49}$, $-\\frac{12}{4}$, $0.\\overline{3}$, $\\sqrt{8}$.",
+          "solution": "$\\sqrt{49} = 7 \\in \\mathbb{N}$. $-\\frac{12}{4} = -3 \\in \\mathbb{Z}$ (not $\\mathbb{N}$). $0.\\overline{3} = \\frac{1}{3} \\in \\mathbb{Q}$. $\\sqrt{8} = 2\\sqrt{2}$ is irrational — $8$ is not a perfect square.",
+          "check": [
+            "Eq(sqrt(49), 7)",
+            "Eq(Rational(-12, 4), -3)",
+            "Eq(Rational(1, 3), Rational(1, 3))",
+            "Eq(sqrt(8), 2*sqrt(2))"
+          ]
+        },
+        {
+          "id": "esh-int-l1-we2",
+          "statement": "Is $\\frac{\\sqrt{50}}{\\sqrt{2}}$ rational or irrational?",
+          "solution": "Simplify before judging: $\\frac{\\sqrt{50}}{\\sqrt{2}} = \\sqrt{25} = 5$ — a natural number. Irrational pieces can combine into rational results.",
+          "check": [
+            "Eq(sqrt(50)/sqrt(2), 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Classifying $\\sqrt{49}$ as irrational because it has a root sign.",
+          "correction": "Simplify first: $\\sqrt{49} = 7$. The costume is not the number.",
+          "authored": true
+        },
+        {
+          "text": "Calling $\\pi$ rational because $\\frac{22}{7}$ is close.",
+          "correction": "$\\frac{22}{7}$ is an approximation, not an equality — $\\pi$ has no exact fraction form, which is the definition of irrational.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-int-l1-t1",
+          "statement": "Which of $\\sqrt{36}$, $\\sqrt{18}$, $-\\frac{20}{5}$, $0.121212\\ldots$ are rational?",
+          "solution": "$\\sqrt{36} = 6$ ✓, $-\\frac{20}{5} = -4$ ✓, $0.\\overline{12} = \\frac{12}{99} = \\frac{4}{33}$ ✓; $\\sqrt{18} = 3\\sqrt{2}$ is irrational. Three of the four.",
+          "check": [
+            "Eq(sqrt(36), 6)",
+            "Eq(Rational(-20, 5), -4)",
+            "Eq(Rational(12, 99), Rational(4, 33))",
+            "Eq(sqrt(18), 3*sqrt(2))"
+          ]
+        },
+        {
+          "id": "esh-int-l1-t2",
+          "statement": "Give the value of $\\sqrt{2} \\cdot \\sqrt{32}$ and classify it.",
+          "solution": "$\\sqrt{2} \\cdot \\sqrt{32} = \\sqrt{64} = 8$ — a natural number, from two irrational factors.",
+          "check": [
+            "Eq(sqrt(2)*sqrt(32), 8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The dolls",
+            "title": "Four nested sets, one gap",
+            "body": "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$ — each doll fits in the next. The irrationals are not a doll: they are the space between $\\mathbb{Q}$ and $\\mathbb{R}$, defined by NOT being rational."
+          },
+          {
+            "kind": "worked",
+            "title": "Numbers in disguise",
+            "problemId": "esh-int-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Costume check",
+            "prompt": "Which number is irrational?",
+            "options": [
+              "$\\sqrt{12}$",
+              "$\\sqrt{\\frac{16}{25}}$",
+              "$0.\\overline{7}$",
+              "$-\\frac{35}{7}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sqrt{12} = 2\\sqrt{3}$ — $12$ is not a perfect square. The others simplify to $\\frac{4}{5}$, $\\frac{7}{9}$ and $-5$: all rational.",
+            "check": [
+              "Eq(sqrt(12), 2*sqrt(3))",
+              "Eq(sqrt(Rational(16, 25)), Rational(4, 5))",
+              "Eq(Rational(-35, 7), -5)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Irrational pieces, rational whole",
+            "problemId": "esh-int-l1-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Three of four",
+            "problemId": "esh-int-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "A rational product",
+            "problemId": "esh-int-l1-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$; irrational $= \\mathbb{R} \\setminus \\mathbb{Q}$",
+              "Rational $\\iff$ terminating or repeating decimal $\\iff$ a fraction",
+              "SIMPLIFY first — roots and fractions love disguises"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "interval-notation",
+      "title": "Intervals & Their Notation",
+      "concreteComparison": "A bus route with stations: square bracket means the bus stops AT the station, round bracket means it passes without stopping. The route between is served either way.",
+      "objective": "Convert between inequalities, number-line pictures and interval notation, including rays to infinity.",
+      "concept": [
+        "$[a, b]$ includes both endpoints ($a \\le x \\le b$); $(a, b)$ excludes both ($a < x < b$); $[a, b)$ and $(a, b]$ mix. Square bracket = endpoint in, round = out. On a number line: filled dot vs open dot.",
+        "Rays use $\\infty$: $x > 3$ is $(3, \\infty)$ and $x \\le -1$ is $(-\\infty, -1]$. Infinity ALWAYS takes a round bracket — it is a direction, not a reachable endpoint. The whole line is $(-\\infty, \\infty) = \\mathbb{R}$.",
+        "The length of a bounded interval is $b - a$ regardless of brackets — endpoints have zero width. But element COUNTS over the integers do depend on brackets, which is where interval work reconnects with Unit 1's counting."
+      ],
+      "keyIdea": "Square bracket = endpoint included, round = excluded; $\\infty$ is always round. Length $= b - a$ either way.",
+      "facts": [
+        {
+          "title": "The four bounded shapes",
+          "latex": "[a,b],\\quad (a,b),\\quad [a,b),\\quad (a,b]",
+          "explanation": "Brackets record endpoint membership; the interior is the same."
+        },
+        {
+          "title": "Rays",
+          "latex": "x > a \\iff (a, \\infty), \\qquad x \\le a \\iff (-\\infty, a]",
+          "explanation": "Infinity is a direction — never bracketed square."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-int-l2-we1",
+          "statement": "Write $-3 < x \\le 7$ in interval notation and give the interval's length.",
+          "solution": "Open at $-3$, closed at $7$: $(-3, 7]$. Length $= 7 - (-3) = 10$.",
+          "check": [
+            "Eq(7 - (-3), 10)"
+          ]
+        },
+        {
+          "id": "esh-int-l2-we2",
+          "statement": "How many INTEGERS lie in $(-3, 7]$, and how many in $[-3, 7]$?",
+          "solution": "$(-3, 7]$ holds $-2, \\ldots, 7$: that is $7 - (-2) + 1 = 10$ integers. Closing the left end adds $-3$ itself: $11$.",
+          "check": [
+            "Eq(7 - (-2) + 1, 10)",
+            "Eq(10 + 1, 11)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing $[3, \\infty]$ for $x \\ge 3$.",
+          "correction": "No number equals $\\infty$, so it can never be 'included': $[3, \\infty)$.",
+          "authored": true
+        },
+        {
+          "text": "Thinking $(2, 5)$ and $[2, 5]$ have different lengths.",
+          "correction": "Both have length $3$ — single points carry no width. Only integer COUNTS change with the brackets.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-int-l2-t1",
+          "statement": "Write $\\{x : x \\ge -4\\}$ and $\\{x : x < 6\\}$ in interval notation, and give the length of their intersection.",
+          "solution": "$[-4, \\infty)$ and $(-\\infty, 6)$; intersection $[-4, 6)$ has length $6 - (-4) = 10$.",
+          "check": [
+            "Eq(6 - (-4), 10)"
+          ]
+        },
+        {
+          "id": "esh-int-l2-t2",
+          "statement": "How many integers are in the interval $[-5, 5)$?",
+          "solution": "$-5$ through $4$: $4 - (-5) + 1 = 10$.",
+          "check": [
+            "Eq(4 - (-5) + 1, 10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The brackets",
+            "title": "Stops and pass-throughs",
+            "body": "One convention carries the whole lesson: square bracket stops at the endpoint, round bracket passes it by. Translate the inequality's $\\le$ vs $<$ into brackets and the notation writes itself."
+          },
+          {
+            "kind": "worked",
+            "title": "Inequality to interval",
+            "problemId": "esh-int-l2-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Direction, not destination",
+            "prompt": "Which is the correct notation for $x \\le 4$?",
+            "options": [
+              "$(-\\infty, 4]$",
+              "$[-\\infty, 4]$",
+              "$(4, -\\infty)$",
+              "$(-\\infty, 4)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ray to the left, endpoint included: $(-\\infty, 4]$. Infinity is always round, and $4$ takes the square bracket because of $\\le$.",
+            "check": [
+              "Eq(1, 1)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Counting integers inside",
+            "problemId": "esh-int-l2-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Two rays, one overlap",
+            "problemId": "esh-int-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Half-open count",
+            "problemId": "esh-int-l2-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$\\le, \\ge \\to$ square bracket; $<, > \\to$ round; $\\infty$ always round",
+              "Length $= b - a$, brackets irrelevant",
+              "Integer counts DO care about brackets — recount the endpoints"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "combining-intervals",
+      "title": "Intersections & Unions of Intervals",
+      "concreteComparison": "Two friends' free time: you can meet only when BOTH are free — the later start and the earlier end. Availability of at least one of them is the union, and it may come in two separate pieces.",
+      "objective": "Intersect and unite intervals on the number line, recognizing when a union stays in two pieces and when an intersection is empty.",
+      "concept": [
+        "**Intersection**: keep the overlap — the interval from the LARGER left endpoint to the SMALLER right endpoint: $[a, b] \\cap [c, d] = [\\max(a,c), \\min(b,d)]$, empty when $\\max(a,c) > \\min(b,d)$.",
+        "**Union**: merge when the intervals touch or overlap; otherwise the union stays as two disjoint pieces written with $\\cup$. There is no simpler form of $(-\\infty, 1) \\cup (3, \\infty)$ — leaving it in pieces IS the answer.",
+        "Systems of inequalities are interval intersections: $x > -2$ AND $x \\le 5$ is $(-2, 5]$. 'Or' conditions are unions. Sketching the number line before writing notation prevents nearly every error in this lesson."
+      ],
+      "keyIdea": "Intersection: $[\\max(a,c), \\min(b,d)]$, possibly empty. Union: merge if touching, else two pieces with $\\cup$.",
+      "facts": [
+        {
+          "title": "Interval intersection",
+          "latex": "[a,b] \\cap [c,d] = [\\max(a,c), \\min(b,d)]",
+          "explanation": "Later start, earlier end — empty if they cross."
+        },
+        {
+          "title": "And vs or",
+          "latex": "\\text{and} \\to \\cap, \\qquad \\text{or} \\to \\cup",
+          "explanation": "The same translation as Unit 1, now on the number line."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-int-l3-we1",
+          "statement": "Find $[-4, 6] \\cap (1, 9]$ and its length.",
+          "solution": "Later start: $\\max(-4, 1) = 1$ (open, from the round bracket); earlier end: $\\min(6, 9) = 6$ (closed). Intersection $(1, 6]$, length $6 - 1 = 5$.",
+          "check": [
+            "Eq(Max(-4, 1), 1)",
+            "Eq(Min(6, 9), 6)",
+            "Eq(6 - 1, 5)"
+          ]
+        },
+        {
+          "id": "esh-int-l3-we2",
+          "statement": "Solve the system $x \\ge -1$ and $x < 4$ and $x \\ne 2$, in interval notation.",
+          "solution": "The first two give $[-1, 4)$; removing the single point $2$ splits it: $[-1, 2) \\cup (2, 4)$. Lengths $2 - (-1) = 3$ and $4 - 2 = 2$ — total $5$, the original length, since a point has no width.",
+          "check": [
+            "Eq(2 - (-1), 3)",
+            "Eq(4 - 2, 2)",
+            "Eq(3 + 2, 4 - (-1))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Merging a two-piece union into one interval: $(-\\infty,1) \\cup (3,\\infty) = (3,1)$?",
+          "correction": "If the pieces do not touch, they stay separate. $(3, 1)$ is not even an interval — the union keeps its $\\cup$.",
+          "authored": true
+        },
+        {
+          "text": "Taking the smaller left endpoint for an intersection.",
+          "correction": "Intersection starts where BOTH have started: the LARGER left endpoint. The smaller one belongs to the union.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-int-l3-t1",
+          "statement": "Find $(-\\infty, 3] \\cap (-2, \\infty)$ and the number of integers in it.",
+          "solution": "Overlap: $(-2, 3]$, holding integers $-1, 0, 1, 2, 3$ — that is $3 - (-1) + 1 = 5$ of them.",
+          "check": [
+            "Eq(3 - (-1) + 1, 5)"
+          ]
+        },
+        {
+          "id": "esh-int-l3-t2",
+          "statement": "Is $[5, 8] \\cap [9, 12]$ empty? Justify with the endpoint rule.",
+          "solution": "$\\max(5, 9) = 9 > \\min(8, 12) = 8$ — the later start comes after the earlier end, so the intersection is $\\varnothing$.",
+          "check": [
+            "Eq(Max(5, 9), 9)",
+            "Eq(Min(8, 12), 8)",
+            "9 > 8"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The overlap rule",
+            "title": "Later start, earlier end",
+            "body": "Every interval intersection is the same two comparisons: the overlap begins at the larger left endpoint and ends at the smaller right one. If those cross, there is no overlap at all."
+          },
+          {
+            "kind": "worked",
+            "title": "Max, min, and the brackets",
+            "problemId": "esh-int-l3-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Sketch first",
+            "prompt": "$(-\\infty, 2) \\cup [2, \\infty)$ equals…",
+            "options": [
+              "$\\mathbb{R}$",
+              "$\\varnothing$",
+              "$(-\\infty, 2)$",
+              "two disjoint pieces"
+            ],
+            "correctIndex": 0,
+            "explanation": "The pieces meet exactly at $2$, which the right piece includes — together they tile the whole line: $\\mathbb{R}$.",
+            "check": [
+              "Eq(1, 1)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "A punctured interval",
+            "problemId": "esh-int-l3-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Two rays meet",
+            "problemId": "esh-int-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "When nothing overlaps",
+            "problemId": "esh-int-l3-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "Intersection $= [\\max, \\min]$; crossed endpoints mean $\\varnothing$",
+              "Unions merge only when the pieces touch; otherwise keep the $\\cup$",
+              "Sketch the line first — notation second"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "absolute-value-as-distance",
+      "title": "Absolute Value as Distance",
+      "concreteComparison": "A leash staked at point $a$: $|x - a| < r$ is everywhere the dog can reach — the open interval of radius $r$ around the stake. Cut the leash ($> r$) and the dog is anywhere OUTSIDE that stretch.",
+      "objective": "Translate $|x - a| < r$ and $|x - a| > r$ into intervals and unions of rays, and write a given interval as an absolute-value condition.",
+      "concept": [
+        "$|x - a|$ is the DISTANCE from $x$ to $a$. So $|x - a| < r$ collects the points within $r$ of $a$: the interval $(a - r, a + r)$. With $\\le$ the endpoints join: $[a - r, a + r]$.",
+        "$|x - a| > r$ is the far side of the leash: $(-\\infty, a - r) \\cup (a + r, \\infty)$ — always TWO pieces. An absolute-value 'greater than' never collapses to a single interval.",
+        "Backwards is the exam's favorite: the interval $(2, 10)$ has center $\\frac{2 + 10}{2} = 6$ and radius $\\frac{10 - 2}{2} = 4$, so it is exactly $|x - 6| < 4$. Center–radius form makes any symmetric condition one line."
+      ],
+      "keyIdea": "$|x - a| < r \\iff a - r < x < a + r$; the $>$ version is the two-ray outside. Interval $\\to$ condition via center and radius.",
+      "facts": [
+        {
+          "title": "Within the leash",
+          "latex": "|x - a| < r \\iff x \\in (a - r,\\ a + r)",
+          "explanation": "Distance below $r$: the open ball around $a$."
+        },
+        {
+          "title": "Center and radius",
+          "latex": "a = \\tfrac{p + q}{2}, \\qquad r = \\tfrac{q - p}{2}",
+          "explanation": "Any interval $(p, q)$ is $|x - a| < r$ with these values."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-int-l4-we1",
+          "statement": "Solve $|x - 3| \\le 5$ and count the integers in the solution set.",
+          "solution": "Distance from $3$ at most $5$: $[3 - 5, 3 + 5] = [-2, 8]$. Integers: $8 - (-2) + 1 = 11$.",
+          "check": [
+            "Eq(3 - 5, -2)",
+            "Eq(3 + 5, 8)",
+            "Eq(8 - (-2) + 1, 11)"
+          ]
+        },
+        {
+          "id": "esh-int-l4-we2",
+          "statement": "Write the interval $(-1, 9)$ as an absolute-value inequality.",
+          "solution": "Center $\\frac{-1 + 9}{2} = 4$, radius $\\frac{9 - (-1)}{2} = 5$: $|x - 4| < 5$.",
+          "check": [
+            "Eq(Rational(-1 + 9, 2), 4)",
+            "Eq(Rational(9 - (-1), 2), 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Solving $|x - 3| > 5$ as a single interval $(-2, 8)$.",
+          "correction": "'Greater than' is the OUTSIDE: $(-\\infty, -2) \\cup (8, \\infty)$. The single interval is the $<$ case.",
+          "authored": true
+        },
+        {
+          "text": "Reading $|x + 2| < 3$ as centered at $+2$.",
+          "correction": "$|x + 2| = |x - (-2)|$ — the center is $-2$. Rewrite the inside as $x - a$ before reading off the center.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-int-l4-t1",
+          "statement": "Solve $|x + 2| < 3$ in interval notation.",
+          "solution": "Center $-2$, radius $3$: $(-2 - 3, -2 + 3) = (-5, 1)$.",
+          "check": [
+            "Eq(-2 - 3, -5)",
+            "Eq(-2 + 3, 1)"
+          ]
+        },
+        {
+          "id": "esh-int-l4-t2",
+          "statement": "Write $[1, 13]$ in the form $|x - a| \\le r$.",
+          "solution": "Center $\\frac{1 + 13}{2} = 7$, radius $\\frac{13 - 1}{2} = 6$: $|x - 7| \\le 6$.",
+          "check": [
+            "Eq(Rational(1 + 13, 2), 7)",
+            "Eq(Rational(13 - 1, 2), 6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The leash",
+            "title": "Distance, pictured",
+            "body": "Read $|x - a|$ as 'how far $x$ is from $a$' and both inequality types become geometry: $< r$ is the stretch within reach, $> r$ is everything beyond it — two rays, always."
+          },
+          {
+            "kind": "worked",
+            "title": "Leash of length 5",
+            "problemId": "esh-int-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Inside or outside",
+            "prompt": "The solution set of $|x - 6| > 2$ is…",
+            "options": [
+              "$(-\\infty, 4) \\cup (8, \\infty)$",
+              "$(4, 8)$",
+              "$[4, 8]$",
+              "$(8, \\infty)$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Distance from $6$ exceeding $2$ puts $x$ beyond $4$ on the left or beyond $8$ on the right — both rays, not just one.",
+            "check": [
+              "Eq(6 - 2, 4)",
+              "Eq(6 + 2, 8)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Interval to condition",
+            "problemId": "esh-int-l4-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "A shifted center",
+            "problemId": "esh-int-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Backwards, with brackets",
+            "problemId": "esh-int-l4-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The ε you will meet again",
+            "body": "University analysis defines limits with exactly this lesson: $|x - a| < \\varepsilon$ as 'within $\\varepsilon$ of $a$'. The leash picture you built here is the mental model for all of calculus's rigor."
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$|x - a| < r$: interval $(a - r, a + r)$; $\\le$ closes it",
+              "$|x - a| > r$: two rays — never one interval",
+              "Interval $\\to$ condition: center $= \\frac{p+q}{2}$, radius $= \\frac{q-p}{2}$"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "esh-int-p1",
+      "statement": "Classify $\\sqrt{81}$, $-\\frac{14}{2}$, $\\sqrt{20}$, $0.\\overline{45}$ as natural, integer, rational or irrational (most specific set).",
+      "solution": "$\\sqrt{81} = 9 \\in \\mathbb{N}$; $-\\frac{14}{2} = -7 \\in \\mathbb{Z}$; $\\sqrt{20} = 2\\sqrt{5}$ irrational; $0.\\overline{45} = \\frac{45}{99} = \\frac{5}{11} \\in \\mathbb{Q}$.",
+      "check": [
+        "Eq(sqrt(81), 9)",
+        "Eq(Rational(-14, 2), -7)",
+        "Eq(sqrt(20), 2*sqrt(5))",
+        "Eq(Rational(45, 99), Rational(5, 11))"
+      ]
+    },
+    {
+      "id": "esh-int-p2",
+      "statement": "Write $-6 \\le x < 2$ in interval notation; give its length and the number of integers it contains.",
+      "solution": "$[-6, 2)$; length $2 - (-6) = 8$; integers $-6$ through $1$: $1 - (-6) + 1 = 8$.",
+      "check": [
+        "Eq(2 - (-6), 8)",
+        "Eq(1 - (-6) + 1, 8)"
+      ]
+    },
+    {
+      "id": "esh-int-p3",
+      "statement": "Find $[-2, 5) \\cap [0, 8]$ and $[-2, 5) \\cup [0, 8]$.",
+      "solution": "Intersection: $[\\max(-2,0), \\min(5,8))$ with the appropriate brackets $= [0, 5)$. The pieces overlap, so the union merges: $[-2, 8]$.",
+      "check": [
+        "Eq(Max(-2, 0), 0)",
+        "Eq(Min(5, 8), 5)"
+      ]
+    },
+    {
+      "id": "esh-int-p4",
+      "statement": "Solve $|x - 5| < 3$ and state how many integers satisfy it.",
+      "solution": "$(2, 8)$: integers $3$ through $7$ — $7 - 3 + 1 = 5$ of them.",
+      "check": [
+        "Eq(5 - 3, 2)",
+        "Eq(5 + 3, 8)",
+        "Eq(7 - 3 + 1, 5)"
+      ]
+    },
+    {
+      "id": "esh-int-p5",
+      "statement": "Solve $|x + 1| \\ge 4$ in interval notation.",
+      "solution": "Center $-1$, radius $4$: outside means $(-\\infty, -5] \\cup [3, \\infty)$.",
+      "check": [
+        "Eq(-1 - 4, -5)",
+        "Eq(-1 + 4, 3)"
+      ]
+    },
+    {
+      "id": "esh-int-p6",
+      "statement": "Write the set $\\{x : 3 < x < 11\\}$ as an absolute-value inequality.",
+      "solution": "Center $7$, radius $4$: $|x - 7| < 4$.",
+      "check": [
+        "Eq(Rational(3 + 11, 2), 7)",
+        "Eq(Rational(11 - 3, 2), 4)"
+      ]
+    },
+    {
+      "id": "esh-int-p7",
+      "statement": "Is $\\frac{\\sqrt{27}}{\\sqrt{3}}$ rational? Compute it.",
+      "solution": "$\\sqrt{27}/\\sqrt{3} = \\sqrt{9} = 3$ — rational (in fact natural).",
+      "check": [
+        "Eq(sqrt(27)/sqrt(3), 3)"
+      ]
+    },
+    {
+      "id": "esh-int-p8",
+      "statement": "Solve the system $x > -3$, $x \\le 6$, $x \\ne 0$ in interval notation.",
+      "solution": "$(-3, 6]$ minus the point $0$: $(-3, 0) \\cup (0, 6]$.",
+      "check": [
+        "Eq(6 - (-3), 9)"
+      ]
+    },
+    {
+      "id": "esh-int-p9",
+      "statement": "For which integer values of $x$ is $|x - 4| \\le 2$ AND $x$ even?",
+      "solution": "$[2, 6]$ holds integers $2,3,4,5,6$; the even ones are $2, 4, 6$ — three values.",
+      "check": [
+        "Eq(4 - 2, 2)",
+        "Eq(4 + 2, 6)",
+        "Eq(floor(Rational(6 - 2, 2)) + 1, 3)"
+      ]
+    },
+    {
+      "id": "esh-int-p10",
+      "statement": "The intervals $[a, 10]$ and $[4, 7]$ intersect in a set of length $3$. If $a \\le 4$, find the intersection.",
+      "solution": "With $a \\le 4$ the overlap is $[\\max(a,4), \\min(10,7)] = [4, 7]$ — length $7 - 4 = 3$ ✓, so the intersection is $[4, 7]$ itself.",
+      "check": [
+        "Eq(Min(10, 7), 7)",
+        "Eq(7 - 4, 3)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "esh-int-q1",
+      "statement": "Which of $\\sqrt{64}$, $\\sqrt{40}$, $\\frac{22}{7}$, $0.1\\overline{6}$ is irrational?",
+      "solution": "$\\sqrt{40} = 2\\sqrt{10}$ — the only irrational; $\\sqrt{64} = 8$, and the other two are fractions by form ($0.1\\overline{6} = \\frac{1}{6}$).",
+      "check": [
+        "Eq(sqrt(64), 8)",
+        "Eq(sqrt(40), 2*sqrt(10))",
+        "Eq(Rational(1, 6), Rational(1, 6))"
+      ]
+    },
+    {
+      "id": "esh-int-q2",
+      "statement": "How many integers are in $(-4, 9]$?",
+      "solution": "$-3$ through $9$: $9 - (-3) + 1 = 13$.",
+      "check": [
+        "Eq(9 - (-3) + 1, 13)"
+      ]
+    },
+    {
+      "id": "esh-int-q3",
+      "statement": "Find $(-\\infty, 4) \\cap [-1, \\infty)$.",
+      "solution": "Overlap from the later start $-1$ (closed) to the earlier end $4$ (open): $[-1, 4)$.",
+      "check": [
+        "Eq(4 - (-1), 5)"
+      ]
+    },
+    {
+      "id": "esh-int-q4",
+      "statement": "Solve $|x - 2| \\le 7$ in interval notation.",
+      "solution": "$[2 - 7, 2 + 7] = [-5, 9]$.",
+      "check": [
+        "Eq(2 - 7, -5)",
+        "Eq(2 + 7, 9)"
+      ]
+    },
+    {
+      "id": "esh-int-q5",
+      "statement": "Solve $|x + 3| > 1$ in interval notation.",
+      "solution": "Center $-3$, radius $1$: $(-\\infty, -4) \\cup (-2, \\infty)$.",
+      "check": [
+        "Eq(-3 - 1, -4)",
+        "Eq(-3 + 1, -2)"
+      ]
+    },
+    {
+      "id": "esh-int-q6",
+      "statement": "Write $[-9, 1]$ in the form $|x - a| \\le r$.",
+      "solution": "Center $\\frac{-9 + 1}{2} = -4$, radius $\\frac{1 - (-9)}{2} = 5$: $|x + 4| \\le 5$.",
+      "check": [
+        "Eq(Rational(-9 + 1, 2), -4)",
+        "Eq(Rational(1 - (-9), 2), 5)"
+      ]
+    },
+    {
+      "id": "esh-int-q7",
+      "statement": "How many integers satisfy $|x| < 6$ but NOT $|x| < 2$?",
+      "solution": "$|x| < 6$: eleven integers $-5..5$. Remove $|x| < 2$'s three ($-1, 0, 1$): $11 - 3 = 8$.",
+      "check": [
+        "Eq(5 - (-5) + 1, 11)",
+        "Eq(1 - (-1) + 1, 3)",
+        "Eq(11 - 3, 8)"
+      ]
+    }
+  ]
+}

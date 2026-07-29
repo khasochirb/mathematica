@@ -1,0 +1,748 @@
+{
+  "slug": "sets-and-operations",
+  "title": "Sets & Operations",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Sets, membership and subsets, the four operations, subset counting with powers of two, and De Morgan's laws — the notation the rest of the topic (and half of probability) is written in.",
+  "buildsOn": null,
+  "lessons": [
+    {
+      "slug": "sets-and-membership",
+      "title": "Sets, Membership & Cardinality",
+      "concreteComparison": "A set is a guest list: what matters is WHO is on it, not the order you wrote the names in or how many times a name got scribbled. {1, 2, 3} and {3, 1, 2, 2} are the same party.",
+      "objective": "Read and write sets in roster and set-builder notation, decide membership and subset claims, and count a set's elements.",
+      "concept": [
+        "A **set** is an unordered collection of distinct objects, its **elements**. $x \\in A$ says $x$ is an element of $A$; $x \\notin A$ says it is not. Roster notation lists the elements: $A = \\{2, 4, 6, 8\\}$. Set-builder notation states the rule: $A = \\{x \\in \\mathbb{Z} : -2 \\le x < 4\\}$ reads 'all integers from $-2$ up to but not including $4$'.",
+        "$B \\subseteq A$ ($B$ is a **subset** of $A$) means every element of $B$ is also in $A$. Watch the two levels: $2 \\in \\{2, 4\\}$ is an element claim, $\\{2\\} \\subseteq \\{2, 4\\}$ is a subset claim — mixing them up is the classic exam trap. The **empty set** $\\varnothing$ has no elements and is a subset of every set.",
+        "The **cardinality** $|A|$ (also written $n(A)$) is the number of elements. For a run of consecutive integers from $a$ to $b$ inclusive, $|A| = b - a + 1$ — the '+1' is where fast solvers lose a point."
+      ],
+      "keyIdea": "A set is decided by membership alone — no order, no repeats. Element claims use $\\in$, subset claims use $\\subseteq$, and $|A|$ counts.",
+      "facts": [
+        {
+          "title": "Membership vs subset",
+          "latex": "x \\in A, \\qquad B \\subseteq A",
+          "explanation": "An ELEMENT belongs with $\\in$; a whole SET fits inside with $\\subseteq$."
+        },
+        {
+          "title": "Consecutive-integer count",
+          "latex": "|\\{a, a+1, \\ldots, b\\}| = b - a + 1",
+          "explanation": "Inclusive runs count both ends — subtract, then add one."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-sets-l1-we1",
+          "statement": "List the elements of $A = \\{x \\in \\mathbb{Z} : -2 \\le x < 4\\}$ and state $|A|$.",
+          "solution": "The integers from $-2$ up to $3$: $A = \\{-2, -1, 0, 1, 2, 3\\}$. Count with the inclusive-run rule from $-2$ to $3$: $3 - (-2) + 1 = 6$, so $|A| = 6$.",
+          "check": [
+            "Eq(3 - (-2) + 1, 6)"
+          ]
+        },
+        {
+          "id": "esh-sets-l1-we2",
+          "statement": "How many positive multiples of $3$ are less than $50$? Write the set in set-builder notation first.",
+          "solution": "$M = \\{x \\in \\mathbb{N} : x < 50,\\ 3 \\mid x\\} = \\{3, 6, \\ldots, 48\\}$. The largest is $48 = 3 \\cdot 16$, so there are $\\lfloor 49/3 \\rfloor = 16$ elements.",
+          "check": [
+            "Eq(floor(Rational(49, 3)), 16)",
+            "Eq(3*16, 48)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing $\\{2\\} \\in \\{2, 4\\}$ because '2 is in the set'.",
+          "correction": "$2 \\in \\{2, 4\\}$ (element), but $\\{2\\} \\subseteq \\{2, 4\\}$ (subset). $\\{2\\} \\in \\{2, 4\\}$ is false — the set $\\{2\\}$ is not one of the listed elements.",
+          "authored": true
+        },
+        {
+          "text": "Counting $\\{5, 6, \\ldots, 20\\}$ as $20 - 5 = 15$ elements.",
+          "correction": "Inclusive runs need the $+1$: $20 - 5 + 1 = 16$ elements.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-sets-l1-t1",
+          "statement": "State $|B|$ for $B = \\{x \\in \\mathbb{Z} : -7 < x \\le 5\\}$.",
+          "solution": "The integers from $-6$ to $5$ inclusive: $5 - (-6) + 1 = 12$, so $|B| = 12$. Note $-7$ itself is excluded by the strict inequality.",
+          "check": [
+            "Eq(5 - (-6) + 1, 12)"
+          ]
+        },
+        {
+          "id": "esh-sets-l1-t2",
+          "statement": "How many two-digit numbers are divisible by $7$?",
+          "solution": "Two-digit multiples of $7$ run from $14 = 7 \\cdot 2$ to $98 = 7 \\cdot 14$: that is $14 - 2 + 1 = 13$ numbers.",
+          "check": [
+            "Eq(7*2, 14)",
+            "Eq(7*14, 98)",
+            "Eq(14 - 2 + 1, 13)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The language",
+            "title": "Guest lists, not queues",
+            "body": "A set cares only about membership. $\\{1, 2, 3\\}$, $\\{3, 2, 1\\}$ and $\\{1, 1, 2, 3\\}$ are all the SAME set — order and repeats are ignored. Everything in this unit builds on that single convention."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Two levels",
+            "title": "Element vs subset",
+            "body": "$\\in$ speaks about one element; $\\subseteq$ speaks about a whole set. $2 \\in \\{2, 4\\}$ and $\\{2\\} \\subseteq \\{2, 4\\}$ are both true — but $\\{2\\} \\in \\{2, 4\\}$ is false, and the exam loves to offer it."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which claims hold?",
+            "prompt": "For $A = \\{1, \\{2\\}, 3\\}$, which statement is TRUE?",
+            "options": [
+              "$\\{2\\} \\in A$",
+              "$2 \\in A$",
+              "$\\{1, 2\\} \\subseteq A$",
+              "$|A| = 2$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The elements of $A$ are $1$, the SET $\\{2\\}$, and $3$ — so $\\{2\\} \\in A$ is true, while the number $2$ itself is not an element. $|A| = 3$.",
+            "check": [
+              "Eq(3, 3)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Set-builder to roster",
+            "problemId": "esh-sets-l1-we1"
+          },
+          {
+            "kind": "worked",
+            "title": "Counting multiples",
+            "problemId": "esh-sets-l1-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "The +1 reflex",
+            "prompt": "How many integers satisfy $-4 \\le x \\le 9$?",
+            "options": [
+              "$13$",
+              "$14$",
+              "$12$",
+              "$9$"
+            ],
+            "correctIndex": 1,
+            "explanation": "Inclusive run: $9 - (-4) + 1 = 14$. Forgetting the $+1$ gives the tempting $13$.",
+            "check": [
+              "Eq(9 - (-4) + 1, 14)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Strict on one side",
+            "problemId": "esh-sets-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Two-digit multiples",
+            "problemId": "esh-sets-l1-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "A set = membership only; no order, no repeats",
+              "$\\in$ for elements, $\\subseteq$ for sets; $\\varnothing \\subseteq$ everything",
+              "Consecutive integers $a$ to $b$: count $= b - a + 1$"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "union-intersection-difference",
+      "title": "Union, Intersection, Difference & Complement",
+      "concreteComparison": "Two clubs at one school: the union is everyone who joined anything, the intersection is the students running between both rooms, the difference is one club with the double-bookers removed, and the complement is everyone still at home.",
+      "objective": "Compute $A \\cup B$, $A \\cap B$, $A \\setminus B$ and $A'$ for concrete sets, and read each operation as a plain-language condition.",
+      "concept": [
+        "**Union** $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\}$ — in at least one. **Intersection** $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\}$ — in both. Two sets with $A \\cap B = \\varnothing$ are **disjoint**.",
+        "**Difference** $A \\setminus B$ keeps what is in $A$ but not in $B$ — and it is not symmetric: $A \\setminus B \\ne B \\setminus A$ in general. Within a stated **universal set** $U$, the **complement** $A' = U \\setminus A$ is everything $A$ leaves out, so $|A'| = |U| - |A|$.",
+        "On the exam these appear as conditions chained in words: 'divisible by 2 or 3' is a union, 'divisible by 2 and 3' is an intersection, 'even but not a multiple of 3' is a difference. Translate the sentence into the operation first, then count."
+      ],
+      "keyIdea": "Or $\\to \\cup$, and $\\to \\cap$, but-not $\\to \\setminus$, everything-else $\\to$ complement. The operation IS the sentence.",
+      "facts": [
+        {
+          "title": "The four operations",
+          "latex": "A \\cup B,\\quad A \\cap B,\\quad A \\setminus B,\\quad A' = U \\setminus A",
+          "explanation": "Or, and, but-not, everything-else — each word picks its operation."
+        },
+        {
+          "title": "Complement count",
+          "latex": "|A'| = |U| - |A|",
+          "explanation": "Counting what you don't want is often faster than counting what you do."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-sets-l2-we1",
+          "statement": "Let $A = \\{1, 2, 3, 4, 5, 6\\}$ and $B = \\{4, 5, 6, 7, 8\\}$. Find $|A \\cup B|$, $|A \\cap B|$ and $|A \\setminus B|$.",
+          "solution": "$A \\cap B = \\{4, 5, 6\\}$, so $|A \\cap B| = 3$. $A \\cup B = \\{1, \\ldots, 8\\}$, so $|A \\cup B| = 8$ — note $6 + 5 - 3 = 8$, the shared elements are counted once. $A \\setminus B = \\{1, 2, 3\\}$, so $|A \\setminus B| = 6 - 3 = 3$.",
+          "check": [
+            "Eq(6 + 5 - 3, 8)",
+            "Eq(6 - 3, 3)"
+          ]
+        },
+        {
+          "id": "esh-sets-l2-we2",
+          "statement": "With universal set $U = \\{1, 2, \\ldots, 30\\}$, let $E$ be the multiples of $2$ and $T$ the multiples of $3$. How many elements are even but NOT multiples of $3$?",
+          "solution": "$|E| = 15$ (the evens up to $30$) and $E \\cap T$ is the multiples of $6$: $|E \\cap T| = 5$. The question asks for $|E \\setminus T| = 15 - 5 = 10$.",
+          "check": [
+            "Eq(floor(Rational(30, 2)), 15)",
+            "Eq(floor(Rational(30, 6)), 5)",
+            "Eq(15 - 5, 10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing $|A \\cup B|$ as $|A| + |B|$.",
+          "correction": "Shared elements get counted twice that way. Either list the union, or use $|A| + |B| - |A \\cap B|$ — the next unit makes this a formula.",
+          "authored": true
+        },
+        {
+          "text": "Treating $A \\setminus B$ and $B \\setminus A$ as the same set.",
+          "correction": "Difference is directional: $\\{1,2,3\\} \\setminus \\{3\\} = \\{1,2\\}$ but $\\{3\\} \\setminus \\{1,2,3\\} = \\varnothing$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-sets-l2-t1",
+          "statement": "For $A = \\{2, 4, 6, 8, 10, 12\\}$ and $B = \\{3, 6, 9, 12\\}$, find $|A \\cap B|$ and $|A \\cup B|$.",
+          "solution": "$A \\cap B = \\{6, 12\\}$: $|A \\cap B| = 2$. Then $|A \\cup B| = 6 + 4 - 2 = 8$.",
+          "check": [
+            "Eq(6 + 4 - 2, 8)"
+          ]
+        },
+        {
+          "id": "esh-sets-l2-t2",
+          "statement": "In $U = \\{1, \\ldots, 40\\}$, how many numbers are NOT multiples of $5$?",
+          "solution": "Multiples of $5$: $|A| = 8$. Complement: $|A'| = 40 - 8 = 32$.",
+          "check": [
+            "Eq(floor(Rational(40, 5)), 8)",
+            "Eq(40 - 8, 32)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Four verbs",
+            "title": "Or, and, but-not, everything-else",
+            "body": "Every set operation is a sentence: union collects anything in EITHER set, intersection demands BOTH, difference keeps one side and evicts the overlap, complement flips to everything the set is not. Translate first, compute second."
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Pick the operation",
+            "prompt": "'Students who study physics but not chemistry' is which set?",
+            "options": [
+              "$P \\setminus C$",
+              "$P \\cap C$",
+              "$P \\cup C$",
+              "$C \\setminus P$"
+            ],
+            "correctIndex": 0,
+            "explanation": "'But not' is a difference, taken FROM physics: $P \\setminus C$. Direction matters — $C \\setminus P$ is the chemists who avoid physics.",
+            "check": [
+              "Eq(1, 1)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "All three counts at once",
+            "problemId": "esh-sets-l2-we1"
+          },
+          {
+            "kind": "worked",
+            "title": "Even but not a multiple of 3",
+            "problemId": "esh-sets-l2-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Disjoint or not",
+            "prompt": "$A$ = odd numbers, $B$ = multiples of $4$. What is $A \\cap B$?",
+            "options": [
+              "$\\varnothing$",
+              "$\\{4\\}$",
+              "the odd multiples of 4",
+              "$A$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Every multiple of $4$ is even, so no odd number can be in $B$: the sets are disjoint and the intersection is empty.",
+            "check": [
+              "Eq(Mod(4, 2), 0)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Intersection, then union",
+            "problemId": "esh-sets-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Count the complement",
+            "problemId": "esh-sets-l2-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$\\cup$ = or, $\\cap$ = and, $\\setminus$ = but-not (directional!), $'$ = everything else",
+              "$|A'| = |U| - |A|$ — complements turn hard counts into easy ones",
+              "Never add $|A| + |B|$ for a union without removing the overlap"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "subsets-and-power-sets",
+      "title": "Counting Subsets",
+      "concreteComparison": "Packing a bag from 5 items: each item is an independent yes/no. Five binary switches give $2^5 = 32$ different bags — including the empty one. Subset counting is switch counting.",
+      "objective": "Count all subsets, proper subsets, and subsets constrained to contain or avoid particular elements.",
+      "concept": [
+        "Each element of an $n$-element set is either IN a subset or OUT — $n$ independent binary choices, so there are $2^n$ subsets in total. The count includes $\\varnothing$ (all switches off) and $A$ itself (all on).",
+        "A **proper subset** excludes $A$ itself, leaving $2^n - 1$. Some texts also exclude $\\varnothing$; ЭЕШ items say explicitly which is meant — read the stem.",
+        "Constraints pin switches: subsets that MUST contain a given element leave $n-1$ free choices, so $2^{n-1}$ of them; must-contain-two leaves $2^{n-2}$. Subsets avoiding an element are the subsets of the other $n-1$ elements — also $2^{n-1}$. Pin the forced switches, count the free ones."
+      ],
+      "keyIdea": "Subsets are binary choices: $2^n$ total, and every constraint just pins switches — count $2^{\\text{free}}$.",
+      "facts": [
+        {
+          "title": "Subset count",
+          "latex": "\\#\\text{subsets of an } n\\text{-set} = 2^n",
+          "explanation": "In-or-out for each element; the empty set and the whole set both count."
+        },
+        {
+          "title": "Pinned elements",
+          "latex": "\\#\\{S : a \\in S\\} = 2^{n-1}",
+          "explanation": "Forcing an element in (or out) removes one free choice."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-sets-l3-we1",
+          "statement": "A set has $6$ elements. How many subsets does it have, and how many are proper?",
+          "solution": "Total: $2^6 = 64$. Proper subsets exclude the set itself: $64 - 1 = 63$.",
+          "check": [
+            "Eq(2**6, 64)",
+            "Eq(2**6 - 1, 63)"
+          ]
+        },
+        {
+          "id": "esh-sets-l3-we2",
+          "statement": "How many subsets of $\\{1, 2, 3, 4, 5, 6, 7\\}$ contain both $1$ and $2$?",
+          "solution": "Pin $1$ and $2$ in; the other five elements stay free: $2^{7-2} = 2^5 = 32$.",
+          "check": [
+            "Eq(2**5, 32)",
+            "Eq(7 - 2, 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Forgetting that $\\varnothing$ and $A$ itself are subsets.",
+          "correction": "Both count in $2^n$. Only 'proper' (and, when stated, 'non-empty') removes them.",
+          "authored": true
+        },
+        {
+          "text": "Counting subsets that contain $a$ as $2^n - 1$.",
+          "correction": "Pinning $a$ in leaves $n-1$ free elements: $2^{n-1}$, which is half of $2^n$ — as symmetry demands, since $a$ is in exactly half of all subsets.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-sets-l3-t1",
+          "statement": "$|A| = 8$. How many non-empty proper subsets does $A$ have?",
+          "solution": "All subsets: $2^8 = 256$. Remove $\\varnothing$ and $A$: $256 - 2 = 254$.",
+          "check": [
+            "Eq(2**8, 256)",
+            "Eq(256 - 2, 254)"
+          ]
+        },
+        {
+          "id": "esh-sets-l3-t2",
+          "statement": "How many subsets of a $6$-element set contain a chosen element $a$ but NOT a chosen element $b$?",
+          "solution": "$a$ pinned in, $b$ pinned out — four elements remain free: $2^4 = 16$.",
+          "check": [
+            "Eq(6 - 2, 4)",
+            "Eq(2**4, 16)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The switchboard",
+            "title": "n elements, n switches",
+            "body": "Building a subset is walking down the element list flipping in/out switches. $n$ independent switches, $2^n$ outcomes. This one picture answers every subset-counting question in the topic."
+          },
+          {
+            "kind": "worked",
+            "title": "Total and proper",
+            "problemId": "esh-sets-l3-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Halving",
+            "prompt": "What fraction of all subsets of an $n$-set contain a fixed element $a$?",
+            "options": [
+              "exactly half",
+              "$1/n$",
+              "depends on $n$",
+              "all but one"
+            ],
+            "correctIndex": 0,
+            "explanation": "Pair each subset with its version toggling $a$: one of each pair contains $a$. So exactly half — $2^{n-1}$ of $2^n$.",
+            "check": [
+              "Eq(2**5, 2 * 2**4)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Two pinned elements",
+            "problemId": "esh-sets-l3-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Non-empty and proper",
+            "problemId": "esh-sets-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "One in, one out",
+            "problemId": "esh-sets-l3-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 2^0 = 1 makes sense here",
+            "body": "The empty set has exactly one subset — itself. The formula $2^n$ handles the edge case with no special pleading: $2^0 = 1$. When a formula survives its weirdest input, trust it more, not less."
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$2^n$ subsets; $2^n - 1$ proper; $2^n - 2$ non-empty proper",
+              "Each pinned element halves the count: $2^{\\text{free}}$",
+              "Read the stem: 'proper' and 'non-empty' change the answer by 1 each"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "set-identities",
+      "title": "De Morgan & the Algebra of Sets",
+      "concreteComparison": "Negating 'cheap AND fast' gives 'expensive OR slow' — the NOT distributes and flips the connective. De Morgan's laws are that everyday negation, written in set language.",
+      "objective": "Apply De Morgan's laws and the distributive laws to rewrite and count complements of unions and intersections.",
+      "concept": [
+        "**De Morgan's laws**: $(A \\cup B)' = A' \\cap B'$ and $(A \\cap B)' = A' \\cup B'$. Complement flips union with intersection. In words: NOT (in either) = outside both; NOT (in both) = missing from at least one.",
+        "The **distributive laws** mirror arithmetic: $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$ and $A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$ — the second has no arithmetic analogue, which is why it feels wrong and is tested.",
+        "The exam's favorite use is counting: 'how many are in neither club' is $|(A \\cup B)'| = |U| - |A \\cup B|$ — one De Morgan step turns a fussy condition into a subtraction."
+      ],
+      "keyIdea": "Complement swaps $\\cup$ and $\\cap$ (De Morgan). 'Neither' means $|U| - |A \\cup B|$ — always.",
+      "facts": [
+        {
+          "title": "De Morgan's laws",
+          "latex": "(A \\cup B)' = A' \\cap B', \\qquad (A \\cap B)' = A' \\cup B'",
+          "explanation": "The complement bar breaks over the operation and flips it."
+        },
+        {
+          "title": "Neither count",
+          "latex": "|\\text{neither}| = |U| - |A \\cup B|",
+          "explanation": "One subtraction, once the union is known."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-sets-l4-we1",
+          "statement": "In $U = \\{1, \\ldots, 20\\}$, $A$ = multiples of $4$, $B$ = multiples of $5$. Verify De Morgan by counting: $|(A \\cup B)'|$ and $|A' \\cap B'|$.",
+          "solution": "$|A| = 5$, $|B| = 4$, $A \\cap B$ = multiples of $20$: $|A \\cap B| = 1$. So $|A \\cup B| = 5 + 4 - 1 = 8$ and $|(A \\cup B)'| = 20 - 8 = 12$. Directly: $A' \\cap B'$ is the numbers divisible by neither — the same $12$ elements. Both routes agree, as De Morgan promises.",
+          "check": [
+            "Eq(floor(Rational(20, 4)), 5)",
+            "Eq(floor(Rational(20, 5)), 4)",
+            "Eq(floor(Rational(20, 20)), 1)",
+            "Eq(5 + 4 - 1, 8)",
+            "Eq(20 - 8, 12)"
+          ]
+        },
+        {
+          "id": "esh-sets-l4-we2",
+          "statement": "Of $32$ students, $18$ passed algebra and the set of students who failed BOTH algebra and geometry has $6$ students. How many passed at least one subject?",
+          "solution": "'Failed both' is $(A \\cup G)'$ by De Morgan. So $|A \\cup G| = 32 - 6 = 26$ students passed at least one.",
+          "check": [
+            "Eq(32 - 6, 26)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Distributing the complement without flipping: $(A \\cup B)' = A' \\cup B'$.",
+          "correction": "The operation flips: $(A \\cup B)' = A' \\cap B'$. Check with a tiny example — $U = \\{1,2\\}$, $A = \\{1\\}$, $B = \\{2\\}$ breaks the unflipped version.",
+          "authored": true
+        },
+        {
+          "text": "Reading 'not both' as 'neither'.",
+          "correction": "'Not both' is $(A \\cap B)' $ — missing from at least one. 'Neither' is $(A \\cup B)'$ — missing from both. They differ by everyone in exactly one set.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-sets-l4-t1",
+          "statement": "In $U$ with $|U| = 50$: $|A| = 23$, $|B| = 19$, $|A \\cap B| = 8$. Find $|A' \\cap B'|$.",
+          "solution": "$|A \\cup B| = 23 + 19 - 8 = 34$; De Morgan turns the target into $|(A \\cup B)'| = 50 - 34 = 16$.",
+          "check": [
+            "Eq(23 + 19 - 8, 34)",
+            "Eq(50 - 34, 16)"
+          ]
+        },
+        {
+          "id": "esh-sets-l4-t2",
+          "statement": "With the same data, how many elements are in $A' \\cup B'$?",
+          "solution": "De Morgan: $A' \\cup B' = (A \\cap B)'$, so the count is $50 - 8 = 42$.",
+          "check": [
+            "Eq(50 - 8, 42)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The flip",
+            "title": "NOT breaks the bracket and flips the verb",
+            "body": "Negate 'in $A$ or $B$' and you get 'out of $A$ AND out of $B$'. Negate 'in both' and you get 'missing from at least one'. That is the whole of De Morgan — the symbols just record it."
+          },
+          {
+            "kind": "worked",
+            "title": "De Morgan, verified by counting",
+            "problemId": "esh-sets-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Neither vs not-both",
+            "prompt": "$|U| = 40$, $|A \\cap B| = 9$. How many elements are NOT in both sets?",
+            "options": [
+              "$31$",
+              "$9$",
+              "$40 - |A \\cup B|$",
+              "cannot be determined"
+            ],
+            "correctIndex": 0,
+            "explanation": "'Not in both' is the complement of the intersection: $40 - 9 = 31$. ('Neither' would need the union instead — different question.)",
+            "check": [
+              "Eq(40 - 9, 31)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Failed both, passed at least one",
+            "problemId": "esh-sets-l4-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Neither, via De Morgan",
+            "problemId": "esh-sets-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Missing from at least one",
+            "problemId": "esh-sets-l4-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$(A \\cup B)' = A' \\cap B'$ and $(A \\cap B)' = A' \\cup B'$",
+              "'Neither' $= |U| - |A \\cup B|$; 'not both' $= |U| - |A \\cap B|$",
+              "When a complement looks hard, De Morgan it into a subtraction"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "esh-sets-p1",
+      "statement": "Write the elements of $A = \\{x \\in \\mathbb{Z} : x^2 < 10\\}$ and state $|A|$.",
+      "solution": "Integers with square below $10$: $\\{-3, -2, -1, 0, 1, 2, 3\\}$, so $|A| = 7$.",
+      "check": [
+        "Eq(3**2, 9)",
+        "9 < 10",
+        "Eq(4**2, 16)",
+        "16 > 10",
+        "Eq(3 - (-3) + 1, 7)"
+      ]
+    },
+    {
+      "id": "esh-sets-p2",
+      "statement": "How many integers between $1$ and $100$ inclusive are multiples of $6$?",
+      "solution": "From $6$ to $96 = 6 \\cdot 16$: $\\lfloor 100/6 \\rfloor = 16$.",
+      "check": [
+        "Eq(floor(Rational(100, 6)), 16)",
+        "Eq(6*16, 96)"
+      ]
+    },
+    {
+      "id": "esh-sets-p3",
+      "statement": "$A = \\{1,3,5,7,9,11\\}$, $B = \\{3,6,9,12\\}$. Find $|A \\cup B|$ and $|B \\setminus A|$.",
+      "solution": "$A \\cap B = \\{3, 9\\}$: $|A \\cup B| = 6 + 4 - 2 = 8$; $|B \\setminus A| = 4 - 2 = 2$.",
+      "check": [
+        "Eq(6 + 4 - 2, 8)",
+        "Eq(4 - 2, 2)"
+      ]
+    },
+    {
+      "id": "esh-sets-p4",
+      "statement": "A set has $2^n = 128$ subsets. Find $n$ and the number of its non-empty subsets.",
+      "solution": "$2^7 = 128$, so $n = 7$. Non-empty: $128 - 1 = 127$.",
+      "check": [
+        "Eq(2**7, 128)",
+        "Eq(128 - 1, 127)"
+      ]
+    },
+    {
+      "id": "esh-sets-p5",
+      "statement": "How many subsets of $\\{a, b, c, d, e\\}$ contain $a$ or $b$ (at least one of them)?",
+      "solution": "Complement count: subsets avoiding BOTH $a$ and $b$ are subsets of the other three elements — $2^3 = 8$. So $2^5 - 8 = 32 - 8 = 24$.",
+      "check": [
+        "Eq(2**5, 32)",
+        "Eq(2**3, 8)",
+        "Eq(32 - 8, 24)"
+      ]
+    },
+    {
+      "id": "esh-sets-p6",
+      "statement": "In $U = \\{1, \\ldots, 60\\}$, how many numbers are multiples of neither $4$ nor $6$?",
+      "solution": "$|A| = 15$, $|B| = 10$; multiples of $\\mathrm{lcm}(4,6) = 12$: $|A \\cap B| = 5$. Union: $15 + 10 - 5 = 20$; neither: $60 - 20 = 40$.",
+      "check": [
+        "Eq(floor(Rational(60, 4)), 15)",
+        "Eq(floor(Rational(60, 6)), 10)",
+        "Eq(lcm(4, 6), 12)",
+        "Eq(floor(Rational(60, 12)), 5)",
+        "Eq(15 + 10 - 5, 20)",
+        "Eq(60 - 20, 40)"
+      ]
+    },
+    {
+      "id": "esh-sets-p7",
+      "statement": "True or false, for $A = \\{2, \\{3\\}\\}$: (i) $3 \\in A$; (ii) $\\{3\\} \\in A$; (iii) $\\{\\{3\\}\\} \\subseteq A$. How many are true?",
+      "solution": "(i) false — the elements are $2$ and the set $\\{3\\}$; (ii) true; (iii) true, since its only element $\\{3\\}$ is in $A$. Two of the three hold.",
+      "check": [
+        "Eq(2, 2)"
+      ]
+    },
+    {
+      "id": "esh-sets-p8",
+      "statement": "$|U| = 45$, $|A| = 21$, $|B| = 17$, $|A' \\cap B'| = 15$. Find $|A \\cap B|$.",
+      "solution": "De Morgan: $|A \\cup B| = 45 - 15 = 30$. Then $|A \\cap B| = 21 + 17 - 30 = 8$.",
+      "check": [
+        "Eq(45 - 15, 30)",
+        "Eq(21 + 17 - 30, 8)"
+      ]
+    },
+    {
+      "id": "esh-sets-p9",
+      "statement": "How many subsets of an $8$-element set contain a fixed element $a$ and have $b$ excluded, where $b \\ne a$?",
+      "solution": "Two switches pinned, six free: $2^6 = 64$.",
+      "check": [
+        "Eq(8 - 2, 6)",
+        "Eq(2**6, 64)"
+      ]
+    },
+    {
+      "id": "esh-sets-p10",
+      "statement": "$A \\subseteq B$, $|A| = 5$, $|B| = 9$. Find $|A \\cup B|$, $|A \\cap B|$ and $|B \\setminus A|$.",
+      "solution": "With $A$ inside $B$: union is $B$ ($9$), intersection is $A$ ($5$), and $|B \\setminus A| = 9 - 5 = 4$.",
+      "check": [
+        "Eq(9 - 5, 4)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "esh-sets-q1",
+      "statement": "State $|A|$ for $A = \\{x \\in \\mathbb{Z} : -5 \\le x < 12\\}$.",
+      "solution": "From $-5$ to $11$ inclusive: $11 - (-5) + 1 = 17$.",
+      "check": [
+        "Eq(11 - (-5) + 1, 17)"
+      ]
+    },
+    {
+      "id": "esh-sets-q2",
+      "statement": "$A = \\{1,2,3,4,5\\}$, $B = \\{4,5,6,7\\}$: find $|A \\cup B| + |A \\cap B|$.",
+      "solution": "$|A \\cap B| = 2$, $|A \\cup B| = 5 + 4 - 2 = 7$; the sum is $7 + 2 = 9$ — which also equals $|A| + |B|$, no accident.",
+      "check": [
+        "Eq(5 + 4 - 2, 7)",
+        "Eq(7 + 2, 9)",
+        "Eq(5 + 4, 9)"
+      ]
+    },
+    {
+      "id": "esh-sets-q3",
+      "statement": "A set has $63$ proper subsets. How many elements does it have?",
+      "solution": "$2^n - 1 = 63 \\Rightarrow 2^n = 64 = 2^6$, so $n = 6$.",
+      "check": [
+        "Eq(63 + 1, 64)",
+        "Eq(2**6, 64)"
+      ]
+    },
+    {
+      "id": "esh-sets-q4",
+      "statement": "How many subsets of $\\{1, \\ldots, 7\\}$ contain the element $7$?",
+      "solution": "Pin $7$ in; six free choices: $2^6 = 64$.",
+      "check": [
+        "Eq(2**6, 64)"
+      ]
+    },
+    {
+      "id": "esh-sets-q5",
+      "statement": "In $U = \\{1, \\ldots, 100\\}$, how many numbers are divisible by neither $2$ nor $5$?",
+      "solution": "$|A| = 50$, $|B| = 20$, multiples of $10$: $10$. Union $= 50 + 20 - 10 = 60$; neither $= 100 - 60 = 40$.",
+      "check": [
+        "Eq(floor(Rational(100, 2)), 50)",
+        "Eq(floor(Rational(100, 5)), 20)",
+        "Eq(floor(Rational(100, 10)), 10)",
+        "Eq(50 + 20 - 10, 60)",
+        "Eq(100 - 60, 40)"
+      ]
+    },
+    {
+      "id": "esh-sets-q6",
+      "statement": "$|U| = 36$, $|A \\cap B| = 7$. How many elements are in $A' \\cup B'$?",
+      "solution": "De Morgan: $A' \\cup B' = (A \\cap B)'$, so $36 - 7 = 29$.",
+      "check": [
+        "Eq(36 - 7, 29)"
+      ]
+    },
+    {
+      "id": "esh-sets-q7",
+      "statement": "$B \\subseteq A$, $|A| = 12$, $|A \\setminus B| = 8$. How many subsets does $B$ have?",
+      "solution": "$|B| = 12 - 8 = 4$, so $B$ has $2^4 = 16$ subsets.",
+      "check": [
+        "Eq(12 - 8, 4)",
+        "Eq(2**4, 16)"
+      ]
+    }
+  ]
+}

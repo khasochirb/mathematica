@@ -1,0 +1,706 @@
+{
+  "slug": "venn-diagrams-and-counting",
+  "title": "Venn Diagrams & Counting",
+  "unit": 2,
+  "status": "published",
+  "blurb": "The four regions of a two-set diagram, inclusion–exclusion in both directions, eight-region three-set diagrams filled center-outward, and the three-set formula — the survey-problem toolkit the exam returns to every year.",
+  "buildsOn": "Set operations and complements from Unit 1.",
+  "lessons": [
+    {
+      "slug": "reading-a-two-set-venn",
+      "title": "The Four Regions of a Two-Set Venn",
+      "concreteComparison": "Two overlapping spotlights on a stage: lit by the left only, the right only, both beams, or standing in the dark. Every person is in exactly one of those four zones — that's the whole diagram.",
+      "objective": "Decompose two-set problems into the four disjoint regions (only-A, both, only-B, neither) and move between region counts and set counts.",
+      "concept": [
+        "A two-set Venn diagram splits the universe into four **disjoint** regions: only-$A$, the overlap $A \\cap B$, only-$B$, and neither. Disjoint means the region counts simply ADD — that is the diagram's entire power.",
+        "Set totals are region sums: $|A| = \\text{only-}A + \\text{both}$, so $\\text{only-}A = |A| - |A \\cap B|$. Fill the overlap FIRST, then the onlies, then whatever is left is 'neither'.",
+        "Every exam phrase maps to regions: 'only algebra' (one region), 'both' (the overlap), 'at least one' (three regions), 'neither' (the outside)."
+      ],
+      "keyIdea": "Four disjoint regions, filled from the overlap outward. Region counts add; set counts are region sums.",
+      "facts": [
+        {
+          "title": "Region decomposition",
+          "latex": "|A| = |A \\text{ only}| + |A \\cap B|",
+          "explanation": "A set total is its exclusive region plus the overlap."
+        },
+        {
+          "title": "Everything accounted",
+          "latex": "|U| = \\text{only-}A + \\text{both} + \\text{only-}B + \\text{neither}",
+          "explanation": "The four regions tile the universe — their counts must sum to it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-venn-l1-we1",
+          "statement": "In a class of $30$, $18$ play basketball, $14$ play volleyball, $8$ play both. Fill the four regions.",
+          "solution": "Overlap first: both $= 8$. Only basketball: $18 - 8 = 10$; only volleyball: $14 - 8 = 6$. Accounted for: $10 + 8 + 6 = 24$; neither: $30 - 24 = 6$.",
+          "check": [
+            "Eq(18 - 8, 10)",
+            "Eq(14 - 8, 6)",
+            "Eq(10 + 8 + 6, 24)",
+            "Eq(30 - 24, 6)"
+          ]
+        },
+        {
+          "id": "esh-venn-l1-we2",
+          "statement": "Of $40$ students, $12$ study only French, $9$ study both French and German, and $11$ study neither. How many study German?",
+          "solution": "Regions must sum to $40$: only-German $= 40 - 12 - 9 - 11 = 8$. So $|G| = 8 + 9 = 17$.",
+          "check": [
+            "Eq(40 - 12 - 9 - 11, 8)",
+            "Eq(8 + 9, 17)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Filling only-$A$ with $|A|$ instead of $|A| - |A \\cap B|$.",
+          "correction": "The circle's total includes the overlap. Write the overlap first and subtract.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the 'neither' region exists.",
+          "correction": "The two circles rarely cover the whole universe — always check the leftover against $|U|$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-venn-l1-t1",
+          "statement": "$|U| = 50$, $|A| = 27$, $|B| = 22$, both $= 13$. How many are in neither set?",
+          "solution": "Only-$A$: $14$; only-$B$: $9$; total covered $14 + 13 + 9 = 36$; neither $= 50 - 36 = 14$.",
+          "check": [
+            "Eq(27 - 13, 14)",
+            "Eq(22 - 13, 9)",
+            "Eq(14 + 13 + 9, 36)",
+            "Eq(50 - 36, 14)"
+          ]
+        },
+        {
+          "id": "esh-venn-l1-t2",
+          "statement": "In a survey of $45$ people, $16$ liked tea only, $21$ liked coffee only, and everyone liked at least one of the two. How many liked both?",
+          "solution": "With nobody outside, the three inner regions tile the whole group: both $= 45 - 16 - 21 = 8$.",
+          "check": [
+            "Eq(45 - 16 - 21, 8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The picture",
+            "title": "Four zones, no double counting",
+            "body": "The four regions are disjoint by construction — every person lands in exactly one. That is why region arithmetic is plain addition, and why the first move in ANY two-set problem is: write the overlap."
+          },
+          {
+            "kind": "vennCounts",
+            "eyebrow": "Play",
+            "title": "Drag the counts, watch the totals",
+            "teach": "Set the four region counts and watch $|A|$, $|B|$, the union and the universe recompute. Notice $|A|$ changes when 'both' changes — the circle total always includes the overlap.",
+            "config": {
+              "onlyA": 10,
+              "both": 8,
+              "onlyB": 6,
+              "neither": 6
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Overlap first, then outward",
+            "problemId": "esh-venn-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which region?",
+            "prompt": "'Students who study French only' is which part of the diagram?",
+            "options": [
+              "the French circle minus the overlap",
+              "the whole French circle",
+              "the overlap",
+              "everything outside German"
+            ],
+            "correctIndex": 0,
+            "explanation": "'Only' excludes the overlap: only-French $= |F| - |F \\cap G|$. The whole circle would include the double-bookers.",
+            "check": [
+              "Eq(1, 1)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "Working backwards to a circle",
+            "problemId": "esh-venn-l1-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Find the outsiders",
+            "problemId": "esh-venn-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Read the stem carefully",
+            "problemId": "esh-venn-l1-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "Four disjoint regions; counts add",
+              "Fill the overlap first; 'only' means circle minus overlap",
+              "Check the total: regions must sum to $|U|$"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "inclusion-exclusion",
+      "title": "Inclusion–Exclusion for Two Sets",
+      "concreteComparison": "Add two guest lists and the people invited by both hosts get counted twice — so subtract them once. That correction IS the formula.",
+      "objective": "Use $|A \\cup B| = |A| + |B| - |A \\cap B|$ fluently in both directions, including solving for the overlap or a set size.",
+      "concept": [
+        "Adding $|A| + |B|$ counts the overlap twice, so $$|A \\cup B| = |A| + |B| - |A \\cap B|.$$ Four quantities, one equation — the exam gives any three and asks for the fourth.",
+        "With a universal set, chain it with the complement: $|\\text{neither}| = |U| - |A \\cup B|$. Most word problems are these two lines run in sequence.",
+        "Bounds questions use the same equation: the overlap is largest when one set sits inside the other ($\\min(|A|, |B|)$) and smallest when the union fills the whole universe ($|A| + |B| - |U|$, or $0$ if that is negative)."
+      ],
+      "keyIdea": "$|A \\cup B| = |A| + |B| - |A \\cap B|$ — one equation, four unknowns, any three given.",
+      "facts": [
+        {
+          "title": "Inclusion–exclusion",
+          "latex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+          "explanation": "Add both, subtract the double-counted overlap."
+        },
+        {
+          "title": "Overlap bounds",
+          "latex": "|A| + |B| - |U| \\;\\le\\; |A \\cap B| \\;\\le\\; \\min(|A|, |B|)",
+          "explanation": "Squeeze the overlap between forced sharing and full nesting."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-venn-l2-we1",
+          "statement": "In a group of $60$: $38$ have a bicycle, $27$ have a scooter, $12$ have both. How many have neither?",
+          "solution": "$|A \\cup B| = 38 + 27 - 12 = 53$; neither $= 60 - 53 = 7$.",
+          "check": [
+            "Eq(38 + 27 - 12, 53)",
+            "Eq(60 - 53, 7)"
+          ]
+        },
+        {
+          "id": "esh-venn-l2-we2",
+          "statement": "Every one of $52$ students reads at least one of two magazines; $31$ read the first and $35$ read the second. How many read both?",
+          "solution": "'At least one' means $|A \\cup B| = 52$. Solve: $|A \\cap B| = 31 + 35 - 52 = 14$.",
+          "check": [
+            "Eq(31 + 35 - 52, 14)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using $|A| + |B|$ as the union when nothing says the sets are disjoint.",
+          "correction": "Only disjoint sets add cleanly. If an overlap is possible, the formula needs $- |A \\cap B|$.",
+          "authored": true
+        },
+        {
+          "text": "Answering an overlap larger than the smaller set.",
+          "correction": "$|A \\cap B| \\le \\min(|A|, |B|)$ always — an overlap of $20$ between sets of size $15$ and $30$ is impossible. Sanity-check against the bound.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-venn-l2-t1",
+          "statement": "$|A| = 45$, $|B| = 30$, $|A \\cup B| = 63$. Find $|A \\cap B|$ and $|A \\setminus B|$.",
+          "solution": "$|A \\cap B| = 45 + 30 - 63 = 12$; $|A \\setminus B| = 45 - 12 = 33$.",
+          "check": [
+            "Eq(45 + 30 - 63, 12)",
+            "Eq(45 - 12, 33)"
+          ]
+        },
+        {
+          "id": "esh-venn-l2-t2",
+          "statement": "In a class of $28$, everyone studies English or Russian: $19$ study English, $16$ study Russian. How many study only Russian?",
+          "solution": "Both $= 19 + 16 - 28 = 7$; only Russian $= 16 - 7 = 9$.",
+          "check": [
+            "Eq(19 + 16 - 28, 7)",
+            "Eq(16 - 7, 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The correction",
+            "title": "Counted twice, subtracted once",
+            "body": "$|A| + |B|$ walks both circles and steps on the overlap twice. One subtraction repairs it. Everything this lesson does is that equation, rearranged."
+          },
+          {
+            "kind": "worked",
+            "title": "Union, then neither",
+            "problemId": "esh-venn-l2-we1"
+          },
+          {
+            "kind": "worked",
+            "title": "Solving for the overlap",
+            "problemId": "esh-venn-l2-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Feasible or not",
+            "prompt": "$|A| = 15$, $|B| = 30$, and someone claims $|A \\cap B| = 20$. Possible?",
+            "options": [
+              "No — the overlap cannot exceed 15",
+              "Yes",
+              "Only if $|U| = 45$",
+              "Only if the sets are equal"
+            ],
+            "correctIndex": 0,
+            "explanation": "The overlap lives inside BOTH sets, so it is at most $\\min(15, 30) = 15$. A claimed $20$ fails immediately.",
+            "check": [
+              "Eq(Min(15, 30), 15)",
+              "20 > 15"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Overlap, then difference",
+            "problemId": "esh-venn-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Everyone covered",
+            "problemId": "esh-venn-l2-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "$|A \\cup B| = |A| + |B| - |A \\cap B|$; solve for whichever is missing",
+              "Chain with $|U| - |A \\cup B|$ for 'neither'",
+              "Overlap sanity bound: never more than the smaller set"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "three-set-venn",
+      "title": "Three Sets, Eight Regions",
+      "concreteComparison": "Three spotlights make eight zones — down to the triple overlap in the middle and the darkness outside. Fill the middle first and work outward, like painting a target from the bullseye.",
+      "objective": "Fill all eight regions of a three-set diagram from given data, working from the triple overlap outward.",
+      "concept": [
+        "Three sets cut the universe into $8$ disjoint regions: three 'only' zones, three 'exactly two' zones, the triple overlap, and the outside. As before, region counts ADD.",
+        "Fill order is everything: start at the **center** $|A \\cap B \\cap C|$, then peel each pairwise overlap — the 'exactly $A$ and $B$' zone is $|A \\cap B| - |A \\cap B \\cap C|$ — then the onlies, then the outside.",
+        "Example survey (used through this lesson): only-counts $9$, $6$, $5$; exactly-two zones $4$, $3$, $2$; center $1$; outside $10$. Then $|A| = 9 + 4 + 3 + 1 = 17$ — a circle total is its four regions summed."
+      ],
+      "keyIdea": "Eight regions, filled center-outward. A pairwise total always CONTAINS the center — subtract it to get the 'exactly two' zone.",
+      "facts": [
+        {
+          "title": "Exactly-two zone",
+          "latex": "|A \\cap B \\text{ only}| = |A \\cap B| - |A \\cap B \\cap C|",
+          "explanation": "The stated pairwise overlap includes the triple — peel it off."
+        },
+        {
+          "title": "Circle total",
+          "latex": "|A| = \\text{only-}A + (AB\\text{ only}) + (AC\\text{ only}) + \\text{center}",
+          "explanation": "Each circle is exactly four regions."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-venn-l3-we1",
+          "statement": "In the survey, $|A \\cap B| = 5$, $|A \\cap C| = 4$, $|B \\cap C| = 3$ and $|A \\cap B \\cap C| = 1$. Find the three 'exactly two sets' region counts.",
+          "solution": "Peel the center from each pairwise total: $AB$ only $= 5 - 1 = 4$; $AC$ only $= 4 - 1 = 3$; $BC$ only $= 3 - 1 = 2$.",
+          "check": [
+            "Eq(5 - 1, 4)",
+            "Eq(4 - 1, 3)",
+            "Eq(3 - 1, 2)"
+          ]
+        },
+        {
+          "id": "esh-venn-l3-we2",
+          "statement": "Continuing: $|A| = 17$ and the $A$-circle's overlap regions hold $4$, $3$ and $1$ people. How many are in $A$ only, and how many people are in the whole survey if $10$ chose none and the other only-zones hold $6$ and $5$?",
+          "solution": "Only-$A$ $= 17 - 4 - 3 - 1 = 9$. Summing all eight regions: $9 + 6 + 5 + 4 + 3 + 2 + 1 + 10 = 40$.",
+          "check": [
+            "Eq(17 - 4 - 3 - 1, 9)",
+            "Eq(9 + 6 + 5 + 4 + 3 + 2 + 1 + 10, 40)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a stated pairwise overlap as the 'exactly two' region.",
+          "correction": "$|A \\cap B|$ includes the triple overlap. The exactly-two zone is $|A \\cap B| - |A \\cap B \\cap C|$.",
+          "authored": true
+        },
+        {
+          "text": "Filling the circles before the center.",
+          "correction": "Everything overlapping is entangled with the center — fill $|A \\cap B \\cap C|$ first or every later subtraction goes wrong.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-venn-l3-t1",
+          "statement": "$|B| = 13$, with center $1$, $AB$-only $4$ and $BC$-only $2$. How many are in $B$ only?",
+          "solution": "Only-$B$ $= 13 - 4 - 2 - 1 = 6$.",
+          "check": [
+            "Eq(13 - 4 - 2 - 1, 6)"
+          ]
+        },
+        {
+          "id": "esh-venn-l3-t2",
+          "statement": "In the survey, how many people are in EXACTLY one set, and exactly two?",
+          "solution": "Exactly one: $9 + 6 + 5 = 20$. Exactly two: $4 + 3 + 2 = 9$.",
+          "check": [
+            "Eq(9 + 6 + 5, 20)",
+            "Eq(4 + 3 + 2, 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The map",
+            "title": "Bullseye first",
+            "body": "Eight regions sounds like chaos until you fix the fill order: center, then the three exactly-two zones, then the onlies, then the outside. Each step is one subtraction from something already known."
+          },
+          {
+            "kind": "worked",
+            "title": "Peeling the pairwise totals",
+            "problemId": "esh-venn-l3-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Contains the center",
+            "prompt": "$|A \\cap B| = 9$ and $|A \\cap B \\cap C| = 4$. People in $A$ and $B$ but NOT $C$?",
+            "options": [
+              "$5$",
+              "$9$",
+              "$13$",
+              "$4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The pairwise total includes the center: $9 - 4 = 5$.",
+            "check": [
+              "Eq(9 - 4, 5)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "A circle is four regions",
+            "problemId": "esh-venn-l3-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Another circle, same peel",
+            "problemId": "esh-venn-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Exactly one, exactly two",
+            "problemId": "esh-venn-l3-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "Fill order: center → exactly-two zones → onlies → outside",
+              "Pairwise totals contain the center; subtract to get 'exactly two'",
+              "All eight regions sum to $|U|$ — use it as the final check"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "three-set-inclusion-exclusion",
+      "title": "Inclusion–Exclusion for Three Sets",
+      "concreteComparison": "Add three lists: pairwise sharers got counted twice, and the triple-sharers three times — then subtracting all three pairs erases the triple-sharers entirely. Add them back once. That over-and-under dance is the formula.",
+      "objective": "Apply $|A \\cup B \\cup C|$ inclusion–exclusion to survey problems, including 'at least one' and 'none' questions.",
+      "concept": [
+        "$$|A \\cup B \\cup C| = |A| + |B| + |C| - |A \\cap B| - |A \\cap C| - |B \\cap C| + |A \\cap B \\cap C|.$$ Singles added, pairs subtracted, triple added back — each element ends up counted exactly once.",
+        "On the survey data: $17 + 13 + 11 - 5 - 4 - 3 + 1 = 30$, matching the region sum. When the formula and the diagram disagree, the arithmetic is wrong — they are the same count.",
+        "Chained with the complement, 'none of the three' is $|U| - |A \\cup B \\cup C|$ — the standard closer for survey problems."
+      ],
+      "keyIdea": "Singles $-$ pairs $+$ triple: every element counted once. 'None' is the universe minus that union.",
+      "facts": [
+        {
+          "title": "Three-set inclusion–exclusion",
+          "latex": "|A \\cup B \\cup C| = \\Sigma|A| - \\Sigma|A \\cap B| + |A \\cap B \\cap C|",
+          "explanation": "Add singles, subtract pairs, add the triple back."
+        },
+        {
+          "title": "None of the three",
+          "latex": "|\\text{none}| = |U| - |A \\cup B \\cup C|",
+          "explanation": "The survey closer — compute the union, subtract from the total."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "esh-venn-l4-we1",
+          "statement": "Verify the formula on the survey: $|A| = 17$, $|B| = 13$, $|C| = 11$, $|A \\cap B| = 5$, $|A \\cap C| = 4$, $|B \\cap C| = 3$, $|A \\cap B \\cap C| = 1$.",
+          "solution": "$17 + 13 + 11 - 5 - 4 - 3 + 1 = 30$ — exactly the eight-region sum minus the outside ($40 - 10$).",
+          "check": [
+            "Eq(17 + 13 + 11 - 5 - 4 - 3 + 1, 30)",
+            "Eq(40 - 10, 30)"
+          ]
+        },
+        {
+          "id": "esh-venn-l4-we2",
+          "statement": "Of $100$ students, $55$ like math, $44$ like physics, $35$ like chemistry; $20$ like math and physics, $15$ math and chemistry, $12$ physics and chemistry; $5$ like all three. How many like none?",
+          "solution": "Union $= 55 + 44 + 35 - 20 - 15 - 12 + 5 = 92$; none $= 100 - 92 = 8$.",
+          "check": [
+            "Eq(55 + 44 + 35 - 20 - 15 - 12 + 5, 92)",
+            "Eq(100 - 92, 8)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Stopping at 'singles minus pairs' and forgetting to add the triple back.",
+          "correction": "Subtracting the three pairwise overlaps removes triple-sharers three times after adding them three times — net zero. The $+|A \\cap B \\cap C|$ restores them.",
+          "authored": true
+        },
+        {
+          "text": "Feeding 'exactly two' zone counts into the formula's pairwise slots.",
+          "correction": "The formula wants FULL pairwise overlaps (center included). Region counts belong to the diagram method — do not mix the two mid-solution.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "esh-venn-l4-t1",
+          "statement": "$|A| = 30$, $|B| = 25$, $|C| = 20$, pairwise overlaps $10$, $8$, $6$, triple $3$. Find $|A \\cup B \\cup C|$.",
+          "solution": "$30 + 25 + 20 - 10 - 8 - 6 + 3 = 54$.",
+          "check": [
+            "Eq(30 + 25 + 20 - 10 - 8 - 6 + 3, 54)"
+          ]
+        },
+        {
+          "id": "esh-venn-l4-t2",
+          "statement": "In the previous problem, $|U| = 60$. How many elements lie outside all three sets?",
+          "solution": "$60 - 54 = 6$.",
+          "check": [
+            "Eq(60 - 54, 6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The dance",
+            "title": "Over-count, under-count, correct",
+            "body": "Track one triple-sharer through the formula: added $3$ times with the singles, removed $3$ times with the pairs, restored once at the end — counted exactly once. The formula is bookkeeping, not magic."
+          },
+          {
+            "kind": "worked",
+            "title": "Formula meets diagram",
+            "problemId": "esh-venn-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Track one person",
+            "prompt": "Someone belongs to $A$ and $B$ but not $C$. How many times does the formula count them?",
+            "options": [
+              "once",
+              "twice",
+              "zero times",
+              "three times"
+            ],
+            "correctIndex": 0,
+            "explanation": "Added twice ($|A|$, $|B|$), subtracted once ($|A \\cap B|$): net $2 - 1 = 1$. Everyone nets to one — that is the proof.",
+            "check": [
+              "Eq(2 - 1, 1)"
+            ],
+            "eyebrow": "Quick check"
+          },
+          {
+            "kind": "worked",
+            "title": "The classic survey",
+            "problemId": "esh-venn-l4-we2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Straight application",
+            "problemId": "esh-venn-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "And the outsiders",
+            "problemId": "esh-venn-l4-t2"
+          },
+          {
+            "kind": "recap",
+            "title": "What sticks",
+            "points": [
+              "Singles $-$ pairs $+$ triple — every element counted once",
+              "'None' $= |U| -$ union; 'at least one' $=$ the union itself",
+              "Formula uses FULL overlaps; the diagram uses exclusive regions — don't mix"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "esh-venn-p1",
+      "statement": "$|U| = 55$, $|A| = 31$, $|B| = 24$, $|A \\cap B| = 12$. Fill all four regions.",
+      "solution": "Only-$A$: $19$; only-$B$: $12$; both: $12$; neither: $55 - 43 = 12$.",
+      "check": [
+        "Eq(31 - 12, 19)",
+        "Eq(24 - 12, 12)",
+        "Eq(19 + 12 + 12, 43)",
+        "Eq(55 - 43, 12)"
+      ]
+    },
+    {
+      "id": "esh-venn-p2",
+      "statement": "Every student passed at least one of two exams: $70\\%$ passed the first, $60\\%$ passed the second. What percent passed both?",
+      "solution": "$70 + 60 - 100 = 30$ percent.",
+      "check": [
+        "Eq(70 + 60 - 100, 30)"
+      ]
+    },
+    {
+      "id": "esh-venn-p3",
+      "statement": "$|A| = 26$, $|A \\cup B| = 41$, $|A \\cap B| = 9$. Find $|B|$.",
+      "solution": "$|B| = 41 - 26 + 9 = 24$.",
+      "check": [
+        "Eq(41 - 26 + 9, 24)"
+      ]
+    },
+    {
+      "id": "esh-venn-p4",
+      "statement": "Among $80$ people, $45$ drink tea and $38$ drink coffee; $10$ drink neither. How many drink both?",
+      "solution": "Union $= 80 - 10 = 70$; both $= 45 + 38 - 70 = 13$.",
+      "check": [
+        "Eq(80 - 10, 70)",
+        "Eq(45 + 38 - 70, 13)"
+      ]
+    },
+    {
+      "id": "esh-venn-p5",
+      "statement": "$|A \\cap B| = 11$ with $|A \\cap B \\cap C| = 4$; $|A| = 29$ and $|A \\cap C| = 9$. How many elements are in $A$ but in neither $B$ nor $C$?",
+      "solution": "Peel the $A$-circle: only-$A$ $= 29 - (11 - 4) - (9 - 4) - 4 = 29 - 7 - 5 - 4 = 13$.",
+      "check": [
+        "Eq(11 - 4, 7)",
+        "Eq(9 - 4, 5)",
+        "Eq(29 - 7 - 5 - 4, 13)"
+      ]
+    },
+    {
+      "id": "esh-venn-p6",
+      "statement": "Sports survey of $90$: football $50$, basketball $40$, chess $30$; football+basketball $18$, football+chess $14$, basketball+chess $10$; all three $6$. How many play nothing?",
+      "solution": "Union $= 50 + 40 + 30 - 18 - 14 - 10 + 6 = 84$; none $= 90 - 84 = 6$.",
+      "check": [
+        "Eq(50 + 40 + 30 - 18 - 14 - 10 + 6, 84)",
+        "Eq(90 - 84, 6)"
+      ]
+    },
+    {
+      "id": "esh-venn-p7",
+      "statement": "In the survey of the previous problem, how many play EXACTLY two sports?",
+      "solution": "Each pairwise total loses the triple: $(18-6) + (14-6) + (10-6) = 12 + 8 + 4 = 24$.",
+      "check": [
+        "Eq(18 - 6, 12)",
+        "Eq(14 - 6, 8)",
+        "Eq(10 - 6, 4)",
+        "Eq(12 + 8 + 4, 24)"
+      ]
+    },
+    {
+      "id": "esh-venn-p8",
+      "statement": "$|A| = 17$, $|B| = 13$, $|U| = 25$. What are the smallest and largest possible values of $|A \\cap B|$?",
+      "solution": "Largest: $\\min(17, 13) = 13$. Smallest: $17 + 13 - 25 = 5$ — the sets cannot avoid sharing at least $5$ elements inside a $25$-element universe.",
+      "check": [
+        "Eq(Min(17, 13), 13)",
+        "Eq(17 + 13 - 25, 5)"
+      ]
+    },
+    {
+      "id": "esh-venn-p9",
+      "statement": "Of $200$ readers, $120$ read news, $90$ read sport, and $40$ read both. How many read exactly one section?",
+      "solution": "Only-news $80$, only-sport $50$: exactly one $= 80 + 50 = 130$.",
+      "check": [
+        "Eq(120 - 40, 80)",
+        "Eq(90 - 40, 50)",
+        "Eq(80 + 50, 130)"
+      ]
+    },
+    {
+      "id": "esh-venn-p10",
+      "statement": "Three sets have union $71$ inside $|U| = 84$; singles sum to $95$ and the triple overlap is $7$. What do the pairwise overlaps sum to?",
+      "solution": "From inclusion–exclusion: $95 - \\Sigma_{\\text{pairs}} + 7 = 71$, so $\\Sigma_{\\text{pairs}} = 95 + 7 - 71 = 31$.",
+      "check": [
+        "Eq(95 + 7 - 71, 31)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "esh-venn-q1",
+      "statement": "$|A| = 34$, $|B| = 21$, $|A \\cap B| = 8$. Find $|A \\cup B|$.",
+      "solution": "$34 + 21 - 8 = 47$.",
+      "check": [
+        "Eq(34 + 21 - 8, 47)"
+      ]
+    },
+    {
+      "id": "esh-venn-q2",
+      "statement": "In a class of $32$, $20$ like math, $15$ like physics, $4$ like neither. How many like both?",
+      "solution": "Union $= 32 - 4 = 28$; both $= 20 + 15 - 28 = 7$.",
+      "check": [
+        "Eq(32 - 4, 28)",
+        "Eq(20 + 15 - 28, 7)"
+      ]
+    },
+    {
+      "id": "esh-venn-q3",
+      "statement": "$|A \\cap B| = 14$ and $|A \\cap B \\cap C| = 5$. How many elements are in $A$ and $B$ but not in $C$?",
+      "solution": "$14 - 5 = 9$.",
+      "check": [
+        "Eq(14 - 5, 9)"
+      ]
+    },
+    {
+      "id": "esh-venn-q4",
+      "statement": "Singles $28, 24, 19$; pairwise overlaps $9, 7, 5$; triple $2$. Find the union.",
+      "solution": "$28 + 24 + 19 - 9 - 7 - 5 + 2 = 52$.",
+      "check": [
+        "Eq(28 + 24 + 19 - 9 - 7 - 5 + 2, 52)"
+      ]
+    },
+    {
+      "id": "esh-venn-q5",
+      "statement": "With the previous data and $|U| = 60$, how many elements are in none of the sets?",
+      "solution": "$60 - 52 = 8$.",
+      "check": [
+        "Eq(60 - 52, 8)"
+      ]
+    },
+    {
+      "id": "esh-venn-q6",
+      "statement": "Of $75$ students, $40$ study English only, and $25$ study both English and German. Everyone studies at least one language. How many study German?",
+      "solution": "Only-German $= 75 - 40 - 25 = 10$; $|G| = 10 + 25 = 35$.",
+      "check": [
+        "Eq(75 - 40 - 25, 10)",
+        "Eq(10 + 25, 35)"
+      ]
+    },
+    {
+      "id": "esh-venn-q7",
+      "statement": "$|A| = 12$ and $|B| = 20$ inside $|U| = 26$. What is the minimum possible $|A \\cap B|$?",
+      "solution": "$12 + 20 - 26 = 6$ — the universe is too small for them to share less.",
+      "check": [
+        "Eq(12 + 20 - 26, 6)"
+      ]
+    }
+  ]
+}

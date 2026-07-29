@@ -39,6 +39,18 @@ import {
 } from "@/lib/genmath-lessons";
 import type { CourseDef } from "@/components/course/CourseShell";
 
+// The three ЭЕШ-authored units — the one exam topic with no source in the
+// /math catalog. Built by scripts/esh/build_sets_logic.py; never hand-edited.
+import eshSets from "@/data/genmath/esh/sets-and-operations.json";
+import eshVenn from "@/data/genmath/esh/venn-diagrams-and-counting.json";
+import eshIntervals from "@/data/genmath/esh/number-sets-and-intervals.json";
+
+const ESH_AUTHORED: Record<string, CourseUnit> = {
+  "sets-and-operations": eshSets as unknown as CourseUnit,
+  "venn-diagrams-and-counting": eshVenn as unknown as CourseUnit,
+  "number-sets-and-intervals": eshIntervals as unknown as CourseUnit,
+};
+
 // ---------------------------------------------------------------------------
 // Source resolution — "course/slug" or "<grade>/slug" → the unit's data.
 // ---------------------------------------------------------------------------
@@ -59,6 +71,7 @@ function resolveSource(source: string): CourseUnit | null {
   if (cut < 0) return null; // "authored" — content not written yet
   const home = source.slice(0, cut);
   const slug = source.slice(cut + 1);
+  if (home === "esh") return ESH_AUTHORED[slug] ?? null;
   if (/^\d+$/.test(home)) {
     // Grade-ladder topic. GenMathTopic has no `unit` number; the caller
     // stamps the ЭЕШ position on top.
@@ -104,10 +117,6 @@ function live(unit: number, slug: string, source: string, buildsOn?: string): Es
   return { unit, slug, title: data.title, blurb: data.blurb, buildsOn, live: true, source };
 }
 
-/** Spine entry on the roadmap — content not yet authored. */
-function soon(unit: number, slug: string, title: string, blurb: string): EshUnitEntry {
-  return { unit, slug, title, blurb, live: false, source: "authored" };
-}
 
 export const ESH_COURSES: EshTopicCourse[] = [
   {
@@ -142,26 +151,13 @@ export const ESH_COURSES: EshTopicCourse[] = [
     topic: "set_theory",
     title: "Sets & Logic",
     intro:
-      "Set operations, Venn counting, and interval notation — tested directly and used as the language of probability problems. The one ЭЕШ topic with no existing course unit anywhere on the platform, so all three units still need authoring.",
+      "Set operations, Venn counting, and interval notation — tested directly and used as the language of probability problems. Authored specifically for this course: nothing on the platform covered it before.",
     units: [
-      soon(
-        1,
-        "sets-and-operations",
-        "Sets & Operations",
-        "Sets, subsets, union, intersection, difference and complement — notation and the algebra of membership.",
-      ),
-      soon(
-        2,
-        "venn-diagrams-and-counting",
-        "Venn Diagrams & Counting",
-        "Two- and three-set Venn diagrams, and inclusion–exclusion for counting elements.",
-      ),
-      soon(
-        3,
-        "number-sets-and-intervals",
-        "Number Sets & Intervals",
-        "ℕ, ℤ, ℚ, ℝ; interval notation; and absolute-value inequalities read as intervals.",
-      ),
+      live(1, "sets-and-operations", "esh/sets-and-operations"),
+      live(2, "venn-diagrams-and-counting", "esh/venn-diagrams-and-counting",
+        "Set operations and complements from Unit 1."),
+      live(3, "number-sets-and-intervals", "esh/number-sets-and-intervals",
+        "Set operations from Unit 1; the counting habits of Unit 2."),
     ],
   },
   {
