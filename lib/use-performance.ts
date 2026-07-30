@@ -9,7 +9,12 @@ import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 import { parseTestId } from "./test-history";
-import { attemptContextsForScope, attemptInScope, type EraseScope } from "./data-erase";
+import {
+  attemptContextsForScope,
+  attemptInScope,
+  reconcileFetchedAttempts,
+  type EraseScope,
+} from "./data-erase";
 
 export interface AttemptRecord {
   questionSource: string;
@@ -197,6 +202,10 @@ function mergeUnique(a: AttemptRecord[], b: AttemptRecord[]): AttemptRecord[] {
   return result;
 }
 
+// reconcileFetchedAttempts lives in lib/data-erase.ts (React-free, testable);
+// the fetch path below is its only caller.
+
+
 type QueueRow = ReturnType<typeof toServerRow>;
 
 function loadQueue(userId: string): QueueRow[] {
@@ -375,8 +384,17 @@ export default function usePerformance() {
   const [isOffline, setIsOffline] = useState(false);
   const currentKeyRef = useRef<string>(PENDING_KEY);
 
-  // Fetch from Supabase and merge with current in-memory state (which includes
-  // any not-yet-flushed optimistic writes). Updates status/isOffline/localStorage.
+  // Attempts recorded during THIS browser session. A direct insert can land
+  // on the server after an in-flight fetch snapshotted its rows, and such a
+  // row is in neither the fetch result nor the queue — this ref keeps it
+  // visible until the next fetch confirms it. Reset when the signed-in user
+  // changes; filtered by clearScope so erased rows cannot resurrect.
+  const sessionWritesRef = useRef<AttemptRecord[]>([]);
+
+  // Fetch from Supabase and reconcile SERVER-WINS (see
+  // reconcileFetchedAttempts): protected rows are the unflushed queue plus
+  // this session's writes — never the device's stale cache, or deletions
+  // made on another device would resurrect here forever.
   const fetchRemote = useCallback(
     async (uid: string, token: string) => {
       try {
@@ -406,11 +424,14 @@ export default function usePerformance() {
         // The dynamic column list defeats supabase-js's string-literal type
         // inference — the row shape is ours to assert.
         const remote = ((data ?? []) as unknown as ServerRow[]).map(fromServerRow);
-        setAttempts((prev) => {
-          const merged = mergeUnique(remote, prev);
-          saveAttemptsTo(`${BASE}:${uid}`, merged);
-          return merged;
-        });
+        // Queue rows are server-shaped; the reconcile works on AttemptRecords.
+        const queued = loadQueue(uid).map((r) => fromServerRow(r as unknown as ServerRow));
+        const merged = reconcileFetchedAttempts(remote, [
+          ...queued,
+          ...sessionWritesRef.current,
+        ]);
+        saveAttemptsTo(`${BASE}:${uid}`, merged);
+        setAttempts(merged);
         setStatus("fresh");
         setIsOffline(false);
       } catch (err) {
@@ -437,6 +458,8 @@ export default function usePerformance() {
       setStatus("loading");
       return;
     }
+
+    sessionWritesRef.current = [];
 
     if (userId) {
       const targetKey = `${BASE}:${userId}`;
@@ -505,6 +528,7 @@ export default function usePerformance() {
   const recordAttempt = useCallback(
     (attempt: Omit<AttemptRecord, "timestamp">) => {
       const full: AttemptRecord = { ...attempt, timestamp: Date.now() };
+      sessionWritesRef.current.push(full);
       setAttempts((prev) => [...prev, full]);
 
       if (loading || !userId) return;
@@ -785,6 +809,9 @@ export default function usePerformance() {
     async (scope: EraseScope): Promise<{ localRemoved: number; serverOk: boolean }> => {
       const kept = attempts.filter((a) => !attemptInScope(a.context, scope));
       const localRemoved = attempts.length - kept.length;
+      sessionWritesRef.current = sessionWritesRef.current.filter(
+        (a) => !attemptInScope(a.context, scope),
+      );
 
       // Local first, so the UI updates instantly.
       setAttempts(kept);

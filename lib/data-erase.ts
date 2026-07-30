@@ -127,3 +127,41 @@ export function eraseLocalScope(scope: EraseScope): string[] {
   for (const k of removed) localStorage.removeItem(k);
   return removed;
 }
+
+// ---------------------------------------------------------------------------
+// Cross-device propagation of deletions
+// ---------------------------------------------------------------------------
+
+/** The identity fields the sync layer dedupes attempts by. */
+export interface SyncableAttempt {
+  questionSource: string;
+  timestamp: number;
+}
+
+/**
+ * Reconcile a successful server fetch: THE SERVER WINS. The only local rows
+ * that survive are the ones the server cannot know about yet — unflushed
+ * queue rows and writes made during this browser session (a direct insert
+ * may land after the fetch's snapshot was taken). Earlier entries win on a
+ * duplicate identity, so the server's copy of a row beats the local one.
+ *
+ * The device's cached copy is deliberately NOT an input. It used to be:
+ * fetches merged the cache back in, so a deletion made on another device
+ * could never propagate — that device would take "server: empty" plus
+ * "cache: everything", conclude "everything", and re-save it. A student who
+ * erased their data on a laptop found it all still on their phone.
+ */
+export function reconcileFetchedAttempts<T extends SyncableAttempt>(
+  serverRows: T[],
+  protectedRows: T[],
+): T[] {
+  const seen = new Set<string>();
+  const out: T[] = [];
+  for (const r of [...serverRows, ...protectedRows]) {
+    const k = `${r.questionSource}::${r.timestamp}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(r);
+  }
+  return out;
+}
