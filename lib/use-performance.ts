@@ -430,6 +430,14 @@ export default function usePerformance() {
           ...queued,
           ...sessionWritesRef.current,
         ]);
+        // Stop protecting session writes the server has now confirmed. Without
+        // this the ref grows all session AND keeps re-adding rows that another
+        // device later erases — the protection has to expire once it is no
+        // longer needed, or it becomes the same bug one layer up.
+        const confirmed = new Set(remote.map((a) => `${a.questionSource}::${a.timestamp}`));
+        sessionWritesRef.current = sessionWritesRef.current.filter(
+          (a) => !confirmed.has(`${a.questionSource}::${a.timestamp}`),
+        );
         saveAttemptsTo(`${BASE}:${uid}`, merged);
         setAttempts(merged);
         setStatus("fresh");

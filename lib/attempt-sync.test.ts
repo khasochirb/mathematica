@@ -38,6 +38,17 @@ describe("reconcileFetchedAttempts — the server wins", () => {
     expect(out).toHaveLength(2);
   });
 
+  it("a confirmed session write stops being protected (pruning contract)", () => {
+    // The caller prunes session writes the fetch confirmed. Pinning the
+    // identity rule the prune relies on: same (questionSource, timestamp)
+    // means the same attempt, so a confirmed row is safe to stop protecting.
+    const written = row("Q5", 5000);
+    const serverHasIt = reconcileFetchedAttempts([written], [written]);
+    expect(serverHasIt).toHaveLength(1);
+    // Once pruned, a later erase-elsewhere leaves nothing behind.
+    expect(reconcileFetchedAttempts([], [])).toEqual([]);
+  });
+
   it("prefers the server's copy of a duplicated row", () => {
     // Same identity, different payload (e.g. topic reclassified server-side):
     // the server's version is the one kept.
