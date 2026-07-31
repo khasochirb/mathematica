@@ -1,9 +1,10 @@
 # Resource Blueprint — the one schema every hub follows
 
-Source: owner's hand-drawn structure diagram (2026-07-31, page 1 of 2 —
-**page 2 and the bottom-edge bubbles under General are still missing**;
-revisit this file when they arrive). Decisions below were confirmed by the
-owner the same day. This is the schema that makes the resources consistent:
+Source: owner's hand-drawn structure diagram (2026-07-31). The bottom-edge
+bubbles read "5th, 9th, 12th" — the final grade of each Mongolian school
+band, where parents intensively prep children for school-entrance tests
+when switching schools (see Product notes at the end). Decisions below were
+confirmed by the owner the same day. This is the schema that makes the resources consistent:
 **every hub offers Tests · Course(s) · Topic-focused practice**, and General
 Math is organized by school band, not by a flat course list.
 
@@ -42,9 +43,9 @@ Math is organized by school band, not by a flat course list.
 1. **SAT topic bank** — problem bank in the SAT hub, SAT domain taxonomy,
    English. Fastest path to parity; bank machinery (scripts/pb) exists.
 2. **IB topic bank** — Topics 1–5 taxonomy, SL/HL split, English.
-3. **General catalog → bands** — GATED ON PAGE 2 of the drawing (the
-   cut-off bubbles hang off the General branch; building before seeing
-   them risks rework). Includes per-band placement + band exams.
+3. **General catalog → bands** — includes per-band placement + band exams.
+   (Was gated on page 2 of the drawing; owner confirmed 2026-07-31 the
+   remaining bubbles were the transition-grades note only — gate lifted.)
 4. **SAT Math course** (backlog #245) — fills the SAT "Course" branch that
    currently points at General Math.
 5. **IM3 completion** — units 3–8, bank, exams (pre-existing roadmap).
@@ -61,3 +62,14 @@ Math is organized by school band, not by a flat course list.
 - Exam-hub content language follows the hub (ЭЕШ Mongolian; SAT/IB
   English); ЭЕШ prep-course content is English-first per the 2026-07-28
   amendment in expansion-vision.md §4.7.
+
+## Product notes (owner, 2026-07-31 — not build items yet)
+
+- **Transition grades 5th / 9th / 12th are where parents pay attention.**
+  Mongolian families switch schools at band boundaries and prep intensely
+  for competitive school-entrance tests in those years. 12th is already
+  served (ЭЕШ hub). A future "school entrance exam prep" offering for the
+  5→6 and 9→10 transitions rides the same machinery (tests + topic
+  practice + courses) and targets the moments of highest parental intent.
+  The band pages should visually mark the transition grade when the band
+  UI is built.
