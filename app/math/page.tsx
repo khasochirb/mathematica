@@ -171,11 +171,11 @@ const IM_COURSES: CourseCardDef[] = [
     href: "/math/integrated-3",
     title: "Integrated Math 3",
     blurb:
-      "Polynomials, rational and radical functions, logarithms, trigonometric functions, and statistical inference — the year that opens Precalculus.",
-    units: 7,
+      "Polynomials, rational and radical functions, logarithms, trigonometric functions, and statistical inference — the year that opens Precalculus. First three units live; the rest land in order.",
+    units: 8,
     level: 3,
     exams: ["SAT"],
-    upcoming: true,
+    isNew: true,
   },
 ];
 

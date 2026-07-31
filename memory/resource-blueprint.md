@@ -73,6 +73,13 @@ Math is organized by school band, not by a flat course list.
    bespoke 23-skill-tag curriculum in .claude/skills/sat-course stays the
    long-term upgrade path on top of this.
 5. **IM3 completion** — units 3–8, bank, exams (pre-existing roadmap).
+   ◐ In progress: the course is now LIVE at /math/integrated-3 with
+   units 1–3 open (unit 3 "Exponential & Logarithmic Functions" authored
+   2026-07-31 via scripts/im/build_im3_unit3.py — 4 lessons, 16 practice,
+   8 test, 162 checks; units 1–2 were authored earlier but never wired).
+   Remaining: units 4–8, one per session in spine order
+   (trigonometric-functions next), then the IM3 bank (scripts/pb) and
+   3 exams via the IM selector once every unit is live.
 6. Primary school band content (grades 1–5) — unscheduled; band shows
    coming-soon until then.
 

@@ -192,6 +192,10 @@ import im2Similarity from "@/data/genmath/integrated-2/similarity-and-dilations.
 import im2Trig from "@/data/genmath/integrated-2/right-triangle-trigonometry.json";
 import im2Circles from "@/data/genmath/integrated-2/circles.json";
 import im2Probability from "@/data/genmath/integrated-2/probability.json";
+// Integrated Math 3 unit JSON imports (added as each unit is authored).
+import im3Polynomials from "@/data/genmath/integrated-3/polynomial-functions.json";
+import im3Rational from "@/data/genmath/integrated-3/rational-and-radical-functions.json";
+import im3ExpLog from "@/data/genmath/integrated-3/exponential-and-logarithmic-functions.json";
 
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
@@ -1460,7 +1464,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "End behaviour from the leading term, zeros and multiplicity, the remainder and factor theorems, and polynomial arithmetic beyond the quadratic.",
     buildsOn: "Factoring from IM2 Unit 2 — the same techniques, now on cubics and beyond.",
-    live: false,
+    live: true,
   },
   {
     unit: 2,
@@ -1469,7 +1473,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Simplifying and combining rational expressions, asymptotes and holes, solving rational and radical equations, and why extraneous solutions appear.",
     buildsOn: "Rational exponents from IM2 Unit 1 and factoring from IM2 Unit 2.",
-    live: false,
+    live: true,
   },
   {
     unit: 3,
@@ -1478,7 +1482,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "The logarithm as the inverse of an exponential, the three laws and where they come from, solving equations in the exponent, and modelling growth and decay.",
     buildsOn: "Exponential functions from IM1 Unit 6 — now with a way to solve for the exponent.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,
@@ -1527,7 +1531,11 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
   },
 ];
 
-const im3Units: CourseUnit[] = [];
+const im3Units: CourseUnit[] = [
+  im3Polynomials,
+  im3Rational,
+  im3ExpLog,
+] as unknown as CourseUnit[];
 
 export function getIm3Spine(): GeometrySpineEntry[] {
   return IM3_SPINE;
