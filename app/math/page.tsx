@@ -29,11 +29,16 @@ const TOPIC_COUNTS: Record<number, number> = {
   12: getGrade12Spine().length,
 };
 
-// The topic ladder, easiest first. One course serves every exam — instead of
-// per-exam duplicates ("Algebra ЭЕШ level"), each card carries a level (1–3)
-// and chips for the exams it prepares. This section is the shared "Study by
-// topic" destination the ЭЕШ/SAT/IB hubs link to (/math#topics).
-const COURSES: {
+// Transition grades (owner's structure diagram, 2026-07-31): the final grade
+// of each school band, when families switch schools and prep for competitive
+// entrance tests. 12th is served by the ЭЕШ hub; the badge makes the moment
+// visible on the catalog.
+const TRANSITION: Record<number, string> = {
+  9: "Transition year — high-school entrance",
+  12: "Transition year — ЭЕШ",
+};
+
+type CourseCardDef = {
   href: string;
   title: string;
   blurb: string;
@@ -44,35 +49,14 @@ const COURSES: {
   // Announced but not yet authored. Renders as a dimmed, non-clickable card
   // so the program's shape is visible without promising a dead link.
   upcoming?: boolean;
-}[] = [
-  {
-    href: "/math/integrated-1",
-    title: "Integrated Math 1",
-    blurb:
-      "Linear equations and functions, systems, exponential growth, transformations and congruence, coordinate geometry, and one-variable statistics — algebra and geometry together, not in sequence.",
-    units: 9,
-    level: 1,
-    exams: ["SAT"],
-  },
-  {
-    href: "/math/integrated-2",
-    title: "Integrated Math 2",
-    blurb:
-      "Quadratics end to end — including the complex numbers a negative discriminant forces — plus rational exponents, similarity and right-triangle trigonometry, circles, and probability.",
-    units: 8,
-    level: 2,
-    exams: ["SAT"],
-  },
-  {
-    href: "/math/integrated-3",
-    title: "Integrated Math 3",
-    blurb:
-      "Polynomials, rational and radical functions, logarithms, trigonometric functions, and statistical inference — the year that opens Precalculus.",
-    units: 7,
-    level: 3,
-    exams: ["SAT"],
-    upcoming: true,
-  },
+};
+
+// The topic ladder, easiest first. One course serves every exam — instead of
+// per-exam duplicates ("Algebra ЭЕШ level"), each card carries a level (1–3)
+// and chips for the exams it prepares. This is the shared "Study by topic"
+// destination the ЭЕШ/SAT/IB hubs link to (/math#topics); per the resource
+// blueprint these named topic courses LIVE inside the High school band.
+const TOPIC_COURSES: CourseCardDef[] = [
   {
     href: "/math/algebra-1",
     title: "Algebra 1",
@@ -160,63 +144,38 @@ const COURSES: {
   },
 ];
 
-// ── Programs ──────────────────────────────────────────────────────────
-// A student arrives knowing which PROGRAM they are in, not which course
-// slug they need. Grouping the catalog by program is what turns "hunt
-// through eleven cards" into "open my track". IB, SAT and ЭЕШ are
-// deliberately absent — each has its own hub, and duplicating them here
-// would give two answers to the same question.
-//
-// `courses` lists hrefs into COURSES; `grades` lists grade numbers. A
-// course may appear in more than one program (a Geometry student can be
-// on either pathway) — these are routes through the catalog, not owners
-// of it.
-const PROGRAMS: {
-  id: string;
-  title: string;
-  blurb: string;
-  courses?: string[];
-  grades?: number[];
-}[] = [
+// The IM pathway sits BESIDE the school bands (blueprint): a different route
+// through the same mathematics, each year mixing algebra, geometry and
+// statistics. Each IM course conforms to the full schema — bank + course +
+// exams (IM3 is still in development).
+const IM_COURSES: CourseCardDef[] = [
   {
-    id: "integrated",
-    title: "Integrated Math",
+    href: "/math/integrated-1",
+    title: "Integrated Math 1",
     blurb:
-      "The integrated pathway — each year mixes algebra, geometry and statistics rather than teaching them one at a time. IM1 → IM2 → IM3, then Precalculus.",
-    courses: ["/math/integrated-1", "/math/integrated-2", "/math/integrated-3"],
+      "Linear equations and functions, systems, exponential growth, transformations and congruence, coordinate geometry, and one-variable statistics — algebra and geometry together, not in sequence.",
+    units: 9,
+    level: 1,
+    exams: ["SAT"],
   },
   {
-    id: "traditional",
-    title: "Traditional pathway",
+    href: "/math/integrated-2",
+    title: "Integrated Math 2",
     blurb:
-      "The classic three-course sequence — one subject at a time, Algebra 1 → Geometry → Algebra 2. The other way through the same material.",
-    courses: ["/math/algebra-1", "/math/geometry", "/math/algebra-2"],
+      "Quadratics end to end — including the complex numbers a negative discriminant forces — plus rational exponents, similarity and right-triangle trigonometry, circles, and probability.",
+    units: 8,
+    level: 2,
+    exams: ["SAT"],
   },
   {
-    id: "advanced",
-    title: "Advanced & specialist",
+    href: "/math/integrated-3",
+    title: "Integrated Math 3",
     blurb:
-      "What comes after either pathway, plus the specialist tracks. Start these once you have finished IM3 or Algebra 2.",
-    courses: [
-      "/math/trigonometry",
-      "/math/precalculus",
-      "/math/prob-stats",
-      "/math/solid-geometry",
-      "/math/vectors-matrices",
-      "/math/calculus",
-    ],
-  },
-  {
-    id: "mn-middle",
-    title: "Mongolian curriculum · Middle School",
-    blurb: "Grades 6–9, following the Mongolian school curriculum year by year.",
-    grades: [6, 7, 8, 9],
-  },
-  {
-    id: "mn-high",
-    title: "Mongolian curriculum · High School",
-    blurb: "Grades 10–12, following the Mongolian school curriculum year by year.",
-    grades: [10, 11, 12],
+      "Polynomials, rational and radical functions, logarithms, trigonometric functions, and statistical inference — the year that opens Precalculus.",
+    units: 7,
+    level: 3,
+    exams: ["SAT"],
+    upcoming: true,
   },
 ];
 
@@ -233,11 +192,88 @@ const cardHover = {
 
 const gridStyle = { gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" };
 
+function TransitionChip({ grade }: { grade: number }) {
+  const label = TRANSITION[grade];
+  if (!label) return null;
+  return (
+    <span
+      className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
+      title={label}
+      style={{
+        background: "rgba(216,150,32,0.10)",
+        border: "1px solid rgba(216,150,32,0.4)",
+        color: "var(--warn, #d89620)",
+        letterSpacing: "0.06em",
+      }}
+    >
+      {grade === 12 ? "ЭЕШ year" : "Entrance year"}
+    </span>
+  );
+}
+
+// The band's ENTRY test (resource blueprint: placement at the top of each
+// band, exit exams at the bottom).
+function BandPlacementCard({ href, body }: { href: string; body: string }) {
+  return (
+    <Link
+      href={href}
+      className="card-edit p-4 mb-4 flex items-center gap-3 transition-colors"
+      style={{ textDecoration: "none" }}
+      {...cardHover}
+    >
+      <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+        Placement
+      </span>
+      <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>{body}</span>
+      <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+        Start
+      </span>
+    </Link>
+  );
+}
+
+function GradeCard({ grade, active }: { grade: number; active: boolean }) {
+  if (!active) {
+    return (
+      <div className="card-edit p-6 flex flex-col gap-2" style={{ opacity: 0.45, cursor: "default" }}>
+        <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+          Coming soon
+        </span>
+        <span className="serif" style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+          Grade {grade}
+        </span>
+      </div>
+    );
+  }
+  return (
+    <Link
+      href={`/math/${grade}`}
+      className="card-edit p-6 flex flex-col gap-2 transition-colors"
+      style={{ textDecoration: "none" }}
+      {...cardHover}
+    >
+      <span className="flex items-center gap-1.5 flex-wrap">
+        <span className="mono text-[10px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+          Active
+        </span>
+        <TransitionChip grade={grade} />
+      </span>
+      <span className="serif" style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+        Grade {grade}
+      </span>
+      <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+        {TOPIC_COUNTS[grade] ?? 0} topics
+      </span>
+    </Link>
+  );
+}
+
 export default function MathLandingPage() {
   const grades = listGrades();
   const { profile } = useRatings();
   const { lang } = useLang();
   const rec = recommendedCourse(profile);
+  const isActive = (grade: number) => grades.find((g) => g.grade === grade)?.active ?? false;
   // The student's attribute rating behind each course card ("your rating on
   // this course's domain") — only for RATED attributes; unrated shows nothing.
   const courseChip = (href: string) => {
@@ -248,6 +284,87 @@ export default function MathLandingPage() {
     if (!a.rated) return null;
     return { info: attributeInfo(attrKey), score: a.score, band: a.band, provisional: a.provisional };
   };
+
+  const renderCourseCard = (c: CourseCardDef) =>
+    c.upcoming ? (
+      <div key={c.href} className="card-edit p-6 flex flex-col gap-2" style={{ opacity: 0.45, cursor: "default" }}>
+        <span className="flex flex-col gap-1.5">
+          <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+            In development · {c.units} units
+          </span>
+          <span className="flex flex-wrap gap-1.5 items-center">
+            {c.exams.map((x) => (
+              <span
+                key={x}
+                className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-3)", letterSpacing: "0.06em" }}
+              >
+                {x}
+              </span>
+            ))}
+          </span>
+        </span>
+        <span className="serif" style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.15 }}>
+          {c.title}
+        </span>
+        <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+          {c.blurb}
+        </span>
+      </div>
+    ) : (
+      <Link
+        key={c.href}
+        href={c.href}
+        className="card-edit p-6 flex flex-col gap-2 transition-colors"
+        style={{ textDecoration: "none" }}
+        {...cardHover}
+      >
+        {/* Two fixed lines — level on one, chips on the next — so every
+            card's header is the same height and the titles line up
+            across a row regardless of how many exam tags a course has. */}
+        <span className="flex flex-col gap-1.5">
+          <span className="mono text-[10px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+            {c.isNew ? "New · " : ""}Level {c.level} · {c.units} units
+          </span>
+          <span className="flex flex-wrap gap-1.5 items-center">
+            {(() => {
+              const chip = courseChip(c.href);
+              if (!chip) return null;
+              return (
+                <span
+                  className="mono tabular rounded-full px-2 py-0.5 text-[10px]"
+                  title={lang === "mn" ? chip.info.mn : chip.info.en}
+                  style={{
+                    background: "var(--bg-2)",
+                    border: "1px solid var(--line)",
+                    color: BAND_COLOR[chip.band],
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {lang === "mn" ? "Таны үнэлгээ" : "You"} {chip.score}
+                  {chip.provisional ? "*" : ""}
+                </span>
+              );
+            })()}
+            {c.exams.map((x) => (
+              <span
+                key={x}
+                className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)", letterSpacing: "0.06em" }}
+              >
+                {x}
+              </span>
+            ))}
+          </span>
+        </span>
+        <span className="serif" style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.15 }}>
+          {c.title}
+        </span>
+        <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+          {c.blurb}
+        </span>
+      </Link>
+    );
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -266,14 +383,11 @@ export default function MathLandingPage() {
         >
           Courses
         </h1>
-        <p
-          className="mt-4 mb-10"
-          style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}
-        >
-          Find your <strong>program</strong> below — Integrated Math, the
-          traditional pathway, or the Mongolian school curriculum — and every
-          course in it is together in one place. Preparing for ЭЕШ, SAT or IB?
-          Those have their own hubs.
+        <p className="mt-4 mb-10" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
+          Find your <strong>school band</strong> below — Primary, Mid school or
+          High school on the Mongol curriculum — or take the Integrated Math
+          pathway beside them. Preparing for ЭЕШ, SAT or IB? Those have their
+          own hubs.
         </p>
 
         {/* Pinned course recommendation from the ratings profile — the same
@@ -308,186 +422,95 @@ export default function MathLandingPage() {
           </span>
         </Link>
 
-        {/* One section per program. `#topics` stays on the first course
-            section so the exam hubs' existing deep links still land on the
-            catalog rather than the page top. */}
-        {PROGRAMS.map((program, programIndex) => {
-          const programCourses = (program.courses ?? [])
-            .map((href) => COURSES.find((c) => c.href === href))
-            .filter((c): c is (typeof COURSES)[number] => Boolean(c));
+        {/* ── The school bands (Mongol curriculum) ─────────────────────────
+            Blueprint: General Math is organized by school band, not a flat
+            course list. Primary is a visible coming-soon band; Mid school is
+            grades 6–9; High school is grades 10–12 PLUS the named topic
+            courses. Transition grades (5th/9th/12th) carry a badge. */}
 
-          return (
-            <section
-              key={program.id}
-              id={programIndex === 0 ? "topics" : program.id}
-              className="mb-12"
-              style={{ scrollMarginTop: 96 }}
-            >
-              <div className="eyebrow mb-1.5">{program.title}</div>
-              <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
-                {program.blurb}
-              </p>
+        <section id="primary" className="mb-12" style={{ scrollMarginTop: 96 }}>
+          <div className="eyebrow mb-1.5">Primary school · Mongol curriculum</div>
+          <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+            Grades 1–5, year by year. In development — Grade 5, the
+            school-entrance transition year, will open the band.
+          </p>
+          <div className="card-edit p-6 flex items-center gap-4" style={{ opacity: 0.55, cursor: "default" }}>
+            <div className="flex-1 min-w-0">
+              <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                Coming soon
+              </span>
+              <span className="serif block mt-1" style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                Grades 1–5
+              </span>
+              <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+                The full primary band — number sense to first algebra — is on
+                the roadmap.
+              </span>
+            </div>
+          </div>
+        </section>
 
-              <div className="grid gap-4" style={gridStyle}>
-                {programCourses.map((c) =>
-                  c.upcoming ? (
-                    <div
-                      key={c.href}
-                      className="card-edit p-6 flex flex-col gap-2"
-                      style={{ opacity: 0.45, cursor: "default" }}
-                    >
-                      <span className="flex flex-col gap-1.5">
-                        <span
-                          className="mono text-[10px] uppercase"
-                          style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}
-                        >
-                          In development · {c.units} units
-                        </span>
-                        <span className="flex flex-wrap gap-1.5 items-center">
-                          {c.exams.map((x) => (
-                            <span
-                              key={x}
-                              className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
-                              style={{
-                                background: "var(--bg-2)",
-                                border: "1px solid var(--line)",
-                                color: "var(--fg-3)",
-                                letterSpacing: "0.06em",
-                              }}
-                            >
-                              {x}
-                            </span>
-                          ))}
-                        </span>
-                      </span>
-                      <span
-                        className="serif"
-                        style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.15 }}
-                      >
-                        {c.title}
-                      </span>
-                      <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                        {c.blurb}
-                      </span>
-                    </div>
-                  ) : (
-                    <Link
-                      key={c.href}
-                      href={c.href}
-                      className="card-edit p-6 flex flex-col gap-2 transition-colors"
-                      style={{ textDecoration: "none" }}
-                      {...cardHover}
-                    >
-                      {/* Two fixed lines — level on one, chips on the next — so every
-                          card's header is the same height and the titles line up
-                          across a row regardless of how many exam tags a course has. */}
-                      <span className="flex flex-col gap-1.5">
-                        <span
-                          className="mono text-[10px] uppercase"
-                          style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-                        >
-                          {c.isNew ? "New · " : ""}Level {c.level} · {c.units} units
-                        </span>
-                        <span className="flex flex-wrap gap-1.5 items-center">
-                          {(() => {
-                            const chip = courseChip(c.href);
-                            if (!chip) return null;
-                            return (
-                              <span
-                                className="mono tabular rounded-full px-2 py-0.5 text-[10px]"
-                                title={lang === "mn" ? chip.info.mn : chip.info.en}
-                                style={{
-                                  background: "var(--bg-2)",
-                                  border: "1px solid var(--line)",
-                                  color: BAND_COLOR[chip.band],
-                                  letterSpacing: "0.04em",
-                                }}
-                              >
-                                {lang === "mn" ? "Таны үнэлгээ" : "You"} {chip.score}
-                                {chip.provisional ? "*" : ""}
-                              </span>
-                            );
-                          })()}
-                          {c.exams.map((x) => (
-                            <span
-                              key={x}
-                              className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
-                              style={{
-                                background: "var(--bg-2)",
-                                border: "1px solid var(--line)",
-                                color: "var(--fg-2)",
-                                letterSpacing: "0.06em",
-                              }}
-                            >
-                              {x}
-                            </span>
-                          ))}
-                        </span>
-                      </span>
-                      <span
-                        className="serif"
-                        style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.15 }}
-                      >
-                        {c.title}
-                      </span>
-                      <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                        {c.blurb}
-                      </span>
-                    </Link>
-                  ),
-                )}
+        <section id="mid-school" className="mb-12" style={{ scrollMarginTop: 96 }}>
+          <div className="eyebrow mb-1.5">Mid school · Mongol curriculum</div>
+          <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+            Grades 6–9, following the school curriculum year by year. Grade 9
+            is the transition year — the springboard to high-school entrance
+            exams.
+          </p>
+          <BandPlacementCard
+            href="/math/placement/mid"
+            body="Not sure which grade to start in? A short adaptive test samples every grade 6–9 and names your starting grade."
+          />
+          <div className="grid gap-4" style={gridStyle}>
+            {[6, 7, 8, 9].map((g) => (
+              <GradeCard key={g} grade={g} active={isActive(g)} />
+            ))}
+          </div>
+        </section>
 
-                {(program.grades ?? []).map((grade) => {
-                  const active = grades.find((g) => g.grade === grade)?.active ?? false;
-                  return active ? (
-                    <Link
-                      key={grade}
-                      href={`/math/${grade}`}
-                      className="card-edit p-6 flex flex-col gap-2 transition-colors"
-                      style={{ textDecoration: "none" }}
-                      {...cardHover}
-                    >
-                      <span
-                        className="mono text-[10px] uppercase"
-                        style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-                      >
-                        Active
-                      </span>
-                      <span
-                        className="serif"
-                        style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
-                      >
-                        Grade {grade}
-                      </span>
-                      <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                        {TOPIC_COUNTS[grade] ?? 0} topics
-                      </span>
-                    </Link>
-                  ) : (
-                    <div
-                      key={grade}
-                      className="card-edit p-6 flex flex-col gap-2"
-                      style={{ opacity: 0.45, cursor: "default" }}
-                    >
-                      <span
-                        className="mono text-[10px] uppercase"
-                        style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}
-                      >
-                        Coming soon
-                      </span>
-                      <span
-                        className="serif"
-                        style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}
-                      >
-                        Grade {grade}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
+        <section id="high-school" className="mb-12" style={{ scrollMarginTop: 96 }}>
+          <div className="eyebrow mb-1.5">High school · Mongol curriculum</div>
+          <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+            Grades 10–12 year by year — and the full topic courses that live in
+            this band. Grade 12 is the ЭЕШ year; the ЭЕШ hub has the exam prep.
+          </p>
+          <BandPlacementCard
+            href="/math/placement/high"
+            body="Not sure which grade to start in? A short adaptive test samples every grade 10–12 and names your starting grade."
+          />
+          <div className="grid gap-4" style={gridStyle}>
+            {[10, 11, 12].map((g) => (
+              <GradeCard key={g} grade={g} active={isActive(g)} />
+            ))}
+          </div>
+
+          {/* `#topics` stays on the topic-course catalog so the exam hubs'
+              existing deep links still land here rather than the page top. */}
+          <div id="topics" className="mt-8" style={{ scrollMarginTop: 96 }}>
+            <div className="eyebrow mb-1.5">Topic courses</div>
+            <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+              The high-school material taught subject by subject, from zero —
+              take them in the classic order (Algebra 1 → Geometry → Algebra 2)
+              or jump straight to the topic you need. Each card shows the exams
+              it prepares.
+            </p>
+            <div className="grid gap-4" style={gridStyle}>
+              {TOPIC_COURSES.map(renderCourseCard)}
+            </div>
+          </div>
+        </section>
+
+        <section id="integrated" className="mb-12" style={{ scrollMarginTop: 96 }}>
+          <div className="eyebrow mb-1.5">Integrated Math pathway</div>
+          <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+            The pathway beside the bands — each year mixes algebra, geometry
+            and statistics rather than teaching them one at a time. IM1 → IM2
+            → IM3, then Precalculus.
+          </p>
+          <div className="grid gap-4" style={gridStyle}>
+            {IM_COURSES.map(renderCourseCard)}
+          </div>
+        </section>
       </div>
     </div>
   );

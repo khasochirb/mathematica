@@ -20,6 +20,13 @@ import { savePlacement, type StoredPlacement } from "@/lib/placement-result";
 
 type Phase = "intro" | "quiz" | "done";
 
+export type PlacementVerdictCard = {
+  title: string; // e.g. "Start in Grade 8"
+  body: string;
+  href: string;
+  cta: string;
+};
+
 export type PlacementConfig = {
   bank: PlacementQuestion[];
   namespace: string; // "grade6" | "geometry"
@@ -29,6 +36,9 @@ export type PlacementConfig = {
   subjectNoun: string; // e.g. "Grade-6 topic" | "Geometry unit"
   topicHref: (slug: string) => string; // link into a topic/unit
   title: string; // intro heading
+  /** Band placements turn the result into a "start in Grade N" verdict,
+   *  rendered as the first card of the results screen. */
+  verdict?: (result: StoredPlacement) => PlacementVerdictCard | null;
 };
 
 export default function PlacementRunner({ config }: { config: PlacementConfig }) {
@@ -211,6 +221,7 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
     .filter((t): t is NonNullable<typeof t> => !!t);
   const strong = result.topicScores.filter((t) => t.accuracy >= 0.75).sort((a, b) => b.accuracy - a.accuracy);
   const pct = Math.round(result.overallAccuracy * 100);
+  const verdict = config.verdict?.(result) ?? null;
 
   return (
     <div>
@@ -228,6 +239,17 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
         (ЭЕШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
         fresh mix of questions.
       </p>
+
+      {verdict && (
+        <div className="mt-8 card-edit p-5" style={{ borderColor: "var(--accent-line)", background: "var(--accent-wash)" }}>
+          <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>Your starting point</div>
+          <p className="serif" style={{ fontSize: 22, color: "var(--fg)" }}>{verdict.title}</p>
+          <p className="mt-1.5 text-[14px]" style={{ color: "var(--fg-1)" }}>{verdict.body}</p>
+          <Link href={verdict.href} className="btn btn-primary mt-4 inline-flex items-center gap-1.5">
+            {verdict.cta} <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
 
       {priority.length > 0 ? (
         <div className="mt-8">

@@ -54,6 +54,14 @@ Math is organized by school band, not by a flat course list.
 3. **General catalog → bands** — includes per-band placement + band exams.
    (Was gated on page 2 of the drawing; owner confirmed 2026-07-31 the
    remaining bubbles were the transition-grades note only — gate lifted.)
+   ◐ Partially shipped 2026-07-31: /math reorganized into Primary
+   (coming-soon) · Mid 6–9 · High 10–12 (topic courses inside) · IM
+   pathway beside, transition badges on grades 9/12; band ENTRY
+   placements live at /math/placement/{mid,high} (lib/band-placement.ts
+   samples 3 topics/grade from the curated grade banks, verdict names
+   the starting grade). REMAINING: band EXIT exams — needs authored
+   MCQ banks for grades 9 and 12 first (grade lesson problems have no
+   options), then the IM exam selector pattern over them.
 4. **SAT Math course** (backlog #245) — fills the SAT "Course" branch that
    currently points at General Math.
 5. **IM3 completion** — units 3–8, bank, exams (pre-existing roadmap).
