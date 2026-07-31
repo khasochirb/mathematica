@@ -35,6 +35,9 @@ SUBJECTS = [
     ("vectors-matrices", "vectors_matrices"),
     ("integrated-1", "integrated_1"),
     ("integrated-2", "integrated_2"),
+    # Hub-owned banks (not part of the /math course ladder): the SAT hub's
+    # topic practice, organized by the four Digital SAT domains.
+    ("sat", "sat"),
 ]
 
 

@@ -61,6 +61,8 @@ interface StoreSpec {
   /** Exact key, or a prefix when the key embeds a test/topic id. */
   key: string;
   prefix?: boolean;
+  /** Keys that LOOK like this store's but belong to another scope's spec. */
+  exclude?: string[];
   /** What the student loses — used by the confirm dialog copy. */
   what: string;
 }
@@ -76,11 +78,14 @@ export const LOCAL_STORES: StoreSpec[] = [
   // SAT — a finished paper lives in its run state, which is why a paper the
   // student had "deleted" kept rendering its result screen.
   { scope: "sat", key: "mp-sat-run:", prefix: true, what: "SAT тестийн явц ба дүн" },
+  // The SAT hub's own topic bank shares the mp-bank: machinery but is SAT
+  // data — erasing SAT must take it, erasing courses must leave it.
+  { scope: "sat", key: "mp-bank:sat:", prefix: true, what: "SAT сэдэвчилсэн дадлагын ахиц" },
   // IB
   { scope: "ib", key: "mp-ib-run:", prefix: true, what: "IB шалгалтын явц ба дүн" },
   // Courses — these two feed the ratings card, which is why it kept showing
   // scores after an "everything" wipe.
-  { scope: "courses", key: "mp-bank:", prefix: true, what: "бодлогын сангийн ахиц" },
+  { scope: "courses", key: "mp-bank:", prefix: true, exclude: ["mp-bank:sat:"], what: "бодлогын сангийн ахиц" },
   { scope: "courses", key: "mp-placement:", prefix: true, what: "түвшин тогтоох тестийн үр дүн" },
   { scope: "courses", key: "mp-exam:", prefix: true, what: "курсын шалгалтын дүн" },
 ];
@@ -117,7 +122,9 @@ export function eraseLocalScope(scope: EraseScope): string[] {
     const k = localStorage.key(i);
     if (!k) continue;
     for (const spec of specs) {
-      const hit = spec.prefix ? k.startsWith(spec.key) : k === spec.key;
+      const hit =
+        (spec.prefix ? k.startsWith(spec.key) : k === spec.key) &&
+        !spec.exclude?.some((x) => k.startsWith(x));
       if (hit) {
         removed.push(k);
         break;

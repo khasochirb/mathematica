@@ -26,6 +26,7 @@ import calculus from "@/data/problembank/calculus.json";
 import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 import integrated1 from "@/data/problembank/integrated-1.json";
 import integrated2 from "@/data/problembank/integrated-2.json";
+import sat from "@/data/problembank/sat.json";
 
 export type BankVariant = {
   id: string;
@@ -81,6 +82,18 @@ export function getBankTopics(): BankTopic[] {
 
 export function getBankTopic(slug: string): BankTopic | null {
   return TOPICS.find((t) => t.slug === slug) ?? null;
+}
+
+// The SAT hub's topic bank. Deliberately NOT in TOPICS: getBankTopics() is
+// the /math course-ladder list (it feeds the General Math hub page, the
+// ratings card, and placement wiring), while this bank belongs to the SAT
+// hub at /practice/sat/bank and follows the four Digital SAT domains. Its
+// mastery store (mp-bank:sat:*) is likewise scoped "sat", not "courses",
+// in lib/data-erase.ts.
+const SAT_BANK: BankTopic = sat as unknown as BankTopic;
+
+export function getSatBankTopic(): BankTopic {
+  return SAT_BANK;
 }
 
 export function getBankUnit(topic: BankTopic, unitId: string): BankUnit | null {

@@ -103,6 +103,7 @@ describe("eraseLocalScope", () => {
     localStorage.setItem("mp-sat-run:SAT-P1", "1");
     localStorage.setItem("mp-ib-run:IB-AASL-P1-T1:p1", "1");
     localStorage.setItem("mp-bank:integrated-1:user-1", "1");
+    localStorage.setItem("mp-bank:sat:user-1", "1");
     localStorage.setItem("mp-placement:geometry:user-1", "1");
     localStorage.setItem("mp-exam:integrated-1-exam-1:user-1", "1");
     // Not owned by any scope — the shared attempts blob is filtered, never
@@ -127,12 +128,20 @@ describe("eraseLocalScope", () => {
     expect(localStorage.getItem("mp-ib-run:IB-AASL-P1-T1:p1")).toBe("1");
   });
 
+  it("erasing SAT takes the SAT bank's mastery, and leaves the course banks", () => {
+    eraseLocalScope("sat");
+    expect(localStorage.getItem("mp-bank:sat:user-1")).toBeNull();
+    expect(localStorage.getItem("mp-bank:integrated-1:user-1")).toBe("1");
+  });
+
   it("erasing courses removes the two stores that kept the ratings card alive", () => {
     eraseLocalScope("courses");
     expect(localStorage.getItem("mp-bank:integrated-1:user-1")).toBeNull();
     expect(localStorage.getItem("mp-placement:geometry:user-1")).toBeNull();
     expect(localStorage.getItem("mp-exam:integrated-1-exam-1:user-1")).toBeNull();
     expect(localStorage.getItem("esh-test-sessions")).toBe("1");
+    // the SAT hub's bank shares the mp-bank: machinery but is SAT data
+    expect(localStorage.getItem("mp-bank:sat:user-1")).toBe("1");
   });
 
   it("'all' clears every owned store and nothing else", () => {

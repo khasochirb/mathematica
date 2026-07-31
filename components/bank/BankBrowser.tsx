@@ -15,6 +15,7 @@ import {
   recordSelfGrade,
   unitForms,
 } from "@/lib/problem-bank";
+import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 // The unit's exercise set, textbook style: a numbered list that INTERLEAVES
 // the unit's problem types (round-robin), so consecutive problems are
@@ -24,7 +25,8 @@ import {
 // miss→similar loop. Rows are compact (number · statement · actions) like a
 // printed problem set; the solution expands inline with self-grading that
 // feeds per-form mastery.
-export default function BankBrowser({ topic, unit }: { topic: BankTopic; unit: BankUnit }) {
+export default function BankBrowser({ topic, unit, chrome }: { topic: BankTopic; unit: BankUnit; chrome?: BankChrome }) {
+  const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [level, setLevel] = useState<BankLevel>(0);
 
@@ -44,11 +46,11 @@ export default function BankBrowser({ topic, unit }: { topic: BankTopic; unit: B
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href={`/math/problem-bank/${topic.slug}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={c.topicBase} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div className="eyebrow">
-            Problem Bank · {topic.title} · Unit {unitIndex + 1}
+            {c.eyebrow} · {topic.title} · Unit {unitIndex + 1}
           </div>
         </div>
 
@@ -82,7 +84,7 @@ export default function BankBrowser({ topic, unit }: { topic: BankTopic; unit: B
 
         <div className="mt-5 grid gap-2 sm:grid-cols-2">
           <Link
-            href={`/math/problem-bank/${topic.slug}/${unit.id}/practice`}
+            href={`${c.topicBase}/${unit.id}/practice`}
             className="card-edit px-4 py-3 flex items-center gap-2.5 transition-colors"
             style={{ textDecoration: "none" }}
           >
@@ -92,17 +94,19 @@ export default function BankBrowser({ topic, unit }: { topic: BankTopic; unit: B
             </span>
             <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
           </Link>
-          <Link
-            href={`/math/${topic.slug}/${unit.id}`}
-            className="card-edit px-4 py-3 flex items-center gap-2.5 transition-colors"
-            style={{ textDecoration: "none" }}
-          >
-            <BookOpen className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-            <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
-              <b>Review the lessons</b> for this unit first.
-            </span>
-            <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
-          </Link>
+          {c.courseHref && (
+            <Link
+              href={`${c.courseHref}/${unit.id}`}
+              className="card-edit px-4 py-3 flex items-center gap-2.5 transition-colors"
+              style={{ textDecoration: "none" }}
+            >
+              <BookOpen className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+              <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
+                <b>Review the lessons</b> for this unit first.
+              </span>
+              <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
+            </Link>
+          )}
         </div>
 
         <ExerciseSet key={level} topic={topic} forms={forms} userId={user?.id} />

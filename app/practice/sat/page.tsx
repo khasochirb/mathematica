@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Clock, ListChecks, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, Clock, Layers, ListChecks, Sparkles } from "lucide-react";
 import { listSatTests } from "@/lib/sat-test";
 
 export const metadata = { title: "SAT Math Hub" };
@@ -78,7 +78,27 @@ export default function SatHubPage() {
           <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
         </Link>
 
-        <div className="eyebrow mt-10 mb-3">Study by topic</div>
+        <div className="eyebrow mt-10 mb-3">Practice by topic</div>
+        <Link
+          href="/practice/sat/bank"
+          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
+          style={{ display: "flex" }}
+        >
+          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
+            <Layers className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+            <span>
+              SAT topic practice
+              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
+                Drill the four SAT domains — Algebra, Advanced Math,
+                Problem-Solving &amp; Data, Geometry &amp; Trig — with a similar
+                problem queued after every miss.
+              </span>
+            </span>
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
+        </Link>
+
+        <div className="eyebrow mt-10 mb-3">Study a topic from zero</div>
         <Link
           href="/math#topics"
           className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
@@ -87,10 +107,10 @@ export default function SatHubPage() {
           <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
             <Sparkles className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
             <span>
-              Full topic courses
+              General Math courses
               <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
-                Algebra 1 &amp; 2, Geometry, Probability &amp; Statistics — the SAT-tagged
-                courses, taught from zero.
+                Algebra 1 &amp; 2, Geometry, Probability &amp; Statistics — full
+                courses taught from zero, until the dedicated SAT Math course ships.
               </span>
             </span>
           </span>
@@ -98,7 +118,7 @@ export default function SatHubPage() {
         </Link>
 
         <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
-          More practice tests and SAT-specific drills are on the way.
+          More practice tests and a dedicated SAT Math course are on the way.
         </p>
       </div>
     </div>

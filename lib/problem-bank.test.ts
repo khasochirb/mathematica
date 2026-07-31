@@ -13,6 +13,7 @@ import {
   displayVariant,
   sessionForms,
   getVariant,
+  getSatBankTopic,
   topicMastery,
   type BankProgress,
 } from "./problem-bank";
@@ -52,6 +53,30 @@ describe("problem bank data", () => {
         }
       }
     }
+  });
+
+  it("keeps the SAT hub's bank out of the course-ladder list, in SAT taxonomy", () => {
+    const sat = getSatBankTopic();
+    expect(sat.slug).toBe("sat");
+    // the hub's OWN taxonomy: the four Digital SAT domains, in test order
+    expect(sat.units.map((u) => u.id)).toEqual([
+      "algebra",
+      "advanced-math",
+      "problem-solving-data",
+      "geometry-trig",
+    ]);
+    for (const u of sat.units) {
+      expect(unitForms(sat, u.id).length, u.id).toBeGreaterThanOrEqual(6);
+    }
+    for (const f of sat.forms) {
+      expect(f.variants.length, f.id).toBeGreaterThanOrEqual(4);
+    }
+    expect(new Set(sat.forms.map((f) => f.level))).toEqual(new Set([1, 2, 3]));
+    // NOT a /math course subject: it must not appear on the General Math
+    // bank hub, in the ratings card, or in placement wiring...
+    expect(getBankTopics().some((t) => t.slug === "sat")).toBe(false);
+    // ...and /math/problem-bank/sat must 404, not render the SAT bank.
+    expect(getBankTopic("sat")).toBeNull();
   });
 
   it("resolves subjects, units, and variants by id", () => {

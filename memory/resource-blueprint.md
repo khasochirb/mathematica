@@ -13,7 +13,7 @@ Math is organized by school band, not by a flat course list.
 | Hub | Tests | Course(s) | Topic-focused practice |
 |---|---|---|---|
 | ЭЕШ | premium + previous-year papers ✅ | 14 topic courses ✅ | practice by topic ✅ |
-| SAT | 12 mock tests ✅ | SAT Math course ❌ (backlog #245) | SAT problem bank ❌ |
+| SAT | 12 mock tests ✅ | SAT Math course ❌ (backlog #245) | SAT problem bank ✅ (/practice/sat/bank) |
 | IB | practice paper sets ✅ | AA SL ✅ + AA HL ✅ | IB problem bank ❌ |
 | General | per-band placement + full-course exams (see below) | bands + IM pathway | problem bank per band/course (11 subjects exist) |
 
@@ -42,6 +42,10 @@ Math is organized by school band, not by a flat course list.
 
 1. **SAT topic bank** — problem bank in the SAT hub, SAT domain taxonomy,
    English. Fastest path to parity; bank machinery (scripts/pb) exists.
+   ✅ Shipped 2026-07-31: scripts/pb/sat.py (28 forms · 966 variants across
+   the 4 domains), served at /practice/sat/bank by the parameterized bank
+   components (components/bank/bank-chrome.ts); mastery store scoped "sat"
+   in lib/data-erase.ts.
 2. **IB topic bank** — Topics 1–5 taxonomy, SL/HL split, English.
 3. **General catalog → bands** — includes per-band placement + band exams.
    (Was gated on page 2 of the drawing; owner confirmed 2026-07-31 the

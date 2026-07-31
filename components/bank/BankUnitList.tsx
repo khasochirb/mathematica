@@ -11,11 +11,13 @@ import {
   unitForms,
   unitMastery,
 } from "@/lib/problem-bank";
+import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 // The subject page: the course's units in taught order, each opening its own
 // problem collection. This mirrors /math/<subject> exactly — finish a unit in
 // the course, then come here to solidify it against the full collection.
-export default function BankUnitList({ topic }: { topic: BankTopic }) {
+export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chrome?: BankChrome }) {
+  const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [progress, setProgress] = useState<BankProgress | null>(null);
 
@@ -30,22 +32,32 @@ export default function BankUnitList({ topic }: { topic: BankTopic }) {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href="/math/problem-bank" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={c.backHref} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Problem Bank · {topic.title}</div>
+          <div className="eyebrow">{c.eyebrow} · {topic.title}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
           {topic.title}
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "58ch" }}>
-          <b className="tabular">{totalProblems}</b> problems organized by the
-          course&apos;s {topic.units.length} units. Finish a unit in the{" "}
-          <Link href={`/math/${topic.slug}`} style={{ color: "var(--accent)" }}>
-            {topic.title} course
-          </Link>
-          , then open it here and work the collection.
+          <b className="tabular">{totalProblems}</b> problems organized
+          {c.courseHref ? (
+            <>
+              {" "}by the course&apos;s {topic.units.length} units. Finish a unit in the{" "}
+              <Link href={c.courseHref} style={{ color: "var(--accent)" }}>
+                {topic.title} course
+              </Link>
+              , then open it here and work the collection.
+            </>
+          ) : (
+            <>
+              {" "}into {topic.units.length} units. Pick a unit and work its
+              collection — on paper with reveal-to-check, or as a practice set
+              with instant feedback.
+            </>
+          )}
         </p>
 
         <div className="space-y-3">
@@ -57,7 +69,7 @@ export default function BankUnitList({ topic }: { topic: BankTopic }) {
             return (
               <Link
                 key={u.id}
-                href={`/math/problem-bank/${topic.slug}/${u.id}`}
+                href={`${c.topicBase}/${u.id}`}
                 className="card-edit p-5 flex items-start gap-4 transition-colors"
                 style={{ textDecoration: "none" }}
                 onMouseEnter={(e) => {

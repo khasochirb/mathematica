@@ -24,6 +24,8 @@ import {
   unitForms,
   saveBankSession,
 } from "@/lib/problem-bank";
+import useScrollToTop from "@/lib/use-scroll-to-top";
+import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 type Phase = "setup" | "quiz" | "done";
 
@@ -31,7 +33,8 @@ type Phase = "setup" | "quiz" | "done";
 // problem per exam form in the unit → any miss immediately queues a SIMILAR
 // problem (sibling variant of the same form) → summary names the forms that
 // still need work and can re-drill just those.
-export default function BankRunner({ topic, unit }: { topic: BankTopic; unit: BankUnit }) {
+export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; unit: BankUnit; chrome?: BankChrome }) {
+  const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("setup");
   const [level, setLevel] = useState<BankLevel>(0);
@@ -42,6 +45,10 @@ export default function BankRunner({ topic, unit }: { topic: BankTopic; unit: Ba
 
   const scopedForms = unitForms(topic, unit.id);
   const scopedIds = scopedForms.map((f) => f.id);
+
+  // Long problems leave the viewport scrolled down; every advance (including
+  // the queued similar problem) starts the next one at the top.
+  useScrollToTop(`${phase}:${session?.pos ?? 0}`, phase === "quiz");
 
   const item = session ? currentItem(session) : null;
   const form = item ? getForm(topic, item.formId) : null;
@@ -88,10 +95,10 @@ export default function BankRunner({ topic, unit }: { topic: BankTopic; unit: Ba
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
         <div className="flex items-center gap-3 mb-6">
-          <Link href={`/math/problem-bank/${topic.slug}/${unit.id}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
+          <Link href={`${c.topicBase}/${unit.id}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Problem Bank · {topic.title} · Practice set</div>
+          <div className="eyebrow">{c.eyebrow} · {topic.title} · Practice set</div>
         </div>
 
         {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} />}
@@ -178,7 +185,7 @@ export default function BankRunner({ topic, unit }: { topic: BankTopic; unit: Ba
         )}
 
         {phase === "done" && summary && (
-          <Summary topic={topic} summary={summary} level={level} onRetake={() => start(level)} onDrill={(ids) => start(0, ids)} />
+          <Summary topic={topic} chrome={c} summary={summary} level={level} onRetake={() => start(level)} onDrill={(ids) => start(0, ids)} />
         )}
       </div>
     </div>
@@ -234,9 +241,9 @@ function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typ
 }
 
 function Summary({
-  topic, summary, level, onRetake, onDrill,
+  topic, chrome, summary, level, onRetake, onDrill,
 }: {
-  topic: BankTopic; summary: BankSummary; level: BankLevel; onRetake: () => void; onDrill: (formIds: string[]) => void;
+  topic: BankTopic; chrome: BankChrome; summary: BankSummary; level: BankLevel; onRetake: () => void; onDrill: (formIds: string[]) => void;
 }) {
   const pct = Math.round(summary.accuracy * 100);
   const recovered = summary.forms.filter((f) => f.recovered);
@@ -312,7 +319,7 @@ function Summary({
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
           <RotateCcw className="h-4 w-4" /> New set{level !== 0 ? ` · ${LEVEL_LABELS[level]}` : ""}
         </button>
-        <Link href={`/math/problem-bank/${topic.slug}`} className="btn btn-line inline-flex items-center gap-1.5" style={{ textDecoration: "none" }}>
+        <Link href={chrome.topicBase} className="btn btn-line inline-flex items-center gap-1.5" style={{ textDecoration: "none" }}>
           All units <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
