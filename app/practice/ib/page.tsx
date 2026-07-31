@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookOpen } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, Layers } from "lucide-react";
 import IbPracticeSets from "@/components/ib/IbPracticeSets";
 
 export const metadata = { title: "IB Math Hub" };
@@ -81,6 +81,25 @@ export default function IbHubPage() {
 
         <div className="eyebrow mt-10 mb-3">Practice sets — AA HL</div>
         <IbPracticeSets level="hl" />
+
+        <div className="eyebrow mt-10 mb-3">Practice by topic</div>
+        <Link
+          href="/practice/ib/bank"
+          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
+          style={{ display: "flex" }}
+        >
+          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
+            <Layers className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
+            <span>
+              IB topic practice
+              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
+                Drill the five syllabus topics — SL and the AHL extension — with a
+                similar problem queued after every miss.
+              </span>
+            </span>
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
+        </Link>
 
         <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
         <Link

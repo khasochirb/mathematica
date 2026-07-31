@@ -14,6 +14,7 @@ import {
   sessionForms,
   getVariant,
   getSatBankTopic,
+  getIbBankTopic,
   topicMastery,
   type BankProgress,
 } from "./problem-bank";
@@ -77,6 +78,35 @@ describe("problem bank data", () => {
     expect(getBankTopics().some((t) => t.slug === "sat")).toBe(false);
     // ...and /math/problem-bank/sat must 404, not render the SAT bank.
     expect(getBankTopic("sat")).toBeNull();
+  });
+
+  it("keeps the IB banks out of the course-ladder list, in the 5-topic taxonomy", () => {
+    // the hub's OWN taxonomy: the five syllabus topics in syllabus order,
+    // with unit ids equal to the COURSE unit slugs so lesson links resolve
+    const syllabus = [
+      "number-and-algebra",
+      "functions",
+      "geometry-and-trigonometry",
+      "statistics-and-probability",
+      "calculus",
+    ];
+    for (const tier of ["sl", "hl"] as const) {
+      const t = getIbBankTopic(tier);
+      expect(t.slug).toBe(`ib-${tier}`);
+      expect(t.units.map((u) => u.id)).toEqual(syllabus);
+      for (const u of t.units) {
+        expect(unitForms(t, u.id).length, `${tier}/${u.id}`).toBeGreaterThanOrEqual(4);
+      }
+      for (const f of t.forms) {
+        expect(f.variants.length, f.id).toBeGreaterThanOrEqual(4);
+      }
+      expect(new Set(t.forms.map((f) => f.level))).toEqual(new Set([1, 2, 3]));
+      // NOT a /math course subject, and /math/problem-bank/ib-* must 404
+      expect(getBankTopics().some((x) => x.slug === t.slug)).toBe(false);
+      expect(getBankTopic(t.slug)).toBeNull();
+    }
+    // the two tiers are genuinely different banks
+    expect(getIbBankTopic("sl")).not.toBe(getIbBankTopic("hl"));
   });
 
   it("resolves subjects, units, and variants by id", () => {

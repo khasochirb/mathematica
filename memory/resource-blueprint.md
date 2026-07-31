@@ -14,7 +14,7 @@ Math is organized by school band, not by a flat course list.
 |---|---|---|---|
 | ЭЕШ | premium + previous-year papers ✅ | 14 topic courses ✅ | practice by topic ✅ |
 | SAT | 12 mock tests ✅ | SAT Math course ❌ (backlog #245) | SAT problem bank ✅ (/practice/sat/bank) |
-| IB | practice paper sets ✅ | AA SL ✅ + AA HL ✅ | IB problem bank ❌ |
+| IB | practice paper sets ✅ | AA SL ✅ + AA HL ✅ | IB problem bank ✅ (/practice/ib/bank) |
 | General | per-band placement + full-course exams (see below) | bands + IM pathway | problem bank per band/course (11 subjects exist) |
 
 ЭЕШ is the reference implementation — when in doubt, mirror its shape.
@@ -47,6 +47,10 @@ Math is organized by school band, not by a flat course list.
    components (components/bank/bank-chrome.ts); mastery store scoped "sat"
    in lib/data-erase.ts.
 2. **IB topic bank** — Topics 1–5 taxonomy, SL/HL split, English.
+   ✅ Shipped 2026-07-31: scripts/pb/ib.py (ib-sl 26 forms · 878 variants;
+   ib-hl 20 forms · 667 variants), served at /practice/ib/bank/{sl,hl};
+   bank unit ids = course unit slugs so lesson links land on /math/ib-*;
+   mastery stores (mp-bank:ib-*) scoped "ib" in lib/data-erase.ts.
 3. **General catalog → bands** — includes per-band placement + band exams.
    (Was gated on page 2 of the drawing; owner confirmed 2026-07-31 the
    remaining bubbles were the transition-grades note only — gate lifted.)

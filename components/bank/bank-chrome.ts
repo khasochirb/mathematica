@@ -36,3 +36,20 @@ export const SAT_BANK_CHROME: BankChrome = {
   eyebrow: "SAT Math · Topic practice",
   courseHref: null,
 };
+
+// The IB bank has one topic per tier, mirroring the live courses; bank unit
+// ids equal the course unit slugs, so lesson links land on the right unit.
+export const IB_BANK_CHROME: Record<"sl" | "hl", BankChrome> = {
+  sl: {
+    topicBase: "/practice/ib/bank/sl",
+    backHref: "/practice/ib/bank",
+    eyebrow: "IB Math · Topic practice",
+    courseHref: "/math/ib-sl",
+  },
+  hl: {
+    topicBase: "/practice/ib/bank/hl",
+    backHref: "/practice/ib/bank",
+    eyebrow: "IB Math · Topic practice",
+    courseHref: "/math/ib-hl",
+  },
+};

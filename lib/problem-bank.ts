@@ -27,6 +27,8 @@ import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 import integrated1 from "@/data/problembank/integrated-1.json";
 import integrated2 from "@/data/problembank/integrated-2.json";
 import sat from "@/data/problembank/sat.json";
+import ibSl from "@/data/problembank/ib-sl.json";
+import ibHl from "@/data/problembank/ib-hl.json";
 
 export type BankVariant = {
   id: string;
@@ -84,16 +86,25 @@ export function getBankTopic(slug: string): BankTopic | null {
   return TOPICS.find((t) => t.slug === slug) ?? null;
 }
 
-// The SAT hub's topic bank. Deliberately NOT in TOPICS: getBankTopics() is
-// the /math course-ladder list (it feeds the General Math hub page, the
-// ratings card, and placement wiring), while this bank belongs to the SAT
-// hub at /practice/sat/bank and follows the four Digital SAT domains. Its
-// mastery store (mp-bank:sat:*) is likewise scoped "sat", not "courses",
-// in lib/data-erase.ts.
+// Hub-owned banks. Deliberately NOT in TOPICS: getBankTopics() is the /math
+// course-ladder list (it feeds the General Math hub page, the ratings card,
+// and placement wiring), while these belong to their exam hubs and follow
+// the hub's own taxonomy — the four Digital SAT domains at /practice/sat/bank,
+// the five IB syllabus topics per tier at /practice/ib/bank. Their mastery
+// stores (mp-bank:sat:*, mp-bank:ib-*) are likewise scoped to the hub, not
+// to "courses", in lib/data-erase.ts.
 const SAT_BANK: BankTopic = sat as unknown as BankTopic;
+const IB_SL_BANK: BankTopic = ibSl as unknown as BankTopic;
+const IB_HL_BANK: BankTopic = ibHl as unknown as BankTopic;
 
 export function getSatBankTopic(): BankTopic {
   return SAT_BANK;
+}
+
+export type IbBankTier = "sl" | "hl";
+
+export function getIbBankTopic(tier: IbBankTier): BankTopic {
+  return tier === "sl" ? IB_SL_BANK : IB_HL_BANK;
 }
 
 export function getBankUnit(topic: BankTopic, unitId: string): BankUnit | null {

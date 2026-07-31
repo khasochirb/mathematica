@@ -36,8 +36,11 @@ SUBJECTS = [
     ("integrated-1", "integrated_1"),
     ("integrated-2", "integrated_2"),
     # Hub-owned banks (not part of the /math course ladder): the SAT hub's
-    # topic practice, organized by the four Digital SAT domains.
+    # topic practice (four Digital SAT domains) and the IB hub's SL/HL banks
+    # (five syllabus topics per tier).
     ("sat", "sat"),
+    ("ib-sl", "ib_sl"),
+    ("ib-hl", "ib_hl"),
 ]
 
 

@@ -83,9 +83,10 @@ export const LOCAL_STORES: StoreSpec[] = [
   { scope: "sat", key: "mp-bank:sat:", prefix: true, what: "SAT сэдэвчилсэн дадлагын ахиц" },
   // IB
   { scope: "ib", key: "mp-ib-run:", prefix: true, what: "IB шалгалтын явц ба дүн" },
+  { scope: "ib", key: "mp-bank:ib-", prefix: true, what: "IB сэдэвчилсэн дадлагын ахиц" },
   // Courses — these two feed the ratings card, which is why it kept showing
   // scores after an "everything" wipe.
-  { scope: "courses", key: "mp-bank:", prefix: true, exclude: ["mp-bank:sat:"], what: "бодлогын сангийн ахиц" },
+  { scope: "courses", key: "mp-bank:", prefix: true, exclude: ["mp-bank:sat:", "mp-bank:ib-"], what: "бодлогын сангийн ахиц" },
   { scope: "courses", key: "mp-placement:", prefix: true, what: "түвшин тогтоох тестийн үр дүн" },
   { scope: "courses", key: "mp-exam:", prefix: true, what: "курсын шалгалтын дүн" },
 ];
