@@ -196,6 +196,7 @@ import im2Probability from "@/data/genmath/integrated-2/probability.json";
 import im3Polynomials from "@/data/genmath/integrated-3/polynomial-functions.json";
 import im3Rational from "@/data/genmath/integrated-3/rational-and-radical-functions.json";
 import im3ExpLog from "@/data/genmath/integrated-3/exponential-and-logarithmic-functions.json";
+import im3Trig from "@/data/genmath/integrated-3/trigonometric-functions.json";
 
 // Algebra 2 unit JSON imports
 import a2Functions from "@/data/genmath/algebra-2/functions-and-transformations.json";
@@ -1491,7 +1492,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Radian measure and the unit circle, extending the ratios beyond acute angles, the graphs of sine and cosine with amplitude and period, and the Pythagorean identity.",
     buildsOn: "Right-triangle trigonometry from IM2 Unit 6 and radians from IM2 Unit 7.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
@@ -1535,6 +1536,7 @@ const im3Units: CourseUnit[] = [
   im3Polynomials,
   im3Rational,
   im3ExpLog,
+  im3Trig,
 ] as unknown as CourseUnit[];
 
 export function getIm3Spine(): GeometrySpineEntry[] {
