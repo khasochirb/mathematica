@@ -1,0 +1,559 @@
+{
+  "meta": {
+    "examId": "12-exam-1",
+    "course": "12",
+    "courseTitle": "Grade 12",
+    "label": "Grade 12 — Practice Exam 1",
+    "intro": "The High school band's exit exam: every Grade 12 topic is represented, so the result shows exactly which topics still need another pass — the same map ЭЕШ prep starts from.",
+    "minutes": 45,
+    "totalQuestions": 28,
+    "unitsCovered": 7
+  },
+  "questions": [
+    {
+      "id": "G12-TI1-v01",
+      "unit": "trigonometric-identities",
+      "unitTitle": "Trigonometric Identities",
+      "level": 1,
+      "skill": "cos from sin — magnitude from the identity, sign from the quadrant.",
+      "statement": "Given that $\\sin\\theta = \\frac{3}{5}$ and $0 < \\theta < \\dfrac{\\pi}{2}$, find $\\cos\\theta$.",
+      "options": [
+        "$\\frac{4}{5}$",
+        "$-\\frac{4}{5}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{3}{4}$"
+      ],
+      "correctIndex": 0,
+      "explanation": "$\\cos^2\\theta = 1 - \\sin^2\\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$, so $\\cos\\theta = \\pm\\frac{4}{5}$ — and the quadrant decides: in quadrant I cosine is positive, giving $\\frac{4}{5}$. The identity only hands you the magnitude; the quadrant hands you the sign.",
+      "check": [
+        "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)",
+        "Eq(Rational(4,5)**2, 1 - Rational(3,5)**2)"
+      ]
+    },
+    {
+      "id": "G12-TI2-v02",
+      "unit": "trigonometric-identities",
+      "unitTitle": "Trigonometric Identities",
+      "level": 2,
+      "skill": "sin 2θ = 2 sin θ cos θ, never 2 sin θ.",
+      "statement": "The acute angle $\\theta$ has $\\sin\\theta = \\frac{3}{5}$. Find $\\cos 2\\theta$.",
+      "options": [
+        "$-\\frac{7}{25}$",
+        "$\\frac{7}{25}$",
+        "$\\frac{16}{25}$",
+        "$\\frac{24}{25}$"
+      ],
+      "correctIndex": 1,
+      "explanation": "$\\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - 2 \\cdot \\frac{9}{25} = \\frac{7}{25}$. The formula subtracts TWICE the sine squared — $1 - \\sin^2\\theta$ is just $\\cos^2\\theta$, a different quantity.",
+      "check": [
+        "Eq(1 - 2*Rational(3,5)**2, Rational(7,25))"
+      ]
+    },
+    {
+      "id": "G12-TI2-v04",
+      "unit": "trigonometric-identities",
+      "unitTitle": "Trigonometric Identities",
+      "level": 2,
+      "skill": "sin 2θ = 2 sin θ cos θ, never 2 sin θ.",
+      "statement": "The acute angle $\\theta$ has $\\sin\\theta = \\frac{4}{5}$. Find $\\cos 2\\theta$.",
+      "options": [
+        "$\\frac{7}{25}$",
+        "$\\frac{9}{25}$",
+        "$\\frac{24}{25}$",
+        "$-\\frac{7}{25}$"
+      ],
+      "correctIndex": 3,
+      "explanation": "$\\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - 2 \\cdot \\frac{16}{25} = -\\frac{7}{25}$. The formula subtracts TWICE the sine squared — $1 - \\sin^2\\theta$ is just $\\cos^2\\theta$, a different quantity.",
+      "check": [
+        "Eq(1 - 2*Rational(4,5)**2, Rational(-7,25))"
+      ]
+    },
+    {
+      "id": "G12-TI3-v04",
+      "unit": "trigonometric-identities",
+      "unitTitle": "Trigonometric Identities",
+      "level": 3,
+      "skill": "Factor, then count each root on the unit circle.",
+      "statement": "How many solutions does the equation $\\sin^2 x - 1 = 0$ have for $0 \\le x < 2\\pi$?",
+      "options": [
+        "$0$",
+        "$1$",
+        "$3$",
+        "$2$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Factor as a quadratic in $\\sin x$: the roots are $\\sin x = 1$ and $\\sin x = -1$. A value strictly between $-1$ and $1$ is hit twice per turn, $\\pm 1$ exactly once, and anything beyond $\\pm 1$ never — total $2$. Count from the unit circle, root by root.",
+      "check": [
+        "Eq(expand(1*(s - Rational(1,1))*(s - Rational(-1,1))), 1*s**2 + (0)*s + (-1))",
+        "Eq(Abs(Rational(1,1)), 1)",
+        "Eq(Abs(Rational(-1,1)), 1)"
+      ]
+    },
+    {
+      "id": "G12-LC1-v01",
+      "unit": "limits-and-continuity",
+      "unitTitle": "Limits & Continuity",
+      "level": 1,
+      "skill": "Continuous functions: the limit is the value.",
+      "statement": "Evaluate $\\displaystyle\\lim_{x \\to 2} \\left(x^2 + 2x + 1\\right)$.",
+      "options": [
+        "$9$",
+        "$1$",
+        "$10$",
+        "$8$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Polynomials are continuous, so the limit IS the value: substitute $x = 2$ to get $9$. No algebra tricks needed — save those for the $0/0$ forms.",
+      "check": [
+        "Eq(limit(1*x**2 + (2)*x + (1), x, 2), 9)"
+      ]
+    },
+    {
+      "id": "G12-LC2-v02",
+      "unit": "limits-and-continuity",
+      "unitTitle": "Limits & Continuity",
+      "level": 2,
+      "skill": "Factor, cancel the hole, then substitute.",
+      "statement": "Evaluate $\\displaystyle\\lim_{x \\to 4} \\dfrac{x^2 - 16}{x - 4}$.",
+      "options": [
+        "$0$",
+        "$8$",
+        "$4$",
+        "$16$"
+      ],
+      "correctIndex": 1,
+      "explanation": "At $x = 4$ this is $\\frac{0}{0}$ — a hole, not an answer. Factor: $\\dfrac{(x-4)(x+4)}{x-4} = x + 4$ away from the hole, so the limit is $8$. $\\frac{0}{0}$ means \"do more work\", never \"the answer is 0\".",
+      "check": [
+        "Eq(limit((x**2 - 16)/(x - 4), x, 4), 8)"
+      ]
+    },
+    {
+      "id": "G12-LC2-v04",
+      "unit": "limits-and-continuity",
+      "unitTitle": "Limits & Continuity",
+      "level": 2,
+      "skill": "Factor, cancel the hole, then substitute.",
+      "statement": "Evaluate $\\displaystyle\\lim_{x \\to 6} \\dfrac{x^2 - 36}{x - 6}$.",
+      "options": [
+        "$0$",
+        "$6$",
+        "$36$",
+        "$12$"
+      ],
+      "correctIndex": 3,
+      "explanation": "At $x = 6$ this is $\\frac{0}{0}$ — a hole, not an answer. Factor: $\\dfrac{(x-6)(x+6)}{x-6} = x + 6$ away from the hole, so the limit is $12$. $\\frac{0}{0}$ means \"do more work\", never \"the answer is 0\".",
+      "check": [
+        "Eq(limit((x**2 - 36)/(x - 6), x, 6), 12)"
+      ]
+    },
+    {
+      "id": "G12-LC3-v04",
+      "unit": "limits-and-continuity",
+      "unitTitle": "Limits & Continuity",
+      "level": 3,
+      "skill": "Equal degrees: the leading coefficients' ratio.",
+      "statement": "Evaluate $\\displaystyle\\lim_{x \\to \\infty} \\dfrac{2x^2 - 3x - 2}{3x^2 + x + 5}$.",
+      "options": [
+        "$-3$",
+        "$-\\frac{2}{5}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{2}{3}$"
+      ],
+      "correctIndex": 3,
+      "explanation": "For $x$ huge, only the leading terms matter: $\\dfrac{2x^2}{3x^2} \\to \\frac{2}{3}$. The lower-order terms are noise at infinity — the constants' ratio $-\\frac{2}{5}$ is what the limit at $0$ would care about, not the limit at $\\infty$.",
+      "check": [
+        "Eq(limit((2*x**2 + (-3)*x + (-2))/(3*x**2 + (1)*x + (5)), x, oo), Rational(2,3))"
+      ]
+    },
+    {
+      "id": "G12-DV1-v01",
+      "unit": "derivatives",
+      "unitTitle": "Derivatives",
+      "level": 1,
+      "skill": "Multiply by the exponent, lower it by one.",
+      "statement": "Let $f(x) = 2x^3$. Find $f'(2)$.",
+      "options": [
+        "$24$",
+        "$8$",
+        "$48$",
+        "$16$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Power rule: $f'(x) = 3 \\cdot 2 x^{2} = 6x^{2}$, so $f'(2) = 24$. Both moves matter — multiply by the old exponent AND lower it by one.",
+      "check": [
+        "Eq(diff(2*x**3, x).subs(x, 2), 24)"
+      ]
+    },
+    {
+      "id": "G12-DV2-v02",
+      "unit": "derivatives",
+      "unitTitle": "Derivatives",
+      "level": 2,
+      "skill": "Outer derivative times inner derivative.",
+      "statement": "Let $f(x) = (2x + 1)^2$. Find $f'(2)$.",
+      "options": [
+        "$10$",
+        "$20$",
+        "$8$",
+        "$25$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chain rule: $f'(x) = 2(2x + 1)^{1} \\cdot 2$ — the outer power TIMES the inner derivative. At $x = 2$: $2 \\cdot 5 \\cdot 2 = 20$. Dropping the inner factor $2$ gives $10$.",
+      "check": [
+        "Eq(diff((2*x + (1))**2, x).subs(x, 2), 20)"
+      ]
+    },
+    {
+      "id": "G12-DV2-v04",
+      "unit": "derivatives",
+      "unitTitle": "Derivatives",
+      "level": 2,
+      "skill": "Outer derivative times inner derivative.",
+      "statement": "Let $f(x) = (2x - 2)^2$. Find $f'(-1)$.",
+      "options": [
+        "$-8$",
+        "$-4$",
+        "$16$",
+        "$-16$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Chain rule: $f'(x) = 2(2x - 2)^{1} \\cdot 2$ — the outer power TIMES the inner derivative. At $x = -1$: $2 \\cdot -4 \\cdot 2 = -16$. Dropping the inner factor $2$ gives $-8$.",
+      "check": [
+        "Eq(diff((2*x + (-2))**2, x).subs(x, -1), -16)"
+      ]
+    },
+    {
+      "id": "G12-DV3-v04",
+      "unit": "derivatives",
+      "unitTitle": "Derivatives",
+      "level": 3,
+      "skill": "u'v + uv' — not the product of derivatives.",
+      "statement": "Let $f(x) = x^2(x + 2)$. Find $f'(1)$.",
+      "options": [
+        "$2$",
+        "$6$",
+        "$3$",
+        "$7$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Product rule: $f'(x) = 2x(x + 2) + x^2 \\cdot 1$; at $x = 1$ this is $6 + 1 = 7$. The derivative of a product is NOT the product of the derivatives ($2x \\cdot 1$ gives $2$).",
+      "check": [
+        "Eq(diff(x**2*(x + (2)), x).subs(x, 1), 7)"
+      ]
+    },
+    {
+      "id": "G12-AD1-v01",
+      "unit": "applications-of-derivatives",
+      "unitTitle": "Applications of Derivatives",
+      "level": 1,
+      "skill": "The slope is f'(a), not f(a).",
+      "statement": "What is the slope of the tangent to the curve $y = x^2 + 2x + 1$ at the point where $x = 3$?",
+      "options": [
+        "$8$",
+        "$16$",
+        "$3$",
+        "$4$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Slope means DERIVATIVE: $y' = 2x + 2$, so at $x = 3$ the slope is $8$. $16$ is the HEIGHT of the curve there — the number the tangent touches, not its steepness.",
+      "check": [
+        "Eq(diff(x**2 + (2)*x + (1), x).subs(x, 3), 8)"
+      ]
+    },
+    {
+      "id": "G12-AD2-v02",
+      "unit": "applications-of-derivatives",
+      "unitTitle": "Applications of Derivatives",
+      "level": 2,
+      "skill": "Increasing where f' > 0.",
+      "statement": "On what interval is $f(x) = x^2 + 2x - 2$ increasing?",
+      "options": [
+        "$x < -1$",
+        "$x > -1$",
+        "$x > 1$",
+        "all real numbers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Increasing where $f' > 0$: $f'(x) = 2x + 2 > 0$ gives $x > -1$. An upward parabola falls, bottoms out at its vertex, then rises — the derivative's sign says which side is which.",
+      "check": [
+        "Eq(diff(x**2 + (2)*x + (-2), x).subs(x, Rational(-1,1)), 0)",
+        "diff(x**2 + (2)*x + (-2), x).subs(x, Rational(-1,1) + 1) > 0"
+      ]
+    },
+    {
+      "id": "G12-AD2-v04",
+      "unit": "applications-of-derivatives",
+      "unitTitle": "Applications of Derivatives",
+      "level": 2,
+      "skill": "Increasing where f' > 0.",
+      "statement": "On what interval is $f(x) = x^2 + 4x + 1$ increasing?",
+      "options": [
+        "$x < -2$",
+        "$x > 2$",
+        "all real numbers",
+        "$x > -2$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Increasing where $f' > 0$: $f'(x) = 2x + 4 > 0$ gives $x > -2$. An upward parabola falls, bottoms out at its vertex, then rises — the derivative's sign says which side is which.",
+      "check": [
+        "Eq(diff(x**2 + (4)*x + (1), x).subs(x, Rational(-2,1)), 0)",
+        "diff(x**2 + (4)*x + (1), x).subs(x, Rational(-2,1) + 1) > 0"
+      ]
+    },
+    {
+      "id": "G12-AD3-v04",
+      "unit": "applications-of-derivatives",
+      "unitTitle": "Applications of Derivatives",
+      "level": 3,
+      "skill": "Fixed sum, maximum product: split evenly.",
+      "statement": "Two positive numbers add up to $14$. What is the largest possible value of their product?",
+      "options": [
+        "$48$",
+        "$98$",
+        "$14$",
+        "$49$"
+      ],
+      "correctIndex": 3,
+      "explanation": "With $x + y = 14$, the product $x(14 - x)$ is a downward parabola peaking at $x = 7$: $7 \\cdot 7 = 49$. Any uneven split loses — even $6 \\cdot 8 = 48$, just one step off, is smaller.",
+      "check": [
+        "Eq(7*7, 49)",
+        "7*7 > (6)*(8)"
+      ]
+    },
+    {
+      "id": "G12-IG1-v01",
+      "unit": "integrals",
+      "unitTitle": "Integrals",
+      "level": 1,
+      "skill": "Raise the power, divide by it, add C.",
+      "statement": "Find $\\displaystyle\\int 3x^2\\,dx$.",
+      "options": [
+        "$1x^3 + C$",
+        "$6x^1 + C$",
+        "$3x^3 + C$",
+        "$1x^2 + C$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Raise the power, divide by the new power: $\\dfrac{3}{3}x^{3} + C = 1x^{3} + C$. Check by differentiating — it must give back $3x^2$.",
+      "check": [
+        "Eq(diff(1*x**3, x), 3*x**2)",
+        "Eq(integrate(3*x**2, x), 1*x**3)"
+      ]
+    },
+    {
+      "id": "G12-IG2-v02",
+      "unit": "integrals",
+      "unitTitle": "Integrals",
+      "level": 2,
+      "skill": "Evaluate at both limits and subtract.",
+      "statement": "Evaluate $\\displaystyle\\int_1^{2} (2x + 2)\\,dx$.",
+      "options": [
+        "$8$",
+        "$5$",
+        "$3$",
+        "$6$"
+      ],
+      "correctIndex": 1,
+      "explanation": "An antiderivative is $x^2 + 2x$; evaluate at both limits: $(4 + 4) - (1 + 2) = 5$. Subtracting the lower limit's value is half the Fundamental Theorem — forgetting it gives $8$.",
+      "check": [
+        "Eq(integrate(2*x + (2), (x, 1, 2)), 5)"
+      ]
+    },
+    {
+      "id": "G12-IG2-v04",
+      "unit": "integrals",
+      "unitTitle": "Integrals",
+      "level": 2,
+      "skill": "Evaluate at both limits and subtract.",
+      "statement": "Evaluate $\\displaystyle\\int_1^{2} (2x - 2)\\,dx$.",
+      "options": [
+        "$0$",
+        "$3$",
+        "$2$",
+        "$1$"
+      ],
+      "correctIndex": 3,
+      "explanation": "An antiderivative is $x^2 - 2x$; evaluate at both limits: $(4 - 4) - (1 - 2) = 1$. Subtracting the lower limit's value is half the Fundamental Theorem — forgetting it gives $0$.",
+      "check": [
+        "Eq(integrate(2*x + (-2), (x, 1, 2)), 1)"
+      ]
+    },
+    {
+      "id": "G12-IG3-v04",
+      "unit": "integrals",
+      "unitTitle": "Integrals",
+      "level": 3,
+      "skill": "Distance is the integral of speed.",
+      "statement": "A particle's velocity is $v(t) = 2t + 5$ metres per second. How far does it travel from $t = 0$ to $t = 2$ seconds?",
+      "options": [
+        "$18$",
+        "$10$",
+        "$9$",
+        "$14$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Distance is the integral of speed: $\\displaystyle\\int_0^{2} (2t + 5)\\,dt = \\left[1t^2 + 5t\\right]_0^{2} = 14$ m. Final-speed-times-time ($18$) pretends the speed never changed.",
+      "check": [
+        "Eq(integrate(2*t + 5, (t, 0, 2)), 14)"
+      ]
+    },
+    {
+      "id": "G12-VC1-v01",
+      "unit": "vectors",
+      "unitTitle": "Vectors",
+      "level": 1,
+      "skill": "Scale first, then add componentwise.",
+      "statement": "Let $\\mathbf{u} = (2,\\ 3)$ and $\\mathbf{v} = (1,\\ 2)$. Find the components of $\\mathbf{u} + 2\\mathbf{v}$.",
+      "options": [
+        "$(4,\\ 7)$",
+        "$(0,\\ -1)$",
+        "$(3,\\ 5)$",
+        "$(6,\\ 10)$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Scale first, then add componentwise: $2\\mathbf{v} = (2,\\ 4)$, so the result is $(2 + 2,\\ 3 + 4) = (4,\\ 7)$.",
+      "check": [
+        "Eq(2 + 2*1, 4)",
+        "Eq(3 + 2*2, 7)"
+      ]
+    },
+    {
+      "id": "G12-VC2-v02",
+      "unit": "vectors",
+      "unitTitle": "Vectors",
+      "level": 2,
+      "skill": "The hypotenuse of the component triangle.",
+      "statement": "A hiker walks $3$ km west and then $4$ km north. The displacement vector is $(-3,\\ 4)$. What is its magnitude, in km?",
+      "options": [
+        "$25$",
+        "$5$",
+        "$7$",
+        "$4$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Magnitude is the hypotenuse: $\\sqrt{-3^2 + 4^2} = \\sqrt{25} = 5$ km. Walking $7$ km of path is not being $7$ km from the start — displacement cuts the corner.",
+      "check": [
+        "Eq(sqrt((-3)**2 + (4)**2), 5)"
+      ]
+    },
+    {
+      "id": "G12-VC2-v04",
+      "unit": "vectors",
+      "unitTitle": "Vectors",
+      "level": 2,
+      "skill": "The hypotenuse of the component triangle.",
+      "statement": "A hiker walks $6$ km east and then $8$ km north. The displacement vector is $(6,\\ 8)$. What is its magnitude, in km?",
+      "options": [
+        "$100$",
+        "$14$",
+        "$8$",
+        "$10$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Magnitude is the hypotenuse: $\\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$ km. Walking $14$ km of path is not being $14$ km from the start — displacement cuts the corner.",
+      "check": [
+        "Eq(sqrt((6)**2 + (8)**2), 10)"
+      ]
+    },
+    {
+      "id": "G12-VC3-v04",
+      "unit": "vectors",
+      "unitTitle": "Vectors",
+      "level": 3,
+      "skill": "Swap the components and flip one sign.",
+      "statement": "Which of the following vectors is perpendicular to $\\mathbf{u} = (2,\\ 5)$?",
+      "options": [
+        "$(5,\\ 2)$",
+        "$(2,\\ -5)$",
+        "$(-2,\\ -5)$",
+        "$(-5,\\ 2)$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Perpendicular means dot product zero: $(2)(-5) + (5)(2) = 0$ ✓. The recipe is swap the components AND flip one sign — $(5,\\ 2)$ swaps without flipping, and its dot product is $20$, not $0$.",
+      "check": [
+        "Eq(2*(-5) + 5*(2), 0)",
+        "Ne(2*(5) + 5*(2), 0)",
+        "Ne(2*(2) + 5*(-5), 0)",
+        "Ne(2*(-2) + 5*(-5), 0)"
+      ]
+    },
+    {
+      "id": "G12-CS1-v01",
+      "unit": "conic-sections",
+      "unitTitle": "Conic Sections",
+      "level": 1,
+      "skill": "Center from the opposite signs, radius from the square root.",
+      "statement": "What are the center and radius of the circle $(x - 2)^2 + (y - 1)^2 = 4$?",
+      "options": [
+        "center $(2,\\ 1)$, radius $2$",
+        "center $(-2,\\ -1)$, radius $2$",
+        "center $(2,\\ 1)$, radius $4$",
+        "center $(1,\\ 2)$, radius $2$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The template is $(x - h)^2 + (y - k)^2 = r^2$: the signs INSIDE are opposite the center, so the center is $(2,\\ 1)$, and $r = \\sqrt{4} = 2$ — the equation stores the radius squared.",
+      "check": [
+        "Eq(((2) - (2))**2 + ((1) - (1))**2, 0)",
+        "Eq(sqrt(4), 2)"
+      ]
+    },
+    {
+      "id": "G12-CS2-v02",
+      "unit": "conic-sections",
+      "unitTitle": "Conic Sections",
+      "level": 2,
+      "skill": "Read 4p, divide, and pick the right axis.",
+      "statement": "Find the focus of the parabola $x^2 = 4y$.",
+      "options": [
+        "$(0,\\ -1)$",
+        "$(0,\\ 1)$",
+        "$(1,\\ 0)$",
+        "$(0,\\ 4)$"
+      ],
+      "correctIndex": 1,
+      "explanation": "$x^2 = 4py$ opens along the $y$-axis with focus $(0, p)$: here $p = 1$, so the focus is $(0,\\ 1)$. Squaring $x$ means the parabola opens up/down — the focus sits on the $y$-axis.",
+      "check": [
+        "Eq(Rational(4, 4), 1)"
+      ]
+    },
+    {
+      "id": "G12-CS2-v04",
+      "unit": "conic-sections",
+      "unitTitle": "Conic Sections",
+      "level": 2,
+      "skill": "Read 4p, divide, and pick the right axis.",
+      "statement": "Find the focus of the parabola $x^2 = 8y$.",
+      "options": [
+        "$(0,\\ -2)$",
+        "$(2,\\ 0)$",
+        "$(0,\\ 8)$",
+        "$(0,\\ 2)$"
+      ],
+      "correctIndex": 3,
+      "explanation": "$x^2 = 4py$ opens along the $y$-axis with focus $(0, p)$: here $p = 2$, so the focus is $(0,\\ 2)$. Squaring $x$ means the parabola opens up/down — the focus sits on the $y$-axis.",
+      "check": [
+        "Eq(Rational(8, 4), 2)"
+      ]
+    },
+    {
+      "id": "G12-CS3-v04",
+      "unit": "conic-sections",
+      "unitTitle": "Conic Sections",
+      "level": 3,
+      "skill": "The squared terms' signs name the curve.",
+      "statement": "The graph of $x^2 + y^2 = 25$ is a:",
+      "options": [
+        "ellipse",
+        "hyperbola",
+        "parabola",
+        "circle"
+      ],
+      "correctIndex": 3,
+      "explanation": "Look only at the squared terms: equal positive coefficients on $x^2$ and $y^2$ make a circle. Signs and symmetry of the squares decide the family before any algebra.",
+      "check": [
+        "Eq(1, 1)",
+        "25 > 0"
+      ]
+    }
+  ]
+}

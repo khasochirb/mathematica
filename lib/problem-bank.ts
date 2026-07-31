@@ -26,6 +26,8 @@ import calculus from "@/data/problembank/calculus.json";
 import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 import integrated1 from "@/data/problembank/integrated-1.json";
 import integrated2 from "@/data/problembank/integrated-2.json";
+import grade9 from "@/data/problembank/9.json";
+import grade12 from "@/data/problembank/12.json";
 import sat from "@/data/problembank/sat.json";
 import ibSl from "@/data/problembank/ib-sl.json";
 import ibHl from "@/data/problembank/ib-hl.json";
@@ -76,6 +78,10 @@ const TOPICS: BankTopic[] = [
   vectorsMatrices,
   integrated1,
   integrated2,
+  // Band exit levels (slugs mirror the course paths /math/9 and /math/12);
+  // also the source pools for the band exit exams.
+  grade9,
+  grade12,
 ] as unknown as BankTopic[];
 
 export function getBankTopics(): BankTopic[] {

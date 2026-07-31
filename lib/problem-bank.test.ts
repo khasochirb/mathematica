@@ -37,6 +37,8 @@ describe("problem bank data", () => {
       "vectors-matrices",
       "integrated-1",
       "integrated-2",
+      "9",
+      "12",
     ]);
     for (const t of topics) {
       expect(t.units.length).toBeGreaterThanOrEqual(6);

@@ -35,6 +35,11 @@ SUBJECTS = [
     ("vectors-matrices", "vectors_matrices"),
     ("integrated-1", "integrated_1"),
     ("integrated-2", "integrated_2"),
+    # Band exit levels: Grade 9 (Mid school) and Grade 12 (High school).
+    # Their banks double as the source pools for the band exit exams
+    # (scripts/exams/build_band_exams.py).
+    ("9", "grade9"),
+    ("12", "grade12"),
     # Hub-owned banks (not part of the /math course ladder): the SAT hub's
     # topic practice (four Digital SAT domains) and the IB hub's SL/HL banks
     # (five syllabus topics per tier).

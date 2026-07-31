@@ -232,6 +232,26 @@ function BandPlacementCard({ href, body }: { href: string; body: string }) {
   );
 }
 
+// The band's EXIT exams, at the band's final grade.
+function BandExamCard({ href, body }: { href: string; body: string }) {
+  return (
+    <Link
+      href={href}
+      className="card-edit p-4 mt-4 flex items-center gap-3 transition-colors"
+      style={{ textDecoration: "none" }}
+      {...cardHover}
+    >
+      <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+        Band exam
+      </span>
+      <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>{body}</span>
+      <span className="mono text-[10px] uppercase flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
+        Open
+      </span>
+    </Link>
+  );
+}
+
 function GradeCard({ grade, active }: { grade: number; active: boolean }) {
   if (!active) {
     return (
@@ -466,6 +486,10 @@ export default function MathLandingPage() {
               <GradeCard key={g} grade={g} active={isActive(g)} />
             ))}
           </div>
+          <BandExamCard
+            href="/math/9/exam"
+            body="Finish the band with a full Grade 9 exam — three papers, every topic represented, a per-topic breakdown of where you stand."
+          />
         </section>
 
         <section id="high-school" className="mb-12" style={{ scrollMarginTop: 96 }}>
@@ -483,6 +507,10 @@ export default function MathLandingPage() {
               <GradeCard key={g} grade={g} active={isActive(g)} />
             ))}
           </div>
+          <BandExamCard
+            href="/math/12/exam"
+            body="Finish the band with a full Grade 12 exam — three papers, every topic represented, the same map ЭЕШ prep starts from."
+          />
 
           {/* `#topics` stays on the topic-course catalog so the exam hubs'
               existing deep links still land here rather than the page top. */}

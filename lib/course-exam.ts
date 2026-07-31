@@ -22,6 +22,14 @@ import im1e3 from "@/data/course-exams/integrated-1-exam-3.json";
 import im2e1 from "@/data/course-exams/integrated-2-exam-1.json";
 import im2e2 from "@/data/course-exams/integrated-2-exam-2.json";
 import im2e3 from "@/data/course-exams/integrated-2-exam-3.json";
+// Band exit exams (resource blueprint): Grade 9 closes Mid school, Grade 12
+// closes High school. Course slugs mirror the grade paths /math/9, /math/12.
+import g9e1 from "@/data/course-exams/9-exam-1.json";
+import g9e2 from "@/data/course-exams/9-exam-2.json";
+import g9e3 from "@/data/course-exams/9-exam-3.json";
+import g12e1 from "@/data/course-exams/12-exam-1.json";
+import g12e2 from "@/data/course-exams/12-exam-2.json";
+import g12e3 from "@/data/course-exams/12-exam-3.json";
 
 export type ExamQuestion = {
   id: string;
@@ -50,7 +58,10 @@ export type ExamMeta = {
 
 export type CourseExam = { meta: ExamMeta; questions: ExamQuestion[] };
 
-const EXAMS: CourseExam[] = [im1e1, im1e2, im1e3, im2e1, im2e2, im2e3] as unknown as CourseExam[];
+const EXAMS: CourseExam[] = [
+  im1e1, im1e2, im1e3, im2e1, im2e2, im2e3,
+  g9e1, g9e2, g9e3, g12e1, g12e2, g12e3,
+] as unknown as CourseExam[];
 
 export function getCourseExams(course: string): CourseExam[] {
   return EXAMS.filter((e) => e.meta.course === course);

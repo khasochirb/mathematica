@@ -1,0 +1,570 @@
+{
+  "meta": {
+    "examId": "9-exam-3",
+    "course": "9",
+    "courseTitle": "Grade 9",
+    "label": "Grade 9 — Practice Exam 3",
+    "intro": "The Mid school band's exit exam: every Grade 9 topic is represented, so the result shows exactly which topics still need another pass before high school.",
+    "minutes": 45,
+    "totalQuestions": 28,
+    "unitsCovered": 7
+  },
+  "questions": [
+    {
+      "id": "G9-EQ1-v17",
+      "unit": "equations-and-formulas",
+      "unitTitle": "Equations & Formulas",
+      "level": 1,
+      "skill": "Collect x-terms on one side without a sign slip.",
+      "statement": "Solve $4x - 2 = 2x - 12$.",
+      "options": [
+        "$-5$",
+        "$-\\frac{5}{3}$",
+        "$-7$",
+        "$5$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Move the $x$-terms to one side: $2x = -10$, so $x = -5$. Adding $2x$ instead of subtracting it is the usual slip.",
+      "check": [
+        "Eq(4*(-5) + (-2), 2*(-5) + (-12))"
+      ]
+    },
+    {
+      "id": "G9-EQ2-v20",
+      "unit": "equations-and-formulas",
+      "unitTitle": "Equations & Formulas",
+      "level": 2,
+      "skill": "Rearrange a formula for a chosen letter.",
+      "statement": "Solve $y = 5x + 7$ for $x$.",
+      "options": [
+        "$x = \\dfrac{y}{5} - 7$",
+        "$x = \\dfrac{y + 7}{5}$",
+        "$x = 5(y - 7)$",
+        "$x = \\dfrac{y - 7}{5}$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Undo in reverse order: subtract $7$ first, then divide the WHOLE side by $5$: $x = \\dfrac{y - 7}{5}$. Dividing before subtracting leaves the $7$ undivided.",
+      "check": [
+        "Eq((5*x + 7 - 7)/5, x)"
+      ]
+    },
+    {
+      "id": "G9-EQ2-v22",
+      "unit": "equations-and-formulas",
+      "unitTitle": "Equations & Formulas",
+      "level": 2,
+      "skill": "Rearrange a formula for a chosen letter.",
+      "statement": "Solve $P = 5a + 2b$ for $b$.",
+      "options": [
+        "$b = \\dfrac{P}{2} - 5a$",
+        "$b = \\dfrac{P - 5a}{2}$",
+        "$b = \\dfrac{P + 5a}{2}$",
+        "$b = 2(P - 5a)$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Isolate the $b$-term: $P - 5a = 2b$, then divide by $2$: $b = \\dfrac{P - 5a}{2}$.",
+      "check": [
+        "Eq((5*a + 2*b - 5*a)/2, b)"
+      ]
+    },
+    {
+      "id": "G9-EQ3-v20",
+      "unit": "equations-and-formulas",
+      "unitTitle": "Equations & Formulas",
+      "level": 3,
+      "skill": "Closing-the-gap motion: rates add.",
+      "statement": "Two cars start $600$ km apart and drive toward each other, one at $50$ km/h and the other at $70$ km/h. After how many hours do they meet?",
+      "options": [
+        "$30$",
+        "$\\frac{60}{7}$",
+        "$12$",
+        "$5$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Together they close the gap at $50 + 70 = 120$ km/h, so $t = \\dfrac{600}{120} = 5$ hours. Rates ADD when the motion is toward each other — subtracting is the chasing-problem formula.",
+      "check": [
+        "Eq(Rational(600, 50 + 70), 5)"
+      ]
+    },
+    {
+      "id": "G9-IN1-v17",
+      "unit": "inequalities-and-absolute-value",
+      "unitTitle": "Inequalities & Absolute Value",
+      "level": 1,
+      "skill": "Solve ax + b < c — flip when dividing by a negative.",
+      "statement": "Solve the inequality $2x - 3 < -1$.",
+      "options": [
+        "$x < 1$",
+        "$x > 1$",
+        "$x < -1$",
+        "$x = 1$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Isolate: $2x < 2$, so dividing by $2$ keeps the direction: $x < 1$. ",
+      "check": [
+        "Eq(2*(1) + (-3), -1)"
+      ]
+    },
+    {
+      "id": "G9-IN2-v20",
+      "unit": "inequalities-and-absolute-value",
+      "unitTitle": "Inequalities & Absolute Value",
+      "level": 2,
+      "skill": "Both branches of |x - a| = b.",
+      "statement": "Solve $|x + 4| = 3$.",
+      "options": [
+        "$x = -1$",
+        "$x = 7$ or $x = 1$",
+        "$x = 7$ or $x = -1$",
+        "$x = -1$ or $x = -7$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The expression inside is $3$ away from zero, two ways: $x + 4 = 3$ gives $x = -1$, and $x + 4 = -3$ gives $x = -7$. An absolute-value equation with a positive right side always has BOTH branches.",
+      "check": [
+        "Eq(Abs(-1 - (-4)), 3)",
+        "Eq(Abs(-7 - (-4)), 3)"
+      ]
+    },
+    {
+      "id": "G9-IN2-v22",
+      "unit": "inequalities-and-absolute-value",
+      "unitTitle": "Inequalities & Absolute Value",
+      "level": 2,
+      "skill": "Both branches of |x - a| = b.",
+      "statement": "Solve $|x - 6| = 1$.",
+      "options": [
+        "$x = 7$",
+        "$x = 7$ or $x = 5$",
+        "$x = -5$ or $x = -7$",
+        "$x = -5$ or $x = 7$"
+      ],
+      "correctIndex": 1,
+      "explanation": "The expression inside is $1$ away from zero, two ways: $x - 6 = 1$ gives $x = 7$, and $x - 6 = -1$ gives $x = 5$. An absolute-value equation with a positive right side always has BOTH branches.",
+      "check": [
+        "Eq(Abs(7 - (6)), 1)",
+        "Eq(Abs(5 - (6)), 1)"
+      ]
+    },
+    {
+      "id": "G9-IN3-v20",
+      "unit": "inequalities-and-absolute-value",
+      "unitTitle": "Inequalities & Absolute Value",
+      "level": 3,
+      "skill": "Inside vs outside: ≤ traps, ≥ throws out.",
+      "statement": "Solve $|x - 5| \\le 5$.",
+      "options": [
+        "$x \\le 0$ or $x \\ge 10$",
+        "$-10 \\le x \\le 0$",
+        "$x \\le 10$",
+        "$0 \\le x \\le 10$"
+      ],
+      "correctIndex": 3,
+      "explanation": "\"Within $5$ of $5$\" is a single interval: $0 \\le x \\le 10$. The two-piece answer belongs to $|x - 5| \\ge 5$ — $\\le$ traps you INSIDE, $\\ge$ throws you OUTSIDE.",
+      "check": [
+        "Eq(Abs(0 - (5)), 5)",
+        "Eq(Abs(10 - (5)), 5)",
+        "Abs(5 - (5)) < 5"
+      ]
+    },
+    {
+      "id": "G9-FN1-v17",
+      "unit": "introduction-to-functions",
+      "unitTitle": "Introduction to Functions",
+      "level": 1,
+      "skill": "Substitute and follow the order of operations.",
+      "statement": "Let $g(x) = 2x^2 + 7$. Find $g(2)$.",
+      "options": [
+        "$15$",
+        "$23$",
+        "$1$",
+        "$11$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Substitute and square FIRST: $g(2) = 2 \\cdot 4 + 7 = 15$. Squaring $2 \\cdot 2$ instead of just $2$ gives $23$.",
+      "check": [
+        "Eq(2*(2)**2 + (7), 15)"
+      ]
+    },
+    {
+      "id": "G9-FN2-v20",
+      "unit": "introduction-to-functions",
+      "unitTitle": "Introduction to Functions",
+      "level": 2,
+      "skill": "Fractions exclude a point; roots need x ≥ a.",
+      "statement": "What is the domain of $f(x) = \\sqrt{x + 2}$?",
+      "options": [
+        "$x > -2$",
+        "$x \\ge 2$",
+        "all real numbers except $x = -2$",
+        "$x \\ge -2$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The expression under the root must be $\\ge 0$: $x + 2 \\ge 0$ gives $x \\ge -2$ — and $x = -2$ itself IS allowed ($\\sqrt{0} = 0$), so the inequality is not strict.",
+      "check": [
+        "Eq(sqrt((-2) + 2), 0)"
+      ]
+    },
+    {
+      "id": "G9-FN2-v22",
+      "unit": "introduction-to-functions",
+      "unitTitle": "Introduction to Functions",
+      "level": 2,
+      "skill": "Fractions exclude a point; roots need x ≥ a.",
+      "statement": "What is the domain of $f(x) = 2\\sqrt{x + 2}$?",
+      "options": [
+        "$x > -2$",
+        "$x \\ge -2$",
+        "$x \\ge 2$",
+        "all real numbers except $x = -2$"
+      ],
+      "correctIndex": 1,
+      "explanation": "The expression under the root must be $\\ge 0$: $x + 2 \\ge 0$ gives $x \\ge -2$ — and $x = -2$ itself IS allowed ($\\sqrt{0} = 0$), so the inequality is not strict.",
+      "check": [
+        "Eq(sqrt((-2) + 2), 0)"
+      ]
+    },
+    {
+      "id": "G9-FN3-v20",
+      "unit": "introduction-to-functions",
+      "unitTitle": "Introduction to Functions",
+      "level": 3,
+      "skill": "Input for a given output — invert, don't evaluate.",
+      "statement": "Let $f(x) = 3x - 3$. Find the value of $x$ for which $f(x) = -9$.",
+      "options": [
+        "$-30$",
+        "$-4$",
+        "$-6$",
+        "$-2$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Set $3x - 3 = -9$ and solve: $3x = -6$, so $x = -2$. Computing $f(-9) = -30$ answers the OPPOSITE question — output for input, not input for output.",
+      "check": [
+        "Eq(3*(-2) + (-3), -9)"
+      ]
+    },
+    {
+      "id": "G9-LM1-v17",
+      "unit": "linear-models-and-variation",
+      "unitTitle": "Linear Models & Variation",
+      "level": 1,
+      "skill": "Constant ratio: y = kx.",
+      "statement": "$y$ varies directly with $x$, and $y = 6$ when $x = 2$. Find $y$ when $x = 3$.",
+      "options": [
+        "$9$",
+        "$4$",
+        "$7$",
+        "$3$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Direct variation keeps the RATIO constant: $k = \\dfrac{6}{2} = 3$, so $y = 3 \\cdot 3 = 9$. Keeping the PRODUCT constant instead is inverse variation — that gives $4$.",
+      "check": [
+        "Eq(Rational(6, 2) * 3, 9)"
+      ]
+    },
+    {
+      "id": "G9-LM2-v20",
+      "unit": "linear-models-and-variation",
+      "unitTitle": "Linear Models & Variation",
+      "level": 2,
+      "skill": "Constant product: y = k/x.",
+      "statement": "$y$ varies inversely with $x$, and $y = 20$ when $x = 3$. Find $y$ when $x = 5$.",
+      "options": [
+        "$\\frac{100}{3}$",
+        "$60$",
+        "$18$",
+        "$12$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Inverse variation keeps the PRODUCT constant: $k = 20 \\cdot 3 = 60$, so $y = \\dfrac{60}{5} = 12$. Scaling $y$ up with $x$ is DIRECT variation.",
+      "check": [
+        "Eq(Rational(60, 5), 12)",
+        "Eq(20*3, 12*5)"
+      ]
+    },
+    {
+      "id": "G9-LM2-v22",
+      "unit": "linear-models-and-variation",
+      "unitTitle": "Linear Models & Variation",
+      "level": 2,
+      "skill": "Constant product: y = k/x.",
+      "statement": "$y$ varies inversely with $x$, and $y = 15$ when $x = 4$. Find $y$ when $x = 12$.",
+      "options": [
+        "$45$",
+        "$5$",
+        "$60$",
+        "$7$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Inverse variation keeps the PRODUCT constant: $k = 15 \\cdot 4 = 60$, so $y = \\dfrac{60}{12} = 5$. Scaling $y$ up with $x$ is DIRECT variation.",
+      "check": [
+        "Eq(Rational(60, 12), 5)",
+        "Eq(15*4, 5*12)"
+      ]
+    },
+    {
+      "id": "G9-LM3-v20",
+      "unit": "linear-models-and-variation",
+      "unitTitle": "Linear Models & Variation",
+      "level": 3,
+      "skill": "Rate from the difference, base fee from a point.",
+      "statement": "A tutor charges $30$ dollars for a $2$-hour booking and $50$ dollars for a $6$-hour booking. The charge $C$ is a linear function of the hours $x$. Which model is correct?",
+      "options": [
+        "$C = \\dfrac{50}{6}x$",
+        "$C = 5x + 30$",
+        "$C = 15x$",
+        "$C = 5x + 20$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The rate is $\\dfrac{50 - 30}{6 - 2} = 5$ dollars per hour, and the base fee follows: $30 - 5 \\cdot 2 = 20$. So $C = 5x + 20$. A line through the origin would mean no base fee — but the two prices aren't proportional to the hours.",
+      "check": [
+        "Eq(Rational(50 - 30, 6 - 2), 5)",
+        "Eq(5*2 + 20, 30)",
+        "Eq(5*6 + 20, 50)"
+      ]
+    },
+    {
+      "id": "G9-SI1-v17",
+      "unit": "inequalities-in-two-variables",
+      "unitTitle": "Systems of Inequalities",
+      "level": 1,
+      "skill": "Substitute the point into the inequality.",
+      "statement": "Which point is a solution of the inequality $x + 2y \\le 12$?",
+      "options": [
+        "$(1,\\ 1)$",
+        "$(12,\\ 12)$",
+        "$(12,\\ 1)$",
+        "$(1,\\ 12)$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Substitute each point: $1 \\cdot 1 + 2 \\cdot 1 = 3 \\le 12$ ✓ — the others push the left side past $12$. Testing the point IS the whole method; no graph needed.",
+      "check": [
+        "1*1 + 2*1 <= 12",
+        "1*12 + 2*12 > 12",
+        "1*12 + 2*1 > 12",
+        "1*1 + 2*12 > 12"
+      ]
+    },
+    {
+      "id": "G9-SI2-v20",
+      "unit": "inequalities-in-two-variables",
+      "unitTitle": "Systems of Inequalities",
+      "level": 2,
+      "skill": "A solution must pass EVERY constraint.",
+      "statement": "Which point satisfies BOTH $x + y \\le 7$ and $x - y \\ge 3$?",
+      "options": [
+        "$(8,\\ 0)$",
+        "$(1,\\ 0)$",
+        "$(7,\\ 7)$",
+        "$(5,\\ 1)$"
+      ],
+      "correctIndex": 3,
+      "explanation": "A system needs BOTH checks to pass: $5 + 1 = 6 \\le 7$ ✓ and $5 - 1 = 4 \\ge 3$ ✓. Each wrong option passes one test and fails the other — always test every constraint.",
+      "check": [
+        "5 + 1 <= 7",
+        "5 - 1 >= 3",
+        "8 + 0 > 7",
+        "1 - 0 < 3"
+      ]
+    },
+    {
+      "id": "G9-SI2-v22",
+      "unit": "inequalities-in-two-variables",
+      "unitTitle": "Systems of Inequalities",
+      "level": 2,
+      "skill": "A solution must pass EVERY constraint.",
+      "statement": "Which point satisfies BOTH $x + y \\le 9$ and $x - y \\ge 1$?",
+      "options": [
+        "$(10,\\ 0)$",
+        "$(3,\\ 1)$",
+        "$(-1,\\ 0)$",
+        "$(9,\\ 9)$"
+      ],
+      "correctIndex": 1,
+      "explanation": "A system needs BOTH checks to pass: $3 + 1 = 4 \\le 9$ ✓ and $3 - 1 = 2 \\ge 1$ ✓. Each wrong option passes one test and fails the other — always test every constraint.",
+      "check": [
+        "3 + 1 <= 9",
+        "3 - 1 >= 1",
+        "10 + 0 > 9",
+        "-1 - 0 < 1"
+      ]
+    },
+    {
+      "id": "G9-SI3-v20",
+      "unit": "inequalities-in-two-variables",
+      "unitTitle": "Systems of Inequalities",
+      "level": 3,
+      "skill": "Evaluate the objective at every vertex.",
+      "statement": "A feasible region has vertices $(0,\\ 0)$, $(8,\\ 0)$, $(0,\\ 2)$ and $(5,\\ 4)$. What is the maximum value of $P = 2x + 3y$ on this region?",
+      "options": [
+        "$16$",
+        "$6$",
+        "$0$",
+        "$22$"
+      ],
+      "correctIndex": 3,
+      "explanation": "A linear objective is maximized at a VERTEX, so evaluate $P$ at all four: $0, 16, 6, 22$. The largest is $22$. Checking only some corners is how the maximum gets missed.",
+      "check": [
+        "Eq(Max(0, 16, 6, 22), 22)"
+      ]
+    },
+    {
+      "id": "G9-PW1-v17",
+      "unit": "piecewise-and-absolute-value-graphs",
+      "unitTitle": "Piecewise & Absolute-Value Graphs",
+      "level": 1,
+      "skill": "|x - h| + k puts the vertex at (h, k).",
+      "statement": "What is the vertex of the graph of $y = |x + 1| - 3$?",
+      "options": [
+        "$(-1,\\ -3)$",
+        "$(1,\\ -3)$",
+        "$(-1,\\ 3)$",
+        "$(-3,\\ -1)$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The V sits where the inside is zero: $x = -1$, at height $y = -3$ — vertex $(-1,\\ -3)$. Inside the absolute value the sign works backward — $|x + 1|$ puts the vertex at $-1$.",
+      "check": [
+        "Eq(Abs(-1 - (-1)), 0)",
+        "Eq(Abs(0) + (-3), -3)"
+      ]
+    },
+    {
+      "id": "G9-PW2-v20",
+      "unit": "piecewise-and-absolute-value-graphs",
+      "unitTitle": "Piecewise & Absolute-Value Graphs",
+      "level": 2,
+      "skill": "Pick the branch the input belongs to — boundaries included.",
+      "statement": "Let $f(x) = \\begin{cases} x + 4 & x < 2 \\\\ -x + 8 & x \\ge 2 \\end{cases}$. Find $f(4)$.",
+      "options": [
+        "$8$",
+        "$6$",
+        "$2$",
+        "$4$"
+      ],
+      "correctIndex": 3,
+      "explanation": "$x = 4$ is at least $2$, so the second branch applies: $f(4) = 4$. At the boundary itself the \"$\\ge$\" branch owns the point — that's what the equals sign decides.",
+      "check": [
+        "Eq(-1*(4) + (8), 4)"
+      ]
+    },
+    {
+      "id": "G9-PW2-v22",
+      "unit": "piecewise-and-absolute-value-graphs",
+      "unitTitle": "Piecewise & Absolute-Value Graphs",
+      "level": 2,
+      "skill": "Pick the branch the input belongs to — boundaries included.",
+      "statement": "Let $f(x) = \\begin{cases} x + 4 & x < 2 \\\\ 2x + 5 & x \\ge 2 \\end{cases}$. Find $f(2)$.",
+      "options": [
+        "$6$",
+        "$9$",
+        "$\\frac{15}{2}$",
+        "$2$"
+      ],
+      "correctIndex": 1,
+      "explanation": "$x = 2$ is at least $2$, so the second branch applies: $f(2) = 9$. At the boundary itself the \"$\\ge$\" branch owns the point — that's what the equals sign decides.",
+      "check": [
+        "Eq(2*(2) + (5), 9)"
+      ]
+    },
+    {
+      "id": "G9-PW3-v20",
+      "unit": "piecewise-and-absolute-value-graphs",
+      "unitTitle": "Piecewise & Absolute-Value Graphs",
+      "level": 3,
+      "skill": "\"Or part thereof\" rounds up, never proportionally.",
+      "statement": "A courier charges ₮$700$ for the first $2$ kg and ₮$150$ for each ADDITIONAL kilogram or part of one. What does a package weighing $\\frac{9}{2}$ kg cost, in tögrög?",
+      "options": [
+        "$1000$",
+        "$1075$",
+        "$450$",
+        "$1150$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Beyond the first $2$ kg there are $\\frac{5}{2}$ kg extra, and \"or part of one\" ROUNDS UP: $3$ started kilograms. Cost $= 700 + 150 \\cdot 3 = 1150$. A step tariff jumps at each cut — it never charges proportionally.",
+      "check": [
+        "Eq(700 + 150*ceiling(Rational(9,2) - 2), 1150)"
+      ]
+    },
+    {
+      "id": "G9-DD1-v17",
+      "unit": "data-distributions",
+      "unitTitle": "Data Distributions",
+      "level": 1,
+      "skill": "The middle POSITION, not the middle value.",
+      "statement": "Find the median of the data set $6, 7, 9, 10, 13, 16, 20$.",
+      "options": [
+        "$10$",
+        "$\\frac{81}{7}$",
+        "$13$",
+        "$9$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Seven values are already ordered, so the median is the 4th: $10$ — three below it, three above. The mean ($\\frac{81}{7}$) weighs the VALUES; the median only counts positions.",
+      "check": [
+        "Eq(10, 10)",
+        "9 < 10",
+        "10 <= 13"
+      ]
+    },
+    {
+      "id": "G9-DD2-v20",
+      "unit": "data-distributions",
+      "unitTitle": "Data Distributions",
+      "level": 2,
+      "skill": "Medians of the halves; IQR = Q3 - Q1.",
+      "statement": "For the data set $12, 12, 14, 18, 20, 24, 26, 28$, find the interquartile range (IQR).",
+      "options": [
+        "$16$",
+        "$25$",
+        "$19$",
+        "$12$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Split the ordered data in half: the lower half's median is $Q_1 = 13$ and the upper half's is $Q_3 = 25$, so IQR $= 25 - 13 = 12$. The RANGE ($16$) uses the extremes — exactly the values the IQR is built to ignore.",
+      "check": [
+        "Eq(Rational(12 + 14, 2), Rational(13,1))",
+        "Eq(Rational(24 + 26, 2), Rational(25,1))",
+        "Eq(Rational(25,1) - Rational(13,1), Rational(12,1))"
+      ]
+    },
+    {
+      "id": "G9-DD2-v22",
+      "unit": "data-distributions",
+      "unitTitle": "Data Distributions",
+      "level": 2,
+      "skill": "Medians of the halves; IQR = Q3 - Q1.",
+      "statement": "For the data set $7, 9, 11, 15, 17, 19, 23, 29$, find the interquartile range (IQR).",
+      "options": [
+        "$22$",
+        "$11$",
+        "$21$",
+        "$16$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Split the ordered data in half: the lower half's median is $Q_1 = 10$ and the upper half's is $Q_3 = 21$, so IQR $= 21 - 10 = 11$. The RANGE ($22$) uses the extremes — exactly the values the IQR is built to ignore.",
+      "check": [
+        "Eq(Rational(9 + 11, 2), Rational(10,1))",
+        "Eq(Rational(19 + 23, 2), Rational(21,1))",
+        "Eq(Rational(21,1) - Rational(10,1), Rational(11,1))"
+      ]
+    },
+    {
+      "id": "G9-DD3-v20",
+      "unit": "data-distributions",
+      "unitTitle": "Data Distributions",
+      "level": 3,
+      "skill": "Q3 + 1.5·IQR marks the upper fence.",
+      "statement": "A data set has $Q_1 = 20$ and $Q_3 = 30$. Above what value is a data point considered an outlier (using the $1.5 \\cdot \\text{IQR}$ rule)?",
+      "options": [
+        "$40$",
+        "$35$",
+        "$15$",
+        "$45$"
+      ],
+      "correctIndex": 3,
+      "explanation": "IQR $= 30 - 20 = 10$, so the upper fence is $Q_3 + 1.5 \\cdot 10 = 30 + 15 = 45$. The fence hangs off $Q_3$, not $Q_1$ — and the $1.5$ is the whole point of the rule.",
+      "check": [
+        "Eq(30 + Rational(3,2)*10, Rational(45,1))"
+      ]
+    }
+  ]
+}

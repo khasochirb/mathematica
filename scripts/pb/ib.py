@@ -297,9 +297,9 @@ def _g_sl_vertex():
                 "statement": "The graph of $f(x) = %s$ has its vertex at the point:"
                              % ("x^2 " + ("+ %dx" % b if b > 0 else "- %dx" % -b) +
                                 (" + %d" % c if c >= 0 else " - %d" % -c)),
-                "correct": pt(h, k),
+                "correct": "$%s$" % pt(h, k),
                 # sign of h flipped · sign of k flipped · coordinates swapped
-                "dvals": [pt(-h, k), pt(h, -k), pt(k, h)],
+                "dvals": ["$%s$" % pt(-h, k), "$%s$" % pt(h, -k), "$%s$" % pt(k, h)],
                 "explanation": "The $x$-coordinate is $-\\dfrac{b}{2a} = -\\dfrac{%d}{2} = %d$, "
                                "and $f(%d) = %d$. So the vertex is $%s$. Forgetting the minus "
                                "sign in $-b/2a$ gives $x = %d$."
@@ -356,11 +356,11 @@ def _g_sl_transform_point():
                                      "$y = %df(x %s %d) %s %d$."
                                      % (pt(p, q), a, "-" if h > 0 else "+", abs(h),
                                         "+" if k > 0 else "-", abs(k)),
-                        "correct": pt(p + h, a * q + k),
+                        "correct": "$%s$" % pt(p + h, a * q + k),
                         # shifted the wrong way · added k before stretching ·
                         # sign slip on k
-                        "dvals": [pt(p - h, a * q + k), pt(p + h, a * (q + k)),
-                                  pt(p + h, a * q - k)],
+                        "dvals": ["$%s$" % pt(p - h, a * q + k), "$%s$" % pt(p + h, a * (q + k)),
+                                  "$%s$" % pt(p + h, a * q - k)],
                         "explanation": "$x - %d$ shifts the graph $%d$ units %s, and the output "
                                        "is stretched by $%d$ THEN translated by $%d$: the image "
                                        "is $(%d %s %d,\\ %d \\cdot %d %s %d) = %s$. Adding $%d$ "
