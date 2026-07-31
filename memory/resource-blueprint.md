@@ -13,7 +13,7 @@ Math is organized by school band, not by a flat course list.
 | Hub | Tests | Course(s) | Topic-focused practice |
 |---|---|---|---|
 | ЭЕШ | premium + previous-year papers ✅ | 14 topic courses ✅ | practice by topic ✅ |
-| SAT | 12 mock tests ✅ | SAT Math course ❌ (backlog #245) | SAT problem bank ✅ (/practice/sat/bank) |
+| SAT | 12 mock tests ✅ | SAT Math course ✅ (/practice/sat/learn) | SAT problem bank ✅ (/practice/sat/bank) |
 | IB | practice paper sets ✅ | AA SL ✅ + AA HL ✅ | IB problem bank ✅ (/practice/ib/bank) |
 | General | per-band placement + full-course exams (see below) | bands + IM pathway | problem bank per band/course (11 subjects exist) |
 
@@ -65,6 +65,13 @@ Math is organized by school band, not by a flat course list.
    course banks at /math/problem-bank/{9,12}).
 4. **SAT Math course** (backlog #245) — fills the SAT "Course" branch that
    currently points at General Math.
+   ✅ Shipped 2026-07-31: four domain courses at /practice/sat/learn
+   (lib/sat-course.ts), curated from the verified English catalog via the
+   shared resolver — 27 units across Algebra (6), Advanced Math (9),
+   PSDA (6), Geometry & Trig (6); domain slugs equal the SAT bank's unit
+   ids; attempts land in context "course:sat" → /sat-analytics. The
+   bespoke 23-skill-tag curriculum in .claude/skills/sat-course stays the
+   long-term upgrade path on top of this.
 5. **IM3 completion** — units 3–8, bank, exams (pre-existing roadmap).
 6. Primary school band content (grades 1–5) — unscheduled; band shows
    coming-soon until then.

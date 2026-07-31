@@ -66,6 +66,14 @@ const NAMED_UNIT_GETTERS: Record<string, (slug: string) => CourseUnit | null> = 
   "vectors-matrices": getVecMatUnit,
 };
 
+/**
+ * Shared with the other hub-owned curated courses (lib/sat-course.ts): the
+ * same "home/slug" provenance strings resolve against the same catalog.
+ */
+export function resolveCatalogSource(source: string): CourseUnit | null {
+  return resolveSource(source);
+}
+
 function resolveSource(source: string): CourseUnit | null {
   const cut = source.indexOf("/");
   if (cut < 0) return null; // "authored" — content not written yet

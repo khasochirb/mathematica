@@ -27,14 +27,14 @@ export function defaultBankChrome(topic: BankTopic): BankChrome {
   };
 }
 
-// The SAT course (backlog #245) doesn't exist yet, so courseHref is null —
-// linking into General Math from here is the exact dead-end the resource
-// blueprint forbids.
+// The SAT bank's unit ids equal the SAT course's domain slugs
+// (lib/sat-course.ts), so each bank unit's lesson link lands on the matching
+// domain course page.
 export const SAT_BANK_CHROME: BankChrome = {
   topicBase: "/practice/sat/bank",
   backHref: "/practice/sat",
   eyebrow: "SAT Math · Topic practice",
-  courseHref: null,
+  courseHref: "/practice/sat/learn",
 };
 
 // The IB bank has one topic per tier, mirroring the live courses; bank unit

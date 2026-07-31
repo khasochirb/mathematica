@@ -15,6 +15,10 @@ export const ESH_CONTEXT = "esh";
 // (past papers and topic drills) so neither pollutes the other's accuracy.
 export const ESH_COURSE_CONTEXT = "course:esh";
 
+// The taught SAT Math course at /practice/sat/learn — same split for the
+// same reason: course lessons and mock-test MCQs are different populations.
+export const SAT_COURSE_CONTEXT = "course:sat";
+
 // Course contexts are derived from the lesson URL, so the player needs no
 // per-page wiring: /math/prob-stats/... → "course:prob-stats",
 // /math/6/... → "course:grade-6". Non-course paths return null (record
@@ -25,6 +29,7 @@ export function contextFromPathname(pathname: string): string | null {
   // rather than folding into "esh" — accuracy on a taught lesson and accuracy
   // on a past-paper MCQ are not comparable populations.
   if (/^\/practice\/esh\/learn\/[^/]+\/[^/]+/.test(pathname)) return ESH_COURSE_CONTEXT;
+  if (/^\/practice\/sat\/learn\/[^/]+\/[^/]+/.test(pathname)) return SAT_COURSE_CONTEXT;
 
   const m = /^\/math\/(solid-geometry|geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|integrated-1|integrated-2|integrated-3|precalculus|calculus|trigonometry|ib-sl|ib-hl|\d+)\//.exec(pathname);
   if (!m) return null;
@@ -39,9 +44,14 @@ export function lessonSlugsFromPathname(
   pathname: string,
 ): { unit: string; lesson: string } | null {
   const parts = pathname.split("/").filter(Boolean);
-  // /practice/esh/learn/<topic>/<unit>/<lesson> — one segment deeper than the
-  // /math courses, because the exam topic is part of the path.
-  if (parts.length === 6 && parts[0] === "practice" && parts[1] === "esh" && parts[2] === "learn") {
+  // /practice/<hub>/learn/<topic>/<unit>/<lesson> — one segment deeper than
+  // the /math courses, because the hub topic/domain is part of the path.
+  if (
+    parts.length === 6 &&
+    parts[0] === "practice" &&
+    (parts[1] === "esh" || parts[1] === "sat") &&
+    parts[2] === "learn"
+  ) {
     const [, , , , unit, lesson] = parts;
     if (["practice", "test"].includes(lesson)) return null;
     return { unit, lesson };
@@ -56,6 +66,7 @@ export function lessonSlugsFromPathname(
 export function contextLabel(context: string): string {
   if (context === ESH_CONTEXT) return "ЭЕШ бэлтгэл";
   if (context === ESH_COURSE_CONTEXT) return "ЭЕШ курс";
+  if (context === SAT_COURSE_CONTEXT) return "SAT курс";
   if (context === "course:geometry") return "Геометр";
   if (context === "course:prob-stats") return "Магадлал ба Статистик";
   if (context === "course:vectors-matrices") return "Вектор ба Матриц";
@@ -79,6 +90,7 @@ export function contextLabel(context: string): string {
 // Where a context's course lives, for dashboard links.
 export function contextHref(context: string): string | null {
   if (context === ESH_COURSE_CONTEXT) return "/practice/esh/learn";
+  if (context === SAT_COURSE_CONTEXT) return "/practice/sat/learn";
   if (context === "course:geometry") return "/math/geometry";
   if (context === "course:prob-stats") return "/math/prob-stats";
   if (context === "course:vectors-matrices") return "/math/vectors-matrices";
@@ -109,6 +121,7 @@ export function contextProgressHref(context: string): string | null {
   // Course-shaped, but it lives in the exam hub — must not fall through to
   // /math/progress?course=esh, which is not a course /math knows about.
   if (context === ESH_COURSE_CONTEXT) return "/analytics";
+  if (context === SAT_COURSE_CONTEXT) return "/sat-analytics";
   // Each exam hub has ONE analytics report; the hub's /progress route
   // redirects to it. Same rule as ЭЕШ above.
   if (context === "sat") return "/sat-analytics";

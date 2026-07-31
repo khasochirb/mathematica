@@ -98,19 +98,20 @@ export default function SatHubPage() {
           <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
         </Link>
 
-        <div className="eyebrow mt-10 mb-3">Study a topic from zero</div>
+        <div className="eyebrow mt-10 mb-3">The course</div>
         <Link
-          href="/math#topics"
+          href="/practice/sat/learn"
           className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
           style={{ display: "flex" }}
         >
           <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
             <Sparkles className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
             <span>
-              General Math courses
+              SAT Math course
               <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
-                Algebra 1 &amp; 2, Geometry, Probability &amp; Statistics — full
-                courses taught from zero, until the dedicated SAT Math course ships.
+                Four courses, one per College Board domain — Algebra, Advanced
+                Math, Problem-Solving &amp; Data, Geometry &amp; Trig — lessons,
+                practice and unit tests, weighted like the real section.
               </span>
             </span>
           </span>
@@ -118,7 +119,11 @@ export default function SatHubPage() {
         </Link>
 
         <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
-          More practice tests and a dedicated SAT Math course are on the way.
+          More practice tests are on the way. Need the fundamentals first? The{" "}
+          <Link href="/math#topics" style={{ color: "var(--accent)" }}>
+            General Math courses
+          </Link>{" "}
+          teach every topic from zero.
         </p>
       </div>
     </div>
