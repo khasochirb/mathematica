@@ -10,12 +10,14 @@ import im3Polynomials from "@/data/genmath/integrated-3/polynomial-functions.jso
 import im3Rational from "@/data/genmath/integrated-3/rational-and-radical-functions.json";
 import im3ExpLog from "@/data/genmath/integrated-3/exponential-and-logarithmic-functions.json";
 import im3Trig from "@/data/genmath/integrated-3/trigonometric-functions.json";
+import im3Families from "@/data/genmath/integrated-3/function-families-and-inverses.json";
 
 const im3Units: CourseUnit[] = [
   im3Polynomials,
   im3Rational,
   im3ExpLog,
   im3Trig,
+  im3Families,
 ] as unknown as CourseUnit[];
 
 export function getIm3Spine(): GeometrySpineEntry[] {

@@ -837,7 +837,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Transformations applied to every family at once, even and odd symmetry, composing functions, and inverses — what they undo and when they exist.",
     buildsOn: "Transformations of parabolas from IM2 Unit 3, generalised to every function.",
-    live: false,
+    live: true,
   },
   {
     unit: 6,
