@@ -52,6 +52,9 @@ export default function TestTimer({
   const remaining = Math.max(0, durationMs - elapsed);
   const isLow = remaining < 10 * 60 * 1000; // < 10 minutes
 
+  // COUNTDOWN display: a test clock shows what is left, not what is spent —
+  // count-up hides the deadline and lets a sitting run forever. Zero is the
+  // moment onExpiry auto-submits, so the display never goes negative.
   return (
     <div
       className={`flex items-center gap-1.5 text-sm font-mono font-medium ${
@@ -59,7 +62,7 @@ export default function TestTimer({
       }`}
     >
       <Clock className="w-4 h-4" />
-      <span>{formatTime(elapsed)}</span>
+      <span>{formatTime(remaining)}</span>
     </div>
   );
 }

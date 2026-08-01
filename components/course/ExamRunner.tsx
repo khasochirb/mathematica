@@ -3,9 +3,10 @@
 import { useMemo, useState } from "react";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, X, Clock, Layers, Flag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, X, Layers, Flag } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
+import TestTimer from "@/components/esh/TestTimer";
 import { useAuth } from "@/lib/auth-context";
 import {
   scoreExam,
@@ -25,6 +26,10 @@ export default function ExamRunner({ exam }: { exam: CourseExam }) {
 
   const [answers, setAnswers] = useState<ExamAnswers>(() => Array(n).fill(null));
   const [flagged, setFlagged] = useState<Set<number>>(() => new Set());
+  // The sitting clock starts when the paper opens. meta.minutes is the real
+  // allotment, not advice: TestTimer counts it down and auto-submits at zero,
+  // so an exam can never run longer than its time limit.
+  const [startedAt] = useState(() => Date.now());
   const [at, setAt] = useState(0);
   useScrollToTop(at);
   const [submitted, setSubmitted] = useState(false);
@@ -216,9 +221,11 @@ export default function ExamRunner({ exam }: { exam: CourseExam }) {
         <span className="flex items-center gap-1.5">
           <Layers className="w-3.5 h-3.5" /> {exam.meta.unitsCovered} units
         </span>
-        <span className="flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5" /> ~{exam.meta.minutes} min
-        </span>
+        <TestTimer
+          startTime={startedAt}
+          durationMs={exam.meta.minutes * 60 * 1000}
+          onExpiry={submit}
+        />
         <span className="mono tabular">
           {answeredCount}/{n} answered
         </span>
