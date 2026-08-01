@@ -55,4 +55,27 @@ describe("performance contexts", () => {
     expect(contextHref("esh")).toBe("/practice/esh");
     expect(contextHref("mystery")).toBeNull();
   });
+
+  // Regression guard: integrated-3 shipped with pages and attempt-recording
+  // (contextFromPathname matched it) but WITHOUT a label or href, so every
+  // IM3 student's /math/progress read "Course not found" and the dashboard
+  // could not link the course. Any course reachable by contextFromPathname
+  // must be fully wired here — this test walks the real course routes so a
+  // half-wired course fails in CI instead of in a student's progress page.
+  it("every course a pathname maps to has a label AND an href", () => {
+    const COURSE_ROUTES = [
+      "geometry", "prob-stats", "vectors-matrices", "algebra-1", "algebra-2",
+      "integrated-1", "integrated-2", "integrated-3", "precalculus",
+      "calculus", "trigonometry", "solid-geometry", "ib-sl", "ib-hl",
+      "6", "7", "8", "9", "10", "11", "12",
+    ];
+    for (const route of COURSE_ROUTES) {
+      const context = contextFromPathname(`/math/${route}/some-unit/some-lesson`);
+      expect(context, `/math/${route} produced no context`).not.toBeNull();
+      // contextLabel echoes its input when it has no entry — that echo IS
+      // the bug, so assert a real translation was found.
+      expect(contextLabel(context!), `${context} has no label`).not.toBe(context);
+      expect(contextHref(context!), `${context} has no href`).toBe(`/math/${route}`);
+    }
+  });
 });
