@@ -24,32 +24,6 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
-### FLAG-001 — `ANTHROPIC_API_KEY` not set in Vercel
-
-| | |
-|---|---|
-| **Since** | AI tutor shipped (task #164–167) |
-| **Dormant** | `/api/tutor`: in-lesson AI tutor + missed-question explainer |
-| **Degradation** | Verified 2026-07-25: the route returns a friendly bilingual 503 *before* auth (`app/api/tutor/route.ts:26`); `TutorPanel` shows that message as a notice. Nothing else is affected. |
-| **Owner action** | ~3 minutes, below |
-| **Verify** | `curl -s -o /dev/null -w '%{http_code}' -X POST https://www.mongolpotential.com/api/tutor` → **401** = key set (closed) · **503** = still missing. After the health endpoint deploys: `verify:flags` shows `anthropic_api_key: configured`. |
-
-**Runbook**
-
-1. Create a key: console.anthropic.com → API keys → Create key
-   (name it e.g. `mongolpotential-prod`).
-2. Vercel dashboard → project **imathhub** → Settings → Environment
-   Variables → Add: name `ANTHROPIC_API_KEY`, value the key, environment
-   **Production** (add Preview too if you want the tutor on previews).
-   Mark it Sensitive.
-3. Env vars apply on the **next deployment** — redeploy (Deployments →
-   ⋯ on the latest → Redeploy) or wait for the next push to main.
-4. Run the verify probe above. 401 (or `configured`) = done; move this
-   entry to Resolved with the date and the probe output.
-
-Cost note: the route caps usage at `FREE_DAILY_AI_LIMIT` questions per
-student per day, so spend is bounded per active student.
-
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |
@@ -105,6 +79,14 @@ the admin key and is disabled without it.
 ## RESOLVED
 
 *(move entries here with date + verification evidence; never delete)*
+
+### FLAG-001 — `ANTHROPIC_API_KEY` — RESOLVED
+
+| | |
+|---|---|
+| **Resolved** | 2026-08-01 (owner set the key in Vercel + redeployed) |
+| **Evidence** | `GET https://www.mongolpotential.com/api/health/flags` → `"anthropic_api_key":"configured"` (probe at 16:03 UTC). The AI tutor (`/api/tutor`) is live on production. |
+| **Notes** | Prod at that moment ran pre-pricing code: flat `FREE_DAILY_AI_LIMIT` for all users. The tiered quota (3 free / 30 premium) and the Premium price cards ship with the next deploy of the working branch. Owner should also set a monthly spend limit in console.anthropic.com. On that deploy: move "AI багш" in the upgrade modal from "On the way" to "Unlocks today" (marked with a comment in lib/upgrade-modal-context.tsx). |
 
 ### migration `009_attempts_context` — APPLIED (was a WATCH item)
 

@@ -1,31 +1,38 @@
 import Link from "next/link";
 import { ArrowRight, BarChart3, Clock, Layers, ListChecks, Sparkles } from "lucide-react";
 import { listSatTests } from "@/lib/sat-test";
+import { HubShell, HubHero, HubSection, HubRowLink } from "@/components/hub/HubKit";
 
 export const metadata = { title: "SAT Math Hub" };
 
 // SAT hub content is ENGLISH by design — realism is the point
 // (memory/expansion-vision.md §4.7). The EN/MN toggle only ever moves
 // navigation chrome, never this page's content.
+//
+// Structure comes from HubKit and matches the ЭЕШ and IB hubs exactly:
+// hero → tests → course → practice by topic → progress.
 export default function SatHubPage() {
   const tests = listSatTests();
   return (
-    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
-        <div className="eyebrow mb-4">Digital SAT · Math</div>
-        <h1
-          className="serif"
-          style={{ fontWeight: 400, fontSize: "clamp(36px, 6vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1.0, color: "var(--fg)" }}
-        >
-          SAT Math, the <em className="serif-italic" style={{ color: "var(--accent)" }}>real</em> way.
-        </h1>
-        <p className="text-[15px] mt-4" style={{ color: "var(--fg-2)", maxWidth: "52ch" }}>
-          Full-length adaptive practice tests in the exact Bluebook format:
+    <HubShell>
+      <HubHero
+        eyebrow="Digital SAT · Math"
+        title="SAT Math, the "
+        accent="real"
+        titleAfter=" way."
+        lede="Full-length adaptive practice tests in the exact Bluebook format:
           two 22-question modules, 35 minutes each, and your second module
-          adapts to how you do on the first — just like test day.
-        </p>
+          adapts to how you do on the first — just like test day."
+        statsLine={
+          <>
+            <span className="tabular">{tests.length}</span> full-length adaptive{" "}
+            {tests.length === 1 ? "test" : "tests"} ·{" "}
+            <span className="tabular">44</span> questions each
+          </>
+        }
+      />
 
-        <div className="eyebrow mt-10 mb-3">Practice tests</div>
+      <HubSection label="Practice tests">
         <div className="space-y-4">
           {tests.map((t) => (
             <div key={t.testId} className="card-edit p-6">
@@ -57,75 +64,46 @@ export default function SatHubPage() {
             </div>
           ))}
         </div>
+      </HubSection>
 
-        {/* Same three-section shape as the ЭЕШ hub: tests above, then
-            weakness practice, then study-by-topic into the shared courses. */}
-        <div className="eyebrow mt-10 mb-3">Practice your weaknesses</div>
-        <Link
-          href="/sat-analytics"
-          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
-          style={{ display: "flex" }}
-        >
-          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
-            <BarChart3 className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-            <span>
-              Your SAT progress
-              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
-                Per-domain accuracy and your weakest areas, once you&apos;ve taken a test.
-              </span>
-            </span>
-          </span>
-          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
-        </Link>
-
-        <div className="eyebrow mt-10 mb-3">Practice by topic</div>
-        <Link
-          href="/practice/sat/bank"
-          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
-          style={{ display: "flex" }}
-        >
-          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
-            <Layers className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-            <span>
-              SAT topic practice
-              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
-                Drill the four SAT domains — Algebra, Advanced Math,
-                Problem-Solving &amp; Data, Geometry &amp; Trig — with a similar
-                problem queued after every miss.
-              </span>
-            </span>
-          </span>
-          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
-        </Link>
-
-        <div className="eyebrow mt-10 mb-3">The course</div>
-        <Link
+      <HubSection label="The course">
+        <HubRowLink
           href="/practice/sat/learn"
-          className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
-          style={{ display: "flex" }}
-        >
-          <span className="inline-flex items-center gap-2.5" style={{ color: "var(--fg-1)" }}>
-            <Sparkles className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-            <span>
-              SAT Math course
-              <span className="block text-[12px]" style={{ color: "var(--fg-3)" }}>
-                Four courses, one per College Board domain — Algebra, Advanced
-                Math, Problem-Solving &amp; Data, Geometry &amp; Trig — lessons,
-                practice and unit tests, weighted like the real section.
-              </span>
-            </span>
-          </span>
-          <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
-        </Link>
+          icon={Sparkles}
+          title="SAT Math course"
+          desc="Four courses, one per College Board domain — Algebra, Advanced
+            Math, Problem-Solving & Data, Geometry & Trig — lessons, practice
+            and unit tests, weighted like the real section."
+        />
+      </HubSection>
 
-        <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
-          More practice tests are on the way. Need the fundamentals first? The{" "}
-          <Link href="/math#topics" style={{ color: "var(--accent)" }}>
-            General Math courses
-          </Link>{" "}
-          teach every topic from zero.
-        </p>
-      </div>
-    </div>
+      <HubSection label="Practice by topic">
+        <HubRowLink
+          href="/practice/sat/bank"
+          icon={Layers}
+          title="SAT topic practice"
+          desc="Drill the four SAT domains — Algebra, Advanced Math,
+            Problem-Solving & Data, Geometry & Trig — with a similar problem
+            queued after every miss."
+        />
+      </HubSection>
+
+      <HubSection label="Your progress">
+        <HubRowLink
+          href="/sat-analytics"
+          icon={BarChart3}
+          title="Your SAT progress"
+          desc="Per-domain accuracy and your weakest areas, once you've taken a test."
+        />
+      </HubSection>
+
+      <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
+        More practice tests are on the way. Need the fundamentals first? The{" "}
+        <Link href="/math#topics" style={{ color: "var(--accent)" }}>
+          General Math courses
+        </Link>{" "}
+        teach every topic from zero.
+      </p>
+    </HubShell>
   );
 }
