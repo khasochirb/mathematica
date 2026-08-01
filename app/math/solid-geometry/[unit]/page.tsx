@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getSolidGeoUnit, getSolidGeoSpine } from "@/lib/genmath-lessons";
+import { getSolidGeoUnit, getSolidGeoSpine } from "@/lib/genmath-data/solid-geometry";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function SolidGeoUnitPage() {

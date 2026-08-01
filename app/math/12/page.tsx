@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGrade12Spine, getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGrade12Spine, getGrade12Topic } from "@/lib/genmath-data/grade-12";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 
@@ -82,7 +82,7 @@ export default function Grade12TopicsPage() {
         <div className="eyebrow mb-4">The course — 7 topics, in order</div>
         <ol className="space-y-3">
           {spine.map((t, i) => {
-            const topic = t.live ? getGenMathTopic(t.slug) : null;
+            const topic = t.live ? getGrade12Topic(t.slug) : null;
             const lessonCount = topic?.lessons.length ?? 0;
             const important = prioritySet.has(t.slug);
             return t.live ? (

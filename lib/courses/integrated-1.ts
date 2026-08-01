@@ -1,5 +1,5 @@
 import type { CourseDef } from "@/components/course/CourseShell";
-import { getIm1Spine, getIm1Unit, getIm1Lesson } from "@/lib/genmath-lessons";
+import { getIm1Spine, getIm1Unit, getIm1Lesson } from "@/lib/genmath-data/integrated-1";
 
 // The Integrated Math 1 course definition — everything the shared CourseShell
 // needs to render this course's five pages.

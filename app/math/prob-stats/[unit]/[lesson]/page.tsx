@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getProbStatUnit, getProbStatLesson } from "@/lib/genmath-lessons";
+import { getProbStatUnit, getProbStatLesson } from "@/lib/genmath-data/prob-stats";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 

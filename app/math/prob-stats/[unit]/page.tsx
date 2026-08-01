@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getProbStatUnit, getProbStatSpine } from "@/lib/genmath-lessons";
+import { getProbStatUnit, getProbStatSpine } from "@/lib/genmath-data/prob-stats";
 
 // A Prob & Stats unit page: what it builds on, then the lessons in order.
 export default function ProbStatUnitPage() {

@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGrade10Topic } from "@/lib/genmath-data/grade-10";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
@@ -17,7 +17,7 @@ const REVEAL_LABELS = {
 function GenMathPracticePageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const topic = getGrade10Topic(topicSlug);
 
   if (!topic) {
     return (

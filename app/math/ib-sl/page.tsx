@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getIbSlSpine } from "@/lib/genmath-lessons";
+import { getIbSlSpine } from "@/lib/genmath-data/ib-sl";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The IB Mathematics SL course hub — Analysis & Approaches, taught by the

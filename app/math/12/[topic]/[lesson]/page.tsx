@@ -9,7 +9,7 @@ import FactCard from "@/components/lesson/FactCard";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import CommonMistakesList from "@/components/lesson/CommonMistakesList";
-import { getGenMathTopic, getGenMathLesson } from "@/lib/genmath-lessons";
+import { getGrade12Topic, getGrade12Lesson } from "@/lib/genmath-data/grade-12";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -25,8 +25,8 @@ function GenMathLessonPageInner() {
   const topicSlug = params.topic as string;
   const lessonSlug = params.lesson as string;
 
-  const topic = getGenMathTopic(topicSlug);
-  const lesson = getGenMathLesson(topicSlug, lessonSlug);
+  const topic = getGrade12Topic(topicSlug);
+  const lesson = getGrade12Lesson(topicSlug, lessonSlug);
 
   if (!lesson || !topic) {
     return (

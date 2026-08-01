@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getVecMatSpine } from "@/lib/genmath-lessons";
+import { getVecMatSpine } from "@/lib/genmath-data/vectors-matrices";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 

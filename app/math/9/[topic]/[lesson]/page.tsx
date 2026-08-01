@@ -9,7 +9,7 @@ import FactCard from "@/components/lesson/FactCard";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import CommonMistakesList from "@/components/lesson/CommonMistakesList";
-import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { getGrade9TopicLocalized } from "@/lib/genmath-data/grade-9";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 import { useLang } from "@/lib/lang-context";
@@ -20,7 +20,7 @@ function GenMathLessonPageInner() {
   const lessonSlug = params.lesson as string;
   const { lang } = useLang();
 
-  const topic = getGenMathTopicLocalized(topicSlug, lang);
+  const topic = getGrade9TopicLocalized(topicSlug, lang);
   const lesson = topic?.lessons.find((l) => l.slug === lessonSlug) ?? null;
   const mn = lang === "mn";
   const REVEAL_LABELS = mn

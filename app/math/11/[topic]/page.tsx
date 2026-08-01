@@ -3,12 +3,12 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGrade11Topic } from "@/lib/genmath-data/grade-11";
 
 export default function GenMathTopicPage() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const topic = getGrade11Topic(topicSlug);
 
   if (!topic) {
     return (

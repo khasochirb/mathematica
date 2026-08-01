@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGenMathTopic } from "@/lib/genmath-lessons";
+import { getGrade11Topic } from "@/lib/genmath-data/grade-11";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
@@ -17,7 +17,7 @@ const REVEAL_LABELS = {
 function GenMathTestPageInner() {
   const params = useParams();
   const topicSlug = params.topic as string;
-  const topic = getGenMathTopic(topicSlug);
+  const topic = getGrade11Topic(topicSlug);
 
   if (!topic) {
     return (

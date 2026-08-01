@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGeometrySpine } from "@/lib/genmath-lessons";
+import { getGeometrySpine } from "@/lib/genmath-data/geometry";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 import CoursePersonalization from "@/components/course/CoursePersonalization";

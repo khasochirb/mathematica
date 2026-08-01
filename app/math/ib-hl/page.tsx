@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getIbHlSpine } from "@/lib/genmath-lessons";
+import { getIbHlSpine } from "@/lib/genmath-data/ib-hl";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 
 // The IB Mathematics HL course hub — the Additional Higher Level (AHL)

@@ -114,7 +114,7 @@ import NormalCurve from "@/components/genmath/interactive/NormalCurve";
 import SamplingWobble from "@/components/genmath/interactive/SamplingWobble";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
-import { type GenMathLesson } from "@/lib/genmath-lessons";
+import { type GenMathLesson } from "@/lib/genmath-types";
 import { useLang } from "@/lib/lang-context";
 import usePerformance from "@/lib/use-performance";
 import { contextFromPathname, lessonSlugsFromPathname } from "@/lib/perf-context";

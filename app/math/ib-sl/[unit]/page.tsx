@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getIbSlUnit, getIbSlSpine } from "@/lib/genmath-lessons";
+import { getIbSlUnit, getIbSlSpine } from "@/lib/genmath-data/ib-sl";
 
 // An IB SL topic page: what it builds on, then the subtopic lessons in order.
 export default function IbSlUnitPage() {

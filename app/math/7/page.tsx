@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGrade7Spine, getGenMathTopic, getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { getGrade7Spine, getGrade7Topic, getGrade7TopicLocalized } from "@/lib/genmath-data/grade-7";
 import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
@@ -25,7 +25,7 @@ export default function Grade7TopicsPage() {
 
   const prioritySet = new Set(placement?.priorityTopics ?? []);
   const priorityTitles = (placement?.priorityTopics ?? [])
-    .map((slug) => getGenMathTopicLocalized(slug, lang)?.title ?? spine.find((t) => t.slug === slug)?.title)
+    .map((slug) => getGrade7TopicLocalized(slug, lang)?.title ?? spine.find((t) => t.slug === slug)?.title)
     .filter(Boolean) as string[];
 
   return (
@@ -85,7 +85,7 @@ export default function Grade7TopicsPage() {
         <div className="eyebrow mb-4">{mn ? "Хөтөлбөр — 7 сэдэв, дарааллаар" : "The course — 7 topics, in order"}</div>
         <ol className="space-y-3">
           {spine.map((t, i) => {
-            const topic = t.live ? getGenMathTopicLocalized(t.slug, lang) : null;
+            const topic = t.live ? getGrade7TopicLocalized(t.slug, lang) : null;
             const lessonCount = topic?.lessons.length ?? 0;
             const cardTitle = topic?.title ?? t.title;
             const cardBlurb = topic?.blurb ?? t.blurb;

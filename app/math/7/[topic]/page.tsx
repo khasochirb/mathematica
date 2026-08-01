@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { getGrade7TopicLocalized } from "@/lib/genmath-data/grade-7";
 import { useLang } from "@/lib/lang-context";
 
 export default function GenMathTopicPage() {
@@ -11,7 +11,7 @@ export default function GenMathTopicPage() {
   const topicSlug = params.topic as string;
   const { lang } = useLang();
   const mn = lang === "mn";
-  const topic = getGenMathTopicLocalized(topicSlug, lang);
+  const topic = getGrade7TopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (

@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getAlg2Unit, getAlg2Spine } from "@/lib/genmath-lessons";
+import { getAlg2Unit, getAlg2Spine } from "@/lib/genmath-data/algebra-2";
 
 // An Algebra 2 unit page: what it builds on, then the lessons in order.
 export default function Alg2UnitPage() {

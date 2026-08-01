@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGrade6Topics, getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { getGrade6Topics, getGrade6TopicLocalized } from "@/lib/genmath-data/grade-6";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 import { useLang } from "@/lib/lang-context";
@@ -23,7 +23,7 @@ export default function Grade6TopicsPage() {
 
   const prioritySet = new Set(placement?.priorityTopics ?? []);
   const priorityTitles = (placement?.priorityTopics ?? [])
-    .map((slug) => getGenMathTopicLocalized(slug, lang)?.title)
+    .map((slug) => getGrade6TopicLocalized(slug, lang)?.title)
     .filter(Boolean) as string[];
 
   return (
@@ -87,7 +87,7 @@ export default function Grade6TopicsPage() {
 
         <div className="space-y-3">
           {topics.map((t, i) => {
-            const topic = getGenMathTopicLocalized(t.slug, lang) ?? t;
+            const topic = getGrade6TopicLocalized(t.slug, lang) ?? t;
             const important = prioritySet.has(topic.slug);
             return (
               <Link

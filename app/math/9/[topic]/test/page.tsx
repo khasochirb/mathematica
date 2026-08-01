@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGenMathTopicLocalized } from "@/lib/genmath-lessons";
+import { getGrade9TopicLocalized } from "@/lib/genmath-data/grade-9";
 import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -27,7 +27,7 @@ function GenMathTestPageInner() {
   const { lang } = useLang();
   const mn = lang === "mn";
   const REVEAL_LABELS = mn ? REVEAL_LABELS_MN : REVEAL_LABELS_EN;
-  const topic = getGenMathTopicLocalized(topicSlug, lang);
+  const topic = getGrade9TopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (

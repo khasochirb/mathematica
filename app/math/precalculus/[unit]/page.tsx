@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getPrecalcUnit, getPrecalcSpine } from "@/lib/genmath-lessons";
+import { getPrecalcUnit, getPrecalcSpine } from "@/lib/genmath-data/precalculus";
 
 // A Precalculus unit page: what it builds on, then the lessons in order.
 export default function PrecalcUnitPage() {

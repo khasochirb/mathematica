@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getVecMatUnit, getVecMatSpine } from "@/lib/genmath-lessons";
+import { getVecMatUnit, getVecMatSpine } from "@/lib/genmath-data/vectors-matrices";
 
 // A Vectors & Matrices unit page: what it builds on, then the lessons in order.
 export default function VecMatUnitPage() {

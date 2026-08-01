@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getProbStatSpine } from "@/lib/genmath-lessons";
+import { getProbStatSpine } from "@/lib/genmath-data/prob-stats";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 

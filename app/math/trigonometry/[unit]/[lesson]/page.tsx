@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getTrigUnit, getTrigLesson } from "@/lib/genmath-lessons";
+import { getTrigUnit, getTrigLesson } from "@/lib/genmath-data/trigonometry";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 

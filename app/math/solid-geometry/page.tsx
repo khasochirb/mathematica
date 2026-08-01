@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getSolidGeoSpine } from "@/lib/genmath-lessons";
+import { getSolidGeoSpine } from "@/lib/genmath-data/solid-geometry";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 

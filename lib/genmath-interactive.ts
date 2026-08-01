@@ -3,7 +3,7 @@
 // these parts. All live math goes through the pure functions below so it can be
 // unit-tested (scripts/verify-genmath-interactive.test.ts).
 
-import type { GenMathLesson } from "@/lib/genmath-lessons";
+import type { GenMathLesson } from "@/lib/genmath-types";
 import type { LessonProblem } from "@/lib/lesson-types";
 
 // A small illustrated token (a colored chip standing in for cocoa, milk, an

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getCalcSpine } from "@/lib/genmath-lessons";
+import { getCalcSpine } from "@/lib/genmath-data/calculus";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 

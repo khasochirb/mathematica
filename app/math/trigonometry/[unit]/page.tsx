@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getTrigUnit, getTrigSpine } from "@/lib/genmath-lessons";
+import { getTrigUnit, getTrigSpine } from "@/lib/genmath-data/trigonometry";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function TrigUnitPage() {

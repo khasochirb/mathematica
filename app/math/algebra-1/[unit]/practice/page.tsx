@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getAlg1Unit } from "@/lib/genmath-lessons";
+import { getAlg1Unit } from "@/lib/genmath-data/algebra-1";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {

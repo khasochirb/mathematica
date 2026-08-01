@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getGeometryUnit, getGeometrySpine } from "@/lib/genmath-lessons";
+import { getGeometryUnit, getGeometrySpine } from "@/lib/genmath-data/geometry";
 
 // A Geometry unit page: what it builds on, then the lessons in order.
 export default function GeometryUnitPage() {

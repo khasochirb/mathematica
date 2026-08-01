@@ -1,5 +1,5 @@
 import type { CourseDef } from "@/components/course/CourseShell";
-import { getIm3Spine, getIm3Unit, getIm3Lesson } from "@/lib/genmath-lessons";
+import { getIm3Spine, getIm3Unit, getIm3Lesson } from "@/lib/genmath-data/integrated-3";
 
 // The Integrated Math 3 course definition — everything the shared CourseShell
 // needs to render this course's five pages. Units go live one at a time as

@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getVecMatUnit, getVecMatLesson } from "@/lib/genmath-lessons";
+import { getVecMatUnit, getVecMatLesson } from "@/lib/genmath-data/vectors-matrices";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
