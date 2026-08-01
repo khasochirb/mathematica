@@ -374,9 +374,9 @@ def lesson_even_odd():
         mistakes=[
             mistake(
                 "Testing one value, finding it works, and declaring symmetry.",
-                "f(x) = x² + x - 2 satisfies f(-1) = f(1)... wait, check: it gives "
-                "-2 and 0 — but functions exist where one pair matches by luck. "
-                "Symmetry claims need the algebraic identity in x; only NEITHER can "
+                "f(x) = x³ - x + 5 has f(-1) = f(1) = 5, yet f(2) = 11 while "
+                "f(-2) = -1 — one matching pair can be pure luck. Symmetry claims "
+                "need the identity in x to hold for EVERY input; only NEITHER can "
                 "be settled by a single example.",
             ),
             mistake(

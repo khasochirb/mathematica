@@ -1,0 +1,1285 @@
+#!/usr/bin/env python3
+"""Integrated Mathematics 3 — Unit 6: Sequences, Series & the Binomial Theorem.
+
+CCSS Integrated Math III: A-SSE.4 (derive the formula for the sum of a
+finite geometric series — not required for r = 1 — and use it to solve
+problems), F-BF.2 (arithmetic and geometric sequences, revisited from IM1
+now that summing is on the table), A-APR.5 (the Binomial Theorem for the
+expansion of (x + y)^n, with coefficients from Pascal's triangle).
+
+The unit's through-line: FROM LISTING TO ADDING. IM1 taught sequences as
+lists — write the next term, write the explicit rule. This unit asks the
+question lists cannot answer: what do all the terms come TO? Gauss's
+pairing trick collapses any arithmetic series; the shift-and-subtract
+trick collapses any geometric one; pushing the geometric formula to
+infinitely many terms gives the first honest limit of the course; and
+Pascal's triangle turns out to be the same counting mathematics wearing
+a different hat — the coefficients of (a + b)^n are the C(n, k) the
+student already met in IM2's probability unit.
+
+Run: python3 scripts/im/build_im3_unit6.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from imbuild import fact, lesson, mistake, problem, tap, write_unit  # noqa: E402
+
+COURSE = "integrated-3"
+
+
+# ===========================================================================
+# Lesson 1 — arithmetic series: Gauss's pairing
+# ===========================================================================
+
+def lesson_arithmetic():
+    return lesson(
+        slug="arithmetic-sequences-and-series",
+        title="Arithmetic Series",
+        concrete=(
+            "A theater's first row has $18$ seats, and every row behind it adds "
+            "$2$ more. Row twenty is easy — count up by twos. But the box office "
+            "needs a different number: how many seats are there IN TOTAL? Adding "
+            "twenty numbers one at a time works once; a formula that collapses the "
+            "whole sum into one multiplication works every time. That formula is "
+            "two hundred years old and was found by a schoolboy."
+        ),
+        objective=(
+            "Use the explicit formula for an arithmetic sequence, and compute the "
+            "sum of an arithmetic series with the pairing formula — in both the "
+            "first-and-last and the first-and-difference forms."
+        ),
+        concept=[
+            "An arithmetic sequence climbs by a constant DIFFERENCE $d$: each term "
+            "is the previous one plus $d$. The explicit formula is "
+            "$a_n = a_1 + (n - 1)d$ — the $(n - 1)$ is there because the first "
+            "term has taken zero steps. The theater's rows: $a_n = 18 + (n-1)$"
+            "$\\cdot 2$, so row $20$ holds $18 + 19 \\cdot 2 = 56$ seats.",
+
+            "A SERIES is what you get when you add the terms up. $S_n$ names the "
+            "sum of the first $n$ terms. For the theater, $S_{20}$ is the total "
+            "seat count — twenty numbers, one answer. The trick for computing it "
+            "is attributed to young Gauss, told to add $1 + 2 + \\cdots + 100$: "
+            "pair the ends. First plus last is $101$; second plus second-to-last "
+            "is $101$; every pair is $101$, and there are $50$ pairs — $5050$, "
+            "in seconds.",
+
+            "The pairing works for every arithmetic series, because moving one "
+            "step in from both ends adds $d$ on the left and subtracts $d$ on "
+            "the right — the pair total never changes. So $S_n = \\dfrac{n}{2}"
+            "(a_1 + a_n)$: the number of pairs times the constant pair sum. Read "
+            "it as an average if you prefer: $n$ terms, each worth the average "
+            "of the first and last.",
+
+            "When the last term is not handy, substitute the explicit formula "
+            "for it: $S_n = \\dfrac{n}{2}\\bigl(2a_1 + (n - 1)d\\bigr)$. Same "
+            "formula, different clothes — use whichever matches what the problem "
+            "gives you. Both reduce a sum of any length to one line of "
+            "arithmetic.",
+        ],
+        key_idea=(
+            "Pair the ends: in an arithmetic series every first-and-last pair "
+            "adds to the same total, so the sum is the number of pairs times "
+            "that total — half the term count times (first + last)."
+        ),
+        facts=[
+            fact("Explicit formula", "a_n = a_1 + (n - 1)d",
+                 "The first term has taken zero steps of size d — hence n - 1."),
+            fact("Series sum", "S_n = \\tfrac{n}{2}(a_1 + a_n)",
+                 "Number of pairs times the constant pair total — Gauss's "
+                 "pairing."),
+            fact("Sum without the last term", "S_n = \\tfrac{n}{2}\\bigl(2a_1 + (n-1)d\\bigr)",
+                 "The same formula with a_n replaced by its explicit form."),
+            fact("Average reading", "S_n = n \\cdot \\tfrac{a_1 + a_n}{2}",
+                 "n terms, each worth the average of the first and the last."),
+            fact("Sequence vs series", "a_1, a_2, a_3, \\ldots \\ \\text{vs}\\ a_1 + a_2 + a_3 + \\cdots",
+                 "A sequence is a list; a series is the sum of one."),
+        ],
+        worked=[
+            problem(
+                "im3-u6-l1-we1",
+                "The theater's first row has $18$ seats and each row adds $2$. "
+                "How many seats are in row $20$, and how many in the whole "
+                "$20$-row theater?",
+                "**Last term first.** $a_{20} = 18 + (20 - 1) \\cdot 2 = 18 + 38 "
+                "= 56$ seats in the back row."
+                "**Pair the ends.** Every front-and-back pair holds $18 + 56 = "
+                "74$ seats, and $20$ rows make $10$ pairs: $S_{20} = "
+                "\\frac{20}{2}(18 + 56) = 10 \\cdot 74 = 740$."
+                "**Believe the pairing.** Row $2$ plus row $19$ is $20 + 54 = "
+                "74$ again — one step in from each end trades exactly two "
+                "seats.",
+                [
+                    "Eq(18 + 19*2, 56)",
+                    "Eq(Rational(20, 2)*(18 + 56), 740)",
+                    "Eq(20 + 54, 74)",
+                    "Eq(Sum(18 + 2*(k - 1), (k, 1, 20)).doit(), 740)",
+                ],
+            ),
+            problem(
+                "im3-u6-l1-we2",
+                "Compute $1 + 2 + 3 + \\cdots + 100$ the way Gauss did.",
+                "**Pair the ends.** $1 + 100 = 101$, $2 + 99 = 101$, "
+                "$3 + 98 = 101$ — each step in preserves the total."
+                "**Count the pairs.** A hundred terms make $50$ pairs, so "
+                "$S_{100} = 50 \\cdot 101 = 5050$."
+                "**Same thing by formula.** $S_{100} = \\frac{100}{2}(1 + 100) "
+                "= 5050$ — the formula IS the pairing, written once for all.",
+                [
+                    "Eq(1 + 100, 101)",
+                    "Eq(50*101, 5050)",
+                    "Eq(Sum(k, (k, 1, 100)).doit(), 5050)",
+                ],
+            ),
+            problem(
+                "im3-u6-l1-we3",
+                "The series $5 + 9 + 13 + \\cdots$ (arithmetic, $d = 4$) sums to "
+                "$945$. How many terms were added?",
+                "**Set up with the no-last-term form.** $S_n = \\frac{n}{2}"
+                "\\bigl(2 \\cdot 5 + (n - 1) \\cdot 4\\bigr) = \\frac{n}{2}"
+                "(4n + 6) = n(2n + 3)$."
+                "**Solve.** $n(2n + 3) = 945$ gives $2n^2 + 3n - 945 = 0$. The "
+                "discriminant is $9 + 8 \\cdot 945 = 7569 = 87^2$, so "
+                "$n = \\frac{-3 + 87}{4} = 21$."
+                "**Check.** $21 \\cdot (2 \\cdot 21 + 3) = 21 \\cdot 45 = 945$. "
+                "(The negative root is discarded — a term count must be a "
+                "positive whole number.)",
+                [
+                    "Eq(sqrt(9 + 8*945), 87)",
+                    "Eq(Rational(-3 + 87, 4), 21)",
+                    "Eq(21*(2*21 + 3), 945)",
+                    "Eq(Sum(5 + 4*(k - 1), (k, 1, 21)).doit(), 945)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Using n instead of n - 1 in the explicit formula.",
+                "The first term has taken ZERO steps: a_n = a_1 + (n-1)d. Writing "
+                "a_1 + nd makes every term one step too big — check the formula "
+                "at n = 1 before using it.",
+            ),
+            mistake(
+                "Multiplying the pair total by n instead of n/2.",
+                "Pairing uses each term ONCE, so n terms form n/2 pairs. "
+                "S = n(a1 + an) double-counts the whole series — a factor-of-two "
+                "error the size of the answer.",
+            ),
+            mistake(
+                "Applying the arithmetic sum formula to a series that isn't "
+                "arithmetic.",
+                "The pairing only works because the pair total is constant, and "
+                "that needs a constant difference. For 1 + 2 + 4 + 8 the pairs "
+                "give different totals — that series belongs to the next lesson.",
+            ),
+            mistake(
+                "Forgetting that d can be negative.",
+                "A shrinking sequence (25, 23, 21, ...) is arithmetic with "
+                "d = -2, and the same formulas apply. The sum can even come out "
+                "negative once the terms cross zero — the algebra is unbothered.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u6-l1-t1",
+                "For the arithmetic sequence with $a_1 = 7$ and $d = 3$, find "
+                "$a_{15}$ and $S_{15}$.",
+                "$a_{15} = 7 + 14 \\cdot 3 = 49$, and $S_{15} = \\frac{15}{2}"
+                "(7 + 49) = \\frac{15 \\cdot 56}{2} = 420$.",
+                [
+                    "Eq(7 + 14*3, 49)",
+                    "Eq(Rational(15, 2)*(7 + 49), 420)",
+                ],
+            ),
+            problem(
+                "im3-u6-l1-t2",
+                "Find the sum of the first $50$ even numbers: $2 + 4 + \\cdots "
+                "+ 100$.",
+                "Arithmetic with $a_1 = 2$, $a_{50} = 100$: $S_{50} = "
+                "\\frac{50}{2}(2 + 100) = 25 \\cdot 102 = 2550$.",
+                [
+                    "Eq(Rational(50, 2)*(2 + 100), 2550)",
+                    "Eq(Sum(2*k, (k, 1, 50)).doit(), 2550)",
+                ],
+            ),
+            problem(
+                "im3-u6-l1-t3",
+                "A stack of pipes has $12$ layers: $14$ pipes on the bottom "
+                "layer, one fewer in each layer above. How many pipes are in "
+                "the stack?",
+                "Arithmetic with $a_1 = 14$ and $d = -1$: the top layer has "
+                "$14 - 11 = 3$ pipes, and $S_{12} = \\frac{12}{2}(14 + 3) = "
+                "6 \\cdot 17 = 102$ pipes.",
+                [
+                    "Eq(14 - 11, 3)",
+                    "Eq(Rational(12, 2)*(14 + 3), 102)",
+                    "Eq(Sum(14 - (k - 1), (k, 1, 12)).doit(), 102)",
+                ],
+            ),
+        ],
+        steps=[
+            tap(
+                "The pair total",
+                "In the sum $1 + 2 + \\cdots + 100$, Gauss paired $1$ with "
+                "$100$ and $2$ with $99$. Every pair adds to:",
+                ["$101$", "$100$", "$102$", "different totals"],
+                0,
+                "Stepping in from both ends adds $1$ on the left and subtracts "
+                "$1$ on the right — the pair total is stuck at $101$, and $50$ "
+                "pairs give $5050$.",
+                ["Eq(1 + 100, 2 + 99)", "Eq(50*101, 5050)"],
+            ),
+            tap(
+                "Count the steps",
+                "For an arithmetic sequence with $a_1 = 6$ and $d = 5$, the "
+                "explicit formula gives $a_{10} =$",
+                ["$51$", "$56$", "$50$", "$46$"],
+                0,
+                "$a_{10} = 6 + (10 - 1) \\cdot 5 = 6 + 45 = 51$ — nine steps, "
+                "not ten, because the first term has taken none.",
+                ["Eq(6 + 9*5, 51)"],
+            ),
+            tap(
+                "Pick the tool",
+                "You know a series is arithmetic with $30$ terms, first term "
+                "$4$, last term $91$. Its sum is:",
+                ["$\\dfrac{30}{2}(4 + 91)$", "$30 \\cdot (4 + 91)$",
+                 "$\\dfrac{30}{2}(91 - 4)$", "$4 \\cdot 91 + 30$"],
+                0,
+                "Half the term count times (first + last): $15 \\cdot 95 = "
+                "1425$. The other options double-count, subtract, or free-associate.",
+                ["Eq(Rational(30, 2)*(4 + 91), 1425)"],
+            ),
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 2 — geometric series: shift and subtract (A-SSE.4)
+# ===========================================================================
+
+def lesson_geometric():
+    return lesson(
+        slug="geometric-sequences-and-series",
+        title="Geometric Series",
+        concrete=(
+            "The old legend: a king offers any reward, and the sage asks for rice "
+            "on a chessboard — one grain on the first square, two on the second, "
+            "four on the third, doubling each time. The first ten squares hold "
+            "$1 + 2 + 4 + \\cdots + 512$ grains. Add them and something odd "
+            "appears: the total, $1023$, is one less than the NEXT square's "
+            "$1024$. That is not a coincidence — it is the whole theory of "
+            "geometric series in one observation."
+        ),
+        objective=(
+            "Recognise geometric sequences, derive the finite geometric sum "
+            "formula by the shift-and-subtract argument, and apply it to growth "
+            "and decay totals."
+        ),
+        concept=[
+            "A geometric sequence multiplies by a constant RATIO $r$: "
+            "$a_n = a_1 r^{n-1}$, the multiplicative twin of the arithmetic "
+            "formula ($n - 1$ steps, each a multiplication). The chessboard is "
+            "$a_n = 2^{n-1}$; a savings account growing $5\\%$ a year is "
+            "$a_n = a_1 (1.05)^{n-1}$ — geometric sequences ARE the exponential "
+            "functions of Unit 3, sampled at whole numbers.",
+
+            "Gauss's pairing fails here — the pairs give different totals. The "
+            "trick that works instead: multiply the WHOLE sum by $r$ and "
+            "subtract. Take $S = 3 + 6 + 12 + 24 + 48$. Then $2S = 6 + 12 + 24 "
+            "+ 48 + 96$. Subtracting, every middle term cancels: $2S - S = 96 - "
+            "3$, so $S = 93$. One shift, one subtraction, and a five-term sum "
+            "collapsed to two.",
+
+            "Run the same argument with letters and the formula falls out: "
+            "$S_n - rS_n = a_1 - a_1 r^n$, so $S_n = a_1 \\dfrac{1 - r^n}{1 - "
+            "r}$ (for $r \\ne 1$; if $r = 1$ every term is equal and $S_n = "
+            "n a_1$). The chessboard's near-miss is this formula at work: "
+            "$1 + 2 + \\cdots + 2^{n-1} = 2^n - 1$, always one less than the "
+            "next power.",
+
+            "The formula shines wherever repeated growth accumulates: total "
+            "rice, total distance of a decaying process, total value of "
+            "repeated deposits each earning interest for a different number of "
+            "years. Identify $a_1$, $r$ and $n$, and the formula does the "
+            "bookkeeping that term-by-term addition cannot sustain.",
+        ],
+        key_idea=(
+            "Shift the sum by one ratio and subtract: everything in the middle "
+            "cancels, leaving the ends. That single cancellation is the finite "
+            "geometric sum formula — and the reason totals of doubling "
+            "processes are always one step short of the next term."
+        ),
+        facts=[
+            fact("Explicit formula", "a_n = a_1 \\, r^{\\,n-1}",
+                 "n - 1 multiplications by the ratio r."),
+            fact("The derivation", "S_n - r\\,S_n = a_1 - a_1 r^n",
+                 "Multiply the sum by r, subtract, and the middle terms cancel."),
+            fact("Finite sum", "S_n = a_1\\,\\dfrac{1 - r^n}{1 - r} \\quad (r \\ne 1)",
+                 "Ends over the ratio gap. For r = 1 the sum is just n a_1."),
+            fact("Powers of two", "1 + 2 + \\cdots + 2^{n-1} = 2^n - 1",
+                 "A doubling total is always one less than the next term."),
+            fact("Geometric = exponential", "a_n = a_1 r^{n-1} \\ \\text{samples}\\ a_1 r^{x}",
+                 "Unit 3's exponential functions, evaluated at whole numbers."),
+        ],
+        worked=[
+            problem(
+                "im3-u6-l2-we1",
+                "How many grains sit on the first $10$ chessboard squares "
+                "($1 + 2 + 4 + \\cdots + 512$), and how does the total compare "
+                "with square $11$?",
+                "**Identify the pieces.** Geometric with $a_1 = 1$, $r = 2$, "
+                "$n = 10$."
+                "**Apply the formula.** $S_{10} = 1 \\cdot \\frac{1 - 2^{10}}"
+                "{1 - 2} = \\frac{1 - 1024}{-1} = 1023$."
+                "**Compare.** Square $11$ alone holds $2^{10} = 1024$ grains — "
+                "MORE than all ten squares before it combined. Doubling "
+                "processes are always won by their newest term.",
+                [
+                    "Eq((1 - 2**10)/(1 - 2), 1023)",
+                    "Eq(Sum(2**k, (k, 0, 9)).doit(), 1023)",
+                    "Eq(2**10, 1024)",
+                    "(2**10) > 1023",
+                ],
+            ),
+            problem(
+                "im3-u6-l2-we2",
+                "Derive the value of $S = 3 + 6 + 12 + 24 + 48$ by the "
+                "shift-and-subtract argument, then confirm with the formula.",
+                "**Shift.** Multiply by the ratio: $2S = 6 + 12 + 24 + 48 + "
+                "96$."
+                "**Subtract.** $2S - S = 96 - 3$: every shared middle term "
+                "cancels, leaving $S = 93$."
+                "**Formula check.** $S_5 = 3 \\cdot \\frac{1 - 2^5}{1 - 2} = "
+                "3 \\cdot 31 = 93$. The formula is the argument run once with "
+                "letters — same cancellation, prepackaged.",
+                [
+                    "Eq(3 + 6 + 12 + 24 + 48, 93)",
+                    "Eq(2*93 - 93, 96 - 3)",
+                    "Eq(3*(1 - 2**5)/(1 - 2), 93)",
+                    "Eq(simplify(a*(1 - r**5)/(1 - r) - (a + a*r + a*r**2 + a*r**3 + a*r**4)), 0)",
+                ],
+            ),
+            problem(
+                "im3-u6-l2-we3",
+                "A video gets $500$ views on day one, and daily views fall to "
+                "$\\frac{4}{5}$ of the day before. To the nearest view, how "
+                "many total views arrive in the first $6$ days?",
+                "**Identify.** Geometric: $a_1 = 500$, $r = \\frac{4}{5}$, "
+                "$n = 6$."
+                "**Apply.** $S_6 = 500 \\cdot \\dfrac{1 - (4/5)^6}{1 - 4/5} = "
+                "500 \\cdot \\dfrac{1 - \\frac{4096}{15625}}{\\frac{1}{5}} = "
+                "2500 \\cdot \\frac{11529}{15625} = \\frac{46116}{25}$."
+                "**Read the number.** $\\frac{46116}{25} = 1844.64$, so about "
+                "$1845$ views — under $4$ times the first day, even though six "
+                "days have passed. Decay front-loads the total.",
+                [
+                    "Eq(Rational(4, 5)**6, Rational(4096, 15625))",
+                    "Eq(500*(1 - Rational(4, 5)**6)/(1 - Rational(4, 5)), Rational(46116, 25))",
+                    "Eq(Rational(46116, 25), Rational(184464, 100))",
+                    "Abs(Rational(46116, 25) - 1845) < 1",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Pairing the ends of a geometric series.",
+                "Gauss's trick needs a constant PAIR SUM, which needs a constant "
+                "difference. Geometric series have a constant ratio instead — "
+                "their tool is shift-and-subtract, not pairing.",
+            ),
+            mistake(
+                "Using n instead of n - 1 in the exponent of the explicit "
+                "formula.",
+                "a_n = a_1·r^(n-1): the first term has been multiplied zero "
+                "times. Check at n = 1 — the formula must return a_1 itself.",
+            ),
+            mistake(
+                "Plugging r = 1 into the sum formula.",
+                "The formula divides by 1 - r. When r = 1 the series is just "
+                "n copies of a_1, so S_n = n·a_1 — no formula needed, and the "
+                "division-by-zero is a sign you used the wrong tool.",
+            ),
+            mistake(
+                "Dropping the parentheses around the ratio in (1 - r^n).",
+                "With r = 4/5 the power applies to the whole fraction: "
+                "(4/5)^6 = 4096/15625, not 4/5^6. A calculator entered without "
+                "parentheses computes the wrong series entirely.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u6-l2-t1",
+                "For the geometric sequence $5, 15, 45, \\ldots$ find $a_7$ "
+                "and $S_7$.",
+                "$r = 3$: $a_7 = 5 \\cdot 3^6 = 3645$, and $S_7 = 5 \\cdot "
+                "\\frac{1 - 3^7}{1 - 3} = 5 \\cdot \\frac{-2186}{-2} = 5465$.",
+                [
+                    "Eq(5*3**6, 3645)",
+                    "Eq(5*(1 - 3**7)/(1 - 3), 5465)",
+                    "Eq(Sum(5*3**k, (k, 0, 6)).doit(), 5465)",
+                ],
+            ),
+            problem(
+                "im3-u6-l2-t2",
+                "Compute $2 + 1 + \\dfrac{1}{2} + \\cdots + \\dfrac{1}{32}$ "
+                "(seven terms).",
+                "$a_1 = 2$, $r = \\frac{1}{2}$, $n = 7$: $S_7 = 2 \\cdot "
+                "\\frac{1 - (1/2)^7}{1 - 1/2} = 4\\left(1 - \\frac{1}{128}"
+                "\\right) = \\frac{127}{32}$.",
+                [
+                    "Eq(2*(1 - Rational(1, 2)**7)/(1 - Rational(1, 2)), Rational(127, 32))",
+                    "Eq(Sum(2*Rational(1, 2)**k, (k, 0, 6)).doit(), Rational(127, 32))",
+                ],
+            ),
+            problem(
+                "im3-u6-l2-t3",
+                "A rumour reaches $4$ people on day one, and each day it "
+                "reaches $3$ times as many new people as the day before. How "
+                "many people have heard it after $6$ days?",
+                "Total $= 4 \\cdot \\frac{1 - 3^6}{1 - 3} = 4 \\cdot "
+                "\\frac{-728}{-2} = 1456$ people — of whom $4 \\cdot 3^5 = "
+                "972$, two-thirds, heard it on the last day alone.",
+                [
+                    "Eq(4*(1 - 3**6)/(1 - 3), 1456)",
+                    "Eq(4*3**5, 972)",
+                    "Eq(Sum(4*3**k, (k, 0, 5)).doit(), 1456)",
+                ],
+            ),
+        ],
+        steps=[
+            tap(
+                "Why the middle vanishes",
+                "To sum $S = 1 + 2 + 4 + \\cdots + 2^9$, you compute $2S$ and "
+                "subtract $S$. What survives?",
+                ["$2^{10} - 1$", "$2^9 - 1$", "every term, doubled", "$2^{10} + 1$"],
+                0,
+                "The shifted sum shares every term with the original except "
+                "its new last term $2^{10}$, and the original keeps its first "
+                "term $1$: $S = 2^{10} - 1 = 1023$.",
+                ["Eq(2**10 - 1, 1023)", "Eq(Sum(2**k, (k, 0, 9)).doit(), 1023)"],
+            ),
+            tap(
+                "Spot the ratio",
+                "The sequence $80, 20, 5, \\ldots$ is geometric. Its ratio is:",
+                ["$\\dfrac{1}{4}$", "$4$", "$-60$", "$\\dfrac{1}{5}$"],
+                0,
+                "Each term is the previous one times $\\frac{1}{4}$: "
+                "$80 \\cdot \\frac{1}{4} = 20$ and $20 \\cdot \\frac{1}{4} = "
+                "5$. (Dividing consecutive terms finds $r$.)",
+                ["Eq(80*Rational(1, 4), 20)", "Eq(20*Rational(1, 4), 5)"],
+            ),
+            tap(
+                "Which grows past which",
+                "One series adds $100$ each step; another multiplies by $2$ "
+                "each step starting from $1$. After $12$ steps, which single "
+                "term is larger — the arithmetic's $100 \\cdot 12$ or the "
+                "geometric's $2^{12}$?",
+                ["$2^{12}$", "$100 \\cdot 12$", "they tie", "impossible to tell"],
+                0,
+                "$2^{12} = 4096 > 1200$. Doubling overtakes any constant "
+                "step — the lesson of Unit 3, replayed in whole numbers.",
+                ["Eq(2**12, 4096)", "(2**12) > 100*12"],
+            ),
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 3 — infinite geometric series
+# ===========================================================================
+
+def lesson_infinite():
+    return lesson(
+        slug="infinite-geometric-series",
+        title="Infinite Geometric Series",
+        concrete=(
+            "Walk toward a wall like this: first step half the distance, next "
+            "step half of what remains, then half of THAT, forever. You take "
+            "infinitely many steps — yet you plainly never pass the wall, and "
+            "your total distance walked is exactly the distance you started "
+            "with. An infinite pile of positive numbers adding to something "
+            "FINITE is the strangest idea in this unit, and the sum formula "
+            "makes it a one-line computation."
+        ),
+        objective=(
+            "Decide when an infinite geometric series converges, compute its "
+            "sum with the limit formula, and use it to convert repeating "
+            "decimals to fractions and total infinite processes."
+        ),
+        concept=[
+            "Watch the finite sums approach their target. For $\\frac{1}{2} + "
+            "\\frac{1}{4} + \\frac{1}{8} + \\cdots$ the partial sums run "
+            "$\\frac{1}{2}, \\frac{3}{4}, \\frac{7}{8}, \\frac{15}{16}, "
+            "\\ldots$ — each one halves the gap to $1$ and none crosses it. "
+            "The finite formula explains why: $S_n = \\dfrac{1 - r^n}{1 - r} "
+            "\\cdot a_1$, and when $|r| < 1$ the power $r^n$ shrinks toward "
+            "$0$ as $n$ grows.",
+
+            "Let $n$ run away and the $r^n$ term evaporates, leaving "
+            "$S = \\dfrac{a_1}{1 - r}$, valid exactly when $|r| < 1$. This is "
+            "the course's first real LIMIT: the infinite sum is defined as the "
+            "number the partial sums close in on. For the wall walk, "
+            "$S = \\frac{1/2}{1 - 1/2} = 1$ — the full distance, never "
+            "exceeded, exactly approached.",
+
+            "When $|r| \\ge 1$ there is no sum. With $r = 2$ the partial sums "
+            "$1, 3, 7, 15, \\ldots$ blow past every bound; with $r = -1$ they "
+            "hop between $1$ and $0$ forever, settling nowhere. The condition "
+            "$|r| < 1$ is not fine print — it is the difference between a "
+            "number and nonsense, so check it before touching the formula.",
+
+            "The classic payoff: repeating decimals are infinite geometric "
+            "series in disguise. $0.7777\\ldots = \\frac{7}{10} + "
+            "\\frac{7}{100} + \\cdots$ has $a_1 = \\frac{7}{10}$, $r = "
+            "\\frac{1}{10}$: $S = \\frac{7/10}{9/10} = \\frac{7}{9}$. Every "
+            "repeating decimal collapses the same way — which is why they are "
+            "exactly the rational numbers.",
+        ],
+        key_idea=(
+            "When |r| < 1 the leftover r-power dies out and the infinite sum "
+            "is first term over (1 - ratio). When |r| is 1 or more, the "
+            "partial sums never settle and no sum exists."
+        ),
+        facts=[
+            fact("Convergence condition", "|r| < 1",
+                 "Only a shrinking ratio lets the partial sums settle."),
+            fact("Infinite sum", "S = \\dfrac{a_1}{1 - r}",
+                 "The finite formula with the r-power evaporated."),
+            fact("What a limit means", "S_n \\to S",
+                 "The infinite sum IS the number the partial sums approach."),
+            fact("Repeating decimals", "0.\\overline{7} = \\tfrac{7}{10} + \\tfrac{7}{100} + \\cdots = \\tfrac{7}{9}",
+                 "Every repeating decimal is a geometric series with r a power "
+                 "of one tenth."),
+            fact("Divergence", "|r| \\ge 1 \\Rightarrow \\text{no sum}",
+                 "Partial sums blow up (r ≥ 1) or oscillate forever (r ≤ -1)."),
+        ],
+        worked=[
+            problem(
+                "im3-u6-l3-we1",
+                "Show that $\\dfrac{1}{2} + \\dfrac{1}{4} + \\dfrac{1}{8} + "
+                "\\cdots = 1$, first by watching partial sums, then by the "
+                "formula.",
+                "**Watch the gap.** After ten terms the partial sum is "
+                "$\\frac{1023}{1024}$ — the gap to $1$ is $\\frac{1}{1024}$, "
+                "one power of two per term, halving forever and never gone."
+                "**Name the limit.** $a_1 = \\frac{1}{2}$, $r = \\frac{1}{2}$, "
+                "$|r| < 1$: $S = \\dfrac{1/2}{1 - 1/2} = 1$."
+                "**Say what that means.** No partial sum EQUALS $1$; the sum "
+                "is the number they approach — that is the definition doing "
+                "its work, not a trick.",
+                [
+                    "Eq(Sum(Rational(1, 2)**k, (k, 1, 10)).doit(), Rational(1023, 1024))",
+                    "Eq(Rational(1, 2)/(1 - Rational(1, 2)), 1)",
+                    "Eq(Sum(Rational(1, 2)**k, (k, 1, oo)).doit(), 1)",
+                ],
+            ),
+            problem(
+                "im3-u6-l3-we2",
+                "Convert $0.727272\\ldots$ to a fraction.",
+                "**Unmask the series.** $0.\\overline{72} = \\frac{72}{100} + "
+                "\\frac{72}{10000} + \\cdots$: geometric with $a_1 = "
+                "\\frac{72}{100}$ and $r = \\frac{1}{100}$."
+                "**Sum it.** $S = \\dfrac{72/100}{1 - 1/100} = "
+                "\\dfrac{72/100}{99/100} = \\dfrac{72}{99} = \\dfrac{8}{11}$."
+                "**Check by dividing back.** $8 \\div 11 = 0.7272\\ldots$ — "
+                "the repeating block returns, as it must.",
+                [
+                    "Eq(Rational(72, 100)/(1 - Rational(1, 100)), Rational(8, 11))",
+                    "Eq(Rational(72, 99), Rational(8, 11))",
+                ],
+            ),
+            problem(
+                "im3-u6-l3-we3",
+                "A ball is dropped from $10$ m and each bounce reaches "
+                "$\\dfrac{3}{5}$ of the previous height. Find the total "
+                "distance it travels.",
+                "**Split the journey.** The drop is $10$ m. Every bounce then "
+                "contributes an up AND a down of the same height: $6, "
+                "\\frac{18}{5}, \\ldots$ each counted twice."
+                "**Sum the bounce heights.** Geometric, $a_1 = 6$, $r = "
+                "\\frac{3}{5}$: $S = \\dfrac{6}{1 - 3/5} = \\dfrac{6}{2/5} = "
+                "15$."
+                "**Assemble.** Total $= 10 + 2 \\cdot 15 = 40$ m — a finite "
+                "distance for infinitely many bounces, because the heights die "
+                "out fast enough.",
+                [
+                    "Eq(10*Rational(3, 5), 6)",
+                    "Eq(6/(1 - Rational(3, 5)), 15)",
+                    "Eq(10 + 2*15, 40)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Using the infinite-sum formula when |r| ≥ 1.",
+                "S = a1/(1 - r) is only the limit of the partial sums when the "
+                "r-power dies out. For 1 + 2 + 4 + ... the formula outputs -1, "
+                "which is absurd — the check |r| < 1 comes FIRST.",
+            ),
+            mistake(
+                "Saying an infinite sum 'never quite equals' its value.",
+                "The SUM is defined as the limit — the number the partial sums "
+                "approach. 1/2 + 1/4 + ... equals 1 exactly, in the same way "
+                "0.999... equals 1. Partial sums fall short; the sum does not.",
+            ),
+            mistake(
+                "Forgetting to double the bounce heights in travel problems.",
+                "After the initial drop, the ball covers each bounce height "
+                "twice — up and down. Summing the heights once undercounts "
+                "the journey by half the bounce total.",
+            ),
+            mistake(
+                "Misreading the first term of a repeating decimal's series.",
+                "0.7̄2̄ repeats a two-digit block, so a1 = 72/100 and r = 1/100. "
+                "Treating it as 7/10 + 2/100 + ... breaks the geometric "
+                "pattern and the formula no longer applies.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u6-l3-t1",
+                "Evaluate $9 + 3 + 1 + \\dfrac{1}{3} + \\cdots$",
+                "$a_1 = 9$, $r = \\frac{1}{3}$, $|r| < 1$: $S = "
+                "\\dfrac{9}{1 - 1/3} = \\dfrac{9}{2/3} = \\dfrac{27}{2}$.",
+                [
+                    "Eq(9/(1 - Rational(1, 3)), Rational(27, 2))",
+                    "Eq(Sum(9*Rational(1, 3)**k, (k, 0, oo)).doit(), Rational(27, 2))",
+                ],
+            ),
+            problem(
+                "im3-u6-l3-t2",
+                "Convert $0.444\\ldots$ to a fraction.",
+                "$a_1 = \\frac{4}{10}$, $r = \\frac{1}{10}$: $S = "
+                "\\dfrac{4/10}{9/10} = \\dfrac{4}{9}$.",
+                [
+                    "Eq(Rational(4, 10)/(1 - Rational(1, 10)), Rational(4, 9))",
+                ],
+            ),
+            problem(
+                "im3-u6-l3-t3",
+                "Does $6 + 9 + \\dfrac{27}{2} + \\cdots$ have a sum? Explain.",
+                "The ratio is $\\frac{9}{6} = \\frac{3}{2} > 1$: the terms "
+                "GROW, the partial sums pass every bound, and no sum exists. "
+                "The formula does not apply — checking $|r| < 1$ is the first "
+                "step, not an afterthought.",
+                [
+                    "Eq(Rational(9, 6), Rational(3, 2))",
+                    "Rational(3, 2) > 1",
+                ],
+            ),
+        ],
+        steps=[
+            tap(
+                "The gatekeeper",
+                "An infinite geometric series has a sum exactly when:",
+                ["$|r| < 1$", "$r > 0$", "$a_1 < 1$", "always — infinity is big enough"],
+                0,
+                "Only a ratio smaller than $1$ in size lets $r^n$ die out and "
+                "the partial sums settle. $\\frac{1}{2}$ qualifies; $2$ and "
+                "$-1$ do not.",
+                ["Rational(1, 2) < 1", "Eq(Rational(1, 2)/(1 - Rational(1, 2)), 1)"],
+            ),
+            tap(
+                "One-line sum",
+                "The series $12 + 4 + \\dfrac{4}{3} + \\cdots$ has ratio "
+                "$\\dfrac{1}{3}$. Its sum is:",
+                ["$18$", "$16$", "$24$", "no sum exists"],
+                0,
+                "$S = \\dfrac{12}{1 - 1/3} = \\dfrac{12}{2/3} = 18$ — first "
+                "term over the ratio gap.",
+                ["Eq(12/(1 - Rational(1, 3)), 18)"],
+            ),
+            tap(
+                "Decimals unmasked",
+                "As a fraction, $0.\\overline{5} = 0.555\\ldots$ equals:",
+                ["$\\dfrac{5}{9}$", "$\\dfrac{1}{2}$", "$\\dfrac{5}{10}$", "$\\dfrac{5}{11}$"],
+                0,
+                "$\\frac{5}{10} + \\frac{5}{100} + \\cdots = "
+                "\\dfrac{5/10}{1 - 1/10} = \\dfrac{5}{9}$. Dividing back: "
+                "$5 \\div 9 = 0.555\\ldots$",
+                ["Eq(Rational(5, 10)/(1 - Rational(1, 10)), Rational(5, 9))"],
+            ),
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 4 — the binomial theorem (A-APR.5)
+# ===========================================================================
+
+def lesson_binomial():
+    return lesson(
+        slug="the-binomial-theorem",
+        title="The Binomial Theorem",
+        concrete=(
+            "Flip five coins. How many of the $32$ outcomes show exactly two "
+            "heads? That is a counting question — choose which $2$ of the $5$ "
+            "coins land heads: $\\binom{5}{2} = 10$ ways. Now expand "
+            "$(a + b)^5$ and look at the $a^3b^2$ term: its coefficient is "
+            "$10$, the same number. Multiplying out a power and counting coin "
+            "flips are secretly the same activity — that coincidence, made "
+            "precise, is the Binomial Theorem."
+        ),
+        objective=(
+            "Build Pascal's triangle, connect its entries to the combinations "
+            "$\\binom{n}{k}$, expand $(a + b)^n$ with the Binomial Theorem, and "
+            "extract a single term without expanding everything."
+        ),
+        concept=[
+            "Expanding $(a + b)^n$ by brute force means choosing, in each of "
+            "the $n$ factors, either the $a$ or the $b$, and adding up all the "
+            "products. A term like $a^{3}b^{2}$ (from $n = 5$) appears once for "
+            "every way of choosing WHICH $2$ factors contribute $b$ — that is "
+            "$\\binom{5}{2} = 10$ ways, the combinations count from IM2's "
+            "probability unit. Coefficients are choice-counts. That is the whole "
+            "theorem.",
+
+            "Pascal's triangle organises these counts. Each row starts and ends "
+            "with $1$, and every inner entry is the sum of the two above it — "
+            "row $5$ reads $1, 5, 10, 10, 5, 1$. The addition rule "
+            "$\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}$ says: a "
+            "choice of $k$ things either uses the newest item or it doesn't. "
+            "The triangle is combinations, computed without a single factorial.",
+
+            "The theorem in full: $(a + b)^n = \\sum \\binom{n}{k} "
+            "a^{\\,n-k} b^{\\,k}$, with $k$ running $0$ to $n$. Reading checks: "
+            "exponents in every term add to $n$; coefficients read off row $n$; "
+            "the row is symmetric because choosing $k$ items to be $b$ is the "
+            "same as choosing $n - k$ to be $a$.",
+
+            "The real power is picking ONE term from a big expansion. In "
+            "$(2x - 3)^5$, the $x^3$ term takes $k = 2$: $\\binom{5}{2}(2x)^3"
+            "(-3)^2 = 10 \\cdot 8x^3 \\cdot 9 = 720x^3$ — no need to expand "
+            "the other five terms. Substituting the actual pieces (with their "
+            "signs and coefficients) into $\\binom{n}{k}a^{n-k}b^k$ is where "
+            "all the care lives.",
+        ],
+        key_idea=(
+            "The coefficient of a^(n-k) b^k in (a + b)^n counts the ways to "
+            "choose which k factors contribute b — so expansion coefficients "
+            "are Pascal's triangle, and one term can be extracted without "
+            "expanding any others."
+        ),
+        facts=[
+            fact("The theorem", "(a + b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{\\,n-k} b^{\\,k}",
+                 "Each coefficient counts the ways to pick which k factors give "
+                 "b."),
+            fact("Pascal's rule", "\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}",
+                 "Every entry is the sum of the two above — use the newest item, "
+                 "or don't."),
+            fact("Row 5", "1,\\ 5,\\ 10,\\ 10,\\ 5,\\ 1",
+                 "The coefficients of (a + b)^5, symmetric as every row is."),
+            fact("Symmetry", "\\binom{n}{k} = \\binom{n}{n-k}",
+                 "Choosing k to be b is choosing n - k to be a."),
+            fact("General term", "\\binom{n}{k}\\,a^{\\,n-k}\\,b^{\\,k}",
+                 "Substitute the ACTUAL a and b — signs and coefficients "
+                 "included — to extract one term."),
+        ],
+        worked=[
+            problem(
+                "im3-u6-l4-we1",
+                "Expand $(x + 2)^4$ with the Binomial Theorem.",
+                "**Coefficients from row 4.** $1, 4, 6, 4, 1$."
+                "**Fill the pattern.** Powers of $x$ fall, powers of $2$ rise: "
+                "$x^4 + 4x^3(2) + 6x^2(4) + 4x(8) + 16$."
+                "**Simplify.** $(x + 2)^4 = x^4 + 8x^3 + 24x^2 + 32x + 16$. "
+                "Spot-check the middle term: $\\binom{4}{2} \\cdot 2^2 = 6 "
+                "\\cdot 4 = 24$. And a numeric sanity check at $x = 1$: "
+                "$3^4 = 81 = 1 + 8 + 24 + 32 + 16$.",
+                [
+                    "Eq(expand((x + 2)**4), x**4 + 8*x**3 + 24*x**2 + 32*x + 16)",
+                    "Eq(binomial(4, 2)*2**2, 24)",
+                    "Eq(1 + 8 + 24 + 32 + 16, 81)",
+                ],
+            ),
+            problem(
+                "im3-u6-l4-we2",
+                "Find the coefficient of $x^3$ in $(2x - 3)^5$ without "
+                "expanding the whole power.",
+                "**Locate the term.** Exponents must add to $5$, so $x^3$ "
+                "pairs with $b$-power $2$: the term is $\\binom{5}{2}(2x)^3"
+                "(-3)^2$."
+                "**Substitute carefully.** $\\binom{5}{2} = 10$, $(2x)^3 = "
+                "8x^3$, $(-3)^2 = 9$: the term is $10 \\cdot 8 \\cdot 9 \\, "
+                "x^3 = 720x^3$."
+                "**The full expansion agrees.** $(2x - 3)^5 = 32x^5 - 240x^4 "
+                "+ 720x^3 - 1080x^2 + 810x - 243$ — and only the one term was "
+                "needed.",
+                [
+                    "Eq(binomial(5, 2), 10)",
+                    "Eq(binomial(5, 2)*2**3*(-3)**2, 720)",
+                    "Eq(expand((2*x - 3)**5 - (32*x**5 - 240*x**4 + 720*x**3 - 1080*x**2 + 810*x - 243)), 0)",
+                ],
+            ),
+            problem(
+                "im3-u6-l4-we3",
+                "Row $4$ of Pascal's triangle is $1, 4, 6, 4, 1$. Build row "
+                "$5$ from it, and verify one inner entry against the "
+                "combination formula.",
+                "**Add neighbours.** $1$; $1 + 4 = 5$; $4 + 6 = 10$; $6 + 4 = "
+                "10$; $4 + 1 = 5$; $1$ — row $5$ is $1, 5, 10, 10, 5, 1$."
+                "**Verify with combinations.** $\\binom{5}{2} = \\frac{5!}"
+                "{2!\\,3!} = 10$, matching the third entry — and Pascal's rule "
+                "$\\binom{5}{2} = \\binom{4}{1} + \\binom{4}{2} = 4 + 6$ is "
+                "exactly the neighbour-sum we performed."
+                "**Why it works.** Choosing $2$ of $5$ coins either includes "
+                "coin five ($\\binom{4}{1}$ ways) or excludes it "
+                "($\\binom{4}{2}$ ways). The triangle is that sentence, "
+                "iterated.",
+                [
+                    "Eq(binomial(5, 2), 10)",
+                    "Eq(binomial(5, 2), binomial(4, 1) + binomial(4, 2))",
+                    "Eq(factorial(5)/(factorial(2)*factorial(3)), 10)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Expanding (a + b)^n as a^n + b^n.",
+                "The freshman's dream. (x + 2)^4 is not x^4 + 16 — the cross "
+                "terms carry most of the value. At x = 1 the claim reads "
+                "81 = 17.",
+            ),
+            mistake(
+                "Forgetting to raise the WHOLE piece to the power.",
+                "In (2x - 3)^5 the term uses (2x)^3 = 8x^3, not 2x^3 — and "
+                "(-3)^2 with its sign, not 3^2 chosen by optimism. Substitute "
+                "with parentheses around each piece.",
+            ),
+            mistake(
+                "Losing the alternating signs in (a - b)^n.",
+                "Treat it as (a + (-b))^n: odd powers of b keep a minus. In "
+                "(2x - 3)^5 the x^4 and x^2 and constant terms are negative — "
+                "signs alternate, ending at (-3)^5 = -243.",
+            ),
+            mistake(
+                "Reading the term number as the k-value.",
+                "The FIRST term has k = 0, so the (k+1)-th term uses k. The "
+                "'third term' of (a + b)^5 is C(5,2)a³b², not C(5,3)a²b³ — "
+                "off-by-one is the standard binomial injury.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u6-l4-t1",
+                "Expand $(x - 2)^4$.",
+                "Row 4 with alternating signs: $x^4 - 8x^3 + 24x^2 - 32x + "
+                "16$. Even powers of $-2$ stay positive, odd powers go "
+                "negative.",
+                [
+                    "Eq(expand((x - 2)**4), x**4 - 8*x**3 + 24*x**2 - 32*x + 16)",
+                    "Eq((-2)**3, -8)",
+                ],
+            ),
+            problem(
+                "im3-u6-l4-t2",
+                "Find the coefficient of $x^2$ in $(3x + 1)^5$.",
+                "$x^2$ takes $k = 3$: $\\binom{5}{3}(3x)^2(1)^3 = 10 \\cdot "
+                "9x^2 = 90x^2$ — coefficient $90$.",
+                [
+                    "Eq(binomial(5, 3)*3**2, 90)",
+                    "Eq(expand((3*x + 1)**5 - (243*x**5 + 405*x**4 + 270*x**3 + 90*x**2 + 15*x + 1)), 0)",
+                ],
+            ),
+            problem(
+                "im3-u6-l4-t3",
+                "In $6$ coin flips, how many outcomes show exactly $3$ heads?",
+                "Choose which $3$ flips are heads: $\\binom{6}{3} = 20$ of the "
+                "$2^6 = 64$ outcomes — the middle entry of Pascal's row $6$.",
+                [
+                    "Eq(binomial(6, 3), 20)",
+                    "Eq(2**6, 64)",
+                ],
+            ),
+        ],
+        steps=[
+            tap(
+                "Coefficient as a count",
+                "In the expansion of $(a + b)^5$, the coefficient of "
+                "$a^3b^2$ counts:",
+                ["the ways to choose which $2$ factors give $b$", "the value $5 \\cdot 2$",
+                 "the number of terms", "nothing — it is always $1$"],
+                0,
+                "Each of the $5$ factors donates an $a$ or a $b$; the "
+                "$a^3b^2$ terms come from choosing $2$ donors of $b$: "
+                "$\\binom{5}{2} = 10$.",
+                ["Eq(binomial(5, 2), 10)"],
+            ),
+            tap(
+                "Pascal's rule",
+                "In Pascal's triangle, the entry $\\binom{6}{2} = 15$ is the "
+                "sum of which two entries above it?",
+                ["$\\binom{5}{1} + \\binom{5}{2}$", "$\\binom{5}{2} + \\binom{5}{3}$",
+                 "$\\binom{6}{1} + \\binom{6}{3}$", "$\\binom{4}{1} + \\binom{4}{2}$"],
+                0,
+                "Each entry adds its upper-left and upper-right neighbours: "
+                "$\\binom{5}{1} + \\binom{5}{2} = 5 + 10 = 15$.",
+                ["Eq(binomial(5, 1) + binomial(5, 2), 15)", "Eq(binomial(6, 2), 15)"],
+            ),
+            tap(
+                "Symmetry for free",
+                "Without computing factorials: $\\binom{9}{7}$ equals which "
+                "easier combination?",
+                ["$\\binom{9}{2}$", "$\\binom{7}{2}$", "$\\binom{9}{9}$", "$\\binom{2}{9}$"],
+                0,
+                "Choosing $7$ of $9$ to keep is choosing $2$ of $9$ to leave "
+                "out: $\\binom{9}{7} = \\binom{9}{2} = 36$.",
+                ["Eq(binomial(9, 7), binomial(9, 2))", "Eq(binomial(9, 2), 36)"],
+            ),
+        ],
+    )
+
+
+# ===========================================================================
+# Practice bank
+# ===========================================================================
+
+def practice_bank():
+    return [
+        problem(
+            "im3-u6-p1",
+            "For the arithmetic sequence with $a_1 = 4$ and $d = 5$, find "
+            "$a_{30}$ and $S_{30}$.",
+            "$a_{30} = 4 + 29 \\cdot 5 = 149$, and $S_{30} = \\frac{30}{2}"
+            "(4 + 149) = 15 \\cdot 153 = 2295$.",
+            [
+                "Eq(4 + 29*5, 149)",
+                "Eq(Rational(30, 2)*(4 + 149), 2295)",
+                "Eq(Sum(4 + 5*(k - 1), (k, 1, 30)).doit(), 2295)",
+            ],
+        ),
+        problem(
+            "im3-u6-p2",
+            "Compute $1 + 2 + 3 + \\cdots + 200$.",
+            "Gauss's pairing: $\\frac{200}{2}(1 + 200) = 100 \\cdot 201 = "
+            "20100$.",
+            [
+                "Eq(Rational(200, 2)*(1 + 200), 20100)",
+                "Eq(Sum(k, (k, 1, 200)).doit(), 20100)",
+            ],
+        ),
+        problem(
+            "im3-u6-p3",
+            "Logs are stacked in $12$ layers: $25$ logs on the bottom layer, "
+            "one fewer in each layer above. How many logs are in the stack?",
+            "Arithmetic with $a_1 = 25$, $d = -1$: the top layer has "
+            "$25 - 11 = 14$ logs, and $S_{12} = \\frac{12}{2}(25 + 14) = "
+            "6 \\cdot 39 = 234$.",
+            [
+                "Eq(25 - 11, 14)",
+                "Eq(Rational(12, 2)*(25 + 14), 234)",
+            ],
+        ),
+        problem(
+            "im3-u6-p4",
+            "An arithmetic sequence has $a_3 = 11$ and $a_{10} = 39$. Find $d$ "
+            "and $a_1$.",
+            "Between term $3$ and term $10$ lie $7$ steps: $d = \\frac{39 - 11}"
+            "{7} = 4$. Back up two steps from $a_3$: $a_1 = 11 - 2 \\cdot 4 = "
+            "3$. Check: $a_{10} = 3 + 9 \\cdot 4 = 39$.",
+            [
+                "Eq(Rational(39 - 11, 7), 4)",
+                "Eq(11 - 2*4, 3)",
+                "Eq(3 + 9*4, 39)",
+            ],
+        ),
+        problem(
+            "im3-u6-p5",
+            "For the geometric sequence $5, 15, 45, \\ldots$, find $a_7$ and "
+            "$S_7$.",
+            "$r = 3$: $a_7 = 5 \\cdot 3^6 = 3645$ and $S_7 = 5 \\cdot "
+            "\\frac{1 - 3^7}{1 - 3} = 5465$.",
+            [
+                "Eq(5*3**6, 3645)",
+                "Eq(5*(1 - 3**7)/(1 - 3), 5465)",
+            ],
+        ),
+        problem(
+            "im3-u6-p6",
+            "Compute the eight-term geometric sum $1 + \\dfrac{1}{2} + "
+            "\\dfrac{1}{4} + \\cdots + \\dfrac{1}{128}$.",
+            "$a_1 = 1$, $r = \\frac{1}{2}$, $n = 8$: $S_8 = \\frac{1 - "
+            "(1/2)^8}{1 - 1/2} = 2\\left(1 - \\frac{1}{256}\\right) = "
+            "\\frac{255}{128}$ — just under $2$, the infinite sum it is "
+            "heading for.",
+            [
+                "Eq((1 - Rational(1, 2)**8)/(1 - Rational(1, 2)), Rational(255, 128))",
+                "Rational(255, 128) < 2",
+            ],
+        ),
+        problem(
+            "im3-u6-p7",
+            "A post is shared with $4$ people on day one, and each day it "
+            "reaches $3$ times as many new people as the day before. How many "
+            "people has it reached after $7$ days?",
+            "Geometric total: $4 \\cdot \\frac{1 - 3^7}{1 - 3} = 4 \\cdot "
+            "\\frac{-2186}{-2} = 4372$ people.",
+            [
+                "Eq(4*(1 - 3**7)/(1 - 3), 4372)",
+                "Eq(Sum(4*3**k, (k, 0, 6)).doit(), 4372)",
+            ],
+        ),
+        problem(
+            "im3-u6-p8",
+            "Evaluate the infinite sum $9 + 3 + 1 + \\dfrac{1}{3} + \\cdots$",
+            "$r = \\frac{1}{3}$, $|r| < 1$: $S = \\dfrac{9}{1 - 1/3} = "
+            "\\dfrac{27}{2}$.",
+            [
+                "Eq(9/(1 - Rational(1, 3)), Rational(27, 2))",
+            ],
+        ),
+        problem(
+            "im3-u6-p9",
+            "Convert $0.\\overline{4} = 0.444\\ldots$ to a fraction.",
+            "Geometric with $a_1 = \\frac{4}{10}$, $r = \\frac{1}{10}$: "
+            "$S = \\dfrac{4/10}{9/10} = \\dfrac{4}{9}$.",
+            [
+                "Eq(Rational(4, 10)/(1 - Rational(1, 10)), Rational(4, 9))",
+            ],
+        ),
+        problem(
+            "im3-u6-p10",
+            "Explain why $5 + 10 + 20 + 40 + \\cdots$ has no sum, and compute "
+            "how large the partial sum is after just $10$ terms.",
+            "The ratio is $2 \\ge 1$, so the terms grow and the partial sums "
+            "pass every bound — no limit exists. Already $S_{10} = 5(2^{10} - "
+            "1) = 5115$, and it doubles from there. The infinite-sum formula "
+            "does not apply.",
+            [
+                "Eq(5*(2**10 - 1), 5115)",
+                "(5*(2**10 - 1)) > 5000",
+                "2 > 1",
+            ],
+        ),
+        problem(
+            "im3-u6-p11",
+            "A ball is dropped from $8$ m and each bounce reaches "
+            "$\\dfrac{1}{2}$ of the previous height. What total distance does "
+            "it travel?",
+            "Drop: $8$. Bounce heights $4, 2, 1, \\ldots$ sum to "
+            "$\\frac{4}{1 - 1/2} = 8$, each covered up and down: total "
+            "$= 8 + 2 \\cdot 8 = 24$ m.",
+            [
+                "Eq(8*Rational(1, 2), 4)",
+                "Eq(4/(1 - Rational(1, 2)), 8)",
+                "Eq(8 + 2*8, 24)",
+            ],
+        ),
+        problem(
+            "im3-u6-p12",
+            "Expand $(x + 3)^4$.",
+            "Row 4 gives $1, 4, 6, 4, 1$: $(x + 3)^4 = x^4 + 12x^3 + 54x^2 + "
+            "108x + 81$. Check at $x = 1$: $4^4 = 256 = 1 + 12 + 54 + 108 + "
+            "81$.",
+            [
+                "Eq(expand((x + 3)**4), x**4 + 12*x**3 + 54*x**2 + 108*x + 81)",
+                "Eq(1 + 12 + 54 + 108 + 81, 256)",
+            ],
+        ),
+        problem(
+            "im3-u6-p13",
+            "Find the coefficient of $x^4$ in $(x - 2)^6$.",
+            "$x^4$ takes $k = 2$: $\\binom{6}{2}x^4(-2)^2 = 15 \\cdot 4 \\, "
+            "x^4 = 60x^4$ — coefficient $60$, positive because the $b$-power "
+            "is even.",
+            [
+                "Eq(binomial(6, 2)*(-2)**2, 60)",
+                "Eq(expand((x - 2)**6 - (x**6 - 12*x**5 + 60*x**4 - 160*x**3 + 240*x**2 - 192*x + 64)), 0)",
+            ],
+        ),
+        problem(
+            "im3-u6-p14",
+            "Write out row $6$ of Pascal's triangle, and identify which "
+            "expansion it serves.",
+            "From row $5$ ($1, 5, 10, 10, 5, 1$), neighbour sums give "
+            "$1, 6, 15, 20, 15, 6, 1$ — the coefficients of $(a + b)^6$. The "
+            "middle entry is $\\binom{6}{3} = 20$, and the row sums to $2^6 = "
+            "64$.",
+            [
+                "Eq(binomial(6, 3), 20)",
+                "Eq(binomial(6, 0) + binomial(6, 1) + binomial(6, 2) + binomial(6, 3) + binomial(6, 4) + binomial(6, 5) + binomial(6, 6), 64)",
+            ],
+        ),
+        problem(
+            "im3-u6-p15",
+            "Six coins are flipped. In how many of the $64$ outcomes do "
+            "exactly $3$ heads appear, and what is that probability?",
+            "$\\binom{6}{3} = 20$ outcomes, so the probability is "
+            "$\\frac{20}{64} = \\frac{5}{16}$ — the binomial coefficient doing "
+            "probability work, as in IM2.",
+            [
+                "Eq(binomial(6, 3), 20)",
+                "Eq(Rational(20, 64), Rational(5, 16))",
+            ],
+        ),
+        problem(
+            "im3-u6-p16",
+            "Find the middle term of $(x + y)^6$.",
+            "Seven terms, so the middle is the fourth: $k = 3$ gives "
+            "$\\binom{6}{3}x^3y^3 = 20x^3y^3$ — the peak of the symmetric "
+            "row.",
+            [
+                "Eq(binomial(6, 3), 20)",
+                "Eq(expand((x + y)**6).coeff(x, 3).coeff(y, 3), 20)",
+            ],
+        ),
+    ]
+
+
+# ===========================================================================
+# Test bank
+# ===========================================================================
+
+def test_bank():
+    return [
+        problem(
+            "im3-u6-x1",
+            "An auditorium has $22$ rows; the first row has $16$ seats and "
+            "each row adds $3$. How many seats does the last row have, and how "
+            "many does the auditorium hold?",
+            "$a_{22} = 16 + 21 \\cdot 3 = 79$ seats in the back. Total: "
+            "$S_{22} = \\frac{22}{2}(16 + 79) = 11 \\cdot 95 = 1045$ seats.",
+            [
+                "Eq(16 + 21*3, 79)",
+                "Eq(Rational(22, 2)*(16 + 79), 1045)",
+                "Eq(Sum(16 + 3*(k - 1), (k, 1, 22)).doit(), 1045)",
+            ],
+        ),
+        problem(
+            "im3-u6-x2",
+            "The arithmetic series $3 + 7 + 11 + \\cdots$ reaches a total of "
+            "$465$. How many terms were added?",
+            "$S_n = \\frac{n}{2}(6 + 4(n - 1)) = n(2n + 1) = 465$, so "
+            "$2n^2 + n - 465 = 0$. Discriminant: $1 + 8 \\cdot 465 = 3721 = "
+            "61^2$, giving $n = \\frac{-1 + 61}{4} = 15$. Check: $15 \\cdot "
+            "31 = 465$.",
+            [
+                "Eq(sqrt(1 + 8*465), 61)",
+                "Eq(Rational(-1 + 61, 4), 15)",
+                "Eq(15*(2*15 + 1), 465)",
+                "Eq(Sum(3 + 4*(k - 1), (k, 1, 15)).doit(), 465)",
+            ],
+        ),
+        problem(
+            "im3-u6-x3",
+            "Compute $S_6$ for the geometric series $4 + 12 + 36 + \\cdots$ "
+            "by the shift-and-subtract argument, then confirm with the sum "
+            "formula.",
+            "Multiply by $r = 3$: $3S_6$ shares every term with $S_6$ except "
+            "the new last term $4 \\cdot 3^6$; subtracting, $2S_6 = 4 \\cdot "
+            "3^6 - 4 = 2912$, so $S_6 = 1456$. Formula: $4 \\cdot \\frac{1 - "
+            "3^6}{1 - 3} = 4 \\cdot \\frac{-728}{-2} = 1456$.",
+            [
+                "Eq(4*3**6 - 4, 2912)",
+                "Eq(Rational(2912, 2), 1456)",
+                "Eq(4*(1 - 3**6)/(1 - 3), 1456)",
+                "Eq(Sum(4*3**k, (k, 0, 5)).doit(), 1456)",
+            ],
+        ),
+        problem(
+            "im3-u6-x4",
+            "Two savings plans run for $12$ months. Plan A deposits \\$100 in "
+            "month one and \\$5 less each month after. Plan B deposits \\$1 in "
+            "month one and doubles the deposit each month. Which plan "
+            "deposits more in total?",
+            "Plan A is arithmetic: $a_{12} = 100 - 11 \\cdot 5 = 45$, total "
+            "$\\frac{12}{2}(100 + 45) = 870$ dollars. Plan B is geometric: "
+            "$\\frac{1 - 2^{12}}{1 - 2} = 4095$ dollars. Plan B wins by "
+            "$3225$ — doubling beats any shrinking arithmetic plan, though "
+            "eleven of its twelve deposits were smaller than Plan A's.",
+            [
+                "Eq(100 - 11*5, 45)",
+                "Eq(Rational(12, 2)*(100 + 45), 870)",
+                "Eq((1 - 2**12)/(1 - 2), 4095)",
+                "(4095) > 870",
+            ],
+        ),
+        problem(
+            "im3-u6-x5",
+            "A pendulum's first swing is $60$ cm, and each swing is "
+            "$\\dfrac{4}{5}$ of the one before. What total distance does the "
+            "pendulum travel before coming to rest?",
+            "Infinite geometric with $a_1 = 60$, $r = \\frac{4}{5}$, "
+            "$|r| < 1$: $S = \\dfrac{60}{1 - 4/5} = \\dfrac{60}{1/5} = 300$ "
+            "cm. Infinitely many swings, three metres of travel.",
+            [
+                "Eq(60/(1 - Rational(4, 5)), 300)",
+                "Rational(4, 5) < 1",
+            ],
+        ),
+        problem(
+            "im3-u6-x6",
+            "Convert $0.\\overline{27} = 0.2727\\ldots$ to a fraction in "
+            "lowest terms.",
+            "Geometric with $a_1 = \\frac{27}{100}$, $r = \\frac{1}{100}$: "
+            "$S = \\dfrac{27/100}{99/100} = \\dfrac{27}{99} = \\dfrac{3}{11}$. "
+            "Check: $3 \\div 11 = 0.2727\\ldots$",
+            [
+                "Eq(Rational(27, 100)/(1 - Rational(1, 100)), Rational(3, 11))",
+                "Eq(Rational(27, 99), Rational(3, 11))",
+            ],
+        ),
+        problem(
+            "im3-u6-x7",
+            "Expand $(2x + 1)^5$.",
+            "Row 5 gives $1, 5, 10, 10, 5, 1$ against falling powers of "
+            "$2x$: $(2x + 1)^5 = 32x^5 + 80x^4 + 80x^3 + 40x^2 + 10x + 1$. "
+            "Spot-check the $x^4$ term: $\\binom{5}{1}(2x)^4 = 5 \\cdot 16x^4 "
+            "= 80x^4$; and at $x = 1$: $3^5 = 243$, the coefficient total.",
+            [
+                "Eq(expand((2*x + 1)**5 - (32*x**5 + 80*x**4 + 80*x**3 + 40*x**2 + 10*x + 1)), 0)",
+                "Eq(binomial(5, 1)*2**4, 80)",
+                "Eq(32 + 80 + 80 + 40 + 10 + 1, 243)",
+            ],
+        ),
+        problem(
+            "im3-u6-x8",
+            "Use the first three terms of the binomial expansion of "
+            "$(1 + 0.02)^5$ to estimate $1.02^5$, and check the estimate "
+            "against the true value.",
+            "$(1 + x)^5 \\approx 1 + 5x + 10x^2$ for small $x$. At $x = "
+            "0.02$: $1 + 5(0.02) + 10(0.0004) = 1 + 0.1 + 0.004 = 1.104$. The "
+            "true value is $1.02^5 = 1.10408\\ldots$ — the two dropped terms "
+            "contribute less than one part in a thousand. Small-number powers "
+            "are almost linear, and the binomial theorem says exactly how "
+            "almost.",
+            [
+                "Eq(1 + 5*Rational(2, 100) + 10*Rational(2, 100)**2, Rational(1104, 1000))",
+                "Abs((1 + Rational(2, 100))**5 - Rational(1104, 1000)) < Rational(1, 1000)",
+                "Eq(binomial(5, 2), 10)",
+            ],
+        ),
+    ]
+
+
+def main():
+    write_unit(
+        course=COURSE,
+        slug="sequences-series-and-the-binomial-theorem",
+        title="Sequences, Series & the Binomial Theorem",
+        unit_number=6,
+        blurb=(
+            "Arithmetic and geometric series and their sum formulas, infinite "
+            "geometric series and when they converge, and the binomial theorem "
+            "from Pascal's triangle."
+        ),
+        builds_on=(
+            "Sequences from IM1 Unit 3 — now summed rather than only listed — "
+            "and the combinations from IM2's probability unit, reborn as the "
+            "coefficients of Pascal's triangle."
+        ),
+        lessons=[
+            lesson_arithmetic(),
+            lesson_geometric(),
+            lesson_infinite(),
+            lesson_binomial(),
+        ],
+        practice=practice_bank(),
+        test=test_bank(),
+    )
+
+
+if __name__ == "__main__":
+    main()

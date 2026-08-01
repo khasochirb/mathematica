@@ -846,7 +846,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Arithmetic and geometric series and their sum formulas, infinite geometric series and when they converge, and the binomial theorem from Pascal's triangle.",
     buildsOn: "Sequences from IM1 Unit 3 — now summed rather than only listed.",
-    live: false,
+    live: true,
   },
   {
     unit: 7,

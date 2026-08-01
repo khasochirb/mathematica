@@ -11,6 +11,7 @@ import im3Rational from "@/data/genmath/integrated-3/rational-and-radical-functi
 import im3ExpLog from "@/data/genmath/integrated-3/exponential-and-logarithmic-functions.json";
 import im3Trig from "@/data/genmath/integrated-3/trigonometric-functions.json";
 import im3Families from "@/data/genmath/integrated-3/function-families-and-inverses.json";
+import im3Series from "@/data/genmath/integrated-3/sequences-series-and-the-binomial-theorem.json";
 
 const im3Units: CourseUnit[] = [
   im3Polynomials,
@@ -18,6 +19,7 @@ const im3Units: CourseUnit[] = [
   im3ExpLog,
   im3Trig,
   im3Families,
+  im3Series,
 ] as unknown as CourseUnit[];
 
 export function getIm3Spine(): GeometrySpineEntry[] {
