@@ -5,7 +5,9 @@
 // ramps up. Example, Equations: x+5=10 (easy) → 2x+7x=18 (medium) →
 // 2x+3=11 (hard, two-step).
 
-import { getGrade6Topics, getGeometrySpine, getGrade7Spine, getGrade8Spine, getGrade9Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+// Spines only, never the course registry — every placement PAGE imports
+// this module client-side, and the registry carries the ~14 MB corpus.
+import { GRADE6_SPINE, GEOMETRY_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
 
 export type PlacementQuestion = {
   id: string;
@@ -399,56 +401,56 @@ let g12Cache: PlacementQuestion[] | null = null;
 
 export function getPlacementBank(): PlacementQuestion[] {
   if (cache) return cache;
-  const titleBySlug = new Map(getGrade6Topics().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE6_SPINE.map((t) => [t.slug, t.title]));
   cache = CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return cache;
 }
 
 export function getGeometryPlacementBank(): PlacementQuestion[] {
   if (geoCache) return geoCache;
-  const titleBySlug = new Map(getGeometrySpine().map((u) => [u.slug, u.title]));
+  const titleBySlug = new Map(GEOMETRY_SPINE.map((u) => [u.slug, u.title]));
   geoCache = GEO_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return geoCache;
 }
 
 export function getGrade7PlacementBank(): PlacementQuestion[] {
   if (g7Cache) return g7Cache;
-  const titleBySlug = new Map(getGrade7Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE7_SPINE.map((t) => [t.slug, t.title]));
   g7Cache = G7_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g7Cache;
 }
 
 export function getGrade8PlacementBank(): PlacementQuestion[] {
   if (g8Cache) return g8Cache;
-  const titleBySlug = new Map(getGrade8Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE8_SPINE.map((t) => [t.slug, t.title]));
   g8Cache = G8_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g8Cache;
 }
 
 export function getGrade9PlacementBank(): PlacementQuestion[] {
   if (g9Cache) return g9Cache;
-  const titleBySlug = new Map(getGrade9Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE9_SPINE.map((t) => [t.slug, t.title]));
   g9Cache = G9_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g9Cache;
 }
 
 export function getGrade10PlacementBank(): PlacementQuestion[] {
   if (g10Cache) return g10Cache;
-  const titleBySlug = new Map(getGrade10Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE10_SPINE.map((t) => [t.slug, t.title]));
   g10Cache = G10_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g10Cache;
 }
 
 export function getGrade11PlacementBank(): PlacementQuestion[] {
   if (g11Cache) return g11Cache;
-  const titleBySlug = new Map(getGrade11Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE11_SPINE.map((t) => [t.slug, t.title]));
   g11Cache = G11_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g11Cache;
 }
 
 export function getGrade12PlacementBank(): PlacementQuestion[] {
   if (g12Cache) return g12Cache;
-  const titleBySlug = new Map(getGrade12Spine().map((t) => [t.slug, t.title]));
+  const titleBySlug = new Map(GRADE12_SPINE.map((t) => [t.slug, t.title]));
   g12Cache = G12_CURATED.map((q) => ({ ...q, topicTitle: titleBySlug.get(q.topicSlug) ?? q.topicSlug }));
   return g12Cache;
 }

@@ -21,14 +21,17 @@
 // data (attempts, bank mastery, placement results); lib/use-ratings.ts does
 // the gathering on the client.
 
+// Spines only, never the course registry: this module is in the client
+// import graph of every page that shows a rating, and the registry drags
+// the ~14 MB course corpus with it (see lib/genmath-spines.ts header).
 import {
-  getGrade6Topics,
-  getGrade7Topics,
-  getGrade8Topics,
-  getGrade9Topics,
-  getGrade10Topics,
-  getGrade11Topics,
-  getGrade12Topics,
+  GRADE6_SPINE,
+  GRADE7_SPINE,
+  GRADE8_SPINE,
+  GRADE9_SPINE,
+  GRADE10_SPINE,
+  GRADE11_SPINE,
+  GRADE12_SPINE,
   GEOMETRY_SPINE,
   PROBSTAT_SPINE,
   VECMAT_SPINE,
@@ -42,7 +45,7 @@ import {
   SOLIDGEO_SPINE,
   IB_SL_SPINE,
   IB_HL_SPINE,
-} from "./genmath-lessons";
+} from "./genmath-spines";
 import { contextHref } from "./perf-context";
 
 // ---------------------------------------------------------------------------
@@ -255,17 +258,19 @@ export function allRatedUnits(): RatedUnit[] {
     if (attribute) units.push({ context, slug, title, index, attribute });
   };
 
-  const gradeGetters: [number, () => { slug: string; title: string; status?: string }[]][] = [
-    [6, getGrade6Topics],
-    [7, getGrade7Topics],
-    [8, getGrade8Topics],
-    [9, getGrade9Topics],
-    [10, getGrade10Topics],
-    [11, getGrade11Topics],
-    [12, getGrade12Topics],
+  // Spine `live` mirrors the topics' non-placeholder set — the registry's
+  // contract, re-checked by lib/genmath-split.test.ts.
+  const gradeSpines: [number, { slug: string; title: string; live: boolean }[]][] = [
+    [6, GRADE6_SPINE],
+    [7, GRADE7_SPINE],
+    [8, GRADE8_SPINE],
+    [9, GRADE9_SPINE],
+    [10, GRADE10_SPINE],
+    [11, GRADE11_SPINE],
+    [12, GRADE12_SPINE],
   ];
-  for (const [grade, getter] of gradeGetters) {
-    const live = getter().filter((t) => t.status !== "placeholder");
+  for (const [grade, spine] of gradeSpines) {
+    const live = spine.filter((t) => t.live);
     live.forEach((t, i) => push(`course:grade-${grade}`, t.slug, t.title, i + 1));
   }
 

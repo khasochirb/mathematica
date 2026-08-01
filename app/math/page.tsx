@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { listGrades, getGrade6Topics, getGrade7Spine, getGrade8Spine, getGrade9Spine, getGrade10Spine, getGrade11Spine, getGrade12Spine } from "@/lib/genmath-lessons";
+// Spines, not the registry: the catalog lists courses, it renders no
+// lesson, so it must not ship the course corpus (lib/genmath-spines.ts).
+import { listGrades, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
 import useRatings from "@/lib/use-ratings";
 import {
   COURSE_DEFAULT_ATTRIBUTE,
@@ -20,13 +22,13 @@ const BAND_COLOR: Record<Band, string> = {
 };
 
 const TOPIC_COUNTS: Record<number, number> = {
-  6: getGrade6Topics().length,
-  7: getGrade7Spine().length,
-  8: getGrade8Spine().length,
-  9: getGrade9Spine().length,
-  10: getGrade10Spine().length,
-  11: getGrade11Spine().length,
-  12: getGrade12Spine().length,
+  6: GRADE6_SPINE.length,
+  7: GRADE7_SPINE.length,
+  8: GRADE8_SPINE.length,
+  9: GRADE9_SPINE.length,
+  10: GRADE10_SPINE.length,
+  11: GRADE11_SPINE.length,
+  12: GRADE12_SPINE.length,
 };
 
 // Transition grades (owner's structure diagram, 2026-07-31): the final grade
