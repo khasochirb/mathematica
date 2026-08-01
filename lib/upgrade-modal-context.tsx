@@ -24,6 +24,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { api, isNativeShell } from "./api";
 import { useLang } from "./lang-context";
+import { PRICING_PLANS, formatMnt, type PricingPlan } from "./pricing";
 
 // Two namespaces:
 //   gated_*        — feature exists, locked behind Premium (paid upgrade flow)
@@ -38,6 +39,10 @@ export type UpgradeSource =
   | "gated_full_solutions"
   | "gated_study_pool"
   | "landing_premium_card"
+  // Purchase requests — a plan was selected and an email submitted. The
+  // owner works these rows: collect payment, then activate (see lib/pricing.ts).
+  | "purchase_monthly"
+  | "purchase_quarter"
   | "coming_soon_exams"
   | "coming_soon_suraltsah"
   | "coming_soon_ai_tutor"
@@ -142,6 +147,7 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [plan, setPlan] = useState<PricingPlan["key"]>("monthly");
   const [mounted, setMounted] = useState(false);
   const { lang } = useLang();
 
@@ -156,6 +162,7 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
     setEmail("");
     setStatus("idle");
     setErrorMsg(null);
+    setPlan("monthly");
     setIsOpen(true);
     api.events.track({ name: "upgrade_modal_opened", properties: { source: options.source } });
   }, []);
@@ -191,16 +198,25 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
     if (status === "sending") return;
     setStatus("sending");
     setErrorMsg(null);
+    // Premium framing submits a PURCHASE REQUEST for the selected plan; the
+    // source encodes the plan so the owner's waitlist view shows what was
+    // ordered. Coming-soon framing stays a plain notify-me signup.
+    const isComingSoonSubmit = opts?.source?.startsWith("coming_soon_") ?? false;
+    const source: UpgradeSource = isComingSoonSubmit
+      ? (opts?.source ?? "other")
+      : plan === "quarter"
+        ? "purchase_quarter"
+        : "purchase_monthly";
     try {
       await api.waitlist.join({
         email,
-        source: opts?.source ?? "other",
+        source,
         interestedExams: opts?.exams ?? [],
       });
       setStatus("ok");
       api.events.track({
-        name: "waitlist_signup",
-        properties: { source: opts?.source ?? "other" },
+        name: isComingSoonSubmit ? "waitlist_signup" : "purchase_request",
+        properties: { source, opened_from: opts?.source ?? "other" },
       });
     } catch (err) {
       setStatus("error");
@@ -212,6 +228,9 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
   // What Premium actually unlocks today. Keep honest — every bullet must
   // correspond to something a paying user can use right now.
+  // WHEN THE AI TUTOR GOES LIVE (owner sets ANTHROPIC_API_KEY — FLAG-001):
+  // add a bullet here — { en: "AI tutor — 30 questions a day", mn: "AI багш —
+  // өдөрт 30 асуулт" } — and remove ai_tutor from COMING_SOON_FEATURES.
   const premiumLiveFeatures = useMemo(
     () => [
       {
@@ -240,8 +259,8 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
         "Имэйлээ үлдээвэл гарсан даруй мэдэгдэнэ.",
       )
     : t(
-        "Premium is launching soon. Drop your email and we'll notify you the moment it ships.",
-        "Премиум удахгүй гарна. Имэйлээ үлдээвэл гарсан даруй мэдэгдэх болно.",
+        "Pick a plan and leave your email — we'll contact you within 24 hours to arrange payment and activate your account.",
+        "Багцаа сонгоод имэйлээ үлдээгээрэй — 24 цагийн дотор холбогдож, төлбөрийг баталгаажуулан эрхийг тань нээнэ.",
       );
 
   if (!mounted) return <Ctx.Provider value={{ open, openSolutionUpgrade, close, isOpen }}>{children}</Ctx.Provider>;
@@ -296,9 +315,7 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
               </div>
 
               <div className="eyebrow mb-1.5">
-                {isComingSoon
-                  ? t("Coming soon", "Удахгүй")
-                  : t("Premium · Coming soon", "Премиум · Удахгүй")}
+                {isComingSoon ? t("Coming soon", "Удахгүй") : t("Premium", "Премиум")}
               </div>
               <h2
                 className="serif"
@@ -318,6 +335,54 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
               {!isComingSoon && (
                 <>
+                  {/* Plan picker — prices from lib/pricing.ts, nowhere else. */}
+                  <div className="grid grid-cols-2 gap-2 mt-5">
+                    {PRICING_PLANS.map((p) => {
+                      const selected = plan === p.key;
+                      return (
+                        <button
+                          key={p.key}
+                          type="button"
+                          onClick={() => setPlan(p.key)}
+                          className="relative text-left rounded-lg p-3.5 transition-colors"
+                          style={{
+                            border: `1px solid ${selected ? "var(--accent)" : "var(--line)"}`,
+                            background: selected ? "var(--accent-wash)" : "var(--bg-1)",
+                          }}
+                        >
+                          {p.badge && (
+                            <span
+                              className="absolute -top-2 right-2 mono text-[9px] uppercase rounded-full px-1.5 py-[1px]"
+                              style={{
+                                background: "var(--accent)",
+                                color: "var(--accent-ink, white)",
+                                letterSpacing: "0.06em",
+                              }}
+                            >
+                              {lang === "mn" ? p.badge.mn : p.badge.en}
+                            </span>
+                          )}
+                          <div className="text-[12px] mb-1" style={{ color: "var(--fg-2)" }}>
+                            {lang === "mn" ? p.label.mn : p.label.en}
+                          </div>
+                          <div
+                            className="mono tabular"
+                            style={{
+                              fontSize: 20,
+                              letterSpacing: "-0.02em",
+                              color: selected ? "var(--accent)" : "var(--fg)",
+                            }}
+                          >
+                            {formatMnt(p.priceMnt)}
+                          </div>
+                          <div className="text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
+                            {lang === "mn" ? p.note.mn : p.note.en}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+
                   <div
                     className="eyebrow mt-5 mb-2"
                     style={{ color: "var(--accent)" }}
@@ -387,7 +452,9 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                   }}
                 >
                   <p className="mono text-[10px] uppercase mb-1" style={{ letterSpacing: "0.08em" }}>
-                    {t("You're on the list", "Та жагсаалтад орлоо")}
+                    {isComingSoon
+                      ? t("You're on the list", "Та жагсаалтад орлоо")
+                      : t("Request received", "Хүсэлт хүлээн авлаа")}
                   </p>
                   <p>
                     {isComingSoon
@@ -396,8 +463,8 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                           "Гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
                         )
                       : t(
-                          "We'll email you the moment Premium launches. Keep practicing in the meantime.",
-                          "Премиум гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
+                          "We'll contact you within 24 hours to arrange payment and activate Premium. Keep practicing in the meantime.",
+                          "24 цагийн дотор холбогдож төлбөрийг баталгаажуулан Premium эрхийг тань нээнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
                         )}
                   </p>
                 </div>
@@ -427,7 +494,9 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                   >
                     {status === "sending"
                       ? t("Sending…", "Илгээж байна…")
-                      : t("Notify me", "Надад мэдэгд")}
+                      : isComingSoon
+                        ? t("Notify me", "Надад мэдэгд")
+                        : t("Request Premium", "Premium авах")}
                   </button>
                 </form>
               )}

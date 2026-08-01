@@ -1,8 +1,12 @@
 import { createAdminClient } from "./supabase";
 
-// Reserved for future AI-generated problem gating. Not currently enforced —
-// past-paper content is free with no cap.
-export const FREE_DAILY_AI_LIMIT = 10;
+// Daily AI-tutor question quotas, enforced by /api/tutor. The free tier is a
+// taste (enough to hit a wall on homework and see the tutor work); Premium is
+// the real allowance. Both are HARD daily caps, so the worst-case Anthropic
+// spend per student per day is bounded: roughly limit × ~₮90 per question at
+// typical usage (see the pricing/cost notes in lib/pricing.ts).
+export const FREE_DAILY_AI_LIMIT = 3;
+export const PREMIUM_DAILY_AI_LIMIT = 30;
 
 /** Check if user is an active subscriber */
 export async function isSubscribed(userId: string): Promise<boolean> {

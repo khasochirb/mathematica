@@ -5,7 +5,13 @@ export const maxDuration = 60;
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { getAuthUser } from "@/lib/server-auth";
-import { FREE_DAILY_AI_LIMIT, getDailyCount, incrementDailyCount } from "@/lib/subscription";
+import {
+  FREE_DAILY_AI_LIMIT,
+  PREMIUM_DAILY_AI_LIMIT,
+  isSubscribed,
+  getDailyCount,
+  incrementDailyCount,
+} from "@/lib/subscription";
 import { parseTutorBody, buildTutorSystem } from "@/lib/tutor-prompt";
 
 // AI tutor endpoint. Auth required (students only), grounded on the lesson/
@@ -50,17 +56,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  // Daily quota. Count failures fail OPEN (a broken counter must never take
-  // the tutor down), but a successful read over the limit is a hard stop.
+  // Daily quota, tiered by subscription: Premium gets the real allowance,
+  // free gets a taste. Count failures fail OPEN (a broken counter must never
+  // take the tutor down), but a successful read over the limit is a hard stop.
   try {
+    const premium = await isSubscribed(user.id);
+    const limit = premium ? PREMIUM_DAILY_AI_LIMIT : FREE_DAILY_AI_LIMIT;
     const used = await getDailyCount(user.id);
-    if (used >= FREE_DAILY_AI_LIMIT) {
+    if (used >= limit) {
       return NextResponse.json(
         {
-          error: bilingual(
-            `Өнөөдрийн ${FREE_DAILY_AI_LIMIT} асуултын эрх дууслаа. Маргааш дахин ирээрэй!`,
-            `You've used today's ${FREE_DAILY_AI_LIMIT} questions. Come back tomorrow!`,
-          ),
+          error: premium
+            ? bilingual(
+                `Өнөөдрийн ${limit} асуултын эрх дууслаа. Маргааш дахин ирээрэй!`,
+                `You've used today's ${limit} questions. Come back tomorrow!`,
+              )
+            : bilingual(
+                `Өнөөдрийн үнэгүй ${limit} асуултын эрх дууслаа. Premium эрхээр өдөрт ${PREMIUM_DAILY_AI_LIMIT} асуулт асуугаарай!`,
+                `You've used today's ${limit} free questions. Premium unlocks ${PREMIUM_DAILY_AI_LIMIT} a day!`,
+              ),
         },
         { status: 429 },
       );

@@ -80,6 +80,22 @@ student per day, so spend is bounded per active student.
 
 ---
 
+### FLAG-003 — `ADMIN_ACTIVATION_KEY` not set in Vercel (OPTIONAL)
+
+| | |
+|---|---|
+| **Since** | Premium pricing launch (prices public, manual fulfillment) |
+| **Dormant** | `POST /api/subscription/activate` — the curl one-liner that activates a paid account. Returns 503 while unset. |
+| **Degradation** | None that blocks revenue: the primary runbook is the Supabase dashboard — set `profiles.is_subscribed = true` and `subscription_expires_at` for the buyer's row (their `user_id` is on the purchase request in `premium_waitlist`). The route is a convenience. |
+| **Owner action** | Optional, ~2 min: Vercel → imathhub → Settings → Env Vars → add `ADMIN_ACTIVATION_KEY` = a long random string (e.g. `openssl rand -hex 24`), Production, Sensitive. Redeploy. |
+| **Verify** | `curl -s -o /dev/null -w '%{http_code}' -X POST https://www.mongolpotential.com/api/subscription/activate` → **401** = key set (route armed) · **503** = unset (dashboard-only). |
+
+**Security note:** before 2026-08-01 this route let any signed-in user
+activate their own subscription (pre-pricing placeholder). It now requires
+the admin key and is disabled without it.
+
+---
+
 ## WATCH (not blocking, verified by the same endpoint)
 
 *(none open — 009 confirmed applied, see Resolved)*

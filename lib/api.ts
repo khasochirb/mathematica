@@ -186,11 +186,9 @@ export const api = {
         dailyProblemsLimit: number;
         remainingToday: number | null;
       }>("/api/subscription/status"),
-    activate: (body: { months: number; paymentRef?: string }) =>
-      apiCall<{ success: boolean; expiresAt: string }>(
-        "/api/subscription/activate",
-        { method: "POST", body: JSON.stringify(body) }
-      ),
+    // NOTE: /api/subscription/activate is admin-only (ADMIN_ACTIVATION_KEY
+    // header) and deliberately has no client binding — activation happens
+    // after out-of-band payment, never from the browser.
   },
   waitlist: {
     join: (body: { email: string; source: string; interestedExams?: string[] }) =>
