@@ -190,6 +190,9 @@ def lesson_inverse():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "The question that asks for the exponent", "body": "\"$2$ to WHAT power gives $32$?\" — that question's answer is what $\\log_2 32$ MEANS. A logarithm is not a new kind of number; it is an exponent, hunted from the other side. $\\log_b x$ is the power you put on $b$ to reach $x$.", "beats": ["$\\log_b x$ = the needed exponent", "$\\log_2 32 = 5$ because $2^5 = 32$", "Log form and exponential form say the same thing"]},
+            {"kind": "worked", "title": "Evaluate by asking the exponential question", "problemId": "im3-u3-l1-we1"},
+            
             tap(
                 "The exponent question",
                 "What is $\\log_2 32$?",
@@ -199,6 +202,8 @@ def lesson_inverse():
                 "— is $5$.",
                 ["Eq(2**5, 32)"],
             ),
+            {"kind": "worked", "title": "Unknown in two different places", "problemId": "im3-u3-l1-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Say it out loud", "body": "$\\log_2 8$ reads \"$2$ to what power is $8$?\" — answer $3$. Reading it as \"$2$ to the power $8$\" gives $256$ and is the single most common log error. The log ASKS for the exponent; it doesn't apply one."},
             tap(
                 "Two costumes",
                 "Which equation says the same thing as $\\log_6 x = 2$?",
@@ -208,6 +213,10 @@ def lesson_inverse():
                 "to exponential form is always the first move.",
                 ["Eq(6**2, 36)"],
             ),
+            {"kind": "worked", "title": "Where a log function lives", "problemId": "im3-u3-l1-we3"},
+            {"kind": "teach", "title": "The graph is the exponential, reflected", "body": "$y = \\log_b x$ is $y = b^x$ flipped across the line $y = x$ — inputs and outputs trade places. The exponential's horizontal asymptote becomes the log's VERTICAL asymptote at $x = 0$, and only positive numbers have logarithms, because $b^y$ is always positive.", "beats": ["Reflection of $b^x$ across $y = x$", "Vertical asymptote where the inside hits 0", "Inputs must be positive"]},
+            {"kind": "tryIt", "title": "One evaluation", "problemId": "im3-u3-l1-t1"},
+            {"kind": "tryIt", "title": "Solve for x", "problemId": "im3-u3-l1-t2"},
             tap(
                 "Where logs live",
                 "What is the domain of $y = \\log_2(x + 4)$?",
@@ -217,6 +226,7 @@ def lesson_inverse():
                 "asymptote moved with the inside expression.",
                 ["Eq(-4 + 4, 0)", "-3 + 4 > 0"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$\\log_b x$ is the exponent you put on $b$ to get $x$", "$\\log_b x = y$ and $b^y = x$ are the same sentence", "Base restrictions: $b > 0$, $b \\ne 1$; inputs must be positive", "Graph: the exponential reflected across $y = x$, vertical asymptote at the domain edge", "Logarithmic growth is slow by design — it counts doublings"]},
         ],
     )
 
@@ -386,6 +396,9 @@ def lesson_laws():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Exponent laws in inverse costume", "body": "Multiply powers of $b$ and the exponents ADD — so when logs (which ARE exponents) meet a product, they add: $\\log_b(xy) = \\log_b x + \\log_b y$. Quotients subtract for the same reason. Each law of logarithms is an exponent law you already know, read through the inverse.", "beats": ["Product → sum", "Quotient → difference", "Power → multiplier out front"]},
+            {"kind": "worked", "title": "Expanding a compound log", "problemId": "im3-u3-l2-we1"},
+            
             tap(
                 "Which law",
                 "$\\log_2 x + \\log_2 y$ condenses to:",
@@ -395,6 +408,8 @@ def lesson_laws():
                 "left. Nothing about the base changes.",
                 ["Eq(simplify(log(4, 2) + log(8, 2)), simplify(log(32, 2)))"],
             ),
+            {"kind": "worked", "title": "Condensing to a single log", "problemId": "im3-u3-l2-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "There is NO law for log(x + y)", "body": "The laws convert MULTIPLICATIVE structure. $\\log(x + y)$ has no expansion — it is not $\\log x + \\log y$ (that would be $\\log(xy)$). When you see a sum inside a log, stop: the laws have nothing to say."},
             tap(
                 "The exponent-mover",
                 "$\\log_5(x^7)$ equals:",
@@ -405,6 +420,10 @@ def lesson_laws():
                 "expression that no law simplifies.",
                 ["Eq(simplify(log(5**7, 5)), 7)"],
             ),
+            {"kind": "worked", "title": "Change of base, exactly", "problemId": "im3-u3-l2-we3"},
+            {"kind": "teach", "title": "The workhorse and the escape hatch", "body": "The power law $\\log_b(x^n) = n\\log_b x$ is what will later pull an unknown out of an exponent — it is the workhorse of the next lesson. And change of base, $\\log_b x = \\frac{\\log x}{\\log b}$, means any log can be computed in any base you like.", "beats": ["Power law pulls exponents down", "Change of base: a ratio of logs in ANY base", "Laws run both directions: expand and condense"]},
+            {"kind": "tryIt", "title": "Condense and evaluate", "problemId": "im3-u3-l2-t1"},
+            {"kind": "tryIt", "title": "Expand", "problemId": "im3-u3-l2-t2"},
             tap(
                 "No sum law",
                 "In base $10$, which is TRUE?",
@@ -419,6 +438,7 @@ def lesson_laws():
                     "Ne(simplify(log(10, 10)), simplify(log(2, 10) + log(8, 10)))",
                 ],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Product → sum, quotient → difference, power → multiplier", "Every law is an exponent law read through the inverse", "No law exists for $\\log(x + y)$", "$(\\log x)^2$ and $\\log(x^2)$ are different objects", "Change of base: $\\log_b x = \\frac{\\log x}{\\log b}$, any base"]},
         ],
     )
 
@@ -593,6 +613,9 @@ def lesson_equations():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Three doors, one test", "body": "Every equation in this lesson opens one of three ways. Same base possible? Match the bases and equate exponents. Bases refuse to match? Take a log of both sides and let the power law pull the unknown down. Log wrapped around the unknown? Condense, then convert to exponential form.", "beats": ["Match bases → equate exponents", "Can't match → take a log", "Log equation → condense, convert"]},
+            {"kind": "worked", "title": "Matching the bases", "problemId": "im3-u3-l3-we1"},
+            
             tap(
                 "First move",
                 "To solve $5 \\cdot 2^{x} = 80$, the best first step is:",
@@ -604,6 +627,8 @@ def lesson_equations():
                 "through every line.",
                 ["Eq(Rational(80, 5), 16)", "Eq(2**4, 16)"],
             ),
+            {"kind": "worked", "title": "Isolate, then log both sides", "problemId": "im3-u3-l3-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Isolate the exponential FIRST", "body": "Logging $3 \\cdot 2^t = 96$ as it stands drags a $\\log 3$ through every later line. Divide by $3$ first — $2^t = 32$ — and the equation may even solve by recognition. Isolate, then log."},
             tap(
                 "Matching bases",
                 "Solve $25^{x} = 5^{x + 3}$.",
@@ -613,6 +638,10 @@ def lesson_equations():
                 "Check: $25^3 = 15625 = 5^6$ ✓.",
                 ["Eq(25, 5**2)", "Eq(2*3, 3 + 3)", "Eq(25**3, 5**6)"],
             ),
+            {"kind": "worked", "title": "A log equation and its impostor root", "problemId": "im3-u3-l3-we3"},
+            {"kind": "teach", "title": "The unit's warning, wearing new clothes", "body": "Condensing $\\log_2 x + \\log_2(x-2)$ ASSUMED both logs existed — assumed $x > 0$ and $x > 2$. The quadratic you solve afterwards knows nothing of those assumptions, so it may hand back a root the original equation cannot accept. Same disease as rational and radical equations; same cure: check.", "beats": ["Condensing assumes every log exists", "Check candidates in the ORIGINAL", "Rejecting a root is a result, not an error"]},
+            {"kind": "tryIt", "title": "Match the bases", "problemId": "im3-u3-l3-t1"},
+            {"kind": "tryIt", "title": "Convert and solve", "problemId": "im3-u3-l3-t2"},
             tap(
                 "The check that matters",
                 "Solving $\\log_5 x + \\log_5(x - 4) = 1$ gives candidates $x = 5$ and "
@@ -628,6 +657,7 @@ def lesson_equations():
                     "-1 < 0",
                 ],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$b^A = b^B$ forces $A = B$ — exponentials never repeat a value", "Unmatchable bases: log both sides, power law pulls the unknown down", "Log equations: condense to one log, rewrite in exponential form", "Candidates must satisfy the ORIGINAL logs' domains", "Exact answers like $\\frac{\\log 32}{\\log 2}$ are finished answers"]},
         ],
     )
 
@@ -807,6 +837,9 @@ def lesson_modelling():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Name the factor", "body": "Every exponential model is $A(t) = A_0 \\cdot b^t$: a starting amount and a constant multiplier per time step. The multiplier hides inside the story — growth of $5\\%$ means $b = 1.05$, decay of $10\\%$ means $b = 0.9$, doubling means $2$, half-life means $\\frac{1}{2}$.", "beats": ["Growth $r\\%$: $b = 1 + r$", "Decay $r\\%$: $b = 1 - r$", "Doubling / half-life: $b = 2$ or $\\tfrac{1}{2}$, clock rescaled"]},
+            {"kind": "worked", "title": "Percent growth, compounded", "problemId": "im3-u3-l4-we1"},
+            
             tap(
                 "Name the factor",
                 "A quantity DECAYS by $20\\%$ per week. Its weekly factor is:",
@@ -816,6 +849,8 @@ def lesson_modelling():
                 "would be an $80\\%$ collapse each week.",
                 ["Eq(1 - Rational(20, 100), Rational(4, 5))"],
             ),
+            {"kind": "worked", "title": "Half-life: count the halvings", "problemId": "im3-u3-l4-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "The clock divides by the doubling time", "body": "In $A_0 \\cdot 2^{t/d}$ the exponent counts DOUBLINGS, not hours: $t$ hours is $t/d$ doublings. Twenty hours with a $5$-hour half-life is $4$ halvings — divide by the period first, then apply the power."},
             tap(
                 "Counting doublings",
                 "$N(t) = 300 \\cdot 2^{t/6}$, with $t$ in hours. After $18$ hours the "
@@ -825,6 +860,10 @@ def lesson_modelling():
                 "$\\frac{18}{6} = 3$ doublings: $300 \\to 600 \\to 1200 \\to 2400$.",
                 ["Eq(Rational(18, 6), 3)", "Eq(300*2**3, 2400)"],
             ),
+            {"kind": "worked", "title": "Solving for time with a logarithm", "problemId": "im3-u3-l4-we3"},
+            {"kind": "teach", "title": "Evaluating is substitution; solving for time is new", "body": "To find WHEN, isolate the exponential factor and reach the exponent — by recognising the power when the numbers are kind, or with a logarithm when they are not. That is precisely the tool this unit built. And remember a model is a claim about a pattern, trustworthy over the range it was measured on.", "beats": ["Isolate the factor: $b^{t/d} = $ ratio", "Recognise the power, or take a log", "Extrapolate with humility"]},
+            {"kind": "tryIt", "title": "Decay by percent", "problemId": "im3-u3-l4-t1"},
+            {"kind": "tryIt", "title": "Half-life drill", "problemId": "im3-u3-l4-t2"},
             tap(
                 "Solving for time",
                 "$100 \\cdot 3^{t} = 8100$ gives $t = $:",
@@ -834,6 +873,7 @@ def lesson_modelling():
                 "was named.",
                 ["Eq(Rational(8100, 100), 81)", "Eq(3**4, 81)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Model: $A(t) = A_0 \\cdot b^t$ — name the factor first", "$5\\%$ growth is $b = 1.05$, never $b = 0.05$", "Doubling/half-life clocks: exponent $t/d$ counts the periods", "Solving for time = reaching the exponent with a log", "Exponential change multiplies; linear change adds — don't mix them"]},
         ],
     )
 

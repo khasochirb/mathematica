@@ -209,6 +209,9 @@ def lesson_unit_circle():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "The triangle's ratios become coordinates", "body": "Stand an angle at the positive $x$-axis, opening counterclockwise, and mark where its terminal side crosses the circle of radius $1$. That point's coordinates are DEFINED to be $(\\cos\\theta, \\sin\\theta)$. For acute angles this agrees with the right-triangle ratios — but now EVERY angle has a point, so every angle has a sine and cosine.", "beats": ["Cosine = the $x$-coordinate", "Sine = the $y$-coordinate", "Defined for every angle, not just acute"]},
+            {"kind": "worked", "title": "Converting between degrees and radians", "problemId": "im3-u4-l1-we1"},
+            
             tap(
                 "Read the point",
                 "The angle $\\pi$ lands at the point $(-1, 0)$. Therefore $\\cos\\pi$ "
@@ -219,6 +222,8 @@ def lesson_unit_circle():
                 "$y$-coordinate, $0$.",
                 ["Eq(simplify(cos(pi)), -1)", "Eq(simplify(sin(pi)), 0)"],
             ),
+            {"kind": "worked", "title": "Axis angles, read straight off the point", "problemId": "im3-u4-l1-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Radians measure the arc", "body": "A full turn is the full circumference, $2\\pi$ — so converting is one proportion: multiply degrees by $\\frac{\\pi}{180}$. Sanity-check against landmarks: $\\pi$ is half a turn, $\\frac{\\pi}{2}$ a quarter. A conversion that lands nowhere near its landmark is wrong."},
             tap(
                 "Quarter turns",
                 "$90^\\circ$ in radians is:",
@@ -228,6 +233,10 @@ def lesson_unit_circle():
                 "\\frac{\\pi}{2}$. Equivalently $90 \\cdot \\frac{\\pi}{180}$.",
                 ["Eq(90*pi/180, pi/2)"],
             ),
+            {"kind": "worked", "title": "Coterminal angles share everything", "problemId": "im3-u4-l1-we3"},
+            {"kind": "teach", "title": "Around again changes nothing", "body": "Adding or subtracting $2\\pi$ lands on the same point, so it changes no trig value — the functions repeat, by construction. Negative angles just travel clockwise: $-\\frac{\\pi}{3}$ and $\\frac{5\\pi}{3}$ are the same point. Periodicity isn't discovered later; it is built into the definition.", "beats": ["$\\theta \\pm 2\\pi$: same point, same values", "Negative = clockwise", "$\\sin(\\theta + 2\\pi) = \\sin\\theta$, always"]},
+            {"kind": "tryIt", "title": "Convert both ways", "problemId": "im3-u4-l1-t1"},
+            {"kind": "tryIt", "title": "Evaluate at the axes", "problemId": "im3-u4-l1-t2"},
             tap(
                 "Going around again",
                 "$\\sin\\left(\\dfrac{\\pi}{6} + 2\\pi\\right)$ equals:",
@@ -239,6 +248,7 @@ def lesson_unit_circle():
                 "inherits.",
                 ["Eq(simplify(sin(pi/6 + 2*pi) - sin(pi/6)), 0)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["The point is $(\\cos\\theta, \\sin\\theta)$ — cosine is $x$, sine is $y$", "Radians: multiply degrees by $\\frac{\\pi}{180}$; $\\pi$ is a half turn", "Axis values come free from $(1,0), (0,1), (-1,0), (0,-1)$", "Coterminal angles (differing by $2\\pi$) share every value", "The quadrant decides signs — not the direction of travel"]},
         ],
     )
 
@@ -419,6 +429,9 @@ def lesson_reference():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Fold every angle into the first quadrant", "body": "The reference angle of $\\theta$ is the acute angle between its terminal side and the $x$-axis — the first-quadrant angle it folds onto. Folding flips signs but never sizes: the magnitudes of $\\sin\\theta$ and $\\cos\\theta$ equal those of the reference angle.", "beats": ["Reference angle: measured to the $x$-axis", "Sizes survive the fold", "Signs come from the quadrant"]},
+            {"kind": "worked", "title": "A second-quadrant fold", "problemId": "im3-u4-l2-we1"},
+            
             tap(
                 "Fold it back",
                 "The reference angle of $\\dfrac{2\\pi}{3}$ is:",
@@ -428,6 +441,8 @@ def lesson_reference():
                 "$\\pi$, so it folds onto $\\frac{\\pi}{3}$.",
                 ["Eq(pi - 2*pi/3, pi/3)"],
             ),
+            {"kind": "worked", "title": "All three functions in quadrant III", "problemId": "im3-u4-l2-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Measure to the x-axis, never the y-axis", "body": "$\\frac{5\\pi}{6}$ leans $\\frac{\\pi}{6}$ away from the NEGATIVE $x$-axis — that's its reference angle. Measuring to the $y$-axis gives $\\frac{\\pi}{3}$ and every value that follows is wrong. The fold is always onto the horizontal."},
             tap(
                 "Sign check",
                 "In which quadrants is cosine NEGATIVE?",
@@ -438,6 +453,10 @@ def lesson_reference():
                 ["Eq(simplify(cos(2*pi/3) + Rational(1, 2)), 0)",
                  "Eq(simplify(cos(4*pi/3) + Rational(1, 2)), 0)"],
             ),
+            {"kind": "worked", "title": "Running the machine backwards", "problemId": "im3-u4-l2-we3"},
+            {"kind": "teach", "title": "Every evaluation is a two-step", "body": "NAME the reference angle, then SIGN the first-quadrant value by quadrant. Tangent rides along as $\\frac{\\sin\\theta}{\\cos\\theta}$ — the slope of the terminal side — its sign the quotient of the two. And an equation like $\\sin\\theta = c$ has TWO answers per turn: one in each quadrant where the sign fits.", "beats": ["Step 1: reference angle", "Step 2: quadrant sign", "$\\sin\\theta = c$: expect two angles per turn"]},
+            {"kind": "tryIt", "title": "Name and evaluate", "problemId": "im3-u4-l2-t1"},
+            {"kind": "tryIt", "title": "Fourth-quadrant cosine", "problemId": "im3-u4-l2-t2"},
             tap(
                 "Assemble a value",
                 "$\\cos\\dfrac{3\\pi}{4}$ equals:",
@@ -448,6 +467,7 @@ def lesson_reference():
                 "$\\frac{\\sqrt{2}}{2}$; quadrant II makes cosine negative.",
                 ["Eq(simplify(cos(3*pi/4) + sqrt(2)/2), 0)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Reference angle for the SIZE, quadrant for the SIGN", "Fold onto the $x$-axis — never measure from the $y$-axis", "Only three magnitudes to memorise: those of $\\tfrac{\\pi}{6}, \\tfrac{\\pi}{4}, \\tfrac{\\pi}{3}$", "Tangent = sine over cosine = slope of the terminal side", "$\\sin\\theta = c$ on a full turn: two answers, one per matching quadrant"]},
         ],
     )
 
@@ -622,6 +642,9 @@ def lesson_graphs():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Unroll the circle", "body": "Let the angle run along a horizontal axis and plot the circling point's $y$-coordinate: that is $y = \\sin\\theta$, the circle unrolled into a wave. It rises to $1$, falls through $0$ to $-1$, and returns — then repeats forever, because the circle does.", "beats": ["The wave IS the circle, unrolled", "Sine starts at 0; cosine starts at 1", "Period $2\\pi$: one full lap"]},
+            {"kind": "worked", "title": "Reading the three dials", "problemId": "im3-u4-l3-we1"},
+            
             tap(
                 "The three dials",
                 "For $y = 4\\sin(3x) + 1$, the amplitude, period and midline are:",
@@ -632,6 +655,8 @@ def lesson_graphs():
                 "$2\\pi$); midline $y = 1$. Max $5$, min $-3$.",
                 ["Eq(Abs(4), 4)", "Eq(1 + 4, 5)", "Eq(1 - 4, -3)"],
             ),
+            {"kind": "worked", "title": "A flipped, slowed cosine", "problemId": "im3-u4-l3-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "b is not the period", "body": "In $y = \\sin(bx)$ the number $b$ counts how many full waves fit in a $2\\pi$ window; the period itself is $\\frac{2\\pi}{b}$. Bigger $b$ means a FASTER, tighter wave. Read $b = 4$ as \"four laps per $2\\pi$\", never as \"period $4$\"."},
             tap(
                 "Faster or slower",
                 "Compared with $y = \\cos x$, the graph of $y = \\cos(3x)$ is:",
@@ -642,6 +667,10 @@ def lesson_graphs():
                 "to $\\frac{2\\pi}{3}$. Height is untouched — that is $a$'s dial.",
                 ["Eq(2*pi/3, 2*pi/3)", "Eq(Abs(1), 1)"],
             ),
+            {"kind": "worked", "title": "Building a tide model from max and min", "problemId": "im3-u4-l3-we3"},
+            {"kind": "teach", "title": "Modelling runs the reading backwards", "body": "From a maximum and minimum: the midline is their average, the amplitude their half-difference, and the period is read off the story's clock. Choose cosine to start at a peak, sine to start on the midline — the choice is a starting point, not a different physics.", "beats": ["Midline $k$ = average of max and min", "Amplitude $|a|$ = half the difference", "Cosine starts at a peak; sine at the midline"]},
+            {"kind": "tryIt", "title": "Amplitude and period", "problemId": "im3-u4-l3-t1"},
+            {"kind": "tryIt", "title": "Midline from max and min", "problemId": "im3-u4-l3-t2"},
             tap(
                 "Build the model",
                 "A wave oscillates between $0$ and $10$ with period $8$, starting at "
@@ -660,6 +689,7 @@ def lesson_graphs():
                     "Eq(5 + 5*1, 10)",
                 ],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Three dials: $|a|$ swing, $k$ centreline, $\\frac{2\\pi}{b}$ lap time", "Amplitude is the HALF-height: $\\frac{\\text{max} - \\text{min}}{2}$", "$b$ counts waves per $2\\pi$; the period is $\\frac{2\\pi}{b}$", "A negative $a$ flips the wave; amplitude stays $|a|$", "Model from a story: midline, amplitude, period, then pick sine or cosine by the start"]},
         ],
     )
 
@@ -846,6 +876,9 @@ def lesson_identity():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "The circle's equation, renamed", "body": "A point $(x, y)$ lies on the unit circle exactly when $x^2 + y^2 = 1$. The point reached by $\\theta$ has $x = \\cos\\theta$ and $y = \\sin\\theta$ — substitute, and $\\sin^2\\theta + \\cos^2\\theta = 1$ for EVERY angle. The proof is that one substitution; the identity is geometry wearing trig notation.", "beats": ["$x^2 + y^2 = 1$ with coordinates renamed", "True for every $\\theta$, all four quadrants", "One value recovers the other — up to sign"]},
+            {"kind": "worked", "title": "From sine to cosine and tangent", "problemId": "im3-u4-l4-we1"},
+            
             tap(
                 "Where it comes from",
                 "The identity $\\sin^2\\theta + \\cos^2\\theta = 1$ is a renaming of:",
@@ -859,6 +892,8 @@ def lesson_identity():
                 "names and the identity appears.",
                 ["Eq(simplify(sin(pi/5)**2 + cos(pi/5)**2), 1)"],
             ),
+            {"kind": "worked", "title": "Quadrant III does the signing", "problemId": "im3-u4-l4-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Un-squaring costs a ±", "body": "The identity hands you $\\cos^2\\theta$; taking the square root gives $\\pm\\cos\\theta$, and the algebra cannot choose. The QUADRANT chooses. Never write $\\cos\\theta = \\sqrt{1 - \\sin^2\\theta}$ without asking where $\\theta$ lives."},
             tap(
                 "Magnitude then sign",
                 "$\\sin\\theta = \\dfrac{5}{13}$ and $\\theta$ is in quadrant II. "
@@ -872,6 +907,10 @@ def lesson_identity():
                     "Eq(Rational(5, 13)**2 + Rational(12, 13)**2, 1)",
                 ],
             ),
+            {"kind": "worked", "title": "Proving an identity, not just checking it", "problemId": "im3-u4-l4-we3"},
+            {"kind": "teach", "title": "Familiar triangles, hiding on the circle", "body": "With $\\sin\\theta = \\frac{3}{5}$ the identity forces $\\cos\\theta = \\pm\\frac{4}{5}$ — the $3$–$4$–$5$ triangle scaled onto the unit circle. Tangent then comes free as the quotient of the two. A verification at one angle ILLUSTRATES an identity; only algebra that never picks a value PROVES it.", "beats": ["Pythagorean triples reappear as trig values", "$\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$", "Verify at a point; prove with algebra"]},
+            {"kind": "tryIt", "title": "Quadrant I warm-up", "problemId": "im3-u4-l4-t1"},
+            {"kind": "tryIt", "title": "Tangent from cosine", "problemId": "im3-u4-l4-t2"},
             tap(
                 "Notation check",
                 "$\\sin^2\\theta$ means:",
@@ -881,6 +920,7 @@ def lesson_identity():
                 "identity would be false under any of the other readings.",
                 ["Eq(Rational(1, 2)**2, Rational(1, 4))"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$\\sin^2\\theta + \\cos^2\\theta = 1$ — the unit circle's own equation", "It recovers either value from the other, up to a sign", "The quadrant supplies the sign the algebra lost", "$\\sin^2\\theta$ means $(\\sin\\theta)^2$, never $\\sin(\\theta^2)$", "One-angle checks illustrate; only general algebra proves"]},
         ],
     )
 

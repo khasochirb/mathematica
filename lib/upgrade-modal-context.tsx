@@ -15,7 +15,6 @@ import {
   Sparkles,
   Check,
   Clock,
-  Bot,
   Wand2,
   Lightbulb,
   Route,
@@ -89,16 +88,8 @@ export interface ComingSoonFeature {
 }
 
 export const COMING_SOON_FEATURES: ComingSoonFeature[] = [
-  {
-    key: "ai_tutor",
-    source: "coming_soon_ai_tutor",
-    icon: Bot,
-    title: { en: "AI tutor", mn: "AI багш" },
-    desc: {
-      en: "Ask any question, get a step-by-step explanation.",
-      mn: "Асуусан асуултад алхам-алхмаар тайлбар.",
-    },
-  },
+  // ai_tutor moved OUT of this list 2026-08-01 — it is LIVE (ANTHROPIC_API_KEY
+  // configured on prod) and now appears in premiumLiveFeatures below.
   {
     key: "ai_problems",
     source: "coming_soon_ai_problems",
@@ -228,11 +219,12 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
   // What Premium actually unlocks today. Keep honest — every bullet must
   // correspond to something a paying user can use right now.
-  // WHEN THE AI TUTOR GOES LIVE (owner sets ANTHROPIC_API_KEY — FLAG-001):
-  // add a bullet here — { en: "AI tutor — 30 questions a day", mn: "AI багш —
-  // өдөрт 30 асуулт" } — and remove ai_tutor from COMING_SOON_FEATURES.
   const premiumLiveFeatures = useMemo(
     () => [
+      {
+        en: "AI tutor — 30 questions a day (free accounts get 3)",
+        mn: "AI багш — өдөрт 30 асуулт (үнэгүй эрхэд 3)",
+      },
       {
         en: "Additional practice tests created by experienced math teachers",
         mn: "Туршлагатай математикийн багш нарын зохиосон нэмэлт дадлага тестүүд",

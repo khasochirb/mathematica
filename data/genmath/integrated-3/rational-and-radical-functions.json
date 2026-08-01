@@ -138,6 +138,21 @@
       "interactive": {
         "steps": [
           {
+            "kind": "teach",
+            "title": "Division by zero writes the map",
+            "body": "A rational function is one polynomial over another, and everything interesting about it comes from the places the bottom is zero. But being thrown out of the domain is not the same as having an asymptote — FACTOR first. A factor that cancels leaves a hole; a factor that survives forces a vertical asymptote.",
+            "beats": [
+              "Domain: bottom ≠ 0",
+              "Cancelled factor → hole",
+              "Surviving factor → vertical asymptote"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Reading the domain off the denominator",
+            "problemId": "im3-u2-l1-we1"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Domain first",
             "prompt": "Which values must be excluded from the domain of $\\dfrac{x + 5}{x^2 - x - 6}$?",
@@ -156,6 +171,17 @@
             ]
           },
           {
+            "kind": "worked",
+            "title": "Hole or asymptote — factor and see",
+            "problemId": "im3-u2-l1-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "A hole still empties the domain",
+            "body": "Cancelling $(x - 3)$ from top and bottom removes the asymptote, not the exclusion. The simplified formula is a different function unless you carry the restriction $x \\ne 3$ along with it."
+          },
+          {
             "kind": "tapQuestion",
             "title": "Hole or asymptote",
             "prompt": "In $\\dfrac{(x - 4)(x + 1)}{(x - 4)(x - 2)}$, what happens at $x = 4$?",
@@ -170,6 +196,31 @@
             "check": [
               "Eq(Rational(4 + 1, 4 - 2), Rational(5, 2))"
             ]
+          },
+          {
+            "kind": "worked",
+            "title": "Three horizontal-asymptote races",
+            "problemId": "im3-u2-l1-we3"
+          },
+          {
+            "kind": "teach",
+            "title": "The ends are a race between degrees",
+            "body": "As $|x|$ grows, only the leading terms matter — so compare degrees. Bottom wins: the fraction is squeezed to $y = 0$. A tie: $y$ levels off at the ratio of leading coefficients. Top wins: no horizontal asymptote at all.",
+            "beats": [
+              "Bottom wins → $y = 0$",
+              "Tie → ratio of leading coefficients",
+              "Top wins → none"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Domain drill",
+            "problemId": "im3-u2-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Hole or asymptote?",
+            "problemId": "im3-u2-l1-t2"
           },
           {
             "kind": "tapQuestion",
@@ -187,6 +238,17 @@
               "Eq(Rational(4*100 + 9, 100**2 + 1), Rational(409, 10001))",
               "Rational(409, 10001) < Rational(1, 20)",
               "2 > 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Domain: every zero of the denominator is excluded",
+              "Factor first — cancelled factor is a hole, surviving factor is a vertical asymptote",
+              "Horizontal asymptote: compare degrees, not constants",
+              "A graph may cross its horizontal asymptote in the middle; it describes the ENDS",
+              "The excluded point survives every simplification"
             ]
           }
         ]
@@ -328,6 +390,21 @@
       "interactive": {
         "steps": [
           {
+            "kind": "teach",
+            "title": "Fractions, grown up",
+            "body": "Rational expressions behave exactly like fractions of integers, because they are built the same way. Multiply tops and bottoms; divide by flipping; add over a common denominator. The one discipline that makes all three legal: factor FIRST, because cancelling is only ever allowed on factors.",
+            "beats": [
+              "Multiply → cancel factors",
+              "Divide → flip, then multiply",
+              "Add → build the LCD from factors"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Multiply, then cancel factors",
+            "problemId": "im3-u2-l2-we1"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Factors, not terms",
             "prompt": "What does $\\dfrac{x^2 + 3x}{x}$ simplify to?",
@@ -343,6 +420,17 @@
               "Eq(expand(x*(x + 3)), x**2 + 3*x)",
               "Eq(simplify((x**2 + 3*x)/x - (x + 3)), 0)"
             ]
+          },
+          {
+            "kind": "worked",
+            "title": "Division is multiplication by the reciprocal",
+            "problemId": "im3-u2-l2-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "Cancel factors, never terms",
+            "body": "In $\\frac{x + 3}{x^2 + 3}$ nothing cancels: the $3$s are TERMS, glued on by addition. Only a factor — something multiplying the whole top and the whole bottom — can be struck out."
           },
           {
             "kind": "tapQuestion",
@@ -361,6 +449,36 @@
             ]
           },
           {
+            "kind": "worked",
+            "title": "Adding over the least common denominator",
+            "problemId": "im3-u2-l2-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "Subtraction distributes over the whole numerator",
+            "problemId": "im3-u2-l2-we4"
+          },
+          {
+            "kind": "teach",
+            "title": "The LCD is built from factors, not products",
+            "body": "Factor every denominator, then take each distinct factor at its greatest power. Multiplying all the denominators together always works but bloats the algebra — the LEAST common denominator keeps the numerators small and the restrictions readable.",
+            "beats": [
+              "Factor each denominator",
+              "Each factor once, at its highest power",
+              "Restrictions come from every factor you used"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Multiply and simplify",
+            "problemId": "im3-u2-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Add with an LCD",
+            "problemId": "im3-u2-l2-t2"
+          },
+          {
             "kind": "tapQuestion",
             "title": "The subtraction trap",
             "prompt": "Simplify the numerator of $\\dfrac{5}{x-1} - \\dfrac{x+2}{x-1}$.",
@@ -374,6 +492,17 @@
             "explanation": "The denominators already match, so subtract the whole numerator: $5 - (x + 2) = 5 - x - 2 = 3 - x$. Forgetting to distribute the minus across the $+2$ would give $7 - x$.",
             "check": [
               "Eq(expand(5 - (x + 2)), 3 - x)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Factor first, every time",
+              "Cancelling is legal only on factors",
+              "Divide = multiply by the reciprocal; the flipped numerator adds a restriction",
+              "LCD: each distinct factor at its greatest power",
+              "When subtracting, the minus applies to the WHOLE second numerator"
             ]
           }
         ]
@@ -508,6 +637,21 @@
       "interactive": {
         "steps": [
           {
+            "kind": "teach",
+            "title": "Clear the denominators — carefully",
+            "body": "Multiply both sides by the LCD and every fraction disappears, leaving a polynomial equation you already know how to solve. But the LCD contains the variable, so for some $x$ you just multiplied the equation by ZERO — and that step can quietly invent solutions.",
+            "beats": [
+              "Multiply through by the LCD",
+              "Solve the polynomial that remains",
+              "Then check every candidate"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A clean clearing, no surprises",
+            "problemId": "im3-u2-l3-we1"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Spot the exclusion first",
             "prompt": "Before solving $\\dfrac{4}{x - 2} = \\dfrac{x}{x - 2}$, which value is forbidden?",
@@ -522,6 +666,17 @@
             "check": [
               "Eq(2 - 2, 0)"
             ]
+          },
+          {
+            "kind": "worked",
+            "title": "The candidate that betrays you",
+            "problemId": "im3-u2-l3-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "Check in the ORIGINAL equation",
+            "body": "A candidate can satisfy the cleared equation perfectly and still be illegal in the original — that is what extraneous means. The check is against the original denominators, and it is part of the method, not a courtesy."
           },
           {
             "kind": "tapQuestion",
@@ -540,6 +695,36 @@
             ]
           },
           {
+            "kind": "worked",
+            "title": "Two fractions, one factored LCD",
+            "problemId": "im3-u2-l3-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "Work problems: rates add, times don't",
+            "problemId": "im3-u2-l3-we4"
+          },
+          {
+            "kind": "teach",
+            "title": "Extraneous roots are a feature of the method",
+            "body": "You cannot avoid them by being careful; multiplying by something that can be zero is simply not reversible. The upside: candidates can only go wrong at the EXCLUDED values, so note those before you start and the check takes seconds.",
+            "beats": [
+              "Excluded values first",
+              "Candidates equal to an excluded value die",
+              "'No solution' can be the right answer"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Clear and solve",
+            "problemId": "im3-u2-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Spot the extraneous root",
+            "problemId": "im3-u2-l3-t2"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Rates, not times",
             "prompt": "A tap fills a tank in $2$ hours, another in $6$. How long together?",
@@ -555,6 +740,17 @@
               "Eq(Rational(1,2) + Rational(1,6), Rational(2,3))",
               "Eq(Rational(1, Rational(2,3)), Rational(3,2))",
               "Rational(3,2) < 2"
+            ]
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Multiply both sides by the LCD to clear every fraction",
+              "Clearing can ADD candidates, never lose them",
+              "Check candidates against the ORIGINAL equation's domain",
+              "The bad candidates are exactly the excluded values",
+              "In work problems, add the RATES, then invert"
             ]
           }
         ]
@@ -696,6 +892,21 @@
       "interactive": {
         "steps": [
           {
+            "kind": "teach",
+            "title": "Half a parabola, on its side",
+            "body": "$\\sqrt{x}$ is defined only for $x \\ge 0$ and returns only the non-negative root — so its graph is a half-parabola lying on its side. Shifts work exactly as they did for parabolas: in $y = \\sqrt{x - h} + k$ the domain starts where the inside turns non-negative, at $x = h$.",
+            "beats": [
+              "Domain: inside $\\ge 0$",
+              "Range: outputs from $k$ up",
+              "Shifts move the endpoint $(h, k)$"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Domain and range from the shift",
+            "problemId": "im3-u2-l4-we1"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Reading the domain",
             "prompt": "What is the domain of $\\sqrt{x + 5}$?",
@@ -711,6 +922,17 @@
               "Eq(sqrt(-5 + 5), 0)",
               "Eq(sqrt(4 + 5), 3)"
             ]
+          },
+          {
+            "kind": "worked",
+            "title": "Isolate, square, solve",
+            "problemId": "im3-u2-l4-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "Isolate the radical BEFORE squaring",
+            "body": "Squaring $\\sqrt{2x + 3} + 1$ as it stands creates a cross-term that still contains the root — you gain nothing. Move everything else to the other side first, THEN square: one clean step, radical gone."
           },
           {
             "kind": "tapQuestion",
@@ -730,6 +952,36 @@
             ]
           },
           {
+            "kind": "worked",
+            "title": "Squaring invents a candidate",
+            "problemId": "im3-u2-l4-we3"
+          },
+          {
+            "kind": "worked",
+            "title": "When the radical can't reach",
+            "problemId": "im3-u2-l4-we4"
+          },
+          {
+            "kind": "teach",
+            "title": "Squaring is a one-way street",
+            "body": "$a = b$ implies $a^2 = b^2$, but not the reverse: $-3 \\ne 3$ while their squares agree. So squaring can only ADD candidates — the same asymmetry as clearing denominators, wearing a new costume. A square root can never equal a negative number, and no amount of algebra changes that.",
+            "beats": [
+              "Squaring never loses a solution",
+              "It may invent one",
+              "$\\sqrt{u} = $ negative has NO solution"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Read the domain",
+            "problemId": "im3-u2-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Solve a radical equation",
+            "problemId": "im3-u2-l4-t2"
+          },
+          {
             "kind": "tapQuestion",
             "title": "Which candidate survives",
             "prompt": "Squaring $\\sqrt{x + 20} = x$ gives candidates $x = 5$ and $x = -4$. Which solve the ORIGINAL?",
@@ -746,6 +998,17 @@
               "Eq(sqrt(5 + 20), 5)",
               "Eq(sqrt(-4 + 20), 4)",
               "Ne(4, -4)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "$y = \\sqrt{x - h} + k$: domain $x \\ge h$, range $y \\ge k$",
+              "Isolate the radical, then square both sides",
+              "Squaring can only add candidates — check in the original",
+              "$\\sqrt{u}$ is never negative, so $\\sqrt{u} = -3$ has no solution",
+              "Same lesson as rational equations: one-way steps demand a check"
             ]
           }
         ]

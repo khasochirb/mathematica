@@ -87,8 +87,11 @@ export async function POST(req: NextRequest) {
   const anthropic = new Anthropic();
   const system = buildTutorSystem(body.context, body.lang);
 
+  // Sonnet 5: chosen for unit economics (owner decision 2026-08-01). Grounded
+  // step-by-step school-math tutoring doesn't need the Opus tier, and at
+  // ~1.5¢/question vs ~3¢ it roughly doubles the margin on a Premium seat.
   const stream = anthropic.messages.stream({
-    model: "claude-opus-4-8",
+    model: "claude-sonnet-5",
     max_tokens: 1500,
     thinking: { type: "adaptive" },
     system,

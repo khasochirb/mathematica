@@ -219,6 +219,9 @@ def lesson_arithmetic():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "From listing to adding", "body": "An arithmetic sequence climbs by a constant difference: $a_n = a_1 + (n-1)d$, with $n - 1$ because the first term has taken zero steps. A SERIES is what you get when you add the terms — and the sum has a two-hundred-year-old shortcut found by a schoolboy.", "beats": ["$a_n = a_1 + (n-1)d$", "Series = the terms, added", "$S_n$ names the sum of the first $n$"]},
+            {"kind": "worked", "title": "The theater, row by row", "problemId": "im3-u6-l1-we1"},
+            
             tap(
                 "The pair total",
                 "In the sum $1 + 2 + \\cdots + 100$, Gauss paired $1$ with "
@@ -230,6 +233,8 @@ def lesson_arithmetic():
                 "pairs give $5050$.",
                 ["Eq(1 + 100, 2 + 99)", "Eq(50*101, 5050)"],
             ),
+            {"kind": "worked", "title": "Gauss's pairing", "problemId": "im3-u6-l1-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "n terms make n/2 pairs", "body": "Pairing uses each term ONCE: a hundred terms form fifty pairs, not a hundred. Multiplying the pair total by $n$ double-counts the entire series — the answer comes out exactly twice too big."},
             tap(
                 "Count the steps",
                 "For an arithmetic sequence with $a_1 = 6$ and $d = 5$, the "
@@ -240,6 +245,10 @@ def lesson_arithmetic():
                 "not ten, because the first term has taken none.",
                 ["Eq(6 + 9*5, 51)"],
             ),
+            {"kind": "worked", "title": "Solving for the number of terms", "problemId": "im3-u6-l1-we3"},
+            {"kind": "teach", "title": "Why the pairing never fails", "body": "Step one term in from each end: the left gains $d$, the right loses $d$ — the pair total is untouched. So $S_n = \\frac{n}{2}(a_1 + a_n)$, and when the last term isn't handy, substitute its formula to get $S_n = \\frac{n}{2}(2a_1 + (n-1)d)$. Same fact, two outfits.", "beats": ["Pair total is constant — that's the whole proof", "Know the last term: use $\\frac{n}{2}(a_1 + a_n)$", "Don't know it: use $\\frac{n}{2}(2a_1 + (n-1)d)$"]},
+            {"kind": "tryIt", "title": "Term and sum", "problemId": "im3-u6-l1-t1"},
+            {"kind": "tryIt", "title": "The first 50 even numbers", "problemId": "im3-u6-l1-t2"},
             tap(
                 "Pick the tool",
                 "You know a series is arithmetic with $30$ terms, first term "
@@ -251,6 +260,7 @@ def lesson_arithmetic():
                 "1425$. The other options double-count, subtract, or free-associate.",
                 ["Eq(Rational(30, 2)*(4 + 91), 1425)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$a_n = a_1 + (n-1)d$ — the first term has taken zero steps", "Pair the ends: every pair adds to the same total", "$S_n = \\frac{n}{2}(a_1 + a_n)$ — half the count times (first + last)", "No last term? $S_n = \\frac{n}{2}(2a_1 + (n-1)d)$", "Pairing needs a constant difference — geometric series need a different trick"]},
         ],
     )
 
@@ -449,6 +459,9 @@ def lesson_geometric():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Multiply, don't add", "body": "A geometric sequence multiplies by a constant ratio: $a_n = a_1 r^{n-1}$ — the multiplicative twin of the arithmetic formula. These are Unit 3's exponential functions sampled at whole numbers, which is why their sums grow so violently.", "beats": ["Constant RATIO $r$, found by dividing neighbours", "$a_n = a_1 r^{n-1}$", "Geometric = exponential at whole numbers"]},
+            {"kind": "worked", "title": "Rice on a chessboard", "problemId": "im3-u6-l2-we1"},
+            
             tap(
                 "Why the middle vanishes",
                 "To sum $S = 1 + 2 + 4 + \\cdots + 2^9$, you compute $2S$ and "
@@ -460,6 +473,8 @@ def lesson_geometric():
                 "term $1$: $S = 2^{10} - 1 = 1023$.",
                 ["Eq(2**10 - 1, 1023)", "Eq(Sum(2**k, (k, 0, 9)).doit(), 1023)"],
             ),
+            {"kind": "worked", "title": "Shift, subtract, collapse", "problemId": "im3-u6-l2-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Gauss's pairing fails here", "body": "The pairs of a geometric series give DIFFERENT totals, so the arithmetic shortcut is useless. The geometric trick is its own: multiply the whole sum by $r$, subtract, and watch every middle term cancel."},
             tap(
                 "Spot the ratio",
                 "The sequence $80, 20, 5, \\ldots$ is geometric. Its ratio is:",
@@ -470,6 +485,10 @@ def lesson_geometric():
                 "5$. (Dividing consecutive terms finds $r$.)",
                 ["Eq(80*Rational(1, 4), 20)", "Eq(20*Rational(1, 4), 5)"],
             ),
+            {"kind": "worked", "title": "A decaying total", "problemId": "im3-u6-l2-we3"},
+            {"kind": "teach", "title": "The formula is the argument, prepackaged", "body": "Run shift-and-subtract with letters: $S_n - rS_n = a_1 - a_1 r^n$, so $S_n = a_1\\frac{1 - r^n}{1 - r}$ for $r \\ne 1$. The chessboard's near-miss is this formula at work: a doubling total is always one less than the next term. When $r = 1$ every term is equal — just multiply.", "beats": ["$S_n = a_1 \\frac{1 - r^n}{1 - r}$, $r \\ne 1$", "$1 + 2 + \\cdots + 2^{n-1} = 2^n - 1$", "Parentheses around the whole ratio in $r^n$"]},
+            {"kind": "tryIt", "title": "Term and sum", "problemId": "im3-u6-l2-t1"},
+            {"kind": "tryIt", "title": "A fractional ratio", "problemId": "im3-u6-l2-t2"},
             tap(
                 "Which grows past which",
                 "One series adds $100$ each step; another multiplies by $2$ "
@@ -482,6 +501,7 @@ def lesson_geometric():
                 "step — the lesson of Unit 3, replayed in whole numbers.",
                 ["Eq(2**12, 4096)", "(2**12) > 100*12"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$a_n = a_1 r^{n-1}$ — $n-1$ multiplications by $r$", "Shift-and-subtract: multiply by $r$, subtract, the middle cancels", "$S_n = a_1\\frac{1 - r^n}{1 - r}$ for $r \\ne 1$; $S_n = na_1$ when $r = 1$", "Doubling totals are one short of the next term", "The newest term of a growing geometric series outweighs all the others combined"]},
         ],
     )
 
@@ -671,6 +691,9 @@ def lesson_infinite():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Infinitely many terms, one finite number", "body": "Add $\\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\cdots$ and the partial sums run $\\frac{1}{2}, \\frac{3}{4}, \\frac{7}{8}, \\ldots$ — each halves the gap to $1$ and none crosses it. When $|r| < 1$ the leftover $r^n$ in the finite formula dies out, and the whole infinite sum settles at a limit.", "beats": ["Partial sums close a gap", "$|r| < 1$: the $r^n$ term evaporates", "$S = \\frac{a_1}{1 - r}$"]},
+            {"kind": "worked", "title": "The wall walk, made rigorous", "problemId": "im3-u6-l3-we1"},
+            
             tap(
                 "The gatekeeper",
                 "An infinite geometric series has a sum exactly when:",
@@ -681,6 +704,8 @@ def lesson_infinite():
                 "$-1$ do not.",
                 ["Rational(1, 2) < 1", "Eq(Rational(1, 2)/(1 - Rational(1, 2)), 1)"],
             ),
+            {"kind": "worked", "title": "A repeating decimal unmasked", "problemId": "im3-u6-l3-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Check |r| < 1 BEFORE the formula", "body": "For $1 + 2 + 4 + \\cdots$ the formula outputs $-1$, which is absurd — because with $r = 2$ there IS no sum; the partial sums pass every bound. The condition $|r| < 1$ is the difference between a number and nonsense."},
             tap(
                 "One-line sum",
                 "The series $12 + 4 + \\dfrac{4}{3} + \\cdots$ has ratio "
@@ -691,6 +716,10 @@ def lesson_infinite():
                 "term over the ratio gap.",
                 ["Eq(12/(1 - Rational(1, 3)), 18)"],
             ),
+            {"kind": "worked", "title": "A bouncing ball's total journey", "problemId": "im3-u6-l3-we3"},
+            {"kind": "teach", "title": "The sum IS the limit", "body": "No partial sum ever equals $1$; the SUM is defined as the number the partial sums approach — and that number is exactly $1$, the same way $0.999\\ldots$ equals $1$. Repeating decimals are this machinery in disguise, which is why every one of them is a fraction.", "beats": ["The infinite sum is the limit of partial sums", "It EQUALS its value; partial sums merely approach", "Every repeating decimal is geometric with $r$ a power of $\\frac{1}{10}$"]},
+            {"kind": "tryIt", "title": "A one-line sum", "problemId": "im3-u6-l3-t1"},
+            {"kind": "tryIt", "title": "Decimal to fraction", "problemId": "im3-u6-l3-t2"},
             tap(
                 "Decimals unmasked",
                 "As a fraction, $0.\\overline{5} = 0.555\\ldots$ equals:",
@@ -701,6 +730,7 @@ def lesson_infinite():
                 "$5 \\div 9 = 0.555\\ldots$",
                 ["Eq(Rational(5, 10)/(1 - Rational(1, 10)), Rational(5, 9))"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Converges exactly when $|r| < 1$", "$S = \\frac{a_1}{1 - r}$ — the finite formula with $r^n$ evaporated", "$|r| \\ge 1$: no sum exists, and the formula's output is garbage", "Repeating decimals are infinite geometric series — hence fractions", "In travel problems, bounce heights count twice: up and down"]},
         ],
     )
 
@@ -895,6 +925,9 @@ def lesson_binomial():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Coefficients count choices", "body": "Expanding $(a + b)^n$ means choosing, in each factor, the $a$ or the $b$. The term $a^3b^2$ (from $n = 5$) appears once for every way to pick WHICH two factors donate a $b$ — that is $\\binom{5}{2} = 10$ ways. Expansion coefficients are the combinations from IM2, back in a new job.", "beats": ["Each factor donates $a$ or $b$", "Coefficient of $a^{n-k}b^k$ = $\\binom{n}{k}$", "Exponents in every term add to $n$"]},
+            {"kind": "worked", "title": "A full expansion from row 4", "problemId": "im3-u6-l4-we1"},
+            
             tap(
                 "Coefficient as a count",
                 "In the expansion of $(a + b)^5$, the coefficient of "
@@ -907,6 +940,8 @@ def lesson_binomial():
                 "$\\binom{5}{2} = 10$.",
                 ["Eq(binomial(5, 2), 10)"],
             ),
+            {"kind": "worked", "title": "One term, extracted alone", "problemId": "im3-u6-l4-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Raise the WHOLE piece", "body": "In $(2x - 3)^5$ the pieces are $2x$ and $-3$, signs and coefficients included: $(2x)^3 = 8x^3$ and $(-3)^2 = 9$. Substituting bare $x$ and $3$ into $\\binom{n}{k}a^{n-k}b^k$ is where every binomial error lives."},
             tap(
                 "Pascal's rule",
                 "In Pascal's triangle, the entry $\\binom{6}{2} = 15$ is the "
@@ -918,6 +953,10 @@ def lesson_binomial():
                 "$\\binom{5}{1} + \\binom{5}{2} = 5 + 10 = 15$.",
                 ["Eq(binomial(5, 1) + binomial(5, 2), 15)", "Eq(binomial(6, 2), 15)"],
             ),
+            {"kind": "worked", "title": "Building Pascal's next row", "problemId": "im3-u6-l4-we3"},
+            {"kind": "teach", "title": "The triangle is a theorem about choices", "body": "Pascal's rule $\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}$ says: a choice of $k$ items either uses the newest item or it doesn't. That's why each entry is the sum of the two above — combinations computed without a single factorial. Symmetry comes free: choosing $k$ to keep is choosing $n - k$ to leave out.", "beats": ["Pascal's rule: use the new item, or don't", "Rows are symmetric: $\\binom{n}{k} = \\binom{n}{n-k}$", "Row $n$ sums to $2^n$ — all the choices there are"]},
+            {"kind": "tryIt", "title": "Alternating signs", "problemId": "im3-u6-l4-t1"},
+            {"kind": "tryIt", "title": "A single coefficient", "problemId": "im3-u6-l4-t2"},
             tap(
                 "Symmetry for free",
                 "Without computing factorials: $\\binom{9}{7}$ equals which "
@@ -928,6 +967,7 @@ def lesson_binomial():
                 "out: $\\binom{9}{7} = \\binom{9}{2} = 36$.",
                 ["Eq(binomial(9, 7), binomial(9, 2))", "Eq(binomial(9, 2), 36)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$(a+b)^n = \\sum \\binom{n}{k} a^{n-k} b^k$ — coefficients count choices", "Pascal's triangle: each entry is the sum of the two above", "Extract one term without expanding the rest", "Substitute whole pieces — signs and coefficients included", "$(a+b)^n$ is NOT $a^n + b^n$; the cross terms carry most of the value"]},
         ],
     )
 

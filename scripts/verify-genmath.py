@@ -165,7 +165,8 @@ def main():
                 check_problem(slug, f"{lslug}:worked", ex)
             for ex in lesson.get("tryIt", []):
                 check_problem(slug, f"{lslug}:tryIt", ex)
-            for s in (lesson.get("interactive") or {}).get("steps", []):
+            steps = (lesson.get("interactive") or {}).get("steps", [])
+            for s in steps:
                 k = s.get("kind")
                 if k == "tapQuestion":
                     check_tap_question(slug, f"{lslug}:interactive", s)
@@ -175,6 +176,36 @@ def main():
                 elif k == "tryItSet":
                     for j, p in enumerate(s.get("problems", [])):
                         check_tap_question(slug, f"{lslug}:tryItSet[{j}]", p)
+            if steps:
+                # A lesson page renders ONLY the interactive player, so a
+                # player without teaching steps IS the lesson a student sees —
+                # quiz-only step lists shipped as "courses" once (IM3 units
+                # 2–6, caught by the owner 2026-08-01) and must never again.
+                # Teaching = an instructional step kind, or a widget step
+                # carrying `teach` prose. Quiz steps don't count.
+                TEACHING_KINDS = {
+                    "teach", "concept", "worked", "workedSet", "tryIt",
+                    "tryItSet", "tip", "funFact", "recap", "notationToggle",
+                }
+                n_teaching = sum(
+                    1 for s in steps
+                    if s.get("kind") in TEACHING_KINDS or s.get("teach")
+                )
+                if n_teaching < 2:
+                    failures.append(
+                        f"{slug} / {lslug}: interactive player has {n_teaching} teaching step(s) "
+                        f"(kinds: {[s.get('kind') for s in steps]}) — a lesson must teach, "
+                        f"not just quiz; add teach/worked/tryIt/recap steps"
+                    )
+                # worked/tryIt steps reference problems by id; a broken
+                # reference renders as a missing screen, invisibly.
+                ids_w = {p.get("id") for p in lesson.get("workedExamples", [])}
+                ids_t = {p.get("id") for p in lesson.get("tryIt", [])}
+                for s in steps:
+                    if s.get("kind") == "worked" and s.get("problemId") not in ids_w:
+                        failures.append(f"{slug} / {lslug}: worked step references unknown problemId {s.get('problemId')!r}")
+                    if s.get("kind") == "tryIt" and s.get("problemId") not in ids_t:
+                        failures.append(f"{slug} / {lslug}: tryIt step references unknown problemId {s.get('problemId')!r}")
 
         for ex in topic.get("practice", []):
             check_problem(slug, "practice", ex)

@@ -219,6 +219,9 @@ def lesson_transformations():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Outside acts on outputs; inside acts on inputs", "body": "Adding OUTSIDE the function raises every output: a vertical slide, exactly as written. Adding INSIDE shifts horizontally — and backwards from the sign, because $f(x - 3)$ makes the input $3$ behave the way $0$ used to. Those two sentences, plus their multiplying twins, transform every family there is.", "beats": ["Outside: vertical, as written", "Inside: horizontal, in reverse", "Same rules for every function family"]},
+            {"kind": "worked", "title": "Reading a formula as a recipe", "problemId": "im3-u5-l1-we1"},
+            
             tap(
                 "Outside the function",
                 "The graph of $g(x) = f(x) + 5$ is the graph of $f$ moved:",
@@ -228,6 +231,8 @@ def lesson_transformations():
                 "vertical slide, exactly as written.",
                 ["Eq((x**2 + 5) - x**2, 5)"],
             ),
+            {"kind": "worked", "title": "Building a formula from words", "problemId": "im3-u5-l1-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Inside changes run backwards", "body": "$f(x - 3)$ slides RIGHT, $f(x + 3)$ slides LEFT, and $f(2x)$ COMPRESSES. Before trusting a sign, test one point: where does the old $x = 0$ behaviour now happen? That single check catches every direction error."},
             tap(
                 "Inside the function",
                 "The graph of $g(x) = f(x - 3)$ is the graph of $f$ moved:",
@@ -238,6 +243,10 @@ def lesson_transformations():
                 "vertex lands at $x = 3$.",
                 ["Eq((3 - 3)**2, 0)", "Eq((4 - 3)**2, 1)"],
             ),
+            {"kind": "worked", "title": "Why order matters", "problemId": "im3-u5-l1-we3"},
+            {"kind": "teach", "title": "Stacked moves, read inside-out", "body": "$g(x) = -2f(x - 3) + 4$ is a whole recipe: shift right 3, stretch by 2, flip across the $x$-axis, raise 4 — the order the machine itself computes. Order matters exactly where arithmetic says it does: a stretch scales everything done before it, so stretch-then-shift and shift-then-stretch differ.", "beats": ["Read the formula inside-out", "A reflection turns max into min", "Different order → different graph"]},
+            {"kind": "tryIt", "title": "Vertex from a formula", "problemId": "im3-u5-l1-t1"},
+            {"kind": "tryIt", "title": "Words to formula", "problemId": "im3-u5-l1-t2"},
             tap(
                 "Two different mirrors",
                 "For $f(x) = \\sqrt{x}$, which formula reflects the graph across "
@@ -249,6 +258,7 @@ def lesson_transformations():
                 "$y$-axis mirror instead.)",
                 ["Eq(-sqrt(4), -2)", "Eq(sqrt(4), 2)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Outside the function: vertical, behaves as written", "Inside the function: horizontal, behaves in reverse", "Negative outside flips over the $x$-axis; negative inside over the $y$-axis", "Read stacked transformations inside-out", "The same four moves work on every family — $|x|$, $\\sqrt{x}$, $2^x$, all of them"]},
         ],
     )
 
@@ -432,6 +442,9 @@ def lesson_even_odd():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Feed it the opposite input", "body": "A function is EVEN when opposite inputs give equal outputs — $f(-x) = f(x)$ — a mirror in the $y$-axis. It is ODD when opposite inputs give opposite outputs — $f(-x) = -f(x)$ — a half-turn about the origin. One substitution decides which, if either.", "beats": ["Even: $f(-x) = f(x)$, mirror", "Odd: $f(-x) = -f(x)$, half-turn", "Most functions: neither"]},
+            {"kind": "worked", "title": "An even quartic, tested honestly", "problemId": "im3-u5-l2-we1"},
+            
             tap(
                 "Read the test",
                 "For every $x$, a function satisfies $f(-x) = f(x)$. Its graph "
@@ -443,6 +456,8 @@ def lesson_even_odd():
                 "$x^2$ shows it: $(-3)^2 = 3^2$.",
                 ["Eq((-3)**2, 3**2)"],
             ),
+            {"kind": "worked", "title": "An odd cubic and its half-turn", "problemId": "im3-u5-l2-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Parentheses around every -x", "body": "$(-x)^3 = -x^3$ but $(-x)^4 = x^4$ — the sign survives odd powers and dies in even ones. Every symmetry error traces back to substituting $-x$ without parentheses. Write them, every time."},
             tap(
                 "Spot the odd one",
                 "Which function is odd?",
@@ -457,6 +472,10 @@ def lesson_even_odd():
                     "Eq((-2)**3 - (-2), -6)",
                 ],
             ),
+            {"kind": "worked", "title": "When both tests fail", "problemId": "im3-u5-l2-we3"},
+            {"kind": "teach", "title": "The polynomial shortcut, and its limits", "body": "For polynomials the names are literal: all exponents even → even; all odd → odd; mixed → neither, which is the common case. One matching pair of outputs proves nothing — symmetry is a claim about EVERY input — but a single failing pair settles 'neither' for good.", "beats": ["All-even exponents → even; all-odd → odd", "Mixed parity → neither", "One counterexample ends the test; one success doesn't"]},
+            {"kind": "tryIt", "title": "Absolute value", "problemId": "im3-u5-l2-t1"},
+            {"kind": "tryIt", "title": "A pure power", "problemId": "im3-u5-l2-t2"},
             tap(
                 "The origin clue",
                 "An odd function $f$ is defined at $x = 0$. What is $f(0)$?",
@@ -466,6 +485,7 @@ def lesson_even_odd():
                 "only $0$ equals its own opposite.",
                 ["Eq(0, -0)"],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["Even: $f(-x) = f(x)$ — mirror in the $y$-axis", "Odd: $f(-x) = -f(x)$ — half-turn about the origin", "Polynomial glance test: exponent parity, constant counts as even", "An odd function defined at $0$ has $f(0) = 0$", "Neither is the default — prove symmetry with algebra, not one example"]},
         ],
     )
 
@@ -656,6 +676,9 @@ def lesson_composition():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "Chain the machines", "body": "Composition feeds the output of one function into the next: $(f \\circ g)(x) = f(g(x))$, read RIGHT to left — $g$ acts first. To evaluate at a number, work inside-out: find $g(2)$, then hand the result to $f$.", "beats": ["$(f \\circ g)(x) = f(g(x))$", "Inner first, outer second", "Not multiplication — substitution"]},
+            {"kind": "worked", "title": "Both orders, at one input", "problemId": "im3-u5-l3-we1"},
+            
             tap(
                 "Who goes first",
                 "In $(f \\circ g)(x)$, which function receives $x$ directly?",
@@ -665,6 +688,8 @@ def lesson_composition():
                 "takes $g$'s output. Right to left, always.",
                 ["Eq(2*(3*2) - 1, 11)"],
             ),
+            {"kind": "worked", "title": "Both orders, as formulas", "problemId": "im3-u5-l3-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Substitute the WHOLE inner formula", "body": "Composing $f(x) = 2x - 3$ with $g(x) = x^2 + 1$ means $2(x^2 + 1) - 3$ — parentheses around all of $g$. Dropping them loses the doubling of the $+1$ and quietly produces a different function."},
             tap(
                 "Evaluate a chain",
                 "With $f(x) = x + 1$ and $g(x) = 2x$, what is "
@@ -678,6 +703,10 @@ def lesson_composition():
                     "Eq(2*(3 + 1), 8)",
                 ],
             ),
+            {"kind": "worked", "title": "Decomposing a complicated function", "problemId": "im3-u5-l3-we3"},
+            {"kind": "teach", "title": "Order matters; decomposition runs it backwards", "body": "$f \\circ g$ and $g \\circ f$ are as different as socks-then-shoes and shoes-then-socks — never assume they agree. Decomposition is the reverse skill: in $h(x) = \\sqrt{3x + 4}$, the inner function is what the formula computes FIRST ($3x + 4$), the outer is what happens to that result.", "beats": ["The two orders rarely agree", "Inner function = first computation", "Decomposition turns one hard function into two easy ones"]},
+            {"kind": "tryIt", "title": "Evaluate both chains", "problemId": "im3-u5-l3-t1"},
+            {"kind": "tryIt", "title": "Compose as a formula", "problemId": "im3-u5-l3-t2"},
             tap(
                 "Name the inner function",
                 "To write $h(x) = \\sqrt{x^2 + 9}$ as $f(g(x))$, the inner "
@@ -692,6 +721,7 @@ def lesson_composition():
                     "Eq(sqrt(25), 5)",
                 ],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$(f \\circ g)(x) = f(g(x))$ — right to left, inner first", "Formulas: substitute the whole inner expression, in parentheses", "$f \\circ g \\ne g \\circ f$ in general", "Composition is substitution, never multiplication", "To decompose, name what the formula computes first"]},
         ],
     )
 
@@ -888,6 +918,9 @@ def lesson_inverses():
             ),
         ],
         steps=[
+                        {"kind": "teach", "title": "The machine, run backwards", "body": "The inverse $f^{-1}$ undoes $f$: if $f$ sends $6$ to $7$, $f^{-1}$ sends $7$ back to $6$. In symbols, both compositions collapse: $f^{-1}(f(x)) = x$ and $f(f^{-1}(x)) = x$. That collapse is also how you CHECK any claimed inverse.", "beats": ["Do, then undo: back to $x$", "Find it: solve for the input", "Check it: both compositions give $x$"]},
+            {"kind": "worked", "title": "Find and verify a linear inverse", "problemId": "im3-u5-l4-we1"},
+            
             tap(
                 "Undo one value",
                 "A one-to-one function has $f(5) = 12$. What is $f^{-1}(12)$?",
@@ -901,6 +934,8 @@ def lesson_inverses():
                     "Eq(Rational(12 - 2, 2), 5)",
                 ],
             ),
+            {"kind": "worked", "title": "An inverse that solves equations", "problemId": "im3-u5-l4-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "f⁻¹ is not 1/f", "body": "The superscript names the inverse FUNCTION, not a reciprocal. For $f(x) = 2x - 5$: $f^{-1}(7) = 6$, while $\\frac{1}{f(7)} = \\frac{1}{9}$ — unrelated numbers. Say \"f-inverse\", never \"f to the minus one\"."},
             tap(
                 "The mirror line",
                 "The graphs of $f$ and $f^{-1}$ are reflections of each other "
@@ -916,6 +951,10 @@ def lesson_inverses():
                     "Eq(Rational(7 - 3, 2), 2)",
                 ],
             ),
+            {"kind": "worked", "title": "When no inverse exists — and the repair", "problemId": "im3-u5-l4-we3"},
+            {"kind": "teach", "title": "Mirrors and the one-to-one test", "body": "Inverting swaps inputs and outputs, so the graph of $f^{-1}$ is the graph of $f$ reflected across the line $y = x$ — every point $(a, b)$ pairs with $(b, a)$. And only ONE-TO-ONE functions qualify: if two inputs share an output, undoing has no single answer. The repair is restricting the domain, which is exactly why $\\sqrt{x}$ exists.", "beats": ["Graphs mirror across $y = x$", "Horizontal line test = invertibility", "Restrict the domain to rescue $x^2$"]},
+            {"kind": "tryIt", "title": "An easy undo", "problemId": "im3-u5-l4-t1"},
+            {"kind": "tryIt", "title": "Solve-and-swap", "problemId": "im3-u5-l4-t2"},
             tap(
                 "Who gets an inverse",
                 "Which function needs a domain restriction before it can have an "
@@ -931,6 +970,7 @@ def lesson_inverses():
                     "Ne((-2)**3, 2**3)",
                 ],
             ),
+            {"kind": "recap", "title": "What to carry forward", "points": ["$f^{-1}$ undoes $f$: both compositions simplify to $x$", "Find it by solving for the input, then swapping letters", "Graphs of $f$ and $f^{-1}$ mirror across $y = x$", "Only one-to-one functions have inverses; restrict the domain otherwise", "$f^{-1}(x)$ is the inverse function, never $\\frac{1}{f(x)}$"]},
         ],
     )
 
