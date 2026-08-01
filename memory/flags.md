@@ -82,21 +82,21 @@ student per day, so spend is bounded per active student.
 
 ## WATCH (not blocking, verified by the same endpoint)
 
-- **migration 009_attempts_context** — believed applied: the deployed
-  client has written `context` on attempts since the perf-context era,
-  the code carries a no-column fallback (`lib/use-performance.ts:138`),
-  and prod runtime errors are clean over the last 7 days (checked
-  2026-07-25). The health endpoint reports it so belief becomes fact
-  after the next deploy. If it reports `missing`, apply
-  `009_attempts_context.sql` by the FLAG-002 runbook — until then every
-  attempt is written by the fallback path without a context, which
-  silently degrades per-course analytics.
+*(none open — 009 confirmed applied, see Resolved)*
 
 ---
 
 ## RESOLVED
 
 *(move entries here with date + verification evidence; never delete)*
+
+### migration `009_attempts_context` — APPLIED (was a WATCH item)
+
+| | |
+|---|---|
+| **Resolved** | 2026-08-01, deploy `f2f5d07` |
+| **Evidence** | `GET https://www.mongolpotential.com/api/health/flags` → `"migration_009_attempts_context":"applied"`. Belief (code-inspection + clean runtime errors, 2026-07-25) is now a mechanical fact from the probe. |
+| **Consequence** | Attempts carry their `context` through the real column, not the no-column fallback — per-course analytics are trustworthy. |
 
 ---
 
@@ -108,3 +108,10 @@ student per day, so spend is bounded per active student.
   endpoint is not yet deployed). Status recorded per standing owner
   reports + code inspection; degradation paths verified in code; prod
   runtime errors clean over 7d.
+- **2026-08-01** — First probe of the deployed health endpoint (via the
+  Vercel MCP fetch, which reaches it fine): `anthropic_api_key: missing`
+  (FLAG-001 still open), `migration_008_student_profiles: unknown`
+  (FLAG-002 still open — `unknown`, not `missing`, so read it per that
+  flag's "Reading a non-`applied` result" row before acting),
+  `migration_009_attempts_context: applied` → 009 moved to Resolved.
+  Nothing in deploy `f2f5d07` depended on either open flag.
