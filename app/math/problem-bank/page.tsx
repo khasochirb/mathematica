@@ -4,33 +4,32 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Layers, Repeat2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { loadBankProgress } from "@/lib/problem-bank";
 import {
-  getBankTopics,
-  loadBankProgress,
-  topicMastery,
-  type BankTopic,
-} from "@/lib/problem-bank";
+  courseLadderManifest,
+  manifestMastery,
+  type BankTopicMeta,
+} from "@/lib/bank-manifest";
 
 // The Problem Bank hub — leveled drilling across every exam form, with
-// per-form mastery tracked on this device (account-keyed).
+// per-form mastery tracked on this device (account-keyed). Renders from the
+// ~55 KB manifest, NOT the corpus: this page lists topics, it never shows a
+// problem, so it must not ship 9 MB of them (see lib/bank-data.ts).
 export default function ProblemBankHub() {
   const { user } = useAuth();
-  const topics = getBankTopics();
+  const topics = courseLadderManifest();
   const [mastery, setMastery] = useState<Record<string, { mastered: number; total: number }>>({});
 
   useEffect(() => {
     const m: Record<string, { mastered: number; total: number }> = {};
     for (const t of topics) {
-      m[t.slug] = topicMastery(t, loadBankProgress(t.slug, user?.id));
+      m[t.slug] = manifestMastery(t, loadBankProgress(t.slug, user?.id));
     }
     setMastery(m);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
-  const totalProblems = topics.reduce(
-    (n, t) => n + t.forms.reduce((k, f) => k + f.variants.length, 0),
-    0,
-  );
+  const totalProblems = topics.reduce((n, t) => n + t.problemCount, 0);
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -49,7 +48,7 @@ export default function ProblemBankHub() {
           {totalProblems} problems organized exactly like the courses: pick a
           subject, pick the unit you just finished, and work its collection —
           on paper with reveal-to-check, or as a practice set where missing a
-          problem brings back a similar one until you've got it.
+          problem brings back a similar one until you&apos;ve got it.
         </p>
         <div className="mb-8 flex flex-wrap gap-3 text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="inline-flex items-center gap-1.5"><Layers className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Level 1 basics · Level 2 standard · Level 3 exam</span>
@@ -66,8 +65,7 @@ export default function ProblemBankHub() {
   );
 }
 
-function TopicCard({ topic, mastery }: { topic: BankTopic; mastery?: { mastered: number; total: number } }) {
-  const problems = topic.forms.reduce((n, f) => n + f.variants.length, 0);
+function TopicCard({ topic, mastery }: { topic: BankTopicMeta; mastery?: { mastered: number; total: number } }) {
   const byLevel = [1, 2, 3].map((lv) => topic.forms.filter((f) => f.level === lv).length);
   const pct = mastery && mastery.total > 0 ? Math.round((mastery.mastered / mastery.total) * 100) : 0;
   return (
@@ -93,8 +91,8 @@ function TopicCard({ topic, mastery }: { topic: BankTopic; mastery?: { mastered:
         </div>
         <p className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{topic.blurb}</p>
         <div className="mt-2 flex items-center gap-2 flex-wrap text-[11px] mono" style={{ color: "var(--fg-3)" }}>
-          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{topic.units.length} units</span>
-          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{problems} problems</span>
+          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{topic.unitCount} units</span>
+          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{topic.problemCount} problems</span>
           <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>L1 ×{byLevel[0]} · L2 ×{byLevel[1]} · L3 ×{byLevel[2]}</span>
         </div>
         {mastery && mastery.mastered > 0 && (

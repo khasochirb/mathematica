@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import BankRunner from "@/components/bank/BankRunner";
-import { getBankTopic, getBankTopics, getBankUnit } from "@/lib/problem-bank";
+import { getBankTopic, getBankTopics } from "@/lib/bank-data";
+import { getBankUnit } from "@/lib/problem-bank";
 
 export function generateStaticParams() {
   return getBankTopics().flatMap((t) =>

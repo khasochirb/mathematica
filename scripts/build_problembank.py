@@ -68,9 +68,16 @@ def load_build(modname):
     return mod.build
 
 
+# Hub-owned banks live in their exam hubs, not in the /math course-ladder
+# list. The manifest carries the flag so client code (bank hub page, ratings
+# card) can iterate the ladder without importing any topic data.
+HUB_BANKS = {"sat", "ib-sl", "ib-hl"}
+
+
 def main():
     grand_forms = grand_vars = 0
     extra_forms = load_extras()
+    manifest = []
     for slug, modname in SUBJECTS:
         topic = load_build(modname)()
         topic["forms"] = topic["forms"] + extra_forms(slug)
@@ -87,8 +94,31 @@ def main():
         with open(path, "w") as fh:
             json.dump(topic, fh, indent=2, ensure_ascii=False)
             fh.write("\n")
+        manifest.append({
+            "slug": slug,
+            "title": topic["title"],
+            "titleMn": topic["titleMn"],
+            "blurb": topic["blurb"],
+            "courseLadder": slug not in HUB_BANKS,
+            "unitCount": len(topic["units"]),
+            "problemCount": n_vars,
+            "forms": [{"id": f["id"], "unit": f["unit"], "level": f["level"]}
+                      for f in topic["forms"]],
+        })
         print(f"wrote {slug}.json: {len(topic['units'])} units, {n_forms} forms, "
               f"{n_vars} variants" + (f"  EMPTY UNITS: {','.join(empty)}" if empty else ""))
+
+    # The client-safe manifest: everything the bank HUB page and the ratings
+    # card need (titles, counts, form ids/units/levels) without a single
+    # problem statement. ~25 KB instead of the ~9 MB corpus — the corpus
+    # itself must only ever be imported server-side (lib/bank-data.ts).
+    # Lives OUTSIDE data/problembank/ so verify-problembank's glob of topic
+    # files does not try to validate it as a topic.
+    manifest_path = os.path.join(ROOT, "data", "bank-manifest.json")
+    with open(manifest_path, "w") as fh:
+        json.dump(manifest, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    print(f"wrote data/bank-manifest.json: {len(manifest)} topics")
     print(f"TOTAL: {len(SUBJECTS)} subjects, {grand_forms} forms, {grand_vars} variants")
 
 

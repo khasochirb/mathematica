@@ -12,25 +12,15 @@
 // The engine is pure (rng injected) so the queue logic is unit-testable; only
 // the persistence helpers touch localStorage (same account-keyed pattern as
 // lib/placement-result.ts).
+//
+// This module is LOGIC ONLY and safe to import from client components. The
+// ~9 MB topic corpus lives in lib/bank-data.ts, which only server route
+// pages may import (guarded by lib/bank-split.test.ts) — importing it from
+// a client module puts the entire corpus back into the browser bundle, the
+// exact regression this split removed. Client code that needs to iterate
+// the topic LIST uses the ~55 KB manifest in lib/bank-manifest.ts instead.
 
 import type { GeoDiagramSpec } from "@/lib/genmath-interactive";
-
-import algebra1 from "@/data/problembank/algebra-1.json";
-import algebra2 from "@/data/problembank/algebra-2.json";
-import geometry from "@/data/problembank/geometry.json";
-import trigonometry from "@/data/problembank/trigonometry.json";
-import solidGeometry from "@/data/problembank/solid-geometry.json";
-import probStats from "@/data/problembank/prob-stats.json";
-import precalculus from "@/data/problembank/precalculus.json";
-import calculus from "@/data/problembank/calculus.json";
-import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
-import integrated1 from "@/data/problembank/integrated-1.json";
-import integrated2 from "@/data/problembank/integrated-2.json";
-import grade9 from "@/data/problembank/9.json";
-import grade12 from "@/data/problembank/12.json";
-import sat from "@/data/problembank/sat.json";
-import ibSl from "@/data/problembank/ib-sl.json";
-import ibHl from "@/data/problembank/ib-hl.json";
 
 export type BankVariant = {
   id: string;
@@ -38,7 +28,10 @@ export type BankVariant = {
   options: string[]; // exactly 4
   correctIndex: number;
   explanation: string;
-  check: string[]; // verify-time only
+  // Sympy source, verify-time only (scripts/verify-problembank.py). The
+  // data loader strips it before a topic ever reaches a page, so it is
+  // absent at runtime — typed optional for exactly that reason.
+  check?: string[];
   geoFigure?: GeoDiagramSpec;
 };
 
@@ -65,53 +58,6 @@ export type BankTopic = {
   units: BankUnit[];
   forms: BankForm[];
 };
-
-const TOPICS: BankTopic[] = [
-  algebra1,
-  algebra2,
-  geometry,
-  trigonometry,
-  solidGeometry,
-  probStats,
-  precalculus,
-  calculus,
-  vectorsMatrices,
-  integrated1,
-  integrated2,
-  // Band exit levels (slugs mirror the course paths /math/9 and /math/12);
-  // also the source pools for the band exit exams.
-  grade9,
-  grade12,
-] as unknown as BankTopic[];
-
-export function getBankTopics(): BankTopic[] {
-  return TOPICS;
-}
-
-export function getBankTopic(slug: string): BankTopic | null {
-  return TOPICS.find((t) => t.slug === slug) ?? null;
-}
-
-// Hub-owned banks. Deliberately NOT in TOPICS: getBankTopics() is the /math
-// course-ladder list (it feeds the General Math hub page, the ratings card,
-// and placement wiring), while these belong to their exam hubs and follow
-// the hub's own taxonomy — the four Digital SAT domains at /practice/sat/bank,
-// the five IB syllabus topics per tier at /practice/ib/bank. Their mastery
-// stores (mp-bank:sat:*, mp-bank:ib-*) are likewise scoped to the hub, not
-// to "courses", in lib/data-erase.ts.
-const SAT_BANK: BankTopic = sat as unknown as BankTopic;
-const IB_SL_BANK: BankTopic = ibSl as unknown as BankTopic;
-const IB_HL_BANK: BankTopic = ibHl as unknown as BankTopic;
-
-export function getSatBankTopic(): BankTopic {
-  return SAT_BANK;
-}
-
-export type IbBankTier = "sl" | "hl";
-
-export function getIbBankTopic(tier: IbBankTier): BankTopic {
-  return tier === "sl" ? IB_SL_BANK : IB_HL_BANK;
-}
 
 export function getBankUnit(topic: BankTopic, unitId: string): BankUnit | null {
   return topic.units.find((u) => u.id === unitId) ?? null;

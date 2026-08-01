@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import BankUnitList from "@/components/bank/BankUnitList";
-import { getBankTopic, getBankTopics } from "@/lib/problem-bank";
+import { getBankTopic, getBankTopics } from "@/lib/bank-data";
 
 export function generateStaticParams() {
   return getBankTopics().map((t) => ({ topic: t.slug }));

@@ -8,7 +8,11 @@
 import { useEffect, useMemo, useState } from "react";
 import usePerformance from "./use-performance";
 import { useAuth } from "./auth-context";
-import { getBankTopics, loadBankProgress } from "./problem-bank";
+// Manifest, not corpus: the ratings card only needs form ids and their
+// units, and this hook runs on every dashboard/catalog render — importing
+// lib/bank-data here would put ~9 MB back into the shared client chunk.
+import { loadBankProgress } from "./problem-bank";
+import { courseLadderManifest } from "./bank-manifest";
 import { loadPlacement } from "./placement-result";
 import {
   computeRatings,
@@ -53,7 +57,7 @@ export default function useRatings(): {
 
   useEffect(() => {
     const evidence: BankEvidence = {};
-    for (const topic of getBankTopics()) {
+    for (const topic of courseLadderManifest()) {
       const progress = loadBankProgress(topic.slug, userId);
       for (const form of topic.forms) {
         const p = progress.forms[form.id];

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { getCoursePlacementBank } from "./placement-bank";
-import { getBankTopics } from "./problem-bank";
+import { getCoursePlacementBank } from "./placement-course-bank";
+import { getBankTopics } from "./bank-data";
 
 // The harvested course placement banks: every problem-bank subject must
 // yield a usable adaptive bank — every unit represented, three difficulty

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import BankUnitList from "@/components/bank/BankUnitList";
 import { IB_BANK_CHROME } from "@/components/bank/bank-chrome";
-import { getIbBankTopic, type IbBankTier } from "@/lib/problem-bank";
+import { getIbBankTopic, type IbBankTier } from "@/lib/bank-data";
 
 const TIERS: IbBankTier[] = ["sl", "hl"];
 

@@ -1,6 +1,6 @@
 import BankUnitList from "@/components/bank/BankUnitList";
 import { SAT_BANK_CHROME } from "@/components/bank/bank-chrome";
-import { getSatBankTopic } from "@/lib/problem-bank";
+import { getSatBankTopic } from "@/lib/bank-data";
 
 export const metadata = { title: "SAT Math · Topic Practice" };
 

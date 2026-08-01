@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { getBankTopics, getBankTopic, getSatBankTopic, getIbBankTopic } from "./bank-data";
 import {
-  getBankTopics,
-  getBankTopic,
   getBankUnit,
   unitForms,
   unitMastery,
@@ -13,8 +12,6 @@ import {
   displayVariant,
   sessionForms,
   getVariant,
-  getSatBankTopic,
-  getIbBankTopic,
   topicMastery,
   type BankProgress,
 } from "./problem-bank";

@@ -7,7 +7,7 @@ import {
   getSatUnit,
   getSatLesson,
 } from "./sat-course";
-import { getSatBankTopic } from "./problem-bank";
+import { getSatBankTopic } from "./bank-data";
 import {
   contextFromPathname,
   lessonSlugsFromPathname,

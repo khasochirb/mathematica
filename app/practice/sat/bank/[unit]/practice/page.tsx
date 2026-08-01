@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import BankRunner from "@/components/bank/BankRunner";
 import { SAT_BANK_CHROME } from "@/components/bank/bank-chrome";
-import { getBankUnit, getSatBankTopic } from "@/lib/problem-bank";
+import { getSatBankTopic } from "@/lib/bank-data";
+import { getBankUnit } from "@/lib/problem-bank";
 
 export function generateStaticParams() {
   return getSatBankTopic().units.map((u) => ({ unit: u.id }));

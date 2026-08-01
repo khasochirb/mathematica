@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Layers } from "lucide-react";
-import { getIbBankTopic } from "@/lib/problem-bank";
+import { getIbBankTopic } from "@/lib/bank-data";
 
 export const metadata = { title: "IB Math · Topic Practice" };
 
