@@ -63,7 +63,7 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
     slug: "multiplication-and-division",
     title: "Multiplication & Division",
     blurb: "Multi-digit multiplication, long division with remainders, and choosing the operation a problem needs.",
-    live: false,
+    live: true,
   },
   {
     slug: "fractions-first-steps",
