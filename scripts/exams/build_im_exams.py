@@ -53,6 +53,13 @@ COURSES = [
         "intro": ("A full-course exam: every unit of Integrated Math 2 is represented, so the "
                   "result shows which units are solid and which need another pass."),
     },
+    {
+        "slug": "integrated-3",
+        "title": "Integrated Math 3",
+        "minutes": 55,
+        "intro": ("A full-course exam: every unit of Integrated Math 3 is represented, so the "
+                  "result shows which units are solid and which need another pass."),
+    },
 ]
 
 

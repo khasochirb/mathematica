@@ -1,0 +1,643 @@
+{
+  "meta": {
+    "examId": "integrated-3-exam-2",
+    "course": "integrated-3",
+    "courseTitle": "Integrated Math 3",
+    "label": "Integrated Math 3 — Practice Exam 2",
+    "intro": "A full-course exam: every unit of Integrated Math 3 is represented, so the result shows which units are solid and which need another pass.",
+    "minutes": 55,
+    "totalQuestions": 32,
+    "unitsCovered": 8
+  },
+  "questions": [
+    {
+      "id": "im3-A2-endb-v08",
+      "unit": "polynomial-functions",
+      "unitTitle": "Polynomial Functions",
+      "level": 1,
+      "skill": "Sign and parity of the leading term decide both ends of the graph.",
+      "statement": "Describe the end behavior of the graph of $p(x) = -2x^4 + x^3 - 1$.",
+      "options": [
+        "Falls to the right and rises to the left",
+        "Rises to the right and rises to the left",
+        "Rises to the right and falls to the left",
+        "Falls to the right and falls to the left"
+      ],
+      "correctIndex": 3,
+      "explanation": "The leading term $-2x^4$ wins for large $|x|$: even degree with a negative coefficient means the graph falls to the right and falls to the left. Reading end behavior off the lower-order terms — which the leading term swamps — is the classic mistake.",
+      "check": [
+        "limit(-2*x**4 + x**3 - 1, x, oo) == -oo",
+        "limit(-2*x**4 + x**3 - 1, x, -oo) == -oo"
+      ]
+    },
+    {
+      "id": "im3-A2-rem-v10",
+      "unit": "polynomial-functions",
+      "unitTitle": "Polynomial Functions",
+      "level": 2,
+      "skill": "Dividing by (x − k) leaves remainder p(k) — just substitute.",
+      "statement": "Find the remainder when $x^3 - x^2 - 3x + 1$ is divided by $(x + 2)$.",
+      "options": [
+        "$-1$",
+        "$-5$",
+        "$1$",
+        "$11$"
+      ],
+      "correctIndex": 1,
+      "explanation": "By the Remainder Theorem, dividing by $(x + 2)$ leaves $p(-2)$; substituting gives $-5$. Evaluating at $x = 2$ instead — misreading the divisor's sign — gives $-1$.",
+      "check": [
+        "rem(x**3 + (-1)*x**2 + (-3)*x + (1), x - (-2), x) == -5",
+        "(-2)**3 + (-1)*(-2)**2 + (-3)*(-2) + (1) == -5"
+      ]
+    },
+    {
+      "id": "im3-A2-mult-v11",
+      "unit": "polynomial-functions",
+      "unitTitle": "Polynomial Functions",
+      "level": 2,
+      "skill": "Even multiplicity touches the x-axis; odd multiplicity crosses. Distinct zeros count once.",
+      "statement": "The graph of $p(x) = (x - 6)^2(x + 2)$ touches (without crossing) the $x$-axis at which zero?",
+      "options": [
+        "$x = -2$",
+        "$x = -6$",
+        "$x = 6$",
+        "$x = 0$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The squared factor makes $x = 6$ a double zero, so the graph touches and turns there; at $x = -2$ the single factor makes it cross. Picking the crossing zero is the classic mix-up.",
+      "check": [
+        "rem((x - (6))**2*(x - (-2)), (x - (6))**2, x) == 0",
+        "Abs((6) - (-2)) > 0"
+      ]
+    },
+    {
+      "id": "im3-PC-div-v12",
+      "unit": "polynomial-functions",
+      "unitTitle": "Polynomial Functions",
+      "level": 3,
+      "skill": "Dividing by (x − k) leaves remainder p(k) — substitute instead of long-dividing.",
+      "statement": "Divide $x^3 + 7x^2 - 12x + 30$ by $(x - 2)$. What is the remainder?",
+      "options": [
+        "$74$",
+        "$30$",
+        "$6$",
+        "$42$"
+      ],
+      "correctIndex": 3,
+      "explanation": "By the Remainder Theorem the remainder is $p(2) = 42$ — no long division needed. Evaluating at $x = -2$ (misreading the divisor's sign) gives $74$.",
+      "check": [
+        "rem(x**3 + (7)*x**2 + (-12)*x + (30), x - (2), x) == 42",
+        "(2)**3 + (7)*(2)**2 + (-12)*(2) + (30) == 42"
+      ]
+    },
+    {
+      "id": "im3-PC-rint-v09",
+      "unit": "rational-and-radical-functions",
+      "unitTitle": "Rational & Radical Functions",
+      "level": 1,
+      "skill": "x-intercept: numerator = 0. y-intercept: plug in x = 0 and watch the signs cancel.",
+      "statement": "For $f(x) = \\dfrac{x - 3}{x - 10}$, what is the x-intercept?",
+      "options": [
+        "$x = 3$",
+        "$x = 10$",
+        "$x = -3$",
+        "$x = -10$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 3$. The denominator's zero, $x = 10$, is the vertical asymptote — the classic mix-up.",
+      "check": [
+        "(3) - (3) == 0",
+        "Abs((3) - (10)) > 0"
+      ]
+    },
+    {
+      "id": "im3-A2-rsolve-v09",
+      "unit": "rational-and-radical-functions",
+      "unitTitle": "Rational & Radical Functions",
+      "level": 2,
+      "skill": "sqrt(x + a) = b: square both sides first, then isolate x = b^2 - a.",
+      "statement": "Solve $\\sqrt{x + 2} = 6$ for $x$.",
+      "options": [
+        "$34$",
+        "$4$",
+        "$-34$",
+        "$16$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Square both sides: $x + 2 = 36$, so $x = 36 - (2) = 34$. Moving $2$ across without squaring first gives $4$.",
+      "check": [
+        "sqrt((34) + (2)) == 6",
+        "(6)**2 - (2) == 34"
+      ]
+    },
+    {
+      "id": "im3-A2-rsimp-v11",
+      "unit": "rational-and-radical-functions",
+      "unitTitle": "Rational & Radical Functions",
+      "level": 2,
+      "skill": "(x^2 - k^2)/(x - k) = x + k for x != k — factor before substituting.",
+      "statement": "Simplify $\\dfrac{x^2 - 64}{x - 8}$, then evaluate the result at $x = 2$.",
+      "options": [
+        "$-6$",
+        "$2$",
+        "$10$",
+        "$16$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 8)(x + 8)}{x - 8} = x + 8$, which at $x = 2$ equals $10$. Subtracting instead — as if it simplified to $x - 8$ — gives $-6$.",
+      "check": [
+        "((2)**2 - 64)/((2) - 8) == 10",
+        "simplify((x**2 - 64)/(x - 8) - (x + 8)) == 0"
+      ]
+    },
+    {
+      "id": "im3-A2-hole-v12",
+      "unit": "rational-and-radical-functions",
+      "unitTitle": "Rational & Radical Functions",
+      "level": 3,
+      "skill": "A cancelled factor leaves a hole; an uncancelled denominator zero is a vertical asymptote.",
+      "statement": "For $f(x) = \\dfrac{(x - 4)(x - 2)}{x - 6}$, what feature does the graph have at $x = 6$?",
+      "options": [
+        "a hole",
+        "an $x$-intercept",
+        "a horizontal asymptote",
+        "a vertical asymptote"
+      ],
+      "correctIndex": 3,
+      "explanation": "At $x = 6$ the denominator vanishes while the numerator equals $8 \\ne 0$, so $f$ blows up — a vertical asymptote. A hole would need $x - 6$ to cancel with the numerator, and it doesn't.",
+      "check": [
+        "Abs(((6) - (4))*((6) - (2))) > 0"
+      ]
+    },
+    {
+      "id": "im3-LOG-add-v08",
+      "unit": "exponential-and-logarithmic-functions",
+      "unitTitle": "Exponential & Logarithmic Functions",
+      "level": 1,
+      "skill": "log M + log N = log(MN) — same base only.",
+      "statement": "Evaluate: $\\log_{6} 8 + \\log_{6} 27$.",
+      "options": [
+        "$4$",
+        "$2$",
+        "$5$",
+        "$3$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Same base: logs ADD by multiplying arguments: $\\log_{6}(8 \\cdot 27) = \\log_{6} 216 = 3$, since $6^{3} = 216$.",
+      "check": [
+        "8*27 == 6**3",
+        "simplify(log(8, 6) + log(27, 6) - 3) == 0"
+      ]
+    },
+    {
+      "id": "im3-LOG-eq-v09",
+      "unit": "exponential-and-logarithmic-functions",
+      "unitTitle": "Exponential & Logarithmic Functions",
+      "level": 2,
+      "skill": "log_b(…) = c means (…) = b^c; check the argument stays positive.",
+      "statement": "Solve: $\\log_{2}(x + 3) = 3$.",
+      "options": [
+        "$5$",
+        "$11$",
+        "$8$",
+        "$3$"
+      ],
+      "correctIndex": 0,
+      "explanation": "$\\log_{2}(x + 3) = 3$ means $x + 3 = 2^{3} = 8$, so $x = 5$. The argument $x + 3 = 8 > 0$, valid.",
+      "check": [
+        "2**3 - (3) == 5",
+        "5 + (3) > 0"
+      ]
+    },
+    {
+      "id": "im3-LOG-chain-v11",
+      "unit": "exponential-and-logarithmic-functions",
+      "unitTitle": "Exponential & Logarithmic Functions",
+      "level": 2,
+      "skill": "log_a b · log_b c = log_a c — the middle base cancels.",
+      "statement": "Evaluate: $\\log_{2} 3 \\cdot \\log_{3} 16$.",
+      "options": [
+        "$5$",
+        "$3$",
+        "$4$",
+        "$6$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The middle base cancels: $\\log_{2} 3 \\cdot \\log_{3} 16 = \\log_{2} 16 = 4$, since $2^{4} = 16$.",
+      "check": [
+        "simplify(log(3, 2) * log(16, 3) - log(16, 2)) == 0",
+        "2**4 == 16"
+      ]
+    },
+    {
+      "id": "im3-LOG-flip-v12",
+      "unit": "exponential-and-logarithmic-functions",
+      "unitTitle": "Exponential & Logarithmic Functions",
+      "level": 3,
+      "skill": "A decreasing base flips the inequality when you compare exponents.",
+      "statement": "Solve: $\\left(\\dfrac{1}{2}\\right)^x < 8$.",
+      "options": [
+        "$x < -3$",
+        "$x > 3$",
+        "$x < 3$",
+        "$x > -3$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Since the base $\\tfrac{1}{2} < 1$ is decreasing, comparing $\\left(\\tfrac{1}{2}\\right)^x < \\left(\\tfrac{1}{2}\\right)^{-3}$ FLIPS the inequality: $x > -3$.",
+      "check": [
+        "Rational(1, 2)**(-3-1) > Rational(1, 2)**-3",
+        "Rational(1, 2)**(-3+1) < Rational(1, 2)**-3"
+      ]
+    },
+    {
+      "id": "im3-PC-rad-v08",
+      "unit": "trigonometric-functions",
+      "unitTitle": "Trigonometric Functions",
+      "level": 1,
+      "skill": "Reference angle + quadrant sign: read sin and cos of the special angles exactly.",
+      "statement": "Evaluate exactly: $\\cos\\dfrac{3\\pi}{4}$.",
+      "options": [
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$0$",
+        "$1$",
+        "$-\\frac{\\sqrt{2}}{2}$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The reference angle and the quadrant's sign give $\\cos\\dfrac{3\\pi}{4} = -\\frac{\\sqrt{2}}{2}$. Quoting the co-function value $\\sin\\dfrac{3\\pi}{4} = \\frac{\\sqrt{2}}{2}$ is the classic swap.",
+      "check": [
+        "cos(3*pi/4) == -sqrt(2)/2"
+      ]
+    },
+    {
+      "id": "im3-ap-v10",
+      "unit": "trigonometric-functions",
+      "unitTitle": "Trigonometric Functions",
+      "level": 2,
+      "skill": "Amplitude is |A|; the period of sin(Bx) is 2π/B — B squeezes, never stretches.",
+      "statement": "State the amplitude of $y = 2\\sin(6x)$.",
+      "options": [
+        "$-2$",
+        "$2$",
+        "$6$",
+        "$4$"
+      ],
+      "correctIndex": 1,
+      "explanation": "The amplitude is $|A| = |2| = 2$ — the half-height of the wave, always positive (a negative $A$ flips the graph, it does not make the wave negative). $6$ is the value of $B$, which controls the period, not the height.",
+      "check": [
+        "Eq(Abs(2), 2)"
+      ]
+    },
+    {
+      "id": "im3-PC-pt-v11",
+      "unit": "trigonometric-functions",
+      "unitTitle": "Trigonometric Functions",
+      "level": 2,
+      "skill": "The terminal point of t is (cos t; sin t) — cosine first, signs from the quadrant.",
+      "statement": "The terminal point of $t = \\dfrac{5\\pi}{4}$ on the unit circle is which of the following?",
+      "options": [
+        "$(\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+        "$(-\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$",
+        "$(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$",
+        "$(\\frac{\\sqrt{2}}{2}; \\frac{\\sqrt{2}}{2})$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{2}}{2}; -\\frac{\\sqrt{2}}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+      "check": [
+        "cos(5*pi/4) == -sqrt(2)/2",
+        "sin(5*pi/4) == -sqrt(2)/2"
+      ]
+    },
+    {
+      "id": "im3-pyth-v12",
+      "unit": "trigonometric-functions",
+      "unitTitle": "Trigonometric Functions",
+      "level": 3,
+      "skill": "sin² + cos² = 1 gives the size; the quadrant gives the sign.",
+      "statement": "Given $\\cos\\theta = \\frac{12}{13}$ with $\\theta$ in quadrant IV, find $\\sin\\theta$.",
+      "options": [
+        "$\\frac{5}{13}$",
+        "$-\\frac{5}{12}$",
+        "$-\\frac{12}{13}$",
+        "$-\\frac{5}{13}$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Pythagorean identity first: $\\sin^2\\theta + \\cos^2\\theta = 1$ gives $\\sin^2\\theta = 1 - \\frac{144}{169} = \\frac{25}{169}$, so $\\sin\\theta = \\pm\\frac{5}{13}$. Quadrant IV fixes the sign: $\\sin\\theta = -\\frac{5}{13}$.",
+      "check": [
+        "Eq(Rational(5,13)**2 + Rational(12,13)**2, 1)",
+        "Lt(Rational(-5,13), 0)"
+      ]
+    },
+    {
+      "id": "im3-PC-desc-v08",
+      "unit": "function-families-and-inverses",
+      "unitTitle": "Function Families & Inverses",
+      "level": 1,
+      "skill": "Inside the parentheses moves opposite its sign; outside moves as written; minus reflects.",
+      "statement": "How is the graph of $y = f(x + 6) - 2$ obtained from the graph of $y = f(x)$?",
+      "options": [
+        "Shifted right $6$ and down $2$",
+        "Shifted left $6$ and up $2$",
+        "Shifted right $6$ and up $2$",
+        "Shifted left $6$ and down $2$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Inside the parentheses, $x + 6$ moves the graph left $6$ (opposite the visible sign); the $- 2$ outside moves it down $2$. Reading the inner sign literally — right $6$ — is the classic trap.",
+      "check": [
+        "(-6) < 0",
+        "(-2) < 0"
+      ]
+    },
+    {
+      "id": "im3-A2-tpf-v09",
+      "unit": "function-families-and-inverses",
+      "unitTitle": "Function Families & Inverses",
+      "level": 2,
+      "skill": "Outside changes move y, inside changes move x (backwards), a leading minus flips y.",
+      "statement": "The point $(3; 4)$ lies on the graph of $y = f(x)$. Which point must lie on the graph of $y = -f(x)$?",
+      "options": [
+        "$(3; -4)$",
+        "$(-3; 4)$",
+        "$(-3; -4)$",
+        "$(3; 4)$"
+      ],
+      "correctIndex": 0,
+      "explanation": "The minus in front of $f$ reflects the graph across the $x$-axis, flipping only the $y$-coordinate: $(3; -4)$. Reflecting across the $y$-axis instead gives $(-3; 4)$.",
+      "check": [
+        "-(4) == -4"
+      ]
+    },
+    {
+      "id": "im3-A2-invf-v11",
+      "unit": "function-families-and-inverses",
+      "unitTitle": "Function Families & Inverses",
+      "level": 2,
+      "skill": "f^{-1}(c) undoes f: subtract b first, then divide by a.",
+      "statement": "If $f(x) = 2x - 1$, find $f^{-1}(15)$.",
+      "options": [
+        "$29$",
+        "$7$",
+        "$8$",
+        "$16$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Undo $f$ in reverse: $f^{-1}(15) = \\frac{15 - (-1)}{2} = 8$. Plugging $15$ into $f$ itself — the classic inverse slip — gives $29$.",
+      "check": [
+        "((15) - (-1))/(2) == 8",
+        "(2)*(8) + (-1) == 15"
+      ]
+    },
+    {
+      "id": "im3-FUNC-inv-v12",
+      "unit": "function-families-and-inverses",
+      "unitTitle": "Function Families & Inverses",
+      "level": 3,
+      "skill": "f⁻¹(v) = the input that outputs v — solve f(x) = v.",
+      "statement": "If $f(x) = 2x + 1$, find $f^{-1}(9)$.",
+      "options": [
+        "$19$",
+        "$8$",
+        "$5$",
+        "$4$"
+      ],
+      "correctIndex": 3,
+      "explanation": "$f^{-1}(9)$ asks which $x$ gives $f(x) = 9$. Solve $2x + 1 = 9$: $x = 4$. (Computing $f(9)$ instead is the classic trap.)",
+      "check": [
+        "solve(2*x + (1) - 9, x) == [4]",
+        "2*4 + (1) == 9"
+      ]
+    },
+    {
+      "id": "im3-SEQ-gnth-v08",
+      "unit": "sequences-series-and-the-binomial-theorem",
+      "unitTitle": "Sequences, Series & the Binomial Theorem",
+      "level": 1,
+      "skill": "b_n = b_1·q^(n−1) — multiply n−1 times.",
+      "statement": "A geometric sequence has $b_1 = 2$ and ratio $q = 2$. Find $b_{8}$.",
+      "options": [
+        "$256$",
+        "$512$",
+        "$128$",
+        "$28$"
+      ],
+      "correctIndex": 0,
+      "explanation": "$b_n = b_1 q^{n-1}$: $b_{8} = 2 \\cdot 2^{7} = 256$.",
+      "check": [
+        "2*2**(8-1) == 256"
+      ]
+    },
+    {
+      "id": "im3-SEQ-gsum-v09",
+      "unit": "sequences-series-and-the-binomial-theorem",
+      "unitTitle": "Sequences, Series & the Binomial Theorem",
+      "level": 2,
+      "skill": "S_n = b_1(qⁿ − 1)/(q − 1).",
+      "statement": "Find the sum of the first $4$ terms of the geometric sequence with $b_1 = 3$, $q = 2$.",
+      "options": [
+        "$48$",
+        "$45$",
+        "$24$",
+        "$93$"
+      ],
+      "correctIndex": 1,
+      "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 3 \\cdot \\frac{2^{4} - 1}{1} = 45$.",
+      "check": [
+        "3*(2**4 - 1)/(2 - 1) == 45"
+      ]
+    },
+    {
+      "id": "im3-SEQ-asum-v10",
+      "unit": "sequences-series-and-the-binomial-theorem",
+      "unitTitle": "Sequences, Series & the Binomial Theorem",
+      "level": 2,
+      "skill": "S_n = (a_1 + a_n)·n/2 — Gauss's pairing.",
+      "statement": "Find the sum of the first $8$ terms of the arithmetic sequence with $a_1 = 3$, $d = -3$.",
+      "options": [
+        "$-120$",
+        "$24$",
+        "$-60$",
+        "$-144$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Last term $a_{8} = 3 + 7 \\cdot (-3) = -18$. Sum $S_n = \\frac{(a_1 + a_n)n}{2} = \\frac{(3 + -18) \\cdot 8}{2} = -60$.",
+      "check": [
+        "3 + (8-1)*(-3) == -18",
+        "Rational((3 + (-18))*8, 2) == -60"
+      ]
+    },
+    {
+      "id": "im3-SEQ-two-v11",
+      "unit": "sequences-series-and-the-binomial-theorem",
+      "unitTitle": "Sequences, Series & the Binomial Theorem",
+      "level": 3,
+      "skill": "Divide the given terms to isolate a power of q.",
+      "statement": "A geometric sequence has $b_{2} = 6$ and $b_{4} = 24$. Find $b_1$.",
+      "options": [
+        "$6$",
+        "$2$",
+        "$5$",
+        "$3$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Divide: $\\frac{b_{4}}{b_{2}} = q^{2} = \\frac{24}{6} = 4$, so $q = 2$. Then $b_1 = \\frac{b_{2}}{q^{1}} = 3$.",
+      "check": [
+        "Rational(24, 6) == 2**2",
+        "3*2**(2-1) == 6",
+        "3*2**(4-1) == 24"
+      ]
+    },
+    {
+      "id": "im3-PS-study-v08",
+      "unit": "statistical-inference",
+      "unitTitle": "Statistical Inference",
+      "level": 1,
+      "skill": "Assigning → experiment; watching → observational; everyone → census; a subset → sample survey.",
+      "statement": "A store RANDOMLY SELECTS 150 of its customers and asks them to rate the service. This is best described as…",
+      "options": [
+        "an experiment",
+        "an observational study",
+        "a census",
+        "a sample survey"
+      ],
+      "correctIndex": 3,
+      "explanation": "Here a random SUBSET of the population answers — a sample standing in for the whole. Assignment → experiment; watching → observational; everyone → census; a chosen subset → sample survey.",
+      "check": [
+        "7 == 7"
+      ]
+    },
+    {
+      "id": "im3-PS-pop-v09",
+      "unit": "statistical-inference",
+      "unitTitle": "Statistical Inference",
+      "level": 2,
+      "skill": "Scale the sample proportion up to the population size.",
+      "statement": "A city has $20000$ residents. In a random sample of $200$ residents, $88$ approve of a new park. What is the best estimate of the TOTAL number of residents who approve?",
+      "options": [
+        "$8800$",
+        "$88$",
+        "$17600$",
+        "$19912$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Scale the sample rate up to the population: $\\frac{88}{200} \\cdot 20000 = 8800$. The raw count $88$ describes only the sample, not the whole city.",
+      "check": [
+        "Rational(88, 200)*20000 == 8800"
+      ]
+    },
+    {
+      "id": "im3-z-v10",
+      "unit": "statistical-inference",
+      "unitTitle": "Statistical Inference",
+      "level": 2,
+      "skill": "z = (x - μ)/σ counts standard deviations from the mean, sign included.",
+      "statement": "A distribution has mean $100$ and standard deviation $15$. Find the z-score of the value $70$.",
+      "options": [
+        "$2$",
+        "$-2$",
+        "$-30$",
+        "$-1$"
+      ],
+      "correctIndex": 1,
+      "explanation": "$z = \\dfrac{x - \\mu}{\\sigma} = \\dfrac{70 - 100}{15} = -2$: the value sits 2 standard deviations below the mean. The sign carries the direction — losing it is the classic slip.",
+      "check": [
+        "Eq(Rational(70 - 100, 15), Rational(-2, 1))"
+      ]
+    },
+    {
+      "id": "im3-ssz-v12",
+      "unit": "statistical-inference",
+      "unitTitle": "Statistical Inference",
+      "level": 3,
+      "skill": "Halving the margin quadruples the sample — invert 1/√n with care.",
+      "statement": "A pollster wants to cut the margin of error from $6\\%$ to $2\\%$. The sample size must be multiplied by:",
+      "options": [
+        "$3$",
+        "$18$",
+        "$81$",
+        "$9$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The margin runs as $\\frac{1}{\\sqrt{n}}$, so shrinking it by a factor of $3$ demands $3^2 = 9$ times the sample. Doubling the precision always quadruples the bill.",
+      "check": [
+        "Eq((Rational(6,2))**2, 9)"
+      ]
+    },
+    {
+      "id": "im3-PS-assoc-v08",
+      "unit": "modelling-with-functions",
+      "unitTitle": "Modelling with Functions",
+      "level": 1,
+      "skill": "Upward cloud → positive; downward → negative; no slope → none.",
+      "statement": "A scatterplot compares the number of absences a student has ($x$) with their course grade ($y$). As $x$ increases, $y$ tends to DECREASE. Which best describes the association?",
+      "options": [
+        "A positive association",
+        "No association",
+        "A perfect linear relationship",
+        "A negative association"
+      ],
+      "correctIndex": 3,
+      "explanation": "Here $y$ falls as $x$ rises, so the cloud of points slopes downward. A real scatterplot is rarely a PERFECT line — association describes the overall trend, not an exact fit.",
+      "check": [
+        "7 == 7"
+      ]
+    },
+    {
+      "id": "im3-mfp-v09",
+      "unit": "modelling-with-functions",
+      "unitTitle": "Modelling with Functions",
+      "level": 2,
+      "skill": "Slope from the two points, intercept from either — then predict.",
+      "statement": "A candle is $70$ cm tall $2$ hours after lighting and $85$ cm after $5$ hours. If the change is linear, how tall (cm) is it after $8$ hours?",
+      "options": [
+        "$100$",
+        "$90$",
+        "$20$",
+        "$70$"
+      ],
+      "correctIndex": 0,
+      "explanation": "Slope from the two readings: $m = \\frac{85 - 70}{5 - 2} = 5$ per unit, and $70 = 5 \\cdot 2 + b$ gives $b = 60$. So $y = 5x + 60$, and at $x = 8$: $100$.",
+      "check": [
+        "Eq(Rational(85 - 70, 5 - 2), 5)",
+        "Eq(5*8 + 60, 100)"
+      ]
+    },
+    {
+      "id": "im3-PC-exp-v10",
+      "unit": "modelling-with-functions",
+      "unitTitle": "Modelling with Functions",
+      "level": 2,
+      "skill": "A · b^x: exponentiate the base first, then scale by A; negative x means reciprocal.",
+      "statement": "If $f(x) = 7 \\cdot 2^x$, find $f(-4)$.",
+      "options": [
+        "$-56$",
+        "$\\frac{7}{16}$",
+        "$\\frac{1}{16}$",
+        "$\\frac{2}{2401}$"
+      ],
+      "correctIndex": 1,
+      "explanation": "The negative exponent means a reciprocal: $f(-4) = 7 \\cdot \\frac{1}{2^{4}} = \\frac{7}{16}$. Multiplying instead of exponentiating gives $-56$.",
+      "check": [
+        "(7) * Rational(2)**(-4) == Rational(7, 16)"
+      ]
+    },
+    {
+      "id": "im3-qfv-v12",
+      "unit": "modelling-with-functions",
+      "unitTitle": "Modelling with Functions",
+      "level": 3,
+      "skill": "Vertex form hands you h and k; one more point pins a.",
+      "statement": "A parabola has vertex $(2,\\ 5)$ and passes through $(5,\\ 23)$. What is its $y$-intercept?",
+      "options": [
+        "$9$",
+        "$3$",
+        "$5$",
+        "$13$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Vertex form does the work: $y = a(x - 2)^2 + 5$ with $a$ from the extra point — $23 = a(3)^2 + 5$ gives $a = 2$. At $x = 0$: $y = 2(-2)^2 + 5 = 13$.",
+      "check": [
+        "Eq(2*(5 - 2)**2 + 5, 23)",
+        "Eq(2*(0 - 2)**2 + 5, 13)"
+      ]
+    }
+  ]
+}
