@@ -1,81 +1,74 @@
 import { BarChart3, BookOpen, Layers } from "lucide-react";
 import IbPracticeSets from "@/components/ib/IbPracticeSets";
-import { HubShell, HubHero, HubSection, HubRowLink } from "@/components/hub/HubKit";
+import {
+  HubShell,
+  HubHeader,
+  HubProgressBanner,
+  HubActionGrid,
+  type HubActionCardDef,
+} from "@/components/hub/HubKit";
 
 export const metadata = { title: "IB Math Hub" };
 
 // IB hub content is ENGLISH by design, like the SAT hub (exam realism).
-//
-// Structure comes from HubKit and matches the ЭЕШ and SAT hubs exactly:
-// hero → tests (practice sets) → courses → practice by topic → progress.
+// Built in the ЭЕШ hub's design idiom via components/hub/HubKit.tsx: the
+// ЭЕШ page is the reference.
 export default function IbHubPage() {
+  const cards: HubActionCardDef[] = [
+    {
+      href: "/math/ib-sl",
+      title: "Standard Level (SL)",
+      subtitle: "The complete SL syllabus · 5 topics · one lesson per subtopic code",
+      icon: BookOpen,
+      badge: { label: "Live", tone: "accent" },
+    },
+    {
+      href: "/math/ib-hl",
+      title: "Higher Level (HL)",
+      subtitle: "The AHL extension on top of SL · proof, complex numbers, 3D vectors, deeper calculus",
+      icon: BookOpen,
+      badge: { label: "Live", tone: "accent" },
+    },
+    {
+      href: "/practice/ib/bank",
+      title: "Practice by topic",
+      subtitle: "Drill the 5 syllabus topics · a similar problem after every miss",
+      icon: Layers,
+    },
+  ];
+
   return (
     <HubShell>
-      <HubHero
+      <HubHeader
         eyebrow="IB Mathematics · Analysis & Approaches"
-        title="IB Math, "
-        accent="markscheme"
-        titleAfter="-sharp."
-        lede="The full syllabus taught code by code — booklet-flagged formulas,
-          exam-format worked examples, and solutions marked the way examiners
-          mark: method, accuracy, reasoning. Then full mock papers, self-marked
-          against real markschemes."
+        title="IB Math practice"
+        statsLine={
+          <>
+            SL + HL courses · topic drills · practice sets marked to
+            markscheme standard
+          </>
+        }
       />
 
-      <HubSection label="Practice sets">
-        <div className="mono text-[11px] uppercase mb-2" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-          AA SL
-        </div>
+      <HubProgressBanner
+        href="/ib-analytics"
+        icon={BarChart3}
+        eyebrow="Progress"
+        title="Your IB performance"
+        subtitle="Per-component accuracy and weakest areas, once you start practicing"
+        cta="See the full report"
+      />
+
+      <HubActionGrid cards={cards} />
+
+      <div className="mt-12">
+        <div className="eyebrow mb-4">Practice sets — AA SL</div>
         <IbPracticeSets level="sl" />
-        <div className="mono text-[11px] uppercase mt-5 mb-2" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-          AA HL
-        </div>
+      </div>
+      <div className="mt-10">
+        <div className="eyebrow mb-4">Practice sets — AA HL</div>
         <IbPracticeSets level="hl" />
-      </HubSection>
-
-      <HubSection label="The courses">
-        <div className="space-y-3">
-          <HubRowLink
-            href="/math/ib-sl"
-            icon={BookOpen}
-            title="Standard Level (SL)"
-            badge="Live"
-            desc="The COMPLETE SL syllabus — all five topics, one lesson per
-              subtopic code, SL 1.1 through 5.11: interactive graphs, a walkable
-              unit circle, steerable distributions, and calculus you can watch
-              converge."
-          />
-          <HubRowLink
-            href="/math/ib-hl"
-            icon={BookOpen}
-            title="Higher Level (HL)"
-            badge="Live"
-            desc="The AHL extension codes on top of the SL course — proof by
-              induction and contradiction, complex numbers to De Moivre, vectors
-              in space, deeper calculus. Topic 1 is open; the rest land in
-              syllabus order."
-          />
-        </div>
-      </HubSection>
-
-      <HubSection label="Practice by topic">
-        <HubRowLink
-          href="/practice/ib/bank"
-          icon={Layers}
-          title="IB topic practice"
-          desc="Drill the five syllabus topics — SL and the AHL extension — with
-            a similar problem queued after every miss."
-        />
-      </HubSection>
-
-      <HubSection label="Your progress">
-        <HubRowLink
-          href="/ib-analytics"
-          icon={BarChart3}
-          title="Your IB progress"
-          desc="Per-component accuracy and weakest areas, once you start practicing."
-        />
-      </HubSection>
+      </div>
     </HubShell>
   );
 }

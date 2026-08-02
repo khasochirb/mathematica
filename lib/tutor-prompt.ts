@@ -122,6 +122,11 @@ RULES:
   if (context.unit) ctx.push(`Unit: ${context.unit}`);
   if (context.title) ctx.push(`Lesson: ${context.title}`);
   if (context.kind === "question") {
+    // The tutor's whole job (owner decision 2026-08-01): explain the miss,
+    // then route the student to the right practice surface on the site.
+    ctx.push(
+      `ROUTING: once the student understands the mistake, end your reply by pointing them to where to practice this topic on Mongol Potential: topic drills at "Сэдвээр дадлагажих" (/practice/esh/practice — pick the topic "${context.unit ?? ""}") and the topic's course at "Сэдвээр суралцах" (/practice/esh/topics). One short sentence, not a lecture.`,
+    );
     if (context.question) ctx.push(`Problem: ${context.question}`);
     if (context.options) {
       ctx.push(

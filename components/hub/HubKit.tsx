@@ -1,159 +1,201 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-// THE hub skeleton — ЭЕШ, SAT and IB hub landing pages are all built from
-// these four pieces, in the same canonical order:
-//
-//   <HubShell>
-//     <HubHero .../>            1. eyebrow · italic-accent title · lede
-//     <HubSection> tests        2. the hub's full-length sittings
-//     <HubSection> the course   3. the taught curriculum
-//     <HubSection> by topic     4. the drill bank
-//     <HubSection> progress     5. analytics / weakness practice
-//     ...hub-specific extras    (recommendations, recents, roadmap)
-//   </HubShell>
+// THE hub design system — and the direction matters: the ЭЕШ hub's original
+// design is the REFERENCE (owner, 2026-08-01: "make SAT and IB hubs like the
+// old ЭЕШ design"). These primitives are extracted from that page so SAT and
+// IB render in its idiom — wide shell, bordered stats header, accent
+// progress banner, 2×2 icon action cards. Never the reverse: do not flatten
+// the ЭЕШ hub to fit a simpler kit.
 //
 // Content language stays a HUB property (ЭЕШ Mongolian, SAT/IB English) —
-// this kit carries no copy, only structure. Server-safe: no hooks, so the
-// SAT/IB pages stay server components; the ЭЕШ page uses it from a client
-// component. If a hub page stops using this kit, it has drifted — that is
-// the review flag.
+// the kit carries no copy. Server-safe: no hooks; client hubs (ЭЕШ) can
+// pass live values as props/children.
 
 export function HubShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
-        {children}
-      </div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</div>
     </div>
   );
 }
 
-export function HubHero({
+// Bordered header: eyebrow · big serif title · mono stats line, with an
+// optional right-side block (the ЭЕШ hub puts the live average there).
+export function HubHeader({
   eyebrow,
   title,
-  accent,
-  titleAfter,
-  lede,
   statsLine,
+  aside,
 }: {
   eyebrow: string;
-  /** Text before the accent word. */
   title: string;
-  /** The italic accent word (rendered serif-italic in the accent color). */
-  accent: string;
-  /** Text after the accent word (punctuation usually lives here). */
-  titleAfter?: string;
-  lede: string;
-  /** Optional mono stats line under the lede, e.g. "34 тест · 1,224 бодлого". */
   statsLine?: React.ReactNode;
+  aside?: React.ReactNode;
 }) {
   return (
-    <>
-      <div className="eyebrow mb-4">{eyebrow}</div>
-      <h1
-        className="serif"
-        style={{
-          fontWeight: 400,
-          fontSize: "clamp(36px, 6vw, 56px)",
-          letterSpacing: "-0.04em",
-          lineHeight: 1.0,
-          color: "var(--fg)",
-        }}
-      >
-        {title}
-        <em className="serif-italic" style={{ color: "var(--accent)" }}>
-          {accent}
-        </em>
-        {titleAfter}
-      </h1>
-      <p className="text-[15px] mt-4" style={{ color: "var(--fg-2)", maxWidth: "52ch" }}>
-        {lede}
-      </p>
-      {statsLine && (
-        <p className="mono mt-3 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          {statsLine}
-        </p>
-      )}
-    </>
+    <div
+      className="flex items-end justify-between gap-3 mb-10 pb-6"
+      style={{ borderBottom: "1px solid var(--line)" }}
+    >
+      <div>
+        <div className="eyebrow mb-1.5">{eyebrow}</div>
+        <h1
+          className="serif"
+          style={{
+            fontWeight: 400,
+            fontSize: "clamp(32px, 4vw, 44px)",
+            letterSpacing: "-0.03em",
+            lineHeight: 1,
+            color: "var(--fg)",
+          }}
+        >
+          {title}
+        </h1>
+        {statsLine && (
+          <p className="mono mt-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
+            {statsLine}
+          </p>
+        )}
+      </div>
+      {aside}
+    </div>
   );
 }
 
-export function HubSection({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <>
-      <div className="eyebrow mt-10 mb-3">{label}</div>
-      {children}
-    </>
-  );
-}
-
-// The standard destination card: icon · title · one-line description · arrow.
-// Optional trailing badge ("Үнэгүй", "Live", "Түгжээтэй") after the title.
-export function HubRowLink({
+// The full-width accent banner above the action grid — the hub's progress /
+// analytics destination.
+export function HubProgressBanner({
   href,
   icon: Icon,
+  eyebrow,
   title,
-  desc,
-  badge,
-  badgeTone = "accent",
-  onClick,
+  subtitle,
+  cta,
 }: {
   href: string;
   icon: LucideIcon;
+  eyebrow: string;
   title: string;
-  desc: string;
-  badge?: string;
-  badgeTone?: "accent" | "muted";
-  onClick?: () => void;
+  subtitle: string;
+  cta: string;
 }) {
   return (
     <Link
       href={href}
-      onClick={onClick}
-      className="card-edit p-5 flex items-center justify-between gap-3 transition-colors hover:border-[var(--accent-line)]"
-      style={{ display: "flex", textDecoration: "none" }}
+      className="block mb-4 p-5 group transition-colors"
+      style={{
+        background: "var(--bg-1)",
+        border: "1px solid var(--accent-line)",
+        borderRadius: 12,
+      }}
     >
-      <span className="inline-flex items-start gap-2.5" style={{ color: "var(--fg-1)" }}>
-        <Icon className="h-4 w-4 mt-[3px] shrink-0" style={{ color: "var(--fg-2)" }} />
-        <span>
-          <span className="inline-flex items-center gap-2 flex-wrap">
-            <span style={{ color: "var(--fg)" }}>{title}</span>
-            {badge && (
-              <span
-                className="mono text-[10px] uppercase px-1.5 py-0.5 rounded-full"
-                style={
-                  badgeTone === "accent"
-                    ? {
-                        background: "color-mix(in oklch, var(--accent) 14%, transparent)",
-                        color: "var(--accent)",
-                        letterSpacing: "0.08em",
-                      }
-                    : {
-                        background: "var(--bg-2)",
-                        border: "1px solid var(--line)",
-                        color: "var(--fg-3)",
-                        letterSpacing: "0.08em",
-                      }
-                }
-              >
-                {badge}
-              </span>
-            )}
-          </span>
-          <span className="block text-[12px] mt-0.5" style={{ color: "var(--fg-3)" }}>
-            {desc}
-          </span>
+      <div className="flex items-center gap-4">
+        <div
+          className="w-11 h-11 rounded-md flex items-center justify-center shrink-0"
+          style={{
+            background: "var(--accent-wash)",
+            border: "1px solid var(--accent-line)",
+            color: "var(--accent)",
+          }}
+        >
+          <Icon className="w-5 h-5" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="eyebrow" style={{ color: "var(--accent)" }}>
+            {eyebrow}
+          </div>
+          <h2
+            className="serif mt-1"
+            style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.1 }}
+          >
+            {title}
+          </h2>
+          <p className="text-[13px] mt-1" style={{ color: "var(--fg-2)" }}>
+            {subtitle}
+          </p>
+        </div>
+        <span
+          className="mono text-[11px] uppercase shrink-0 hidden sm:inline-flex items-center gap-1"
+          style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
+        >
+          {cta}
+          <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
-      </span>
-      <ArrowRight className="h-4 w-4 shrink-0" style={{ color: "var(--fg-3)" }} />
+        <ChevronRight
+          className="w-5 h-5 sm:hidden transition-transform group-hover:translate-x-0.5"
+          style={{ color: "var(--accent)" }}
+        />
+      </div>
     </Link>
+  );
+}
+
+export interface HubActionCardDef {
+  href: string;
+  title: string;
+  subtitle: string;
+  icon: LucideIcon;
+  badge?: { label: string; tone: "accent" | "muted" };
+}
+
+// The 2×2 equal-weight action grid — each card: icon box top-left, chevron
+// top-right, serif title with optional badge, subtitle.
+export function HubActionGrid({ cards }: { cards: HubActionCardDef[] }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {cards.map((c) => {
+        const Icon = c.icon;
+        return (
+          <Link key={c.href} href={c.href} className="card-edit p-6 group block">
+            <div className="flex items-start justify-between mb-4">
+              <div
+                className="w-10 h-10 rounded-md flex items-center justify-center"
+                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--accent)" }}
+              >
+                <Icon className="w-4 h-4" />
+              </div>
+              <ChevronRight
+                className="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+                style={{ color: "var(--fg-3)" }}
+              />
+            </div>
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <h2
+                className="serif"
+                style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.1 }}
+              >
+                {c.title}
+              </h2>
+              {c.badge && (
+                <span
+                  className="mono text-[10px] uppercase px-2 py-0.5 rounded-full"
+                  style={
+                    c.badge.tone === "accent"
+                      ? {
+                          background: "color-mix(in oklch, var(--accent) 14%, transparent)",
+                          color: "var(--accent)",
+                          letterSpacing: "0.08em",
+                        }
+                      : {
+                          background: "var(--bg-2)",
+                          border: "1px solid var(--line)",
+                          color: "var(--fg-3)",
+                          letterSpacing: "0.08em",
+                        }
+                  }
+                >
+                  {c.badge.label}
+                </span>
+              )}
+            </div>
+            <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
+              {c.subtitle}
+            </p>
+          </Link>
+        );
+      })}
+    </div>
   );
 }

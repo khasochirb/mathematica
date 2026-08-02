@@ -92,64 +92,38 @@ export default function TopicLearnPage() {
           </p>
         )}
 
-        {/* The course itself. */}
+        {/* The course itself. (The legacy formula sheet and tips that used
+            to follow were cut 2026-08-01 by owner decision — the course
+            teaches; the problem bank below is where the numbers get used.) */}
         {course && courseDef && (
           <Section n={num()} label="Курс">
             <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)" }}>
               {live > 0
                 ? `${total} нэгжээс ${live} нь бэлэн — хичээл, дадлага, өөрийгөө шалгах тесттэй. Хичээлүүд одоогоор англи хэлээр; монгол орчуулга дараа нэмэгдэнэ.`
-                : `${total} нэгж бэлтгэгдэж байна. Одоохондоо доорх томьёо ба зөвлөгөөг ашиглаарай.`}
+                : `${total} нэгж бэлтгэгдэж байна.`}
             </p>
             <CourseSpineList course={courseDef} />
           </Section>
         )}
 
-        {/* Formula sheet — the reference that sits beside the course. */}
-        {data && data.formulas.length > 0 && (
-          <Section n={num()} label="Гол томьёонууд">
-            <div className="space-y-3">
-              {data.formulas.map((formula, i) => (
-                <div key={i} className="card-edit p-5">
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="serif" style={{ fontWeight: 400, fontSize: 14, color: "var(--accent)" }}>
-                      {formula.title}
-                    </p>
-                  </div>
-                  <div className="q-math text-[15px]" style={{ color: "var(--fg)" }}>
-                    <MathText text={formula.latex} />
-                  </div>
-                </div>
-              ))}
+        {/* Problem bank — directly below the course, per owner decision. */}
+        <Section n={num()} label="Бодлогын сан">
+          <Link
+            href="/practice/esh/practice"
+            className="card-edit p-5 flex items-center gap-4 group"
+            style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
+          >
+            <div className="flex-1">
+              <p className="serif" style={{ fontWeight: 400, fontSize: 18, color: "var(--fg)" }}>
+                Энэ сэдвээр <em className="serif-italic" style={{ color: "var(--accent)" }}>дадлага</em> хийх
+              </p>
+              <p className="mono text-[11px] mt-1" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
+                {questionCount} БОДЛОГО БЭЛЭН
+              </p>
             </div>
-          </Section>
-        )}
-
-        {data && data.tips.length > 0 && (
-          <Section n={num()} label="Зөвлөгөө">
-            <ul className="card-edit p-2">
-              {data.tips.map((tip, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 px-4 py-3"
-                  style={{ borderBottom: i < data.tips.length - 1 ? "1px solid var(--line)" : "none" }}
-                >
-                  <span
-                    className="mono tabular text-[10px] mt-1 flex-shrink-0"
-                    style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[14px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
-                    {tip}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Section>
-        )}
+            <ArrowRight className="w-5 h-5 flex-shrink-0" style={{ color: "var(--accent)" }} />
+          </Link>
+        </Section>
 
         {/* The hand-authored ЭЕШ lesson, where one exists for this topic. */}
         {lesson && (
@@ -207,24 +181,6 @@ export default function TopicLearnPage() {
           </>
         )}
 
-        <Link
-          href="/practice/esh/practice"
-          className="card-edit p-5 flex items-center gap-4 mt-10 group"
-          style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
-        >
-          <div className="flex-1">
-            <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>
-              Дараа нь
-            </div>
-            <p className="serif" style={{ fontWeight: 400, fontSize: 18, color: "var(--fg)" }}>
-              Энэ сэдвээр <em className="serif-italic" style={{ color: "var(--accent)" }}>дадлага</em> хийх
-            </p>
-            <p className="mono text-[11px] mt-1" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
-              {questionCount} БОДЛОГО БЭЛЭН
-            </p>
-          </div>
-          <ArrowRight className="w-5 h-5 flex-shrink-0" style={{ color: "var(--accent)" }} />
-        </Link>
       </div>
     </div>
   );

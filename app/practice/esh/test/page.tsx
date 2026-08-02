@@ -41,9 +41,9 @@ const HEADER_COPY: Record<
     subtitle: "Premium · 14 тест",
   },
   previous: {
-    eyebrow: "ЭЕШ · Бодит шалгалт",
+    eyebrow: "ЭЕШ · Шалгалт",
     title: "Өмнө жилийн тестүүд",
-    subtitle: "Бодит шалгалт · 20 тест",
+    subtitle: "Шалгалт · 20 тест",
   },
 };
 
