@@ -13,9 +13,11 @@ import type { GenMathTopic, GenMathLesson } from "@/lib/genmath-types";
 import { GRADE5_SPINE, type GradeSpineEntry } from "@/lib/genmath-spines";
 
 import wholeNumbers from "@/data/genmath/5/whole-numbers-and-place-value.json";
+import additionSubtraction from "@/data/genmath/5/addition-and-subtraction.json";
 
 export const grade5Topics: GenMathTopic[] = [
   wholeNumbers as GenMathTopic,
+  additionSubtraction as GenMathTopic,
 ];
 
 export const grade5TopicsMn: Record<string, GenMathTopic> = {};

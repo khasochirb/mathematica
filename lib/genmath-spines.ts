@@ -56,8 +56,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "addition-and-subtraction",
     title: "Addition & Subtraction",
-    blurb: "Multi-digit addition and subtraction with regrouping, mental strategies, and multi-step word problems.",
-    live: false,
+    blurb: "Multi-digit addition and subtraction with regrouping, mental strategies, fact families with missing numbers, and multi-step word problems.",
+    live: true,
   },
   {
     slug: "multiplication-and-division",
