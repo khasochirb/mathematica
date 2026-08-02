@@ -365,6 +365,7 @@ def lesson_rational_exponents():
             },
             {"kind": "tryIt", "title": "Your turn — two rational powers", "problemId": "im2-u1-l1-t1"},
             {"kind": "tryIt", "title": "Your turn — a negative exponent", "problemId": "im2-u1-l1-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a power of a power", "problemId": "im2-u1-l1-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -712,6 +713,7 @@ def lesson_simplifying():
             ),
             {"kind": "worked", "title": "The three conditions applied", "problemId": "im2-u1-l2-we4"},
             {"kind": "tryIt", "title": "Your turn — two square roots", "problemId": "im2-u1-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a cube root", "problemId": "im2-u1-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — with a variable", "problemId": "im2-u1-l2-t3"},
             {
                 "kind": "recap",
@@ -1057,6 +1059,7 @@ def lesson_operations():
             ),
             {"kind": "worked", "title": "Both rationalising techniques", "problemId": "im2-u1-l3-we4"},
             {"kind": "tryIt", "title": "Your turn — combine after simplifying", "problemId": "im2-u1-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 square the binomial", "problemId": "im2-u1-l3-t2"},
             {"kind": "tryIt", "title": "Your turn — rationalise with a conjugate", "problemId": "im2-u1-l3-t3"},
             {
                 "kind": "recap",
@@ -1455,6 +1458,7 @@ def lesson_rational_irrational():
             },
             {"kind": "worked", "title": "Five classifications, with reasons", "problemId": "im2-u1-l4-we4"},
             {"kind": "tryIt", "title": "Your turn — classify four", "problemId": "im2-u1-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 rational or irrational?", "problemId": "im2-u1-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — argue by contradiction", "problemId": "im2-u1-l4-t3"},
             {
                 "kind": "recap",

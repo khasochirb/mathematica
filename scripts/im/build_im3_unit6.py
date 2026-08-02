@@ -249,6 +249,7 @@ def lesson_arithmetic():
             {"kind": "teach", "title": "Why the pairing never fails", "body": "Step one term in from each end: the left gains $d$, the right loses $d$ — the pair total is untouched. So $S_n = \\frac{n}{2}(a_1 + a_n)$, and when the last term isn't handy, substitute its formula to get $S_n = \\frac{n}{2}(2a_1 + (n-1)d)$. Same fact, two outfits.", "beats": ["Pair total is constant — that's the whole proof", "Know the last term: use $\\frac{n}{2}(a_1 + a_n)$", "Don't know it: use $\\frac{n}{2}(2a_1 + (n-1)d)$"]},
             {"kind": "tryIt", "title": "Term and sum", "problemId": "im3-u6-l1-t1"},
             {"kind": "tryIt", "title": "The first 50 even numbers", "problemId": "im3-u6-l1-t2"},
+            {"kind": "tryIt", "title": "The pipe stack", "problemId": "im3-u6-l1-t3"},
             tap(
                 "Pick the tool",
                 "You know a series is arithmetic with $30$ terms, first term "
@@ -489,6 +490,7 @@ def lesson_geometric():
             {"kind": "teach", "title": "The formula is the argument, prepackaged", "body": "Run shift-and-subtract with letters: $S_n - rS_n = a_1 - a_1 r^n$, so $S_n = a_1\\frac{1 - r^n}{1 - r}$ for $r \\ne 1$. The chessboard's near-miss is this formula at work: a doubling total is always one less than the next term. When $r = 1$ every term is equal — just multiply.", "beats": ["$S_n = a_1 \\frac{1 - r^n}{1 - r}$, $r \\ne 1$", "$1 + 2 + \\cdots + 2^{n-1} = 2^n - 1$", "Parentheses around the whole ratio in $r^n$"]},
             {"kind": "tryIt", "title": "Term and sum", "problemId": "im3-u6-l2-t1"},
             {"kind": "tryIt", "title": "A fractional ratio", "problemId": "im3-u6-l2-t2"},
+            {"kind": "tryIt", "title": "The rumour's reach", "problemId": "im3-u6-l2-t3"},
             tap(
                 "Which grows past which",
                 "One series adds $100$ each step; another multiplies by $2$ "
@@ -720,6 +722,7 @@ def lesson_infinite():
             {"kind": "teach", "title": "The sum IS the limit", "body": "No partial sum ever equals $1$; the SUM is defined as the number the partial sums approach — and that number is exactly $1$, the same way $0.999\\ldots$ equals $1$. Repeating decimals are this machinery in disguise, which is why every one of them is a fraction.", "beats": ["The infinite sum is the limit of partial sums", "It EQUALS its value; partial sums merely approach", "Every repeating decimal is geometric with $r$ a power of $\\frac{1}{10}$"]},
             {"kind": "tryIt", "title": "A one-line sum", "problemId": "im3-u6-l3-t1"},
             {"kind": "tryIt", "title": "Decimal to fraction", "problemId": "im3-u6-l3-t2"},
+            {"kind": "tryIt", "title": "Sum or no sum?", "problemId": "im3-u6-l3-t3"},
             tap(
                 "Decimals unmasked",
                 "As a fraction, $0.\\overline{5} = 0.555\\ldots$ equals:",
@@ -957,6 +960,7 @@ def lesson_binomial():
             {"kind": "teach", "title": "The triangle is a theorem about choices", "body": "Pascal's rule $\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}$ says: a choice of $k$ items either uses the newest item or it doesn't. That's why each entry is the sum of the two above — combinations computed without a single factorial. Symmetry comes free: choosing $k$ to keep is choosing $n - k$ to leave out.", "beats": ["Pascal's rule: use the new item, or don't", "Rows are symmetric: $\\binom{n}{k} = \\binom{n}{n-k}$", "Row $n$ sums to $2^n$ — all the choices there are"]},
             {"kind": "tryIt", "title": "Alternating signs", "problemId": "im3-u6-l4-t1"},
             {"kind": "tryIt", "title": "A single coefficient", "problemId": "im3-u6-l4-t2"},
+            {"kind": "tryIt", "title": "Three heads in six flips", "problemId": "im3-u6-l4-t3"},
             tap(
                 "Symmetry for free",
                 "Without computing factorials: $\\binom{9}{7}$ equals which "

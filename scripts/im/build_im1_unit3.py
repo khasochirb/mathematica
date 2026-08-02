@@ -322,6 +322,7 @@ def lesson_what_is_a_function():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — function or not", "problemId": "im1-u3-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 function or not?", "problemId": "im1-u3-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — a circle", "problemId": "im1-u3-l1-t3"},
             {
                 "kind": "recap",
@@ -647,6 +648,7 @@ def lesson_notation():
             },
             {"kind": "worked", "title": "A candle's real domain and range", "problemId": "im1-u3-l2-we4"},
             {"kind": "tryIt", "title": "Your turn — evaluate three times", "problemId": "im1-u3-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 evaluate h", "problemId": "im1-u3-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — a domain restriction", "problemId": "im1-u3-l2-t3"},
             {
                 "kind": "recap",
@@ -1028,6 +1030,7 @@ def lesson_arithmetic():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — write the rule", "problemId": "im1-u3-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 the first negative term", "problemId": "im1-u3-l3-t2"},
             {"kind": "tryIt", "title": "Your turn — from two terms", "problemId": "im1-u3-l3-t3"},
             {
                 "kind": "recap",
@@ -1384,6 +1387,7 @@ def lesson_geometric():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — write the rule", "problemId": "im1-u3-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 the third bounce", "problemId": "im1-u3-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — classify it", "problemId": "im1-u3-l4-t3"},
             {
                 "kind": "recap",

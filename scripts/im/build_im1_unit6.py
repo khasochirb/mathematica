@@ -369,6 +369,7 @@ def lesson_growth_decay():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — growing bacteria", "problemId": "im1-u6-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a fading drug", "problemId": "im1-u6-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — classify the table", "problemId": "im1-u6-l1-t3"},
             {
                 "kind": "recap",
@@ -729,6 +730,7 @@ def lesson_graphs():
             },
             {"kind": "tryIt", "title": "Your turn — intercept and values", "problemId": "im1-u6-l2-t1"},
             {"kind": "tryIt", "title": "Your turn — end behaviour", "problemId": "im1-u6-l2-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 which grows faster?", "problemId": "im1-u6-l2-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1111,6 +1113,7 @@ def lesson_comparison():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — find the crossover", "problemId": "im1-u6-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 classify the growth", "problemId": "im1-u6-l3-t2"},
             {"kind": "tryIt", "title": "Your turn — two cities", "problemId": "im1-u6-l3-t3"},
             {
                 "kind": "recap",
@@ -1459,6 +1462,7 @@ def lesson_modelling():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — from a table", "problemId": "im1-u6-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 find the base", "problemId": "im1-u6-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — a half-life", "problemId": "im1-u6-l4-t3"},
             {
                 "kind": "recap",

@@ -237,6 +237,7 @@ def lesson_unit_circle():
             {"kind": "teach", "title": "Around again changes nothing", "body": "Adding or subtracting $2\\pi$ lands on the same point, so it changes no trig value — the functions repeat, by construction. Negative angles just travel clockwise: $-\\frac{\\pi}{3}$ and $\\frac{5\\pi}{3}$ are the same point. Periodicity isn't discovered later; it is built into the definition.", "beats": ["$\\theta \\pm 2\\pi$: same point, same values", "Negative = clockwise", "$\\sin(\\theta + 2\\pi) = \\sin\\theta$, always"]},
             {"kind": "tryIt", "title": "Convert both ways", "problemId": "im3-u4-l1-t1"},
             {"kind": "tryIt", "title": "Evaluate at the axes", "problemId": "im3-u4-l1-t2"},
+            {"kind": "tryIt", "title": "A coterminal angle", "problemId": "im3-u4-l1-t3"},
             tap(
                 "Going around again",
                 "$\\sin\\left(\\dfrac{\\pi}{6} + 2\\pi\\right)$ equals:",
@@ -457,6 +458,7 @@ def lesson_reference():
             {"kind": "teach", "title": "Every evaluation is a two-step", "body": "NAME the reference angle, then SIGN the first-quadrant value by quadrant. Tangent rides along as $\\frac{\\sin\\theta}{\\cos\\theta}$ — the slope of the terminal side — its sign the quotient of the two. And an equation like $\\sin\\theta = c$ has TWO answers per turn: one in each quadrant where the sign fits.", "beats": ["Step 1: reference angle", "Step 2: quadrant sign", "$\\sin\\theta = c$: expect two angles per turn"]},
             {"kind": "tryIt", "title": "Name and evaluate", "problemId": "im3-u4-l2-t1"},
             {"kind": "tryIt", "title": "Fourth-quadrant cosine", "problemId": "im3-u4-l2-t2"},
+            {"kind": "tryIt", "title": "Tangent in quadrant III", "problemId": "im3-u4-l2-t3"},
             tap(
                 "Assemble a value",
                 "$\\cos\\dfrac{3\\pi}{4}$ equals:",
@@ -671,6 +673,7 @@ def lesson_graphs():
             {"kind": "teach", "title": "Modelling runs the reading backwards", "body": "From a maximum and minimum: the midline is their average, the amplitude their half-difference, and the period is read off the story's clock. Choose cosine to start at a peak, sine to start on the midline — the choice is a starting point, not a different physics.", "beats": ["Midline $k$ = average of max and min", "Amplitude $|a|$ = half the difference", "Cosine starts at a peak; sine at the midline"]},
             {"kind": "tryIt", "title": "Amplitude and period", "problemId": "im3-u4-l3-t1"},
             {"kind": "tryIt", "title": "Midline from max and min", "problemId": "im3-u4-l3-t2"},
+            {"kind": "tryIt", "title": "Build the sine model", "problemId": "im3-u4-l3-t3"},
             tap(
                 "Build the model",
                 "A wave oscillates between $0$ and $10$ with period $8$, starting at "
@@ -911,6 +914,7 @@ def lesson_identity():
             {"kind": "teach", "title": "Familiar triangles, hiding on the circle", "body": "With $\\sin\\theta = \\frac{3}{5}$ the identity forces $\\cos\\theta = \\pm\\frac{4}{5}$ — the $3$–$4$–$5$ triangle scaled onto the unit circle. Tangent then comes free as the quotient of the two. A verification at one angle ILLUSTRATES an identity; only algebra that never picks a value PROVES it.", "beats": ["Pythagorean triples reappear as trig values", "$\\tan\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$", "Verify at a point; prove with algebra"]},
             {"kind": "tryIt", "title": "Quadrant I warm-up", "problemId": "im3-u4-l4-t1"},
             {"kind": "tryIt", "title": "Tangent from cosine", "problemId": "im3-u4-l4-t2"},
+            {"kind": "tryIt", "title": "The identity in disguise", "problemId": "im3-u4-l4-t3"},
             tap(
                 "Notation check",
                 "$\\sin^2\\theta$ means:",

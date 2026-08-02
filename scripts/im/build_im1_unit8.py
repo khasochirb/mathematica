@@ -368,6 +368,7 @@ def lesson_distance_midpoint():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — a distance", "problemId": "im1-u8-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a midpoint", "problemId": "im1-u8-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — a rectangle", "problemId": "im1-u8-l1-t3"},
             {
                 "kind": "recap",
@@ -737,6 +738,7 @@ def lesson_parallel_perpendicular():
                 ],
             ),
             {"kind": "tryIt", "title": "Your turn — classify the pair", "problemId": "im1-u8-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a parallel line", "problemId": "im1-u8-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — a perpendicular line", "problemId": "im1-u8-l2-t3"},
             {
                 "kind": "recap",
@@ -1110,6 +1112,7 @@ def lesson_partition():
             ),
             {"kind": "tryIt", "title": "Your turn — recover the midpoint", "problemId": "im1-u8-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — a 2:3 split", "problemId": "im1-u8-l3-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 three quarters along", "problemId": "im1-u8-l3-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1478,6 +1481,7 @@ def lesson_coordinate_proof():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — verify the diagonals", "problemId": "im1-u8-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 opposite sides parallel", "problemId": "im1-u8-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — why the placement matters", "problemId": "im1-u8-l4-t3"},
             {
                 "kind": "recap",

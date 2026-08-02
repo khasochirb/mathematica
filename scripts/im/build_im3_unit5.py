@@ -247,6 +247,7 @@ def lesson_transformations():
             {"kind": "teach", "title": "Stacked moves, read inside-out", "body": "$g(x) = -2f(x - 3) + 4$ is a whole recipe: shift right 3, stretch by 2, flip across the $x$-axis, raise 4 — the order the machine itself computes. Order matters exactly where arithmetic says it does: a stretch scales everything done before it, so stretch-then-shift and shift-then-stretch differ.", "beats": ["Read the formula inside-out", "A reflection turns max into min", "Different order → different graph"]},
             {"kind": "tryIt", "title": "Vertex from a formula", "problemId": "im3-u5-l1-t1"},
             {"kind": "tryIt", "title": "Words to formula", "problemId": "im3-u5-l1-t2"},
+            {"kind": "tryIt", "title": "Name the transformation", "problemId": "im3-u5-l1-t3"},
             tap(
                 "Two different mirrors",
                 "For $f(x) = \\sqrt{x}$, which formula reflects the graph across "
@@ -476,6 +477,7 @@ def lesson_even_odd():
             {"kind": "teach", "title": "The polynomial shortcut, and its limits", "body": "For polynomials the names are literal: all exponents even → even; all odd → odd; mixed → neither, which is the common case. One matching pair of outputs proves nothing — symmetry is a claim about EVERY input — but a single failing pair settles 'neither' for good.", "beats": ["All-even exponents → even; all-odd → odd", "Mixed parity → neither", "One counterexample ends the test; one success doesn't"]},
             {"kind": "tryIt", "title": "Absolute value", "problemId": "im3-u5-l2-t1"},
             {"kind": "tryIt", "title": "A pure power", "problemId": "im3-u5-l2-t2"},
+            {"kind": "tryIt", "title": "Even, odd, or neither?", "problemId": "im3-u5-l2-t3"},
             tap(
                 "The origin clue",
                 "An odd function $f$ is defined at $x = 0$. What is $f(0)$?",
@@ -707,6 +709,7 @@ def lesson_composition():
             {"kind": "teach", "title": "Order matters; decomposition runs it backwards", "body": "$f \\circ g$ and $g \\circ f$ are as different as socks-then-shoes and shoes-then-socks — never assume they agree. Decomposition is the reverse skill: in $h(x) = \\sqrt{3x + 4}$, the inner function is what the formula computes FIRST ($3x + 4$), the outer is what happens to that result.", "beats": ["The two orders rarely agree", "Inner function = first computation", "Decomposition turns one hard function into two easy ones"]},
             {"kind": "tryIt", "title": "Evaluate both chains", "problemId": "im3-u5-l3-t1"},
             {"kind": "tryIt", "title": "Compose as a formula", "problemId": "im3-u5-l3-t2"},
+            {"kind": "tryIt", "title": "Decompose the cube", "problemId": "im3-u5-l3-t3"},
             tap(
                 "Name the inner function",
                 "To write $h(x) = \\sqrt{x^2 + 9}$ as $f(g(x))$, the inner "
@@ -955,6 +958,7 @@ def lesson_inverses():
             {"kind": "teach", "title": "Mirrors and the one-to-one test", "body": "Inverting swaps inputs and outputs, so the graph of $f^{-1}$ is the graph of $f$ reflected across the line $y = x$ — every point $(a, b)$ pairs with $(b, a)$. And only ONE-TO-ONE functions qualify: if two inputs share an output, undoing has no single answer. The repair is restricting the domain, which is exactly why $\\sqrt{x}$ exists.", "beats": ["Graphs mirror across $y = x$", "Horizontal line test = invertibility", "Restrict the domain to rescue $x^2$"]},
             {"kind": "tryIt", "title": "An easy undo", "problemId": "im3-u5-l4-t1"},
             {"kind": "tryIt", "title": "Solve-and-swap", "problemId": "im3-u5-l4-t2"},
+            {"kind": "tryIt", "title": "A point on the inverse", "problemId": "im3-u5-l4-t3"},
             tap(
                 "Who gets an inverse",
                 "Which function needs a domain restriction before it can have an "

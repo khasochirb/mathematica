@@ -217,6 +217,7 @@ def lesson_inverse():
             {"kind": "teach", "title": "The graph is the exponential, reflected", "body": "$y = \\log_b x$ is $y = b^x$ flipped across the line $y = x$ — inputs and outputs trade places. The exponential's horizontal asymptote becomes the log's VERTICAL asymptote at $x = 0$, and only positive numbers have logarithms, because $b^y$ is always positive.", "beats": ["Reflection of $b^x$ across $y = x$", "Vertical asymptote where the inside hits 0", "Inputs must be positive"]},
             {"kind": "tryIt", "title": "One evaluation", "problemId": "im3-u3-l1-t1"},
             {"kind": "tryIt", "title": "Solve for x", "problemId": "im3-u3-l1-t2"},
+            {"kind": "tryIt", "title": "The domain of a log", "problemId": "im3-u3-l1-t3"},
             tap(
                 "Where logs live",
                 "What is the domain of $y = \\log_2(x + 4)$?",
@@ -424,6 +425,7 @@ def lesson_laws():
             {"kind": "teach", "title": "The workhorse and the escape hatch", "body": "The power law $\\log_b(x^n) = n\\log_b x$ is what will later pull an unknown out of an exponent — it is the workhorse of the next lesson. And change of base, $\\log_b x = \\frac{\\log x}{\\log b}$, means any log can be computed in any base you like.", "beats": ["Power law pulls exponents down", "Change of base: a ratio of logs in ANY base", "Laws run both directions: expand and condense"]},
             {"kind": "tryIt", "title": "Condense and evaluate", "problemId": "im3-u3-l2-t1"},
             {"kind": "tryIt", "title": "Expand", "problemId": "im3-u3-l2-t2"},
+            {"kind": "tryIt", "title": "An awkward base", "problemId": "im3-u3-l2-t3"},
             tap(
                 "No sum law",
                 "In base $10$, which is TRUE?",
@@ -642,6 +644,7 @@ def lesson_equations():
             {"kind": "teach", "title": "The unit's warning, wearing new clothes", "body": "Condensing $\\log_2 x + \\log_2(x-2)$ ASSUMED both logs existed — assumed $x > 0$ and $x > 2$. The quadratic you solve afterwards knows nothing of those assumptions, so it may hand back a root the original equation cannot accept. Same disease as rational and radical equations; same cure: check.", "beats": ["Condensing assumes every log exists", "Check candidates in the ORIGINAL", "Rejecting a root is a result, not an error"]},
             {"kind": "tryIt", "title": "Match the bases", "problemId": "im3-u3-l3-t1"},
             {"kind": "tryIt", "title": "Convert and solve", "problemId": "im3-u3-l3-t2"},
+            {"kind": "tryIt", "title": "Isolate, then take logs", "problemId": "im3-u3-l3-t3"},
             tap(
                 "The check that matters",
                 "Solving $\\log_5 x + \\log_5(x - 4) = 1$ gives candidates $x = 5$ and "
@@ -864,6 +867,7 @@ def lesson_modelling():
             {"kind": "teach", "title": "Evaluating is substitution; solving for time is new", "body": "To find WHEN, isolate the exponential factor and reach the exponent — by recognising the power when the numbers are kind, or with a logarithm when they are not. That is precisely the tool this unit built. And remember a model is a claim about a pattern, trustworthy over the range it was measured on.", "beats": ["Isolate the factor: $b^{t/d} = $ ratio", "Recognise the power, or take a log", "Extrapolate with humility"]},
             {"kind": "tryIt", "title": "Decay by percent", "problemId": "im3-u3-l4-t1"},
             {"kind": "tryIt", "title": "Half-life drill", "problemId": "im3-u3-l4-t2"},
+            {"kind": "tryIt", "title": "Doubling to 4000", "problemId": "im3-u3-l4-t3"},
             tap(
                 "Solving for time",
                 "$100 \\cdot 3^{t} = 8100$ gives $t = $:",

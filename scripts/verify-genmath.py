@@ -206,6 +206,26 @@ def main():
                         failures.append(f"{slug} / {lslug}: worked step references unknown problemId {s.get('problemId')!r}")
                     if s.get("kind") == "tryIt" and s.get("problemId") not in ids_t:
                         failures.append(f"{slug} / {lslug}: tryIt step references unknown problemId {s.get('problemId')!r}")
+                # The mirror-image defect: the lesson page renders ONLY the
+                # interactive steps, so an authored problem that no step
+                # references is invisible content — written, verified, and
+                # never shown (60 shipped that way until 2026-08-02). In the
+                # reference idiom (worked/tryIt steps carrying problemIds)
+                # every authored problem must be referenced. Lessons built in
+                # the embedded-set idiom (workedSet/tryItSet carry their own
+                # items) are a different design and are exempt.
+                referenced = {
+                    s.get("problemId") for s in steps
+                    if s.get("kind") in ("worked", "tryIt")
+                }
+                if referenced:
+                    for group, ids in (("workedExamples", ids_w), ("tryIt", ids_t)):
+                        for pid in sorted(ids - referenced):
+                            failures.append(
+                                f"{slug} / {lslug}: {group} problem {pid!r} is never "
+                                f"referenced by any step — it renders nowhere; add a "
+                                f"worked/tryIt step for it (or delete the problem)"
+                            )
 
         for ex in topic.get("practice", []):
             check_problem(slug, "practice", ex)

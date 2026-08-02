@@ -379,6 +379,7 @@ def lesson_slope():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — two points", "problemId": "im1-u4-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 battery drain", "problemId": "im1-u4-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — is it linear?", "problemId": "im1-u4-l1-t3"},
             {
                 "kind": "recap",
@@ -700,6 +701,7 @@ def lesson_slope_intercept():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — read and step", "problemId": "im1-u4-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 both intercepts", "problemId": "im1-u4-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — rearrange", "problemId": "im1-u4-l2-t3"},
             {
                 "kind": "recap",
@@ -1041,6 +1043,7 @@ def lesson_forms():
             {"kind": "worked", "title": "When standard form is the natural shape", "problemId": "im1-u4-l3-we4"},
             {"kind": "tryIt", "title": "Your turn — point and slope", "problemId": "im1-u4-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — two points", "problemId": "im1-u4-l3-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 to standard form", "problemId": "im1-u4-l3-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1404,6 +1407,7 @@ def lesson_interpreting():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — a draining pool", "problemId": "im1-u4-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 the courier's charge", "problemId": "im1-u4-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — two taxi firms", "problemId": "im1-u4-l4-t3"},
             {
                 "kind": "recap",

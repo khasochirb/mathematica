@@ -327,6 +327,7 @@ def lesson_solving():
             },
             {"kind": "tryIt", "title": "Your turn — one step each way", "problemId": "im1-u2-l1-t1"},
             {"kind": "tryIt", "title": "Your turn — brackets and both sides", "problemId": "im1-u2-l1-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 x on both sides", "problemId": "im1-u2-l1-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -631,6 +632,7 @@ def lesson_fractions_and_cases():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — clear the fraction", "problemId": "im1-u2-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 describe the solutions", "problemId": "im1-u2-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — read the leftover", "problemId": "im1-u2-l2-t3"},
             {
                 "kind": "recap",
@@ -955,6 +957,7 @@ def lesson_inequalities():
             ),
             {"kind": "tryIt", "title": "Your turn — no flip", "problemId": "im1-u2-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — with a flip", "problemId": "im1-u2-l3-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 how many boxes?", "problemId": "im1-u2-l3-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1284,6 +1287,7 @@ def lesson_compound():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — three parts at once", "problemId": "im1-u2-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 an absolute value", "problemId": "im1-u2-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — greater-than", "problemId": "im1-u2-l4-t3"},
             {
                 "kind": "recap",

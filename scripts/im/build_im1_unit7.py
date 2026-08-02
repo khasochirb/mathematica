@@ -378,6 +378,7 @@ def lesson_rigid_motions():
             },
             {"kind": "tryIt", "title": "Your turn — translate and measure", "problemId": "im1-u7-l1-t1"},
             {"kind": "tryIt", "title": "Your turn — three reflections", "problemId": "im1-u7-l1-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 a half turn", "problemId": "im1-u7-l1-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -705,6 +706,7 @@ def lesson_sequences():
             },
             {"kind": "tryIt", "title": "Your turn — a two-step sequence", "problemId": "im1-u7-l2-t1"},
             {"kind": "tryIt", "title": "Your turn — a regular octagon", "problemId": "im1-u7-l2-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 reflect twice", "problemId": "im1-u7-l2-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1061,6 +1063,7 @@ def lesson_congruence():
                 ],
             ),
             {"kind": "worked", "title": "Transferring every part", "problemId": "im1-u7-l3-we4"},
+            {"kind": "tryIt", "title": "Your turn \u2014 three sides equal", "problemId": "im1-u7-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — name the criterion", "problemId": "im1-u7-l3-t2"},
             {"kind": "tryIt", "title": "Your turn — read the correspondence", "problemId": "im1-u7-l3-t3"},
             {
@@ -1431,6 +1434,7 @@ def lesson_constructions():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — why more than half", "problemId": "im1-u7-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 the construction's proof", "problemId": "im1-u7-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — construct 30 degrees", "problemId": "im1-u7-l4-t3"},
             {
                 "kind": "recap",

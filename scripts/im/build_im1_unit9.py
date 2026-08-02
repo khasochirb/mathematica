@@ -393,6 +393,7 @@ def lesson_centre_spread():
             },
             {"kind": "worked", "title": "Mean versus median in a salary claim", "problemId": "im1-u9-l1-we4"},
             {"kind": "tryIt", "title": "Your turn — mean and median", "problemId": "im1-u9-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 find the IQR", "problemId": "im1-u9-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — the fences", "problemId": "im1-u9-l1-t3"},
             {
                 "kind": "recap",
@@ -782,6 +783,7 @@ def lesson_comparing():
             },
             {"kind": "tryIt", "title": "Your turn — diagnose the shape", "problemId": "im1-u9-l2-t1"},
             {"kind": "tryIt", "title": "Your turn — same centre, different spread", "problemId": "im1-u9-l2-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 pick the worker", "problemId": "im1-u9-l2-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1158,6 +1160,7 @@ def lesson_two_way():
             ),
             {"kind": "tryIt", "title": "Your turn — joint and conditional", "problemId": "im1-u9-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — is there association?", "problemId": "im1-u9-l3-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 check the totals", "problemId": "im1-u9-l3-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1575,6 +1578,7 @@ def lesson_scatter():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — interpret a slope", "problemId": "im1-u9-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 read a residual", "problemId": "im1-u9-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — explain the correlation", "problemId": "im1-u9-l4-t3"},
             {
                 "kind": "recap",

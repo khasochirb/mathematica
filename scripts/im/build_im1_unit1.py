@@ -345,6 +345,7 @@ def lesson_units():
             },
             {"kind": "tryIt", "title": "Your turn — 72 km/h", "problemId": "im1-u1-l1-t1"},
             {"kind": "tryIt", "title": "Your turn — filling a tank", "problemId": "im1-u1-l1-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 tiles to square metres", "problemId": "im1-u1-l1-t3"},
             {
                 "kind": "funFact",
                 "title": "A unit mix-up lost a Mars orbiter",
@@ -689,6 +690,7 @@ def lesson_structure():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — count the terms", "problemId": "im1-u1-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 read the taxi fare", "problemId": "im1-u1-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — a growth model", "problemId": "im1-u1-l2-t3"},
             {
                 "kind": "recap",
@@ -1044,6 +1046,7 @@ def lesson_modeling():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — a gym membership", "problemId": "im1-u1-l3-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 notebooks on a budget", "problemId": "im1-u1-l3-t2"},
             {"kind": "tryIt", "title": "Your turn — a burning candle", "problemId": "im1-u1-l3-t3"},
             {
                 "kind": "recap",
@@ -1389,6 +1392,7 @@ def lesson_rearranging():
             ),
             {"kind": "tryIt", "title": "Your turn — solve C = 2πr for r", "problemId": "im1-u1-l4-t1"},
             {"kind": "tryIt", "title": "Your turn — a rectangle's width", "problemId": "im1-u1-l4-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 solve for b", "problemId": "im1-u1-l4-t3"},
             {
                 "kind": "funFact",
                 "title": "Why programmers rearrange first",

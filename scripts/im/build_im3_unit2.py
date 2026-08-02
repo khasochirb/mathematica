@@ -243,6 +243,7 @@ def lesson_asymptotes():
             {"kind": "teach", "title": "The ends are a race between degrees", "body": "As $|x|$ grows, only the leading terms matter — so compare degrees. Bottom wins: the fraction is squeezed to $y = 0$. A tie: $y$ levels off at the ratio of leading coefficients. Top wins: no horizontal asymptote at all.", "beats": ["Bottom wins → $y = 0$", "Tie → ratio of leading coefficients", "Top wins → none"]},
             {"kind": "tryIt", "title": "Domain drill", "problemId": "im3-u2-l1-t1"},
             {"kind": "tryIt", "title": "Hole or asymptote?", "problemId": "im3-u2-l1-t2"},
+            {"kind": "tryIt", "title": "The horizontal asymptote", "problemId": "im3-u2-l1-t3"},
             tap(
                 "The degree race",
                 "What is the horizontal asymptote of $\\dfrac{4x + 9}{x^2 + 1}$?",
@@ -492,6 +493,7 @@ def lesson_operations():
             {"kind": "teach", "title": "The LCD is built from factors, not products", "body": "Factor every denominator, then take each distinct factor at its greatest power. Multiplying all the denominators together always works but bloats the algebra — the LEAST common denominator keeps the numerators small and the restrictions readable.", "beats": ["Factor each denominator", "Each factor once, at its highest power", "Restrictions come from every factor you used"]},
             {"kind": "tryIt", "title": "Multiply and simplify", "problemId": "im3-u2-l2-t1"},
             {"kind": "tryIt", "title": "Add with an LCD", "problemId": "im3-u2-l2-t2"},
+            {"kind": "tryIt", "title": "Divide and cancel", "problemId": "im3-u2-l2-t3"},
             tap(
                 "The subtraction trap",
                 "Simplify the numerator of $\\dfrac{5}{x-1} - \\dfrac{x+2}{x-1}$.",
@@ -728,6 +730,7 @@ def lesson_rational_equations():
             {"kind": "teach", "title": "Extraneous roots are a feature of the method", "body": "You cannot avoid them by being careful; multiplying by something that can be zero is simply not reversible. The upside: candidates can only go wrong at the EXCLUDED values, so note those before you start and the check takes seconds.", "beats": ["Excluded values first", "Candidates equal to an excluded value die", "'No solution' can be the right answer"]},
             {"kind": "tryIt", "title": "Clear and solve", "problemId": "im3-u2-l3-t1"},
             {"kind": "tryIt", "title": "Spot the extraneous root", "problemId": "im3-u2-l3-t2"},
+            {"kind": "tryIt", "title": "Two painters", "problemId": "im3-u2-l3-t3"},
             tap(
                 "Rates, not times",
                 "A tap fills a tank in $2$ hours, another in $6$. How long together?",
@@ -958,6 +961,7 @@ def lesson_radical():
             {"kind": "teach", "title": "Squaring is a one-way street", "body": "$a = b$ implies $a^2 = b^2$, but not the reverse: $-3 \\ne 3$ while their squares agree. So squaring can only ADD candidates — the same asymmetry as clearing denominators, wearing a new costume. A square root can never equal a negative number, and no amount of algebra changes that.", "beats": ["Squaring never loses a solution", "It may invent one", "$\\sqrt{u} = $ negative has NO solution"]},
             {"kind": "tryIt", "title": "Read the domain", "problemId": "im3-u2-l4-t1"},
             {"kind": "tryIt", "title": "Solve a radical equation", "problemId": "im3-u2-l4-t2"},
+            {"kind": "tryIt", "title": "Catch the extraneous root", "problemId": "im3-u2-l4-t3"},
             tap(
                 "Which candidate survives",
                 "Squaring $\\sqrt{x + 20} = x$ gives candidates $x = 5$ and $x = -4$. Which "

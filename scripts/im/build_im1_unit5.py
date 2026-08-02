@@ -348,6 +348,7 @@ def lesson_graphing():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — verify a solution", "problemId": "im1-u5-l1-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 classify the system", "problemId": "im1-u5-l1-t2"},
             {"kind": "tryIt", "title": "Your turn — two candles", "problemId": "im1-u5-l1-t3"},
             {
                 "kind": "recap",
@@ -685,6 +686,7 @@ def lesson_substitution():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — already isolated", "problemId": "im1-u5-l2-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 solve by substitution", "problemId": "im1-u5-l2-t2"},
             {"kind": "tryIt", "title": "Your turn — pens and notebooks", "problemId": "im1-u5-l2-t3"},
             {
                 "kind": "recap",
@@ -1050,6 +1052,7 @@ def lesson_elimination():
             {"kind": "worked", "title": "A production plan that is not viable", "problemId": "im1-u5-l3-we4"},
             {"kind": "tryIt", "title": "Your turn — already opposite", "problemId": "im1-u5-l3-t1"},
             {"kind": "tryIt", "title": "Your turn — scale one", "problemId": "im1-u5-l3-t2"},
+            {"kind": "tryIt", "title": "Your turn \u2014 solve by elimination", "problemId": "im1-u5-l3-t3"},
             {
                 "kind": "recap",
                 "title": "What you now own",
@@ -1416,6 +1419,7 @@ def lesson_inequalities():
                 ),
             },
             {"kind": "tryIt", "title": "Your turn — is the point in?", "problemId": "im1-u5-l4-t1"},
+            {"kind": "tryIt", "title": "Your turn \u2014 shade the right side", "problemId": "im1-u5-l4-t2"},
             {"kind": "tryIt", "title": "Your turn — a baker's constraints", "problemId": "im1-u5-l4-t3"},
             {
                 "kind": "recap",
