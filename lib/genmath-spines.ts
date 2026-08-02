@@ -864,7 +864,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Choosing a function family from a situation, fitting it to data, judging a model against its residuals, and knowing the range over which it can be trusted.",
     buildsOn: "Every function family in the pathway — this unit is about choosing between them.",
-    live: false,
+    live: true,
   },
 ];
 
