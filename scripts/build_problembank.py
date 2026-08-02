@@ -35,6 +35,7 @@ SUBJECTS = [
     ("vectors-matrices", "vectors_matrices"),
     ("integrated-1", "integrated_1"),
     ("integrated-2", "integrated_2"),
+    ("integrated-3", "integrated_3"),
     # Band exit levels: Grade 9 (Mid school) and Grade 12 (High school).
     # Their banks double as the source pools for the band exit exams
     # (scripts/exams/build_band_exams.py).

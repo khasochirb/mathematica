@@ -3,7 +3,7 @@
 // SERVER-SIDE ONLY. Import this from server route pages (which pass one
 // topic at a time to the client components as props) and from Node-side
 // code (tests, harvesters). Importing it from a client component or a
-// client-reachable lib module bundles all sixteen subjects into the
+// client-reachable lib module bundles all seventeen subjects into the
 // browser chunk — the 10 MB-chunk regression this module exists to
 // prevent. lib/bank-split.test.ts enforces the boundary; client code that
 // only needs the topic LIST uses lib/bank-manifest.ts (~55 KB).
@@ -28,6 +28,7 @@ import calculus from "@/data/problembank/calculus.json";
 import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 import integrated1 from "@/data/problembank/integrated-1.json";
 import integrated2 from "@/data/problembank/integrated-2.json";
+import integrated3 from "@/data/problembank/integrated-3.json";
 import grade9 from "@/data/problembank/9.json";
 import grade12 from "@/data/problembank/12.json";
 import sat from "@/data/problembank/sat.json";
@@ -60,6 +61,7 @@ const TOPICS: BankTopic[] = [
   vectorsMatrices,
   integrated1,
   integrated2,
+  integrated3,
   // Band exit levels (slugs mirror the course paths /math/9 and /math/12);
   // also the source pools for the band exit exams.
   grade9,
