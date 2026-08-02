@@ -29,6 +29,7 @@ export interface GeometrySpineEntry {
 }
 
 const ALL_GRADES: GradeInfo[] = [
+  { grade: 5, active: true },
   { grade: 6, active: true },
   { grade: 7, active: true },
   { grade: 8, active: true },
@@ -41,6 +42,60 @@ const ALL_GRADES: GradeInfo[] = [
 export function listGrades(): GradeInfo[] {
   return ALL_GRADES;
 }
+
+// Grade 5 — the school-entrance transition year that OPENS the primary band
+// (grades 1–5). Topics go live one at a time as they are authored
+// (scripts/grade5/build_*.py), the way IM3's units did.
+export const GRADE5_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "whole-numbers-and-place-value",
+    title: "Whole Numbers & Place Value",
+    blurb: "Reading and writing numbers to the millions, what each digit is worth, comparing and ordering, rounding, and estimation.",
+    live: true,
+  },
+  {
+    slug: "addition-and-subtraction",
+    title: "Addition & Subtraction",
+    blurb: "Multi-digit addition and subtraction with regrouping, mental strategies, and multi-step word problems.",
+    live: false,
+  },
+  {
+    slug: "multiplication-and-division",
+    title: "Multiplication & Division",
+    blurb: "Multi-digit multiplication, long division with remainders, and choosing the operation a problem needs.",
+    live: false,
+  },
+  {
+    slug: "fractions-first-steps",
+    title: "Fractions — First Steps",
+    blurb: "Fractions as parts of a whole, equivalent fractions, comparing, and adding and subtracting with like denominators.",
+    live: false,
+  },
+  {
+    slug: "decimals-first-steps",
+    title: "Decimals — First Steps",
+    blurb: "Tenths and hundredths, decimals on the number line, comparing, and adding and subtracting decimals.",
+    live: false,
+  },
+  {
+    slug: "measurement-and-units",
+    title: "Measurement & Units",
+    blurb: "Length, mass, capacity and time — converting between units and solving measurement problems.",
+    live: false,
+  },
+  {
+    slug: "geometry-shapes-and-area",
+    title: "Geometry — Shapes & Area",
+    blurb: "Angles, triangles and quadrilaterals, perimeter, and the areas of rectangles and figures built from them.",
+    live: false,
+  },
+  {
+    slug: "data-and-graphs",
+    title: "Data & Graphs",
+    blurb: "Reading and drawing bar graphs and line graphs, tables, and answering questions from data.",
+    live: false,
+  },
+];
 
 export const GRADE7_SPINE: GradeSpineEntry[] = [
   {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 // Spines, not the registry: the catalog lists courses, it renders no
 // lesson, so it must not ship the course corpus (lib/genmath-spines.ts).
-import { listGrades, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
+import { listGrades, GRADE5_SPINE, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
 import useRatings from "@/lib/use-ratings";
 import {
   COURSE_DEFAULT_ATTRIBUTE,
@@ -22,6 +22,8 @@ const BAND_COLOR: Record<Band, string> = {
 };
 
 const TOPIC_COUNTS: Record<number, number> = {
+  // Grade 5 goes live topic by topic — count only what a student can open.
+  5: GRADE5_SPINE.filter((t) => t.live).length,
   6: GRADE6_SPINE.length,
   7: GRADE7_SPINE.length,
   8: GRADE8_SPINE.length,
@@ -36,6 +38,7 @@ const TOPIC_COUNTS: Record<number, number> = {
 // entrance tests. 12th is served by the ЭЕШ hub; the badge makes the moment
 // visible on the catalog.
 const TRANSITION: Record<number, string> = {
+  5: "Transition year — school entrance",
   9: "Transition year — high-school entrance",
   12: "Transition year — ЭЕШ",
 };
@@ -453,22 +456,15 @@ export default function MathLandingPage() {
         <section id="primary" className="mb-12" style={{ scrollMarginTop: 96 }}>
           <div className="eyebrow mb-1.5">Primary school · Mongol curriculum</div>
           <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
-            Grades 1–5, year by year. In development — Grade 5, the
-            school-entrance transition year, will open the band.
+            Grades 1–5, year by year. Grade 5 — the school-entrance
+            transition year — opens the band, topic by topic; grades 1–4
+            follow.
           </p>
-          <div className="card-edit p-6 flex items-center gap-4" style={{ opacity: 0.55, cursor: "default" }}>
-            <div className="flex-1 min-w-0">
-              <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                Coming soon
-              </span>
-              <span className="serif block mt-1" style={{ fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--fg)" }}>
-                Grades 1–5
-              </span>
-              <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-                The full primary band — number sense to first algebra — is on
-                the roadmap.
-              </span>
-            </div>
+          <div className="grid gap-4" style={gridStyle}>
+            <GradeCard grade={5} active={isActive(5)} />
+            {[1, 2, 3, 4].map((g) => (
+              <GradeCard key={g} grade={g} active={false} />
+            ))}
           </div>
         </section>
 
