@@ -855,7 +855,7 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
     blurb:
       "Populations against samples, random sampling and why it matters, the normal model, simulation, margin of error, and what an experiment can conclude that an observational study cannot.",
     buildsOn: "Describing data from IM1 Unit 9 — from summarising a sample to inferring about a population.",
-    live: false,
+    live: true,
   },
   {
     unit: 8,
