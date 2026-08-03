@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Lightbulb, ChevronRight, CheckCircle, XCircle, ArrowRight } from "lucide-react";
 import { api, type Problem, type AnswerResult } from "@/lib/api";
+import { MascotSpinner } from "@/components/brand/Mascot";
 
 function SessionContent() {
   const router = useRouter();
@@ -89,10 +90,7 @@ function SessionContent() {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: "var(--bg)" }}>
         <div className="text-center">
-          <div
-            className="w-8 h-8 border-2 rounded-full animate-spin mx-auto mb-3"
-            style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }}
-          />
+          <MascotSpinner size={40} className="mx-auto mb-3" />
           <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
             LOADING PROBLEM...
           </p>

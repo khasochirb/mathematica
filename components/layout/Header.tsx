@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -15,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { HeadMark } from "@/components/brand/Mascot";
 import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
@@ -69,18 +69,17 @@ function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
   }
 
   return (
-    <li ref={ref} className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <li ref={ref} className="relative" data-navactive={active || undefined} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <button
         type="button"
-        className="flex items-center gap-1 text-sm transition-colors py-2 px-3 rounded-md"
+        className="flex items-center gap-1 font-display text-[13px] tracking-[0.01em] whitespace-nowrap transition-colors py-2 px-3 rounded-full"
         style={{
           color: active ? "var(--accent)" : "var(--fg-1)",
-          background: active ? "var(--accent-wash)" : "transparent",
           fontWeight: active ? 600 : 500,
         }}
         onClick={() => setOpen((v) => !v)}
-        onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "var(--bg-1)"; }}
-        onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
+        onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = "var(--fg)"; }}
+        onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = "var(--fg-1)"; }}
       >
         {label}
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
@@ -186,18 +185,17 @@ function AboutDropdown({ label, active }: AboutDropdownProps) {
   }
 
   return (
-    <li ref={ref} className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <li ref={ref} className="relative" data-navactive={active || undefined} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <Link
         href="/about"
-        className="flex items-center gap-1 text-sm transition-colors py-2 px-3 rounded-md"
+        className="flex items-center gap-1 font-display text-[13px] tracking-[0.01em] whitespace-nowrap transition-colors py-2 px-3 rounded-full"
         style={{
           color: active ? "var(--accent)" : "var(--fg-1)",
-          background: active ? "var(--accent-wash)" : "transparent",
           fontWeight: active ? 600 : 500,
         }}
         onClick={() => setOpen(false)}
-        onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "var(--bg-1)"; }}
-        onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
+        onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = "var(--fg)"; }}
+        onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = "var(--fg-1)"; }}
       >
         {label}
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
@@ -245,20 +243,19 @@ function NavLink({
   children: ReactNode;
 }) {
   return (
-    <li>
+    <li data-navactive={active || undefined}>
       <Link
         href={href}
-        className="text-sm px-3 py-2 rounded-md transition-colors"
+        className="block font-display text-[13px] tracking-[0.01em] whitespace-nowrap px-3 py-2 rounded-full transition-colors"
         style={{
           color: active ? "var(--accent)" : "var(--fg-1)",
-          background: active ? "var(--accent-wash)" : "transparent",
           fontWeight: active ? 600 : 500,
         }}
         onMouseEnter={(e) => {
-          if (!active) e.currentTarget.style.background = "var(--bg-1)";
+          if (!active) e.currentTarget.style.color = "var(--fg)";
         }}
         onMouseLeave={(e) => {
-          if (!active) e.currentTarget.style.background = "transparent";
+          if (!active) e.currentTarget.style.color = "var(--fg-1)";
         }}
       >
         {children}
@@ -286,6 +283,34 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Sliding active-route indicator: a wash pill that glides between nav
+  // items instead of jumping. Measured from the DOM (labels change width
+  // with language and the pill state), re-measured on resize.
+  const navUlRef = useRef<HTMLUListElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, visible: false });
+  const pathname = usePathname() || "/";
+
+  useEffect(() => {
+    const measure = () => {
+      const ul = navUlRef.current;
+      if (!ul) return;
+      const li = ul.querySelector<HTMLElement>("li[data-navactive]");
+      if (!li) {
+        setIndicator((v) => (v.visible ? { ...v, visible: false } : v));
+        return;
+      }
+      const ulBox = ul.getBoundingClientRect();
+      const liBox = li.getBoundingClientRect();
+      setIndicator({ left: liBox.left - ulBox.left, width: liBox.width, visible: true });
+    };
+    measure();
+    // Fonts settling / pill compacting shift positions after first paint.
+    const raf = requestAnimationFrame(measure);
+    const ro = new ResizeObserver(measure);
+    if (navUlRef.current) ro.observe(navUlRef.current);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, [pathname, lang, isAuthenticated, scrolled]);
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (avatarRef.current && !avatarRef.current.contains(e.target as Node)) {
@@ -310,7 +335,6 @@ export default function Header() {
   };
 
   // Active-route detection so the current page is highlighted in the nav.
-  const pathname = usePathname() || "/";
   const onPath = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   const onAnyPath = (hrefs: string[]) => hrefs.some(onPath);
@@ -325,26 +349,36 @@ export default function Header() {
   const aboutActive = onAnyPath(["/about", "/contact"]);
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 backdrop-blur-xl"
-      style={{
-        background: scrolled
-          ? "color-mix(in oklch, var(--bg) 90%, transparent)"
-          : "color-mix(in oklch, var(--bg) 60%, transparent)",
-        borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="fixed top-0 left-0 right-0 z-40">
+      {/* The bar detaches into a floating inset pill once the page scrolls
+          (structure/content unchanged — this wrapper only restyles it). */}
+      <div
+        className={cn(
+          "mx-auto transition-all duration-300 motion-reduce:transition-none",
+          scrolled ? "max-w-6xl px-3 sm:px-4 pt-2.5" : "max-w-full px-0 pt-0"
+        )}
+      >
+        <div
+          className={cn(
+            "backdrop-blur-xl transition-all duration-300 motion-reduce:transition-none",
+            scrolled ? "rounded-2xl shadow-lg shadow-black/10" : "rounded-none"
+          )}
+          style={{
+            background: scrolled
+              ? "color-mix(in oklch, var(--bg) 88%, transparent)"
+              : "color-mix(in oklch, var(--bg) 60%, transparent)",
+            border: scrolled ? "1px solid var(--line)" : "1px solid transparent",
+            borderTopColor: "transparent",
+            ...(scrolled ? {} : { borderLeft: "none", borderRight: "none" }),
+          }}
+        >
+          <div className={cn("mx-auto transition-all duration-300 motion-reduce:transition-none", scrolled ? "max-w-6xl px-4 sm:px-5" : "max-w-7xl px-4 sm:px-6 lg:px-8")}>
+        <div className={cn("flex items-center justify-between transition-all duration-300 motion-reduce:transition-none", scrolled ? "h-14" : "h-16")}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group" aria-label="Mongol Potential — home">
+            <HeadMark size={30} className="transition-transform duration-500 group-hover:rotate-45 motion-reduce:transition-none" />
             <span
-              className="inline-block w-2 h-2 rounded-sm"
-              style={{ background: "var(--accent)", transform: "translateY(-1px)" }}
-            />
-            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
-            <span
-              className="font-semibold text-[15px] tracking-tight hidden sm:block"
+              className="font-display font-semibold text-[15.5px] tracking-tight hidden sm:block"
               style={{ color: "var(--fg)" }}
             >
               Mongol Potential
@@ -353,7 +387,20 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            <ul className="flex items-center gap-0.5">
+            <ul ref={navUlRef} className="relative flex items-center gap-0.5">
+              {/* Sliding active-route pill (decorative; items carry state). */}
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 h-8 rounded-full transition-all duration-300 ease-out motion-reduce:transition-none pointer-events-none"
+                style={{
+                  left: 0,
+                  width: indicator.width,
+                  transform: `translateX(${indicator.left}px) translateY(-50%)`,
+                  background: "var(--accent-wash)",
+                  border: "1px solid var(--accent-line)",
+                  opacity: indicator.visible ? 1 : 0,
+                }}
+              />
               <NavLink href="/" active={onPath("/")}>
                 {nav.home}
               </NavLink>
@@ -512,14 +559,12 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav — inside the pill box so it shares its surface and
+          rounded corners in the floating state. */}
       {mobileOpen && (
         <div
-          className="lg:hidden backdrop-blur-xl"
-          style={{
-            background: "color-mix(in oklch, var(--bg) 95%, transparent)",
-            borderTop: "1px solid var(--line)",
-          }}
+          className="lg:hidden max-h-[calc(100vh-6rem)] overflow-y-auto"
+          style={{ borderTop: "1px solid var(--line)" }}
         >
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
@@ -681,6 +726,8 @@ export default function Header() {
           </nav>
         </div>
       )}
+        </div>
+      </div>
     </header>
   );
 }

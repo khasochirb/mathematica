@@ -531,3 +531,18 @@
   .gm-step, .gm-pop, .gm-fade, .gm-shake, .gm-arc-sweep, .gm-wash-in, .gm-beacon { animation: none; }
   .gm-press { transition: none; }
 }
+
+/* ---- Brand: mascot mark (components/brand/Mascot.tsx) ------------------ */
+/* Loading state: the halo orbits the head. SVG rotate() keeps each ray's
+   own geometry; the group spins about the head center (60,30 in the mark's
+   viewBox). Slow on purpose — a calm orbit, not a whirr. */
+@keyframes mp-rays-orbit {
+  to { transform: rotate(360deg); }
+}
+.mp-mark-spin #rays {
+  transform-origin: 60px 30px;
+  animation: mp-rays-orbit 2.4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-mark-spin #rays { animation: none; }
+}
