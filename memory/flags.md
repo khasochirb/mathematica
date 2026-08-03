@@ -113,6 +113,12 @@ the admin key and is disabled without it.
   flag's "Reading a non-`applied` result" row before acting),
   `migration_009_attempts_context: applied` → 009 moved to Resolved.
   Nothing in deploy `f2f5d07` depended on either open flag.
+- **2026-08-03** — Probe after deploy `16e52d8` (Grade 5 topics 4–7:
+  fractions, decimals, measurement, geometry): `anthropic_api_key:
+  configured`, `migration_009: applied`, `migration_008_student_profiles:
+  unknown` (FLAG-002 unchanged). FLAG-003 still optional/unset. Content-only
+  deploy — no migrations, nothing depended on either open flag; prod runtime
+  errors clean over the 3h window.
 - **2026-08-03** — Probe after deploy `33d89b6` (IM3 bank + course exams,
   Grade 5 topics 1–3 opening the primary band): `anthropic_api_key:
   configured`, `migration_009: applied`, `migration_008_student_profiles:
