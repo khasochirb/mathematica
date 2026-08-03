@@ -68,8 +68,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "fractions-first-steps",
     title: "Fractions — First Steps",
-    blurb: "Fractions as parts of a whole, equivalent fractions, comparing, and adding and subtracting with like denominators.",
-    live: false,
+    blurb: "Fractions as parts of a whole, equivalent fractions, comparing, improper fractions and mixed numbers, and adding and subtracting with like denominators.",
+    live: true,
   },
   {
     slug: "decimals-first-steps",
