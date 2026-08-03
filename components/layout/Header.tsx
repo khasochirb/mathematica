@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -14,7 +15,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { HeadMark } from "@/components/brand/Mascot";
 import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
@@ -375,8 +375,12 @@ export default function Header() {
           <div className={cn("mx-auto transition-all duration-300 motion-reduce:transition-none", scrolled ? "max-w-6xl px-4 sm:px-5" : "max-w-7xl px-4 sm:px-6 lg:px-8")}>
         <div className={cn("flex items-center justify-between transition-all duration-300 motion-reduce:transition-none", scrolled ? "h-14" : "h-16")}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group" aria-label="Mongol Potential — home">
-            <HeadMark size={30} className="transition-transform duration-500 group-hover:rotate-45 motion-reduce:transition-none" />
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+            <span
+              className="inline-block w-2 h-2 rounded-sm"
+              style={{ background: "var(--accent)", transform: "translateY(-1px)" }}
+            />
+            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
             <span
               className="font-display font-semibold text-[15.5px] tracking-tight hidden sm:block"
               style={{ color: "var(--fg)" }}

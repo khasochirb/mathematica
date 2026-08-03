@@ -14,7 +14,6 @@ import { useAuth } from "@/lib/auth-context";
 import usePerformance from "@/lib/use-performance";
 import { TOPICS } from "@/lib/esh-questions";
 import topicsData from "@/data/learn/topics.json";
-import { MascotSpinner } from "@/components/brand/Mascot";
 
 export default function PracticePage() {
   const { user, loading: authLoading } = useAuth();
@@ -24,7 +23,10 @@ export default function PracticePage() {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: "var(--bg)" }}>
         <div className="text-center">
-          <MascotSpinner size={40} className="mx-auto mb-4" />
+          <div
+            className="w-8 h-8 border-2 rounded-full animate-spin mx-auto mb-4"
+            style={{ borderColor: "var(--accent)", borderTopColor: "transparent" }}
+          />
           <p className="mono text-[12px]" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>LOADING...</p>
         </div>
       </div>
