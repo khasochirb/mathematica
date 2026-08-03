@@ -74,8 +74,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "decimals-first-steps",
     title: "Decimals — First Steps",
-    blurb: "Tenths and hundredths, decimals on the number line, comparing, and adding and subtracting decimals.",
-    live: false,
+    blurb: "Tenths and hundredths on the extended place-value ladder, decimals as fractions, comparing, adding and subtracting, and rounding and measuring with decimals.",
+    live: true,
   },
   {
     slug: "measurement-and-units",

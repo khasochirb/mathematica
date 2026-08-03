@@ -16,12 +16,14 @@ import wholeNumbers from "@/data/genmath/5/whole-numbers-and-place-value.json";
 import additionSubtraction from "@/data/genmath/5/addition-and-subtraction.json";
 import multiplicationDivision from "@/data/genmath/5/multiplication-and-division.json";
 import fractions from "@/data/genmath/5/fractions-first-steps.json";
+import decimals from "@/data/genmath/5/decimals-first-steps.json";
 
 export const grade5Topics: GenMathTopic[] = [
   wholeNumbers as GenMathTopic,
   additionSubtraction as GenMathTopic,
   multiplicationDivision as GenMathTopic,
   fractions as GenMathTopic,
+  decimals as GenMathTopic,
 ];
 
 export const grade5TopicsMn: Record<string, GenMathTopic> = {};
