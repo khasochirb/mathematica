@@ -86,8 +86,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "geometry-shapes-and-area",
     title: "Geometry — Shapes & Area",
-    blurb: "Angles, triangles and quadrilaterals, perimeter, and the areas of rectangles and figures built from them.",
-    live: false,
+    blurb: "Angles and their sums, triangles and the quadrilateral family, perimeter, area, and composite figures solved down two agreeing roads.",
+    live: true,
   },
   {
     slug: "data-and-graphs",

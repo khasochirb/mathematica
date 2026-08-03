@@ -18,6 +18,7 @@ import multiplicationDivision from "@/data/genmath/5/multiplication-and-division
 import fractions from "@/data/genmath/5/fractions-first-steps.json";
 import decimals from "@/data/genmath/5/decimals-first-steps.json";
 import measurement from "@/data/genmath/5/measurement-and-units.json";
+import geometry from "@/data/genmath/5/geometry-shapes-and-area.json";
 
 export const grade5Topics: GenMathTopic[] = [
   wholeNumbers as GenMathTopic,
@@ -26,6 +27,7 @@ export const grade5Topics: GenMathTopic[] = [
   fractions as GenMathTopic,
   decimals as GenMathTopic,
   measurement as GenMathTopic,
+  geometry as GenMathTopic,
 ];
 
 export const grade5TopicsMn: Record<string, GenMathTopic> = {};
