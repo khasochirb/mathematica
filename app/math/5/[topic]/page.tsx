@@ -95,13 +95,17 @@ export default function GenMathTopicPage() {
           ))}
         </ol>
 
-        {/* Practice + Test buttons */}
+        {/* Practice + Test buttons, and this unit's own problem bank — every
+            Grade 5 unit has its own collection (see scripts/pb/grade5.py). */}
         <div className="flex gap-3 flex-wrap">
           <Link href={`/math/5/${topicSlug}/practice`} className="btn btn-primary">
             {mn ? "Дасгал" : "Practice"}
           </Link>
           <Link href={`/math/5/${topicSlug}/test`} className="btn btn-line">
             {mn ? "Өөрийгөө шалга" : "Test yourself"}
+          </Link>
+          <Link href={`/math/problem-bank/5/${topicSlug}`} className="btn btn-line">
+            {mn ? "Бодлогын сан" : "Problem bank"}
           </Link>
         </div>
       </div>
