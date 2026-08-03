@@ -80,8 +80,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "measurement-and-units",
     title: "Measurement & Units",
-    blurb: "Length, mass, capacity and time — converting between units and solving measurement problems.",
-    live: false,
+    blurb: "The metric ladders for length, mass and capacity, the base-sixty ladder of time, elapsed time, and convert-first measurement problems.",
+    live: true,
   },
   {
     slug: "geometry-shapes-and-area",

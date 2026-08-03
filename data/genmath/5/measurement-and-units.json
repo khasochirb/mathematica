@@ -1,0 +1,2197 @@
+{
+  "slug": "measurement-and-units",
+  "title": "Measurement & Units",
+  "grade": 5,
+  "status": "published",
+  "blurb": "The metric ladders for length, mass and capacity, the base-sixty ladder of time, elapsed-time reckoning, and measurement problems solved convert-first.",
+  "lessons": [
+    {
+      "slug": "units-of-length",
+      "title": "Units of Length",
+      "concreteComparison": "A pencil is $17$ cm, a ger is about $6$ m across, and the road from Ulaanbaatar to Darkhan runs $220$ km. Measuring the road in centimetres would take a $22$-million-count; measuring the pencil in kilometres would need a decimal with a parade of zeros. Units are TOOLS — you pick the one sized to the job, and convert when jobs meet.",
+      "objective": "Know the metric length ladder (mm, cm, m, km), choose the sensible unit for a task, and convert in both directions — including mixed forms like 3 m 45 cm.",
+      "concept": [
+        "**The length ladder.** $1$ cm $= 10$ mm; $1$ m $= 100$ cm; $1$ km $= 1\\,000$ m. The rungs are place-value shifts — ×$10$, ×$100$, ×$1\\,000$ — so converting is Topic 5's ladder-walking with unit names attached.",
+        "**Down the ladder multiplies.** A bigger unit re-counted in a smaller one needs MORE of them: $3$ m $= 300$ cm. Mixed forms unfold the same way: $3$ m $45$ cm $= 300 + 45 = 345$ cm.",
+        "**Up the ladder divides.** $2\\,500$ m $= 2$ km $500$ m — or, with a decimal, $2.5$ km. Choosing the unit is part of the answer: a carpenter says $345$ cm, a mapmaker says $2.5$ km, and both are re-counting, not re-measuring."
+      ],
+      "keyIdea": "A measurement is a count of units. Converting re-counts the same length: down the ladder multiplies (more, smaller units), up the ladder divides.",
+      "facts": [
+        {
+          "title": "The length ladder",
+          "latex": "1\\ \\text{cm} = 10\\ \\text{mm} \\quad 1\\ \\text{m} = 100\\ \\text{cm} \\quad 1\\ \\text{km} = 1\\,000\\ \\text{m}",
+          "explanation": "Three rungs, all powers of ten — the metric system's whole design."
+        },
+        {
+          "title": "Mixed form unfolds",
+          "latex": "3\\ \\text{m}\\ 45\\ \\text{cm} = 345\\ \\text{cm}",
+          "explanation": "Convert the big part, then add the small part — place value with names."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g5me-l1-we1",
+          "statement": "A plank measures $3$ m $45$ cm. Express it in centimetres, and in metres as a decimal.",
+          "note": "Unfold the metres; then rename with the decimal ladder.",
+          "solution": "Centimetres: $3 \\times 100 + 45 = 345$ cm. As metres: $345$ cm $= \\frac{345}{100}$ m $= 3.45$ m — Topic 5's staircase wearing a unit.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*100 + 45, 345)",
+            "Eq(Rational(345,100), 3 + Rational(45,100))"
+          ]
+        },
+        {
+          "id": "g5me-l1-we2",
+          "statement": "A trail is $2\\,500$ m long. Write it in kilometres-and-metres, and as a decimal of kilometres.",
+          "note": "Up the ladder divides by 1,000.",
+          "solution": "$2\\,500 = 2 \\times 1\\,000 + 500$: $2$ km $500$ m. As a decimal: $\\frac{2500}{1000} = 2.5$ km.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*1000 + 500, 2500)",
+            "Eq(Rational(2500,1000), Rational(25,10))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Converting metres to centimetres by ×10 — 3 m = 30 cm.",
+          "correction": "Each rung has its own factor: m→cm is ×100 (3 m = 300 cm); only cm→mm is ×10. Say the rung's factor before multiplying.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying when going UP the ladder — 2,500 m = 2,500,000 km.",
+          "correction": "Bigger units mean FEWER of them: going up divides. 2,500 m ÷ 1,000 = 2.5 km. Sanity: a trail can't be two and a half million kilometres.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g5me-l1-t1",
+          "statement": "Convert $7$ m $8$ cm to centimetres. (Watch the missing tens.)",
+          "solution": "$7 \\times 100 + 8 = 708$ cm — the zero tens hold their place, exactly as in Topic 1.",
+          "check": [
+            "Eq(7*100 + 8, 708)"
+          ]
+        },
+        {
+          "id": "g5me-l1-t2",
+          "statement": "A ribbon is $460$ cm. Express it in metres-and-centimetres, and decide: is it longer than $4.5$ m?",
+          "solution": "$460 = 4 \\times 100 + 60$: $4$ m $60$ cm $= 4.6$ m. And $4.6 > 4.5$ — yes, by $10$ cm.",
+          "check": [
+            "Eq(4*100 + 60, 460)",
+            "Rational(46,10) > Rational(45,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Pick the tool, know the ladder",
+            "beats": [
+              "Millimetres for a coin's thickness, centimetres for a pencil, metres for a ger, kilometres for a road — units are tools sized to jobs.",
+              "The ladder: $1$ cm $= 10$ mm, $1$ m $= 100$ cm, $1$ km $= 1\\,000$ m — every rung a power of ten.",
+              "DOWN the ladder multiplies: the same length re-counted in smaller units needs more of them. $3$ m $= 300$ cm; and $3$ m $45$ cm unfolds to $345$ cm."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Down the ladder",
+            "intro": "Convert the big part; add the small part.",
+            "examples": [
+              {
+                "prompt": "Express $3$ m $45$ cm in centimetres, then as decimal metres.",
+                "steps": [
+                  "$3 \\times 100 + 45 = 345$ cm.",
+                  "$345$ cm $= 3.45$ m — the decimal staircase with a unit on."
+                ],
+                "answer": "$345$ cm $= 3.45$ m",
+                "check": [
+                  "Eq(3*100 + 45, 345)"
+                ]
+              },
+              {
+                "prompt": "Express $6$ km $80$ m in metres.",
+                "steps": [
+                  "$6 \\times 1\\,000 + 80 = 6\\,080$ m — the zero hundreds hold their place."
+                ],
+                "answer": "$6\\,080$ m",
+                "check": [
+                  "Eq(6*1000 + 80, 6080)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Unfold the units",
+            "intro": "Name the rung's factor first.",
+            "problems": [
+              {
+                "prompt": "$7$ m $8$ cm in centimetres is:",
+                "options": [
+                  "$708$ cm",
+                  "$78$ cm",
+                  "$780$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$700 + 8 = 708$ — the missing tens take a zero. ($78$ dropped it; $780$ misplaced it.)",
+                "check": [
+                  "Eq(7*100 + 8, 708)"
+                ]
+              },
+              {
+                "prompt": "$5$ cm $3$ mm in millimetres is:",
+                "options": [
+                  "$53$ mm",
+                  "$503$ mm",
+                  "$530$ mm"
+                ],
+                "correctIndex": 0,
+                "explanation": "cm→mm is the ×$10$ rung: $50 + 3 = 53$ mm.",
+                "check": [
+                  "Eq(5*10 + 3, 53)"
+                ]
+              },
+              {
+                "prompt": "$2$ km $40$ m in metres is:",
+                "options": [
+                  "$2\\,040$ m",
+                  "$240$ m",
+                  "$2\\,400$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\,000 + 40 = 2\\,040$ m — zeros on duty in the hundreds.",
+                "check": [
+                  "Eq(2*1000 + 40, 2040)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which tool?",
+            "prompt": "The distance from Ulaanbaatar to Darkhan is best measured in:",
+            "options": [
+              "kilometres",
+              "centimetres",
+              "metres",
+              "millimetres"
+            ],
+            "correctIndex": 0,
+            "explanation": "Intercity distances are kilometre-sized: about $220$ km — which would be a hopeless $22\\,000\\,000$ cm.",
+            "check": [
+              "Eq(220*1000*100, 22000000)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The metre lives in Paris",
+            "body": "For over a century the metre WAS a physical platinum bar kept in a Paris vault — every ruler on earth a copy of it. Today it's defined by the speed of light, so no fire or thief can change how long a metre is."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Up the ladder, and mixed decisions",
+            "beats": [
+              "UP the ladder divides — bigger units, fewer of them: $2\\,500$ m $= 2.5$ km, or $2$ km $500$ m.",
+              "The decimals topic pays off here: $\\div 1\\,000$ walks the digits three steps — $460$ cm $= 4.6$ m.",
+              "Which form to use is a communication choice: the carpenter's $345$ cm, the runner's $2.5$ km — same lengths, different audiences."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Up the ladder",
+            "intro": "Divide out the rung; the remainder keeps the small unit.",
+            "examples": [
+              {
+                "prompt": "Express $2\\,500$ m two ways.",
+                "steps": [
+                  "$2\\,500 \\div 1\\,000 = 2$ r $500$: $2$ km $500$ m.",
+                  "Decimal: $2.5$ km."
+                ],
+                "answer": "$2$ km $500$ m $= 2.5$ km",
+                "check": [
+                  "Eq(2*1000 + 500, 2500)",
+                  "Eq(Rational(2500,1000), Rational(25,10))"
+                ]
+              },
+              {
+                "prompt": "A ribbon of $460$ cm, in metres — and is it longer than $4.5$ m?",
+                "steps": [
+                  "$460$ cm $= 4$ m $60$ cm $= 4.6$ m.",
+                  "$4.6 > 4.5$: longer by $10$ cm."
+                ],
+                "answer": "$4.6$ m — yes",
+                "check": [
+                  "Eq(4*100 + 60, 460)",
+                  "Rational(46,10) > Rational(45,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Re-count upward",
+            "intro": "Divide; keep the remainder in the small unit.",
+            "problems": [
+              {
+                "prompt": "$3\\,250$ m equals:",
+                "options": [
+                  "$3$ km $250$ m",
+                  "$32$ km $50$ m",
+                  "$3$ km $25$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\,250 = 3 \\times 1\\,000 + 250$.",
+                "check": [
+                  "Eq(3*1000 + 250, 3250)"
+                ]
+              },
+              {
+                "prompt": "$85$ mm equals:",
+                "options": [
+                  "$8$ cm $5$ mm",
+                  "$8$ m $5$ cm",
+                  "$85$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$85 = 8 \\times 10 + 5$: eight centimetres and five millimetres.",
+                "check": [
+                  "Eq(8*10 + 5, 85)"
+                ]
+              },
+              {
+                "prompt": "$907$ cm equals:",
+                "options": [
+                  "$9.07$ m",
+                  "$9.7$ m",
+                  "$90.7$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\div 100$: $9.07$ m — the zero tenths matter (Topic 5's inside zero).",
+                "check": [
+                  "Eq(Rational(907,100), 9 + Rational(7,100))"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Direction check",
+            "prompt": "Converting $1\\,200$ m to kilometres, you should:",
+            "options": [
+              "divide by $1\\,000$ — bigger unit, fewer of them",
+              "multiply by $1\\,000$",
+              "divide by $100$",
+              "add $1\\,000$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Up the ladder divides: $1\\,200 \\div 1\\,000 = 1.2$ km. (Multiplying would claim the walk got a thousand times longer by renaming it.)",
+            "check": [
+              "Eq(Rational(1200,1000), Rational(12,10))"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The ladder: 10 mm in a cm, 100 cm in a m, 1,000 m in a km.",
+              "Down the ladder multiplies; up the ladder divides — say the rung's factor first.",
+              "Mixed forms unfold: 3 m 45 cm = 345 cm; zeros hold missing places.",
+              "The decimal staircase does the up-conversions: 460 cm = 4.6 m."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before every conversion, say the rung and its factor aloud — \"m to cm, times 100\". The naming kills both classic errors at once."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Both directions, all three rungs.",
+            "problems": [
+              {
+                "prompt": "$5$ km $60$ m in metres is:",
+                "options": [
+                  "$5\\,060$ m",
+                  "$560$ m",
+                  "$5\\,600$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5\\,000 + 60 = 5\\,060$ m.",
+                "check": [
+                  "Eq(5*1000 + 60, 5060)"
+                ]
+              },
+              {
+                "prompt": "$34$ mm in centimetres-and-millimetres is:",
+                "options": [
+                  "$3$ cm $4$ mm",
+                  "$34$ cm",
+                  "$3$ cm $40$ mm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$34 = 3 \\times 10 + 4$.",
+                "check": [
+                  "Eq(3*10 + 4, 34)"
+                ]
+              },
+              {
+                "prompt": "Which is LONGEST: $0.9$ km, $950$ m, $9\\,000$ cm?",
+                "options": [
+                  "$950$ m",
+                  "$0.9$ km",
+                  "$9\\,000$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "One unit for all: $900$ m, $950$ m, $90$ m — the middle one wins.",
+                "check": [
+                  "Eq(Rational(9,10)*1000, 900)",
+                  "Eq(Rational(9000,100), 90)",
+                  "950 > 900",
+                  "900 > 90"
+                ]
+              },
+              {
+                "prompt": "A high jump bar sits at $1$ m $27$ cm. In centimetres:",
+                "options": [
+                  "$127$ cm",
+                  "$1\\,027$ cm",
+                  "$12.7$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 + 27 = 127$ cm.",
+                "check": [
+                  "Eq(1*100 + 27, 127)"
+                ]
+              },
+              {
+                "prompt": "A marathon is about $42\\,195$ m. In kilometres that is:",
+                "options": [
+                  "$42.195$ km",
+                  "$421.95$ km",
+                  "$4.2195$ km"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\div 1\\,000$: three steps down the staircase — $42.195$ km.",
+                "check": [
+                  "Eq(Rational(42195,1000), 42 + Rational(195,1000))"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Units of Length\"",
+            "body": "One ladder, three rungs, two directions. Mass and capacity next — the same design with new names, which is exactly why the metric system conquered the world."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mass-and-capacity",
+      "title": "Mass & Capacity",
+      "concreteComparison": "A packet of tea is $250$ g, a sack of flour $25$ kg, and a loaded truck $3$ tonnes. A cup of airag holds $250$ ml; the jug, $2$ litres. Mass and capacity run on the same ladder design as length — thousand-steps between neighbours — so everything you did with metres transfers in one move.",
+      "objective": "Convert between grams, kilograms and tonnes, and between millilitres and litres, including mixed forms and how-many-fit problems.",
+      "concept": [
+        "**The mass ladder.** $1$ kg $= 1\\,000$ g; $1$ tonne $= 1\\,000$ kg. Two rungs, both thousand-steps: $2$ kg $350$ g $= 2\\,350$ g, and $4\\,700$ kg $= 4$ t $700$ kg.",
+        "**The capacity ladder.** $1$ L $= 1\\,000$ ml — one rung, same design: $1.5$ L $= 1\\,500$ ml. (Capacity measures how much a container HOLDS; the units are litres and their thousandths.)",
+        "**How many fit?** Capacity problems love division: a $2$ L jug fills $2\\,000 \\div 250 = 8$ cups of $250$ ml. Convert to ONE unit first; then it's Topic 3's division, receipts and all."
+      ],
+      "keyIdea": "Mass and capacity reuse the length ladder's design — thousand-steps between units. Convert to one unit, then count, add, or divide as usual.",
+      "facts": [
+        {
+          "title": "The mass ladder",
+          "latex": "1\\ \\text{kg} = 1\\,000\\ \\text{g} \\qquad 1\\ \\text{t} = 1\\,000\\ \\text{kg}",
+          "explanation": "Two thousand-step rungs — grams to kilograms to tonnes."
+        },
+        {
+          "title": "The capacity rung",
+          "latex": "1\\ \\text{L} = 1\\,000\\ \\text{ml}",
+          "explanation": "One rung; a millilitre is a thousandth of a litre."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g5me-l2-we1",
+          "statement": "A parcel weighs $2$ kg $350$ g. Express it in grams, and as a decimal of kilograms.",
+          "note": "Thousand-step down, then the staircase back up.",
+          "solution": "$2 \\times 1\\,000 + 350 = 2\\,350$ g. As kilograms: $\\frac{2350}{1000} = 2.35$ kg.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*1000 + 350, 2350)",
+            "Eq(Rational(2350,1000), 2 + Rational(35,100))"
+          ]
+        },
+        {
+          "id": "g5me-l2-we2",
+          "statement": "How many $250$ ml cups does a $2$ L jug fill?",
+          "note": "One unit first; then divide.",
+          "solution": "Convert: $2$ L $= 2\\,000$ ml. Divide: $2\\,000 \\div 250 = 8$ cups. Receipt: $8 \\times 250 = 2\\,000$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*1000, 2000)",
+            "Eq(8*250, 2000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Converting kg to g by ×100 because metres did that.",
+          "correction": "The mass rungs are THOUSAND-steps: 1 kg = 1,000 g. Each ladder has its own factors — say the rung before you multiply.",
+          "authored": true
+        },
+        {
+          "text": "Dividing mixed units directly — \"2 L ÷ 250 ml = 0.008\".",
+          "correction": "Convert to ONE unit first: 2,000 ml ÷ 250 ml = 8 cups. Mixed-unit arithmetic is the cardinal sin of measurement.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g5me-l2-t1",
+          "statement": "A truck carries $4\\,700$ kg of hay. Express the load in tonnes-and-kilograms.",
+          "solution": "$4\\,700 = 4 \\times 1\\,000 + 700$: $4$ t $700$ kg (or $4.7$ t).",
+          "check": [
+            "Eq(4*1000 + 700, 4700)",
+            "Eq(Rational(4700,1000), Rational(47,10))"
+          ]
+        },
+        {
+          "id": "g5me-l2-t2",
+          "statement": "How many $200$ ml glasses does a $1.5$ L bottle fill, and what is left over?",
+          "solution": "$1.5$ L $= 1\\,500$ ml; $1\\,500 \\div 200 = 7$ r $100$: seven full glasses, $100$ ml left. Receipt: $7 \\times 200 + 100 = 1\\,500$ ✓.",
+          "check": [
+            "Eq(Rational(15,10)*1000, 1500)",
+            "Eq(7*200 + 100, 1500)",
+            "100 < 200"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The thousand-step ladders",
+            "beats": [
+              "Mass climbs by thousands: $1$ kg $= 1\\,000$ g, $1$ tonne $= 1\\,000$ kg. A tea packet is grams, a flour sack kilograms, a loaded truck tonnes.",
+              "Mixed forms unfold as with length: $2$ kg $350$ g $= 2\\,350$ g; and the staircase renames upward: $2\\,350$ g $= 2.35$ kg.",
+              "Same design as metres — only the factors changed. Say the rung (\"kg to g, times a thousand\") and the length habits transfer whole."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Mass conversions",
+            "intro": "Thousand-steps, both directions.",
+            "examples": [
+              {
+                "prompt": "Express $2$ kg $350$ g in grams and decimal kilograms.",
+                "steps": [
+                  "$2\\,000 + 350 = 2\\,350$ g.",
+                  "$\\div 1\\,000$: $2.35$ kg."
+                ],
+                "answer": "$2\\,350$ g $= 2.35$ kg",
+                "check": [
+                  "Eq(2*1000 + 350, 2350)"
+                ]
+              },
+              {
+                "prompt": "Express $4\\,700$ kg in tonnes-and-kilograms.",
+                "steps": [
+                  "$4\\,700 \\div 1\\,000 = 4$ r $700$.",
+                  "$4$ t $700$ kg $= 4.7$ t."
+                ],
+                "answer": "$4$ t $700$ kg",
+                "check": [
+                  "Eq(4*1000 + 700, 4700)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Grams, kilograms, tonnes",
+            "intro": "Name the rung; then shift.",
+            "problems": [
+              {
+                "prompt": "$3$ kg $60$ g in grams is:",
+                "options": [
+                  "$3\\,060$ g",
+                  "$360$ g",
+                  "$3\\,600$ g"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\,000 + 60 = 3\\,060$ g — the hundreds place takes its zero.",
+                "check": [
+                  "Eq(3*1000 + 60, 3060)"
+                ]
+              },
+              {
+                "prompt": "$5\\,200$ g equals:",
+                "options": [
+                  "$5.2$ kg",
+                  "$52$ kg",
+                  "$0.52$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\div 1\\,000$: $5.2$ kg.",
+                "check": [
+                  "Eq(Rational(5200,1000), Rational(52,10))"
+                ]
+              },
+              {
+                "prompt": "Which is HEAVIER: $0.8$ kg or $795$ g?",
+                "options": [
+                  "$0.8$ kg — it is $800$ g",
+                  "$795$ g",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "One unit: $0.8$ kg $= 800$ g $> 795$ g — by five grams.",
+                "check": [
+                  "Eq(Rational(8,10)*1000, 800)",
+                  "800 > 795"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which unit?",
+            "prompt": "A sheep's mass is most sensibly given in:",
+            "options": [
+              "kilograms",
+              "grams",
+              "tonnes",
+              "millilitres"
+            ],
+            "correctIndex": 0,
+            "explanation": "A sheep runs tens of kilograms — about $50$ kg. Grams would need $50\\,000$; tonnes would need $0.05$; and millilitres measure liquid, not mass.",
+            "check": [
+              "Eq(50*1000, 50000)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A litre of water weighs a kilogram",
+            "body": "The metric system's secret handshake: $1$ litre of water has a mass of almost exactly $1$ kilogram — the units were DESIGNED to match. A $2$ L bottle of water: about $2$ kg. No other measurement system ever linked its ladders so neatly."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Capacity, and how-many-fit",
+            "beats": [
+              "Capacity — how much a container holds — runs one rung: $1$ L $= 1\\,000$ ml. A cup is $250$ ml; a kettle, $1.7$ L.",
+              "How-many-fit questions are divisions in disguise: a $2$ L jug into $250$ ml cups — convert first ($2\\,000$ ml), then divide: $8$ cups.",
+              "Leftovers behave like Topic 3: $1\\,500 \\div 200 = 7$ r $100$ — seven full glasses and $100$ ml left, receipt and all."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Capacity work",
+            "intro": "One unit, then divide with receipts.",
+            "examples": [
+              {
+                "prompt": "How many $250$ ml cups fill a $2$ L jug?",
+                "steps": [
+                  "$2$ L $= 2\\,000$ ml; $2\\,000 \\div 250 = 8$.",
+                  "Receipt: $8 \\times 250 = 2\\,000$ ✓."
+                ],
+                "answer": "$8$ cups",
+                "check": [
+                  "Eq(8*250, 2000)"
+                ]
+              },
+              {
+                "prompt": "A $1.5$ L bottle into $200$ ml glasses — how many, what remains?",
+                "steps": [
+                  "$1\\,500 \\div 200 = 7$ r $100$.",
+                  "Seven glasses, $100$ ml left; receipt $7 \\times 200 + 100 = 1\\,500$ ✓."
+                ],
+                "answer": "$7$ glasses, $100$ ml left",
+                "check": [
+                  "Eq(7*200 + 100, 1500)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Litres and millilitres",
+            "intro": "Convert, divide, receipt.",
+            "problems": [
+              {
+                "prompt": "$3.2$ L in millilitres is:",
+                "options": [
+                  "$3\\,200$ ml",
+                  "$320$ ml",
+                  "$32\\,000$ ml"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\times 1\\,000$: $3\\,200$ ml.",
+                "check": [
+                  "Eq(Rational(32,10)*1000, 3200)"
+                ]
+              },
+              {
+                "prompt": "How many $500$ ml bottles fill a $4$ L container?",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$80$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\,000 \\div 500 = 8$; receipt $8 \\times 500 = 4\\,000$ ✓.",
+                "check": [
+                  "Eq(8*500, 4000)"
+                ]
+              },
+              {
+                "prompt": "A recipe needs $750$ ml of milk; you have a full $1$ L carton. After cooking, you have:",
+                "options": [
+                  "$250$ ml left",
+                  "$350$ ml left",
+                  "$0.75$ L left"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,000 - 750 = 250$ ml.",
+                "check": [
+                  "Eq(1000 - 750, 250)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The cardinal sin",
+            "prompt": "To find how many $250$ ml cups a $2$ L jug fills, a student computes $2 \\div 250$. The fix:",
+            "options": [
+              "convert first — $2\\,000 \\div 250 = 8$",
+              "swap: $250 \\div 2$",
+              "multiply instead",
+              "nothing — $2 \\div 250$ is right"
+            ],
+            "correctIndex": 0,
+            "explanation": "Litres and millilitres cannot meet in one division. Re-count the jug in millilitres ($2\\,000$), THEN divide: $8$ cups.",
+            "check": [
+              "Eq(2*1000, 2000)",
+              "Eq(8*250, 2000)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Mass: 1 kg = 1,000 g; 1 t = 1,000 kg. Capacity: 1 L = 1,000 ml.",
+              "Same ladder design as length — only the factors differ; name the rung first.",
+              "How-many-fit = convert to one unit, then divide (receipts included).",
+              "Never compute across mixed units — the cardinal sin of measurement."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Every problem below hides a unit mismatch — find it and convert BEFORE any arithmetic."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Mass and capacity, one unit at a time.",
+            "problems": [
+              {
+                "prompt": "$6$ t $50$ kg in kilograms is:",
+                "options": [
+                  "$6\\,050$ kg",
+                  "$650$ kg",
+                  "$6\\,500$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6\\,000 + 50 = 6\\,050$ kg.",
+                "check": [
+                  "Eq(6*1000 + 50, 6050)"
+                ]
+              },
+              {
+                "prompt": "Which is MORE: $2.05$ L or $2\\,045$ ml?",
+                "options": [
+                  "$2.05$ L — it is $2\\,050$ ml",
+                  "$2\\,045$ ml",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2.05$ L $= 2\\,050$ ml $> 2\\,045$ ml — by five millilitres.",
+                "check": [
+                  "Eq(Rational(205,100)*1000, 2050)",
+                  "2050 > 2045"
+                ]
+              },
+              {
+                "prompt": "Four parcels of $1$ kg $200$ g each weigh, in total:",
+                "options": [
+                  "$4.8$ kg",
+                  "$4.08$ kg",
+                  "$5.2$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each is $1\\,200$ g; four make $4\\,800$ g $= 4.8$ kg.",
+                "check": [
+                  "Eq(4*1200, 4800)",
+                  "Eq(Rational(4800,1000), Rational(48,10))"
+                ]
+              },
+              {
+                "prompt": "A $330$ ml can, a $0.5$ L bottle, a $1$ L jug — total capacity:",
+                "options": [
+                  "$1\\,830$ ml",
+                  "$1\\,330$ ml",
+                  "$831$ ml"
+                ],
+                "correctIndex": 0,
+                "explanation": "One unit: $330 + 500 + 1\\,000 = 1\\,830$ ml.",
+                "check": [
+                  "Eq(330 + 500 + 1000, 1830)"
+                ]
+              },
+              {
+                "prompt": "How many $25$ kg sacks make one tonne?",
+                "options": [
+                  "$40$",
+                  "$4$",
+                  "$400$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,000 \\div 25 = 40$; receipt $40 \\times 25 = 1\\,000$ ✓.",
+                "check": [
+                  "Eq(40*25, 1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Mass & Capacity\"",
+            "body": "Two more ladders, zero new ideas — the metric design pays its dividend. Next: TIME, the one ladder that refuses to run on tens."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "units-of-time",
+      "title": "Units of Time",
+      "concreteComparison": "Every ladder so far ran on tens — and then comes the clock. Sixty seconds to a minute, sixty minutes to an hour, twenty-four hours to a day: time's ladder was built four thousand years ago in Babylon, long before decimals, and it never converted. One habit must change: with time you trade by SIXTIES, and the ×10 reflexes must stay at the door.",
+      "objective": "Convert between seconds, minutes, hours and days — including mixed forms and fraction-of-an-hour amounts — without importing base-ten reflexes.",
+      "concept": [
+        "**The sixty-ladder.** $1$ min $= 60$ s; $1$ h $= 60$ min; $1$ day $= 24$ h; $1$ week $= 7$ days. No tens anywhere — each rung has its own factor, and each must be said aloud.",
+        "**Mixed forms trade by the rung.** $2$ h $15$ min $= 2 \\times 60 + 15 = 135$ min. Backwards: $200$ s $= 3$ min $20$ s, because $200 \\div 60 = 3$ r $20$ — division with remainders, wearing a watch.",
+        "**Fractions of an hour are sixtieths.** Half an hour $= 30$ min; a quarter $= 15$; three-quarters $= 45$. The decimal trap: $1.5$ h $= 90$ min, NOT $150$ — the $0.5$ multiplies sixty, never a hundred."
+      ],
+      "keyIdea": "Time trades by sixties (and twenty-fours), not tens: convert with the rung's own factor, use division with remainders for mixed forms, and never let 1.5 h become 150 minutes.",
+      "facts": [
+        {
+          "title": "The sixty-ladder",
+          "latex": "1\\ \\text{min} = 60\\ \\text{s} \\quad 1\\ \\text{h} = 60\\ \\text{min} \\quad 1\\ \\text{day} = 24\\ \\text{h}",
+          "explanation": "Babylonian rungs — no tens; each factor said aloud."
+        },
+        {
+          "title": "The decimal trap",
+          "latex": "1.5\\ \\text{h} = 90\\ \\text{min} \\ (\\ne 150)",
+          "explanation": "Half an hour is thirty minutes — the .5 multiplies sixty."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g5me-l3-we1",
+          "statement": "Convert $2$ h $15$ min to minutes, and $200$ s to minutes-and-seconds.",
+          "note": "Down: ×60 and add. Up: divide by 60, keep the remainder.",
+          "solution": "Down: $2 \\times 60 + 15 = 135$ min. Up: $200 \\div 60 = 3$ r $20$ — three minutes twenty seconds. Receipt: $3 \\times 60 + 20 = 200$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*60 + 15, 135)",
+            "Eq(3*60 + 20, 200)",
+            "20 < 60"
+          ]
+        },
+        {
+          "id": "g5me-l3-we2",
+          "statement": "A film lasts $1.5$ hours. How many minutes is that — and why is $150$ wrong?",
+          "note": "The .5 is half an HOUR.",
+          "solution": "$1.5$ h $= 1$ h $+ \\frac{1}{2}$ h $= 60 + 30 = 90$ min. Writing $150$ applies the base-ten reflex ($1.5 \\times 100$) to a base-sixty ladder — half an hour has thirty minutes, not fifty.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(60 + 30, 90)",
+            "Eq(Rational(15,10)*60, 90)",
+            "Ne(90, 150)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Converting 1.5 h to 150 min — the ×100 reflex on a ×60 ladder.",
+          "correction": "The decimal part multiplies SIXTY: 0.5 × 60 = 30, so 1.5 h = 90 min. Time is the one ladder where decimal shifting lies.",
+          "authored": true
+        },
+        {
+          "text": "Writing 200 s as 2 min 00 s — dividing by 100.",
+          "correction": "Divide by 60: 200 = 3 × 60 + 20, so 3 min 20 s. The remainder must stay under 60 — a '2 min 80 s' answer stopped early.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g5me-l3-t1",
+          "statement": "Convert $3$ h $40$ min to minutes, and $500$ s to minutes-and-seconds.",
+          "solution": "$3 \\times 60 + 40 = 220$ min. And $500 \\div 60 = 8$ r $20$: $8$ min $20$ s; receipt $8 \\times 60 + 20 = 500$ ✓.",
+          "check": [
+            "Eq(3*60 + 40, 220)",
+            "Eq(8*60 + 20, 500)",
+            "20 < 60"
+          ]
+        },
+        {
+          "id": "g5me-l3-t2",
+          "statement": "How many minutes are in $\\frac{3}{4}$ of an hour? In $2\\frac{1}{4}$ hours?",
+          "solution": "$\\frac{3}{4} \\times 60 = 45$ min. And $2\\frac{1}{4}$ h $= 120 + 15 = 135$ min.",
+          "check": [
+            "Eq(Rational(3,4)*60, 45)",
+            "Eq(2*60 + 15, 135)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The ladder that refuses tens",
+            "beats": [
+              "Time's rungs: $60$ s to the minute, $60$ min to the hour, $24$ h to the day, $7$ days to the week. Not a ten in sight.",
+              "Down the ladder still multiplies — by the RUNG'S factor: $2$ h $15$ min $= 2 \\times 60 + 15 = 135$ min.",
+              "Up the ladder is division with remainders: $200$ s $= 3$ min $20$ s ($200 \\div 60 = 3$ r $20$) — and the remainder must stay under sixty."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Trading by sixties",
+            "intro": "×60 down; ÷60 with remainders up.",
+            "examples": [
+              {
+                "prompt": "Convert $2$ h $15$ min to minutes; $200$ s to min-and-s.",
+                "steps": [
+                  "$2 \\times 60 + 15 = 135$ min.",
+                  "$200 \\div 60 = 3$ r $20$: $3$ min $20$ s ✓."
+                ],
+                "answer": "$135$ min; $3$ min $20$ s",
+                "check": [
+                  "Eq(2*60 + 15, 135)",
+                  "Eq(3*60 + 20, 200)"
+                ]
+              },
+              {
+                "prompt": "Convert $3$ days to hours, and $100$ h to days-and-hours.",
+                "steps": [
+                  "$3 \\times 24 = 72$ h.",
+                  "$100 \\div 24 = 4$ r $4$: $4$ days $4$ h; receipt $4 \\times 24 + 4 = 100$ ✓."
+                ],
+                "answer": "$72$ h; $4$ days $4$ h",
+                "check": [
+                  "Eq(3*24, 72)",
+                  "Eq(4*24 + 4, 100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Rung by rung",
+            "intro": "Say the factor — 60 or 24 — before converting.",
+            "problems": [
+              {
+                "prompt": "$3$ h $40$ min in minutes is:",
+                "options": [
+                  "$220$ min",
+                  "$340$ min",
+                  "$180$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 + 40 = 220$. ($340$ is the base-ten reflex gluing digits.)",
+                "check": [
+                  "Eq(3*60 + 40, 220)"
+                ]
+              },
+              {
+                "prompt": "$500$ s equals:",
+                "options": [
+                  "$8$ min $20$ s",
+                  "$5$ min $0$ s",
+                  "$8$ min $33$ s"
+                ],
+                "correctIndex": 0,
+                "explanation": "$500 \\div 60 = 8$ r $20$; receipt $480 + 20 = 500$ ✓.",
+                "check": [
+                  "Eq(8*60 + 20, 500)"
+                ]
+              },
+              {
+                "prompt": "$2$ days $6$ h in hours is:",
+                "options": [
+                  "$54$ h",
+                  "$26$ h",
+                  "$60$ h"
+                ],
+                "correctIndex": 0,
+                "explanation": "$48 + 6 = 54$ h.",
+                "check": [
+                  "Eq(2*24 + 6, 54)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Remainder discipline",
+            "prompt": "A student writes $170$ s $= 2$ min $50$ s. Verdict:",
+            "options": [
+              "correct — $2 \\times 60 + 50 = 170$ and $50 < 60$",
+              "wrong — it should be $1$ min $70$ s",
+              "wrong — divide by $100$",
+              "wrong — seconds cannot exceed $100$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Receipt: $120 + 50 = 170$ ✓, remainder under sixty ✓. ($1$ min $70$ s names the same amount but stopped trading early.)",
+            "check": [
+              "Eq(2*60 + 50, 170)",
+              "50 < 60"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Blame Babylon",
+            "body": "Sixty survives from Babylonian astronomy: $60$ divides evenly by $2, 3, 4, 5, 6, 10, 12, 15, 20$ and $30$ — perfect for splitting hours into clean parts. A decimal clock was actually tried during the French Revolution ($10$-hour days!); it lasted about two years."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Fractions of an hour, and the trap",
+            "beats": [
+              "An hour splits like any whole: half $= 30$ min, a quarter $= 15$, three-quarters $= 45$ — the fraction multiplies SIXTY.",
+              "The decimal trap: $1.5$ h is $1$ h $+ 0.5 \\times 60 = 90$ min. The $\\times 100$ reflex says $150$ — and lies.",
+              "Mixed hours convert the same way: $2\\frac{1}{4}$ h $= 120 + 15 = 135$ min. Fractions of a minute too: $\\frac{1}{2}$ min $= 30$ s."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Hour fractions",
+            "intro": "The fraction multiplies sixty, never a hundred.",
+            "examples": [
+              {
+                "prompt": "How many minutes in $1.5$ h?",
+                "steps": [
+                  "$1$ h $= 60$; $0.5$ h $= 30$.",
+                  "$90$ min — the $150$ answer used the wrong ladder."
+                ],
+                "answer": "$90$ min",
+                "check": [
+                  "Eq(Rational(15,10)*60, 90)",
+                  "Ne(90, 150)"
+                ]
+              },
+              {
+                "prompt": "How many minutes in $\\frac{3}{4}$ h and in $2\\frac{1}{4}$ h?",
+                "steps": [
+                  "$\\frac{3}{4} \\times 60 = 45$ min.",
+                  "$2\\frac{1}{4}$ h $= 120 + 15 = 135$ min."
+                ],
+                "answer": "$45$ and $135$ min",
+                "check": [
+                  "Eq(Rational(3,4)*60, 45)",
+                  "Eq(2*60 + 15, 135)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fraction hours",
+            "intro": "Multiply the sixty.",
+            "problems": [
+              {
+                "prompt": "$\\frac{1}{4}$ h equals:",
+                "options": [
+                  "$15$ min",
+                  "$25$ min",
+                  "$40$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$60 \\div 4 = 15$ minutes.",
+                "check": [
+                  "Eq(Rational(1,4)*60, 15)"
+                ]
+              },
+              {
+                "prompt": "$2.5$ h equals:",
+                "options": [
+                  "$150$ min",
+                  "$250$ min",
+                  "$130$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$120 + 30 = 150$ min — and here $150$ IS right, because $2.5 \\times 60 = 150$. (The trap is using $\\times 100$; $2.5 \\times 100$ would give $250$.)",
+                "check": [
+                  "Eq(Rational(25,10)*60, 150)",
+                  "Ne(150, 250)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{2}{3}$ h equals:",
+                "options": [
+                  "$40$ min",
+                  "$20$ min",
+                  "$66$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{2}{3} \\times 60 = 40$ minutes. ($66$ is the decimal-digits reflex.)",
+                "check": [
+                  "Eq(Rational(2,3)*60, 40)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the ladder",
+            "prompt": "Which conversion is WRONG?",
+            "options": [
+              "$1.2$ h $= 120$ min",
+              "$\\frac{1}{2}$ h $= 30$ min",
+              "$2$ h $= 120$ min",
+              "$\\frac{1}{6}$ h $= 10$ min"
+            ],
+            "correctIndex": 0,
+            "explanation": "$1.2$ h $= 60 + 0.2 \\times 60 = 72$ min — the $120$ came from $\\times 100$. The others all multiplied sixty honestly.",
+            "check": [
+              "Eq(Rational(12,10)*60, 72)",
+              "Ne(72, 120)",
+              "Eq(Rational(1,6)*60, 10)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Time's rungs: 60 s, 60 min, 24 h, 7 days — no tens anywhere.",
+              "Down multiplies by the rung's factor; up divides with a remainder under it.",
+              "Fractions of an hour multiply sixty: 3/4 h = 45 min.",
+              "The decimal trap: 1.5 h = 90 min — the ×100 reflex lies on this ladder."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before every conversion say WHICH sixty (or twenty-four) you're trading — the spoken factor is the whole defence."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "All rungs, traps armed.",
+            "problems": [
+              {
+                "prompt": "$4$ min $35$ s in seconds is:",
+                "options": [
+                  "$275$ s",
+                  "$435$ s",
+                  "$240$ s"
+                ],
+                "correctIndex": 0,
+                "explanation": "$240 + 35 = 275$ s.",
+                "check": [
+                  "Eq(4*60 + 35, 275)"
+                ]
+              },
+              {
+                "prompt": "$150$ min equals:",
+                "options": [
+                  "$2$ h $30$ min",
+                  "$1$ h $50$ min",
+                  "$2$ h $50$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$150 \\div 60 = 2$ r $30$; receipt $120 + 30 = 150$ ✓.",
+                "check": [
+                  "Eq(2*60 + 30, 150)"
+                ]
+              },
+              {
+                "prompt": "A week has how many hours?",
+                "options": [
+                  "$168$",
+                  "$70$",
+                  "$144$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 \\times 24 = 168$ hours.",
+                "check": [
+                  "Eq(7*24, 168)"
+                ]
+              },
+              {
+                "prompt": "Which is LONGER: $\\frac{3}{4}$ h or $50$ min?",
+                "options": [
+                  "$50$ min",
+                  "$\\frac{3}{4}$ h",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{3}{4}$ h $= 45$ min $< 50$ min.",
+                "check": [
+                  "Eq(Rational(3,4)*60, 45)",
+                  "50 > 45"
+                ]
+              },
+              {
+                "prompt": "$0.25$ h equals:",
+                "options": [
+                  "$15$ min",
+                  "$25$ min",
+                  "$2.5$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "A quarter of sixty: $15$ min. ($25$ is the decimal-digits reflex again.)",
+                "check": [
+                  "Eq(Rational(25,100)*60, 15)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Units of Time\"",
+            "body": "The one ladder that trades by sixties — and now its traps are labelled. Next: reading the clock in motion, where counting up through round hours does all the work."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "elapsed-time",
+      "title": "Elapsed Time",
+      "concreteComparison": "The train leaves Ulaanbaatar at $9{:}45$ and reaches Darkhan at $11{:}20$. How long is the ride? Don't subtract the clock faces — CLIMB: $9{:}45$ to $10{:}00$ is $15$ minutes, to $11{:}00$ is an hour more, to $11{:}20$ is twenty more. Total: $1$ h $35$ min. The cashier's counting-up move from Topic 2, reading a clock.",
+      "objective": "Find elapsed time by counting up through round hours, find end times from a start and a duration, and read simple timetables.",
+      "concept": [
+        "**Count up through round hours.** From $9{:}45$: climb $15$ min to $10{:}00$, then whole hours, then the loose minutes — $15 + 60 + 20 = 95$ min $= 1$ h $35$ min. The round hours are the landmarks; the climb is the answer.",
+        "**Clock subtraction is a trap.** $11{:}20 - 9{:}45$ column-style hits '$20 - 45$' and tempts a base-ten borrow — but an hour breaks into SIXTY minutes, not a hundred. Counting up avoids the broken borrow entirely.",
+        "**End times add the same way.** Start $8{:}40$, duration $1$ h $50$ min: add the hour ($9{:}40$), then the minutes — $40 + 50 = 90$ min $= 1$ h $30$, so $10{:}30$. Minutes past sixty trade up into an hour, always."
+      ],
+      "keyIdea": "Elapsed time is a climb through round hours — count up to the next hour, across the whole hours, then the loose minutes. Minutes trade at sixty, never at a hundred.",
+      "facts": [
+        {
+          "title": "The climb",
+          "latex": "9{:}45 \\xrightarrow{+15} 10{:}00 \\xrightarrow{+60} 11{:}00 \\xrightarrow{+20} 11{:}20",
+          "explanation": "15 + 60 + 20 = 95 min = 1 h 35 min — landmarks at the round hours."
+        },
+        {
+          "title": "Minutes trade at sixty",
+          "latex": "40 + 50 = 90 = 60 + 30 \\ \\Rightarrow\\ +1\\ \\text{h}\\ 30",
+          "explanation": "Past sixty, minutes carry into the hour — never at a hundred."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g5me-l4-we1",
+          "statement": "A train leaves at $9{:}45$ and arrives at $11{:}20$. How long is the journey?",
+          "note": "Climb through the round hours.",
+          "solution": "$9{:}45 \\to 10{:}00$: $15$ min. $10{:}00 \\to 11{:}00$: $60$ min. $11{:}00 \\to 11{:}20$: $20$ min. Total $15 + 60 + 20 = 95$ min $= 1$ h $35$ min.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(15 + 60 + 20, 95)",
+            "Eq(95, 60 + 35)"
+          ]
+        },
+        {
+          "id": "g5me-l4-we2",
+          "statement": "A lesson starts at $8{:}40$ and lasts $1$ h $50$ min. When does it end?",
+          "note": "Hours first, then minutes — trading at sixty.",
+          "solution": "Add the hour: $9{:}40$. Add $50$ min: $40 + 50 = 90$ min $= 1$ h $30$ min — trade up: $10{:}30$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(40 + 50, 90)",
+            "Eq(90, 60 + 30)",
+            "Eq(8 + 1 + 1, 10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Subtracting clock readings like base-ten numbers — 11:20 − 9:45 with a hundred-borrow.",
+          "correction": "An hour breaks into 60 minutes, not 100. Count UP through the round hours instead — the climb never borrows wrong.",
+          "authored": true
+        },
+        {
+          "text": "Leaving 90 minutes unconverted in an end time — \"9:90\".",
+          "correction": "Sixty minutes make the next hour: 9:90 trades to 10:30. No clock reading carries minutes ≥ 60.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g5me-l4-t1",
+          "statement": "A film runs from $10{:}20$ to $12{:}05$. How long is it?",
+          "solution": "$10{:}20 \\to 11{:}00$: $40$. $\\to 12{:}00$: $60$. $\\to 12{:}05$: $5$. Total $105$ min $= 1$ h $45$ min.",
+          "check": [
+            "Eq(40 + 60 + 5, 105)",
+            "Eq(105, 60 + 45)"
+          ]
+        },
+        {
+          "id": "g5me-l4-t2",
+          "statement": "Training starts at $16{:}35$ and lasts $45$ min. When does it end?",
+          "solution": "$35 + 45 = 80$ min $= 1$ h $20$: the clock reads $17{:}20$.",
+          "check": [
+            "Eq(35 + 45, 80)",
+            "Eq(80, 60 + 20)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Climb, don't subtract",
+            "beats": [
+              "Elapsed time is a journey between clock readings — and the fastest route climbs through the ROUND HOURS.",
+              "$9{:}45 \\to 11{:}20$: fifteen to the hour, sixty across, twenty beyond — $95$ min $= 1$ h $35$.",
+              "Column subtraction on clock faces invites a base-ten borrow into a base-sixty world; the climb never breaks an hour wrong."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Climbing the clock",
+            "intro": "To the hour, across the hours, past the hour.",
+            "examples": [
+              {
+                "prompt": "How long from $9{:}45$ to $11{:}20$?",
+                "steps": [
+                  "$+15$ to $10{:}00$; $+60$ to $11{:}00$; $+20$ to arrival.",
+                  "$95$ min $= 1$ h $35$ min."
+                ],
+                "answer": "$1$ h $35$ min",
+                "check": [
+                  "Eq(15 + 60 + 20, 95)"
+                ]
+              },
+              {
+                "prompt": "How long from $10{:}20$ to $12{:}05$?",
+                "steps": [
+                  "$+40$, $+60$, $+5$.",
+                  "$105$ min $= 1$ h $45$ min."
+                ],
+                "answer": "$1$ h $45$ min",
+                "check": [
+                  "Eq(40 + 60 + 5, 105)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Journey lengths",
+            "intro": "Climb through the round hours.",
+            "problems": [
+              {
+                "prompt": "From $7{:}50$ to $9{:}15$ is:",
+                "options": [
+                  "$1$ h $25$ min",
+                  "$1$ h $35$ min",
+                  "$2$ h $25$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+10$, $+60$, $+15$: $85$ min $= 1$ h $25$.",
+                "check": [
+                  "Eq(10 + 60 + 15, 85)",
+                  "Eq(85, 60 + 25)"
+                ]
+              },
+              {
+                "prompt": "From $13{:}30$ to $16{:}10$ is:",
+                "options": [
+                  "$2$ h $40$ min",
+                  "$3$ h $20$ min",
+                  "$2$ h $20$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+30$ to $14{:}00$, $+120$ to $16{:}00$, $+10$: $160$ min $= 2$ h $40$.",
+                "check": [
+                  "Eq(30 + 120 + 10, 160)",
+                  "Eq(160, 2*60 + 40)"
+                ]
+              },
+              {
+                "prompt": "A shop opens $9{:}00$ and closes $18{:}30$. It is open for:",
+                "options": [
+                  "$9$ h $30$ min",
+                  "$8$ h $30$ min",
+                  "$9$ h $70$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nine whole hours to $18{:}00$, then thirty: $9$ h $30$ min.",
+                "check": [
+                  "Eq(9*60 + 30, 570)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The broken borrow",
+            "prompt": "Computing $11{:}20 - 9{:}45$ by columns, a student borrows and writes \"$1{:}75$\". The real elapsed time is:",
+            "options": [
+              "$1$ h $35$ min — the borrowed hour is $60$ min, not $100$",
+              "$1$ h $75$ min",
+              "$2$ h $25$ min",
+              "$1$ h $15$ min"
+            ],
+            "correctIndex": 0,
+            "explanation": "The borrow crossed an HOUR: $20 + 60 = 80$, then $80 - 45 = 35$ — giving $1$ h $35$. The climb ($15 + 60 + 20 = 95$ min) gets there without any borrow at all.",
+            "check": [
+              "Eq(80 - 45, 35)",
+              "Eq(15 + 60 + 20, 95)",
+              "Eq(95, 60 + 35)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The 24-hour clock skips the guesswork",
+            "body": "Timetables use $16{:}35$ instead of \"4:35 in the afternoon\" so that no journey ever looks like it ends before it starts. Reading both clocks — $16{:}35$ IS $4{:}35$ pm — is a five-second skill worth having before every train you'll ever catch."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "End times and timetables",
+            "beats": [
+              "Start $+$ duration: add hours first, then minutes — and minutes past sixty trade UP: $8{:}40 + 1$ h $50$ → $9{:}40$, then $40 + 50 = 90 = 60 + 30$ → $10{:}30$.",
+              "Backwards works too: to arrive at $11{:}00$ after a $35$-min walk, leave by $10{:}25$.",
+              "A timetable is rows of this arithmetic: departure, duration, arrival — one of them always missing, the other two rebuilding it."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Start + duration",
+            "intro": "Hours, then minutes; trade at sixty.",
+            "examples": [
+              {
+                "prompt": "A lesson starts $8{:}40$ and lasts $1$ h $50$ min. End time?",
+                "steps": [
+                  "$+1$ h: $9{:}40$. $+50$ min: $90$ min total — trade: $+1$ h $30$.",
+                  "$10{:}30$."
+                ],
+                "answer": "$10{:}30$",
+                "check": [
+                  "Eq(40 + 50, 90)",
+                  "Eq(90, 60 + 30)"
+                ]
+              },
+              {
+                "prompt": "To reach school at $8{:}15$ after a $25$-min ride, leave by:",
+                "steps": [
+                  "Climb back: $8{:}15 - 15 = 8{:}00$; $-10$ more: $7{:}50$.",
+                  "$7{:}50$."
+                ],
+                "answer": "$7{:}50$",
+                "check": [
+                  "Eq(15 + 10, 25)",
+                  "Eq(50 + 25 - 60, 15)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Arrivals and departures",
+            "intro": "One missing piece each time.",
+            "problems": [
+              {
+                "prompt": "Training starts $16{:}35$, lasts $45$ min. It ends at:",
+                "options": [
+                  "$17{:}20$",
+                  "$16{:}80$",
+                  "$17{:}10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$35 + 45 = 80 = 60 + 20$: $17{:}20$. (A clock never shows $80$ minutes.)",
+                "check": [
+                  "Eq(35 + 45, 80)",
+                  "Eq(80, 60 + 20)"
+                ]
+              },
+              {
+                "prompt": "A bus leaves $10{:}50$ and rides $30$ min. It arrives at:",
+                "options": [
+                  "$11{:}20$",
+                  "$10{:}80$",
+                  "$11{:}30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$50 + 30 = 80 = 60 + 20$: $11{:}20$.",
+                "check": [
+                  "Eq(50 + 30, 80)"
+                ]
+              },
+              {
+                "prompt": "Dinner must be ready at $19{:}00$; cooking takes $1$ h $25$ min. Start by:",
+                "options": [
+                  "$17{:}35$",
+                  "$18{:}35$",
+                  "$17{:}25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Back $1$ h: $18{:}00$; back $25$ min: $17{:}35$. Check: $17{:}35 + 1$ h $25 = 19{:}00$ ✓.",
+                "check": [
+                  "Eq(35 + 25, 60)",
+                  "Eq(17 + 1 + 1, 19)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Timetable row",
+            "prompt": "A timetable shows: departs $14{:}55$, arrives $16{:}10$. The journey takes:",
+            "options": [
+              "$1$ h $15$ min",
+              "$1$ h $55$ min",
+              "$2$ h $15$ min",
+              "$1$ h $25$ min"
+            ],
+            "correctIndex": 0,
+            "explanation": "Climb: $+5$ to $15{:}00$, $+60$ to $16{:}00$, $+10$: $75$ min $= 1$ h $15$ min.",
+            "check": [
+              "Eq(5 + 60 + 10, 75)",
+              "Eq(75, 60 + 15)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Elapsed time: climb to the next round hour, across whole hours, then loose minutes.",
+              "Clock subtraction invites the hundred-borrow — an hour is 60 minutes; climb instead.",
+              "End times: hours first, minutes second, trading past-sixty minutes up.",
+              "Backwards planning climbs down the same landmarks."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Draw the climb for each one — start time, round-hour landmarks, arrival — before any arithmetic. The picture is the method."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Journeys, endings, and departures.",
+            "problems": [
+              {
+                "prompt": "From $6{:}40$ to $8{:}05$ is:",
+                "options": [
+                  "$1$ h $25$ min",
+                  "$1$ h $35$ min",
+                  "$2$ h $25$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+20$, $+60$, $+5$: $85$ min $= 1$ h $25$.",
+                "check": [
+                  "Eq(20 + 60 + 5, 85)"
+                ]
+              },
+              {
+                "prompt": "Homework starts $17{:}45$ and takes $50$ min. It ends at:",
+                "options": [
+                  "$18{:}35$",
+                  "$17{:}95$",
+                  "$18{:}45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$45 + 50 = 95 = 60 + 35$: $18{:}35$.",
+                "check": [
+                  "Eq(45 + 50, 95)",
+                  "Eq(95, 60 + 35)"
+                ]
+              },
+              {
+                "prompt": "A bakery bakes from $5{:}30$ to $11{:}15$. Baking time:",
+                "options": [
+                  "$5$ h $45$ min",
+                  "$6$ h $15$ min",
+                  "$5$ h $15$ min"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+30$ to $6{:}00$, five hours to $11{:}00$, $+15$: $5$ h $45$ min.",
+                "check": [
+                  "Eq(30 + 5*60 + 15, 345)",
+                  "Eq(345, 5*60 + 45)"
+                ]
+              },
+              {
+                "prompt": "To catch a $9{:}05$ train with a $40$-min ride, leave by:",
+                "options": [
+                  "$8{:}25$",
+                  "$8{:}35$",
+                  "$8{:}65$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Back $5$ to $9{:}00$, back $35$ more: $8{:}25$. Check: $8{:}25 + 40 = 9{:}05$ ✓.",
+                "check": [
+                  "Eq(5 + 35, 40)",
+                  "Eq(25 + 40, 65)",
+                  "Eq(65, 60 + 5)"
+                ]
+              },
+              {
+                "prompt": "A match kicks off $19{:}30$ and lasts $105$ min. Full-time whistle:",
+                "options": [
+                  "$21{:}15$",
+                  "$20{:}75$",
+                  "$21{:}35$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$105$ min $= 1$ h $45$: $19{:}30 + 1$ h $= 20{:}30$, $+45 = 21{:}15$.",
+                "check": [
+                  "Eq(105, 60 + 45)",
+                  "Eq(30 + 45, 75)",
+                  "Eq(75, 60 + 15)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Elapsed Time\"",
+            "body": "Counting up through landmarks — the same move that made change at the market — now reads any clock, timetable or schedule. One lesson left: measurement problems in the wild, where the first rule is CONVERT FIRST."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "measurement-word-problems",
+      "title": "Measurement Word Problems",
+      "concreteComparison": "A shelf plan calls for a board of $1.2$ m plus a ledge of $45$ cm. Add them as written — $1.2 + 45 = 46.2$ — and you've built nonsense: metres and centimetres cannot meet in one sum. CONVERT FIRST: $120 + 45 = 165$ cm. Every measurement problem starts with one question — are all my numbers speaking the same unit?",
+      "objective": "Solve multi-step measurement problems across length, mass, capacity and time, converting to a common unit BEFORE any arithmetic, and reporting answers in sensible units.",
+      "concept": [
+        "**Convert first.** Mixed units in one computation is the cardinal sin: $1.2$ m $+ 45$ cm becomes $120 + 45 = 165$ cm (or $1.2 + 0.45 = 1.65$ m — either unit works, as long as it's ONE unit).",
+        "**Then it's Topics 2 and 3.** Once units agree, measurement problems are event queues, receipts, and division with remainders wearing unit names: a $2$ L bottle minus $750$ ml is $2\\,000 - 750 = 1\\,250$ ml.",
+        "**Answer in a sensible unit.** $3\\,600$ g is truthful, but the shopper hears $3.6$ kg. Finish by climbing the ladder to the unit the situation speaks — that last conversion is part of the answer."
+      ],
+      "keyIdea": "One unit before any arithmetic, familiar arithmetic in the middle, and a sensible unit at the end — the three-part shape of every measurement problem.",
+      "facts": [
+        {
+          "title": "The three-part shape",
+          "latex": "\\text{convert} \\to \\text{compute} \\to \\text{report sensibly}",
+          "explanation": "Unit alignment first, Topics 2–3 in the middle, a ladder-climb to finish."
+        },
+        {
+          "title": "The cardinal sin",
+          "latex": "1.2\\ \\text{m} + 45\\ \\text{cm} \\ne 46.2",
+          "explanation": "Mixed units in one sum build nonsense — 165 cm is the truth."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g5me-l5-we1",
+          "statement": "A board of $1.2$ m and a ledge of $45$ cm are joined end to end. How long is the whole, in centimetres and in metres?",
+          "note": "Convert first — either unit, but one unit.",
+          "solution": "Convert: $1.2$ m $= 120$ cm. Add: $120 + 45 = 165$ cm $= 1.65$ m. (Adding $1.2 + 45$ raw would claim a $46$-metre shelf.)",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(Rational(12,10)*100, 120)",
+            "Eq(120 + 45, 165)",
+            "Eq(Rational(165,100), 1 + Rational(65,100))"
+          ]
+        },
+        {
+          "id": "g5me-l5-we2",
+          "statement": "Three parcels each weigh $1$ kg $200$ g. What is the total mass, in a sensible unit?",
+          "note": "Convert, multiply, climb back.",
+          "solution": "Each: $1\\,200$ g. Total: $3 \\times 1\\,200 = 3\\,600$ g — reported sensibly, $3.6$ kg.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*1200, 3600)",
+            "Eq(Rational(3600,1000), Rational(36,10))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing across mixed units — 2 L − 750 ml = 1.25 by luck, or 748 by disaster.",
+          "correction": "Convert first, every time: 2,000 − 750 = 1,250 ml. Getting it right by accident once teaches the habit of getting it wrong forever.",
+          "authored": true
+        },
+        {
+          "text": "Reporting raw ladder-bottom answers — \"the parcels weigh 3,600 g\".",
+          "correction": "True but tone-deaf: climb to the unit the situation speaks — 3.6 kg. The final conversion is part of the answer.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g5me-l5-t1",
+          "statement": "A $2$ L kettle is filled from a jug holding $750$ ml, poured twice. How much more water is needed?",
+          "solution": "Poured: $2 \\times 750 = 1\\,500$ ml. Needed: $2\\,000 - 1\\,500 = 500$ ml more.",
+          "check": [
+            "Eq(2*750, 1500)",
+            "Eq(2000 - 1500, 500)"
+          ]
+        },
+        {
+          "id": "g5me-l5-t2",
+          "statement": "A hike covers $3.4$ km before lunch and $2\\,800$ m after. What is the day's total, in kilometres?",
+          "solution": "One unit: $3\\,400 + 2\\,800 = 6\\,200$ m $= 6.2$ km.",
+          "check": [
+            "Eq(3400 + 2800, 6200)",
+            "Eq(Rational(6200,1000), Rational(62,10))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Convert first — the one commandment",
+            "beats": [
+              "Before ANY arithmetic, ask: do all my numbers speak the same unit? $1.2$ m $+ 45$ cm — not yet. Convert: $120 + 45 = 165$ cm.",
+              "Either direction works ($1.20 + 0.45 = 1.65$ m) — the sin is mixing, not the choice of unit.",
+              "After conversion it's old arithmetic: event queues, receipts, remainders — Topics 2 and 3 wearing unit names."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unit alignment",
+            "intro": "One unit in, familiar arithmetic after.",
+            "examples": [
+              {
+                "prompt": "Join a $1.2$ m board and a $45$ cm ledge.",
+                "steps": [
+                  "Convert: $120$ cm. Add: $165$ cm $= 1.65$ m.",
+                  "(Raw addition would claim $46.2$ — a shelf longer than a ger row.)"
+                ],
+                "answer": "$165$ cm",
+                "check": [
+                  "Eq(120 + 45, 165)"
+                ]
+              },
+              {
+                "prompt": "A $2$ L bottle loses $750$ ml. What remains?",
+                "steps": [
+                  "Convert: $2\\,000$ ml. Subtract: $1\\,250$ ml.",
+                  "Receipt: $1\\,250 + 750 = 2\\,000$ ✓."
+                ],
+                "answer": "$1\\,250$ ml",
+                "check": [
+                  "Eq(2000 - 750, 1250)",
+                  "Eq(1250 + 750, 2000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Align, then compute",
+            "intro": "Spot the mixed units before they meet.",
+            "problems": [
+              {
+                "prompt": "$3.4$ km $+ 2\\,800$ m equals:",
+                "options": [
+                  "$6.2$ km",
+                  "$2\\,803.4$ m",
+                  "$31.4$ km"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\,400 + 2\\,800 = 6\\,200$ m $= 6.2$ km. (The wrong options added mixed units raw.)",
+                "check": [
+                  "Eq(3400 + 2800, 6200)"
+                ]
+              },
+              {
+                "prompt": "$1$ kg $- 350$ g equals:",
+                "options": [
+                  "$650$ g",
+                  "$0.65$ g",
+                  "$999.65$ g"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,000 - 350 = 650$ g.",
+                "check": [
+                  "Eq(1000 - 350, 650)"
+                ]
+              },
+              {
+                "prompt": "A $1.5$ L jug plus a $250$ ml cup hold, together:",
+                "options": [
+                  "$1\\,750$ ml",
+                  "$251.5$ ml",
+                  "$1\\,300$ ml"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,500 + 250 = 1\\,750$ ml.",
+                "check": [
+                  "Eq(1500 + 250, 1750)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Catch the sin",
+            "prompt": "A student computes a fence as $2$ m $+ 75$ cm $= 77$ cm... wait — $2 + 75 = 77$. The mistake:",
+            "options": [
+              "metres and centimetres met in one sum — convert first: $200 + 75 = 275$ cm",
+              "the addition itself is wrong",
+              "fences cannot be added",
+              "nothing — $77$ cm is right"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $2$ was METRES: $200$ cm. Aligned, the fence is $275$ cm $= 2.75$ m — three and a half times the broken answer.",
+            "check": [
+              "Eq(200 + 75, 275)",
+              "Ne(77, 275)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "A spacecraft died of mixed units",
+            "body": "In 1999 NASA's Mars Climate Orbiter burned up because one team computed thrust in metric units and another in imperial — nobody converted first. The cardinal sin of this lesson, at a cost of $327$ million dollars. Your fence arithmetic and their orbit arithmetic fail the same way."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Multi-step, and the sensible finish",
+            "beats": [
+              "Real problems chain steps: convert, run the event queue, then CLIMB BACK to a sensible unit. Three parcels of $1$ kg $200$ g: $3 \\times 1\\,200 = 3\\,600$ g — reported as $3.6$ kg.",
+              "Division joins in: a $3$ m ribbon into $40$ cm pieces — $300 \\div 40 = 7$ r $20$: seven pieces, $20$ cm left.",
+              "The guardrail travels too: estimate in round units ($3$ parcels ≈ $1$ kg each ≈ $3.6$... about $3$–$4$ kg ✓) and the exact answer must land beside it."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Full-shape problems",
+            "intro": "Convert → compute → report sensibly.",
+            "examples": [
+              {
+                "prompt": "Three parcels of $1$ kg $200$ g — total, sensibly.",
+                "steps": [
+                  "$3 \\times 1\\,200 = 3\\,600$ g.",
+                  "Climb: $3.6$ kg."
+                ],
+                "answer": "$3.6$ kg",
+                "check": [
+                  "Eq(3*1200, 3600)"
+                ]
+              },
+              {
+                "prompt": "A $3$ m ribbon cut into $40$ cm pieces — how many, what's left?",
+                "steps": [
+                  "$300 \\div 40 = 7$ r $20$.",
+                  "Seven pieces, $20$ cm over; receipt $7 \\times 40 + 20 = 300$ ✓."
+                ],
+                "answer": "$7$ pieces, $20$ cm left",
+                "check": [
+                  "Eq(7*40 + 20, 300)",
+                  "20 < 40"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The whole shape",
+            "intro": "All three parts, every time.",
+            "problems": [
+              {
+                "prompt": "A $2$ L kettle gets two $750$ ml pours. Water still needed:",
+                "options": [
+                  "$500$ ml",
+                  "$1\\,250$ ml",
+                  "$0.5$ ml"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 750 = 1\\,500$; $2\\,000 - 1\\,500 = 500$ ml.",
+                "check": [
+                  "Eq(2*750, 1500)",
+                  "Eq(2000 - 1500, 500)"
+                ]
+              },
+              {
+                "prompt": "A $5$ m rope loses three $120$ cm pieces. Remaining:",
+                "options": [
+                  "$140$ cm",
+                  "$360$ cm",
+                  "$4.64$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 120 = 360$; $500 - 360 = 140$ cm $= 1.4$ m.",
+                "check": [
+                  "Eq(3*120, 360)",
+                  "Eq(500 - 360, 140)"
+                ]
+              },
+              {
+                "prompt": "A $1.5$ kg bag of rice serves $75$ g portions. Full portions:",
+                "options": [
+                  "$20$",
+                  "$2$",
+                  "$200$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,500 \\div 75 = 20$; receipt $20 \\times 75 = 1\\,500$ ✓.",
+                "check": [
+                  "Eq(20*75, 1500)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Sensible reporting",
+            "prompt": "A hiking day totals $6\\,200$ m. The trail sign should say:",
+            "options": [
+              "$6.2$ km",
+              "$6\\,200$ m",
+              "$620\\,000$ cm",
+              "$62$ km"
+            ],
+            "correctIndex": 0,
+            "explanation": "All but the last are true — but kilometres are how trails speak: $6.2$ km. Climbing to the audience's unit is part of the answer.",
+            "check": [
+              "Eq(Rational(6200,1000), Rational(62,10))"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Convert FIRST — mixed units must never meet in one computation.",
+              "The middle is familiar: queues, receipts, remainders — with unit names on.",
+              "Finish on the ladder rung the situation speaks (3,600 g → 3.6 kg).",
+              "Estimates in round units still guard every answer."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each problem write the one unit you'll work in BEFORE reading the numbers again — the choice, made early, is the whole battle."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Length, mass, capacity, time — full shapes.",
+            "problems": [
+              {
+                "prompt": "A shelf needs boards of $85$ cm and $1.15$ m. Total wood:",
+                "options": [
+                  "$2$ m",
+                  "$86.15$ cm",
+                  "$1.7$ m"
+                ],
+                "correctIndex": 0,
+                "explanation": "$85 + 115 = 200$ cm $= 2$ m exactly.",
+                "check": [
+                  "Eq(85 + 115, 200)"
+                ]
+              },
+              {
+                "prompt": "A $3$ kg sack of flour loses $750$ g to baking. Remaining:",
+                "options": [
+                  "$2.25$ kg",
+                  "$2.75$ kg",
+                  "$22.5$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3\\,000 - 750 = 2\\,250$ g $= 2.25$ kg.",
+                "check": [
+                  "Eq(3000 - 750, 2250)",
+                  "Eq(Rational(2250,1000), Rational(225,100))"
+                ]
+              },
+              {
+                "prompt": "Six glasses of $150$ ml drain a jug of $1$ L. The jug:",
+                "options": [
+                  "runs short — the glasses need $900$ ml and a seventh won't fill",
+                  "overflows",
+                  "empties exactly"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 \\times 150 = 900 \\le 1\\,000$: the six pours fit with $100$ ml left — not enough for a seventh.",
+                "check": [
+                  "Eq(6*150, 900)",
+                  "Eq(1000 - 900, 100)",
+                  "100 < 150"
+                ]
+              },
+              {
+                "prompt": "A bus journey of $1$ h $35$ min starts at $7{:}40$. Arrival:",
+                "options": [
+                  "$9{:}15$",
+                  "$8{:}75$",
+                  "$9{:}05$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$+1$ h: $8{:}40$; $+35$: $75$ min $= 1$ h $15$ — $9{:}15$.",
+                "check": [
+                  "Eq(40 + 35, 75)",
+                  "Eq(75, 60 + 15)"
+                ]
+              },
+              {
+                "prompt": "Which is the BEST buy by mass: $2$ kg for the same price as $1\\,850$ g?",
+                "options": [
+                  "the $2$ kg bag — $150$ g more for the same money",
+                  "the $1\\,850$ g bag",
+                  "they are identical"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\,000 - 1\\,850 = 150$ g of free porridge.",
+                "check": [
+                  "Eq(2000 - 1850, 150)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Measurement & Units\" — the whole topic",
+            "body": "Four ladders, one commandment, and a spacecraft's worth of motivation. Two topics remain in Grade 5: shapes and their measurements, then data — both of which will use every unit in this one."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g5me-pr1",
+      "statement": "Convert $4$ m $7$ cm to centimetres, and $6\\,020$ m to kilometres-and-metres.",
+      "solution": "$4 \\times 100 + 7 = 407$ cm. And $6\\,020 = 6 \\times 1\\,000 + 20$: $6$ km $20$ m.",
+      "check": [
+        "Eq(4*100 + 7, 407)",
+        "Eq(6*1000 + 20, 6020)"
+      ]
+    },
+    {
+      "id": "g5me-pr2",
+      "statement": "Which is longer: $3.05$ m or $340$ cm? By how much?",
+      "solution": "$3.05$ m $= 305$ cm $< 340$ cm — the $340$ cm ribbon wins by $35$ cm.",
+      "check": [
+        "Eq(Rational(305,100)*100, 305)",
+        "Eq(340 - 305, 35)"
+      ]
+    },
+    {
+      "id": "g5me-pr3",
+      "statement": "Express $7$ kg $80$ g in grams, and $5\\,600$ ml in litres.",
+      "solution": "$7\\,000 + 80 = 7\\,080$ g. And $5\\,600 \\div 1\\,000 = 5.6$ L.",
+      "check": [
+        "Eq(7*1000 + 80, 7080)",
+        "Eq(Rational(5600,1000), Rational(56,10))"
+      ]
+    },
+    {
+      "id": "g5me-pr4",
+      "statement": "How many $125$ ml cups does a $1$ L carton fill?",
+      "solution": "$1\\,000 \\div 125 = 8$; receipt $8 \\times 125 = 1\\,000$ ✓.",
+      "check": [
+        "Eq(8*125, 1000)"
+      ]
+    },
+    {
+      "id": "g5me-pr5",
+      "statement": "Convert $2\\frac{1}{2}$ h to minutes and $400$ s to minutes-and-seconds.",
+      "solution": "$2\\frac{1}{2}$ h $= 150$ min. And $400 \\div 60 = 6$ r $40$: $6$ min $40$ s.",
+      "check": [
+        "Eq(Rational(5,2)*60, 150)",
+        "Eq(6*60 + 40, 400)",
+        "40 < 60"
+      ]
+    },
+    {
+      "id": "g5me-pr6",
+      "statement": "A class runs $9{:}35$ to $11{:}10$. How long is it?",
+      "solution": "Climb: $+25$ to $10{:}00$, $+60$, $+10$: $95$ min $= 1$ h $35$ min.",
+      "check": [
+        "Eq(25 + 60 + 10, 95)",
+        "Eq(95, 60 + 35)"
+      ]
+    },
+    {
+      "id": "g5me-pr7",
+      "statement": "A recipe mixes $1.2$ kg of flour with $300$ g of sugar. Total dry mass, sensibly?",
+      "solution": "$1\\,200 + 300 = 1\\,500$ g $= 1.5$ kg.",
+      "check": [
+        "Eq(1200 + 300, 1500)",
+        "Eq(Rational(1500,1000), Rational(15,10))"
+      ]
+    },
+    {
+      "id": "g5me-pr8",
+      "statement": "A $4$ m plank is cut into $65$ cm shelves. How many shelves, and what offcut remains?",
+      "solution": "$400 \\div 65 = 6$ r $10$: six shelves and a $10$ cm offcut. Receipt: $6 \\times 65 + 10 = 400$ ✓.",
+      "check": [
+        "Eq(6*65 + 10, 400)",
+        "10 < 65"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g5me-x1",
+      "statement": "Convert $8$ km $45$ m to metres, and $2\\,930$ cm to metres as a decimal.",
+      "solution": "$8\\,000 + 45 = 8\\,045$ m. And $2\\,930 \\div 100 = 29.3$ m.",
+      "check": [
+        "Eq(8*1000 + 45, 8045)",
+        "Eq(Rational(2930,100), Rational(293,10))"
+      ]
+    },
+    {
+      "id": "g5me-x2",
+      "statement": "Order from lightest to heaviest: $0.9$ kg, $850$ g, $1.05$ kg.",
+      "solution": "One unit: $900$ g, $850$ g, $1\\,050$ g — so $850$ g $< 0.9$ kg $< 1.05$ kg.",
+      "check": [
+        "Eq(Rational(9,10)*1000, 900)",
+        "850 < 900",
+        "900 < 1050"
+      ]
+    },
+    {
+      "id": "g5me-x3",
+      "statement": "How many $250$ ml bottles fill a $3.5$ L container, and is anything left over?",
+      "solution": "$3\\,500 \\div 250 = 14$ exactly — fourteen bottles, nothing over. Receipt: $14 \\times 250 = 3\\,500$ ✓.",
+      "check": [
+        "Eq(14*250, 3500)"
+      ]
+    },
+    {
+      "id": "g5me-x4",
+      "statement": "Convert $1\\frac{3}{4}$ h to minutes, and explain why $1.75$ h is NOT $175$ min.",
+      "solution": "$1\\frac{3}{4}$ h $= 60 + 45 = 105$ min. The fraction multiplies SIXTY ($\\frac{3}{4} \\times 60 = 45$), not a hundred — $175$ is the base-ten reflex on a base-sixty ladder.",
+      "check": [
+        "Eq(60 + 45, 105)",
+        "Eq(Rational(175,100)*60, 105)",
+        "Ne(105, 175)"
+      ]
+    },
+    {
+      "id": "g5me-x5",
+      "statement": "A train departs $13{:}50$ and arrives $16{:}25$. How long is the journey?",
+      "solution": "Climb: $+10$ to $14{:}00$, $+120$ to $16{:}00$, $+25$: $155$ min $= 2$ h $35$ min.",
+      "check": [
+        "Eq(10 + 120 + 25, 155)",
+        "Eq(155, 2*60 + 35)"
+      ]
+    },
+    {
+      "id": "g5me-x6",
+      "statement": "A herder's cart carries two churns of $15.5$ L each and one of $8\\,750$ ml. What is the total, in litres — and how far below the cart's $40$ L limit is it?",
+      "solution": "One unit: $15\\,500 + 15\\,500 + 8\\,750 = 39\\,750$ ml $= 39.75$ L. Below the limit by $40 - 39.75 = 0.25$ L ($250$ ml).",
+      "check": [
+        "Eq(15500 + 15500 + 8750, 39750)",
+        "Eq(Rational(39750,1000), Rational(3975,100))",
+        "Eq(40000 - 39750, 250)"
+      ]
+    }
+  ]
+}
