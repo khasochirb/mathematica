@@ -13,6 +13,7 @@ export default function Grade5TopicsPage() {
   const { lang } = useLang();
   const mn = lang === "mn";
   const liveCount = spine.filter((t) => t.live).length;
+  const complete = liveCount === spine.length;
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -28,9 +29,13 @@ export default function Grade5TopicsPage() {
           {mn ? "5-р ангийн сэдвүүд" : "Grade 5 Topics"}
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16 }}>
-          {mn
-            ? "Сургуулийн элсэлтийн шилжилтийн жил — сэдвүүд нэг нэгээрээ нэмэгдэж байна."
-            : "The school-entrance transition year — topics go live one at a time as they are written."}
+          {complete
+            ? mn
+              ? "Сургуулийн элсэлтийн шилжилтийн жил — бүтэн хичээлийн жил бэлэн боллоо."
+              : "The school-entrance transition year — the full year is written and open."
+            : mn
+              ? "Сургуулийн элсэлтийн шилжилтийн жил — сэдвүүд нэг нэгээрээ нэмэгдэж байна."
+              : "The school-entrance transition year — topics go live one at a time as they are written."}
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -69,9 +74,13 @@ export default function Grade5TopicsPage() {
         </div>
 
         <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>
-          {mn
-            ? `Одоогоор ${liveCount} сэдэв нээлттэй. Үлдсэн сэдвүүд бичигдэнгүүт нэмэгдэнэ.`
-            : `${liveCount} of ${spine.length} topics are open so far; the rest join as they are written.`}
+          {complete
+            ? mn
+              ? `Бүх ${spine.length} сэдэв нээлттэй — 5-р ангийн бүтэн хөтөлбөр.`
+              : `All ${spine.length} topics are open — the complete Grade 5 year.`
+            : mn
+              ? `Одоогоор ${liveCount} сэдэв нээлттэй. Үлдсэн сэдвүүд бичигдэнгүүт нэмэгдэнэ.`
+              : `${liveCount} of ${spine.length} topics are open so far; the rest join as they are written.`}
         </p>
       </div>
     </div>

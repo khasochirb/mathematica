@@ -457,8 +457,7 @@ export default function MathLandingPage() {
           <div className="eyebrow mb-1.5">Primary school · Mongol curriculum</div>
           <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
             Grades 1–5, year by year. Grade 5 — the school-entrance
-            transition year — opens the band, topic by topic; grades 1–4
-            follow.
+            transition year — is complete and open; grades 1–4 follow.
           </p>
           <div className="grid gap-4" style={gridStyle}>
             <GradeCard grade={5} active={isActive(5)} />

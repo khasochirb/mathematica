@@ -92,8 +92,8 @@ export const GRADE5_SPINE: GradeSpineEntry[] = [
   {
     slug: "data-and-graphs",
     title: "Data & Graphs",
-    blurb: "Reading and drawing bar graphs and line graphs, tables, and answering questions from data.",
-    live: false,
+    blurb: "Tally charts and frequency tables, pictographs with a key, bar graphs and their scales, line graphs of change over time, and the mean and range.",
+    live: true,
   },
 ];
 
