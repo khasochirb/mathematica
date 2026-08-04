@@ -65,7 +65,7 @@ export default function TopicLink({
   return (
     <span className="relative block">
       <span
-        className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 mono uppercase rounded-full px-1.5 py-[2px] pointer-events-none"
+        className="absolute top-3 right-3 inline-flex items-center gap-1 mono uppercase rounded-full px-1.5 py-[2px] pointer-events-none"
         style={{
           fontSize: 9,
           letterSpacing: "0.08em",

@@ -225,19 +225,32 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
 
   // What Premium actually unlocks today. Keep honest — every bullet must
   // correspond to something a paying user can use right now.
+  // Ordered by what the buyer most likely just hit. The courses lead since
+  // 2026-08-04, when /math became the paid product (policy:
+  // lib/course-access.ts — the first topic of every course stays free).
+  // Counts are deliberately rounded DOWN against the shipped corpus (940
+  // lessons, 15 564 bank problems) so they stay true as content grows.
   const premiumLiveFeatures = useMemo(
     () => [
+      {
+        en: "Every course unlocked — 900+ lessons across grades 4–12, Integrated Math and the named courses",
+        mn: "Бүх хичээл нээлттэй — 4–12-р анги, Нэгдсэн математик, нэрлэсэн хичээлүүдийн 900+ хичээл",
+      },
+      {
+        en: "Every topic's practice set, test-yourself and course exam",
+        mn: "Сэдэв бүрийн дасгал, өөрийгөө шалгах болон курсын шалгалт",
+      },
+      {
+        en: "The full problem bank — 15 000+ problems, each with its solution",
+        mn: "Бодлогын сан бүтнээрээ — бодолт бүхий 15 000+ бодлого",
+      },
       {
         en: "AI tutor — 30 questions a day (free accounts get 3)",
         mn: "AI багш — өдөрт 30 асуулт (үнэгүй эрхэд 3)",
       },
       {
-        en: "Additional practice tests created by experienced math teachers",
-        mn: "Туршлагатай математикийн багш нарын зохиосон нэмэлт дадлага тестүүд",
-      },
-      {
-        en: "Full solutions for the additional practice tests",
-        mn: "Нэмэлт дадлага тестүүдийн бүрэн бодолт",
+        en: "Additional ЭЕШ practice tests by experienced teachers, with full solutions",
+        mn: "Туршлагатай багш нарын зохиосон нэмэлт ЭЕШ дадлага тестүүд, бүрэн бодолттой",
       },
     ],
     [],
@@ -402,6 +415,16 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
                       </li>
                     ))}
                   </ul>
+
+                  {/* What they already have. Naming the free tier at the
+                      point of purchase is the honest thing to do, and it
+                      tells a hesitant buyer where to go look first. */}
+                  <p className="mt-2.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
+                    {t(
+                      "The first topic of every course stays free, always.",
+                      "Хичээл бүрийн эхний сэдэв үргэлж үнэгүй хэвээр.",
+                    )}
+                  </p>
 
                   <div
                     className="eyebrow mt-4 mb-2"
