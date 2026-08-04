@@ -200,8 +200,8 @@ def _g_unit_rate():
                 "statement": ("$%d$ identical notebooks cost %s tögrög. "
                               "What is the cost of one notebook, in tögrög?"
                               % (items, M(total))),
-                "correct": unit_price,
-                "dvals": [unit_price + items, total - items, unit_price * 2],
+                "correct": M(unit_price),
+                "dvals": [M(unit_price + items), M(total - items), M(unit_price * 2)],
                 "explanation": ("Unit rate is the total divided by how many: "
                                 "$%s \\div %d = %s$ tögrög."
                                 % (money(total), items, money(unit_price))),
@@ -603,8 +603,11 @@ def _g_percent_change():
             yield {
                 "statement": ("A price of %s tögrög rises by $%d\\%%$. "
                               "What is the new price, in tögrög?" % (M(n), pct)),
-                "correct": up,
-                "dvals": [down, n + pct, up + pct],
+                "correct": M(up),
+                # took it off instead of adding / gave only the rise / forgot to
+                # apply it. NOT n - pct: that is a NEGATIVE price for a big
+                # percentage, which is not a thing a shop can charge.
+                "dvals": [M(down), M(up - n), M(n)],
                 "explanation": ("The rise is $%d\\%%$ of $%d$, which is $%d$, so the new "
                                 "price is $%d + %d = %d$."
                                 % (pct, n, up - n, n, up - n, up)),
@@ -613,8 +616,10 @@ def _g_percent_change():
             yield {
                 "statement": ("A price of %s tögrög falls by $%d\\%%$. "
                               "What is the new price, in tögrög?" % (M(n), pct)),
-                "correct": down,
-                "dvals": [up, n - pct, down - pct],
+                "correct": M(down),
+                # added instead of taking off / gave only the fall / forgot to
+                # apply it
+                "dvals": [M(up), M(n - down), M(n)],
                 "explanation": ("The fall is $%d\\%%$ of $%d$, which is $%d$, so the new "
                                 "price is $%d - %d = %d$."
                                 % (pct, n, n - down, n, n - down, down)),
@@ -1363,7 +1368,7 @@ def build():
              mk_num("g6-rt", _g_rate())),
         form("g6-unit-rate", "Unit rate", 2, U1,
              "Cost per one item: divide the total by how many.",
-             mk_num("g6-ur", _g_unit_rate())),
+             mk_txt("g6-ur", _g_unit_rate())),
         form("g6-ratio-word", "Ratio word problems", 3, U1,
              "Count the shares first, then find what one share is worth.",
              mk_num("g6-rw", _g_ratio_word())),
@@ -1426,7 +1431,7 @@ def build():
              mk_txt("g6-wp", _g_what_percent())),
         form("g6-percent-change", "Increase and decrease", 2, U4,
              "Find the change, then add it on or take it off.",
-             mk_num("g6-pc", _g_percent_change())),
+             mk_txt("g6-pc", _g_percent_change())),
         form("g6-percent-word", "Percent word problems", 2, U4,
              "Decide whether the question wants the part or what is left.",
              mk_num("g6-pw", _g_percent_word())),

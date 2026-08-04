@@ -40,6 +40,8 @@ SUBJECTS = [
     ("4", "grade4"),
     ("5", "grade5"),
     ("6", "grade6"),
+    ("7", "grade7"),
+    ("8", "grade8"),
     # Band exit levels: Grade 9 (Mid school) and Grade 12 (High school).
     # Their banks double as the source pools for the band exit exams
     # (scripts/exams/build_band_exams.py).
