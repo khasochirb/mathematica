@@ -49,6 +49,7 @@ export {
 export type { GradeInfo, GradeSpineEntry, GeometrySpineEntry } from "@/lib/genmath-spines";
 
 // Per-course data modules — every export re-published under its old name.
+export * from "@/lib/genmath-data/grade-4";
 export * from "@/lib/genmath-data/grade-5";
 export * from "@/lib/genmath-data/grade-6";
 export * from "@/lib/genmath-data/grade-7";
@@ -72,6 +73,7 @@ export * from "@/lib/genmath-data/solid-geometry";
 export * from "@/lib/genmath-data/ib-sl";
 export * from "@/lib/genmath-data/ib-hl";
 
+import { grade4Topics, grade4TopicsMn, getGrade4Topics } from "@/lib/genmath-data/grade-4";
 import { grade5Topics, grade5TopicsMn, getGrade5Topics } from "@/lib/genmath-data/grade-5";
 import {
   grade6Topics,
@@ -114,6 +116,7 @@ import type { CourseUnit } from "@/lib/genmath-types";
 // ---------------------------------------------------------------------------
 
 const allGenMathTopics: GenMathTopic[] = [
+  ...grade4Topics,
   ...grade5Topics,
   ...grade6Topics,
   ...grade7Topics,
@@ -131,6 +134,7 @@ export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
 // Mongolian topic mirrors, keyed by slug — the union of every grade's
 // mirror map (currently grades 6–8; grown as courses are localized).
 const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
+  ...grade4TopicsMn,
   ...grade5TopicsMn,
   ...grade6TopicsMn,
   ...grade7TopicsMn,
@@ -163,6 +167,7 @@ export function getGenMathLesson(
 // ---------------------------------------------------------------------------
 
 const GRADE_TOPIC_GETTERS: Record<number, () => GenMathTopic[]> = {
+  4: getGrade4Topics,
   5: getGrade5Topics,
   6: getGrade6Topics,
   7: getGrade7Topics,

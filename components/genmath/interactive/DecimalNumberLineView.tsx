@@ -20,10 +20,12 @@ export default function DecimalNumberLineView({
   const span = max - min || 1;
   const x = (v: number) => pad + ((v - min) / span) * (width - 2 * pad);
 
-  // Major ticks at each tenth across the range.
-  const tickStep = 0.1;
+  // Major ticks: tenths on the unit-scale default, widening on integer-scale
+  // ranges (the Grade 4 jump-strategy lines) so at most ~12 ticks get labels.
+  const stepChoices = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
+  const tickStep = stepChoices.find((s) => span / s <= 12) ?? 1000;
   const ticks: number[] = [];
-  for (let v = min; v <= max + 1e-9; v += tickStep) ticks.push(Math.round(v * 100) / 100);
+  for (let v = min; v <= max + tickStep * 1e-6; v += tickStep) ticks.push(Math.round(v * 100) / 100);
 
   return (
     <svg

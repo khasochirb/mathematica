@@ -1,0 +1,2588 @@
+{
+  "slug": "numbers-to-10000",
+  "title": "Numbers to 10 000",
+  "grade": 4,
+  "status": "published",
+  "blurb": "Reading and writing four-digit numbers, place value to thousands, comparing and ordering, rounding to 10 and 100, and skip-counting patterns.",
+  "lessons": [
+    {
+      "slug": "reading-and-writing-numbers",
+      "title": "Reading & Writing Numbers",
+      "concreteComparison": "A herder with $3\\,482$ sheep cannot count them one by one at a glance — but say the number as THREE thousands, FOUR hundreds, EIGHT tens and TWO ones, and it fits in four short words. Every four-digit number is just four columns standing in a row, and each column has a name: thousands, hundreds, tens, ones.",
+      "objective": "Read four-digit numerals in words and write word names as numerals, name the thousands, hundreds, tens and ones columns, and use zero to hold a column that is empty.",
+      "concept": [
+        "**Four columns, four names.** A four-digit number has a thousands column, a hundreds column, a tens column and a ones column — always in that order, biggest on the left. In $3\\,482$: $3$ thousands, $4$ hundreds, $8$ tens, $2$ ones.",
+        "**Reading is naming the columns.** $3\\,482$ reads \"three thousand four hundred and eighty-two\" — the words walk the columns left to right. Writing goes the other way: hear the words, fill the columns. The little word \"and\" before the last part is optional: \"three thousand four hundred and eighty-two\" and \"three thousand four hundred eighty-two\" name the same number. This topic always says \"and\", so your answers can too.",
+        "**Zero holds an empty column.** $4\\,052$ has NO hundreds — but the column cannot be left out, or the other digits would slide into the wrong places. The zero is a guard standing in the empty column."
+      ],
+      "keyIdea": "Four-digit numbers are four named columns — thousands, hundreds, tens, ones. Reading walks the columns left to right, and zero stands guard in any column that is empty.",
+      "facts": [
+        {
+          "title": "The four columns",
+          "latex": "3\\,482 = 3\\ \\text{thousands},\\ 4\\ \\text{hundreds},\\ 8\\ \\text{tens},\\ 2\\ \\text{ones}",
+          "explanation": "Biggest column on the left; each digit sits in exactly one column."
+        },
+        {
+          "title": "Zero stands guard",
+          "latex": "4\\,052 = 4\\ \\text{thousands},\\ 0\\ \\text{hundreds},\\ 5\\ \\text{tens},\\ 2\\ \\text{ones}",
+          "explanation": "An empty column keeps its zero — drop it and every other digit slides."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4nu-l1-we1",
+          "statement": "Write $3\\,482$ in words.",
+          "note": "Walk the columns left to right.",
+          "solution": "$3$ thousands, $4$ hundreds, $8$ tens, $2$ ones: \"three thousand four hundred and eighty-two\". The columns rebuild it: $3\\,000 + 400 + 80 + 2 = 3\\,482$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*1000 + 4*100 + 8*10 + 2, 3482)"
+          ]
+        },
+        {
+          "id": "g4nu-l1-we2",
+          "statement": "Write \"four thousand and fifty-two\" as a numeral.",
+          "note": "No hundreds are spoken — so the hundreds column gets a zero.",
+          "solution": "$4$ in the thousands, nothing in the hundreds, $5$ in the tens, $2$ in the ones: $4\\,052$. The zero guards the empty hundreds column — without it the digits would collapse to $452$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4*1000 + 5*10 + 2, 4052)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Putting the fifty in the wrong column — writing \"four thousand and fifty-two\" as 4 520.",
+          "correction": "Fifty is 5 TENS. The hundreds column is empty and keeps its zero: 4 052. Adding the columns back exposes the slip — 4 000 + 500 + 20 makes 4 520, the wrong number.",
+          "authored": true
+        },
+        {
+          "text": "Skipping the zero when reading — calling 4 052 \"four hundred and fifty-two\".",
+          "correction": "The 4 stands in the THOUSANDS column, four places from the right. Read the columns, not just the digits: four thousand and fifty-two.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4nu-l1-t1",
+          "statement": "Write $6\\,704$ in words.",
+          "solution": "$6$ thousands, $7$ hundreds, $0$ tens, $4$ ones: \"six thousand seven hundred and four\". The empty tens column is silent in words but keeps its zero in the numeral.",
+          "check": [
+            "Eq(6*1000 + 7*100 + 4, 6704)"
+          ]
+        },
+        {
+          "id": "g4nu-l1-t2",
+          "statement": "Write \"nine thousand six hundred and forty\" as a numeral.",
+          "solution": "Columns: $9$, $6$, $4$, and an empty ones column — $9\\,640$.",
+          "check": [
+            "Eq(9*1000 + 6*100 + 4*10, 9640)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Four columns, read left to right",
+            "beats": [
+              "Every four-digit number is four columns standing in a row: THOUSANDS, HUNDREDS, TENS, ONES — biggest on the left. The place gives the digit its value.",
+              "$3\\,482$ is $3$ thousands, $4$ hundreds, $8$ tens and $2$ ones — the picture below shows the four columns as four groups.",
+              "Reading just walks the columns: \"three thousand four hundred and eighty-two\". Writing walks back: hear the words, fill the columns."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "thousands"
+                },
+                {
+                  "count": 4,
+                  "color": "#d97706",
+                  "label": "hundreds"
+                },
+                {
+                  "count": 8,
+                  "color": "#059669",
+                  "label": "tens"
+                },
+                {
+                  "count": 2,
+                  "color": "#94a3b8",
+                  "label": "ones"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Numerals into words",
+            "intro": "Name each column, then say them left to right.",
+            "examples": [
+              {
+                "prompt": "Write $3\\,482$ in words.",
+                "steps": [
+                  "Columns: $3$ thousands, $4$ hundreds, $8$ tens, $2$ ones.",
+                  "\"Three thousand four hundred and eighty-two\" — and the columns rebuild it: $3\\,000 + 400 + 80 + 2$."
+                ],
+                "answer": "three thousand four hundred and eighty-two",
+                "check": [
+                  "Eq(3*1000 + 4*100 + 8*10 + 2, 3482)"
+                ]
+              },
+              {
+                "prompt": "Write $5\\,217$ in words.",
+                "steps": [
+                  "Columns: $5$, $2$, $1$, $7$.",
+                  "\"Five thousand two hundred and seventeen\"."
+                ],
+                "answer": "five thousand two hundred and seventeen",
+                "check": [
+                  "Eq(5*1000 + 2*100 + 1*10 + 7, 5217)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Name the columns",
+            "intro": "Which column is each digit standing in?",
+            "problems": [
+              {
+                "prompt": "In $7\\,368$, the digit in the hundreds column is:",
+                "options": [
+                  "$3$",
+                  "$6$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Count columns from the left: $7$ thousands, $3$ hundreds, $6$ tens, $8$ ones. The hundreds digit is $3$ — the $6$ is tens and the $7$ is thousands.",
+                "check": [
+                  "Eq(7*1000 + 3*100 + 6*10 + 8, 7368)"
+                ]
+              },
+              {
+                "prompt": "Written in words, $2\\,590$ is:",
+                "options": [
+                  "two thousand five hundred and ninety",
+                  "two thousand and fifty-nine",
+                  "two hundred and fifty-nine"
+                ],
+                "correctIndex": 0,
+                "explanation": "Columns: $2$ thousands, $5$ hundreds, $9$ tens, $0$ ones. \"Two thousand and fifty-nine\" would be $2\\,059$ — it moves the $5$ out of the hundreds.",
+                "check": [
+                  "Eq(2*1000 + 5*100 + 9*10, 2590)"
+                ]
+              },
+              {
+                "prompt": "Which numeral is \"eight thousand three hundred and six\"?",
+                "options": [
+                  "$8\\,306$",
+                  "$8\\,360$",
+                  "$8\\,036$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six ONES, so the $6$ ends the number and a zero guards the tens: $8\\,306$. Choosing $8\\,360$ puts the six in the tens — that reads \"sixty\".",
+                "check": [
+                  "Eq(8*1000 + 3*100 + 6, 8306)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Find the column",
+            "prompt": "In $6\\,437$, the digit $4$ stands in which column?",
+            "options": [
+              "hundreds",
+              "tens",
+              "thousands",
+              "ones"
+            ],
+            "correctIndex": 0,
+            "explanation": "Walk from the left: $6$ thousands, $4$ hundreds, $3$ tens, $7$ ones. Standing in the hundreds column, the $4$ is worth $4 \\times 100 = 400$ — the place gives the digit its value.",
+            "check": [
+              "Eq(6*1000 + 4*100 + 3*10 + 7, 6437)",
+              "Eq(4*100, 400)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Nine thousand of them",
+            "body": "How many four-digit numbers exist? They run from $1\\,000$ up to $9\\,999$, so there are $9\\,999 - 1\\,000 + 1 = 9\\,000$ of them — nine thousand numbers, and this topic's four columns can name every single one."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Zero stands guard",
+            "beats": [
+              "What if a column is EMPTY? $4\\,052$ has $4$ thousands, $5$ tens, $2$ ones — and no hundreds at all. In the picture the hundreds column is still standing, holding nothing: $0$ hundreds.",
+              "The empty column still needs a digit, or everything slides: drop the zero from $4\\,052$ and you get $452$ — a completely different number. Zero is the guard that keeps every other digit in its place.",
+              "Words to numerals: \"three thousand and eight\" has empty hundreds AND empty tens — two guards: $3\\,008$."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "thousands"
+                },
+                {
+                  "count": 0,
+                  "color": "#d97706",
+                  "label": "hundreds"
+                },
+                {
+                  "count": 5,
+                  "color": "#059669",
+                  "label": "tens"
+                },
+                {
+                  "count": 2,
+                  "color": "#94a3b8",
+                  "label": "ones"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Words into numerals",
+            "intro": "Fill all four columns; empty ones get a zero.",
+            "examples": [
+              {
+                "prompt": "Write \"four thousand and fifty-two\" as a numeral.",
+                "steps": [
+                  "Thousands $4$, hundreds empty, tens $5$, ones $2$.",
+                  "The guard goes in: $4\\,052$ — not $452$, which has lost a whole column."
+                ],
+                "answer": "$4\\,052$",
+                "check": [
+                  "Eq(4*1000 + 5*10 + 2, 4052)"
+                ]
+              },
+              {
+                "prompt": "Write \"six thousand seven hundred and four\" as a numeral.",
+                "steps": [
+                  "Thousands $6$, hundreds $7$, tens empty, ones $4$.",
+                  "$6\\,704$ — the zero holds the tens."
+                ],
+                "answer": "$6\\,704$",
+                "check": [
+                  "Eq(6*1000 + 7*100 + 4, 6704)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Guard duty",
+            "intro": "Spot the empty columns before writing.",
+            "problems": [
+              {
+                "prompt": "\"Three thousand and eight\" as a numeral is:",
+                "options": [
+                  "$3\\,008$",
+                  "$3\\,800$",
+                  "$3\\,080$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Eight ONES and two empty columns between: $3\\,008$. Writing $3\\,800$ promotes the eight into the hundreds — that reads \"eight hundred\".",
+                "check": [
+                  "Eq(3*1000 + 8, 3008)"
+                ]
+              },
+              {
+                "prompt": "In $9\\,041$, the zero holds which column?",
+                "options": [
+                  "hundreds",
+                  "tens",
+                  "thousands"
+                ],
+                "correctIndex": 0,
+                "explanation": "Columns left to right: $9$ thousands, $0$ hundreds, $4$ tens, $1$ one. The guard stands in the hundreds.",
+                "check": [
+                  "Eq(9*1000 + 4*10 + 1, 9041)"
+                ]
+              },
+              {
+                "prompt": "Which number has a zero in the TENS column?",
+                "options": [
+                  "$5\\,306$",
+                  "$5\\,360$",
+                  "$5\\,036$"
+                ],
+                "correctIndex": 0,
+                "explanation": "In $5\\,306$ the columns are $5, 3, 0, 6$ — zero on tens duty. In $5\\,360$ the zero guards the ones; in $5\\,036$ it guards the hundreds.",
+                "check": [
+                  "Eq(5*1000 + 3*100 + 6, 5306)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The fifth column",
+            "prompt": "Counting up from $9\\,999$, the very next number needs:",
+            "options": [
+              "a fifth column — it is $10\\,000$",
+              "a bigger digit than $9$",
+              "no change — $9\\,999$ is the last number",
+              "a zero in front"
+            ],
+            "correctIndex": 0,
+            "explanation": "One more than $9\\,999$ is $9\\,999 + 1 = 10\\,000$ — ten thousand, the first number too big for four columns. This whole topic lives below it.",
+            "check": [
+              "Eq(9999 + 1, 10000)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Four columns, left to right: thousands, hundreds, tens, ones.",
+              "Reading walks the columns; writing fills them from the words.",
+              "An empty column keeps a zero — drop it and every digit slides.",
+              "The place gives the digit its value: the same 4 can mean 4, 40, 400 or 4 000.",
+              "Ten thousand is the first number that needs a fifth column."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every number below, touch each column and say its name — thousands, hundreds, tens, ones — before you answer. The naming is the method."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Both directions, guards included.",
+            "problems": [
+              {
+                "prompt": "Written in words, $6\\,235$ is:",
+                "options": [
+                  "six thousand two hundred and thirty-five",
+                  "six thousand two hundred and fifty-three",
+                  "six hundred and twenty-three"
+                ],
+                "correctIndex": 0,
+                "explanation": "Columns $6, 2, 3, 5$ — thirty-five, not fifty-three: the $3$ is tens and the $5$ is ones.",
+                "check": [
+                  "Eq(6*1000 + 2*100 + 3*10 + 5, 6235)"
+                ]
+              },
+              {
+                "prompt": "The thousands digit of $1\\,987$ is:",
+                "options": [
+                  "$1$",
+                  "$9$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Leftmost column of a four-digit number is thousands: the $1$, worth $1\\,000$. The $9$ is hundreds.",
+                "check": [
+                  "Eq(1*1000 + 9*100 + 8*10 + 7, 1987)"
+                ]
+              },
+              {
+                "prompt": "\"Seven thousand and ninety\" as a numeral is:",
+                "options": [
+                  "$7\\,090$",
+                  "$7\\,900$",
+                  "$790$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ninety is $9$ TENS, so the hundreds column is empty and gets its guard: $7\\,090$. Writing $7\\,900$ turns ninety into nine hundred.",
+                "check": [
+                  "Eq(7*1000 + 9*10, 7090)"
+                ]
+              },
+              {
+                "prompt": "Written in words, $2\\,004$ is:",
+                "options": [
+                  "two thousand and four",
+                  "two hundred and four",
+                  "two thousand and forty"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two guards hold the hundreds and tens; only thousands and ones speak: \"two thousand and four\". \"Two thousand and forty\" would be $2\\,040$.",
+                "check": [
+                  "Eq(2*1000 + 4, 2004)"
+                ]
+              },
+              {
+                "prompt": "A herder's winter count is $5\\,067$ animals. In words that is:",
+                "options": [
+                  "five thousand and sixty-seven",
+                  "five thousand six hundred and seven",
+                  "five hundred and sixty-seven"
+                ],
+                "correctIndex": 0,
+                "explanation": "Columns $5, 0, 6, 7$: the zero silences the hundreds, so the words jump from thousands straight to sixty-seven.",
+                "check": [
+                  "Eq(5*1000 + 6*10 + 7, 5067)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Reading & Writing Numbers\"",
+            "body": "Four named columns and a zero standing guard — you can now read and write every number below ten thousand. Next: what each digit is WORTH, and how to take a number apart into thousands, hundreds, tens and ones."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "place-value",
+      "title": "Place Value",
+      "concreteComparison": "Pay $3\\,482$ togrog at the shop: three $1\\,000$ notes, four $100$ notes, eight $10$ coins and two $1$ coins. The SAME kind of counting hides inside every number — each digit is a count of notes of one size, and the column says which size. That is place value.",
+      "objective": "Say what each digit of a four-digit number is worth, write numbers in expanded form, and build numbers back from thousands, hundreds, tens and ones.",
+      "concept": [
+        "**A digit's worth is digit times place.** In $3\\,482$ the $3$ stands in the thousands column, so it is worth $3 \\times 1\\,000 = 3\\,000$ — not $3$. Same digit in the tens column would be worth only $30$.",
+        "**Expanded form takes the number apart.** $3\\,482$ $= 3\\,000 + 400 + 80 + 2$: one part per column, and the parts really do add back to the number. It is the note-and-coin payment written as a sum.",
+        "**Building runs it backwards.** Given $8\\,000 + 40 + 6$, fill the columns: $8$ thousands, $0$ hundreds (the guard returns), $4$ tens, $6$ ones — $8\\,046$. Parts in, number out."
+      ],
+      "keyIdea": "Each digit is worth digit times place: expanded form spells the worths out as a sum, and building from parts folds the sum back into a numeral — with zero guarding any missing part.",
+      "facts": [
+        {
+          "title": "Worth = digit × place",
+          "latex": "3\\,482:\\ \\text{the } 3 \\text{ is worth } 3 \\times 1\\,000 = 3\\,000",
+          "explanation": "Read the place before the digit — the column multiplies the digit."
+        },
+        {
+          "title": "Expanded form",
+          "latex": "3\\,482 = 3\\,000 + 400 + 80 + 2",
+          "explanation": "One part per column; the parts add back to the number exactly."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4nu-l2-we1",
+          "statement": "What is the $7$ worth in $2\\,745$? And in $7\\,245$?",
+          "note": "Same digit, different column, different worth.",
+          "solution": "In $2\\,745$ the $7$ stands in the hundreds: worth $7 \\times 100 = 700$. In $7\\,245$ it stands in the thousands: worth $7 \\times 1\\,000 = 7\\,000$ — ten times as much, one column over.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(7*100, 700)",
+            "Eq(7*1000, 7000)"
+          ]
+        },
+        {
+          "id": "g4nu-l2-we2",
+          "statement": "Write $3\\,482$ in expanded form.",
+          "note": "One part per column.",
+          "solution": "$3$ thousands $= 3\\,000$, $4$ hundreds $= 400$, $8$ tens $= 80$, $2$ ones $= 2$. So $3\\,482$ $= 3\\,000 + 400 + 80 + 2$ — and the parts add straight back.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3000 + 400 + 80 + 2, 3482)",
+            "Eq(3*1000, 3000)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Saying the 3 in 3 482 \"is worth 3\".",
+          "correction": "The digit alone is 3, but its PLACE multiplies it: 3 × 1 000 = 3 000. Cover the other digits and read what remains: 3 000.",
+          "authored": true
+        },
+        {
+          "text": "Expanded form that invents a part — writing 4 052 as 4 000 + 500 + 2.",
+          "correction": "The 5 stands in the TENS column: 4 052 = 4 000 + 50 + 2. Check by adding your parts back — 4 000 + 500 + 2 = 4 502, the wrong number.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4nu-l2-t1",
+          "statement": "Write $6\\,913$ in expanded form.",
+          "solution": "$6\\,000 + 900 + 10 + 3$ — four parts, one per column, adding back to $6\\,913$.",
+          "check": [
+            "Eq(6000 + 900 + 10 + 3, 6913)"
+          ]
+        },
+        {
+          "id": "g4nu-l2-t2",
+          "statement": "What number is $8\\,000 + 40 + 6$?",
+          "solution": "Thousands $8$, hundreds empty (guard!), tens $4$, ones $6$: $8\\,046$.",
+          "check": [
+            "Eq(8000 + 40 + 6, 8046)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "What each digit is worth",
+            "beats": [
+              "The place gives the digit its value: a digit is worth digit TIMES place. In $2\\,745$ — pictured below as notes and coins — the $2$ is worth $2\\,000$, the $7$ is worth $700$, the $4$ is worth $40$, the $5$ just $5$.",
+              "Move a digit one column left and its worth grows ten times: $7$ tens are $70$, $7$ hundreds are $700$, $7$ thousands are $7\\,000$.",
+              "To hear a digit's worth, cover everything to its right with your finger and read what the column says."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#3b82f6",
+                  "label": "thousands"
+                },
+                {
+                  "count": 7,
+                  "color": "#d97706",
+                  "label": "hundreds"
+                },
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "tens"
+                },
+                {
+                  "count": 5,
+                  "color": "#94a3b8",
+                  "label": "ones"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Digit worths",
+            "intro": "Read the place before the digit.",
+            "examples": [
+              {
+                "prompt": "What is the $7$ worth in $2\\,745$? In $7\\,245$?",
+                "steps": [
+                  "Hundreds column: $7 \\times 100 = 700$.",
+                  "Thousands column: $7 \\times 1\\,000 = 7\\,000$ — same digit, ten times the worth."
+                ],
+                "answer": "$700$, then $7\\,000$",
+                "check": [
+                  "Eq(7*100, 700)",
+                  "Eq(7*1000, 7000)"
+                ]
+              },
+              {
+                "prompt": "Write $3\\,482$ in expanded form.",
+                "steps": [
+                  "Worths, column by column: $3\\,000$, $400$, $80$, $2$.",
+                  "$3\\,482 = 3\\,000 + 400 + 80 + 2$ — the parts add back exactly."
+                ],
+                "answer": "$3\\,000 + 400 + 80 + 2$",
+                "check": [
+                  "Eq(3000 + 400 + 80 + 2, 3482)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Worth spotting",
+            "intro": "Digit times place, every time.",
+            "problems": [
+              {
+                "prompt": "In $4\\,915$, the $9$ is worth:",
+                "options": [
+                  "$900$",
+                  "$9$",
+                  "$9\\,000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The $9$ stands in the hundreds: $9 \\times 100 = 900$. Answering $9$ ignores the place; $9\\,000$ moves it a column left.",
+                "check": [
+                  "Eq(9*100, 900)"
+                ]
+              },
+              {
+                "prompt": "In $6\\,208$, the $6$ is worth:",
+                "options": [
+                  "$6\\,000$",
+                  "$600$",
+                  "$6$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Leftmost of four columns is thousands: $6 \\times 1\\,000 = 6\\,000$.",
+                "check": [
+                  "Eq(6*1000, 6000)"
+                ]
+              },
+              {
+                "prompt": "The expanded form of $5\\,371$ is:",
+                "options": [
+                  "$5\\,000 + 300 + 70 + 1$",
+                  "$5\\,000 + 300 + 7 + 1$",
+                  "$500 + 300 + 70 + 1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The $7$ is seven TENS, worth $70$. Add each option back: only $5\\,000 + 300 + 70 + 1$ returns $5\\,371$.",
+                "check": [
+                  "Eq(5000 + 300 + 70 + 1, 5371)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Same digit, three worths",
+            "prompt": "In $5\\,505$ the digit $5$ appears three times. Why are the three worth different amounts?",
+            "options": [
+              "the place gives each its value — $5\\,000$, $500$ and $5$",
+              "the first $5$ is written bigger",
+              "they are all worth the same $5$",
+              "the zero between them changes the fives"
+            ],
+            "correctIndex": 0,
+            "explanation": "Thousands, hundreds and ones columns: $5 \\times 1\\,000 = 5\\,000$, $5 \\times 100 = 500$, $5 \\times 1 = 5$. Together with the guard on tens duty: $5\\,000 + 500 + 5 = 5\\,505$.",
+            "check": [
+              "Eq(5*1000, 5000)",
+              "Eq(5000 + 500 + 5, 5505)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Ten symbols beat a whole alphabet",
+            "body": "Place value is why you only ever need the ten digits $0$ to $9$: the same $7$ can mean seven, seventy or seven thousand depending on where it stands. Roman numerals had no places, so bigger numbers kept needing new letters — X for ten, C for a hundred, M for a thousand — and arithmetic with them was famously painful."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Expanded form, there and back",
+            "beats": [
+              "Expanded form takes a number apart into its worths: $3\\,482$ $= 3\\,000 + 400 + 80 + 2$. The number line below builds it part by part: jump $3\\,000$, then $400$ more to $3\\,400$, then $80$ to $3\\,480$ — three landings you can see. The last part is a single step of $2$ from $3\\,480$ onto $3\\,482$, far too small to draw beside a jump of $3\\,000$ — which is exactly what place value means.",
+              "Building runs backwards: $8\\,000 + 40 + 6$ fills the columns as $8$, guard, $4$, $6$ — $8\\,046$. A missing part means a zero, never a shorter number.",
+              "Always add your parts back. If they return a different number, a part sat in the wrong column."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 3000,
+                    "label": "3 000"
+                  },
+                  {
+                    "value": 3400,
+                    "label": "3 400"
+                  },
+                  {
+                    "value": 3480,
+                    "label": "3 480",
+                    "color": "#d97706"
+                  }
+                ],
+                "min": 3000,
+                "max": 3500
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Building from parts",
+            "intro": "Fill the columns; the guard covers missing parts.",
+            "examples": [
+              {
+                "prompt": "What number is $8\\,000 + 40 + 6$?",
+                "steps": [
+                  "Thousands $8$, hundreds EMPTY, tens $4$, ones $6$.",
+                  "$8\\,046$ — the zero holds the hundreds open."
+                ],
+                "answer": "$8\\,046$",
+                "check": [
+                  "Eq(8000 + 40 + 6, 8046)"
+                ]
+              },
+              {
+                "prompt": "Build the number with $7$ thousands, $0$ hundreds, $2$ tens and $9$ ones.",
+                "steps": [
+                  "Worths: $7\\,000 + 20 + 9$.",
+                  "$7\\,029$."
+                ],
+                "answer": "$7\\,029$",
+                "check": [
+                  "Eq(7*1000 + 2*10 + 9, 7029)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Parts in, number out",
+            "intro": "Add the parts; watch for guards.",
+            "problems": [
+              {
+                "prompt": "$4\\,000 + 600 + 5$ equals:",
+                "options": [
+                  "$4\\,605$",
+                  "$4\\,650$",
+                  "$4\\,065$"
+                ],
+                "correctIndex": 0,
+                "explanation": "No tens part, so a zero guards the tens: $4\\,605$. Choosing $4\\,650$ pushes the $5$ into the tens, making it $50$.",
+                "check": [
+                  "Eq(4000 + 600 + 5, 4605)"
+                ]
+              },
+              {
+                "prompt": "$2$ thousands, $3$ tens and $3$ ones make:",
+                "options": [
+                  "$2\\,033$",
+                  "$2\\,330$",
+                  "$2\\,303$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\,000 + 30 + 3 = 2\\,033$ — the hundreds column is empty, so its guard steps in.",
+                "check": [
+                  "Eq(2*1000 + 3*10 + 3, 2033)"
+                ]
+              },
+              {
+                "prompt": "Which sum builds $6\\,090$?",
+                "options": [
+                  "$6\\,000 + 90$",
+                  "$6\\,000 + 900$",
+                  "$600 + 90$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The $9$ stands in the tens: $6\\,000 + 90$. The trap $6\\,000 + 900$ builds $6\\,900$ instead.",
+                "check": [
+                  "Eq(6000 + 90, 6090)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The silent column",
+            "prompt": "A number's expanded form is $9\\,000 + 300 + 8$. Its tens digit is:",
+            "options": [
+              "$0$",
+              "$8$",
+              "$3$",
+              "$9$"
+            ],
+            "correctIndex": 0,
+            "explanation": "No tens part appears, so the tens column is empty and holds the guard: the number is $9\\,308$, tens digit $0$.",
+            "check": [
+              "Eq(9000 + 300 + 8, 9308)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A digit's worth is digit × place — read the place before the digit.",
+              "One column left = worth ten times more.",
+              "Expanded form: one part per column, and the parts must add back exactly.",
+              "Building from parts: fill the columns; a missing part becomes a zero.",
+              "Adding parts back is the receipt that catches wrong columns."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each answer, add the parts back (or take the number apart) as a receipt — parts and number must agree before you move on."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Worths, parts and receipts.",
+            "problems": [
+              {
+                "prompt": "In $4\\,786$, the $4$ is worth:",
+                "options": [
+                  "$4\\,000$",
+                  "$400$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Thousands column: $4 \\times 1\\,000 = 4\\,000$.",
+                "check": [
+                  "Eq(4*1000, 4000)"
+                ]
+              },
+              {
+                "prompt": "The expanded form of $7\\,604$ is:",
+                "options": [
+                  "$7\\,000 + 600 + 4$",
+                  "$7\\,000 + 600 + 40$",
+                  "$7\\,000 + 60 + 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero guards the tens, so there is no tens part: $7\\,000 + 600 + 4$. Adding $40$ instead builds $7\\,640$.",
+                "check": [
+                  "Eq(7000 + 600 + 4, 7604)"
+                ]
+              },
+              {
+                "prompt": "$5\\,000 + 500 + 50 + 5$ equals:",
+                "options": [
+                  "$5\\,555$",
+                  "$5\\,055$",
+                  "$5\\,505$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Every column holds a $5$: $5\\,555$ — four fives, four different worths.",
+                "check": [
+                  "Eq(5000 + 500 + 50 + 5, 5555)"
+                ]
+              },
+              {
+                "prompt": "Using each of the digit cards $1, 7, 4, 9$ once, the LARGEST number you can build is:",
+                "options": [
+                  "$9\\,741$",
+                  "$9\\,714$",
+                  "$1\\,479$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Big digits want big places: $9$ in thousands, then $7$, $4$, $1$ — $9\\,741$. Smallest would be $1\\,479$, the same cards reversed into small places.",
+                "check": [
+                  "Eq(9*1000 + 7*100 + 4*10 + 1, 9741)",
+                  "9741 > 1479"
+                ]
+              },
+              {
+                "prompt": "Paying $3\\,260$ togrog with $1\\,000$ notes, $100$ notes and $10$ coins takes:",
+                "options": [
+                  "$3$ notes, $2$ notes, $6$ coins",
+                  "$3$ notes, $6$ notes, $2$ coins",
+                  "$2$ notes, $3$ notes, $6$ coins"
+                ],
+                "correctIndex": 0,
+                "explanation": "Read the columns: $3$ thousands, $2$ hundreds, $6$ tens — $3 \\times 1\\,000 + 2 \\times 100 + 6 \\times 10 = 3\\,260$ togrog.",
+                "check": [
+                  "Eq(3*1000 + 2*100 + 6*10, 3260)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Place Value\"",
+            "body": "Digit times place, taken apart and rebuilt — expanded form is the receipt behind every number. Next: putting numbers in ORDER, where the leftmost place speaks first and settles almost every argument."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-and-ordering",
+      "title": "Comparing & Ordering",
+      "concreteComparison": "Two herds meet at the well: one of $3\\,025$ animals, one of $2\\,970$. The second has showier digits — $970$ looks grander than $25$ — but three THOUSANDS beat two thousands before the small columns even get to speak. Comparing numbers is a conversation where the leftmost place talks first, and the rest only matter if it ties.",
+      "objective": "Compare four-digit numbers place by place from the left, order sets of three or four numbers, and place a number between its neighbouring hundreds on the number line.",
+      "concept": [
+        "**More digits wins outright.** A four-digit number always beats a three-digit one: $1\\,023$ $> 987$, because $987$ never even reaches $1\\,000$. Count digits before comparing them.",
+        "**Same length: leftmost place speaks first.** Compare thousands, then hundreds, then tens, then ones — and the FIRST difference settles it. $3\\,025$ $>$ $2\\,970$ because $3 > 2$ in the thousands; the $970$ never gets a vote.",
+        "**Every number lives between two hundreds.** $5\\,642$ sits between $5\\,600$ and $5\\,700$ on the number line — $42$ steps past $5\\,600$, $58$ short of $5\\,700$. Placing a number between its neighbours is how ordering becomes a picture."
+      ],
+      "keyIdea": "Count digits first, then compare place by place from the left — the first difference decides. On the number line, bigger simply means further right.",
+      "facts": [
+        {
+          "title": "Leftmost place speaks first",
+          "latex": "3\\,025 > 2\\,970\\ \\ (3\\ \\text{thousands beat}\\ 2)",
+          "explanation": "The first column that differs settles it; later columns cannot overturn it."
+        },
+        {
+          "title": "Between the hundreds",
+          "latex": "5\\,600 < 5\\,642 < 5\\,700",
+          "explanation": "Every four-digit number sits between two neighbouring hundreds on the line."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4nu-l3-we1",
+          "statement": "Which herd is larger: $3\\,025$ animals or $2\\,970$?",
+          "note": "Thousands first — the flashy hundreds never vote.",
+          "solution": "Both have four digits, so compare thousands: $3 > 2$, done — $3\\,025$ $>$ $2\\,970$. Even the smaller herd's whole $2\\,970$ stays below the bigger herd's $3\\,000$ of thousands alone.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "3025 > 2970",
+            "3000 > 2970"
+          ]
+        },
+        {
+          "id": "g4nu-l3-we2",
+          "statement": "Order from smallest to largest: $5\\,470$, $5\\,461$, $5\\,504$.",
+          "note": "Walk the columns left to right until they differ.",
+          "solution": "All share $5$ thousands. Hundreds: $4, 4, 5$ — so $5\\,504$ is largest. Between the two with $4$ hundreds, tens decide: $6 < 7$, so $5\\,461$ $<$ $5\\,470$. Order: $5\\,461$ $<$ $5\\,470$ $<$ $5\\,504$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "5461 < 5470",
+            "5470 < 5504"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Letting a flashy small column decide — 2 895 > 3 014 \"because 8 beats 0\".",
+          "correction": "The hundreds only speak if the thousands TIE. 3 > 2 in the thousands ends the contest: 3 014 is bigger, whatever the later digits.",
+          "authored": true
+        },
+        {
+          "text": "Comparing first digits across different lengths — 987 > 1 023 \"because 9 beats 1\".",
+          "correction": "Count digits first. Four columns beat three: 987 is below 1 000 and 1 023 is above it, so 1 023 > 987.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4nu-l3-t1",
+          "statement": "Compare $6\\,384$ and $6\\,348$ with $<$, $>$ or $=$.",
+          "solution": "Thousands tie, hundreds tie; tens: $8 > 4$ — so $6\\,384$ $>$ $6\\,348$. The difference is $36$: $6\\,348 + 36 = 6\\,384$.",
+          "check": [
+            "6384 > 6348",
+            "Eq(6348 + 36, 6384)"
+          ]
+        },
+        {
+          "id": "g4nu-l3-t2",
+          "statement": "What number sits exactly halfway between $4\\,200$ and $4\\,300$?",
+          "solution": "$4\\,250$ — it is $50$ past $4\\,200$ and $50$ short of $4\\,300$.",
+          "check": [
+            "Eq(4250 - 4200, 50)",
+            "Eq(4300 - 4250, 50)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The leftmost place speaks first",
+            "beats": [
+              "Count digits before anything else: a four-digit number beats a three-digit one every time — $987 < 1\\,023$, because $987$ never reaches $1\\,000$.",
+              "Same length? Compare column by column from the LEFT: thousands, hundreds, tens, ones. The first difference settles it — $3\\,025$ beats $2\\,970$ because $3 > 2$ in the thousands. The picture below stacks the two numbers column by column: $2\\,970$ has the showier hundreds and tens, and still loses on the very first column.",
+              "The place gives the digit its value — that is exactly why the left column outvotes everything: one step of a thousand is more than the other three columns can hold together."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "thousands in 3 025"
+                },
+                {
+                  "count": 0,
+                  "color": "#d97706",
+                  "label": "hundreds in 3 025"
+                },
+                {
+                  "count": 2,
+                  "color": "#059669",
+                  "label": "tens in 3 025"
+                },
+                {
+                  "count": 5,
+                  "color": "#94a3b8",
+                  "label": "ones in 3 025"
+                },
+                {
+                  "count": 2,
+                  "color": "#3b82f6",
+                  "label": "thousands in 2 970"
+                },
+                {
+                  "count": 9,
+                  "color": "#d97706",
+                  "label": "hundreds in 2 970"
+                },
+                {
+                  "count": 7,
+                  "color": "#059669",
+                  "label": "tens in 2 970"
+                },
+                {
+                  "count": 0,
+                  "color": "#94a3b8",
+                  "label": "ones in 2 970"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "First difference wins",
+            "intro": "Digits counted, then columns walked from the left.",
+            "examples": [
+              {
+                "prompt": "Compare $3\\,025$ and $2\\,970$.",
+                "steps": [
+                  "Both four digits. Thousands: $3 > 2$ — decided.",
+                  "$3\\,025$ $>$ $2\\,970$; even $3\\,000$ alone beats all of $2\\,970$."
+                ],
+                "answer": "$3\\,025$ $>$ $2\\,970$",
+                "check": [
+                  "3025 > 2970",
+                  "3000 > 2970"
+                ]
+              },
+              {
+                "prompt": "Compare $987$ and $1\\,023$.",
+                "steps": [
+                  "Three digits against four: no contest.",
+                  "$987 < 1\\,000$ and $1\\,023 > 1\\,000$, so $987 < 1\\,023$."
+                ],
+                "answer": "$987 <$ $1\\,023$",
+                "check": [
+                  "987 < 1000",
+                  "1023 > 987"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Column court",
+            "intro": "First difference from the left decides.",
+            "problems": [
+              {
+                "prompt": "Which symbol fits: $7\\,216$ $\\;\\square\\;$ $7\\,261$?",
+                "options": [
+                  "$<$",
+                  "$>$",
+                  "$=$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Thousands and hundreds tie; tens: $1 < 6$ — so $<$. The swapped last digits try to distract; the tens speak before the ones.",
+                "check": [
+                  "7216 < 7261"
+                ]
+              },
+              {
+                "prompt": "The largest of $4\\,989$, $5\\,001$, $4\\,998$ is:",
+                "options": [
+                  "$5\\,001$",
+                  "$4\\,998$",
+                  "$4\\,989$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Thousands first: $5$ beats $4$, so $5\\,001$ wins despite its tiny-looking $001$ tail.",
+                "check": [
+                  "5001 > 4998",
+                  "4998 > 4989"
+                ]
+              },
+              {
+                "prompt": "Which symbol fits: $999 \\;\\square\\; 1\\,001$?",
+                "options": [
+                  "$<$",
+                  "$>$",
+                  "$=$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three digits against four: $999$ is the LAST three-digit number and still loses — $999 + 2 = 1\\,001$.",
+                "check": [
+                  "999 < 1001"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Flashy digits do not vote",
+            "prompt": "A student says $2\\,895$ $>$ $3\\,014$ \"because $8$ beats $0$\". The truth:",
+            "options": [
+              "thousands speak first: $3 > 2$, so $3\\,014$ is bigger",
+              "the student is right — hundreds count more",
+              "the numbers are equal",
+              "you cannot compare them"
+            ],
+            "correctIndex": 0,
+            "explanation": "Hundreds only get a vote when thousands TIE. Here $3\\,000$ alone already beats the whole of $2\\,895$ — the later columns cannot catch up.",
+            "check": [
+              "3014 > 2895",
+              "3000 > 2895"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why the later columns cannot rebel",
+            "body": "Once the thousands differ, the contest is truly over: the hundreds, tens and ones together can only ever add up to $999$ — one whole step of a thousand is bigger, since $999 < 1\\,000$. The leftmost place is not just first, it is unbeatable."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Ordering, and the number line",
+            "beats": [
+              "To order three or four numbers, run the same contest repeatedly: find the smallest, then the next — $5\\,461$ $<$ $5\\,470$ $<$ $5\\,504$.",
+              "Every number lives BETWEEN two neighbouring hundreds. On the line below, $5\\,642$ sits between $5\\,600$ and $5\\,700$: it is $42$ past $5\\,600$ and $58$ short of $5\\,700$.",
+              "On the number line, bigger simply means further right — ordering numbers is placing them on the line and reading left to right."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 5600,
+                    "label": "5 600"
+                  },
+                  {
+                    "value": 5642,
+                    "label": "5 642",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 5700,
+                    "label": "5 700"
+                  }
+                ],
+                "min": 5600,
+                "max": 5700
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Between the neighbours",
+            "intro": "Find the hundreds on each side; measure both gaps.",
+            "examples": [
+              {
+                "prompt": "Which hundreds does $5\\,642$ sit between, and how far from each?",
+                "steps": [
+                  "Neighbouring hundreds: $5\\,600$ and $5\\,700$.",
+                  "Gaps: $5\\,642 - 5\\,600 = 42$ and $5\\,700 - 5\\,642 = 58$."
+                ],
+                "answer": "$5\\,600$ and $5\\,700$",
+                "check": [
+                  "Eq(5642 - 5600, 42)",
+                  "Eq(5700 - 5642, 58)"
+                ]
+              },
+              {
+                "prompt": "Order $5\\,470$, $5\\,461$, $5\\,504$ from smallest to largest.",
+                "steps": [
+                  "Thousands tie; hundreds put $5\\,504$ on top.",
+                  "Tens split the rest: $5\\,461$ $<$ $5\\,470$ $<$ $5\\,504$."
+                ],
+                "answer": "$5\\,461$ $<$ $5\\,470$ $<$ $5\\,504$",
+                "check": [
+                  "5461 < 5470",
+                  "5470 < 5504"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "On the line",
+            "intro": "Between-ness is a picture — read it left to right.",
+            "problems": [
+              {
+                "prompt": "The line below shows the gap from $3\\,400$ to $3\\,500$. Which number lands inside it?",
+                "options": [
+                  "$3\\,456$",
+                  "$3\\,390$",
+                  "$3\\,540$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only $3\\,456$ lands inside the gap: $3\\,400 < 3\\,456 < 3\\,500$. The others fall outside — $3\\,390$ is below $3\\,400$ and $3\\,540$ beyond $3\\,500$.",
+                "check": [
+                  "3400 < 3456",
+                  "3456 < 3500"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 3400,
+                        "label": "3 400",
+                        "color": "#059669"
+                      },
+                      {
+                        "value": 3500,
+                        "label": "3 500",
+                        "color": "#059669"
+                      }
+                    ],
+                    "min": 3400,
+                    "max": 3500
+                  }
+                }
+              },
+              {
+                "prompt": "Ordered smallest to largest, $4\\,098$, $4\\,089$, $4\\,908$ become:",
+                "options": [
+                  "$4\\,089 < 4\\,098 < 4\\,908$",
+                  "$4\\,908 < 4\\,098 < 4\\,089$",
+                  "$4\\,098 < 4\\,089 < 4\\,908$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hundreds first: the $9$-hundreds number $4\\,908$ is largest. Then tens: $8 < 9$ puts $4\\,089$ before $4\\,098$.",
+                "check": [
+                  "4089 < 4098",
+                  "4098 < 4908"
+                ]
+              },
+              {
+                "prompt": "Exactly halfway between $6\\,000$ and $7\\,000$ sits:",
+                "options": [
+                  "$6\\,500$",
+                  "$6\\,050$",
+                  "$6\\,750$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half of the thousand-wide gap is $500$: $6\\,000 + 500 = 6\\,500$, and $500$ more reaches $7\\,000$.",
+                "check": [
+                  "Eq(6500 - 6000, 500)",
+                  "Eq(7000 - 6500, 500)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Herds in order",
+            "prompt": "A family counts $2\\,041$ sheep, $1\\,998$ goats and $1\\,899$ horses. From largest herd to smallest:",
+            "options": [
+              "sheep, goats, horses",
+              "goats, sheep, horses",
+              "horses, goats, sheep",
+              "sheep, horses, goats"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sheep clear $2\\,000$; the others stay below it. Between goats and horses the hundreds decide: $9 > 8$, so goats beat horses.",
+            "check": [
+              "2041 > 1998",
+              "1998 > 1899"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Count digits first: four columns beat three, always.",
+              "Same length: compare place by place from the LEFT — first difference decides.",
+              "Later columns cannot overturn an earlier difference: they top out at 999.",
+              "Every number sits between two neighbouring hundreds; measure both gaps.",
+              "On the number line, bigger means further right."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before each comparison, say which column will speak first — then let it. Ordering is just comparing, repeated."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Contests, orders, and the line.",
+            "problems": [
+              {
+                "prompt": "Which symbol fits: $8\\,514$ $\\;\\square\\;$ $8\\,541$?",
+                "options": [
+                  "$<$",
+                  "$>$",
+                  "$=$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Tens speak first here: $1 < 4$, so $<$. The gap is $27$: $8\\,514 + 27 = 8\\,541$.",
+                "check": [
+                  "8514 < 8541",
+                  "Eq(8514 + 27, 8541)"
+                ]
+              },
+              {
+                "prompt": "The largest of $9\\,090$, $9\\,009$, $9\\,900$ is:",
+                "options": [
+                  "$9\\,900$",
+                  "$9\\,090$",
+                  "$9\\,009$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Thousands all tie at $9$ — the hundreds decide: $9 > 0$, so $9\\,900$ leads. The zeros sit in different columns in each number.",
+                "check": [
+                  "9900 > 9090",
+                  "9090 > 9009"
+                ]
+              },
+              {
+                "prompt": "Which number lies between $7\\,800$ and $7\\,900$?",
+                "options": [
+                  "$7\\,856$",
+                  "$7\\,908$",
+                  "$7\\,790$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7\\,800 < 7\\,856 < 7\\,900$. The others miss the gap: $7\\,908$ overshoots, $7\\,790$ falls short.",
+                "check": [
+                  "7800 < 7856",
+                  "7856 < 7900"
+                ]
+              },
+              {
+                "prompt": "Three Naadam riders cover $4\\,320$ m, $4\\,230$ m and $4\\,302$ m. Ordered shortest ride to longest:",
+                "options": [
+                  "$4\\,230 < 4\\,302 < 4\\,320$",
+                  "$4\\,230 < 4\\,320 < 4\\,302$",
+                  "$4\\,302 < 4\\,230 < 4\\,320$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hundreds first: $2 < 3$ makes $4\\,230$ shortest. Then tens: $0 < 2$ puts $4\\,302$ before $4\\,320$.",
+                "check": [
+                  "4230 < 4302",
+                  "4302 < 4320"
+                ]
+              },
+              {
+                "prompt": "Which statement is TRUE?",
+                "options": [
+                  "$1\\,000 > 999$",
+                  "$999 > 1\\,000$",
+                  "$999 = 1\\,000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The first four-digit number beats the last three-digit one by exactly $1$: $999 + 1 = 1\\,000$. Digit count before digit size.",
+                "check": [
+                  "1000 > 999",
+                  "Eq(999 + 1, 1000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Comparing & Ordering\"",
+            "body": "Digit count, then the leftmost difference — and the number line to see it all at once. Next: ROUNDING, where the two neighbouring tens or hundreds you just learned to find become the only two answers allowed."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rounding",
+      "title": "Rounding",
+      "concreteComparison": "The Naadam stadium counted $4\\,872$ visitors — but you tell your friend \"about $4\\,900$\". Rounding trades an exact number for a nearby round one that the mouth and the mind can carry. The whole skill is finding a number's two round NEIGHBOURS on the number line and moving to the closer one.",
+      "objective": "Round four-digit numbers to the nearest 10 and nearest 100 by comparing the two neighbours on the number line, apply the halfway-rounds-up rule, and use rounding to estimate sums.",
+      "concept": [
+        "**Every number has two round neighbours.** To the nearest $10$, $3\\,482$ sits between $3\\,480$ and $3\\,490$. Measure both gaps — $2$ back, $8$ forward — and move to the closer neighbour: $3\\,480$.",
+        "**The place you round to picks the neighbours.** Nearest $10$: neighbours are tens. Nearest $100$: neighbours are hundreds — $7\\,258$ sits between $7\\,200$ and $7\\,300$, gaps $58$ and $42$, so it rounds to $7\\,300$. Same number, different question, different answer.",
+        "**Halfway rounds up.** $645$ is exactly $5$ from both $640$ and $650$ — no closer neighbour exists, so the rule steps in: exactly halfway goes UP, to $650$."
+      ],
+      "keyIdea": "Rounding is a two-neighbour contest on the number line: find the round number on each side, measure both gaps, move to the closer one — and when the gaps tie, go up.",
+      "facts": [
+        {
+          "title": "The two neighbours",
+          "latex": "3\\,480 \\;\\leftarrow\\; 3\\,482 \\;\\rightarrow\\; 3\\,490",
+          "explanation": "Gaps of 2 and 8 — the closer neighbour wins, so 3 482 rounds to 3 480."
+        },
+        {
+          "title": "The halfway rule",
+          "latex": "645 \\to 650 \\qquad 450 \\to 500",
+          "explanation": "Equal gaps on both sides: the rule sends halfway numbers UP."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4nu-l4-we1",
+          "statement": "Round $3\\,482$ to the nearest $10$.",
+          "note": "Find both neighbours; measure both gaps.",
+          "solution": "Neighbouring tens: $3\\,480$ and $3\\,490$. Gaps: $3\\,482 - 3\\,480 = 2$ back, $3\\,490 - 3\\,482 = 8$ forward. The gap of $2$ wins: $3\\,482$ rounds to $3\\,480$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3482 - 3480, 2)",
+            "Eq(3490 - 3482, 8)",
+            "Abs(3482 - 3480) < Abs(3482 - 3490)"
+          ]
+        },
+        {
+          "id": "g4nu-l4-we2",
+          "statement": "Round $7\\,258$ to the nearest $100$.",
+          "note": "Nearest hundred means the neighbours are hundreds.",
+          "solution": "Neighbouring hundreds: $7\\,200$ and $7\\,300$. Gaps: $58$ back, $42$ forward — the forward gap is smaller, so $7\\,258$ rounds UP to $7\\,300$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(7258 - 7200, 58)",
+            "Eq(7300 - 7258, 42)",
+            "Abs(7258 - 7300) < Abs(7258 - 7200)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Rounding to the wrong place — asked for the nearest 10, answering 3 500 for 3 482.",
+          "correction": "Nearest TEN means the neighbours are tens: 3 480 and 3 490. Say which place the question names before hunting neighbours.",
+          "authored": true
+        },
+        {
+          "text": "Sending halfway numbers down — rounding 645 to 640.",
+          "correction": "645 is exactly 5 from both neighbours; no side is closer. The agreed rule breaks the tie UPWARD: 645 rounds to 650.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4nu-l4-t1",
+          "statement": "Round $6\\,237$ to the nearest $10$.",
+          "solution": "Neighbours $6\\,230$ and $6\\,240$; gaps $7$ and $3$. Closer neighbour: $6\\,240$.",
+          "check": [
+            "Eq(6237 - 6230, 7)",
+            "Eq(6240 - 6237, 3)",
+            "Abs(6237 - 6240) < Abs(6237 - 6230)"
+          ]
+        },
+        {
+          "id": "g4nu-l4-t2",
+          "statement": "Round $1\\,650$ to the nearest $100$.",
+          "solution": "Neighbours $1\\,600$ and $1\\,700$; gaps $50$ and $50$ — exactly halfway, so the rule sends it UP: $1\\,700$.",
+          "check": [
+            "Eq(1650 - 1600, 50)",
+            "Eq(1700 - 1650, 50)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The two-neighbour contest",
+            "beats": [
+              "Rounding to the nearest $10$: find the ten on each side. On the line below, $3\\,482$ stands between $3\\,480$ and $3\\,490$ — $2$ steps past one, $8$ short of the other.",
+              "The closer neighbour wins: $3\\,482$ rounds to $3\\,480$. Never guess from the digits alone — MEASURE both gaps.",
+              "Nearest $100$ plays the same game with hundred-neighbours: the place named in the question picks which neighbours compete. The place gives the digit its value — and the question names the place."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 3480,
+                    "label": "3 480"
+                  },
+                  {
+                    "value": 3482,
+                    "label": "3 482",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 3490,
+                    "label": "3 490"
+                  }
+                ],
+                "min": 3480,
+                "max": 3490
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Neighbours and gaps",
+            "intro": "Name the place, find both neighbours, measure both gaps.",
+            "examples": [
+              {
+                "prompt": "Round $3\\,482$ to the nearest $10$.",
+                "steps": [
+                  "Neighbours: $3\\,480$ and $3\\,490$; gaps $2$ and $8$.",
+                  "Closer wins: $3\\,480$."
+                ],
+                "answer": "$3\\,480$",
+                "check": [
+                  "Eq(3482 - 3480, 2)",
+                  "Eq(3490 - 3482, 8)",
+                  "Abs(3482 - 3480) < Abs(3482 - 3490)"
+                ]
+              },
+              {
+                "prompt": "Round $7\\,258$ to the nearest $100$.",
+                "steps": [
+                  "Hundred-neighbours: $7\\,200$ and $7\\,300$; gaps $58$ and $42$.",
+                  "The forward gap is smaller — up to $7\\,300$."
+                ],
+                "answer": "$7\\,300$",
+                "check": [
+                  "Eq(7258 - 7200, 58)",
+                  "Eq(7300 - 7258, 42)",
+                  "Abs(7258 - 7300) < Abs(7258 - 7200)"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 7200,
+                        "label": "7 200"
+                      },
+                      {
+                        "value": 7258,
+                        "label": "7 258",
+                        "color": "#d97706"
+                      },
+                      {
+                        "value": 7300,
+                        "label": "7 300"
+                      }
+                    ],
+                    "min": 7200,
+                    "max": 7300
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Closer neighbour wins",
+            "intro": "Measure both gaps before deciding.",
+            "problems": [
+              {
+                "prompt": "Rounded to the nearest $10$, $5\\,623$ becomes:",
+                "options": [
+                  "$5\\,620$",
+                  "$5\\,630$",
+                  "$5\\,600$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Neighbours $5\\,620$ and $5\\,630$: gaps $3$ and $7$, so $5\\,620$. Answering $5\\,600$ rounds to the wrong place — that is the nearest hundred.",
+                "check": [
+                  "Eq(5623 - 5620, 3)",
+                  "Abs(5623 - 5620) < Abs(5623 - 5630)"
+                ]
+              },
+              {
+                "prompt": "Rounded to the nearest $100$, $2\\,380$ becomes:",
+                "options": [
+                  "$2\\,400$",
+                  "$2\\,300$",
+                  "$2\\,380$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hundred-neighbours $2\\,300$ and $2\\,400$: gaps $80$ and $20$. The $20$ wins — up to $2\\,400$.",
+                "check": [
+                  "Eq(2400 - 2380, 20)",
+                  "Abs(2380 - 2400) < Abs(2380 - 2300)"
+                ]
+              },
+              {
+                "prompt": "The line shows $8\\,361$ between its hundred-neighbours. To the nearest $100$ it rounds to:",
+                "options": [
+                  "$8\\,400$",
+                  "$8\\,300$",
+                  "$8\\,360$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Gaps: $61$ back to $8\\,300$, $39$ forward to $8\\,400$ — forward is closer. ($8\\,360$ answers a nearest-ten question instead.)",
+                "check": [
+                  "Eq(8361 - 8300, 61)",
+                  "Eq(8400 - 8361, 39)",
+                  "Abs(8361 - 8400) < Abs(8361 - 8300)"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 8300,
+                        "label": "8 300"
+                      },
+                      {
+                        "value": 8361,
+                        "label": "8 361",
+                        "color": "#059669"
+                      },
+                      {
+                        "value": 8400,
+                        "label": "8 400"
+                      }
+                    ],
+                    "min": 8300,
+                    "max": 8400
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Just under the middle",
+            "prompt": "Rounded to the nearest $100$, $4\\,049$ becomes:",
+            "options": [
+              "$4\\,000$",
+              "$4\\,100$",
+              "$4\\,050$",
+              "$4\\,049$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Neighbours $4\\,000$ and $4\\,100$: gaps $49$ and $51$. One short of halfway — the smaller gap points down to $4\\,000$. ($4\\,050$ rounds to the nearest ten, a different question.)",
+            "check": [
+              "Eq(4049 - 4000, 49)",
+              "Eq(4100 - 4049, 51)",
+              "Abs(4049 - 4000) < Abs(4049 - 4100)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Rounding never wanders far",
+            "body": "A rounded number can never drift more than HALF a step from the truth: to the nearest $10$ at most $5$ away, to the nearest $100$ at most $50$. That guarantee is what makes estimates trustworthy — the error is fenced in before you even start."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Halfway up, then estimate",
+            "beats": [
+              "Sometimes the contest ties: $645$ is exactly $5$ from $640$ and $5$ from $650$ — the line below shows it dead centre. The agreed rule: exactly halfway rounds UP, so $645$ goes to $650$.",
+              "The same rule at hundreds: $450$ sits $50$ from $400$ and $50$ from $500$ — up to $500$.",
+              "Rounding earns its keep in ESTIMATES: to check $2\\,387 + 4\\,615$, round both to hundreds — $2\\,400 + 4\\,600 = 7\\,000$. The exact sum, $7\\,002$, lands right beside it: the estimate backs up the answer."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 640,
+                    "label": "640"
+                  },
+                  {
+                    "value": 645,
+                    "label": "645",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 650,
+                    "label": "650"
+                  }
+                ],
+                "min": 640,
+                "max": 650
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Ties and estimates",
+            "intro": "Halfway goes up; rounded sums forecast exact ones.",
+            "examples": [
+              {
+                "prompt": "Round $645$ to the nearest $10$.",
+                "steps": [
+                  "Gaps: $5$ to $640$ and $5$ to $650$ — a tie.",
+                  "Halfway rounds UP: $650$."
+                ],
+                "answer": "$650$",
+                "check": [
+                  "Eq(645 - 640, 5)",
+                  "Eq(650 - 645, 5)"
+                ]
+              },
+              {
+                "prompt": "Estimate $2\\,387 + 4\\,615$ by rounding each to the nearest $100$, then compare with the exact sum.",
+                "steps": [
+                  "Round: $2\\,400 + 4\\,600 = 7\\,000$.",
+                  "Exact: $2\\,387 + 4\\,615 = 7\\,002$ — just $2$ from the estimate."
+                ],
+                "answer": "estimate $7\\,000$; exact $7\\,002$",
+                "check": [
+                  "Abs(2387 - 2400) < Abs(2387 - 2300)",
+                  "Abs(4615 - 4600) < Abs(4615 - 4700)",
+                  "Eq(2400 + 4600, 7000)",
+                  "Eq(2387 + 4615, 7002)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Halfway and beyond",
+            "intro": "Ties go up; estimates go first.",
+            "problems": [
+              {
+                "prompt": "Rounded to the nearest $100$, $750$ becomes:",
+                "options": [
+                  "$800$",
+                  "$700$",
+                  "$750$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Gaps: $50$ to $700$ and $50$ to $800$ — exactly halfway, and halfway rounds UP: $800$.",
+                "check": [
+                  "Eq(750 - 700, 50)",
+                  "Eq(800 - 750, 50)"
+                ]
+              },
+              {
+                "prompt": "Rounding to the nearest $100$, the estimate for $3\\,190 + 2\\,807$ is:",
+                "options": [
+                  "$3\\,200 + 2\\,800 = 6\\,000$",
+                  "$3\\,100 + 2\\,800 = 5\\,900$",
+                  "$3\\,200 + 2\\,900 = 6\\,100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Round each number to its own closer neighbour: $3\\,190$ is $10$ from $3\\,200$, and $2\\,807$ is $7$ from $2\\,800$. The exact sum $5\\,997$ sits $3$ below the estimate. The wrong options round one number the far way and land $100$ off.",
+                "check": [
+                  "Abs(3190 - 3200) < Abs(3190 - 3100)",
+                  "Abs(2807 - 2800) < Abs(2807 - 2900)",
+                  "Eq(3200 + 2800, 6000)",
+                  "Eq(3190 + 2807, 5997)",
+                  "Eq(3100 + 2800, 5900)",
+                  "Eq(3200 + 2900, 6100)",
+                  "Ne(5900, 6000)",
+                  "Ne(6100, 6000)"
+                ]
+              },
+              {
+                "prompt": "Rounded to the nearest $100$, $9\\,950$ becomes:",
+                "options": [
+                  "$10\\,000$",
+                  "$9\\,900$",
+                  "$9\\,950$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Gaps: $50$ to $9\\,900$ and $50$ to $10\\,000$ — halfway rounds UP, straight to the fifth-column number itself.",
+                "check": [
+                  "Eq(9950 - 9900, 50)",
+                  "Eq(10000 - 9950, 50)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The estimate as a check",
+            "prompt": "To check $4\\,512 + 3\\,498$, a student estimates $4\\,500 + 3\\,500 = 8\\,000$. The exact sum is $8\\,010$. The estimate is:",
+            "options": [
+              "$10$ under — close enough to back up the exact answer",
+              "exactly right",
+              "$100$ under — the addition must be wrong",
+              "useless, because it is not exact"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each rounding moved at most $50$, so estimate and truth must land near each other: $8\\,010 - 8\\,000 = 10$. An estimate is a check, not a replacement.",
+            "check": [
+              "Abs(4512 - 4500) < Abs(4512 - 4600)",
+              "Abs(3498 - 3500) < Abs(3498 - 3400)",
+              "Eq(4500 + 3500, 8000)",
+              "Eq(4512 + 3498, 8010)",
+              "Eq(8010 - 8000, 10)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Rounding is a two-neighbour contest: find both, measure both gaps, move to the closer.",
+              "The question names the place, and the place picks the neighbours — ten-neighbours or hundred-neighbours.",
+              "Exactly halfway (gap 5, or gap 50) rounds UP.",
+              "Nearest 10 stays within 5 of the truth; nearest 100 within 50.",
+              "Round-then-add gives an estimate that backs up the exact sum."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every rounding below, write BOTH neighbours and both gaps before answering — the wrong-place trap cannot survive that habit."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Neighbours, ties, and estimates.",
+            "problems": [
+              {
+                "prompt": "Rounded to the nearest $10$, $2\\,764$ becomes:",
+                "options": [
+                  "$2\\,760$",
+                  "$2\\,770$",
+                  "$2\\,800$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Neighbours $2\\,760$ and $2\\,770$: gaps $4$ and $6$ — down to $2\\,760$. ($2\\,800$ answers the nearest-hundred question.)",
+                "check": [
+                  "Eq(2764 - 2760, 4)",
+                  "Abs(2764 - 2760) < Abs(2764 - 2770)"
+                ]
+              },
+              {
+                "prompt": "Rounded to the nearest $100$, $6\\,149$ becomes:",
+                "options": [
+                  "$6\\,100$",
+                  "$6\\,200$",
+                  "$6\\,150$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Gaps: $49$ back to $6\\,100$, $51$ forward to $6\\,200$ — one short of halfway, so DOWN.",
+                "check": [
+                  "Eq(6149 - 6100, 49)",
+                  "Eq(6200 - 6149, 51)",
+                  "Abs(6149 - 6100) < Abs(6149 - 6200)"
+                ]
+              },
+              {
+                "prompt": "Rounded to the nearest $10$, $985$ becomes:",
+                "options": [
+                  "$990$",
+                  "$980$",
+                  "$1\\,000$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Gaps: $5$ and $5$ — halfway rounds UP to $990$. ($1\\,000$ would answer a nearest-hundred question.)",
+                "check": [
+                  "Eq(985 - 980, 5)",
+                  "Eq(990 - 985, 5)"
+                ]
+              },
+              {
+                "prompt": "Rounded to the nearest $100$, $1\\,450$ becomes:",
+                "options": [
+                  "$1\\,500$",
+                  "$1\\,400$",
+                  "$1\\,450$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halfway between $1\\,400$ and $1\\,500$ — gaps of $50$ each — and halfway goes UP.",
+                "check": [
+                  "Eq(1450 - 1400, 50)",
+                  "Eq(1500 - 1450, 50)"
+                ]
+              },
+              {
+                "prompt": "A shop sells $2\\,480$ tickets in June and $1\\,520$ in July. Rounding each to the nearest $100$, the estimated total is:",
+                "options": [
+                  "$2\\,500 + 1\\,500 = 4\\,000$ — and the exact total is $4\\,000$ too",
+                  "$2\\,400 + 1\\,500 = 3\\,900$",
+                  "$2\\,500 + 1\\,600 = 4\\,100$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each number is $20$ from its closer neighbour, in opposite directions — the errors cancel and the estimate lands exactly: $2\\,480 + 1\\,520 = 4\\,000$. The wrong options send one number to its FAR neighbour ($2\\,480$ down to $2\\,400$, or $1\\,520$ up to $1\\,600$) and miss by $100$.",
+                "check": [
+                  "Abs(2480 - 2500) < Abs(2480 - 2400)",
+                  "Abs(1520 - 1500) < Abs(1520 - 1600)",
+                  "Eq(2500 + 1500, 4000)",
+                  "Eq(2480 + 1520, 4000)",
+                  "Eq(2400 + 1500, 3900)",
+                  "Eq(2500 + 1600, 4100)",
+                  "Eq(4000 - 3900, 100)",
+                  "Eq(4100 - 4000, 100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Rounding\"",
+            "body": "Two neighbours, a measured gap, and a tie-breaking rule — plus estimates that check your arithmetic. Last stop: number PATTERNS, where the same step repeats and the ones digit tells secrets."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "number-patterns",
+      "title": "Number Patterns",
+      "concreteComparison": "Counting togrog notes into a tin — $100$, $200$, $300$ — your hand finds the rhythm before your head does. A number pattern is exactly that rhythm written down: the SAME step, taken again and again. Name the step and you own the pattern — you can continue it as far as you like.",
+      "objective": "Skip count by 25s, 50s and 100s, find a pattern's step by subtracting neighbours, continue and describe patterns, and tell odd from even using the ones digit.",
+      "concept": [
+        "**A pattern's step is found by subtracting.** In $4\\,200, 4\\,250, 4\\,300$ the step is $4\\,250 - 4\\,200 = 50$ — and every neighbouring pair must agree. To continue, keep adding the step: $4\\,350, 4\\,400$.",
+        "**The favourite steps are 25, 50 and 100.** They fit hundreds perfectly: four 25s or two 50s make $100$, so these counts land on round numbers again and again — $925, 950, 975, 1\\,000$.",
+        "**Odd or even lives in the ones digit.** A number is EVEN if it splits into two equal teams, and only the ones digit decides: every ten, hundred and thousand already splits evenly, so the leftover ones digit settles it — $3\\,482$ ends in $2$: even. $4\\,507$ ends in $7$: odd."
+      ],
+      "keyIdea": "Subtract neighbours to name the step, then add it to continue — and for odd or even, ask only the ones digit: all the bigger places split evenly by themselves.",
+      "facts": [
+        {
+          "title": "Name the step",
+          "latex": "4\\,200,\\ 4\\,250,\\ 4\\,300\\ \\ (+50\\ \\text{each time})",
+          "explanation": "Subtract any neighbouring pair; every pair must give the same step."
+        },
+        {
+          "title": "The ones digit decides",
+          "latex": "3\\,482 \\to 2:\\ \\text{even} \\qquad 4\\,507 \\to 7:\\ \\text{odd}",
+          "explanation": "Tens, hundreds and thousands split into pairs by themselves — only the ones digit can leave one out."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4nu-l5-we1",
+          "statement": "Continue the pattern with two more numbers, and name its step: $4\\,200, 4\\,250, 4\\,300$.",
+          "note": "Subtract neighbours first — never guess the step.",
+          "solution": "Step: $4\\,250 - 4\\,200 = 50$, and $4\\,300 - 4\\,250 = 50$ agrees. Keep adding: $4\\,300 + 50 = 4\\,350$, then $4\\,350 + 50 = 4\\,400$. The pattern counts by $50$s.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4250 - 4200, 50)",
+            "Eq(4300 - 4250, 50)",
+            "Eq(4300 + 50, 4350)",
+            "Eq(4350 + 50, 4400)"
+          ]
+        },
+        {
+          "id": "g4nu-l5-we2",
+          "statement": "Is $3\\,482$ odd or even? And $4\\,507$?",
+          "note": "Ask only the ones digit.",
+          "solution": "$3\\,482$ ends in $2$ — even: it splits into two equal teams with nobody left over. $4\\,507$ ends in $7$ — odd: pairing always leaves one out. The big columns never matter; they split evenly by themselves.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(Mod(3482, 2), 0)",
+            "Eq(Mod(4507, 2), 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Guessing the step from the loudest changing digit — calling 5 650, 5 700, 5 750 \"counting by 100s\" because the hundreds digit keeps moving.",
+          "correction": "Subtract neighbours: 5 700 − 5 650 = 50. The hundreds digit moves because the 50s keep crossing into it — the step itself is 50.",
+          "authored": true
+        },
+        {
+          "text": "Judging odd or even by the first digit — \"2 467 is even because it starts with 2\".",
+          "correction": "Only the ONES digit votes: 2 467 ends in 7, so it is odd. The 2 000 and 400 and 60 all split into pairs without help.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4nu-l5-t1",
+          "statement": "Continue with one more number and name the step: $6\\,100, 6\\,200, 6\\,300$.",
+          "solution": "Step: $6\\,200 - 6\\,100 = 100$; next is $6\\,300 + 100 = 6\\,400$. Counting by $100$s.",
+          "check": [
+            "Eq(6200 - 6100, 100)",
+            "Eq(6300 + 100, 6400)"
+          ]
+        },
+        {
+          "id": "g4nu-l5-t2",
+          "statement": "Odd or even: $5\\,550$ and $5\\,505$?",
+          "solution": "$5\\,550$ ends in $0$ — even. $5\\,505$ ends in $5$ — odd. Same digits, different ones place, different answer.",
+          "check": [
+            "Eq(Mod(5550, 2), 0)",
+            "Eq(Mod(5505, 2), 1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Name the step, own the pattern",
+            "beats": [
+              "A skip-count takes the SAME step again and again. To name the step, SUBTRACT neighbours: in $4\\,200, 4\\,250, 4\\,300$ the step is $50$ — and every pair must agree.",
+              "To continue, keep adding: the line below shows the next two landings, $4\\,350$ and $4\\,400$.",
+              "The favourite steps $25$, $50$ and $100$ fit the hundreds column perfectly — four $25$s make $100$ — so these counts land on round numbers again and again."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 4200,
+                    "label": "4 200"
+                  },
+                  {
+                    "value": 4250,
+                    "label": "4 250"
+                  },
+                  {
+                    "value": 4300,
+                    "label": "4 300"
+                  },
+                  {
+                    "value": 4350,
+                    "label": "4 350",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 4400,
+                    "label": "4 400",
+                    "color": "#d97706"
+                  }
+                ],
+                "min": 4200,
+                "max": 4400
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Continue the count",
+            "intro": "Subtract to name the step; add to continue it.",
+            "examples": [
+              {
+                "prompt": "Continue $4\\,200, 4\\,250, 4\\,300$ with two more numbers.",
+                "steps": [
+                  "Step: $4\\,250 - 4\\,200 = 50$ (and the next pair agrees).",
+                  "$4\\,300 + 50 = 4\\,350$, then $4\\,350 + 50 = 4\\,400$."
+                ],
+                "answer": "$4\\,350,\\ 4\\,400$",
+                "check": [
+                  "Eq(4250 - 4200, 50)",
+                  "Eq(4300 + 50, 4350)",
+                  "Eq(4350 + 50, 4400)"
+                ]
+              },
+              {
+                "prompt": "Continue $850, 875, 900$ with two more numbers.",
+                "steps": [
+                  "Step: $875 - 850 = 25$; $900 - 875 = 25$ agrees.",
+                  "$900 + 25 = 925$, then $925 + 25 = 950$."
+                ],
+                "answer": "$925, 950$",
+                "check": [
+                  "Eq(875 - 850, 25)",
+                  "Eq(900 + 25, 925)",
+                  "Eq(925 + 25, 950)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Step detective",
+            "intro": "Subtract neighbours; never guess.",
+            "problems": [
+              {
+                "prompt": "The next number in $3\\,000, 3\\,100, 3\\,200$ is:",
+                "options": [
+                  "$3\\,300$",
+                  "$3\\,250$",
+                  "$4\\,200$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Step: $3\\,100 - 3\\,000 = 100$; so $3\\,200 + 100 = 3\\,300$. Jumping to $4\\,200$ adds a thousand, not a hundred.",
+                "check": [
+                  "Eq(3100 - 3000, 100)",
+                  "Eq(3200 + 100, 3300)"
+                ]
+              },
+              {
+                "prompt": "The step in $7\\,425, 7\\,450, 7\\,475$ is:",
+                "options": [
+                  "$25$",
+                  "$50$",
+                  "$75$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7\\,450 - 7\\,425 = 25$, and the second pair agrees. The ones and tens digits cycle $25, 50, 75$ — the signature of a $25$ count.",
+                "check": [
+                  "Eq(7450 - 7425, 25)",
+                  "Eq(7475 - 7450, 25)"
+                ]
+              },
+              {
+                "prompt": "Counting by $50$s: $9\\,800, 9\\,850, 9\\,900, 9\\,950$, and then:",
+                "options": [
+                  "$10\\,000$",
+                  "$9\\,990$",
+                  "$9\\,955$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$9\\,950 + 50 = 10\\,000$ — the count walks right up to the fifth-column number.",
+                "check": [
+                  "Eq(9850 - 9800, 50)",
+                  "Eq(9950 + 50, 10000)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The loud digit lies",
+            "prompt": "In $5\\,650, 5\\,700, 5\\,750$ a student names the step $100$, because the hundreds digit keeps changing. The real step:",
+            "options": [
+              "$50$ — subtract neighbours: $5\\,700 - 5\\,650 = 50$",
+              "$100$ — the student is right",
+              "$25$",
+              "$10$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Subtraction, not appearances: both gaps are $50$. The hundreds digit moves because each $50$ step keeps crossing a hundred boundary — the loud digit is a side effect, not the step.",
+            "check": [
+              "Eq(5700 - 5650, 50)",
+              "Eq(5750 - 5700, 50)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why 25 feels so round",
+            "body": "Counting by $25$s lands on a whole hundred every fourth step — $25, 50, 75, 100$ — because $4 \\times 25 = 100$. Keep going and every landing stays friendly: forty steps of $25$ reach exactly $1\\,000$. That perfect fit is why coins and scores the world over love quarters of a hundred."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Odd and even — ask the ones digit",
+            "beats": [
+              "A number is EVEN when it splits into two equal teams with nobody left over: $8$ children make teams of $4$ and $4$, as the picture shows. ODD numbers always leave one out.",
+              "For big numbers you never need to split anything: every ten, hundred and thousand splits evenly by itself, so only the ONES digit can leave someone out. Ending $0, 2, 4, 6, 8$: even. Ending $1, 3, 5, 7, 9$: odd.",
+              "So $3\\,482$ is even (ends in $2$) and $4\\,507$ is odd (ends in $7$) — verdicts read straight off the last digit."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "team A"
+                },
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "team B"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Even splits",
+            "intro": "The ones digit gives the verdict; a fair split is the receipt.",
+            "examples": [
+              {
+                "prompt": "Is $3\\,482$ odd or even? And $4\\,507$?",
+                "steps": [
+                  "Ones digits: $2$ and $7$.",
+                  "$3\\,482$ even; $4\\,507$ odd — the big columns never vote."
+                ],
+                "answer": "even; odd",
+                "check": [
+                  "Eq(Mod(3482, 2), 0)",
+                  "Eq(Mod(4507, 2), 1)"
+                ]
+              },
+              {
+                "prompt": "Can $746$ sheep be split into two equal flocks?",
+                "steps": [
+                  "Ones digit $6$: even — yes.",
+                  "Two flocks of $373$: receipt $373 + 373 = 746$ ✓."
+                ],
+                "answer": "yes — $373$ and $373$",
+                "check": [
+                  "Eq(Mod(746, 2), 0)",
+                  "Eq(373 + 373, 746)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Odd one out",
+            "intro": "Last digit only — the rest is noise.",
+            "problems": [
+              {
+                "prompt": "Which number is ODD: $2\\,435$, $2\\,434$ or $2\\,438$?",
+                "options": [
+                  "$2\\,435$",
+                  "$2\\,434$",
+                  "$2\\,438$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones digits $5, 4, 8$: only the $5$ is odd. The shared $2\\,43$ start is identical noise.",
+                "check": [
+                  "Eq(Mod(2435, 2), 1)",
+                  "Eq(Mod(2434, 2), 0)"
+                ]
+              },
+              {
+                "prompt": "$6\\,001$ is:",
+                "options": [
+                  "odd — it ends in $1$",
+                  "even — it is mostly zeros",
+                  "even — $6$ is even"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the ones digit votes: $1$ is odd, so $6\\,001$ is odd — even though $6\\,000$ right beside it is even.",
+                "check": [
+                  "Eq(Mod(6001, 2), 1)"
+                ]
+              },
+              {
+                "prompt": "Every EVEN number ends in:",
+                "options": [
+                  "$0, 2, 4, 6$ or $8$",
+                  "$1, 3, 5, 7$ or $9$",
+                  "any digit at all"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bigger places always split evenly, so the ones digit is the whole test — $3\\,480$ is even, $3\\,485$ is odd, and only the last digit changed the verdict.",
+                "check": [
+                  "Eq(Mod(3480, 2), 0)",
+                  "Eq(Mod(3485, 2), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The first digit has no vote",
+            "prompt": "A student calls $2\\,467$ even \"because it starts with $2$\". The truth:",
+            "options": [
+              "odd — only the ones digit votes, and $7$ is odd",
+              "even — the student is right",
+              "even — more of its digits are even than odd",
+              "it depends on the number before it"
+            ],
+            "correctIndex": 0,
+            "explanation": "The $2\\,460$ part splits into pairs perfectly — it is even on its own — so everything hangs on the final $7$, which leaves one out: odd.",
+            "check": [
+              "Eq(Mod(2467, 2), 1)",
+              "Eq(Mod(2460, 2), 0)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Name a pattern's step by SUBTRACTING neighbours — every pair must agree.",
+              "Continue by adding the step; describe the pattern by its step, not its digits.",
+              "25, 50 and 100 fit the hundreds perfectly — their counts keep landing on round numbers.",
+              "Even splits into two equal teams; odd leaves one out.",
+              "Only the ones digit decides odd or even — the bigger places split evenly by themselves."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each pattern below, write the step above every gap before continuing — and for each odd-or-even, point at the ones digit and ignore the rest."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Steps, continuations, and verdicts.",
+            "problems": [
+              {
+                "prompt": "The next number in $1\\,975, 2\\,000, 2\\,025$ is:",
+                "options": [
+                  "$2\\,050$",
+                  "$2\\,125$",
+                  "$2\\,030$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Step: $2\\,000 - 1\\,975 = 25$; so $2\\,025 + 25 = 2\\,050$. The count strides across the thousand boundary without stumbling.",
+                "check": [
+                  "Eq(2000 - 1975, 25)",
+                  "Eq(2025 + 25, 2050)"
+                ]
+              },
+              {
+                "prompt": "Counting DOWN by $50$s: $950, 900, 850$, and then:",
+                "options": [
+                  "$800$",
+                  "$750$",
+                  "$845$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each neighbour drops by $50$: $950 - 900 = 50$, $900 - 850 = 50$, so $850 - 50 = 800$. (Receipt: $800 + 50 = 850$.)",
+                "check": [
+                  "Eq(950 - 900, 50)",
+                  "Eq(850 - 50, 800)",
+                  "Eq(800 + 50, 850)"
+                ]
+              },
+              {
+                "prompt": "Odd or even: $9\\,999$ and $10\\,000$?",
+                "options": [
+                  "$9\\,999$ odd, $10\\,000$ even",
+                  "both odd",
+                  "$9\\,999$ even, $10\\,000$ odd"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones digits: $9$ (odd) and $0$ (even). Neighbouring numbers ALWAYS disagree — odd and even alternate forever.",
+                "check": [
+                  "Eq(Mod(9999, 2), 1)",
+                  "Eq(Mod(10000, 2), 0)"
+                ]
+              },
+              {
+                "prompt": "Ticket sales climb by $100$s: $4\\,700, 4\\,800, 4\\,900$, and then:",
+                "options": [
+                  "$5\\,000$",
+                  "$4\\,910$",
+                  "$5\\,900$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Step $100$: $4\\,900 + 100 = 5\\,000$ — the count rolls the thousands column over.",
+                "check": [
+                  "Eq(4800 - 4700, 100)",
+                  "Eq(4900 + 100, 5000)"
+                ]
+              },
+              {
+                "prompt": "Which number BREAKS the by-$25$ pattern $4\\,025, 4\\,050, 4\\,075, 4\\,090$?",
+                "options": [
+                  "$4\\,090$",
+                  "$4\\,050$",
+                  "$4\\,075$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The first gaps are $25$ and $25$, but $4\\,090 - 4\\,075 = 15$ — the wrong step. The true next landing is $4\\,100$.",
+                "check": [
+                  "Eq(4050 - 4025, 25)",
+                  "Eq(4090 - 4075, 15)",
+                  "Ne(15, 25)",
+                  "Eq(4075 + 25, 4100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Number Patterns\" — and the topic",
+            "body": "Columns and their names, digit times place, the leftmost contest, the two-neighbour round, and steps that repeat: the whole world below ten thousand, mapped. Next year the same place-value ideas stretch to numbers in the millions — the columns just keep going left."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g4nu-pr1",
+      "statement": "Write \"eight thousand and forty\" as a numeral.",
+      "solution": "Thousands $8$, hundreds empty, tens $4$, ones empty — two zero guards: $8\\,040$.",
+      "check": [
+        "Eq(8*1000 + 4*10, 8040)"
+      ]
+    },
+    {
+      "id": "g4nu-pr2",
+      "statement": "What is the $5$ worth in $5\\,213$? And in $2\\,513$?",
+      "solution": "In $5\\,213$ it stands in the thousands: $5 \\times 1\\,000 = 5\\,000$. In $2\\,513$ it stands in the hundreds: $5 \\times 100 = 500$ — one column right, one tenth the worth.",
+      "check": [
+        "Eq(5*1000, 5000)",
+        "Eq(5*100, 500)"
+      ]
+    },
+    {
+      "id": "g4nu-pr3",
+      "statement": "Write $9\\,306$ in expanded form.",
+      "solution": "$9\\,000 + 300 + 6$ — the tens column is empty, so no tens part appears. Receipt: the parts add back to $9\\,306$.",
+      "check": [
+        "Eq(9000 + 300 + 6, 9306)"
+      ]
+    },
+    {
+      "id": "g4nu-pr4",
+      "statement": "Order from smallest to largest: $6\\,512$, $6\\,125$, $6\\,521$.",
+      "solution": "Thousands tie at $6$. Hundreds: $1 < 5$ makes $6\\,125$ smallest. Between the two with $5$ hundreds, tens decide: $1 < 2$, so $6\\,512$ $<$ $6\\,521$. Order: $6\\,125$ $<$ $6\\,512$ $<$ $6\\,521$.",
+      "check": [
+        "6125 < 6512",
+        "6512 < 6521"
+      ]
+    },
+    {
+      "id": "g4nu-pr5",
+      "statement": "The line shows $2\\,764$ between its neighbouring hundreds. How far is it from each of them, and what does $2\\,764$ round to at the nearest $100$?",
+      "solution": "Gaps: $2\\,764 - 2\\,700 = 64$ past $2\\,700$, and $2\\,800 - 2\\,764 = 36$ short of $2\\,800$. The smaller gap wins, so to the nearest $100$, $2\\,764$ rounds to $2\\,800$.",
+      "check": [
+        "Eq(2764 - 2700, 64)",
+        "Eq(2800 - 2764, 36)",
+        "Abs(2764 - 2800) < Abs(2764 - 2700)"
+      ],
+      "figure": {
+        "mode": "numberLine",
+        "numberLine": {
+          "points": [
+            {
+              "value": 2700,
+              "label": "2 700"
+            },
+            {
+              "value": 2764,
+              "label": "2 764",
+              "color": "#d97706"
+            },
+            {
+              "value": 2800,
+              "label": "2 800"
+            }
+          ],
+          "min": 2700,
+          "max": 2800
+        }
+      }
+    },
+    {
+      "id": "g4nu-pr6",
+      "statement": "Round $4\\,385$ to the nearest $10$, and then to the nearest $100$.",
+      "solution": "Nearest $10$: neighbours $4\\,380$ and $4\\,390$, gaps $5$ and $5$ — halfway rounds UP to $4\\,390$. Nearest $100$: neighbours $4\\,300$ and $4\\,400$, gaps $85$ and $15$ — the $15$ wins: $4\\,400$.",
+      "check": [
+        "Eq(4385 - 4380, 5)",
+        "Eq(4390 - 4385, 5)",
+        "Eq(4385 - 4300, 85)",
+        "Eq(4400 - 4385, 15)",
+        "Abs(4385 - 4400) < Abs(4385 - 4300)"
+      ]
+    },
+    {
+      "id": "g4nu-pr7",
+      "statement": "Estimate $3\\,245 + 2\\,178$ by rounding each to the nearest $100$, then find the exact sum.",
+      "solution": "Round: $3\\,200 + 2\\,200 = 5\\,400$. Exact: $3\\,245 + 2\\,178 = 5\\,423$ — the estimate sits $23$ below, close enough to back it up.",
+      "check": [
+        "Abs(3245 - 3200) < Abs(3245 - 3300)",
+        "Abs(2178 - 2200) < Abs(2178 - 2100)",
+        "Eq(3200 + 2200, 5400)",
+        "Eq(3245 + 2178, 5423)"
+      ]
+    },
+    {
+      "id": "g4nu-pr8",
+      "statement": "Continue $8\\,500, 8\\,550, 8\\,600$ with two more numbers. Is your first new number odd or even?",
+      "solution": "Step: $8\\,550 - 8\\,500 = 50$; continue $8\\,650, 8\\,700$. $8\\,650$ ends in $0$: even.",
+      "check": [
+        "Eq(8550 - 8500, 50)",
+        "Eq(8600 + 50, 8650)",
+        "Eq(8650 + 50, 8700)",
+        "Eq(Mod(8650, 2), 0)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g4nu-x1",
+      "statement": "Write \"seven thousand and six\" as a numeral, and $3\\,090$ in words.",
+      "solution": "Seven thousand and six: thousands $7$, then two zero guards, then $6$ — $7\\,006$. And $3\\,090$ reads \"three thousand and ninety\": the guard silences the hundreds.",
+      "check": [
+        "Eq(7*1000 + 6, 7006)",
+        "Eq(3*1000 + 9*10, 3090)"
+      ]
+    },
+    {
+      "id": "g4nu-x2",
+      "statement": "What is the $8$ worth in $8\\,245$, and in $2\\,845$? Write $8\\,245$ in expanded form.",
+      "solution": "Thousands column: $8 \\times 1\\,000 = 8\\,000$; hundreds column: $8 \\times 100 = 800$. Expanded: $8\\,245 = 8\\,000 + 200 + 40 + 5$.",
+      "check": [
+        "Eq(8*1000, 8000)",
+        "Eq(8*100, 800)",
+        "Eq(8000 + 200 + 40 + 5, 8245)"
+      ]
+    },
+    {
+      "id": "g4nu-x3",
+      "statement": "Order from smallest to largest: $4\\,087$, $4\\,807$, $4\\,078$, $4\\,870$.",
+      "solution": "Thousands all tie. Hundreds split the field: the $0$-hundreds pair comes first, the $8$-hundreds pair second. Tens finish it: $4\\,078$ $<$ $4\\,087$ $<$ $4\\,807$ $<$ $4\\,870$.",
+      "check": [
+        "4078 < 4087",
+        "4087 < 4807",
+        "4807 < 4870"
+      ]
+    },
+    {
+      "id": "g4nu-x4",
+      "statement": "Round $6\\,550$ and $6\\,549$ to the nearest $100$.",
+      "solution": "$6\\,550$: gaps of $50$ to each neighbour — exactly halfway, so UP to $6\\,600$. $6\\,549$: gaps $49$ down, $51$ up — one below halfway, so DOWN to $6\\,500$. One apart, they round apart.",
+      "check": [
+        "Eq(6550 - 6500, 50)",
+        "Eq(6600 - 6550, 50)",
+        "Eq(6549 - 6500, 49)",
+        "Eq(6600 - 6549, 51)",
+        "Abs(6549 - 6500) < Abs(6549 - 6600)"
+      ]
+    },
+    {
+      "id": "g4nu-x5",
+      "statement": "A school orders $1\\,890$ red caps and $2\\,130$ blue caps. Estimate the total by rounding each to the nearest $100$, then find the exact total.",
+      "solution": "Round: $1\\,900 + 2\\,100 = 4\\,000$. Exact: $1\\,890 + 2\\,130 = 4\\,020$ — the estimate lands $20$ under, backing up the sum.",
+      "check": [
+        "Abs(1890 - 1900) < Abs(1890 - 1800)",
+        "Abs(2130 - 2100) < Abs(2130 - 2200)",
+        "Eq(1900 + 2100, 4000)",
+        "Eq(1890 + 2130, 4020)",
+        "Eq(4020 - 4000, 20)"
+      ]
+    },
+    {
+      "id": "g4nu-x6",
+      "statement": "Continue $2\\,925, 2\\,950, 2\\,975$ with two more numbers, name the step, and say which of your two new numbers is even.",
+      "solution": "Step: $2\\,950 - 2\\,925 = 25$. Continue: $3\\,000$ and $3\\,025$. Ones digits $0$ and $5$: $3\\,000$ is even, $3\\,025$ odd.",
+      "check": [
+        "Eq(2950 - 2925, 25)",
+        "Eq(2975 + 25, 3000)",
+        "Eq(3000 + 25, 3025)",
+        "Eq(Mod(3000, 2), 0)",
+        "Eq(Mod(3025, 2), 1)"
+      ]
+    }
+  ]
+}

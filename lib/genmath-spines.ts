@@ -29,6 +29,7 @@ export interface GeometrySpineEntry {
 }
 
 const ALL_GRADES: GradeInfo[] = [
+  { grade: 4, active: true },
   { grade: 5, active: true },
   { grade: 6, active: true },
   { grade: 7, active: true },
@@ -42,6 +43,61 @@ const ALL_GRADES: GradeInfo[] = [
 export function listGrades(): GradeInfo[] {
   return ALL_GRADES;
 }
+
+// Grade 4 — the second primary-band year, authored as one complete batch
+// (scripts/grade4/build_*.py) and the first grade with figures from day one.
+// Content sits strictly BELOW Grade 5: numbers to 10 000, tables to 10,
+// fraction meaning (no equivalence), shapes without area, data without mean.
+export const GRADE4_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "numbers-to-10000",
+    title: "Numbers to 10 000",
+    blurb: "Reading and writing four-digit numbers, place value to thousands, comparing and ordering, rounding to 10 and 100, and skip-counting patterns.",
+    live: true,
+  },
+  {
+    slug: "addition-and-subtraction",
+    title: "Addition & Subtraction",
+    blurb: "Column addition and subtraction with regrouping inside 10 000, mental strategies, missing-number fact families, and one- and two-step word problems.",
+    live: true,
+  },
+  {
+    slug: "times-tables-and-multiplication",
+    title: "Times Tables & Multiplication",
+    blurb: "Equal groups and repeated addition, the times tables to 10 with their patterns, arrays and the turnaround trick, and multiplying two-digit numbers by one digit.",
+    live: true,
+  },
+  {
+    slug: "division-and-sharing",
+    title: "Division & Sharing",
+    blurb: "Sharing and grouping as the two faces of division, division facts from the times tables, first remainders with their receipts, and choosing the right operation.",
+    live: true,
+  },
+  {
+    slug: "fractions-parts-of-a-whole",
+    title: "Fractions — Parts of a Whole",
+    blurb: "What a fraction really is — equal parts of a whole — unit and non-unit fractions, comparing them, and taking a fraction of a set, drawn with fraction bars throughout.",
+    live: true,
+  },
+  {
+    slug: "shapes-and-symmetry",
+    title: "Shapes & Symmetry",
+    blurb: "Naming 2-D shapes by their sides, right angles as quarter turns, sorting quadrilaterals, the fold test for line symmetry, and the faces, edges and vertices of 3-D solids.",
+    live: true,
+  },
+  {
+    slug: "measurement-time-and-money",
+    title: "Measurement, Time & Money",
+    blurb: "Centimetres and metres, grams and kilograms, litres and millilitres, reading the clock to the quarter hour, the calendar, and counting tögrög and making change.",
+    live: true,
+  },
+  {
+    slug: "data-and-pictographs",
+    title: "Data & Pictographs",
+    blurb: "Tally marks in bundles of five, frequency tables with totals as receipts, pictographs with keys, bar charts on small scales, and answering questions from data.",
+    live: true,
+  },
+];
 
 // Grade 5 — the school-entrance transition year that OPENS the primary band
 // (grades 1–5). Topics go live one at a time as they are authored

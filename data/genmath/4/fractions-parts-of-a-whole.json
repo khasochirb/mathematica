@@ -1,0 +1,2653 @@
+{
+  "slug": "fractions-parts-of-a-whole",
+  "title": "Fractions — Parts of a Whole",
+  "grade": 4,
+  "status": "published",
+  "blurb": "What a fraction really is — equal parts of a whole — unit and non-unit fractions, comparing them, and taking a fraction of a set, drawn with fraction bars throughout.",
+  "lessons": [
+    {
+      "slug": "equal-parts",
+      "title": "Equal Parts",
+      "concreteComparison": "Two friends share one khuushuur. Cut it in the middle and each holds one half — a fair share with a name. Cut it crooked, one big piece and one small, and NOBODY holds a half: just a lucky friend and an unlucky one. A fraction is born only when the parts are EQUAL.",
+      "objective": "Decide whether a cut makes equal parts, name equal parts from their count — halves, thirds, quarters — and read the bottom number of a fraction as the number of equal parts.",
+      "concept": [
+        "**A fraction needs equal parts.** Cut a whole into parts of the SAME size and each part earns a fraction name. Parts of different sizes have no fraction name at all — a big piece and a small piece are just pieces.",
+        "**The count names the parts.** $2$ equal parts are HALVES, $3$ are THIRDS, $4$ are QUARTERS, $5$ are fifths. The name comes straight from how many equal parts make the whole.",
+        "**The bottom number cuts.** Written as a fraction, the bottom number says how many equal parts the whole is cut into: in $\\frac{1}{4}$ the $4$ means four equal parts, and the $1$ on top counts one of them."
+      ],
+      "keyIdea": "Equal parts, or no fraction at all. The bottom number cuts the whole into that many equal parts; the top number counts the parts you take.",
+      "facts": [
+        {
+          "title": "The naming rule",
+          "latex": "2 \\to \\text{halves} \\quad 3 \\to \\text{thirds} \\quad 4 \\to \\text{quarters}",
+          "explanation": "Count the equal parts; the count is the name."
+        },
+        {
+          "title": "The parts rebuild the whole",
+          "latex": "4 \\times \\frac{1}{4} = 1",
+          "explanation": "Four quarter-pieces put back together make exactly one whole — the test of a fair cut."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4fr-l1-we1",
+          "statement": "A khuushuur is cut into $2$ equal parts. What is each part called, and how many of them rebuild the whole?",
+          "note": "Equal parts first — then the count gives the name.",
+          "solution": "Two EQUAL parts: each is one half, written $\\frac{1}{2}$. Two halves rebuild the whole: $2 \\times \\frac{1}{2} = 1$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*Rational(1,2), 1)",
+            "Rational(1,2) < 1"
+          ]
+        },
+        {
+          "id": "g4fr-l1-we2",
+          "statement": "Saraa cuts a ribbon into $4$ parts, but two are long and two are short. May any part be called one quarter?",
+          "note": "Count the parts AND check their sizes.",
+          "solution": "No. A quarter means one of $4$ EQUAL parts — four true quarters rebuild the whole exactly, $4 \\times \\frac{1}{4} = 1$. Saraa's parts differ in size, so none of them earns the name.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4*Rational(1,4), 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling one of 4 unequal pieces \"a quarter\" just because there are 4 pieces.",
+          "correction": "A quarter is one of 4 EQUAL pieces. Count the pieces and check their sizes — if the sizes differ, the name does not apply.",
+          "authored": true
+        },
+        {
+          "text": "Reading the bottom number as \"how many pieces I take\".",
+          "correction": "The bottom number CUTS: it says how many equal parts make the whole. The top number is the one that counts what you take.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4fr-l1-t1",
+          "statement": "A round bread is cut into $3$ equal parts. Name one part in words and as a fraction.",
+          "solution": "Three equal parts are thirds: one part is one third, $\\frac{1}{3}$. Three of them rebuild the bread: $3 \\times \\frac{1}{3} = 1$ ✓.",
+          "check": [
+            "Eq(3*Rational(1,3), 1)",
+            "Rational(1,3) < 1"
+          ]
+        },
+        {
+          "id": "g4fr-l1-t2",
+          "statement": "In the fraction $\\frac{1}{5}$, what does the $5$ tell you, and what does the $1$ tell you?",
+          "solution": "The $5$ cuts: the whole is in $5$ equal parts. The $1$ counts: you take one part. Five such parts make the whole: $5 \\times \\frac{1}{5} = 1$ ✓.",
+          "check": [
+            "Eq(5*Rational(1,5), 1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Equal parts, or no fraction",
+            "beats": [
+              "Two friends share one khuushuur. Cut it in the middle: $2$ EQUAL parts, and each friend holds one half — the bar below shows the fair cut.",
+              "Cut it crooked instead — one big part, one small — and neither part is a half. It is just a big piece and a small piece, with no fraction name.",
+              "That is the first rule of fractions: a fraction names one of EQUAL parts. No equal parts, no fraction."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 2,
+                "label": "2 equal parts, 1 shaded: one half"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fair cut or not?",
+            "intro": "Check the sizes before giving any part a name.",
+            "examples": [
+              {
+                "prompt": "A khuushuur is cut into $2$ equal parts. What is each part?",
+                "steps": [
+                  "Equal sizes, $2$ parts: each is one half.",
+                  "Two halves rebuild the whole: $2 \\times \\frac{1}{2} = 1$ ✓."
+                ],
+                "answer": "one half",
+                "check": [
+                  "Eq(2*Rational(1,2), 1)"
+                ]
+              },
+              {
+                "prompt": "Saraa cuts a ribbon into $4$ parts: two long, two short. Is any part one quarter?",
+                "steps": [
+                  "Four parts, but NOT equal — sizes differ.",
+                  "No part is a quarter: quarters are $4$ equal parts, and $4 \\times \\frac{1}{4} = 1$ only works for a fair cut."
+                ],
+                "answer": "no",
+                "check": [
+                  "Eq(4*Rational(1,4), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Spot the fair cut",
+            "intro": "Equal sizes first, names second.",
+            "problems": [
+              {
+                "prompt": "A pizza is cut into $2$ equal slices. Each slice is:",
+                "options": [
+                  "one half",
+                  "one quarter",
+                  "one whole"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two EQUAL parts are halves, and two halves rebuild the pizza: $2 \\times \\frac{1}{2} = 1$ ✓. A quarter would need $4$ equal parts, and a whole is the uncut pizza itself.",
+                "check": [
+                  "Eq(2*Rational(1,2), 1)"
+                ]
+              },
+              {
+                "prompt": "A chocolate bar snaps into $3$ pieces: one big, two tiny. Is each piece one third?",
+                "options": [
+                  "no — thirds must be three EQUAL pieces",
+                  "yes — three pieces always make thirds",
+                  "only the big piece is one third"
+                ],
+                "correctIndex": 0,
+                "explanation": "Check sizes before names: thirds are three EQUAL pieces, and three of them rebuild the bar, $3 \\times \\frac{1}{3} = 1$ ✓. Counting three pieces without checking sizes is the trap.",
+                "check": [
+                  "Eq(3*Rational(1,3), 1)"
+                ]
+              },
+              {
+                "prompt": "How many EQUAL parts does a whole cut into quarters have?",
+                "options": [
+                  "$4$",
+                  "$2$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Quarters means four equal parts — $4 \\times \\frac{1}{4} = 1$ ✓. Two equal parts would be halves, three would be thirds.",
+                "check": [
+                  "Eq(4*Rational(1,4), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The equal-parts rule",
+            "prompt": "A cake is cut into $4$ parts of DIFFERENT sizes, and one part is on your plate. Do you hold one quarter of the cake?",
+            "options": [
+              "no — a quarter needs $4$ EQUAL parts",
+              "yes — one part of four is always a quarter",
+              "yes, if your part is the biggest",
+              "yes, if your part is the smallest"
+            ],
+            "correctIndex": 0,
+            "explanation": "The name quarter belongs to a fair cut only: four EQUAL parts, each $\\frac{1}{4}$, rebuilding the cake as $4 \\times \\frac{1}{4} = 1$ ✓. One unequal part of four could be almost any amount, so the name would lie.",
+            "check": [
+              "Eq(4*Rational(1,4), 1)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Folding is a fair cutter",
+            "body": "Fold a strip of paper in half and the crease cuts it into $2$ equal parts. Fold it in half again: $2 \\times 2 = 4$ equal parts — quarters. One more fold gives $2 \\times 4 = 8$ equal parts. Every fold doubles the count of equal parts, and a fold never cheats — the two sides land exactly on each other."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "The count is the name",
+            "beats": [
+              "Equal parts are named by their COUNT: $2$ equal parts are halves, $3$ are thirds, $4$ are quarters, $5$ are fifths, $6$ are sixths — the bar below shows quarters.",
+              "Write it with two numbers: the BOTTOM number says how many equal parts the whole is cut into; the TOP number counts how many parts you take. One part of four is $\\frac{1}{4}$.",
+              "Say the rule the way you will use it all topic: THE BOTTOM NUMBER CUTS, THE TOP NUMBER COUNTS."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 4,
+                "label": "4 equal parts, 1 shaded: one quarter"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name the parts",
+            "intro": "Count the equal parts; the count is the name.",
+            "examples": [
+              {
+                "prompt": "A bread is cut into $3$ equal parts and you take one. Write the fraction.",
+                "steps": [
+                  "Three equal parts: thirds. One of them is one third.",
+                  "Bottom cuts ($3$ equal parts), top counts ($1$ taken): $\\frac{1}{3}$."
+                ],
+                "answer": "$\\frac{1}{3}$",
+                "check": [
+                  "Eq(3*Rational(1,3), 1)",
+                  "Rational(1,3) < 1"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 3,
+                    "label": "3 equal parts, 1 shaded: one third"
+                  }
+                }
+              },
+              {
+                "prompt": "What are $8$ equal parts of a whole called, and what fraction is one part?",
+                "steps": [
+                  "Eight equal parts: eighths.",
+                  "One part is $\\frac{1}{8}$, and eight of them rebuild the whole: $8 \\times \\frac{1}{8} = 1$ ✓."
+                ],
+                "answer": "eighths; $\\frac{1}{8}$",
+                "check": [
+                  "Eq(8*Rational(1,8), 1)",
+                  "Rational(1,8) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Bottom cuts, top counts",
+            "intro": "Read both numbers, in that order.",
+            "problems": [
+              {
+                "prompt": "The bar shows $6$ equal parts with $1$ shaded. The shaded part is:",
+                "options": [
+                  "$\\frac{1}{6}$",
+                  "$\\frac{6}{1}$",
+                  "$\\frac{1}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bottom cuts: $6$ equal parts. Top counts: $1$ shaded. So $\\frac{1}{6}$, and $6 \\times \\frac{1}{6} = 1$ rebuilds the bar ✓. $\\frac{6}{1}$ swaps the two jobs, and $\\frac{1}{5}$ miscounts the parts.",
+                "check": [
+                  "Eq(6*Rational(1,6), 1)",
+                  "Rational(1,6) < 1"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 6,
+                    "label": "6 equal parts, 1 shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "$5$ equal parts of a whole are called:",
+                "options": [
+                  "fifths",
+                  "fours",
+                  "halves"
+                ],
+                "correctIndex": 0,
+                "explanation": "The count names the parts: five equal parts are fifths, each $\\frac{1}{5}$, and $5 \\times \\frac{1}{5} = 1$ ✓. Halves would mean only two equal parts.",
+                "check": [
+                  "Eq(5*Rational(1,5), 1)"
+                ]
+              },
+              {
+                "prompt": "In $\\frac{1}{4}$, the $4$ tells you:",
+                "options": [
+                  "the whole is cut into $4$ equal parts",
+                  "you take $4$ parts",
+                  "there are $4$ wholes"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bottom number cuts: $4$ equal parts make the whole, so each is $\\frac{1}{4}$ and $4 \\times \\frac{1}{4} = 1$ ✓. Taking parts is the top number's job.",
+                "check": [
+                  "Eq(4*Rational(1,4), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Read the bottom number",
+            "prompt": "A bar is cut into $9$ equal pieces. One piece is:",
+            "options": [
+              "$\\frac{1}{9}$ of the bar",
+              "$\\frac{9}{1}$ of the bar",
+              "$\\frac{1}{8}$ of the bar",
+              "$9$ bars"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bottom cuts: $9$ equal pieces, so one piece is $\\frac{1}{9}$, and nine of them rebuild the bar: $9 \\times \\frac{1}{9} = 1$ ✓. Writing $\\frac{9}{1}$ swaps cutter and counter.",
+            "check": [
+              "Eq(9*Rational(1,9), 1)",
+              "Rational(1,9) < 1"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A fraction names one of EQUAL parts — unequal pieces have no fraction name.",
+              "The count names the parts: 2 halves, 3 thirds, 4 quarters, 5 fifths.",
+              "The bottom number cuts the whole into equal parts.",
+              "The top number counts the parts you take.",
+              "All the parts together rebuild exactly one whole."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every picture below, ask two questions in order: are the parts EQUAL, and how many are there? Only then give the name."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Fair cuts, names, and the two numbers.",
+            "problems": [
+              {
+                "prompt": "The bar shows $5$ equal parts with $1$ shaded. The shaded part is:",
+                "options": [
+                  "$\\frac{1}{5}$",
+                  "$\\frac{5}{1}$",
+                  "$\\frac{1}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five equal parts, one taken: $\\frac{1}{5}$, and $5 \\times \\frac{1}{5} = 1$ ✓. $\\frac{1}{4}$ miscounts the cut; $\\frac{5}{1}$ puts the cutter on top.",
+                "check": [
+                  "Eq(5*Rational(1,5), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 5,
+                    "label": "5 equal parts, 1 shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "Temuulen cuts a melon into $2$ pieces, one clearly bigger than the other. The smaller piece is:",
+                "options": [
+                  "not a half — the parts are not equal",
+                  "exactly one half",
+                  "one half of the bigger piece"
+                ],
+                "correctIndex": 0,
+                "explanation": "Halves demand two EQUAL parts, so that $2 \\times \\frac{1}{2} = 1$ ✓. An uneven cut makes pieces without fraction names — counting two pieces is not enough.",
+                "check": [
+                  "Eq(2*Rational(1,2), 1)"
+                ]
+              },
+              {
+                "prompt": "Which cut turns a bread into quarters?",
+                "options": [
+                  "$4$ equal parts",
+                  "$4$ parts of any sizes",
+                  "$2$ equal parts"
+                ],
+                "correctIndex": 0,
+                "explanation": "Quarters are $4$ EQUAL parts — each $\\frac{1}{4}$, together $4 \\times \\frac{1}{4} = 1$ ✓. Any-size parts break the equal rule, and $2$ equal parts are halves.",
+                "check": [
+                  "Eq(4*Rational(1,4), 1)"
+                ]
+              },
+              {
+                "prompt": "The bar shows $8$ equal parts with $1$ shaded. Shaded part and its name:",
+                "options": [
+                  "$\\frac{1}{8}$ — one eighth",
+                  "$\\frac{1}{6}$ — one sixth",
+                  "$\\frac{8}{1}$ — eight wholes"
+                ],
+                "correctIndex": 0,
+                "explanation": "Count the cut: $8$ equal parts, so one is $\\frac{1}{8}$ and $8 \\times \\frac{1}{8} = 1$ ✓. One sixth belongs to a $6$-part cut.",
+                "check": [
+                  "Eq(8*Rational(1,8), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 8,
+                    "label": "8 equal parts, 1 shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "The bottom number of a fraction always tells you:",
+                "options": [
+                  "how many equal parts the whole is cut into",
+                  "how many parts you take",
+                  "how big the whole is"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bottom cuts, the top counts. A bottom of $7$ means seven equal parts, each $\\frac{1}{7}$, and $7 \\times \\frac{1}{7} = 1$ ✓. What you take is the top number's story.",
+                "check": [
+                  "Eq(7*Rational(1,7), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equal Parts\"",
+            "body": "Equal parts, and names straight from the count — the ground every fraction stands on. Next: the fractions made of exactly ONE part, from $\\frac{1}{2}$ all the way down to $\\frac{1}{10}$, and a surprise about which of them is biggest."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "unit-fractions",
+      "title": "Unit Fractions",
+      "concreteComparison": "One slab of aaruul, and hungry cousins keep arriving. Shared by $2$, each gets a big half. Shared by $4$, each gets a smaller quarter. Shared by $10$, each gets a thin tenth. The slab never grew or shrank — but the MORE people share it, the SMALLER each share becomes.",
+      "objective": "Read and write the unit fractions $\\frac{1}{2}$ to $\\frac{1}{10}$, know how many of each rebuild the whole, and use the rule that more parts make each part smaller.",
+      "concept": [
+        "**A unit fraction is ONE part.** Cut a whole into equal parts and take exactly one: $\\frac{1}{2}$, $\\frac{1}{3}$, $\\frac{1}{4}$, down to $\\frac{1}{10}$. The top is always $1$; only the cut changes.",
+        "**The bottom number promises a rebuild.** Cut into $8$, and $8$ pieces of $\\frac{1}{8}$ make the whole again: $8 \\times \\frac{1}{8} = 1$. Whatever the cut, all its pieces together are exactly $1$.",
+        "**More parts, smaller pieces.** The same whole shared into more parts leaves less for each: $\\frac{1}{8} < \\frac{1}{4}$, even though $8 > 4$. For unit fractions the bigger bottom number means the smaller piece."
+      ],
+      "keyIdea": "A unit fraction is one piece of an equal cut, and the finer the cut, the smaller the piece: the bigger the bottom number, the less you hold.",
+      "facts": [
+        {
+          "title": "One piece of the cut",
+          "latex": "\\frac{1}{2} \\quad \\frac{1}{3} \\quad \\frac{1}{4} \\quad \\frac{1}{5} \\quad \\frac{1}{10}",
+          "explanation": "Top always 1 — one piece. The bottom says how fine the cut is."
+        },
+        {
+          "title": "More parts, smaller pieces",
+          "latex": "\\frac{1}{8} < \\frac{1}{4}",
+          "explanation": "Eight pieces share the same whole that four shared — so each eighth is smaller."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4fr-l2-we1",
+          "statement": "A bar is cut into $8$ equal pieces. Write the fraction for one piece, and say how many pieces rebuild the bar.",
+          "note": "Top 1, bottom the cut.",
+          "solution": "One piece of an $8$-cut is $\\frac{1}{8}$. Eight of them rebuild the bar: $8 \\times \\frac{1}{8} = 1$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(8*Rational(1,8), 1)",
+            "Rational(1,8) < 1"
+          ]
+        },
+        {
+          "id": "g4fr-l2-we2",
+          "statement": "Which is bigger: $\\frac{1}{4}$ of a bar, or $\\frac{1}{8}$ of the same bar?",
+          "note": "Same whole — compare how many pieces share it.",
+          "solution": "$\\frac{1}{4}$: only $4$ pieces share the whole, so each is big. $\\frac{1}{8}$: $8$ pieces share the same whole, so each is smaller. $\\frac{1}{8} < \\frac{1}{4}$, even though $8 > 4$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,8) < Rational(1,4)",
+            "8 > 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking 1/8 is bigger than 1/4 because 8 is bigger than 4.",
+          "correction": "The bottom number counts how many pieces SHARE the whole: more sharers, smaller shares. So 1/8 < 1/4 — the bigger bottom loses.",
+          "authored": true
+        },
+        {
+          "text": "Writing one piece of a 5-cut as 5/1.",
+          "correction": "The bottom cuts, the top counts: one piece of 5 equal pieces is 1/5. Putting the 5 on top would claim five wholes.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4fr-l2-t1",
+          "statement": "Cut a bar into $10$ equal pieces. What fraction is one piece, and how many rebuild the whole?",
+          "solution": "One piece is $\\frac{1}{10}$; ten of them rebuild the bar: $10 \\times \\frac{1}{10} = 1$ ✓.",
+          "check": [
+            "Eq(10*Rational(1,10), 1)",
+            "Rational(1,10) < 1"
+          ]
+        },
+        {
+          "id": "g4fr-l2-t2",
+          "statement": "Order from biggest to smallest: $\\frac{1}{3}$, $\\frac{1}{10}$, $\\frac{1}{5}$.",
+          "solution": "Fewer sharers, bigger share: $\\frac{1}{3} > \\frac{1}{5} > \\frac{1}{10}$.",
+          "check": [
+            "Rational(1,3) > Rational(1,5)",
+            "Rational(1,5) > Rational(1,10)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "One piece of the cut",
+            "beats": [
+              "A UNIT fraction is exactly one piece of an equal cut. The bar below is cut into $6$ equal pieces with $1$ shaded: that shaded piece is $\\frac{1}{6}$.",
+              "The whole family looks alike: $\\frac{1}{2}$, $\\frac{1}{3}$, $\\frac{1}{4}$, $\\frac{1}{5}$, all the way to $\\frac{1}{10}$. The top is always $1$ — one piece — and the bottom says how fine the cut is.",
+              "Every cut keeps the rebuild promise: $6$ sixths make the whole, $10$ tenths make the whole. The bottom number cuts, and all its pieces together are exactly $1$."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 6,
+                "label": "1 of 6 equal pieces: one sixth"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Write the unit fraction",
+            "intro": "Top 1, bottom the cut — then check the rebuild.",
+            "examples": [
+              {
+                "prompt": "A bar is cut into $8$ equal pieces. What fraction is one piece?",
+                "steps": [
+                  "Top $1$ (one piece), bottom $8$ (the cut): $\\frac{1}{8}$.",
+                  "Rebuild check: $8 \\times \\frac{1}{8} = 1$ ✓."
+                ],
+                "answer": "$\\frac{1}{8}$",
+                "check": [
+                  "Eq(8*Rational(1,8), 1)",
+                  "Rational(1,8) < 1"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 8,
+                    "label": "1 of 8 equal pieces"
+                  }
+                }
+              },
+              {
+                "prompt": "How many $\\frac{1}{7}$ pieces make one whole?",
+                "steps": [
+                  "The bottom promises the rebuild: a $7$-cut needs all $7$ pieces.",
+                  "$7 \\times \\frac{1}{7} = 1$ ✓."
+                ],
+                "answer": "$7$",
+                "check": [
+                  "Eq(7*Rational(1,7), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The unit family",
+            "intro": "One piece each — read the cut.",
+            "problems": [
+              {
+                "prompt": "The bar shows $9$ equal pieces with $1$ shaded. The shaded piece is:",
+                "options": [
+                  "$\\frac{1}{9}$",
+                  "$\\frac{9}{1}$",
+                  "$\\frac{1}{8}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nine equal pieces, one taken: $\\frac{1}{9}$, and $9 \\times \\frac{1}{9} = 1$ ✓. $\\frac{9}{1}$ swaps cutter and counter; $\\frac{1}{8}$ miscounts the cut.",
+                "check": [
+                  "Eq(9*Rational(1,9), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 9,
+                    "label": "1 of 9 equal pieces"
+                  }
+                }
+              },
+              {
+                "prompt": "How many $\\frac{1}{10}$ pieces rebuild one whole?",
+                "options": [
+                  "$10$",
+                  "$1$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bottom's promise: a $10$-cut rebuilds from all $10$ pieces — $10 \\times \\frac{1}{10} = 1$ ✓. One piece alone is just $\\frac{1}{10}$, far short of the whole.",
+                "check": [
+                  "Eq(10*Rational(1,10), 1)",
+                  "Rational(1,10) < 1"
+                ]
+              },
+              {
+                "prompt": "One slice of a pizza cut into $6$ equal slices is:",
+                "options": [
+                  "$\\frac{1}{6}$ of the pizza",
+                  "$\\frac{6}{6}$ of the pizza",
+                  "$\\frac{1}{5}$ of the pizza"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six equal slices, one taken: $\\frac{1}{6}$, and $6 \\times \\frac{1}{6} = 1$ ✓. $\\frac{6}{6}$ would be ALL the slices — the entire pizza.",
+                "check": [
+                  "Eq(6*Rational(1,6), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One piece, exactly",
+            "prompt": "Which fraction names ONE piece of a whole cut into $5$ equal pieces?",
+            "options": [
+              "$\\frac{1}{5}$",
+              "$\\frac{5}{5}$",
+              "$\\frac{5}{1}$",
+              "$\\frac{1}{4}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Bottom cuts ($5$ equal pieces), top counts ($1$ piece): $\\frac{1}{5}$, and $5 \\times \\frac{1}{5} = 1$ ✓. $\\frac{5}{5}$ takes every piece — the whole — and $\\frac{5}{1}$ swaps the numbers' jobs.",
+            "check": [
+              "Eq(5*Rational(1,5), 1)",
+              "Rational(1,5) < 1"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Music runs on unit fractions",
+            "body": "Musicians name note lengths exactly like fractions: a half note lasts half as long as a whole note, a quarter note a quarter, an eighth note an eighth. Two half notes fill the time of one whole note, and it takes eight eighth notes to fill the same time — the more notes per whole, the shorter each one sounds."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "More parts, smaller pieces",
+            "beats": [
+              "Take two same-size bars. Cut one into $4$ and the other into $8$. The bar below shows the $4$-cut: only $4$ pieces share the whole, so each piece is generous.",
+              "In the $8$-cut, twice as many pieces share the SAME whole — so every piece is smaller. $\\frac{1}{8} < \\frac{1}{4}$, even though $8 > 4$.",
+              "The rule for every unit fraction: the bigger the bottom number, the finer the cut, the SMALLER the piece. The bottom cuts more, each piece gets less."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 4,
+                "label": "quarters: 4 pieces share the whole"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compare the cuts",
+            "intro": "Same whole — the finer cut makes the smaller piece.",
+            "examples": [
+              {
+                "prompt": "Which is bigger: $\\frac{1}{4}$ or $\\frac{1}{8}$ of the same bar?",
+                "steps": [
+                  "The $4$-cut shares the whole among fewer pieces, so each is bigger.",
+                  "$\\frac{1}{8} < \\frac{1}{4}$ — the bigger bottom loses."
+                ],
+                "answer": "$\\frac{1}{4}$",
+                "check": [
+                  "Rational(1,8) < Rational(1,4)",
+                  "8 > 4"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 8,
+                    "label": "eighths: 8 pieces share the same whole"
+                  }
+                }
+              },
+              {
+                "prompt": "Order $\\frac{1}{2}$, $\\frac{1}{6}$, $\\frac{1}{4}$ from biggest to smallest.",
+                "steps": [
+                  "Fewest sharers first: the $2$-cut gives the biggest piece.",
+                  "$\\frac{1}{2} > \\frac{1}{4} > \\frac{1}{6}$."
+                ],
+                "answer": "$\\frac{1}{2} > \\frac{1}{4} > \\frac{1}{6}$",
+                "check": [
+                  "Rational(1,2) > Rational(1,4)",
+                  "Rational(1,4) > Rational(1,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Bigger bottom, smaller piece",
+            "intro": "Picture the sharers before answering.",
+            "problems": [
+              {
+                "prompt": "Which is SMALLER: $\\frac{1}{5}$ or $\\frac{1}{9}$?",
+                "options": [
+                  "$\\frac{1}{9}$",
+                  "$\\frac{1}{5}$",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nine pieces share the whole that five shared: each ninth is smaller — $\\frac{1}{9} < \\frac{1}{5}$. Picking $\\frac{1}{5}$ reads the bottoms forwards instead of backwards.",
+                "check": [
+                  "Rational(1,9) < Rational(1,5)",
+                  "9 > 5"
+                ]
+              },
+              {
+                "prompt": "Which piece is BIGGEST: $\\frac{1}{3}$, $\\frac{1}{7}$, $\\frac{1}{10}$?",
+                "options": [
+                  "$\\frac{1}{3}$",
+                  "$\\frac{1}{7}$",
+                  "$\\frac{1}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The coarsest cut wins: only $3$ pieces share the whole, so $\\frac{1}{3} > \\frac{1}{7} > \\frac{1}{10}$. The $10$-cut has the most sharers and the thinnest pieces.",
+                "check": [
+                  "Rational(1,3) > Rational(1,7)",
+                  "Rational(1,7) > Rational(1,10)"
+                ]
+              },
+              {
+                "prompt": "Two same-size breads: one shared equally by $6$ people, one by $8$. A bigger share comes from:",
+                "options": [
+                  "the $6$-person bread",
+                  "the $8$-person bread",
+                  "both shares are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fewer sharers, bigger shares: $\\frac{1}{6} > \\frac{1}{8}$. The $8$-person bread splits the same amount among more people.",
+                "check": [
+                  "Rational(1,6) > Rational(1,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Backwards on purpose",
+            "prompt": "$\\frac{1}{10}$ compared with $\\frac{1}{2}$:",
+            "options": [
+              "$\\frac{1}{10}$ is smaller — ten pieces share the whole",
+              "$\\frac{1}{10}$ is bigger — ten beats two",
+              "they are equal — both have $1$ on top",
+              "they cannot be compared"
+            ],
+            "correctIndex": 0,
+            "explanation": "Ten sharers against two: each tenth is a sliver, each half is generous — $\\frac{1}{10} < \\frac{1}{2}$. \"Ten beats two\" reads the bottom forwards; unit fractions read it backwards.",
+            "check": [
+              "Rational(1,10) < Rational(1,2)",
+              "10 > 2"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A unit fraction is ONE piece of an equal cut: top always 1.",
+              "The bottom number says how fine the cut is — and promises the rebuild.",
+              "All the pieces of any cut together make exactly 1.",
+              "More parts means smaller pieces: 1/8 < 1/4.",
+              "For unit fractions, the bigger bottom number always loses."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before comparing two unit fractions, say out loud how many people share each whole — the crowd with more sharers gets the smaller piece."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Reading, rebuilding, and comparing unit fractions.",
+            "problems": [
+              {
+                "prompt": "The bar shows $7$ equal pieces with $1$ shaded. The shaded piece is:",
+                "options": [
+                  "$\\frac{1}{7}$",
+                  "$\\frac{7}{1}$",
+                  "$\\frac{1}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Seven equal pieces, one taken: $\\frac{1}{7}$, and $7 \\times \\frac{1}{7} = 1$ ✓. The other options swap the numbers or miscount the cut.",
+                "check": [
+                  "Eq(7*Rational(1,7), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 7,
+                    "label": "1 of 7 equal pieces"
+                  }
+                }
+              },
+              {
+                "prompt": "Which is bigger: $\\frac{1}{6}$ or $\\frac{1}{4}$ of the same cake?",
+                "options": [
+                  "$\\frac{1}{4}$",
+                  "$\\frac{1}{6}$",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four sharers beat six: $\\frac{1}{4} > \\frac{1}{6}$. Choosing $\\frac{1}{6}$ because $6 > 4$ is the forwards-reading trap.",
+                "check": [
+                  "Rational(1,4) > Rational(1,6)",
+                  "6 > 4"
+                ]
+              },
+              {
+                "prompt": "How many $\\frac{1}{8}$ pieces rebuild one whole?",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The bottom's promise: $8 \\times \\frac{1}{8} = 1$ ✓. Four eighths reach only half the bar.",
+                "check": [
+                  "Eq(8*Rational(1,8), 1)"
+                ]
+              },
+              {
+                "prompt": "One slab of aaruul is shared equally by $10$ children. Each child gets:",
+                "options": [
+                  "$\\frac{1}{10}$ of the slab",
+                  "$\\frac{10}{1}$ of the slab",
+                  "$\\frac{1}{9}$ of the slab"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ten equal shares: each is $\\frac{1}{10}$, and $10 \\times \\frac{1}{10} = 1$ rebuilds the slab ✓. $\\frac{1}{9}$ would mean only nine sharers.",
+                "check": [
+                  "Eq(10*Rational(1,10), 1)"
+                ]
+              },
+              {
+                "prompt": "Order from smallest to biggest: $\\frac{1}{2}$, $\\frac{1}{8}$, $\\frac{1}{4}$.",
+                "options": [
+                  "$\\frac{1}{8} < \\frac{1}{4} < \\frac{1}{2}$",
+                  "$\\frac{1}{2} < \\frac{1}{4} < \\frac{1}{8}$",
+                  "$\\frac{1}{4} < \\frac{1}{8} < \\frac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Most sharers first: the $8$-cut gives the thinnest piece, the $2$-cut the fattest — $\\frac{1}{8} < \\frac{1}{4} < \\frac{1}{2}$. The second option reads the bottoms forwards.",
+                "check": [
+                  "Rational(1,8) < Rational(1,4)",
+                  "Rational(1,4) < Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Unit Fractions\"",
+            "body": "One piece of every cut, and the backwards rule — bigger bottom, smaller piece. Next: taking MORE than one piece, where the top number finally starts counting past $1$."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "non-unit-fractions",
+      "title": "Non-Unit Fractions",
+      "concreteComparison": "A chocolate bar snaps into $4$ equal pieces. Each piece is $\\frac{1}{4}$ — you know that. Now take THREE of them. You hold three pieces of the quarter size: $\\frac{3}{4}$ of the bar. The top number finally earns its keep — it counts the pieces you took.",
+      "objective": "Read and write non-unit fractions as several unit pieces, tell what the numerator and denominator each do, and recognise the fractions that equal one whole.",
+      "concept": [
+        "**A non-unit fraction is a stack of unit pieces.** $\\frac{3}{4}$ is three pieces of the $\\frac{1}{4}$ size: $3 \\times \\frac{1}{4} = \\frac{3}{4}$. Same cut as $\\frac{1}{4}$ — just more pieces taken.",
+        "**The numerator counts, the denominator names.** Those are the proper names of the two numbers: the TOP number is the numerator, the BOTTOM number is the denominator. In $\\frac{5}{8}$ the denominator $8$ names the cut (eighths) and the numerator $5$ counts the pieces taken. The bottom number cuts, the top number counts.",
+        "**When the top reaches the bottom, you hold the whole.** Take ALL $4$ quarters and you have $\\frac{4}{4} = 1$ — the entire bar. Every cut has its whole-name: $\\frac{6}{6}$, $\\frac{8}{8}$, $\\frac{10}{10}$ all equal $1$."
+      ],
+      "keyIdea": "The top number counts pieces, the bottom number names the cut — and when the top reaches the bottom, the pieces rebuild exactly one whole.",
+      "facts": [
+        {
+          "title": "A stack of unit pieces",
+          "latex": "\\frac{3}{4} = 3 \\times \\frac{1}{4}",
+          "explanation": "Three quarter-pieces in one hand — that is all a non-unit fraction is."
+        },
+        {
+          "title": "The whole, rebuilt",
+          "latex": "\\frac{4}{4} = 1",
+          "explanation": "All the pieces of the cut together: exactly one whole, never more, never less."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4fr-l3-we1",
+          "statement": "A bar is cut into $4$ equal pieces and $3$ are shaded. What fraction is shaded, and what is it made of?",
+          "note": "Name the cut first, then count the pieces.",
+          "solution": "The cut: quarters, each $\\frac{1}{4}$. The count: $3$ pieces. Shaded: $\\frac{3}{4}$ — three pieces of the quarter size, $3 \\times \\frac{1}{4} = \\frac{3}{4}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*Rational(1,4), Rational(3,4))",
+            "Rational(3,4) < 1"
+          ]
+        },
+        {
+          "id": "g4fr-l3-we2",
+          "statement": "All $6$ pieces of a $6$-piece bar are shaded. Write the shaded fraction, and give its other name.",
+          "note": "The top has reached the bottom.",
+          "solution": "Shaded: $\\frac{6}{6}$ — six pieces of the sixth size, $6 \\times \\frac{1}{6} = 1$. Its other name is $1$: the whole bar.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(6*Rational(1,6), 1)",
+            "Eq(Rational(6,6), 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading 3/4 as two separate numbers, \"3 and 4\".",
+          "correction": "A fraction is ONE amount: three pieces of the quarter size. The bar between the numbers is not a comma.",
+          "authored": true
+        },
+        {
+          "text": "Thinking 4/4 means 4 wholes.",
+          "correction": "4/4 is four QUARTER pieces — together exactly one whole. The top counts pieces of the cut, not wholes.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4fr-l3-t1",
+          "statement": "A bar of $8$ equal pieces has $5$ shaded. What fraction is shaded, and what fraction is plain?",
+          "solution": "Shaded: $5$ pieces of the eighth size, $\\frac{5}{8}$. Plain: the other $3$ pieces, $\\frac{3}{8}$ — since $5 + 3 = 8$, together they use every piece of the bar.",
+          "check": [
+            "Eq(5*Rational(1,8), Rational(5,8))",
+            "Eq(5 + 3, 8)",
+            "Eq(Rational(5,8) + Rational(3,8), 1)"
+          ]
+        },
+        {
+          "id": "g4fr-l3-t2",
+          "statement": "Write the fraction with denominator $8$ that equals one whole.",
+          "solution": "$\\frac{8}{8} = 1$: all eight eighth-pieces together rebuild the bar, $8 \\times \\frac{1}{8} = 1$ ✓.",
+          "check": [
+            "Eq(8*Rational(1,8), 1)",
+            "Eq(Rational(8,8), 1)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Stacks of unit pieces",
+            "beats": [
+              "The bar below is cut into $4$ equal pieces and $3$ are shaded. Each piece is $\\frac{1}{4}$; three of them together are $\\frac{3}{4}$.",
+              "That is every non-unit fraction's secret: $\\frac{3}{4}$ is just $3$ pieces of the $\\frac{1}{4}$ size — $3 \\times \\frac{1}{4} = \\frac{3}{4}$.",
+              "The two numbers keep their jobs: THE BOTTOM NUMBER CUTS (quarters), THE TOP NUMBER COUNTS (three of them).",
+              "Both numbers have proper names too: the top number is the NUMERATOR (the counter) and the bottom number is the DENOMINATOR (the cutter). Same two jobs, longer names."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 3,
+                "den": 4,
+                "label": "3 of 4 equal pieces shaded"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Name the cut, count the pieces",
+            "intro": "Bottom first, top second — always that order.",
+            "examples": [
+              {
+                "prompt": "A bar of $8$ equal pieces has $5$ shaded. What fraction is shaded?",
+                "steps": [
+                  "The cut: eighths. The count: $5$ pieces.",
+                  "$\\frac{5}{8}$ — five pieces of the eighth size, $5 \\times \\frac{1}{8} = \\frac{5}{8}$."
+                ],
+                "answer": "$\\frac{5}{8}$",
+                "check": [
+                  "Eq(5*Rational(1,8), Rational(5,8))",
+                  "Rational(5,8) < 1"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 5,
+                    "den": 8,
+                    "label": "5 of 8 equal pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "You eat $2$ pieces of a khuushuur cut into $5$ equal pieces. What fraction did you eat?",
+                "steps": [
+                  "The cut: fifths. The count: $2$ eaten.",
+                  "$\\frac{2}{5}$ — two pieces of the fifth size, $2 \\times \\frac{1}{5} = \\frac{2}{5}$."
+                ],
+                "answer": "$\\frac{2}{5}$",
+                "check": [
+                  "Eq(2*Rational(1,5), Rational(2,5))",
+                  "Rational(2,5) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Top counts, bottom names",
+            "intro": "Read the picture in the rule's order.",
+            "problems": [
+              {
+                "prompt": "The bar shows $3$ equal pieces with $2$ shaded. The shaded fraction is:",
+                "options": [
+                  "$\\frac{2}{3}$",
+                  "$\\frac{3}{2}$",
+                  "$\\frac{1}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cut into thirds, $2$ taken: $\\frac{2}{3} = 2 \\times \\frac{1}{3}$ ✓. $\\frac{3}{2}$ swaps the jobs, and $\\frac{1}{3}$ counts only one piece.",
+                "check": [
+                  "Eq(2*Rational(1,3), Rational(2,3))"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 3,
+                    "label": "2 of 3 equal pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "In $\\frac{5}{6}$, the $5$ tells you:",
+                "options": [
+                  "you take $5$ pieces",
+                  "the whole is cut into $5$ parts",
+                  "each piece is worth $5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The top counts: five pieces of the sixth size, $5 \\times \\frac{1}{6} = \\frac{5}{6}$. Cutting is the bottom number's job — here the cut is $6$.",
+                "check": [
+                  "Eq(5*Rational(1,6), Rational(5,6))"
+                ]
+              },
+              {
+                "prompt": "$\\frac{7}{10}$ means:",
+                "options": [
+                  "$7$ pieces of the $\\frac{1}{10}$ size",
+                  "$10$ pieces of the $\\frac{1}{7}$ size",
+                  "$7$ wholes and $10$ pieces"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bottom cuts into tenths, top counts $7$ of them: $7 \\times \\frac{1}{10} = \\frac{7}{10}$. Swapping the numbers' jobs is the trap in the second option.",
+                "check": [
+                  "Eq(7*Rational(1,10), Rational(7,10))",
+                  "Rational(7,10) < 1"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the shaded pieces",
+            "prompt": "A bar is cut into $8$ equal pieces and $3$ are shaded. The shaded fraction is:",
+            "options": [
+              "$\\frac{3}{8}$",
+              "$\\frac{8}{3}$",
+              "$\\frac{3}{5}$",
+              "$\\frac{5}{8}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cut: eighths. Count: $3$ shaded. So $\\frac{3}{8} = 3 \\times \\frac{1}{8}$ ✓. $\\frac{5}{8}$ counts the PLAIN pieces, $\\frac{3}{5}$ compares shaded with plain instead of with the whole, and $\\frac{8}{3}$ swaps the jobs.",
+            "check": [
+              "Eq(3*Rational(1,8), Rational(3,8))",
+              "Eq(3 + 5, 8)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Quarter past, half past",
+            "body": "Clock talk is fraction talk. An hour is $60$ minutes, and a quarter of it is $60 \\div 4 = 15$ minutes — so \"quarter past three\" means $15$ minutes after three o'clock. \"Half past\" uses $60 \\div 2 = 30$. People tell fractions of an hour every single day without noticing."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "When the top reaches the bottom",
+            "beats": [
+              "Take ALL the pieces of a cut and you hold the whole thing. The bar below has all $8$ of its $8$ pieces shaded: $\\frac{8}{8} = 1$.",
+              "Every cut has a whole-name like this: $\\frac{4}{4}$, $\\frac{6}{6}$, $\\frac{10}{10}$ — all of them exactly $1$, because all the pieces together rebuild the whole.",
+              "And the pieces always account for everything: if $5$ of $8$ pieces are shaded, the plain part is the other $3$ pieces — $\\frac{3}{8}$. Shaded pieces and plain pieces use all $8$ between them."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 8,
+                "den": 8,
+                "label": "all 8 pieces shaded: one whole"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The whole, and the rest",
+            "intro": "All the pieces make 1; the plain part is the missing count.",
+            "examples": [
+              {
+                "prompt": "Write the fraction with denominator $10$ that equals one whole.",
+                "steps": [
+                  "All ten tenth-pieces: $\\frac{10}{10}$.",
+                  "Rebuild check: $10 \\times \\frac{1}{10} = 1$ ✓."
+                ],
+                "answer": "$\\frac{10}{10} = 1$",
+                "check": [
+                  "Eq(10*Rational(1,10), 1)",
+                  "Eq(Rational(10,10), 1)"
+                ]
+              },
+              {
+                "prompt": "A bar of $6$ equal pieces has $4$ shaded. What fraction is plain?",
+                "steps": [
+                  "Plain pieces: $6 - 4 = 2$, and $2 + 4 = 6$ ✓ accounts for every piece.",
+                  "Plain fraction: $\\frac{2}{6}$ — together with $\\frac{4}{6}$ the bar is whole."
+                ],
+                "answer": "$\\frac{2}{6}$",
+                "check": [
+                  "Eq(2 + 4, 6)",
+                  "Eq(Rational(4,6) + Rational(2,6), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 6,
+                    "label": "4 of 6 equal pieces shaded"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Wholes and leftovers",
+            "intro": "The top meets the bottom, or falls short.",
+            "problems": [
+              {
+                "prompt": "Which fraction equals $1$?",
+                "options": [
+                  "$\\frac{9}{9}$",
+                  "$\\frac{1}{9}$",
+                  "$\\frac{9}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "All nine ninth-pieces rebuild the whole: $9 \\times \\frac{1}{9} = 1$ ✓. $\\frac{1}{9}$ is one thin piece, and $\\frac{9}{10}$ stops one piece short of the whole.",
+                "check": [
+                  "Eq(9*Rational(1,9), 1)",
+                  "Rational(9,10) < 1"
+                ]
+              },
+              {
+                "prompt": "You walk $\\frac{4}{10}$ of a path to the well. The fraction still ahead is:",
+                "options": [
+                  "$\\frac{6}{10}$",
+                  "$\\frac{4}{10}$",
+                  "$\\frac{10}{10}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The path has $10$ tenth-parts; $4$ are behind you, so $10 - 4 = 6$ remain — $\\frac{6}{10}$, and $6 + 4 = 10$ ✓ accounts for the whole path.",
+                "check": [
+                  "Eq(6 + 4, 10)",
+                  "Eq(Rational(4,10) + Rational(6,10), 1)"
+                ]
+              },
+              {
+                "prompt": "How many $\\frac{1}{6}$ pieces are inside $\\frac{5}{6}$?",
+                "options": [
+                  "$5$",
+                  "$6$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\frac{5}{6}$ is a stack of five sixth-pieces: $5 \\times \\frac{1}{6} = \\frac{5}{6}$ ✓. Six of them would already be the whole.",
+                "check": [
+                  "Eq(5*Rational(1,6), Rational(5,6))",
+                  "Eq(6*Rational(1,6), 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The top meets the bottom",
+            "prompt": "$\\frac{8}{8}$ of a khuushuur is:",
+            "options": [
+              "the whole khuushuur",
+              "$8$ khuushuur",
+              "one eighth of it",
+              "nothing at all"
+            ],
+            "correctIndex": 0,
+            "explanation": "Eight pieces of the eighth size: $8 \\times \\frac{1}{8} = 1$ — the whole khuushuur, exactly. It is not $8$ khuushuur: the top counts pieces of ONE whole, never wholes.",
+            "check": [
+              "Eq(8*Rational(1,8), 1)",
+              "Eq(Rational(8,8), 1)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A non-unit fraction is a stack of unit pieces: 3/4 is three 1/4 pieces.",
+              "The top number — the NUMERATOR — counts the pieces taken; the bottom number — the DENOMINATOR — names the cut.",
+              "When the top reaches the bottom, the fraction equals 1 — the whole.",
+              "Shaded and plain pieces together account for every piece of the bar.",
+              "The bottom number cuts, the top number counts — same rule, bigger tops."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every fraction below, say the cut first (\"eighths\"), then the count (\"five of them\") — the bottom cuts, the top counts."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Stacks, wholes, and leftovers together.",
+            "problems": [
+              {
+                "prompt": "The bar shows $5$ equal pieces with $4$ shaded. The shaded fraction is:",
+                "options": [
+                  "$\\frac{4}{5}$",
+                  "$\\frac{5}{4}$",
+                  "$\\frac{1}{5}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cut into fifths, $4$ taken: $\\frac{4}{5} = 4 \\times \\frac{1}{5}$ ✓. $\\frac{5}{4}$ swaps the jobs; $\\frac{1}{5}$ counts the plain piece instead.",
+                "check": [
+                  "Eq(4*Rational(1,5), Rational(4,5))",
+                  "Eq(4 + 1, 5)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 5,
+                    "label": "4 of 5 equal pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "$\\frac{5}{9}$ is a stack of:",
+                "options": [
+                  "$5$ pieces of the $\\frac{1}{9}$ size",
+                  "$9$ pieces of the $\\frac{1}{5}$ size",
+                  "$5$ whole bars"
+                ],
+                "correctIndex": 0,
+                "explanation": "Bottom cuts into ninths, top counts five: $5 \\times \\frac{1}{9} = \\frac{5}{9}$ ✓. The second option swaps the numbers' jobs.",
+                "check": [
+                  "Eq(5*Rational(1,9), Rational(5,9))",
+                  "Rational(5,9) < 1"
+                ]
+              },
+              {
+                "prompt": "The bar shows $10$ pieces with $7$ shaded. The PLAIN fraction is:",
+                "options": [
+                  "$\\frac{3}{10}$",
+                  "$\\frac{7}{10}$",
+                  "$\\frac{3}{7}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Plain pieces: $10 - 7 = 3$, and $3 + 7 = 10$ ✓. So $\\frac{3}{10}$. $\\frac{7}{10}$ is the SHADED part, and $\\frac{3}{7}$ compares plain with shaded instead of with the whole.",
+                "check": [
+                  "Eq(3 + 7, 10)",
+                  "Eq(Rational(7,10) + Rational(3,10), 1)"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 7,
+                    "den": 10,
+                    "label": "7 of 10 equal pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "Which fraction equals one whole?",
+                "options": [
+                  "$\\frac{7}{7}$",
+                  "$\\frac{7}{8}$",
+                  "$\\frac{1}{7}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "All seven sevenths: $7 \\times \\frac{1}{7} = 1$ ✓. $\\frac{7}{8}$ falls one eighth-piece short, and $\\frac{1}{7}$ is a single piece.",
+                "check": [
+                  "Eq(7*Rational(1,7), 1)",
+                  "Rational(7,8) < 1"
+                ]
+              },
+              {
+                "prompt": "A ger's roof has $6$ equal felt panels; $5$ are already tied on. The tied-on fraction is:",
+                "options": [
+                  "$\\frac{5}{6}$",
+                  "$\\frac{6}{5}$",
+                  "$\\frac{1}{6}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cut: sixths. Count: $5$ tied on. $\\frac{5}{6} = 5 \\times \\frac{1}{6}$ ✓ — with $1$ panel, $\\frac{1}{6}$, still to go, since $5 + 1 = 6$.",
+                "check": [
+                  "Eq(5*Rational(1,6), Rational(5,6))",
+                  "Eq(5 + 1, 6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Non-Unit Fractions\"",
+            "body": "The top number counts stacks of unit pieces, and when it reaches the bottom you hold the whole. Next: putting two fractions side by side and deciding which is bigger — by MEANING, not by tricks."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "comparing-fractions",
+      "title": "Comparing Fractions",
+      "concreteComparison": "Two same-size chocolate bars, both cut into $8$ pieces. You shade $5$ pieces of yours; your friend shades $3$ of hers. Whose shaded part is bigger? The pieces match exactly — so just COUNT them: $5$ beats $3$. Comparing fractions starts with looking at the pieces, never with tricks.",
+      "objective": "Compare two fractions with the same denominator by counting pieces, compare two unit fractions by piece size, and always check that both fractions talk about the same whole.",
+      "concept": [
+        "**Same bottom: count the pieces.** $\\frac{5}{8}$ and $\\frac{3}{8}$ are stacks of the SAME piece — eighths. Same-size pieces compare by counting: $5 > 3$, so $\\frac{5}{8} > \\frac{3}{8}$.",
+        "**Unit fractions: the bigger bottom loses.** $\\frac{1}{3}$ and $\\frac{1}{8}$ are ONE piece each, but a $3$-cut makes big pieces and an $8$-cut makes small ones: $\\frac{1}{3} > \\frac{1}{8}$.",
+        "**Only same wholes compare.** Half of a small khuushuur can be less food than a quarter of a giant one. Fraction comparisons are promises about the SAME whole — check that before comparing anything."
+      ],
+      "keyIdea": "Same cut: more pieces wins. One piece each: the finer cut loses. And both fractions must talk about the same whole, or the comparison means nothing.",
+      "facts": [
+        {
+          "title": "Same pieces, just count",
+          "latex": "\\frac{5}{8} > \\frac{3}{8}",
+          "explanation": "Eighths against eighths — the pieces match, so the bigger count wins."
+        },
+        {
+          "title": "One piece each, size decides",
+          "latex": "\\frac{1}{8} < \\frac{1}{3}",
+          "explanation": "An 8-cut makes smaller pieces than a 3-cut — the bigger bottom loses."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4fr-l4-we1",
+          "statement": "Compare $\\frac{5}{8}$ and $\\frac{3}{8}$ of the same bar.",
+          "note": "The bottoms match — the pieces are the same size.",
+          "solution": "Both are stacks of eighth-pieces. Count them: $5 > 3$, so $\\frac{5}{8} > \\frac{3}{8}$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(5,8) > Rational(3,8)",
+            "5 > 3"
+          ]
+        },
+        {
+          "id": "g4fr-l4-we2",
+          "statement": "Compare $\\frac{1}{6}$ and $\\frac{1}{9}$ of the same cake.",
+          "note": "One piece each — compare the cuts.",
+          "solution": "One piece each, but a $6$-cut makes bigger pieces than a $9$-cut: $\\frac{1}{6} > \\frac{1}{9}$, even though $9 > 6$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Rational(1,6) > Rational(1,9)",
+            "9 > 6"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Choosing 1/8 over 1/4 because 8 is the bigger number.",
+          "correction": "For unit fractions the bottom counts SHARERS: more sharers, smaller shares. 1/8 < 1/4 — the bigger bottom loses.",
+          "authored": true
+        },
+        {
+          "text": "Comparing fractions of different wholes — half of a small khuushuur against a quarter of a giant one.",
+          "correction": "Fractions only compare when they cut the SAME whole. Before writing < or >, check that both fractions talk about one and the same thing.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4fr-l4-t1",
+          "statement": "Which is bigger: $\\frac{4}{7}$ or $\\frac{6}{7}$ of the same bread?",
+          "solution": "Same cut — sevenths — so count the pieces: $6 > 4$, and $\\frac{6}{7} > \\frac{4}{7}$.",
+          "check": [
+            "Rational(6,7) > Rational(4,7)",
+            "6 > 4"
+          ]
+        },
+        {
+          "id": "g4fr-l4-t2",
+          "statement": "Which is bigger: $\\frac{1}{3}$ or $\\frac{1}{8}$ of the same bread?",
+          "solution": "One piece each: the $3$-cut makes bigger pieces than the $8$-cut, so $\\frac{1}{3} > \\frac{1}{8}$.",
+          "check": [
+            "Rational(1,3) > Rational(1,8)",
+            "8 > 3"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Same cut: count the pieces",
+            "beats": [
+              "Two same-size bars, both cut into $8$. The bar below shows $5$ shaded pieces; picture a second bar with only $3$ shaded.",
+              "The pieces are IDENTICAL — eighths against eighths — so the comparison is pure counting: $5 > 3$, and $\\frac{5}{8} > \\frac{3}{8}$.",
+              "Whenever the bottoms match, the cut is the same, and the top numbers settle it. The bottom cuts, the top counts — and here only the counting differs."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 5,
+                "den": 8,
+                "label": "5 of 8 pieces shaded"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Matching bottoms",
+            "intro": "Same pieces — the bigger count wins.",
+            "examples": [
+              {
+                "prompt": "Compare $\\frac{5}{8}$ and $\\frac{3}{8}$ of the same bar.",
+                "steps": [
+                  "Bottoms match: both are stacks of eighth-pieces.",
+                  "Count: $5 > 3$, so $\\frac{5}{8} > \\frac{3}{8}$."
+                ],
+                "answer": "$\\frac{5}{8} > \\frac{3}{8}$",
+                "check": [
+                  "Rational(5,8) > Rational(3,8)",
+                  "5 > 3"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 3,
+                    "den": 8,
+                    "label": "3 of 8 pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "Order $\\frac{2}{6}$, $\\frac{5}{6}$, $\\frac{3}{6}$ from smallest to biggest.",
+                "steps": [
+                  "All sixths — pure counting: $2 < 3 < 5$.",
+                  "$\\frac{2}{6} < \\frac{3}{6} < \\frac{5}{6}$."
+                ],
+                "answer": "$\\frac{2}{6} < \\frac{3}{6} < \\frac{5}{6}$",
+                "check": [
+                  "Rational(2,6) < Rational(3,6)",
+                  "Rational(3,6) < Rational(5,6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count the matching pieces",
+            "intro": "Bottoms match, tops decide.",
+            "problems": [
+              {
+                "prompt": "Which is bigger: $\\frac{7}{10}$ or $\\frac{9}{10}$ of the same bar?",
+                "options": [
+                  "$\\frac{9}{10}$",
+                  "$\\frac{7}{10}$",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Tenths against tenths — count them: $9 > 7$, so $\\frac{9}{10} > \\frac{7}{10}$.",
+                "check": [
+                  "Rational(9,10) > Rational(7,10)",
+                  "9 > 7"
+                ]
+              },
+              {
+                "prompt": "The bar shows $\\frac{2}{5}$ shaded. Compared with $\\frac{4}{5}$ of the same bar, it is:",
+                "options": [
+                  "less — $2$ pieces against $4$ of the same size",
+                  "more — $2$ comes before $4$",
+                  "equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fifths against fifths: $2 < 4$, so $\\frac{2}{5} < \\frac{4}{5}$. The pieces match, so only the count matters.",
+                "check": [
+                  "Rational(2,5) < Rational(4,5)",
+                  "4 > 2"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 2,
+                    "den": 5,
+                    "label": "2 of 5 pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "The largest of $\\frac{3}{7}$, $\\frac{6}{7}$, $\\frac{5}{7}$ is:",
+                "options": [
+                  "$\\frac{6}{7}$",
+                  "$\\frac{3}{7}$",
+                  "$\\frac{5}{7}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "All sevenths — count: $6 > 5 > 3$, so $\\frac{6}{7}$ wins.",
+                "check": [
+                  "Rational(6,7) > Rational(5,7)",
+                  "Rational(5,7) > Rational(3,7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Same pieces, just count",
+            "prompt": "$\\frac{5}{9}$ and $\\frac{7}{9}$ of the same cake — which is more?",
+            "options": [
+              "$\\frac{7}{9}$ — seven pieces beat five of the same size",
+              "$\\frac{5}{9}$ — the smaller top number means bigger pieces",
+              "they are equal — same bottom",
+              "they cannot be compared"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both are stacks of ninth-pieces, so the count decides: $7 > 5$ and $\\frac{7}{9} > \\frac{5}{9}$. \"Smaller number, bigger pieces\" is the BOTTOM number's backwards rule, and here the bottoms already match — the pieces are the same size, so only the top count is left to decide. A matching bottom means matching PIECES, not matching amounts.",
+            "check": [
+              "Rational(7,9) > Rational(5,9)",
+              "7 > 5"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Games are cut into fractions",
+            "body": "A basketball game is played in four quarters — four equal parts of the playing time, exactly like a bar cut into $4$. Football uses halves instead: two equal parts with the break in the middle. Sports announcers say fraction names all day long."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "One piece each: the finer cut loses",
+            "beats": [
+              "Now the tops match instead: $\\frac{1}{3}$ against $\\frac{1}{8}$ — one piece each. The bar below shows the $3$-cut: big, generous pieces.",
+              "The $8$-cut shares the SAME whole among far more pieces, so each one is small. One big piece beats one small piece: $\\frac{1}{3} > \\frac{1}{8}$.",
+              "One warning before any comparing: both fractions must cut the SAME whole. Half of a small khuushuur can be less food than a quarter of a giant one — fractions of different wholes do not compare."
+            ],
+            "figure": {
+              "mode": "fractionBar",
+              "fraction": {
+                "num": 1,
+                "den": 3,
+                "label": "1 of 3 pieces: a big piece"
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unit against unit",
+            "intro": "One piece each — the coarser cut wins.",
+            "examples": [
+              {
+                "prompt": "Which is bigger: $\\frac{1}{3}$ or $\\frac{1}{8}$ of the same bread?",
+                "steps": [
+                  "One piece each; the $8$-cut makes small pieces (see the bar).",
+                  "$\\frac{1}{3} > \\frac{1}{8}$ — the bigger bottom loses."
+                ],
+                "answer": "$\\frac{1}{3}$",
+                "check": [
+                  "Rational(1,3) > Rational(1,8)",
+                  "8 > 3"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 8,
+                    "label": "1 of 8 pieces: a small piece"
+                  }
+                }
+              },
+              {
+                "prompt": "Order $\\frac{1}{2}$, $\\frac{1}{5}$, $\\frac{1}{10}$ from biggest to smallest.",
+                "steps": [
+                  "Fewest sharers first: $2$-cut, then $5$-cut, then $10$-cut.",
+                  "$\\frac{1}{2} > \\frac{1}{5} > \\frac{1}{10}$."
+                ],
+                "answer": "$\\frac{1}{2} > \\frac{1}{5} > \\frac{1}{10}$",
+                "check": [
+                  "Rational(1,2) > Rational(1,5)",
+                  "Rational(1,5) > Rational(1,10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "One piece each",
+            "intro": "Picture the cut before choosing.",
+            "problems": [
+              {
+                "prompt": "Which is bigger: $\\frac{1}{7}$ or $\\frac{1}{4}$ of the same cake?",
+                "options": [
+                  "$\\frac{1}{4}$",
+                  "$\\frac{1}{7}$",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "A $4$-cut makes bigger pieces than a $7$-cut: $\\frac{1}{4} > \\frac{1}{7}$. Picking $\\frac{1}{7}$ because $7 > 4$ reads the bottom forwards — the trap.",
+                "check": [
+                  "Rational(1,4) > Rational(1,7)",
+                  "7 > 4"
+                ]
+              },
+              {
+                "prompt": "The smallest of $\\frac{1}{6}$, $\\frac{1}{2}$, $\\frac{1}{9}$ is:",
+                "options": [
+                  "$\\frac{1}{9}$",
+                  "$\\frac{1}{6}$",
+                  "$\\frac{1}{2}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The finest cut loses: nine pieces share the whole, so $\\frac{1}{9} < \\frac{1}{6} < \\frac{1}{2}$.",
+                "check": [
+                  "Rational(1,9) < Rational(1,6)",
+                  "Rational(1,6) < Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "Naran gets $\\frac{1}{5}$ of a cake and Bold gets $\\frac{1}{8}$ of the SAME cake. Who gets more?",
+                "options": [
+                  "Naran",
+                  "Bold",
+                  "equal shares"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same whole, one piece each: the $5$-cut gives bigger pieces than the $8$-cut, so $\\frac{1}{5} > \\frac{1}{8}$ — Naran. Bold's $8$ only looks bigger.",
+                "check": [
+                  "Rational(1,5) > Rational(1,8)",
+                  "8 > 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The forwards-reading trap",
+            "prompt": "Which is bigger: $\\frac{1}{6}$ or $\\frac{1}{9}$?",
+            "options": [
+              "$\\frac{1}{6}$ — sixth-pieces are bigger than ninth-pieces",
+              "$\\frac{1}{9}$ — because $9$ beats $6$",
+              "they are equal — both are one piece",
+              "they cannot be compared"
+            ],
+            "correctIndex": 0,
+            "explanation": "One piece each, so size decides: a $6$-cut shares the whole among fewer pieces than a $9$-cut, so $\\frac{1}{6} > \\frac{1}{9}$. \"$9$ beats $6$\" is the forwards-reading trap — unit fractions read backwards.",
+            "check": [
+              "Rational(1,6) > Rational(1,9)",
+              "9 > 6"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Same bottom: the pieces match, so the bigger count wins.",
+              "Unit fractions: one piece each, and the bigger bottom loses.",
+              "Never pick a unit fraction just because its bottom number is bigger.",
+              "Fractions only compare when they cut the SAME whole.",
+              "Every comparison here is done by meaning — picture the pieces."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before each answer, say which case you are in: matching bottoms (count the pieces) or one piece each (the finer cut loses)."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Both comparing rules, side by side.",
+            "problems": [
+              {
+                "prompt": "The bar shows $\\frac{4}{6}$ shaded. Compared with $\\frac{1}{6}$ of the same bar:",
+                "options": [
+                  "$\\frac{4}{6}$ is bigger — four sixths against one",
+                  "$\\frac{1}{6}$ is bigger",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Matching bottoms: sixths against sixths, and $4 > 1$, so $\\frac{4}{6} > \\frac{1}{6}$.",
+                "check": [
+                  "Rational(4,6) > Rational(1,6)",
+                  "4 > 1"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 4,
+                    "den": 6,
+                    "label": "4 of 6 pieces shaded"
+                  }
+                }
+              },
+              {
+                "prompt": "The bar shows one half. Which is bigger: $\\frac{1}{2}$ or $\\frac{1}{6}$ of the same bar?",
+                "options": [
+                  "$\\frac{1}{2}$",
+                  "$\\frac{1}{6}$",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "One piece each: a $2$-cut makes far bigger pieces than a $6$-cut, so $\\frac{1}{2} > \\frac{1}{6}$ — even though $6 > 2$.",
+                "check": [
+                  "Rational(1,2) > Rational(1,6)",
+                  "6 > 2"
+                ],
+                "figure": {
+                  "mode": "fractionBar",
+                  "fraction": {
+                    "num": 1,
+                    "den": 2,
+                    "label": "1 of 2 pieces: one half"
+                  }
+                }
+              },
+              {
+                "prompt": "Sara read $\\frac{7}{10}$ of a book and Dulguun read $\\frac{9}{10}$ of the SAME book. Who read more?",
+                "options": [
+                  "Dulguun",
+                  "Sara",
+                  "they read the same amount"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same book, same tenth-pieces: $9 > 7$, so $\\frac{9}{10} > \\frac{7}{10}$ — Dulguun.",
+                "check": [
+                  "Rational(9,10) > Rational(7,10)"
+                ]
+              },
+              {
+                "prompt": "One melon is shared equally by $3$ children, an identical melon by $10$. A bigger piece comes from:",
+                "options": [
+                  "the melon shared by $3$",
+                  "the melon shared by $10$",
+                  "both pieces are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fewer sharers, bigger pieces: $\\frac{1}{3} > \\frac{1}{10}$. Ten sharers make thin slices of the same melon.",
+                "check": [
+                  "Rational(1,3) > Rational(1,10)",
+                  "10 > 3"
+                ]
+              },
+              {
+                "prompt": "Which comparison is TRUE?",
+                "options": [
+                  "$\\frac{2}{9} < \\frac{7}{9}$",
+                  "$\\frac{1}{5} < \\frac{1}{10}$",
+                  "$\\frac{3}{8} > \\frac{7}{8}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ninths against ninths: $2 < 7$ ✓. The second option falls for the forwards trap ($\\frac{1}{5}$ is the BIGGER piece), and the third counts backwards ($3 < 7$ with matching eighths).",
+                "check": [
+                  "Rational(2,9) < Rational(7,9)",
+                  "Rational(1,10) < Rational(1,5)",
+                  "Rational(3,8) < Rational(7,8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Comparing Fractions\"",
+            "body": "Matching bottoms count pieces; matching tops of $1$ compare cuts — and everything happens on the same whole. Next: fractions leave the chocolate bar and start counting SHEEP — a fraction of a whole set of things."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "fraction-of-a-set",
+      "title": "A Fraction of a Set",
+      "concreteComparison": "A herder's $12$ sheep drift into $3$ equal flocks of $4$. One flock — $4$ sheep — is $\\frac{1}{3}$ of the herd. Two flocks — $8$ sheep — are $\\frac{2}{3}$ of it. The whole is not a bar of chocolate any more: it is a SET of things, and the fraction shares it into groups.",
+      "objective": "Find a unit fraction of a set by sharing into equal groups, then a non-unit fraction by taking several of those groups — checking every division by multiplying back.",
+      "concept": [
+        "**The whole can be a set.** $\\frac{1}{3}$ OF $12$ sheep: share the $12$ into $3$ equal groups — $12 \\div 3 = 4$ in each — and take one group. $\\frac{1}{3}$ of $12$ is $4$.",
+        "**The bottom cuts the set, the top counts the groups.** For $\\frac{2}{3}$ of $12$: the bottom cuts the herd into $3$ groups of $4$; the top takes $2$ of them — $2 \\times 4 = 8$ sheep.",
+        "**Multiply back to check.** The sharing step is a division, and every division signs a receipt: $12 \\div 3 = 4$ because $4 \\times 3 = 12$. If the receipt fails, the groups were not equal."
+      ],
+      "keyIdea": "A fraction of a set is found in two moves: the bottom number shares the set into equal groups, the top number takes that many groups.",
+      "facts": [
+        {
+          "title": "The bottom shares",
+          "latex": "\\frac{1}{3} \\text{ of } 12 = 12 \\div 3 = 4",
+          "explanation": "Share into 3 equal groups; one group is one third of the set."
+        },
+        {
+          "title": "The top takes groups",
+          "latex": "\\frac{2}{3} \\text{ of } 12 = 2 \\times 4 = 8",
+          "explanation": "Two of the three groups — the top number counts groups, not single things."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4fr-l5-we1",
+          "statement": "Find $\\frac{1}{3}$ of $12$ sheep.",
+          "note": "Share the herd into 3 equal groups.",
+          "solution": "Share: $12 \\div 3 = 4$ sheep in each group, and the receipt $4 \\times 3 = 12$ ✓ rebuilds the herd. One group is $\\frac{1}{3}$ of the herd: $4$ sheep.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(Rational(12,3), 4)",
+            "Eq(4*3, 12)",
+            "Eq(Rational(1,3)*12, 4)"
+          ]
+        },
+        {
+          "id": "g4fr-l5-we2",
+          "statement": "Find $\\frac{2}{3}$ of the same $12$ sheep.",
+          "note": "Same groups — now take two of them.",
+          "solution": "The groups are already made: $3$ groups of $4$. Take $2$ groups: $2 \\times 4 = 8$ sheep. So $\\frac{2}{3}$ of $12$ is $8$ — and the third group holds the other $4$, since $8 + 4 = 12$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*4, 8)",
+            "Eq(Rational(2,3)*12, 8)",
+            "Eq(8 + 4, 12)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Finding 1/3 of 12 by taking 3 away: 12 − 3 = 9.",
+          "correction": "OF means share, not subtract: cut the 12 into 3 equal groups, 12 ÷ 3 = 4, and one group — 4 — is one third.",
+          "authored": true
+        },
+        {
+          "text": "Finding 2/3 of 12 by dividing by the top: 12 ÷ 2 = 6.",
+          "correction": "The bottom shares first: 12 ÷ 3 = 4 in each group. Only then does the top count groups: 2 × 4 = 8.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4fr-l5-t1",
+          "statement": "Find $\\frac{1}{4}$ of $20$ sweets.",
+          "solution": "Share into $4$ equal groups: $20 \\div 4 = 5$, receipt $5 \\times 4 = 20$ ✓. One group — $5$ sweets — is $\\frac{1}{4}$ of the bag.",
+          "check": [
+            "Eq(Rational(20,4), 5)",
+            "Eq(5*4, 20)",
+            "Eq(Rational(1,4)*20, 5)"
+          ]
+        },
+        {
+          "id": "g4fr-l5-t2",
+          "statement": "Find $\\frac{3}{4}$ of the same $20$ sweets.",
+          "solution": "The groups hold $5$ each; take $3$ groups: $3 \\times 5 = 15$ sweets. So $\\frac{3}{4}$ of $20$ is $15$, with $5$ left in the last group since $15 + 5 = 20$ ✓.",
+          "check": [
+            "Eq(Rational(20,4), 5)",
+            "Eq(3*5, 15)",
+            "Eq(Rational(3,4)*20, 15)",
+            "Eq(15 + 5, 20)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Share the set into groups",
+            "beats": [
+              "$\\frac{1}{3}$ OF $12$ sheep — the whole is now a HERD, not a bar. The bottom cuts all the same: share the $12$ into $3$ equal groups, as in the picture.",
+              "The sharing is a division: $12 \\div 3 = 4$ in each group, and the receipt $4 \\times 3 = 12$ ✓ rebuilds the herd.",
+              "Take ONE group: $4$ sheep. That is $\\frac{1}{3}$ of $12$. The bottom number cuts — even when the whole is a flock of animals."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "group 1"
+                },
+                {
+                  "count": 4,
+                  "color": "#d97706",
+                  "label": "group 2"
+                },
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "group 3"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Unit fraction of a set",
+            "intro": "Share into bottom-many groups; take one.",
+            "examples": [
+              {
+                "prompt": "Find $\\frac{1}{4}$ of $20$ sweets.",
+                "steps": [
+                  "Share into $4$ equal groups: $20 \\div 4 = 5$, receipt $5 \\times 4 = 20$ ✓.",
+                  "One group is $\\frac{1}{4}$ of the bag: $5$ sweets."
+                ],
+                "answer": "$5$ sweets",
+                "check": [
+                  "Eq(Rational(20,4), 5)",
+                  "Eq(5*4, 20)",
+                  "Eq(Rational(1,4)*20, 5)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#3b82f6",
+                      "label": "group 1"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#d97706",
+                      "label": "group 2"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "group 3"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#94a3b8",
+                      "label": "group 4"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Find $\\frac{1}{5}$ of $30$ goats.",
+                "steps": [
+                  "Share into $5$ equal groups: $30 \\div 5 = 6$, receipt $6 \\times 5 = 30$ ✓.",
+                  "One group — $6$ goats — is $\\frac{1}{5}$ of the herd."
+                ],
+                "answer": "$6$ goats",
+                "check": [
+                  "Eq(Rational(30,5), 6)",
+                  "Eq(6*5, 30)",
+                  "Eq(Rational(1,5)*30, 6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "One group of the set",
+            "intro": "Share first, then take one group.",
+            "problems": [
+              {
+                "prompt": "$\\frac{1}{2}$ of $18$ khuushuur is:",
+                "options": [
+                  "$9$",
+                  "$2$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share into $2$ equal groups: $18 \\div 2 = 9$, receipt $9 \\times 2 = 18$ ✓. $16$ subtracts the $2$ instead of sharing — the OF-means-share rule.",
+                "check": [
+                  "Eq(Rational(18,2), 9)",
+                  "Eq(9*2, 18)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{3}$ of $15$ horses is:",
+                "options": [
+                  "$5$",
+                  "$3$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share into $3$ equal groups: $15 \\div 3 = 5$, receipt $5 \\times 3 = 15$ ✓. $12$ is $15 - 3$ — subtraction wearing a fraction costume.",
+                "check": [
+                  "Eq(Rational(15,3), 5)",
+                  "Eq(5*3, 15)"
+                ]
+              },
+              {
+                "prompt": "$24$ buuz are shared onto $6$ plates, as in the picture. $\\frac{1}{6}$ of the buuz is:",
+                "options": [
+                  "$4$",
+                  "$6$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share into $6$ equal groups: $24 \\div 6 = 4$, receipt $4 \\times 6 = 24$ ✓. One plate — $4$ buuz — is $\\frac{1}{6}$ of the batch.",
+                "check": [
+                  "Eq(Rational(24,6), 4)",
+                  "Eq(4*6, 24)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#3b82f6",
+                      "label": "group 1"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#d97706",
+                      "label": "group 2"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "group 3"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#94a3b8",
+                      "label": "group 4"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#3b82f6",
+                      "label": "group 5"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#d97706",
+                      "label": "group 6"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "What OF does",
+            "prompt": "To find $\\frac{1}{4}$ of $16$, you:",
+            "options": [
+              "share $16$ into $4$ equal groups and take one — $4$",
+              "take $4$ away from $16$ — $12$",
+              "cut the number $4$ into $16$ parts",
+              "count $4$ wholes of $16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "OF shares: $16 \\div 4 = 4$ in each group, receipt $4 \\times 4 = 16$ ✓, and one group is the answer. Taking $4$ away gives $12$ — subtraction, a different question entirely.",
+            "check": [
+              "Eq(Rational(16,4), 4)",
+              "Eq(4*4, 16)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "One third of every day",
+            "body": "A day holds $24$ hours, and $24 \\div 3 = 8$ — so $8$ hours of sleep is exactly $\\frac{1}{3}$ of a whole day. Many people sleep about that much, which means about one third of a whole life is spent asleep."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Take more than one group",
+            "beats": [
+              "$\\frac{2}{3}$ of $12$: the bottom has already done its work — $3$ groups of $4$. Now the TOP counts groups: take $2$ of them, the green groups in the picture.",
+              "Two groups of $4$: $2 \\times 4 = 8$ sheep. So $\\frac{2}{3}$ of $12$ is $8$ — and the grey group keeps the other $4$, since $8 + 4 = 12$ ✓.",
+              "The rule in full: the bottom number cuts the set into equal groups, the top number counts the groups you take. Same rule as the chocolate bar — the pieces are just groups now."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "taken"
+                },
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "taken too"
+                },
+                {
+                  "count": 4,
+                  "color": "#94a3b8",
+                  "label": "stays"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Non-unit fraction of a set",
+            "intro": "Bottom shares, top takes groups.",
+            "examples": [
+              {
+                "prompt": "Find $\\frac{2}{3}$ of $12$ sheep.",
+                "steps": [
+                  "Share: $12 \\div 3 = 4$ in each group, receipt $4 \\times 3 = 12$ ✓.",
+                  "Take $2$ groups: $2 \\times 4 = 8$ sheep."
+                ],
+                "answer": "$8$ sheep",
+                "check": [
+                  "Eq(Rational(12,3), 4)",
+                  "Eq(2*4, 8)",
+                  "Eq(Rational(2,3)*12, 8)"
+                ]
+              },
+              {
+                "prompt": "Find $\\frac{3}{4}$ of $20$ sweets.",
+                "steps": [
+                  "Share: $20 \\div 4 = 5$ in each group, receipt $5 \\times 4 = 20$ ✓.",
+                  "Take $3$ groups: $3 \\times 5 = 15$ sweets — the grey group keeps the last $5$."
+                ],
+                "answer": "$15$ sweets",
+                "check": [
+                  "Eq(Rational(20,4), 5)",
+                  "Eq(3*5, 15)",
+                  "Eq(Rational(3,4)*20, 15)",
+                  "Eq(15 + 5, 20)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "taken 1"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "taken 2"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "taken 3"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#94a3b8",
+                      "label": "stays"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Groups taken, groups left",
+            "intro": "Share, take, and account for the rest.",
+            "problems": [
+              {
+                "prompt": "$\\frac{2}{5}$ of $15$ sweets is:",
+                "options": [
+                  "$6$",
+                  "$3$",
+                  "$10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $15 \\div 5 = 3$ each, receipt $3 \\times 5 = 15$ ✓. Take $2$ groups: $2 \\times 3 = 6$. Answering $3$ stops after the sharing step.",
+                "check": [
+                  "Eq(Rational(15,5), 3)",
+                  "Eq(2*3, 6)",
+                  "Eq(Rational(2,5)*15, 6)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{3}{8}$ of $24$ buuz is:",
+                "options": [
+                  "$9$",
+                  "$3$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $24 \\div 8 = 3$ each, receipt $3 \\times 8 = 24$ ✓. Take $3$ groups: $3 \\times 3 = 9$. Answering $3$ stops after the sharing step, and $8$ divides by the TOP number ($24 \\div 3 = 8$) instead of by the bottom one.",
+                "check": [
+                  "Eq(Rational(24,8), 3)",
+                  "Eq(3*3, 9)",
+                  "Eq(Rational(3,8)*24, 9)",
+                  "Eq(Rational(24,3), 8)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{3}{3}$ of $12$ horses is:",
+                "options": [
+                  "$12$ — all three groups, the whole herd",
+                  "$4$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $12 \\div 3 = 4$ each. Take ALL $3$ groups: $3 \\times 4 = 12$ — the whole herd, because a fraction whose top meets its bottom equals $1$.",
+                "check": [
+                  "Eq(Rational(12,3), 4)",
+                  "Eq(3*4, 12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Top counts groups",
+            "prompt": "$\\frac{2}{3}$ of $18$ goats is:",
+            "options": [
+              "$12$",
+              "$6$",
+              "$9$",
+              "$16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Share: $18 \\div 3 = 6$ in each group, receipt $6 \\times 3 = 18$ ✓. Take $2$ groups: $2 \\times 6 = 12$. Answering $6$ takes only one group; $9$ is half the herd, a different fraction.",
+            "check": [
+              "Eq(Rational(18,3), 6)",
+              "Eq(2*6, 12)",
+              "Eq(Rational(2,3)*18, 12)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The whole can be a SET — a herd, a bag, a batch of buuz.",
+              "The bottom number shares the set into equal groups (a division, with its receipt).",
+              "A unit fraction of a set is one group.",
+              "The top number counts how many groups you take: 2/3 of 12 is 2 groups of 4.",
+              "The bottom cuts, the top counts — bars, breads, and herds alike."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Two moves every time: share by the bottom (and sign the division receipt), then take top-many groups. Say both moves before you compute."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Fractions of sets, unit and non-unit.",
+            "problems": [
+              {
+                "prompt": "$10$ aaruul pieces are shared into $5$ equal groups, as shown. $\\frac{1}{5}$ of them is:",
+                "options": [
+                  "$2$",
+                  "$5$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $10 \\div 5 = 2$ each, receipt $2 \\times 5 = 10$ ✓. One group is $2$ pieces. $8$ subtracts instead of sharing.",
+                "check": [
+                  "Eq(Rational(10,5), 2)",
+                  "Eq(2*5, 10)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#3b82f6",
+                      "label": "group 1"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "group 2"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#059669",
+                      "label": "group 3"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#94a3b8",
+                      "label": "group 4"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#3b82f6",
+                      "label": "group 5"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "$\\frac{3}{5}$ of $20$ togrog coins is:",
+                "options": [
+                  "$12$",
+                  "$4$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $20 \\div 5 = 4$ each, receipt $4 \\times 5 = 20$ ✓. Take $3$ groups: $3 \\times 4 = 12$ coins. $4$ stops after sharing; $15$ took $3$ quarters instead of $3$ fifths.",
+                "check": [
+                  "Eq(Rational(20,5), 4)",
+                  "Eq(3*4, 12)",
+                  "Eq(Rational(3,5)*20, 12)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{1}{2}$ of $16$ khuushuur is:",
+                "options": [
+                  "$8$",
+                  "$2$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share into $2$ groups: $16 \\div 2 = 8$, receipt $8 \\times 2 = 16$ ✓. $14$ subtracts the $2$ — OF shares, never subtracts.",
+                "check": [
+                  "Eq(Rational(16,2), 8)",
+                  "Eq(8*2, 16)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{2}{5}$ of a herd of $25$ goats are white. The white goats number:",
+                "options": [
+                  "$10$",
+                  "$5$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $25 \\div 5 = 5$ each, receipt $5 \\times 5 = 25$ ✓. Take $2$ groups: $2 \\times 5 = 10$ white goats. $5$ stops after one group, and $15$ counts the OTHER three groups — the goats that are not white, since $10 + 15 = 25$ ✓.",
+                "check": [
+                  "Eq(Rational(25,5), 5)",
+                  "Eq(2*5, 10)",
+                  "Eq(Rational(2,5)*25, 10)",
+                  "Eq(10 + 15, 25)"
+                ]
+              },
+              {
+                "prompt": "$\\frac{5}{6}$ of $30$ sweets is:",
+                "options": [
+                  "$25$",
+                  "$5$",
+                  "$24$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Share: $30 \\div 6 = 5$ each, receipt $5 \\times 6 = 30$ ✓. Take $5$ groups: $5 \\times 5 = 25$. Answering $5$ stops at one group.",
+                "check": [
+                  "Eq(Rational(30,6), 5)",
+                  "Eq(5*5, 25)",
+                  "Eq(Rational(5,6)*30, 25)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"A Fraction of a Set\" — and the topic",
+            "body": "Equal parts, unit pieces, stacks of them, honest comparisons, and fractions that count sheep: the whole meaning of a fraction, drawn one bar and one herd at a time. The bottom number cuts, the top number counts — carry that sentence into Grade 5, where fractions learn many names and start to add."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g4fr-pr1",
+      "statement": "The bar shows $4$ equal parts with $1$ shaded. Name the shaded part in words and as a fraction.",
+      "solution": "Four equal parts are quarters; one of them is one quarter, $\\frac{1}{4}$. Four such parts rebuild the bar: $4 \\times \\frac{1}{4} = 1$ ✓.",
+      "check": [
+        "Eq(4*Rational(1,4), 1)",
+        "Rational(1,4) < 1"
+      ],
+      "figure": {
+        "mode": "fractionBar",
+        "fraction": {
+          "num": 1,
+          "den": 4,
+          "label": "4 equal parts, 1 shaded"
+        }
+      }
+    },
+    {
+      "id": "g4fr-pr2",
+      "statement": "Order from biggest to smallest: $\\frac{1}{3}$, $\\frac{1}{8}$, $\\frac{1}{5}$.",
+      "solution": "One piece each, so the coarsest cut wins: $\\frac{1}{3} > \\frac{1}{5} > \\frac{1}{8}$ — the bigger bottom loses.",
+      "check": [
+        "Rational(1,3) > Rational(1,5)",
+        "Rational(1,5) > Rational(1,8)"
+      ]
+    },
+    {
+      "id": "g4fr-pr3",
+      "statement": "The bar shows $6$ equal pieces with $5$ shaded. Write the shaded fraction and the plain fraction.",
+      "solution": "Shaded: $5$ pieces of the sixth size, $\\frac{5}{6}$. Plain: the remaining $1$ piece, $\\frac{1}{6}$, since $1 + 5 = 6$ accounts for every piece and together they make the whole bar.",
+      "check": [
+        "Eq(5*Rational(1,6), Rational(5,6))",
+        "Eq(1 + 5, 6)",
+        "Eq(Rational(5,6) + Rational(1,6), 1)"
+      ],
+      "figure": {
+        "mode": "fractionBar",
+        "fraction": {
+          "num": 5,
+          "den": 6,
+          "label": "5 of 6 equal pieces shaded"
+        }
+      }
+    },
+    {
+      "id": "g4fr-pr4",
+      "statement": "Which is more: $\\frac{4}{9}$ or $\\frac{7}{9}$ of the same cake?",
+      "solution": "Matching bottoms mean matching pieces — ninths — so count: $7 > 4$, and $\\frac{7}{9} > \\frac{4}{9}$.",
+      "check": [
+        "Rational(7,9) > Rational(4,9)",
+        "7 > 4"
+      ]
+    },
+    {
+      "id": "g4fr-pr5",
+      "statement": "Which is more: $\\frac{1}{6}$ or $\\frac{1}{10}$ of the same melon?",
+      "solution": "One piece each: a $6$-cut makes bigger pieces than a $10$-cut, so $\\frac{1}{6} > \\frac{1}{10}$ — even though $10 > 6$.",
+      "check": [
+        "Rational(1,6) > Rational(1,10)",
+        "10 > 6"
+      ]
+    },
+    {
+      "id": "g4fr-pr6",
+      "statement": "$24$ sweets are shared into $4$ equal groups, as shown. Find $\\frac{1}{4}$ of the sweets.",
+      "solution": "Share: $24 \\div 4 = 6$ in each group, receipt $6 \\times 4 = 24$ ✓. One group — $6$ sweets — is $\\frac{1}{4}$ of the bag.",
+      "check": [
+        "Eq(Rational(24,4), 6)",
+        "Eq(6*4, 24)",
+        "Eq(Rational(1,4)*24, 6)"
+      ],
+      "figure": {
+        "mode": "groups",
+        "groups": [
+          {
+            "count": 6,
+            "color": "#3b82f6",
+            "label": "group 1"
+          },
+          {
+            "count": 6,
+            "color": "#d97706",
+            "label": "group 2"
+          },
+          {
+            "count": 6,
+            "color": "#059669",
+            "label": "group 3"
+          },
+          {
+            "count": 6,
+            "color": "#94a3b8",
+            "label": "group 4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "g4fr-pr7",
+      "statement": "Find $\\frac{3}{4}$ of the same $24$ sweets.",
+      "solution": "The groups hold $6$ each; take $3$ groups: $3 \\times 6 = 18$ sweets. So $\\frac{3}{4}$ of $24$ is $18$, and the last group keeps $6$, since $18 + 6 = 24$ ✓.",
+      "check": [
+        "Eq(Rational(24,4), 6)",
+        "Eq(3*6, 18)",
+        "Eq(Rational(3,4)*24, 18)",
+        "Eq(18 + 6, 24)"
+      ]
+    },
+    {
+      "id": "g4fr-pr8",
+      "statement": "One of the fractions $\\frac{9}{9}$ and $\\frac{9}{10}$ equals one whole. Which one, and why?",
+      "solution": "$\\frac{9}{9}$: the top has reached the bottom, so all nine ninth-pieces are taken — $9 \\times \\frac{1}{9} = 1$ ✓. $\\frac{9}{10}$ stops one tenth-piece short of the whole.",
+      "check": [
+        "Eq(9*Rational(1,9), 1)",
+        "Rational(9,10) < 1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g4fr-x1",
+      "statement": "A pizza is cut into $8$ equal slices and you take $3$, as shown. What fraction did you take, and what fraction remains?",
+      "solution": "Taken: $3$ slices of the eighth size, $\\frac{3}{8}$. Remaining: $8 - 3 = 5$ slices, $\\frac{5}{8}$, and $5 + 3 = 8$ ✓ accounts for the whole pizza.",
+      "check": [
+        "Eq(3*Rational(1,8), Rational(3,8))",
+        "Eq(5 + 3, 8)",
+        "Eq(Rational(3,8) + Rational(5,8), 1)"
+      ],
+      "figure": {
+        "mode": "fractionBar",
+        "fraction": {
+          "num": 3,
+          "den": 8,
+          "label": "3 of 8 equal slices taken"
+        }
+      }
+    },
+    {
+      "id": "g4fr-x2",
+      "statement": "A cake is cut into $4$ parts of different sizes. Is one of those parts a quarter of the cake? Explain.",
+      "solution": "No. A quarter is one of $4$ EQUAL parts — four true quarters rebuild the cake, $4 \\times \\frac{1}{4} = 1$ ✓. Unequal parts carry no fraction name, however many there are.",
+      "check": [
+        "Eq(4*Rational(1,4), 1)"
+      ]
+    },
+    {
+      "id": "g4fr-x3",
+      "statement": "Order from biggest to smallest: $\\frac{1}{2}$, $\\frac{1}{7}$, $\\frac{1}{4}$.",
+      "solution": "One piece each — the coarsest cut wins: $\\frac{1}{2} > \\frac{1}{4} > \\frac{1}{7}$. The bigger bottom always loses among unit fractions.",
+      "check": [
+        "Rational(1,2) > Rational(1,4)",
+        "Rational(1,4) > Rational(1,7)"
+      ]
+    },
+    {
+      "id": "g4fr-x4",
+      "statement": "Which is bigger: $\\frac{5}{12}$ or $\\frac{11}{12}$ of the same bar? Say why in one sentence.",
+      "solution": "Matching bottoms, so the pieces match — twelfths — and counting decides: $11 > 5$, so $\\frac{11}{12} > \\frac{5}{12}$.",
+      "check": [
+        "Rational(11,12) > Rational(5,12)",
+        "11 > 5"
+      ]
+    },
+    {
+      "id": "g4fr-x5",
+      "statement": "Find $\\frac{2}{5}$ of $20$ khuushuur, showing both moves.",
+      "solution": "Share: $20 \\div 5 = 4$ in each group, receipt $4 \\times 5 = 20$ ✓. Take $2$ groups: $2 \\times 4 = 8$ khuushuur. So $\\frac{2}{5}$ of $20$ is $8$.",
+      "check": [
+        "Eq(Rational(20,5), 4)",
+        "Eq(4*5, 20)",
+        "Eq(2*4, 8)",
+        "Eq(Rational(2,5)*20, 8)"
+      ]
+    },
+    {
+      "id": "g4fr-x6",
+      "statement": "Bataa says $\\frac{1}{8} > \\frac{1}{4}$ because $8 > 4$. Explain his mistake and write the true comparison.",
+      "solution": "The bottom counts how many pieces SHARE the whole: eight sharers get smaller pieces than four. So $\\frac{1}{8} < \\frac{1}{4}$ — for unit fractions the bigger bottom loses, and reading $8 > 4$ forwards is exactly the trap.",
+      "check": [
+        "Rational(1,8) < Rational(1,4)",
+        "8 > 4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5368 @@
+{
+  "slug": "shapes-and-symmetry",
+  "title": "Shapes & Symmetry",
+  "grade": 4,
+  "status": "published",
+  "blurb": "Naming 2-D shapes by their sides, right angles as quarter turns, sorting quadrilaterals, the fold test for line symmetry, and the faces, edges and vertices of 3-D solids.",
+  "lessons": [
+    {
+      "slug": "two-d-shapes",
+      "title": "2-D Shapes",
+      "concreteComparison": "Lay three straight sticks on the ground so they close up into a ring: a triangle. Add a fourth stick: a quadrilateral. Five sticks: a pentagon. Six: a hexagon. A shape's name is nothing more than a COUNT of its straight sides — and wherever two sticks meet, a corner appears, so the corners always match the sides, one for one.",
+      "objective": "Name 2-D shapes by counting their straight sides — triangle, quadrilateral, pentagon, hexagon — and check that every shape has exactly as many corners (vertices) as sides.",
+      "concept": [
+        "**The name is a count.** Three straight sides make a triangle, four a quadrilateral, five a pentagon, six a hexagon. Nothing else about the shape — big or small, tall or squashed, tilted or upright — changes its name.",
+        "**Sides come with corners.** Walk around the boundary: every side ends exactly where the next one starts, at a corner (a VERTEX). So a pentagon has $5$ corners, a hexagon $6$ — the two counts can never differ.",
+        "**Only straight sides count.** A circle has no straight sides at all, so it earns no side-count name — it is not a polygon. And a shape must CLOSE: sticks that leave a gap make no shape yet."
+      ],
+      "keyIdea": "Count the straight sides: three is a triangle, four a quadrilateral, five a pentagon, six a hexagon — and the corners always match the count, side for side.",
+      "facts": [
+        {
+          "title": "Names by side count",
+          "latex": "3 \\to \\text{triangle} \\quad 4 \\to \\text{quadrilateral} \\quad 5 \\to \\text{pentagon} \\quad 6 \\to \\text{hexagon}",
+          "explanation": "The name is the count — nothing more, nothing less."
+        },
+        {
+          "title": "Sides = corners",
+          "latex": "\\text{hexagon: } 6 \\text{ sides and } 6 \\text{ vertices}",
+          "explanation": "Each side ends at the corner where the next one starts, so the counts match."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4sh-l1-we1",
+          "statement": "A shape has $5$ straight sides. Name it, and count its corners without looking at it.",
+          "note": "Every side has two ends; every corner joins exactly two ends.",
+          "solution": "Five sides: a PENTAGON. Its $5$ sides have $5 \\times 2 = 10$ ends, and every corner is a meeting of exactly $2$ ends: $10 \\div 2 = 5$ corners. Sides and corners always match.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(5*2, 10)",
+            "Eq(Rational(10,2), 5)"
+          ]
+        },
+        {
+          "id": "g4sh-l1-we2",
+          "statement": "A triangle and a hexagon are drawn side by side. How many sides in total — and how many corners in total?",
+          "note": "Count each shape, then add.",
+          "solution": "Sides: $3 + 6 = 9$. Corners match sides shape by shape ($3$ and $6$), so the corner total is the same $9$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3 + 6, 9)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Calling every four-sided shape a square.",
+          "correction": "Quadrilateral is the family name for ANY four straight sides. A square is one strict member of that family — most quadrilaterals are not squares.",
+          "authored": true
+        },
+        {
+          "text": "Thinking a triangle standing on its point is a different shape.",
+          "correction": "The name counts sides, not which way is up. Turn a triangle any way you like — three sides, three corners, still a triangle.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4sh-l1-t1",
+          "statement": "A hexagon and a quadrilateral stand together. How many sides do they have between them?",
+          "solution": "$6 + 4 = 10$ sides (and $10$ corners too, since each shape's corners match its sides).",
+          "check": [
+            "Eq(6 + 4, 10)"
+          ]
+        },
+        {
+          "id": "g4sh-l1-t2",
+          "statement": "A shape has $6$ corners. Name it and count its sides.",
+          "solution": "Six corners means six sides: a HEXAGON. Receipt: $6$ sides have $6 \\times 2 = 12$ ends, and $12 \\div 2 = 6$ corners — the counts agree.",
+          "check": [
+            "Eq(6*2, 12)",
+            "Eq(Rational(12,2), 6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Count the straight sides",
+            "beats": [
+              "A shape keeps its promises — and the first promise is its NAME: count the straight sides. Three sides: triangle. Four: quadrilateral. Five: pentagon. Six: hexagon.",
+              "Nothing else matters for the name — not the size, not the colour, not which way up it sits. A squashed triangle and a tall one are both triangles.",
+              "Only STRAIGHT sides count, and the shape must close into a ring. A circle has no straight sides, so it takes no side-count name."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 1.5,
+                    "y": 1.5,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.5,
+                    "y": 1.5,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 7.5,
+                    "label": "C"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  }
+                ],
+                "height": 190
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Naming shapes",
+            "intro": "Count the sides; the count is the name.",
+            "examples": [
+              {
+                "prompt": "Name the shape in the picture, and count its corners.",
+                "steps": [
+                  "Five straight sides: a pentagon.",
+                  "Corners match sides: $5 \\times 2 = 10$ side-ends, $10 \\div 2 = 5$ corners."
+                ],
+                "answer": "pentagon — $5$ sides, $5$ corners",
+                "check": [
+                  "Eq(5*2, 10)",
+                  "Eq(Rational(10,2), 5)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 5.0,
+                        "y": 9.2,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 1.196,
+                        "y": 6.436,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 2.649,
+                        "y": 1.964,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 7.351,
+                        "y": 1.964,
+                        "label": "D"
+                      },
+                      {
+                        "id": "E",
+                        "x": 8.804,
+                        "y": 6.436,
+                        "label": "E"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "E",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "E",
+                        "to": "A",
+                        "color": "#059669"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "A triangle road sign and a hexagon tile: how many sides in total?",
+                "steps": [
+                  "Count each: $3$ and $6$.",
+                  "Together: $3 + 6 = 9$ sides — and $9$ corners too."
+                ],
+                "answer": "$9$ sides",
+                "check": [
+                  "Eq(3 + 6, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count and name",
+            "intro": "Sides first, name second.",
+            "problems": [
+              {
+                "prompt": "The shape in the picture has $4$ straight sides. It is a:",
+                "options": [
+                  "quadrilateral",
+                  "pentagon",
+                  "triangle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four straight sides: a quadrilateral — the family name for every four-sided shape. Receipt: $4 \\times 2 = 8$ side-ends, $8 \\div 2 = 4$ corners.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(Rational(8,2), 4)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.5,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 1.5,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 8.0,
+                        "y": 7.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 3.0,
+                        "y": 8.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "A pentagon has how many more sides than a triangle?",
+                "options": [
+                  "$2$",
+                  "$1$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 - 3 = 2$ more sides. Check by adding back: $2 + 3 = 5$ ✓.",
+                "check": [
+                  "Eq(5 - 3, 2)",
+                  "Eq(2 + 3, 5)"
+                ]
+              },
+              {
+                "prompt": "Which shape has the MOST corners?",
+                "options": [
+                  "hexagon",
+                  "pentagon",
+                  "quadrilateral"
+                ],
+                "correctIndex": 0,
+                "explanation": "Corners match sides, so compare side counts: $6 > 5 > 4$ — the hexagon wins.",
+                "check": [
+                  "6 > 5",
+                  "5 > 4"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Corners without counting",
+            "prompt": "A polygon has $8$ straight sides. How many vertices must it have?",
+            "options": [
+              "$8$",
+              "$16$",
+              "$4$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Sides and vertices always match: $8$ sides have $8 \\times 2 = 16$ ends, and each vertex joins exactly $2$ ends — $16 \\div 2 = 8$ vertices. ($16$ counts the side-ENDS, not the corners.)",
+            "check": [
+              "Eq(8*2, 16)",
+              "Eq(Rational(16,2), 8)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The names tell on themselves",
+            "body": "POLYGON is Greek for \"many angles\" — and the shape names carry their counts openly: TRIangle is three angles, PENTAgon five, HEXAgon six. QUADRILATERAL switches to Latin and counts sides instead: four of them. Say the name slowly and it counts itself for you."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Corners match sides — the receipt",
+            "beats": [
+              "Here is why the counts can never differ. Every side has $2$ ends. A hexagon's $6$ sides have $6 \\times 2 = 12$ ends.",
+              "Every corner is a meeting place of exactly $2$ ends — one side arriving, the next one leaving. So the corners number $12 \\div 2 = 6$: the same as the sides.",
+              "This works for every polygon: double the sides, halve the ends, and you have counted the corners without touching the picture."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 5.0,
+                    "y": 9.2,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 1.536,
+                    "y": 7.2,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 1.536,
+                    "y": 3.2,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 5.0,
+                    "y": 1.2,
+                    "label": "D"
+                  },
+                  {
+                    "id": "E",
+                    "x": 8.464,
+                    "y": 3.2,
+                    "label": "E"
+                  },
+                  {
+                    "id": "F",
+                    "x": 8.464,
+                    "y": 7.2,
+                    "label": "F"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "E",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  }
+                ],
+                "height": 200
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "The side-ends receipt",
+            "intro": "Double the sides, halve the result — that counts the corners.",
+            "examples": [
+              {
+                "prompt": "Count the sides and vertices of the hexagon in the picture.",
+                "steps": [
+                  "Six straight sides. Ends: $6 \\times 2 = 12$.",
+                  "Vertices: $12 \\div 2 = 6$ — sides and corners match."
+                ],
+                "answer": "$6$ sides, $6$ vertices",
+                "check": [
+                  "Eq(6*2, 12)",
+                  "Eq(Rational(12,2), 6)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 7.0,
+                        "y": 8.664,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 3.0,
+                        "y": 8.664,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 1.0,
+                        "y": 5.2,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 3.0,
+                        "y": 1.736,
+                        "label": "D"
+                      },
+                      {
+                        "id": "E",
+                        "x": 7.0,
+                        "y": 1.736,
+                        "label": "E"
+                      },
+                      {
+                        "id": "F",
+                        "x": 9.0,
+                        "y": 5.2,
+                        "label": "F"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "E",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "E",
+                        "to": "F",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "F",
+                        "to": "A",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "A polygon has $9$ sides. How many corners?",
+                "steps": [
+                  "Ends: $9 \\times 2 = 18$.",
+                  "Corners: $18 \\div 2 = 9$ — always the same as the sides."
+                ],
+                "answer": "$9$ corners",
+                "check": [
+                  "Eq(9*2, 18)",
+                  "Eq(Rational(18,2), 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Receipt the corners",
+            "intro": "Sides and vertices — one count, two names.",
+            "problems": [
+              {
+                "prompt": "A hexagon has how many vertices?",
+                "options": [
+                  "$6$",
+                  "$12$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Same as its sides: $6$. The $12$ counts side-ends ($6 \\times 2$) — halve it to land on the corners.",
+                "check": [
+                  "Eq(6*2, 12)",
+                  "Eq(Rational(12,2), 6)"
+                ]
+              },
+              {
+                "prompt": "Two pentagons stand side by side. Total vertices:",
+                "options": [
+                  "$10$",
+                  "$5$",
+                  "$25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each pentagon carries $5$ vertices: $2 \\times 5 = 10$.",
+                "check": [
+                  "Eq(2*5, 10)"
+                ]
+              },
+              {
+                "prompt": "For the triangle in the picture, sides plus vertices makes:",
+                "options": [
+                  "$6$",
+                  "$3$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three sides and three matching vertices: $3 + 3 = 6$.",
+                "check": [
+                  "Eq(3 + 3, 6)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 1.5,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 3.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 4.0,
+                        "y": 7.5,
+                        "label": "C"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "A",
+                        "color": "#059669"
+                      }
+                    ],
+                    "height": 190
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One count, two names",
+            "prompt": "A quadrilateral's sides and vertices together number:",
+            "options": [
+              "$8$",
+              "$4$",
+              "$6$",
+              "$16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Four sides, four matching vertices: $4 + 4 = 8$. (Answering $4$ counts only one of the two; $16$ doubles everything.)",
+            "check": [
+              "Eq(4 + 4, 8)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The name is a count: 3 triangle, 4 quadrilateral, 5 pentagon, 6 hexagon.",
+              "Size, colour and which-way-up never change the name.",
+              "Corners (vertices) always match sides — every side ends where the next begins.",
+              "The receipt: sides times 2 ends, divided by 2, counts the corners.",
+              "Only straight sides count, and the shape must close — a circle is not a polygon."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every shape below, touch each side as you count it — then say the name. Count first, name second, every time."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Names, counts, and the receipt together.",
+            "problems": [
+              {
+                "prompt": "A hexagon has how many more sides than a pentagon?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 - 5 = 1$; adding back, $1 + 5 = 6$ ✓.",
+                "check": [
+                  "Eq(6 - 5, 1)",
+                  "Eq(1 + 5, 6)"
+                ]
+              },
+              {
+                "prompt": "The picture shows a shape with $4$ straight sides. Its name is:",
+                "options": [
+                  "quadrilateral",
+                  "hexagon",
+                  "pentagon"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four sides — a quadrilateral, whatever its slant. Receipt: $4 \\times 2 = 8$ ends, $8 \\div 2 = 4$ corners.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(Rational(8,2), 4)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.5,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 1.5,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 8.0,
+                        "y": 7.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 3.0,
+                        "y": 8.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "One triangle, one quadrilateral, one pentagon and one hexagon: total sides?",
+                "options": [
+                  "$18$",
+                  "$15$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 + 4 + 5 + 6 = 18$ sides — and $18$ corners across the four shapes too.",
+                "check": [
+                  "Eq(3 + 4 + 5 + 6, 18)"
+                ]
+              },
+              {
+                "prompt": "Which of these is NOT a polygon?",
+                "options": [
+                  "a circle",
+                  "a triangle",
+                  "a hexagon"
+                ],
+                "correctIndex": 0,
+                "explanation": "A polygon needs at least $3$ straight sides; a circle has $0$ straight sides — no straight sides, no side-count name.",
+                "check": [
+                  "0 < 3"
+                ]
+              },
+              {
+                "prompt": "A polygon has $10$ sides. Its vertices number:",
+                "options": [
+                  "$10$",
+                  "$20$",
+                  "$5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The receipt: $10 \\times 2 = 20$ side-ends, $20 \\div 2 = 10$ vertices — corners match sides, always.",
+                "check": [
+                  "Eq(10*2, 20)",
+                  "Eq(Rational(20,2), 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"2-D Shapes\"",
+            "body": "Count the sides and the shape names itself — the first promise a shape keeps. Next: the corner every builder trusts — the right angle, a quarter of a full turn."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "right-angles",
+      "title": "Right Angles",
+      "concreteComparison": "Stand facing the ger door, then turn until you face the wall beside it: a QUARTER of a full spin. That turn has a name — the RIGHT angle — and you carry a tester everywhere: the corner of this page. Slide the page corner into any corner of the room; if it fits exactly, the corner is right. Four quarter turns bring you back to the door: four right angles fill a full turn.",
+      "objective": "Recognise a right angle as a quarter turn, test corners with the page corner, and sort angles as smaller than, equal to, or bigger than a right angle.",
+      "concept": [
+        "**A right angle is a quarter turn.** A full spin measures $360$ degrees, and a quarter of it is $90$: $4 \\times 90 = 360$. The page's corner, the window's corner, the cross on squared paper — all right angles.",
+        "**The page corner is your tester.** Slide it into a corner: fits exactly — right angle; a gap is left over — the angle is SMALLER than right; the page corner sinks in with room to spare — BIGGER than right.",
+        "**Two right angles make a straight line.** Half a spin: $2 \\times 90 = 180$. So a straight line holds two page corners, and a full turn holds four."
+      ],
+      "keyIdea": "A right angle is a quarter of a full turn — 90 degrees; two of them make a straight line (180) and four fill the whole turn (360). Test the corners with the page corner.",
+      "facts": [
+        {
+          "title": "The quarter turn",
+          "latex": "4 \\times 90^\\circ = 360^\\circ",
+          "explanation": "Four page corners around one point fill a complete spin."
+        },
+        {
+          "title": "The straight line",
+          "latex": "2 \\times 90^\\circ = 180^\\circ",
+          "explanation": "Two right angles side by side flatten into a straight line — half a turn."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4sh-l2-we1",
+          "statement": "Four streets meet at a crossing, and every corner passes the page-corner test. Show that the four corners together make one full turn.",
+          "note": "A right angle is a quarter turn; count the quarters.",
+          "solution": "Each corner is a right angle: $90$ degrees, a quarter turn. Four quarters: $4 \\times 90 = 360$ degrees — one complete spin, exactly. And $360 \\div 4 = 90$ confirms each corner's share.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4*90, 360)",
+            "Eq(Rational(360,4), 90)"
+          ]
+        },
+        {
+          "id": "g4sh-l2-we2",
+          "statement": "Two right angles sit side by side. What do they make together?",
+          "note": "Quarter plus quarter is half.",
+          "solution": "$90 + 90 = 180$ degrees — half a full turn, which is a STRAIGHT line. That is why a straight edge holds exactly two page corners: $180 \\div 90 = 2$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(90 + 90, 180)",
+            "Eq(Rational(180,90), 2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking a right angle tilted on its side stops being right.",
+          "correction": "A quarter turn is a quarter turn whichever way the arms point. Test with the page corner, not with \"does it look like an upright L\".",
+          "authored": true
+        },
+        {
+          "text": "Judging an angle by the length of its arms — long arms, big angle.",
+          "correction": "An angle is the TURN between the arms, not their length. The page-corner test ignores arm length completely — that is why it works.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4sh-l2-t1",
+          "statement": "How many right angles fit along a straight line? And in a full turn?",
+          "solution": "A straight line is half a turn: $2 \\times 90 = 180$, so $2$ right angles. A full turn: $4 \\times 90 = 360$, so $4$.",
+          "check": [
+            "Eq(2*90, 180)",
+            "Eq(4*90, 360)"
+          ]
+        },
+        {
+          "id": "g4sh-l2-t2",
+          "statement": "An angle is bigger than the page corner but smaller than a straight line. How much room lies between those two landmarks?",
+          "solution": "Between the quarter turn ($90$) and the half turn ($180$) lies $180 - 90 = 90$ degrees — a whole extra quarter turn of room. Check: $90 + 90 = 180$ ✓.",
+          "check": [
+            "Eq(180 - 90, 90)",
+            "Eq(90 + 90, 180)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The quarter turn and its tester",
+            "beats": [
+              "Test the corners — that is this lesson's promise. A full spin is $360$ degrees; a QUARTER of it is the RIGHT angle: $90$ degrees, because $4 \\times 90 = 360$.",
+              "Your tester travels with you: the page's corner. Fits a corner exactly — right angle. Gap left over — smaller than right. Sinks in with room to spare — bigger than right.",
+              "The arms' length never votes: an angle is TURN, not ink. A tiny drawn corner can hold a bigger turn than a huge one."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "O"
+                  },
+                  {
+                    "id": "A",
+                    "x": 9.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 2.0,
+                    "y": 8.0,
+                    "label": "B"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "A",
+                    "to": "B",
+                    "right": true
+                  }
+                ],
+                "height": 200
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Testing corners",
+            "intro": "Fit the page corner; read the result.",
+            "examples": [
+              {
+                "prompt": "The angle at $O$ in the picture fits the page corner exactly. Name it — and say how many like it fill a full turn.",
+                "steps": [
+                  "An exact fit: a RIGHT angle, $90$ degrees.",
+                  "A full turn is $360$: $360 \\div 90 = 4$ of them fill it, since $4 \\times 90 = 360$."
+                ],
+                "answer": "a right angle; $4$ fill a full turn",
+                "check": [
+                  "Eq(Rational(360,90), 4)",
+                  "Eq(4*90, 360)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "O"
+                      },
+                      {
+                        "id": "A",
+                        "x": 9.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 2.0,
+                        "y": 8.0,
+                        "label": "B"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "A",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "B",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "A",
+                        "to": "B",
+                        "right": true
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "The hands of a clock at 3:00 — what angle do they make?",
+                "steps": [
+                  "The minute hand points straight up, the hour hand a quarter of the way round.",
+                  "A quarter of the full face: $360 \\div 4 = 90$ degrees — a right angle."
+                ],
+                "answer": "a right angle",
+                "check": [
+                  "Eq(Rational(360,4), 90)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Quarter-turn thinking",
+            "intro": "Fit the tester, count the quarters.",
+            "problems": [
+              {
+                "prompt": "Four right angles together make:",
+                "options": [
+                  "a full turn",
+                  "a straight line",
+                  "half a right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four quarters make one whole spin: $4 \\times 90 = 360$ degrees.",
+                "check": [
+                  "Eq(4*90, 360)"
+                ]
+              },
+              {
+                "prompt": "You slide the page corner into the angle at $O$ in the picture, and a gap is left over. The angle is:",
+                "options": [
+                  "smaller than a right angle",
+                  "bigger than a right angle",
+                  "exactly a right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "A leftover gap means the angle did not use the whole quarter turn — it is smaller than right. (This one is half a right angle: $90 \\div 2 = 45$, and $45 < 90$.)",
+                "check": [
+                  "Eq(Rational(90,2), 45)",
+                  "45 < 90"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "O"
+                      },
+                      {
+                        "id": "A",
+                        "x": 9.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 8.0,
+                        "label": "B"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "A",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "A",
+                        "to": "B"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "Two right angles side by side make:",
+                "options": [
+                  "a straight line",
+                  "a full turn",
+                  "another right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "$90 + 90 = 180$ degrees — half a turn, flat as a stretched rope.",
+                "check": [
+                  "Eq(90 + 90, 180)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The page-corner test",
+            "prompt": "You slide the page's corner into a door-frame corner and it fits exactly. The door frame's corner is:",
+            "options": [
+              "a right angle — a quarter turn",
+              "half a turn",
+              "a full turn",
+              "too big to test"
+            ],
+            "correctIndex": 0,
+            "explanation": "An exact fit IS the definition: the corner holds exactly one quarter of a spin, $360 \\div 4 = 90$ degrees. Door frames are built that way on purpose — doors only swing cleanly in right-angled frames.",
+            "check": [
+              "Eq(Rational(360,4), 90)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why \"RIGHT\"?",
+            "body": "The name comes from Latin RECTUS — upright. A post standing properly on flat ground makes this angle with it, so it became the \"upright\" angle. Builders still check it constantly: a wall that misses the right angle by even a little leans, and a leaning wall is a falling wall on a slow schedule."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Smaller, bigger, and the two landmarks",
+            "beats": [
+              "Every angle can be sorted against the quarter turn: smaller than $90$, exactly $90$, or bigger. The page corner sorts them without measuring.",
+              "The landmarks stack: two right angles make a straight line ($2 \\times 90 = 180$), and four fill the full turn ($4 \\times 90 = 360$). The picture shows all four quarters around one point.",
+              "So an angle bigger than right but smaller than straight lives between the landmarks — the room between them is exactly one more quarter: $180 - 90 = 90$."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 5.0,
+                    "y": 5.0,
+                    "label": "O"
+                  },
+                  {
+                    "id": "N",
+                    "x": 5.0,
+                    "y": 9.0,
+                    "label": "N"
+                  },
+                  {
+                    "id": "E",
+                    "x": 9.0,
+                    "y": 5.0,
+                    "label": "E"
+                  },
+                  {
+                    "id": "S",
+                    "x": 5.0,
+                    "y": 1.0,
+                    "label": "S"
+                  },
+                  {
+                    "id": "W",
+                    "x": 1.0,
+                    "y": 5.0,
+                    "label": "W"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "N",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "E",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "S",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "W",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "N",
+                    "to": "E",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "E",
+                    "to": "S",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "S",
+                    "to": "W",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "W",
+                    "to": "N",
+                    "right": true
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Between the landmarks",
+            "intro": "Quarter, half, whole — sort every angle against them.",
+            "examples": [
+              {
+                "prompt": "A gate swings from closed through a quarter turn, then onward to a half turn. How much more did it turn after the quarter?",
+                "steps": [
+                  "From $90$ to $180$: the extra is $180 - 90 = 90$ degrees.",
+                  "Another whole quarter turn — check: $90 + 90 = 180$ ✓."
+                ],
+                "answer": "$90$ degrees more — one more quarter turn",
+                "check": [
+                  "Eq(180 - 90, 90)",
+                  "Eq(90 + 90, 180)"
+                ]
+              },
+              {
+                "prompt": "At 6:00 the clock's hands point opposite ways — a straight angle. How many right angles is that?",
+                "steps": [
+                  "A straight angle is $180$ degrees.",
+                  "$180 \\div 90 = 2$ — two page corners, laid flat together."
+                ],
+                "answer": "$2$ right angles",
+                "check": [
+                  "Eq(Rational(180,90), 2)",
+                  "Eq(2*90, 180)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Sort against the landmarks",
+            "intro": "Smaller than 90, exactly 90, or between 90 and 180?",
+            "problems": [
+              {
+                "prompt": "A straight line holds how many right angles?",
+                "options": [
+                  "$2$",
+                  "$4$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$180 \\div 90 = 2$. (Four is the FULL turn's count.)",
+                "check": [
+                  "Eq(Rational(180,90), 2)"
+                ]
+              },
+              {
+                "prompt": "The page corner sinks fully into the angle at $O$ in the picture, with room to spare — yet the angle is not flat. The angle is:",
+                "options": [
+                  "bigger than a right angle, smaller than a straight one",
+                  "smaller than a right angle",
+                  "exactly a right angle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Room to spare means more than the quarter turn; not yet flat means less than the half. It lives between the landmarks — and the room between them is one more quarter: $180 - 90 = 90$.",
+                "check": [
+                  "Eq(180 - 90, 90)",
+                  "Eq(90 + 90, 180)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "O",
+                        "x": 3.0,
+                        "y": 2.0,
+                        "label": "O"
+                      },
+                      {
+                        "id": "A",
+                        "x": 9.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 1.0,
+                        "y": 7.0,
+                        "label": "B"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "A",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "O",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "O",
+                        "from": "A",
+                        "to": "B"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "Three quarters of a full turn are used up. What remains?",
+                "options": [
+                  "one right angle",
+                  "two right angles",
+                  "half a turn"
+                ],
+                "correctIndex": 0,
+                "explanation": "$360 - 3 \\times 90 = 360 - 270 = 90$ — exactly one more quarter. Check: $270 + 90 = 360$ ✓.",
+                "check": [
+                  "Eq(3*90, 270)",
+                  "Eq(360 - 270, 90)",
+                  "Eq(270 + 90, 360)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Quarter by quarter",
+            "prompt": "A dancer makes a quarter turn four times, always the same way. She now faces:",
+            "options": [
+              "the way she started — a full turn",
+              "the opposite way",
+              "a quarter turn from the start",
+              "halfway between start and opposite"
+            ],
+            "correctIndex": 0,
+            "explanation": "Four quarters make one whole: $4 \\times 90 = 360$ degrees, a complete spin back to the start. (Two quarters would face her the opposite way: $2 \\times 90 = 180$.)",
+            "check": [
+              "Eq(4*90, 360)",
+              "Eq(2*90, 180)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A right angle is a quarter of a full turn: 90 degrees, since 4 × 90 = 360.",
+              "The page corner tests any corner: exact fit, gap (smaller), or room to spare (bigger).",
+              "Two right angles make a straight line: 2 × 90 = 180.",
+              "Arm length never votes — an angle is turn, not ink.",
+              "Tilting a right angle does not un-right it; the tester works at any slant."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every angle below, say the tester's verdict first — fits, gap, or room to spare — then pick the answer. The verdict IS the answer."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Quarters, halves, and the tester's verdicts.",
+            "problems": [
+              {
+                "prompt": "The hands of a clock make a right angle at:",
+                "options": [
+                  "3:00",
+                  "6:00",
+                  "12:00"
+                ],
+                "correctIndex": 0,
+                "explanation": "At 3:00 the hands are a quarter of the face apart: $360 \\div 4 = 90$ degrees. (6:00 makes a straight angle; at 12:00 the hands lie together.)",
+                "check": [
+                  "Eq(Rational(360,4), 90)"
+                ]
+              },
+              {
+                "prompt": "Two right angles plus one more right angle make:",
+                "options": [
+                  "three quarters of a turn",
+                  "a full turn",
+                  "a straight line"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 90 = 270$ degrees — three quarters. One more quarter would close the spin: $270 + 90 = 360$.",
+                "check": [
+                  "Eq(3*90, 270)",
+                  "Eq(270 + 90, 360)"
+                ]
+              },
+              {
+                "prompt": "Every corner of the window in the picture passes the page-corner test. All four corners together make:",
+                "options": [
+                  "a full turn",
+                  "a straight line",
+                  "two full turns"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four right angles: $4 \\times 90 = 360$ degrees — one full turn shared out among the window's corners.",
+                "check": [
+                  "Eq(4*90, 360)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 2.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 8.0,
+                        "y": 7.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.0,
+                        "y": 7.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "D",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "D",
+                        "to": "B",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "A",
+                        "to": "C",
+                        "right": true
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "An angle smaller than a right angle is ALWAYS smaller than a straight angle too, because:",
+                "options": [
+                  "the quarter turn is smaller than the half turn",
+                  "all angles are smaller than straight ones",
+                  "small angles have short arms"
+                ],
+                "correctIndex": 0,
+                "explanation": "Under $90$ means under $180$ as well — the landmarks sit in order, quarter before half: $90 < 180$, and the gap between them is $180 - 90 = 90$.",
+                "check": [
+                  "90 < 180",
+                  "Eq(180 - 90, 90)"
+                ]
+              },
+              {
+                "prompt": "How many quarter turns fit in TWO full turns?",
+                "options": [
+                  "$8$",
+                  "$4$",
+                  "$2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two spins: $2 \\times 360 = 720$ degrees; $720 \\div 90 = 8$ quarters.",
+                "check": [
+                  "Eq(2*360, 720)",
+                  "Eq(Rational(720,90), 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Right Angles\"",
+            "body": "The quarter turn, the tester in every book's corner, and the landmarks at 90, 180 and 360. Next: the shapes those corners build — the quadrilateral family, sorted by its rules."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sorting-quadrilaterals",
+      "title": "Sorting Quadrilaterals",
+      "concreteComparison": "Four-sided shapes are one big family. The square window, the long rectangular door, the leaning fence panel — all quadrilaterals. The square is the STRICTEST member: four equal sides AND four right angles. The rectangle keeps the right angles but lets opposite sides pair up long-and-short. The leaning panel keeps only the count of four. Stricter rules make a smaller club — and since the square obeys every rectangle rule, every square IS a rectangle.",
+      "objective": "Sort quadrilaterals by their rules — four equal sides and four right angles for a square, right angles with opposite sides equal for a rectangle — and explain why every square is also a rectangle.",
+      "concept": [
+        "**Quadrilateral is the family name.** Any closed shape with $4$ straight sides belongs — leaning, stretched, or neat. Four sides, four corners, no other requirement.",
+        "**A rectangle passes two tests.** All four corners pass the page-corner test ($4 \\times 90 = 360$, a full turn of right angles), and opposite sides are equal — the top matches the bottom, the left matches the right.",
+        "**A square is a rectangle with a bonus.** It passes both rectangle tests AND makes all four sides equal. Stricter rules, smaller club: every square is a rectangle, but most rectangles are not squares."
+      ],
+      "keyIdea": "Sort by rules, not by looks: four straight sides makes a quadrilateral, right angles with opposite sides equal makes a rectangle, and equal sides on top of that makes a square — so every square is a rectangle.",
+      "facts": [
+        {
+          "title": "The rectangle's two tests",
+          "latex": "4 \\times 90^\\circ = 360^\\circ \\quad \\text{and opposite sides equal}",
+          "explanation": "Four page-corner angles, and sides matching in opposite pairs."
+        },
+        {
+          "title": "The square's bonus",
+          "latex": "\\text{square} = \\text{rectangle} + \\text{all sides equal}",
+          "explanation": "Every square passes every rectangle test — membership nests one way."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4sh-l3-we1",
+          "statement": "A square is drawn with corners at $(2, 2)$, $(8, 2)$, $(8, 8)$ and $(2, 8)$. Show that its bottom side and its left side really are equal.",
+          "note": "Read each side's length off the coordinates.",
+          "solution": "Bottom: from $2$ across to $8$ is $8 - 2 = 6$. Left: from $2$ up to $8$ is the same $8 - 2 = 6$. Equal — and the add-back check $6 + 2 = 8$ signs the receipt. With all four corners right, the shape earns its name.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(8 - 2, 6)",
+            "Eq(6 + 2, 8)",
+            "Eq(4*90, 360)"
+          ]
+        },
+        {
+          "id": "g4sh-l3-we2",
+          "statement": "A rectangle is drawn with corners at $(1, 1)$, $(9, 1)$, $(9, 5)$ and $(1, 5)$. Show its opposite sides are equal — and say why it is NOT a square.",
+          "note": "Compare bottom with top, then long side with short.",
+          "solution": "Bottom and top both run from $1$ to $9$: $9 - 1 = 8$ each (add back: $8 + 1 = 9$ ✓). Left and right both run from $1$ to $5$: $5 - 1 = 4$ each ($4 + 1 = 5$ ✓). Opposite sides equal, four right angles: a rectangle. But $8 > 4$ — neighbouring sides differ, so it is not a square.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(9 - 1, 8)",
+            "Eq(8 + 1, 9)",
+            "Eq(5 - 1, 4)",
+            "Eq(4 + 1, 5)",
+            "8 > 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Saying a square is not a rectangle.",
+          "correction": "The rectangle test asks only for right angles and opposite sides equal. A square passes both — its equal sides are a bonus, not a disqualification. Every square is a rectangle.",
+          "authored": true
+        },
+        {
+          "text": "Calling a square standing on its corner a \"diamond\" — a different shape.",
+          "correction": "Turning a shape changes nothing it promised: the sides stay equal, the corners stay right. A tilted square is a square.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4sh-l3-t1",
+          "statement": "A quadrilateral has four right angles and sides $7$, $3$, $7$, $3$. Which family member is it — and why not a square?",
+          "solution": "Right angles ($4 \\times 90 = 360$) and opposite sides equal: a RECTANGLE. Not a square, because neighbouring sides differ: $7 > 3$.",
+          "check": [
+            "Eq(4*90, 360)",
+            "7 > 3"
+          ]
+        },
+        {
+          "id": "g4sh-l3-t2",
+          "statement": "True or false: every square is a rectangle.",
+          "solution": "True. The rectangle test has $2$ parts — right angles, opposite sides equal — and a square passes $1 + 1 = 2$ of them, both. The bonus (ALL sides equal) breaks no rule.",
+          "check": [
+            "Eq(1 + 1, 2)",
+            "Eq(4*90, 360)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The family and the rectangle's rules",
+            "beats": [
+              "Count the sides, test the corners — both promises work together here. Any $4$ straight sides make a QUADRILATERAL: the family name. The picture's leaning shape belongs, with no equal sides and no right angles at all.",
+              "The RECTANGLE is the family's tidy member. Two tests: every corner passes the page-corner test ($4 \\times 90 = 360$ — a full turn of right angles), and opposite sides are equal, top matching bottom, left matching right.",
+              "Sort by RULES, never by looks. A long thin rectangle and a nearly-square one pass exactly the same two tests."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 1.8,
+                    "y": 1.4,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 5.8,
+                    "y": 1.6,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 8.5,
+                    "y": 8.4,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 3.4,
+                    "y": 7.2,
+                    "label": "D"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "color": "#94a3b8"
+                  }
+                ],
+                "height": 190
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Running the tests",
+            "intro": "Right angles first, then match the opposite sides.",
+            "examples": [
+              {
+                "prompt": "The rectangle in the picture has corners $(1, 1)$, $(9, 1)$, $(9, 5)$, $(1, 5)$. Check its opposite sides.",
+                "steps": [
+                  "Bottom and top: $9 - 1 = 8$ each (add back $8 + 1 = 9$ ✓).",
+                  "Left and right: $5 - 1 = 4$ each ($4 + 1 = 5$ ✓). Opposite pairs match — rectangle confirmed."
+                ],
+                "answer": "opposite sides $8$ and $8$, $4$ and $4$ — a rectangle",
+                "check": [
+                  "Eq(9 - 1, 8)",
+                  "Eq(8 + 1, 9)",
+                  "Eq(5 - 1, 4)",
+                  "Eq(4 + 1, 5)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 1.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 9.0,
+                        "y": 5.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 1.0,
+                        "y": 5.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "D",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "D",
+                        "to": "B",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "A",
+                        "to": "C",
+                        "right": true
+                      }
+                    ],
+                    "height": 190
+                  }
+                }
+              },
+              {
+                "prompt": "A fence panel has four equal sides of $5$, but its corners fail the page-corner test. Is it a square?",
+                "steps": [
+                  "The square test has two parts: equal sides AND right angles — $1 + 1 = 2$ tests.",
+                  "This panel passes only the sides test: $1$ of $2$. Not a square — just a leaning equal-sided quadrilateral."
+                ],
+                "answer": "no — equal sides alone pass only $1$ of the $2$ tests",
+                "check": [
+                  "Eq(1 + 1, 2)",
+                  "Eq(2 - 1, 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which member?",
+            "intro": "Rules decide, looks distract.",
+            "problems": [
+              {
+                "prompt": "The shape in the picture has four right angles, long sides $8$ and short sides $4$. It is a:",
+                "options": [
+                  "rectangle",
+                  "square",
+                  "pentagon"
+                ],
+                "correctIndex": 0,
+                "explanation": "Right angles ($4 \\times 90 = 360$) and opposite sides equal: rectangle. Not a square — $8 > 4$, the neighbouring sides differ.",
+                "check": [
+                  "Eq(4*90, 360)",
+                  "8 > 4"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 1.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 9.0,
+                        "y": 5.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 1.0,
+                        "y": 5.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "D",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "D",
+                        "to": "B",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "A",
+                        "to": "C",
+                        "right": true
+                      }
+                    ],
+                    "height": 190
+                  }
+                }
+              },
+              {
+                "prompt": "Which rule does EVERY quadrilateral obey?",
+                "options": [
+                  "four straight sides",
+                  "four right angles",
+                  "four equal sides"
+                ],
+                "correctIndex": 0,
+                "explanation": "The family asks only for the count: $4$ sides (and the matching $4$ corners — $4 \\times 2 = 8$ side-ends, $8 \\div 2 = 4$). Right angles and equal sides are extra rules for stricter members.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(Rational(8,2), 4)"
+                ]
+              },
+              {
+                "prompt": "A rectangle's bottom side is $9$ cm. Its top side is:",
+                "options": [
+                  "$9$ cm",
+                  "$4$ cm",
+                  "impossible to tell"
+                ],
+                "correctIndex": 0,
+                "explanation": "Opposite sides of a rectangle are equal, so the top copies the bottom exactly: $9$ cm. The two differ by nothing at all — $9 - 9 = 0$, and adding back, $0 + 9 = 9$ ✓.",
+                "check": [
+                  "Eq(9 - 9, 0)",
+                  "Eq(0 + 9, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rules, not looks",
+            "prompt": "A quadrilateral has four page-corner angles, opposite sides equal, long side $7$, short side $4$. It is:",
+            "options": [
+              "a rectangle",
+              "a square",
+              "a pentagon",
+              "not a real shape"
+            ],
+            "correctIndex": 0,
+            "explanation": "Both rectangle tests pass: rectangle. The square would demand equal neighbours, but $7 > 4$. And with four sides it is certainly no pentagon — $4 < 5$.",
+            "check": [
+              "Eq(4*90, 360)",
+              "7 > 4",
+              "4 < 5"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The chessboard's square of squares",
+            "body": "A chessboard is a square cut into $8$ rows of $8$ squares: $8 \\times 8 = 64$ little squares sitting inside one big one. Squares tile perfectly — right angles meeting right angles, $4 \\times 90 = 360$ around every inner corner, no gaps anywhere. That is why floors, windows and game boards love them."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "The square — strictest of the family",
+            "beats": [
+              "The SQUARE passes the rectangle's two tests and adds a bonus: ALL four sides equal. In the picture the bottom is $8 - 2 = 6$ and the left is the same $8 - 2 = 6$ — drawn honestly square.",
+              "Because it passes every rectangle test, every square IS a rectangle. The reverse fails: a rectangle with sides $8$ and $4$ is no square, since $8 > 4$.",
+              "And tilting changes nothing: stand a square on its corner and its sides are still equal, its corners still right. Rules travel with the shape."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.0,
+                    "y": 2.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 8.0,
+                    "y": 8.0,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 2.0,
+                    "y": 8.0,
+                    "label": "D"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "A",
+                    "from": "B",
+                    "to": "D",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "B",
+                    "from": "C",
+                    "to": "A",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "C",
+                    "from": "D",
+                    "to": "B",
+                    "right": true
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "D",
+                    "from": "A",
+                    "to": "C",
+                    "right": true
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Membership runs one way",
+            "intro": "Squares pass rectangle tests; rectangles may fail the square's.",
+            "examples": [
+              {
+                "prompt": "A student says: \"a square is not a rectangle.\" Test the square against the rectangle's rules.",
+                "steps": [
+                  "Right angles? Yes — all four, $360 \\div 90 = 4$ of them.",
+                  "Opposite sides equal? Yes — ALL its sides are equal, so opposite pairs certainly match. Both tests passed: $1 + 1 = 2$. The student is wrong."
+                ],
+                "answer": "the square passes both tests — it IS a rectangle",
+                "check": [
+                  "Eq(Rational(360,90), 4)",
+                  "Eq(1 + 1, 2)"
+                ]
+              },
+              {
+                "prompt": "A rectangle has sides $8$, $4$, $8$, $4$. Does it pass the square's test?",
+                "steps": [
+                  "The square demands all sides equal — but $8 > 4$.",
+                  "It stays a rectangle. Membership runs one way only: squares into rectangles, not back."
+                ],
+                "answer": "no — $8 > 4$, so it is a rectangle but not a square",
+                "check": [
+                  "8 > 4",
+                  "Eq(4*90, 360)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The strictest member",
+            "intro": "Two tests plus a bonus.",
+            "problems": [
+              {
+                "prompt": "Every square is a rectangle because:",
+                "options": [
+                  "it passes both rectangle tests",
+                  "it has five sides",
+                  "rectangles must have equal sides"
+                ],
+                "correctIndex": 0,
+                "explanation": "Right angles — check. Opposite sides equal — check (all of them are). $1 + 1 = 2$ tests passed; the bonus breaks nothing.",
+                "check": [
+                  "Eq(1 + 1, 2)"
+                ]
+              },
+              {
+                "prompt": "The shape in the picture stands on its corner: four equal sides, four page-corner angles. It is:",
+                "options": [
+                  "a square",
+                  "a diamond — a new shape",
+                  "a triangle"
+                ],
+                "correctIndex": 0,
+                "explanation": "Equal sides AND right angles: a square, whichever way it stands. Turning a shape cancels none of its promises — $4 \\times 90 = 360$ still.",
+                "check": [
+                  "Eq(4*90, 360)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 5.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 5.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.0,
+                        "y": 9.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 1.0,
+                        "y": 5.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "D",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "A",
+                        "to": "C",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "D",
+                        "to": "B",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "C",
+                        "to": "A",
+                        "right": true
+                      }
+                    ],
+                    "height": 210
+                  }
+                }
+              },
+              {
+                "prompt": "A quadrilateral has four equal sides but NO right angles. Is it a square?",
+                "options": [
+                  "no — a square needs right angles too",
+                  "yes — equal sides are enough",
+                  "yes, if it is drawn neatly"
+                ],
+                "correctIndex": 0,
+                "explanation": "The square test has $2$ parts; equal sides pass only $1$ of them, and $2 - 1 = 1$ test still fails. No right angles, no square.",
+                "check": [
+                  "Eq(1 + 1, 2)",
+                  "Eq(2 - 1, 1)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One-way membership",
+            "prompt": "Every square is a rectangle. Is every rectangle a square?",
+            "options": [
+              "no — its neighbouring sides may differ",
+              "yes — same family, same shape",
+              "only tilted rectangles",
+              "no rectangle is ever a square"
+            ],
+            "correctIndex": 0,
+            "explanation": "A rectangle with sides $8$ and $4$ passes both rectangle tests yet fails the square's bonus: $8 > 4$. Membership nests one way — the strictest member fits inside every looser club, never the reverse.",
+            "check": [
+              "8 > 4",
+              "Eq(4*90, 360)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Quadrilateral is the family name: any 4 straight sides.",
+              "Rectangle: four right angles (4 × 90 = 360) and opposite sides equal.",
+              "Square: a rectangle whose sides are ALL equal — the strictest member.",
+              "Every square is a rectangle; a rectangle with unequal neighbours is not a square.",
+              "Sort by rules, never by looks — and tilting changes nothing."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each shape below, run the tests out loud in order: sides straight and four? corners right? opposite sides equal? all sides equal? Stop at the strictest test it passes."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "The whole family, sorted by rules.",
+            "problems": [
+              {
+                "prompt": "Which shape does NOT belong to the quadrilateral family?",
+                "options": [
+                  "a triangle",
+                  "a rectangle",
+                  "a square"
+                ],
+                "correctIndex": 0,
+                "explanation": "The family badge is four sides — a triangle carries only $3$, and $3 < 4$. Rectangles and squares are members in good standing.",
+                "check": [
+                  "3 < 4"
+                ]
+              },
+              {
+                "prompt": "The rectangle in the picture has corners $(2, 3)$, $(9, 3)$, $(9, 7)$, $(2, 7)$. Its top side measures:",
+                "options": [
+                  "$7$",
+                  "$4$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The top runs from $2$ to $9$: $9 - 2 = 7$ (add back: $7 + 2 = 9$ ✓) — equal to the bottom, as a rectangle promises. The short sides measure $7 - 3 = 4$ each ($4 + 3 = 7$ ✓).",
+                "check": [
+                  "Eq(9 - 2, 7)",
+                  "Eq(7 + 2, 9)",
+                  "Eq(7 - 3, 4)",
+                  "Eq(4 + 3, 7)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 3.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 3.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 9.0,
+                        "y": 7.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.0,
+                        "y": 7.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "A",
+                        "from": "B",
+                        "to": "D",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "B",
+                        "from": "C",
+                        "to": "A",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "C",
+                        "from": "D",
+                        "to": "B",
+                        "right": true
+                      },
+                      {
+                        "kind": "angle",
+                        "at": "D",
+                        "from": "A",
+                        "to": "C",
+                        "right": true
+                      }
+                    ],
+                    "height": 190
+                  }
+                }
+              },
+              {
+                "prompt": "A square has sides of $6$; a rectangle has sides $8$ and $4$. Which statement is right?",
+                "options": [
+                  "both are rectangles; only the first is a square",
+                  "both are squares",
+                  "neither is a rectangle"
+                ],
+                "correctIndex": 0,
+                "explanation": "The square passes both rectangle tests ($1 + 1 = 2$) plus its bonus. The $8$-by-$4$ shape is a rectangle only: $8 > 4$.",
+                "check": [
+                  "Eq(1 + 1, 2)",
+                  "8 > 4"
+                ]
+              },
+              {
+                "prompt": "The four right angles of a rectangle together make:",
+                "options": [
+                  "a full turn",
+                  "a straight line",
+                  "three quarters of a turn"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 90 = 360$ degrees — the same full turn the crossing's corners made in the last lesson.",
+                "check": [
+                  "Eq(4*90, 360)"
+                ]
+              },
+              {
+                "prompt": "The leaning shape in the picture has $4$ straight sides, no equal sides, no right angles. Its best name is:",
+                "options": [
+                  "quadrilateral",
+                  "rectangle",
+                  "square"
+                ],
+                "correctIndex": 0,
+                "explanation": "It passes only the family test: four sides (receipt: $4 \\times 2 = 8$ side-ends, $8 \\div 2 = 4$ corners). No stricter club will take it.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(Rational(8,2), 4)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.8,
+                        "y": 1.4,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 5.8,
+                        "y": 1.6,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 8.5,
+                        "y": 8.4,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 3.4,
+                        "y": 7.2,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#94a3b8"
+                      }
+                    ],
+                    "height": 190
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Sorting Quadrilaterals\"",
+            "body": "Rules, not looks — and the strictest member fits inside every looser club. Next promise to test: the fold. Some shapes hide a mirror down their middle."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "line-symmetry",
+      "title": "Line Symmetry",
+      "concreteComparison": "Cut a shape out of paper and fold it down the middle. If the two halves lie EXACTLY on top of each other — every edge on an edge, no overhang anywhere — the fold line is a LINE OF SYMMETRY: the shape's hidden mirror. Butterfly wings match this way, and so do the felt patterns sewn on a ger door. The fold test never lies: exact match, or no mirror.",
+      "objective": "Use the fold test to find lines of symmetry, draw mirror lines through the true middle of a shape, and count the lines a shape has — 0 for a scalene triangle, 1 for an isosceles triangle, 2 for a rectangle, 4 for a square.",
+      "concept": [
+        "**The fold test.** Fold the shape along a line: halves match exactly — the line is a line of symmetry; any overhang at all — it is not. Try the fold, and the shape answers.",
+        "**The mirror line is exact.** It must pass through the TRUE middle. For a shape sitting from $2$ across to $8$, the vertical mirror stands at the halfway mark: $2 + 8 = 10$, and $10 \\div 2 = 5$. A line drawn roughly nearby fails the fold.",
+        "**Shapes carry counts.** A scalene triangle: $0$ lines. An isosceles triangle: $1$. A rectangle: $2$ (NOT its diagonals). A square: the rectangle's $2$ plus $2$ diagonals $= 4$. The count is a property you can check fold by fold."
+      ],
+      "keyIdea": "Try the fold: halves matching exactly make a line of symmetry, the line passes the true middle, and counting the folds that work gives each shape its symmetry number: scalene triangle 0, isosceles 1, rectangle 2, square 4.",
+      "facts": [
+        {
+          "title": "The fold test",
+          "latex": "\\text{fold on the line} \\Rightarrow \\text{halves match exactly}",
+          "explanation": "Each matching half is one half of the whole — and two exact halves rebuild it."
+        },
+        {
+          "title": "Symmetry counts",
+          "latex": "\\text{rectangle: } 2 \\qquad \\text{square: } 2 + 2 = 4",
+          "explanation": "The square keeps the rectangle's two lines and adds its two diagonals."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4sh-l4-we1",
+          "statement": "A rectangle (longer than it is wide) — how many lines of symmetry, and why are its diagonals NOT among them?",
+          "note": "Try all the folds; keep only exact matches.",
+          "solution": "Two folds work: side-middle to side-middle, across and down. The diagonal fold makes the two triangle halves stick out past each other — overhang, so it fails. Count: $2$. (A square would add its $2$ diagonals: $2 + 2 = 4$.)",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1 + 1, 2)",
+            "Eq(2 + 2, 4)"
+          ]
+        },
+        {
+          "id": "g4sh-l4-we2",
+          "statement": "Count the lines of symmetry of the block letters A, H and F — and give the total.",
+          "note": "Fold each letter in your head; count exact matches only.",
+          "solution": "A: one vertical mirror — $1$. H: vertical AND horizontal — $2$. F: no fold matches — $0$. Total: $1 + 2 + 0 = 3$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1 + 2 + 0, 3)",
+            "2 > 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Folding a rectangle along its diagonal and calling it a line of symmetry.",
+          "correction": "Fold it with real paper once: the halves overhang. A rectangle has exactly 2 lines, both through the middles of its sides. Only the SQUARE earns diagonal mirrors.",
+          "authored": true
+        },
+        {
+          "text": "Drawing the mirror line roughly near the middle.",
+          "correction": "The fold test is exact: the line must pass the true middle (halfway between 2 and 8 is exactly 5, not \"about there\"). A line slightly off fails the fold.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4sh-l4-t1",
+          "statement": "How many lines of symmetry has a square?",
+          "solution": "The rectangle's $2$ (through side-middles) plus its own $2$ diagonals: $2 + 2 = 4$.",
+          "check": [
+            "Eq(2 + 2, 4)"
+          ]
+        },
+        {
+          "id": "g4sh-l4-t2",
+          "statement": "Block letter H has $2$ lines of symmetry; block letter M has $1$. How many more has H?",
+          "solution": "$2 - 1 = 1$ more (the horizontal fold that M fails). Add back: $1 + 1 = 2$ ✓.",
+          "check": [
+            "Eq(2 - 1, 1)",
+            "Eq(1 + 1, 2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The fold test",
+            "beats": [
+              "Try the fold — this lesson's promise. Fold a shape along a line: if the halves lie exactly edge on edge, the line is a LINE OF SYMMETRY. Any overhang, however small, and it is not.",
+              "The dashed line in the picture is the triangle's one true mirror: it stands at the halfway mark of the base, $2 + 8 = 10$, $10 \\div 2 = 5$, and rises through the apex.",
+              "Exact is the whole rule: two matching halves are each one half of the shape, and $\\frac{1}{2} + \\frac{1}{2} = 1$ — they rebuild it perfectly with nothing left over."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.0,
+                    "y": 2.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 8.0,
+                    "label": "C"
+                  },
+                  {
+                    "id": "M",
+                    "x": 5.0,
+                    "y": 1.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "N",
+                    "x": 5.0,
+                    "y": 9.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "N",
+                    "dashed": true,
+                    "color": "#d97706"
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Finding the fold",
+            "intro": "The mirror stands at the true middle — compute it, then fold.",
+            "examples": [
+              {
+                "prompt": "The triangle in the picture has base corners at $2$ and $8$, apex above the middle. Where is its mirror line, and how many does it have?",
+                "steps": [
+                  "Halfway between $2$ and $8$: $2 + 8 = 10$, $10 \\div 2 = 5$ — the dashed vertical through the apex.",
+                  "Fold there: the two slanted sides swap places exactly. No other fold matches: $1$ line."
+                ],
+                "answer": "one line — the vertical through $5$",
+                "check": [
+                  "Eq(2 + 8, 10)",
+                  "Eq(Rational(10,2), 5)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 2.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.0,
+                        "y": 8.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "M",
+                        "x": 5.0,
+                        "y": 1.0,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": 5.0,
+                        "y": 9.0,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "A",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "N",
+                        "dashed": true,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 210
+                  }
+                }
+              },
+              {
+                "prompt": "The rectangle in the picture runs from $1$ to $9$ across and $2$ to $6$ up. Find both mirror lines.",
+                "steps": [
+                  "Vertical: halfway between $1$ and $9$ — $1 + 9 = 10$, $10 \\div 2 = 5$.",
+                  "Horizontal: halfway between $2$ and $6$ — $2 + 6 = 8$, $8 \\div 2 = 4$. Two lines, both dashed in the picture — and no diagonal fold matches."
+                ],
+                "answer": "the vertical at $5$ and the horizontal at $4$ — $2$ lines",
+                "check": [
+                  "Eq(1 + 9, 10)",
+                  "Eq(Rational(10,2), 5)",
+                  "Eq(2 + 6, 8)",
+                  "Eq(Rational(8,2), 4)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 1.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 2.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 9.0,
+                        "y": 6.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 1.0,
+                        "y": 6.0,
+                        "label": "D"
+                      },
+                      {
+                        "id": "M",
+                        "x": 5.0,
+                        "y": 1.2,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": 5.0,
+                        "y": 6.8,
+                        "label": ""
+                      },
+                      {
+                        "id": "U",
+                        "x": 0.4,
+                        "y": 4.0,
+                        "label": ""
+                      },
+                      {
+                        "id": "V",
+                        "x": 9.6,
+                        "y": 4.0,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "N",
+                        "dashed": true,
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "U",
+                        "to": "V",
+                        "dashed": true,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fold and judge",
+            "intro": "Exact match or nothing.",
+            "problems": [
+              {
+                "prompt": "You fold a shape on a line and one half sticks out past the other. The line is:",
+                "options": [
+                  "not a line of symmetry",
+                  "a line of symmetry anyway",
+                  "a line of symmetry if the overhang is small"
+                ],
+                "correctIndex": 0,
+                "explanation": "The fold test is exact: a true mirror splits the shape into two matching halves, $\\frac{1}{2} + \\frac{1}{2} = 1$, with NOTHING left over. Overhang means the halves differ — test failed.",
+                "check": [
+                  "Eq(Rational(1,2) + Rational(1,2), 1)"
+                ]
+              },
+              {
+                "prompt": "The triangle in the picture has sides $8$, $6$ and $4$ — all different. Its lines of symmetry number:",
+                "options": [
+                  "$0$",
+                  "$1$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A fold must swap two EQUAL sides onto each other, but here no two sides match: $4 < 6$ and $6 < 8$. No fold works — a scalene triangle has no mirror.",
+                "check": [
+                  "4 < 6",
+                  "6 < 8"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 0.5,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.5,
+                        "y": 1.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.75,
+                        "y": 3.905,
+                        "label": "C"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "A",
+                        "color": "#94a3b8"
+                      }
+                    ],
+                    "height": 180
+                  }
+                }
+              },
+              {
+                "prompt": "The triangle in the picture has base corners at $3$ and $9$ and two equal slanted sides. Its mirror line stands at:",
+                "options": [
+                  "$6$",
+                  "$5$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The true middle of the base: $3 + 9 = 12$, $12 \\div 2 = 6$ — exactly where the dashed line is drawn. One line of symmetry.",
+                "check": [
+                  "Eq(3 + 9, 12)",
+                  "Eq(Rational(12,2), 6)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 3.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 9.0,
+                        "y": 1.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 6.0,
+                        "y": 7.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "M",
+                        "x": 6.0,
+                        "y": 0.4,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": 6.0,
+                        "y": 7.9,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "A",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "N",
+                        "dashed": true,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Exact or nothing",
+            "prompt": "The fold test passes only when:",
+            "options": [
+              "the two halves match exactly, edge on edge",
+              "most of each half matches",
+              "the fold line is vertical",
+              "the shape is a polygon"
+            ],
+            "correctIndex": 0,
+            "explanation": "Symmetry is an exact promise: each half is precisely one half, and $2 \\times \\frac{1}{2} = 1$ — the two rebuild the whole with no overhang. Direction never matters: mirrors can stand upright, lie flat, or lean.",
+            "check": [
+              "Eq(2*Rational(1,2), 1)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "You are built on a mirror line",
+            "body": "Most animals are: biologists call it BILATERAL symmetry. A butterfly's wing patterns match across its body line, left wing mirroring right — and your own face, hands and skeleton pair up across a line down your middle. Nature discovered the fold test long before geometry named it."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Counting the lines",
+            "beats": [
+              "Each shape carries a COUNT of working folds. The square in the picture has all four drawn: the vertical at $2 + 8 = 10$, $10 \\div 2 = 5$, the horizontal at the same $5$ — and both diagonals, corner to corner.",
+              "That is the rectangle's $2$ plus the square's bonus $2$: $2 + 2 = 4$. Equal sides are what let the diagonal folds match.",
+              "Counts to remember: scalene triangle $0$, isosceles triangle $1$, rectangle $2$, square $4$. More rules kept, more mirrors earned."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.0,
+                    "y": 2.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 8.0,
+                    "y": 8.0,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 2.0,
+                    "y": 8.0,
+                    "label": "D"
+                  },
+                  {
+                    "id": "M",
+                    "x": 5.0,
+                    "y": 1.2,
+                    "label": ""
+                  },
+                  {
+                    "id": "N",
+                    "x": 5.0,
+                    "y": 8.8,
+                    "label": ""
+                  },
+                  {
+                    "id": "U",
+                    "x": 1.2,
+                    "y": 5.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "V",
+                    "x": 8.8,
+                    "y": 5.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "M",
+                    "to": "N",
+                    "dashed": true,
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "U",
+                    "to": "V",
+                    "dashed": true,
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "C",
+                    "dashed": true,
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "D",
+                    "dashed": true,
+                    "color": "#d97706"
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Symmetry numbers",
+            "intro": "Count the folds that pass; the count is the shape's property.",
+            "examples": [
+              {
+                "prompt": "Count the square's lines of symmetry.",
+                "steps": [
+                  "Side-middle folds: vertical and horizontal — $2$, the rectangle's pair.",
+                  "Diagonal folds: both match, because all sides are equal — $2$ more. Total: $2 + 2 = 4$."
+                ],
+                "answer": "$4$ lines",
+                "check": [
+                  "Eq(2 + 2, 4)"
+                ]
+              },
+              {
+                "prompt": "How many MORE lines has a square than a (non-square) rectangle?",
+                "steps": [
+                  "Square $4$, rectangle $2$: the difference is $4 - 2 = 2$ — exactly the two diagonals.",
+                  "Add back: $2 + 2 = 4$ ✓."
+                ],
+                "answer": "$2$ more — the diagonals",
+                "check": [
+                  "Eq(4 - 2, 2)",
+                  "Eq(2 + 2, 4)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count the mirrors",
+            "intro": "Fold by fold — count only the folds that pass.",
+            "problems": [
+              {
+                "prompt": "Block letter H has how many lines of symmetry?",
+                "options": [
+                  "$2$",
+                  "$1$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "A vertical fold matches its two uprights, and a horizontal fold matches top to bottom: $1 + 1 = 2$ lines.",
+                "check": [
+                  "Eq(1 + 1, 2)"
+                ]
+              },
+              {
+                "prompt": "Which block letter has NO line of symmetry?",
+                "options": [
+                  "F",
+                  "A",
+                  "T"
+                ],
+                "correctIndex": 0,
+                "explanation": "A and T each pass one vertical fold ($1$ line each); F fails every fold — $0$. Their three counts: $0 + 1 + 1 = 2$ lines among them.",
+                "check": [
+                  "Eq(0 + 1 + 1, 2)"
+                ]
+              },
+              {
+                "prompt": "The four-equal-sided shape in the picture (not a square) has its mirror lines along:",
+                "options": [
+                  "its two corner-to-corner diagonals",
+                  "its two side-middle lines",
+                  "all four of those lines"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fold corner to corner and the equal sides swap exactly — both diagonals pass, standing at the true middles: across, $2 + 8 = 10$, $10 \\div 2 = 5$; and up, $1 + 9 = 10$, $10 \\div 2 = 5$. The side-middle folds fail because its corners are not right angles: $2$ lines, not $4$.",
+                "check": [
+                  "Eq(2 + 8, 10)",
+                  "Eq(1 + 9, 10)",
+                  "Eq(Rational(10,2), 5)",
+                  "Eq(1 + 1, 2)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 5.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 5.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.0,
+                        "y": 9.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.0,
+                        "y": 5.0,
+                        "label": "D"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "C",
+                        "dashed": true,
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "D",
+                        "dashed": true,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 210
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Where the extra mirrors come from",
+            "prompt": "A rectangle has 2 lines of symmetry and a square has 4. The square's two extra lines run:",
+            "options": [
+              "corner to corner — its diagonals",
+              "side-middle to side-middle",
+              "outside the shape",
+              "nowhere — squares also have just 2"
+            ],
+            "correctIndex": 0,
+            "explanation": "Equal sides let the diagonal folds match: $4 - 2 = 2$ extra lines, and $2 + 2 = 4$ in all. The rectangle's unequal neighbours make its diagonal folds overhang.",
+            "check": [
+              "Eq(4 - 2, 2)",
+              "Eq(2 + 2, 4)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The fold test: halves match exactly — line of symmetry; any overhang — not.",
+              "The mirror line passes the TRUE middle: halfway between 2 and 8 is exactly 5.",
+              "Counts: scalene 0, isosceles 1, rectangle 2, square 2 + 2 = 4.",
+              "A rectangle's diagonals are NOT mirror lines — only the square earns those.",
+              "Letters carry counts too: F 0, A 1, H 2."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each shape below, fold it in your head one line at a time and say pass or fail — then count the passes. The count is the answer."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Fold, judge, count.",
+            "problems": [
+              {
+                "prompt": "An isosceles triangle (two equal sides) has how many lines of symmetry?",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One fold — through the apex and the base's middle — swaps the two equal sides exactly. A scalene triangle, whose sides all differ, has no fold that works at all: $0 < 1$. So this one earns exactly $1$ line.",
+                "check": [
+                  "0 < 1"
+                ]
+              },
+              {
+                "prompt": "A square, a rectangle and a scalene triangle: total lines of symmetry?",
+                "options": [
+                  "$6$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 + 2 + 0 = 6$ lines among the three shapes.",
+                "check": [
+                  "Eq(4 + 2 + 0, 6)"
+                ]
+              },
+              {
+                "prompt": "The rectangle in the picture shows its mirror lines dashed. How many are there — and are the diagonals included?",
+                "options": [
+                  "$2$ — and the diagonals are not",
+                  "$4$ — including the diagonals",
+                  "$1$ — the vertical only"
+                ],
+                "correctIndex": 0,
+                "explanation": "Both side-middle folds pass, standing at the true middles: across, $2 + 8 = 10$ and $10 \\div 2 = 5$; up, $1 + 9 = 10$ and $10 \\div 2 = 5$ — exact, not roughly. Diagonal folds overhang: $2$ lines.",
+                "check": [
+                  "Eq(2 + 8, 10)",
+                  "Eq(1 + 9, 10)",
+                  "Eq(Rational(10,2), 5)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 1.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 1.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 8.0,
+                        "y": 9.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.0,
+                        "y": 9.0,
+                        "label": "D"
+                      },
+                      {
+                        "id": "M",
+                        "x": 5.0,
+                        "y": 0.4,
+                        "label": ""
+                      },
+                      {
+                        "id": "N",
+                        "x": 5.0,
+                        "y": 9.6,
+                        "label": ""
+                      },
+                      {
+                        "id": "U",
+                        "x": 1.2,
+                        "y": 5.0,
+                        "label": ""
+                      },
+                      {
+                        "id": "V",
+                        "x": 8.8,
+                        "y": 5.0,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#059669"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "M",
+                        "to": "N",
+                        "dashed": true,
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "U",
+                        "to": "V",
+                        "dashed": true,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 200
+                  }
+                }
+              },
+              {
+                "prompt": "The word MOM is written in block capitals. Total lines of symmetry, letter by letter?",
+                "options": [
+                  "$4$",
+                  "$3$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "M has $1$ (vertical), O has $2$ (vertical and horizontal), M has $1$: $1 + 2 + 1 = 4$. That vertical mirror in every letter is why MOM reads the same in an actual mirror.",
+                "check": [
+                  "Eq(1 + 2 + 1, 4)"
+                ]
+              },
+              {
+                "prompt": "A shape's mirror line must pass through:",
+                "options": [
+                  "the exact middle of what it splits",
+                  "roughly the middle",
+                  "a corner, always"
+                ],
+                "correctIndex": 0,
+                "explanation": "Exact, always: for a base from $3$ to $9$ the mirror stands at $3 + 9 = 12$, $12 \\div 2 = 6$ — one number, not a neighbourhood. (Some mirrors DO pass corners, like the square's diagonals, but only when the corner sits on the true middle line.)",
+                "check": [
+                  "Eq(3 + 9, 12)",
+                  "Eq(Rational(12,2), 6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Line Symmetry\"",
+            "body": "The fold test, the true middle, and each shape's symmetry number. One promise left to test — and it needs all three dimensions: faces, edges and vertices of the solids in your hands."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "three-d-solids",
+      "title": "3-D Solids",
+      "concreteComparison": "A dice, a brick, a ball, a tin can, an ice-cream cone and a point-topped tower: six solids you can hold. Flat shapes live on paper; solids fill your hand — so they need three counts, not one. FACES are the flat surfaces you can press a palm against, EDGES the lines where two faces meet, VERTICES the corner points. A dice: $6$ faces, $12$ edges, $8$ vertices — count one tonight.",
+      "objective": "Name the six common solids — cube, cuboid, sphere, cylinder, cone, square pyramid — count faces, edges and vertices, and say which 2-D shape each flat face is.",
+      "concept": [
+        "**Three counts describe a solid.** Faces (flat surfaces), edges (lines where two faces meet), vertices (corner points). The cube: $6$ faces in $3$ opposite pairs, $12$ edges ($4$ around the top, $4$ around the bottom, $4$ upright), $8$ vertices ($4$ up, $4$ down).",
+        "**Faces wear 2-D names.** A cube's faces are squares; a cuboid's are rectangles; a square pyramid wears $1$ square and $4$ triangles. The cylinder has $2$ circle faces and a curved wrap; the cone $1$ circle and a curved slope; the sphere is all curve — no flat face, no edge, no vertex.",
+        "**The counting receipt.** For solids with flat faces, faces plus vertices beats edges by exactly $2$: cube $6 + 8 - 12 = 2$, square pyramid $5 + 5 - 8 = 2$. Miscount anything and the receipt refuses to balance — it catches errors like a checksum."
+      ],
+      "keyIdea": "Count three things — faces, edges, vertices — name each flat face with its 2-D shape, and receipt the count: faces plus vertices minus edges always makes 2.",
+      "facts": [
+        {
+          "title": "The cube's numbers",
+          "latex": "F + V - E = 6 + 8 - 12 = 2",
+          "explanation": "Faces plus vertices minus edges makes 2 — the receipt that audits your counting."
+        },
+        {
+          "title": "Faces wear 2-D names",
+          "latex": "\\text{square pyramid: } 1 \\text{ square} + 4 \\text{ triangles} = 5 \\text{ faces}",
+          "explanation": "Every flat face of a solid is a 2-D shape you already know how to name."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4sh-l5-we1",
+          "statement": "Count a dice: faces, edges, vertices — then run the receipt.",
+          "note": "Count in groups: pairs of faces; top, bottom and upright edges.",
+          "solution": "Faces: $3$ opposite pairs — $3 \\times 2 = 6$. Edges: $4$ around the top, $4$ around the bottom, $4$ upright — $4 + 4 + 4 = 12$. Vertices: $4$ up, $4$ down — $4 + 4 = 8$. Receipt: $6 + 8 = 14$, and $14 - 12 = 2$ ✓ — the count balances.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*2, 6)",
+            "Eq(4 + 4 + 4, 12)",
+            "Eq(4 + 4, 8)",
+            "Eq(6 + 8, 14)",
+            "Eq(14 - 12, 2)",
+            "Eq(2 + 12, 14)"
+          ]
+        },
+        {
+          "id": "g4sh-l5-we2",
+          "statement": "Count a square pyramid: faces, edges, vertices — and receipt it.",
+          "note": "One base below, triangles rising to one apex.",
+          "solution": "Faces: $1$ square base $+ 4$ triangles $= 5$. Vertices: $4$ base corners $+ 1$ apex $= 5$. Edges: $4$ around the base $+ 4$ rising to the apex $= 8$. Receipt: $5 + 5 = 10$, and $10 - 8 = 2$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1 + 4, 5)",
+            "Eq(4 + 1, 5)",
+            "Eq(4 + 4, 8)",
+            "Eq(5 + 5, 10)",
+            "Eq(10 - 8, 2)",
+            "Eq(2 + 8, 10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Counting only the faces you can see in a drawing — calling a cube \"3 faces\".",
+          "correction": "A drawing hides the back, the bottom and one side. Count in opposite PAIRS — front-back, left-right, top-bottom: 3 × 2 = 6 — and the hidden ones stop escaping.",
+          "authored": true
+        },
+        {
+          "text": "Mixing up edges and vertices.",
+          "correction": "An edge is a LINE where two faces meet; a vertex is a POINT where edges meet. Run a finger along a dice: the finger slides along an edge and STOPS at a vertex.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4sh-l5-t1",
+          "statement": "A brick (a cuboid) — count its faces, edges and vertices, and run the receipt.",
+          "solution": "Same counts as the cube: $3 \\times 2 = 6$ faces, $4 + 4 + 4 = 12$ edges, $4 + 4 = 8$ vertices. Receipt: $6 + 8 - 12 = 2$ ✓ — only the face SHAPES differ (rectangles, not squares).",
+          "check": [
+            "Eq(3*2, 6)",
+            "Eq(4 + 4 + 4, 12)",
+            "Eq(4 + 4, 8)",
+            "Eq(6 + 8 - 12, 2)"
+          ]
+        },
+        {
+          "id": "g4sh-l5-t2",
+          "statement": "Which 2-D shapes are a cuboid's faces? And how many FLAT faces has a cylinder?",
+          "solution": "A cuboid wears $6$ rectangles (in $3$ equal pairs: $3 \\times 2 = 6$). A cylinder has $1 + 1 = 2$ flat faces — both circles — plus one curved wrap that is not flat.",
+          "check": [
+            "Eq(3*2, 6)",
+            "Eq(1 + 1, 2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Faces, edges, vertices",
+            "beats": [
+              "Solids need THREE counts. FACES: the flat surfaces (a drawing hides some — the dashed lines in the picture mark hidden edges). EDGES: lines where two faces meet. VERTICES: points where edges meet.",
+              "Count the cube in groups, and the hidden parts cannot escape: faces in opposite pairs, $3 \\times 2 = 6$; edges as top ring, bottom ring, uprights, $4 + 4 + 4 = 12$; vertices as $4$ up and $4$ down, $4 + 4 = 8$.",
+              "Then RECEIPT the count: faces plus vertices minus edges must make $2$. Cube: $6 + 8 = 14$, $14 - 12 = 2$ ✓. If your receipt says anything else, a count is wrong."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 6.0,
+                    "y": 2.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 6.0,
+                    "y": 6.0,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 2.0,
+                    "y": 6.0,
+                    "label": "D"
+                  },
+                  {
+                    "id": "E",
+                    "x": 4.0,
+                    "y": 3.5,
+                    "label": "E"
+                  },
+                  {
+                    "id": "F",
+                    "x": 8.0,
+                    "y": 3.5,
+                    "label": "F"
+                  },
+                  {
+                    "id": "G",
+                    "x": 8.0,
+                    "y": 7.5,
+                    "label": "G"
+                  },
+                  {
+                    "id": "H",
+                    "x": 4.0,
+                    "y": 7.5,
+                    "label": "H"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "G",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "G",
+                    "to": "H",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "F",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "G",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "H",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "E",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "H",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Counting solids",
+            "intro": "Groups first, then the receipt.",
+            "examples": [
+              {
+                "prompt": "A dice: count faces, edges and vertices, and receipt the count.",
+                "steps": [
+                  "Faces $3 \\times 2 = 6$; edges $4 + 4 + 4 = 12$; vertices $4 + 4 = 8$.",
+                  "Receipt: $6 + 8 = 14$, $14 - 12 = 2$ ✓."
+                ],
+                "answer": "$6$ faces, $12$ edges, $8$ vertices",
+                "check": [
+                  "Eq(3*2, 6)",
+                  "Eq(4 + 4 + 4, 12)",
+                  "Eq(4 + 4, 8)",
+                  "Eq(6 + 8, 14)",
+                  "Eq(14 - 12, 2)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 6,
+                      "color": "#3b82f6",
+                      "label": "faces"
+                    },
+                    {
+                      "count": 12,
+                      "color": "#d97706",
+                      "label": "edges"
+                    },
+                    {
+                      "count": 8,
+                      "color": "#059669",
+                      "label": "vertices"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "A cuboid brick — same counts as the cube?",
+                "steps": [
+                  "Yes: $6$ faces, $12$ edges, $8$ vertices — the receipt balances the same way, $6 + 8 - 12 = 2$.",
+                  "The difference is the face SHAPES: rectangles instead of squares."
+                ],
+                "answer": "$6$, $12$, $8$ — rectangles for faces",
+                "check": [
+                  "Eq(6 + 8 - 12, 2)",
+                  "Eq(3*2, 6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count the dice",
+            "intro": "Pairs, rings, and the receipt.",
+            "problems": [
+              {
+                "prompt": "A cube has how many faces?",
+                "options": [
+                  "$6$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three opposite pairs: $3 \\times 2 = 6$. (Answering $4$ counts only what a drawing shows; $8$ counts the vertices.)",
+                "check": [
+                  "Eq(3*2, 6)"
+                ]
+              },
+              {
+                "prompt": "A cube has how many edges?",
+                "options": [
+                  "$12$",
+                  "$6$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Top ring $4$, bottom ring $4$, uprights $4$: $4 + 4 + 4 = 12$.",
+                "check": [
+                  "Eq(4 + 4 + 4, 12)"
+                ]
+              },
+              {
+                "prompt": "For a cuboid, faces plus vertices minus edges makes:",
+                "options": [
+                  "$2$",
+                  "$0$",
+                  "$26$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 8 = 14$, and $14 - 12 = 2$ (add back: $2 + 12 = 14$ ✓). The $26$ is what you get ADDING all three counts instead.",
+                "check": [
+                  "Eq(6 + 8, 14)",
+                  "Eq(14 - 12, 2)",
+                  "Eq(2 + 12, 14)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The hidden faces",
+            "prompt": "In a drawing of a dice you can see 3 faces. How many are hidden?",
+            "options": [
+              "$3$",
+              "$0$",
+              "$6$",
+              "$1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The dice has $6$ in all: $6 - 3 = 3$ hidden (back, bottom and one side). Add back: $3 + 3 = 6$ ✓ — count in pairs and the hidden ones stop escaping.",
+            "check": [
+              "Eq(6 - 3, 3)",
+              "Eq(3 + 3, 6)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The dice's secret sevens",
+            "body": "On a standard dice, opposite faces always add to $7$: $1 + 6$, $2 + 5$, $3 + 4$. Three pairs of opposite faces, three sums, one answer. Pick up any board-game dice and check — and notice the pairing uses each number from $1$ to $6$ exactly once."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Round solids and the pyramid",
+            "beats": [
+              "Not every solid is a box. The SPHERE (ball) is all curve: $0$ flat faces, $0$ edges, $0$ vertices. The CYLINDER (tin can): $2$ circle faces and a curved wrap. The CONE (ice-cream cone): $1$ circle face and a curved slope to a point.",
+              "The SQUARE PYRAMID in the picture is flat-faced through and through: $1$ square base $+ 4$ triangles $= 5$ faces, $4 + 1 = 5$ vertices, $4 + 4 = 8$ edges.",
+              "Its receipt balances too: $5 + 5 = 10$, $10 - 8 = 2$ ✓. Every flat-faced solid signs the same receipt — the round ones play by their own curved rules."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 2.0,
+                    "y": 2.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.0,
+                    "y": 2.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 9.3,
+                    "y": 4.4,
+                    "label": "C"
+                  },
+                  {
+                    "id": "D",
+                    "x": 3.3,
+                    "y": 4.4,
+                    "label": "D"
+                  },
+                  {
+                    "id": "T",
+                    "x": 5.6,
+                    "y": 8.6,
+                    "label": "T"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "A",
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "B",
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "C",
+                    "color": "#d97706"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "T",
+                    "to": "D",
+                    "dashed": true,
+                    "color": "#94a3b8"
+                  }
+                ],
+                "height": 210
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Pyramids and round solids",
+            "intro": "Name the faces, then receipt the flat-faced solids.",
+            "examples": [
+              {
+                "prompt": "The square pyramid: which 2-D shapes are its faces, and does the receipt balance?",
+                "steps": [
+                  "$1$ square (the base) $+ 4$ triangles (the slopes) $= 5$ faces.",
+                  "Vertices $4 + 1 = 5$, edges $4 + 4 = 8$: receipt $5 + 5 = 10$, $10 - 8 = 2$ ✓."
+                ],
+                "answer": "$1$ square $+ 4$ triangles; receipt balances at $2$",
+                "check": [
+                  "Eq(1 + 4, 5)",
+                  "Eq(4 + 1, 5)",
+                  "Eq(4 + 4, 8)",
+                  "Eq(5 + 5, 10)",
+                  "Eq(10 - 8, 2)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 1,
+                      "color": "#3b82f6",
+                      "label": "square base"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#d97706",
+                      "label": "triangle faces"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Flat faces of the round solids: cylinder, cone, sphere — total?",
+                "steps": [
+                  "Cylinder $2$ circles, cone $1$ circle, sphere none.",
+                  "Total: $2 + 1 + 0 = 3$ flat faces among the three of them."
+                ],
+                "answer": "$3$ flat faces in all",
+                "check": [
+                  "Eq(2 + 1 + 0, 3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Round and pointed",
+            "intro": "Faces wear 2-D names.",
+            "problems": [
+              {
+                "prompt": "A square pyramid's faces are:",
+                "options": [
+                  "$1$ square and $4$ triangles",
+                  "$5$ squares",
+                  "$4$ squares and $1$ triangle"
+                ],
+                "correctIndex": 0,
+                "explanation": "One square base below, four triangle slopes meeting at the apex: $1 + 4 = 5$ faces.",
+                "check": [
+                  "Eq(1 + 4, 5)"
+                ]
+              },
+              {
+                "prompt": "Which solid has NO flat face, NO edge and NO vertex?",
+                "options": [
+                  "the sphere",
+                  "the cylinder",
+                  "the cube"
+                ],
+                "correctIndex": 0,
+                "explanation": "The ball is all curve. The cylinder keeps $1 + 1 = 2$ flat circle faces; the cube is flat everywhere.",
+                "check": [
+                  "Eq(1 + 1, 2)",
+                  "0 < 2"
+                ]
+              },
+              {
+                "prompt": "A square pyramid has how many vertices?",
+                "options": [
+                  "$5$",
+                  "$4$",
+                  "$8$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4$ base corners $+ 1$ apex $= 5$. ($4$ forgets the apex; $8$ counts the edges.) Receipt: $5 + 5 - 8 = 2$ ✓.",
+                "check": [
+                  "Eq(4 + 1, 5)",
+                  "Eq(5 + 5 - 8, 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The receipt catches it",
+            "prompt": "A student counts a cuboid: 6 faces, 8 vertices, 11 edges. What does the receipt say?",
+            "options": [
+              "recount — $6 + 8 - 11$ makes $3$, not $2$",
+              "the count is fine",
+              "receipts work only for cubes",
+              "the faces must be wrong"
+            ],
+            "correctIndex": 0,
+            "explanation": "$6 + 8 = 14$, and $14 - 11 = 3$ (add back: $3 + 11 = 14$). A balanced count makes exactly $2$, so something was miscounted — it is the edges: a cuboid has $12$, and $6 + 8 - 12 = 2$ ✓.",
+            "check": [
+              "Eq(6 + 8, 14)",
+              "Eq(14 - 11, 3)",
+              "Eq(3 + 11, 14)",
+              "Eq(6 + 8 - 12, 2)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Three counts describe a solid: faces (flat surfaces), edges (meeting lines), vertices (corner points).",
+              "Cube and cuboid: 6 faces, 12 edges, 8 vertices — count in pairs and rings.",
+              "Faces wear 2-D names: squares, rectangles, the pyramid's 1 square + 4 triangles.",
+              "Sphere: no face, edge or vertex; cylinder: 2 circle faces; cone: 1.",
+              "The receipt: faces + vertices − edges = 2 for every flat-faced solid — it audits your count."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every solid below, count in groups — pairs of faces, rings of edges — then run the receipt before you answer. If it makes anything but 2, recount."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "All six solids, all three counts.",
+            "problems": [
+              {
+                "prompt": "Faces, edges and vertices of a cube, all added together:",
+                "options": [
+                  "$26$",
+                  "$24$",
+                  "$20$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$6 + 12 + 8 = 26$. (The receipt is different arithmetic: $6 + 8 - 12 = 2$.)",
+                "check": [
+                  "Eq(6 + 12 + 8, 26)",
+                  "Eq(6 + 8 - 12, 2)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 6.0,
+                        "y": 2.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 6.0,
+                        "y": 6.0,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 2.0,
+                        "y": 6.0,
+                        "label": "D"
+                      },
+                      {
+                        "id": "E",
+                        "x": 4.0,
+                        "y": 3.5,
+                        "label": "E"
+                      },
+                      {
+                        "id": "F",
+                        "x": 8.0,
+                        "y": 3.5,
+                        "label": "F"
+                      },
+                      {
+                        "id": "G",
+                        "x": 8.0,
+                        "y": 7.5,
+                        "label": "G"
+                      },
+                      {
+                        "id": "H",
+                        "x": 4.0,
+                        "y": 7.5,
+                        "label": "H"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "F",
+                        "to": "G",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "G",
+                        "to": "H",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "F",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "G",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "H",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "E",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "E",
+                        "to": "F",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "E",
+                        "to": "H",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      }
+                    ],
+                    "height": 210
+                  }
+                }
+              },
+              {
+                "prompt": "Which solid rolls AND has two flat circle faces?",
+                "options": [
+                  "the cylinder",
+                  "the cone",
+                  "the sphere"
+                ],
+                "correctIndex": 0,
+                "explanation": "The tin can: $1 + 1 = 2$ circle faces and a curved wrap between them. The cone has just $1$ circle; the sphere none.",
+                "check": [
+                  "Eq(1 + 1, 2)",
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "The square pyramid in the picture has how many edges?",
+                "options": [
+                  "$8$",
+                  "$5$",
+                  "$4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4$ around the base $+ 4$ rising to the apex $= 8$. Receipt: $5 + 5 - 8 = 2$ ✓.",
+                "check": [
+                  "Eq(4 + 4, 8)",
+                  "Eq(5 + 5 - 8, 2)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "A",
+                        "x": 2.0,
+                        "y": 2.0,
+                        "label": "A"
+                      },
+                      {
+                        "id": "B",
+                        "x": 8.0,
+                        "y": 2.0,
+                        "label": "B"
+                      },
+                      {
+                        "id": "C",
+                        "x": 9.3,
+                        "y": 4.4,
+                        "label": "C"
+                      },
+                      {
+                        "id": "D",
+                        "x": 3.3,
+                        "y": 4.4,
+                        "label": "D"
+                      },
+                      {
+                        "id": "T",
+                        "x": 5.6,
+                        "y": 8.6,
+                        "label": "T"
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "A",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "B",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "T",
+                        "to": "A",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "T",
+                        "to": "B",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "T",
+                        "to": "C",
+                        "color": "#d97706"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "D",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "D",
+                        "to": "A",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "T",
+                        "to": "D",
+                        "dashed": true,
+                        "color": "#94a3b8"
+                      }
+                    ],
+                    "height": 210
+                  }
+                }
+              },
+              {
+                "prompt": "A cuboid brick's faces are which 2-D shape?",
+                "options": [
+                  "rectangles",
+                  "triangles",
+                  "circles"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six rectangles, in $3$ equal opposite pairs: $3 \\times 2 = 6$. (A cube is the special cuboid whose rectangles are all squares.)",
+                "check": [
+                  "Eq(3*2, 6)"
+                ]
+              },
+              {
+                "prompt": "The cube's receipt and the pyramid's receipt both make:",
+                "options": [
+                  "$2$",
+                  "$0$",
+                  "different numbers"
+                ],
+                "correctIndex": 0,
+                "explanation": "Cube: $6 + 8 - 12 = 2$. Pyramid: $5 + 5 - 8 = 2$. Same answer from different counts — that is what makes the receipt worth running.",
+                "check": [
+                  "Eq(6 + 8 - 12, 2)",
+                  "Eq(5 + 5 - 8, 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"3-D Solids\" — and the topic",
+            "body": "Count the sides, test the corners, try the fold — and now count the faces, edges and vertices too. Every promise a shape makes came with a test, and every test came with a receipt. Grade 5 geometry picks up from here: measuring the boundary and counting the inside."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g4sh-pr1",
+      "statement": "The shape in the picture has $5$ straight sides. Name it, and count its vertices with the side-ends receipt.",
+      "solution": "Five sides: a PENTAGON. Ends: $5 \\times 2 = 10$; each vertex joins $2$ ends: $10 \\div 2 = 5$ vertices — corners match sides.",
+      "check": [
+        "Eq(5*2, 10)",
+        "Eq(Rational(10,2), 5)"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 5.0,
+              "y": 1.2,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 8.804,
+              "y": 3.964,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 7.351,
+              "y": 8.436,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 2.649,
+              "y": 8.436,
+              "label": "D"
+            },
+            {
+              "id": "E",
+              "x": 1.196,
+              "y": 3.964,
+              "label": "E"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "E",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "E",
+              "to": "A",
+              "color": "#3b82f6"
+            }
+          ],
+          "height": 200
+        }
+      }
+    },
+    {
+      "id": "g4sh-pr2",
+      "statement": "How many right angles fill a straight line? A full turn? Show both with the quarter-turn arithmetic.",
+      "solution": "A straight line is half a turn: $2 \\times 90 = 180$, so $2$ right angles. A full turn: $4 \\times 90 = 360$, so $360 \\div 90 = 4$.",
+      "check": [
+        "Eq(2*90, 180)",
+        "Eq(4*90, 360)",
+        "Eq(Rational(360,90), 4)"
+      ]
+    },
+    {
+      "id": "g4sh-pr3",
+      "statement": "The rectangle in the picture has corners $(1, 1)$, $(8, 1)$, $(8, 5)$, $(1, 5)$. Check its opposite sides are equal, and say why it is not a square.",
+      "solution": "Bottom and top: $8 - 1 = 7$ each (add back $7 + 1 = 8$ ✓). Left and right: $5 - 1 = 4$ each ($4 + 1 = 5$ ✓). Opposite pairs match: a rectangle. But $7 > 4$ — neighbouring sides differ, so it is not a square.",
+      "check": [
+        "Eq(8 - 1, 7)",
+        "Eq(7 + 1, 8)",
+        "Eq(5 - 1, 4)",
+        "Eq(4 + 1, 5)",
+        "7 > 4"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 1.0,
+              "y": 1.0,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 8.0,
+              "y": 1.0,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 8.0,
+              "y": 5.0,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 1.0,
+              "y": 5.0,
+              "label": "D"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "A",
+              "color": "#d97706"
+            },
+            {
+              "kind": "angle",
+              "at": "A",
+              "from": "B",
+              "to": "D",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "B",
+              "from": "C",
+              "to": "A",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "C",
+              "from": "D",
+              "to": "B",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "D",
+              "from": "A",
+              "to": "C",
+              "right": true
+            }
+          ],
+          "height": 190
+        }
+      }
+    },
+    {
+      "id": "g4sh-pr4",
+      "statement": "A student says a square is not a rectangle. Run the rectangle's two tests on a square and settle it.",
+      "solution": "Test 1 — four right angles: yes, $4 \\times 90 = 360$, a full turn of page corners. Test 2 — opposite sides equal: yes, ALL its sides are equal. Both passed: $1 + 1 = 2$. Every square IS a rectangle; the equal sides are a bonus, not a fault.",
+      "check": [
+        "Eq(4*90, 360)",
+        "Eq(1 + 1, 2)"
+      ]
+    },
+    {
+      "id": "g4sh-pr5",
+      "statement": "The square in the picture shows its mirror lines dashed. How many are there, and where does the vertical one stand?",
+      "solution": "Four: the rectangle's $2$ side-middle lines plus the square's $2$ diagonals — $2 + 2 = 4$. The vertical stands at the true middle: $2 + 8 = 10$, $10 \\div 2 = 5$.",
+      "check": [
+        "Eq(2 + 2, 4)",
+        "Eq(2 + 8, 10)",
+        "Eq(Rational(10,2), 5)"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 2.0,
+              "y": 2.0,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 8.0,
+              "y": 2.0,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 8.0,
+              "y": 8.0,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 2.0,
+              "y": 8.0,
+              "label": "D"
+            },
+            {
+              "id": "M",
+              "x": 5.0,
+              "y": 1.2,
+              "label": ""
+            },
+            {
+              "id": "N",
+              "x": 5.0,
+              "y": 8.8,
+              "label": ""
+            },
+            {
+              "id": "U",
+              "x": 1.2,
+              "y": 5.0,
+              "label": ""
+            },
+            {
+              "id": "V",
+              "x": 8.8,
+              "y": 5.0,
+              "label": ""
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "A",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "M",
+              "to": "N",
+              "dashed": true,
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "U",
+              "to": "V",
+              "dashed": true,
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "C",
+              "dashed": true,
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "D",
+              "dashed": true,
+              "color": "#d97706"
+            }
+          ],
+          "height": 210
+        }
+      }
+    },
+    {
+      "id": "g4sh-pr6",
+      "statement": "Count the lines of symmetry of the block letters M, O, M — and the total for the word MOM.",
+      "solution": "M: $1$ vertical line. O: $2$ — vertical and horizontal. M: $1$. Total: $1 + 2 + 1 = 4$ — and the shared vertical mirror is why MOM survives a real mirror unchanged.",
+      "check": [
+        "Eq(1 + 2 + 1, 4)"
+      ]
+    },
+    {
+      "id": "g4sh-pr7",
+      "statement": "Count the cube in the picture — faces, edges, vertices — and run the receipt.",
+      "solution": "Faces in opposite pairs: $3 \\times 2 = 6$. Edges as rings and uprights: $4 + 4 + 4 = 12$. Vertices: $4 + 4 = 8$. Receipt: $6 + 8 = 14$, $14 - 12 = 2$ ✓ (add back: $2 + 12 = 14$).",
+      "check": [
+        "Eq(3*2, 6)",
+        "Eq(4 + 4 + 4, 12)",
+        "Eq(4 + 4, 8)",
+        "Eq(6 + 8, 14)",
+        "Eq(14 - 12, 2)",
+        "Eq(2 + 12, 14)"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 2.0,
+              "y": 2.0,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 6.0,
+              "y": 2.0,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 6.0,
+              "y": 6.0,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 2.0,
+              "y": 6.0,
+              "label": "D"
+            },
+            {
+              "id": "E",
+              "x": 4.0,
+              "y": 3.5,
+              "label": "E"
+            },
+            {
+              "id": "F",
+              "x": 8.0,
+              "y": 3.5,
+              "label": "F"
+            },
+            {
+              "id": "G",
+              "x": 8.0,
+              "y": 7.5,
+              "label": "G"
+            },
+            {
+              "id": "H",
+              "x": 4.0,
+              "y": 7.5,
+              "label": "H"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "A",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "F",
+              "to": "G",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "G",
+              "to": "H",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "F",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "G",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "H",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "E",
+              "dashed": true,
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "E",
+              "to": "F",
+              "dashed": true,
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "E",
+              "to": "H",
+              "dashed": true,
+              "color": "#94a3b8"
+            }
+          ],
+          "height": 210
+        }
+      }
+    },
+    {
+      "id": "g4sh-pr8",
+      "statement": "A square pyramid: name its faces with their 2-D shapes, count everything, and receipt the count.",
+      "solution": "Faces: $1$ square base $+ 4$ triangles $= 5$. Vertices: $4$ base corners $+ 1$ apex $= 5$. Edges: $4 + 4 = 8$. Receipt: $5 + 5 = 10$, $10 - 8 = 2$ ✓.",
+      "check": [
+        "Eq(1 + 4, 5)",
+        "Eq(4 + 1, 5)",
+        "Eq(4 + 4, 8)",
+        "Eq(5 + 5, 10)",
+        "Eq(10 - 8, 2)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g4sh-x1",
+      "statement": "Name the shape in the picture, and use the side-ends receipt to count its vertices.",
+      "solution": "Six straight sides: a HEXAGON. Ends: $6 \\times 2 = 12$; vertices: $12 \\div 2 = 6$ — the corners match the sides.",
+      "check": [
+        "Eq(6*2, 12)",
+        "Eq(Rational(12,2), 6)"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 8.464,
+              "y": 7.2,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 5.0,
+              "y": 9.2,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 1.536,
+              "y": 7.2,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 1.536,
+              "y": 3.2,
+              "label": "D"
+            },
+            {
+              "id": "E",
+              "x": 5.0,
+              "y": 1.2,
+              "label": "E"
+            },
+            {
+              "id": "F",
+              "x": 8.464,
+              "y": 3.2,
+              "label": "F"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "E",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "E",
+              "to": "F",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "F",
+              "to": "A",
+              "color": "#3b82f6"
+            }
+          ],
+          "height": 200
+        }
+      }
+    },
+    {
+      "id": "g4sh-x2",
+      "statement": "A dancer makes three quarter turns, always the same way. How much of a full turn is that — and how much more would close the spin?",
+      "solution": "Three quarters: $3 \\times 90 = 270$ degrees. The full turn is $360$, so one more quarter closes it: $360 - 270 = 90$, and $270 + 90 = 360$ ✓.",
+      "check": [
+        "Eq(3*90, 270)",
+        "Eq(360 - 270, 90)",
+        "Eq(270 + 90, 360)"
+      ]
+    },
+    {
+      "id": "g4sh-x3",
+      "statement": "The shape in the picture has corners $(1, 2)$, $(9, 2)$, $(9, 6)$, $(1, 6)$, all right angles. Sort it: quadrilateral, rectangle, or square?",
+      "solution": "Opposite sides: $9 - 1 = 8$ and $8$ ($8 + 1 = 9$ ✓); $6 - 2 = 4$ and $4$ ($4 + 2 = 6$ ✓). Right angles and matching opposite pairs: a RECTANGLE. Not a square: $8 > 4$. (It is also a quadrilateral — the family holds all its members.)",
+      "check": [
+        "Eq(9 - 1, 8)",
+        "Eq(8 + 1, 9)",
+        "Eq(6 - 2, 4)",
+        "Eq(4 + 2, 6)",
+        "8 > 4"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 1.0,
+              "y": 2.0,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 9.0,
+              "y": 2.0,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 9.0,
+              "y": 6.0,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 1.0,
+              "y": 6.0,
+              "label": "D"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "color": "#059669"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "A",
+              "color": "#059669"
+            },
+            {
+              "kind": "angle",
+              "at": "A",
+              "from": "B",
+              "to": "D",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "B",
+              "from": "C",
+              "to": "A",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "C",
+              "from": "D",
+              "to": "B",
+              "right": true
+            },
+            {
+              "kind": "angle",
+              "at": "D",
+              "from": "A",
+              "to": "C",
+              "right": true
+            }
+          ],
+          "height": 190
+        }
+      }
+    },
+    {
+      "id": "g4sh-x4",
+      "statement": "A rectangle has $2$ lines of symmetry and a square has $4$. How many more has the square, and where do the extra ones run?",
+      "solution": "$4 - 2 = 2$ more (add back: $2 + 2 = 4$ ✓) — the two diagonals, corner to corner. The rectangle's diagonal folds overhang, because its neighbouring sides differ.",
+      "check": [
+        "Eq(4 - 2, 2)",
+        "Eq(2 + 2, 4)"
+      ]
+    },
+    {
+      "id": "g4sh-x5",
+      "statement": "Count a cuboid's faces, edges and vertices, and prove the count balanced with the receipt.",
+      "solution": "Faces: $3 \\times 2 = 6$; edges: $4 + 4 + 4 = 12$; vertices: $4 + 4 = 8$. Receipt: $6 + 8 = 14$, $14 - 12 = 2$ ✓ — a balanced count.",
+      "check": [
+        "Eq(3*2, 6)",
+        "Eq(4 + 4 + 4, 12)",
+        "Eq(4 + 4, 8)",
+        "Eq(6 + 8, 14)",
+        "Eq(14 - 12, 2)"
+      ]
+    },
+    {
+      "id": "g4sh-x6",
+      "statement": "The square pyramid in the picture wears $1$ square face and $4$ triangle faces. Count the faces — and then count the SIDES of all five faces put together.",
+      "solution": "Faces: $1 + 4 = 5$. Sides of the faces: the square brings $4$, each triangle brings $3$ — $4 + 4 \\times 3 = 4 + 12 = 16$ sides drawn across the five faces. (Fewer edges than that — $8$ — because on the solid, faces share their edges in pairs: $16 \\div 2 = 8$.)",
+      "check": [
+        "Eq(1 + 4, 5)",
+        "Eq(4*3, 12)",
+        "Eq(4 + 12, 16)",
+        "Eq(Rational(16,2), 8)"
+      ],
+      "figure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "A",
+              "x": 2.0,
+              "y": 2.0,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 8.0,
+              "y": 2.0,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 9.3,
+              "y": 4.4,
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "x": 3.3,
+              "y": 4.4,
+              "label": "D"
+            },
+            {
+              "id": "T",
+              "x": 5.6,
+              "y": 8.6,
+              "label": "T"
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "A",
+              "to": "B",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "B",
+              "to": "C",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "T",
+              "to": "A",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "T",
+              "to": "B",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "T",
+              "to": "C",
+              "color": "#d97706"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "D",
+              "dashed": true,
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "D",
+              "to": "A",
+              "dashed": true,
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "T",
+              "to": "D",
+              "dashed": true,
+              "color": "#94a3b8"
+            }
+          ],
+          "height": 210
+        }
+      }
+    }
+  ]
+}

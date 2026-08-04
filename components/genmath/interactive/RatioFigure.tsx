@@ -24,10 +24,17 @@ function Token({ color }: { color: string }) {
 
 function Cluster({ group }: { group: FigureGroupSpec }) {
   return (
-    <div className="flex max-w-[150px] flex-wrap content-start justify-center gap-1.5">
-      {Array.from({ length: group.count }).map((_, i) => (
-        <Token key={i} color={group.color} />
-      ))}
+    <div className="flex min-h-[26px] max-w-[150px] flex-wrap content-start justify-center gap-1.5">
+      {group.count === 0 ? (
+        // An empty group still occupies its slot: a dashed outline says
+        // "this place is standing here, holding nothing".
+        <span
+          className="rounded-lg"
+          style={{ width: 26, height: 26, border: `1px dashed ${group.color}`, opacity: 0.7 }}
+        />
+      ) : (
+        Array.from({ length: group.count }).map((_, i) => <Token key={i} color={group.color} />)
+      )}
     </div>
   );
 }
