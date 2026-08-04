@@ -1429,16 +1429,23 @@ export default function LessonPlayer({
   lesson: GenMathLesson;
   topicSlug: string;
   topicTitle: string;
-  // Where "exit" and "finish" land (defaults to the grade-6 topic page), and
-  // the breadcrumb label — lets other courses (Geometry) reuse the player.
-  baseHref?: string;
+  // Where "exit" and "finish" land, and the breadcrumb label — every course
+  // that reuses the player supplies its own root.
+  //
+  // REQUIRED on purpose. This used to default to the grade-6 topic page, and
+  // the grades that forgot to pass it (4 and 5) sent every learner who exited
+  // or finished a lesson into Grade 6 — landing them on "Topic not found"
+  // whenever the slug did not also exist there. A silent default that points
+  // at another course cannot be caught by tests that only visit one course,
+  // so it is now a compile error instead.
+  baseHref: string;
   crumb?: string;
 }) {
   const steps = lesson.interactive?.steps ?? [];
   const [i, setI] = useState(0);
   const total = steps.length;
   const isLast = i >= total - 1;
-  const topicHref = baseHref ?? `/math/6/${topicSlug}`;
+  const topicHref = baseHref;
   const { lang } = useLang();
   const C = CHROME[lang];
   const pathname = usePathname();
