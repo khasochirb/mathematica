@@ -36,7 +36,8 @@ SUBJECTS = [
     ("integrated-1", "integrated_1"),
     ("integrated-2", "integrated_2"),
     ("integrated-3", "integrated_3"),
-    # Primary band: Grade 5, one collection per unit of the /math/5 year.
+    # Primary band: Grades 4 and 5, one collection per unit of each year.
+    ("4", "grade4"),
     ("5", "grade5"),
     # Band exit levels: Grade 9 (Mid school) and Grade 12 (High school).
     # Their banks double as the source pools for the band exit exams

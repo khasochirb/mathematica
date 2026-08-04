@@ -95,14 +95,17 @@ export default function GenMathTopicPage() {
           ))}
         </ol>
 
-        {/* Practice + Test buttons. (No per-unit problem bank for Grade 4
-            yet — add the link back when scripts/pb/grade4.py exists.) */}
+        {/* Practice + Test buttons, and this unit's own problem bank — every
+            Grade 4 unit has its own collection (see scripts/pb/grade4.py). */}
         <div className="flex gap-3 flex-wrap">
           <Link href={`/math/4/${topicSlug}/practice`} className="btn btn-primary">
             {mn ? "Дасгал" : "Practice"}
           </Link>
           <Link href={`/math/4/${topicSlug}/test`} className="btn btn-line">
             {mn ? "Өөрийгөө шалга" : "Test yourself"}
+          </Link>
+          <Link href={`/math/problem-bank/4/${topicSlug}`} className="btn btn-line">
+            {mn ? "Бодлогын сан" : "Problem bank"}
           </Link>
         </div>
       </div>
