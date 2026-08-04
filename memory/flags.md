@@ -100,6 +100,23 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-04** — Probe after deploy `1244ae8` (per-unit problem banks for
+  grades 4, 6, 7, 8, 10, 11 — 7,300 new problems, so every course on the
+  /math ladder from Grade 4 to Grade 12 now has a bank; plus two rendering
+  fixes to banks already in production, `money()` emitted outside math in
+  integrated-3 and `.strip("$")` in precalculus explanations):
+  `anthropic_api_key: configured`, `migration_009: applied`,
+  `migration_008_student_profiles: unknown` (FLAG-002 unchanged — `unknown`,
+  so read that flag's "Reading a non-`applied` result" row before acting).
+  FLAG-003 still optional/unset. No migrations in the diff and nothing
+  depended on either open flag. Prod verified: `/math/problem-bank/10` and
+  `/math/problem-bank/4` both serve their unit lists and rendered math (no
+  "not found", no error boundary); runtime errors clean over the 2h window.
+  This deploy went READY in 2m41s, not the ~28 minutes the previous one
+  took, despite adding ~156k lines of bank JSON — so that earlier stall was
+  a one-off in Vercel's output propagation, not a property of the diff size.
+  New permanent gate shipped with it: `verify-problembank.py` now fails any
+  bank string carrying LaTeX outside `$...$`.
 - **2026-08-04** — Probe after deploy `445b569` (two production bug fixes:
   the Grade 4/5 lesson back/finish buttons pointing into Grade 6, and
   /tutoring switching the whole site to Mongolian; plus the link-integrity
