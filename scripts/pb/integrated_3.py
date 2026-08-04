@@ -484,7 +484,9 @@ def _g_z_scores():
             # error models: sign flipped; forgot to divide; divided by the mean
             "dvals": [-z, Integer(x - mu), z / 2],
             "explanation": ("$z = \\dfrac{x - \\mu}{\\sigma} = \\dfrac{%d - %d}{%d} "
-                            "= %s$: the value sits %s standard deviation%s %s the "
+                            # fmt() returns BARE LaTeX, so it needs its own
+                            # $...$ here — the span above has already closed.
+                            "= %s$: the value sits $%s$ standard deviation%s %s the "
                             "mean. The sign carries the direction — losing it is "
                             "the classic slip."
                             % (x, mu, sd, fmt(z), fmt(abs(z)),

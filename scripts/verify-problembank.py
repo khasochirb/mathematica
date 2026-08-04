@@ -60,6 +60,15 @@ def check_render_safety(label, node):
                 failures.append(f"{label}: bold run swallows inline math: {shown!r}")
             elif tok.startswith("$") and any(c in tok for c in UNRENDERABLE_IN_MATH):
                 failures.append(f"{label}: character KaTeX cannot draw inside math: {shown!r}")
+        # 4. A LaTeX escape sitting OUTSIDE math. `money()` emits a thin space
+        # (`3\,000`), and if the caller forgets to wrap it in $...$ the reader
+        # sees a literal backslash-comma. This shipped twice — once in the
+        # Grade 5 bank, once in Grade 6 — so it is now mechanical.
+        outside = MATHTEXT_TOKEN.sub(" ", protected).replace("\\$", " ")
+        if "\\" in outside:
+            frag = outside[max(0, outside.index("\\") - 25):outside.index("\\") + 25]
+            failures.append(
+                f"{label}: LaTeX outside math (wrap it in $...$): {frag.strip()!r}")
     elif isinstance(node, dict):
         for key, value in node.items():
             if key == "check":

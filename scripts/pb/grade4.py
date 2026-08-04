@@ -209,7 +209,7 @@ def _g_rounding():
             if len(set(d + [r])) != 4 or min(d + [r]) < 0:
                 continue
             yield {
-                "statement": "Round %s to the nearest %s." % (M(n), money(step)),
+                "statement": "Round %s to the nearest %s." % (M(n), M(step)),
                 "correct": M(r),
                 "dvals": [M(x) for x in d],
                 "explanation": ("%s sits between %s and %s. It is nearer to %s."
@@ -378,7 +378,7 @@ def _g_word_problem_add():
             yield {
                 "statement": ("There were %s %s %s. Then %s more %s arrived. "
                               "How many are there now?"
-                              % (money(start), noun, where, money(add), noun)),
+                              % (M(start), noun, where, M(add), noun)),
                 "correct": M(total),
                 "dvals": [M(start - add), M(total + 100), M(total - 10)],
                 "explanation": ("More were added, so add: $%s + %s = %s$."

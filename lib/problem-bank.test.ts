@@ -37,6 +37,7 @@ describe("problem bank data", () => {
       "integrated-3",
       "4",
       "5",
+      "6",
       "9",
       "12",
     ]);

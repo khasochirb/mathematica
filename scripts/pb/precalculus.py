@@ -901,9 +901,12 @@ def _gen_general_solution():
             variants.append(_mk(
                 "PC-gen-v%02d" % (len(variants) + 1), stmt, correct, dis, i,
                 "Tangent repeats every $180°$, so one family covers every "
+                # `correct` already carries its own $...$; stripping them (as
+                # this once did) drops raw LaTeX into the prose, where KaTeX
+                # never runs and the reader sees "k \cdot 180°".
                 "solution: %s. Using the period $360°$ — right for sine "
                 "and cosine, wrong for tangent — misses half the answers."
-                % correct.strip("$"),
+                % correct,
                 checks))
             i += 1
     return _floor12("general-solution-form", variants)
