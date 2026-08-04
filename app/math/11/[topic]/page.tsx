@@ -100,6 +100,9 @@ export default function GenMathTopicPage() {
           <Link href={`/math/11/${topicSlug}/test`} className="btn btn-line">
             Test yourself
           </Link>
+          <Link href={`/math/problem-bank/11/${topicSlug}`} className="btn btn-line">
+            Problem bank
+          </Link>
         </div>
       </div>
     </div>

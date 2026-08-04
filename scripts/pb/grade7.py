@@ -603,7 +603,7 @@ def _g_circle_area():
             "dvals": ["$%d\\pi$" % (2 * r), "$%d\\pi$" % (2 * r * r), "$%d\\pi$" % (4 * a)],
             "explanation": ("Area is $\\pi r^2 = \\pi \\times %d^2 = %d\\pi$ square cm."
                             % (r, a)),
-            "check": ["Eq(%d**2, %d)" % (r, a)],
+            "check": ["Eq((%d)**2, %d)" % (r, a)],
         }
 
 
@@ -687,7 +687,7 @@ def _g_composite_figure():
                                     "$\\pi \\times %d^2 = %d\\pi$, so $%d - %d\\pi$ is "
                                     "left." % (w, h, w * h, r, r * r, w * h, r * r)),
                     "check": ["Eq(%d*%d, %d)" % (w, h, w * h),
-                              "Eq(%d**2, %d)" % (r, r * r)],
+                              "Eq((%d)**2, %d)" % (r, r * r)],
                 }
 
 

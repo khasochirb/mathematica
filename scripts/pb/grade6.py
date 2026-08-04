@@ -882,7 +882,7 @@ def _g_prime_factorisation():
             "dvals": ["$%s$" % wrong1, "$%s$" % wrong2, "$%s$" % wrong3],
             "explanation": ("Divide by primes until only primes remain: $%d = %s$."
                             % (n, shown)),
-            "check": ["Eq(%s, %d)" % (" * ".join("%d**%d" % (p, f[p]) for p in sorted(f)), n)],
+            "check": ["Eq(%s, %d)" % (" * ".join("(%d)**%d" % (p, f[p]) for p in sorted(f)), n)],
         }
 
 
@@ -904,7 +904,7 @@ def _g_exponents():
                 "explanation": ("$%d^{%d}$ means $%s = %d$ — an exponent is repeated "
                                 "multiplication, not multiplication by the exponent."
                                 % (b, e, " \\times ".join([str(b)] * e), v)),
-                "check": ["Eq(%d**%d, %d)" % (b, e, v)],
+                "check": ["Eq((%d)**%d, %d)" % (b, e, v)],
             }
 
 

@@ -256,7 +256,7 @@ def _g_product_rule():
                               "$%d^{%d}$" % (b * b, m + n)],
                     "explanation": ("Same base means ADD the exponents: "
                                     "$%d + %d = %d$." % (m, n, m + n)),
-                    "check": ["Eq(%d**%d * %d**%d, %d**%d)" % (b, m, b, n, b, m + n)],
+                    "check": ["Eq((%d)**%d * (%d)**%d, (%d)**%d)" % (b, m, b, n, b, m + n)],
                 }
 
 
@@ -275,7 +275,7 @@ def _g_quotient_rule():
                               "$%d^{%d}$" % (1, m - n)],
                     "explanation": ("Same base means SUBTRACT the exponents: "
                                     "$%d - %d = %d$." % (m, n, m - n)),
-                    "check": ["Eq(Rational(%d**%d, %d**%d), %d**%d)"
+                    "check": ["Eq(Rational((%d)**%d, (%d)**%d), (%d)**%d)"
                               % (b, m, b, n, b, m - n)],
                 }
 
@@ -292,7 +292,7 @@ def _g_power_of_power():
                               "$%d^{%d}$" % (b ** n, m)],
                     "explanation": ("A power of a power MULTIPLIES the exponents: "
                                     "$%d \\times %d = %d$." % (m, n, m * n)),
-                    "check": ["Eq((%d**%d)**%d, %d**%d)" % (b, m, n, b, m * n)],
+                    "check": ["Eq(((%d)**%d)**%d, (%d)**%d)" % (b, m, n, b, m * n)],
                 }
 
 
@@ -304,7 +304,7 @@ def _g_zero_negative_exponent():
             "dvals": ["$0$", "$%d$" % b, "undefined"],
             "explanation": ("Any non-zero base to the power zero is $1$ — it is what "
                             "$%d^{n} \\div %d^{n}$ must equal." % (b, b)),
-            "check": ["Eq(%d**0, 1)" % b],
+            "check": ["Eq((%d)**0, 1)" % b],
         }
         for n in range(1, 5):
             v = Rational(1, b ** n)
@@ -317,7 +317,7 @@ def _g_zero_negative_exponent():
                 "explanation": ("A negative exponent means the reciprocal: "
                                 "$%d^{-%d} = \\dfrac{1}{%d^{%d}} = %s$."
                                 % (b, n, b, n, fmt(v))),
-                "check": ["Eq(Rational(1, %d**%d), Rational(%d, %d))"
+                "check": ["Eq(Rational(1, (%d)**%d), Rational(%d, %d))"
                           % (b, n, v.p, v.q)],
             }
 
@@ -388,7 +388,7 @@ def _g_square_roots():
             "dvals": [s // 2, n + 1, s],
             "explanation": ("$%d \\times %d = %d$, so $\\sqrt{%d} = %d$."
                             % (n, n, s, s, n)),
-            "check": ["Eq(sqrt(%d), %d)" % (s, n), "Eq(%d**2, %d)" % (n, s)],
+            "check": ["Eq(sqrt(%d), %d)" % (s, n), "Eq((%d)**2, %d)" % (n, s)],
         }
 
 
@@ -401,7 +401,7 @@ def _g_cube_roots():
             # divided by three / used the square root / off by one
             "dvals": [c // 3, n * n, n + 1],
             "explanation": ("$%d^3 = %d$, so $\\sqrt[3]{%d} = %d$." % (n, c, c, n)),
-            "check": ["Eq(%d**3, %d)" % (n, c)],
+            "check": ["Eq((%d)**3, %d)" % (n, c)],
         }
     for n in range(2, 18):
         c = n ** 3
@@ -412,7 +412,7 @@ def _g_cube_roots():
             "explanation": ("Take the cube root of both sides: $x = \\sqrt[3]{%d} = %d$. "
                             "Unlike a square, a cube has just one real root."
                             % (c, n)),
-            "check": ["Eq(%d**3, %d)" % (n, c)],
+            "check": ["Eq((%d)**3, %d)" % (n, c)],
         }
 
 
@@ -443,7 +443,7 @@ def _g_solve_square():
                       "$x = \\pm %d$" % (n + 1)],
             "explanation": ("Both $%d$ and $-%d$ square to $%d$, so a squared equation "
                             "has TWO real roots." % (n, n, s)),
-            "check": ["Eq(%d**2, %d)" % (n, s), "Eq((-%d)**2, %d)" % (n, s)],
+            "check": ["Eq((%d)**2, %d)" % (n, s), "Eq((-%d)**2, %d)" % (n, s)],
         }
 
 
@@ -478,7 +478,7 @@ def _g_root_in_formula():
             "dvals": [area // 2, area // 4, side + 1],
             "explanation": ("Side is the square root of the area: "
                             "$\\sqrt{%d} = %d$ cm." % (area, side)),
-            "check": ["Eq(%d**2, %d)" % (side, area), "Eq(sqrt(%d), %d)" % (area, side)],
+            "check": ["Eq((%d)**2, %d)" % (side, area), "Eq(sqrt(%d), %d)" % (area, side)],
         }
     for edge in range(2, 14):
         vol = edge ** 3
@@ -490,7 +490,7 @@ def _g_root_in_formula():
             "dvals": [vol // 3, edge * edge, edge + 1],
             "explanation": ("Edge is the cube root of the volume: "
                             "$\\sqrt[3]{%d} = %d$ cm." % (vol, edge)),
-            "check": ["Eq(%d**3, %d)" % (edge, vol)],
+            "check": ["Eq((%d)**3, %d)" % (edge, vol)],
         }
 
 

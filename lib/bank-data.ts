@@ -34,6 +34,8 @@ import grade5 from "@/data/problembank/5.json";
 import grade6 from "@/data/problembank/6.json";
 import grade7 from "@/data/problembank/7.json";
 import grade8 from "@/data/problembank/8.json";
+import grade10 from "@/data/problembank/10.json";
+import grade11 from "@/data/problembank/11.json";
 import grade9 from "@/data/problembank/9.json";
 import grade12 from "@/data/problembank/12.json";
 import sat from "@/data/problembank/sat.json";
@@ -74,6 +76,8 @@ const TOPICS: BankTopic[] = [
   grade6,
   grade7,
   grade8,
+  grade10,
+  grade11,
   // Band exit levels (slugs mirror the course paths /math/9 and /math/12);
   // also the source pools for the band exit exams.
   grade9,
