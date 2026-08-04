@@ -100,6 +100,24 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-04** — Probe after deploy `445b569` (two production bug fixes:
+  the Grade 4/5 lesson back/finish buttons pointing into Grade 6, and
+  /tutoring switching the whole site to Mongolian; plus the link-integrity
+  and language gates): `anthropic_api_key: configured`,
+  `migration_009: applied`, `migration_008_student_profiles: unknown`
+  (FLAG-002 unchanged — `unknown`, so read that flag's "Reading a
+  non-`applied` result" row before acting). FLAG-003 still optional/unset.
+  No migrations in the diff and nothing depended on either open flag.
+  Prod verified: `/math/5/multiplication-and-division` serves with its back
+  arrow to `/math/5` and all five lessons inside Grade 5; runtime errors
+  clean over the 2h window. NOTE: the production build sat in "Deploying
+  outputs" for ~25 min after a 2-minute compile — not a failure, just slow
+  propagation of the large static output; the same commit had already built
+  READY as a branch preview. Browser walks of prod are not possible from the
+  cloud sandbox (proxy denies CONNECT), so behavioural verification ran
+  against a local production build of this exact commit: 2,140-page link
+  crawl, 0 soft-404s, and the five-scenario language walk.
+
 - **2026-07-25** — Registry created. Both flags' live prod status is not
   directly probeable from the cloud sandbox (proxy denies CONNECT to
   mongolpotential.com; the Vercel MCP fetch is GET-only and the health
