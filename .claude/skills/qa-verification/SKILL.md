@@ -29,12 +29,53 @@ scratch directory.
 | Placement | `verify:skill-tag-coverage` + vitest |
 | Any page/route/layout | all of the above that apply + `npm run build` |
 | Route behavior (new pages, i18n toggles, auth flows) | Playwright walk (below) |
+| A NEW course, or any shared navigation component | `npm run verify:links` (below) |
 | Anything at all, before deploy | full stack: genmath + ptest + tsc + vitest + build + Playwright spot-walk |
 
 Current healthy baselines (update when they legitimately move):
 `verify:genmath` ≈ 12,600 sympy checks green; vitest ≈ 346 tests;
 build generates 48 static pages. A DROP in check count on a content-add
 diff means files fell out of the glob — investigate, don't celebrate.
+
+## Soft 404s — why link checking needs its own gate
+
+Content pages are client components. A URL whose slug does not exist
+still MATCHES its route, so the server returns **200** and the page
+renders "Topic not found" in the browser. Status codes cannot see this,
+and neither can a walk of a single course.
+
+This shipped: `LessonPlayer`'s `baseHref` defaulted to
+`/math/6/${topicSlug}`, so Grade 4 and Grade 5 lessons sent learners to
+Grade 6 URLs on both the back arrow and the finish button.
+
+Three layers now cover it, cheapest first:
+
+1. `lib/link-integrity.test.ts` (vitest, instant) — every internal link
+   literal resolves to a real route; every redirect destination
+   resolves; **no shared component builds a course-specific link from a
+   hardcoded course**. That last rule is the exact defect shape.
+2. `lib/course-nav.test.ts` (vitest, instant) — every lesson route's
+   `baseHref` is rooted at its OWN course, and no course route
+   deep-links into another course. TypeScript catches a *missing*
+   `baseHref`; only this catches a *wrong* one, which is what a copied
+   route directory produces.
+3. `npm run verify:links` (~13 min) — crawls the real link graph over a
+   PRODUCTION build as a signed-in subscriber, ~2000 pages, and reads
+   the rendered DOM for the three soft-404 signatures.
+
+Two traps that make a crawl silently vacuous — the script self-checks
+both before crawling, and you should preserve those checks:
+
+- **Playwright route precedence is LAST-registered-wins.** A broad
+  `**/api/**` mock registered after `**/api/auth/me` answers the auth
+  call, the reader is anonymous, every gated page renders a sign-in wall
+  instead of content, and the crawl reports "all clean" having checked
+  nothing.
+- **A fixed sleep is a false negative.** An unhydrated page has not
+  rendered its "not found" yet and reads as healthy. Wait for
+  `[aria-busy="true"]` to clear, then for the text to stop changing.
+  Pages that never settle are UNKNOWN, not passes — re-check them by
+  hand (heavy KaTeX lessons are simply slow).
 
 ## Running the sympy gate correctly
 
