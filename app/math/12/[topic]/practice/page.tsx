@@ -78,7 +78,7 @@ export default function GenMathPracticePage() {
   const params = useParams();
   const topicSlug = params.topic as string;
   return (
-    <ContentGate backHref={`/math/12/${topicSlug}`} backLabel="Back to topic">
+    <ContentGate courseKey="12" topicSlug={topicSlug} backHref={`/math/12/${topicSlug}`} backLabel="Back to topic">
       <GenMathPracticePageInner />
     </ContentGate>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getGrade5Spine, getGrade5TopicLocalized } from "@/lib/genmath-data/grade-5";
 import { useLang } from "@/lib/lang-context";
@@ -56,7 +57,7 @@ export default function Grade5TopicsPage() {
             const topic = getGrade5TopicLocalized(entry.slug, lang);
             const lessonCount = topic?.lessons.length ?? 0;
             return (
-              <Link key={entry.slug} href={`/math/5/${entry.slug}`} className="card-edit p-5 flex flex-col gap-1.5 transition-colors group" style={{ textDecoration: "none" }}>
+              <TopicLink courseKey="5" topicSlug={entry.slug} key={entry.slug} href={`/math/5/${entry.slug}`} className="card-edit p-5 flex flex-col gap-1.5 transition-colors group" style={{ textDecoration: "none" }}>
                 <span className="mono text-[10px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
                   {mn ? `${lessonCount} хичээл` : `${lessonCount} lessons`}
                 </span>
@@ -68,7 +69,7 @@ export default function Grade5TopicsPage() {
                   {mn ? "Эхлэх" : "Start"}
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
-              </Link>
+              </TopicLink>
             );
           })}
         </div>

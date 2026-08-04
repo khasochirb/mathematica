@@ -48,7 +48,7 @@ export default function VecMatLessonPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/vectors-matrices/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="vectors-matrices" topicSlug={unitSlug} backHref={`/math/vectors-matrices/${unitSlug}`} backLabel="Back to unit">
       <VecMatLessonPageInner />
     </ContentGate>
   );

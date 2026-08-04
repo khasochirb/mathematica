@@ -88,7 +88,7 @@ export default function GeometryTestPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/geometry/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="geometry" topicSlug={unitSlug} backHref={`/math/geometry/${unitSlug}`} backLabel="Back to unit">
       <GeometryTestPageInner />
     </ContentGate>
   );

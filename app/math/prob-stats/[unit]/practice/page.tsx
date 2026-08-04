@@ -78,7 +78,7 @@ export default function ProbStatPracticePage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/prob-stats/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="prob-stats" topicSlug={unitSlug} backHref={`/math/prob-stats/${unitSlug}`} backLabel="Back to unit">
       <ProbStatPracticePageInner />
     </ContentGate>
   );

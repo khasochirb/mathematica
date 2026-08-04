@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft } from "lucide-react";
 import { getAlg2Spine } from "@/lib/genmath-data/algebra-2";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
@@ -46,8 +47,7 @@ export default function Alg2CoursePage() {
           {spine.map((u) => {
             return u.live ? (
               <li key={u.slug}>
-                <Link
-                  href={`/math/algebra-2/${u.slug}`}
+                <TopicLink courseKey="algebra-2" topicSlug={u.slug}                   href={`/math/algebra-2/${u.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none" }}
                   onMouseEnter={(e) => {
@@ -73,7 +73,7 @@ export default function Alg2CoursePage() {
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
                     Start
                   </span>
-                </Link>
+                </TopicLink>
               </li>
             ) : (
               <li key={u.slug}>

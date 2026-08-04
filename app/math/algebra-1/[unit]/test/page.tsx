@@ -88,7 +88,7 @@ export default function Alg1TestPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/algebra-1/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="algebra-1" topicSlug={unitSlug} backHref={`/math/algebra-1/${unitSlug}`} backLabel="Back to unit">
       <Alg1TestPageInner />
     </ContentGate>
   );

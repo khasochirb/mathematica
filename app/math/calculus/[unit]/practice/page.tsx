@@ -78,7 +78,7 @@ export default function CalcPracticePage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/calculus/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="calculus" topicSlug={unitSlug} backHref={`/math/calculus/${unitSlug}`} backLabel="Back to unit">
       <CalcPracticePageInner />
     </ContentGate>
   );

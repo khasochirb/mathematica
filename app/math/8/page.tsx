@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getGrade8Spine, getGrade8Topic, getGrade8TopicLocalized } from "@/lib/genmath-data/grade-8";
 import { useLang } from "@/lib/lang-context";
@@ -92,8 +93,7 @@ export default function Grade8TopicsPage() {
             const important = prioritySet.has(t.slug);
             return t.live ? (
               <li key={t.slug}>
-                <Link
-                  href={`/math/8/${t.slug}`}
+                <TopicLink courseKey="8" topicSlug={t.slug}                   href={`/math/8/${t.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none", ...(important ? { borderColor: "var(--accent-line)" } : {}) }}
                   onMouseEnter={(e) => {
@@ -126,7 +126,7 @@ export default function Grade8TopicsPage() {
                   <span className="mono text-[11px] flex-shrink-0 mt-1" style={{ color: "var(--fg-3)" }}>
                     {mn ? `${lessonCount} хичээл` : `${lessonCount} lesson${lessonCount !== 1 ? "s" : ""}`}
                   </span>
-                </Link>
+                </TopicLink>
               </li>
             ) : (
               <li key={t.slug}>

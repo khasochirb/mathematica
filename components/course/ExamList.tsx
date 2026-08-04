@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Clock, Layers, FileText, Check } from "lucide-react";
+import { Clock, Layers, FileText, Check, Lock } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import { isExamFree } from "@/lib/course-access";
 import { loadExamResult, type CourseExam, type ExamResult } from "@/lib/course-exam";
 
 // The list of a course's exams, with each paper's last score if the student
@@ -12,7 +14,8 @@ import { loadExamResult, type CourseExam, type ExamResult } from "@/lib/course-e
 // back is the feature only half-built.
 
 export default function ExamList({ course, exams }: { course: string; exams: CourseExam[] }) {
-  const { user } = useAuth();
+  const { user, isSubscribed } = useAuth();
+  const { open: openUpgrade } = useUpgradeModal();
   const [results, setResults] = useState<Record<string, ExamResult | null>>({});
 
   useEffect(() => {
@@ -30,13 +33,10 @@ export default function ExamList({ course, exams }: { course: string; exams: Cou
       {exams.map((e, i) => {
         const r = results[e.meta.examId];
         const pct = r ? Math.round((r.correct / r.total) * 100) : null;
-        return (
-          <li key={e.meta.examId}>
-            <Link
-              className="card-edit p-5 flex items-start gap-4 transition-colors"
-              style={{ textDecoration: "none" }}
-              href={`/math/${course}/exam/${e.meta.examId}`}
-            >
+        // Paper 1 is the free sample; the rest are Premium.
+        const locked = !isSubscribed && !isExamFree(e.meta.examId);
+        const inner = (
+          <>
               <span
                 className="mono text-[11px] flex-shrink-0 tabular mt-1"
                 style={{ color: "var(--accent)", letterSpacing: "0.04em", minWidth: 24 }}
@@ -82,7 +82,41 @@ export default function ExamList({ course, exams }: { course: string; exams: Cou
                   Start
                 </span>
               )}
-            </Link>
+          </>
+        );
+        return (
+          <li key={e.meta.examId}>
+            {locked ? (
+              <button
+                type="button"
+                onClick={() => openUpgrade({ source: "course_exam_lock" })}
+                className="card-edit p-5 flex items-start gap-4 transition-colors relative w-full text-left"
+              >
+                <span
+                  className="absolute top-3 right-3 inline-flex items-center gap-1 mono uppercase rounded-full px-1.5 py-[2px]"
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.08em",
+                    background: "color-mix(in oklch, var(--warn) 12%, transparent)",
+                    border: "1px solid color-mix(in oklch, var(--warn) 40%, transparent)",
+                    color: "var(--warn, #d89620)",
+                  }}
+                >
+                  <Lock style={{ width: 9, height: 9 }} /> Premium
+                </span>
+                <span className="flex items-start gap-4 flex-1" style={{ opacity: 0.55 }}>
+                  {inner}
+                </span>
+              </button>
+            ) : (
+              <Link
+                className="card-edit p-5 flex items-start gap-4 transition-colors"
+                style={{ textDecoration: "none" }}
+                href={`/math/${course}/exam/${e.meta.examId}`}
+              >
+                {inner}
+              </Link>
+            )}
           </li>
         );
       })}

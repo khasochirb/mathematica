@@ -90,7 +90,7 @@ export default function GenMathPracticePage() {
   const params = useParams();
   const topicSlug = params.topic as string;
   return (
-    <ContentGate backHref={`/math/6/${topicSlug}`} backLabel="Back to topic">
+    <ContentGate courseKey="6" topicSlug={topicSlug} backHref={`/math/6/${topicSlug}`} backLabel="Back to topic">
       {/* Gate copy stays EN; inner page is fully localized. */}
       <GenMathPracticePageInner />
     </ContentGate>

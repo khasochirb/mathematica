@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft } from "lucide-react";
 import { getIbSlSpine } from "@/lib/genmath-data/ib-sl";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
@@ -47,8 +48,7 @@ export default function IbSlCoursePage() {
           {spine.map((u) => {
             return u.live ? (
               <li key={u.slug}>
-                <Link
-                  href={`/math/ib-sl/${u.slug}`}
+                <TopicLink courseKey="ib-sl" topicSlug={u.slug}                   href={`/math/ib-sl/${u.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none" }}
                   onMouseEnter={(e) => {
@@ -74,7 +74,7 @@ export default function IbSlCoursePage() {
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
                     Start
                   </span>
-                </Link>
+                </TopicLink>
               </li>
             ) : (
               <li key={u.slug}>

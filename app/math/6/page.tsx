@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getGrade6Topics, getGrade6TopicLocalized } from "@/lib/genmath-data/grade-6";
 import { useAuth } from "@/lib/auth-context";
@@ -90,8 +91,7 @@ export default function Grade6TopicsPage() {
             const topic = getGrade6TopicLocalized(t.slug, lang) ?? t;
             const important = prioritySet.has(topic.slug);
             return (
-              <Link
-                key={topic.slug}
+              <TopicLink courseKey="6" topicSlug={topic.slug}                 key={topic.slug}
                 href={`/math/6/${topic.slug}`}
                 className="card-edit p-5 flex items-center gap-5 transition-colors"
                 style={{ textDecoration: "none", ...(important ? { borderColor: "var(--accent-line)" } : {}) }}
@@ -125,7 +125,7 @@ export default function Grade6TopicsPage() {
                 <span className="mono text-[11px] flex-shrink-0" style={{ color: "var(--fg-3)" }}>
                   {mn ? `${topic.lessons.length} хичээл` : `${topic.lessons.length} lesson${topic.lessons.length !== 1 ? "s" : ""}`}
                 </span>
-              </Link>
+              </TopicLink>
             );
           })}
         </div>

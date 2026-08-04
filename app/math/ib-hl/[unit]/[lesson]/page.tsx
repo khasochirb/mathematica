@@ -48,7 +48,7 @@ export default function IbHlLessonPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/ib-hl/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="ib-hl" topicSlug={unitSlug} backHref={`/math/ib-hl/${unitSlug}`} backLabel="Back to unit">
       <IbHlLessonPageInner />
     </ContentGate>
   );

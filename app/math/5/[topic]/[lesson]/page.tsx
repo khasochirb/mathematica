@@ -188,7 +188,7 @@ export default function GenMathLessonPage() {
   const params = useParams();
   const topicSlug = params.topic as string;
   return (
-    <ContentGate backHref={`/math/5/${topicSlug}`} backLabel="Back to topic">
+    <ContentGate courseKey="5" topicSlug={topicSlug} backHref={`/math/5/${topicSlug}`} backLabel="Back to topic">
       <GenMathLessonPageInner />
     </ContentGate>
   );

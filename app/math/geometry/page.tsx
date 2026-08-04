@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getGeometrySpine } from "@/lib/genmath-data/geometry";
 import { useAuth } from "@/lib/auth-context";
@@ -86,8 +87,7 @@ export default function GeometryCoursePage() {
             const important = prioritySet.has(u.slug);
             return u.live ? (
               <li key={u.slug}>
-                <Link
-                  href={`/math/geometry/${u.slug}`}
+                <TopicLink courseKey="geometry" topicSlug={u.slug}                   href={`/math/geometry/${u.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none", ...(important ? { borderColor: "var(--accent-line)" } : {}) }}
                   onMouseEnter={(e) => {
@@ -120,7 +120,7 @@ export default function GeometryCoursePage() {
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
                     Start
                   </span>
-                </Link>
+                </TopicLink>
               </li>
             ) : (
               <li key={u.slug}>

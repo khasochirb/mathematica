@@ -88,7 +88,7 @@ export default function IbSlTestPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/ib-sl/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="ib-sl" topicSlug={unitSlug} backHref={`/math/ib-sl/${unitSlug}`} backLabel="Back to unit">
       <IbSlTestPageInner />
     </ContentGate>
   );

@@ -48,7 +48,7 @@ export default function TrigLessonPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/trigonometry/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="trigonometry" topicSlug={unitSlug} backHref={`/math/trigonometry/${unitSlug}`} backLabel="Back to unit">
       <TrigLessonPageInner />
     </ContentGate>
   );

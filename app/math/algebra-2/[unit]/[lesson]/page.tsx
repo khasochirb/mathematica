@@ -48,7 +48,7 @@ export default function Alg2LessonPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/algebra-2/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="algebra-2" topicSlug={unitSlug} backHref={`/math/algebra-2/${unitSlug}`} backLabel="Back to unit">
       <Alg2LessonPageInner />
     </ContentGate>
   );

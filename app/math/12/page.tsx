@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { getGrade12Spine, getGrade12Topic } from "@/lib/genmath-data/grade-12";
 import { useAuth } from "@/lib/auth-context";
@@ -87,8 +88,7 @@ export default function Grade12TopicsPage() {
             const important = prioritySet.has(t.slug);
             return t.live ? (
               <li key={t.slug}>
-                <Link
-                  href={`/math/12/${t.slug}`}
+                <TopicLink courseKey="12" topicSlug={t.slug}                   href={`/math/12/${t.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none", ...(important ? { borderColor: "var(--accent-line)" } : {}) }}
                   onMouseEnter={(e) => {
@@ -121,7 +121,7 @@ export default function Grade12TopicsPage() {
                   <span className="mono text-[11px] flex-shrink-0 mt-1" style={{ color: "var(--fg-3)" }}>
                     {lessonCount} lesson{lessonCount !== 1 ? "s" : ""}
                   </span>
-                </Link>
+                </TopicLink>
               </li>
             ) : (
               <li key={t.slug}>

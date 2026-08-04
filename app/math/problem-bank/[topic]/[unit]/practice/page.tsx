@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import BankRunner from "@/components/bank/BankRunner";
 import { getBankTopic, getBankTopics } from "@/lib/bank-data";
 import { getBankUnit } from "@/lib/problem-bank";
+import ContentGate from "@/components/genmath/ContentGate";
 
 export function generateStaticParams() {
   return getBankTopics().flatMap((t) =>
@@ -25,5 +26,14 @@ export default function BankUnitPracticePage({ params }: { params: { topic: stri
   if (!topic) notFound();
   const unit = getBankUnit(topic, params.unit);
   if (!unit) notFound();
-  return <BankRunner topic={topic} unit={unit} />;
+  return (
+    <ContentGate
+      courseKey={params.topic}
+      topicSlug={params.unit}
+      backHref={`/math/problem-bank/${params.topic}`}
+      backLabel="Back to the bank"
+    >
+      <BankRunner topic={topic} unit={unit} />
+    </ContentGate>
+  );
 }

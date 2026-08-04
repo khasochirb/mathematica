@@ -48,7 +48,7 @@ export default function PrecalcLessonPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/precalculus/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="precalculus" topicSlug={unitSlug} backHref={`/math/precalculus/${unitSlug}`} backLabel="Back to unit">
       <PrecalcLessonPageInner />
     </ContentGate>
   );

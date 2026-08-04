@@ -37,6 +37,12 @@ export type UpgradeSource =
   | "gated_legacy_tests"
   | "gated_full_solutions"
   | "gated_study_pool"
+  // The /math course paywall: every course opens its first topic free, the
+  // rest is Premium (policy: lib/course-access.ts). Three surfaces raise it —
+  // the content route itself, a locked topic card, a locked course exam.
+  | "course_content_lock"
+  | "course_topic_lock"
+  | "course_exam_lock"
   | "landing_premium_card"
   // Purchase requests — a plan was selected and an email submitted. The
   // owner works these rows: collect payment, then activate (see lib/pricing.ts).

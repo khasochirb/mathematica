@@ -88,7 +88,7 @@ export default function SolidGeoTestPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate backHref={`/math/solid-geometry/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="solid-geometry" topicSlug={unitSlug} backHref={`/math/solid-geometry/${unitSlug}`} backLabel="Back to unit">
       <SolidGeoTestPageInner />
     </ContentGate>
   );

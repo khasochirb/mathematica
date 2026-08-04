@@ -9,6 +9,7 @@ import type { GeometrySpineEntry } from "@/lib/genmath-spines";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
 import ContentGate from "@/components/genmath/ContentGate";
+import TopicLink from "@/components/genmath/TopicLink";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
@@ -223,12 +224,12 @@ export function CourseSpineList({ course }: { course: CourseDef }) {
           return (
             <li key={u.slug}>
               {u.live ? (
-                <Link
+                <TopicLink
+                  courseKey={course.slug}
+                  topicSlug={u.slug}
                   href={`${root}/${u.slug}`}
                   className="card-edit p-5 flex items-start gap-4 transition-colors"
                   style={{ textDecoration: "none" }}
-                  onMouseEnter={hoverAccent(true)}
-                  onMouseLeave={hoverAccent(false)}
                 >
                   {number}
                   {body}
@@ -238,7 +239,7 @@ export function CourseSpineList({ course }: { course: CourseDef }) {
                   >
                     {L.start}
                   </span>
-                </Link>
+                </TopicLink>
               ) : (
                 <div className="card-edit p-5 flex items-start gap-4" style={{ opacity: 0.45, cursor: "default" }}>
                   {number}
@@ -477,7 +478,7 @@ export function CourseLessonPage({ course }: { course: CourseDef }) {
   const unitSlug = params.unit as string;
   const L = labelsOf(course);
   return (
-    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
+    <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <LessonInner course={course} />
     </ContentGate>
   );
@@ -544,7 +545,7 @@ export function CoursePracticePage({ course }: { course: CourseDef }) {
   const unitSlug = params.unit as string;
   const L = labelsOf(course);
   return (
-    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
+    <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="practice" />
     </ContentGate>
   );
@@ -555,7 +556,7 @@ export function CourseTestPage({ course }: { course: CourseDef }) {
   const unitSlug = params.unit as string;
   const L = labelsOf(course);
   return (
-    <ContentGate backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
+    <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="test" />
     </ContentGate>
   );
