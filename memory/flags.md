@@ -113,6 +113,16 @@ the admin key and is disabled without it.
   flag's "Reading a non-`applied` result" row before acting),
   `migration_009_attempts_context: applied` → 009 moved to Resolved.
   Nothing in deploy `f2f5d07` depended on either open flag.
+- **2026-08-04** — Probe after deploy `dd4f479` (the /math course paywall:
+  first topic of every course free, the rest Premium; Premium copy rewritten
+  to lead with the courses): `anthropic_api_key: configured`,
+  `migration_009: applied`, `migration_008_student_profiles: unknown`
+  (FLAG-002 unchanged). FLAG-003 still optional/unset. No migrations in the
+  diff. NOTE for whoever works FLAG-003: the paywall raises the value of
+  `POST /api/subscription/activate` — it is now the one-step way to turn on
+  a paying student's course access, so setting ADMIN_ACTIVATION_KEY is worth
+  the two minutes it was not worth before. Prod runtime errors clean over
+  the 1h window.
 - **2026-08-04** — Probe after deploy `1ea78b4` (Grade 4 complete year with
   figures, Grade 5 Topic 8 + per-unit Grade 5 banks, navigator restyle;
   the mascot experiment was reverted before shipping): `anthropic_api_key:
