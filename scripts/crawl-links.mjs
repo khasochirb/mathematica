@@ -48,13 +48,14 @@ const ME = { id: "u2", email: "p@x.invalid", username: "prem", displayName: "Pre
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 async function newPage() {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  // Mock ONLY what decides access. A broad `**/api/**` catch-all was tried and
+  // removed: answering every endpoint with `{data:{}}` makes pages throw and
+  // render EMPTY — no heading, no links, and therefore no "not found" either,
+  // so every empty page counts as clean. The emptiness check below is the
+  // backstop, but the real fix is not to break the pages in the first place.
+  //
   // ORDER MATTERS: Playwright uses the LAST registered matching route, so the
-  // broad catch-all goes FIRST and the specific auth mocks LAST. With the
-  // order reversed the catch-all answers /api/auth/me, the reader is
-  // anonymous, and every gated page renders a sign-in wall instead of its
-  // content — a crawl that then reports "all clean" has checked nothing.
-  await ctx.route("**/api/**", (r) =>
-    r.fulfill({ contentType: "application/json", body: JSON.stringify({ data: {} }) }));
+  // specific auth mocks must come after anything broader.
   await ctx.route("**/api/auth/me", (r) =>
     r.fulfill({ contentType: "application/json", body: JSON.stringify({ data: ME }) }));
   await ctx.route("**/api/subscription/status", (r) =>
@@ -84,6 +85,7 @@ async function selfCheck() {
 // no "not found" yet and reads as healthy. Wait for the auth placeholder
 // (aria-busy) to clear, then for the text to stop changing.
 const slow = [];
+const empty = [];
 async function settledText(page, url) {
   await page
     .waitForFunction(() => !document.querySelector('[aria-busy="true"]'), null, { timeout: 20000 })
@@ -126,6 +128,10 @@ async function worker(id) {
         broken.push(`${url}   [linked from: ${edges.get(url) ?? "seed"}]`);
       }
       const hrefs = await page.$$eval("a[href]", (as) => as.map((a) => a.getAttribute("href")));
+      // A page that rendered nothing cannot show a soft-404 either, so a
+      // "clean" verdict on it is meaningless. Every real page here carries the
+      // site chrome, so no links at all means the render died.
+      if (hrefs.length === 0) empty.push(url);
       for (const h of hrefs) {
         if (!h || !h.startsWith("/")) continue;
         const clean = h.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
@@ -156,11 +162,13 @@ for (const e of errored.slice(0, 25)) console.log("  ERR " + e);
 // Any page whose render never settled is an UNKNOWN, not a pass.
 console.log(`unsettled (result not trusted): ${slow.length}`);
 for (const s of slow.slice(0, 25)) console.log("  SLOW " + s);
+console.log(`rendered EMPTY (result not trusted): ${empty.length}`);
+for (const e of empty.slice(0, 25)) console.log("  EMPTY " + e);
 fs.writeFileSync(
   process.env.CRAWL_OUT ?? "/tmp/crawl-result.json",
-  JSON.stringify({ visited: done, broken, errored, unsettled: slow }, null, 2),
+  JSON.stringify({ visited: done, broken, errored, unsettled: slow, empty }, null, 2),
 );
 // Unsettled pages are UNKNOWN, not passes — a run that could not decide is
 // not a clean run. Re-check them by hand (they are usually just slow to
 // render) before treating the crawl as green.
-process.exit(broken.length || errored.length ? 1 : 0);
+process.exit(broken.length || errored.length || empty.length ? 1 : 0);

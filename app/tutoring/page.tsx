@@ -11,7 +11,8 @@
 
 import { useEffect } from "react";
 import { Facebook, MessageCircle, Phone, Mail, Check } from "lucide-react";
-import { useLang } from "@/lib/lang-context";
+import { useLang, landedFromOffSite } from "@/lib/lang-context";
+import { useAuth } from "@/lib/auth-context";
 
 // Real contact details (provided 2026-06-16, authorized for public use).
 const FACEBOOK_URL = "https://www.facebook.com/khasochirb";
@@ -135,18 +136,41 @@ const TRUST_BULLETS: Bi[] = [
 
 export default function TutoringPage() {
   const { lang, setLang } = useLang();
+  const { isAuthenticated, loading } = useAuth();
   const L = (b: Bi) => (lang === "mn" ? b.mn : b.en);
 
   // This page is the landing target for the Facebook ad, whose audience is
-  // Mongolian parents — so default it to Mongolian for first-time visitors.
-  // Anyone who has already picked a language keeps their choice, and the
-  // header EN/MN toggle still works normally.
+  // Mongolian parents — so a visitor who ARRIVES HERE FROM THE AD gets the
+  // page in Mongolian.
+  //
+  // "No saved language" is not enough to identify that visitor: English is the
+  // site default, so a reader browsing happily in English has never written
+  // mp_lang either. Keying off that alone meant clicking "1-on-1 Tutoring" in
+  // the nav flipped the WHOLE SITE to Mongolian and persisted it — the header,
+  // the dashboard, every lesson — for someone who never asked. Three
+  // conditions now have to hold, and each rules out a reader who is not ad
+  // traffic:
+  //
+  //   - no saved language      — an explicit choice always wins
+  //   - not signed in          — an existing account is not a new ad click
+  //   - LANDED here from off-site — the document itself was loaded at
+  //                              /tutoring, from another origin
+  //
+  // That last one cannot be `document.referrer` on its own: the App Router
+  // does not update the referrer across a client-side navigation, so after
+  // clicking the nav link it still describes the page before this one and an
+  // in-site click reads as external. `landedFromOffSite` also checks the
+  // path the document actually loaded at, which client navigation cannot fake.
   useEffect(() => {
-    if (typeof window !== "undefined" && !localStorage.getItem("mp_lang")) {
-      setLang("mn");
-    }
+    if (typeof window === "undefined") return;
+    if (loading) return; // wait until we know whether anyone is signed in
+    if (localStorage.getItem("mp_lang")) return;
+    if (isAuthenticated) return;
+    if (!landedFromOffSite("/tutoring")) return;
+
+    setLang("mn");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading, isAuthenticated]);
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
