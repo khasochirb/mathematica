@@ -766,6 +766,9 @@ def build():
         form("G9-DD3", "Outlier fences", 3, DD,
              "Q3 + 1.5·IQR marks the upper fence.", mk_num("G9-DD3", _g_fences())),
     ]
+    # Round two takes every unit from three forms to six, matching the
+    # primary and middle grades.
+    forms += extra_forms_round_two()
     return {
         # Slug "9" mirrors the course path /math/9, so every piece of shared
         # machinery (bank chrome, exam routes, ExamList links) lines up free.
@@ -778,3 +781,720 @@ def build():
         "units": UNITS,
         "forms": forms,
     }
+
+
+# ===========================================================================
+# Round two — three more forms per unit, taking Grade 9 to the six-per-unit
+# standard the primary and middle grades already meet. Same discipline:
+# answers computed from named parameters, distractors named after the error
+# they model, every check sympy-asserted by the gate.
+# ===========================================================================
+
+def _g_distribute_solve():
+    """a(x + b) = c, engineered so x comes out whole."""
+    raws = []
+    for a in (2, 3, 4, 5, 6):
+        for b in (-6, -4, -3, 2, 3, 5, 7):
+            for x0 in (-4, -1, 2, 5):
+                c = a * (x0 + b)
+                raws.append({
+                    "statement": "Solve $%d(x %s %d) = %d$."
+                                 % (a, "+" if b > 0 else "-", abs(b), c),
+                    "correct": x0,
+                    # distributed to the x only · divided before distributing
+                    # wrongly · sign slip on b
+                    # c/a is exactly x0 + b, so "Rational(c,a) + b" IS
+                    # x0 + 2b — the same distractor twice, which drops the draw.
+                    "dvals": [Rational(c - b, a), x0 + 2 * b, c - a * b],
+                    "explanation": ("Divide both sides by $%d$ first: $x %s %d = %d$, "
+                                    "so $x = %d$. Multiplying the $%d$ into the bracket "
+                                    "and then forgetting to multiply the $%d$ is the "
+                                    "usual slip."
+                                    % (a, "+" if b > 0 else "-", abs(b),
+                                       Rational(c, a), x0, a, b)),
+                    "check": ["Eq(%d*((%d) + (%d)), %d)" % (a, x0, b, c)],
+                })
+    return raws
+
+
+def _g_solution_count():
+    """ax + b = ax + d — no solution, or the same line twice."""
+    raws = []
+    for a in (2, 3, 4, 5, 6, 7):
+        for b in (-5, -2, 1, 3, 6):
+            # identical sides: infinitely many
+            raws.append({
+                "statement": "How many solutions has $%s = %s$?"
+                             % (lin(a, b), lin(a, b)),
+                "correct": "infinitely many — every $x$ works",
+                "dvals": ["exactly one", "no solutions", "exactly two"],
+                "explanation": ("Both sides are the same expression, so the equation "
+                                "is true whatever $x$ is. Subtracting $%dx$ from each "
+                                "side leaves $%d = %d$, which is always true."
+                                % (a, b, b)),
+                "check": ["Eq(%d, %d)" % (b, b), "Eq(%d - %d, 0)" % (a, a)],
+            })
+            for d in (b + 3, b - 4):
+                raws.append({
+                    "statement": "How many solutions has $%s = %s$?"
+                                 % (lin(a, b), lin(a, d)),
+                    "correct": "none — the sides never meet",
+                    "dvals": ["exactly one", "infinitely many — every $x$ works",
+                              "exactly two"],
+                    "explanation": ("Subtract $%dx$ from both sides and the $x$ "
+                                    "disappears, leaving $%d = %d$ — false. Equal "
+                                    "slopes with different constants are parallel "
+                                    "lines, so they never cross."
+                                    % (a, b, d)),
+                    "check": ["Ne(%d, %d)" % (b, d), "Eq(%d - %d, 0)" % (a, a)],
+                })
+    return raws
+
+
+def _g_consecutive():
+    """Consecutive integers summing to a target."""
+    raws = []
+    for k in (3, 4, 5):
+        for first in range(-6, 30):
+            nums = list(range(first, first + k))
+            total = sum(nums)
+            if k == 4 and total % 2:
+                continue
+            raws.append({
+                "statement": ("%d consecutive integers add to $%d$. What is the "
+                              "SMALLEST of them?" % (k, total)),
+                "correct": first,
+                # gave the largest · divided the total by k and stopped ·
+                # off by one
+                "dvals": [first + k - 1, Rational(total, k), first + 1],
+                "explanation": ("Call the smallest $n$. The %d of them add to "
+                                "$%dn + %d = %d$, so $n = %d$. Dividing $%d$ by %d "
+                                "gives the MIDDLE value, not the smallest."
+                                % (k, k, sum(range(k)), total, first, total, k)),
+                "check": ["Eq(%d*%d + %d, %d)" % (k, first, sum(range(k)), total),
+                          "Eq(%d, %d)" % (sum(nums), total)],
+            })
+    return raws
+
+
+def _g_compound_and():
+    """a < x + b < c — solve a band."""
+    raws = []
+    for b in (-7, -4, -2, 3, 5, 8):
+        for lo in (-9, -5, -1, 2, 6):
+            for width in (4, 6, 9):
+                hi = lo + width
+                raws.append({
+                    "statement": ("Solve $%d < x %s %d < %d$."
+                                  % (lo, "+" if b > 0 else "-", abs(b), hi)),
+                    "correct": "$%d < x < %d$" % (lo - b, hi - b),
+                    # added b instead of subtracting · moved only one end ·
+                    # flipped the band
+                    "dvals": ["$%d < x < %d$" % (lo + b, hi + b),
+                              "$%d < x < %d$" % (lo - b, hi),
+                              "$%d < x < %d$" % (hi - b, lo - b)],
+                    "explanation": ("Subtract $%d$ from ALL THREE parts: "
+                                    "$%d < x < %d$. Moving only one end is the "
+                                    "commonest slip — a compound inequality is two "
+                                    "inequalities travelling together."
+                                    % (b, lo - b, hi - b)),
+                    "check": ["%d < %d" % (lo - b, hi - b),
+                              "Eq((%d) - (%d), %d)" % (hi, lo, width)],
+                })
+    return raws
+
+
+def _g_interval_notation():
+    """Inequality to interval notation, brackets included."""
+    raws = []
+    for a in (-8, -5, -2, 0, 3, 7):
+        for width in (3, 5, 9):
+            b = a + width
+            for closed_lo, closed_hi in ((True, False), (False, True), (True, True)):
+                lo_b, hi_b = ("[" if closed_lo else "("), ("]" if closed_hi else ")")
+                lo_s = "\\le" if closed_lo else "<"
+                hi_s = "\\le" if closed_hi else "<"
+                raws.append({
+                    "statement": ("Write $%d %s x %s %d$ in interval notation."
+                                  % (a, lo_s, hi_s, b)),
+                    "correct": "$%s%d,\\ %d%s$" % (lo_b, a, b, hi_b),
+                    # both brackets flipped · endpoints swapped · always-round
+                    "dvals": ["$%s%d,\\ %d%s$" % ("(" if closed_lo else "[", a, b,
+                                                  ")" if closed_hi else "]"),
+                              "$%s%d,\\ %d%s$" % (lo_b, b, a, hi_b),
+                              "$(%d,\\ %d)$" % (a, b) if (closed_lo or closed_hi)
+                              else "$[%d,\\ %d]$" % (a, b)],
+                    "explanation": ("A square bracket means the endpoint is INCLUDED "
+                                    "and a round one means it is not. Here $%d$ is %s "
+                                    "and $%d$ is %s, giving $%s%d,\\ %d%s$."
+                                    % (a, "included" if closed_lo else "excluded",
+                                       b, "included" if closed_hi else "excluded",
+                                       lo_b, a, b, hi_b)),
+                    "check": ["%d < %d" % (a, b), "Eq((%d) - (%d), %d)" % (b, a, width)],
+                })
+    return raws
+
+
+def _g_inequality_words():
+    """At most / at least budgeting: base + rate*n <= budget."""
+    raws = []
+    for base in (200, 350, 500, 750):
+        for rate in (25, 40, 50, 60):
+            # Leftover cash must be less than ONE guest, or n is not the
+            # greatest after all — a fixed slack of 30 made n + 1 affordable
+            # at a rate of 25 and the check caught every one of them.
+            for spare in (0, rate // 3, rate - 1):
+                for n in (6, 9, 11, 14):
+                    budget = base + rate * n + spare
+                    raws.append({
+                        "statement": ("A hall costs $%d$ togrog to hire plus $%d$ "
+                                      "togrog per guest. With a budget of $%d$ "
+                                      "togrog, what is the greatest number of "
+                                      "guests?" % (base, rate, budget)),
+                        "correct": n,
+                        # divided the whole budget by the rate · rounded up past
+                        # the budget · off by one downward
+                        "dvals": [Rational(budget, rate), n + 1, n - 1],
+                        "explanation": ("The hire comes off first: $%d - %d = %d$ "
+                                        "togrog is left for guests, and that pays "
+                                        "for $%d$ of them at $%d$ each. One more "
+                                        "would cost $%d$, past the budget — so an "
+                                        "'at most' answer always rounds down."
+                                        % (budget, base, budget - base, n, rate,
+                                           base + rate * (n + 1))),
+                        "check": ["%d + %d*%d <= %d" % (base, rate, n, budget),
+                                  "%d + %d*%d > %d" % (base, rate, n + 1, budget)],
+                    })
+    return raws
+
+
+def _g_is_a_function():
+    """Does this set of pairs define a function?"""
+    raws = []
+    for a in (1, 2, 3, 4, 5, 6):
+        for b in (7, 8, 9):
+            for c in (2, 5):
+                # repeated input -> not a function
+                raws.append({
+                    "statement": ("Is $\\{(%d,\\ %d),\\ (%d,\\ %d),\\ (%d,\\ %d)\\}$ "
+                                  "a function?" % (a, b, a, b + c, a + 4, b)),
+                    "correct": "no — the input $%d$ has two different outputs" % a,
+                    "dvals": ["yes — every input appears once",
+                              "no — the output $%d$ repeats" % b,
+                              "yes — there are three pairs"],
+                    "explanation": ("A function gives each INPUT exactly one output, "
+                                    "and $%d$ here is sent to both $%d$ and $%d$. "
+                                    "Repeated OUTPUTS are perfectly allowed — $%d$ "
+                                    "appears twice and that breaks nothing."
+                                    % (a, b, b + c, b)),
+                    "check": ["Ne(%d, %d)" % (b, b + c), "Eq(%d, %d)" % (a, a)],
+                })
+                # repeated output only -> still a function
+                raws.append({
+                    "statement": ("Is $\\{(%d,\\ %d),\\ (%d,\\ %d),\\ (%d,\\ %d)\\}$ "
+                                  "a function?" % (a, b, a + 2, b, a + 4, b + c)),
+                    "correct": "yes — every input appears once",
+                    "dvals": ["no — the output $%d$ repeats" % b,
+                              "no — the input $%d$ has two outputs" % a,
+                              "only if the inputs are in order"],
+                    "explanation": ("Each input $%d$, $%d$ and $%d$ appears exactly "
+                                    "once, so this is a function. The output $%d$ "
+                                    "being reused is fine — two inputs are allowed to "
+                                    "share an output."
+                                    % (a, a + 2, a + 4, b)),
+                    "check": ["Ne(%d, %d)" % (a, a + 2), "Ne(%d, %d)" % (a + 2, a + 4)],
+                })
+    return raws
+
+
+def _g_composition_point():
+    """f(g(x)) evaluated at a point, both functions linear."""
+    raws = []
+    for m in (2, 3, -2, 4):
+        for k in (-5, -1, 3, 6):
+            for p in (1, 2, 5):
+                for x0 in (-2, 0, 3):
+                    g = m * x0 + k          # inner value
+                    f = p * g - 4           # outer applied
+                    raws.append({
+                        "statement": ("If $g(x) = %s$ and $f(x) = %s$, what is "
+                                      "$f(g(%d))$?"
+                                      % (lin(m, k), lin(p, -4), x0)),
+                        "correct": f,
+                        # applied f first · added the two outputs · used x0 in f
+                        "dvals": [m * (p * x0 - 4) + k, g + (p * x0 - 4), p * x0 - 4],
+                        "explanation": ("Work from the inside out: $g(%d) = %d$, then "
+                                        "$f(%d) = %d$. Applying $f$ first gives a "
+                                        "different number entirely — composition is "
+                                        "not commutative."
+                                        % (x0, g, g, f)),
+                        "check": ["Eq(%d*(%d) + (%d), %d)" % (m, x0, k, g),
+                                  "Eq(%d*(%d) - 4, %d)" % (p, g, f)],
+                    })
+    return raws
+
+
+def _g_range_from_table():
+    """Range of a function given as a small table."""
+    raws = []
+    for a in (-4, -1, 2, 5):
+        for step in (2, 3, 5):
+            for m in (2, -3, 4):
+                xs = [a, a + step, a + 2 * step]
+                ys = [m * x + 1 for x in xs]
+                lo, hi = min(ys), max(ys)
+                raws.append({
+                    "statement": ("A function is given by the pairs "
+                                  "$(%d,\\ %d)$, $(%d,\\ %d)$, $(%d,\\ %d)$. "
+                                  "What is its range?"
+                                  % (xs[0], ys[0], xs[1], ys[1], xs[2], ys[2])),
+                    "correct": "$\\{%d,\\ %d,\\ %d\\}$" % (ys[0], ys[1], ys[2]),
+                    # gave the domain · gave only the extremes as an interval ·
+                    # mixed the two
+                    "dvals": ["$\\{%d,\\ %d,\\ %d\\}$" % (xs[0], xs[1], xs[2]),
+                              "$[%d,\\ %d]$" % (lo, hi),
+                              "$\\{%d,\\ %d,\\ %d\\}$" % (xs[0], ys[1], xs[2])],
+                    "explanation": ("The range is the set of OUTPUTS — the second "
+                                    "coordinate of each pair: $%d$, $%d$ and $%d$. "
+                                    "The inputs $%d$, $%d$, $%d$ are the domain. With "
+                                    "only three pairs the function is not defined "
+                                    "between them, so an interval would claim too "
+                                    "much."
+                                    % (ys[0], ys[1], ys[2], xs[0], xs[1], xs[2])),
+                    "check": ["Eq(%d*(%d) + 1, %d)" % (m, xs[0], ys[0]),
+                              "Eq(%d*(%d) + 1, %d)" % (m, xs[2], ys[2])],
+                })
+    return raws
+
+
+def _g_joint_variation():
+    """z varies jointly as x and y: z = kxy."""
+    raws = []
+    for k in (2, 3, 4, 5):
+        for x1 in (2, 3, 6):
+            for y1 in (4, 5, 7):
+                z1 = k * x1 * y1
+                x2, y2 = x1 * 2, y1 + 3
+                z2 = k * x2 * y2
+                raws.append({
+                    "statement": ("$z$ varies jointly as $x$ and $y$. When $x = %d$ "
+                                  "and $y = %d$, $z = %d$. Find $z$ when $x = %d$ "
+                                  "and $y = %d$." % (x1, y1, z1, x2, y2)),
+                    "correct": z2,
+                    # used k as z1 · varied with x only · added instead of scaling
+                    # k*x2*y1 would be exactly 2*z1 — the same distractor
+                    # twice. Varying the OTHER factor gives a distinct slip.
+                    "dvals": [z1 * 2, k * x1 * y2, z1 + (x2 - x1) + (y2 - y1)],
+                    "explanation": ("Find the constant first: $k = \\dfrac{%d}{%d "
+                                    "\\times %d} = %d$. Then $z = %d \\times %d "
+                                    "\\times %d = %d$."
+                                    % (z1, x1, y1, k, k, x2, y2, z2)),
+                    "check": ["Eq(%d*%d*%d, %d)" % (k, x1, y1, z1),
+                              "Eq(%d*%d*%d, %d)" % (k, x2, y2, z2)],
+                })
+    return raws
+
+
+def _g_slope_as_rate():
+    """Interpreting the slope of a context line."""
+    raws = []
+    ctx = [("litres of fuel", "kilometre", "a car burns"),
+           ("togrog", "minute", "a call costs"),
+           ("centimetres", "week", "a seedling grows"),
+           ("pages", "day", "a reader finishes")]
+    for label, per, verb in ctx:
+        for m in (2, 3, 5, 7, 12):
+            for b in (10, 25, 40):
+                raws.append({
+                    "statement": ("A model says $y = %s$, where $x$ counts %ss. What "
+                                  "does the $%d$ mean?" % (lin(m, b), per, m)),
+                    "correct": "%s $%d$ more %s for each extra %s"
+                               % (verb, m, label, per),
+                    "dvals": ["the starting amount, before any %s passes" % per,
+                              "the total after $%d$ %ss" % (m, per),
+                              "the number of %ss needed" % per],
+                    "explanation": ("The coefficient of $x$ is the RATE: each extra "
+                                    "%s adds $%d$. The $%d$ is the starting amount, "
+                                    "which is what the $y$-intercept means."
+                                    % (per, m, b)),
+                    "check": ["Eq(%d*1 + %d - (%d*0 + %d), %d)" % (m, b, m, b, m)],
+                })
+    return raws
+
+
+def _g_model_predict():
+    """Predict with a linear model, and notice extrapolation."""
+    raws = []
+    for m in (3, 4, 6, 9):
+        for b in (12, 20, 35, 50):
+            for x in (5, 8, 11, 15):
+                y = m * x + b
+                raws.append({
+                    "statement": ("A tank holds $y = %s$ litres after $x$ hours. How "
+                                  "much does it hold after $%d$ hours?"
+                                  % (lin(m, b), x)),
+                    "correct": y,
+                    # forgot the starting amount · multiplied the intercept ·
+                    # used the rate as the answer
+                    "dvals": [m * x, (m + b) * x, m + b + x],
+                    "explanation": ("Substitute: $%d \\times %d + %d = %d$ litres. "
+                                    "Leaving the $%d$ out answers how much was ADDED, "
+                                    "not how much is in the tank."
+                                    % (m, x, b, y, b)),
+                    "check": ["Eq(%d*%d + %d, %d)" % (m, x, b, y)],
+                })
+    return raws
+
+
+def _g_halfplane():
+    """Which inequality describes a half-plane with a given boundary."""
+    raws = []
+    for m in (1, 2, 3, -1, -2):
+        for b in (-4, -1, 2, 5):
+            for above, strict in ((True, False), (False, True), (True, True)):
+                sign = ("\\ge" if above else "\\le") if not strict else \
+                       (">" if above else "<")
+                other = ("\\le" if above else "\\ge") if not strict else \
+                        ("<" if above else ">")
+                raws.append({
+                    "statement": ("A region is bounded by the line $y = %s$, drawn "
+                                  "%s, and the shading lies %s it. Which inequality "
+                                  "is it?"
+                                  % (lin(m, b), "dashed" if strict else "solid",
+                                     "above" if above else "below")),
+                    "correct": "$y %s %s$" % (sign, lin(m, b)),
+                    "dvals": ["$y %s %s$" % (other, lin(m, b)),
+                              "$y %s %s$" % (sign, lin(m, -b)),
+                              "$x %s %s$" % (sign, lin(m, b))],
+                    "explanation": ("Shading above the line means $y$ is GREATER than "
+                                    "the line's value, and a %s boundary means the "
+                                    "line %s part of the region — so the sign is "
+                                    "$%s$."
+                                    % ("dashed" if strict else "solid",
+                                       "is not" if strict else "is", sign)),
+                    "check": ["Eq(%d*0 + %d, %d)" % (m, b, b)],
+                })
+    return raws
+
+
+def _g_constraint_from_words():
+    """Turn a sentence into an inequality."""
+    raws = []
+    for cost_a in (300, 450, 600):
+        for cost_b in (200, 250, 800):
+            if cost_a == cost_b:
+                continue
+            for budget in (3000, 4500, 6000):
+                raws.append({
+                    "statement": ("Chairs cost $%d$ togrog and tables cost $%d$ "
+                                  "togrog. You may spend at most $%d$ togrog. Which "
+                                  "inequality says so, with $c$ chairs and $t$ "
+                                  "tables?" % (cost_a, cost_b, budget)),
+                    "correct": "$%dc + %dt \\le %d$" % (cost_a, cost_b, budget),
+                    # flipped the sense · swapped the coefficients · used equality
+                    "dvals": ["$%dc + %dt \\ge %d$" % (cost_a, cost_b, budget),
+                              "$%dc + %dt \\le %d$" % (cost_b, cost_a, budget),
+                              "$%dc + %dt = %d$" % (cost_a, cost_b, budget)],
+                    "explanation": ("Each chair adds $%d$ and each table adds $%d$, "
+                                    "so the spend is $%dc + %dt$. \"At most\" caps it, "
+                                    "which is $\\le$ — an $=$ would forbid spending "
+                                    "less, and $\\ge$ would demand spending more."
+                                    % (cost_a, cost_b, cost_a, cost_b)),
+                    "check": ["%d*1 + %d*1 <= %d" % (cost_a, cost_b, budget)],
+                })
+    return raws
+
+
+def _g_region_vertex():
+    """A corner of x >= 0, y >= 0, ax + by <= c."""
+    raws = []
+    for a in (1, 2, 3, 4, 5):
+        for b in (1, 2, 3, 5, 6):
+            if a == b:
+                continue          # then c/b IS the answer, and the draw dies
+            for k in (4, 6, 10, 12, 20):
+                c = a * b * k
+                raws.append({
+                    "statement": ("The region $x \\ge 0$, $y \\ge 0$, "
+                                  "$%dx + %dy \\le %d$ is a triangle. Where does it "
+                                  "meet the $x$-axis?" % (a, b, c)),
+                    "correct": "$(%d,\\ 0)$" % Rational(c, a),
+                    # used b · read it as the y-intercept · used c itself
+                    "dvals": ["$(%d,\\ 0)$" % Rational(c, b),
+                              "$(0,\\ %d)$" % Rational(c, b),
+                              "$(%d,\\ 0)$" % c],
+                    "explanation": ("On the $x$-axis $y = 0$, so the boundary reads "
+                                    "$%dx = %d$ and $x = %d$. Dividing by $%d$ instead "
+                                    "would answer the $y$-axis question."
+                                    % (a, c, Rational(c, a), b)),
+                    "check": ["Eq(%d*Rational(%d, %d) + %d*0, %d)" % (a, c, a, b, c)],
+                })
+    return raws
+
+
+def _g_abs_transform():
+    """y = a|x - h| + k — read the transformation."""
+    raws = []
+    for a in (2, 3, -1, -2):
+        for h in (-4, -1, 3, 5):
+            for k in (-6, 0, 2, 7):
+                raws.append({
+                    "statement": ("Describe the graph of $y = %s|x %s %d| %s %d$."
+                                  % ("" if a == 1 else ("-" if a == -1 else str(a)),
+                                     "+" if h < 0 else "-", abs(h),
+                                     "+" if k >= 0 else "-", abs(k))),
+                    "correct": ("a V with vertex $(%d,\\ %d)$, opening %s"
+                                % (h, k, "upward" if a > 0 else "downward")),
+                    "dvals": [("a V with vertex $(%d,\\ %d)$, opening %s"
+                               % (-h, k, "upward" if a > 0 else "downward")),
+                              ("a V with vertex $(%d,\\ %d)$, opening %s"
+                               % (h, k, "downward" if a > 0 else "upward")),
+                              ("a V with vertex $(%d,\\ %d)$, opening %s"
+                               % (k, h, "upward" if a > 0 else "downward"))],
+                    "explanation": ("Inside the bars, $x %s %d$ moves the vertex to "
+                                    "$x = %d$ — the opposite sign to the one written. "
+                                    "The $%s%d$ outside moves it to $y = %d$, and the "
+                                    "coefficient $%d$ being %s opens the V %s."
+                                    % ("+" if h < 0 else "-", abs(h), h,
+                                       "+" if k >= 0 else "-", abs(k), k, a,
+                                       "positive" if a > 0 else "negative",
+                                       "upward" if a > 0 else "downward")),
+                    "check": ["Eq(%d*Abs(%d - %d) + %d, %d)" % (a, h, h, k, k)],
+                })
+    return raws
+
+
+def _g_v_from_points():
+    """Equation of a V from its vertex and one more point."""
+    raws = []
+    for h in (-3, 0, 2, 6):
+        for k in (-5, -1, 4):
+            for a in (1, 2, 3, 4):
+                d = 2
+                y = a * d + k
+                raws.append({
+                    "statement": ("A V has vertex $(%d,\\ %d)$ and passes through "
+                                  "$(%d,\\ %d)$. What is its equation?"
+                                  % (h, k, h + d, y)),
+                    "correct": ("$y = %s|x %s %d| %s %d$"
+                                % ("" if a == 1 else str(a),
+                                   "+" if h < 0 else "-", abs(h),
+                                   "+" if k >= 0 else "-", abs(k))),
+                    "dvals": [("$y = %s|x %s %d| %s %d$"
+                               % ("" if a == 1 else str(a),
+                                  "-" if h < 0 else "+", abs(h),
+                                  "+" if k >= 0 else "-", abs(k))),
+                              ("$y = %s|x %s %d| %s %d$"
+                               % (str(a + 1), "+" if h < 0 else "-", abs(h),
+                                  "+" if k >= 0 else "-", abs(k))),
+                              ("$y = %s|x %s %d| %s %d$"
+                               % ("" if a == 1 else str(a),
+                                  "+" if h < 0 else "-", abs(h),
+                                  "-" if k >= 0 else "+", abs(k)))],
+                    "explanation": ("The vertex fixes $h = %d$ and $k = %d$, so the "
+                                    "shape is $y = a|x %s %d| %s %d$. The extra point "
+                                    "is $%d$ across and $%d$ up from the vertex, so "
+                                    "$a = %d \\div %d = %d$."
+                                    % (h, k, "+" if h < 0 else "-", abs(h),
+                                       "+" if k >= 0 else "-", abs(k),
+                                       d, y - k, y - k, d, a)),
+                    "check": ["Eq(%d*Abs((%d) - (%d)) + (%d), %d)" % (a, h + d, h, k, y),
+                              "Eq(%d*Abs((%d) - (%d)) + (%d), %d)" % (a, h, h, k, k)],
+                })
+    return raws
+
+
+def _g_which_branch():
+    """Which piece of a piecewise definition applies — boundaries included."""
+    raws = []
+    for bound in (-6, -4, -1, 0, 2, 3, 5, 6):
+        for x0 in (bound - 4, bound - 1, bound, bound + 2, bound + 5):
+            first = x0 < bound
+            raws.append({
+                "statement": ("A function is $f(x) = 2x + 1$ for $x < %d$ and "
+                              "$f(x) = 5 - x$ for $x \\ge %d$. Which rule applies at "
+                              "$x = %d$?" % (bound, bound, x0)),
+                "correct": ("$2x + 1$" if first else "$5 - x$"),
+                "dvals": [("$5 - x$" if first else "$2x + 1$"),
+                          "both — they agree there",
+                          "neither — $f$ is undefined there"],
+                "explanation": ("$%d$ is %s $%d$, so the %s rule applies. Note the "
+                                "boundary itself belongs to the SECOND rule, because "
+                                "that one carries the $\\ge$."
+                                % (x0, "less than" if first else
+                                   ("equal to" if x0 == bound else "greater than"),
+                                   bound, "first" if first else "second")),
+                "check": (["%d < %d" % (x0, bound)] if first
+                          else ["%d >= %d" % (x0, bound)]),
+            })
+    return raws
+
+
+def _g_mean_vs_median():
+    """One extreme value drags the mean, not the median."""
+    raws = []
+    for base in (4, 6, 8, 10, 12):
+        for spread in (1, 2, 3):
+            for out in (40, 60, 90):
+                vals = [base - spread, base, base + spread, out]
+                mean = Rational(sum(vals), 4)
+                median = Rational(vals[1] + vals[2], 2)
+                raws.append({
+                    "statement": ("A set is $%d$, $%d$, $%d$, $%d$. Which is larger, "
+                                  "its mean or its median — and by how much?"
+                                  % (vals[0], vals[1], vals[2], vals[3])),
+                    "correct": "the mean, by $%s$" % fmt(mean - median),
+                    "dvals": ["the median, by $%s$" % fmt(mean - median),
+                              "they are equal",
+                              "the mean, by $%s$" % fmt(out - median)],
+                    "explanation": ("The median is the middle pair averaged: "
+                                    "$%s$. The mean is $%d \\div 4 = %s$, dragged "
+                                    "upward by the single large value $%d$. A median "
+                                    "barely notices one outlier; a mean always does."
+                                    % (fmt(median), sum(vals), fmt(mean), out)),
+                    # fmt() renders LaTeX for DISPLAY; a check has to be
+                    # sympy source, so the same values go in as Rationals.
+                    "check": ["Rational(%d, 4) > Rational(%d, 2)"
+                              % (sum(vals), vals[1] + vals[2]),
+                              "Eq(Rational(%d, 4) - Rational(%d, 2), Rational(%d, 4))"
+                              % (sum(vals), vals[1] + vals[2],
+                                 sum(vals) - 2 * (vals[1] + vals[2]))],
+                })
+    return raws
+
+
+def _g_range_and_mad():
+    """Range, and the mean absolute deviation of a small symmetric set."""
+    raws = []
+    for centre in (10, 15, 20, 25, 30):
+        for d in (2, 4, 6, 8):
+            vals = [centre - d, centre, centre, centre + d]
+            rng = 2 * d
+            mad = Rational(2 * d, 4)
+            raws.append({
+                "statement": ("For the set $%d$, $%d$, $%d$, $%d$, what is the "
+                              "range?" % (vals[0], vals[1], vals[2], vals[3])),
+                "correct": rng,
+                # gave the mean · gave half the range · gave the largest value
+                "dvals": [centre, d, vals[3]],
+                "explanation": ("The range is the largest minus the smallest: "
+                                "$%d - %d = %d$. The mean here is $%d$, which "
+                                "measures the centre rather than the spread."
+                                % (vals[3], vals[0], rng, centre)),
+                "check": ["Eq(%d - %d, %d)" % (vals[3], vals[0], rng)],
+            })
+            raws.append({
+                "statement": ("For the set $%d$, $%d$, $%d$, $%d$, what is the mean "
+                              "absolute deviation from the mean?"
+                              % (vals[0], vals[1], vals[2], vals[3])),
+                "correct": mad,
+                "dvals": [rng, centre, Rational(d, 4)],
+                "explanation": ("The mean is $%d$. The distances from it are $%d$, "
+                                "$0$, $0$ and $%d$, adding to $%d$; dividing by the "
+                                "$4$ values gives $%s$."
+                                % (centre, d, d, 2 * d, fmt(mad))),
+                "check": ["Eq(Rational(%d, 4), Rational(%d, 2))" % (2 * d, d),
+                          "Eq(Rational(%d, 4), %d)" % (sum(vals), centre)],
+            })
+    return raws
+
+
+def _g_compare_summaries():
+    """Two five-number summaries side by side."""
+    raws = []
+    for q1a in (10, 14, 20, 26):
+        for spread in (6, 10, 14):
+            q3a = q1a + spread
+            for shift in (4, 8, 12):
+                q1b, q3b = q1a + shift, q3a + shift - 2
+                iqr_a, iqr_b = q3a - q1a, q3b - q1b
+                wider = "A" if iqr_a > iqr_b else "B"
+                raws.append({
+                    "statement": ("Group A has $Q_1 = %d$ and $Q_3 = %d$; group B has "
+                                  "$Q_1 = %d$ and $Q_3 = %d$. Which group's middle "
+                                  "half is more spread out?"
+                                  % (q1a, q3a, q1b, q3b)),
+                    "correct": ("group %s" % wider),
+                    "dvals": ["group %s" % ("B" if wider == "A" else "A"),
+                              "they are equally spread",
+                              "group B, because its values are larger"],
+                    "explanation": ("Spread of the middle half is the IQR, "
+                                    "$Q_3 - Q_1$: group A has $%d - %d = %d$ and "
+                                    "group B has $%d - %d = %d$. Group B sitting "
+                                    "higher on the scale says nothing about its "
+                                    "spread."
+                                    % (q3a, q1a, iqr_a, q3b, q1b, iqr_b)),
+                    "check": ["Eq(%d - %d, %d)" % (q3a, q1a, iqr_a),
+                              "Eq(%d - %d, %d)" % (q3b, q1b, iqr_b),
+                              "%d > %d" % (max(iqr_a, iqr_b), min(iqr_a, iqr_b))],
+                })
+    return raws
+
+
+def extra_forms_round_two():
+    """The 21 forms that take Grade 9 from three per unit to six."""
+    return [
+        form("G9-EQ4", "Distributing, then solving", 1, EQ,
+             "Divide by the outside factor first — it is fewer steps and fewer slips.",
+             mk_num("G9-EQ4", _g_distribute_solve())),
+        form("G9-EQ5", "How many solutions?", 2, EQ,
+             "When the x-terms cancel, the constants decide: none, or every x.",
+             mk_txt("G9-EQ5", _g_solution_count())),
+        form("G9-EQ6", "Consecutive integers", 3, EQ,
+             "Name the smallest, write the sum, solve — the quotient is the middle.",
+             mk_num("G9-EQ6", _g_consecutive())),
+        form("G9-IN4", "Interval notation", 1, IN,
+             "Square includes the endpoint, round excludes it.",
+             mk_txt("G9-IN4", _g_interval_notation())),
+        form("G9-IN5", "Compound inequalities", 2, IN,
+             "Whatever you do, do it to all three parts.",
+             mk_txt("G9-IN5", _g_compound_and())),
+        form("G9-IN6", "Inequalities from words", 3, IN,
+             "\"At most\" rounds DOWN — rounding up breaks the budget.",
+             mk_num("G9-IN6", _g_inequality_words())),
+        form("G9-FN4", "Is it a function?", 1, FN,
+             "One output per input; repeated outputs are fine.",
+             mk_txt("G9-FN4", _g_is_a_function())),
+        form("G9-FN5", "Range from a table", 2, FN,
+             "The range is the outputs — and three pairs do not make an interval.",
+             mk_txt("G9-FN5", _g_range_from_table())),
+        form("G9-FN6", "Composing functions", 3, FN,
+             "Inside out: g first, then f.",
+             mk_num("G9-FN6", _g_composition_point())),
+        form("G9-LM4", "Slope as a rate", 1, LM,
+             "The coefficient of x is the rate; the constant is the start.",
+             mk_txt("G9-LM4", _g_slope_as_rate())),
+        form("G9-LM5", "Predicting with a model", 2, LM,
+             "Substitute into the whole model, starting amount included.",
+             mk_num("G9-LM5", _g_model_predict())),
+        form("G9-LM6", "Joint variation", 3, LM,
+             "Find k from the first pair, then use it — never scale z directly.",
+             mk_num("G9-LM6", _g_joint_variation())),
+        form("G9-SI4", "Constraints from words", 1, SI,
+             "\"At most\" is a cap; an equals sign would forbid spending less.",
+             mk_txt("G9-SI4", _g_constraint_from_words())),
+        form("G9-SI5", "Reading a half-plane", 2, SI,
+             "Above means greater; dashed means the line is excluded.",
+             mk_txt("G9-SI5", _g_halfplane())),
+        form("G9-SI6", "Corners of a region", 3, SI,
+             "On the x-axis y is zero — divide by the x-coefficient.",
+             mk_txt("G9-SI6", _g_region_vertex())),
+        form("G9-PW4", "Which branch applies?", 1, PW,
+             "The boundary belongs to whichever piece carries the equals sign.",
+             mk_txt("G9-PW4", _g_which_branch())),
+        form("G9-PW5", "Transforming the V", 2, PW,
+             "Inside the bars moves it the opposite way; outside moves it as written.",
+             mk_txt("G9-PW5", _g_abs_transform())),
+        form("G9-PW6", "Building a V from points", 3, PW,
+             "Vertex gives h and k; a second point gives the steepness.",
+             mk_txt("G9-PW6", _g_v_from_points())),
+        form("G9-DD4", "Range and deviation", 1, DD,
+             "Range measures spread, the mean measures centre — different questions.",
+             mk_num("G9-DD4", _g_range_and_mad())),
+        form("G9-DD5", "Mean against median", 2, DD,
+             "One extreme value drags the mean and leaves the median alone.",
+             mk_txt("G9-DD5", _g_mean_vs_median())),
+        form("G9-DD6", "Comparing two summaries", 3, DD,
+             "Spread is the IQR — sitting higher on the scale is not being wider.",
+             mk_txt("G9-DD6", _g_compare_summaries())),
+    ]

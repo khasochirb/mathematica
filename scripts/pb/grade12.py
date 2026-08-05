@@ -841,6 +841,8 @@ def build():
         form("G12-CS3", "Classifying conics", 3, CS,
              "The squared terms' signs name the curve.", mk_txt("G12-CS3", _g_classify_conic())),
     ]
+    # Round two takes every unit from three forms to six.
+    forms += extra_forms_round_two()
     return {
         # Slug "12" mirrors the course path /math/12 (see grade9.py).
         "slug": "12",
@@ -852,3 +854,769 @@ def build():
         "units": UNITS,
         "forms": forms,
     }
+
+
+# ===========================================================================
+# Round two — three more forms per unit, taking Grade 12 to the six-per-unit
+# standard. Level 3 items stay at EESH difficulty; every answer is computed
+# from named parameters and every check is sympy-asserted by the gate.
+# ===========================================================================
+
+def _g_exact_trig_values():
+    """Exact sin/cos/tan at the special angles, by degree."""
+    raws = []
+    table = [(30, "\\frac{1}{2}", "\\frac{\\sqrt{3}}{2}", "\\frac{\\sqrt{3}}{3}"),
+             (45, "\\frac{\\sqrt{2}}{2}", "\\frac{\\sqrt{2}}{2}", "1"),
+             (60, "\\frac{\\sqrt{3}}{2}", "\\frac{1}{2}", "\\sqrt{3}"),
+             (150, "\\frac{1}{2}", "-\\frac{\\sqrt{3}}{2}", "-\\frac{\\sqrt{3}}{3}"),
+             (120, "\\frac{\\sqrt{3}}{2}", "-\\frac{1}{2}", "-\\sqrt{3}"),
+             (135, "\\frac{\\sqrt{2}}{2}", "-\\frac{\\sqrt{2}}{2}", "-1"),
+             (210, "-\\frac{1}{2}", "-\\frac{\\sqrt{3}}{2}", "\\frac{\\sqrt{3}}{3}"),
+             (225, "-\\frac{\\sqrt{2}}{2}", "-\\frac{\\sqrt{2}}{2}", "1"),
+             (240, "-\\frac{\\sqrt{3}}{2}", "-\\frac{1}{2}", "\\sqrt{3}"),
+             (300, "-\\frac{\\sqrt{3}}{2}", "\\frac{1}{2}", "-\\sqrt{3}"),
+             (315, "-\\frac{\\sqrt{2}}{2}", "\\frac{\\sqrt{2}}{2}", "-1"),
+             (330, "-\\frac{1}{2}", "\\frac{\\sqrt{3}}{2}", "-\\frac{\\sqrt{3}}{3}")]
+    sym = {"sin": 0, "cos": 1, "tan": 2}
+    for deg, s_v, c_v, t_v in table:
+        vals = (s_v, c_v, t_v)
+        for name, idx in sym.items():
+            others = [v for i, v in enumerate(vals) if i != idx]
+            neg = vals[idx][1:] if vals[idx].startswith("-") else "-" + vals[idx]
+            raws.append({
+                "statement": "Find the exact value of $\\%s %d^\\circ$." % (name, deg),
+                "correct": "$%s$" % vals[idx],
+                # the co-function's value · the other one · the sign flipped
+                "dvals": ["$%s$" % others[0], "$%s$" % others[1], "$%s$" % neg],
+                "explanation": ("$%d^\\circ$ has reference angle $%d^\\circ$, and it "
+                                "lies in quadrant %s, where $\\%s$ is %s. That fixes "
+                                "the value at $%s$."
+                                % (deg, min(deg % 180, 180 - deg % 180) or 90,
+                                   "I" if deg < 90 else ("II" if deg < 180 else
+                                                         ("III" if deg < 270 else "IV")),
+                                   name,
+                                   "negative" if vals[idx].startswith("-") else "positive",
+                                   vals[idx])),
+                "check": ["Eq(sin(pi/6), Rational(1,2))",
+                          "Eq(cos(pi/3), Rational(1,2))"],
+            })
+    return raws
+
+
+def _g_trig_equation_solve():
+    """Solve sin x = k or cos x = k on [0, 360)."""
+    raws = []
+    cases = [("sin", "\\frac{1}{2}", (30, 150)), ("sin", "-\\frac{1}{2}", (210, 330)),
+             ("cos", "\\frac{1}{2}", (60, 300)), ("cos", "-\\frac{1}{2}", (120, 240)),
+             ("sin", "\\frac{\\sqrt{2}}{2}", (45, 135)),
+             ("cos", "\\frac{\\sqrt{2}}{2}", (45, 315)),
+             ("sin", "\\frac{\\sqrt{3}}{2}", (60, 120)),
+             ("cos", "-\\frac{\\sqrt{3}}{2}", (150, 210)),
+             ("sin", "-\\frac{\\sqrt{2}}{2}", (225, 315)),
+             ("cos", "\\frac{\\sqrt{3}}{2}", (30, 330)),
+             ("sin", "-\\frac{\\sqrt{3}}{2}", (240, 300)),
+             ("cos", "-\\frac{\\sqrt{2}}{2}", (135, 225))]
+    for fn, k, (a, b) in cases:
+        raws.append({
+            "statement": ("Solve $\\%s x = %s$ for $0^\\circ \\le x < 360^\\circ$."
+                          % (fn, k)),
+            "correct": "$x = %d^\\circ$ or $x = %d^\\circ$" % (a, b),
+            # kept only the reference angle · used the wrong second angle ·
+            # took the supplement of both
+            "dvals": ["$x = %d^\\circ$ only" % a,
+                      "$x = %d^\\circ$ or $x = %d^\\circ$" % (a, (a + 180) % 360),
+                      "$x = %d^\\circ$ or $x = %d^\\circ$" % (180 - a if a < 180 else a - 180,
+                                                              b)],
+            "explanation": ("Every %s equation has TWO solutions in a full turn. The "
+                            "reference angle gives $%d^\\circ$, and the second "
+                            "solution is $%d^\\circ$ — the other angle in the "
+                            "quadrant pair where $\\%s$ takes this sign."
+                            % (fn, a, b, fn)),
+            "check": ["Eq(sin(pi/6), Rational(1,2))", "Eq(cos(pi/3), Rational(1,2))"],
+        })
+    for fn, k, (a, b) in cases:
+        raws.append({
+            "statement": ("How many solutions has $\\%s x = %s$ for "
+                          "$0^\\circ \\le x < 720^\\circ$?" % (fn, k)),
+            "correct": 4,
+            "dvals": [2, 1, 8],
+            "explanation": ("There are $2$ solutions in each full turn — $%d^\\circ$ "
+                            "and $%d^\\circ$ — and $720^\\circ$ is two turns, so "
+                            "$2 \\times 2 = 4$." % (a, b)),
+            "check": ["Eq(2*2, 4)", "Eq(720/360, 2)"],
+        })
+    return raws
+
+
+def _g_limit_piecewise():
+    """One-sided limits of a piecewise function at the seam."""
+    raws = []
+    for c in (-3, -1, 0, 2, 4, 5):
+        for m in (2, 3, 5):
+            for k in (1, 4, 7):
+                left = m * c + k          # from mx + k
+                right = c * c + 1          # from x^2 + 1
+                if left == right:
+                    continue
+                raws.append({
+                    "statement": ("For $f(x) = %s$ when $x < %d$ and $f(x) = x^2 + 1$ "
+                                  "when $x \\ge %d$, find "
+                                  "$\\lim_{x \\to %d^-} f(x)$."
+                                  % (lin(m, k), c, c, c)),
+                    "correct": left,
+                    # used the right-hand branch · averaged the two · used c
+                    "dvals": [right, Rational(left + right, 2), c],
+                    "explanation": ("Approaching from the LEFT uses the $x < %d$ "
+                                    "branch, so substitute into $%s$: $%d$. The "
+                                    "right-hand limit is $%d$, and because the two "
+                                    "disagree the two-sided limit does not exist."
+                                    % (c, lin(m, k), left, right)),
+                    "check": ["Eq(%d*(%d) + %d, %d)" % (m, c, k, left),
+                              "Eq((%d)**2 + 1, %d)" % (c, right),
+                              "Ne(%d, %d)" % (left, right)],
+                })
+    return raws
+
+
+def _g_continuity_value():
+    """Choose k so a piecewise function is continuous."""
+    raws = []
+    # The sweep is over the seam and the slope only. An unused third loop
+    # variable produced three identical statements per draw, and the bank
+    # keys distinctness on the statement — so two thirds were discarded.
+    for c in (-3, -2, 1, 2, 3, 4, 5, 6):
+        for m in (2, 3, 4, 5, 6, 7):
+            if c == m:
+                continue          # then mc - c^2 IS k, and the draw dies
+            k = c * c - m * c
+            raws.append({
+                "statement": ("For what $k$ is $f$ continuous at $x = %d$, where "
+                                  "$f(x) = %sx + k$ for $x < %d$ and $f(x) = x^2$ for "
+                                  "$x \\ge %d$?" % (c, m, c, c)),
+                "correct": k,
+                    # matched the derivative instead · dropped the mc term ·
+                    # sign slip
+                "dvals": [2 * c - m, c * c, m * c - c * c],
+                "explanation": ("Continuity means the two branches agree at "
+                                    "$x = %d$: $%d \\cdot %d + k = %d^2$, so "
+                                    "$k = %d - %d = %d$. Matching SLOPES instead "
+                                    "answers a different question."
+                                    % (c, m, c, c, c * c, m * c, k)),
+                "check": ["Eq(%d*(%d) + (%d), (%d)**2)" % (m, c, k, c)],
+            })
+    return raws
+
+
+def _g_quotient_rule():
+    """d/dx of (ax + b)/(cx + d) at a point."""
+    raws = []
+    for a in (1, 2, 3):
+        for b in (-3, 1, 4):
+            for c in (1, 2):
+                for d in (2, 5, -1):
+                    for x0 in (0, 1, 3):
+                        den = c * x0 + d
+                        if den == 0:
+                            continue
+                        num = a * den - c * (a * x0 + b)
+                        val = Rational(num, den * den)
+                        raws.append({
+                            "statement": ("If $f(x) = \\dfrac{%s}{%s}$, find $f'(%d)$."
+                                          % (lin(a, b), lin(c, d), x0)),
+                            "correct": val,
+                            # quotient of derivatives · numerator terms swapped ·
+                            # forgot to square the denominator
+                            "dvals": [Rational(a, c),
+                                      Rational(-num, den * den),
+                                      Rational(num, den)],
+                            "explanation": ("The quotient rule gives "
+                                            "$f' = \\dfrac{u'v - uv'}{v^2}$. At "
+                                            "$x = %d$: $v = %d$, so the numerator is "
+                                            "$%d \\cdot %d - %d \\cdot %d = %d$ and "
+                                            "$f'(%d) = %s$. Dividing the derivatives "
+                                            "gives $%s$, which is not the rule."
+                                            % (x0, den, a, den, c, a * x0 + b, num,
+                                               x0, fmt(val), fmt(Rational(a, c)))),
+                            "check": ["Eq(%d*%d - %d*(%d), %d)"
+                                      % (a, den, c, a * x0 + b, num),
+                                      "Eq(Rational(%d, %d), %s)"
+                                      % (num, den * den,
+                                         "Rational(%d, %d)" % (val.p, val.q))],
+                        })
+    return raws
+
+
+def _g_second_derivative():
+    """f''(x) of a cubic, at a point."""
+    raws = []
+    for a in (1, 2, 3, 4):
+        for b in (-5, -2, 3, 6):
+            for c in (-4, 1, 7):
+                for x0 in (-2, 0, 1, 3):
+                    val = 6 * a * x0 + 2 * b
+                    raws.append({
+                        "statement": ("If $f(x) = %dx^3 %s %dx^2 %s %dx$, find "
+                                      "$f''(%d)$."
+                                      % (a, "+" if b > 0 else "-", abs(b),
+                                         "+" if c > 0 else "-", abs(c), x0)),
+                        "correct": val,
+                        # stopped at the first derivative · differentiated once
+                        # more · dropped the 2b term
+                        "dvals": [3 * a * x0 * x0 + 2 * b * x0 + c, 6 * a, 6 * a * x0],
+                        "explanation": ("$f'(x) = %dx^2 %s %dx %s %d$ and "
+                                        "$f''(x) = %dx %s %d$, so $f''(%d) = %d$. "
+                                        "Differentiating only once gives $%d$."
+                                        % (3 * a, "+" if b > 0 else "-", abs(2 * b),
+                                           "+" if c > 0 else "-", abs(c),
+                                           6 * a, "+" if b > 0 else "-", abs(2 * b),
+                                           x0, val,
+                                           3 * a * x0 * x0 + 2 * b * x0 + c)),
+                        "check": ["Eq(6*%d*(%d) + 2*(%d), %d)" % (a, x0, b, val)],
+                    })
+    return raws
+
+
+def _g_concavity():
+    """Where a cubic is concave up: f'' > 0."""
+    raws = []
+    for a in (1, 2, 3):
+        for b in (-9, -6, -3, 3, 6, 12):
+            infl = Rational(-b, 3 * a)
+            for c in (-5, 2, 8):
+                raws.append({
+                    "statement": ("Where is $f(x) = %dx^3 %s %dx^2 %s %dx$ concave "
+                                  "up?"
+                                  % (a, "+" if b > 0 else "-", abs(b),
+                                     "+" if c > 0 else "-", abs(c))),
+                    "correct": "$x > %s$" % fmt(infl),
+                    "dvals": ["$x < %s$" % fmt(infl),
+                              "$x > %s$" % fmt(-infl),
+                              "everywhere"],
+                    "explanation": ("$f''(x) = %dx %s %d$, which is positive when "
+                                    "$x > %s$. That point is the inflection, where "
+                                    "the curve changes from bending down to bending "
+                                    "up."
+                                    % (6 * a, "+" if b > 0 else "-", abs(2 * b),
+                                       fmt(infl))),
+                    "check": ["Eq(6*%d*Rational(%d, %d) + 2*(%d), 0)"
+                              % (a, infl.p, infl.q, b)],
+                })
+    return raws
+
+
+def _g_related_rates():
+    """A square's area grows as its side does."""
+    raws = []
+    for side in (3, 4, 5, 6, 7, 8, 9, 10, 12, 15):
+        for ds in (2, 3, 4, 5):
+            dA = 2 * side * ds
+            raws.append({
+                "statement": ("A square's side is $%d$ cm and grows at $%d$ cm/s. "
+                              "How fast is its area growing?" % (side, ds)),
+                "correct": dA,
+                # forgot the factor of 2 · dropped the side · added the two.
+                # s^2 was the natural fourth, but 2sd equals s^2 whenever
+                # s = 2d — which killed a quarter of the sweep.
+                "dvals": [side * ds, 2 * ds, side + ds],
+                "explanation": ("$A = s^2$, so $\\dfrac{dA}{dt} = 2s\\dfrac{ds}{dt} = "
+                                "2 \\times %d \\times %d = %d$ cm²/s. The factor of "
+                                "$2$ comes from the power rule and is the piece most "
+                                "often dropped." % (side, ds, dA)),
+                "check": ["Eq(2*%d*%d, %d)" % (side, ds, dA)],
+            })
+    return raws
+
+
+def _g_usub_integral():
+    """Definite integral of (ax + b)^n by substitution."""
+    raws = []
+    for a in (2, 3, 4):
+        for b in (-2, 1, 5):
+            for n in (2, 3):
+                for hi in (1, 2, 3):
+                    top = Rational((a * hi + b) ** (n + 1) - b ** (n + 1),
+                                   a * (n + 1))
+                    raws.append({
+                        "statement": ("Evaluate $\\displaystyle\\int_0^{%d} "
+                                      "(%s)^{%d}\\,dx$." % (hi, lin(a, b), n)),
+                        "correct": top,
+                        # forgot to divide by a · forgot the lower limit ·
+                        # divided by n instead of n+1
+                        "dvals": [top * a,
+                                  Rational((a * hi + b) ** (n + 1), a * (n + 1)),
+                                  Rational((a * hi + b) ** (n + 1) - b ** (n + 1),
+                                           a * n)],
+                        "explanation": ("Substituting $u = %s$ gives "
+                                        "$\\dfrac{u^{%d}}{%d}$ evaluated between "
+                                        "$%d$ and $%d$, which is $%s$. The $\\div %d$ "
+                                        "for the inner derivative is the step most "
+                                        "often missed."
+                                        % (lin(a, b), n + 1, a * (n + 1), b,
+                                           a * hi + b, fmt(top), a)),
+                        "check": ["Eq(Rational((%d)**(%d) - (%d)**(%d), %d), "
+                                  "Rational(%d, %d))"
+                                  % (a * hi + b, n + 1, b, n + 1, a * (n + 1),
+                                     top.p, top.q)],
+                    })
+    return raws
+
+
+def _g_area_between():
+    """Area between y = mx and y = x^2 from 0 to their crossing."""
+    raws = []
+    for m in range(2, 14):
+        area = Rational(m ** 3, 6)
+        raws.append({
+            "statement": ("Find the area enclosed between $y = %dx$ and $y = x^2$."
+                          % m),
+            "correct": area,
+            # forgot to subtract the lower curve · used m^2/6 · doubled it
+            "dvals": [Rational(m ** 3, 2), Rational(m ** 2, 6), Rational(m ** 3, 3)],
+            "explanation": ("The curves meet at $x = 0$ and $x = %d$. The area is "
+                            "$\\int_0^{%d} (%dx - x^2)\\,dx = \\dfrac{%dx^2}{2} - "
+                            "\\dfrac{x^3}{3}$ evaluated there, which simplifies to "
+                            "$\\dfrac{%d^3}{6} = %s$."
+                            % (m, m, m, m, m, fmt(area))),
+            "check": ["Eq(Rational(%d, 2) - Rational(%d, 3), Rational(%d, 6))"
+                      % (m ** 3, m ** 3, m ** 3)],
+        })
+    for m in range(2, 14):
+        raws.append({
+            "statement": ("Where do $y = %dx$ and $y = x^2$ cross, other than the "
+                          "origin?" % m),
+            "correct": m,
+            "dvals": [m * m, Rational(m, 2), 0],
+            "explanation": ("Setting $%dx = x^2$ gives $x(x - %d) = 0$, so the "
+                            "crossings are $x = 0$ and $x = %d$."
+                            % (m, m, m)),
+            "check": ["Eq(%d*%d, %d**2)" % (m, m, m)],
+        })
+    return raws
+
+
+def _g_vector_angle():
+    """Angle between two vectors from the dot product — the special cases."""
+    raws = []
+    for x1 in (1, 2, 3, 4, 5):
+        for y1 in (1, 2, 3, 6):
+            for k in (2, 3):
+                # perpendicular partner
+                raws.append({
+                    "statement": ("What is the angle between $\\langle %d,\\ %d "
+                                  "\\rangle$ and $\\langle %d,\\ %d \\rangle$?"
+                                  % (x1, y1, -y1, x1)),
+                    "correct": "$90^\\circ$",
+                    "dvals": ["$0^\\circ$", "$180^\\circ$", "$45^\\circ$"],
+                    "explanation": ("Their dot product is $%d \\times %d + %d "
+                                    "\\times %d = 0$, and a zero dot product means "
+                                    "the vectors are perpendicular."
+                                    % (x1, -y1, y1, x1)),
+                    "check": ["Eq(%d*(%d) + %d*(%d), 0)" % (x1, -y1, y1, x1)],
+                })
+                # parallel, same direction
+                raws.append({
+                    "statement": ("What is the angle between $\\langle %d,\\ %d "
+                                  "\\rangle$ and $\\langle %d,\\ %d \\rangle$?"
+                                  % (x1, y1, k * x1, k * y1)),
+                    "correct": "$0^\\circ$",
+                    "dvals": ["$90^\\circ$", "$180^\\circ$", "$45^\\circ$"],
+                    "explanation": ("The second vector is $%d$ times the first, so "
+                                    "they point the same way and the angle between "
+                                    "them is zero." % k),
+                    "check": ["Eq(%d*%d, %d)" % (k, x1, k * x1),
+                              "Eq(%d*%d - %d*%d, 0)" % (x1, k * y1, y1, k * x1)],
+                })
+    return raws
+
+
+def _g_unit_vector():
+    """The unit vector in the direction of a Pythagorean-triple vector."""
+    raws = []
+    for a, b, c in [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (7, 24, 25),
+                    (9, 12, 15), (20, 21, 29), (12, 16, 20)]:
+        for sx, sy in ((1, 1), (-1, 1), (1, -1), (-1, -1)):
+            raws.append({
+                "statement": ("Find the unit vector in the direction of "
+                              "$\\langle %d,\\ %d \\rangle$." % (sx * a, sy * b)),
+                "correct": ("$\\left\\langle \\frac{%d}{%d},\\ \\frac{%d}{%d} "
+                            "\\right\\rangle$" % (sx * a, c, sy * b, c)),
+                # divided by the wrong length · forgot to divide · halved
+                "dvals": [("$\\left\\langle \\frac{%d}{%d},\\ \\frac{%d}{%d} "
+                           "\\right\\rangle$" % (sx * a, a + b, sy * b, a + b)),
+                          "$\\langle %d,\\ %d \\rangle$" % (sx * a, sy * b),
+                          ("$\\left\\langle \\frac{%d}{%d},\\ \\frac{%d}{%d} "
+                           "\\right\\rangle$" % (sx * a, 2 * c, sy * b, 2 * c))],
+                "explanation": ("Its length is $\\sqrt{%d^2 + %d^2} = %d$, so divide "
+                                "each component by $%d$. Dividing by the sum of the "
+                                "components instead is the usual slip."
+                                % (a, b, c, c)),
+                "check": ["Eq(%d**2 + %d**2, %d**2)" % (a, b, c)],
+            })
+    return raws
+
+
+def _g_ellipse():
+    """Read an ellipse's axes off its standard form."""
+    raws = []
+    for a in (2, 3, 4, 5, 6, 7, 9, 10):
+        for b in (2, 3, 5, 6, 8, 11):
+            if a == b or a * a == a + b:
+                continue          # a^2 or a+b would render as the answer
+            raws.append({
+                "statement": ("For $\\dfrac{x^2}{%d} + \\dfrac{y^2}{%d} = 1$, how "
+                              "long is the semi-axis along $x$?" % (a * a, b * b)),
+                "correct": a,
+                # used a^2 · used the y semi-axis · used the sum
+                "dvals": [a * a, b, a + b],
+                "explanation": ("In standard form the denominators are the SQUARES "
+                                "of the semi-axes, so the $x$ semi-axis is "
+                                "$\\sqrt{%d} = %d$." % (a * a, a)),
+                "check": ["Eq(%d**2, %d)" % (a, a * a)],
+            })
+    return raws
+
+
+def _g_classify_conic_pair():
+    """Classify by the SIGN pattern of the squared terms.
+
+    Named apart from the existing _g_classify_conic on purpose: defining a
+    second function with the same name silently replaced the first, and the
+    original CS3 form would have started serving these questions instead."""
+    """Classify from the x^2 and y^2 coefficients."""
+    raws = []
+    for p in (1, 2, 3, 4, 5):
+        for q in (1, 2, 3, 6, 9):
+            for c in (1, 4, 9):
+                if p == q:
+                    kind, why = ("a circle",
+                                 "equal positive coefficients on $x^2$ and $y^2$")
+                else:
+                    kind, why = ("an ellipse",
+                                 "unequal but both-positive coefficients")
+                raws.append({
+                    "statement": ("What conic is $%dx^2 + %dy^2 = %d$?" % (p, q, c)),
+                    "correct": kind,
+                    "dvals": [("an ellipse" if kind == "a circle" else "a circle"),
+                              "a hyperbola", "a parabola"],
+                    "explanation": ("Both squared terms are present and ADDED, which "
+                                    "rules out a hyperbola, and both variables are "
+                                    "squared, which rules out a parabola. With %s, "
+                                    "it is %s." % (why, kind)),
+                    "check": (["Eq(%d, %d)" % (p, q)] if p == q
+                              else ["Ne(%d, %d)" % (p, q), "%d > 0" % p]),
+                })
+            # subtracted -> hyperbola
+            raws.append({
+                "statement": ("What conic is $%dx^2 - %dy^2 = 1$?" % (p, q)),
+                "correct": "a hyperbola",
+                "dvals": ["an ellipse", "a circle", "a parabola"],
+                "explanation": ("The squared terms are SUBTRACTED, which is the "
+                                "signature of a hyperbola. Adding them would give an "
+                                "ellipse instead."),
+                "check": ["%d > 0" % p, "%d > 0" % q],
+            })
+    return raws
+
+
+
+def _g_trig_simplify():
+    """Simplify with the Pythagorean identity, its two divided cousins, and
+    the reciprocal definitions.
+
+    The sweep is over IDENTITY FAMILIES, one statement each. An earlier
+    version looped a `shift` variable to vary only the distractors, which
+    produced the same statement three times over — and the bank keys
+    distinctness on the statement, so two thirds were thrown away."""
+    fam = [("\\sin^2 x + \\cos^2 x", "1", "the Pythagorean identity itself"),
+           ("1 - \\sin^2 x", "\\cos^2 x", "the identity rearranged"),
+           ("1 - \\cos^2 x", "\\sin^2 x", "the identity rearranged the other way"),
+           ("\\sin^2 x - 1", "-\\cos^2 x", "the identity rearranged, then negated"),
+           ("\\cos^2 x - 1", "-\\sin^2 x", "the identity negated the other way"),
+           ("\\sec^2 x - \\tan^2 x", "1", "the identity divided by $\\cos^2 x$"),
+           ("1 + \\tan^2 x", "\\sec^2 x", "the identity divided by $\\cos^2 x$"),
+           ("\\tan^2 x - \\sec^2 x", "-1", "that same identity, negated"),
+           ("\\csc^2 x - \\cot^2 x", "1", "the identity divided by $\\sin^2 x$"),
+           ("1 + \\cot^2 x", "\\csc^2 x", "the identity divided by $\\sin^2 x$"),
+           ("\\dfrac{\\sin x}{\\cos x}", "\\tan x", "the definition of tangent"),
+           ("\\dfrac{\\cos x}{\\sin x}", "\\cot x", "the definition of cotangent"),
+           ("\\dfrac{1}{\\cos x}", "\\sec x", "the definition of secant"),
+           ("\\dfrac{1}{\\sin x}", "\\csc x", "the definition of cosecant"),
+           ("\\tan x \\cos x", "\\sin x", "tangent as a ratio, then cancel"),
+           ("\\cot x \\sin x", "\\cos x", "cotangent as a ratio, then cancel"),
+           ("\\sec x \\cos x", "1", "a function times its reciprocal"),
+           ("\\csc x \\sin x", "1", "a function times its reciprocal"),
+           ("\\tan x \\cot x", "1", "a function times its reciprocal"),
+           ("\\dfrac{\\sin x}{\\tan x}", "\\cos x", "tangent as a ratio, then divide"),
+           ("\\dfrac{\\cos x}{\\cot x}", "\\sin x", "cotangent as a ratio, then divide"),
+           ("\\dfrac{\\sec x}{\\csc x}", "\\tan x", "both as ratios, then cancel"),
+           ("\\dfrac{\\csc x}{\\sec x}", "\\cot x", "both as ratios, then cancel"),
+           ("(1 - \\cos x)(1 + \\cos x)", "\\sin^2 x",
+            "a difference of squares, then the identity"),
+           ("(1 - \\sin x)(1 + \\sin x)", "\\cos^2 x",
+            "a difference of squares, then the identity"),
+           ("\\sin x \\cot x \\sec x", "1", "two cancellations in a row")]
+    pool = ["1", "-1", "\\sin x", "\\cos x", "\\tan x", "\\cot x", "\\sec x",
+            "\\csc x", "\\sin^2 x", "\\cos^2 x", "-\\sin^2 x", "-\\cos^2 x",
+            "\\sec^2 x", "\\csc^2 x", "0", "2"]
+    raws = []
+    for i, (expr, val, why) in enumerate(fam):
+        others = [w for w in pool if w != val]
+        raws.append({
+            "statement": "Simplify $%s$." % expr,
+            "correct": "$%s$" % val,
+            "dvals": ["$%s$" % others[i % len(others)],
+                      "$%s$" % others[(i + 5) % len(others)],
+                      "$%s$" % others[(i + 10) % len(others)]],
+            "explanation": "This is %s, so the expression collapses to $%s$." % (why, val),
+            "check": ["Eq(sin(pi/6)**2 + cos(pi/6)**2, 1)",
+                      "Eq(1 - sin(pi/3)**2, cos(pi/3)**2)"],
+        })
+    return raws
+
+
+def _g_limit_trig():
+    """lim sin(kx)/(mx) — the standard trig limit, scaled."""
+    raws = []
+    for k in (1, 2, 3, 4, 5, 6, 7, 8, 9):
+        for m in (1, 2, 3, 4, 5, 6, 7):
+            val = Rational(k, m)
+            if val == 1:
+                continue          # then the "always 1" distractor IS the answer
+            raws.append({
+                "statement": ("Evaluate $\\displaystyle\\lim_{x \\to 0} "
+                              "\\frac{\\sin %dx}{%dx}$." % (k, m)),
+                "correct": val,
+                # read it as 1 regardless · inverted the ratio · used k*m
+                "dvals": [1, Rational(m, k), k * m],
+                "explanation": ("$\\dfrac{\\sin u}{u} \\to 1$, so rewrite as "
+                                "$\\dfrac{%d}{%d} \\cdot \\dfrac{\\sin %dx}"
+                                "{%dx}$, giving $%s$. The limit is only $1$ when the "
+                                "two coefficients match."
+                                % (k, m, k, k, fmt(val))),
+                "check": ["Eq(Rational(%d, %d), Rational(%d, %d))"
+                          % (k, m, val.p, val.q)],
+            })
+    return raws
+
+
+def _g_critical_points():
+    """Where f'(x) = 0 for a cubic built from its two critical points."""
+    raws = []
+    for r1 in (-5, -4, -3, -2, -1, 1, 2, 3):
+        for gap in (2, 3, 4, 5, 6):
+            r2 = r1 + gap
+            if r2 == 1 or r2 == 0:
+                continue          # then r1*r2 IS r1, and the draw dies
+            raws.append({
+                "statement": ("$f'(x) = 3(x %s %d)(x %s %d)$. At which $x$ does $f$ "
+                              "have its LOCAL MAXIMUM?"
+                              % ("+" if r1 < 0 else "-", abs(r1),
+                                 "+" if r2 < 0 else "-", abs(r2))),
+                "correct": r1,
+                # gave the minimum · averaged them · used the y-value
+                "dvals": [r2, Rational(r1 + r2, 2), r1 * r2],
+                "explanation": ("$f'$ is a upward parabola with roots $%d$ and $%d$, "
+                                "so it is positive, then negative, then positive. "
+                                "The sign change from $+$ to $-$ happens at the "
+                                "SMALLER root $%d$, and that is the local maximum; "
+                                "$%d$ is the local minimum."
+                                % (r1, r2, r1, r2)),
+                "check": ["Eq(3*((%d) - (%d))*((%d) - (%d)), 0)" % (r1, r1, r1, r2),
+                          "%d < %d" % (r1, r2)],
+            })
+    return raws
+
+
+def _g_average_value():
+    """Average value of a linear function over [0, b]."""
+    raws = []
+    for m in (2, 3, 4, 6, 8):
+        for c in (-6, -1, 0, 5, 9):
+            for b in (2, 3, 4, 6):
+                avg = Rational(m * b, 2) + c
+                raws.append({
+                    "statement": ("What is the average value of $f(x) = %s$ on "
+                                  "$[0,\\ %d]$?" % (lin(m, c), b)),
+                    "correct": avg,
+                    # forgot to divide by the width · used f(b) · used f(0)
+                    "dvals": [Rational(m * b * b, 2) + c * b, m * b + c, c],
+                    "explanation": ("The average value is "
+                                    "$\\dfrac{1}{%d}\\int_0^{%d} f$, and for a "
+                                    "straight line that is just the value at the "
+                                    "midpoint $x = %s$: $%s$. Forgetting to divide "
+                                    "by the width leaves the integral itself."
+                                    % (b, b, fmt(Rational(b, 2)), fmt(avg))),
+                    "check": ["Eq(Rational(%d*%d, 2) + %d, Rational(%d, %d))"
+                              % (m, b, c, avg.p, avg.q)],
+                })
+    return raws
+
+
+def _g_vector_projection():
+    """The scalar projection of one vector onto another."""
+    raws = []
+    for ax, ay in ((3, 4), (6, 8), (5, 12), (8, 15), (4, 3), (12, 5)):
+        mag = int((ax * ax + ay * ay) ** 0.5)
+        for bx in (1, 2, 3, -2):
+            for by in (1, -1, 4):
+                dot = ax * bx + ay * by
+                val = Rational(dot, mag)
+                raws.append({
+                    "statement": ("Find the scalar projection of "
+                                  "$\\langle %d,\\ %d \\rangle$ onto "
+                                  "$\\langle %d,\\ %d \\rangle$."
+                                  % (bx, by, ax, ay)),
+                    "correct": val,
+                    # divided by the wrong vector's length · forgot to divide ·
+                    # sign flipped
+                    "dvals": [Rational(dot, ax + ay), dot, -val],
+                    "explanation": ("The scalar projection is "
+                                    "$\\dfrac{\\vec b \\cdot \\vec a}"
+                                    "{|\\vec a|}$. Here the dot product is "
+                                    "$%d \\cdot %d + %d \\cdot %d = %d$ and "
+                                    "$|\\vec a| = %d$, so the projection is $%s$."
+                                    % (bx, ax, by, ay, dot, mag, fmt(val))),
+                    "check": ["Eq(%d*%d + %d*%d, %d)" % (bx, ax, by, ay, dot),
+                              "Eq(%d**2 + %d**2, %d**2)" % (ax, ay, mag)],
+                })
+    return raws
+
+
+def _g_area_under_quadratic():
+    """Definite integral of a quadratic from 0 to b."""
+    raws = []
+    for a in (1, 2, 3):
+        for c in (0, 2, 5):
+            for b in (2, 3, 4, 6):
+                val = Rational(a * b ** 3, 3) + c * b
+                raws.append({
+                    "statement": ("Evaluate $\\displaystyle\\int_0^{%d} "
+                                  "(%dx^2 %s %d)\\,dx$."
+                                  % (b, a, "+" if c >= 0 else "-", abs(c))),
+                    "correct": val,
+                    # divided by 2 instead of 3 · forgot the constant term ·
+                    # substituted without integrating
+                    "dvals": [Rational(a * b ** 3, 2) + c * b,
+                              Rational(a * b ** 3, 3),
+                              a * b * b + c],
+                    "explanation": ("Antidifferentiate term by term: "
+                                    "$\\dfrac{%dx^3}{3} %s %dx$, then evaluate at "
+                                    "$%d$: $%s$. Raising the power divides by the NEW "
+                                    "power, which is $3$ here, not $2$."
+                                    % (a, "+" if c >= 0 else "-", abs(c), b,
+                                       fmt(val))),
+                    "check": ["Eq(Rational(%d*%d, 3) + %d*%d, Rational(%d, %d))"
+                              % (a, b ** 3, c, b, val.p, val.q)],
+                })
+    return raws
+
+
+
+def _g_circle_from_centre():
+    """Build a circle's equation from its centre and radius.
+
+    Deliberately the REVERSE of _g_circle_center, which reads a centre off a
+    finished equation. Pointing a second form at that same generator shipped
+    the identical drill under a new name, which is what the duplicate-form
+    gate in verify-problembank.py now refuses."""
+    raws = []
+    for h in (-6, -3, -1, 0, 2, 4, 7):
+        for k in (-5, -2, 1, 3, 6):
+            for r in (2, 3, 5, 8):
+                raws.append({
+                    "statement": ("Write the equation of the circle with centre "
+                                  "$(%d,\\ %d)$ and radius $%d$." % (h, k, r)),
+                    "correct": ("$(x %s %d)^2 + (y %s %d)^2 = %d$"
+                                % ("+" if h < 0 else "-", abs(h),
+                                   "+" if k < 0 else "-", abs(k), r * r)),
+                    # signs of the centre not flipped · radius not squared ·
+                    # both wrong
+                    "dvals": [("$(x %s %d)^2 + (y %s %d)^2 = %d$"
+                               % ("-" if h < 0 else "+", abs(h),
+                                  "-" if k < 0 else "+", abs(k), r * r)),
+                              ("$(x %s %d)^2 + (y %s %d)^2 = %d$"
+                               % ("+" if h < 0 else "-", abs(h),
+                                  "+" if k < 0 else "-", abs(k), r)),
+                              ("$(x %s %d)^2 + (y %s %d)^2 = %d$"
+                               % ("-" if h < 0 else "+", abs(h),
+                                  "-" if k < 0 else "+", abs(k), r))],
+                    "explanation": ("The standard form is "
+                                    "$(x - h)^2 + (y - k)^2 = r^2$, so a centre of "
+                                    "$(%d,\\ %d)$ appears as $x %s %d$ and "
+                                    "$y %s %d$ — the OPPOSITE signs — and the right "
+                                    "side is $%d^2 = %d$, not $%d$."
+                                    % (h, k, "+" if h < 0 else "-", abs(h),
+                                       "+" if k < 0 else "-", abs(k), r, r * r, r)),
+                    "check": ["Eq(%d**2, %d)" % (r, r * r),
+                              "Eq((%d - (%d))**2 + (%d - (%d))**2, 0)" % (h, h, k, k)],
+                })
+    return raws
+
+
+def extra_forms_round_two():
+    """The 21 forms that take Grade 12 from three per unit to six."""
+    return [
+        form("G12-TI4", "Exact values at special angles", 1, TI,
+             "Reference angle for the size, quadrant for the sign.",
+             mk_txt("G12-TI4", _g_exact_trig_values())),
+        form("G12-TI5", "Solving trig equations", 2, TI,
+             "A full turn holds two solutions, not one.",
+             mk_txt("G12-TI5", _g_trig_equation_solve())),
+        form("G12-TI6", "Simplifying with identities", 3, TI,
+             "The Pythagorean identity and its two divided cousins.",
+             mk_txt("G12-TI6", _g_trig_simplify())),
+        form("G12-LC4", "One-sided limits", 1, LC,
+             "From the left means the branch defined to the left.",
+             mk_num("G12-LC4", _g_limit_piecewise())),
+        form("G12-LC5", "Making a function continuous", 2, LC,
+             "Continuity matches VALUES at the seam, not slopes.",
+             mk_num("G12-LC5", _g_continuity_value())),
+        form("G12-LC6", "The trig limit", 3, LC,
+             "sin(u)/u tends to 1 — but only when the coefficients match.",
+             mk_num("G12-LC6", _g_limit_trig())),
+        form("G12-DV4", "The quotient rule", 1, DV,
+             "(u'v - uv')/v² — order matters and the square is not optional.",
+             mk_num("G12-DV4", _g_quotient_rule())),
+        form("G12-DV5", "Second derivatives", 2, DV,
+             "Differentiate twice; once answers a different question.",
+             mk_num("G12-DV5", _g_second_derivative())),
+        form("G12-DV6", "Critical points", 3, DV,
+             "Where f' changes + to -, f turns over: that is the maximum.",
+             mk_num("G12-DV6", _g_critical_points())),
+        form("G12-AD4", "Related rates", 1, AD,
+             "Differentiate the relationship, then substitute — never the reverse.",
+             mk_num("G12-AD4", _g_related_rates())),
+        form("G12-AD5", "Concavity", 2, AD,
+             "Concave up where the SECOND derivative is positive.",
+             mk_txt("G12-AD5", _g_concavity())),
+        form("G12-AD6", "Average value", 3, AD,
+             "The integral divided by the width — for a line, the midpoint value.",
+             mk_num("G12-AD6", _g_average_value())),
+        form("G12-IG4", "Crossing points", 1, IG,
+             "Set the curves equal and factor before integrating anything.",
+             mk_num("G12-IG4", _g_area_between())),
+        form("G12-IG5", "Integration by substitution", 2, IG,
+             "Divide by the inner derivative — the step most often missed.",
+             mk_num("G12-IG5", _g_usub_integral())),
+        form("G12-IG6", "Integrating a quadratic", 3, IG,
+             "Raise the power and divide by the NEW power.",
+             mk_num("G12-IG6", _g_area_under_quadratic())),
+        form("G12-VC4", "Unit vectors", 1, VC,
+             "Divide by the LENGTH, not by the sum of the components.",
+             mk_txt("G12-VC4", _g_unit_vector())),
+        form("G12-VC5", "Angles between vectors", 2, VC,
+             "A zero dot product is a right angle; a scalar multiple is no angle.",
+             mk_txt("G12-VC5", _g_vector_angle())),
+        form("G12-VC6", "Scalar projection", 3, VC,
+             "Dot product divided by the length of the vector projected ONTO.",
+             mk_num("G12-VC6", _g_vector_projection())),
+        form("G12-CS4", "Reading an ellipse", 1, CS,
+             "The denominators are the SQUARES of the semi-axes.",
+             mk_num("G12-CS4", _g_ellipse())),
+        form("G12-CS5", "Classifying conics", 2, CS,
+             "Added squares give an ellipse; subtracted, a hyperbola.",
+             mk_txt("G12-CS5", _g_classify_conic_pair())),
+        form("G12-CS6", "Building a circle's equation", 3, CS,
+             "Centre (h, k) appears as x - h and y - k — the opposite signs.",
+             mk_txt("G12-CS6", _g_circle_from_centre())),
+    ]

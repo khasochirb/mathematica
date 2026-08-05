@@ -96,6 +96,8 @@ for path in FILES:
             failures.append(f"{slug}: unit missing id/title: {u!r}")
     unit_variant_count = {uid: 0 for uid in unit_ids}
     unit_form_count = {uid: 0 for uid in unit_ids}
+    # A form's questions, so two forms cannot ship the same drill twice.
+    form_statements = {}
     if not t.get("forms"):
         failures.append(f"{slug}: no forms")
         continue
@@ -113,6 +115,8 @@ for path in FILES:
             unit_form_count[f["unit"]] += 1
             unit_variant_count[f["unit"]] += len(f.get("variants", []))
         vs = f.get("variants", [])
+        form_statements[f.get("id")] = frozenset(
+            v.get("statement", "") for v in vs)
         if len(vs) < 4:
             failures.append(f"{fid}: needs >= 4 variants for miss->similar, has {len(vs)}")
         for v in vs:
@@ -153,6 +157,22 @@ for path in FILES:
                     ok = False
                 if not ok:
                     failures.append(f"{vid}: check is NOT True: {expr!r} -> {result!r}")
+    # Two forms whose question sets are identical are one form wearing two
+    # names: the unit LOOKS covered, the student gets the same drill twice,
+    # and a per-unit form count cannot tell the difference. This happened
+    # while filling out Grade 12 — six new forms pointed at generators the
+    # existing forms already used, and nothing else would have caught it.
+    seen_sets = {}
+    for fid_, stmts in form_statements.items():
+        if not stmts:
+            continue
+        if stmts in seen_sets:
+            failures.append(
+                f"{slug}/{fid_}: identical questions to {seen_sets[stmts]} — "
+                f"a second form must drill something new")
+        else:
+            seen_sets[stmts] = fid_
+
     for uid in unit_ids:
         if unit_form_count.get(uid, 0) == 0:
             failures.append(f"{slug}/{uid}: unit has NO forms — every unit needs a collection")
