@@ -25,8 +25,8 @@ PB = os.path.dirname(os.path.abspath(__file__))
 if PB not in sys.path:
     sys.path.insert(0, PB)
 
-from imbank import (P, closed, figure, fmt, form, mk_num, mk_txt,  # noqa: E402
-                    on_circle, pt, quad, radical, seg, xpm)
+from imbank import (P, closed, figure, fmt, form, lin, mk_num, mk_txt,  # noqa: E402
+                    on_circle, pt, quad, radical, seg, sgn, xpm)
 
 SLUG = "integrated-2"
 TITLE = "Integrated Math 2"
@@ -844,6 +844,287 @@ def _g_sample_space():
     return raws
 
 
+# ===========================================================================
+# Batch 2 — the forms that take every Integrated 2 unit to six collections.
+# ===========================================================================
+
+def _g_radical_equation():
+    raws = []
+    for b in range(2, 10):
+        for a in (-9, -4, -1, 0, 3, 7, 11):
+            x = b * b - a
+            if x <= 0:
+                continue
+            raws.append({
+                "statement": ("Solve $\\sqrt{%s} = %d$."
+                              % (lin(1, a), b)),
+                "correct": x,
+                "dvals": [b * b + a, b - a, 2 * b - a],
+                "explanation": ("Square both sides to undo the root: "
+                                "$%s = %d$, so $x = %d$. Check it: "
+                                "$\\sqrt{%d} = %d$. Squaring can invent "
+                                "solutions, so the check is part of the "
+                                "method, not politeness."
+                                % (lin(1, a), b * b, x, x + a, b)),
+                "check": ["Eq(sqrt(%d + (%d)), %d)" % (x, a, b),
+                          "Eq(%d - (%d), %d)" % (b * b, a, x)],
+            })
+    return raws
+
+
+def _g_perfect_square_trinomial():
+    raws = []
+    for k in range(1, 13):
+        for s in (1, -1):
+            b = 2 * k * s
+            raws.append({
+                "statement": ("Factor completely: $%s$." % quad(1, b, k * k)),
+                "correct": "$(%s)^2$" % lin(1, k * s),
+                "dvals": ["$(%s)^2$" % lin(1, -k * s),
+                          "$(%s)(%s)$" % (xpm(k * s), xpm(-k * s)),
+                          "$(%s)(%s)$" % (xpm(k * s), xpm(2 * k * s))],
+                "explanation": ("The constant $%d$ is $%d^2$ and the middle "
+                                "coefficient $%d$ is $2 \\cdot %d$, which is "
+                                "exactly the perfect-square pattern "
+                                "$x^2 + 2kx + k^2 = (x + k)^2$. Here "
+                                "$k = %d$. The difference-of-squares "
+                                "factoring would leave no middle term at all."
+                                % (k * k, k, b, k * s, k * s)),
+                "check": ["Eq(expand((x + (%d))**2), x**2 + (%d)*x + %d)"
+                          % (k * s, b, k * k)],
+            })
+    return raws
+
+
+def _g_polynomial_degree():
+    raws = []
+    for m in range(1, 10):
+        for n in range(1, 10):
+            if m == n:
+                continue
+            raws.append({
+                "statement": ("What is the degree of the product "
+                              "$(3x^{%d} + 1)(2x^{%d} - 5)$?" % (m, n)),
+                "correct": m + n,
+                "dvals": [max(m, n), m * n, abs(m - n) + 1],
+                "explanation": ("Multiplying powers of $x$ ADDS their "
+                                "exponents, so the leading term is "
+                                "$3 \\cdot 2 \\cdot x^{%d + %d} = 6x^{%d}$ "
+                                "and the degree is $%d$. Taking the larger "
+                                "degree is what happens when you ADD two "
+                                "polynomials, not multiply them."
+                                % (m, n, m + n, m + n)),
+                "check": ["Eq(degree(expand((3*x**%d + 1)*(2*x**%d - 5)), x),"
+                          " %d)" % (m, n, m + n)],
+            })
+    return raws
+
+
+def _g_vertex_by_completing():
+    raws = []
+    for h in range(-6, 7):
+        for k in (-8, -3, 2, 5, 9):
+            if h == 0:
+                continue
+            b, c = -2 * h, h * h + k
+            raws.append({
+                "statement": ("Complete the square to find the vertex of "
+                              "$y = %s$, and give the $y$-coordinate of "
+                              "that vertex." % quad(1, b, c)),
+                "correct": k,
+                "dvals": [h, c, -k],
+                "explanation": ("Half of $%d$ is $%d$, and $%d^2 = %d$, so "
+                                "$y = (%s)^2 %s %d$. The vertex is "
+                                "$(%d,\\ %d)$, so the $y$-coordinate asked "
+                                "for is $%d$. The $x$-coordinate is $%d$ — "
+                                "the two are easy to swap once the bracket "
+                                "is written."
+                                % (b, -h, -h, h * h, lin(1, -h),
+                                   sgn(k), abs(k), h, k, k, h)),
+                "check": ["Eq(expand((x - (%d))**2 + (%d)), x**2 + (%d)*x"
+                          " + (%d))" % (h, k, b, c)],
+            })
+    return raws
+
+
+def _g_quadratic_from_roots():
+    raws = []
+    for r in range(-6, 7):
+        for s2 in range(-6, 7):
+            if r >= s2:
+                continue
+            b, c = -(r + s2), r * s2
+            raws.append({
+                "statement": ("Write a monic quadratic whose roots are $%d$ "
+                              "and $%d$." % (r, s2)),
+                "correct": "$%s$" % quad(1, b, c),
+                # -b is the sum itself, so "forgot the sign change" and
+                # "wrote the sum where the product goes" must not both be
+                # spelled quad(1, r + s2, c) — the second swaps the two.
+                "dvals": ["$%s$" % quad(1, -b, c),
+                          "$%s$" % quad(1, b, -c),
+                          "$%s$" % quad(1, c, b)],
+                "explanation": ("$(x - %d)(x - %d)$ expands to $%s$: the "
+                                "coefficient of $x$ is MINUS the sum of the "
+                                "roots and the constant is their product. "
+                                "Copying the sum without the sign change is "
+                                "the standard slip."
+                                % (r, s2, quad(1, b, c))),
+                "check": ["Eq(expand((x - (%d))*(x - (%d))), x**2 + (%d)*x"
+                          " + (%d))" % (r, s2, b, c)],
+            })
+    return raws
+
+
+def _g_similar_perimeter():
+    raws = []
+    for j in range(2, 8):
+        for P in (12, 18, 24, 30, 36, 42, 48, 60):
+            raws.append({
+                "statement": ("Two similar polygons have corresponding sides "
+                              "in the ratio $1 : %d$. The smaller has "
+                              "perimeter $%d$. Find the perimeter of the "
+                              "larger." % (j, P)),
+                "correct": P * j,
+                "dvals": [P * j * j, P + j, Rational(P, j)],
+                "explanation": ("Perimeter is a LENGTH, so it scales by the "
+                                "plain ratio, not its square: "
+                                "$%d \\times %d = %d$. The $%d$ option "
+                                "scales it like an area, which is what the "
+                                "square of the ratio is for."
+                                % (P, j, P * j, P * j * j)),
+                "check": ["Eq(%d*%d, %d)" % (P, j, P * j)],
+            })
+    return raws
+
+
+def _g_similar_side():
+    raws = []
+    for k in range(2, 7):
+        for a in (3, 4, 5, 6, 7, 8, 9, 10):
+            for b in (2, 5):
+                raws.append({
+                    "statement": ("$\\triangle ABC \\sim \\triangle DEF$ "
+                                  "with $AB = %d$ and $DE = %d$. If "
+                                  "$BC = %d$, find $EF$."
+                                  % (a, a * k, b * k)),
+                    "correct": b * k * k,
+                    "dvals": [b * k, b + a * (k - 1), Rational(b, k)],
+                    "explanation": ("One multiplier serves the whole "
+                                    "triangle: $DE = %d$ is $%d$ times "
+                                    "$AB = %d$, so every side scales by "
+                                    "$%d$ and $EF = %d \\times %d = %d$. "
+                                    "Adding the difference instead of "
+                                    "multiplying by the ratio is the error "
+                                    "similarity is built to expose."
+                                    % (a * k, k, a, k, b * k, k, b * k * k)),
+                    "check": ["Eq(Rational(%d, %d), Rational(%d, %d))"
+                              % (a * k, a, b * k * k, b * k)],
+                })
+    return raws
+
+
+def _g_trig_ratio_value():
+    raws = []
+    triples = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (7, 24, 25),
+               (9, 12, 15), (20, 21, 29), (12, 16, 20), (10, 24, 26),
+               (9, 40, 41), (15, 20, 25), (12, 35, 37)]
+    for (o, a, h) in triples:
+        for fn, val, why in (("sin", Rational(o, h), "opposite over "
+                              "hypotenuse"),
+                             ("cos", Rational(a, h), "adjacent over "
+                              "hypotenuse"),
+                             ("tan", Rational(o, a), "opposite over "
+                              "adjacent")):
+            raws.append({
+                "statement": ("A right triangle has legs $%d$ and $%d$ and "
+                              "hypotenuse $%d$. The angle $\\theta$ is "
+                              "opposite the leg of length $%d$. Find "
+                              "$\\%s\\theta$." % (o, a, h, o, fn)),
+                "correct": val,
+                "dvals": [Rational(a, o) if fn == "tan" else
+                          Rational(h, o if fn == "sin" else a),
+                          Rational(o, a) if fn != "tan" else Rational(o, h),
+                          Rational(a, h) if fn != "cos" else Rational(o, h)],
+                "explanation": ("$\\%s$ is %s. With $\\theta$ opposite the "
+                                "leg $%d$, that is $\\frac{%d}{%d} = %s$. "
+                                "Naming the sides RELATIVE TO THE ANGLE "
+                                "before dividing is the whole discipline "
+                                "here." % (fn, why, o,
+                                           val.p, val.q, fmt(val))),
+                "check": ["Eq(%d**2 + %d**2, %d**2)" % (o, a, h),
+                          "Eq(Rational(%d, %d), Rational(%d, %d))"
+                          % (val.p, val.q, val.p, val.q)],
+            })
+    return raws
+
+
+def _g_expected_value():
+    raws = []
+    for w in range(2, 10):
+        for l in range(1, 9):
+            for n in (4, 5, 6, 8, 10):
+                p = Rational(1, n)
+                ev = p * w - (1 - p) * l
+                raws.append({
+                    "statement": ("A game pays $%d$ with probability "
+                                  "$\\frac{1}{%d}$ and costs you $%d$ "
+                                  "otherwise. Find the expected gain per "
+                                  "play." % (w, n, l)),
+                    "correct": ev,
+                    "dvals": [p * w + (1 - p) * l, w - l, p * (w - l)],
+                    "explanation": ("Weight each outcome by its probability "
+                                    "and add, with the loss counted as "
+                                    "negative: $\\frac{1}{%d}(%d) - "
+                                    "\\frac{%d}{%d}(%d) = %s$. Adding the "
+                                    "loss instead of subtracting it turns a "
+                                    "cost into a reward."
+                                    % (n, w, n - 1, n, l, fmt(ev))),
+                    "check": ["Eq(Rational(1,%d)*%d - Rational(%d,%d)*%d,"
+                              " Rational(%d,%d))"
+                              % (n, w, n - 1, n, l, ev.p, ev.q)],
+                })
+    return raws
+
+
+def _g_perm_vs_comb():
+    from math import comb as _comb, perm as _perm
+    raws = []
+    for n in range(4, 12):
+        for r in range(2, min(n, 5) + 1):
+            raws.append({
+                "statement": ("From $%d$ people, how many different ORDERED "
+                              "line-ups of $%d$ can be formed?" % (n, r)),
+                "correct": _perm(n, r),
+                "dvals": [_comb(n, r), n * r, n ** r],
+                "explanation": ("Order matters, so this is a permutation: "
+                                "$%d \\times %d \\times \\ldots$ down $%d$ "
+                                "factors $= %d$. The unordered count is "
+                                "$%d$ — smaller by exactly $%d!$, the number "
+                                "of ways to shuffle each chosen group."
+                                % (n, n - 1, r, _perm(n, r), _comb(n, r), r)),
+                "check": ["Eq(factorial(%d)/factorial(%d), %d)"
+                          % (n, n - r, _perm(n, r))],
+            })
+            raws.append({
+                "statement": ("From $%d$ people, how many different "
+                              "committees of $%d$ can be chosen, where order "
+                              "does not matter?" % (n, r)),
+                "correct": _comb(n, r),
+                "dvals": [_perm(n, r), n * r, n - r],
+                "explanation": ("Order does not matter, so divide the "
+                                "$%d$ ordered line-ups by the $%d! = %d$ "
+                                "orderings of each committee: $%d$. Using "
+                                "the permutation count here counts the same "
+                                "committee many times over."
+                                % (_perm(n, r), r,
+                                   _perm(n, r) // _comb(n, r),
+                                   _comb(n, r))),
+                "check": ["Eq(binomial(%d, %d), %d)" % (n, r, _comb(n, r))],
+            })
+    return raws
+
+
 def build():
     forms = _remapped_forms()
 
@@ -858,6 +1139,9 @@ def build():
         form("im2-radical-arithmetic", "Adding and multiplying radicals", 2, U1,
              "Like radicals add like terms; multiplication combines under one root.",
              mk_txt("im2-rar", _g_radical_arithmetic())),
+        form("im2-radical-equation", "Solving a radical equation", 2, U1,
+             "Square both sides, then CHECK — squaring can invent solutions.",
+             mk_num("im2-req", _g_radical_equation())),
         form("im2-rational-irrational", "Rational or irrational?", 2, U1,
              "A rational plus an irrational is always irrational — but a radical is not automatically irrational.",
              mk_txt("im2-rir", _g_rational_irrational())),
@@ -877,6 +1161,12 @@ def build():
         form("im2-difference-squares", "The difference of two squares", 2, U2,
              "a² - b² = (a - b)(a + b); a repeated bracket would create a middle term.",
              mk_txt("im2-ds", _g_difference_squares())),
+        form("im2-perfect-square-trinomial", "Perfect-square trinomials", 2, U2,
+             "Constant a perfect square and middle term twice its root — that is the pattern.",
+             mk_txt("im2-pst", _g_perfect_square_trinomial())),
+        form("im2-polynomial-degree", "The degree of a product", 1, U2,
+             "Multiplying powers ADDS exponents; adding polynomials keeps the larger degree.",
+             mk_num("im2-deg", _g_polynomial_degree())),
     ]
 
     U3 = "quadratic-functions"
@@ -887,6 +1177,12 @@ def build():
         form("im2-which-form", "Which form reveals which feature", 1, U3,
              "Standard shows the intercept, factored shows the roots, vertex form shows the vertex.",
              mk_txt("im2-wf", _g_which_form())),
+        form("im2-vertex-by-completing", "Completing the square for the vertex", 2, U3,
+             "Half the middle coefficient, squared — the leftover is the vertex height.",
+             mk_num("im2-vcs", _g_vertex_by_completing())),
+        form("im2-quadratic-from-roots", "Building a quadratic from its roots", 2, U3,
+             "Minus the sum for the x-coefficient, the product for the constant.",
+             mk_txt("im2-qfr", _g_quadratic_from_roots())),
     ]
 
     U4 = "solving-quadratic-equations"
@@ -910,6 +1206,12 @@ def build():
         form("im2-side-splitter", "The side-splitter theorem", 2, U5,
              "A line parallel to one side cuts the other two proportionally.",
              mk_num("im2-ss", _g_side_splitter())),
+        form("im2-similar-perimeter", "Perimeters of similar figures", 1, U5,
+             "Perimeter is a length, so it scales by the plain ratio — never its square.",
+             mk_num("im2-sper", _g_similar_perimeter())),
+        form("im2-similar-side", "A missing side in similar triangles", 1, U5,
+             "One multiplier serves the whole triangle.",
+             mk_num("im2-sside", _g_similar_side())),
     ]
 
     U6 = "right-triangle-trigonometry"
@@ -920,6 +1222,9 @@ def build():
         form("im2-complementary", "Complementary angles in a right triangle", 2, U6,
              "sin θ = cos(90° - θ), because one angle's opposite is the other's adjacent.",
              mk_txt("im2-comp", _g_complementary())),
+        form("im2-trig-ratio-value", "Reading a trig ratio off the sides", 1, U6,
+             "Name the sides relative to the angle, then divide.",
+             mk_num("im2-trv", _g_trig_ratio_value())),
     ]
 
     U7 = "circles"
@@ -952,6 +1257,12 @@ def build():
         form("im2-multiplication-rule", "With and without replacement", 2, U8,
              "Without replacement, the second draw sees a smaller bag.",
              mk_num("im2-mr", _g_multiplication_rule())),
+        form("im2-expected-value", "Expected gain per play", 2, U8,
+             "Weight each outcome by its probability, counting a cost as negative.",
+             mk_num("im2-ev", _g_expected_value())),
+        form("im2-perm-vs-comb", "Ordered line-ups against committees", 2, U8,
+             "Order matters or it does not — the factor between them is r!.",
+             mk_num("im2-pvc", _g_perm_vs_comb())),
     ]
 
     return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,
