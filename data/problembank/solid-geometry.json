@@ -779,6 +779,195 @@
       ]
     },
     {
+      "id": "determining-a-plane",
+      "title": "How many planes?",
+      "level": 1,
+      "skill": "SOLID-plane",
+      "unit": "lines-and-planes-in-space",
+      "variants": [
+        {
+          "id": "SOLID-plane-v01",
+          "statement": "How many planes contain three points that do not all lie on one line?",
+          "options": [
+            "exactly one",
+            "exactly two",
+            "infinitely many",
+            "none"
+          ],
+          "correctIndex": 0,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v02",
+          "statement": "How many planes contain a line and a point not on that line?",
+          "options": [
+            "exactly two",
+            "exactly one",
+            "infinitely many",
+            "none"
+          ],
+          "correctIndex": 1,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v03",
+          "statement": "How many planes contain two lines that cross each other?",
+          "options": [
+            "exactly two",
+            "infinitely many",
+            "exactly one",
+            "none"
+          ],
+          "correctIndex": 2,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v04",
+          "statement": "How many planes contain two parallel lines that are not the same line?",
+          "options": [
+            "exactly two",
+            "infinitely many",
+            "none",
+            "exactly one"
+          ],
+          "correctIndex": 3,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v05",
+          "statement": "How many planes contain two points?",
+          "options": [
+            "infinitely many",
+            "exactly one",
+            "exactly two",
+            "none"
+          ],
+          "correctIndex": 0,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v06",
+          "statement": "How many planes contain a single line?",
+          "options": [
+            "exactly one",
+            "infinitely many",
+            "exactly two",
+            "none"
+          ],
+          "correctIndex": 1,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v07",
+          "statement": "How many planes contain a line and a point that lies on it?",
+          "options": [
+            "exactly one",
+            "exactly two",
+            "infinitely many",
+            "none"
+          ],
+          "correctIndex": 2,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v08",
+          "statement": "How many planes contain a single point?",
+          "options": [
+            "exactly one",
+            "exactly two",
+            "none",
+            "infinitely many"
+          ],
+          "correctIndex": 3,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v09",
+          "statement": "How many planes contain three points that all lie on one line?",
+          "options": [
+            "infinitely many",
+            "exactly one",
+            "exactly two",
+            "none"
+          ],
+          "correctIndex": 0,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v10",
+          "statement": "How many planes contain two lines that are skew?",
+          "options": [
+            "exactly one",
+            "none",
+            "exactly two",
+            "infinitely many"
+          ],
+          "correctIndex": 1,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v11",
+          "statement": "How many planes contain a line and a point, where the point is on the line and no other condition is given?",
+          "options": [
+            "exactly one",
+            "exactly two",
+            "infinitely many",
+            "none"
+          ],
+          "correctIndex": 2,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-plane-v12",
+          "statement": "How many planes contain four points, three of which lie on one line while the fourth does not?",
+          "options": [
+            "exactly two",
+            "infinitely many",
+            "none",
+            "exactly one"
+          ],
+          "correctIndex": 3,
+          "explanation": "A plane is pinned down by three points that are not in a line — or by anything that supplies them. Two points leave a whole axis to rotate about, so infinitely many planes pass through them; skew lines by definition never lie in a common plane, so no plane contains both.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ]
+    },
+    {
       "id": "counting-in-space",
       "title": "Counting lines & planes through points",
       "level": 2,
@@ -2129,6 +2318,207 @@
       ]
     },
     {
+      "id": "skew-distance",
+      "title": "Distance between skew edges",
+      "level": 2,
+      "skill": "SOLID-skewd",
+      "unit": "lines-and-planes-in-space",
+      "variants": [
+        {
+          "id": "SOLID-skewd-v01",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $2$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$2$",
+            "$2\\sqrt{2}$",
+            "$2\\sqrt{3}$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $2$. The face diagonal $2\\sqrt{2}$ and the space diagonal $2\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "2 > 0",
+            "sqrt(2)*2 > 2"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v02",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $3$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$3\\sqrt{2}$",
+            "$3$",
+            "$3\\sqrt{3}$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $3$. The face diagonal $3\\sqrt{2}$ and the space diagonal $3\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "3 > 0",
+            "sqrt(2)*3 > 3"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v03",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $4$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$4\\sqrt{2}$",
+            "$4\\sqrt{3}$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $4$. The face diagonal $4\\sqrt{2}$ and the space diagonal $4\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "4 > 0",
+            "sqrt(2)*4 > 4"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v04",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $5$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$5\\sqrt{2}$",
+            "$5\\sqrt{3}$",
+            "$10$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $5$. The face diagonal $5\\sqrt{2}$ and the space diagonal $5\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "5 > 0",
+            "sqrt(2)*5 > 5"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v05",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $6$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$6$",
+            "$6\\sqrt{2}$",
+            "$6\\sqrt{3}$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $6$. The face diagonal $6\\sqrt{2}$ and the space diagonal $6\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "6 > 0",
+            "sqrt(2)*6 > 6"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v06",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $7$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$7\\sqrt{2}$",
+            "$7$",
+            "$7\\sqrt{3}$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $7$. The face diagonal $7\\sqrt{2}$ and the space diagonal $7\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "7 > 0",
+            "sqrt(2)*7 > 7"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v07",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $8$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$8\\sqrt{2}$",
+            "$8\\sqrt{3}$",
+            "$8$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $8$. The face diagonal $8\\sqrt{2}$ and the space diagonal $8\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "8 > 0",
+            "sqrt(2)*8 > 8"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v08",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $9$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$9\\sqrt{2}$",
+            "$9\\sqrt{3}$",
+            "$18$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $9$. The face diagonal $9\\sqrt{2}$ and the space diagonal $9\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "9 > 0",
+            "sqrt(2)*9 > 9"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v09",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $10$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$10$",
+            "$10\\sqrt{2}$",
+            "$10\\sqrt{3}$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $10$. The face diagonal $10\\sqrt{2}$ and the space diagonal $10\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "10 > 0",
+            "sqrt(2)*10 > 10"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v10",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $12$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$12\\sqrt{2}$",
+            "$12$",
+            "$12\\sqrt{3}$",
+            "$24$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $12$. The face diagonal $12\\sqrt{2}$ and the space diagonal $12\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "12 > 0",
+            "sqrt(2)*12 > 12"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v11",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $15$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$15\\sqrt{2}$",
+            "$15\\sqrt{3}$",
+            "$15$",
+            "$30$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $15$. The face diagonal $15\\sqrt{2}$ and the space diagonal $15\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "15 > 0",
+            "sqrt(2)*15 > 15"
+          ]
+        },
+        {
+          "id": "SOLID-skewd-v12",
+          "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $20$. Find the distance between the skew edges $AB$ and $CC_1$.",
+          "options": [
+            "$20\\sqrt{2}$",
+            "$20\\sqrt{3}$",
+            "$40$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and the segment $BC$ meets both at right angles — so $BC$ IS the common perpendicular, and the distance is one edge, $20$. The face diagonal $20\\sqrt{2}$ and the space diagonal $20\\sqrt{3}$ are longer because they are not perpendicular to both lines.",
+          "check": [
+            "20 > 0",
+            "sqrt(2)*20 > 20"
+          ]
+        }
+      ]
+    },
+    {
       "id": "cube-diagonals",
       "title": "Cube diagonals: the √2 and √3 rules",
       "level": 1,
@@ -2862,6 +3252,195 @@
           "explanation": "$6a^2 = 1014$ gives $a^2 = 169$, so $a = 13$. Dividing by $6$ but forgetting the square root leaves $169$.",
           "check": [
             "sqrt(Rational(1014,6)) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prism-base-from-volume",
+      "title": "Base area from a prism's volume",
+      "level": 2,
+      "skill": "SOLID-pbase",
+      "unit": "prisms-and-the-cube",
+      "variants": [
+        {
+          "id": "SOLID-pbase-v01",
+          "statement": "A right prism has volume $120$ and height $5$. Find the area of its base.",
+          "options": [
+            "$24$",
+            "$600$",
+            "$115$",
+            "$72$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{120}{5} = 24$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "24 * 5 == 120"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v02",
+          "statement": "A right prism has volume $96$ and height $4$. Find the area of its base.",
+          "options": [
+            "$384$",
+            "$24$",
+            "$92$",
+            "$72$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{96}{4} = 24$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "24 * 4 == 96"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v03",
+          "statement": "A right prism has volume $210$ and height $7$. Find the area of its base.",
+          "options": [
+            "$1470$",
+            "$203$",
+            "$30$",
+            "$90$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{210}{7} = 30$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "30 * 7 == 210"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v04",
+          "statement": "A right prism has volume $144$ and height $6$. Find the area of its base.",
+          "options": [
+            "$864$",
+            "$138$",
+            "$72$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{144}{6} = 24$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "24 * 6 == 144"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v05",
+          "statement": "A right prism has volume $180$ and height $9$. Find the area of its base.",
+          "options": [
+            "$20$",
+            "$1620$",
+            "$171$",
+            "$60$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{180}{9} = 20$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "20 * 9 == 180"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v06",
+          "statement": "A right prism has volume $88$ and height $8$. Find the area of its base.",
+          "options": [
+            "$704$",
+            "$11$",
+            "$80$",
+            "$33$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{88}{8} = 11$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "11 * 8 == 88"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v07",
+          "statement": "A right prism has volume $150$ and height $3$. Find the area of its base.",
+          "options": [
+            "$450$",
+            "$147$",
+            "$50$",
+            "$150$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{150}{3} = 50$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "50 * 3 == 150"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v08",
+          "statement": "A right prism has volume $168$ and height $12$. Find the area of its base.",
+          "options": [
+            "$2016$",
+            "$156$",
+            "$42$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{168}{12} = 14$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "14 * 12 == 168"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v09",
+          "statement": "A right prism has volume $225$ and height $5$. Find the area of its base.",
+          "options": [
+            "$45$",
+            "$1125$",
+            "$220$",
+            "$135$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{225}{5} = 45$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "45 * 5 == 225"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v10",
+          "statement": "A right prism has volume $192$ and height $8$. Find the area of its base.",
+          "options": [
+            "$1536$",
+            "$24$",
+            "$184$",
+            "$72$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{192}{8} = 24$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "24 * 8 == 192"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v11",
+          "statement": "A right prism has volume $135$ and height $9$. Find the area of its base.",
+          "options": [
+            "$1215$",
+            "$126$",
+            "$15$",
+            "$45$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{135}{9} = 15$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "15 * 9 == 135"
+          ]
+        },
+        {
+          "id": "SOLID-pbase-v12",
+          "statement": "A right prism has volume $108$ and height $6$. Find the area of its base.",
+          "options": [
+            "$648$",
+            "$102$",
+            "$54$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A prism's volume is base area times height, so the base area is $\\frac{108}{6} = 18$. The $\\frac13$ that appears in the pyramid formula has no place here — a prism keeps its full cross-section all the way up.",
+          "check": [
+            "18 * 6 == 108"
           ]
         }
       ]
@@ -4698,6 +5277,195 @@
           "explanation": "$V = \\tfrac13 a^2 h = \\tfrac13\\cdot 144\\cdot 11 = 528$. Forgetting the $\\tfrac13$ gives the prism volume $1584$.",
           "check": [
             "Rational(1,3)*12**2*11 == 528"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyramid-height-from-volume",
+      "title": "Height from a pyramid's volume",
+      "level": 2,
+      "skill": "SOLID-pyh",
+      "unit": "pyramids",
+      "variants": [
+        {
+          "id": "SOLID-pyh-v01",
+          "statement": "A pyramid with a square base of side $3$ has volume $6$. Find its height.",
+          "options": [
+            "$2$",
+            "$0$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{18}{9} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*3**2*2 == 6"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v02",
+          "statement": "A pyramid with a square base of side $4$ has volume $16$. Find its height.",
+          "options": [
+            "$1$",
+            "$3$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{48}{16} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*4**2*3 == 16"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v03",
+          "statement": "A pyramid with a square base of side $5$ has volume $25$. Find its height.",
+          "options": [
+            "$1$",
+            "$9$",
+            "$3$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{75}{25} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*5**2*3 == 25"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v04",
+          "statement": "A pyramid with a square base of side $6$ has volume $24$. Find its height.",
+          "options": [
+            "$0$",
+            "$6$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{72}{36} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*6**2*2 == 24"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v05",
+          "statement": "A pyramid with a square base of side $8$ has volume $64$. Find its height.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$9$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{192}{64} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*8**2*3 == 64"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v06",
+          "statement": "A pyramid with a square base of side $9$ has volume $54$. Find its height.",
+          "options": [
+            "$0$",
+            "$2$",
+            "$6$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{162}{81} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*9**2*2 == 54"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v07",
+          "statement": "A pyramid with a square base of side $10$ has volume $100$. Find its height.",
+          "options": [
+            "$1$",
+            "$9$",
+            "$3$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{300}{100} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*10**2*3 == 100"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v08",
+          "statement": "A pyramid with a square base of side $12$ has volume $96$. Find its height.",
+          "options": [
+            "$0$",
+            "$6$",
+            "$12$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{288}{144} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*12**2*2 == 96"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v09",
+          "statement": "A pyramid with a square base of side $2$ has volume $4$. Find its height.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$9$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{12}{4} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*2**2*3 == 4"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v10",
+          "statement": "A pyramid with a square base of side $7$ has volume $49$. Find its height.",
+          "options": [
+            "$1$",
+            "$3$",
+            "$9$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{147}{49} = 3$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*7**2*3 == 49"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v11",
+          "statement": "A pyramid with a square base of side $15$ has volume $150$. Find its height.",
+          "options": [
+            "$0$",
+            "$6$",
+            "$2$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{450}{225} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*15**2*2 == 150"
+          ]
+        },
+        {
+          "id": "SOLID-pyh-v12",
+          "statement": "A pyramid with a square base of side $21$ has volume $294$. Find its height.",
+          "options": [
+            "$0$",
+            "$6$",
+            "$21$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13 a^2 h$, so $h = \\dfrac{3V}{a^2} = \\dfrac{882}{441} = 2$. Forgetting the $3$ — dividing the volume by the base area as if this were a prism — gives a height three times too small.",
+          "check": [
+            "Rational(1,3)*21**2*2 == 294"
           ]
         }
       ]
@@ -7277,6 +8045,195 @@
       ]
     },
     {
+      "id": "pyramid-total-surface",
+      "title": "Total surface of a pyramid",
+      "level": 2,
+      "skill": "SOLID-pytot",
+      "unit": "pyramids",
+      "variants": [
+        {
+          "id": "SOLID-pytot-v01",
+          "statement": "A regular pyramid has a square base of side $6$ and slant height $5$. Find its TOTAL surface area.",
+          "options": [
+            "$96$",
+            "$60$",
+            "$36$",
+            "$156$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 6 \\cdot 5$, give a lateral area of $60$; adding the base $6^2 = 36$ gives $96$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*6*5 + 6**2 == 96"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v02",
+          "statement": "A regular pyramid has a square base of side $8$ and slant height $3$. Find its TOTAL surface area.",
+          "options": [
+            "$48$",
+            "$112$",
+            "$64$",
+            "$160$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 8 \\cdot 3$, give a lateral area of $48$; adding the base $8^2 = 64$ gives $112$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*8*3 + 8**2 == 112"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v03",
+          "statement": "A regular pyramid has a square base of side $10$ and slant height $12$. Find its TOTAL surface area.",
+          "options": [
+            "$240$",
+            "$100$",
+            "$340$",
+            "$580$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 10 \\cdot 12$, give a lateral area of $240$; adding the base $10^2 = 100$ gives $340$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*10*12 + 10**2 == 340"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v04",
+          "statement": "A regular pyramid has a square base of side $4$ and slant height $6$. Find its TOTAL surface area.",
+          "options": [
+            "$48$",
+            "$16$",
+            "$112$",
+            "$64$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 4 \\cdot 6$, give a lateral area of $48$; adding the base $4^2 = 16$ gives $64$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*4*6 + 4**2 == 64"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v05",
+          "statement": "A regular pyramid has a square base of side $12$ and slant height $8$. Find its TOTAL surface area.",
+          "options": [
+            "$336$",
+            "$192$",
+            "$144$",
+            "$528$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 12 \\cdot 8$, give a lateral area of $192$; adding the base $12^2 = 144$ gives $336$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*12*8 + 12**2 == 336"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v06",
+          "statement": "A regular pyramid has a square base of side $14$ and slant height $4$. Find its TOTAL surface area.",
+          "options": [
+            "$112$",
+            "$308$",
+            "$196$",
+            "$420$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 14 \\cdot 4$, give a lateral area of $112$; adding the base $14^2 = 196$ gives $308$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*14*4 + 14**2 == 308"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v07",
+          "statement": "A regular pyramid has a square base of side $16$ and slant height $10$. Find its TOTAL surface area.",
+          "options": [
+            "$320$",
+            "$256$",
+            "$576$",
+            "$896$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 16 \\cdot 10$, give a lateral area of $320$; adding the base $16^2 = 256$ gives $576$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*16*10 + 16**2 == 576"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v08",
+          "statement": "A regular pyramid has a square base of side $18$ and slant height $5$. Find its TOTAL surface area.",
+          "options": [
+            "$180$",
+            "$324$",
+            "$684$",
+            "$504$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 18 \\cdot 5$, give a lateral area of $180$; adding the base $18^2 = 324$ gives $504$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*18*5 + 18**2 == 504"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v09",
+          "statement": "A regular pyramid has a square base of side $20$ and slant height $7$. Find its TOTAL surface area.",
+          "options": [
+            "$680$",
+            "$280$",
+            "$400$",
+            "$960$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 20 \\cdot 7$, give a lateral area of $280$; adding the base $20^2 = 400$ gives $680$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*20*7 + 20**2 == 680"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v10",
+          "statement": "A regular pyramid has a square base of side $5$ and slant height $9$. Find its TOTAL surface area.",
+          "options": [
+            "$90$",
+            "$115$",
+            "$25$",
+            "$205$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 5 \\cdot 9$, give a lateral area of $90$; adding the base $5^2 = 25$ gives $115$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*5*9 + 5**2 == 115"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v11",
+          "statement": "A regular pyramid has a square base of side $9$ and slant height $11$. Find its TOTAL surface area.",
+          "options": [
+            "$198$",
+            "$81$",
+            "$279$",
+            "$477$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 9 \\cdot 11$, give a lateral area of $198$; adding the base $9^2 = 81$ gives $279$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*9*11 + 9**2 == 279"
+          ]
+        },
+        {
+          "id": "SOLID-pytot-v12",
+          "statement": "A regular pyramid has a square base of side $7$ and slant height $13$. Find its TOTAL surface area.",
+          "options": [
+            "$182$",
+            "$49$",
+            "$413$",
+            "$231$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Four triangular faces, each $\\tfrac12 \\cdot 7 \\cdot 13$, give a lateral area of $182$; adding the base $7^2 = 49$ gives $231$. Stopping at the lateral area answers the LATERAL question, which is a different one.",
+          "check": [
+            "4*Rational(1,2)*7*13 + 7**2 == 231"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pyramid-base-from-volume",
       "title": "Base side of a pyramid from its volume",
       "level": 3,
@@ -7839,6 +8796,195 @@
           "explanation": "The axial section of a cone is a triangle with base $2r = 10$ and height $8$: $\\tfrac12\\cdot 10\\cdot 8 = 40$. Forgetting the $\\tfrac12$ (treating it as a rectangle) gives $80$.",
           "check": [
             "Rational(1,2)*2*5*8 == 40"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cone-height-from-volume",
+      "title": "Height from a cone's volume",
+      "level": 2,
+      "skill": "SOLID-coneh",
+      "unit": "cylinders-and-cones",
+      "variants": [
+        {
+          "id": "SOLID-coneh-v01",
+          "statement": "A cone of radius $3$ has volume $12\\pi$. Find its height.",
+          "options": [
+            "$4$",
+            "$12$",
+            "$3$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 12}{9} = 4$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*3**2*4 == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v02",
+          "statement": "A cone of radius $6$ has volume $24\\pi$. Find its height.",
+          "options": [
+            "$6$",
+            "$2$",
+            "$12$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 24}{36} = 2$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*6**2*2 == Rational(24, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v03",
+          "statement": "A cone of radius $2$ has volume $12\\pi$. Find its height.",
+          "options": [
+            "$27$",
+            "$2$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 12}{4} = 9$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*2**2*9 == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v04",
+          "statement": "A cone of radius $5$ has volume $25\\pi$. Find its height.",
+          "options": [
+            "$9$",
+            "$5$",
+            "$15$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 25}{25} = 3$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*5**2*3 == Rational(25, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v05",
+          "statement": "A cone of radius $4$ has volume $32\\pi$. Find its height.",
+          "options": [
+            "$6$",
+            "$18$",
+            "$4$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 32}{16} = 6$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*4**2*6 == Rational(32, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v06",
+          "statement": "A cone of radius $10$ has volume $\\frac{100}{3}\\pi$. Find its height.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$10$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot \\frac{100}{3}}{100} = 1$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*10**2*1 == Rational(100, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v07",
+          "statement": "A cone of radius $7$ has volume $49\\pi$. Find its height.",
+          "options": [
+            "$9$",
+            "$7$",
+            "$3$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 49}{49} = 3$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*7**2*3 == Rational(49, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v08",
+          "statement": "A cone of radius $8$ has volume $\\frac{320}{3}\\pi$. Find its height.",
+          "options": [
+            "$15$",
+            "$8$",
+            "$40$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot \\frac{320}{3}}{64} = 5$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*8**2*5 == Rational(320, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v09",
+          "statement": "A cone of radius $9$ has volume $54\\pi$. Find its height.",
+          "options": [
+            "$2$",
+            "$6$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 54}{81} = 2$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*9**2*2 == Rational(54, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v10",
+          "statement": "A cone of radius $12$ has volume $192\\pi$. Find its height.",
+          "options": [
+            "$12$",
+            "$4$",
+            "$48$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 192}{144} = 4$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*12**2*4 == Rational(192, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v11",
+          "statement": "A cone of radius $1$ has volume $5\\pi$. Find its height.",
+          "options": [
+            "$45$",
+            "$1$",
+            "$15$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 5}{1} = 15$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*1**2*15 == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-coneh-v12",
+          "statement": "A cone of radius $11$ has volume $242\\pi$. Find its height.",
+          "options": [
+            "$18$",
+            "$11$",
+            "$66$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h$, so $h = \\dfrac{3V}{\\pi r^2} = \\dfrac{3 \\cdot 242}{121} = 6$. Dropping the factor of $3$ treats the cone as a cylinder and returns a third of the true height.",
+          "check": [
+            "Rational(1,3)*11**2*6 == Rational(242, 1)"
           ]
         }
       ]
@@ -9306,6 +10452,207 @@
           "explanation": "First $\\ell = \\sqrt{33^2 + 56^2} = 65$; then $S_{\\text{lat}} = \\pi r \\ell = \\pi\\cdot 33\\cdot 65 = 2145\\pi$. Using the height instead of the slant gives $1848\\pi$.",
           "check": [
             "pi*33*sqrt(33**2 + 56**2) == 2145*pi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cylinder-from-circumference",
+      "title": "Cylinder volume from its circumference",
+      "level": 2,
+      "skill": "SOLID-cylc",
+      "unit": "cylinders-and-cones",
+      "variants": [
+        {
+          "id": "SOLID-cylc-v01",
+          "statement": "A cylinder has base circumference $6\\pi$ and height $5$. Find its volume, exactly.",
+          "options": [
+            "$45\\pi$",
+            "$180\\pi$",
+            "$30\\pi$",
+            "$15\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $C = 2\\pi r = 6\\pi$ the radius is $3$, so $V = \\pi r^2 h = \\pi \\cdot 9 \\cdot 5 = 45\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*3 == 6*pi",
+            "pi*3**2*5 == 45*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v02",
+          "statement": "A cylinder has base circumference $8\\pi$ and height $2$. Find its volume, exactly.",
+          "options": [
+            "$128\\pi$",
+            "$32\\pi$",
+            "$16\\pi$",
+            "$8\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $C = 2\\pi r = 8\\pi$ the radius is $4$, so $V = \\pi r^2 h = \\pi \\cdot 16 \\cdot 2 = 32\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*4 == 8*pi",
+            "pi*4**2*2 == 32*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v03",
+          "statement": "A cylinder has base circumference $10\\pi$ and height $7$. Find its volume, exactly.",
+          "options": [
+            "$700\\pi$",
+            "$70\\pi$",
+            "$175\\pi$",
+            "$35\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $C = 2\\pi r = 10\\pi$ the radius is $5$, so $V = \\pi r^2 h = \\pi \\cdot 25 \\cdot 7 = 175\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*5 == 10*pi",
+            "pi*5**2*7 == 175*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v04",
+          "statement": "A cylinder has base circumference $12\\pi$ and height $3$. Find its volume, exactly.",
+          "options": [
+            "$432\\pi$",
+            "$36\\pi$",
+            "$18\\pi$",
+            "$108\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $C = 2\\pi r = 12\\pi$ the radius is $6$, so $V = \\pi r^2 h = \\pi \\cdot 36 \\cdot 3 = 108\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*6 == 12*pi",
+            "pi*6**2*3 == 108*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v05",
+          "statement": "A cylinder has base circumference $4\\pi$ and height $9$. Find its volume, exactly.",
+          "options": [
+            "$36\\pi$",
+            "$144\\pi$",
+            "$18\\pi$",
+            "$37\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $C = 2\\pi r = 4\\pi$ the radius is $2$, so $V = \\pi r^2 h = \\pi \\cdot 4 \\cdot 9 = 36\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*2 == 4*pi",
+            "pi*2**2*9 == 36*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v06",
+          "statement": "A cylinder has base circumference $14\\pi$ and height $4$. Find its volume, exactly.",
+          "options": [
+            "$784\\pi$",
+            "$196\\pi$",
+            "$56\\pi$",
+            "$28\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $C = 2\\pi r = 14\\pi$ the radius is $7$, so $V = \\pi r^2 h = \\pi \\cdot 49 \\cdot 4 = 196\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*7 == 14*pi",
+            "pi*7**2*4 == 196*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v07",
+          "statement": "A cylinder has base circumference $16\\pi$ and height $1$. Find its volume, exactly.",
+          "options": [
+            "$256\\pi$",
+            "$16\\pi$",
+            "$64\\pi$",
+            "$8\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $C = 2\\pi r = 16\\pi$ the radius is $8$, so $V = \\pi r^2 h = \\pi \\cdot 64 \\cdot 1 = 64\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*8 == 16*pi",
+            "pi*8**2*1 == 64*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v08",
+          "statement": "A cylinder has base circumference $18\\pi$ and height $6$. Find its volume, exactly.",
+          "options": [
+            "$1944\\pi$",
+            "$108\\pi$",
+            "$54\\pi$",
+            "$486\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $C = 2\\pi r = 18\\pi$ the radius is $9$, so $V = \\pi r^2 h = \\pi \\cdot 81 \\cdot 6 = 486\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*9 == 18*pi",
+            "pi*9**2*6 == 486*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v09",
+          "statement": "A cylinder has base circumference $20\\pi$ and height $2$. Find its volume, exactly.",
+          "options": [
+            "$200\\pi$",
+            "$800\\pi$",
+            "$40\\pi$",
+            "$20\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "From $C = 2\\pi r = 20\\pi$ the radius is $10$, so $V = \\pi r^2 h = \\pi \\cdot 100 \\cdot 2 = 200\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*10 == 20*pi",
+            "pi*10**2*2 == 200*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v10",
+          "statement": "A cylinder has base circumference $24\\pi$ and height $5$. Find its volume, exactly.",
+          "options": [
+            "$2880\\pi$",
+            "$720\\pi$",
+            "$120\\pi$",
+            "$60\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "From $C = 2\\pi r = 24\\pi$ the radius is $12$, so $V = \\pi r^2 h = \\pi \\cdot 144 \\cdot 5 = 720\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*12 == 24*pi",
+            "pi*12**2*5 == 720*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v11",
+          "statement": "A cylinder has base circumference $2\\pi$ and height $11$. Find its volume, exactly.",
+          "options": [
+            "$44\\pi$",
+            "$22\\pi$",
+            "$11\\pi$",
+            "$12\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "From $C = 2\\pi r = 2\\pi$ the radius is $1$, so $V = \\pi r^2 h = \\pi \\cdot 1 \\cdot 11 = 11\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*1 == 2*pi",
+            "pi*1**2*11 == 11*pi"
+          ]
+        },
+        {
+          "id": "SOLID-cylc-v12",
+          "statement": "A cylinder has base circumference $22\\pi$ and height $3$. Find its volume, exactly.",
+          "options": [
+            "$1452\\pi$",
+            "$66\\pi$",
+            "$33\\pi$",
+            "$363\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "From $C = 2\\pi r = 22\\pi$ the radius is $11$, so $V = \\pi r^2 h = \\pi \\cdot 121 \\cdot 3 = 363\\pi$. Using the circumference itself where the radius belongs squares the wrong number.",
+          "check": [
+            "2*pi*11 == 22*pi",
+            "pi*11**2*3 == 363*pi"
           ]
         }
       ]
@@ -10782,6 +12129,1518 @@
           "explanation": "Half the sphere's volume: $\\tfrac12\\cdot\\tfrac43\\pi R^3 = \\tfrac23\\pi\\cdot 729 = 486\\pi$. Taking the full $\\tfrac43\\pi R^3 = 972\\pi$ forgets the halving.",
           "check": [
             "Rational(2,3)*pi*9**3 == Rational(1458,3)*pi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sphere-radius-from-surface",
+      "title": "Radius from a sphere's surface area",
+      "level": 2,
+      "skill": "SOLID-srs",
+      "unit": "spheres",
+      "variants": [
+        {
+          "id": "SOLID-srs-v01",
+          "statement": "A sphere has surface area $16\\pi$. Find its radius.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 4$ and $R = 2$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*2**2 == 16*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v02",
+          "statement": "A sphere has surface area $36\\pi$. Find its radius.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$9$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 9$ and $R = 3$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*3**2 == 36*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v03",
+          "statement": "A sphere has surface area $64\\pi$. Find its radius.",
+          "options": [
+            "$8$",
+            "$16$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 16$ and $R = 4$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*4**2 == 64*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v04",
+          "statement": "A sphere has surface area $100\\pi$. Find its radius.",
+          "options": [
+            "$10$",
+            "$25$",
+            "$20$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 25$ and $R = 5$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*5**2 == 100*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v05",
+          "statement": "A sphere has surface area $144\\pi$. Find its radius.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$36$",
+            "$24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 36$ and $R = 6$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*6**2 == 144*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v06",
+          "statement": "A sphere has surface area $196\\pi$. Find its radius.",
+          "options": [
+            "$14$",
+            "$7$",
+            "$49$",
+            "$28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 49$ and $R = 7$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*7**2 == 196*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v07",
+          "statement": "A sphere has surface area $256\\pi$. Find its radius.",
+          "options": [
+            "$16$",
+            "$64$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 64$ and $R = 8$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*8**2 == 256*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v08",
+          "statement": "A sphere has surface area $324\\pi$. Find its radius.",
+          "options": [
+            "$18$",
+            "$81$",
+            "$36$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 81$ and $R = 9$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*9**2 == 324*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v09",
+          "statement": "A sphere has surface area $400\\pi$. Find its radius.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$100$",
+            "$40$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 100$ and $R = 10$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*10**2 == 400*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v10",
+          "statement": "A sphere has surface area $576\\pi$. Find its radius.",
+          "options": [
+            "$24$",
+            "$12$",
+            "$144$",
+            "$48$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 144$ and $R = 12$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*12**2 == 576*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v11",
+          "statement": "A sphere has surface area $784\\pi$. Find its radius.",
+          "options": [
+            "$28$",
+            "$196$",
+            "$14$",
+            "$56$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 196$ and $R = 14$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*14**2 == 784*pi"
+          ]
+        },
+        {
+          "id": "SOLID-srs-v12",
+          "statement": "A sphere has surface area $1600\\pi$. Find its radius.",
+          "options": [
+            "$40$",
+            "$400$",
+            "$80$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = 400$ and $R = 20$. Dividing by $4\\pi$ and stopping there leaves $R^2$, which is the most common way to answer this one wrong.",
+          "check": [
+            "4*pi*20**2 == 1600*pi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sphere-radius-from-volume",
+      "title": "Radius from a sphere's volume",
+      "level": 2,
+      "skill": "SOLID-srv",
+      "unit": "spheres",
+      "variants": [
+        {
+          "id": "SOLID-srv-v01",
+          "statement": "A sphere has volume $36\\pi$. Find its radius.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$6$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 27$ and $R = 3$. The cube root is the step to remember: $27$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*3**3 == Rational(36, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v02",
+          "statement": "A sphere has volume $288\\pi$. Find its radius.",
+          "options": [
+            "$36$",
+            "$6$",
+            "$12$",
+            "$216$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 216$ and $R = 6$. The cube root is the step to remember: $216$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*6**3 == Rational(288, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v03",
+          "statement": "A sphere has volume $972\\pi$. Find its radius.",
+          "options": [
+            "$81$",
+            "$18$",
+            "$9$",
+            "$729$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 729$ and $R = 9$. The cube root is the step to remember: $729$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*9**3 == Rational(972, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v04",
+          "statement": "A sphere has volume $2304\\pi$. Find its radius.",
+          "options": [
+            "$144$",
+            "$24$",
+            "$1728$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 1728$ and $R = 12$. The cube root is the step to remember: $1728$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*12**3 == Rational(2304, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v05",
+          "statement": "A sphere has volume $\\frac{32}{3}\\pi$. Find its radius.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 8$ and $R = 2$. The cube root is the step to remember: $8$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*2**3 == Rational(32, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v06",
+          "statement": "A sphere has volume $\\frac{256}{3}\\pi$. Find its radius.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$8$",
+            "$64$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 64$ and $R = 4$. The cube root is the step to remember: $64$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*4**3 == Rational(256, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v07",
+          "statement": "A sphere has volume $\\frac{500}{3}\\pi$. Find its radius.",
+          "options": [
+            "$25$",
+            "$10$",
+            "$5$",
+            "$125$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 125$ and $R = 5$. The cube root is the step to remember: $125$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*5**3 == Rational(500, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v08",
+          "statement": "A sphere has volume $\\frac{1372}{3}\\pi$. Find its radius.",
+          "options": [
+            "$49$",
+            "$14$",
+            "$343$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 343$ and $R = 7$. The cube root is the step to remember: $343$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*7**3 == Rational(1372, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v09",
+          "statement": "A sphere has volume $\\frac{2048}{3}\\pi$. Find its radius.",
+          "options": [
+            "$8$",
+            "$64$",
+            "$16$",
+            "$512$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 512$ and $R = 8$. The cube root is the step to remember: $512$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*8**3 == Rational(2048, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v10",
+          "statement": "A sphere has volume $\\frac{4000}{3}\\pi$. Find its radius.",
+          "options": [
+            "$100$",
+            "$10$",
+            "$20$",
+            "$1000$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 1000$ and $R = 10$. The cube root is the step to remember: $1000$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*10**3 == Rational(4000, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v11",
+          "statement": "A sphere has volume $\\frac{5324}{3}\\pi$. Find its radius.",
+          "options": [
+            "$121$",
+            "$22$",
+            "$11$",
+            "$1331$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 1331$ and $R = 11$. The cube root is the step to remember: $1331$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*11**3 == Rational(5324, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-srv-v12",
+          "statement": "A sphere has volume $4500\\pi$. Find its radius.",
+          "options": [
+            "$225$",
+            "$30$",
+            "$3375$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac43\\pi R^3$, so $R^3 = \\dfrac{3V}{4\\pi} = 3375$ and $R = 15$. The cube root is the step to remember: $3375$ is $R^3$, not $R$.",
+          "check": [
+            "Rational(4,3)*15**3 == Rational(4500, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inscribed-sphere",
+      "title": "A sphere inside a cube",
+      "level": 3,
+      "skill": "SOLID-insph",
+      "unit": "spheres",
+      "variants": [
+        {
+          "id": "SOLID-insph-v01",
+          "statement": "A sphere is inscribed in a cube of edge $2$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{4}{3}\\pi$",
+            "$\\frac{32}{3}\\pi$",
+            "$8\\pi$",
+            "$4\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{2}{2} = 1$ and $V = \\tfrac43\\pi R^3 = \\frac{4}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(1, 1)**3 == Rational(4, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v02",
+          "statement": "A sphere is inscribed in a cube of edge $4$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{256}{3}\\pi$",
+            "$\\frac{32}{3}\\pi$",
+            "$64\\pi$",
+            "$16\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{4}{2} = 2$ and $V = \\tfrac43\\pi R^3 = \\frac{32}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(2, 1)**3 == Rational(32, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v03",
+          "statement": "A sphere is inscribed in a cube of edge $6$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$288\\pi$",
+            "$216\\pi$",
+            "$36\\pi$",
+            "$37\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{6}{2} = 3$ and $V = \\tfrac43\\pi R^3 = 36\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(3, 1)**3 == Rational(36, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v04",
+          "statement": "A sphere is inscribed in a cube of edge $8$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{2048}{3}\\pi$",
+            "$512\\pi$",
+            "$64\\pi$",
+            "$\\frac{256}{3}\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{8}{2} = 4$ and $V = \\tfrac43\\pi R^3 = \\frac{256}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(4, 1)**3 == Rational(256, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v05",
+          "statement": "A sphere is inscribed in a cube of edge $10$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{500}{3}\\pi$",
+            "$\\frac{4000}{3}\\pi$",
+            "$1000\\pi$",
+            "$100\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{10}{2} = 5$ and $V = \\tfrac43\\pi R^3 = \\frac{500}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(5, 1)**3 == Rational(500, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v06",
+          "statement": "A sphere is inscribed in a cube of edge $12$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$2304\\pi$",
+            "$288\\pi$",
+            "$1728\\pi$",
+            "$144\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{12}{2} = 6$ and $V = \\tfrac43\\pi R^3 = 288\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(6, 1)**3 == Rational(288, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v07",
+          "statement": "A sphere is inscribed in a cube of edge $14$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{10976}{3}\\pi$",
+            "$2744\\pi$",
+            "$\\frac{1372}{3}\\pi$",
+            "$196\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{14}{2} = 7$ and $V = \\tfrac43\\pi R^3 = \\frac{1372}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(7, 1)**3 == Rational(1372, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v08",
+          "statement": "A sphere is inscribed in a cube of edge $16$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{16384}{3}\\pi$",
+            "$4096\\pi$",
+            "$256\\pi$",
+            "$\\frac{2048}{3}\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{16}{2} = 8$ and $V = \\tfrac43\\pi R^3 = \\frac{2048}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(8, 1)**3 == Rational(2048, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v09",
+          "statement": "A sphere is inscribed in a cube of edge $18$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$972\\pi$",
+            "$7776\\pi$",
+            "$5832\\pi$",
+            "$324\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{18}{2} = 9$ and $V = \\tfrac43\\pi R^3 = 972\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(9, 1)**3 == Rational(972, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v10",
+          "statement": "A sphere is inscribed in a cube of edge $20$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{32000}{3}\\pi$",
+            "$\\frac{4000}{3}\\pi$",
+            "$8000\\pi$",
+            "$400\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{20}{2} = 10$ and $V = \\tfrac43\\pi R^3 = \\frac{4000}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(10, 1)**3 == Rational(4000, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v11",
+          "statement": "A sphere is inscribed in a cube of edge $22$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$\\frac{42592}{3}\\pi$",
+            "$10648\\pi$",
+            "$\\frac{5324}{3}\\pi$",
+            "$484\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{22}{2} = 11$ and $V = \\tfrac43\\pi R^3 = \\frac{5324}{3}\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(11, 1)**3 == Rational(5324, 3)"
+          ]
+        },
+        {
+          "id": "SOLID-insph-v12",
+          "statement": "A sphere is inscribed in a cube of edge $24$ — it touches all six faces. Find the sphere's volume, exactly.",
+          "options": [
+            "$18432\\pi$",
+            "$13824\\pi$",
+            "$576\\pi$",
+            "$2304\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Touching opposite faces means the sphere's DIAMETER equals the edge, so $R = \\tfrac{24}{2} = 12$ and $V = \\tfrac43\\pi R^3 = 2304\\pi$. Using the edge as the radius inflates the volume eightfold.",
+          "check": [
+            "Rational(4,3)*Rational(12, 1)**3 == Rational(2304, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cross-section-shape",
+      "title": "The shape of a cross-section",
+      "level": 1,
+      "skill": "SOLID-xsec",
+      "unit": "cross-sections-and-similar-solids",
+      "variants": [
+        {
+          "id": "SOLID-xsec-v01",
+          "statement": "A plane cuts a cone parallel to the base. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a rectangle",
+            "a triangle",
+            "a square"
+          ],
+          "correctIndex": 0,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a circle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v02",
+          "statement": "A plane cuts a cylinder parallel to the base. What shape is the cross-section?",
+          "options": [
+            "a rectangle",
+            "a circle",
+            "a triangle",
+            "a square"
+          ],
+          "correctIndex": 1,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a circle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v03",
+          "statement": "A plane cuts a cylinder through the axis. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a triangle",
+            "a rectangle",
+            "a square"
+          ],
+          "correctIndex": 2,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a rectangle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v04",
+          "statement": "A plane cuts a cone through the apex and the axis. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a rectangle",
+            "a square",
+            "a triangle"
+          ],
+          "correctIndex": 3,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a triangle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v05",
+          "statement": "A plane cuts a sphere anywhere, so long as it meets the sphere. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a rectangle",
+            "a triangle",
+            "a square"
+          ],
+          "correctIndex": 0,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a circle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v06",
+          "statement": "A plane cuts a cube parallel to a face. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a square",
+            "a rectangle",
+            "a triangle"
+          ],
+          "correctIndex": 1,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a square.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v07",
+          "statement": "A plane cuts a square pyramid parallel to the base. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a rectangle",
+            "a square",
+            "a triangle"
+          ],
+          "correctIndex": 2,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a square.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v08",
+          "statement": "A plane cuts a cube through four vertices, along a diagonal of two opposite faces. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a triangle",
+            "a square",
+            "a rectangle"
+          ],
+          "correctIndex": 3,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a rectangle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v09",
+          "statement": "A plane cuts a triangular prism parallel to the base. What shape is the cross-section?",
+          "options": [
+            "a triangle",
+            "a circle",
+            "a rectangle",
+            "a square"
+          ],
+          "correctIndex": 0,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a triangle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v10",
+          "statement": "A plane cuts a cone parallel to the base but not through the apex. What shape is the cross-section?",
+          "options": [
+            "a rectangle",
+            "a circle",
+            "a triangle",
+            "a square"
+          ],
+          "correctIndex": 1,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a circle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v11",
+          "statement": "A plane cuts a square pyramid through the apex and the midpoints of two opposite base edges. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a rectangle",
+            "a triangle",
+            "a square"
+          ],
+          "correctIndex": 2,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a triangle.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "SOLID-xsec-v12",
+          "statement": "A plane cuts a rectangular box parallel to a face. What shape is the cross-section?",
+          "options": [
+            "a circle",
+            "a triangle",
+            "a square",
+            "a rectangle"
+          ],
+          "correctIndex": 3,
+          "explanation": "A cut parallel to the base reproduces the base's shape at a smaller size; a cut through the axis opens the solid along its length and shows the profile instead. Here the section is a rectangle.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "midsection-area",
+      "title": "Halfway up a pyramid",
+      "level": 2,
+      "skill": "SOLID-midsec",
+      "unit": "cross-sections-and-similar-solids",
+      "variants": [
+        {
+          "id": "SOLID-midsec-v01",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $4$. Find the area of the cross-section.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$16$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $2$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{16}{4} = 4$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(4, 2)**2 == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v02",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $6$. Find the area of the cross-section.",
+          "options": [
+            "$18$",
+            "$9$",
+            "$36$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $3$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{36}{4} = 9$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(6, 2)**2 == Rational(9, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v03",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $8$. Find the area of the cross-section.",
+          "options": [
+            "$32$",
+            "$64$",
+            "$16$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $4$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{64}{4} = 16$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(8, 2)**2 == Rational(16, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v04",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $10$. Find the area of the cross-section.",
+          "options": [
+            "$50$",
+            "$100$",
+            "$5$",
+            "$25$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $5$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{100}{4} = 25$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(10, 2)**2 == Rational(25, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v05",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $12$. Find the area of the cross-section.",
+          "options": [
+            "$36$",
+            "$72$",
+            "$144$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $6$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{144}{4} = 36$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(12, 2)**2 == Rational(36, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v06",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $14$. Find the area of the cross-section.",
+          "options": [
+            "$98$",
+            "$49$",
+            "$196$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $7$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{196}{4} = 49$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(14, 2)**2 == Rational(49, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v07",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $16$. Find the area of the cross-section.",
+          "options": [
+            "$128$",
+            "$256$",
+            "$64$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $8$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{256}{4} = 64$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(16, 2)**2 == Rational(64, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v08",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $18$. Find the area of the cross-section.",
+          "options": [
+            "$162$",
+            "$324$",
+            "$9$",
+            "$81$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $9$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{324}{4} = 81$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(18, 2)**2 == Rational(81, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v09",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $20$. Find the area of the cross-section.",
+          "options": [
+            "$100$",
+            "$200$",
+            "$400$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $10$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{400}{4} = 100$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(20, 2)**2 == Rational(100, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v10",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $22$. Find the area of the cross-section.",
+          "options": [
+            "$242$",
+            "$121$",
+            "$484$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $11$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{484}{4} = 121$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(22, 2)**2 == Rational(121, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v11",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $24$. Find the area of the cross-section.",
+          "options": [
+            "$288$",
+            "$576$",
+            "$144$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $12$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{576}{4} = 144$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(24, 2)**2 == Rational(144, 1)"
+          ]
+        },
+        {
+          "id": "SOLID-midsec-v12",
+          "statement": "A plane parallel to the base cuts a square pyramid halfway up. The base is a square of side $30$. Find the area of the cross-section.",
+          "options": [
+            "$450$",
+            "$900$",
+            "$15$",
+            "$225$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The cross-section is similar to the base with linear scale factor $\\tfrac12$, so its side is $15$ and its AREA is $\\left(\\tfrac12\\right)^2 = \\tfrac14$ of the base: $\\tfrac{900}{4} = 225$. Halving the area instead of the length is the standard slip.",
+          "check": [
+            "Rational(30, 2)**2 == Rational(225, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "similar-mass",
+      "title": "Weight and the cube law",
+      "level": 2,
+      "skill": "SOLID-smass",
+      "unit": "cross-sections-and-similar-solids",
+      "variants": [
+        {
+          "id": "SOLID-smass-v01",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $2$ times as tall as the smaller, which weighs $5$ kg. How much does the larger weigh?",
+          "options": [
+            "$40$",
+            "$10$",
+            "$20$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $5 \\times 2^3 = 40$ kg. Scaling the weight by the height ratio alone would give $10$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "5 * 2**3 == 40"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v02",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $3$ times as tall as the smaller, which weighs $4$ kg. How much does the larger weigh?",
+          "options": [
+            "$12$",
+            "$108$",
+            "$36$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $4 \\times 3^3 = 108$ kg. Scaling the weight by the height ratio alone would give $12$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "4 * 3**3 == 108"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v03",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $2$ times as tall as the smaller, which weighs $7$ kg. How much does the larger weigh?",
+          "options": [
+            "$14$",
+            "$28$",
+            "$56$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $7 \\times 2^3 = 56$ kg. Scaling the weight by the height ratio alone would give $14$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "7 * 2**3 == 56"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v04",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $4$ times as tall as the smaller, which weighs $2$ kg. How much does the larger weigh?",
+          "options": [
+            "$8$",
+            "$32$",
+            "$6$",
+            "$128$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $2 \\times 4^3 = 128$ kg. Scaling the weight by the height ratio alone would give $8$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "2 * 4**3 == 128"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v05",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $3$ times as tall as the smaller, which weighs $6$ kg. How much does the larger weigh?",
+          "options": [
+            "$162$",
+            "$18$",
+            "$54$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $6 \\times 3^3 = 162$ kg. Scaling the weight by the height ratio alone would give $18$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "6 * 3**3 == 162"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v06",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $2$ times as tall as the smaller, which weighs $11$ kg. How much does the larger weigh?",
+          "options": [
+            "$22$",
+            "$88$",
+            "$44$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $11 \\times 2^3 = 88$ kg. Scaling the weight by the height ratio alone would give $22$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "11 * 2**3 == 88"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v07",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $5$ times as tall as the smaller, which weighs $3$ kg. How much does the larger weigh?",
+          "options": [
+            "$15$",
+            "$75$",
+            "$375$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $3 \\times 5^3 = 375$ kg. Scaling the weight by the height ratio alone would give $15$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "3 * 5**3 == 375"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v08",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $3$ times as tall as the smaller, which weighs $10$ kg. How much does the larger weigh?",
+          "options": [
+            "$30$",
+            "$90$",
+            "$13$",
+            "$270$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $10 \\times 3^3 = 270$ kg. Scaling the weight by the height ratio alone would give $30$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "10 * 3**3 == 270"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v09",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $4$ times as tall as the smaller, which weighs $5$ kg. How much does the larger weigh?",
+          "options": [
+            "$320$",
+            "$20$",
+            "$80$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $5 \\times 4^3 = 320$ kg. Scaling the weight by the height ratio alone would give $20$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "5 * 4**3 == 320"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v10",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $2$ times as tall as the smaller, which weighs $13$ kg. How much does the larger weigh?",
+          "options": [
+            "$26$",
+            "$104$",
+            "$52$",
+            "$15$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $13 \\times 2^3 = 104$ kg. Scaling the weight by the height ratio alone would give $26$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "13 * 2**3 == 104"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v11",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $6$ times as tall as the smaller, which weighs $2$ kg. How much does the larger weigh?",
+          "options": [
+            "$12$",
+            "$72$",
+            "$432$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $2 \\times 6^3 = 432$ kg. Scaling the weight by the height ratio alone would give $12$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "2 * 6**3 == 432"
+          ]
+        },
+        {
+          "id": "SOLID-smass-v12",
+          "statement": "Two statues are the same shape and are cast from the same metal. The larger is $3$ times as tall as the smaller, which weighs $8$ kg. How much does the larger weigh?",
+          "options": [
+            "$24$",
+            "$72$",
+            "$11$",
+            "$216$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Same material means weight is proportional to VOLUME, and volume scales as the cube of the linear ratio: $8 \\times 3^3 = 216$ kg. Scaling the weight by the height ratio alone would give $24$ kg, which is far too light — this is exactly why large models are so much heavier than they look.",
+          "check": [
+            "8 * 3**3 == 216"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut-cone-ratio",
+      "title": "The small cone on top",
+      "level": 3,
+      "skill": "SOLID-cutcone",
+      "unit": "cross-sections-and-similar-solids",
+      "variants": [
+        {
+          "id": "SOLID-cutcone-v01",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{2}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 1.)",
+          "options": [
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{2}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{2}\\right)^3 = \\frac{1}{8}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 2)**3 == Rational(1, 8)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v02",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{3}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 2.)",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{27}$",
+            "$\\frac{1}{9}$",
+            "$\\frac{28}{27}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{3}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{3}\\right)^3 = \\frac{1}{27}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 3)**3 == Rational(1, 27)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v03",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{4}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 3.)",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{16}$",
+            "$\\frac{1}{64}$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{4}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{4}\\right)^3 = \\frac{1}{64}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 4)**3 == Rational(1, 64)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v04",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{5}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 4.)",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$\\frac{1}{25}$",
+            "$\\frac{1}{15}$",
+            "$\\frac{1}{125}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{5}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{5}\\right)^3 = \\frac{1}{125}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 5)**3 == Rational(1, 125)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v05",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{6}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 5.)",
+          "options": [
+            "$\\frac{1}{216}$",
+            "$\\frac{1}{6}$",
+            "$\\frac{1}{36}$",
+            "$\\frac{1}{18}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{6}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{6}\\right)^3 = \\frac{1}{216}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 6)**3 == Rational(1, 216)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v06",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{7}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 6.)",
+          "options": [
+            "$\\frac{1}{7}$",
+            "$\\frac{1}{343}$",
+            "$\\frac{1}{49}$",
+            "$\\frac{1}{21}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{7}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{7}\\right)^3 = \\frac{1}{343}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 7)**3 == Rational(1, 343)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v07",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{8}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 7.)",
+          "options": [
+            "$\\frac{1}{8}$",
+            "$\\frac{1}{64}$",
+            "$\\frac{1}{512}$",
+            "$\\frac{1}{24}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{8}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{8}\\right)^3 = \\frac{1}{512}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 8)**3 == Rational(1, 512)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v08",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{9}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 8.)",
+          "options": [
+            "$\\frac{1}{9}$",
+            "$\\frac{1}{81}$",
+            "$\\frac{1}{27}$",
+            "$\\frac{1}{729}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{9}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{9}\\right)^3 = \\frac{1}{729}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 9)**3 == Rational(1, 729)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v09",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{10}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 9.)",
+          "options": [
+            "$\\frac{1}{1000}$",
+            "$\\frac{1}{10}$",
+            "$\\frac{1}{100}$",
+            "$\\frac{1}{30}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{10}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{10}\\right)^3 = \\frac{1}{1000}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 10)**3 == Rational(1, 1000)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v10",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{11}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 10.)",
+          "options": [
+            "$\\frac{1}{11}$",
+            "$\\frac{1}{1331}$",
+            "$\\frac{1}{121}$",
+            "$\\frac{1}{33}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{11}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{11}\\right)^3 = \\frac{1}{1331}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 11)**3 == Rational(1, 1331)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v11",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{12}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 11.)",
+          "options": [
+            "$\\frac{1}{12}$",
+            "$\\frac{1}{144}$",
+            "$\\frac{1}{1728}$",
+            "$\\frac{1}{36}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{12}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{12}\\right)^3 = \\frac{1}{1728}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 12)**3 == Rational(1, 1728)"
+          ]
+        },
+        {
+          "id": "SOLID-cutcone-v12",
+          "statement": "A plane parallel to the base cuts a cone at $\\tfrac{1}{13}$ of the way down from the apex, creating a small cone on top. What fraction of the original cone's volume is the small one? (Variant 12.)",
+          "options": [
+            "$\\frac{1}{13}$",
+            "$\\frac{1}{169}$",
+            "$\\frac{1}{39}$",
+            "$\\frac{1}{2197}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The small cone is similar to the whole one with linear scale factor $\\tfrac{1}{13}$. Volumes scale by the CUBE of that factor, so the fraction is $\\left(\\tfrac{1}{13}\\right)^3 = \\frac{1}{2197}$. Areas would use the square and lengths the factor itself.",
+          "check": [
+            "Rational(1, 13)**3 == Rational(1, 2197)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scale-from-volume-ratio",
+      "title": "Length ratio from a volume ratio",
+      "level": 3,
+      "skill": "SOLID-svr",
+      "unit": "cross-sections-and-similar-solids",
+      "variants": [
+        {
+          "id": "SOLID-svr-v01",
+          "statement": "Two similar solids have volumes in the ratio $8 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$2$",
+            "$8$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{8} = 2$, giving $2 : 1$. Their surface areas would be in the ratio $4 : 1$.",
+          "check": [
+            "2**3 == 8"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v02",
+          "statement": "Two similar solids have volumes in the ratio $27 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$27$",
+            "$3$",
+            "$9$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{27} = 3$, giving $3 : 1$. Their surface areas would be in the ratio $9 : 1$.",
+          "check": [
+            "3**3 == 27"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v03",
+          "statement": "Two similar solids have volumes in the ratio $64 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$64$",
+            "$16$",
+            "$4$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{64} = 4$, giving $4 : 1$. Their surface areas would be in the ratio $16 : 1$.",
+          "check": [
+            "4**3 == 64"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v04",
+          "statement": "Two similar solids have volumes in the ratio $125 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$125$",
+            "$25$",
+            "$15$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{125} = 5$, giving $5 : 1$. Their surface areas would be in the ratio $25 : 1$.",
+          "check": [
+            "5**3 == 125"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v05",
+          "statement": "Two similar solids have volumes in the ratio $216 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$6$",
+            "$216$",
+            "$36$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{216} = 6$, giving $6 : 1$. Their surface areas would be in the ratio $36 : 1$.",
+          "check": [
+            "6**3 == 216"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v06",
+          "statement": "Two similar solids have volumes in the ratio $1000 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$1000$",
+            "$10$",
+            "$100$",
+            "$30$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{1000} = 10$, giving $10 : 1$. Their surface areas would be in the ratio $100 : 1$.",
+          "check": [
+            "10**3 == 1000"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v07",
+          "statement": "Two similar solids have volumes in the ratio $343 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$343$",
+            "$49$",
+            "$7$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{343} = 7$, giving $7 : 1$. Their surface areas would be in the ratio $49 : 1$.",
+          "check": [
+            "7**3 == 343"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v08",
+          "statement": "Two similar solids have volumes in the ratio $512 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$512$",
+            "$64$",
+            "$24$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{512} = 8$, giving $8 : 1$. Their surface areas would be in the ratio $64 : 1$.",
+          "check": [
+            "8**3 == 512"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v09",
+          "statement": "Two similar solids have volumes in the ratio $729 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$9$",
+            "$729$",
+            "$81$",
+            "$27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{729} = 9$, giving $9 : 1$. Their surface areas would be in the ratio $81 : 1$.",
+          "check": [
+            "9**3 == 729"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v10",
+          "statement": "Two similar solids have volumes in the ratio $1728 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$1728$",
+            "$12$",
+            "$144$",
+            "$36$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{1728} = 12$, giving $12 : 1$. Their surface areas would be in the ratio $144 : 1$.",
+          "check": [
+            "12**3 == 1728"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v11",
+          "statement": "Two similar solids have volumes in the ratio $2744 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$2744$",
+            "$196$",
+            "$14$",
+            "$42$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{2744} = 14$, giving $14 : 1$. Their surface areas would be in the ratio $196 : 1$.",
+          "check": [
+            "14**3 == 2744"
+          ]
+        },
+        {
+          "id": "SOLID-svr-v12",
+          "statement": "Two similar solids have volumes in the ratio $3375 : 1$. What is the ratio of their corresponding lengths?",
+          "options": [
+            "$3375$",
+            "$225$",
+            "$45$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Volume scales as the cube of the linear ratio, so the linear ratio is the CUBE ROOT: $\\sqrt[3]{3375} = 15$, giving $15 : 1$. Their surface areas would be in the ratio $225 : 1$.",
+          "check": [
+            "15**3 == 3375"
           ]
         }
       ]

@@ -1528,6 +1528,636 @@ RESOLVERS.update({
 })
 
 
+# ===========================================================================
+# Batch 3 — the forms that take every Solid Geometry unit to six.
+#
+# Cross-Sections & Similar Solids shipped with one collection and Spheres
+# with three. Each form below drills something its unit did not already ask.
+# ===========================================================================
+
+def _txt_opts(hint, correct, wrongs, pos):
+    """Four distinct sentence options with `correct` at `pos`."""
+    opts = list(wrongs[:3])
+    assert len(opts) == 3, "%s: need exactly 3 distractors" % hint
+    opts.insert(pos, correct)
+    assert len(set(opts)) == 4, "%s: option collision" % hint
+    return opts, pos
+
+
+# --- lines-and-planes-in-space ---------------------------------------------
+_PLANE_CASES = [
+    ("three points that do not all lie on one line", "exactly one"),
+    ("a line and a point not on that line", "exactly one"),
+    ("two lines that cross each other", "exactly one"),
+    ("two parallel lines that are not the same line", "exactly one"),
+    ("two points", "infinitely many"),
+    ("a single line", "infinitely many"),
+    ("a line and a point that lies on it", "infinitely many"),
+    ("a single point", "infinitely many"),
+    ("three points that all lie on one line", "infinitely many"),
+    ("two lines that are skew", "none"),
+    ("a line and a point, where the point is on the line and no other "
+     "condition is given", "infinitely many"),
+    ("four points, three of which lie on one line while the fourth does "
+     "not", "exactly one"),
+]
+
+
+def gen3_determining_plane():
+    pool = ["exactly one", "exactly two", "infinitely many", "none"]
+    out = []
+    for i, (given, ans) in enumerate(_PLANE_CASES):
+        pos = i % 4
+        opts, ci = _txt_opts("plane", ans, [p for p in pool if p != ans], pos)
+        out.append({
+            "statement": "How many planes contain %s?" % given,
+            "options": opts, "correctIndex": ci,
+            "explanation": "A plane is pinned down by three points that are "
+                           "not in a line — or by anything that supplies "
+                           "them. Two points leave a whole axis to rotate "
+                           "about, so infinitely many planes pass through "
+                           "them; skew lines by definition never lie in a "
+                           "common plane, so no plane contains both.",
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+def _r3_determining_plane(s):
+    given = re.search(r"contain (.+)\?$", s).group(1)
+    for g, ans in _PLANE_CASES:
+        if g == given:
+            return ("opt", ans)
+    raise ValueError("determining-plane: unknown case %r" % given[:60])
+
+
+def gen3_skew_distance():
+    out = []
+    for i, a in enumerate([2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20]):
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(a), a),
+            [(surd(a, 2), a * sqrt(2)), (surd(a, 3), a * sqrt(3)),
+             (intL(2 * a), 2 * a)], pos, latex_of=intL)
+        out.append({
+            "statement": "A cube $ABCDA_1B_1C_1D_1$ has edge $%d$. Find the "
+                         "distance between the skew edges $AB$ and $CC_1$."
+                         % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$CC_1$ is vertical and $AB$ is horizontal, and "
+                           "the segment $BC$ meets both at right angles — so "
+                           "$BC$ IS the common perpendicular, and the "
+                           "distance is one edge, $%d$. The face diagonal "
+                           "$%s$ and the space diagonal $%s$ are longer "
+                           "because they are not perpendicular to both "
+                           "lines." % (a, surd(a, 2), surd(a, 3)),
+            "check": ["%d > 0" % a, "sqrt(2)*%d > %d" % (a, a)],
+        })
+    return out
+
+
+def _r3_skew_distance(s):
+    return ("num", int(re.search(r"edge \$(\d+)\$", s).group(1)))
+
+
+# --- prisms-and-the-cube ----------------------------------------------------
+def gen3_prism_base_from_volume():
+    data = [(120, 5), (96, 4), (210, 7), (144, 6), (180, 9), (88, 8),
+            (150, 3), (168, 12), (225, 5), (192, 8), (135, 9), (108, 6)]
+    out = []
+    for i, (V, h) in enumerate(data):
+        assert V % h == 0
+        base = V // h
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(base), base),
+            [(intL(V * h), V * h), (intL(V - h), V - h),
+             (intL(3 * base), 3 * base)], pos, latex_of=intL)
+        out.append({
+            "statement": "A right prism has volume $%d$ and height $%d$. "
+                         "Find the area of its base." % (V, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A prism's volume is base area times height, so "
+                           "the base area is $\\frac{%d}{%d} = %d$. The "
+                           "$\\frac13$ that appears in the pyramid formula "
+                           "has no place here — a prism keeps its full "
+                           "cross-section all the way up." % (V, h, base),
+            "check": ["%d * %d == %d" % (base, h, V)],
+        })
+    return out
+
+
+def _r3_prism_base_from_volume(s):
+    V = int(re.search(r"volume \$(\d+)\$", s).group(1))
+    h = int(re.search(r"height \$(\d+)\$", s).group(1))
+    return ("num", Rational(V, h))
+
+
+# --- pyramids ---------------------------------------------------------------
+def gen3_pyramid_height_from_volume():
+    # (volume, base side) chosen so 3V/a^2 is a whole height.
+    data = [(6, 3), (16, 4), (25, 5), (24, 6), (64, 8), (54, 9),
+            (100, 10), (96, 12), (4, 2), (49, 7), (150, 15), (294, 21)]
+    out = []
+    for i, (V, a) in enumerate(data):
+        assert (3 * V) % (a * a) == 0, (V, a)
+        h = 3 * V // (a * a)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(h), h),
+            [(intL(Rational(V, a * a)), Rational(V, a * a)),
+             (intL(3 * h), 3 * h), (intL(a), a)], pos, latex_of=intL)
+        out.append({
+            "statement": "A pyramid with a square base of side $%d$ has "
+                         "volume $%d$. Find its height." % (a, V),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = \\tfrac13 a^2 h$, so "
+                           "$h = \\dfrac{3V}{a^2} = \\dfrac{%d}{%d} = %d$. "
+                           "Forgetting the $3$ — dividing the volume by the "
+                           "base area as if this were a prism — gives a "
+                           "height three times too small."
+                           % (3 * V, a * a, h),
+            "check": ["Rational(1,3)*%d**2*%d == %d" % (a, h, V)],
+        })
+    return out
+
+
+def _r3_pyramid_height_from_volume(s):
+    a = int(re.search(r"side \$(\d+)\$", s).group(1))
+    V = int(re.search(r"volume \$(\d+)\$", s).group(1))
+    return ("num", Rational(3 * V, a * a))
+
+
+def gen3_pyramid_total_surface():
+    # (base side a, slant height m) with lateral 2*a*m and base a^2
+    data = [(6, 5), (8, 3), (10, 12), (4, 6), (12, 8), (14, 4),
+            (16, 10), (18, 5), (20, 7), (5, 9), (9, 11), (7, 13)]
+    out = []
+    for i, (a, m) in enumerate(data):
+        lateral = 2 * a * m
+        total = a * a + lateral
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(total), total),
+            [(intL(lateral), lateral), (intL(a * a), a * a),
+             (intL(a * a + 4 * a * m), a * a + 4 * a * m)], pos,
+            latex_of=intL)
+        out.append({
+            "statement": "A regular pyramid has a square base of side $%d$ "
+                         "and slant height $%d$. Find its TOTAL surface "
+                         "area." % (a, m),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Four triangular faces, each $\\tfrac12 \\cdot %d "
+                           "\\cdot %d$, give a lateral area of $%d$; adding "
+                           "the base $%d^2 = %d$ gives $%d$. Stopping at the "
+                           "lateral area answers the LATERAL question, which "
+                           "is a different one." % (a, m, lateral, a, a * a,
+                                                    total),
+            "check": ["4*Rational(1,2)*%d*%d + %d**2 == %d"
+                      % (a, m, a, total)],
+        })
+    return out
+
+
+def _r3_pyramid_total_surface(s):
+    a = int(re.search(r"side \$(\d+)\$", s).group(1))
+    m = int(re.search(r"slant height \$(\d+)\$", s).group(1))
+    return ("num", a * a + 2 * a * m)
+
+
+# --- cylinders-and-cones ----------------------------------------------------
+def gen3_cone_height_from_volume():
+    # V = (1/3) pi r^2 h; statement gives V as a multiple of pi
+    data = [(3, 4), (6, 2), (2, 9), (5, 3), (4, 6), (10, 1),
+             (7, 3), (8, 5), (9, 2), (12, 4), (1, 15), (11, 6)]
+    out = []
+    for i, (r, h) in enumerate(data):
+        k = Rational(r * r * h, 3)     # coefficient of pi in the volume
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(h), h),
+            [(intL(3 * h), 3 * h), (intL(r), r),
+             (intL(r * h), r * h)], pos, latex_of=intL)
+        out.append({
+            "statement": "A cone of radius $%d$ has volume $%s$. Find its "
+                         "height." % (r, piL(k)),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = \\tfrac13\\pi r^2 h$, so "
+                           "$h = \\dfrac{3V}{\\pi r^2} = "
+                           "\\dfrac{3 \\cdot %s}{%d} = %d$. Dropping the "
+                           "factor of $3$ treats the cone as a cylinder and "
+                           "returns a third of the true height."
+                           % (L(k), r * r, h),
+            "check": ["Rational(1,3)*%d**2*%d == %s"
+                      % (r, h, "Rational(%d, %d)" % (k.p, k.q))],
+        })
+    return out
+
+
+def _r3_cone_height_from_volume(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    m = re.search(r"volume \$(?:(\d+)|\\frac\{(\d+)\}\{(\d+)\})?\\pi\$", s)
+    if m.group(1):
+        k = Rational(int(m.group(1)))
+    elif m.group(2):
+        k = Rational(int(m.group(2)), int(m.group(3)))
+    else:
+        k = Rational(1)
+    return ("num", Rational(3, 1) * k / (r * r))
+
+
+def gen3_cylinder_from_circumference():
+    # circumference given as a multiple of pi, so the radius is exact
+    data = [(3, 5), (4, 2), (5, 7), (6, 3), (2, 9), (7, 4),
+            (8, 1), (9, 6), (10, 2), (12, 5), (1, 11), (11, 3)]
+    out = []
+    for i, (r, h) in enumerate(data):
+        C = 2 * r                       # coefficient of pi in circumference
+        vol = r * r * h                 # coefficient of pi in the volume
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (piL(vol), vol * pi),
+            [(piL(C * C * h), C * C * h * pi), (piL(2 * r * h), 2 * r * h * pi),
+             (piL(r * h), r * h * pi)] + _pi_buffer(vol), pos)
+        out.append({
+            "statement": "A cylinder has base circumference $%s$ and height "
+                         "$%d$. Find its volume, exactly." % (piL(C), h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "From $C = 2\\pi r = %s$ the radius is $%d$, so "
+                           "$V = \\pi r^2 h = \\pi \\cdot %d \\cdot %d = %s$. "
+                           "Using the circumference itself where the radius "
+                           "belongs squares the wrong number."
+                           % (piL(C), r, r * r, h, piL(vol)),
+            "check": ["2*pi*%d == %d*pi" % (r, C),
+                      "pi*%d**2*%d == %d*pi" % (r, h, vol)],
+        })
+    return out
+
+
+def _r3_cylinder_from_circumference(s):
+    m = re.search(r"circumference \$(\d+)?\\pi\$", s)
+    C = int(m.group(1)) if m.group(1) else 1
+    h = int(re.search(r"height \$(\d+)\$", s).group(1))
+    r = Rational(C, 2)
+    return ("num", pi * r * r * h)
+
+# --- spheres ----------------------------------------------------------------
+def gen3_sphere_radius_from_volume():
+    out = []
+    for i, R in enumerate([3, 6, 9, 12, 2, 4, 5, 7, 8, 10, 11, 15]):
+        k = Rational(4 * R ** 3, 3)     # coefficient of pi in the volume
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(R), R),
+            [(intL(R * R), R * R), (intL(2 * R), 2 * R),
+             (intL(R ** 3), R ** 3)], pos, latex_of=intL)
+        out.append({
+            "statement": "A sphere has volume $%s$. Find its radius." % piL(k),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$V = \\tfrac43\\pi R^3$, so "
+                           "$R^3 = \\dfrac{3V}{4\\pi} = %d$ and $R = %d$. "
+                           "The cube root is the step to remember: $%d$ is "
+                           "$R^3$, not $R$." % (R ** 3, R, R ** 3),
+            "check": ["Rational(4,3)*%d**3 == %s"
+                      % (R, "Rational(%d, %d)" % (k.p, k.q))],
+        })
+    return out
+
+
+def _r3_sphere_radius_from_volume(s):
+    m = re.search(r"volume \$(?:(\d+)|\\frac\{(\d+)\}\{(\d+)\})\\pi\$", s)
+    k = (Rational(int(m.group(1))) if m.group(1)
+         else Rational(int(m.group(2)), int(m.group(3))))
+    return ("num", sympify(Rational(3, 4) * k) ** Rational(1, 3))
+
+
+def gen3_sphere_radius_from_surface():
+    out = []
+    for i, R in enumerate([2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 20]):
+        k = 4 * R * R                   # coefficient of pi in the surface
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(R), R),
+            [(intL(2 * R), 2 * R), (intL(R * R), R * R),
+             (intL(4 * R), 4 * R)], pos, latex_of=intL)
+        out.append({
+            "statement": "A sphere has surface area $%s$. Find its radius."
+                         % piL(k),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$S = 4\\pi R^2$, so $R^2 = \\dfrac{S}{4\\pi} = "
+                           "%d$ and $R = %d$. Dividing by $4\\pi$ and "
+                           "stopping there leaves $R^2$, which is the most "
+                           "common way to answer this one wrong."
+                           % (R * R, R),
+            "check": ["4*pi*%d**2 == %d*pi" % (R, k)],
+        })
+    return out
+
+
+def _r3_sphere_radius_from_surface(s):
+    k = int(re.search(r"surface area \$(\d+)\\pi\$", s).group(1))
+    return ("num", sqrt(Rational(k, 4)))
+
+
+def gen3_inscribed_sphere():
+    out = []
+    for i, a in enumerate([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]):
+        R = Rational(a, 2)
+        k = Rational(4, 3) * R ** 3     # coefficient of pi in the volume
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (piL(k), k * pi),
+            [(piL(Rational(4, 3) * a ** 3), Rational(4, 3) * a ** 3 * pi),
+             (piL(a ** 3), a ** 3 * pi),
+             (piL(4 * R * R), 4 * R * R * pi)] + _pi_buffer(k), pos)
+        out.append({
+            "statement": "A sphere is inscribed in a cube of edge $%d$ — it "
+                         "touches all six faces. Find the sphere's volume, "
+                         "exactly." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Touching opposite faces means the sphere's "
+                           "DIAMETER equals the edge, so $R = \\tfrac{%d}{2} "
+                           "= %s$ and $V = \\tfrac43\\pi R^3 = %s$. Using "
+                           "the edge as the radius inflates the volume "
+                           "eightfold." % (a, L(R), piL(k)),
+            "check": ["Rational(4,3)*Rational(%d, %d)**3 == %s"
+                      % (R.p, R.q, "Rational(%d, %d)" % (k.p, k.q))],
+        })
+    return out
+
+
+def _r3_inscribed_sphere(s):
+    a = int(re.search(r"edge \$(\d+)\$", s).group(1))
+    return ("num", Rational(4, 3) * pi * Rational(a, 2) ** 3)
+
+
+# --- cross-sections-and-similar-solids --------------------------------------
+_SECTION_SHAPES = [
+    ("a cone", "parallel to the base", "a circle"),
+    ("a cylinder", "parallel to the base", "a circle"),
+    ("a cylinder", "through the axis", "a rectangle"),
+    ("a cone", "through the apex and the axis", "a triangle"),
+    ("a sphere", "anywhere, so long as it meets the sphere", "a circle"),
+    ("a cube", "parallel to a face", "a square"),
+    ("a square pyramid", "parallel to the base", "a square"),
+    ("a cube", "through four vertices, along a diagonal of two opposite "
+     "faces", "a rectangle"),
+    ("a triangular prism", "parallel to the base", "a triangle"),
+    ("a cone", "parallel to the base but not through the apex", "a circle"),
+    ("a square pyramid", "through the apex and the midpoints of two "
+     "opposite base edges", "a triangle"),
+    ("a rectangular box", "parallel to a face", "a rectangle"),
+]
+
+
+def gen3_cross_section_shape():
+    pool = ["a circle", "a rectangle", "a triangle", "a square"]
+    out = []
+    for i, (solid, how, ans) in enumerate(_SECTION_SHAPES):
+        pos = i % 4
+        opts, ci = _txt_opts("section", ans, [p for p in pool if p != ans],
+                             pos)
+        out.append({
+            "statement": "A plane cuts %s %s. What shape is the "
+                         "cross-section?" % (solid, how),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A cut parallel to the base reproduces the base's "
+                           "shape at a smaller size; a cut through the axis "
+                           "opens the solid along its length and shows the "
+                           "profile instead. Here the section is %s." % ans,
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+def _r3_cross_section_shape(s):
+    m = re.search(r"A plane cuts (.+?) (parallel to.+|through.+|anywhere.+)"
+                  r"\. What shape", s)
+    solid, how = m.group(1), m.group(2)
+    for sol, h, ans in _SECTION_SHAPES:
+        if sol == solid and h == how:
+            return ("opt", ans)
+    raise ValueError("cross-section: unknown %r %r" % (solid, how))
+
+
+def gen3_midsection_area():
+    out = []
+    for i, a in enumerate([4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 30]):
+        base = a * a
+        ans = Rational(base, 4)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (L(ans), ans),
+            [(L(Rational(base, 2)), Rational(base, 2)), (intL(base), base),
+             (L(Rational(a, 2)), Rational(a, 2))], pos, latex_of=L)
+        out.append({
+            "statement": "A plane parallel to the base cuts a square pyramid "
+                         "halfway up. The base is a square of side $%d$. "
+                         "Find the area of the cross-section." % a,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The cross-section is similar to the base with "
+                           "linear scale factor $\\tfrac12$, so its side is "
+                           "$%s$ and its AREA is $\\left(\\tfrac12\\right)^2 "
+                           "= \\tfrac14$ of the base: $\\tfrac{%d}{4} = %s$. "
+                           "Halving the area instead of the length is the "
+                           "standard slip." % (L(Rational(a, 2)), base,
+                                               L(ans)),
+            "check": ["Rational(%d, 2)**2 == %s"
+                      % (a, "Rational(%d, %d)" % (ans.p, ans.q))],
+        })
+    return out
+
+
+def _r3_midsection_area(s):
+    a = int(re.search(r"side \$(\d+)\$", s).group(1))
+    return ("num", Rational(a * a, 4))
+
+
+def gen3_cut_cone_ratio():
+    # a cone cut at height fraction 1/n from the apex
+    out = []
+    for i, n in enumerate([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]):
+        ans = Rational(1, n ** 3)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (L(ans), ans),
+            [(L(Rational(1, n)), Rational(1, n)),
+             (L(Rational(1, n * n)), Rational(1, n * n)),
+             (L(Rational(1, 3 * n)), Rational(1, 3 * n))], pos, latex_of=L)
+        out.append({
+            "statement": "A plane parallel to the base cuts a cone at "
+                         "$\\tfrac{1}{%d}$ of the way down from the apex, "
+                         "creating a small cone on top. What fraction of the "
+                         "original cone's volume is the small one? (Variant "
+                         "%d.)" % (n, i + 1),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The small cone is similar to the whole one with "
+                           "linear scale factor $\\tfrac{1}{%d}$. Volumes "
+                           "scale by the CUBE of that factor, so the "
+                           "fraction is $\\left(\\tfrac{1}{%d}\\right)^3 = "
+                           "%s$. Areas would use the square and lengths the "
+                           "factor itself." % (n, n, L(ans)),
+            "check": ["Rational(1, %d)**3 == %s"
+                      % (n, "Rational(%d, %d)" % (ans.p, ans.q))],
+        })
+    return out
+
+
+def _r3_cut_cone_ratio(s):
+    n = int(re.search(r"\\tfrac\{1\}\{(\d+)\}", s).group(1))
+    return ("num", Rational(1, n ** 3))
+
+
+def gen3_scale_from_volume_ratio():
+    data = [(8, 2), (27, 3), (64, 4), (125, 5), (216, 6), (1000, 10),
+            (343, 7), (512, 8), (729, 9), (1728, 12), (2744, 14), (3375, 15)]
+    out = []
+    for i, (vr, k) in enumerate(data):
+        assert k ** 3 == vr
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(k), k),
+            [(intL(vr), vr), (intL(k * k), k * k), (intL(3 * k), 3 * k)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "Two similar solids have volumes in the ratio "
+                         "$%d : 1$. What is the ratio of their "
+                         "corresponding lengths?" % vr,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Volume scales as the cube of the linear ratio, "
+                           "so the linear ratio is the CUBE ROOT: "
+                           "$\\sqrt[3]{%d} = %d$, giving $%d : 1$. Their "
+                           "surface areas would be in the ratio $%d : 1$."
+                           % (vr, k, k, k * k),
+            "check": ["%d**3 == %d" % (k, vr)],
+        })
+    return out
+
+
+def _r3_scale_from_volume_ratio(s):
+    vr = int(re.search(r"ratio \$(\d+) : 1\$", s).group(1))
+    k = 1
+    while k ** 3 < vr:
+        k += 1
+    assert k ** 3 == vr, "volume ratio %d is not a perfect cube" % vr
+    return ("num", k)
+
+
+def gen3_similar_mass():
+    data = [(2, 5), (3, 4), (2, 7), (4, 2), (3, 6), (2, 11),
+            (5, 3), (3, 10), (4, 5), (2, 13), (6, 2), (3, 8)]
+    out = []
+    for i, (k, m) in enumerate(data):
+        ans = m * k ** 3
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(m * k), m * k), (intL(m * k * k), m * k * k),
+             (intL(m + k), m + k)], pos, latex_of=intL)
+        out.append({
+            "statement": "Two statues are the same shape and are cast from "
+                         "the same metal. The larger is $%d$ times as tall "
+                         "as the smaller, which weighs $%d$ kg. How much "
+                         "does the larger weigh?" % (k, m),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Same material means weight is proportional to "
+                           "VOLUME, and volume scales as the cube of the "
+                           "linear ratio: $%d \\times %d^3 = %d$ kg. "
+                           "Scaling the weight by the height ratio alone "
+                           "would give $%d$ kg, which is far too light — "
+                           "this is exactly why large models are so much "
+                           "heavier than they look." % (m, k, ans, m * k),
+            "check": ["%d * %d**3 == %d" % (m, k, ans)],
+        })
+    return out
+
+
+def _r3_similar_mass(s):
+    k = int(re.search(r"is \$(\d+)\$ times as tall", s).group(1))
+    m = int(re.search(r"weighs \$(\d+)\$ kg", s).group(1))
+    return ("num", m * k ** 3)
+
+
+BATCH3_FORMS_META = [
+    ("determining-a-plane", "How many planes?", 1, "SOLID-plane",
+     "lines-and-planes-in-space", "plane", gen3_determining_plane),
+    ("skew-distance", "Distance between skew edges", 2, "SOLID-skewd",
+     "lines-and-planes-in-space", "skewd", gen3_skew_distance),
+    ("prism-base-from-volume", "Base area from a prism's volume", 2,
+     "SOLID-pbase", "prisms-and-the-cube", "pbase",
+     gen3_prism_base_from_volume),
+    ("pyramid-height-from-volume", "Height from a pyramid's volume", 2,
+     "SOLID-pyh", "pyramids", "pyh", gen3_pyramid_height_from_volume),
+    ("pyramid-total-surface", "Total surface of a pyramid", 2, "SOLID-pytot",
+     "pyramids", "pytot", gen3_pyramid_total_surface),
+    ("cone-height-from-volume", "Height from a cone's volume", 2,
+     "SOLID-coneh", "cylinders-and-cones", "coneh",
+     gen3_cone_height_from_volume),
+    ("cylinder-from-circumference", "Cylinder volume from its "
+     "circumference", 2, "SOLID-cylc", "cylinders-and-cones", "cylc",
+     gen3_cylinder_from_circumference),
+    ("sphere-radius-from-volume", "Radius from a sphere's volume", 2,
+     "SOLID-srv", "spheres", "srv", gen3_sphere_radius_from_volume),
+    ("sphere-radius-from-surface", "Radius from a sphere's surface area", 2,
+     "SOLID-srs", "spheres", "srs", gen3_sphere_radius_from_surface),
+    ("inscribed-sphere", "A sphere inside a cube", 3, "SOLID-insph",
+     "spheres", "insph", gen3_inscribed_sphere),
+    ("cross-section-shape", "The shape of a cross-section", 1, "SOLID-xsec",
+     "cross-sections-and-similar-solids", "xsec", gen3_cross_section_shape),
+    ("midsection-area", "Halfway up a pyramid", 2, "SOLID-midsec",
+     "cross-sections-and-similar-solids", "midsec", gen3_midsection_area),
+    ("cut-cone-ratio", "The small cone on top", 3, "SOLID-cutcone",
+     "cross-sections-and-similar-solids", "cutcone", gen3_cut_cone_ratio),
+    ("scale-from-volume-ratio", "Length ratio from a volume ratio", 3,
+     "SOLID-svr", "cross-sections-and-similar-solids", "svr",
+     gen3_scale_from_volume_ratio),
+    ("similar-mass", "Weight and the cube law", 2, "SOLID-smass",
+     "cross-sections-and-similar-solids", "smass", gen3_similar_mass),
+]
+
+
+def _batch3_forms():
+    forms = []
+    for fid, title, level, skill, unit, ab, gen in BATCH3_FORMS_META:
+        raw = gen()
+        assert len(raw) >= 12, "%s: only %d variants" % (fid, len(raw))
+        variants = []
+        for i, v in enumerate(raw):
+            vd = {"id": "SOLID-%s-v%02d" % (ab, i + 1)}
+            vd.update(v)
+            variants.append(vd)
+        forms.append({"id": fid, "title": title, "level": level,
+                      "skill": skill, "unit": unit, "variants": variants})
+    return forms
+
+
+_BATCH_1_AND_2_FORMS = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 3 to the previous two
+    """All unit-specific forms: the earlier batches plus batch 3 above."""
+    return _BATCH_1_AND_2_FORMS() + _batch3_forms()
+
+
+RESOLVERS.update({
+    "determining-a-plane": _r3_determining_plane,
+    "skew-distance": _r3_skew_distance,
+    "prism-base-from-volume": _r3_prism_base_from_volume,
+    "pyramid-height-from-volume": _r3_pyramid_height_from_volume,
+    "pyramid-total-surface": _r3_pyramid_total_surface,
+    "cone-height-from-volume": _r3_cone_height_from_volume,
+    "cylinder-from-circumference": _r3_cylinder_from_circumference,
+    "sphere-radius-from-volume": _r3_sphere_radius_from_volume,
+    "sphere-radius-from-surface": _r3_sphere_radius_from_surface,
+    "inscribed-sphere": _r3_inscribed_sphere,
+    "cross-section-shape": _r3_cross_section_shape,
+    "midsection-area": _r3_midsection_area,
+    "cut-cone-ratio": _r3_cut_cone_ratio,
+    "scale-from-volume-ratio": _r3_scale_from_volume_ratio,
+    "similar-mass": _r3_similar_mass,
+})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = _remapped_forms() + new_forms()
