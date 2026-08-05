@@ -27,7 +27,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, C_ACCENT, C_WARM, C_GREEN)
 
@@ -1135,7 +1135,7 @@ def practice_bank():
         prob("g4da-pr1", "A tally shows $7$ bundles and $2$ singles. What is the count?",
              "$5 \\times 7 = 35$ from the bundles, then $35 + 2 = 37$. The singles ($2$) are fewer than $5$, so the tally is written properly.",
              ["Eq(5*7, 35)", "Eq(5*7 + 2, 37)", "2 < 5"]),
-        withfig(
+        withprobfig(
             prob("g4da-pr2", "Draw $%d$ as tally marks. How many bundles and how many singles?" % n,
                  "$%d \\div 5 = %d$ with $%d$ left: $%d$ bundles and $%d$ singles. Receipt: $5 \\times %d + %d = %d$ ✓ and $%d < 5$ ✓." % (n, b, s, b, s, b, s, n, s),
                  ["Eq(5*6 + 4, 34)", "4 < 5"]),
@@ -1146,7 +1146,7 @@ def practice_bank():
         prob("g4da-pr4", "A table of four rows totals $55$. Three rows read $17$, $13$ and $9$. Find the fourth row.",
              "Known rows: $17 + 13 + 9 = 39$. Missing row: $55 - 39 = 16$. Add back to check: $16 + 39 = 55$ ✓.",
              ["Eq(17 + 13 + 9, 39)", "Eq(55 - 39, 16)", "Eq(16 + 39, 55)"]),
-        withfig(
+        withprobfig(
             prob("g4da-pr5", "A pictograph has the key: one symbol $= %d$ tickets. Saturday shows $%d$ symbols and Sunday shows $%d$. How many tickets each day, and how many more on Saturday?" % (key, sym_a, sym_b),
                  "Saturday: $%d \\times %d = %d$. Sunday: $%d \\times %d = %d$. Saturday sold $%d - %d = %d$ more, checked by $%d + %d = %d$ ✓." % (sym_a, key, sym_a * key, sym_b, key, sym_b * key, sym_a * key, sym_b * key, (sym_a - sym_b) * key, (sym_a - sym_b) * key, sym_b * key, sym_a * key),
                  ["Eq(8*5, 40)", "Eq(5*5, 25)", "Eq(40 - 25, 15)", "Eq(15 + 25, 40)"]),
@@ -1179,7 +1179,7 @@ def test_bank():
         prob("g4da-x3", "A pictograph's key is: one symbol $= 10$ horses. A row shows $6$ full symbols and one half symbol. How many horses?",
              "The full symbols give $6 \\times 10 = 60$. The half symbol is worth half the key, $10 \\div 2 = 5$. Together $60 + 5 = 65$ horses.",
              ["Eq(6*10, 60)", "Eq(Rational(10,2), 5)", "Eq(60 + 5, 65)"]),
-        withfig(
+        withprobfig(
             prob("g4da-x4", "On a bar chart stepping by $%d$, the wrestling bar reaches the %s line and the archery bar the %s. Read both bars, say how many more chose wrestling, and how many chose either sport altogether." % (step, ordinal(ln_a), ordinal(ln_b)),
                  "Wrestling: $%d \\times %d = %d$. Archery: $%d \\times %d = %d$. More: $%d - %d = %d$, checked by $%d + %d = %d$ ✓. Altogether: $%d + %d = %d$." % (ln_a, step, ln_a * step, ln_b, step, ln_b * step, ln_a * step, ln_b * step, (ln_a - ln_b) * step, (ln_a - ln_b) * step, ln_b * step, ln_a * step, ln_a * step, ln_b * step, (ln_a + ln_b) * step),
                  ["Eq(5*5, 25)", "Eq(3*5, 15)", "Eq(25 - 15, 10)", "Eq(10 + 15, 25)",

@@ -63,9 +63,27 @@ C_NEUTRAL = "#94a3b8"
 
 
 def withfig(item, figure):
-    """Attach a figure to a step / worked example / problem dict."""
+    """Attach a figure to a TEACH step, a TAPQUESTION, a worked-example item
+    or a tryIt option-problem — the four places whose renderers read
+    `figure`.
+
+    NOT for practice/testYourself bank problems: those render through
+    RevealProblemCard, whose `figure` field is the ЭЕШ hub's image type.
+    Use withprobfig() there. check_grade3/4 fails the build either way, so
+    a figure can never again be authored somewhere nothing draws it."""
     assert isinstance(item, dict) and figure, "withfig: bad arguments"
     return {**item, "figure": figure}
+
+
+def withprobfig(problem, figure):
+    """Attach a figure to a practice/testYourself bank problem.
+
+    Writes `courseFigure`, which RevealProblemCard renders with RatioFigure.
+    The plain `figure` key is the ЭЕШ image shape (src/width/height) and a
+    genmath spec placed there draws nothing at all."""
+    assert isinstance(problem, dict) and figure, "withprobfig: bad arguments"
+    assert "statement" in problem, "withprobfig: not a bank problem"
+    return {**problem, "courseFigure": figure}
 
 
 def fig_bar(num, den, label=None):

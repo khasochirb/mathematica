@@ -26,7 +26,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, fig_numline, fig_geo, P, poly,
                      C_ACCENT, C_WARM, C_GREEN)
@@ -1179,7 +1179,7 @@ def practice_bank():
         prob("g4as-pr4", "Compute $904 - 568$, showing the regrouped outfit of $904$ first.",
              "$904 = 800 + 90 + 14$ (check: still $904$). Subtract: $14 - 8 = 6$, $9 - 6 = 3$, $8 - 5 = 3$ — answer $336$. Receipt: $336 + 568 = 904$ ✓.",
              ["Eq(800 + 90 + 14, 904)", "Eq(904 - 568, 336)", "Eq(336 + 568, 904)"]),
-        withfig(
+        withprobfig(
             prob("g4as-pr5", "Compute $456 + 399$ in your head, with compensation.",
                  "Overshoot: $456 + 400 = 856$; give the extra $1$ back: $855$ (and $855 + 1 = 856$ confirms the settle). So $456 + 399 = 855$.",
                  ["Eq(456 + 400, 856)", "Eq(856 - 1, 855)", "Eq(855 + 1, 856)",

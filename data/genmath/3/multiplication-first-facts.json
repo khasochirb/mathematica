@@ -1,0 +1,2610 @@
+{
+  "slug": "multiplication-first-facts",
+  "title": "Multiplication — First Facts",
+  "grade": 3,
+  "status": "published",
+  "blurb": "Equal groups and repeated addition, arrays and the turnaround, the friendly tables of 2, 5 and 10 with their ending patterns, the threes and fours built by doubling, and the quiet rules for times one and times zero.",
+  "lessons": [
+    {
+      "slug": "equal-groups",
+      "title": "Equal Groups",
+      "concreteComparison": "Four gers stand by the river with $3$ horses tied at each one. You could count the horses by adding: $3 + 3 + 3 + 3 = 12$. Multiplication says exactly the same thing in one short word — $4 \\times 3 = 12$, four groups of three.",
+      "objective": "Read a picture of equal groups as a times fact, write a times fact as repeated addition, and say why unequal groups have no times fact at all.",
+      "concept": [
+        "**Multiplication counts equal groups.** $4 \\times 3$ means $4$ groups with $3$ in each: $3 + 3 + 3 + 3 = 12$. The first number counts the GROUPS; the second says how many are IN one group.",
+        "**The groups must all be the same size.** Groups of $3$, $3$ and $4$ have no single times fact, because the whole point of $\\times$ is that one number can speak for every group. When the groups differ, you have to add.",
+        "**A fact and a picture say the same thing.** See $5$ plates with $2$ buuz on each and you can write $5 \\times 2 = 10$. Read $3 \\times 5$ and you can draw it: three circles with five dots in each, $15$ altogether. If you cannot say what the groups are, you are not multiplying yet."
+      ],
+      "keyIdea": "A times fact is repeated addition wearing a short name: the first number counts the equal groups, the second counts inside one group.",
+      "facts": [
+        {
+          "title": "Groups of",
+          "latex": "4 \\times 3 = 3 + 3 + 3 + 3 = 12",
+          "explanation": "Four groups of three — the times sign is shorthand for the repeated sum."
+        },
+        {
+          "title": "Equal or nothing",
+          "latex": "3 + 3 + 4 \\ne 3 \\times 3",
+          "explanation": "Unequal groups have no times name; 3 × 3 = 9 but the picture holds 10."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3mu-l1-we1",
+          "statement": "Four gers each have $3$ horses tied outside. Write the repeated addition and the times fact.",
+          "note": "Count the groups first, then look inside one group.",
+          "solution": "Four groups of three: $3 + 3 + 3 + 3 = 12$. In one word, $4 \\times 3 = 12$ — twelve horses, counted at a stroke instead of one at a time.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3 + 3 + 3 + 3, 12)",
+            "Eq(4*3, 12)"
+          ]
+        },
+        {
+          "id": "g3mu-l1-we2",
+          "statement": "A drawing shows groups of $4$, $4$, $4$ and $3$ apples. Can one times fact count them?",
+          "note": "Check whether every group is the same size.",
+          "solution": "No — one group is a different size. The total is $4 + 4 + 4 + 3 = 15$, but four equal groups of four would be $4 \\times 4 = 16$, one apple too many. When the groups differ you must add.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4 + 4 + 4 + 3, 15)",
+            "Eq(4*4, 16)",
+            "Ne(15, 16)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the two numbers — reading 4 × 3 as 4 + 3 = 7.",
+          "correction": "The times sign counts GROUPS: four groups of three is 3 + 3 + 3 + 3 = 12. Adding counts the number of groups and one group together, which answers nothing.",
+          "authored": true
+        },
+        {
+          "text": "Writing a times fact for unequal groups, calling 3, 3 and 4 \"3 × 3\".",
+          "correction": "3 × 3 = 9, but the picture holds 3 + 3 + 4 = 10. Multiplication needs every group the same size; if one differs, add.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3mu-l1-t1",
+          "statement": "Write $5 \\times 2$ as repeated addition and find it.",
+          "solution": "Five groups of two: $2 + 2 + 2 + 2 + 2 = 10$, so $5 \\times 2 = 10$.",
+          "check": [
+            "Eq(2 + 2 + 2 + 2 + 2, 10)",
+            "Eq(5*2, 10)"
+          ]
+        },
+        {
+          "id": "g3mu-l1-t2",
+          "statement": "A picture shows $3$ nests with $4$ eggs in each. Write the times fact and the total.",
+          "solution": "Three groups of four: $4 + 4 + 4 = 12$, so $3 \\times 4 = 12$ eggs.",
+          "check": [
+            "Eq(4 + 4 + 4, 12)",
+            "Eq(3*4, 12)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Groups of the same size",
+            "beats": [
+              "Four gers, three horses tied at each — the picture below. To count them you could add: $3 + 3 + 3 + 3 = 12$.",
+              "Multiplication says it in one word: $4 \\times 3 = 12$, read \"four groups of three\". The first number counts the GROUPS; the second counts inside ONE group.",
+              "The times sign carries a promise: every group is the same size. That promise is what lets one short fact stand in for a long sum."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "ger 1"
+                },
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "ger 2"
+                },
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "ger 3"
+                },
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "ger 4"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From picture to fact",
+            "intro": "Count the groups, look inside one, write the fact.",
+            "examples": [
+              {
+                "prompt": "Four gers, $3$ horses at each. The sum and the fact?",
+                "steps": [
+                  "Four groups of three: $3 + 3 + 3 + 3 = 12$.",
+                  "In one word: $4 \\times 3 = 12$."
+                ],
+                "answer": "$4 \\times 3 = 12$",
+                "check": [
+                  "Eq(3 + 3 + 3 + 3, 12)",
+                  "Eq(4*3, 12)"
+                ]
+              },
+              {
+                "prompt": "Five plates with $2$ buuz on each. The sum and the fact?",
+                "steps": [
+                  "$2 + 2 + 2 + 2 + 2 = 10$.",
+                  "$5 \\times 2 = 10$ — five groups of two."
+                ],
+                "answer": "$5 \\times 2 = 10$",
+                "check": [
+                  "Eq(2 + 2 + 2 + 2 + 2, 10)",
+                  "Eq(5*2, 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the groups",
+            "intro": "Groups first, then inside one group.",
+            "problems": [
+              {
+                "prompt": "The picture shows $5$ plates with $2$ buuz on each. The times fact is:",
+                "options": [
+                  "$5 \\times 2 = 10$",
+                  "$5 + 2 = 7$",
+                  "$2 \\times 2 = 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five groups of two: $2 + 2 + 2 + 2 + 2 = 10$, so $5 \\times 2 = 10$. Writing $5 + 2 = 7$ adds the group count to one group — the classic mix-up.",
+                "check": [
+                  "Eq(2 + 2 + 2 + 2 + 2, 10)",
+                  "Eq(5 + 2, 7)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "plate 1"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "plate 2"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "plate 3"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "plate 4"
+                    },
+                    {
+                      "count": 2,
+                      "color": "#d97706",
+                      "label": "plate 5"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Three groups of $4$ written as repeated addition is:",
+                "options": [
+                  "$4 + 4 + 4 = 12$",
+                  "$3 + 3 + 3 = 9$",
+                  "$4 + 3 = 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three groups, four in each: add the $4$ three times to get $12$, which is $3 \\times 4$. Adding threes counts the wrong thing three times.",
+                "check": [
+                  "Eq(4 + 4 + 4, 12)",
+                  "Eq(3 + 3 + 3, 9)"
+                ]
+              },
+              {
+                "prompt": "Which story matches $4 \\times 5$?",
+                "options": [
+                  "$4$ boxes with $5$ pencils in each",
+                  "$4$ pencils and $5$ more pencils",
+                  "one box with $9$ pencils"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four groups of five: $4 \\times 5 = 20$ pencils. The other two stories are additions — $4 + 5 = 9$ — and an addition is not a times story.",
+                "check": [
+                  "Eq(4*5, 20)",
+                  "Eq(4 + 5, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The broken promise",
+            "prompt": "A drawing shows groups of $4$, $4$, $4$ and $3$ apples. Can one times fact count it?",
+            "options": [
+              "no — one group is a different size",
+              "yes: $4 \\times 4 = 16$",
+              "yes: $4 \\times 3 = 12$",
+              "yes: $3 \\times 4 = 12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The total is $4 + 4 + 4 + 3 = 15$, but $4 \\times 4 = 16$ counts one apple too many. The times sign promises EQUAL groups, and this picture breaks the promise — so add instead.",
+            "check": [
+              "Eq(4 + 4 + 4 + 3, 15)",
+              "Eq(4*4, 16)",
+              "Ne(15, 16)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Count the legs, not the horses",
+            "body": "A horse stands on $4$ legs, so a string of $5$ horses stands on $5 \\times 4 = 20$ legs — no need to count leg by leg. Multiplication was invented for exactly this moment: whenever the world hands you equal groups, one fact counts them all at once."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "From fact back to picture",
+            "beats": [
+              "Facts translate back into pictures. To draw $3 \\times 5$, draw $3$ groups with $5$ in each — like the picture below — and the count confirms it: $5 + 5 + 5 = 15$.",
+              "Reading order matters for the drawing: $3 \\times 5$ makes $3$ groups of $5$, while $5 \\times 3$ makes $5$ groups of $3$. Two different pictures — and next lesson you will discover their totals secretly agree.",
+              "If you can draw the picture, you own the fact. Drawing is not a beginner's crutch; it is the check that you know what the numbers mean."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#059669",
+                  "label": "circle 1"
+                },
+                {
+                  "count": 5,
+                  "color": "#059669",
+                  "label": "circle 2"
+                },
+                {
+                  "count": 5,
+                  "color": "#059669",
+                  "label": "circle 3"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "From fact to picture",
+            "intro": "Say the groups aloud, then draw and count.",
+            "examples": [
+              {
+                "prompt": "Draw $3 \\times 5$ and find the total.",
+                "steps": [
+                  "Three circles, five dots in each.",
+                  "Count: $5 + 5 + 5 = 15$, so $3 \\times 5 = 15$."
+                ],
+                "answer": "$15$",
+                "check": [
+                  "Eq(5 + 5 + 5, 15)",
+                  "Eq(3*5, 15)"
+                ]
+              },
+              {
+                "prompt": "Saruul draws $2$ baskets with $4$ eggs in each. Which fact did she draw?",
+                "steps": [
+                  "Two groups of four: $4 + 4 = 8$.",
+                  "$2 \\times 4 = 8$."
+                ],
+                "answer": "$2 \\times 4 = 8$",
+                "check": [
+                  "Eq(4 + 4, 8)",
+                  "Eq(2*4, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Draw it in your head",
+            "intro": "Groups from the first number, size from the second.",
+            "problems": [
+              {
+                "prompt": "To draw $4 \\times 2$ you draw:",
+                "options": [
+                  "$4$ groups with $2$ in each",
+                  "$4$ groups with $4$ in each",
+                  "$2$ groups with $2$ in each"
+                ],
+                "correctIndex": 0,
+                "explanation": "First number counts the groups, second the size: four groups of two, totalling $8$. Four groups of four would be $16$ — a much bigger picture.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(4*4, 16)"
+                ]
+              },
+              {
+                "prompt": "A picture of $2$ baskets with $5$ eggs each shows:",
+                "options": [
+                  "$2 \\times 5 = 10$",
+                  "$2 + 5 = 7$",
+                  "$5 \\times 5 = 25$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two groups of five: $5 + 5 = 10$ eggs. Adding gives $7$, which counts the baskets and one basket's eggs together.",
+                "check": [
+                  "Eq(5 + 5, 10)",
+                  "Eq(2*5, 10)",
+                  "Eq(2 + 5, 7)"
+                ]
+              },
+              {
+                "prompt": "Which drawing does NOT show a times fact?",
+                "options": [
+                  "groups of $2$, $3$ and $2$",
+                  "groups of $3$, $3$ and $3$",
+                  "groups of $2$, $2$, $2$ and $2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The first has unequal groups, so no single times fact fits: it totals $2 + 3 + 2 = 7$. The others are $3 \\times 3 = 9$ and $4 \\times 2 = 8$.",
+                "check": [
+                  "Eq(2 + 3 + 2, 7)",
+                  "Eq(3*3, 9)",
+                  "Eq(4*2, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which number counts the groups?",
+            "prompt": "In $5 \\times 3$, what does the $5$ count?",
+            "options": [
+              "the number of groups",
+              "how many are in each group",
+              "the total",
+              "nothing — the order does not matter"
+            ],
+            "correctIndex": 0,
+            "explanation": "The first number counts the GROUPS: five groups of three, $3 + 3 + 3 + 3 + 3 = 15$. (The total does turn out the same as $3 \\times 5$ — but the pictures are different, which is next lesson's discovery.)",
+            "check": [
+              "Eq(3 + 3 + 3 + 3 + 3, 15)",
+              "Eq(5*3, 15)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$4 \\times 3$ means four groups of three: $3 + 3 + 3 + 3 = 12$.",
+              "The first number counts the groups; the second counts inside one group.",
+              "Every group must be the SAME size, or there is no times fact — you must add.",
+              "A times fact and its picture always say the same thing; if you can draw it, you own it."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Say every times fact out loud as \"groups of\" — \"four groups of three\" — before you work it out. The words stop $4 \\times 3$ from ever turning into $4 + 3$."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Groups, then size, then total.",
+            "problems": [
+              {
+                "prompt": "$3 \\times 2$ as repeated addition is:",
+                "options": [
+                  "$2 + 2 + 2 = 6$",
+                  "$3 + 3 = 6$",
+                  "$3 + 2 = 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three groups of two: add the $2$ three times. Both of the first two answers happen to reach $6$, but only one of them is the picture $3 \\times 2$ describes — three groups, not two.",
+                "check": [
+                  "Eq(2 + 2 + 2, 6)",
+                  "Eq(3*2, 6)",
+                  "Eq(3 + 3, 6)"
+                ]
+              },
+              {
+                "prompt": "A shelf holds $4$ boxes with $5$ books in each. The total is:",
+                "options": [
+                  "$20$ books",
+                  "$9$ books",
+                  "$45$ books"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four groups of five: $5 + 5 + 5 + 5 = 20$. Adding gives $9$, and writing the digits side by side gives $45$ — neither counts the books.",
+                "check": [
+                  "Eq(5 + 5 + 5 + 5, 20)",
+                  "Eq(4*5, 20)",
+                  "Eq(4 + 5, 9)"
+                ]
+              },
+              {
+                "prompt": "Which sum could be written as a times fact?",
+                "options": [
+                  "$6 + 6 + 6$",
+                  "$6 + 5 + 6$",
+                  "$6 + 6 + 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only the first has all its groups equal: $3 \\times 6 = 18$. The others total $17$ each and need adding, because one group is the wrong size.",
+                "check": [
+                  "Eq(6 + 6 + 6, 18)",
+                  "Eq(3*6, 18)",
+                  "Eq(6 + 5 + 6, 17)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Equal Groups\"",
+            "body": "You now know what multiplication IS, which is worth more than any number of memorised facts. Next you will meet the array — a way of drawing groups that reveals something surprising about the order of the two numbers."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arrays-and-the-turnaround",
+      "title": "Arrays & the Turnaround",
+      "concreteComparison": "Stones are laid out in a neat rectangle: $3$ rows with $4$ stones in each. Read it by rows and you see $3 \\times 4$. Turn your head and read it by columns and you see $4 \\times 3$. Same stones, same total — two facts for the price of one.",
+      "objective": "Read an array as a times fact in two ways, use the turnaround to get a second fact free, and say why the two orders must agree.",
+      "concept": [
+        "**An array is equal groups laid out in a rectangle.** $3$ rows of $4$ is $3$ groups of $4$: $4 + 4 + 4 = 12$. Rows are the groups and the row length is the group size.",
+        "**The same rectangle read the other way gives the other fact.** Those same stones form $4$ columns of $3$: $3 + 3 + 3 + 3 = 12$. So $3 \\times 4 = 4 \\times 3$, and neither reading is more correct than the other.",
+        "**That halves what you have to learn.** Every fact you know hands you its partner for free: knowing $2 \\times 5 = 10$ means you already know $5 \\times 2 = 10$. The stones cannot change in number just because you tilted your head."
+      ],
+      "keyIdea": "One rectangle, two readings, one total — so $a \\times b$ and $b \\times a$ are always equal, and every fact you learn comes with a partner.",
+      "facts": [
+        {
+          "title": "Two readings of one array",
+          "latex": "3 \\times 4 = 4 \\times 3 = 12",
+          "explanation": "Rows give one fact, columns the other; the stones never moved."
+        },
+        {
+          "title": "A free partner",
+          "latex": "2 \\times 5 = 5 \\times 2 = 10",
+          "explanation": "Learn one order and the other arrives without any extra work."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3mu-l2-we1",
+          "statement": "An array has $3$ rows of $4$ stones. Write both times facts it proves.",
+          "note": "Read it by rows, then by columns.",
+          "solution": "By rows: $3$ groups of $4$, so $3 \\times 4 = 12$. By columns: $4$ groups of $3$, so $4 \\times 3 = 12$. One rectangle, two facts, and the count is $12$ either way.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*4, 12)",
+            "Eq(4*3, 12)",
+            "Eq(4 + 4 + 4, 12)"
+          ]
+        },
+        {
+          "id": "g3mu-l2-we2",
+          "statement": "Saruul knows $2 \\times 5 = 10$. What does she also know, without doing any work?",
+          "note": "Turn the array round.",
+          "solution": "She also knows $5 \\times 2 = 10$. Two rows of five and five rows of two are the same rectangle seen from two sides, so the total cannot change: $5 + 5 = 10$ and $2 + 2 + 2 + 2 + 2 = 10$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*5, 10)",
+            "Eq(5*2, 10)",
+            "Eq(5 + 5, 10)",
+            "Eq(2 + 2 + 2 + 2 + 2, 10)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Thinking 3 × 4 and 4 × 3 must be different because the pictures look different.",
+          "correction": "The pictures ARE different — three rows of four is not four rows of three. But they contain the same stones, so both count 12. Different arrangement, same total.",
+          "authored": true
+        },
+        {
+          "text": "Counting the rows as the total — answering \"3 rows of 4\" with 3.",
+          "correction": "The rows are the groups, not the answer. Three groups of four holds 4 + 4 + 4 = 12 stones altogether.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3mu-l2-t1",
+          "statement": "An array has $2$ rows of $4$. Write both facts and the total.",
+          "solution": "By rows: $2 \\times 4 = 8$. By columns: $4 \\times 2 = 8$. Total $8$ either way, since $4 + 4 = 8$.",
+          "check": [
+            "Eq(2*4, 8)",
+            "Eq(4*2, 8)",
+            "Eq(4 + 4, 8)"
+          ]
+        },
+        {
+          "id": "g3mu-l2-t2",
+          "statement": "If $4 \\times 5 = 20$, what is $5 \\times 4$? Explain without calculating.",
+          "solution": "$5 \\times 4 = 20$ too. It is the same rectangle read along the other side — no stones were added or taken away, so the total cannot have changed.",
+          "check": [
+            "Eq(4*5, 20)",
+            "Eq(5*4, 20)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "A rectangle of equal groups",
+            "beats": [
+              "The stones below are laid out in $3$ rows with $4$ in each — an array.",
+              "Reading by rows, that is $3$ groups of $4$: $4 + 4 + 4 = 12$, or $3 \\times 4 = 12$.",
+              "An array is just equal groups tidied into straight lines, and the tidiness is what makes the next discovery possible."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "row 1"
+                },
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "row 2"
+                },
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "row 3"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read an array by rows",
+            "intro": "Rows are the groups; the row length is the group size.",
+            "examples": [
+              {
+                "prompt": "An array has $3$ rows of $4$. What is the total?",
+                "steps": [
+                  "Three groups of four: $4 + 4 + 4 = 12$.",
+                  "So $3 \\times 4 = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "Eq(4 + 4 + 4, 12)",
+                  "Eq(3*4, 12)"
+                ]
+              },
+              {
+                "prompt": "An array has $2$ rows of $5$. What is the total?",
+                "steps": [
+                  "Two groups of five: $5 + 5 = 10$.",
+                  "So $2 \\times 5 = 10$."
+                ],
+                "answer": "$10$",
+                "check": [
+                  "Eq(5 + 5, 10)",
+                  "Eq(2*5, 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Count the array",
+            "intro": "Groups down the side, size along the row.",
+            "problems": [
+              {
+                "prompt": "The array below has $3$ rows of $4$. The total is:",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three groups of four: $4 + 4 + 4 = 12$. Adding the two numbers gives $7$, and answering $3$ counts only the rows.",
+                "check": [
+                  "Eq(4 + 4 + 4, 12)",
+                  "Eq(3*4, 12)",
+                  "Eq(3 + 4, 7)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#3b82f6",
+                      "label": "row 1"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#3b82f6",
+                      "label": "row 2"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#3b82f6",
+                      "label": "row 3"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "An array of $4$ rows of $2$ holds:",
+                "options": [
+                  "$8$",
+                  "$6$",
+                  "$42$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four groups of two: $2 + 2 + 2 + 2 = 8$. Adding gives $6$, and writing the digits together gives $42$ — neither counts anything in the picture.",
+                "check": [
+                  "Eq(2 + 2 + 2 + 2, 8)",
+                  "Eq(4*2, 8)",
+                  "Eq(4 + 2, 6)"
+                ]
+              },
+              {
+                "prompt": "Which array holds the MOST?",
+                "options": [
+                  "$4$ rows of $5$",
+                  "$3$ rows of $5$",
+                  "$4$ rows of $4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 5 = 20$ beats $3 \\times 5 = 15$ and $4 \\times 4 = 16$. Adding a whole row of five gains more than adding one to each row.",
+                "check": [
+                  "Eq(4*5, 20)",
+                  "Eq(3*5, 15)",
+                  "Eq(4*4, 16)",
+                  "20 > 16"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Rows or total?",
+            "prompt": "An array has $3$ rows of $4$ stones. How many stones are there?",
+            "options": [
+              "$12$",
+              "$3$",
+              "$4$",
+              "$7$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The rows are the groups, not the answer: $4 + 4 + 4 = 12$ stones. Answering $3$ counts the rows and $4$ counts one row.",
+            "check": [
+              "Eq(4 + 4 + 4, 12)",
+              "Eq(3*4, 12)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why market stalls stack in rectangles",
+            "body": "Eggs come in trays, tiles come in sheets, and soldiers stand in squares — all for the same reason. A rectangle can be counted without counting: two quick numbers along the sides give the total, and anyone can check it from a distance. The array is the oldest counting trick still in daily use."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Turn it round",
+            "beats": [
+              "Here is the SAME rectangle of stones, read the other way: $4$ columns with $3$ in each.",
+              "That reading says $4 \\times 3$, and counting gives $3 + 3 + 3 + 3 = 12$ — exactly what the row reading gave. So $3 \\times 4 = 4 \\times 3$.",
+              "This is the turnaround, and it is a genuine bargain: every fact you learn hands you a second one free. Know $2 \\times 5 = 10$ and you already know $5 \\times 2 = 10$ without lifting a pencil."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "row 1"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "row 2"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "row 3"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "row 4"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Use the turnaround",
+            "intro": "One fact, then its partner, at no extra cost.",
+            "examples": [
+              {
+                "prompt": "An array has $3$ rows of $4$. Write BOTH facts.",
+                "steps": [
+                  "Rows: $3 \\times 4 = 12$.",
+                  "Columns: $4 \\times 3 = 12$.",
+                  "Same stones, so the totals must match."
+                ],
+                "answer": "$3 \\times 4 = 4 \\times 3 = 12$",
+                "check": [
+                  "Eq(3*4, 12)",
+                  "Eq(4*3, 12)"
+                ]
+              },
+              {
+                "prompt": "You know $2 \\times 5 = 10$. What else do you know?",
+                "steps": [
+                  "Turn the array: $5 \\times 2$.",
+                  "$2 + 2 + 2 + 2 + 2 = 10$, so $5 \\times 2 = 10$ as well."
+                ],
+                "answer": "$5 \\times 2 = 10$",
+                "check": [
+                  "Eq(2*5, 10)",
+                  "Eq(5*2, 10)",
+                  "Eq(2 + 2 + 2 + 2 + 2, 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "The free fact",
+            "intro": "Turn the array; the total cannot change.",
+            "problems": [
+              {
+                "prompt": "This array shows $2$ rows of $5$. Which pair of facts does it prove?",
+                "options": [
+                  "$2 \\times 5 = 10$ and $5 \\times 2 = 10$",
+                  "$2 \\times 5 = 10$ and $5 \\times 2 = 7$",
+                  "$2 + 5 = 7$ and $5 + 2 = 7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Rows give $2 \\times 5 = 10$ and columns give $5 \\times 2 = 10$. The two orders must agree because they count the same stones.",
+                "check": [
+                  "Eq(2*5, 10)",
+                  "Eq(5*2, 10)",
+                  "Eq(2 + 5, 7)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "row 1"
+                    },
+                    {
+                      "count": 5,
+                      "color": "#059669",
+                      "label": "row 2"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "If $3 \\times 5 = 15$, then $5 \\times 3$ is:",
+                "options": [
+                  "$15$",
+                  "$8$",
+                  "$35$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The turnaround: the same rectangle read the other way, so the total is unchanged at $15$. Adding gives $8$ and running the digits together gives $35$.",
+                "check": [
+                  "Eq(3*5, 15)",
+                  "Eq(5*3, 15)",
+                  "Eq(3 + 5, 8)"
+                ]
+              },
+              {
+                "prompt": "Saruul has learned the $5$ times table. Which fact does she NOT yet get free?",
+                "options": [
+                  "$3 \\times 4$",
+                  "$3 \\times 5$",
+                  "$4 \\times 5$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 5$ and $4 \\times 5$ are in her table already, and their turnarounds come free. But $3 \\times 4 = 12$ has no five in it at all, so it must be learned separately.",
+                "check": [
+                  "Eq(3*4, 12)",
+                  "Eq(3*5, 15)",
+                  "Eq(4*5, 20)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Why must they agree?",
+            "prompt": "Why is $4 \\times 3$ equal to $3 \\times 4$?",
+            "options": [
+              "they count the same array from two sides",
+              "because both answers end in the same digit",
+              "they are not equal — the pictures differ",
+              "it is a rule with no reason"
+            ],
+            "correctIndex": 0,
+            "explanation": "The rectangle does not change when you tilt your head, so the count cannot change either: $3 + 3 + 3 + 3 = 12$ and $4 + 4 + 4 = 12$. The pictures genuinely differ, but they hold the same stones.",
+            "check": [
+              "Eq(3 + 3 + 3 + 3, 12)",
+              "Eq(4 + 4 + 4, 12)",
+              "Eq(4*3, 3*4)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "An array is equal groups laid out in a rectangle: rows are the groups.",
+              "Read by rows and by columns to get two facts from one picture.",
+              "$3 \\times 4 = 4 \\times 3$ — the turnaround — because the stones never moved.",
+              "Every fact you learn comes with a free partner, halving what there is to remember."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Whenever you learn a new times fact, write its turnaround underneath straight away. Two facts learned in the time it takes to learn one is the best bargain in arithmetic."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Two readings, one total.",
+            "problems": [
+              {
+                "prompt": "An array of $5$ rows of $4$ holds:",
+                "options": [
+                  "$20$",
+                  "$9$",
+                  "$54$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five groups of four: $4 + 4 + 4 + 4 + 4 = 20$, which is also $4 \\times 5$ read down the columns.",
+                "check": [
+                  "Eq(5*4, 20)",
+                  "Eq(4*5, 20)",
+                  "Eq(5 + 4, 9)"
+                ]
+              },
+              {
+                "prompt": "Knowing $4 \\times 2 = 8$ also tells you:",
+                "options": [
+                  "$2 \\times 4 = 8$",
+                  "$4 + 2 = 8$",
+                  "$8 \\times 2 = 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The turnaround gives $2 \\times 4 = 8$ free. Note $4 + 2 = 6$, not $8$ — the middle option is simply false.",
+                "check": [
+                  "Eq(4*2, 8)",
+                  "Eq(2*4, 8)",
+                  "Eq(4 + 2, 6)"
+                ]
+              },
+              {
+                "prompt": "Which two facts come from ONE array?",
+                "options": [
+                  "$2 \\times 3$ and $3 \\times 2$",
+                  "$2 \\times 3$ and $2 \\times 4$",
+                  "$3 \\times 3$ and $3 \\times 4$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only a turnaround pair shares a rectangle: $2 \\times 3 = 6$ and $3 \\times 2 = 6$. The other pairs are different rectangles with different totals.",
+                "check": [
+                  "Eq(2*3, 6)",
+                  "Eq(3*2, 6)",
+                  "Eq(2*4, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Arrays & the Turnaround\"",
+            "body": "You have just halved the size of every times table you will ever learn. From here on, each new fact you meet quietly delivers its partner as well — and the tables in the next two lessons are much shorter than they look."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tables-of-2-5-and-10",
+      "title": "The Tables of 2, 5 and 10",
+      "concreteComparison": "You already know these tables — you learned them while counting in steps. Counting $2, 4, 6, 8$ IS the two times table; counting $5, 10, 15, 20$ is the five. All that is left is to notice the patterns that make them impossible to get wrong.",
+      "objective": "Recall the tables of $2$, $5$ and $10$, use the endings of the answers to check them, and connect each table to a step count you already know.",
+      "concept": [
+        "**The two times table is doubling, and every answer is even.** $2 \\times 1 = 2$, $2 \\times 2 = 4$, up to $2 \\times 10 = 20$. Every answer ends in $0, 2, 4, 6$ or $8$ — an odd ending means you have slipped.",
+        "**The five times table alternates its endings.** $5, 10, 15, 20, 25, \\ldots$ — an odd number of fives ends in $5$, and an even number of fives pairs up into whole tens and ends in $0$.",
+        "**The ten times table is the easiest of all.** $3 \\times 10 = 30$: three whole bundles of ten. Every answer ends in $0$, and the other digit is simply the number you started with."
+      ],
+      "keyIdea": "The friendly tables are step counts you already know, and each one leaves a fingerprint in the endings that checks your answer for free.",
+      "facts": [
+        {
+          "title": "Twos are doubles",
+          "latex": "2 \\times 7 = 14",
+          "explanation": "Double seven; every answer in this table is even."
+        },
+        {
+          "title": "Fives alternate",
+          "latex": "5 \\times 6 = 30",
+          "explanation": "An even count of fives pairs into whole tens, so it ends in 0."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3mu-l3-we1",
+          "statement": "Find $2 \\times 7$ and check the answer with the twos pattern.",
+          "note": "Doubling is the fastest route.",
+          "solution": "Double seven: $7 + 7 = 14$, so $2 \\times 7 = 14$. The check is the ending — $14$ is even, as every answer in the two times table must be.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(7 + 7, 14)",
+            "Eq(2*7, 14)",
+            "Eq(Mod(14, 2), 0)"
+          ]
+        },
+        {
+          "id": "g3mu-l3-we2",
+          "statement": "Find $5 \\times 6$ and $5 \\times 7$, and explain their different endings.",
+          "note": "Count fives, then look at the last digit.",
+          "solution": "$5 \\times 6 = 30$ and $5 \\times 7 = 35$. Six fives pair into three whole tens, so the answer ends in $0$; seven fives leave one five unpaired, so the answer ends in $5$. Even counts of five end in $0$, odd counts end in $5$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(5*6, 30)",
+            "Eq(Mod(30, 10), 0)",
+            "Eq(5*7, 35)",
+            "Eq(Mod(35, 10), 5)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering 2 × 7 with 9, adding instead of doubling.",
+          "correction": "2 × 7 means two groups of seven: 7 + 7 = 14. Adding gives 9, which is odd — and no answer in the two times table can be odd.",
+          "authored": true
+        },
+        {
+          "text": "Giving an answer in the five times table that ends in something other than 0 or 5, such as 5 × 6 = 32.",
+          "correction": "Every multiple of five ends in 5 or 0. 5 × 6 = 30, and an ending of 2 is a signal to count again.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3mu-l3-t1",
+          "statement": "Find $2 \\times 9$ and say how the ending confirms it.",
+          "solution": "Double nine: $9 + 9 = 18$, so $2 \\times 9 = 18$. It is even, as every answer in this table must be.",
+          "check": [
+            "Eq(9 + 9, 18)",
+            "Eq(2*9, 18)",
+            "Eq(Mod(18, 2), 0)"
+          ]
+        },
+        {
+          "id": "g3mu-l3-t2",
+          "statement": "Find $10 \\times 7$ and explain the pattern in the digits.",
+          "solution": "Seven whole tens: $10 \\times 7 = 70$. The answer is the starting number with a $0$ after it, because each ten is one full bundle and seven bundles is seven tens.",
+          "check": [
+            "Eq(10*7, 70)",
+            "Eq(Mod(70, 10), 0)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Twos and fives are step counts",
+            "beats": [
+              "The line below counts in twos: $0, 2, 4, 6, 8, 10$. You already learned this as step counting — and it IS the two times table.",
+              "$2 \\times 4$ is simply the fourth stop: $8$. Doubling gets you there fastest of all: $4 + 4 = 8$.",
+              "Every answer is even, because two equal groups can always be paired off with nothing left over. An odd answer in this table is impossible."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0"
+                  },
+                  {
+                    "value": 2,
+                    "label": "2"
+                  },
+                  {
+                    "value": 4,
+                    "label": "4"
+                  },
+                  {
+                    "value": 6,
+                    "label": "6"
+                  },
+                  {
+                    "value": 8,
+                    "label": "8"
+                  },
+                  {
+                    "value": 10,
+                    "label": "10"
+                  }
+                ],
+                "min": 0,
+                "max": 10
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Twos by doubling",
+            "intro": "Double the other number.",
+            "examples": [
+              {
+                "prompt": "Find $2 \\times 7$.",
+                "steps": [
+                  "Double seven: $7 + 7 = 14$.",
+                  "$2 \\times 7 = 14$, and $14$ is even ✓."
+                ],
+                "answer": "$14$",
+                "check": [
+                  "Eq(7 + 7, 14)",
+                  "Eq(2*7, 14)",
+                  "Eq(Mod(14, 2), 0)"
+                ]
+              },
+              {
+                "prompt": "Find $2 \\times 8$.",
+                "steps": [
+                  "Double eight: $8 + 8 = 16$.",
+                  "$2 \\times 8 = 16$, even as expected ✓."
+                ],
+                "answer": "$16$",
+                "check": [
+                  "Eq(8 + 8, 16)",
+                  "Eq(2*8, 16)",
+                  "Eq(Mod(16, 2), 0)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Twos",
+            "intro": "Double it, then check the ending is even.",
+            "problems": [
+              {
+                "prompt": "$2 \\times 6$ is:",
+                "options": [
+                  "$12$",
+                  "$8$",
+                  "$26$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Double six: $6 + 6 = 12$. Adding gives $8$, and running the digits together gives $26$ — neither is doubling.",
+                "check": [
+                  "Eq(6 + 6, 12)",
+                  "Eq(2*6, 12)",
+                  "Eq(2 + 6, 8)"
+                ]
+              },
+              {
+                "prompt": "$2 \\times 9$ is:",
+                "options": [
+                  "$18$",
+                  "$11$",
+                  "$19$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Double nine: $9 + 9 = 18$. An answer of $11$ adds instead, and $19$ is odd — impossible in the two times table.",
+                "check": [
+                  "Eq(9 + 9, 18)",
+                  "Eq(2*9, 18)",
+                  "Eq(Mod(19, 2), 1)"
+                ]
+              },
+              {
+                "prompt": "Which answer CANNOT belong to the two times table?",
+                "options": [
+                  "$15$",
+                  "$14$",
+                  "$16$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$15$ is odd, and two equal groups always pair off exactly. $14 = 2 \\times 7$ and $16 = 2 \\times 8$ are both fine.",
+                "check": [
+                  "Eq(Mod(15, 2), 1)",
+                  "Eq(2*7, 14)",
+                  "Eq(2*8, 16)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The impossible answer",
+            "prompt": "A pupil answers $2 \\times 7 = 15$. How do you know it is wrong without recounting?",
+            "options": [
+              "$15$ is odd, and every answer in the twos is even",
+              "$15$ is too small",
+              "$15$ does not end in $5$",
+              "you cannot know without recounting"
+            ],
+            "correctIndex": 0,
+            "explanation": "Two equal groups always pair off with nothing left over, so every answer in this table is even. The true answer is $7 + 7 = 14$.",
+            "check": [
+              "Eq(Mod(15, 2), 1)",
+              "Eq(2*7, 14)",
+              "Eq(Mod(14, 2), 0)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why fives feel so easy",
+            "body": "Five is half of ten, so counting in fives is really counting half-bundles — and two of them always click together into a whole ten. That is why the answers alternate $5, 0, 5, 0$: each pair of fives completes a ten and resets the ending. Your hands are the original reason ten matters at all."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Fives and tens",
+            "beats": [
+              "The line below counts in fives: $0, 5, 10, 15, 20, 25$. Look only at the last digits — $0, 5, 0, 5, 0, 5$, forever.",
+              "The reason is that two fives make a ten. An EVEN number of fives pairs up completely and ends in $0$; an ODD number leaves one five over and ends in $5$. So $5 \\times 6 = 30$ but $5 \\times 7 = 35$.",
+              "The ten times table is easier still: $3 \\times 10 = 30$ is three whole bundles of ten. Write the number, add a zero, done."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0"
+                  },
+                  {
+                    "value": 5,
+                    "label": "5"
+                  },
+                  {
+                    "value": 10,
+                    "label": "10"
+                  },
+                  {
+                    "value": 15,
+                    "label": "15"
+                  },
+                  {
+                    "value": 20,
+                    "label": "20"
+                  },
+                  {
+                    "value": 25,
+                    "label": "25"
+                  }
+                ],
+                "min": 0,
+                "max": 25
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fives and tens",
+            "intro": "Count the fives; pair them into tens.",
+            "examples": [
+              {
+                "prompt": "Find $5 \\times 6$.",
+                "steps": [
+                  "Six fives: $5, 10, 15, 20, 25, 30$.",
+                  "Six is even, so they pair into three whole tens.",
+                  "$5 \\times 6 = 30$, ending in $0$ ✓."
+                ],
+                "answer": "$30$",
+                "check": [
+                  "Eq(5*6, 30)",
+                  "Eq(Mod(30, 10), 0)",
+                  "Eq(3*10, 30)"
+                ]
+              },
+              {
+                "prompt": "Find $10 \\times 4$.",
+                "steps": [
+                  "Four whole bundles of ten.",
+                  "$10 + 10 + 10 + 10 = 40$.",
+                  "$10 \\times 4 = 40$ — the number with a zero after it."
+                ],
+                "answer": "$40$",
+                "check": [
+                  "Eq(10 + 10 + 10 + 10, 40)",
+                  "Eq(10*4, 40)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fives and tens",
+            "intro": "Check the ending before you commit.",
+            "problems": [
+              {
+                "prompt": "$5 \\times 8$ is:",
+                "options": [
+                  "$40$",
+                  "$45$",
+                  "$13$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Eight fives pair into four whole tens: $40$, ending in $0$ as an even count of fives must. $45$ would need an odd count, and $13$ adds instead.",
+                "check": [
+                  "Eq(5*8, 40)",
+                  "Eq(Mod(40, 10), 0)",
+                  "Eq(5 + 8, 13)"
+                ]
+              },
+              {
+                "prompt": "$5 \\times 9$ is:",
+                "options": [
+                  "$45$",
+                  "$40$",
+                  "$14$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nine fives: eight of them pair into $40$, and one five is left over — $45$. An odd count of fives always ends in $5$.",
+                "check": [
+                  "Eq(5*9, 45)",
+                  "Eq(Mod(45, 10), 5)",
+                  "Eq(40 + 5, 45)"
+                ]
+              },
+              {
+                "prompt": "The picture shows $6$ bundles of ten. $10 \\times 6$ is:",
+                "options": [
+                  "$60$",
+                  "$16$",
+                  "$610$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six whole bundles of ten: $60$. Adding gives $16$, and writing the digits side by side gives $610$.",
+                "check": [
+                  "Eq(10*6, 60)",
+                  "Eq(10 + 6, 16)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 1"
+                    },
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 2"
+                    },
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 3"
+                    },
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 4"
+                    },
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 5"
+                    },
+                    {
+                      "count": 10,
+                      "color": "#3b82f6",
+                      "label": "ten 6"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Odd or even count of fives?",
+            "prompt": "Which of these could be an answer in the five times table?",
+            "options": [
+              "$35$",
+              "$32$",
+              "$34$",
+              "$38$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Every multiple of five ends in $5$ or $0$, and only $35$ does — it is $5 \\times 7$. The others all end in even digits that fives never produce.",
+            "check": [
+              "Eq(5*7, 35)",
+              "Eq(Mod(35, 5), 0)",
+              "Eq(Mod(32, 5), 2)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The two times table is doubling, and every answer is even.",
+              "The five times table ends in $5$ (odd count) or $0$ (even count), because two fives make a ten.",
+              "The ten times table writes the number with a zero after it: $10 \\times 7 = 70$.",
+              "Each table's endings are a free check — a wrong ending means a wrong answer."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "When an answer in these tables feels uncertain, check its ENDING first. It takes no time at all and it catches most slips before you have to count anything again."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Double, pair, or bundle.",
+            "problems": [
+              {
+                "prompt": "$2 \\times 10$ is:",
+                "options": [
+                  "$20$",
+                  "$12$",
+                  "$210$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Double ten, or one bundle of ten twice: $20$. This fact sits in both the twos and the tens table, which is why it feels so familiar.",
+                "check": [
+                  "Eq(2*10, 20)",
+                  "Eq(10 + 10, 20)",
+                  "Eq(2 + 10, 12)"
+                ]
+              },
+              {
+                "prompt": "$5 \\times 4$ is:",
+                "options": [
+                  "$20$",
+                  "$25$",
+                  "$9$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four fives pair into two whole tens: $20$. And the turnaround gives $4 \\times 5 = 20$ free.",
+                "check": [
+                  "Eq(5*4, 20)",
+                  "Eq(4*5, 20)",
+                  "Eq(Mod(20, 10), 0)"
+                ]
+              },
+              {
+                "prompt": "Which fact is WRONG?",
+                "options": [
+                  "$5 \\times 6 = 35$",
+                  "$2 \\times 6 = 12$",
+                  "$10 \\times 3 = 30$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six fives is an even count, so the answer must end in $0$: $5 \\times 6 = 30$, not $35$. The other two are correct.",
+                "check": [
+                  "Eq(5*6, 30)",
+                  "Ne(5*6, 35)",
+                  "Eq(2*6, 12)",
+                  "Eq(10*3, 30)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Tables of 2, 5 and 10\"",
+            "body": "Three tables, and you barely had to learn anything — they were step counts you already owned. The next lesson does the same trick again: the threes and fours are built out of the twos you have just confirmed."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tables-of-3-and-4",
+      "title": "The Tables of 3 and 4",
+      "concreteComparison": "The threes and fours look harder than the friendly tables, but they are not new work. Counting in threes gives the whole three times table, and every four times fact is simply a two times fact doubled.",
+      "objective": "Recall the tables of $3$ and $4$, build any four times fact by doubling a two times fact, and use a known fact to reach the one beside it.",
+      "concept": [
+        "**The three times table is counting in threes.** $3, 6, 9, 12, 15, \\ldots$ — the same step count, now with names: $3 \\times 4 = 12$ is the fourth stop.",
+        "**Every four times fact is a doubled two times fact.** $4 \\times 3$ is twice $2 \\times 3$: $2 \\times 3 = 6$, and doubling gives $12$. That works because four groups is two groups counted twice.",
+        "**A fact you own reaches the fact beside it.** If $3 \\times 5 = 15$, then $3 \\times 6$ is one more group of three: $15 + 3 = 18$. Stepping one group along is always cheaper than starting the count again."
+      ],
+      "keyIdea": "Build the fact you need from a fact you already own — count on by one group, or double a two times fact to reach a four times fact.",
+      "facts": [
+        {
+          "title": "Fours are doubled twos",
+          "latex": "4 \\times 3 = 2 \\times (2 \\times 3) = 12",
+          "explanation": "Four groups is two groups counted twice, so double the twos answer."
+        },
+        {
+          "title": "One more group",
+          "latex": "3 \\times 6 = 3 \\times 5 + 3 = 18",
+          "explanation": "Stepping to the next fact adds exactly one group."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3mu-l4-we1",
+          "statement": "Find $4 \\times 3$ by doubling a two times fact.",
+          "note": "Halve the four, then double the answer.",
+          "solution": "$2 \\times 3 = 6$. Four groups is two groups counted twice, so double it: $6 + 6 = 12$. Therefore $4 \\times 3 = 12$ — reached without learning anything new.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*3, 6)",
+            "Eq(6 + 6, 12)",
+            "Eq(4*3, 12)"
+          ]
+        },
+        {
+          "id": "g3mu-l4-we2",
+          "statement": "You know $3 \\times 5 = 15$. Find $3 \\times 6$ without counting from the start.",
+          "note": "How many more groups do you need?",
+          "solution": "$3 \\times 6$ is one more group of three than $3 \\times 5$, so add a single three: $15 + 3 = 18$. So $3 \\times 6 = 18$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*5, 15)",
+            "Eq(15 + 3, 18)",
+            "Eq(3*6, 18)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Doubling the wrong number — turning 4 × 3 into 4 × 6 = 24.",
+          "correction": "Four groups of three is two groups of three counted twice: double the ANSWER 6, not the group size. 4 × 3 = 12.",
+          "authored": true
+        },
+        {
+          "text": "Adding one instead of one GROUP when stepping along: 3 × 6 = 15 + 1 = 16.",
+          "correction": "The step from 3 × 5 to 3 × 6 adds a whole extra group of three: 15 + 3 = 18.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3mu-l4-t1",
+          "statement": "Find $4 \\times 5$ by doubling.",
+          "solution": "$2 \\times 5 = 10$, and doubling gives $10 + 10 = 20$. So $4 \\times 5 = 20$.",
+          "check": [
+            "Eq(2*5, 10)",
+            "Eq(10 + 10, 20)",
+            "Eq(4*5, 20)"
+          ]
+        },
+        {
+          "id": "g3mu-l4-t2",
+          "statement": "You know $4 \\times 6 = 24$. Find $4 \\times 7$.",
+          "solution": "One more group of four: $24 + 4 = 28$, so $4 \\times 7 = 28$.",
+          "check": [
+            "Eq(4*6, 24)",
+            "Eq(24 + 4, 28)",
+            "Eq(4*7, 28)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Threes are a step count with names",
+            "beats": [
+              "The line below counts in threes: $0, 3, 6, 9, 12, 15$. Nothing here is new — it is step counting from the first topic.",
+              "Giving the stops their names turns the count into a table: $3 \\times 1 = 3$, $3 \\times 2 = 6$, $3 \\times 4 = 12$, and so on.",
+              "And once you know one stop, the next is one group away: $3 \\times 5 = 15$, so $3 \\times 6 = 15 + 3 = 18$. Never restart a count you have already begun."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0"
+                  },
+                  {
+                    "value": 3,
+                    "label": "3"
+                  },
+                  {
+                    "value": 6,
+                    "label": "6"
+                  },
+                  {
+                    "value": 9,
+                    "label": "9"
+                  },
+                  {
+                    "value": 12,
+                    "label": "12"
+                  },
+                  {
+                    "value": 15,
+                    "label": "15"
+                  }
+                ],
+                "min": 0,
+                "max": 15
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Threes by counting on",
+            "intro": "Start from a fact you own; add one group.",
+            "examples": [
+              {
+                "prompt": "Find $3 \\times 4$.",
+                "steps": [
+                  "Count in threes: $3, 6, 9, 12$.",
+                  "The fourth stop is $12$, so $3 \\times 4 = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "Eq(3 + 3 + 3 + 3, 12)",
+                  "Eq(3*4, 12)"
+                ]
+              },
+              {
+                "prompt": "You know $3 \\times 5 = 15$. Find $3 \\times 6$.",
+                "steps": [
+                  "One more group of three is needed.",
+                  "$15 + 3 = 18$, so $3 \\times 6 = 18$."
+                ],
+                "answer": "$18$",
+                "check": [
+                  "Eq(3*5, 15)",
+                  "Eq(15 + 3, 18)",
+                  "Eq(3*6, 18)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Threes",
+            "intro": "One more group, not one more.",
+            "problems": [
+              {
+                "prompt": "$3 \\times 7$ is:",
+                "options": [
+                  "$21$",
+                  "$10$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Count on from $3 \\times 6 = 18$: one more three gives $21$. Adding the numbers gives $10$, and $18$ stops one group short.",
+                "check": [
+                  "Eq(3*6, 18)",
+                  "Eq(18 + 3, 21)",
+                  "Eq(3*7, 21)"
+                ]
+              },
+              {
+                "prompt": "If $3 \\times 8 = 24$, then $3 \\times 9$ is:",
+                "options": [
+                  "$27$",
+                  "$25$",
+                  "$32$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One extra group of three: $24 + 3 = 27$. Adding one gives $25$, which forgets that a step is a whole group.",
+                "check": [
+                  "Eq(3*8, 24)",
+                  "Eq(24 + 3, 27)",
+                  "Eq(3*9, 27)"
+                ]
+              },
+              {
+                "prompt": "Which number is NOT in the three times table?",
+                "options": [
+                  "$14$",
+                  "$12$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Counting in threes goes $12, 15, 18$ — it steps straight over $14$. Indeed $14$ leaves a remainder of $2$ when shared into threes.",
+                "check": [
+                  "Eq(3*4, 12)",
+                  "Eq(3*5, 15)",
+                  "Eq(Mod(14, 3), 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "How big is one step?",
+            "prompt": "Going from $3 \\times 5$ to $3 \\times 6$, how much does the answer grow?",
+            "options": [
+              "by $3$",
+              "by $1$",
+              "by $6$",
+              "by $5$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One more GROUP of three is added, so the answer grows by $3$: $15 + 3 = 18$. Growing by $1$ would give $16$, which is not in the table at all.",
+            "check": [
+              "Eq(3*5, 15)",
+              "Eq(3*6, 18)",
+              "Eq(18 - 15, 3)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The three times table hides a trick",
+            "body": "Add up the digits of any answer in the three times table and the total is itself in the three times table: $12 \\to 1 + 2 = 3$, $18 \\to 1 + 8 = 9$, $27 \\to 2 + 7 = 9$. It works for every multiple of three, however large, and it is the fastest way anyone has found to test whether a big number can be shared into threes."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Fours are doubled twos",
+            "beats": [
+              "The picture below shows $2 \\times 3 = 6$ beside its double, $4 \\times 3 = 12$.",
+              "That is the whole four times table: four groups is two groups counted twice, so work out the two times fact and double it. $2 \\times 5 = 10$, so $4 \\times 5 = 20$.",
+              "Take care WHAT you double. It is the answer that doubles, not the group size — doubling the $3$ instead would give $4 \\times 6$, a different fact entirely."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "2 x 3 = 6"
+                },
+                {
+                  "count": 12,
+                  "color": "#d97706",
+                  "label": "double it: 4 x 3 = 12"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Fours by doubling",
+            "intro": "Do the twos fact, then double it.",
+            "examples": [
+              {
+                "prompt": "Find $4 \\times 3$.",
+                "steps": [
+                  "$2 \\times 3 = 6$.",
+                  "Double the answer: $6 + 6 = 12$.",
+                  "$4 \\times 3 = 12$."
+                ],
+                "answer": "$12$",
+                "check": [
+                  "Eq(2*3, 6)",
+                  "Eq(6 + 6, 12)",
+                  "Eq(4*3, 12)"
+                ]
+              },
+              {
+                "prompt": "Find $4 \\times 6$.",
+                "steps": [
+                  "$2 \\times 6 = 12$.",
+                  "Double it: $12 + 12 = 24$.",
+                  "$4 \\times 6 = 24$."
+                ],
+                "answer": "$24$",
+                "check": [
+                  "Eq(2*6, 12)",
+                  "Eq(12 + 12, 24)",
+                  "Eq(4*6, 24)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Fours",
+            "intro": "Halve the four, do the twos, double back.",
+            "problems": [
+              {
+                "prompt": "$4 \\times 7$ is:",
+                "options": [
+                  "$28$",
+                  "$14$",
+                  "$11$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 7 = 14$, and doubling gives $28$. Stopping at $14$ answers the twos fact, and $11$ adds instead of multiplying.",
+                "check": [
+                  "Eq(2*7, 14)",
+                  "Eq(14 + 14, 28)",
+                  "Eq(4*7, 28)"
+                ]
+              },
+              {
+                "prompt": "The array shows $4$ rows of $6$. $4 \\times 6$ is:",
+                "options": [
+                  "$24$",
+                  "$12$",
+                  "$46$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 6 = 12$, doubled to $24$ — and the array shows four rows of six holding exactly that many.",
+                "check": [
+                  "Eq(2*6, 12)",
+                  "Eq(4*6, 24)",
+                  "Eq(12 + 12, 24)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 6,
+                      "color": "#059669",
+                      "label": "row 1"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#059669",
+                      "label": "row 2"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#059669",
+                      "label": "row 3"
+                    },
+                    {
+                      "count": 6,
+                      "color": "#059669",
+                      "label": "row 4"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Bat works out $4 \\times 3$ by doubling the $3$ and gets $4 \\times 6 = 24$. His mistake was:",
+                "options": [
+                  "he doubled the group size instead of the answer",
+                  "he should have tripled instead",
+                  "nothing — $24$ is correct"
+                ],
+                "correctIndex": 0,
+                "explanation": "Doubling must happen to the ANSWER: $2 \\times 3 = 6$, then $6 + 6 = 12$. Doubling the group size answers a different question, and $24$ is twice too big.",
+                "check": [
+                  "Eq(2*3, 6)",
+                  "Eq(4*3, 12)",
+                  "Eq(4*6, 24)",
+                  "Eq(24 - 12, 12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "What gets doubled?",
+            "prompt": "To find $4 \\times 5$ from the twos table, you should:",
+            "options": [
+              "work out $2 \\times 5 = 10$ and double the $10$",
+              "work out $2 \\times 5 = 10$ and double the $5$",
+              "double the $4$ to get $8 \\times 5$",
+              "add $2 \\times 5$ and $4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Four groups is two groups counted twice, so the ANSWER doubles: $10 + 10 = 20$, giving $4 \\times 5 = 20$. Doubling the group size would give $2 \\times 10$, and doubling the $4$ changes the question altogether.",
+            "check": [
+              "Eq(2*5, 10)",
+              "Eq(10 + 10, 20)",
+              "Eq(4*5, 20)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The three times table is the step count $3, 6, 9, 12, 15$ with names attached.",
+              "Stepping from one fact to the next adds one whole GROUP, not one.",
+              "Every four times fact is a two times fact doubled: $2 \\times 6 = 12$, so $4 \\times 6 = 24$.",
+              "Double the answer, never the group size."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "When a fact will not come to mind, do not freeze — reach for the nearest fact you DO know and step to it. One group forward, one group back, or a double: every fact in these tables is one small move from a fact you own."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Build it from something you know.",
+            "problems": [
+              {
+                "prompt": "$3 \\times 3$ is:",
+                "options": [
+                  "$9$",
+                  "$6$",
+                  "$33$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Three groups of three: $3 + 3 + 3 = 9$. It is also one group on from $3 \\times 2 = 6$.",
+                "check": [
+                  "Eq(3 + 3 + 3, 9)",
+                  "Eq(3*3, 9)",
+                  "Eq(3*2, 6)"
+                ]
+              },
+              {
+                "prompt": "$4 \\times 8$ is:",
+                "options": [
+                  "$32$",
+                  "$16$",
+                  "$12$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2 \\times 8 = 16$, doubled to $32$. Stopping at $16$ answers only the twos fact, and $12$ adds the numbers instead.",
+                "check": [
+                  "Eq(2*8, 16)",
+                  "Eq(16 + 16, 32)",
+                  "Eq(4*8, 32)"
+                ]
+              },
+              {
+                "prompt": "If $4 \\times 9 = 36$, then $4 \\times 10$ is:",
+                "options": [
+                  "$40$",
+                  "$37$",
+                  "$45$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One more group of four: $36 + 4 = 40$ — which the ten times table confirms straight away.",
+                "check": [
+                  "Eq(4*9, 36)",
+                  "Eq(36 + 4, 40)",
+                  "Eq(4*10, 40)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"The Tables of 3 and 4\"",
+            "body": "Five tables now, and almost none of them were memorised from cold — they were built from step counts, doubles and single steps sideways. That is how the rest of the tables arrive next year too."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "times-one-times-zero-and-stories",
+      "title": "Times One, Times Zero & Stories",
+      "concreteComparison": "Four boxes with one stone in each hold $4$ stones. Three boxes with nothing in them hold nothing at all. These two facts look almost too obvious to write down — and they are exactly the two that get muddled most often.",
+      "objective": "Use the times one and times zero rules correctly, and turn a word story into a times fact when — and only when — its groups are equal.",
+      "concept": [
+        "**Times one changes nothing.** $4 \\times 1 = 4$: four boxes with one stone each hold four stones. And $1 \\times 4 = 4$: one box with four stones in it. Either way the answer is the other number, untouched.",
+        "**Times zero gives nothing.** $3 \\times 0 = 0$: three empty boxes hold nothing. And $0 \\times 5 = 0$: no boxes at all, so nothing to count. Whichever number is the zero, the answer is zero.",
+        "**A story is a times story only when its groups are equal.** \"Five bags with $4$ apples in each\" is $5 \\times 4 = 20$. \"Five apples and four more\" is $5 + 4 = 9$ — no groups at all. Read the story and ask: are there equal groups, and how many are in one?"
+      ],
+      "keyIdea": "Multiplying by one leaves a number alone and multiplying by zero destroys it — and a word problem is a times problem only if it really has equal groups.",
+      "facts": [
+        {
+          "title": "Times one",
+          "latex": "4 \\times 1 = 4",
+          "explanation": "Four groups of one, or one group of four — either way, four."
+        },
+        {
+          "title": "Times zero",
+          "latex": "3 \\times 0 = 0",
+          "explanation": "Three empty groups hold nothing at all."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3mu-l5-we1",
+          "statement": "Work out $4 \\times 1$ and $1 \\times 4$, and say why they agree.",
+          "note": "Draw both pictures.",
+          "solution": "$4 \\times 1$ is four boxes with one stone in each: $1 + 1 + 1 + 1 = 4$. $1 \\times 4$ is one box with four stones: $4$. The pictures look quite different, but the turnaround guarantees the same total — and both equal $4$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1 + 1 + 1 + 1, 4)",
+            "Eq(4*1, 4)",
+            "Eq(1*4, 4)"
+          ]
+        },
+        {
+          "id": "g3mu-l5-we2",
+          "statement": "A shop packs $5$ bags with $4$ apples in each. How many apples? Would $5 + 4$ answer it?",
+          "note": "Are the groups equal?",
+          "solution": "Five equal groups of four: $4 + 4 + 4 + 4 + 4 = 20$, so $5 \\times 4 = 20$ apples. $5 + 4 = 9$ would be the answer to a different story — five apples and four more — which has no groups in it at all.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(4 + 4 + 4 + 4 + 4, 20)",
+            "Eq(5*4, 20)",
+            "Eq(5 + 4, 9)",
+            "Ne(20, 9)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Answering 3 × 0 with 3, on the grounds that \"there are still three boxes\".",
+          "correction": "The boxes are counted, but what is IN them is what multiplication totals: three empty boxes hold 0 stones. 3 × 0 = 0.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying whenever two numbers appear — turning \"5 apples and 4 more\" into 5 × 4 = 20.",
+          "correction": "That story has no equal groups; it just joins two amounts, so 5 + 4 = 9. Multiplication needs groups, not merely two numbers.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3mu-l5-t1",
+          "statement": "Work out $7 \\times 1$ and $0 \\times 7$.",
+          "solution": "$7 \\times 1 = 7$ — seven groups of one leaves seven untouched. $0 \\times 7 = 0$ — no groups at all, so there is nothing to count.",
+          "check": [
+            "Eq(7*1, 7)",
+            "Eq(0*7, 0)"
+          ]
+        },
+        {
+          "id": "g3mu-l5-t2",
+          "statement": "A herder ties $3$ horses at each of $4$ posts. Write the times fact, then say what $3 + 4$ would have answered.",
+          "solution": "Four equal groups of three: $4 \\times 3 = 12$ horses. $3 + 4 = 7$ would answer \"three horses and four more horses\" — a story with no posts in it.",
+          "check": [
+            "Eq(4*3, 12)",
+            "Eq(3 + 4, 7)",
+            "Ne(12, 7)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The two quiet rules",
+            "beats": [
+              "Four boxes, one stone in each — the picture below. Counting gives $1 + 1 + 1 + 1 = 4$, so $4 \\times 1 = 4$.",
+              "Multiplying by one leaves a number exactly as it was. It has to: taking one group of something IS that something.",
+              "The turnaround says $1 \\times 4 = 4$ as well — one box with four stones in it. Different picture, same total."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "box 1"
+                },
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "box 2"
+                },
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "box 3"
+                },
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "box 4"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Times one",
+            "intro": "One group of it, or groups of one.",
+            "examples": [
+              {
+                "prompt": "Work out $4 \\times 1$.",
+                "steps": [
+                  "Four boxes with one stone each.",
+                  "$1 + 1 + 1 + 1 = 4$, so $4 \\times 1 = 4$."
+                ],
+                "answer": "$4$",
+                "check": [
+                  "Eq(1 + 1 + 1 + 1, 4)",
+                  "Eq(4*1, 4)"
+                ]
+              },
+              {
+                "prompt": "Work out $1 \\times 9$.",
+                "steps": [
+                  "One group with nine in it.",
+                  "There is nothing to repeat, so the answer is $9$."
+                ],
+                "answer": "$9$",
+                "check": [
+                  "Eq(1*9, 9)",
+                  "Eq(9*1, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Times one",
+            "intro": "The other number comes through unchanged.",
+            "problems": [
+              {
+                "prompt": "$6 \\times 1$ is:",
+                "options": [
+                  "$6$",
+                  "$1$",
+                  "$7$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Six groups of one: $6$. Answering $1$ counts one group's contents, and $7$ adds the numbers instead.",
+                "check": [
+                  "Eq(6*1, 6)",
+                  "Eq(6 + 1, 7)"
+                ]
+              },
+              {
+                "prompt": "$1 \\times 8$ is:",
+                "options": [
+                  "$8$",
+                  "$1$",
+                  "$18$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One group with eight in it is just eight. The turnaround agrees: $8 \\times 1 = 8$.",
+                "check": [
+                  "Eq(1*8, 8)",
+                  "Eq(8*1, 8)"
+                ]
+              },
+              {
+                "prompt": "Which fact leaves the number unchanged?",
+                "options": [
+                  "$5 \\times 1$",
+                  "$5 \\times 0$",
+                  "$5 \\times 2$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\times 1 = 5$ — untouched. $5 \\times 0 = 0$ destroys it, and $5 \\times 2 = 10$ doubles it.",
+                "check": [
+                  "Eq(5*1, 5)",
+                  "Eq(5*0, 0)",
+                  "Eq(5*2, 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "One group of nine",
+            "prompt": "What is $1 \\times 9$?",
+            "options": [
+              "$9$",
+              "$1$",
+              "$10$",
+              "$0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "One group with nine things in it holds nine things — there is nothing to repeat. Answering $1$ counts the groups rather than their contents.",
+            "check": [
+              "Eq(1*9, 9)",
+              "Eq(9*1, 9)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Zero had to be argued for",
+            "body": "For centuries, mathematicians disagreed about whether zero was a number at all — how can nothing be something you count with? The argument was settled by usefulness: without zero there is no way to write $305$, and no way to say what three empty boxes hold. The rule $3 \\times 0 = 0$ is what makes the whole system hold together."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Times zero, and reading a story",
+            "beats": [
+              "Three boxes, all empty — drawn below. How many stones? None: $3 \\times 0 = 0$.",
+              "It works the other way too. $0 \\times 5$ means no groups at all, so again there is nothing to count: $0$. Whichever number is zero, the answer is zero.",
+              "Now the real skill. A story is a TIMES story only when it has equal groups: \"five bags with four apples in each\" gives $5 \\times 4 = 20$. \"Five apples and four more\" gives $5 + 4 = 9$ — two numbers, but no groups."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 0,
+                  "color": "#d97706",
+                  "label": "box 1: empty"
+                },
+                {
+                  "count": 0,
+                  "color": "#d97706",
+                  "label": "box 2: empty"
+                },
+                {
+                  "count": 0,
+                  "color": "#d97706",
+                  "label": "box 3: empty"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Zero, and stories",
+            "intro": "Ask: are there equal groups?",
+            "examples": [
+              {
+                "prompt": "Work out $3 \\times 0$ and $0 \\times 6$.",
+                "steps": [
+                  "Three empty boxes hold nothing: $3 \\times 0 = 0$.",
+                  "No boxes at all also holds nothing: $0 \\times 6 = 0$."
+                ],
+                "answer": "both $0$",
+                "check": [
+                  "Eq(3*0, 0)",
+                  "Eq(0*6, 0)"
+                ]
+              },
+              {
+                "prompt": "Five bags with $4$ apples in each. How many apples?",
+                "steps": [
+                  "Equal groups — this is a times story.",
+                  "$4 + 4 + 4 + 4 + 4 = 20$, so $5 \\times 4 = 20$ apples.",
+                  "$5 + 4 = 9$ would answer a story with no bags in it."
+                ],
+                "answer": "$20$ apples",
+                "check": [
+                  "Eq(5*4, 20)",
+                  "Eq(4 + 4 + 4 + 4 + 4, 20)",
+                  "Eq(5 + 4, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Zero, and times stories",
+            "intro": "Groups or no groups?",
+            "problems": [
+              {
+                "prompt": "$5 \\times 0$ is:",
+                "options": [
+                  "$0$",
+                  "$5$",
+                  "$50$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five empty groups hold nothing at all. Answering $5$ counts the groups instead of their contents.",
+                "check": [
+                  "Eq(5*0, 0)",
+                  "Eq(0*5, 0)"
+                ]
+              },
+              {
+                "prompt": "The picture shows $5$ bags with $4$ apples in each. The total is:",
+                "options": [
+                  "$20$ apples",
+                  "$9$ apples",
+                  "$54$ apples"
+                ],
+                "correctIndex": 0,
+                "explanation": "Five equal groups of four: $5 \\times 4 = 20$. Adding gives $9$, which would answer \"five apples and four more\".",
+                "check": [
+                  "Eq(5*4, 20)",
+                  "Eq(5 + 4, 9)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "bag 1"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "bag 2"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "bag 3"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "bag 4"
+                    },
+                    {
+                      "count": 4,
+                      "color": "#059669",
+                      "label": "bag 5"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Which story is NOT a times story?",
+                "options": [
+                  "Bat has $6$ stones and finds $3$ more",
+                  "Bat has $6$ bags with $3$ stones in each",
+                  "Bat fills $3$ boxes with $6$ stones each"
+                ],
+                "correctIndex": 0,
+                "explanation": "The first simply joins two amounts — $6 + 3 = 9$, with no groups anywhere. The other two have equal groups and give $18$.",
+                "check": [
+                  "Eq(6 + 3, 9)",
+                  "Eq(6*3, 18)",
+                  "Eq(3*6, 18)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Empty groups",
+            "prompt": "Three boxes stand on a shelf, all empty. How many stones altogether?",
+            "options": [
+              "$0$",
+              "$3$",
+              "$1$",
+              "you cannot tell"
+            ],
+            "correctIndex": 0,
+            "explanation": "Multiplication counts what is INSIDE the groups, and each of these holds nothing: $3 \\times 0 = 0$. The three counts boxes, not stones.",
+            "check": [
+              "Eq(3*0, 0)",
+              "Eq(0 + 0 + 0, 0)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "$n \\times 1 = n$ — one group of something is that something.",
+              "$n \\times 0 = 0$ — empty groups, or no groups at all, hold nothing.",
+              "A story is a times story only if it has EQUAL groups; two numbers alone are not enough.",
+              "Ask \"how many groups, and how many in one?\" before choosing an operation."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before multiplying in a word problem, say the sentence \"there are ___ groups with ___ in each\". If you cannot fill both blanks from the story, it is not a times problem."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "One leaves it, zero empties it, groups make it.",
+            "problems": [
+              {
+                "prompt": "$9 \\times 0$ is:",
+                "options": [
+                  "$0$",
+                  "$9$",
+                  "$90$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Nine empty groups hold nothing: $0$. The nine counts groups, and there is nothing inside any of them.",
+                "check": [
+                  "Eq(9*0, 0)",
+                  "Eq(0*9, 0)"
+                ]
+              },
+              {
+                "prompt": "$1 \\times 1$ is:",
+                "options": [
+                  "$1$",
+                  "$2$",
+                  "$0$"
+                ],
+                "correctIndex": 0,
+                "explanation": "One group with one thing in it: $1$. Adding would give $2$, which is the commonest slip on this smallest of facts.",
+                "check": [
+                  "Eq(1*1, 1)",
+                  "Eq(1 + 1, 2)"
+                ]
+              },
+              {
+                "prompt": "A herder ties $3$ horses at each of $4$ posts. The number of horses is:",
+                "options": [
+                  "$12$",
+                  "$7$",
+                  "$34$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four equal groups of three: $4 \\times 3 = 12$ horses. Adding gives $7$, which answers a story with no posts in it.",
+                "check": [
+                  "Eq(4*3, 12)",
+                  "Eq(3 + 4, 7)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Times One, Times Zero & Stories\" — and the topic",
+            "body": "Equal groups, arrays and the turnaround, the friendly tables, the threes and fours, and the two quiet rules. One idea carried all of it: multiplication counts equal groups. Next comes division, which takes those same groups apart again."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g3mu-pr1",
+      "statement": "A camp pitches $4$ gers with $5$ beds in each. Write the repeated addition and the times fact.",
+      "solution": "Four groups of five: $5 + 5 + 5 + 5 = 20$, so $4 \\times 5 = 20$ beds.",
+      "check": [
+        "Eq(5 + 5 + 5 + 5, 20)",
+        "Eq(4*5, 20)"
+      ]
+    },
+    {
+      "id": "g3mu-pr2",
+      "statement": "Find $2 \\times 8$ and $5 \\times 8$. What must each answer end in, and why?",
+      "solution": "$2 \\times 8 = 16$: doubling always gives an even answer. $5 \\times 8 = 40$: eight is an even count of fives, so they pair into four whole tens and the answer ends in $0$.",
+      "check": [
+        "Eq(2*8, 16)",
+        "Eq(Mod(16, 2), 0)",
+        "Eq(5*8, 40)",
+        "Eq(Mod(40, 10), 0)"
+      ]
+    },
+    {
+      "id": "g3mu-pr3",
+      "statement": "The array shows $3$ rows of $6$. Write both times facts it proves and the total.",
+      "solution": "Rows: $3 \\times 6 = 18$. Columns: $6 \\times 3 = 18$. One rectangle, two readings, one count of $18$.",
+      "check": [
+        "Eq(3*6, 18)",
+        "Eq(6*3, 18)"
+      ],
+      "courseFigure": {
+        "mode": "groups",
+        "groups": [
+          {
+            "count": 6,
+            "color": "#3b82f6",
+            "label": "row 1"
+          },
+          {
+            "count": 6,
+            "color": "#3b82f6",
+            "label": "row 2"
+          },
+          {
+            "count": 6,
+            "color": "#3b82f6",
+            "label": "row 3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "g3mu-pr4",
+      "statement": "Build $4 \\times 7$ from the two times table, showing every step.",
+      "solution": "$2 \\times 7 = 14$. Four groups is two groups counted twice, so double the answer: $14 + 14 = 28$. Therefore $4 \\times 7 = 28$.",
+      "check": [
+        "Eq(2*7, 14)",
+        "Eq(14 + 14, 28)",
+        "Eq(4*7, 28)"
+      ]
+    },
+    {
+      "id": "g3mu-pr5",
+      "statement": "You know $3 \\times 6 = 18$. Find $3 \\times 7$ and $3 \\times 5$ without recounting from zero.",
+      "solution": "One group forward: $18 + 3 = 21$, so $3 \\times 7 = 21$. One group back: $18 - 3 = 15$, so $3 \\times 5 = 15$. A known fact reaches both of its neighbours.",
+      "check": [
+        "Eq(3*6, 18)",
+        "Eq(18 + 3, 21)",
+        "Eq(3*7, 21)",
+        "Eq(18 - 3, 15)",
+        "Eq(3*5, 15)"
+      ]
+    },
+    {
+      "id": "g3mu-pr6",
+      "statement": "Work out $6 \\times 1$ and $6 \\times 0$, and explain the difference in one sentence.",
+      "solution": "$6 \\times 1 = 6$ and $6 \\times 0 = 0$. Six groups of one hold one thing each, so six altogether; six groups of nothing hold nothing at all.",
+      "check": [
+        "Eq(6*1, 6)",
+        "Eq(6*0, 0)"
+      ]
+    },
+    {
+      "id": "g3mu-pr7",
+      "statement": "A picture shows groups of $5$, $5$ and $3$. Explain why no single times fact counts it, and give the true total.",
+      "solution": "The groups are not all the same size, and the times sign promises they are. The total is $5 + 5 + 3 = 13$, whereas three equal groups of five would be $3 \\times 5 = 15$ — two too many.",
+      "check": [
+        "Eq(5 + 5 + 3, 13)",
+        "Eq(3*5, 15)",
+        "Eq(15 - 13, 2)"
+      ]
+    },
+    {
+      "id": "g3mu-pr8",
+      "statement": "Saruul knows only the tables of $2$, $5$ and $10$. Show how she can still answer $4 \\times 5$ AND $5 \\times 4$.",
+      "solution": "$5 \\times 4$ is in her five times table: four fives pair into two whole tens, giving $20$. The turnaround then hands her $4 \\times 5 = 20$ free — the same array read the other way.",
+      "check": [
+        "Eq(5*4, 20)",
+        "Eq(4*5, 20)",
+        "Eq(Mod(20, 10), 0)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g3mu-x1",
+      "statement": "Write $4 \\times 3$ as repeated addition and find it. Then explain why groups of $3$, $3$ and $4$ have NO single times fact.",
+      "solution": "$4 \\times 3 = 3 + 3 + 3 + 3 = 12$. The unequal groups total $3 + 3 + 4 = 10$, while three equal groups of three make only $3 \\times 3 = 9$ — so no times fact fits, and you must add.",
+      "check": [
+        "Eq(4*3, 12)",
+        "Eq(3 + 3 + 4, 10)",
+        "Eq(3*3, 9)",
+        "Ne(10, 9)"
+      ]
+    },
+    {
+      "id": "g3mu-x2",
+      "statement": "Find $2 \\times 9$, $5 \\times 9$ and $10 \\times 9$, giving each answer's ending check.",
+      "solution": "$2 \\times 9 = 18$: a double, so even. $5 \\times 9 = 45$: nine is an odd count of fives, so one five is left unpaired and the answer ends in $5$. $10 \\times 9 = 90$: nine whole bundles of ten, ending in $0$.",
+      "check": [
+        "Eq(2*9, 18)",
+        "Eq(Mod(18, 2), 0)",
+        "Eq(5*9, 45)",
+        "Eq(Mod(45, 10), 5)",
+        "Eq(10*9, 90)"
+      ]
+    },
+    {
+      "id": "g3mu-x3",
+      "statement": "Build $4 \\times 8$ from $2 \\times 8$, and $3 \\times 8$ from $3 \\times 7$.",
+      "solution": "$2 \\times 8 = 16$, and four groups is two groups twice: $16 + 16 = 32$, so $4 \\times 8 = 32$. And $3 \\times 7 = 21$, so one more group of three gives $21 + 3 = 24 = 3 \\times 8$.",
+      "check": [
+        "Eq(2*8, 16)",
+        "Eq(16 + 16, 32)",
+        "Eq(4*8, 32)",
+        "Eq(3*7, 21)",
+        "Eq(21 + 3, 24)",
+        "Eq(3*8, 24)"
+      ]
+    },
+    {
+      "id": "g3mu-x4",
+      "statement": "An array has $5$ rows of $3$ stones. Write both times facts, and say why they must agree.",
+      "solution": "Rows: $5 \\times 3 = 15$. Columns: $3 \\times 5 = 15$. They must agree because both readings count the SAME stones — tilting your head cannot change how many there are.",
+      "check": [
+        "Eq(5*3, 15)",
+        "Eq(3*5, 15)"
+      ]
+    },
+    {
+      "id": "g3mu-x5",
+      "statement": "Work out $8 \\times 1$, $8 \\times 0$ and $0 \\times 8$, and say what each picture looks like.",
+      "solution": "$8 \\times 1 = 8$: eight boxes with one stone each. $8 \\times 0 = 0$: eight empty boxes. $0 \\times 8 = 0$: no boxes at all. Multiplying by one leaves the number alone; multiplying by zero empties it, whichever side the zero is on.",
+      "check": [
+        "Eq(8*1, 8)",
+        "Eq(8*0, 0)",
+        "Eq(0*8, 0)"
+      ]
+    },
+    {
+      "id": "g3mu-x6",
+      "statement": "A shop has $4$ shelves with $6$ jars on each. Bat answers $10$ jars. Explain his mistake and give the right answer.",
+      "solution": "Bat added the two numbers: $4 + 6 = 10$. But the story has equal GROUPS — four groups of six — so it is a times story: $6 + 6 + 6 + 6 = 24$, giving $4 \\times 6 = 24$ jars. His answer is $14$ short.",
+      "check": [
+        "Eq(4 + 6, 10)",
+        "Eq(4*6, 24)",
+        "Eq(24 - 10, 14)"
+      ]
+    }
+  ]
+}

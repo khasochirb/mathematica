@@ -29,7 +29,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, withfig, workedset, write_topic,
                      fig_groups, fig_numline, fig_geo, P, seg, ang,
                      C_ACCENT, C_WARM, C_GREEN)
@@ -1125,7 +1125,7 @@ def practice_bank():
         prob("g4tm-pr4", "Find $6 \\times 9$, then verify it with both 9s patterns.",
              "Six tens minus six: $60 - 6 = 54$ (receipt: $54 + 6 = 60$). Patterns: the tens digit $5$ is one less than $6$, and $5 + 4 = 9$.",
              ["Eq(60 - 6, 54)", "Eq(54 + 6, 60)", "Eq(5 + 4, 9)"]),
-        withfig(prob("g4tm-pr5", "The array shows $4$ rows of $7$ stones. Write both times facts it proves.",
+        withprobfig(prob("g4tm-pr5", "The array shows $4$ rows of $7$ stones. Write both times facts it proves.",
              "Rows: $4 \\times 7 = 28$. Columns: $7 \\times 4 = 28$. One rectangle, two readings, one count.",
              ["Eq(4*7, 28)", "Eq(7*4, 28)"]), fig_pr5),
         prob("g4tm-pr6", "Find $57 \\times 3$ by the place split, and give the split as a receipt.",

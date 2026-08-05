@@ -27,7 +27,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (C_GREEN, C_WARM, fig_groups, fig_numline,  # noqa: E402
+from g4build import (withprobfig, C_GREEN, C_WARM, fig_groups, fig_numline,  # noqa: E402
                      funfact, near, prob, recap, tapq, teach, th, tip, tp,
                      tryitset, wex, withfig, workedset, write_topic)
 
@@ -1176,7 +1176,7 @@ def practice_bank():
         prob("g4nu-pr4", "Order from smallest to largest: " + M(6512) + ", " + M(6125) + ", " + M(6521) + ".",
              "Thousands tie at $6$. Hundreds: $1 < 5$ makes " + M(6125) + " smallest. Between the two with $5$ hundreds, tens decide: $1 < 2$, so " + M(6512) + " $<$ " + M(6521) + ". Order: " + M(6125) + " $<$ " + M(6512) + " $<$ " + M(6521) + ".",
              ["6125 < 6512", "6512 < 6521"]),
-        withfig(prob("g4nu-pr5", "The line shows " + M(n) + " between its neighbouring hundreds. How far is it from each of them, and what does " + M(n) + " round to at the nearest $100$?",
+        withprobfig(prob("g4nu-pr5", "The line shows " + M(n) + " between its neighbouring hundreds. How far is it from each of them, and what does " + M(n) + " round to at the nearest $100$?",
              "Gaps: $" + th(n) + " - " + th(a) + " = 64$ past " + M(a) + ", and $" + th(b) + " - " + th(n) + " = 36$ short of " + M(b) + ". The smaller gap wins, so to the nearest $100$, " + M(n) + " rounds to " + M(b) + ".",
              ["Eq(2764 - 2700, 64)", "Eq(2800 - 2764, 36)",
               near(2764, 2800, 2700)]), fig_pr5),

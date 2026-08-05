@@ -28,6 +28,15 @@ export interface LessonProblem {
   // GeoDiagram — the genmath course system, distinct from the image-based
   // `figure` above. Used by figure-heavy course banks (Trigonometry).
   geoFigure?: import("@/lib/genmath-interactive").GeoDiagramSpec;
+  // A declarative genmath figure (groups / fraction bar / number line / geo)
+  // rendered by RatioFigure — the same spec the interactive player draws.
+  //
+  // Deliberately NOT `figure` above: that field is the ЭЕШ hub's IMAGE
+  // (src/width/height), and a genmath spec put there renders as a broken
+  // <img>. The primary-band builders wrote practice-bank figures into it for
+  // months and every one was invisible, which left statements like "the
+  // picture shows the bundles" unanswerable. Own field, own renderer.
+  courseFigure?: import("@/lib/genmath-interactive").FigureSpec;
   // Sympy-verifiable boolean expressions. Each must evaluate True. Required for
   // every authored (Courses) problem — enforced by scripts/verify-genmath.py.
   // Not used by ЭЕШ (bank-backed) problems.

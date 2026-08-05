@@ -31,7 +31,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, fig_numline, fig_geo, P, seg, ang,
                      C_ACCENT, C_WARM, C_GREEN, C_NEUTRAL)
@@ -1131,7 +1131,7 @@ def practice_bank():
         prob("g4me-pr1", "Convert $8$ m to centimetres, and say which is longer: $8$ m or $750$ cm.",
              "Trade: $8 \\times 100 = 800$ cm. Then $800 > 750$ — the $8$ m is longer by $50$ cm, since $750 + 50 = 800$ ✓.",
              ["Eq(8*100, 800)", "800 > 750", "Eq(750 + 50, 800)"]),
-        withfig(prob("g4me-pr2", "A pencil lies along a ruler from the $%d$ cm mark to the $%d$ cm mark. How long is the pencil?" % (pa, pb),
+        withprobfig(prob("g4me-pr2", "A pencil lies along a ruler from the $%d$ cm mark to the $%d$ cm mark. How long is the pencil?" % (pa, pb),
              "Mark to mark: $%d - %d = %d$ cm. Add back: $%d + %d = %d$ ✓." % (pb, pa, plen, plen, pa, pb),
              ["Eq(%d + %d, %d)" % (plen, pa, pb)]), fig_pr2),
         prob("g4me-pr3", "Convert $7$ kg to grams, and $2\\,000$ g to kilograms.",

@@ -6,6 +6,7 @@ import MathText from "@/components/esh/MathText";
 import { useLang } from "@/lib/lang-context";
 import type { LessonProblem } from "@/lib/lesson-types";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
+import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 
 export interface RevealLabels {
   reveal: string;
@@ -69,6 +70,11 @@ export default function RevealProblemCard({
       {problem.geoFigure && (
         <div className="mt-3">
           <GeoDiagram spec={problem.geoFigure} />
+        </div>
+      )}
+      {problem.courseFigure && (
+        <div className="mt-3 flex justify-center">
+          <RatioFigure figure={problem.courseFigure} />
         </div>
       )}
       {open && (

@@ -26,7 +26,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, fig_geo, P, seg, ang, poly,
                      C_ACCENT, C_WARM, C_GREEN, C_NEUTRAL)
@@ -1323,7 +1323,7 @@ def practice_bank():
         height=210)
     fig_cube = make_cube_fig()
     return [
-        withfig(prob("g4sh-pr1",
+        withprobfig(prob("g4sh-pr1",
              "The shape in the picture has $5$ straight sides. Name it, and count its vertices with the side-ends receipt.",
              "Five sides: a PENTAGON. Ends: $5 \\times 2 = 10$; each vertex joins $2$ ends: $10 \\div 2 = 5$ vertices — corners match sides.",
              ["Eq(5*2, 10)", "Eq(Rational(10,2), 5)"]), fig_pent),
@@ -1331,7 +1331,7 @@ def practice_bank():
              "How many right angles fill a straight line? A full turn? Show both with the quarter-turn arithmetic.",
              "A straight line is half a turn: $2 \\times 90 = 180$, so $2$ right angles. A full turn: $4 \\times 90 = 360$, so $360 \\div 90 = 4$.",
              ["Eq(2*90, 180)", "Eq(4*90, 360)", "Eq(Rational(360,90), 4)"]),
-        withfig(prob("g4sh-pr3",
+        withprobfig(prob("g4sh-pr3",
              "The rectangle in the picture has corners $(1, 1)$, $(8, 1)$, $(8, 5)$, $(1, 5)$. Check its opposite sides are equal, and say why it is not a square.",
              "Bottom and top: $8 - 1 = 7$ each (add back $7 + 1 = 8$ ✓). Left and right: $5 - 1 = 4$ each ($4 + 1 = 5$ ✓). Opposite pairs match: a rectangle. But $7 > 4$ — neighbouring sides differ, so it is not a square.",
              ["Eq(8 - 1, 7)", "Eq(7 + 1, 8)", "Eq(5 - 1, 4)", "Eq(4 + 1, 5)",
@@ -1340,7 +1340,7 @@ def practice_bank():
              "A student says a square is not a rectangle. Run the rectangle's two tests on a square and settle it.",
              "Test 1 — four right angles: yes, $4 \\times 90 = 360$, a full turn of page corners. Test 2 — opposite sides equal: yes, ALL its sides are equal. Both passed: $1 + 1 = 2$. Every square IS a rectangle; the equal sides are a bonus, not a fault.",
              ["Eq(4*90, 360)", "Eq(1 + 1, 2)"]),
-        withfig(prob("g4sh-pr5",
+        withprobfig(prob("g4sh-pr5",
              "The square in the picture shows its mirror lines dashed. How many are there, and where does the vertical one stand?",
              "Four: the rectangle's $2$ side-middle lines plus the square's $2$ diagonals — $2 + 2 = 4$. The vertical stands at the true middle: $2 + 8 = 10$, $10 \\div 2 = 5$.",
              ["Eq(2 + 2, 4)", "Eq(2 + 8, 10)", "Eq(Rational(10,2), 5)"]), fig_sq_sym),
@@ -1348,7 +1348,7 @@ def practice_bank():
              "Count the lines of symmetry of the block letters M, O, M — and the total for the word MOM.",
              "M: $1$ vertical line. O: $2$ — vertical and horizontal. M: $1$. Total: $1 + 2 + 1 = 4$ — and the shared vertical mirror is why MOM survives a real mirror unchanged.",
              ["Eq(1 + 2 + 1, 4)"]),
-        withfig(prob("g4sh-pr7",
+        withprobfig(prob("g4sh-pr7",
              "Count the cube in the picture — faces, edges, vertices — and run the receipt.",
              "Faces in opposite pairs: $3 \\times 2 = 6$. Edges as rings and uprights: $4 + 4 + 4 = 12$. Vertices: $4 + 4 = 8$. Receipt: $6 + 8 = 14$, $14 - 12 = 2$ ✓ (add back: $2 + 12 = 14$).",
              ["Eq(3*2, 6)", "Eq(4 + 4 + 4, 12)", "Eq(4 + 4, 8)",
@@ -1374,7 +1374,7 @@ def test_bank():
         height=190)
     fig_pyr = make_pyramid_fig()
     return [
-        withfig(prob("g4sh-x1",
+        withprobfig(prob("g4sh-x1",
              "Name the shape in the picture, and use the side-ends receipt to count its vertices.",
              "Six straight sides: a HEXAGON. Ends: $6 \\times 2 = 12$; vertices: $12 \\div 2 = 6$ — the corners match the sides.",
              ["Eq(6*2, 12)", "Eq(Rational(12,2), 6)"]), fig_hex),
@@ -1382,7 +1382,7 @@ def test_bank():
              "A dancer makes three quarter turns, always the same way. How much of a full turn is that — and how much more would close the spin?",
              "Three quarters: $3 \\times 90 = 270$ degrees. The full turn is $360$, so one more quarter closes it: $360 - 270 = 90$, and $270 + 90 = 360$ ✓.",
              ["Eq(3*90, 270)", "Eq(360 - 270, 90)", "Eq(270 + 90, 360)"]),
-        withfig(prob("g4sh-x3",
+        withprobfig(prob("g4sh-x3",
              "The shape in the picture has corners $(1, 2)$, $(9, 2)$, $(9, 6)$, $(1, 6)$, all right angles. Sort it: quadrilateral, rectangle, or square?",
              "Opposite sides: $9 - 1 = 8$ and $8$ ($8 + 1 = 9$ ✓); $6 - 2 = 4$ and $4$ ($4 + 2 = 6$ ✓). Right angles and matching opposite pairs: a RECTANGLE. Not a square: $8 > 4$. (It is also a quadrilateral — the family holds all its members.)",
              ["Eq(9 - 1, 8)", "Eq(8 + 1, 9)", "Eq(6 - 2, 4)", "Eq(4 + 2, 6)",
@@ -1396,7 +1396,7 @@ def test_bank():
              "Faces: $3 \\times 2 = 6$; edges: $4 + 4 + 4 = 12$; vertices: $4 + 4 = 8$. Receipt: $6 + 8 = 14$, $14 - 12 = 2$ ✓ — a balanced count.",
              ["Eq(3*2, 6)", "Eq(4 + 4 + 4, 12)", "Eq(4 + 4, 8)",
               "Eq(6 + 8, 14)", "Eq(14 - 12, 2)"]),
-        withfig(prob("g4sh-x6",
+        withprobfig(prob("g4sh-x6",
              "The square pyramid in the picture wears $1$ square face and $4$ triangle faces. Count the faces — and then count the SIDES of all five faces put together.",
              "Faces: $1 + 4 = 5$. Sides of the faces: the square brings $4$, each triangle brings $3$ — $4 + 4 \\times 3 = 4 + 12 = 16$ sides drawn across the five faces. (Fewer edges than that — $8$ — because on the solid, faces share their edges in pairs: $16 \\div 2 = 8$.)",
              ["Eq(1 + 4, 5)", "Eq(4*3, 12)", "Eq(4 + 12, 16)",

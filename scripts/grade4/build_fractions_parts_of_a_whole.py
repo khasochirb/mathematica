@@ -26,7 +26,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_bar, fig_groups, C_GREEN, C_NEUTRAL)
 
@@ -1102,7 +1102,7 @@ def practice_bank():
     fig_pr3 = fig_bar(5, 6, "5 of 6 equal pieces shaded")
     fig_pr6 = fig_groups(*[(6, "group %d" % (i + 1)) for i in range(4)])
     return [
-        withfig(
+        withprobfig(
             prob("g4fr-pr1", "The bar shows $4$ equal parts with $1$ shaded. Name the shaded part in words and as a fraction.",
                  "Four equal parts are quarters; one of them is one quarter, $\\frac{1}{4}$. Four such parts rebuild the bar: $4 \\times \\frac{1}{4} = 1$ ✓.",
                  ["Eq(4*Rational(1,4), 1)", "Rational(1,4) < 1"]),
@@ -1110,7 +1110,7 @@ def practice_bank():
         prob("g4fr-pr2", "Order from biggest to smallest: $\\frac{1}{3}$, $\\frac{1}{8}$, $\\frac{1}{5}$.",
              "One piece each, so the coarsest cut wins: $\\frac{1}{3} > \\frac{1}{5} > \\frac{1}{8}$ — the bigger bottom loses.",
              ["Rational(1,3) > Rational(1,5)", "Rational(1,5) > Rational(1,8)"]),
-        withfig(
+        withprobfig(
             prob("g4fr-pr3", "The bar shows $6$ equal pieces with $5$ shaded. Write the shaded fraction and the plain fraction.",
                  "Shaded: $5$ pieces of the sixth size, $\\frac{5}{6}$. Plain: the remaining $1$ piece, $\\frac{1}{6}$, since $1 + 5 = 6$ accounts for every piece and together they make the whole bar.",
                  ["Eq(5*Rational(1,6), Rational(5,6))", "Eq(1 + 5, 6)",
@@ -1122,7 +1122,7 @@ def practice_bank():
         prob("g4fr-pr5", "Which is more: $\\frac{1}{6}$ or $\\frac{1}{10}$ of the same melon?",
              "One piece each: a $6$-cut makes bigger pieces than a $10$-cut, so $\\frac{1}{6} > \\frac{1}{10}$ — even though $10 > 6$.",
              ["Rational(1,6) > Rational(1,10)", "10 > 6"]),
-        withfig(
+        withprobfig(
             prob("g4fr-pr6", "$24$ sweets are shared into $4$ equal groups, as shown. Find $\\frac{1}{4}$ of the sweets.",
                  "Share: $24 \\div 4 = 6$ in each group, receipt $6 \\times 4 = 24$ ✓. One group — $6$ sweets — is $\\frac{1}{4}$ of the bag.",
                  ["Eq(Rational(24,4), 6)", "Eq(6*4, 24)", "Eq(Rational(1,4)*24, 6)"]),
@@ -1140,7 +1140,7 @@ def practice_bank():
 def test_bank():
     fig_x1 = fig_bar(3, 8, "3 of 8 equal slices taken")
     return [
-        withfig(
+        withprobfig(
             prob("g4fr-x1", "A pizza is cut into $8$ equal slices and you take $3$, as shown. What fraction did you take, and what fraction remains?",
                  "Taken: $3$ slices of the eighth size, $\\frac{3}{8}$. Remaining: $8 - 3 = 5$ slices, $\\frac{5}{8}$, and $5 + 3 = 8$ ✓ accounts for the whole pizza.",
                  ["Eq(3*Rational(1,8), Rational(3,8))", "Eq(5 + 3, 8)",

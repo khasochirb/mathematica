@@ -25,7 +25,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, fig_numline, fig_geo, P, poly,
                      C_ACCENT, C_WARM, C_GREEN)
@@ -1136,7 +1136,7 @@ def practice_bank():
              "$8 \\times 9 = 72$, $9 \\times 8 = 72$, $72 \\div 8 = 9$, $72 \\div 9 = 8$ — the product $72$ leads both divisions.",
              ["Eq(8*9, 72)", "Eq(9*8, 72)",
               "Eq(Rational(72,8), 9)", "Eq(Rational(72,9), 8)"]),
-        withfig(
+        withprobfig(
             prob("g4dv-pr4",
                  "$%d$ buuz are set out on plates of $%d$. How many full plates, and how many buuz are left? Sign the receipt." % (p4n, p4d),
                  "$%d \\times %d = %d$ fits inside $%d$: $%d$ full plates and $%d$ buuz left. Receipt: $%d \\times %d + %d = %d$ ✓ and $%d < %d$ ✓." % (
@@ -1154,7 +1154,7 @@ def practice_bank():
         prob("g4dv-pr7", "A camp pitches $7$ gers with $6$ guests each. Choose the operation and find the number of guests.",
              "The total is wanted from equal groups: multiply. $7 \\times 6 = 42$ guests — and $42 \\div 7 = 6$ retells the story ✓.",
              ["Eq(7*6, 42)", "Eq(Rational(42,7), 6)"]),
-        withfig(
+        withprobfig(
             prob("g4dv-pr8", "Between which two multiples of $8$ does $30$ sit? Use them to write $30 \\div 8$ with its remainder and receipt.",
                  "$3 \\times 8 = 24$ and $4 \\times 8 = 32$: the pile sits between them, so $30 \\div 8 = 3$ r $6$. Receipt: $3 \\times 8 + 6 = 30$ ✓ and $6 < 8$ ✓.",
                  ["Eq(3*8, 24)", "Eq(4*8, 32)", "24 < 30", "30 < 32",
