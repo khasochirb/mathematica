@@ -37,6 +37,195 @@
   ],
   "forms": [
     {
+      "id": "limit-laws",
+      "title": "The limit laws",
+      "level": 1,
+      "unit": "limits-and-continuity",
+      "skill": "Take the limit of each piece separately — as long as each piece has one, and the bottom of a quotient is not zero.",
+      "variants": [
+        {
+          "id": "CAL-llaw-v01",
+          "statement": "$\\lim_{x \\to a} f(x) = 3$ and $\\lim_{x \\to a} g(x) = 5$. Find $\\lim_{x \\to a} f(x) + g(x)$.",
+          "options": [
+            "$8$",
+            "$-2$",
+            "$15$",
+            "$\\frac{3}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $8$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(3) + (5) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v02",
+          "statement": "$\\lim_{x \\to a} f(x) = 7$ and $\\lim_{x \\to a} g(x) = 2$. Find $\\lim_{x \\to a} f(x) - g(x)$.",
+          "options": [
+            "$9$",
+            "$5$",
+            "$14$",
+            "$\\frac{7}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $5$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(7) - (2) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v03",
+          "statement": "$\\lim_{x \\to a} f(x) = 4$ and $\\lim_{x \\to a} g(x) = 6$. Find $\\lim_{x \\to a} f(x)g(x)$.",
+          "options": [
+            "$10$",
+            "$-2$",
+            "$24$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $24$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(4) * (6) == Rational(24, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v04",
+          "statement": "$\\lim_{x \\to a} f(x) = 12$ and $\\lim_{x \\to a} g(x) = 3$. Find $\\lim_{x \\to a} \\dfrac{f(x)}{g(x)}$.",
+          "options": [
+            "$15$",
+            "$9$",
+            "$36$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $4$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "Rational(12, 3) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v05",
+          "statement": "$\\lim_{x \\to a} f(x) = -2$ and $\\lim_{x \\to a} g(x) = 8$. Find $\\lim_{x \\to a} f(x) + g(x)$.",
+          "options": [
+            "$6$",
+            "$-10$",
+            "$-16$",
+            "$-\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $6$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(-2) + (8) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v06",
+          "statement": "$\\lim_{x \\to a} f(x) = 9$ and $\\lim_{x \\to a} g(x) = 4$. Find $\\lim_{x \\to a} f(x) - g(x)$.",
+          "options": [
+            "$13$",
+            "$5$",
+            "$36$",
+            "$\\frac{9}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $5$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(9) - (4) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v07",
+          "statement": "$\\lim_{x \\to a} f(x) = 5$ and $\\lim_{x \\to a} g(x) = -3$. Find $\\lim_{x \\to a} f(x)g(x)$.",
+          "options": [
+            "$2$",
+            "$8$",
+            "$-15$",
+            "$-\\frac{5}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $-15$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(5) * (-3) == Rational(-15, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v08",
+          "statement": "$\\lim_{x \\to a} f(x) = 20$ and $\\lim_{x \\to a} g(x) = 5$. Find $\\lim_{x \\to a} \\dfrac{f(x)}{g(x)}$.",
+          "options": [
+            "$25$",
+            "$15$",
+            "$100$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $4$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "Rational(20, 5) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v09",
+          "statement": "$\\lim_{x \\to a} f(x) = 6$ and $\\lim_{x \\to a} g(x) = 1$. Find $\\lim_{x \\to a} f(x) + g(x)$.",
+          "options": [
+            "$7$",
+            "$5$",
+            "$6$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $7$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(6) + (1) == Rational(7, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v10",
+          "statement": "$\\lim_{x \\to a} f(x) = 11$ and $\\lim_{x \\to a} g(x) = 7$. Find $\\lim_{x \\to a} f(x) - g(x)$.",
+          "options": [
+            "$18$",
+            "$4$",
+            "$77$",
+            "$\\frac{11}{7}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $4$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(11) - (7) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v11",
+          "statement": "$\\lim_{x \\to a} f(x) = -4$ and $\\lim_{x \\to a} g(x) = 3$. Find $\\lim_{x \\to a} f(x)g(x)$.",
+          "options": [
+            "$-1$",
+            "$-7$",
+            "$-12$",
+            "$-\\frac{4}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $-12$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "(-4) * (3) == Rational(-12, 1)"
+          ]
+        },
+        {
+          "id": "CAL-llaw-v12",
+          "statement": "$\\lim_{x \\to a} f(x) = 18$ and $\\lim_{x \\to a} g(x) = 6$. Find $\\lim_{x \\to a} \\dfrac{f(x)}{g(x)}$.",
+          "options": [
+            "$24$",
+            "$12$",
+            "$108$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The limit laws let each piece be taken separately as long as every piece has a limit — and, for a quotient, as long as the bottom limit is not zero. Here that gives $3$. The laws are about the LIMITS, not the functions: nothing about $f$ or $g$ themselves is needed.",
+          "check": [
+            "Rational(18, 6) == Rational(3, 1)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "limit-substitution",
       "title": "Limits by direct substitution",
       "level": 1,
@@ -221,6 +410,195 @@
           "explanation": "A polynomial is continuous, so the limit is just the value at $x = -3$: substituting gives $-5$. Plugging in $x = 3$ instead — a sign slip on the limit point — gives $31$.",
           "check": [
             "limit((1)*x**2 + (6)*x + (4), x, (-3)) == -5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discontinuity-type",
+      "title": "Removable or infinite",
+      "level": 2,
+      "unit": "limits-and-continuity",
+      "skill": "A factor that cancels leaves a hole; one that survives leaves an asymptote.",
+      "variants": [
+        {
+          "id": "CAL-dtype-v01",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x - 2)(x - 5)}{x - 2}$ have at $x = 2$?",
+          "options": [
+            "a removable discontinuity",
+            "a infinite discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 0,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x - 2$ cancels, leaving a function that is perfectly well behaved at $x = 2$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(2) - (2) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v02",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x + 3)(x + 0)}{x + 3}$ have at $x = -3$?",
+          "options": [
+            "a infinite discontinuity",
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 1,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x + 3$ cancels, leaving a function that is perfectly well behaved at $x = -3$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(-3) - (-3) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v03",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x - 5)(x - 8)}{x - 5}$ have at $x = 5$?",
+          "options": [
+            "a infinite discontinuity",
+            "a jump discontinuity",
+            "a removable discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 2,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x - 5$ cancels, leaving a function that is perfectly well behaved at $x = 5$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(5) - (5) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v04",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x - 1)(x - 4)}{x - 1}$ have at $x = 1$?",
+          "options": [
+            "a infinite discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there",
+            "a removable discontinuity"
+          ],
+          "correctIndex": 3,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x - 1$ cancels, leaving a function that is perfectly well behaved at $x = 1$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(1) - (1) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v05",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 7}{x - 4}$ have at $x = 4$?",
+          "options": [
+            "a infinite discontinuity",
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 0,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to 4$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(4) - (4) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v06",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 1}{x + 2}$ have at $x = -2$?",
+          "options": [
+            "a removable discontinuity",
+            "a infinite discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 1,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to -2$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(-2) - (-2) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v07",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 9}{x - 6}$ have at $x = 6$?",
+          "options": [
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "a infinite discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 2,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to 6$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(6) - (6) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v08",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 6}{x - 3}$ have at $x = 3$?",
+          "options": [
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there",
+            "a infinite discontinuity"
+          ],
+          "correctIndex": 3,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to 3$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(3) - (3) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v09",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x - 7)(x - 10)}{x - 7}$ have at $x = 7$?",
+          "options": [
+            "a removable discontinuity",
+            "a infinite discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 0,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x - 7$ cancels, leaving a function that is perfectly well behaved at $x = 7$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(7) - (7) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v10",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{(x + 5)(x + 2)}{x + 5}$ have at $x = -5$?",
+          "options": [
+            "a infinite discontinuity",
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 1,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: the factor $x + 5$ cancels, leaving a function that is perfectly well behaved at $x = -5$ apart from the single missing point. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(-5) - (-5) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v11",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 11}{x - 8}$ have at $x = 8$?",
+          "options": [
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "a infinite discontinuity",
+            "no discontinuity at all — the function is continuous there"
+          ],
+          "correctIndex": 2,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to 8$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(8) - (8) == 0"
+          ]
+        },
+        {
+          "id": "CAL-dtype-v12",
+          "statement": "What kind of discontinuity does $f(x) = \\dfrac{x - 2}{x + 1}$ have at $x = -1$?",
+          "options": [
+            "a removable discontinuity",
+            "a jump discontinuity",
+            "no discontinuity at all — the function is continuous there",
+            "a infinite discontinuity"
+          ],
+          "correctIndex": 3,
+          "explanation": "Check whether the vanishing factor in the denominator survives in the numerator: nothing cancels, so as $x \\to -1$ the bottom goes to zero while the top goes to $-3$ — the values run off to infinity. A removable discontinuity is a hole you could fill by defining one value; an infinite one is a vertical asymptote, and no definition can repair it.",
+          "check": [
+            "(-1) - (-1) == 0"
           ]
         }
       ]
@@ -1171,6 +1549,396 @@
       ]
     },
     {
+      "id": "derivative-definition",
+      "title": "The derivative from first principles",
+      "level": 2,
+      "unit": "the-derivative",
+      "skill": "Expand f(x + h), subtract f(x), divide by h, then let h go to zero.",
+      "variants": [
+        {
+          "id": "CAL-ddef-v01",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = x^2 + 3x$.",
+          "options": [
+            "$2x + 3$",
+            "$x + 3$",
+            "$2x$",
+            "$2x^2 + 3x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding the top gives $1(2xh + h^2) + 3h$; dividing by $h$ leaves $2x + 1h + 3$, and letting $h \\to 0$ kills the middle term. The result is $2x + 3$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((1)*x**2 + (3)*x, x) - ((2)*x + (3)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v02",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 2x^2 - x$.",
+          "options": [
+            "$2x - 1$",
+            "$4x - 1$",
+            "$4x$",
+            "$4x^2 - x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding the top gives $2(2xh + h^2) + -1h$; dividing by $h$ leaves $4x + 2h + -1$, and letting $h \\to 0$ kills the middle term. The result is $4x - 1$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((2)*x**2 + (-1)*x, x) - ((4)*x + (-1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v03",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 3x^2 + 4x$.",
+          "options": [
+            "$3x + 4$",
+            "$6x$",
+            "$6x + 4$",
+            "$6x^2 + 4x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding the top gives $3(2xh + h^2) + 4h$; dividing by $h$ leaves $6x + 3h + 4$, and letting $h \\to 0$ kills the middle term. The result is $6x + 4$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((3)*x**2 + (4)*x, x) - ((6)*x + (4)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v04",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = x^2 - 5x$.",
+          "options": [
+            "$x - 5$",
+            "$2x$",
+            "$2x^2 - 5x$",
+            "$2x - 5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding the top gives $1(2xh + h^2) + -5h$; dividing by $h$ leaves $2x + 1h + -5$, and letting $h \\to 0$ kills the middle term. The result is $2x - 5$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((1)*x**2 + (-5)*x, x) - ((2)*x + (-5)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v05",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 4x^2 + 2x$.",
+          "options": [
+            "$8x + 2$",
+            "$4x + 2$",
+            "$8x$",
+            "$8x^2 + 2x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding the top gives $4(2xh + h^2) + 2h$; dividing by $h$ leaves $8x + 4h + 2$, and letting $h \\to 0$ kills the middle term. The result is $8x + 2$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((4)*x**2 + (2)*x, x) - ((8)*x + (2)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v06",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 2x^2 + 7x$.",
+          "options": [
+            "$2x + 7$",
+            "$4x + 7$",
+            "$4x$",
+            "$4x^2 + 7x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding the top gives $2(2xh + h^2) + 7h$; dividing by $h$ leaves $4x + 2h + 7$, and letting $h \\to 0$ kills the middle term. The result is $4x + 7$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((2)*x**2 + (7)*x, x) - ((4)*x + (7)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v07",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 5x^2 - 3x$.",
+          "options": [
+            "$5x - 3$",
+            "$10x$",
+            "$10x - 3$",
+            "$10x^2 - 3x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding the top gives $5(2xh + h^2) + -3h$; dividing by $h$ leaves $10x + 5h + -3$, and letting $h \\to 0$ kills the middle term. The result is $10x - 3$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((5)*x**2 + (-3)*x, x) - ((10)*x + (-3)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v08",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 3x^2 + x$.",
+          "options": [
+            "$3x + 1$",
+            "$6x$",
+            "$6x^2 + x$",
+            "$6x + 1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding the top gives $3(2xh + h^2) + 1h$; dividing by $h$ leaves $6x + 3h + 1$, and letting $h \\to 0$ kills the middle term. The result is $6x + 1$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((3)*x**2 + (1)*x, x) - ((6)*x + (1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v09",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = x^2 + 8x$.",
+          "options": [
+            "$2x + 8$",
+            "$x + 8$",
+            "$2x$",
+            "$2x^2 + 8x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding the top gives $1(2xh + h^2) + 8h$; dividing by $h$ leaves $2x + 1h + 8$, and letting $h \\to 0$ kills the middle term. The result is $2x + 8$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((1)*x**2 + (8)*x, x) - ((2)*x + (8)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v10",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 6x^2 - 2x$.",
+          "options": [
+            "$6x - 2$",
+            "$12x - 2$",
+            "$12x$",
+            "$12x^2 - 2x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding the top gives $6(2xh + h^2) + -2h$; dividing by $h$ leaves $12x + 6h + -2$, and letting $h \\to 0$ kills the middle term. The result is $12x - 2$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((6)*x**2 + (-2)*x, x) - ((12)*x + (-2)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v11",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 2x^2 + 5x$.",
+          "options": [
+            "$2x + 5$",
+            "$4x$",
+            "$4x + 5$",
+            "$4x^2 + 5x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding the top gives $2(2xh + h^2) + 5h$; dividing by $h$ leaves $4x + 2h + 5$, and letting $h \\to 0$ kills the middle term. The result is $4x + 5$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((2)*x**2 + (5)*x, x) - ((4)*x + (5)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-ddef-v12",
+          "statement": "Use the definition $f'(x) = \\lim_{h \\to 0}\\dfrac{f(x + h) - f(x)}{h}$ to differentiate $f(x) = 4x^2 - 6x$.",
+          "options": [
+            "$4x - 6$",
+            "$8x$",
+            "$8x^2 - 6x$",
+            "$8x - 6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding the top gives $4(2xh + h^2) + -6h$; dividing by $h$ leaves $8x + 4h + -6$, and letting $h \\to 0$ kills the middle term. The result is $8x - 6$ — the same answer the power rule gives, which is exactly why the power rule is allowed.",
+          "check": [
+            "diff((4)*x**2 + (-6)*x, x) - ((8)*x + (-6)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normal-slope",
+      "title": "The slope of the normal",
+      "level": 2,
+      "unit": "the-derivative",
+      "skill": "Perpendicular to the tangent: the negative reciprocal of f'(p).",
+      "variants": [
+        {
+          "id": "CAL-nrm-v01",
+          "statement": "Find the slope of the NORMAL to $y = x^2$ at $x = 2$.",
+          "options": [
+            "$-\\frac{1}{4}$",
+            "$4$",
+            "$-4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent slope is $y' = 2x$ evaluated at $x = 2$, which is $4$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{4}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((1)*x**2, x).subs(x, 2) == 4",
+            "(4) * Rational(-1, 4) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v02",
+          "statement": "Find the slope of the NORMAL to $y = 2x^2$ at $x = 1$.",
+          "options": [
+            "$4$",
+            "$-\\frac{1}{4}$",
+            "$-4$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent slope is $y' = 4x$ evaluated at $x = 1$, which is $4$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{4}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((2)*x**2, x).subs(x, 1) == 4",
+            "(4) * Rational(-1, 4) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v03",
+          "statement": "Find the slope of the NORMAL to $y = 3x^2$ at $x = 1$.",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$-\\frac{1}{6}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent slope is $y' = 6x$ evaluated at $x = 1$, which is $6$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{6}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((3)*x**2, x).subs(x, 1) == 6",
+            "(6) * Rational(-1, 6) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v04",
+          "statement": "Find the slope of the NORMAL to $y = x^2$ at $x = 3$.",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$\\frac{1}{6}$",
+            "$-\\frac{1}{6}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent slope is $y' = 2x$ evaluated at $x = 3$, which is $6$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{6}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((1)*x**2, x).subs(x, 3) == 6",
+            "(6) * Rational(-1, 6) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v05",
+          "statement": "Find the slope of the NORMAL to $y = 2x^2$ at $x = 3$.",
+          "options": [
+            "$-\\frac{1}{12}$",
+            "$12$",
+            "$-12$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent slope is $y' = 4x$ evaluated at $x = 3$, which is $12$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{12}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((2)*x**2, x).subs(x, 3) == 12",
+            "(12) * Rational(-1, 12) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v06",
+          "statement": "Find the slope of the NORMAL to $y = x^2$ at $x = 4$.",
+          "options": [
+            "$8$",
+            "$-\\frac{1}{8}$",
+            "$-8$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent slope is $y' = 2x$ evaluated at $x = 4$, which is $8$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{8}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((1)*x**2, x).subs(x, 4) == 8",
+            "(8) * Rational(-1, 8) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v07",
+          "statement": "Find the slope of the NORMAL to $y = 4x^2$ at $x = 1$.",
+          "options": [
+            "$8$",
+            "$-8$",
+            "$-\\frac{1}{8}$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent slope is $y' = 8x$ evaluated at $x = 1$, which is $8$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{8}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((4)*x**2, x).subs(x, 1) == 8",
+            "(8) * Rational(-1, 8) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v08",
+          "statement": "Find the slope of the NORMAL to $y = 3x^2$ at $x = 2$.",
+          "options": [
+            "$12$",
+            "$-12$",
+            "$\\frac{1}{12}$",
+            "$-\\frac{1}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent slope is $y' = 6x$ evaluated at $x = 2$, which is $12$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{12}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((3)*x**2, x).subs(x, 2) == 12",
+            "(12) * Rational(-1, 12) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v09",
+          "statement": "Find the slope of the NORMAL to $y = x^2$ at $x = 5$.",
+          "options": [
+            "$-\\frac{1}{10}$",
+            "$10$",
+            "$-10$",
+            "$\\frac{1}{10}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The tangent slope is $y' = 2x$ evaluated at $x = 5$, which is $10$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{10}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((1)*x**2, x).subs(x, 5) == 10",
+            "(10) * Rational(-1, 10) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v10",
+          "statement": "Find the slope of the NORMAL to $y = 5x^2$ at $x = 1$.",
+          "options": [
+            "$10$",
+            "$-\\frac{1}{10}$",
+            "$-10$",
+            "$\\frac{1}{10}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The tangent slope is $y' = 10x$ evaluated at $x = 1$, which is $10$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{10}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((5)*x**2, x).subs(x, 1) == 10",
+            "(10) * Rational(-1, 10) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v11",
+          "statement": "Find the slope of the NORMAL to $y = 2x^2$ at $x = 5$.",
+          "options": [
+            "$20$",
+            "$-20$",
+            "$-\\frac{1}{20}$",
+            "$\\frac{1}{20}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The tangent slope is $y' = 4x$ evaluated at $x = 5$, which is $20$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{20}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((2)*x**2, x).subs(x, 5) == 20",
+            "(20) * Rational(-1, 20) == -1"
+          ]
+        },
+        {
+          "id": "CAL-nrm-v12",
+          "statement": "Find the slope of the NORMAL to $y = 6x^2$ at $x = 1$.",
+          "options": [
+            "$12$",
+            "$-12$",
+            "$\\frac{1}{12}$",
+            "$-\\frac{1}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The tangent slope is $y' = 12x$ evaluated at $x = 1$, which is $12$. The normal is perpendicular to the tangent, so its slope is the negative reciprocal $-\\frac{1}{12}$. Reporting the tangent slope itself is the whole trap in this question.",
+          "check": [
+            "diff((6)*x**2, x).subs(x, 1) == 12",
+            "(12) * Rational(-1, 12) == -1"
+          ]
+        }
+      ]
+    },
+    {
       "id": "tangent-slope",
       "title": "Slope of the tangent line",
       "level": 2,
@@ -1738,6 +2506,195 @@
       ]
     },
     {
+      "id": "velocity-zero",
+      "title": "When the velocity is zero",
+      "level": 2,
+      "unit": "differentiation-techniques",
+      "skill": "Differentiate position to get velocity, then solve v(t) = 0.",
+      "variants": [
+        {
+          "id": "CAL-vzero-v01",
+          "statement": "A particle has position $s(t) = t^2 - 6t + 5$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$3$",
+            "$6$",
+            "$-3$",
+            "$\\frac{5}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 6$. Setting it to zero gives $t = 3$ seconds — the moment the particle turns round. The constant $5$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-6)*t + (5), t).subs(t, Rational(3, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v02",
+          "statement": "A particle has position $s(t) = 2t^2 - 8t + 3$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$4$",
+            "$2$",
+            "$-2$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Velocity is the derivative of position: $v(t) = 4t - 8$. Setting it to zero gives $t = 2$ seconds — the moment the particle turns round. The constant $3$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((2)*t**2 + (-8)*t + (3), t).subs(t, Rational(2, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v03",
+          "statement": "A particle has position $s(t) = t^2 - 10t + 7$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$10$",
+            "$-5$",
+            "$5$",
+            "$\\frac{7}{10}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 10$. Setting it to zero gives $t = 5$ seconds — the moment the particle turns round. The constant $7$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-10)*t + (7), t).subs(t, Rational(5, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v04",
+          "statement": "A particle has position $s(t) = 3t^2 - 12t + 1$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$4$",
+            "$-2$",
+            "$\\frac{1}{12}$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Velocity is the derivative of position: $v(t) = 6t - 12$. Setting it to zero gives $t = 2$ seconds — the moment the particle turns round. The constant $1$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((3)*t**2 + (-12)*t + (1), t).subs(t, Rational(2, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v05",
+          "statement": "A particle has position $s(t) = t^2 - 4t + 9$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$2$",
+            "$4$",
+            "$-2$",
+            "$\\frac{9}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 4$. Setting it to zero gives $t = 2$ seconds — the moment the particle turns round. The constant $9$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-4)*t + (9), t).subs(t, Rational(2, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v06",
+          "statement": "A particle has position $s(t) = 2t^2 - 20t + 4$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$10$",
+            "$5$",
+            "$-5$",
+            "$\\frac{1}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Velocity is the derivative of position: $v(t) = 4t - 20$. Setting it to zero gives $t = 5$ seconds — the moment the particle turns round. The constant $4$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((2)*t**2 + (-20)*t + (4), t).subs(t, Rational(5, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v07",
+          "statement": "A particle has position $s(t) = t^2 - 14t + 2$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$14$",
+            "$-7$",
+            "$7$",
+            "$\\frac{1}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 14$. Setting it to zero gives $t = 7$ seconds — the moment the particle turns round. The constant $2$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-14)*t + (2), t).subs(t, Rational(7, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v08",
+          "statement": "A particle has position $s(t) = 4t^2 - 8t + 6$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$2$",
+            "$-1$",
+            "$\\frac{3}{4}$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Velocity is the derivative of position: $v(t) = 8t - 8$. Setting it to zero gives $t = 1$ seconds — the moment the particle turns round. The constant $6$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((4)*t**2 + (-8)*t + (6), t).subs(t, Rational(1, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v09",
+          "statement": "A particle has position $s(t) = t^2 - 16t + 5$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$8$",
+            "$16$",
+            "$-8$",
+            "$\\frac{5}{16}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 16$. Setting it to zero gives $t = 8$ seconds — the moment the particle turns round. The constant $5$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-16)*t + (5), t).subs(t, Rational(8, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v10",
+          "statement": "A particle has position $s(t) = 5t^2 - 30t + 2$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$6$",
+            "$3$",
+            "$-3$",
+            "$\\frac{1}{15}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Velocity is the derivative of position: $v(t) = 10t - 30$. Setting it to zero gives $t = 3$ seconds — the moment the particle turns round. The constant $2$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((5)*t**2 + (-30)*t + (2), t).subs(t, Rational(3, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v11",
+          "statement": "A particle has position $s(t) = 2t^2 - 12t + 8$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$6$",
+            "$-3$",
+            "$3$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Velocity is the derivative of position: $v(t) = 4t - 12$. Setting it to zero gives $t = 3$ seconds — the moment the particle turns round. The constant $8$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((2)*t**2 + (-12)*t + (8), t).subs(t, Rational(3, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-vzero-v12",
+          "statement": "A particle has position $s(t) = t^2 - 18t + 3$ metres at time $t$ seconds. At what time, in seconds, is its velocity zero?",
+          "options": [
+            "$18$",
+            "$-9$",
+            "$\\frac{1}{6}$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Velocity is the derivative of position: $v(t) = 2t - 18$. Setting it to zero gives $t = 9$ seconds — the moment the particle turns round. The constant $3$ is the starting position and never affects the velocity.",
+          "check": [
+            "diff((1)*t**2 + (-18)*t + (3), t).subs(t, Rational(9, 1)) == 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "product-rule-value",
       "title": "Product rule from a table",
       "level": 3,
@@ -1922,6 +2879,195 @@
           "explanation": "Product rule: $h'(5) = f'(5)g(5) + f(5)g'(5) = (-3)(4) + (2)(1) = -10$. Multiplying the two derivatives, $(-3)(1) = -3$, is the classic wrong move.",
           "check": [
             "(-3)*(4) + (2)*(1) == -10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quotient-rule",
+      "title": "The quotient rule",
+      "level": 3,
+      "unit": "differentiation-techniques",
+      "skill": "(f/g)' = (f'g - fg')/g² — the order in the numerator decides the sign.",
+      "variants": [
+        {
+          "id": "CAL-quo-v01",
+          "statement": "At $x = 1$: $f(1) = 3$, $f'(1) = 2$, $g(1) = 5$ and $g'(1) = 1$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{7}{25}$",
+            "$2$",
+            "$-\\frac{7}{25}$",
+            "$\\frac{13}{25}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(2)(5) - (3)(1)}{25} = \\frac{7}{25}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(2*5 - 3*1, 5**2) == Rational(7, 25)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v02",
+          "statement": "At $x = 1$: $f(1) = 4$, $f'(1) = 1$, $g(1) = 2$ and $g'(1) = 3$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-\\frac{5}{2}$",
+            "$\\frac{5}{2}$",
+            "$\\frac{7}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(1)(2) - (4)(3)}{4} = -\\frac{5}{2}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(1*2 - 4*3, 2**2) == Rational(-5, 2)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v03",
+          "statement": "At $x = 1$: $f(1) = 5$, $f'(1) = 3$, $g(1) = 1$ and $g'(1) = 2$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{3}{2}$",
+            "$7$",
+            "$-7$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(3)(1) - (5)(2)}{1} = -7$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(3*1 - 5*2, 1**2) == Rational(-7, 1)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v04",
+          "statement": "At $x = 1$: $f(1) = 2$, $f'(1) = 5$, $g(1) = 4$ and $g'(1) = 1$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$5$",
+            "$-\\frac{9}{8}$",
+            "$\\frac{11}{8}$",
+            "$\\frac{9}{8}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(5)(4) - (2)(1)}{16} = \\frac{9}{8}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(5*4 - 2*1, 4**2) == Rational(9, 8)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v05",
+          "statement": "At $x = 1$: $f(1) = 6$, $f'(1) = 2$, $g(1) = 3$ and $g'(1) = 4$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$-2$",
+            "$\\frac{1}{2}$",
+            "$2$",
+            "$\\frac{10}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(2)(3) - (6)(4)}{9} = -2$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(2*3 - 6*4, 3**2) == Rational(-2, 1)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v06",
+          "statement": "At $x = 1$: $f(1) = 1$, $f'(1) = 4$, $g(1) = 5$ and $g'(1) = 2$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$2$",
+            "$\\frac{18}{25}$",
+            "$-\\frac{18}{25}$",
+            "$\\frac{22}{25}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(4)(5) - (1)(2)}{25} = \\frac{18}{25}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(4*5 - 1*2, 5**2) == Rational(18, 25)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v07",
+          "statement": "At $x = 1$: $f(1) = 7$, $f'(1) = 1$, $g(1) = 2$ and $g'(1) = 5$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{1}{5}$",
+            "$\\frac{33}{4}$",
+            "$-\\frac{33}{4}$",
+            "$\\frac{37}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(1)(2) - (7)(5)}{4} = -\\frac{33}{4}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(1*2 - 7*5, 2**2) == Rational(-33, 4)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v08",
+          "statement": "At $x = 1$: $f(1) = 3$, $f'(1) = 6$, $g(1) = 1$ and $g'(1) = 4$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{3}{2}$",
+            "$6$",
+            "$18$",
+            "$-6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(6)(1) - (3)(4)}{1} = -6$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(6*1 - 3*4, 1**2) == Rational(-6, 1)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v09",
+          "statement": "At $x = 1$: $f(1) = 8$, $f'(1) = 3$, $g(1) = 4$ and $g'(1) = 1$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$3$",
+            "$-\\frac{1}{4}$",
+            "$\\frac{5}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(3)(4) - (8)(1)}{16} = \\frac{1}{4}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(3*4 - 8*1, 4**2) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v10",
+          "statement": "At $x = 1$: $f(1) = 2$, $f'(1) = 7$, $g(1) = 5$ and $g'(1) = 3$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{7}{3}$",
+            "$\\frac{29}{25}$",
+            "$-\\frac{29}{25}$",
+            "$\\frac{41}{25}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(7)(5) - (2)(3)}{25} = \\frac{29}{25}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(7*5 - 2*3, 5**2) == Rational(29, 25)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v11",
+          "statement": "At $x = 1$: $f(1) = 9$, $f'(1) = 2$, $g(1) = 1$ and $g'(1) = 6$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$52$",
+            "$-52$",
+            "$56$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(2)(1) - (9)(6)}{1} = -52$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(2*1 - 9*6, 1**2) == Rational(-52, 1)"
+          ]
+        },
+        {
+          "id": "CAL-quo-v12",
+          "statement": "At $x = 1$: $f(1) = 4$, $f'(1) = 5$, $g(1) = 3$ and $g'(1) = 2$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$.",
+          "options": [
+            "$\\frac{5}{2}$",
+            "$-\\frac{7}{9}$",
+            "$\\frac{23}{9}$",
+            "$\\frac{7}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The quotient rule is $\\dfrac{f'g - fg'}{g^2} = \\dfrac{(5)(3) - (4)(2)}{9} = \\frac{7}{9}$. The order in the numerator matters — swapping the two products flips the sign — and the denominator is $g$ SQUARED.",
+          "check": [
+            "Rational(5*3 - 4*2, 3**2) == Rational(7, 9)"
           ]
         }
       ]
@@ -2123,6 +3269,207 @@
           "check": [
             "diff(x**3 - (108)*x, x).subs(x, (6)) == 0",
             "diff(x**3 - (108)*x, x, 2).subs(x, (6)) > 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "extreme-value",
+      "title": "The minimum VALUE",
+      "level": 2,
+      "unit": "applications-of-derivatives",
+      "skill": "Find where f' = 0, then substitute back — the question asks what the minimum is, not where.",
+      "variants": [
+        {
+          "id": "CAL-ext-v01",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 4x + 7$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$7$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 2x - 4$ vanishes at $x = 2$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(2) = 3$. Reporting $x = 2$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-4)*x + (7), x).subs(x, 2) == 0",
+            "((1)*x**2 + (-4)*x + (7)).subs(x, 2) == 3"
+          ]
+        },
+        {
+          "id": "CAL-ext-v02",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 6x + 11$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$11$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 2x - 6$ vanishes at $x = 3$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(3) = 2$. Reporting $x = 3$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-6)*x + (11), x).subs(x, 3) == 0",
+            "((1)*x**2 + (-6)*x + (11)).subs(x, 3) == 2"
+          ]
+        },
+        {
+          "id": "CAL-ext-v03",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 2x^2 - 8x + 5$.",
+          "options": [
+            "$2$",
+            "$5$",
+            "$-3$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 4x - 8$ vanishes at $x = 2$, and $f'' = 4 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(2) = -3$. Reporting $x = 2$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((2)*x**2 + (-8)*x + (5), x).subs(x, 2) == 0",
+            "((2)*x**2 + (-8)*x + (5)).subs(x, 2) == -3"
+          ]
+        },
+        {
+          "id": "CAL-ext-v04",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 2x + 9$.",
+          "options": [
+            "$1$",
+            "$9$",
+            "$10$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 2x - 2$ vanishes at $x = 1$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(1) = 8$. Reporting $x = 1$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-2)*x + (9), x).subs(x, 1) == 0",
+            "((1)*x**2 + (-2)*x + (9)).subs(x, 1) == 8"
+          ]
+        },
+        {
+          "id": "CAL-ext-v05",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 3x^2 - 12x + 4$.",
+          "options": [
+            "$-8$",
+            "$2$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 6x - 12$ vanishes at $x = 2$, and $f'' = 6 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(2) = -8$. Reporting $x = 2$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((3)*x**2 + (-12)*x + (4), x).subs(x, 2) == 0",
+            "((3)*x**2 + (-12)*x + (4)).subs(x, 2) == -8"
+          ]
+        },
+        {
+          "id": "CAL-ext-v06",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 8x + 20$.",
+          "options": [
+            "$20$",
+            "$4$",
+            "$36$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 2x - 8$ vanishes at $x = 4$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(4) = 4$. Reporting $x = 4$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-8)*x + (20), x).subs(x, 4) == 0",
+            "((1)*x**2 + (-8)*x + (20)).subs(x, 4) == 4"
+          ]
+        },
+        {
+          "id": "CAL-ext-v07",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 2x^2 - 12x + 1$.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$-17$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 4x - 12$ vanishes at $x = 3$, and $f'' = 4 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(3) = -17$. Reporting $x = 3$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((2)*x**2 + (-12)*x + (1), x).subs(x, 3) == 0",
+            "((2)*x**2 + (-12)*x + (1)).subs(x, 3) == -17"
+          ]
+        },
+        {
+          "id": "CAL-ext-v08",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 10x + 30$.",
+          "options": [
+            "$30$",
+            "$55$",
+            "$-5$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 2x - 10$ vanishes at $x = 5$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(5) = 5$. Reporting $x = 5$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-10)*x + (30), x).subs(x, 5) == 0",
+            "((1)*x**2 + (-10)*x + (30)).subs(x, 5) == 5"
+          ]
+        },
+        {
+          "id": "CAL-ext-v09",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 4x^2 - 8x + 3$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$3$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$f'(x) = 8x - 8$ vanishes at $x = 1$, and $f'' = 8 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(1) = -1$. Reporting $x = 1$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((4)*x**2 + (-8)*x + (3), x).subs(x, 1) == 0",
+            "((4)*x**2 + (-8)*x + (3)).subs(x, 1) == -1"
+          ]
+        },
+        {
+          "id": "CAL-ext-v10",
+          "statement": "Find the MINIMUM VALUE of $f(x) = x^2 - 12x + 40$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$40$",
+            "$76$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$f'(x) = 2x - 12$ vanishes at $x = 6$, and $f'' = 2 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(6) = 4$. Reporting $x = 6$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((1)*x**2 + (-12)*x + (40), x).subs(x, 6) == 0",
+            "((1)*x**2 + (-12)*x + (40)).subs(x, 6) == 4"
+          ]
+        },
+        {
+          "id": "CAL-ext-v11",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 2x^2 - 16x + 6$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$-26$",
+            "$38$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$f'(x) = 4x - 16$ vanishes at $x = 4$, and $f'' = 4 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(4) = -26$. Reporting $x = 4$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((2)*x**2 + (-16)*x + (6), x).subs(x, 4) == 0",
+            "((2)*x**2 + (-16)*x + (6)).subs(x, 4) == -26"
+          ]
+        },
+        {
+          "id": "CAL-ext-v12",
+          "statement": "Find the MINIMUM VALUE of $f(x) = 5x^2 - 20x + 2$.",
+          "options": [
+            "$2$",
+            "$22$",
+            "$18$",
+            "$-18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$f'(x) = 10x - 20$ vanishes at $x = 2$, and $f'' = 10 > 0$ confirms a minimum. The question asks for the VALUE, so substitute back: $f(2) = -18$. Reporting $x = 2$ answers a different question — where the minimum happens, not what it is.",
+          "check": [
+            "diff((5)*x**2 + (-20)*x + (2), x).subs(x, 2) == 0",
+            "((5)*x**2 + (-20)*x + (2)).subs(x, 2) == -18"
           ]
         }
       ]
@@ -2336,6 +3683,195 @@
             "diff(x**3 - (507)*x, x).subs(x, 0) < 0",
             "diff(x**3 - (507)*x, x).subs(x, (13)) == 0",
             "diff(x**3 - (507)*x, x).subs(x, (-13)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inflection",
+      "title": "Points of inflection",
+      "level": 3,
+      "unit": "applications-of-derivatives",
+      "skill": "Set the SECOND derivative to zero; the first derivative finds turning points instead.",
+      "variants": [
+        {
+          "id": "CAL-inf-v01",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 + 3x^2 + 2x$.",
+          "options": [
+            "$-1$",
+            "$-\\frac{3}{2}$",
+            "$1$",
+            "$-\\frac{2}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x + 6$, which is zero at $x = -1$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (3)*x**2 + (2)*x, x, 2).subs(x, Rational(-1, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v02",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 - 6x^2 + 5x$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$-2$",
+            "$\\frac{5}{6}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x - 12$, which is zero at $x = 2$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (-6)*x**2 + (5)*x, x, 2).subs(x, Rational(2, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v03",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = 2x^3 + 9x^2 + x$.",
+          "options": [
+            "$-\\frac{9}{4}$",
+            "$\\frac{3}{2}$",
+            "$-\\frac{3}{2}$",
+            "$-\\frac{1}{9}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 12x + 18$, which is zero at $x = -\\frac{3}{2}$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((2)*x**3 + (9)*x**2 + (1)*x, x, 2).subs(x, Rational(-3, 2)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v04",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 + 12x^2 - 4x$.",
+          "options": [
+            "$-6$",
+            "$4$",
+            "$\\frac{1}{3}$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x + 24$, which is zero at $x = -4$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (12)*x**2 + (-4)*x, x, 2).subs(x, Rational(-4, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v05",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = 3x^3 - 9x^2 + 7x$.",
+          "options": [
+            "$1$",
+            "$\\frac{3}{2}$",
+            "$-1$",
+            "$\\frac{7}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 18x - 18$, which is zero at $x = 1$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((3)*x**3 + (-9)*x**2 + (7)*x, x, 2).subs(x, Rational(1, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v06",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 - 15x^2 + 2x$.",
+          "options": [
+            "$\\frac{15}{2}$",
+            "$5$",
+            "$-5$",
+            "$\\frac{2}{15}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x - 30$, which is zero at $x = 5$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (-15)*x**2 + (2)*x, x, 2).subs(x, Rational(5, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v07",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = 2x^3 + 6x^2 - 3x$.",
+          "options": [
+            "$-\\frac{3}{2}$",
+            "$1$",
+            "$-1$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 12x + 12$, which is zero at $x = -1$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((2)*x**3 + (6)*x**2 + (-3)*x, x, 2).subs(x, Rational(-1, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v08",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 + 21x^2 + 8x$.",
+          "options": [
+            "$-\\frac{21}{2}$",
+            "$7$",
+            "$-\\frac{8}{21}$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x + 42$, which is zero at $x = -7$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (21)*x**2 + (8)*x, x, 2).subs(x, Rational(-7, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v09",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = 4x^3 - 12x^2 + x$.",
+          "options": [
+            "$1$",
+            "$\\frac{3}{2}$",
+            "$-1$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 24x - 24$, which is zero at $x = 1$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((4)*x**3 + (-12)*x**2 + (1)*x, x, 2).subs(x, Rational(1, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v10",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 - 24x^2 + 6x$.",
+          "options": [
+            "$12$",
+            "$8$",
+            "$-8$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x - 48$, which is zero at $x = 8$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (-24)*x**2 + (6)*x, x, 2).subs(x, Rational(8, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v11",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = 2x^3 - 18x^2 + 5x$.",
+          "options": [
+            "$\\frac{9}{2}$",
+            "$-3$",
+            "$3$",
+            "$\\frac{5}{18}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 12x - 36$, which is zero at $x = 3$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((2)*x**3 + (-18)*x**2 + (5)*x, x, 2).subs(x, Rational(3, 1)) == 0"
+          ]
+        },
+        {
+          "id": "CAL-inf-v12",
+          "statement": "Find the $x$-coordinate of the point of inflection of $f(x) = x^3 + 27x^2 - 2x$.",
+          "options": [
+            "$-\\frac{27}{2}$",
+            "$9$",
+            "$\\frac{2}{27}$",
+            "$-9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inflection is about the SECOND derivative: $f'' (x) = 6x + 54$, which is zero at $x = -9$ and changes sign there, so the concavity really does flip. Setting $f'$ to zero instead would find a turning point, which is a different feature altogether.",
+          "check": [
+            "diff((1)*x**3 + (27)*x**2 + (-2)*x, x, 2).subs(x, Rational(-9, 1)) == 0"
           ]
         }
       ]
@@ -2719,6 +4255,195 @@
       ]
     },
     {
+      "id": "antiderivative-condition",
+      "title": "Finding the constant of integration",
+      "level": 2,
+      "unit": "integrals",
+      "skill": "Antidifferentiate, then use the given value to pin down C.",
+      "variants": [
+        {
+          "id": "CAL-acond-v01",
+          "statement": "$F'(x) = 2x + 3$ and $F(1) = 5$. Find the constant of integration $C$ in $F(x) = x^2 + 3x + C$.",
+          "options": [
+            "$1$",
+            "$5$",
+            "$-1$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate first: $F(x) = x^2 + 3x + C$. Now use the condition: $F(1) = 4 + C = 5$, so $C = 1$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(2, 2)*(1)**2 + (3)*(1) + Rational(1, 1) == 5"
+          ]
+        },
+        {
+          "id": "CAL-acond-v02",
+          "statement": "$F'(x) = 4x - 1$ and $F(2) = 4$. Find the constant of integration $C$ in $F(x) = 2x^2 - x + C$.",
+          "options": [
+            "$4$",
+            "$-2$",
+            "$2$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate first: $F(x) = 2x^2 - x + C$. Now use the condition: $F(2) = 6 + C = 4$, so $C = -2$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(4, 2)*(2)**2 + (-1)*(2) + Rational(-2, 1) == 4"
+          ]
+        },
+        {
+          "id": "CAL-acond-v03",
+          "statement": "$F'(x) = 6x + 4$ and $F(0) = 7$. Find the constant of integration $C$ in $F(x) = 3x^2 + 4x + C$.",
+          "options": [
+            "$-7$",
+            "$0$",
+            "$7$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate first: $F(x) = 3x^2 + 4x + C$. Now use the condition: $F(0) = 0 + C = 7$, so $C = 7$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(6, 2)*(0)**2 + (4)*(0) + Rational(7, 1) == 7"
+          ]
+        },
+        {
+          "id": "CAL-acond-v04",
+          "statement": "$F'(x) = 4x + 2$ and $F(1) = -3$. Find the constant of integration $C$ in $F(x) = 2x^2 + 2x + C$.",
+          "options": [
+            "$-3$",
+            "$7$",
+            "$4$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate first: $F(x) = 2x^2 + 2x + C$. Now use the condition: $F(1) = 4 + C = -3$, so $C = -7$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(4, 2)*(1)**2 + (2)*(1) + Rational(-7, 1) == -3"
+          ]
+        },
+        {
+          "id": "CAL-acond-v05",
+          "statement": "$F'(x) = 6x - 5$ and $F(2) = 1$. Find the constant of integration $C$ in $F(x) = 3x^2 - 5x + C$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate first: $F(x) = 3x^2 - 5x + C$. Now use the condition: $F(2) = 2 + C = 1$, so $C = -1$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(6, 2)*(2)**2 + (-5)*(2) + Rational(-1, 1) == 1"
+          ]
+        },
+        {
+          "id": "CAL-acond-v06",
+          "statement": "$F'(x) = 2x + 7$ and $F(3) = 2$. Find the constant of integration $C$ in $F(x) = x^2 + 7x + C$.",
+          "options": [
+            "$2$",
+            "$-28$",
+            "$28$",
+            "$30$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate first: $F(x) = x^2 + 7x + C$. Now use the condition: $F(3) = 30 + C = 2$, so $C = -28$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(2, 2)*(3)**2 + (7)*(3) + Rational(-28, 1) == 2"
+          ]
+        },
+        {
+          "id": "CAL-acond-v07",
+          "statement": "$F'(x) = 8x + 1$ and $F(0) = -6$. Find the constant of integration $C$ in $F(x) = 4x^2 + x + C$.",
+          "options": [
+            "$6$",
+            "$0$",
+            "$-6$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate first: $F(x) = 4x^2 + x + C$. Now use the condition: $F(0) = 0 + C = -6$, so $C = -6$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(8, 2)*(0)**2 + (1)*(0) + Rational(-6, 1) == -6"
+          ]
+        },
+        {
+          "id": "CAL-acond-v08",
+          "statement": "$F'(x) = 10x + 3$ and $F(1) = 8$. Find the constant of integration $C$ in $F(x) = 5x^2 + 3x + C$.",
+          "options": [
+            "$8$",
+            "$16$",
+            "$1$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate first: $F(x) = 5x^2 + 3x + C$. Now use the condition: $F(1) = 8 + C = 8$, so $C = 0$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(10, 2)*(1)**2 + (3)*(1) + Rational(0, 1) == 8"
+          ]
+        },
+        {
+          "id": "CAL-acond-v09",
+          "statement": "$F'(x) = 8x - 2$ and $F(2) = 5$. Find the constant of integration $C$ in $F(x) = 4x^2 - 2x + C$.",
+          "options": [
+            "$-7$",
+            "$5$",
+            "$7$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate first: $F(x) = 4x^2 - 2x + C$. Now use the condition: $F(2) = 12 + C = 5$, so $C = -7$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(8, 2)*(2)**2 + (-2)*(2) + Rational(-7, 1) == 5"
+          ]
+        },
+        {
+          "id": "CAL-acond-v10",
+          "statement": "$F'(x) = 12x + 6$ and $F(4) = 1$. Find the constant of integration $C$ in $F(x) = 6x^2 + 6x + C$.",
+          "options": [
+            "$1$",
+            "$-119$",
+            "$119$",
+            "$120$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate first: $F(x) = 6x^2 + 6x + C$. Now use the condition: $F(4) = 120 + C = 1$, so $C = -119$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(12, 2)*(4)**2 + (6)*(4) + Rational(-119, 1) == 1"
+          ]
+        },
+        {
+          "id": "CAL-acond-v11",
+          "statement": "$F'(x) = 10x + 1$ and $F(1) = -2$. Find the constant of integration $C$ in $F(x) = 5x^2 + x + C$.",
+          "options": [
+            "$-2$",
+            "$8$",
+            "$-8$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate first: $F(x) = 5x^2 + x + C$. Now use the condition: $F(1) = 6 + C = -2$, so $C = -8$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(10, 2)*(1)**2 + (1)*(1) + Rational(-8, 1) == -2"
+          ]
+        },
+        {
+          "id": "CAL-acond-v12",
+          "statement": "$F'(x) = 4x - 4$ and $F(3) = 6$. Find the constant of integration $C$ in $F(x) = 2x^2 - 4x + C$.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$1$",
+            "$0$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate first: $F(x) = 2x^2 - 4x + C$. Now use the condition: $F(3) = 6 + C = 6$, so $C = 0$. The constant is what the condition is FOR — without it every antiderivative would be equally good.",
+          "check": [
+            "Rational(4, 2)*(3)**2 + (-4)*(3) + Rational(0, 1) == 6"
+          ]
+        }
+      ]
+    },
+    {
       "id": "definite-integral",
       "title": "Definite integrals of linear functions",
       "level": 2,
@@ -2903,6 +4628,762 @@
           "explanation": "An antiderivative is $F(x) = 3x^2 + 5x$, so the integral is $F(3) - F(0) = 42$. Forgetting to halve the $x^2$ term gives $69$.",
           "check": [
             "integrate((6)*x + (5), (x, 0, (3))) == 42"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "definite-quadratic",
+      "title": "Definite integrals of quadratics",
+      "level": 2,
+      "unit": "integrals",
+      "skill": "Raise each exponent by one, divide by the new one, then evaluate at both limits.",
+      "variants": [
+        {
+          "id": "CAL-dquad-v01",
+          "statement": "Evaluate $\\int_0^{1}(3x^2 + 2)\\,dx$.",
+          "options": [
+            "$3$",
+            "$5$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate term by term: $\\int(3x^2 + 2)dx = x^3 + 2x$. Evaluating from $0$ to $1$ gives $1 + 2 = 3$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((3)*x**2 + (2), (x, 0, 1)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v02",
+          "statement": "Evaluate $\\int_0^{2}(6x^2 - 3)\\,dx$.",
+          "options": [
+            "$48$",
+            "$10$",
+            "$21$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate term by term: $\\int(6x^2 - 3)dx = 2x^3 + -3x$. Evaluating from $0$ to $2$ gives $16 + -6 = 10$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((6)*x**2 + (-3), (x, 0, 2)) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v03",
+          "statement": "Evaluate $\\int_0^{3}(9x^2 + 4)\\,dx$.",
+          "options": [
+            "$243$",
+            "$85$",
+            "$93$",
+            "$81$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate term by term: $\\int(9x^2 + 4)dx = 3x^3 + 4x$. Evaluating from $0$ to $3$ gives $81 + 12 = 93$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((9)*x**2 + (4), (x, 0, 3)) == Rational(93, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v04",
+          "statement": "Evaluate $\\int_0^{1}(12x^2 + 1)\\,dx$.",
+          "options": [
+            "$12$",
+            "$13$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate term by term: $\\int(12x^2 + 1)dx = 4x^3 + 1x$. Evaluating from $0$ to $1$ gives $4 + 1 = 5$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((12)*x**2 + (1), (x, 0, 1)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v05",
+          "statement": "Evaluate $\\int_0^{2}(3x^2 - 6)\\,dx$.",
+          "options": [
+            "$-4$",
+            "$24$",
+            "$6$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate term by term: $\\int(3x^2 - 6)dx = x^3 + -6x$. Evaluating from $0$ to $2$ gives $8 + -12 = -4$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((3)*x**2 + (-6), (x, 0, 2)) == Rational(-4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v06",
+          "statement": "Evaluate $\\int_0^{1}(6x^2 + 5)\\,dx$.",
+          "options": [
+            "$6$",
+            "$7$",
+            "$11$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate term by term: $\\int(6x^2 + 5)dx = 2x^3 + 5x$. Evaluating from $0$ to $1$ gives $2 + 5 = 7$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((6)*x**2 + (5), (x, 0, 1)) == Rational(7, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v07",
+          "statement": "Evaluate $\\int_0^{2}(9x^2 + 2)\\,dx$.",
+          "options": [
+            "$72$",
+            "$38$",
+            "$28$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate term by term: $\\int(9x^2 + 2)dx = 3x^3 + 2x$. Evaluating from $0$ to $2$ gives $24 + 4 = 28$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((9)*x**2 + (2), (x, 0, 2)) == Rational(28, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v08",
+          "statement": "Evaluate $\\int_0^{3}(3x^2 + 8)\\,dx$.",
+          "options": [
+            "$81$",
+            "$35$",
+            "$27$",
+            "$51$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate term by term: $\\int(3x^2 + 8)dx = x^3 + 8x$. Evaluating from $0$ to $3$ gives $27 + 24 = 51$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((3)*x**2 + (8), (x, 0, 3)) == Rational(51, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v09",
+          "statement": "Evaluate $\\int_0^{1}(15x^2 - 1)\\,dx$.",
+          "options": [
+            "$4$",
+            "$15$",
+            "$14$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Antidifferentiate term by term: $\\int(15x^2 - 1)dx = 5x^3 + -1x$. Evaluating from $0$ to $1$ gives $5 + -1 = 4$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((15)*x**2 + (-1), (x, 0, 1)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v10",
+          "statement": "Evaluate $\\int_0^{3}(6x^2 + 2)\\,dx$.",
+          "options": [
+            "$162$",
+            "$60$",
+            "$56$",
+            "$54$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Antidifferentiate term by term: $\\int(6x^2 + 2)dx = 2x^3 + 2x$. Evaluating from $0$ to $3$ gives $54 + 6 = 60$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((6)*x**2 + (2), (x, 0, 3)) == Rational(60, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v11",
+          "statement": "Evaluate $\\int_0^{1}(21x^2 + 3)\\,dx$.",
+          "options": [
+            "$21$",
+            "$24$",
+            "$10$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Antidifferentiate term by term: $\\int(21x^2 + 3)dx = 7x^3 + 3x$. Evaluating from $0$ to $1$ gives $7 + 3 = 10$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((21)*x**2 + (3), (x, 0, 1)) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "CAL-dquad-v12",
+          "statement": "Evaluate $\\int_0^{2}(12x^2 - 2)\\,dx$.",
+          "options": [
+            "$96$",
+            "$46$",
+            "$32$",
+            "$28$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Antidifferentiate term by term: $\\int(12x^2 - 2)dx = 4x^3 + -2x$. Evaluating from $0$ to $2$ gives $32 + -4 = 28$. Differentiating instead of integrating is the reflex to watch for on a question that looks this routine.",
+          "check": [
+            "integrate((12)*x**2 + (-2), (x, 0, 2)) == Rational(28, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "integral-additivity",
+      "title": "Splitting and reversing limits",
+      "level": 2,
+      "unit": "integrals",
+      "skill": "Adjacent intervals add; swapping the limits flips the sign.",
+      "variants": [
+        {
+          "id": "CAL-iadd-v01",
+          "statement": "$\\int_a^b f = 3$ and $\\int_b^c f = 5$. Find $\\int_a^c f$.",
+          "options": [
+            "$8$",
+            "$3$",
+            "$5$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $3 + 5 = 8$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(3) + (5) == 8"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v02",
+          "statement": "$\\int_a^b f = 7$. Find $\\int_b^a f$.",
+          "options": [
+            "$7$",
+            "$-7$",
+            "$2$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -7$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(7) + (2) == 9"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v03",
+          "statement": "$\\int_a^b f = 4$ and $\\int_b^c f = 6$. Find $\\int_a^c f$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$10$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $4 + 6 = 10$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(4) + (6) == 10"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v04",
+          "statement": "$\\int_a^b f = 12$. Find $\\int_b^a f$.",
+          "options": [
+            "$12$",
+            "$-3$",
+            "$-9$",
+            "$-12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -12$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(12) + (-3) == 9"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v05",
+          "statement": "$\\int_a^b f = 5$ and $\\int_b^c f = 5$. Find $\\int_a^c f$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$-10$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $5 + 5 = 10$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(5) + (5) == 10"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v06",
+          "statement": "$\\int_a^b f = 9$. Find $\\int_b^a f$.",
+          "options": [
+            "$9$",
+            "$-9$",
+            "$1$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -9$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(9) + (1) == 10"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v07",
+          "statement": "$\\int_a^b f = 2$ and $\\int_b^c f = 11$. Find $\\int_a^c f$.",
+          "options": [
+            "$2$",
+            "$11$",
+            "$13$",
+            "$-13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $2 + 11 = 13$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(2) + (11) == 13"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v08",
+          "statement": "$\\int_a^b f = 8$. Find $\\int_b^a f$.",
+          "options": [
+            "$8$",
+            "$-4$",
+            "$12$",
+            "$-8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -8$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(8) + (-4) == 4"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v09",
+          "statement": "$\\int_a^b f = 6$ and $\\int_b^c f = 7$. Find $\\int_a^c f$.",
+          "options": [
+            "$13$",
+            "$6$",
+            "$7$",
+            "$-13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $6 + 7 = 13$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(6) + (7) == 13"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v10",
+          "statement": "$\\int_a^b f = 10$. Find $\\int_b^a f$.",
+          "options": [
+            "$10$",
+            "$-10$",
+            "$3$",
+            "$-13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -10$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(10) + (3) == 13"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v11",
+          "statement": "$\\int_a^b f = 1$ and $\\int_b^c f = 14$. Find $\\int_a^c f$.",
+          "options": [
+            "$1$",
+            "$14$",
+            "$15$",
+            "$-15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adjacent intervals join end to end: $\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is $1 + 14 = 15$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(1) + (14) == 15"
+          ]
+        },
+        {
+          "id": "CAL-iadd-v12",
+          "statement": "$\\int_a^b f = 15$. Find $\\int_b^a f$.",
+          "options": [
+            "$15$",
+            "$-6$",
+            "$-9$",
+            "$-15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Reversing the limits reverses the sign: $\\int_b^a f = -\\int_a^b f = -15$. Both rules come straight from the Fundamental Theorem: the integral is $F$ at the top limit minus $F$ at the bottom one, so swapping or splitting the limits is just arithmetic on $F$.",
+          "check": [
+            "(15) + (-6) == 9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accumulated-change",
+      "title": "Accumulated change",
+      "level": 2,
+      "unit": "applications-of-integrals",
+      "skill": "Integrate the rate to get what was added, then add the starting amount.",
+      "variants": [
+        {
+          "id": "CAL-acc-v01",
+          "statement": "A tank holds $100$ litres at time $t = 0$. Water flows in at $4t$ litres per minute. How many litres are in the tank at $t = 3$ minutes?",
+          "options": [
+            "$118$",
+            "$18$",
+            "$100$",
+            "$112$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{3} 4t\\,dt = 18$ litres flow in, on top of the $100$ already there, giving $118$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "100 + integrate(4*t, (t, 0, 3)) == Rational(118, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v02",
+          "statement": "A tank holds $50$ litres at time $t = 0$. Water flows in at $6t$ litres per minute. How many litres are in the tank at $t = 2$ minutes?",
+          "options": [
+            "$12$",
+            "$62$",
+            "$50$",
+            "$38$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{2} 6t\\,dt = 12$ litres flow in, on top of the $50$ already there, giving $62$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "50 + integrate(6*t, (t, 0, 2)) == Rational(62, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v03",
+          "statement": "A tank holds $200$ litres at time $t = 0$. Water flows in at $2t$ litres per minute. How many litres are in the tank at $t = 5$ minutes?",
+          "options": [
+            "$25$",
+            "$200$",
+            "$225$",
+            "$210$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{5} 2t\\,dt = 25$ litres flow in, on top of the $200$ already there, giving $225$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "200 + integrate(2*t, (t, 0, 5)) == Rational(225, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v04",
+          "statement": "A tank holds $30$ litres at time $t = 0$. Water flows in at $8t$ litres per minute. How many litres are in the tank at $t = 1$ minutes?",
+          "options": [
+            "$4$",
+            "$30$",
+            "$38$",
+            "$34$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{1} 8t\\,dt = 4$ litres flow in, on top of the $30$ already there, giving $34$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "30 + integrate(8*t, (t, 0, 1)) == Rational(34, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v05",
+          "statement": "A tank holds $75$ litres at time $t = 0$. Water flows in at $10t$ litres per minute. How many litres are in the tank at $t = 2$ minutes?",
+          "options": [
+            "$95$",
+            "$20$",
+            "$75$",
+            "$55$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{2} 10t\\,dt = 20$ litres flow in, on top of the $75$ already there, giving $95$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "75 + integrate(10*t, (t, 0, 2)) == Rational(95, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v06",
+          "statement": "A tank holds $120$ litres at time $t = 0$. Water flows in at $4t$ litres per minute. How many litres are in the tank at $t = 4$ minutes?",
+          "options": [
+            "$32$",
+            "$152$",
+            "$120$",
+            "$136$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{4} 4t\\,dt = 32$ litres flow in, on top of the $120$ already there, giving $152$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "120 + integrate(4*t, (t, 0, 4)) == Rational(152, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v07",
+          "statement": "A tank holds $40$ litres at time $t = 0$. Water flows in at $12t$ litres per minute. How many litres are in the tank at $t = 1$ minutes?",
+          "options": [
+            "$6$",
+            "$40$",
+            "$46$",
+            "$52$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{1} 12t\\,dt = 6$ litres flow in, on top of the $40$ already there, giving $46$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "40 + integrate(12*t, (t, 0, 1)) == Rational(46, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v08",
+          "statement": "A tank holds $90$ litres at time $t = 0$. Water flows in at $6t$ litres per minute. How many litres are in the tank at $t = 3$ minutes?",
+          "options": [
+            "$27$",
+            "$90$",
+            "$108$",
+            "$117$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{3} 6t\\,dt = 27$ litres flow in, on top of the $90$ already there, giving $117$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "90 + integrate(6*t, (t, 0, 3)) == Rational(117, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v09",
+          "statement": "A tank holds $60$ litres at time $t = 0$. Water flows in at $2t$ litres per minute. How many litres are in the tank at $t = 6$ minutes?",
+          "options": [
+            "$96$",
+            "$36$",
+            "$60$",
+            "$72$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{6} 2t\\,dt = 36$ litres flow in, on top of the $60$ already there, giving $96$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "60 + integrate(2*t, (t, 0, 6)) == Rational(96, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v10",
+          "statement": "A tank holds $25$ litres at time $t = 0$. Water flows in at $14t$ litres per minute. How many litres are in the tank at $t = 2$ minutes?",
+          "options": [
+            "$28$",
+            "$53$",
+            "$25$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{2} 14t\\,dt = 28$ litres flow in, on top of the $25$ already there, giving $53$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "25 + integrate(14*t, (t, 0, 2)) == Rational(53, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v11",
+          "statement": "A tank holds $150$ litres at time $t = 0$. Water flows in at $8t$ litres per minute. How many litres are in the tank at $t = 3$ minutes?",
+          "options": [
+            "$36$",
+            "$150$",
+            "$186$",
+            "$174$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{3} 8t\\,dt = 36$ litres flow in, on top of the $150$ already there, giving $186$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "150 + integrate(8*t, (t, 0, 3)) == Rational(186, 1)"
+          ]
+        },
+        {
+          "id": "CAL-acc-v12",
+          "statement": "A tank holds $80$ litres at time $t = 0$. Water flows in at $10t$ litres per minute. How many litres are in the tank at $t = 1$ minutes?",
+          "options": [
+            "$5$",
+            "$80$",
+            "$90$",
+            "$85$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The integral of a RATE is the amount accumulated, not the total amount present: $\\int_0^{1} 10t\\,dt = 5$ litres flow in, on top of the $80$ already there, giving $85$. Answering with the integral alone forgets the starting value; that is what the constant of integration is for.",
+          "check": [
+            "80 + integrate(10*t, (t, 0, 1)) == Rational(85, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "area-parabola",
+      "title": "Area under a parabola",
+      "level": 2,
+      "unit": "applications-of-integrals",
+      "skill": "A third of the rectangle that boxes it in.",
+      "variants": [
+        {
+          "id": "CAL-apar-v01",
+          "statement": "Find the area under $y = 3x^2$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$8$",
+            "$24$",
+            "$12$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\int_0^{2} 3x^2\\,dx = \\left[x^3\\right]_0^{2} = 8$. The region under a parabola is a third of the rectangle that boxes it in, $8$ against $24$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((3)*x**2, (x, 0, 2)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v02",
+          "statement": "Find the area under $y = 6x^2$ from $x = 0$ to $x = 1$.",
+          "options": [
+            "$6$",
+            "$2$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\int_0^{1} 6x^2\\,dx = \\left[2x^3\\right]_0^{1} = 2$. The region under a parabola is a third of the rectangle that boxes it in, $2$ against $6$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((6)*x**2, (x, 0, 1)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v03",
+          "statement": "Find the area under $y = 3x^2$ from $x = 0$ to $x = 3$.",
+          "options": [
+            "$81$",
+            "$\\frac{81}{2}$",
+            "$27$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\int_0^{3} 3x^2\\,dx = \\left[x^3\\right]_0^{3} = 27$. The region under a parabola is a third of the rectangle that boxes it in, $27$ against $81$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((3)*x**2, (x, 0, 3)) == Rational(27, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v04",
+          "statement": "Find the area under $y = 12x^2$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$96$",
+            "$48$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\int_0^{2} 12x^2\\,dx = \\left[4x^3\\right]_0^{2} = 32$. The region under a parabola is a third of the rectangle that boxes it in, $32$ against $96$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((12)*x**2, (x, 0, 2)) == Rational(32, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v05",
+          "statement": "Find the area under $y = 3x^2$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$64$",
+            "$192$",
+            "$48$",
+            "$96$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\int_0^{4} 3x^2\\,dx = \\left[x^3\\right]_0^{4} = 64$. The region under a parabola is a third of the rectangle that boxes it in, $64$ against $192$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((3)*x**2, (x, 0, 4)) == Rational(64, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v06",
+          "statement": "Find the area under $y = 9x^2$ from $x = 0$ to $x = 1$.",
+          "options": [
+            "$9$",
+            "$3$",
+            "$\\frac{9}{2}$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\int_0^{1} 9x^2\\,dx = \\left[3x^3\\right]_0^{1} = 3$. The region under a parabola is a third of the rectangle that boxes it in, $3$ against $9$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((9)*x**2, (x, 0, 1)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v07",
+          "statement": "Find the area under $y = 6x^2$ from $x = 0$ to $x = 3$.",
+          "options": [
+            "$162$",
+            "$81$",
+            "$54$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\int_0^{3} 6x^2\\,dx = \\left[2x^3\\right]_0^{3} = 54$. The region under a parabola is a third of the rectangle that boxes it in, $54$ against $162$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((6)*x**2, (x, 0, 3)) == Rational(54, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v08",
+          "statement": "Find the area under $y = 15x^2$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$120$",
+            "$60$",
+            "$10$",
+            "$40$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\int_0^{2} 15x^2\\,dx = \\left[5x^3\\right]_0^{2} = 40$. The region under a parabola is a third of the rectangle that boxes it in, $40$ against $120$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((15)*x**2, (x, 0, 2)) == Rational(40, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v09",
+          "statement": "Find the area under $y = 3x^2$ from $x = 0$ to $x = 5$.",
+          "options": [
+            "$125$",
+            "$375$",
+            "$75$",
+            "$\\frac{375}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\int_0^{5} 3x^2\\,dx = \\left[x^3\\right]_0^{5} = 125$. The region under a parabola is a third of the rectangle that boxes it in, $125$ against $375$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((3)*x**2, (x, 0, 5)) == Rational(125, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v10",
+          "statement": "Find the area under $y = 24x^2$ from $x = 0$ to $x = 1$.",
+          "options": [
+            "$24$",
+            "$8$",
+            "$12$",
+            "$9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\int_0^{1} 24x^2\\,dx = \\left[8x^3\\right]_0^{1} = 8$. The region under a parabola is a third of the rectangle that boxes it in, $8$ against $24$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((24)*x**2, (x, 0, 1)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v11",
+          "statement": "Find the area under $y = 9x^2$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$72$",
+            "$36$",
+            "$24$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\int_0^{2} 9x^2\\,dx = \\left[3x^3\\right]_0^{2} = 24$. The region under a parabola is a third of the rectangle that boxes it in, $24$ against $72$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((9)*x**2, (x, 0, 2)) == Rational(24, 1)"
+          ]
+        },
+        {
+          "id": "CAL-apar-v12",
+          "statement": "Find the area under $y = 6x^2$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$384$",
+            "$96$",
+            "$192$",
+            "$128$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\int_0^{4} 6x^2\\,dx = \\left[2x^3\\right]_0^{4} = 128$. The region under a parabola is a third of the rectangle that boxes it in, $128$ against $384$ — a useful sanity check that immediately rules out the larger options.",
+          "check": [
+            "integrate((6)*x**2, (x, 0, 4)) == Rational(128, 1)"
           ]
         }
       ]
@@ -3288,6 +5769,573 @@
           "explanation": "$\\int_0^10 x^2\\,dx = \\frac{x^3}{3}\\Big|_0^10 = \\frac{1000}{3}$. Forgetting to divide by $3$ gives $1000$.",
           "check": [
             "integrate(x**2, (x, 0, (10))) == Rational(1000, 3)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "average-value",
+      "title": "The average value of a function",
+      "level": 2,
+      "unit": "applications-of-integrals",
+      "skill": "The integral divided by the width of the interval.",
+      "variants": [
+        {
+          "id": "CAL-avg-v01",
+          "statement": "Find the average value of $f(x) = 2x$ on $[0, 3]$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{3}\\int_0^{3} 2x\\,dx = \\dfrac{1}{3} \\cdot 9 = 3$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 3)*integrate(2*x, (x, 0, 3)) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v02",
+          "statement": "Find the average value of $f(x) = 4x$ on $[0, 1]$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$\\frac{5}{2}$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{1}\\int_0^{1} 4x\\,dx = \\dfrac{1}{1} \\cdot 2 = 2$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 1)*integrate(4*x, (x, 0, 1)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v03",
+          "statement": "Find the average value of $f(x) = 6x$ on $[0, 2]$.",
+          "options": [
+            "$12$",
+            "$3$",
+            "$6$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{2}\\int_0^{2} 6x\\,dx = \\dfrac{1}{2} \\cdot 12 = 6$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 2)*integrate(6*x, (x, 0, 2)) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v04",
+          "statement": "Find the average value of $f(x) = 2x$ on $[0, 5]$.",
+          "options": [
+            "$10$",
+            "$1$",
+            "$25$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{5}\\int_0^{5} 2x\\,dx = \\dfrac{1}{5} \\cdot 25 = 5$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 5)*integrate(2*x, (x, 0, 5)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v05",
+          "statement": "Find the average value of $f(x) = 8x$ on $[0, 3]$.",
+          "options": [
+            "$12$",
+            "$24$",
+            "$4$",
+            "$36$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{3}\\int_0^{3} 8x\\,dx = \\dfrac{1}{3} \\cdot 36 = 12$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 3)*integrate(8*x, (x, 0, 3)) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v06",
+          "statement": "Find the average value of $f(x) = 10x$ on $[0, 1]$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$\\frac{11}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{1}\\int_0^{1} 10x\\,dx = \\dfrac{1}{1} \\cdot 5 = 5$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 1)*integrate(10*x, (x, 0, 1)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v07",
+          "statement": "Find the average value of $f(x) = 4x$ on $[0, 4]$.",
+          "options": [
+            "$16$",
+            "$2$",
+            "$8$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{4}\\int_0^{4} 4x\\,dx = \\dfrac{1}{4} \\cdot 32 = 8$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 4)*integrate(4*x, (x, 0, 4)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v08",
+          "statement": "Find the average value of $f(x) = 12x$ on $[0, 2]$.",
+          "options": [
+            "$24$",
+            "$6$",
+            "$7$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{2}\\int_0^{2} 12x\\,dx = \\dfrac{1}{2} \\cdot 24 = 12$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 2)*integrate(12*x, (x, 0, 2)) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v09",
+          "statement": "Find the average value of $f(x) = 6x$ on $[0, 5]$.",
+          "options": [
+            "$15$",
+            "$30$",
+            "$3$",
+            "$75$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{5}\\int_0^{5} 6x\\,dx = \\dfrac{1}{5} \\cdot 75 = 15$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 5)*integrate(6*x, (x, 0, 5)) == Rational(15, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v10",
+          "statement": "Find the average value of $f(x) = 14x$ on $[0, 3]$.",
+          "options": [
+            "$42$",
+            "$21$",
+            "$7$",
+            "$63$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{3}\\int_0^{3} 14x\\,dx = \\dfrac{1}{3} \\cdot 63 = 21$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 3)*integrate(14*x, (x, 0, 3)) == Rational(21, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v11",
+          "statement": "Find the average value of $f(x) = 8x$ on $[0, 1]$.",
+          "options": [
+            "$8$",
+            "$\\frac{9}{2}$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{1}\\int_0^{1} 8x\\,dx = \\dfrac{1}{1} \\cdot 4 = 4$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 1)*integrate(8*x, (x, 0, 1)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-avg-v12",
+          "statement": "Find the average value of $f(x) = 16x$ on $[0, 4]$.",
+          "options": [
+            "$64$",
+            "$8$",
+            "$128$",
+            "$32$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The average value is the integral divided by the width: $\\dfrac{1}{4}\\int_0^{4} 16x\\,dx = \\dfrac{1}{4} \\cdot 128 = 32$. Skipping the division leaves the total, not the average — and on a straight line through the origin the average is just the midpoint height, which is a good check.",
+          "check": [
+            "Rational(1, 4)*integrate(16*x, (x, 0, 4)) == Rational(32, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "displacement",
+      "title": "Displacement from velocity",
+      "level": 2,
+      "unit": "applications-of-integrals",
+      "skill": "The integral of velocity is displacement; the value of velocity is just the speed at that instant.",
+      "variants": [
+        {
+          "id": "CAL-disp-v01",
+          "statement": "A particle moves with velocity $v(t) = 4t + 3$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 4$.",
+          "options": [
+            "$44$",
+            "$19$",
+            "$20$",
+            "$32$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{4}(4t + 3)\\,dt = 44$. Substituting $t = 4$ into $v$ instead gives $19$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((4)*t + (3), (t, 0, 4)) == 44"
+          ]
+        },
+        {
+          "id": "CAL-disp-v02",
+          "statement": "A particle moves with velocity $v(t) = 2t + 5$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 6$.",
+          "options": [
+            "$17$",
+            "$66$",
+            "$36$",
+            "$30$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{6}(2t + 5)\\,dt = 66$. Substituting $t = 6$ into $v$ instead gives $17$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((2)*t + (5), (t, 0, 6)) == 66"
+          ]
+        },
+        {
+          "id": "CAL-disp-v03",
+          "statement": "A particle moves with velocity $v(t) = 6t - 2$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 2$.",
+          "options": [
+            "$10$",
+            "$2$",
+            "$8$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{2}(6t - 2)\\,dt = 8$. Substituting $t = 2$ into $v$ instead gives $10$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((6)*t + (-2), (t, 0, 2)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-disp-v04",
+          "statement": "A particle moves with velocity $v(t) = 8t + 1$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 3$.",
+          "options": [
+            "$25$",
+            "$15$",
+            "$36$",
+            "$39$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{3}(8t + 1)\\,dt = 39$. Substituting $t = 3$ into $v$ instead gives $25$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((8)*t + (1), (t, 0, 3)) == 39"
+          ]
+        },
+        {
+          "id": "CAL-disp-v05",
+          "statement": "A particle moves with velocity $v(t) = 4t - 6$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 5$.",
+          "options": [
+            "$20$",
+            "$14$",
+            "$-20$",
+            "$50$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{5}(4t - 6)\\,dt = 20$. Substituting $t = 5$ into $v$ instead gives $14$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((4)*t + (-6), (t, 0, 5)) == 20"
+          ]
+        },
+        {
+          "id": "CAL-disp-v06",
+          "statement": "A particle moves with velocity $v(t) = 12t + 2$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 1$.",
+          "options": [
+            "$14$",
+            "$8$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{1}(12t + 2)\\,dt = 8$. Substituting $t = 1$ into $v$ instead gives $14$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((12)*t + (2), (t, 0, 1)) == 8"
+          ]
+        },
+        {
+          "id": "CAL-disp-v07",
+          "statement": "A particle moves with velocity $v(t) = 2t + 8$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 4$.",
+          "options": [
+            "$16$",
+            "$36$",
+            "$48$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{4}(2t + 8)\\,dt = 48$. Substituting $t = 4$ into $v$ instead gives $16$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((2)*t + (8), (t, 0, 4)) == 48"
+          ]
+        },
+        {
+          "id": "CAL-disp-v08",
+          "statement": "A particle moves with velocity $v(t) = 10t - 4$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 2$.",
+          "options": [
+            "$16$",
+            "$2$",
+            "$20$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{2}(10t - 4)\\,dt = 12$. Substituting $t = 2$ into $v$ instead gives $16$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((10)*t + (-4), (t, 0, 2)) == 12"
+          ]
+        },
+        {
+          "id": "CAL-disp-v09",
+          "statement": "A particle moves with velocity $v(t) = 6t + 6$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 3$.",
+          "options": [
+            "$45$",
+            "$24$",
+            "$27$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{3}(6t + 6)\\,dt = 45$. Substituting $t = 3$ into $v$ instead gives $24$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((6)*t + (6), (t, 0, 3)) == 45"
+          ]
+        },
+        {
+          "id": "CAL-disp-v10",
+          "statement": "A particle moves with velocity $v(t) = 4t + 9$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 6$.",
+          "options": [
+            "$33$",
+            "$126$",
+            "$66$",
+            "$72$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{6}(4t + 9)\\,dt = 126$. Substituting $t = 6$ into $v$ instead gives $33$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((4)*t + (9), (t, 0, 6)) == 126"
+          ]
+        },
+        {
+          "id": "CAL-disp-v11",
+          "statement": "A particle moves with velocity $v(t) = 16t - 3$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 1$.",
+          "options": [
+            "$13$",
+            "$8$",
+            "$5$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{1}(16t - 3)\\,dt = 5$. Substituting $t = 1$ into $v$ instead gives $13$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((16)*t + (-3), (t, 0, 1)) == 5"
+          ]
+        },
+        {
+          "id": "CAL-disp-v12",
+          "statement": "A particle moves with velocity $v(t) = 8t + 4$ metres per second. Find its displacement, in metres, over $0 \\le t \\le 5$.",
+          "options": [
+            "$44$",
+            "$40$",
+            "$100$",
+            "$120$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Displacement is the integral of velocity: $\\int_0^{5}(8t + 4)\\,dt = 120$. Substituting $t = 5$ into $v$ instead gives $44$ — that is the speed at the end, not the distance covered.",
+          "check": [
+            "integrate((8)*t + (4), (t, 0, 5)) == 120"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "area-between",
+      "title": "Area between two curves",
+      "level": 3,
+      "unit": "applications-of-integrals",
+      "skill": "Integrate upper minus lower across the interval.",
+      "variants": [
+        {
+          "id": "CAL-abet-v01",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 0$ to $x = 2$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$3$",
+            "$1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{0}^{2}(2x - x)\\,dx = \\int_{0}^{2} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{0}^{2} = 2$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 0, 2)) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v02",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 1$ to $x = 3$.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$2$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{1}^{3}(2x - x)\\,dx = \\int_{1}^{3} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{1}^{3} = 4$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 1, 3)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v03",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 0$ to $x = 4$.",
+          "options": [
+            "$4$",
+            "$16$",
+            "$8$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{0}^{4}(2x - x)\\,dx = \\int_{0}^{4} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{0}^{4} = 8$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 0, 4)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v04",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 2$ to $x = 5$.",
+          "options": [
+            "$\\frac{29}{2}$",
+            "$3$",
+            "$21$",
+            "$\\frac{21}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{2}^{5}(2x - x)\\,dx = \\int_{2}^{5} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{2}^{5} = \\frac{21}{2}$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 2, 5)) == Rational(21, 2)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v05",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 1$ to $x = 6$.",
+          "options": [
+            "$\\frac{35}{2}$",
+            "$\\frac{37}{2}$",
+            "$5$",
+            "$35$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{1}^{6}(2x - x)\\,dx = \\int_{1}^{6} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{1}^{6} = \\frac{35}{2}$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 1, 6)) == Rational(35, 2)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v06",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 0$ to $x = 3$.",
+          "options": [
+            "$3$",
+            "$\\frac{9}{2}$",
+            "$9$",
+            "$\\frac{11}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{0}^{3}(2x - x)\\,dx = \\int_{0}^{3} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{0}^{3} = \\frac{9}{2}$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 0, 3)) == Rational(9, 2)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v07",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 2$ to $x = 4$.",
+          "options": [
+            "$10$",
+            "$2$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{2}^{4}(2x - x)\\,dx = \\int_{2}^{4} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{2}^{4} = 6$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 2, 4)) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v08",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 3$ to $x = 7$.",
+          "options": [
+            "$29$",
+            "$4$",
+            "$40$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{3}^{7}(2x - x)\\,dx = \\int_{3}^{7} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{3}^{7} = 20$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 3, 7)) == Rational(20, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v09",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 1$ to $x = 2$.",
+          "options": [
+            "$\\frac{3}{2}$",
+            "$\\frac{5}{2}$",
+            "$1$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{1}^{2}(2x - x)\\,dx = \\int_{1}^{2} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{1}^{2} = \\frac{3}{2}$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 1, 2)) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v10",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 4$ to $x = 8$.",
+          "options": [
+            "$40$",
+            "$24$",
+            "$4$",
+            "$48$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{4}^{8}(2x - x)\\,dx = \\int_{4}^{8} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{4}^{8} = 24$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 4, 8)) == Rational(24, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v11",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 1$ to $x = 5$.",
+          "options": [
+            "$13$",
+            "$4$",
+            "$12$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{1}^{5}(2x - x)\\,dx = \\int_{1}^{5} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{1}^{5} = 12$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 1, 5)) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "CAL-abet-v12",
+          "statement": "Find the area between $y = 2x$ and $y = x$ from $x = 2$ to $x = 6$.",
+          "options": [
+            "$20$",
+            "$4$",
+            "$32$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Integrate UPPER minus LOWER: $\\int_{2}^{6}(2x - x)\\,dx = \\int_{2}^{6} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{2}^{6} = 16$. Integrating the two curves separately and subtracting the answers works too — but subtracting their areas the wrong way round flips the sign.",
+          "check": [
+            "integrate(2*x - x, (x, 2, 6)) == Rational(16, 1)"
           ]
         }
       ]

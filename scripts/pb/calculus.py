@@ -991,6 +991,788 @@ RESOLVERS.update({
 })
 
 
+# =========================================================================
+# Batch 2 — the forms that take every Calculus unit to six collections.
+#
+# Applications of Integrals shipped with a single collection; Integrals had
+# three and the other four units four. Each form below drills something its
+# unit did not already ask.
+# =========================================================================
+
+def _pmk(c):
+    """Signed suffix term: ' + 5' / ' - 5', never '+ -5'."""
+    return " + %d" % c if c >= 0 else " - %d" % (-c)
+
+
+# ---- limits-and-continuity ----------------------------------------------
+def _gen_limit_laws():
+    cands = [(3, 5, "sum"), (7, 2, "difference"), (4, 6, "product"),
+             (12, 3, "quotient"), (-2, 8, "sum"), (9, 4, "difference"),
+             (5, -3, "product"), (20, 5, "quotient"), (6, 1, "sum"),
+             (11, 7, "difference"), (-4, 3, "product"), (18, 6, "quotient")]
+    words = {"sum": ("f(x) + g(x)", lambda p, q: p + q),
+             "difference": ("f(x) - g(x)", lambda p, q: p - q),
+             "product": ("f(x)g(x)", lambda p, q: p * q),
+             "quotient": ("\\dfrac{f(x)}{g(x)}", lambda p, q: Fraction(p, q))}
+    variants = []
+    for i, (p, q, kind) in enumerate(cands):
+        expr, fn = words[kind]
+        ans = Fraction(fn(p, q))
+        pool = [Fraction(p + q), Fraction(p - q), Fraction(p * q),
+                Fraction(p, q) if q else Fraction(p), Fraction(q, p)
+                if p else Fraction(q)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1, ans + 2]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-llaw-v%02d" % (i + 1),
+            "$\\lim_{x \\to a} f(x) = %d$ and $\\lim_{x \\to a} g(x) = %d$. "
+            "Find $\\lim_{x \\to a} %s$." % (p, q, expr),
+            _fr_tex(ans), wrongs, i,
+            "The limit laws let each piece be taken separately as long as "
+            "every piece has a limit — and, for a quotient, as long as the "
+            "bottom limit is not zero. Here that gives $%s$. The laws are "
+            "about the LIMITS, not the functions: nothing about $f$ or $g$ "
+            "themselves is needed." % _fr_core(ans),
+            [{"sum": "(%d) + (%d) == Rational(%d, %d)",
+              "difference": "(%d) - (%d) == Rational(%d, %d)",
+              "product": "(%d) * (%d) == Rational(%d, %d)",
+              "quotient": "Rational(%d, %d) == Rational(%d, %d)"}[kind]
+             % (p, q, ans.numerator, ans.denominator)]))
+    return _floor("limit-laws", variants)
+
+
+def _rs_limit_laws(s):
+    p, q = [int(x) for x in
+            re.search(r"f\(x\) = (-?\d+)\$ and .+? g\(x\) = (-?\d+)\$",
+                      s).groups()]
+    tail = s.split("\\lim_{x \\to a} ")[-1]
+    if tail.startswith("f(x) + g"):
+        return ("num", p + q)
+    if tail.startswith("f(x) - g"):
+        return ("num", p - q)
+    if tail.startswith("f(x)g"):
+        return ("num", p * q)
+    return ("num", Rational(p, q))
+
+
+_DISCONTINUITY = [
+    (2, "removable"), (-3, "removable"), (5, "removable"), (1, "removable"),
+    (4, "infinite"), (-2, "infinite"), (6, "infinite"), (3, "infinite"),
+    (7, "removable"), (-5, "removable"), (8, "infinite"), (-1, "infinite"),
+]
+
+
+def _gen_discontinuity_type():
+    variants = []
+    for i, (k, kind) in enumerate(_DISCONTINUITY):
+        if kind == "removable":
+            num = "(x%s)(x%s)" % (_pmk(-k), _pmk(-(k + 3)))
+            why = ("the factor $x%s$ cancels, leaving a function that is "
+                   "perfectly well behaved at $x = %d$ apart from the single "
+                   "missing point" % (_pmk(-k), k))
+        else:
+            num = "x%s" % _pmk(-(k + 3))
+            why = ("nothing cancels, so as $x \\to %d$ the bottom goes to "
+                   "zero while the top goes to $-3$ — the values run off to "
+                   "infinity" % k)
+        correct = "a %s discontinuity" % kind
+        wrongs = ["a %s discontinuity" % ("infinite" if kind == "removable"
+                                          else "removable"),
+                  "a jump discontinuity",
+                  "no discontinuity at all — the function is continuous "
+                  "there"]
+        variants.append(_mk(
+            "CAL-dtype-v%02d" % (i + 1),
+            "What kind of discontinuity does "
+            "$f(x) = \\dfrac{%s}{x%s}$ have at $x = %d$?"
+            % (num, _pmk(-k), k),
+            correct, wrongs, i,
+            "Check whether the vanishing factor in the denominator survives "
+            "in the numerator: %s. A removable discontinuity is a hole you "
+            "could fill by defining one value; an infinite one is a vertical "
+            "asymptote, and no definition can repair it." % why,
+            ["(%d) - (%d) == 0" % (k, k)]))
+    return _floor("discontinuity-type", variants)
+
+
+def _rs_discontinuity_type(s):
+    k = int(re.search(r"at \$x = (-?\d+)\$", s).group(1))
+    num = re.search(r"\\dfrac\{(.+?)\}\{x", s).group(1)
+    cancels = ("(x%s)" % _pmk(-k)) in num
+    return ("opt", "a %s discontinuity" % ("removable" if cancels
+                                           else "infinite"))
+
+
+# ---- the-derivative -----------------------------------------------------
+def _gen_derivative_definition():
+    cands = [(1, 3), (2, -1), (3, 4), (1, -5), (4, 2), (2, 7),
+             (5, -3), (3, 1), (1, 8), (6, -2), (2, 5), (4, -6)]
+    variants = []
+    for i, (a, b) in enumerate(cands):
+        # f(x) = a x^2 + b x, so f'(x) = 2a x + b
+        correct = "$%s$" % _ptex([(2 * a, 1), (b, 0)])
+        wrongs = ["$%s$" % _ptex([(a, 1), (b, 0)]),
+                  "$%s$" % _ptex([(2 * a, 1)]),
+                  "$%s$" % _ptex([(2 * a, 2), (b, 1)])]
+        variants.append(_mk(
+            "CAL-ddef-v%02d" % (i + 1),
+            "Use the definition $f'(x) = \\lim_{h \\to 0}"
+            "\\dfrac{f(x + h) - f(x)}{h}$ to differentiate "
+            "$f(x) = %s$." % _ptex([(a, 2), (b, 1)]),
+            correct, wrongs, i,
+            "Expanding the top gives $%d(2xh + h^2) + %dh$; dividing by $h$ "
+            "leaves $%dx + %dh + %d$, and letting $h \\to 0$ kills the "
+            "middle term. The result is $%s$ — the same answer the power "
+            "rule gives, which is exactly why the power rule is allowed."
+            % (a, b, 2 * a, a, b, _ptex([(2 * a, 1), (b, 0)])),
+            ["diff(%s, x) - (%s) == 0"
+             % (_py([(a, 2), (b, 1)]), _py([(2 * a, 1), (b, 0)]))]))
+    return _floor("derivative-definition", variants)
+
+
+def _rs_derivative_definition(s):
+    poly = re.search(r"f\(x\) = (.+?)\$\.$", s).group(1)
+    d = sp.diff(_parse_poly(poly), _X)
+    return ("opt", "$%s$" % _ptex([(int(d.coeff(_X, 1)), 1),
+                                   (int(d.coeff(_X, 0)), 0)]))
+
+
+def _gen_normal_slope():
+    cands = [(1, 2), (2, 1), (3, 1), (1, 3), (2, 3), (1, 4),
+             (4, 1), (3, 2), (1, 5), (5, 1), (2, 5), (6, 1)]
+    variants = []
+    for i, (a, p) in enumerate(cands):
+        # f(x) = a x^2, tangent slope 2ap, normal slope -1/(2ap)
+        m = 2 * a * p
+        ans = Fraction(-1, m)
+        pool = [Fraction(m), Fraction(-m), Fraction(1, m), Fraction(-1, 2 * m)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-nrm-v%02d" % (i + 1),
+            "Find the slope of the NORMAL to $y = %s$ at $x = %d$."
+            % (_ptex([(a, 2)]), p),
+            _fr_tex(ans), wrongs, i,
+            "The tangent slope is $y' = %dx$ evaluated at $x = %d$, which is "
+            "$%d$. The normal is perpendicular to the tangent, so its slope "
+            "is the negative reciprocal $%s$. Reporting the tangent slope "
+            "itself is the whole trap in this question."
+            % (2 * a, p, m, _fr_core(ans)),
+            ["diff(%s, x).subs(x, %d) == %d" % (_py([(a, 2)]), p, m),
+             "(%d) * Rational(%d, %d) == -1"
+             % (m, ans.numerator, ans.denominator)]))
+    return _floor("normal-slope", variants)
+
+
+def _rs_normal_slope(s):
+    a = re.search(r"y = (.+?)\$ at", s).group(1)
+    p = int(re.search(r"at \$x = (-?\d+)\$", s).group(1))
+    m = sp.diff(_parse_poly(a), _X).subs(_X, p)
+    return ("num", Rational(-1, int(m)))
+
+
+# ---- differentiation-techniques -----------------------------------------
+def _gen_quotient_rule():
+    cands = [(3, 2, 5, 1), (4, 1, 2, 3), (5, 3, 1, 2), (2, 5, 4, 1),
+             (6, 2, 3, 4), (1, 4, 5, 2), (7, 1, 2, 5), (3, 6, 1, 4),
+             (8, 3, 4, 1), (2, 7, 5, 3), (9, 2, 1, 6), (4, 5, 3, 2)]
+    variants = []
+    for i, (f, fp, g, gp) in enumerate(cands):
+        assert g != 0
+        ans = Fraction(fp * g - f * gp, g * g)
+        pool = [Fraction(fp, gp) if gp else Fraction(fp),
+                Fraction(f * gp - fp * g, g * g),
+                Fraction(fp * g + f * gp, g * g),
+                Fraction(fp * g - f * gp, g)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-quo-v%02d" % (i + 1),
+            "At $x = 1$: $f(1) = %d$, $f'(1) = %d$, $g(1) = %d$ and "
+            "$g'(1) = %d$. Find $\\left(\\dfrac{f}{g}\\right)'(1)$."
+            % (f, fp, g, gp),
+            _fr_tex(ans), wrongs, i,
+            "The quotient rule is "
+            "$\\dfrac{f'g - fg'}{g^2} = \\dfrac{(%d)(%d) - (%d)(%d)}{%d} = "
+            "%s$. The order in the numerator matters — swapping the two "
+            "products flips the sign — and the denominator is $g$ SQUARED."
+            % (fp, g, f, gp, g * g, _fr_core(ans)),
+            ["Rational(%d*%d - %d*%d, %d**2) == Rational(%d, %d)"
+             % (fp, g, f, gp, g, ans.numerator, ans.denominator)]))
+    return _floor("quotient-rule", variants)
+
+
+def _rs_quotient_rule(s):
+    f, fp, g, gp = [int(x) for x in
+                    re.search(r"f\(1\) = (-?\d+)\$, \$f'\(1\) = (-?\d+)\$, "
+                              r"\$g\(1\) = (-?\d+)\$ and \$g'\(1\) = (-?\d+)",
+                              s).groups()]
+    return ("num", Rational(fp * g - f * gp, g * g))
+
+
+def _gen_velocity_zero():
+    cands = [(1, -6, 5), (2, -8, 3), (1, -10, 7), (3, -12, 1), (1, -4, 9),
+             (2, -20, 4), (1, -14, 2), (4, -8, 6), (1, -16, 5), (5, -30, 2),
+             (2, -12, 8), (1, -18, 3)]
+    variants = []
+    for i, (a, b, c) in enumerate(cands):
+        # s(t) = a t^2 + b t + c, v = 2a t + b, zero at t = -b/(2a)
+        ans = Fraction(-b, 2 * a)
+        pool = [Fraction(-b, a), Fraction(b, 2 * a), Fraction(-c, b),
+                Fraction(-b - c, 2 * a)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-vzero-v%02d" % (i + 1),
+            "A particle has position $s(t) = %s$ metres at time $t$ "
+            "seconds. At what time, in seconds, is its velocity zero?"
+            % _ptex([(a, 2), (b, 1), (c, 0)], var="t"),
+            _fr_tex(ans), wrongs, i,
+            "Velocity is the derivative of position: "
+            "$v(t) = %s$. Setting it to zero gives $t = %s$ seconds — the "
+            "moment the particle turns round. The constant $%d$ is the "
+            "starting position and never affects the velocity."
+            % (_ptex([(2 * a, 1), (b, 0)], var="t"), _fr_core(ans), c),
+            ["diff(%s, t).subs(t, Rational(%d, %d)) == 0"
+             % (_py([(a, 2), (b, 1), (c, 0)], var="t"),
+                ans.numerator, ans.denominator)]))
+    return _floor("velocity-zero", variants)
+
+
+def _rs_velocity_zero(s):
+    poly = re.search(r"s\(t\) = (.+?)\$ metres", s).group(1)
+    t = sp.Symbol("t")
+    return ("num", sp.solve(sp.diff(_parse_poly(poly, var="t"), t), t)[0])
+
+
+# ---- applications-of-derivatives ----------------------------------------
+def _gen_extreme_value():
+    cands = [(1, -4, 7), (1, -6, 11), (2, -8, 5), (1, -2, 9), (3, -12, 4),
+             (1, -8, 20), (2, -12, 1), (1, -10, 30), (4, -8, 3), (1, -12, 40),
+             (2, -16, 6), (5, -20, 2)]
+    variants = []
+    for i, (a, b, c) in enumerate(cands):
+        assert a > 0 and b % (2 * a) == 0
+        xv = -b // (2 * a)
+        ans = a * xv * xv + b * xv + c
+        pool = [xv, c, a * xv * xv + c, -ans]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append("$%d$" % w)
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-ext-v%02d" % (i + 1),
+            "Find the MINIMUM VALUE of $f(x) = %s$."
+            % _ptex([(a, 2), (b, 1), (c, 0)]),
+            "$%d$" % ans, wrongs, i,
+            "$f'(x) = %s$ vanishes at $x = %d$, and $f'' = %d > 0$ confirms "
+            "a minimum. The question asks for the VALUE, so substitute back: "
+            "$f(%d) = %d$. Reporting $x = %d$ answers a different question — "
+            "where the minimum happens, not what it is."
+            % (_ptex([(2 * a, 1), (b, 0)]), xv, 2 * a, xv, ans, xv),
+            ["diff(%s, x).subs(x, %d) == 0"
+             % (_py([(a, 2), (b, 1), (c, 0)]), xv),
+             "(%s).subs(x, %d) == %d"
+             % (_py([(a, 2), (b, 1), (c, 0)]), xv, ans)]))
+    return _floor("extreme-value", variants)
+
+
+def _rs_extreme_value(s):
+    poly = re.search(r"f\(x\) = (.+?)\$\.$", s).group(1)
+    e = _parse_poly(poly)
+    xv = sp.solve(sp.diff(e, _X), _X)[0]
+    return ("num", e.subs(_X, xv))
+
+
+def _gen_inflection():
+    cands = [(1, 3, 2), (1, -6, 5), (2, 9, 1), (1, 12, -4), (3, -9, 7),
+             (1, -15, 2), (2, 6, -3), (1, 21, 8), (4, -12, 1), (1, -24, 6),
+             (2, -18, 5), (1, 27, -2)]
+    variants = []
+    for i, (a, b, c) in enumerate(cands):
+        # f = a x^3 + b x^2 + c x; f'' = 6a x + 2b; zero at x = -b/(3a)
+        ans = Fraction(-b, 3 * a)
+        pool = [Fraction(-b, 2 * a), Fraction(b, 3 * a), Fraction(-c, b)
+                if b else Fraction(0), Fraction(-2 * b, 3 * a)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-inf-v%02d" % (i + 1),
+            "Find the $x$-coordinate of the point of inflection of "
+            "$f(x) = %s$." % _ptex([(a, 3), (b, 2), (c, 1)]),
+            _fr_tex(ans), wrongs, i,
+            "Inflection is about the SECOND derivative: "
+            "$f'' (x) = %s$, which is zero at $x = %s$ and changes sign "
+            "there, so the concavity really does flip. Setting $f'$ to zero "
+            "instead would find a turning point, which is a different "
+            "feature altogether."
+            % (_ptex([(6 * a, 1), (2 * b, 0)]), _fr_core(ans)),
+            ["diff(%s, x, 2).subs(x, Rational(%d, %d)) == 0"
+             % (_py([(a, 3), (b, 2), (c, 1)]), ans.numerator,
+                ans.denominator)]))
+    return _floor("inflection", variants)
+
+
+def _rs_inflection(s):
+    poly = re.search(r"f\(x\) = (.+?)\$\.$", s).group(1)
+    root = sp.solve(sp.diff(_parse_poly(poly), _X, 2), _X)[0]
+    return ("num", root)
+
+
+# ---- integrals ----------------------------------------------------------
+def _gen_antiderivative_condition():
+    # a is even throughout, so the antiderivative (a/2)x^2 + bx has whole
+    # coefficients and the printed form stays readable.
+    cands = [(2, 3, 1, 5), (4, -1, 2, 4), (6, 4, 0, 7), (4, 2, 1, -3),
+             (6, -5, 2, 1), (2, 7, 3, 2), (8, 1, 0, -6), (10, 3, 1, 8),
+             (8, -2, 2, 5), (12, 6, 4, 1), (10, 1, 1, -2), (4, -4, 3, 6)]
+    variants = []
+    for i, (a, b, x0, y0) in enumerate(cands):
+        # f' = a x + b, so F = (a/2) x^2 + b x + C with F(x0) = y0
+        base = Fraction(a * x0 * x0, 2) + b * x0
+        C = Fraction(y0) - base
+        pool = [Fraction(y0), Fraction(-C), base, Fraction(y0) + base]
+        seen, wrongs = {C}, []
+        for w in pool + [C + 1, C - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-acond-v%02d" % (i + 1),
+            "$F'(x) = %s$ and $F(%d) = %d$. Find the constant of "
+            "integration $C$ in $F(x) = %s + C$."
+            % (_ptex([(a, 1), (b, 0)]), x0, y0,
+               _ptex([(a // 2, 2), (b, 1)])),
+            _fr_tex(C), wrongs, i,
+            "Antidifferentiate first: $F(x) = %s + C$. Now use the "
+            "condition: $F(%d) = %s + C = %d$, so $C = %s$. The constant is "
+            "what the condition is FOR — without it every antiderivative "
+            "would be equally good."
+            % (_ptex([(a // 2, 2), (b, 1)]), x0, _fr_core(base), y0,
+               _fr_core(C)),
+            ["Rational(%d, 2)*(%d)**2 + (%d)*(%d) + Rational(%d, %d) == %d"
+             % (a, x0, b, x0, C.numerator, C.denominator, y0)]))
+    return _floor("antiderivative-condition", variants)
+
+
+def _rs_antiderivative_condition(s):
+    a, b = _acond_parts(s)
+    m = re.search(r"F\((-?\d+)\) = (-?\d+)\$", s)
+    x0, y0 = int(m.group(1)), int(m.group(2))
+    return ("num", Rational(y0) - (Rational(a * x0 * x0, 2) + b * x0))
+
+
+def _acond_parts(s):
+    poly = re.search(r"F'\(x\) = (.+?)\$ and", s).group(1)
+    e = _parse_poly(poly)
+    return int(e.coeff(_X, 1)), int(e.coeff(_X, 0))
+
+
+def _gen_integral_additivity():
+    cands = [(3, 5, 8), (7, 2, 9), (4, 6, 10), (12, -3, 9), (5, 5, 10),
+             (9, 1, 10), (2, 11, 13), (8, -4, 4), (6, 7, 13), (10, 3, 13),
+             (1, 14, 15), (15, -6, 9)]
+    variants = []
+    for i, (ab, bc, ac) in enumerate(cands):
+        assert ab + bc == ac
+        ask_split = i % 2 == 0
+        ans = ac if ask_split else -ab
+        pool = [ab, bc, -ac, ab - bc, ab * bc]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append("$%d$" % w)
+            if len(wrongs) == 3:
+                break
+        if ask_split:
+            stmt = ("$\\int_a^b f = %d$ and $\\int_b^c f = %d$. Find "
+                    "$\\int_a^c f$." % (ab, bc))
+            why = ("Adjacent intervals join end to end: "
+                   "$\\int_a^b + \\int_b^c = \\int_a^c$, so the answer is "
+                   "$%d + %d = %d$." % (ab, bc, ac))
+        else:
+            stmt = ("$\\int_a^b f = %d$. Find $\\int_b^a f$." % ab)
+            why = ("Reversing the limits reverses the sign: "
+                   "$\\int_b^a f = -\\int_a^b f = %d$." % (-ab))
+        variants.append(_mk(
+            "CAL-iadd-v%02d" % (i + 1), stmt, "$%d$" % ans, wrongs, i,
+            "%s Both rules come straight from the Fundamental Theorem: the "
+            "integral is $F$ at the top limit minus $F$ at the bottom one, "
+            "so swapping or splitting the limits is just arithmetic on "
+            "$F$." % why,
+            ["(%d) + (%d) == %d" % (ab, bc, ac)]))
+    return _floor("integral-additivity", variants)
+
+
+def _rs_integral_additivity(s):
+    if "\\int_b^a f$" in s:
+        return ("num", -int(re.search(r"\\int_a\^b f = (-?\d+)\$",
+                                      s).group(1)))
+    ab = int(re.search(r"\\int_a\^b f = (-?\d+)\$", s).group(1))
+    bc = int(re.search(r"\\int_b\^c f = (-?\d+)\$", s).group(1))
+    return ("num", ab + bc)
+
+
+def _gen_definite_quadratic():
+    # The leading coefficient is a multiple of 3 throughout, so the
+    # antiderivative (a/3)x^3 prints with a whole coefficient.
+    cands = [(3, 2, 1), (6, -3, 2), (9, 4, 3), (12, 1, 1), (3, -6, 2),
+             (6, 5, 1), (9, 2, 2), (3, 8, 3), (15, -1, 1), (6, 2, 3),
+             (21, 3, 1), (12, -2, 2)]
+    variants = []
+    for i, (a, b, k) in enumerate(cands):
+        assert a % 3 == 0
+        ans = Fraction(a * k ** 3, 3) + b * k
+        pool = [Fraction(a * k ** 3), Fraction(a * k * k + b),
+                Fraction(a * k ** 3, 3), Fraction(2 * a * k + b)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-dquad-v%02d" % (i + 1),
+            "Evaluate $\\int_0^{%d}(%s)\\,dx$."
+            % (k, _ptex([(a, 2), (b, 0)])),
+            _fr_tex(ans), wrongs, i,
+            "Antidifferentiate term by term: $\\int(%s)dx = %s + %dx$. "
+            "Evaluating from $0$ to $%d$ gives $%s + %d = %s$. "
+            "Differentiating instead of integrating is the reflex to watch "
+            "for on a question that looks this routine."
+            % (_ptex([(a, 2), (b, 0)]), _ptex([(a // 3, 3)]), b, k,
+               _fr_core(Fraction(a * k ** 3, 3)), b * k, _fr_core(ans)),
+            ["integrate(%s, (x, 0, %d)) == Rational(%d, %d)"
+             % (_py([(a, 2), (b, 0)]), k, ans.numerator, ans.denominator)]))
+    return _floor("definite-quadratic", variants)
+
+
+def _rs_definite_quadratic(s):
+    m = re.search(r"\\int_0\^\{(\d+)\}\((.+?)\)\\,dx", s)
+    k, poly = int(m.group(1)), m.group(2)
+    return ("num", sp.integrate(_parse_poly(poly), (_X, 0, k)))
+
+# ---- applications-of-integrals -------------------------------------------
+def _gen_area_between():
+    cands = [(2, 0), (3, 1), (4, 0), (5, 2), (6, 1), (3, 0),
+             (4, 2), (7, 3), (2, 1), (8, 4), (5, 1), (6, 2)]
+    variants = []
+    for i, (b, a) in enumerate(cands):
+        assert b > a >= 0
+        # region between y = x and y = x^2 is not lattice-friendly, so use
+        # the strip between y = b and y = a over [0, 1] scaled: instead take
+        # y = 2x (upper) and y = x (lower) from x = a to x = b.
+        ans = Fraction(b * b - a * a, 2)
+        pool = [Fraction(b * b + a * a, 2), Fraction(b - a),
+                Fraction(b * b - a * a), Fraction((b - a) ** 2, 2)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-abet-v%02d" % (i + 1),
+            "Find the area between $y = 2x$ and $y = x$ from $x = %d$ to "
+            "$x = %d$." % (a, b),
+            _fr_tex(ans), wrongs, i,
+            "Integrate UPPER minus LOWER: $\\int_{%d}^{%d}(2x - x)\\,dx = "
+            "\\int_{%d}^{%d} x\\,dx = \\left[\\tfrac{x^2}{2}\\right]_{%d}"
+            "^{%d} = %s$. Integrating the two curves separately and "
+            "subtracting the answers works too — but subtracting their "
+            "areas the wrong way round flips the sign."
+            % (a, b, a, b, a, b, _fr_core(ans)),
+            ["integrate(2*x - x, (x, %d, %d)) == Rational(%d, %d)"
+             % (a, b, ans.numerator, ans.denominator)]))
+    return _floor("area-between", variants)
+
+
+def _rs_area_between(s):
+    a, b = [int(x) for x in
+            re.search(r"from \$x = (-?\d+)\$ to \$x = (-?\d+)\$", s).groups()]
+    return ("num", sp.integrate(2 * _X - _X, (_X, a, b)))
+
+
+def _gen_displacement():
+    cands = [(2, 3, 4), (1, 5, 6), (3, -2, 2), (4, 1, 3), (2, -6, 5),
+             (6, 2, 1), (1, 8, 4), (5, -4, 2), (3, 6, 3), (2, 9, 6),
+             (8, -3, 1), (4, 4, 5)]
+    variants = []
+    for i, (a, b, k) in enumerate(cands):
+        # v(t) = 2a t + b, so displacement over [0, k] is a k^2 + b k
+        ans = a * k * k + b * k
+        pool = [2 * a * k + b, a * k + b * k, a * k * k, b * k]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append("$%d$" % w)
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-disp-v%02d" % (i + 1),
+            "A particle moves with velocity $v(t) = %s$ metres per second. "
+            "Find its displacement, in metres, over $0 \\le t \\le %d$."
+            % (_ptex([(2 * a, 1), (b, 0)], var="t"), k),
+            "$%d$" % ans, wrongs, i,
+            "Displacement is the integral of velocity: "
+            "$\\int_0^{%d}(%s)\\,dt = %d$. Substituting $t = %d$ into $v$ "
+            "instead gives $%d$ — that is the speed at the end, not the "
+            "distance covered."
+            % (k, _ptex([(2 * a, 1), (b, 0)], var="t"), ans, k,
+               2 * a * k + b),
+            ["integrate(%s, (t, 0, %d)) == %d"
+             % (_py([(2 * a, 1), (b, 0)], var="t"), k, ans)]))
+    return _floor("displacement", variants)
+
+
+def _rs_displacement(s):
+    poly = re.search(r"v\(t\) = (.+?)\$ metres", s).group(1)
+    k = int(re.search(r"0 \\le t \\le (\d+)\$", s).group(1))
+    t = sp.Symbol("t")
+    return ("num", sp.integrate(_parse_poly(poly, var="t"), (t, 0, k)))
+
+
+def _gen_average_value():
+    cands = [(2, 3), (4, 1), (6, 2), (2, 5), (8, 3), (10, 1),
+             (4, 4), (12, 2), (6, 5), (14, 3), (8, 1), (16, 4)]
+    variants = []
+    for i, (m, k) in enumerate(cands):
+        assert m % 2 == 0
+        # average of f(x) = m x over [0, k] is m k / 2
+        ans = Fraction(m * k, 2)
+        pool = [Fraction(m * k), Fraction(m, 2), Fraction(m * k * k, 2),
+                Fraction(m + k, 2)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-avg-v%02d" % (i + 1),
+            "Find the average value of $f(x) = %dx$ on $[0, %d]$." % (m, k),
+            _fr_tex(ans), wrongs, i,
+            "The average value is the integral divided by the width: "
+            "$\\dfrac{1}{%d}\\int_0^{%d} %dx\\,dx = "
+            "\\dfrac{1}{%d} \\cdot %s = %s$. Skipping the division leaves "
+            "the total, not the average — and on a straight line through the "
+            "origin the average is just the midpoint height, which is a good "
+            "check." % (k, k, m, k, _fr_core(Fraction(m * k * k, 2)),
+                        _fr_core(ans)),
+            ["Rational(1, %d)*integrate(%d*x, (x, 0, %d)) == Rational(%d, %d)"
+             % (k, m, k, ans.numerator, ans.denominator)]))
+    return _floor("average-value", variants)
+
+
+def _rs_average_value(s):
+    m = int(re.search(r"f\(x\) = (-?\d+)x\$", s).group(1))
+    k = int(re.search(r"\[0, (\d+)\]", s).group(1))
+    return ("num", Rational(1, k) * sp.integrate(m * _X, (_X, 0, k)))
+
+
+def _gen_area_parabola():
+    cands = [(3, 2), (6, 1), (3, 3), (12, 2), (3, 4), (9, 1),
+             (6, 3), (15, 2), (3, 5), (24, 1), (9, 2), (6, 4)]
+    variants = []
+    for i, (a, k) in enumerate(cands):
+        assert a % 3 == 0
+        ans = Fraction(a * k ** 3, 3)
+        pool = [Fraction(a * k ** 3), Fraction(a * k * k),
+                Fraction(a * k ** 3, 2), Fraction(a * k, 3)]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-apar-v%02d" % (i + 1),
+            "Find the area under $y = %s$ from $x = 0$ to $x = %d$."
+            % (_ptex([(a, 2)]), k),
+            _fr_tex(ans), wrongs, i,
+            "$\\int_0^{%d} %sx^2\\,dx = \\left[%sx^3\\right]_0^{%d} = %s$. "
+            "The region under a parabola is a third of the rectangle that "
+            "boxes it in, $%s$ against $%s$ — a useful sanity check that "
+            "immediately rules out the larger options."
+            % (k, "%d" % a if a != 1 else "", "%d" % (a // 3)
+               if a // 3 != 1 else "", k, _fr_core(ans), _fr_core(ans),
+               _fr_core(Fraction(a * k ** 3))),
+            ["integrate(%s, (x, 0, %d)) == Rational(%d, %d)"
+             % (_py([(a, 2)]), k, ans.numerator, ans.denominator)]))
+    return _floor("area-parabola", variants)
+
+
+def _rs_area_parabola(s):
+    poly = re.search(r"y = (.+?)\$ from", s).group(1)
+    k = int(re.search(r"to \$x = (\d+)\$", s).group(1))
+    return ("num", sp.integrate(_parse_poly(poly), (_X, 0, k)))
+
+
+def _gen_accumulated_change():
+    cands = [(4, 3, 100), (6, 2, 50), (2, 5, 200), (8, 1, 30), (10, 2, 75),
+             (4, 4, 120), (12, 1, 40), (6, 3, 90), (2, 6, 60), (14, 2, 25),
+             (8, 3, 150), (10, 1, 80)]
+    variants = []
+    for i, (r, k, start) in enumerate(cands):
+        assert r % 2 == 0
+        # rate R(t) = r t litres/min; total over [0, k] is r k^2 / 2
+        added = Fraction(r * k * k, 2)
+        ans = Fraction(start) + added
+        pool = [added, Fraction(start), Fraction(start) + r * k,
+                Fraction(start) - added]
+        seen, wrongs = {ans}, []
+        for w in pool + [ans + 1, ans - 1]:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(_fr_tex(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk(
+            "CAL-acc-v%02d" % (i + 1),
+            "A tank holds $%d$ litres at time $t = 0$. Water flows in at "
+            "$%dt$ litres per minute. How many litres are in the tank at "
+            "$t = %d$ minutes?" % (start, r, k),
+            _fr_tex(ans), wrongs, i,
+            "The integral of a RATE is the amount accumulated, not the total "
+            "amount present: $\\int_0^{%d} %dt\\,dt = %s$ litres flow in, on "
+            "top of the $%d$ already there, giving $%s$. Answering with the "
+            "integral alone forgets the starting value; that is what the "
+            "constant of integration is for."
+            % (k, r, _fr_core(added), start, _fr_core(ans)),
+            ["%d + integrate(%d*t, (t, 0, %d)) == Rational(%d, %d)"
+             % (start, r, k, ans.numerator, ans.denominator)]))
+    return _floor("accumulated-change", variants)
+
+
+def _rs_accumulated_change(s):
+    start = int(re.search(r"holds \$(\d+)\$ litres", s).group(1))
+    r = int(re.search(r"at \$(\d+)t\$ litres", s).group(1))
+    k = int(re.search(r"at \$t = (\d+)\$ minutes", s).group(1))
+    t = sp.Symbol("t")
+    return ("num", start + sp.integrate(r * t, (t, 0, k)))
+
+
+_BATCH2_META = [
+    ("limit-laws", "The limit laws", 1, "limits-and-continuity",
+     "Take the limit of each piece separately — as long as each piece has "
+     "one, and the bottom of a quotient is not zero.",
+     _gen_limit_laws, _rs_limit_laws),
+    ("discontinuity-type", "Removable or infinite", 2,
+     "limits-and-continuity",
+     "A factor that cancels leaves a hole; one that survives leaves an "
+     "asymptote.",
+     _gen_discontinuity_type, _rs_discontinuity_type),
+    ("derivative-definition", "The derivative from first principles", 2,
+     "the-derivative",
+     "Expand f(x + h), subtract f(x), divide by h, then let h go to zero.",
+     _gen_derivative_definition, _rs_derivative_definition),
+    ("normal-slope", "The slope of the normal", 2, "the-derivative",
+     "Perpendicular to the tangent: the negative reciprocal of f'(p).",
+     _gen_normal_slope, _rs_normal_slope),
+    ("quotient-rule", "The quotient rule", 3, "differentiation-techniques",
+     "(f/g)' = (f'g - fg')/g² — the order in the numerator decides the sign.",
+     _gen_quotient_rule, _rs_quotient_rule),
+    ("velocity-zero", "When the velocity is zero", 2,
+     "differentiation-techniques",
+     "Differentiate position to get velocity, then solve v(t) = 0.",
+     _gen_velocity_zero, _rs_velocity_zero),
+    ("extreme-value", "The minimum VALUE", 2, "applications-of-derivatives",
+     "Find where f' = 0, then substitute back — the question asks what the "
+     "minimum is, not where.",
+     _gen_extreme_value, _rs_extreme_value),
+    ("inflection", "Points of inflection", 3, "applications-of-derivatives",
+     "Set the SECOND derivative to zero; the first derivative finds turning "
+     "points instead.",
+     _gen_inflection, _rs_inflection),
+    ("antiderivative-condition", "Finding the constant of integration", 2,
+     "integrals",
+     "Antidifferentiate, then use the given value to pin down C.",
+     _gen_antiderivative_condition, _rs_antiderivative_condition),
+    ("integral-additivity", "Splitting and reversing limits", 2, "integrals",
+     "Adjacent intervals add; swapping the limits flips the sign.",
+     _gen_integral_additivity, _rs_integral_additivity),
+    ("definite-quadratic", "Definite integrals of quadratics", 2, "integrals",
+     "Raise each exponent by one, divide by the new one, then evaluate at "
+     "both limits.",
+     _gen_definite_quadratic, _rs_definite_quadratic),
+    ("area-between", "Area between two curves", 3,
+     "applications-of-integrals",
+     "Integrate upper minus lower across the interval.",
+     _gen_area_between, _rs_area_between),
+    ("displacement", "Displacement from velocity", 2,
+     "applications-of-integrals",
+     "The integral of velocity is displacement; the value of velocity is "
+     "just the speed at that instant.",
+     _gen_displacement, _rs_displacement),
+    ("average-value", "The average value of a function", 2,
+     "applications-of-integrals",
+     "The integral divided by the width of the interval.",
+     _gen_average_value, _rs_average_value),
+    ("area-parabola", "Area under a parabola", 2,
+     "applications-of-integrals",
+     "A third of the rectangle that boxes it in.",
+     _gen_area_parabola, _rs_area_parabola),
+    ("accumulated-change", "Accumulated change", 2,
+     "applications-of-integrals",
+     "Integrate the rate to get what was added, then add the starting "
+     "amount.",
+     _gen_accumulated_change, _rs_accumulated_change),
+]
+
+
+def _batch2_forms():
+    return [{"id": fid, "title": title, "level": level, "unit": unit,
+             "skill": skill, "variants": gen()}
+            for fid, title, level, unit, skill, gen, _rz in _BATCH2_META]
+
+
+_BATCH1_FORMS = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 2 to the original list
+    """All unit-specific forms: the original set plus batch 2 above."""
+    return _BATCH1_FORMS() + _batch2_forms()
+
+
+RESOLVERS.update({fid: rz for fid, _t, _l, _u, _s, _g, rz in _BATCH2_META})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = new_forms()
