@@ -100,6 +100,18 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-05** — Probe after deploy `644ab67` (the Grade 3 year — 8 topics,
+  40 lessons, a 48-form problem bank — plus the fix that made 23 authored
+  practice figures actually render, 20 of which had been invisible in Grade 4
+  production): `anthropic_api_key: configured`, `migration_009: applied`,
+  `migration_008_student_profiles: unknown` (FLAG-002 unchanged — `unknown`,
+  so read that flag's "Reading a non-`applied` result" row before acting).
+  FLAG-003 still optional/unset. No migrations in the diff and no auth, API
+  or env files touched, so nothing depended on either open flag. Prod
+  verified: `/math/3` serves all eight topics with the paywall intact (first
+  topic free, the rest Premium-locked) and `/math/problem-bank/3` serves its
+  units with rendered math; runtime errors clean over the 2h window. Deploy
+  went READY in 2m34s.
 - **2026-08-04** — Probe after deploy `1244ae8` (per-unit problem banks for
   grades 4, 6, 7, 8, 10, 11 — 7,300 new problems, so every course on the
   /math ladder from Grade 4 to Grade 12 now has a bank; plus two rendering
