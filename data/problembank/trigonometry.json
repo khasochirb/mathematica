@@ -37,6 +37,195 @@
   ],
   "forms": [
     {
+      "id": "ratio-choice",
+      "title": "Choosing sine, cosine or tangent",
+      "level": 1,
+      "skill": "SOH-CAH-TOA names each pairing once — match the two known sides.",
+      "unit": "right-triangle-trigonometry",
+      "variants": [
+        {
+          "id": "TRIG-rchoice-v01",
+          "statement": "A right triangle problem gives you the opposite side and the hypotenuse, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "cosine",
+            "tangent",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 0,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the opposite side and the hypotenuse, so the ratio is the sine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v02",
+          "statement": "A right triangle problem gives you the adjacent side and the hypotenuse, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "cosine",
+            "tangent",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 1,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the adjacent side and the hypotenuse, so the ratio is the cosine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v03",
+          "statement": "A right triangle problem gives you the opposite side and the adjacent side, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "cosine",
+            "tangent",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 2,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the opposite side and the adjacent side, so the ratio is the tangent. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v04",
+          "statement": "A right triangle problem gives you the hypotenuse and the side across from the angle, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "cosine",
+            "tangent",
+            "none of these — a right triangle is not enough",
+            "sine"
+          ],
+          "correctIndex": 3,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the hypotenuse and the side across from the angle, so the ratio is the sine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v05",
+          "statement": "A right triangle problem gives you the hypotenuse and the side next to the angle, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "cosine",
+            "sine",
+            "tangent",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 0,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the hypotenuse and the side next to the angle, so the ratio is the cosine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v06",
+          "statement": "A right triangle problem gives you the two legs, neither of them the hypotenuse, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "tangent",
+            "cosine",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 1,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the two legs, neither of them the hypotenuse, so the ratio is the tangent. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v07",
+          "statement": "A right triangle problem gives you the side across from the angle and the longest side, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "cosine",
+            "tangent",
+            "sine",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 2,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the side across from the angle and the longest side, so the ratio is the sine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v08",
+          "statement": "A right triangle problem gives you the side beside the angle and the longest side, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "tangent",
+            "none of these — a right triangle is not enough",
+            "cosine"
+          ],
+          "correctIndex": 3,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the side beside the angle and the longest side, so the ratio is the cosine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v09",
+          "statement": "A right triangle problem gives you the height of a mast and your distance from its foot, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "tangent",
+            "sine",
+            "cosine",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 0,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the height of a mast and your distance from its foot, so the ratio is the tangent. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v10",
+          "statement": "A right triangle problem gives you the length of a ramp and the height it reaches, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "cosine",
+            "sine",
+            "tangent",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 1,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the length of a ramp and the height it reaches, so the ratio is the sine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v11",
+          "statement": "A right triangle problem gives you the length of a ladder and its distance from the wall, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "tangent",
+            "cosine",
+            "none of these — a right triangle is not enough"
+          ],
+          "correctIndex": 2,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the length of a ladder and its distance from the wall, so the ratio is the cosine. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-rchoice-v12",
+          "statement": "A right triangle problem gives you the shadow of a pole and the pole's height, and asks for the angle. Which ratio connects them?",
+          "options": [
+            "sine",
+            "cosine",
+            "none of these — a right triangle is not enough",
+            "tangent"
+          ],
+          "correctIndex": 3,
+          "explanation": "SOH-CAH-TOA names each pairing exactly once: sine pairs opposite with hypotenuse, cosine pairs adjacent with hypotenuse, and tangent pairs the two legs with each other. Here the two given lengths are the shadow of a pole and the pole's height, so the ratio is the tangent. Choosing the wrong one is not a rounding error — it answers a different question.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ]
+    },
+    {
       "id": "right-triangle-side",
       "title": "Finding a side with sine",
       "level": 1,
@@ -2980,6 +3169,195 @@
       ]
     },
     {
+      "id": "hypotenuse-from-angle",
+      "title": "The hypotenuse from a side and an angle",
+      "level": 2,
+      "skill": "Divide by the sine, never multiply — the hypotenuse is the longest side.",
+      "unit": "right-triangle-trigonometry",
+      "variants": [
+        {
+          "id": "TRIG-hyp-v01",
+          "statement": "In a right triangle one angle is $30°$ and the side OPPOSITE it is $3$. Find the hypotenuse, exactly.",
+          "options": [
+            "$6$",
+            "$\\frac{3}{2}$",
+            "$2 \\sqrt{3}$",
+            "$3 \\sqrt{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 30° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{3}{\\sin 30°} = 6$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(30)) * (6), 3)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v02",
+          "statement": "In a right triangle one angle is $45°$ and the side OPPOSITE it is $5$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{5}{2} \\sqrt{2}$",
+            "$5 \\sqrt{2}$",
+            "$10$",
+            "$2.50000000000000$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 45° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{5}{\\sin 45°} = 5 \\sqrt{2}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(45)) * (5*sqrt(2)), 5)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v03",
+          "statement": "In a right triangle one angle is $60°$ and the side OPPOSITE it is $7$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{7}{2} \\sqrt{3}$",
+            "$14$",
+            "$\\frac{14}{3} \\sqrt{3}$",
+            "$3.50000000000000$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 60° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{7}{\\sin 60°} = \\frac{14}{3} \\sqrt{3}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(60)) * (14*sqrt(3)/3), 7)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v04",
+          "statement": "In a right triangle one angle is $30°$ and the side OPPOSITE it is $4$. Find the hypotenuse, exactly.",
+          "options": [
+            "$2$",
+            "$\\frac{8}{3} \\sqrt{3}$",
+            "$4 \\sqrt{2}$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 30° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{4}{\\sin 30°} = 8$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(30)) * (8), 4)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v05",
+          "statement": "In a right triangle one angle is $45°$ and the side OPPOSITE it is $6$. Find the hypotenuse, exactly.",
+          "options": [
+            "$6 \\sqrt{2}$",
+            "$3 \\sqrt{2}$",
+            "$12$",
+            "$3.00000000000000$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 45° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{6}{\\sin 45°} = 6 \\sqrt{2}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(45)) * (6*sqrt(2)), 6)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v06",
+          "statement": "In a right triangle one angle is $60°$ and the side OPPOSITE it is $9$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{9}{2} \\sqrt{3}$",
+            "$6 \\sqrt{3}$",
+            "$18$",
+            "$4.50000000000000$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 60° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{9}{\\sin 60°} = 6 \\sqrt{3}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(60)) * (6*sqrt(3)), 9)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v07",
+          "statement": "In a right triangle one angle is $30°$ and the side OPPOSITE it is $8$. Find the hypotenuse, exactly.",
+          "options": [
+            "$4$",
+            "$\\frac{16}{3} \\sqrt{3}$",
+            "$16$",
+            "$8 \\sqrt{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 30° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{8}{\\sin 30°} = 16$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(30)) * (16), 8)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v08",
+          "statement": "In a right triangle one angle is $45°$ and the side OPPOSITE it is $10$. Find the hypotenuse, exactly.",
+          "options": [
+            "$5 \\sqrt{2}$",
+            "$20$",
+            "$5.00000000000000$",
+            "$10 \\sqrt{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 45° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{10}{\\sin 45°} = 10 \\sqrt{2}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(45)) * (10*sqrt(2)), 10)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v09",
+          "statement": "In a right triangle one angle is $60°$ and the side OPPOSITE it is $12$. Find the hypotenuse, exactly.",
+          "options": [
+            "$8 \\sqrt{3}$",
+            "$6 \\sqrt{3}$",
+            "$24$",
+            "$6.00000000000000$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin 60° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{12}{\\sin 60°} = 8 \\sqrt{3}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(60)) * (8*sqrt(3)), 12)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v10",
+          "statement": "In a right triangle one angle is $30°$ and the side OPPOSITE it is $11$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{11}{2}$",
+            "$22$",
+            "$\\frac{22}{3} \\sqrt{3}$",
+            "$11 \\sqrt{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin 30° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{11}{\\sin 30°} = 22$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(30)) * (22), 11)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v11",
+          "statement": "In a right triangle one angle is $45°$ and the side OPPOSITE it is $2$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\sqrt{2}$",
+            "$4$",
+            "$2 \\sqrt{2}$",
+            "$1.00000000000000$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin 45° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{2}{\\sin 45°} = 2 \\sqrt{2}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(45)) * (2*sqrt(2)), 2)"
+          ]
+        },
+        {
+          "id": "TRIG-hyp-v12",
+          "statement": "In a right triangle one angle is $60°$ and the side OPPOSITE it is $14$. Find the hypotenuse, exactly.",
+          "options": [
+            "$7 \\sqrt{3}$",
+            "$28$",
+            "$7.00000000000000$",
+            "$\\frac{28}{3} \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin 60° = \\dfrac{\\text{opposite}}{\\text{hypotenuse}}$, so the hypotenuse is $\\dfrac{14}{\\sin 60°} = \\frac{28}{3} \\sqrt{3}$. Multiplying by the sine instead of dividing shrinks the hypotenuse below the leg, which is impossible in a right triangle.",
+          "check": [
+            "Eq(sin(rad(60)) * (28*sqrt(3)/3), 14)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sin-to-cos-tan",
       "title": "From sin to cos and tan",
       "level": 2,
@@ -4114,6 +4492,384 @@
       "unit": "special-triangles-and-exact-values"
     },
     {
+      "id": "quadrant-signs",
+      "title": "Signs by quadrant",
+      "level": 1,
+      "skill": "Cosine follows x, sine follows y, tangent is their quotient.",
+      "unit": "special-triangles-and-exact-values",
+      "variants": [
+        {
+          "id": "TRIG-qsign-v01",
+          "statement": "An angle lies in quadrant $1$. Is its sine positive or negative?",
+          "options": [
+            "positive",
+            "negative",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $1$ the sine is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v02",
+          "statement": "An angle lies in quadrant $2$. Is its sine positive or negative?",
+          "options": [
+            "negative",
+            "positive",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $2$ the sine is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v03",
+          "statement": "An angle lies in quadrant $3$. Is its sine positive or negative?",
+          "options": [
+            "positive",
+            "zero",
+            "negative",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $3$ the sine is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v04",
+          "statement": "An angle lies in quadrant $4$. Is its sine positive or negative?",
+          "options": [
+            "positive",
+            "zero",
+            "impossible to say without the exact angle",
+            "negative"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $4$ the sine is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v05",
+          "statement": "An angle lies in quadrant $1$. Is its cosine positive or negative?",
+          "options": [
+            "positive",
+            "negative",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $1$ the cosine is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v06",
+          "statement": "An angle lies in quadrant $2$. Is its cosine positive or negative?",
+          "options": [
+            "positive",
+            "negative",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $2$ the cosine is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v07",
+          "statement": "An angle lies in quadrant $3$. Is its cosine positive or negative?",
+          "options": [
+            "positive",
+            "zero",
+            "negative",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $3$ the cosine is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v08",
+          "statement": "An angle lies in quadrant $4$. Is its cosine positive or negative?",
+          "options": [
+            "negative",
+            "zero",
+            "impossible to say without the exact angle",
+            "positive"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $4$ the cosine is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v09",
+          "statement": "An angle lies in quadrant $2$. Is its tangent positive or negative?",
+          "options": [
+            "negative",
+            "positive",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 0,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $2$ the tangent is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v10",
+          "statement": "An angle lies in quadrant $3$. Is its tangent positive or negative?",
+          "options": [
+            "negative",
+            "positive",
+            "zero",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 1,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $3$ the tangent is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v11",
+          "statement": "An angle lies in quadrant $4$. Is its tangent positive or negative?",
+          "options": [
+            "positive",
+            "zero",
+            "negative",
+            "impossible to say without the exact angle"
+          ],
+          "correctIndex": 2,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $4$ the tangent is negative.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "TRIG-qsign-v12",
+          "statement": "An angle lies in quadrant $1$. Is its tangent positive or negative?",
+          "options": [
+            "negative",
+            "zero",
+            "impossible to say without the exact angle",
+            "positive"
+          ],
+          "correctIndex": 3,
+          "explanation": "On the unit circle the cosine is the $x$-coordinate and the sine is the $y$-coordinate, so each takes the sign of its axis in that quadrant, and the tangent is their quotient. In quadrant $1$ the tangent is positive.",
+          "check": [
+            "1 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "special-triangle-sides",
+      "title": "Sides of the special triangles",
+      "level": 1,
+      "skill": "x : x√3 : 2x and x : x : x√2 — scale the pattern to the given side.",
+      "unit": "special-triangles-and-exact-values",
+      "variants": [
+        {
+          "id": "TRIG-spside-v01",
+          "statement": "A right triangle has an angle of $30°$, and the side opposite that angle is $6$. Find the hypotenuse, exactly.",
+          "options": [
+            "$12$",
+            "$6 \\sqrt{3}$",
+            "$6$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $30°$ is $6$ makes the hypotenuse $12$.",
+          "check": [
+            "Eq(sin(rad(30)) * (12), 6)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v02",
+          "statement": "A right triangle has an angle of $60°$, and the side opposite that angle is $4$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{4}{3} \\sqrt{3}$",
+            "$\\frac{8}{3} \\sqrt{3}$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $60°$ is $4$ makes the hypotenuse $\\frac{8}{3} \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(60)) * (8*sqrt(3)/3), 4)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v03",
+          "statement": "A right triangle has an angle of $45°$, and the side opposite that angle is $5$. Find the hypotenuse, exactly.",
+          "options": [
+            "$5$",
+            "$10$",
+            "$5 \\sqrt{2}$",
+            "$5 \\sqrt{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $45°$ is $5$ makes the hypotenuse $5 \\sqrt{2}$.",
+          "check": [
+            "Eq(sin(rad(45)) * (5*sqrt(2)), 5)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v04",
+          "statement": "A right triangle has an angle of $30°$, and the side opposite that angle is $8$. Find the other leg, exactly.",
+          "options": [
+            "$16$",
+            "$8$",
+            "$1 + 8*sqrt(3)$",
+            "$8 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $30°$ is $8$ makes the other leg $8 \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(30)) * (16), 8)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v05",
+          "statement": "A right triangle has an angle of $60°$, and the side opposite that angle is $9$. Find the other leg, exactly.",
+          "options": [
+            "$3 \\sqrt{3}$",
+            "$6 \\sqrt{3}$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $60°$ is $9$ makes the other leg $3 \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(60)) * (6*sqrt(3)), 9)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v06",
+          "statement": "A right triangle has an angle of $45°$, and the side opposite that angle is $7$. Find the other leg, exactly.",
+          "options": [
+            "$7 \\sqrt{2}$",
+            "$7$",
+            "$14$",
+            "$7 \\sqrt{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $45°$ is $7$ makes the other leg $7$.",
+          "check": [
+            "Eq(sin(rad(45)) * (7*sqrt(2)), 7)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v07",
+          "statement": "A right triangle has an angle of $30°$, and the side opposite that angle is $10$. Find the hypotenuse, exactly.",
+          "options": [
+            "$10 \\sqrt{3}$",
+            "$10$",
+            "$20$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $30°$ is $10$ makes the hypotenuse $20$.",
+          "check": [
+            "Eq(sin(rad(30)) * (20), 10)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v08",
+          "statement": "A right triangle has an angle of $60°$, and the side opposite that angle is $12$. Find the other leg, exactly.",
+          "options": [
+            "$8 \\sqrt{3}$",
+            "$12$",
+            "$24$",
+            "$4 \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $60°$ is $12$ makes the other leg $4 \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(60)) * (8*sqrt(3)), 12)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v09",
+          "statement": "A right triangle has an angle of $45°$, and the side opposite that angle is $3$. Find the hypotenuse, exactly.",
+          "options": [
+            "$3 \\sqrt{2}$",
+            "$3$",
+            "$6$",
+            "$3 \\sqrt{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $45°$ is $3$ makes the hypotenuse $3 \\sqrt{2}$.",
+          "check": [
+            "Eq(sin(rad(45)) * (3*sqrt(2)), 3)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v10",
+          "statement": "A right triangle has an angle of $30°$, and the side opposite that angle is $14$. Find the other leg, exactly.",
+          "options": [
+            "$28$",
+            "$14 \\sqrt{3}$",
+            "$14$",
+            "$1 + 14*sqrt(3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $30°$ is $14$ makes the other leg $14 \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(30)) * (28), 14)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v11",
+          "statement": "A right triangle has an angle of $60°$, and the side opposite that angle is $11$. Find the hypotenuse, exactly.",
+          "options": [
+            "$\\frac{11}{3} \\sqrt{3}$",
+            "$11$",
+            "$\\frac{22}{3} \\sqrt{3}$",
+            "$22$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $60°$ is $11$ makes the hypotenuse $\\frac{22}{3} \\sqrt{3}$.",
+          "check": [
+            "Eq(sin(rad(60)) * (22*sqrt(3)/3), 11)"
+          ]
+        },
+        {
+          "id": "TRIG-spside-v12",
+          "statement": "A right triangle has an angle of $45°$, and the side opposite that angle is $2$. Find the other leg, exactly.",
+          "options": [
+            "$2 \\sqrt{2}$",
+            "$4$",
+            "$2 \\sqrt{3}$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The special triangles fix every ratio: a $30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, and a $45$–$45$–$90$ has $x$, $x$, $x\\sqrt2$. Scaling that pattern so the side opposite $45°$ is $2$ makes the other leg $2$.",
+          "check": [
+            "Eq(sin(rad(45)) * (2*sqrt(2)), 2)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "tan-exact",
       "title": "Exact values of tangent",
       "level": 1,
@@ -4487,6 +5243,384 @@
           "explanation": "$\\sin 60° = \\frac{\\sqrt{3}}{2}$ and $\\cos 45° = \\frac{\\sqrt{2}}{2}$, so the sum is $\\frac{\\sqrt{3}+\\sqrt{2}}{2}$. Swapping the sine and cosine columns of the special-angle table is the classic wrong move.",
           "check": [
             "sin(rad(60)) + cos(rad(45)) == (sqrt(3)+sqrt(2))/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reciprocal-ratios",
+      "title": "Cosecant, secant and cotangent",
+      "level": 2,
+      "skill": "Evaluate the base ratio first, then flip it.",
+      "unit": "special-triangles-and-exact-values",
+      "variants": [
+        {
+          "id": "TRIG-recip-v01",
+          "statement": "Find the exact value of the cosecant of $30°$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The cosecant is the reciprocal of the sine: $\\sin 30° = \\frac{1}{2}$, so the answer is its reciprocal $2$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((1/2) * (2), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v02",
+          "statement": "Find the exact value of the secant of $60°$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The secant is the reciprocal of the cosine: $\\cos 60° = \\frac{1}{2}$, so the answer is its reciprocal $2$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((1/2) * (2), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v03",
+          "statement": "Find the exact value of the cotangent of $45°$.",
+          "options": [
+            "$-1$",
+            "$2$",
+            "$1$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The cotangent is the reciprocal of the tangent: $\\tan 45° = 1$, so the answer is its reciprocal $1$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((1) * (1), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v04",
+          "statement": "Find the exact value of the cosecant of $90°$.",
+          "options": [
+            "$-1$",
+            "$2$",
+            "$0$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The cosecant is the reciprocal of the sine: $\\sin 90° = 1$, so the answer is its reciprocal $1$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((1) * (1), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v05",
+          "statement": "Find the exact value of the secant of $45°$.",
+          "options": [
+            "$\\sqrt{2}$",
+            "$\\frac{1}{2} \\sqrt{2}$",
+            "$-1 \\sqrt{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The secant is the reciprocal of the cosine: $\\cos 45° = \\frac{1}{2} \\sqrt{2}$, so the answer is its reciprocal $\\sqrt{2}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(2)/2) * (sqrt(2)), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v06",
+          "statement": "Find the exact value of the cotangent of $30°$.",
+          "options": [
+            "$\\frac{1}{3} \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$-1 \\sqrt{3}$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The cotangent is the reciprocal of the tangent: $\\tan 30° = \\frac{1}{3} \\sqrt{3}$, so the answer is its reciprocal $\\sqrt{3}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(3)/3) * (sqrt(3)), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v07",
+          "statement": "Find the exact value of the cosecant of $45°$.",
+          "options": [
+            "$\\frac{1}{2} \\sqrt{2}$",
+            "$-1 \\sqrt{2}$",
+            "$\\sqrt{2}$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The cosecant is the reciprocal of the sine: $\\sin 45° = \\frac{1}{2} \\sqrt{2}$, so the answer is its reciprocal $\\sqrt{2}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(2)/2) * (sqrt(2)), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v08",
+          "statement": "Find the exact value of the secant of $30°$.",
+          "options": [
+            "$\\frac{1}{2} \\sqrt{3}$",
+            "$\\frac{-2}{3} \\sqrt{3}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{2}{3} \\sqrt{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The secant is the reciprocal of the cosine: $\\cos 30° = \\frac{1}{2} \\sqrt{3}$, so the answer is its reciprocal $\\frac{2}{3} \\sqrt{3}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(3)/2) * (2*sqrt(3)/3), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v09",
+          "statement": "Find the exact value of the cotangent of $60°$.",
+          "options": [
+            "$\\frac{1}{3} \\sqrt{3}$",
+            "$\\sqrt{3}$",
+            "$\\frac{-1}{3} \\sqrt{3}$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The cotangent is the reciprocal of the tangent: $\\tan 60° = \\sqrt{3}$, so the answer is its reciprocal $\\frac{1}{3} \\sqrt{3}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(3)) * (sqrt(3)/3), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v10",
+          "statement": "Find the exact value of the cosecant of $60°$.",
+          "options": [
+            "$\\frac{1}{2} \\sqrt{3}$",
+            "$\\frac{2}{3} \\sqrt{3}$",
+            "$\\frac{-2}{3} \\sqrt{3}$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The cosecant is the reciprocal of the sine: $\\sin 60° = \\frac{1}{2} \\sqrt{3}$, so the answer is its reciprocal $\\frac{2}{3} \\sqrt{3}$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((sqrt(3)/2) * (2*sqrt(3)/3), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v11",
+          "statement": "Find the exact value of the secant of $0°$.",
+          "options": [
+            "$-1$",
+            "$2$",
+            "$1$",
+            "$0$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The secant is the reciprocal of the cosine: $\\cos 0° = 1$, so the answer is its reciprocal $1$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((1) * (1), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-recip-v12",
+          "statement": "Find the exact value of the cotangent of $135°$.",
+          "options": [
+            "$1$",
+            "$-2$",
+            "$0$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The cotangent is the reciprocal of the tangent: $\\tan 135° = -1$, so the answer is its reciprocal $-1$. Reporting the base ratio itself is the whole trap — the reciprocal functions exist precisely to flip it.",
+          "check": [
+            "Eq((-1) * (-1), 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angle-quadrant",
+      "title": "Which quadrant, in radians",
+      "level": 1,
+      "skill": "Compare against π/2, π and 3π/2 — or just convert to degrees.",
+      "unit": "radians-and-the-unit-circle",
+      "variants": [
+        {
+          "id": "TRIG-quad-v01",
+          "statement": "In which quadrant does an angle of $\\dfrac{\\pi}{6}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $30°$, which sits in quadrant $1$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 1, 6) % 360 == 30"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v02",
+          "statement": "In which quadrant does an angle of $\\dfrac{2\\pi}{3}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $120°$, which sits in quadrant $2$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 2, 3) % 360 == 120"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v03",
+          "statement": "In which quadrant does an angle of $\\dfrac{3\\pi}{4}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $3$",
+            "quadrant $2$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $135°$, which sits in quadrant $2$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 3, 4) % 360 == 135"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v04",
+          "statement": "In which quadrant does an angle of $\\dfrac{5\\pi}{6}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $3$",
+            "quadrant $4$",
+            "quadrant $2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $150°$, which sits in quadrant $2$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 5, 6) % 360 == 150"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v05",
+          "statement": "In which quadrant does an angle of $\\dfrac{7\\pi}{6}$ radians lie?",
+          "options": [
+            "quadrant $3$",
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $210°$, which sits in quadrant $3$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 7, 6) % 360 == 210"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v06",
+          "statement": "In which quadrant does an angle of $\\dfrac{5\\pi}{4}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $3$",
+            "quadrant $2$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $225°$, which sits in quadrant $3$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 5, 4) % 360 == 225"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v07",
+          "statement": "In which quadrant does an angle of $\\dfrac{4\\pi}{3}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $240°$, which sits in quadrant $3$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 4, 3) % 360 == 240"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v08",
+          "statement": "In which quadrant does an angle of $\\dfrac{5\\pi}{3}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $300°$, which sits in quadrant $4$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 5, 3) % 360 == 300"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v09",
+          "statement": "In which quadrant does an angle of $\\dfrac{7\\pi}{4}$ radians lie?",
+          "options": [
+            "quadrant $4$",
+            "quadrant $1$",
+            "quadrant $2$",
+            "quadrant $3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $315°$, which sits in quadrant $4$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 7, 4) % 360 == 315"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v10",
+          "statement": "In which quadrant does an angle of $\\dfrac{11\\pi}{6}$ radians lie?",
+          "options": [
+            "quadrant $1$",
+            "quadrant $4$",
+            "quadrant $2$",
+            "quadrant $3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $330°$, which sits in quadrant $4$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 11, 6) % 360 == 330"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v11",
+          "statement": "In which quadrant does an angle of $\\dfrac{\\pi}{3}$ radians lie?",
+          "options": [
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $1$",
+            "quadrant $4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $60°$, which sits in quadrant $1$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 1, 3) % 360 == 60"
+          ]
+        },
+        {
+          "id": "TRIG-quad-v12",
+          "statement": "In which quadrant does an angle of $\\dfrac{9\\pi}{4}$ radians lie?",
+          "options": [
+            "quadrant $2$",
+            "quadrant $3$",
+            "quadrant $4$",
+            "quadrant $1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Measure against the quarter-turns $\\tfrac{\\pi}{2}$, $\\pi$, $\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees the angle is $45°$, which sits in quadrant $1$. Converting first is always allowed and usually quicker than comparing fractions of $\\pi$.",
+          "check": [
+            "Rational(180 * 9, 4) % 360 == 45"
           ]
         }
       ]
@@ -5968,6 +7102,195 @@
       ]
     },
     {
+      "id": "sector-area-radians",
+      "title": "Sector area in radians",
+      "level": 2,
+      "skill": "½r²θ with θ in radians — the ½ is the difference between area and arc.",
+      "unit": "radians-and-the-unit-circle",
+      "variants": [
+        {
+          "id": "TRIG-sect-v01",
+          "statement": "A sector of a circle of radius $6$ has central angle $\\dfrac{\\pi}{3}$ radians. Find its area, exactly.",
+          "options": [
+            "$6\\pi$",
+            "$12\\pi$",
+            "$2\\pi$",
+            "$7\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 36 \\cdot \\dfrac{\\pi}{3} = 6\\pi$. Dropping the $\\tfrac12$ gives $12\\pi$, and the arc length $2\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*6**2*Rational(1, 3) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v02",
+          "statement": "A sector of a circle of radius $4$ has central angle $\\dfrac{\\pi}{2}$ radians. Find its area, exactly.",
+          "options": [
+            "$8\\pi$",
+            "$4\\pi$",
+            "$2\\pi$",
+            "$5\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 16 \\cdot \\dfrac{\\pi}{2} = 4\\pi$. Dropping the $\\tfrac12$ gives $8\\pi$, and the arc length $2\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*4**2*Rational(1, 2) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v03",
+          "statement": "A sector of a circle of radius $6$ has central angle $\\dfrac{2\\pi}{3}$ radians. Find its area, exactly.",
+          "options": [
+            "$24\\pi$",
+            "$4\\pi$",
+            "$12\\pi$",
+            "$13\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 36 \\cdot \\dfrac{2\\pi}{3} = 12\\pi$. Dropping the $\\tfrac12$ gives $24\\pi$, and the arc length $4\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*6**2*Rational(2, 3) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v04",
+          "statement": "A sector of a circle of radius $8$ has central angle $\\dfrac{\\pi}{4}$ radians. Find its area, exactly.",
+          "options": [
+            "$16\\pi$",
+            "$2\\pi$",
+            "$9\\pi$",
+            "$8\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 64 \\cdot \\dfrac{\\pi}{4} = 8\\pi$. Dropping the $\\tfrac12$ gives $16\\pi$, and the arc length $2\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*8**2*Rational(1, 4) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v05",
+          "statement": "A sector of a circle of radius $10$ has central angle $\\dfrac{\\pi}{5}$ radians. Find its area, exactly.",
+          "options": [
+            "$10\\pi$",
+            "$20\\pi$",
+            "$2\\pi$",
+            "$11\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 100 \\cdot \\dfrac{\\pi}{5} = 10\\pi$. Dropping the $\\tfrac12$ gives $20\\pi$, and the arc length $2\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*10**2*Rational(1, 5) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v06",
+          "statement": "A sector of a circle of radius $12$ has central angle $\\dfrac{\\pi}{6}$ radians. Find its area, exactly.",
+          "options": [
+            "$24\\pi$",
+            "$12\\pi$",
+            "$2\\pi$",
+            "$13\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 144 \\cdot \\dfrac{\\pi}{6} = 12\\pi$. Dropping the $\\tfrac12$ gives $24\\pi$, and the arc length $2\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*12**2*Rational(1, 6) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v07",
+          "statement": "A sector of a circle of radius $2$ has central angle $\\dfrac{\\pi}{2}$ radians. Find its area, exactly.",
+          "options": [
+            "$2\\pi$",
+            "$3\\pi$",
+            "$\\pi$",
+            "$4\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 4 \\cdot \\dfrac{\\pi}{2} = \\pi$. Dropping the $\\tfrac12$ gives $2\\pi$, and the arc length $\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*2**2*Rational(1, 2) == Rational(1, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v08",
+          "statement": "A sector of a circle of radius $4$ has central angle $\\dfrac{3\\pi}{4}$ radians. Find its area, exactly.",
+          "options": [
+            "$12\\pi$",
+            "$3\\pi$",
+            "$7\\pi$",
+            "$6\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 16 \\cdot \\dfrac{3\\pi}{4} = 6\\pi$. Dropping the $\\tfrac12$ gives $12\\pi$, and the arc length $3\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*4**2*Rational(3, 4) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v09",
+          "statement": "A sector of a circle of radius $10$ has central angle $\\dfrac{2\\pi}{5}$ radians. Find its area, exactly.",
+          "options": [
+            "$20\\pi$",
+            "$40\\pi$",
+            "$4\\pi$",
+            "$21\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 100 \\cdot \\dfrac{2\\pi}{5} = 20\\pi$. Dropping the $\\tfrac12$ gives $40\\pi$, and the arc length $4\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*10**2*Rational(2, 5) == Rational(20, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v10",
+          "statement": "A sector of a circle of radius $6$ has central angle $\\dfrac{5\\pi}{6}$ radians. Find its area, exactly.",
+          "options": [
+            "$30\\pi$",
+            "$15\\pi$",
+            "$5\\pi$",
+            "$16\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 36 \\cdot \\dfrac{5\\pi}{6} = 15\\pi$. Dropping the $\\tfrac12$ gives $30\\pi$, and the arc length $5\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*6**2*Rational(5, 6) == Rational(15, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v11",
+          "statement": "A sector of a circle of radius $8$ has central angle $\\dfrac{3\\pi}{8}$ radians. Find its area, exactly.",
+          "options": [
+            "$24\\pi$",
+            "$3\\pi$",
+            "$12\\pi$",
+            "$13\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 64 \\cdot \\dfrac{3\\pi}{8} = 12\\pi$. Dropping the $\\tfrac12$ gives $24\\pi$, and the arc length $3\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*8**2*Rational(3, 8) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-sect-v12",
+          "statement": "A sector of a circle of radius $12$ has central angle $\\dfrac{5\\pi}{6}$ radians. Find its area, exactly.",
+          "options": [
+            "$120\\pi$",
+            "$10\\pi$",
+            "$61\\pi$",
+            "$60\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "In radians the sector area is $\\tfrac12 r^2\\theta = \\tfrac12 \\cdot 144 \\cdot \\dfrac{5\\pi}{6} = 60\\pi$. Dropping the $\\tfrac12$ gives $120\\pi$, and the arc length $10\\pi$ answers a different question — one is a length, the other an area.",
+          "check": [
+            "Rational(1,2)*12**2*Rational(5, 6) == Rational(60, 1)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "amplitude-period",
       "title": "Amplitude and period from the equation",
       "level": 1,
@@ -6706,6 +8029,195 @@
       ]
     },
     {
+      "id": "b-from-period",
+      "title": "Finding B from the period",
+      "level": 2,
+      "skill": "B = 360°/period — a shorter period needs a bigger B.",
+      "unit": "graphs-of-trig-functions",
+      "variants": [
+        {
+          "id": "TRIG-bper-v01",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $180°$. Find $B$.",
+          "options": [
+            "$2$",
+            "$180$",
+            "$\\frac{1}{2}$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{180} = 2$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 180) == Rational(2, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v02",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $90°$. Find $B$.",
+          "options": [
+            "$90$",
+            "$4$",
+            "$\\frac{1}{4}$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{90} = 4$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 90) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v03",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $120°$. Find $B$.",
+          "options": [
+            "$120$",
+            "$\\frac{1}{3}$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{120} = 3$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 120) == Rational(3, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v04",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $60°$. Find $B$.",
+          "options": [
+            "$60$",
+            "$\\frac{1}{6}$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{60} = 6$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 60) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v05",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $45°$. Find $B$.",
+          "options": [
+            "$8$",
+            "$45$",
+            "$\\frac{1}{8}$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{45} = 8$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 45) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v06",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $720°$. Find $B$.",
+          "options": [
+            "$720$",
+            "$\\frac{1}{2}$",
+            "$2$",
+            "$1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{720} = \\frac{1}{2}$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 720) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v07",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $36°$. Find $B$.",
+          "options": [
+            "$36$",
+            "$\\frac{1}{10}$",
+            "$10$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{36} = 10$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 36) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v08",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $30°$. Find $B$.",
+          "options": [
+            "$30$",
+            "$\\frac{1}{12}$",
+            "$24$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{30} = 12$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 30) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v09",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $72°$. Find $B$.",
+          "options": [
+            "$5$",
+            "$72$",
+            "$\\frac{1}{5}$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{72} = 5$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 72) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v10",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $24°$. Find $B$.",
+          "options": [
+            "$24$",
+            "$15$",
+            "$\\frac{1}{15}$",
+            "$30$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{24} = 15$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 24) == Rational(15, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v11",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $240°$. Find $B$.",
+          "options": [
+            "$240$",
+            "$\\frac{2}{3}$",
+            "$\\frac{3}{2}$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{240} = \\frac{3}{2}$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 240) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-bper-v12",
+          "statement": "The graph of $y = \\sin(Bx)$ has period $144°$. Find $B$.",
+          "options": [
+            "$144$",
+            "$\\frac{2}{5}$",
+            "$5$",
+            "$\\frac{5}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{360°}{B}$, so $B = \\dfrac{360}{144} = \\frac{5}{2}$. A period SHORTER than $360°$ needs $B > 1$ — squeezing the graph — which rules out the small options immediately.",
+          "check": [
+            "Rational(360, 144) == Rational(5, 2)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "max-min-value",
       "title": "Maximum and minimum of a sinusoid",
       "level": 2,
@@ -7250,6 +8762,195 @@
           "explanation": "$\\cos$ swings between $-1$ and $1$, so $y$ ranges over $1 \\pm |-10|$ and the minimum is $1 - 10 = -9$. Using the signed $A = -10$ without absolute value gives the maximum instead — the classic slip.",
           "check": [
             "(1) - sqrt((-10)**2) == -9"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tan-asymptotes",
+      "title": "Asymptotes of the tangent graph",
+      "level": 2,
+      "skill": "Tangent repeats every 180°, half the period of sine and cosine.",
+      "unit": "graphs-of-trig-functions",
+      "variants": [
+        {
+          "id": "TRIG-tasym-v01",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(1x)$?",
+          "options": [
+            "$180$",
+            "$360$",
+            "$90$",
+            "$181$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $1$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{1} = 180°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 1) == Rational(180, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v02",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(2x)$?",
+          "options": [
+            "$180$",
+            "$90$",
+            "$45$",
+            "$91$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $2$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{2} = 90°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 2) == Rational(90, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v03",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(3x)$?",
+          "options": [
+            "$120$",
+            "$30$",
+            "$60$",
+            "$61$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $3$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{3} = 60°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 3) == Rational(60, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v04",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(4x)$?",
+          "options": [
+            "$90$",
+            "$\\frac{45}{2}$",
+            "$46$",
+            "$45$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $4$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{4} = 45°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 4) == Rational(45, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v05",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(5x)$?",
+          "options": [
+            "$36$",
+            "$72$",
+            "$18$",
+            "$37$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $5$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{5} = 36°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 5) == Rational(36, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v06",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(6x)$?",
+          "options": [
+            "$60$",
+            "$30$",
+            "$15$",
+            "$31$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $6$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{6} = 30°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 6) == Rational(30, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v07",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(8x)$?",
+          "options": [
+            "$45$",
+            "$\\frac{45}{4}$",
+            "$\\frac{45}{2}$",
+            "$\\frac{47}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $8$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{8} = \\frac{45}{2}°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 8) == Rational(45, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v08",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(9x)$?",
+          "options": [
+            "$40$",
+            "$10$",
+            "$21$",
+            "$20$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $9$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{9} = 20°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 9) == Rational(20, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v09",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(10x)$?",
+          "options": [
+            "$18$",
+            "$36$",
+            "$9$",
+            "$19$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $10$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{10} = 18°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 10) == Rational(18, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v10",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(12x)$?",
+          "options": [
+            "$30$",
+            "$15$",
+            "$\\frac{15}{2}$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $12$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{12} = 15°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 12) == Rational(15, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v11",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(15x)$?",
+          "options": [
+            "$24$",
+            "$6$",
+            "$12$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $15$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{15} = 12°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 15) == Rational(12, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-tasym-v12",
+          "statement": "How many degrees apart are consecutive vertical asymptotes of $y = \\tan(18x)$?",
+          "options": [
+            "$20$",
+            "$5$",
+            "$11$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tangent blows up every $180°$ of its ARGUMENT, and the argument here runs $18$ times as fast as $x$, so in $x$ the asymptotes come every $\\dfrac{180°}{18} = 10°$. Using $360$ instead of $180$ is the sine-and-cosine habit — tangent's period is half theirs.",
+          "check": [
+            "Rational(180, 18) == Rational(10, 1)"
           ]
         }
       ]
@@ -8180,6 +9881,207 @@
         }
       ],
       "unit": "identities-and-equations"
+    },
+    {
+      "id": "solve-cos",
+      "title": "Solving cos x = k on one turn",
+      "level": 2,
+      "skill": "Two solutions per turn, symmetric about 0° — one above the axis and one below.",
+      "unit": "identities-and-equations",
+      "variants": [
+        {
+          "id": "TRIG-scos-v01",
+          "statement": "Solve $\\cos x = \\frac{1}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 60°$ and $x = 300°$",
+            "$x = 60°$ only",
+            "$x = 60°$ and $x = 240°$",
+            "$x = 150°$ and $x = 30°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 60°$ and $x = 300°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(60)), Rational(1,2))",
+            "Eq(cos(rad(300)), Rational(1,2))"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v02",
+          "statement": "Solve $\\cos x = \\frac{\\sqrt{2}}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 45°$ only",
+            "$x = 45°$ and $x = 315°$",
+            "$x = 45°$ and $x = 225°$",
+            "$x = 135°$ and $x = 45°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 45°$ and $x = 315°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(45)), sqrt(2)/2)",
+            "Eq(cos(rad(315)), sqrt(2)/2)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v03",
+          "statement": "Solve $\\cos x = \\frac{\\sqrt{3}}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 30°$ only",
+            "$x = 30°$ and $x = 210°$",
+            "$x = 30°$ and $x = 330°$",
+            "$x = 120°$ and $x = 60°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 30°$ and $x = 330°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(30)), sqrt(3)/2)",
+            "Eq(cos(rad(330)), sqrt(3)/2)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v04",
+          "statement": "Solve $\\cos x = -\\frac{1}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 120°$ only",
+            "$x = 120°$ and $x = 300°$",
+            "$x = 210°$ and $x = 330°$",
+            "$x = 120°$ and $x = 240°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 120°$ and $x = 240°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(120)), -Rational(1,2))",
+            "Eq(cos(rad(240)), -Rational(1,2))"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v05",
+          "statement": "Solve $\\cos x = -\\frac{\\sqrt{2}}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 135°$ and $x = 225°$",
+            "$x = 135°$ only",
+            "$x = 135°$ and $x = 315°$",
+            "$x = 225°$ and $x = 315°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 135°$ and $x = 225°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(135)), -sqrt(2)/2)",
+            "Eq(cos(rad(225)), -sqrt(2)/2)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v06",
+          "statement": "Solve $\\cos x = -\\frac{\\sqrt{3}}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 150°$ only",
+            "$x = 150°$ and $x = 210°$",
+            "$x = 150°$ and $x = 330°$",
+            "$x = 240°$ and $x = 300°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 150°$ and $x = 210°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(150)), -sqrt(3)/2)",
+            "Eq(cos(rad(210)), -sqrt(3)/2)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v07",
+          "statement": "Solve $\\cos x = 0$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 90°$ only",
+            "$x = 180°$ and $x = 0°$",
+            "$x = 90°$ and $x = 270°$",
+            "there is no solution"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 90°$ and $x = 270°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(90)), 0)",
+            "Eq(cos(rad(270)), 0)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v08",
+          "statement": "Solve $\\cos x = 1$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 0°$ and $x = 180°$",
+            "$x = 90°$ and $x = 90°$",
+            "$x = 180°$ and $x = 0°$",
+            "$x = 0°$ only"
+          ],
+          "correctIndex": 3,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 0°$ alone. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(0)), 1)",
+            "Eq(cos(rad(0)), 1)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v09",
+          "statement": "Solve $\\cos x = -1$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 180°$ only",
+            "$x = 180°$ and $x = 0°$",
+            "$x = 270°$ and $x = 270°$",
+            "$x = 0°$ and $x = 180°$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 180°$ alone. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(180)), -1)",
+            "Eq(cos(rad(180)), -1)"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v10",
+          "statement": "Solve $\\cos x = \\frac{1}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 60°$ only",
+            "$x = 60°$ and $x = 300°$",
+            "$x = 60°$ and $x = 240°$",
+            "$x = 150°$ and $x = 30°$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 60°$ and $x = 300°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(60)), Rational(1,2))",
+            "Eq(cos(rad(300)), Rational(1,2))"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v11",
+          "statement": "Solve $\\cos x = -\\frac{1}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 120°$ only",
+            "$x = 120°$ and $x = 300°$",
+            "$x = 120°$ and $x = 240°$",
+            "$x = 210°$ and $x = 330°$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 120°$ and $x = 240°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(120)), -Rational(1,2))",
+            "Eq(cos(rad(240)), -Rational(1,2))"
+          ]
+        },
+        {
+          "id": "TRIG-scos-v12",
+          "statement": "Solve $\\cos x = \\frac{\\sqrt{3}}{2}$ for $0° \\le x < 360°$.",
+          "options": [
+            "$x = 30°$ only",
+            "$x = 30°$ and $x = 210°$",
+            "$x = 120°$ and $x = 60°$",
+            "$x = 30°$ and $x = 330°$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Cosine is the $x$-coordinate on the unit circle, and it takes each value strictly between $-1$ and $1$ twice per turn — once above the axis and once below, symmetric about $0°$. Here that gives $x = 30°$ and $x = 330°$. At $\\pm 1$ the two solutions collide into one.",
+          "check": [
+            "Eq(cos(rad(30)), sqrt(3)/2)",
+            "Eq(cos(rad(330)), sqrt(3)/2)"
+          ]
+        }
+      ]
     },
     {
       "id": "solve-sin",
@@ -9528,6 +11430,195 @@
           "explanation": "Here the denominator IS $\\cos^2 x$ by the Pythagorean identity, so the quotient is $1$, leaving $1$.",
           "check": [
             "simplify((cos(x)**2/(1 - sin(x)**2)) - (1)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "law-of-sines-angle",
+      "title": "The law of sines for a sine",
+      "level": 2,
+      "skill": "sin B = b·sin A / a — each side pairs with the angle opposite it.",
+      "unit": "laws-of-sines-and-cosines",
+      "variants": [
+        {
+          "id": "TRIG-lsang-v01",
+          "statement": "In a triangle, $a = 10$, $A = 30°$ and $b = 14$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{7}{10}$",
+            "$\\frac{5}{14}$",
+            "$\\frac{7}{5}$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{14 \\cdot \\frac{1}{2}}{10} = \\frac{7}{10}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/10, (7/10)/14)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v02",
+          "statement": "In a triangle, $a = 8$, $A = 30°$ and $b = 6$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{2}{3}$",
+            "$\\frac{3}{8}$",
+            "$\\frac{3}{4}$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{6 \\cdot \\frac{1}{2}}{8} = \\frac{3}{8}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/8, (3/8)/6)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v03",
+          "statement": "In a triangle, $a = 12$, $A = 30°$ and $b = 18$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{2}$",
+            "$\\frac{3}{4}$",
+            "$9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{18 \\cdot \\frac{1}{2}}{12} = \\frac{3}{4}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/12, (3/4)/18)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v04",
+          "statement": "In a triangle, $a = 5$, $A = 150°$ and $b = 4$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{5}{8}$",
+            "$\\frac{4}{5}$",
+            "$2$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{4 \\cdot \\frac{1}{2}}{5} = \\frac{2}{5}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(150))/5, (2/5)/4)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v05",
+          "statement": "In a triangle, $a = 20$, $A = 30°$ and $b = 25$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{5}{8}$",
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{4}$",
+            "$\\frac{25}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{25 \\cdot \\frac{1}{2}}{20} = \\frac{5}{8}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/20, (5/8)/25)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v06",
+          "statement": "In a triangle, $a = 9$, $A = 90°$ and $b = 6$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{3}{2}$",
+            "$\\frac{2}{3}$",
+            "$6$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{6 \\cdot 1}{9} = \\frac{2}{3}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(90))/9, (2/3)/6)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v07",
+          "statement": "In a triangle, $a = 16$, $A = 30°$ and $b = 20$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{2}{5}$",
+            "$\\frac{5}{4}$",
+            "$\\frac{5}{8}$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{20 \\cdot \\frac{1}{2}}{16} = \\frac{5}{8}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/16, (5/8)/20)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v08",
+          "statement": "In a triangle, $a = 6$, $A = 150°$ and $b = 5$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{3}{5}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{5}{2}$",
+            "$\\frac{5}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{5 \\cdot \\frac{1}{2}}{6} = \\frac{5}{12}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(150))/6, (5/12)/5)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v09",
+          "statement": "In a triangle, $a = 15$, $A = 90°$ and $b = 12$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{4}{5}$",
+            "$\\frac{5}{4}$",
+            "$12$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{12 \\cdot 1}{15} = \\frac{4}{5}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(90))/15, (4/5)/12)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v10",
+          "statement": "In a triangle, $a = 14$, $A = 30°$ and $b = 21$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{3}{2}$",
+            "$\\frac{21}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{21 \\cdot \\frac{1}{2}}{14} = \\frac{3}{4}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/14, (3/4)/21)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v11",
+          "statement": "In a triangle, $a = 25$, $A = 30°$ and $b = 30$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{5}{12}$",
+            "$\\frac{6}{5}$",
+            "$\\frac{3}{5}$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{30 \\cdot \\frac{1}{2}}{25} = \\frac{3}{5}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(30))/25, (3/5)/30)"
+          ]
+        },
+        {
+          "id": "TRIG-lsang-v12",
+          "statement": "In a triangle, $a = 18$, $A = 150°$ and $b = 15$. Find $\\sin B$, exactly.",
+          "options": [
+            "$\\frac{3}{5}$",
+            "$\\frac{5}{6}$",
+            "$\\frac{15}{2}$",
+            "$\\frac{5}{12}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The law of sines says $\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, so $\\sin B = \\dfrac{b \\sin A}{a} = \\dfrac{15 \\cdot \\frac{1}{2}}{18} = \\frac{5}{12}$. Each side pairs with the angle OPPOSITE it — pairing $b$ with $A$ instead inverts the ratio.",
+          "check": [
+            "Eq(sin(rad(150))/18, (5/12)/15)"
           ]
         }
       ]
@@ -11805,6 +13896,195 @@
           "explanation": "Area $= \\frac{1}{2}ab\\sin C = \\frac{1}{2} \\cdot 8 \\cdot 9 \\cdot \\sin 30° = 18$. Dropping the $\\frac{1}{2}$ gives $36$ — the classic slip.",
           "check": [
             "Rational(72,2)*sin(rad(30)) == 18"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambiguous-case",
+      "title": "How many triangles fit",
+      "level": 3,
+      "skill": "Compare the swinging side with the height b·sin A: below it none, between it and b two, at or beyond b one.",
+      "unit": "laws-of-sines-and-cosines",
+      "variants": [
+        {
+          "id": "TRIG-ambig-v01",
+          "statement": "You are given $a = 5$, $A = 30°$ and $b = 12$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "exactly one triangle",
+            "two triangles",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 0,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 6$. Here $a = 5$, so there is no triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(12, 1)*sin(rad(30)) == Rational(6, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v02",
+          "statement": "You are given $a = 10$, $A = 30°$ and $b = 20$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "exactly one triangle",
+            "two triangles",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 1,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 10$. Here $a = 10$, so there is exactly one triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(20, 1)*sin(rad(30)) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v03",
+          "statement": "You are given $a = 12$, $A = 30°$ and $b = 20$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "exactly one triangle",
+            "two triangles",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 2,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 10$. Here $a = 12$, so there is two triangles. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(20, 1)*sin(rad(30)) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v04",
+          "statement": "You are given $a = 6$, $A = 30°$ and $b = 15$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "exactly one triangle",
+            "two triangles",
+            "infinitely many triangles",
+            "no triangle"
+          ],
+          "correctIndex": 3,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = \\frac{15}{2}$. Here $a = 6$, so there is no triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(15, 1)*sin(rad(30)) == Rational(15, 2)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v05",
+          "statement": "You are given $a = 9$, $A = 30°$ and $b = 18$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "exactly one triangle",
+            "no triangle",
+            "two triangles",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 0,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 9$. Here $a = 9$, so there is exactly one triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(18, 1)*sin(rad(30)) == Rational(9, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v06",
+          "statement": "You are given $a = 15$, $A = 30°$ and $b = 20$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "two triangles",
+            "exactly one triangle",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 1,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 10$. Here $a = 15$, so there is two triangles. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(20, 1)*sin(rad(30)) == Rational(10, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v07",
+          "statement": "You are given $a = 4$, $A = 30°$ and $b = 10$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "exactly one triangle",
+            "two triangles",
+            "no triangle",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 2,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 5$. Here $a = 4$, so there is no triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(10, 1)*sin(rad(30)) == Rational(5, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v08",
+          "statement": "You are given $a = 7$, $A = 30°$ and $b = 14$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "two triangles",
+            "infinitely many triangles",
+            "exactly one triangle"
+          ],
+          "correctIndex": 3,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 7$. Here $a = 7$, so there is exactly one triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(14, 1)*sin(rad(30)) == Rational(7, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v09",
+          "statement": "You are given $a = 11$, $A = 30°$ and $b = 16$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "two triangles",
+            "no triangle",
+            "exactly one triangle",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 0,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 8$. Here $a = 11$, so there is two triangles. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(16, 1)*sin(rad(30)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v10",
+          "statement": "You are given $a = 3$, $A = 30°$ and $b = 8$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "exactly one triangle",
+            "no triangle",
+            "two triangles",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 1,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 4$. Here $a = 3$, so there is no triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(8, 1)*sin(rad(30)) == Rational(4, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v11",
+          "statement": "You are given $a = 8$, $A = 30°$ and $b = 16$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "two triangles",
+            "exactly one triangle",
+            "infinitely many triangles"
+          ],
+          "correctIndex": 2,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 8$. Here $a = 8$, so there is exactly one triangle. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(16, 1)*sin(rad(30)) == Rational(8, 1)"
+          ]
+        },
+        {
+          "id": "TRIG-ambig-v12",
+          "statement": "You are given $a = 13$, $A = 30°$ and $b = 18$ — two sides and an angle NOT between them. How many triangles fit?",
+          "options": [
+            "no triangle",
+            "exactly one triangle",
+            "infinitely many triangles",
+            "two triangles"
+          ],
+          "correctIndex": 3,
+          "explanation": "Swing side $a$ from the end of $b$ and see how often it reaches the base. The shortest it can be and still reach is the height $b \\sin A = 9$. Here $a = 13$, so there is two triangles. Below the height nothing reaches; between the height and $b$ it reaches twice; at or beyond $b$ exactly once.",
+          "check": [
+            "Rational(18, 1)*sin(rad(30)) == Rational(9, 1)"
           ]
         }
       ]

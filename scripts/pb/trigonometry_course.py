@@ -1404,6 +1404,677 @@ def new_forms():
     ]
 
 
+# ===========================================================================
+# Batch 2 — the forms that take every Trigonometry unit to six collections.
+#
+# Special Triangles shipped with three collections and four other units with
+# four. Each form below drills something its unit did not already ask.
+# ===========================================================================
+
+def _txt_place(correct, wrongs, i):
+    """place() for sentence options, with the collision check kept."""
+    opts, ci = place(correct, list(wrongs[:3]), i)
+    assert len(set(opts)) == 4, (correct, wrongs)
+    return opts, ci
+
+
+# --- right-triangle-trigonometry -------------------------------------------
+_RATIO_CHOICE = [
+    ("the opposite side and the hypotenuse", "sine"),
+    ("the adjacent side and the hypotenuse", "cosine"),
+    ("the opposite side and the adjacent side", "tangent"),
+    ("the hypotenuse and the side across from the angle", "sine"),
+    ("the hypotenuse and the side next to the angle", "cosine"),
+    ("the two legs, neither of them the hypotenuse", "tangent"),
+    ("the side across from the angle and the longest side", "sine"),
+    ("the side beside the angle and the longest side", "cosine"),
+    ("the height of a mast and your distance from its foot", "tangent"),
+    ("the length of a ramp and the height it reaches", "sine"),
+    ("the length of a ladder and its distance from the wall", "cosine"),
+    ("the shadow of a pole and the pole's height", "tangent"),
+]
+
+
+def build2_ratio_choice():
+    variants = []
+    for i, (given, ans) in enumerate(_RATIO_CHOICE):
+        wrongs = [w for w in ("sine", "cosine", "tangent") if w != ans]
+        wrongs.append("none of these — a right triangle is not enough")
+        opts, ci = _txt_place(ans, wrongs, i)
+        variants.append({
+            "id": "TRIG-rchoice-v%02d" % (i + 1),
+            "statement": ("A right triangle problem gives you %s, and asks "
+                          "for the angle. Which ratio connects them?"
+                          % given),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("SOH-CAH-TOA names each pairing exactly once: "
+                            "sine pairs opposite with hypotenuse, cosine "
+                            "pairs adjacent with hypotenuse, and tangent "
+                            "pairs the two legs with each other. Here the "
+                            "two given lengths are %s, so the ratio is the "
+                            "%s. Choosing the wrong one is not a rounding "
+                            "error — it answers a different question."
+                            % (given, ans)),
+            "check": ["1 == 1"],
+        })
+    return variants
+
+
+def _resolve_ratio_choice(s):
+    given = re.search(r"gives you (.+?), and asks", s).group(1)
+    for g, ans in _RATIO_CHOICE:
+        if g == given:
+            return ("opt", ans)
+    raise ValueError("ratio-choice: unknown pairing %r" % given[:60])
+
+
+# (leg, angle in degrees) — 30-60-90 and 45-45-90 only, so exact throughout
+_HYP_DATA = [(3, 30), (5, 45), (7, 60), (4, 30), (6, 45), (9, 60),
+             (8, 30), (10, 45), (12, 60), (11, 30), (2, 45), (14, 60)]
+
+
+def build2_hypotenuse():
+    variants = []
+    for i, (leg, ang) in enumerate(_HYP_DATA):
+        # `leg` is the side OPPOSITE the given angle
+        val = simplify(leg / sin(rad(ang)))
+        cands = [(surd_kat(leg * sin(rad(ang))), leg * sin(rad(ang))),
+                 (surd_kat(leg / cos(rad(ang))), leg / cos(rad(ang))),
+                 (surd_kat(leg * 2), Integer(leg * 2)),
+                 (surd_kat(leg / 2), Rational(leg, 2)),
+                 (surd_kat(leg * sqrt(2)), leg * sqrt(2))]
+        opts, ci = place(surd_kat(val), pick_numeric(val, cands), i)
+        variants.append({
+            "id": "TRIG-hyp-v%02d" % (i + 1),
+            "statement": ("In a right triangle one angle is $%d°$ and the "
+                          "side OPPOSITE it is $%d$. Find the hypotenuse, "
+                          "exactly." % (ang, leg)),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("$\\sin %d° = \\dfrac{\\text{opposite}}"
+                            "{\\text{hypotenuse}}$, so the hypotenuse is "
+                            "$\\dfrac{%d}{\\sin %d°} = %s$. Multiplying by "
+                            "the sine instead of dividing shrinks the "
+                            "hypotenuse below the leg, which is impossible "
+                            "in a right triangle."
+                            % (ang, leg, ang, surd_kat(val).strip("$"))),
+            "check": ["Eq(sin(rad(%d)) * (%s), %d)"
+                      % (ang, str(val), leg)],
+        })
+    return variants
+
+
+def _resolve_hypotenuse(s):
+    leg = int(re.search(r"OPPOSITE it is \$(\d+)\$", s).group(1))
+    ang = int(re.search(r"one angle is \$(\d+)°\$", s).group(1))
+    return ("num", simplify(leg / sin(rad(ang))))
+
+
+# --- special-triangles-and-exact-values ------------------------------------
+_QUADRANT_SIGNS = [
+    (1, "sine", "positive"), (2, "sine", "positive"),
+    (3, "sine", "negative"), (4, "sine", "negative"),
+    (1, "cosine", "positive"), (2, "cosine", "negative"),
+    (3, "cosine", "negative"), (4, "cosine", "positive"),
+    (2, "tangent", "negative"), (3, "tangent", "positive"),
+    (4, "tangent", "negative"), (1, "tangent", "positive"),
+]
+
+
+def build2_quadrant_signs():
+    variants = []
+    for i, (q, fn, sign) in enumerate(_QUADRANT_SIGNS):
+        wrongs = ["negative" if sign == "positive" else "positive",
+                  "zero", "impossible to say without the exact angle"]
+        opts, ci = _txt_place(sign, wrongs, i)
+        variants.append({
+            "id": "TRIG-qsign-v%02d" % (i + 1),
+            "statement": ("An angle lies in quadrant $%d$. Is its %s "
+                          "positive or negative?" % (q, fn)),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("On the unit circle the cosine is the "
+                            "$x$-coordinate and the sine is the "
+                            "$y$-coordinate, so each takes the sign of its "
+                            "axis in that quadrant, and the tangent is their "
+                            "quotient. In quadrant $%d$ the %s is %s."
+                            % (q, fn, sign)),
+            "check": ["1 == 1"],
+        })
+    return variants
+
+
+def _resolve_quadrant_signs(s):
+    q = int(re.search(r"quadrant \$(\d+)\$", s).group(1))
+    fn = re.search(r"Is its (\w+) positive", s).group(1)
+    # Recomputed from a representative angle in the quadrant, not looked up.
+    a = rad(45 + 90 * (q - 1))
+    v = {"sine": sin(a), "cosine": cos(a),
+         "tangent": simplify(sin(a) / cos(a))}[fn]
+    return ("opt", "positive" if v > 0 else "negative")
+
+
+_RECIPROCALS = [
+    ("cosecant", 30), ("secant", 60), ("cotangent", 45), ("cosecant", 90),
+    ("secant", 45), ("cotangent", 30), ("cosecant", 45), ("secant", 30),
+    ("cotangent", 60), ("cosecant", 60), ("secant", 0), ("cotangent", 135),
+]
+
+
+def build2_reciprocals():
+    base = {"cosecant": ("\\sin", lambda a: sin(a)),
+            "secant": ("\\cos", lambda a: cos(a)),
+            "cotangent": ("\\tan", lambda a: simplify(sin(a) / cos(a)))}
+    variants = []
+    for i, (name, deg) in enumerate(_RECIPROCALS):
+        katbase, fn = base[name]
+        b = simplify(fn(rad(deg)))
+        assert b != 0, (name, deg)
+        val = simplify(1 / b)
+        cands = [(surd_kat(b), b), (surd_kat(-val), -val),
+                 (surd_kat(b * b), b * b), (surd_kat(2 * val), 2 * val),
+                 (surd_kat(val + 1), val + 1), (surd_kat(val - 1), val - 1)]
+        opts, ci = place(surd_kat(val), pick_numeric(val, cands), i)
+        variants.append({
+            "id": "TRIG-recip-v%02d" % (i + 1),
+            "statement": "Find the exact value of the %s of $%d°$."
+                         % (name, deg),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("The %s is the reciprocal of the %s: "
+                            "$%s %d° = %s$, so the answer is its reciprocal "
+                            "$%s$. Reporting the base ratio itself is the "
+                            "whole trap — the reciprocal functions exist "
+                            "precisely to flip it."
+                            % (name, {"cosecant": "sine", "secant": "cosine",
+                                      "cotangent": "tangent"}[name],
+                               katbase, deg, surd_kat(b).strip("$"),
+                               surd_kat(val).strip("$"))),
+            "check": ["Eq((%s) * (%s), 1)" % (str(b), str(val))],
+        })
+    return variants
+
+
+def _resolve_reciprocals(s):
+    name = re.search(r"value of the (\w+) of", s).group(1)
+    deg = int(re.search(r"of \$(\d+)°\$", s).group(1))
+    a = rad(deg)
+    b = {"cosecant": sin(a), "secant": cos(a),
+         "cotangent": simplify(sin(a) / cos(a))}[name]
+    return ("num", simplify(1 / b))
+
+
+# (given side, given angle, asked side) for the two special triangles
+_SPECIAL_SIDES = [
+    (6, 30, "hypotenuse"), (4, 60, "hypotenuse"), (5, 45, "hypotenuse"),
+    (8, 30, "other leg"), (9, 60, "other leg"), (7, 45, "other leg"),
+    (10, 30, "hypotenuse"), (12, 60, "other leg"), (3, 45, "hypotenuse"),
+    (14, 30, "other leg"), (11, 60, "hypotenuse"), (2, 45, "other leg"),
+]
+
+
+def build2_special_sides():
+    variants = []
+    for i, (leg, ang, asked) in enumerate(_SPECIAL_SIDES):
+        a = rad(ang)
+        # `leg` is opposite the given angle; the other leg is opposite 90-ang
+        hyp = simplify(leg / sin(a))
+        other = simplify(hyp * cos(a))
+        val = hyp if asked == "hypotenuse" else other
+        cands = [(surd_kat(other if asked == "hypotenuse" else hyp),
+                  other if asked == "hypotenuse" else hyp),
+                 (surd_kat(leg), Integer(leg)),
+                 (surd_kat(2 * leg), Integer(2 * leg)),
+                 (surd_kat(leg * sqrt(3)), leg * sqrt(3)),
+                 (surd_kat(val + 1), val + 1), (surd_kat(2 * val), 2 * val)]
+        opts, ci = place(surd_kat(val), pick_numeric(val, cands), i)
+        variants.append({
+            "id": "TRIG-spside-v%02d" % (i + 1),
+            "statement": ("A right triangle has an angle of $%d°$, and the "
+                          "side opposite that angle is $%d$. Find the %s, "
+                          "exactly." % (ang, leg, asked)),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("The special triangles fix every ratio: a "
+                            "$30$–$60$–$90$ has sides $x$, $x\\sqrt3$, $2x$, "
+                            "and a $45$–$45$–$90$ has $x$, $x$, "
+                            "$x\\sqrt2$. Scaling that pattern so the side "
+                            "opposite $%d°$ is $%d$ makes the %s $%s$."
+                            % (ang, leg, asked, surd_kat(val).strip("$"))),
+            "check": ["Eq(sin(rad(%d)) * (%s), %d)" % (ang, str(hyp), leg)],
+        })
+    return variants
+
+
+def _resolve_special_sides(s):
+    leg = int(re.search(r"opposite that angle is \$(\d+)\$", s).group(1))
+    ang = int(re.search(r"angle of \$(\d+)°\$", s).group(1))
+    a = rad(ang)
+    hyp = simplify(leg / sin(a))
+    return ("num", hyp if "the hypotenuse" in s else simplify(hyp * cos(a)))
+
+# --- radians-and-the-unit-circle -------------------------------------------
+# (radius, p, q) for a central angle of p*pi/q radians, chosen so the sector
+# area (1/2) r^2 theta is an exact multiple of pi
+_SECTOR = [(6, 1, 3), (4, 1, 2), (6, 2, 3), (8, 1, 4), (10, 1, 5),
+           (12, 1, 6), (2, 1, 2), (4, 3, 4), (10, 2, 5), (6, 5, 6),
+           (8, 3, 8), (12, 5, 6)]
+
+
+def build2_sector_area():
+    variants = []
+    for i, (r, p, q) in enumerate(_SECTOR):
+        theta = Rational(p, q)                 # multiples of pi
+        k = Rational(r * r, 2) * theta         # coefficient of pi in the area
+        arc = Rational(r) * theta              # coefficient of pi in the arc
+        cands = [(pi_kat(2 * k), 2 * k * pi), (pi_kat(arc), arc * pi),
+                 (pi_kat(Rational(r * r) * theta),
+                  Rational(r * r) * theta * pi),
+                 (pi_kat(k + 1), (k + 1) * pi), (pi_kat(k + 2), (k + 2) * pi),
+                 (pi_kat(k + 3), (k + 3) * pi)]
+        opts, ci = place(pi_kat(k), pick_numeric(k * pi, cands), i)
+        variants.append({
+            "id": "TRIG-sect-v%02d" % (i + 1),
+            "statement": ("A sector of a circle of radius $%d$ has central "
+                          "angle $%s$ radians. Find its area, exactly."
+                          % (r, pi_kat(theta).strip("$"))),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("In radians the sector area is "
+                            "$\\tfrac12 r^2\\theta = \\tfrac12 \\cdot %d "
+                            "\\cdot %s = %s$. Dropping the $\\tfrac12$ gives "
+                            "$%s$, and the arc length $%s$ answers a "
+                            "different question — one is a length, the other "
+                            "an area."
+                            % (r * r, pi_kat(theta).strip("$"),
+                               pi_kat(k).strip("$"),
+                               pi_kat(Rational(r * r) * theta).strip("$"),
+                               pi_kat(arc).strip("$"))),
+            "check": ["Rational(1,2)*%d**2*Rational(%d, %d) == Rational(%d, %d)"
+                      % (r, p, q, k.p, k.q)],
+        })
+    return variants
+
+
+def _resolve_sector_area(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    m = re.search(r"angle \$(?:\\dfrac\{(\d+)?\\pi\}\{(\d+)\}|(\d+)?\\pi)\$",
+                  s)
+    if m.group(2):
+        theta = Rational(int(m.group(1) or 1), int(m.group(2)))
+    else:
+        theta = Rational(int(m.group(3) or 1))
+    return ("num", Rational(r * r, 2) * theta * pi)
+
+
+# Angles as p*pi/q. The quadrant is COMPUTED below rather than tabled — the
+# first draft tabled it and put 2*pi/3 in quadrant 1, which the blind
+# re-solve caught.
+_QUADRANT_OF = [(1, 6), (2, 3), (3, 4), (5, 6), (7, 6), (5, 4),
+                (4, 3), (5, 3), (7, 4), (11, 6), (1, 3), (9, 4)]
+
+
+def build2_angle_quadrant():
+    variants = []
+    seen = set()
+    for p, q in _QUADRANT_OF:
+        kat = pi_kat(Rational(p, q))
+        if kat in seen:
+            continue
+        seen.add(kat)
+        deg = Rational(180 * p, q) % 360
+        assert deg % 90 != 0, ("on an axis, so in no quadrant", p, q)
+        quad = 1 if deg < 90 else (2 if deg < 180 else (3 if deg < 270
+                                                        else 4))
+        i = len(variants)
+        correct = "quadrant $%d$" % quad
+        wrongs = ["quadrant $%d$" % w for w in (1, 2, 3, 4) if w != quad]
+        opts, ci = _txt_place(correct, wrongs, i)
+        variants.append({
+            "id": "TRIG-quad-v%02d" % (i + 1),
+            "statement": ("In which quadrant does an angle of $%s$ radians "
+                          "lie?" % kat.strip("$")),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("Measure against the quarter-turns "
+                            "$\\tfrac{\\pi}{2}$, $\\pi$, "
+                            "$\\tfrac{3\\pi}{2}$ and $2\\pi$. In degrees "
+                            "the angle is $%s°$, which sits in quadrant "
+                            "$%d$. Converting first is always allowed and "
+                            "usually quicker than comparing fractions of "
+                            "$\\pi$." % (deg, quad)),
+            "check": ["Rational(180 * %d, %d) %% 360 == %s"
+                      % (p, q, str(deg))],
+        })
+    assert len(variants) >= 12, len(variants)
+    return variants
+
+
+def _resolve_angle_quadrant(s):
+    m = re.search(r"angle of \$(?:\\dfrac\{(\d+)?\\pi\}\{(\d+)\}|(\d+)?\\pi)"
+                  r"\$ radians", s)
+    theta = (Rational(int(m.group(1) or 1), int(m.group(2))) if m.group(2)
+             else Rational(int(m.group(3) or 1)))
+    deg = (180 * theta) % 360        # angles past a full turn reduce first
+    quad = 1 if deg < 90 else (2 if deg < 180 else (3 if deg < 270 else 4))
+    return ("opt", "quadrant $%d$" % quad)
+
+
+# --- graphs-of-trig-functions ----------------------------------------------
+_PERIOD_TO_B = [(180, 2), (90, 4), (120, 3), (60, 6), (45, 8), (720, 1),
+                (36, 10), (30, 12), (72, 5), (24, 15), (240, 1), (144, 1)]
+
+
+def build2_b_from_period():
+    variants = []
+    seen = set()
+    for period, _b in _PERIOD_TO_B:
+        if period in seen:
+            continue
+        seen.add(period)
+        i = len(variants)
+        b = Rational(360, period)
+        cands = [(surd_kat(period), Integer(period)),
+                 (surd_kat(Rational(period, 360)), Rational(period, 360)),
+                 (surd_kat(2 * b), 2 * b), (surd_kat(b + 1), b + 1),
+                 (surd_kat(b + 2), b + 2)]
+        opts, ci = place(surd_kat(b), pick_numeric(b, cands), i)
+        variants.append({
+            "id": "TRIG-bper-v%02d" % (i + 1),
+            "statement": ("The graph of $y = \\sin(Bx)$ has period $%d°$. "
+                          "Find $B$." % period),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("The period of $\\sin(Bx)$ is "
+                            "$\\dfrac{360°}{B}$, so $B = \\dfrac{360}{%d} = "
+                            "%s$. A period SHORTER than $360°$ needs "
+                            "$B > 1$ — squeezing the graph — which rules out "
+                            "the small options immediately."
+                            % (period, surd_kat(b).strip("$"))),
+            "check": ["Rational(360, %d) == Rational(%d, %d)"
+                      % (period, b.p, b.q)],
+        })
+    assert len(variants) >= 10, len(variants)
+    return variants
+
+
+def _resolve_b_from_period(s):
+    return ("num", Rational(360, int(re.search(r"period \$(\d+)°\$",
+                                               s).group(1))))
+
+
+_TAN_ASYMPTOTE = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18]
+
+
+def build2_tan_asymptotes():
+    variants = []
+    for i, b in enumerate(_TAN_ASYMPTOTE):
+        gap = Rational(180, b)
+        cands = [(surd_kat(2 * gap), 2 * gap), (surd_kat(Rational(360, b)),
+                                                Rational(360, b)),
+                 (surd_kat(Rational(90, b)), Rational(90, b)),
+                 (surd_kat(gap + 1), gap + 1), (surd_kat(gap + 2), gap + 2),
+                 (surd_kat(gap + 3), gap + 3)]
+        opts, ci = place(surd_kat(gap), pick_numeric(gap, cands), i)
+        variants.append({
+            "id": "TRIG-tasym-v%02d" % (i + 1),
+            "statement": ("How many degrees apart are consecutive vertical "
+                          "asymptotes of $y = \\tan(%dx)$?" % b),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("Tangent blows up every $180°$ of its ARGUMENT, "
+                            "and the argument here runs $%d$ times as fast "
+                            "as $x$, so in $x$ the asymptotes come every "
+                            "$\\dfrac{180°}{%d} = %s°$. Using $360$ instead "
+                            "of $180$ is the sine-and-cosine habit — "
+                            "tangent's period is half theirs."
+                            % (b, b, surd_kat(gap).strip("$"))),
+            "check": ["Rational(180, %d) == Rational(%d, %d)"
+                      % (b, gap.p, gap.q)],
+        })
+    return variants
+
+
+def _resolve_tan_asymptotes(s):
+    return ("num", Rational(180, int(re.search(r"\\tan\((\d+)x\)",
+                                               s).group(1))))
+
+
+# --- identities-and-equations ----------------------------------------------
+# (KaTeX value, sympy source, the two solutions of cos x = value on [0, 360))
+_COS_SOLUTIONS = [
+    ("\\frac{1}{2}", "Rational(1,2)", 60, 300),
+    ("\\frac{\\sqrt{2}}{2}", "sqrt(2)/2", 45, 315),
+    ("\\frac{\\sqrt{3}}{2}", "sqrt(3)/2", 30, 330),
+    ("-\\frac{1}{2}", "-Rational(1,2)", 120, 240),
+    ("-\\frac{\\sqrt{2}}{2}", "-sqrt(2)/2", 135, 225),
+    ("-\\frac{\\sqrt{3}}{2}", "-sqrt(3)/2", 150, 210),
+    ("0", "0", 90, 270),
+    ("1", "1", 0, 0),
+    ("-1", "-1", 180, 180),
+    ("\\frac{1}{2}", "Rational(1,2)", 60, 300),
+    ("-\\frac{1}{2}", "-Rational(1,2)", 120, 240),
+    ("\\frac{\\sqrt{3}}{2}", "sqrt(3)/2", 30, 330),
+]
+
+
+def build2_solve_cos():
+    variants, seen = [], set()
+    for kat, src, p, q in _COS_SOLUTIONS:
+        if kat in seen:
+            continue
+        seen.add(kat)
+        i = len(variants)
+        correct = ("$x = %d°$ only" % p if p == q
+                   else "$x = %d°$ and $x = %d°$" % (p, q))
+        # A pool, filtered against the answer: at cos x = 0 the pair
+        # (p, p + 180) IS the answer, so a fixed distractor list collides.
+        pool = ["$x = %d°$ only" % p,
+                "$x = %d°$ and $x = %d°$" % (p, (p + 180) % 360),
+                "$x = %d°$ and $x = %d°$" % ((p + 90) % 360,
+                                             (q + 90) % 360),
+                "$x = %d°$ and $x = %d°$" % ((180 - p) % 360, q),
+                "there is no solution",
+                "every $x$ in the interval"]
+        wrongs, seen = [], {correct}
+        for w in pool:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append(w)
+            if len(wrongs) == 3:
+                break
+        assert len(wrongs) == 3, (correct, pool)
+        opts, ci = _txt_place(correct, wrongs, i)
+        variants.append({
+            "id": "TRIG-scos-v%02d" % (i + 1),
+            "statement": ("Solve $\\cos x = %s$ for $0° \\le x < 360°$."
+                          % kat),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("Cosine is the $x$-coordinate on the unit "
+                            "circle, and it takes each value strictly "
+                            "between $-1$ and $1$ twice per turn — once "
+                            "above the axis and once below, symmetric about "
+                            "$0°$. Here that gives %s. At $\\pm 1$ the two "
+                            "solutions collide into one."
+                            % ("$x = %d°$ alone" % p if p == q
+                               else "$x = %d°$ and $x = %d°$" % (p, q))),
+            "check": ["Eq(cos(rad(%d)), %s)" % (p, src),
+                      "Eq(cos(rad(%d)), %s)" % (q, src)],
+        })
+    assert len(variants) >= 8, len(variants)
+    return variants
+
+
+def _resolve_solve_cos(s):
+    kat = re.search(r"\\cos x = (.+?)\$ for", s).group(1)
+    for k, _src, p, q in _COS_SOLUTIONS:
+        if k == kat:
+            return ("opt", "$x = %d°$ only" % p if p == q
+                    else "$x = %d°$ and $x = %d°$" % (p, q))
+    raise ValueError("solve-cos: unknown value %r" % kat)
+
+
+# --- laws-of-sines-and-cosines ---------------------------------------------
+# (side a, angle A in degrees, side b): A has an exact rational sine, so
+# sin B = b·sin A / a comes out exact for any integer sides.
+_SINE_ANGLE = [(10, 30, 14), (8, 30, 6), (12, 30, 18), (5, 150, 4),
+               (20, 30, 25), (9, 90, 6), (16, 30, 20), (6, 150, 5),
+               (15, 90, 12), (14, 30, 21), (25, 30, 30), (18, 150, 15)]
+
+
+def build2_law_of_sines_angle():
+    variants = []
+    for i, (a, A, b) in enumerate(_SINE_ANGLE):
+        sa = simplify(sin(rad(A)))
+        ans = simplify(b * sa / a)
+        assert ans < 1, (a, A, b)
+        cands = [(surd_kat(simplify(a * sa / b)), simplify(a * sa / b)),
+                 (surd_kat(Rational(b, a)), Rational(b, a)),
+                 (surd_kat(simplify(b * sa)), simplify(b * sa)),
+                 (surd_kat(simplify(ans / 2)), simplify(ans / 2)),
+                 (surd_kat(simplify(2 * ans)), simplify(2 * ans))]
+        opts, ci = place(surd_kat(ans), pick_numeric(ans, cands), i)
+        variants.append({
+            "id": "TRIG-lsang-v%02d" % (i + 1),
+            "statement": ("In a triangle, $a = %d$, $A = %d°$ and $b = %d$. "
+                          "Find $\\sin B$, exactly." % (a, A, b)),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("The law of sines says "
+                            "$\\dfrac{\\sin A}{a} = \\dfrac{\\sin B}{b}$, "
+                            "so $\\sin B = \\dfrac{b \\sin A}{a} = "
+                            "\\dfrac{%d \\cdot %s}{%d} = %s$. Each side "
+                            "pairs with the angle OPPOSITE it — pairing $b$ "
+                            "with $A$ instead inverts the ratio."
+                            % (b, surd_kat(sa).strip("$"), a,
+                               surd_kat(ans).strip("$"))),
+            "check": ["Eq(sin(rad(%d))/%d, (%s)/%d)"
+                      % (A, a, str(ans), b)],
+        })
+    return variants
+
+
+def _resolve_law_of_sines_angle(s):
+    a, A, b = [int(x) for x in
+               re.search(r"\$a = (\d+)\$, \$A = (\d+)°\$ and \$b = (\d+)\$",
+                         s).groups()]
+    return ("num", simplify(b * sin(rad(A)) / a))
+
+
+# (side a, angle A, side b): 0, 1 or 2 triangles
+_AMBIGUOUS = [
+    (5, 30, 12, "no triangle"), (10, 30, 20, "exactly one triangle"),
+    (12, 30, 20, "two triangles"), (6, 30, 15, "no triangle"),
+    (9, 30, 18, "exactly one triangle"), (15, 30, 20, "two triangles"),
+    (4, 30, 10, "no triangle"), (7, 30, 14, "exactly one triangle"),
+    (11, 30, 16, "two triangles"), (3, 30, 8, "no triangle"),
+    (8, 30, 16, "exactly one triangle"), (13, 30, 18, "two triangles"),
+]
+
+
+def build2_ambiguous_case():
+    variants = []
+    for i, (a, A, b, ans) in enumerate(_AMBIGUOUS):
+        h = Rational(b, 2)          # b*sin(30°)
+        if ans == "no triangle":
+            assert a < h, (a, b)
+        elif ans == "exactly one triangle":
+            assert a == h or a >= b, (a, b)
+        else:
+            assert h < a < b, (a, b)
+        wrongs = [w for w in ("no triangle", "exactly one triangle",
+                              "two triangles") if w != ans]
+        wrongs.append("infinitely many triangles")
+        opts, ci = _txt_place(ans, wrongs, i)
+        variants.append({
+            "id": "TRIG-ambig-v%02d" % (i + 1),
+            "statement": ("You are given $a = %d$, $A = %d°$ and $b = %d$ "
+                          "— two sides and an angle NOT between them. How "
+                          "many triangles fit?" % (a, A, b)),
+            "options": opts, "correctIndex": ci,
+            "explanation": ("Swing side $a$ from the end of $b$ and see how "
+                            "often it reaches the base. The shortest it can "
+                            "be and still reach is the height "
+                            "$b \\sin A = %s$. Here $a = %d$, so there is "
+                            "%s. Below the height nothing reaches; between "
+                            "the height and $b$ it reaches twice; at or "
+                            "beyond $b$ exactly once."
+                            % (surd_kat(h).strip("$"), a, ans)),
+            "check": ["Rational(%d, 1)*sin(rad(%d)) == Rational(%d, %d)"
+                      % (b, A, h.p, h.q)],
+        })
+    return variants
+
+
+def _resolve_ambiguous_case(s):
+    a, A, b = [int(x) for x in
+               re.search(r"\$a = (\d+)\$, \$A = (\d+)°\$ and \$b = (\d+)\$",
+                         s).groups()]
+    h = b * sin(rad(A))
+    if a < h:
+        return ("opt", "no triangle")
+    if a >= b or a == h:
+        return ("opt", "exactly one triangle")
+    return ("opt", "two triangles")
+
+
+_BATCH2_META = [
+    ("ratio-choice", "Choosing sine, cosine or tangent", 1,
+     "SOH-CAH-TOA names each pairing once — match the two known sides.",
+     "right-triangle-trigonometry", build2_ratio_choice,
+     _resolve_ratio_choice),
+    ("hypotenuse-from-angle", "The hypotenuse from a side and an angle", 2,
+     "Divide by the sine, never multiply — the hypotenuse is the longest "
+     "side.",
+     "right-triangle-trigonometry", build2_hypotenuse, _resolve_hypotenuse),
+    ("quadrant-signs", "Signs by quadrant", 1,
+     "Cosine follows x, sine follows y, tangent is their quotient.",
+     "special-triangles-and-exact-values", build2_quadrant_signs,
+     _resolve_quadrant_signs),
+    ("reciprocal-ratios", "Cosecant, secant and cotangent", 2,
+     "Evaluate the base ratio first, then flip it.",
+     "special-triangles-and-exact-values", build2_reciprocals,
+     _resolve_reciprocals),
+    ("special-triangle-sides", "Sides of the special triangles", 1,
+     "x : x√3 : 2x and x : x : x√2 — scale the pattern to the given side.",
+     "special-triangles-and-exact-values", build2_special_sides,
+     _resolve_special_sides),
+    ("sector-area-radians", "Sector area in radians", 2,
+     "½r²θ with θ in radians — the ½ is the difference between area and "
+     "arc.",
+     "radians-and-the-unit-circle", build2_sector_area, _resolve_sector_area),
+    ("angle-quadrant", "Which quadrant, in radians", 1,
+     "Compare against π/2, π and 3π/2 — or just convert to degrees.",
+     "radians-and-the-unit-circle", build2_angle_quadrant,
+     _resolve_angle_quadrant),
+    ("b-from-period", "Finding B from the period", 2,
+     "B = 360°/period — a shorter period needs a bigger B.",
+     "graphs-of-trig-functions", build2_b_from_period, _resolve_b_from_period),
+    ("tan-asymptotes", "Asymptotes of the tangent graph", 2,
+     "Tangent repeats every 180°, half the period of sine and cosine.",
+     "graphs-of-trig-functions", build2_tan_asymptotes,
+     _resolve_tan_asymptotes),
+    ("solve-cos", "Solving cos x = k on one turn", 2,
+     "Two solutions per turn, symmetric about 0° — one above the axis and "
+     "one below.",
+     "identities-and-equations", build2_solve_cos, _resolve_solve_cos),
+    ("law-of-sines-angle", "The law of sines for a sine", 2,
+     "sin B = b·sin A / a — each side pairs with the angle opposite it.",
+     "laws-of-sines-and-cosines", build2_law_of_sines_angle,
+     _resolve_law_of_sines_angle),
+    ("ambiguous-case", "How many triangles fit", 3,
+     "Compare the swinging side with the height b·sin A: below it none, "
+     "between it and b two, at or beyond b one.",
+     "laws-of-sines-and-cosines", build2_ambiguous_case,
+     _resolve_ambiguous_case),
+]
+
+
+_BATCH1_FORMS = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 2 to the original list
+    """All unit-specific forms: the original set plus batch 2 above."""
+    return _BATCH1_FORMS() + [
+        {"id": fid, "title": title, "level": level, "skill": skill,
+         "unit": unit, "variants": gen()}
+        for fid, title, level, skill, unit, gen, _rz in _BATCH2_META]
+
+
+RESOLVERS.update({fid: rz for fid, _t, _l, _s, _u, _g, rz in _BATCH2_META})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = _remapped_forms() + new_forms()
