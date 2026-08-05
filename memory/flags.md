@@ -100,6 +100,28 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-05** — Probe after deploy `9115452` (the six-forms-per-unit
+  expansion — 250 new problem-bank forms and ~7,600 new problems, taking
+  every unit of all 25 banks to six collections; 894 → 1,144 forms and
+  23,500 → 31,144 variants): `anthropic_api_key: configured`,
+  `migration_009: applied`, `migration_008_student_profiles: unknown`
+  (FLAG-002 unchanged — `unknown`, so read that flag's "Reading a
+  non-`applied` result" row before acting). FLAG-003 still
+  optional/unset. Content + build-script only: no migrations in the diff
+  and no auth, API, env or component files touched, so nothing depended
+  on either open flag. Prod verified: `/math/problem-bank/prob-stats`
+  serves all twelve units at 72 problems each,
+  `/math/problem-bank/geometry/surface-area-and-volume` — the unit that
+  had ONE collection before this deploy — now serves all six with
+  rendered math, and `/practice/ib/bank` reports SL 30 forms / 1,022
+  problems and HL 30 forms / 1,013 problems. Runtime errors clean over
+  the 3h window.
+  NOTE for the next reader: `/math/problem-bank/ib-hl` and `/ib-sl`
+  return a genuine 404 and always have — `build_problembank.py` sets
+  `courseLadder: slug not in HUB_BANKS`, so the three hub banks (sat,
+  ib-sl, ib-hl) live under their exam hubs instead. Not a regression.
+  This deploy took 2m27s to build but ~10 min more in output
+  propagation, consistent with the large-bank deploys before it.
 - **2026-08-05** — Probe after deploy `644ab67` (the Grade 3 year — 8 topics,
   40 lessons, a 48-form problem bank — plus the fix that made 23 authored
   practice figures actually render, 20 of which had been invisible in Grade 4
