@@ -918,6 +918,770 @@ RESOLVERS.update({
 })
 
 
+# ===========================================================================
+# Batch 2 — the forms that take every Vectors & Matrices unit to six.
+#
+# Matrices & Operations shipped with two collections and three other units
+# with three. Each form below drills something its unit did not already ask.
+# ===========================================================================
+
+# --- vectors-and-coordinates ----------------------------------------------
+UNITV_DATA = [(3, 4), (6, 8), (5, 12), (8, 15), (-3, 4), (7, 24),
+              (9, 12), (-5, 12), (20, 21), (12, 16), (-8, 15), (10, 24)]
+
+
+def gen_unit_vector():
+    out = []
+    for i, (x, y) in enumerate(UNITV_DATA):
+        n2 = x * x + y * y
+        n = int(sqrt(n2))
+        assert n * n == n2, "unit vector: magnitude %d not exact" % n2
+        pos = i % 4
+        correct = pair(Rational(x, n), Rational(y, n))
+        cands = [pair(Rational(y, n), Rational(x, n)),
+                 pair(Rational(x, n2), Rational(y, n2)),
+                 pair(Rational(n, x) if x else Rational(1),
+                      Rational(n, y) if y else Rational(1)),
+                 pair(Rational(-x, n), Rational(-y, n))]
+        out.append({
+            "statement": "Find the unit vector in the direction of $%s$."
+                         % vec2("u", x, y),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Divide by the magnitude: $|\\vec{u}| = "
+                           "\\sqrt{%d + %d} = %d$, so the unit vector is "
+                           "$\\left(\\frac{%d}{%d}; \\frac{%d}{%d}\\right)$. "
+                           "Dividing by $|\\vec{u}|^2 = %d$ instead shrinks "
+                           "it too far — the result would not have length "
+                           "$1$." % (x * x, y * y, n, x, n, y, n, n2),
+            "check": ["sqrt((%d)**2 + (%d)**2) == %d" % (x, y, n),
+                      "Rational(%d, %d)**2 + Rational(%d, %d)**2 == 1"
+                      % (x, n, y, n)],
+        })
+    return out
+
+
+def _r_unit_vector(s):
+    x, y = _pair_after(s, r"\\vec\{u\}")
+    n = int(sqrt(x * x + y * y))
+    return ("opt", pair(Rational(x, n), Rational(y, n)))
+
+
+RELATION_DATA = [
+    ((2, 5), (2, 5), "equal"), ((3, -1), (-3, 1), "opposite"),
+    ((1, 4), (3, 12), "parallel but not equal"),
+    ((2, 3), (5, 1), "none of these"),
+    ((-4, 6), (-4, 6), "equal"), ((7, 2), (-7, -2), "opposite"),
+    ((2, -5), (6, -15), "parallel but not equal"),
+    ((3, 4), (4, 3), "none of these"),
+    ((-1, -8), (-1, -8), "equal"), ((5, -3), (-5, 3), "opposite"),
+    ((4, 1), (12, 3), "parallel but not equal"),
+    ((6, -2), (2, 6), "none of these"),
+]
+
+
+def gen_vector_relation():
+    pool = ["equal", "opposite", "parallel but not equal", "none of these"]
+    out = []
+    for i, ((a, b), (c, d), kind) in enumerate(RELATION_DATA):
+        pos = i % 4
+        cands = [k for k in pool if k != kind]
+        cross = a * d - b * c
+        out.append({
+            "statement": "How are $%s$ and $%s$ related?"
+                         % (vec2("u", a, b), vec2("v", c, d)),
+            "options": place(kind, cands, pos), "correctIndex": pos,
+            "explanation": "Two vectors are parallel exactly when "
+                           "$u_1 v_2 - u_2 v_1 = 0$; here that is "
+                           "$(%d)(%d) - (%d)(%d) = %d. $ %s Equal means the "
+                           "same multiplier $1$, opposite means $-1$, and "
+                           "any other non-zero multiplier leaves them "
+                           "parallel without being either."
+                           % (a, d, b, c, cross,
+                              "So they are parallel."
+                              if cross == 0 else
+                              "So they are not parallel at all."),
+            "check": ["(%d)*(%d) - (%d)*(%d) %s 0"
+                      % (a, d, b, c, "==" if cross == 0 else "!=")],
+        })
+    return out
+
+
+def _r_vector_relation(s):
+    a, b = _pair_after(s, r"\\vec\{u\}")
+    c, d = _pair_after(s, r"\\vec\{v\}")
+    if a * d - b * c != 0:
+        return ("opt", "none of these")
+    if (a, b) == (c, d):
+        return ("opt", "equal")
+    if (a, b) == (-c, -d):
+        return ("opt", "opposite")
+    return ("opt", "parallel but not equal")
+
+
+SCALEMAG_DATA = [(3, 4, 2), (6, 8, 3), (5, 12, 2), (8, 15, 4), (3, 4, 5),
+                 (7, 24, 2), (9, 12, 3), (5, 12, 6), (20, 21, 2),
+                 (12, 16, 5), (8, 15, 3), (10, 24, 4)]
+
+
+def gen_scaled_magnitude():
+    out = []
+    for i, (x, y, k) in enumerate(SCALEMAG_DATA):
+        n = int(sqrt(x * x + y * y))
+        assert n * n == x * x + y * y
+        ans = k * n
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(n), numO(k * k * n), numO(n + k), numO(k * (x + y)),
+                 numO(ans + 1), numO(ans - 1)]
+        out.append({
+            "statement": "For $%s$, find $|%d\\vec{u}|$." % (vec2("u", x, y),
+                                                             k),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Scaling a vector by $%d$ scales its length by "
+                           "$%d$ too: $|\\vec{u}| = %d$, so "
+                           "$|%d\\vec{u}| = %d \\cdot %d = %d$. The squares "
+                           "in the magnitude formula do NOT square the "
+                           "scalar — it comes back out of the root."
+                           % (k, k, n, k, k, n, ans),
+            "check": ["sqrt((%d*%d)**2 + (%d*%d)**2) == %d"
+                      % (k, x, k, y, ans)],
+        })
+    return out
+
+
+def _r_scaled_magnitude(s):
+    x, y = _pair_after(s, r"\\vec\{u\}")
+    k = int(re.search(r"\|(\d+)\\vec\{u\}\|", s).group(1))
+    return ("num", k * sqrt(x * x + y * y))
+
+
+# --- vector-arithmetic ----------------------------------------------------
+SUBTRACT_DATA = [((5, 2), (1, 7)), ((3, -4), (6, 2)), ((-2, 5), (4, 1)),
+                 ((7, 3), (2, -6)), ((1, 8), (-5, 4)), ((6, -1), (3, 9)),
+                 ((-3, 2), (5, -7)), ((4, 6), (9, 2)), ((8, -5), (1, 3)),
+                 ((2, 9), (-4, 6)), ((-6, 1), (2, 8)), ((5, -3), (7, 4))]
+
+
+def gen_vector_subtract():
+    out = []
+    for i, ((a, b), (c, d)) in enumerate(SUBTRACT_DATA):
+        ax, ay = a - c, b - d
+        pos = i % 4
+        correct = pair(ax, ay)
+        cands = [pair(c - a, d - b), pair(a + c, b + d),
+                 pair(a - c, d - b), pair(c - a, b - d)]
+        out.append({
+            "statement": "Find $\\vec{u} - \\vec{v}$ for $%s$ and $%s$."
+                         % (vec2("u", a, b), vec2("v", c, d)),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Subtract componentwise, keeping the order: "
+                           "$(%d - %d;\\ %d - %d) = (%d; %d)$. Reversing the "
+                           "order gives $(%d; %d)$, which points the "
+                           "opposite way — $\\vec{u} - \\vec{v}$ runs from "
+                           "the tip of $\\vec{v}$ to the tip of $\\vec{u}$."
+                           % (a, c, b, d, ax, ay, c - a, d - b),
+            "check": ["(%d) - (%d) == %d" % (a, c, ax),
+                      "(%d) - (%d) == %d" % (b, d, ay)],
+        })
+    return out
+
+
+def _r_vector_subtract(s):
+    a, b = _pair_after(s, r"\\vec\{u\}")
+    c, d = _pair_after(s, r"\\vec\{v\}")
+    return ("opt", pair(a - c, b - d))
+
+
+# A 1 : 1 ratio is deliberately absent: at equal weights the section point
+# IS the midpoint, and the two error models this form teaches — weighting
+# each endpoint by its own part, and reaching for the midpoint — collapse
+# onto the correct answer.
+SECTION_DATA = [((0, 0), (6, 9), 1, 2), ((2, 1), (8, 7), 1, 2),
+                ((-3, 2), (9, 10), 1, 3), ((4, -2), (10, 4), 2, 1),
+                ((1, 5), (13, -7), 1, 2), ((-6, 0), (6, 12), 3, 1),
+                ((5, 3), (5, 15), 1, 5), ((0, -4), (12, 8), 1, 2),
+                ((7, 1), (-5, 13), 1, 3), ((2, 8), (14, -4), 1, 3),
+                ((-1, -1), (11, 11), 1, 2), ((9, 6), (-3, 18), 2, 4)]
+
+
+def gen_section_point():
+    out = []
+    for i, ((ax, ay), (bx, by), m, n) in enumerate(SECTION_DATA):
+        px = Rational(n * ax + m * bx, m + n)
+        py = Rational(n * ay + m * by, m + n)
+        assert px.q == 1 and py.q == 1, "section: %r not a lattice point" % (
+            (ax, ay, bx, by, m, n),)
+        pos = i % 4
+        correct = pair(px, py)
+        cands = [pair(Rational(m * ax + n * bx, m + n),
+                      Rational(m * ay + n * by, m + n)),
+                 pair(Rational(ax + bx, 2), Rational(ay + by, 2)),
+                 pair(bx - ax, by - ay), pair(ax + m, ay + n)]
+        out.append({
+            "statement": "$P$ divides $AB$ so that $AP : PB = %d : %d$, with "
+                         "$A = (%d; %d)$ and $B = (%d; %d)$. Find $P$."
+                         % (m, n, ax, ay, bx, by),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "The section formula weights each endpoint by the "
+                           "OPPOSITE part of the ratio: "
+                           "$P = \\dfrac{%d \\cdot A + %d \\cdot B}{%d} = "
+                           "(%s; %s)$. Weighting $A$ by its own part instead "
+                           "pulls the point to the wrong side."
+                           % (n, m, m + n, L(px), L(py)),
+            "check": ["Rational(%d*(%d) + %d*(%d), %d) == %d"
+                      % (n, ax, m, bx, m + n, px),
+                      "Rational(%d*(%d) + %d*(%d), %d) == %d"
+                      % (n, ay, m, by, m + n, py)],
+        })
+    return out
+
+
+def _r_section_point(s):
+    m, n = [int(x) for x in
+            re.search(r"AP : PB = (\d+) : (\d+)", s).groups()]
+    ax, ay = _pair_after(s, "A")
+    bx, by = _pair_after(s, "B")
+    return ("opt", pair(Rational(n * ax + m * bx, m + n),
+                        Rational(n * ay + m * by, m + n)))
+
+
+# --- the-dot-product ------------------------------------------------------
+DOTSIGN_DATA = [((3, 1), (2, 4)), ((2, 3), (-3, 2)), ((-1, 5), (4, -2)),
+                ((6, 2), (1, 3)), ((4, -1), (1, 4)), ((-2, -3), (5, 1)),
+                ((7, 3), (2, 5)), ((1, 6), (6, -1)), ((-4, 2), (3, 1)),
+                ((5, 5), (2, 1)), ((3, -2), (2, 3)), ((-3, 4), (2, -5))]
+
+
+def gen_dot_sign():
+    pool = ["acute", "right", "obtuse"]
+    out = []
+    for i, ((a, b), (c, d)) in enumerate(DOTSIGN_DATA):
+        D = a * c + b * d
+        kind = "acute" if D > 0 else ("right" if D == 0 else "obtuse")
+        cands = [k for k in pool if k != kind] + ["straight"]
+        pos = i % 4
+        out.append({
+            "statement": "Without computing the angle, decide whether the "
+                         "angle between $%s$ and $%s$ is acute, right or "
+                         "obtuse." % (vec2("u", a, b), vec2("v", c, d)),
+            "options": place(kind, cands, pos), "correctIndex": pos,
+            "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|"
+                           "\\cos\\theta$, and the two magnitudes are always "
+                           "positive — so the SIGN of the dot product is the "
+                           "sign of $\\cos\\theta$. Here "
+                           "$(%d)(%d) + (%d)(%d) = %d$, which is %s, so the "
+                           "angle is %s."
+                           % (a, c, b, d, D,
+                              "positive" if D > 0 else
+                              ("zero" if D == 0 else "negative"), kind),
+            "check": ["(%d)*(%d) + (%d)*(%d) %s 0"
+                      % (a, c, b, d, ">" if D > 0 else
+                         ("==" if D == 0 else "<"))],
+        })
+    return out
+
+
+def _r_dot_sign(s):
+    a, b = _pair_after(s, r"\\vec\{u\}")
+    c, d = _pair_after(s, r"\\vec\{v\}")
+    D = a * c + b * d
+    return ("opt", "acute" if D > 0 else ("right" if D == 0 else "obtuse"))
+
+
+SUMSQ_DATA = [(3, 4, 5), (5, 12, 20), (2, 6, 7), (8, 15, -30), (4, 3, 6),
+              (7, 24, 40), (6, 8, -10), (9, 12, 15), (1, 5, 3),
+              (10, 10, -25), (2, 9, 8), (11, 6, 12)]
+
+
+def gen_sum_square():
+    out = []
+    for i, (mu, mv, dot) in enumerate(SUMSQ_DATA):
+        ans = mu * mu + 2 * dot + mv * mv
+        assert ans > 0, "sum-square: %r gives a negative square" % (
+            (mu, mv, dot),)
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(mu * mu + mv * mv), numO((mu + mv) ** 2),
+                 numO(mu * mu + dot + mv * mv),
+                 numO(mu * mu - 2 * dot + mv * mv), numO(ans + 1),
+                 numO(ans - 1)]
+        out.append({
+            "statement": "$|\\vec{u}| = %d$, $|\\vec{v}| = %d$ and "
+                         "$\\vec{u} \\cdot \\vec{v} = %d$. Find "
+                         "$|\\vec{u} + \\vec{v}|^2$." % (mu, mv, dot),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Expand the dot product with itself: "
+                           "$|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + "
+                           "2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = "
+                           "%d + 2(%d) + %d = %d$. Dropping the middle term "
+                           "assumes the vectors are perpendicular, which is "
+                           "only true when the dot product is zero."
+                           % (mu * mu, dot, mv * mv, ans),
+            "check": ["%d**2 + 2*(%d) + %d**2 == %d" % (mu, dot, mv, ans)],
+        })
+    return out
+
+
+def _r_sum_square(s):
+    mu = int(re.search(r"\|\\vec\{u\}\| = (\d+)", s).group(1))
+    mv = int(re.search(r"\|\\vec\{v\}\| = (\d+)", s).group(1))
+    dot = int(re.search(r"\\cdot \\vec\{v\} = (-?\d+)", s).group(1))
+    return ("num", mu * mu + 2 * dot + mv * mv)
+
+
+# --- vectors-in-space -----------------------------------------------------
+FROM3_DATA = [((1, 2, 3), (4, 6, 8)), ((0, -1, 5), (3, 2, 1)),
+              ((2, 4, -2), (7, 1, 3)), ((-3, 0, 6), (2, 5, -1)),
+              ((5, 3, 1), (0, 7, 4)), ((-1, -4, 2), (6, 2, 9)),
+              ((8, 1, -3), (2, 6, 5)), ((3, 9, 0), (-4, 3, 7)),
+              ((6, -2, 4), (1, 8, -6)), ((-5, 5, 2), (4, 0, 3)),
+              ((7, 2, 8), (3, -3, 1)), ((0, 6, -4), (9, 1, 2))]
+
+
+def gen_vector_from_points_3d():
+    out = []
+    for i, ((x1, y1, z1), (x2, y2, z2)) in enumerate(FROM3_DATA):
+        dx, dy, dz = x2 - x1, y2 - y1, z2 - z1
+        pos = i % 4
+        correct = trip(dx, dy, dz)
+        cands = [trip(-dx, -dy, -dz), trip(x1 + x2, y1 + y2, z1 + z2),
+                 trip(dx, dy, -dz), trip(dy, dx, dz)]
+        out.append({
+            "statement": "Find $\\vec{AB}$ for $A = (%d; %d; %d)$ and "
+                         "$B = (%d; %d; %d)$." % (x1, y1, z1, x2, y2, z2),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Head minus tail, one coordinate at a time: "
+                           "$(%d - %d;\\ %d - %d;\\ %d - %d) = (%d; %d; %d)$. "
+                           "Doing it the other way round gives $\\vec{BA}$, "
+                           "which is the same arrow reversed."
+                           % (x2, x1, y2, y1, z2, z1, dx, dy, dz),
+            "check": ["(%d) - (%d) == %d" % (x2, x1, dx),
+                      "(%d) - (%d) == %d" % (y2, y1, dy),
+                      "(%d) - (%d) == %d" % (z2, z1, dz)],
+        })
+    return out
+
+
+def _r_vector_from_points_3d(s):
+    x1, y1, z1 = _trip_after(s, "A")
+    x2, y2, z2 = _trip_after(s, "B")
+    return ("opt", trip(x2 - x1, y2 - y1, z2 - z1))
+
+
+PAR3_DATA = [((2, 3, 4), 3), ((1, -2, 5), 4), ((3, 1, -2), 2), ((4, 5, 1), 3),
+             ((-1, 3, 2), 5), ((2, -4, 6), 2), ((5, 2, 3), 4), ((1, 6, -3), 3),
+             ((-2, 1, 4), 6), ((3, -5, 2), 2), ((6, 1, 5), 3), ((2, 7, -1), 4)]
+
+
+def gen_parallel_3d():
+    out = []
+    for i, ((a, b, c), k) in enumerate(PAR3_DATA):
+        # v = k*u, and the missing third component is k*c
+        ans = k * c
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(c + k), numO(c), numO(k), numO(c * c),
+                 numO(ans - 1), numO(ans + 1), numO(2 * ans)]
+        out.append({
+            "statement": "$\\vec{u} = (%d; %d; %d)$ and "
+                         "$\\vec{v} = (%d; %d; t)$ are parallel. Find $t$."
+                         % (a, b, c, k * a, k * b),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Parallel means one vector is a single multiple "
+                           "of the other. Comparing the first components, "
+                           "$\\frac{%d}{%d} = %d$, and the second agrees, so "
+                           "the SAME multiplier must apply to the third: "
+                           "$t = %d \\cdot %d = %d$. A multiplier that works "
+                           "for only one coordinate is not parallelism."
+                           % (k * a, a, k, k, c, ans),
+            "check": ["Rational(%d, %d) == %d" % (k * a, a, k),
+                      "Rational(%d, %d) == %d" % (k * b, b, k),
+                      "%d * (%d) == %d" % (k, c, ans)],
+        })
+    return out
+
+
+def _r_parallel_3d(s):
+    a, b, c = _trip_after(s, r"\\vec\{u\}")
+    m = re.search(r"\\vec\{v\} = \((-?\d+); (-?\d+); t\)", s)
+    return ("num", Rational(int(m.group(1)), a) * c)
+
+
+PERP3_DATA = [((2, 3, 1), (4, -1, 5)), ((1, 2, 4), (3, 5, -2)),
+              ((5, -2, 3), (1, 4, 2)), ((2, 6, -1), (3, 1, 7)),
+              ((4, 1, 2), (2, -3, 5)), ((-1, 3, 6), (4, 2, 1)),
+              ((3, 5, 2), (1, -2, 4)), ((6, -1, 1), (2, 3, 5)),
+              ((1, 4, 7), (5, 2, -3)), ((2, -5, 4), (6, 1, 3)),
+              ((7, 2, -2), (1, 5, 4)), ((3, 3, 5), (4, -6, 2))]
+
+
+def gen_perpendicular_3d():
+    out = []
+    for i, ((a, b, c), (d, e, f)) in enumerate(PERP3_DATA):
+        assert f != 0
+        # a*d + b*e + c*(f + t) = 0  ->  we instead solve for the third
+        # component of v: find t with a*d + b*e + c*t = 0
+        num = -(a * d + b * e)
+        ans = Rational(num, c)
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(-ans), numO(Rational(num, a) if a else ans + 3),
+                 numO(ans + 1), numO(ans - 1), numO(2 * ans)]
+        out.append({
+            "statement": "$\\vec{u} = (%d; %d; %d)$ and "
+                         "$\\vec{v} = (%d; %d; t)$ are perpendicular. Find "
+                         "$t$." % (a, b, c, d, e),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Perpendicular means the dot product vanishes: "
+                           "$(%d)(%d) + (%d)(%d) + (%d)t = 0$, so "
+                           "$%dt = %d$ and $t = %s$. Note it is the "
+                           "component of $\\vec{u}$ that multiplies $t$ — "
+                           "matching the wrong pair is the usual slip."
+                           % (a, d, b, e, c, c, num, L(ans)),
+            "check": ["(%d)*(%d) + (%d)*(%d) + (%d)*Rational(%d, %d) == 0"
+                      % (a, d, b, e, c, ans.p, ans.q)],
+        })
+    return out
+
+
+def _r_perpendicular_3d(s):
+    a, b, c = _trip_after(s, r"\\vec\{u\}")
+    m = re.search(r"\\vec\{v\} = \((-?\d+); (-?\d+); t\)", s)
+    d, e = int(m.group(1)), int(m.group(2))
+    return ("num", Rational(-(a * d + b * e), c))
+
+# --- matrices-and-operations ----------------------------------------------
+SCALARM_DATA = [((2, 3, 1, 4), 3), ((5, -1, 2, 6), 2), ((1, 4, -3, 2), 5),
+                ((6, 2, 4, -5), 3), ((-2, 7, 1, 3), 4), ((3, 1, 5, 2), 6),
+                ((4, -6, 2, 1), 2), ((1, 5, 3, -4), 7), ((7, 2, -1, 6), 3),
+                ((2, 8, 4, 3), 5), ((-5, 1, 6, 2), 2), ((3, 4, 1, 9), 4)]
+
+
+def gen_scalar_matrix():
+    out = []
+    for i, ((a, b, c, d), k) in enumerate(SCALARM_DATA):
+        ans = k * c
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(k * b), numO(c + k), numO(k * a), numO(k * d),
+                 numO(ans + 1), numO(ans - 1)]
+        out.append({
+            "statement": "Let $M = %dA$ for $A = %s$. Find the entry "
+                         "$m_{21}$ (row 2, column 1)."
+                         % (k, pm(a, b, c, d)),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "A scalar multiplies EVERY entry, so the entry at "
+                           "address $(2, 1)$ is $%d \\cdot %d = %d$. Reading "
+                           "$m_{12}$ instead — row 1, column 2 — gives $%d$; "
+                           "the row index always comes first."
+                           % (k, c, ans, k * b),
+            "check": ["(%d)*(%d) == %d" % (k, c, ans)],
+        })
+    return out
+
+
+def _r_scalar_matrix(s):
+    k = int(re.search(r"M = (\d+)A", s).group(1))
+    a, b, c, d = [int(x) for x in PM_RE.search(s).groups()]
+    return ("num", k * c)
+
+
+TRANSPOSE_DATA = [(2, 3, 1, 4), (5, -1, 2, 6), (1, 4, -3, 2), (6, 2, 4, -5),
+                  (-2, 7, 1, 3), (3, 1, 5, 2), (4, -6, 2, 1), (1, 5, 3, -4),
+                  (7, 2, -1, 6), (2, 8, 4, 3), (-5, 1, 6, 2), (3, 4, 1, 9)]
+
+
+def gen_transpose():
+    out = []
+    for i, (a, b, c, d) in enumerate(TRANSPOSE_DATA):
+        assert b != c, "transpose: symmetric matrix hides the swap"
+        pos = i % 4
+        correct = "$" + pm(a, c, b, d) + "$"
+        cands = ["$" + pm(a, b, c, d) + "$", "$" + pm(d, b, c, a) + "$",
+                 "$" + pm(d, c, b, a) + "$", "$" + pm(c, a, d, b) + "$"]
+        out.append({
+            "statement": "Find $A^{T}$ for $A = %s$." % pm(a, b, c, d),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "Transposing reflects the matrix across its main "
+                           "diagonal, so the two off-diagonal entries trade "
+                           "places while $%d$ and $%d$ stay put: the result "
+                           "is $%s$. Swapping the DIAGONAL entries instead "
+                           "is what the adjugate does, not the transpose."
+                           % (a, d, pm(a, c, b, d)),
+            "check": ["(%d) == (%d)" % (b, b), "(%d) == (%d)" % (c, c)],
+        })
+    return out
+
+
+def _r_transpose(s):
+    a, b, c, d = [int(x) for x in PM_RE.search(s).groups()]
+    return ("opt", "$" + pm(a, c, b, d) + "$")
+
+
+SQUARE_DATA = [(2, 1, 3, 4), (1, 2, 0, 3), (3, -1, 2, 1), (4, 2, 1, 5),
+               (2, 3, -1, 2), (5, 1, 2, 3), (1, 4, 2, -2), (3, 2, 4, 1),
+               (-1, 3, 5, 2), (2, 5, 1, 4), (6, 1, -2, 3), (1, 1, 4, 2)]
+
+
+def gen_matrix_square():
+    out = []
+    for i, (a, b, c, d) in enumerate(SQUARE_DATA):
+        ans = a * a + b * c        # entry (1, 1) of A squared
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(a * a), numO(a * a + b * b), numO((a + b) * (a + c)),
+                 numO(a * a + c * c), numO(ans + 1), numO(ans - 1),
+                 numO(2 * ans)]
+        out.append({
+            "statement": "For $A = %s$, find the entry in row 1, column 1 of "
+                         "$A^{2}$." % pm(a, b, c, d),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry "
+                           "is row 1 of $A$ dotted with column 1 of $A$: "
+                           "$(%d)(%d) + (%d)(%d) = %d$. Squaring each entry "
+                           "separately would give $%d$ — matrix "
+                           "multiplication is not entrywise."
+                           % (a, a, b, c, ans, a * a),
+            "check": ["(%d)*(%d) + (%d)*(%d) == %d" % (a, a, b, c, ans)],
+        })
+    return out
+
+
+def _r_matrix_square(s):
+    a, b, c, d = [int(x) for x in PM_RE.search(s).groups()]
+    return ("num", a * a + b * c)
+
+
+DIM_DATA = [(2, 3, 3, 4), (3, 2, 2, 5), (4, 1, 1, 3), (2, 3, 3, 6),
+            (5, 3, 3, 2), (1, 4, 4, 4), (3, 5, 5, 1), (6, 2, 2, 3),
+            (2, 4, 4, 7), (4, 3, 3, 3), (5, 1, 1, 6), (3, 6, 6, 2)]
+
+
+def gen_matrix_dimensions():
+    out = []
+    for i, (m, n, p, q) in enumerate(DIM_DATA):
+        assert n == p, "dimensions: inner sizes must agree"
+        pos = i % 4
+        correct = "$%d \\times %d$" % (m, q)
+        cands = ["$%d \\times %d$" % (q, m), "$%d \\times %d$" % (m, n),
+                 "$%d \\times %d$" % (n, q), "$%d \\times %d$" % (m, m),
+                 "$%d \\times %d$" % (q, q), "$%d \\times %d$" % (n, n)]
+        out.append({
+            "statement": "$A$ is $%d \\times %d$ and $B$ is $%d \\times %d$. "
+                         "What size is $AB$?" % (m, n, p, q),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "The inner sizes must match — here both are $%d$, "
+                           "so the product exists — and the OUTER sizes "
+                           "survive: $AB$ is $%d \\times %d$. Rows come from "
+                           "the left factor and columns from the right, "
+                           "which is why $AB$ and $BA$ usually differ in "
+                           "shape as well as value." % (n, m, q),
+            "check": ["%d == %d" % (n, p)],
+        })
+    return out
+
+
+def _r_matrix_dimensions(s):
+    m, n, p, q = [int(x) for x in
+                  re.search(r"\$(\d+) \\times (\d+)\$ and \$B\$ is "
+                            r"\$(\d+) \\times (\d+)\$", s).groups()]
+    return ("opt", "$%d \\times %d$" % (m, q))
+
+
+# --- determinants-and-inverses --------------------------------------------
+INV_DATA = [(2, 1, 3, 2), (3, 1, 5, 2), (1, 2, 1, 3), (4, 3, 5, 4),
+            (2, 3, 1, 2), (5, 2, 7, 3), (3, 2, 4, 3), (1, 1, 2, 3),
+            (6, 5, 5, 4), (2, 5, 1, 3), (4, 1, 7, 2), (3, 4, 2, 3)]
+
+
+def gen_inverse_2x2():
+    out = []
+    for i, (a, b, c, d) in enumerate(INV_DATA):
+        det = a * d - b * c
+        assert det in (1, -1), "inverse: det %d is not a unit" % det
+        ia, ib, ic, id_ = d // det, -b // det, -c // det, a // det
+        pos = i % 4
+        correct = "$" + pm(ia, ib, ic, id_) + "$"
+        cands = ["$" + pm(d, b, c, a) + "$",       # swapped, forgot to negate
+                 "$" + pm(a, -b, -c, d) + "$",     # negated, forgot to swap
+                 "$" + pm(d, -b, -c, a) + "$",     # right shape, no division
+                 "$" + pm(-ia, -ib, -ic, -id_) + "$",
+                 "$" + pm(a, b, c, d) + "$",
+                 "$" + pm(ia, ic, ib, id_) + "$"]
+        out.append({
+            "statement": "Find $A^{-1}$ for $A = %s$." % pm(a, b, c, d),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "The determinant is $(%d)(%d) - (%d)(%d) = %d$. "
+                           "The inverse swaps the main diagonal, negates the "
+                           "other two entries, and divides by the "
+                           "determinant: $%s$. Forgetting to negate the "
+                           "off-diagonal pair is the usual slip — the result "
+                           "will not multiply back to the identity."
+                           % (a, d, b, c, det, pm(ia, ib, ic, id_)),
+            "check": ["(%d)*(%d) + (%d)*(%d) == 1" % (a, ia, b, ic),
+                      "(%d)*(%d) + (%d)*(%d) == 0" % (a, ib, b, id_),
+                      "(%d)*(%d) - (%d)*(%d) == %d" % (a, d, b, c, det)],
+        })
+    return out
+
+
+def _r_inverse_2x2(s):
+    a, b, c, d = [int(x) for x in PM_RE.search(s).groups()]
+    det = a * d - b * c
+    return ("opt", "$" + pm(d // det, -b // det, -c // det, a // det) + "$")
+
+
+SING_DATA = [(2, 3, 4), (5, 2, 10), (3, 4, 6), (7, 1, 14), (2, 5, 8),
+             (4, 3, 12), (6, 2, 9), (5, 4, 15), (3, 7, 6), (8, 1, 16),
+             (2, 9, 10), (9, 2, 18)]
+
+
+def gen_singular_k():
+    out = []
+    for i, (a, b, c) in enumerate(SING_DATA):
+        # A = [[a, b], [c, k]] is singular when a*k - b*c = 0
+        ans = Rational(b * c, a)
+        pos = i % 4
+        correct = numO(ans)
+        cands = [numO(-ans), numO(Rational(a * c, b)), numO(Rational(a, b * c)
+                                                            if b * c else
+                                                            ans + 2),
+                 numO(ans + 1), numO(b + c - a)]
+        out.append({
+            "statement": "For which value of $k$ does "
+                         "$\\begin{pmatrix} %d & %d \\\\ %d & k "
+                         "\\end{pmatrix}$ have no inverse?" % (a, b, c),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "A matrix has no inverse exactly when its "
+                           "determinant is zero: $%dk - (%d)(%d) = 0$, so "
+                           "$k = \\frac{%d}{%d} = %s$. At that value the two "
+                           "rows are multiples of each other, which is the "
+                           "same fact wearing different clothes."
+                           % (a, b, c, b * c, a, L(ans)),
+            "check": ["(%d)*Rational(%d, %d) - (%d)*(%d) == 0"
+                      % (a, ans.p, ans.q, b, c)],
+        })
+    return out
+
+
+def _r_singular_k(s):
+    m = re.search(r"\\begin\{pmatrix\} (-?\d+) & (-?\d+) \\\\ (-?\d+) & k",
+                  s)
+    a, b, c = [int(x) for x in m.groups()]
+    return ("num", Rational(b * c, a))
+
+
+UNIQUE_DATA = [(2, 3, 4, 6, False), (1, 2, 3, 4, True), (5, 1, 10, 2, False),
+               (3, 2, 1, 4, True), (4, 6, 2, 3, False), (2, 5, 3, 1, True),
+               (6, 4, 3, 2, False), (1, 3, 2, 5, True), (7, 2, 14, 4, False),
+               (4, 1, 3, 2, True), (2, 8, 1, 4, False), (5, 3, 2, 4, True)]
+
+
+def gen_unique_solution():
+    out = []
+    for i, (a, b, c, d, unique) in enumerate(UNIQUE_DATA):
+        det = a * d - b * c
+        assert (det != 0) == unique, (a, b, c, d)
+        correct = ("exactly one solution" if unique
+                   else "no unique solution — the determinant is zero")
+        cands = [("no unique solution — the determinant is zero" if unique
+                  else "exactly one solution"),
+                 "exactly two solutions",
+                 "a unique solution only when the right-hand sides are zero"]
+        pos = i % 4
+        out.append({
+            "statement": "How many solutions does the system "
+                         "$%dx + %dy = 7$, $%dx + %dy = 11$ have?"
+                         % (a, b, c, d),
+            "options": place(correct, cands, pos), "correctIndex": pos,
+            "explanation": "The coefficient determinant is "
+                           "$(%d)(%d) - (%d)(%d) = %d$. A non-zero "
+                           "determinant means the two lines have different "
+                           "slopes and cross exactly once; a zero "
+                           "determinant means they are parallel, so there is "
+                           "either no solution or a whole line of them — "
+                           "never exactly two."
+                           % (a, d, b, c, det),
+            "check": ["(%d)*(%d) - (%d)*(%d) %s 0"
+                      % (a, d, b, c, "!=" if unique else "==")],
+        })
+    return out
+
+
+def _r_unique_solution(s):
+    a, b, c, d = [int(x) for x in
+                  re.search(r"\$(-?\d+)x \+ (-?\d+)y = 7\$, "
+                            r"\$(-?\d+)x \+ (-?\d+)y = 11\$", s).groups()]
+    return ("opt", "exactly one solution" if a * d - b * c != 0
+            else "no unique solution — the determinant is zero")
+
+
+NEW_FORMS_META_2 = [
+    ("unit-vector", "The unit vector in a direction", 2, "VM-unit",
+     "vectors-and-coordinates", gen_unit_vector, _r_unit_vector),
+    ("vector-relation", "Equal, opposite, parallel or neither", 1, "VM-rel",
+     "vectors-and-coordinates", gen_vector_relation, _r_vector_relation),
+    ("scaled-magnitude", "Magnitude after scaling", 2, "VM-smag",
+     "vectors-and-coordinates", gen_scaled_magnitude, _r_scaled_magnitude),
+    ("vector-subtract", "Subtracting vectors", 1, "VM-sub",
+     "vector-arithmetic", gen_vector_subtract, _r_vector_subtract),
+    ("section-point", "The section formula", 3, "VM-sect",
+     "vector-arithmetic", gen_section_point, _r_section_point),
+    ("dot-sign", "The angle from the sign of the dot product", 1, "VM-dsign",
+     "the-dot-product", gen_dot_sign, _r_dot_sign),
+    ("sum-square", "Expanding the square of a sum", 3, "VM-ssq",
+     "the-dot-product", gen_sum_square, _r_sum_square),
+    ("vector-from-points-3d", "A vector between two points in space", 1,
+     "VM-f3d", "vectors-in-space", gen_vector_from_points_3d,
+     _r_vector_from_points_3d),
+    ("parallel-3d", "Parallel vectors in space", 2, "VM-p3d",
+     "vectors-in-space", gen_parallel_3d, _r_parallel_3d),
+    ("perpendicular-3d", "Perpendicular vectors in space", 3, "VM-x3d",
+     "vectors-in-space", gen_perpendicular_3d, _r_perpendicular_3d),
+    ("scalar-matrix", "Scaling a matrix", 1, "VM-scal",
+     "matrices-and-operations", gen_scalar_matrix, _r_scalar_matrix),
+    ("transpose", "The transpose", 1, "VM-trn", "matrices-and-operations",
+     gen_transpose, _r_transpose),
+    ("matrix-square", "An entry of A squared", 2, "VM-sqr",
+     "matrices-and-operations", gen_matrix_square, _r_matrix_square),
+    ("matrix-dimensions", "The size of a product", 1, "VM-dim",
+     "matrices-and-operations", gen_matrix_dimensions, _r_matrix_dimensions),
+    ("inverse-2x2", "The inverse of a 2×2 matrix", 2, "VM-inv",
+     "determinants-and-inverses", gen_inverse_2x2, _r_inverse_2x2),
+    ("singular-k", "Making a matrix singular", 2, "VM-sing",
+     "determinants-and-inverses", gen_singular_k, _r_singular_k),
+    ("unique-solution", "When a 2×2 system has one solution", 3, "VM-uniq",
+     "determinants-and-inverses", gen_unique_solution, _r_unique_solution),
+]
+
+
+def _batch2_forms():
+    forms = []
+    for fid, title, level, prefix, unit, gen, _rz in NEW_FORMS_META_2:
+        raw = gen()
+        assert len(raw) >= 12, "%s: only %d variants" % (fid, len(raw))
+        variants = []
+        for i, v in enumerate(raw):
+            vd = {"id": "%s-v%02d" % (prefix, i + 1)}
+            vd.update(v)
+            variants.append(vd)
+        forms.append({"id": fid, "title": title, "level": level,
+                      "skill": prefix, "unit": unit, "variants": variants})
+    return forms
+
+
+_BATCH1_FORMS = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 2 to the original set
+    """All unit-specific forms: the original set plus batch 2 above."""
+    return _BATCH1_FORMS() + _batch2_forms()
+
+
+RESOLVERS.update({fid: rz for fid, _t, _l, _p, _u, _g, rz
+                  in NEW_FORMS_META_2})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = new_forms()

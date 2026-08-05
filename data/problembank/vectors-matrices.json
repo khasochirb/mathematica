@@ -238,6 +238,585 @@
       ]
     },
     {
+      "id": "vector-relation",
+      "title": "Equal, opposite, parallel or neither",
+      "level": 1,
+      "skill": "VM-rel",
+      "unit": "vectors-and-coordinates",
+      "variants": [
+        {
+          "id": "VM-rel-v01",
+          "statement": "How are $\\vec{u} = (2; 5)$ and $\\vec{v} = (2; 5)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 0,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(2)(5) - (5)(2) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(2)*(5) - (5)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v02",
+          "statement": "How are $\\vec{u} = (3; -1)$ and $\\vec{v} = (-3; 1)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 1,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(3)(1) - (-1)(-3) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(3)*(1) - (-1)*(-3) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v03",
+          "statement": "How are $\\vec{u} = (1; 4)$ and $\\vec{v} = (3; 12)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 2,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(1)(12) - (4)(3) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(1)*(12) - (4)*(3) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v04",
+          "statement": "How are $\\vec{u} = (2; 3)$ and $\\vec{v} = (5; 1)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 3,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(2)(1) - (3)(5) = -13. $ So they are not parallel at all. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(2)*(1) - (3)*(5) != 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v05",
+          "statement": "How are $\\vec{u} = (-4; 6)$ and $\\vec{v} = (-4; 6)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 0,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(-4)(6) - (6)(-4) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(-4)*(6) - (6)*(-4) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v06",
+          "statement": "How are $\\vec{u} = (7; 2)$ and $\\vec{v} = (-7; -2)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 1,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(7)(-2) - (2)(-7) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(7)*(-2) - (2)*(-7) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v07",
+          "statement": "How are $\\vec{u} = (2; -5)$ and $\\vec{v} = (6; -15)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 2,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(2)(-15) - (-5)(6) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(2)*(-15) - (-5)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v08",
+          "statement": "How are $\\vec{u} = (3; 4)$ and $\\vec{v} = (4; 3)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 3,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(3)(3) - (4)(4) = -7. $ So they are not parallel at all. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(3)*(3) - (4)*(4) != 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v09",
+          "statement": "How are $\\vec{u} = (-1; -8)$ and $\\vec{v} = (-1; -8)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 0,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(-1)(-8) - (-8)(-1) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(-1)*(-8) - (-8)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v10",
+          "statement": "How are $\\vec{u} = (5; -3)$ and $\\vec{v} = (-5; 3)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 1,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(5)(3) - (-3)(-5) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(5)*(3) - (-3)*(-5) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v11",
+          "statement": "How are $\\vec{u} = (4; 1)$ and $\\vec{v} = (12; 3)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 2,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(4)(3) - (1)(12) = 0. $ So they are parallel. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(4)*(3) - (1)*(12) == 0"
+          ]
+        },
+        {
+          "id": "VM-rel-v12",
+          "statement": "How are $\\vec{u} = (6; -2)$ and $\\vec{v} = (2; 6)$ related?",
+          "options": [
+            "equal",
+            "opposite",
+            "parallel but not equal",
+            "none of these"
+          ],
+          "correctIndex": 3,
+          "explanation": "Two vectors are parallel exactly when $u_1 v_2 - u_2 v_1 = 0$; here that is $(6)(6) - (-2)(2) = 40. $ So they are not parallel at all. Equal means the same multiplier $1$, opposite means $-1$, and any other non-zero multiplier leaves them parallel without being either.",
+          "check": [
+            "(6)*(6) - (-2)*(2) != 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scaled-magnitude",
+      "title": "Magnitude after scaling",
+      "level": 2,
+      "skill": "VM-smag",
+      "unit": "vectors-and-coordinates",
+      "variants": [
+        {
+          "id": "VM-smag-v01",
+          "statement": "For $\\vec{u} = (3; 4)$, find $|2\\vec{u}|$.",
+          "options": [
+            "$10$",
+            "$5$",
+            "$20$",
+            "$7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scaling a vector by $2$ scales its length by $2$ too: $|\\vec{u}| = 5$, so $|2\\vec{u}| = 2 \\cdot 5 = 10$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((2*3)**2 + (2*4)**2) == 10"
+          ]
+        },
+        {
+          "id": "VM-smag-v02",
+          "statement": "For $\\vec{u} = (6; 8)$, find $|3\\vec{u}|$.",
+          "options": [
+            "$10$",
+            "$30$",
+            "$90$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scaling a vector by $3$ scales its length by $3$ too: $|\\vec{u}| = 10$, so $|3\\vec{u}| = 3 \\cdot 10 = 30$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((3*6)**2 + (3*8)**2) == 30"
+          ]
+        },
+        {
+          "id": "VM-smag-v03",
+          "statement": "For $\\vec{u} = (5; 12)$, find $|2\\vec{u}|$.",
+          "options": [
+            "$13$",
+            "$52$",
+            "$26$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scaling a vector by $2$ scales its length by $2$ too: $|\\vec{u}| = 13$, so $|2\\vec{u}| = 2 \\cdot 13 = 26$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((2*5)**2 + (2*12)**2) == 26"
+          ]
+        },
+        {
+          "id": "VM-smag-v04",
+          "statement": "For $\\vec{u} = (8; 15)$, find $|4\\vec{u}|$.",
+          "options": [
+            "$17$",
+            "$272$",
+            "$21$",
+            "$68$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scaling a vector by $4$ scales its length by $4$ too: $|\\vec{u}| = 17$, so $|4\\vec{u}| = 4 \\cdot 17 = 68$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((4*8)**2 + (4*15)**2) == 68"
+          ]
+        },
+        {
+          "id": "VM-smag-v05",
+          "statement": "For $\\vec{u} = (3; 4)$, find $|5\\vec{u}|$.",
+          "options": [
+            "$25$",
+            "$5$",
+            "$125$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scaling a vector by $5$ scales its length by $5$ too: $|\\vec{u}| = 5$, so $|5\\vec{u}| = 5 \\cdot 5 = 25$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((5*3)**2 + (5*4)**2) == 25"
+          ]
+        },
+        {
+          "id": "VM-smag-v06",
+          "statement": "For $\\vec{u} = (7; 24)$, find $|2\\vec{u}|$.",
+          "options": [
+            "$25$",
+            "$50$",
+            "$100$",
+            "$27$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scaling a vector by $2$ scales its length by $2$ too: $|\\vec{u}| = 25$, so $|2\\vec{u}| = 2 \\cdot 25 = 50$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((2*7)**2 + (2*24)**2) == 50"
+          ]
+        },
+        {
+          "id": "VM-smag-v07",
+          "statement": "For $\\vec{u} = (9; 12)$, find $|3\\vec{u}|$.",
+          "options": [
+            "$15$",
+            "$135$",
+            "$45$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scaling a vector by $3$ scales its length by $3$ too: $|\\vec{u}| = 15$, so $|3\\vec{u}| = 3 \\cdot 15 = 45$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((3*9)**2 + (3*12)**2) == 45"
+          ]
+        },
+        {
+          "id": "VM-smag-v08",
+          "statement": "For $\\vec{u} = (5; 12)$, find $|6\\vec{u}|$.",
+          "options": [
+            "$13$",
+            "$468$",
+            "$19$",
+            "$78$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scaling a vector by $6$ scales its length by $6$ too: $|\\vec{u}| = 13$, so $|6\\vec{u}| = 6 \\cdot 13 = 78$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((6*5)**2 + (6*12)**2) == 78"
+          ]
+        },
+        {
+          "id": "VM-smag-v09",
+          "statement": "For $\\vec{u} = (20; 21)$, find $|2\\vec{u}|$.",
+          "options": [
+            "$58$",
+            "$29$",
+            "$116$",
+            "$31$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Scaling a vector by $2$ scales its length by $2$ too: $|\\vec{u}| = 29$, so $|2\\vec{u}| = 2 \\cdot 29 = 58$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((2*20)**2 + (2*21)**2) == 58"
+          ]
+        },
+        {
+          "id": "VM-smag-v10",
+          "statement": "For $\\vec{u} = (12; 16)$, find $|5\\vec{u}|$.",
+          "options": [
+            "$20$",
+            "$100$",
+            "$500$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Scaling a vector by $5$ scales its length by $5$ too: $|\\vec{u}| = 20$, so $|5\\vec{u}| = 5 \\cdot 20 = 100$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((5*12)**2 + (5*16)**2) == 100"
+          ]
+        },
+        {
+          "id": "VM-smag-v11",
+          "statement": "For $\\vec{u} = (8; 15)$, find $|3\\vec{u}|$.",
+          "options": [
+            "$17$",
+            "$153$",
+            "$51$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Scaling a vector by $3$ scales its length by $3$ too: $|\\vec{u}| = 17$, so $|3\\vec{u}| = 3 \\cdot 17 = 51$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((3*8)**2 + (3*15)**2) == 51"
+          ]
+        },
+        {
+          "id": "VM-smag-v12",
+          "statement": "For $\\vec{u} = (10; 24)$, find $|4\\vec{u}|$.",
+          "options": [
+            "$26$",
+            "$416$",
+            "$30$",
+            "$104$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Scaling a vector by $4$ scales its length by $4$ too: $|\\vec{u}| = 26$, so $|4\\vec{u}| = 4 \\cdot 26 = 104$. The squares in the magnitude formula do NOT square the scalar — it comes back out of the root.",
+          "check": [
+            "sqrt((4*10)**2 + (4*24)**2) == 104"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-vector",
+      "title": "The unit vector in a direction",
+      "level": 2,
+      "skill": "VM-unit",
+      "unit": "vectors-and-coordinates",
+      "variants": [
+        {
+          "id": "VM-unit-v01",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (3; 4)$.",
+          "options": [
+            "$(\\frac{3}{5}; \\frac{4}{5})$",
+            "$(\\frac{4}{5}; \\frac{3}{5})$",
+            "$(\\frac{3}{25}; \\frac{4}{25})$",
+            "$(\\frac{5}{3}; \\frac{5}{4})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{9 + 16} = 5$, so the unit vector is $\\left(\\frac{3}{5}; \\frac{4}{5}\\right)$. Dividing by $|\\vec{u}|^2 = 25$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((3)**2 + (4)**2) == 5",
+            "Rational(3, 5)**2 + Rational(4, 5)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v02",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (6; 8)$.",
+          "options": [
+            "$(\\frac{4}{5}; \\frac{3}{5})$",
+            "$(\\frac{3}{5}; \\frac{4}{5})$",
+            "$(\\frac{3}{50}; \\frac{2}{25})$",
+            "$(\\frac{5}{3}; \\frac{5}{4})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{36 + 64} = 10$, so the unit vector is $\\left(\\frac{6}{10}; \\frac{8}{10}\\right)$. Dividing by $|\\vec{u}|^2 = 100$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((6)**2 + (8)**2) == 10",
+            "Rational(6, 10)**2 + Rational(8, 10)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v03",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (5; 12)$.",
+          "options": [
+            "$(\\frac{12}{13}; \\frac{5}{13})$",
+            "$(\\frac{5}{169}; \\frac{12}{169})$",
+            "$(\\frac{5}{13}; \\frac{12}{13})$",
+            "$(\\frac{13}{5}; \\frac{13}{12})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{25 + 144} = 13$, so the unit vector is $\\left(\\frac{5}{13}; \\frac{12}{13}\\right)$. Dividing by $|\\vec{u}|^2 = 169$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((5)**2 + (12)**2) == 13",
+            "Rational(5, 13)**2 + Rational(12, 13)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v04",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (8; 15)$.",
+          "options": [
+            "$(\\frac{15}{17}; \\frac{8}{17})$",
+            "$(\\frac{8}{289}; \\frac{15}{289})$",
+            "$(\\frac{17}{8}; \\frac{17}{15})$",
+            "$(\\frac{8}{17}; \\frac{15}{17})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{64 + 225} = 17$, so the unit vector is $\\left(\\frac{8}{17}; \\frac{15}{17}\\right)$. Dividing by $|\\vec{u}|^2 = 289$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((8)**2 + (15)**2) == 17",
+            "Rational(8, 17)**2 + Rational(15, 17)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v05",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (-3; 4)$.",
+          "options": [
+            "$(-\\frac{3}{5}; \\frac{4}{5})$",
+            "$(\\frac{4}{5}; -\\frac{3}{5})$",
+            "$(-\\frac{3}{25}; \\frac{4}{25})$",
+            "$(-\\frac{5}{3}; \\frac{5}{4})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{9 + 16} = 5$, so the unit vector is $\\left(\\frac{-3}{5}; \\frac{4}{5}\\right)$. Dividing by $|\\vec{u}|^2 = 25$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((-3)**2 + (4)**2) == 5",
+            "Rational(-3, 5)**2 + Rational(4, 5)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v06",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (7; 24)$.",
+          "options": [
+            "$(\\frac{24}{25}; \\frac{7}{25})$",
+            "$(\\frac{7}{25}; \\frac{24}{25})$",
+            "$(\\frac{7}{625}; \\frac{24}{625})$",
+            "$(\\frac{25}{7}; \\frac{25}{24})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{49 + 576} = 25$, so the unit vector is $\\left(\\frac{7}{25}; \\frac{24}{25}\\right)$. Dividing by $|\\vec{u}|^2 = 625$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((7)**2 + (24)**2) == 25",
+            "Rational(7, 25)**2 + Rational(24, 25)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v07",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (9; 12)$.",
+          "options": [
+            "$(\\frac{4}{5}; \\frac{3}{5})$",
+            "$(\\frac{1}{25}; \\frac{4}{75})$",
+            "$(\\frac{3}{5}; \\frac{4}{5})$",
+            "$(\\frac{5}{3}; \\frac{5}{4})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{81 + 144} = 15$, so the unit vector is $\\left(\\frac{9}{15}; \\frac{12}{15}\\right)$. Dividing by $|\\vec{u}|^2 = 225$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((9)**2 + (12)**2) == 15",
+            "Rational(9, 15)**2 + Rational(12, 15)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v08",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (-5; 12)$.",
+          "options": [
+            "$(\\frac{12}{13}; -\\frac{5}{13})$",
+            "$(-\\frac{5}{169}; \\frac{12}{169})$",
+            "$(-\\frac{13}{5}; \\frac{13}{12})$",
+            "$(-\\frac{5}{13}; \\frac{12}{13})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{25 + 144} = 13$, so the unit vector is $\\left(\\frac{-5}{13}; \\frac{12}{13}\\right)$. Dividing by $|\\vec{u}|^2 = 169$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((-5)**2 + (12)**2) == 13",
+            "Rational(-5, 13)**2 + Rational(12, 13)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v09",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (20; 21)$.",
+          "options": [
+            "$(\\frac{20}{29}; \\frac{21}{29})$",
+            "$(\\frac{21}{29}; \\frac{20}{29})$",
+            "$(\\frac{20}{841}; \\frac{21}{841})$",
+            "$(\\frac{29}{20}; \\frac{29}{21})$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{400 + 441} = 29$, so the unit vector is $\\left(\\frac{20}{29}; \\frac{21}{29}\\right)$. Dividing by $|\\vec{u}|^2 = 841$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((20)**2 + (21)**2) == 29",
+            "Rational(20, 29)**2 + Rational(21, 29)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v10",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (12; 16)$.",
+          "options": [
+            "$(\\frac{4}{5}; \\frac{3}{5})$",
+            "$(\\frac{3}{5}; \\frac{4}{5})$",
+            "$(\\frac{3}{100}; \\frac{1}{25})$",
+            "$(\\frac{5}{3}; \\frac{5}{4})$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{144 + 256} = 20$, so the unit vector is $\\left(\\frac{12}{20}; \\frac{16}{20}\\right)$. Dividing by $|\\vec{u}|^2 = 400$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((12)**2 + (16)**2) == 20",
+            "Rational(12, 20)**2 + Rational(16, 20)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v11",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (-8; 15)$.",
+          "options": [
+            "$(\\frac{15}{17}; -\\frac{8}{17})$",
+            "$(-\\frac{8}{289}; \\frac{15}{289})$",
+            "$(-\\frac{8}{17}; \\frac{15}{17})$",
+            "$(-\\frac{17}{8}; \\frac{17}{15})$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{64 + 225} = 17$, so the unit vector is $\\left(\\frac{-8}{17}; \\frac{15}{17}\\right)$. Dividing by $|\\vec{u}|^2 = 289$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((-8)**2 + (15)**2) == 17",
+            "Rational(-8, 17)**2 + Rational(15, 17)**2 == 1"
+          ]
+        },
+        {
+          "id": "VM-unit-v12",
+          "statement": "Find the unit vector in the direction of $\\vec{u} = (10; 24)$.",
+          "options": [
+            "$(\\frac{12}{13}; \\frac{5}{13})$",
+            "$(\\frac{5}{338}; \\frac{6}{169})$",
+            "$(\\frac{13}{5}; \\frac{13}{12})$",
+            "$(\\frac{5}{13}; \\frac{12}{13})$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Divide by the magnitude: $|\\vec{u}| = \\sqrt{100 + 576} = 26$, so the unit vector is $\\left(\\frac{10}{26}; \\frac{24}{26}\\right)$. Dividing by $|\\vec{u}|^2 = 676$ instead shrinks it too far — the result would not have length $1$.",
+          "check": [
+            "sqrt((10)**2 + (24)**2) == 26",
+            "Rational(10, 26)**2 + Rational(24, 26)**2 == 1"
+          ]
+        }
+      ]
+    },
+    {
       "id": "vector-magnitude",
       "title": "Magnitude of a vector",
       "level": 2,
@@ -1240,6 +1819,207 @@
       ]
     },
     {
+      "id": "vector-subtract",
+      "title": "Subtracting vectors",
+      "level": 1,
+      "skill": "VM-sub",
+      "unit": "vector-arithmetic",
+      "variants": [
+        {
+          "id": "VM-sub-v01",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (5; 2)$ and $\\vec{v} = (1; 7)$.",
+          "options": [
+            "$(4; -5)$",
+            "$(-4; 5)$",
+            "$(6; 9)$",
+            "$(4; 5)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract componentwise, keeping the order: $(5 - 1;\\ 2 - 7) = (4; -5)$. Reversing the order gives $(-4; 5)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(5) - (1) == 4",
+            "(2) - (7) == -5"
+          ]
+        },
+        {
+          "id": "VM-sub-v02",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (3; -4)$ and $\\vec{v} = (6; 2)$.",
+          "options": [
+            "$(3; 6)$",
+            "$(-3; -6)$",
+            "$(9; -2)$",
+            "$(-3; 6)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract componentwise, keeping the order: $(3 - 6;\\ -4 - 2) = (-3; -6)$. Reversing the order gives $(3; 6)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(3) - (6) == -3",
+            "(-4) - (2) == -6"
+          ]
+        },
+        {
+          "id": "VM-sub-v03",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (-2; 5)$ and $\\vec{v} = (4; 1)$.",
+          "options": [
+            "$(6; -4)$",
+            "$(2; 6)$",
+            "$(-6; 4)$",
+            "$(-6; -4)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract componentwise, keeping the order: $(-2 - 4;\\ 5 - 1) = (-6; 4)$. Reversing the order gives $(6; -4)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(-2) - (4) == -6",
+            "(5) - (1) == 4"
+          ]
+        },
+        {
+          "id": "VM-sub-v04",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (7; 3)$ and $\\vec{v} = (2; -6)$.",
+          "options": [
+            "$(-5; -9)$",
+            "$(9; -3)$",
+            "$(5; -9)$",
+            "$(5; 9)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract componentwise, keeping the order: $(7 - 2;\\ 3 - -6) = (5; 9)$. Reversing the order gives $(-5; -9)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(7) - (2) == 5",
+            "(3) - (-6) == 9"
+          ]
+        },
+        {
+          "id": "VM-sub-v05",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (1; 8)$ and $\\vec{v} = (-5; 4)$.",
+          "options": [
+            "$(6; 4)$",
+            "$(-6; -4)$",
+            "$(-4; 12)$",
+            "$(6; -4)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract componentwise, keeping the order: $(1 - -5;\\ 8 - 4) = (6; 4)$. Reversing the order gives $(-6; -4)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(1) - (-5) == 6",
+            "(8) - (4) == 4"
+          ]
+        },
+        {
+          "id": "VM-sub-v06",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (6; -1)$ and $\\vec{v} = (3; 9)$.",
+          "options": [
+            "$(-3; 10)$",
+            "$(3; -10)$",
+            "$(9; 8)$",
+            "$(3; 10)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract componentwise, keeping the order: $(6 - 3;\\ -1 - 9) = (3; -10)$. Reversing the order gives $(-3; 10)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(6) - (3) == 3",
+            "(-1) - (9) == -10"
+          ]
+        },
+        {
+          "id": "VM-sub-v07",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (-3; 2)$ and $\\vec{v} = (5; -7)$.",
+          "options": [
+            "$(8; -9)$",
+            "$(2; -5)$",
+            "$(-8; 9)$",
+            "$(-8; -9)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract componentwise, keeping the order: $(-3 - 5;\\ 2 - -7) = (-8; 9)$. Reversing the order gives $(8; -9)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(-3) - (5) == -8",
+            "(2) - (-7) == 9"
+          ]
+        },
+        {
+          "id": "VM-sub-v08",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (4; 6)$ and $\\vec{v} = (9; 2)$.",
+          "options": [
+            "$(5; -4)$",
+            "$(13; 8)$",
+            "$(-5; -4)$",
+            "$(-5; 4)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract componentwise, keeping the order: $(4 - 9;\\ 6 - 2) = (-5; 4)$. Reversing the order gives $(5; -4)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(4) - (9) == -5",
+            "(6) - (2) == 4"
+          ]
+        },
+        {
+          "id": "VM-sub-v09",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (8; -5)$ and $\\vec{v} = (1; 3)$.",
+          "options": [
+            "$(7; -8)$",
+            "$(-7; 8)$",
+            "$(9; -2)$",
+            "$(7; 8)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract componentwise, keeping the order: $(8 - 1;\\ -5 - 3) = (7; -8)$. Reversing the order gives $(-7; 8)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(8) - (1) == 7",
+            "(-5) - (3) == -8"
+          ]
+        },
+        {
+          "id": "VM-sub-v10",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (2; 9)$ and $\\vec{v} = (-4; 6)$.",
+          "options": [
+            "$(-6; -3)$",
+            "$(6; 3)$",
+            "$(-2; 15)$",
+            "$(6; -3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract componentwise, keeping the order: $(2 - -4;\\ 9 - 6) = (6; 3)$. Reversing the order gives $(-6; -3)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(2) - (-4) == 6",
+            "(9) - (6) == 3"
+          ]
+        },
+        {
+          "id": "VM-sub-v11",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (-6; 1)$ and $\\vec{v} = (2; 8)$.",
+          "options": [
+            "$(8; 7)$",
+            "$(-4; 9)$",
+            "$(-8; -7)$",
+            "$(-8; 7)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract componentwise, keeping the order: $(-6 - 2;\\ 1 - 8) = (-8; -7)$. Reversing the order gives $(8; 7)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(-6) - (2) == -8",
+            "(1) - (8) == -7"
+          ]
+        },
+        {
+          "id": "VM-sub-v12",
+          "statement": "Find $\\vec{u} - \\vec{v}$ for $\\vec{u} = (5; -3)$ and $\\vec{v} = (7; 4)$.",
+          "options": [
+            "$(2; 7)$",
+            "$(12; 1)$",
+            "$(-2; 7)$",
+            "$(-2; -7)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract componentwise, keeping the order: $(5 - 7;\\ -3 - 4) = (-2; -7)$. Reversing the order gives $(2; 7)$, which points the opposite way — $\\vec{u} - \\vec{v}$ runs from the tip of $\\vec{v}$ to the tip of $\\vec{u}$.",
+          "check": [
+            "(5) - (7) == -2",
+            "(-3) - (4) == -7"
+          ]
+        }
+      ]
+    },
+    {
       "id": "parallel-scalar",
       "title": "Parallel vectors: find k",
       "level": 2,
@@ -2170,6 +2950,396 @@
       ]
     },
     {
+      "id": "section-point",
+      "title": "The section formula",
+      "level": 3,
+      "skill": "VM-sect",
+      "unit": "vector-arithmetic",
+      "variants": [
+        {
+          "id": "VM-sect-v01",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 2$, with $A = (0; 0)$ and $B = (6; 9)$. Find $P$.",
+          "options": [
+            "$(2; 3)$",
+            "$(4; 6)$",
+            "$(3; \\frac{9}{2})$",
+            "$(6; 9)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{2 \\cdot A + 1 \\cdot B}{3} = (2; 3)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(2*(0) + 1*(6), 3) == 2",
+            "Rational(2*(0) + 1*(9), 3) == 3"
+          ]
+        },
+        {
+          "id": "VM-sect-v02",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 2$, with $A = (2; 1)$ and $B = (8; 7)$. Find $P$.",
+          "options": [
+            "$(6; 5)$",
+            "$(4; 3)$",
+            "$(5; 4)$",
+            "$(6; 6)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{2 \\cdot A + 1 \\cdot B}{3} = (4; 3)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(2*(2) + 1*(8), 3) == 4",
+            "Rational(2*(1) + 1*(7), 3) == 3"
+          ]
+        },
+        {
+          "id": "VM-sect-v03",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 3$, with $A = (-3; 2)$ and $B = (9; 10)$. Find $P$.",
+          "options": [
+            "$(6; 8)$",
+            "$(3; 6)$",
+            "$(0; 4)$",
+            "$(12; 8)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{3 \\cdot A + 1 \\cdot B}{4} = (0; 4)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(3*(-3) + 1*(9), 4) == 0",
+            "Rational(3*(2) + 1*(10), 4) == 4"
+          ]
+        },
+        {
+          "id": "VM-sect-v04",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 2 : 1$, with $A = (4; -2)$ and $B = (10; 4)$. Find $P$.",
+          "options": [
+            "$(6; 0)$",
+            "$(7; 1)$",
+            "$(6; 6)$",
+            "$(8; 2)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{1 \\cdot A + 2 \\cdot B}{3} = (8; 2)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(1*(4) + 2*(10), 3) == 8",
+            "Rational(1*(-2) + 2*(4), 3) == 2"
+          ]
+        },
+        {
+          "id": "VM-sect-v05",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 2$, with $A = (1; 5)$ and $B = (13; -7)$. Find $P$.",
+          "options": [
+            "$(5; 1)$",
+            "$(9; -3)$",
+            "$(7; -1)$",
+            "$(12; -12)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{2 \\cdot A + 1 \\cdot B}{3} = (5; 1)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(2*(1) + 1*(13), 3) == 5",
+            "Rational(2*(5) + 1*(-7), 3) == 1"
+          ]
+        },
+        {
+          "id": "VM-sect-v06",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 3 : 1$, with $A = (-6; 0)$ and $B = (6; 12)$. Find $P$.",
+          "options": [
+            "$(-3; 3)$",
+            "$(3; 9)$",
+            "$(0; 6)$",
+            "$(12; 12)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{1 \\cdot A + 3 \\cdot B}{4} = (3; 9)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(1*(-6) + 3*(6), 4) == 3",
+            "Rational(1*(0) + 3*(12), 4) == 9"
+          ]
+        },
+        {
+          "id": "VM-sect-v07",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 5$, with $A = (5; 3)$ and $B = (5; 15)$. Find $P$.",
+          "options": [
+            "$(5; 13)$",
+            "$(5; 9)$",
+            "$(5; 5)$",
+            "$(0; 12)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{5 \\cdot A + 1 \\cdot B}{6} = (5; 5)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(5*(5) + 1*(5), 6) == 5",
+            "Rational(5*(3) + 1*(15), 6) == 5"
+          ]
+        },
+        {
+          "id": "VM-sect-v08",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 2$, with $A = (0; -4)$ and $B = (12; 8)$. Find $P$.",
+          "options": [
+            "$(8; 4)$",
+            "$(6; 2)$",
+            "$(12; 12)$",
+            "$(4; 0)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{2 \\cdot A + 1 \\cdot B}{3} = (4; 0)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(2*(0) + 1*(12), 3) == 4",
+            "Rational(2*(-4) + 1*(8), 3) == 0"
+          ]
+        },
+        {
+          "id": "VM-sect-v09",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 3$, with $A = (7; 1)$ and $B = (-5; 13)$. Find $P$.",
+          "options": [
+            "$(4; 4)$",
+            "$(-2; 10)$",
+            "$(1; 7)$",
+            "$(-12; 12)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{3 \\cdot A + 1 \\cdot B}{4} = (4; 4)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(3*(7) + 1*(-5), 4) == 4",
+            "Rational(3*(1) + 1*(13), 4) == 4"
+          ]
+        },
+        {
+          "id": "VM-sect-v10",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 3$, with $A = (2; 8)$ and $B = (14; -4)$. Find $P$.",
+          "options": [
+            "$(11; -1)$",
+            "$(5; 5)$",
+            "$(8; 2)$",
+            "$(12; -12)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{3 \\cdot A + 1 \\cdot B}{4} = (5; 5)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(3*(2) + 1*(14), 4) == 5",
+            "Rational(3*(8) + 1*(-4), 4) == 5"
+          ]
+        },
+        {
+          "id": "VM-sect-v11",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 1 : 2$, with $A = (-1; -1)$ and $B = (11; 11)$. Find $P$.",
+          "options": [
+            "$(7; 7)$",
+            "$(5; 5)$",
+            "$(3; 3)$",
+            "$(12; 12)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{2 \\cdot A + 1 \\cdot B}{3} = (3; 3)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(2*(-1) + 1*(11), 3) == 3",
+            "Rational(2*(-1) + 1*(11), 3) == 3"
+          ]
+        },
+        {
+          "id": "VM-sect-v12",
+          "statement": "$P$ divides $AB$ so that $AP : PB = 2 : 4$, with $A = (9; 6)$ and $B = (-3; 18)$. Find $P$.",
+          "options": [
+            "$(1; 14)$",
+            "$(3; 12)$",
+            "$(-12; 12)$",
+            "$(5; 10)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The section formula weights each endpoint by the OPPOSITE part of the ratio: $P = \\dfrac{4 \\cdot A + 2 \\cdot B}{6} = (5; 10)$. Weighting $A$ by its own part instead pulls the point to the wrong side.",
+          "check": [
+            "Rational(4*(9) + 2*(-3), 6) == 5",
+            "Rational(4*(6) + 2*(18), 6) == 10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dot-sign",
+      "title": "The angle from the sign of the dot product",
+      "level": 1,
+      "skill": "VM-dsign",
+      "unit": "the-dot-product",
+      "variants": [
+        {
+          "id": "VM-dsign-v01",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (3; 1)$ and $\\vec{v} = (2; 4)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "right",
+            "obtuse",
+            "straight"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(3)(2) + (1)(4) = 10$, which is positive, so the angle is acute.",
+          "check": [
+            "(3)*(2) + (1)*(4) > 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v02",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (2; 3)$ and $\\vec{v} = (-3; 2)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "right",
+            "obtuse",
+            "straight"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(2)(-3) + (3)(2) = 0$, which is zero, so the angle is right.",
+          "check": [
+            "(2)*(-3) + (3)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v03",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (-1; 5)$ and $\\vec{v} = (4; -2)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "right",
+            "obtuse",
+            "straight"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(-1)(4) + (5)(-2) = -14$, which is negative, so the angle is obtuse.",
+          "check": [
+            "(-1)*(4) + (5)*(-2) < 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v04",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (6; 2)$ and $\\vec{v} = (1; 3)$ is acute, right or obtuse.",
+          "options": [
+            "right",
+            "obtuse",
+            "straight",
+            "acute"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(6)(1) + (2)(3) = 12$, which is positive, so the angle is acute.",
+          "check": [
+            "(6)*(1) + (2)*(3) > 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v05",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (4; -1)$ and $\\vec{v} = (1; 4)$ is acute, right or obtuse.",
+          "options": [
+            "right",
+            "acute",
+            "obtuse",
+            "straight"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(4)(1) + (-1)(4) = 0$, which is zero, so the angle is right.",
+          "check": [
+            "(4)*(1) + (-1)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v06",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (-2; -3)$ and $\\vec{v} = (5; 1)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "obtuse",
+            "right",
+            "straight"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(-2)(5) + (-3)(1) = -13$, which is negative, so the angle is obtuse.",
+          "check": [
+            "(-2)*(5) + (-3)*(1) < 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v07",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (7; 3)$ and $\\vec{v} = (2; 5)$ is acute, right or obtuse.",
+          "options": [
+            "right",
+            "obtuse",
+            "acute",
+            "straight"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(7)(2) + (3)(5) = 29$, which is positive, so the angle is acute.",
+          "check": [
+            "(7)*(2) + (3)*(5) > 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v08",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (1; 6)$ and $\\vec{v} = (6; -1)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "obtuse",
+            "straight",
+            "right"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(1)(6) + (6)(-1) = 0$, which is zero, so the angle is right.",
+          "check": [
+            "(1)*(6) + (6)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v09",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (-4; 2)$ and $\\vec{v} = (3; 1)$ is acute, right or obtuse.",
+          "options": [
+            "obtuse",
+            "acute",
+            "right",
+            "straight"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(-4)(3) + (2)(1) = -10$, which is negative, so the angle is obtuse.",
+          "check": [
+            "(-4)*(3) + (2)*(1) < 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v10",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (5; 5)$ and $\\vec{v} = (2; 1)$ is acute, right or obtuse.",
+          "options": [
+            "right",
+            "acute",
+            "obtuse",
+            "straight"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(5)(2) + (5)(1) = 15$, which is positive, so the angle is acute.",
+          "check": [
+            "(5)*(2) + (5)*(1) > 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v11",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (3; -2)$ and $\\vec{v} = (2; 3)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "obtuse",
+            "right",
+            "straight"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(3)(2) + (-2)(3) = 0$, which is zero, so the angle is right.",
+          "check": [
+            "(3)*(2) + (-2)*(3) == 0"
+          ]
+        },
+        {
+          "id": "VM-dsign-v12",
+          "statement": "Without computing the angle, decide whether the angle between $\\vec{u} = (-3; 4)$ and $\\vec{v} = (2; -5)$ is acute, right or obtuse.",
+          "options": [
+            "acute",
+            "right",
+            "straight",
+            "obtuse"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\vec{u} \\cdot \\vec{v} = |\\vec{u}||\\vec{v}|\\cos\\theta$, and the two magnitudes are always positive — so the SIGN of the dot product is the sign of $\\cos\\theta$. Here $(-3)(2) + (4)(-5) = -26$, which is negative, so the angle is obtuse.",
+          "check": [
+            "(-3)*(2) + (4)*(-5) < 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "dot-value",
       "title": "Computing the dot product",
       "level": 1,
@@ -2543,6 +3713,195 @@
           "explanation": "Perpendicular means zero dot product: $3 k + (-2)(9) = 0$, so $k = 6$. Dropping the minus sign when solving gives $-6$ — the classic slip.",
           "check": [
             "(3)*(6) + (-2)*(9) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sum-square",
+      "title": "Expanding the square of a sum",
+      "level": 3,
+      "skill": "VM-ssq",
+      "unit": "the-dot-product",
+      "variants": [
+        {
+          "id": "VM-ssq-v01",
+          "statement": "$|\\vec{u}| = 3$, $|\\vec{v}| = 4$ and $\\vec{u} \\cdot \\vec{v} = 5$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$35$",
+            "$25$",
+            "$49$",
+            "$30$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 9 + 2(5) + 16 = 35$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "3**2 + 2*(5) + 4**2 == 35"
+          ]
+        },
+        {
+          "id": "VM-ssq-v02",
+          "statement": "$|\\vec{u}| = 5$, $|\\vec{v}| = 12$ and $\\vec{u} \\cdot \\vec{v} = 20$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$169$",
+            "$209$",
+            "$289$",
+            "$189$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 25 + 2(20) + 144 = 209$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "5**2 + 2*(20) + 12**2 == 209"
+          ]
+        },
+        {
+          "id": "VM-ssq-v03",
+          "statement": "$|\\vec{u}| = 2$, $|\\vec{v}| = 6$ and $\\vec{u} \\cdot \\vec{v} = 7$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$40$",
+            "$64$",
+            "$54$",
+            "$47$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 4 + 2(7) + 36 = 54$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "2**2 + 2*(7) + 6**2 == 54"
+          ]
+        },
+        {
+          "id": "VM-ssq-v04",
+          "statement": "$|\\vec{u}| = 8$, $|\\vec{v}| = 15$ and $\\vec{u} \\cdot \\vec{v} = -30$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$289$",
+            "$529$",
+            "$259$",
+            "$229$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 64 + 2(-30) + 225 = 229$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "8**2 + 2*(-30) + 15**2 == 229"
+          ]
+        },
+        {
+          "id": "VM-ssq-v05",
+          "statement": "$|\\vec{u}| = 4$, $|\\vec{v}| = 3$ and $\\vec{u} \\cdot \\vec{v} = 6$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$37$",
+            "$25$",
+            "$49$",
+            "$31$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 16 + 2(6) + 9 = 37$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "4**2 + 2*(6) + 3**2 == 37"
+          ]
+        },
+        {
+          "id": "VM-ssq-v06",
+          "statement": "$|\\vec{u}| = 7$, $|\\vec{v}| = 24$ and $\\vec{u} \\cdot \\vec{v} = 40$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$625$",
+            "$705$",
+            "$961$",
+            "$665$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 49 + 2(40) + 576 = 705$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "7**2 + 2*(40) + 24**2 == 705"
+          ]
+        },
+        {
+          "id": "VM-ssq-v07",
+          "statement": "$|\\vec{u}| = 6$, $|\\vec{v}| = 8$ and $\\vec{u} \\cdot \\vec{v} = -10$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$100$",
+            "$196$",
+            "$80$",
+            "$90$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 36 + 2(-10) + 64 = 80$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "6**2 + 2*(-10) + 8**2 == 80"
+          ]
+        },
+        {
+          "id": "VM-ssq-v08",
+          "statement": "$|\\vec{u}| = 9$, $|\\vec{v}| = 12$ and $\\vec{u} \\cdot \\vec{v} = 15$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$225$",
+            "$441$",
+            "$240$",
+            "$255$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 81 + 2(15) + 144 = 255$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "9**2 + 2*(15) + 12**2 == 255"
+          ]
+        },
+        {
+          "id": "VM-ssq-v09",
+          "statement": "$|\\vec{u}| = 1$, $|\\vec{v}| = 5$ and $\\vec{u} \\cdot \\vec{v} = 3$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$32$",
+            "$26$",
+            "$36$",
+            "$29$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 1 + 2(3) + 25 = 32$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "1**2 + 2*(3) + 5**2 == 32"
+          ]
+        },
+        {
+          "id": "VM-ssq-v10",
+          "statement": "$|\\vec{u}| = 10$, $|\\vec{v}| = 10$ and $\\vec{u} \\cdot \\vec{v} = -25$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$200$",
+            "$150$",
+            "$400$",
+            "$175$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 100 + 2(-25) + 100 = 150$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "10**2 + 2*(-25) + 10**2 == 150"
+          ]
+        },
+        {
+          "id": "VM-ssq-v11",
+          "statement": "$|\\vec{u}| = 2$, $|\\vec{v}| = 9$ and $\\vec{u} \\cdot \\vec{v} = 8$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$85$",
+            "$121$",
+            "$101$",
+            "$93$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 4 + 2(8) + 81 = 101$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "2**2 + 2*(8) + 9**2 == 101"
+          ]
+        },
+        {
+          "id": "VM-ssq-v12",
+          "statement": "$|\\vec{u}| = 11$, $|\\vec{v}| = 6$ and $\\vec{u} \\cdot \\vec{v} = 12$. Find $|\\vec{u} + \\vec{v}|^2$.",
+          "options": [
+            "$157$",
+            "$289$",
+            "$169$",
+            "$181$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand the dot product with itself: $|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\vec{u}\\cdot\\vec{v} + |\\vec{v}|^2 = 121 + 2(12) + 36 = 181$. Dropping the middle term assumes the vectors are perpendicular, which is only true when the dot product is zero.",
+          "check": [
+            "11**2 + 2*(12) + 6**2 == 181"
           ]
         }
       ]
@@ -2950,6 +4309,219 @@
       ]
     },
     {
+      "id": "vector-from-points-3d",
+      "title": "A vector between two points in space",
+      "level": 1,
+      "skill": "VM-f3d",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-f3d-v01",
+          "statement": "Find $\\vec{AB}$ for $A = (1; 2; 3)$ and $B = (4; 6; 8)$.",
+          "options": [
+            "$(3; 4; 5)$",
+            "$(-3; -4; -5)$",
+            "$(5; 8; 11)$",
+            "$(3; 4; -5)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Head minus tail, one coordinate at a time: $(4 - 1;\\ 6 - 2;\\ 8 - 3) = (3; 4; 5)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(4) - (1) == 3",
+            "(6) - (2) == 4",
+            "(8) - (3) == 5"
+          ]
+        },
+        {
+          "id": "VM-f3d-v02",
+          "statement": "Find $\\vec{AB}$ for $A = (0; -1; 5)$ and $B = (3; 2; 1)$.",
+          "options": [
+            "$(-3; -3; 4)$",
+            "$(3; 3; -4)$",
+            "$(3; 1; 6)$",
+            "$(3; 3; 4)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Head minus tail, one coordinate at a time: $(3 - 0;\\ 2 - -1;\\ 1 - 5) = (3; 3; -4)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(3) - (0) == 3",
+            "(2) - (-1) == 3",
+            "(1) - (5) == -4"
+          ]
+        },
+        {
+          "id": "VM-f3d-v03",
+          "statement": "Find $\\vec{AB}$ for $A = (2; 4; -2)$ and $B = (7; 1; 3)$.",
+          "options": [
+            "$(-5; 3; -5)$",
+            "$(9; 5; 1)$",
+            "$(5; -3; 5)$",
+            "$(5; -3; -5)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Head minus tail, one coordinate at a time: $(7 - 2;\\ 1 - 4;\\ 3 - -2) = (5; -3; 5)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(7) - (2) == 5",
+            "(1) - (4) == -3",
+            "(3) - (-2) == 5"
+          ]
+        },
+        {
+          "id": "VM-f3d-v04",
+          "statement": "Find $\\vec{AB}$ for $A = (-3; 0; 6)$ and $B = (2; 5; -1)$.",
+          "options": [
+            "$(-5; -5; 7)$",
+            "$(-1; 5; 5)$",
+            "$(5; 5; 7)$",
+            "$(5; 5; -7)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Head minus tail, one coordinate at a time: $(2 - -3;\\ 5 - 0;\\ -1 - 6) = (5; 5; -7)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(2) - (-3) == 5",
+            "(5) - (0) == 5",
+            "(-1) - (6) == -7"
+          ]
+        },
+        {
+          "id": "VM-f3d-v05",
+          "statement": "Find $\\vec{AB}$ for $A = (5; 3; 1)$ and $B = (0; 7; 4)$.",
+          "options": [
+            "$(-5; 4; 3)$",
+            "$(5; -4; -3)$",
+            "$(5; 10; 5)$",
+            "$(-5; 4; -3)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Head minus tail, one coordinate at a time: $(0 - 5;\\ 7 - 3;\\ 4 - 1) = (-5; 4; 3)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(0) - (5) == -5",
+            "(7) - (3) == 4",
+            "(4) - (1) == 3"
+          ]
+        },
+        {
+          "id": "VM-f3d-v06",
+          "statement": "Find $\\vec{AB}$ for $A = (-1; -4; 2)$ and $B = (6; 2; 9)$.",
+          "options": [
+            "$(-7; -6; -7)$",
+            "$(7; 6; 7)$",
+            "$(5; -2; 11)$",
+            "$(7; 6; -7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Head minus tail, one coordinate at a time: $(6 - -1;\\ 2 - -4;\\ 9 - 2) = (7; 6; 7)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(6) - (-1) == 7",
+            "(2) - (-4) == 6",
+            "(9) - (2) == 7"
+          ]
+        },
+        {
+          "id": "VM-f3d-v07",
+          "statement": "Find $\\vec{AB}$ for $A = (8; 1; -3)$ and $B = (2; 6; 5)$.",
+          "options": [
+            "$(6; -5; -8)$",
+            "$(10; 7; 2)$",
+            "$(-6; 5; 8)$",
+            "$(-6; 5; -8)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Head minus tail, one coordinate at a time: $(2 - 8;\\ 6 - 1;\\ 5 - -3) = (-6; 5; 8)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(2) - (8) == -6",
+            "(6) - (1) == 5",
+            "(5) - (-3) == 8"
+          ]
+        },
+        {
+          "id": "VM-f3d-v08",
+          "statement": "Find $\\vec{AB}$ for $A = (3; 9; 0)$ and $B = (-4; 3; 7)$.",
+          "options": [
+            "$(7; 6; -7)$",
+            "$(-1; 12; 7)$",
+            "$(-7; -6; -7)$",
+            "$(-7; -6; 7)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Head minus tail, one coordinate at a time: $(-4 - 3;\\ 3 - 9;\\ 7 - 0) = (-7; -6; 7)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(-4) - (3) == -7",
+            "(3) - (9) == -6",
+            "(7) - (0) == 7"
+          ]
+        },
+        {
+          "id": "VM-f3d-v09",
+          "statement": "Find $\\vec{AB}$ for $A = (6; -2; 4)$ and $B = (1; 8; -6)$.",
+          "options": [
+            "$(-5; 10; -10)$",
+            "$(5; -10; 10)$",
+            "$(7; 6; -2)$",
+            "$(-5; 10; 10)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Head minus tail, one coordinate at a time: $(1 - 6;\\ 8 - -2;\\ -6 - 4) = (-5; 10; -10)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(1) - (6) == -5",
+            "(8) - (-2) == 10",
+            "(-6) - (4) == -10"
+          ]
+        },
+        {
+          "id": "VM-f3d-v10",
+          "statement": "Find $\\vec{AB}$ for $A = (-5; 5; 2)$ and $B = (4; 0; 3)$.",
+          "options": [
+            "$(-9; 5; -1)$",
+            "$(9; -5; 1)$",
+            "$(-1; 5; 5)$",
+            "$(9; -5; -1)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Head minus tail, one coordinate at a time: $(4 - -5;\\ 0 - 5;\\ 3 - 2) = (9; -5; 1)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(4) - (-5) == 9",
+            "(0) - (5) == -5",
+            "(3) - (2) == 1"
+          ]
+        },
+        {
+          "id": "VM-f3d-v11",
+          "statement": "Find $\\vec{AB}$ for $A = (7; 2; 8)$ and $B = (3; -3; 1)$.",
+          "options": [
+            "$(4; 5; 7)$",
+            "$(10; -1; 9)$",
+            "$(-4; -5; -7)$",
+            "$(-4; -5; 7)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Head minus tail, one coordinate at a time: $(3 - 7;\\ -3 - 2;\\ 1 - 8) = (-4; -5; -7)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(3) - (7) == -4",
+            "(-3) - (2) == -5",
+            "(1) - (8) == -7"
+          ]
+        },
+        {
+          "id": "VM-f3d-v12",
+          "statement": "Find $\\vec{AB}$ for $A = (0; 6; -4)$ and $B = (9; 1; 2)$.",
+          "options": [
+            "$(-9; 5; -6)$",
+            "$(9; 7; -2)$",
+            "$(9; -5; -6)$",
+            "$(9; -5; 6)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Head minus tail, one coordinate at a time: $(9 - 0;\\ 1 - 6;\\ 2 - -4) = (9; -5; 6)$. Doing it the other way round gives $\\vec{BA}$, which is the same arrow reversed.",
+          "check": [
+            "(9) - (0) == 9",
+            "(1) - (6) == -5",
+            "(2) - (-4) == 6"
+          ]
+        }
+      ]
+    },
+    {
       "id": "magnitude-3d",
       "title": "Magnitude in 3D",
       "level": 2,
@@ -3134,6 +4706,219 @@
           "explanation": "$|\\vec{a}| = \\sqrt{(-6)^2 + (7)^2 + (6)^2} = \\sqrt{121} = 11$. Adding the components' absolute values gives $19$ — the classic no-Pythagoras slip.",
           "check": [
             "sqrt((-6)**2 + (7)**2 + (6)**2) == 11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parallel-3d",
+      "title": "Parallel vectors in space",
+      "level": 2,
+      "skill": "VM-p3d",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-p3d-v01",
+          "statement": "$\\vec{u} = (2; 3; 4)$ and $\\vec{v} = (6; 9; t)$ are parallel. Find $t$.",
+          "options": [
+            "$12$",
+            "$7$",
+            "$4$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{6}{2} = 3$, and the second agrees, so the SAME multiplier must apply to the third: $t = 3 \\cdot 4 = 12$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(6, 2) == 3",
+            "Rational(9, 3) == 3",
+            "3 * (4) == 12"
+          ]
+        },
+        {
+          "id": "VM-p3d-v02",
+          "statement": "$\\vec{u} = (1; -2; 5)$ and $\\vec{v} = (4; -8; t)$ are parallel. Find $t$.",
+          "options": [
+            "$9$",
+            "$20$",
+            "$5$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{4}{1} = 4$, and the second agrees, so the SAME multiplier must apply to the third: $t = 4 \\cdot 5 = 20$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(4, 1) == 4",
+            "Rational(-8, -2) == 4",
+            "4 * (5) == 20"
+          ]
+        },
+        {
+          "id": "VM-p3d-v03",
+          "statement": "$\\vec{u} = (3; 1; -2)$ and $\\vec{v} = (6; 2; t)$ are parallel. Find $t$.",
+          "options": [
+            "$0$",
+            "$-2$",
+            "$-4$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{6}{3} = 2$, and the second agrees, so the SAME multiplier must apply to the third: $t = 2 \\cdot -2 = -4$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(6, 3) == 2",
+            "Rational(2, 1) == 2",
+            "2 * (-2) == -4"
+          ]
+        },
+        {
+          "id": "VM-p3d-v04",
+          "statement": "$\\vec{u} = (4; 5; 1)$ and $\\vec{v} = (12; 15; t)$ are parallel. Find $t$.",
+          "options": [
+            "$4$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{12}{4} = 3$, and the second agrees, so the SAME multiplier must apply to the third: $t = 3 \\cdot 1 = 3$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(12, 4) == 3",
+            "Rational(15, 5) == 3",
+            "3 * (1) == 3"
+          ]
+        },
+        {
+          "id": "VM-p3d-v05",
+          "statement": "$\\vec{u} = (-1; 3; 2)$ and $\\vec{v} = (-5; 15; t)$ are parallel. Find $t$.",
+          "options": [
+            "$10$",
+            "$7$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{-5}{-1} = 5$, and the second agrees, so the SAME multiplier must apply to the third: $t = 5 \\cdot 2 = 10$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(-5, -1) == 5",
+            "Rational(15, 3) == 5",
+            "5 * (2) == 10"
+          ]
+        },
+        {
+          "id": "VM-p3d-v06",
+          "statement": "$\\vec{u} = (2; -4; 6)$ and $\\vec{v} = (4; -8; t)$ are parallel. Find $t$.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{4}{2} = 2$, and the second agrees, so the SAME multiplier must apply to the third: $t = 2 \\cdot 6 = 12$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(4, 2) == 2",
+            "Rational(-8, -4) == 2",
+            "2 * (6) == 12"
+          ]
+        },
+        {
+          "id": "VM-p3d-v07",
+          "statement": "$\\vec{u} = (5; 2; 3)$ and $\\vec{v} = (20; 8; t)$ are parallel. Find $t$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$12$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{20}{5} = 4$, and the second agrees, so the SAME multiplier must apply to the third: $t = 4 \\cdot 3 = 12$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(20, 5) == 4",
+            "Rational(8, 2) == 4",
+            "4 * (3) == 12"
+          ]
+        },
+        {
+          "id": "VM-p3d-v08",
+          "statement": "$\\vec{u} = (1; 6; -3)$ and $\\vec{v} = (3; 18; t)$ are parallel. Find $t$.",
+          "options": [
+            "$0$",
+            "$-3$",
+            "$3$",
+            "$-9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{3}{1} = 3$, and the second agrees, so the SAME multiplier must apply to the third: $t = 3 \\cdot -3 = -9$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(3, 1) == 3",
+            "Rational(18, 6) == 3",
+            "3 * (-3) == -9"
+          ]
+        },
+        {
+          "id": "VM-p3d-v09",
+          "statement": "$\\vec{u} = (-2; 1; 4)$ and $\\vec{v} = (-12; 6; t)$ are parallel. Find $t$.",
+          "options": [
+            "$24$",
+            "$10$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{-12}{-2} = 6$, and the second agrees, so the SAME multiplier must apply to the third: $t = 6 \\cdot 4 = 24$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(-12, -2) == 6",
+            "Rational(6, 1) == 6",
+            "6 * (4) == 24"
+          ]
+        },
+        {
+          "id": "VM-p3d-v10",
+          "statement": "$\\vec{u} = (3; -5; 2)$ and $\\vec{v} = (6; -10; t)$ are parallel. Find $t$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$3$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{6}{3} = 2$, and the second agrees, so the SAME multiplier must apply to the third: $t = 2 \\cdot 2 = 4$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(6, 3) == 2",
+            "Rational(-10, -5) == 2",
+            "2 * (2) == 4"
+          ]
+        },
+        {
+          "id": "VM-p3d-v11",
+          "statement": "$\\vec{u} = (6; 1; 5)$ and $\\vec{v} = (18; 3; t)$ are parallel. Find $t$.",
+          "options": [
+            "$8$",
+            "$5$",
+            "$15$",
+            "$3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{18}{6} = 3$, and the second agrees, so the SAME multiplier must apply to the third: $t = 3 \\cdot 5 = 15$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(18, 6) == 3",
+            "Rational(3, 1) == 3",
+            "3 * (5) == 15"
+          ]
+        },
+        {
+          "id": "VM-p3d-v12",
+          "statement": "$\\vec{u} = (2; 7; -1)$ and $\\vec{v} = (8; 28; t)$ are parallel. Find $t$.",
+          "options": [
+            "$3$",
+            "$-1$",
+            "$4$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Parallel means one vector is a single multiple of the other. Comparing the first components, $\\frac{8}{2} = 4$, and the second agrees, so the SAME multiplier must apply to the third: $t = 4 \\cdot -1 = -4$. A multiplier that works for only one coordinate is not parallelism.",
+          "check": [
+            "Rational(8, 2) == 4",
+            "Rational(28, 7) == 4",
+            "4 * (-1) == -4"
           ]
         }
       ]
@@ -3328,6 +5113,384 @@
       ]
     },
     {
+      "id": "perpendicular-3d",
+      "title": "Perpendicular vectors in space",
+      "level": 3,
+      "skill": "VM-x3d",
+      "unit": "vectors-in-space",
+      "variants": [
+        {
+          "id": "VM-x3d-v01",
+          "statement": "$\\vec{u} = (2; 3; 1)$ and $\\vec{v} = (4; -1; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-5$",
+            "$5$",
+            "$-\\frac{5}{2}$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means the dot product vanishes: $(2)(4) + (3)(-1) + (1)t = 0$, so $1t = -5$ and $t = -5$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(2)*(4) + (3)*(-1) + (1)*Rational(-5, 1) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v02",
+          "statement": "$\\vec{u} = (1; 2; 4)$ and $\\vec{v} = (3; 5; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$\\frac{13}{4}$",
+            "$-\\frac{13}{4}$",
+            "$-13$",
+            "$-\\frac{9}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means the dot product vanishes: $(1)(3) + (2)(5) + (4)t = 0$, so $4t = -13$ and $t = -\\frac{13}{4}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(1)*(3) + (2)*(5) + (4)*Rational(-13, 4) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v03",
+          "statement": "$\\vec{u} = (5; -2; 3)$ and $\\vec{v} = (1; 4; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-1$",
+            "$\\frac{3}{5}$",
+            "$1$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means the dot product vanishes: $(5)(1) + (-2)(4) + (3)t = 0$, so $3t = 3$ and $t = 1$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(5)*(1) + (-2)*(4) + (3)*Rational(1, 1) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v04",
+          "statement": "$\\vec{u} = (2; 6; -1)$ and $\\vec{v} = (3; 1; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-12$",
+            "$-6$",
+            "$13$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means the dot product vanishes: $(2)(3) + (6)(1) + (-1)t = 0$, so $-1t = -12$ and $t = 12$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(2)*(3) + (6)*(1) + (-1)*Rational(12, 1) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v05",
+          "statement": "$\\vec{u} = (4; 1; 2)$ and $\\vec{v} = (2; -3; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-\\frac{5}{2}$",
+            "$\\frac{5}{2}$",
+            "$-\\frac{5}{4}$",
+            "$-\\frac{3}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means the dot product vanishes: $(4)(2) + (1)(-3) + (2)t = 0$, so $2t = -5$ and $t = -\\frac{5}{2}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(4)*(2) + (1)*(-3) + (2)*Rational(-5, 2) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v06",
+          "statement": "$\\vec{u} = (-1; 3; 6)$ and $\\vec{v} = (4; 2; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-\\frac{1}{3}$",
+            "$2$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means the dot product vanishes: $(-1)(4) + (3)(2) + (6)t = 0$, so $6t = -2$ and $t = -\\frac{1}{3}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(-1)*(4) + (3)*(2) + (6)*Rational(-1, 3) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v07",
+          "statement": "$\\vec{u} = (3; 5; 2)$ and $\\vec{v} = (1; -2; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-\\frac{7}{2}$",
+            "$\\frac{7}{3}$",
+            "$\\frac{7}{2}$",
+            "$\\frac{9}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means the dot product vanishes: $(3)(1) + (5)(-2) + (2)t = 0$, so $2t = 7$ and $t = \\frac{7}{2}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(3)*(1) + (5)*(-2) + (2)*Rational(7, 2) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v08",
+          "statement": "$\\vec{u} = (6; -1; 1)$ and $\\vec{v} = (2; 3; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$9$",
+            "$-\\frac{3}{2}$",
+            "$-8$",
+            "$-9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means the dot product vanishes: $(6)(2) + (-1)(3) + (1)t = 0$, so $1t = -9$ and $t = -9$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(6)*(2) + (-1)*(3) + (1)*Rational(-9, 1) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v09",
+          "statement": "$\\vec{u} = (1; 4; 7)$ and $\\vec{v} = (5; 2; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-\\frac{13}{7}$",
+            "$\\frac{13}{7}$",
+            "$-13$",
+            "$-\\frac{6}{7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Perpendicular means the dot product vanishes: $(1)(5) + (4)(2) + (7)t = 0$, so $7t = -13$ and $t = -\\frac{13}{7}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(1)*(5) + (4)*(2) + (7)*Rational(-13, 7) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v10",
+          "statement": "$\\vec{u} = (2; -5; 4)$ and $\\vec{v} = (6; 1; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$\\frac{7}{4}$",
+            "$-\\frac{7}{4}$",
+            "$-\\frac{7}{2}$",
+            "$-\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perpendicular means the dot product vanishes: $(2)(6) + (-5)(1) + (4)t = 0$, so $4t = -7$ and $t = -\\frac{7}{4}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(2)*(6) + (-5)*(1) + (4)*Rational(-7, 4) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v11",
+          "statement": "$\\vec{u} = (7; 2; -2)$ and $\\vec{v} = (1; 5; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-\\frac{17}{2}$",
+            "$-\\frac{17}{7}$",
+            "$\\frac{17}{2}$",
+            "$\\frac{19}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Perpendicular means the dot product vanishes: $(7)(1) + (2)(5) + (-2)t = 0$, so $-2t = -17$ and $t = \\frac{17}{2}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(7)*(1) + (2)*(5) + (-2)*Rational(17, 2) == 0"
+          ]
+        },
+        {
+          "id": "VM-x3d-v12",
+          "statement": "$\\vec{u} = (3; 3; 5)$ and $\\vec{v} = (4; -6; t)$ are perpendicular. Find $t$.",
+          "options": [
+            "$-\\frac{6}{5}$",
+            "$2$",
+            "$\\frac{11}{5}$",
+            "$\\frac{6}{5}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Perpendicular means the dot product vanishes: $(3)(4) + (3)(-6) + (5)t = 0$, so $5t = 6$ and $t = \\frac{6}{5}$. Note it is the component of $\\vec{u}$ that multiplies $t$ — matching the wrong pair is the usual slip.",
+          "check": [
+            "(3)*(4) + (3)*(-6) + (5)*Rational(6, 5) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matrix-dimensions",
+      "title": "The size of a product",
+      "level": 1,
+      "skill": "VM-dim",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-dim-v01",
+          "statement": "$A$ is $2 \\times 3$ and $B$ is $3 \\times 4$. What size is $AB$?",
+          "options": [
+            "$2 \\times 4$",
+            "$4 \\times 2$",
+            "$2 \\times 3$",
+            "$3 \\times 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inner sizes must match — here both are $3$, so the product exists — and the OUTER sizes survive: $AB$ is $2 \\times 4$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "VM-dim-v02",
+          "statement": "$A$ is $3 \\times 2$ and $B$ is $2 \\times 5$. What size is $AB$?",
+          "options": [
+            "$5 \\times 3$",
+            "$3 \\times 5$",
+            "$3 \\times 2$",
+            "$2 \\times 5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inner sizes must match — here both are $2$, so the product exists — and the OUTER sizes survive: $AB$ is $3 \\times 5$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "2 == 2"
+          ]
+        },
+        {
+          "id": "VM-dim-v03",
+          "statement": "$A$ is $4 \\times 1$ and $B$ is $1 \\times 3$. What size is $AB$?",
+          "options": [
+            "$3 \\times 4$",
+            "$4 \\times 1$",
+            "$4 \\times 3$",
+            "$1 \\times 3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inner sizes must match — here both are $1$, so the product exists — and the OUTER sizes survive: $AB$ is $4 \\times 3$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "VM-dim-v04",
+          "statement": "$A$ is $2 \\times 3$ and $B$ is $3 \\times 6$. What size is $AB$?",
+          "options": [
+            "$6 \\times 2$",
+            "$2 \\times 3$",
+            "$3 \\times 6$",
+            "$2 \\times 6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inner sizes must match — here both are $3$, so the product exists — and the OUTER sizes survive: $AB$ is $2 \\times 6$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "VM-dim-v05",
+          "statement": "$A$ is $5 \\times 3$ and $B$ is $3 \\times 2$. What size is $AB$?",
+          "options": [
+            "$5 \\times 2$",
+            "$2 \\times 5$",
+            "$5 \\times 3$",
+            "$3 \\times 2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inner sizes must match — here both are $3$, so the product exists — and the OUTER sizes survive: $AB$ is $5 \\times 2$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "VM-dim-v06",
+          "statement": "$A$ is $1 \\times 4$ and $B$ is $4 \\times 4$. What size is $AB$?",
+          "options": [
+            "$4 \\times 1$",
+            "$1 \\times 4$",
+            "$4 \\times 4$",
+            "$1 \\times 1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inner sizes must match — here both are $4$, so the product exists — and the OUTER sizes survive: $AB$ is $1 \\times 4$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "VM-dim-v07",
+          "statement": "$A$ is $3 \\times 5$ and $B$ is $5 \\times 1$. What size is $AB$?",
+          "options": [
+            "$1 \\times 3$",
+            "$3 \\times 5$",
+            "$3 \\times 1$",
+            "$5 \\times 1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inner sizes must match — here both are $5$, so the product exists — and the OUTER sizes survive: $AB$ is $3 \\times 1$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "5 == 5"
+          ]
+        },
+        {
+          "id": "VM-dim-v08",
+          "statement": "$A$ is $6 \\times 2$ and $B$ is $2 \\times 3$. What size is $AB$?",
+          "options": [
+            "$3 \\times 6$",
+            "$6 \\times 2$",
+            "$2 \\times 3$",
+            "$6 \\times 3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inner sizes must match — here both are $2$, so the product exists — and the OUTER sizes survive: $AB$ is $6 \\times 3$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "2 == 2"
+          ]
+        },
+        {
+          "id": "VM-dim-v09",
+          "statement": "$A$ is $2 \\times 4$ and $B$ is $4 \\times 7$. What size is $AB$?",
+          "options": [
+            "$2 \\times 7$",
+            "$7 \\times 2$",
+            "$2 \\times 4$",
+            "$4 \\times 7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The inner sizes must match — here both are $4$, so the product exists — and the OUTER sizes survive: $AB$ is $2 \\times 7$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "4 == 4"
+          ]
+        },
+        {
+          "id": "VM-dim-v10",
+          "statement": "$A$ is $4 \\times 3$ and $B$ is $3 \\times 3$. What size is $AB$?",
+          "options": [
+            "$3 \\times 4$",
+            "$4 \\times 3$",
+            "$3 \\times 3$",
+            "$4 \\times 4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The inner sizes must match — here both are $3$, so the product exists — and the OUTER sizes survive: $AB$ is $4 \\times 3$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "3 == 3"
+          ]
+        },
+        {
+          "id": "VM-dim-v11",
+          "statement": "$A$ is $5 \\times 1$ and $B$ is $1 \\times 6$. What size is $AB$?",
+          "options": [
+            "$6 \\times 5$",
+            "$5 \\times 1$",
+            "$5 \\times 6$",
+            "$1 \\times 6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The inner sizes must match — here both are $1$, so the product exists — and the OUTER sizes survive: $AB$ is $5 \\times 6$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "1 == 1"
+          ]
+        },
+        {
+          "id": "VM-dim-v12",
+          "statement": "$A$ is $3 \\times 6$ and $B$ is $6 \\times 2$. What size is $AB$?",
+          "options": [
+            "$2 \\times 3$",
+            "$3 \\times 6$",
+            "$6 \\times 2$",
+            "$3 \\times 2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The inner sizes must match — here both are $6$, so the product exists — and the OUTER sizes survive: $AB$ is $3 \\times 2$. Rows come from the left factor and columns from the right, which is why $AB$ and $BA$ usually differ in shape as well as value.",
+          "check": [
+            "6 == 6"
+          ]
+        }
+      ]
+    },
+    {
       "id": "matrix-entry",
       "title": "Entry of A + mB",
       "level": 1,
@@ -3512,6 +5675,396 @@
           "explanation": "Work entrywise at address $(1, 2)$: $c_{12} = 7 + 2\\cdot(3) = 13$. Reading $c_{21}$ (row 2, column 1) instead gives $9$ — the classic index swap.",
           "check": [
             "(7) + (2)*(3) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scalar-matrix",
+      "title": "Scaling a matrix",
+      "level": 1,
+      "skill": "VM-scal",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-scal-v01",
+          "statement": "Let $M = 3A$ for $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$3$",
+            "$9$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $3 \\cdot 1 = 3$. Reading $m_{12}$ instead — row 1, column 2 — gives $9$; the row index always comes first.",
+          "check": [
+            "(3)*(1) == 3"
+          ]
+        },
+        {
+          "id": "VM-scal-v02",
+          "statement": "Let $M = 2A$ for $A = \\begin{pmatrix} 5 & -1 \\\\ 2 & 6 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$-2$",
+            "$4$",
+            "$10$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $2 \\cdot 2 = 4$. Reading $m_{12}$ instead — row 1, column 2 — gives $-2$; the row index always comes first.",
+          "check": [
+            "(2)*(2) == 4"
+          ]
+        },
+        {
+          "id": "VM-scal-v03",
+          "statement": "Let $M = 5A$ for $A = \\begin{pmatrix} 1 & 4 \\\\ -3 & 2 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$20$",
+            "$2$",
+            "$-15$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $5 \\cdot -3 = -15$. Reading $m_{12}$ instead — row 1, column 2 — gives $20$; the row index always comes first.",
+          "check": [
+            "(5)*(-3) == -15"
+          ]
+        },
+        {
+          "id": "VM-scal-v04",
+          "statement": "Let $M = 3A$ for $A = \\begin{pmatrix} 6 & 2 \\\\ 4 & -5 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$6$",
+            "$7$",
+            "$18$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $3 \\cdot 4 = 12$. Reading $m_{12}$ instead — row 1, column 2 — gives $6$; the row index always comes first.",
+          "check": [
+            "(3)*(4) == 12"
+          ]
+        },
+        {
+          "id": "VM-scal-v05",
+          "statement": "Let $M = 4A$ for $A = \\begin{pmatrix} -2 & 7 \\\\ 1 & 3 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$4$",
+            "$28$",
+            "$5$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $4 \\cdot 1 = 4$. Reading $m_{12}$ instead — row 1, column 2 — gives $28$; the row index always comes first.",
+          "check": [
+            "(4)*(1) == 4"
+          ]
+        },
+        {
+          "id": "VM-scal-v06",
+          "statement": "Let $M = 6A$ for $A = \\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$6$",
+            "$30$",
+            "$11$",
+            "$18$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $6 \\cdot 5 = 30$. Reading $m_{12}$ instead — row 1, column 2 — gives $6$; the row index always comes first.",
+          "check": [
+            "(6)*(5) == 30"
+          ]
+        },
+        {
+          "id": "VM-scal-v07",
+          "statement": "Let $M = 2A$ for $A = \\begin{pmatrix} 4 & -6 \\\\ 2 & 1 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$-12$",
+            "$8$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $2 \\cdot 2 = 4$. Reading $m_{12}$ instead — row 1, column 2 — gives $-12$; the row index always comes first.",
+          "check": [
+            "(2)*(2) == 4"
+          ]
+        },
+        {
+          "id": "VM-scal-v08",
+          "statement": "Let $M = 7A$ for $A = \\begin{pmatrix} 1 & 5 \\\\ 3 & -4 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$35$",
+            "$10$",
+            "$7$",
+            "$21$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $7 \\cdot 3 = 21$. Reading $m_{12}$ instead — row 1, column 2 — gives $35$; the row index always comes first.",
+          "check": [
+            "(7)*(3) == 21"
+          ]
+        },
+        {
+          "id": "VM-scal-v09",
+          "statement": "Let $M = 3A$ for $A = \\begin{pmatrix} 7 & 2 \\\\ -1 & 6 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$-3$",
+            "$6$",
+            "$2$",
+            "$21$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $3 \\cdot -1 = -3$. Reading $m_{12}$ instead — row 1, column 2 — gives $6$; the row index always comes first.",
+          "check": [
+            "(3)*(-1) == -3"
+          ]
+        },
+        {
+          "id": "VM-scal-v10",
+          "statement": "Let $M = 5A$ for $A = \\begin{pmatrix} 2 & 8 \\\\ 4 & 3 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$40$",
+            "$20$",
+            "$9$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $5 \\cdot 4 = 20$. Reading $m_{12}$ instead — row 1, column 2 — gives $40$; the row index always comes first.",
+          "check": [
+            "(5)*(4) == 20"
+          ]
+        },
+        {
+          "id": "VM-scal-v11",
+          "statement": "Let $M = 2A$ for $A = \\begin{pmatrix} -5 & 1 \\\\ 6 & 2 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$2$",
+            "$8$",
+            "$12$",
+            "$-10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $2 \\cdot 6 = 12$. Reading $m_{12}$ instead — row 1, column 2 — gives $2$; the row index always comes first.",
+          "check": [
+            "(2)*(6) == 12"
+          ]
+        },
+        {
+          "id": "VM-scal-v12",
+          "statement": "Let $M = 4A$ for $A = \\begin{pmatrix} 3 & 4 \\\\ 1 & 9 \\end{pmatrix}$. Find the entry $m_{21}$ (row 2, column 1).",
+          "options": [
+            "$16$",
+            "$5$",
+            "$12$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A scalar multiplies EVERY entry, so the entry at address $(2, 1)$ is $4 \\cdot 1 = 4$. Reading $m_{12}$ instead — row 1, column 2 — gives $16$; the row index always comes first.",
+          "check": [
+            "(4)*(1) == 4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transpose",
+      "title": "The transpose",
+      "level": 1,
+      "skill": "VM-trn",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-trn-v01",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 3 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 1 \\\\ 3 & 2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $2$ and $4$ stay put: the result is $\\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(3) == (3)",
+            "(1) == (1)"
+          ]
+        },
+        {
+          "id": "VM-trn-v02",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 5 & -1 \\\\ 2 & 6 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 5 & -1 \\\\ 2 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & 2 \\\\ -1 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & -1 \\\\ 2 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & 2 \\\\ -1 & 5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $5$ and $6$ stay put: the result is $\\begin{pmatrix} 5 & 2 \\\\ -1 & 6 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(-1) == (-1)",
+            "(2) == (2)"
+          ]
+        },
+        {
+          "id": "VM-trn-v03",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 1 & 4 \\\\ -3 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 1 & 4 \\\\ -3 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 4 \\\\ -3 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -3 \\\\ 4 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -3 \\\\ 4 & 1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $1$ and $2$ stay put: the result is $\\begin{pmatrix} 1 & -3 \\\\ 4 & 2 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(4) == (4)",
+            "(-3) == (-3)"
+          ]
+        },
+        {
+          "id": "VM-trn-v04",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 6 & 2 \\\\ 4 & -5 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 6 & 2 \\\\ 4 & -5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -5 & 2 \\\\ 4 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -5 & 4 \\\\ 2 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & 4 \\\\ 2 & -5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $6$ and $-5$ stay put: the result is $\\begin{pmatrix} 6 & 4 \\\\ 2 & -5 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(2) == (2)",
+            "(4) == (4)"
+          ]
+        },
+        {
+          "id": "VM-trn-v05",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} -2 & 7 \\\\ 1 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} -2 & 1 \\\\ 7 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 7 \\\\ 1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 7 \\\\ 1 & -2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 1 \\\\ 7 & -2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $-2$ and $3$ stay put: the result is $\\begin{pmatrix} -2 & 1 \\\\ 7 & 3 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(7) == (7)",
+            "(1) == (1)"
+          ]
+        },
+        {
+          "id": "VM-trn-v06",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $3$ and $2$ stay put: the result is $\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(1) == (1)",
+            "(5) == (5)"
+          ]
+        },
+        {
+          "id": "VM-trn-v07",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 4 & -6 \\\\ 2 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 4 & -6 \\\\ 2 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -6 \\\\ 2 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 2 \\\\ -6 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 2 \\\\ -6 & 4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $4$ and $1$ stay put: the result is $\\begin{pmatrix} 4 & 2 \\\\ -6 & 1 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(-6) == (-6)",
+            "(2) == (2)"
+          ]
+        },
+        {
+          "id": "VM-trn-v08",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 1 & 5 \\\\ 3 & -4 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 1 & 5 \\\\ 3 & -4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -4 & 5 \\\\ 3 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -4 & 3 \\\\ 5 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 3 \\\\ 5 & -4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $1$ and $-4$ stay put: the result is $\\begin{pmatrix} 1 & 3 \\\\ 5 & -4 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(5) == (5)",
+            "(3) == (3)"
+          ]
+        },
+        {
+          "id": "VM-trn-v09",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 7 & 2 \\\\ -1 & 6 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 7 & -1 \\\\ 2 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 7 & 2 \\\\ -1 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & 2 \\\\ -1 & 7 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & -1 \\\\ 2 & 7 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $7$ and $6$ stay put: the result is $\\begin{pmatrix} 7 & -1 \\\\ 2 & 6 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(2) == (2)",
+            "(-1) == (-1)"
+          ]
+        },
+        {
+          "id": "VM-trn-v10",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 2 & 8 \\\\ 4 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & 8 \\\\ 4 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 4 \\\\ 8 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 8 \\\\ 4 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 4 \\\\ 8 & 2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $2$ and $3$ stay put: the result is $\\begin{pmatrix} 2 & 4 \\\\ 8 & 3 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(8) == (8)",
+            "(4) == (4)"
+          ]
+        },
+        {
+          "id": "VM-trn-v11",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} -5 & 1 \\\\ 6 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} -5 & 1 \\\\ 6 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 1 \\\\ 6 & -5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -5 & 6 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 6 \\\\ 1 & -5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $-5$ and $2$ stay put: the result is $\\begin{pmatrix} -5 & 6 \\\\ 1 & 2 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(1) == (1)",
+            "(6) == (6)"
+          ]
+        },
+        {
+          "id": "VM-trn-v12",
+          "statement": "Find $A^{T}$ for $A = \\begin{pmatrix} 3 & 4 \\\\ 1 & 9 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 4 \\\\ 1 & 9 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 9 & 4 \\\\ 1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 9 & 1 \\\\ 4 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 1 \\\\ 4 & 9 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Transposing reflects the matrix across its main diagonal, so the two off-diagonal entries trade places while $3$ and $9$ stay put: the result is $\\begin{pmatrix} 3 & 1 \\\\ 4 & 9 \\end{pmatrix}$. Swapping the DIAGONAL entries instead is what the adjugate does, not the transpose.",
+          "check": [
+            "(4) == (4)",
+            "(1) == (1)"
           ]
         }
       ]
@@ -3706,6 +6259,195 @@
       ]
     },
     {
+      "id": "matrix-square",
+      "title": "An entry of A squared",
+      "level": 2,
+      "skill": "VM-sqr",
+      "unit": "matrices-and-operations",
+      "variants": [
+        {
+          "id": "VM-sqr-v01",
+          "statement": "For $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 4 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$7$",
+            "$4$",
+            "$5$",
+            "$15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(2)(2) + (1)(3) = 7$. Squaring each entry separately would give $4$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(2)*(2) + (1)*(3) == 7"
+          ]
+        },
+        {
+          "id": "VM-sqr-v02",
+          "statement": "For $A = \\begin{pmatrix} 1 & 2 \\\\ 0 & 3 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$5$",
+            "$1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(1)(1) + (2)(0) = 1$. Squaring each entry separately would give $1$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(1)*(1) + (2)*(0) == 1"
+          ]
+        },
+        {
+          "id": "VM-sqr-v03",
+          "statement": "For $A = \\begin{pmatrix} 3 & -1 \\\\ 2 & 1 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$9$",
+            "$10$",
+            "$7$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(3)(3) + (-1)(2) = 7$. Squaring each entry separately would give $9$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(3)*(3) + (-1)*(2) == 7"
+          ]
+        },
+        {
+          "id": "VM-sqr-v04",
+          "statement": "For $A = \\begin{pmatrix} 4 & 2 \\\\ 1 & 5 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$16$",
+            "$20$",
+            "$30$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(4)(4) + (2)(1) = 18$. Squaring each entry separately would give $16$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(4)*(4) + (2)*(1) == 18"
+          ]
+        },
+        {
+          "id": "VM-sqr-v05",
+          "statement": "For $A = \\begin{pmatrix} 2 & 3 \\\\ -1 & 2 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$1$",
+            "$4$",
+            "$13$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(2)(2) + (3)(-1) = 1$. Squaring each entry separately would give $4$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(2)*(2) + (3)*(-1) == 1"
+          ]
+        },
+        {
+          "id": "VM-sqr-v06",
+          "statement": "For $A = \\begin{pmatrix} 5 & 1 \\\\ 2 & 3 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$25$",
+            "$27$",
+            "$26$",
+            "$42$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(5)(5) + (1)(2) = 27$. Squaring each entry separately would give $25$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(5)*(5) + (1)*(2) == 27"
+          ]
+        },
+        {
+          "id": "VM-sqr-v07",
+          "statement": "For $A = \\begin{pmatrix} 1 & 4 \\\\ 2 & -2 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$1$",
+            "$17$",
+            "$9$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(1)(1) + (4)(2) = 9$. Squaring each entry separately would give $1$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(1)*(1) + (4)*(2) == 9"
+          ]
+        },
+        {
+          "id": "VM-sqr-v08",
+          "statement": "For $A = \\begin{pmatrix} 3 & 2 \\\\ 4 & 1 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$9$",
+            "$13$",
+            "$35$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(3)(3) + (2)(4) = 17$. Squaring each entry separately would give $9$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(3)*(3) + (2)*(4) == 17"
+          ]
+        },
+        {
+          "id": "VM-sqr-v09",
+          "statement": "For $A = \\begin{pmatrix} -1 & 3 \\\\ 5 & 2 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$16$",
+            "$1$",
+            "$10$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(-1)(-1) + (3)(5) = 16$. Squaring each entry separately would give $1$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(-1)*(-1) + (3)*(5) == 16"
+          ]
+        },
+        {
+          "id": "VM-sqr-v10",
+          "statement": "For $A = \\begin{pmatrix} 2 & 5 \\\\ 1 & 4 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$4$",
+            "$9$",
+            "$29$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(2)(2) + (5)(1) = 9$. Squaring each entry separately would give $4$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(2)*(2) + (5)*(1) == 9"
+          ]
+        },
+        {
+          "id": "VM-sqr-v11",
+          "statement": "For $A = \\begin{pmatrix} 6 & 1 \\\\ -2 & 3 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$36$",
+            "$37$",
+            "$34$",
+            "$28$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(6)(6) + (1)(-2) = 34$. Squaring each entry separately would give $36$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(6)*(6) + (1)*(-2) == 34"
+          ]
+        },
+        {
+          "id": "VM-sqr-v12",
+          "statement": "For $A = \\begin{pmatrix} 1 & 1 \\\\ 4 & 2 \\end{pmatrix}$, find the entry in row 1, column 1 of $A^{2}$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$10$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$A^2$ means $A$ times $A$, so the $(1,1)$ entry is row 1 of $A$ dotted with column 1 of $A$: $(1)(1) + (1)(4) = 5$. Squaring each entry separately would give $1$ — matrix multiplication is not entrywise.",
+          "check": [
+            "(1)*(1) + (1)*(4) == 5"
+          ]
+        }
+      ]
+    },
+    {
       "id": "det-2x2",
       "title": "The 2×2 determinant",
       "level": 1,
@@ -3890,6 +6632,408 @@
           "explanation": "$\\det = ad - bc = 7\\cdot3 - (2)\\cdot(4) = 13$. Adding the two diagonal products instead gives $29$ — the classic sign slip.",
           "check": [
             "(7)*(3) - (2)*(4) == 13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inverse-2x2",
+      "title": "The inverse of a 2×2 matrix",
+      "level": 2,
+      "skill": "VM-inv",
+      "unit": "determinants-and-inverses",
+      "variants": [
+        {
+          "id": "VM-inv-v01",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 1 \\\\ 3 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 1 \\\\ 3 & -2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -3 \\\\ -1 & 2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $(2)(2) - (1)(3) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(2)*(2) + (1)*(-3) == 1",
+            "(2)*(-1) + (1)*(2) == 0",
+            "(2)*(2) - (1)*(3) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v02",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 1 \\\\ 5 & -3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $(3)(2) - (1)(5) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(3)*(2) + (1)*(-5) == 1",
+            "(3)*(-1) + (1)*(3) == 0",
+            "(3)*(2) - (1)*(5) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v03",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 1 & 2 \\\\ 1 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 2 \\\\ 1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -2 \\\\ -1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -2 \\\\ -1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 2 \\\\ 1 & -1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $(1)(3) - (2)(1) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -2 \\\\ -1 & 1 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(1)*(3) + (2)*(-1) == 1",
+            "(1)*(-2) + (2)*(1) == 0",
+            "(1)*(3) - (2)*(1) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v04",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 4 & 3 \\\\ 5 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 4 & 3 \\\\ 5 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -4 & 3 \\\\ 5 & -4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & -5 \\\\ -3 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & -3 \\\\ -5 & 4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $(4)(4) - (3)(5) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 4 & -3 \\\\ -5 & 4 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(4)*(4) + (3)*(-5) == 1",
+            "(4)*(-3) + (3)*(4) == 0",
+            "(4)*(4) - (3)*(5) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v05",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & -3 \\\\ -1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 3 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 3 \\\\ 1 & -2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -1 \\\\ -3 & 2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $(2)(2) - (3)(1) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 2 & -3 \\\\ -1 & 2 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(2)*(2) + (3)*(-1) == 1",
+            "(2)*(-3) + (3)*(2) == 0",
+            "(2)*(2) - (3)*(1) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v06",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 5 & 2 \\\\ 7 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 2 \\\\ 7 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -2 \\\\ -7 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & -2 \\\\ -7 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 2 \\\\ 7 & -5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $(5)(3) - (2)(7) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -2 \\\\ -7 & 5 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(5)*(3) + (2)*(-7) == 1",
+            "(5)*(-2) + (2)*(5) == 0",
+            "(5)*(3) - (2)*(7) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v07",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 3 & 2 \\\\ 4 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 2 \\\\ 4 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 2 \\\\ 4 & -3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -2 \\\\ -4 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -4 \\\\ -2 & 3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $(3)(3) - (2)(4) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -2 \\\\ -4 & 3 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(3)*(3) + (2)*(-4) == 1",
+            "(3)*(-2) + (2)*(3) == 0",
+            "(3)*(3) - (2)*(4) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v08",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 1 & 1 \\\\ 2 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 1 \\\\ 2 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -1 \\\\ -2 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 1 \\\\ 2 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -1 \\\\ -2 & 1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $(1)(3) - (1)(2) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -1 \\\\ -2 & 1 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(1)*(3) + (1)*(-2) == 1",
+            "(1)*(-1) + (1)*(1) == 0",
+            "(1)*(3) - (1)*(2) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v09",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 6 & 5 \\\\ 5 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} -4 & 5 \\\\ 5 & -6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 5 \\\\ 5 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & -5 \\\\ -5 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & -5 \\\\ -5 & 6 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $(6)(4) - (5)(5) = -1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} -4 & 5 \\\\ 5 & -6 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(6)*(-4) + (5)*(5) == 1",
+            "(6)*(5) + (5)*(-6) == 0",
+            "(6)*(4) - (5)*(5) == -1"
+          ]
+        },
+        {
+          "id": "VM-inv-v10",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -5 \\\\ -1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 5 \\\\ 1 & -2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $(2)(3) - (5)(1) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -5 \\\\ -1 & 2 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(2)*(3) + (5)*(-1) == 1",
+            "(2)*(-5) + (5)*(2) == 0",
+            "(2)*(3) - (5)*(1) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v11",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 4 & 1 \\\\ 7 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 2 & 1 \\\\ 7 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & -1 \\\\ -7 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -1 \\\\ -7 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 1 \\\\ 7 & -4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $(4)(2) - (1)(7) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 2 & -1 \\\\ -7 & 4 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(4)*(2) + (1)*(-7) == 1",
+            "(4)*(-1) + (1)*(4) == 0",
+            "(4)*(2) - (1)*(7) == 1"
+          ]
+        },
+        {
+          "id": "VM-inv-v12",
+          "statement": "Find $A^{-1}$ for $A = \\begin{pmatrix} 3 & 4 \\\\ 2 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$\\begin{pmatrix} 3 & 4 \\\\ 2 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 4 \\\\ 2 & -3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -2 \\\\ -4 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -4 \\\\ -2 & 3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $(3)(3) - (4)(2) = 1$. The inverse swaps the main diagonal, negates the other two entries, and divides by the determinant: $\\begin{pmatrix} 3 & -4 \\\\ -2 & 3 \\end{pmatrix}$. Forgetting to negate the off-diagonal pair is the usual slip — the result will not multiply back to the identity.",
+          "check": [
+            "(3)*(3) + (4)*(-2) == 1",
+            "(3)*(-4) + (4)*(3) == 0",
+            "(3)*(3) - (4)*(2) == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "singular-k",
+      "title": "Making a matrix singular",
+      "level": 2,
+      "skill": "VM-sing",
+      "unit": "determinants-and-inverses",
+      "variants": [
+        {
+          "id": "VM-sing-v01",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 2 & 3 \\\\ 4 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$\\frac{8}{3}$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $2k - (3)(4) = 0$, so $k = \\frac{12}{2} = 6$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(2)*Rational(6, 1) - (3)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v02",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 5 & 2 \\\\ 10 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$25$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $5k - (2)(10) = 0$, so $k = \\frac{20}{5} = 4$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(5)*Rational(4, 1) - (2)*(10) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v03",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 3 & 4 \\\\ 6 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-8$",
+            "$\\frac{9}{2}$",
+            "$8$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $3k - (4)(6) = 0$, so $k = \\frac{24}{3} = 8$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(3)*Rational(8, 1) - (4)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v04",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 7 & 1 \\\\ 14 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-2$",
+            "$98$",
+            "$\\frac{1}{2}$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $7k - (1)(14) = 0$, so $k = \\frac{14}{7} = 2$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(7)*Rational(2, 1) - (1)*(14) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v05",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 2 & 5 \\\\ 8 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$20$",
+            "$-20$",
+            "$\\frac{16}{5}$",
+            "$\\frac{1}{20}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $2k - (5)(8) = 0$, so $k = \\frac{40}{2} = 20$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(2)*Rational(20, 1) - (5)*(8) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v06",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 4 & 3 \\\\ 12 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-9$",
+            "$9$",
+            "$16$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $4k - (3)(12) = 0$, so $k = \\frac{36}{4} = 9$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(4)*Rational(9, 1) - (3)*(12) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v07",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 6 & 2 \\\\ 9 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-3$",
+            "$27$",
+            "$3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $6k - (2)(9) = 0$, so $k = \\frac{18}{6} = 3$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(6)*Rational(3, 1) - (2)*(9) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v08",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 5 & 4 \\\\ 15 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-12$",
+            "$\\frac{75}{4}$",
+            "$\\frac{1}{12}$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $5k - (4)(15) = 0$, so $k = \\frac{60}{5} = 12$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(5)*Rational(12, 1) - (4)*(15) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v09",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 3 & 7 \\\\ 6 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$14$",
+            "$-14$",
+            "$\\frac{18}{7}$",
+            "$\\frac{1}{14}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $3k - (7)(6) = 0$, so $k = \\frac{42}{3} = 14$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(3)*Rational(14, 1) - (7)*(6) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v10",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 8 & 1 \\\\ 16 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-2$",
+            "$2$",
+            "$128$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $8k - (1)(16) = 0$, so $k = \\frac{16}{8} = 2$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(8)*Rational(2, 1) - (1)*(16) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v11",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 2 & 9 \\\\ 10 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-45$",
+            "$\\frac{20}{9}$",
+            "$45$",
+            "$\\frac{1}{45}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $2k - (9)(10) = 0$, so $k = \\frac{90}{2} = 45$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(2)*Rational(45, 1) - (9)*(10) == 0"
+          ]
+        },
+        {
+          "id": "VM-sing-v12",
+          "statement": "For which value of $k$ does $\\begin{pmatrix} 9 & 2 \\\\ 18 & k \\end{pmatrix}$ have no inverse?",
+          "options": [
+            "$-4$",
+            "$81$",
+            "$\\frac{1}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A matrix has no inverse exactly when its determinant is zero: $9k - (2)(18) = 0$, so $k = \\frac{36}{9} = 4$. At that value the two rows are multiples of each other, which is the same fact wearing different clothes.",
+          "check": [
+            "(9)*Rational(4, 1) - (2)*(18) == 0"
           ]
         }
       ]
@@ -4091,6 +7235,195 @@
           "check": [
             "((18)*(7) - (3)*(20))/((4)*(7) - (3)*(2)) == 3",
             "(4)*(3) + (3)*(2) == 18"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unique-solution",
+      "title": "When a 2×2 system has one solution",
+      "level": 3,
+      "skill": "VM-uniq",
+      "unit": "determinants-and-inverses",
+      "variants": [
+        {
+          "id": "VM-uniq-v01",
+          "statement": "How many solutions does the system $2x + 3y = 7$, $4x + 6y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $(2)(6) - (3)(4) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(2)*(6) - (3)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v02",
+          "statement": "How many solutions does the system $1x + 2y = 7$, $3x + 4y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $(1)(4) - (2)(3) = -2$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(1)*(4) - (2)*(3) != 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v03",
+          "statement": "How many solutions does the system $5x + 1y = 7$, $10x + 2y = 11$ have?",
+          "options": [
+            "exactly one solution",
+            "exactly two solutions",
+            "no unique solution — the determinant is zero",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $(5)(2) - (1)(10) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(5)*(2) - (1)*(10) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v04",
+          "statement": "How many solutions does the system $3x + 2y = 7$, $1x + 4y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero",
+            "exactly one solution"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $(3)(4) - (2)(1) = 10$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(3)*(4) - (2)*(1) != 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v05",
+          "statement": "How many solutions does the system $4x + 6y = 7$, $2x + 3y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $(4)(3) - (6)(2) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(4)*(3) - (6)*(2) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v06",
+          "statement": "How many solutions does the system $2x + 5y = 7$, $3x + 1y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $(2)(1) - (5)(3) = -13$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(2)*(1) - (5)*(3) != 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v07",
+          "statement": "How many solutions does the system $6x + 4y = 7$, $3x + 2y = 11$ have?",
+          "options": [
+            "exactly one solution",
+            "exactly two solutions",
+            "no unique solution — the determinant is zero",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $(6)(2) - (4)(3) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(6)*(2) - (4)*(3) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v08",
+          "statement": "How many solutions does the system $1x + 3y = 7$, $2x + 5y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero",
+            "exactly one solution"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $(1)(5) - (3)(2) = -1$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(1)*(5) - (3)*(2) != 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v09",
+          "statement": "How many solutions does the system $7x + 2y = 7$, $14x + 4y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $(7)(4) - (2)(14) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(7)*(4) - (2)*(14) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v10",
+          "statement": "How many solutions does the system $4x + 1y = 7$, $3x + 2y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly one solution",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $(4)(2) - (1)(3) = 5$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(4)*(2) - (1)*(3) != 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v11",
+          "statement": "How many solutions does the system $2x + 8y = 7$, $1x + 4y = 11$ have?",
+          "options": [
+            "exactly one solution",
+            "exactly two solutions",
+            "no unique solution — the determinant is zero",
+            "a unique solution only when the right-hand sides are zero"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $(2)(4) - (8)(1) = 0$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(2)*(4) - (8)*(1) == 0"
+          ]
+        },
+        {
+          "id": "VM-uniq-v12",
+          "statement": "How many solutions does the system $5x + 3y = 7$, $2x + 4y = 11$ have?",
+          "options": [
+            "no unique solution — the determinant is zero",
+            "exactly two solutions",
+            "a unique solution only when the right-hand sides are zero",
+            "exactly one solution"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $(5)(4) - (3)(2) = 14$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
+          "check": [
+            "(5)*(4) - (3)*(2) != 0"
           ]
         }
       ]
