@@ -15504,6 +15504,591 @@
       ]
     },
     {
+      "id": "im1-elimination",
+      "title": "Solving by elimination",
+      "level": 1,
+      "unit": "systems-of-equations-and-inequalities",
+      "skill": "Opposite coefficients cancel when the equations are added.",
+      "variants": [
+        {
+          "id": "im1-elim-v01",
+          "statement": "Solve by elimination: $2x + y = -11$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-4$",
+            "$-12$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -1$ gives $y = -3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (-3), -11)",
+            "Eq((-4) - (-3), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v02",
+          "statement": "Solve by elimination: $3x + y = -15$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-3$",
+            "$-16$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -1$ gives $y = -3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (-3), -15)",
+            "Eq((-4) - (-3), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v03",
+          "statement": "Solve by elimination: $4x + y = -19$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-20$",
+            "$-3$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -1$ gives $y = -3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (-3), -19)",
+            "Eq((-4) - (-3), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v04",
+          "statement": "Solve by elimination: $2x + y = -9$ and $x - y = -3$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-12$",
+            "$-3$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -3$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (-1), -9)",
+            "Eq((-4) - (-1), -3)"
+          ]
+        },
+        {
+          "id": "im1-elim-v05",
+          "statement": "Solve by elimination: $3x + y = -13$ and $x - y = -3$. Find $y$.",
+          "options": [
+            "$-1$",
+            "$-4$",
+            "$-16$",
+            "$-3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -3$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (-1), -13)",
+            "Eq((-4) - (-1), -3)"
+          ]
+        },
+        {
+          "id": "im1-elim-v06",
+          "statement": "Solve by elimination: $4x + y = -17$ and $x - y = -3$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-1$",
+            "$-20$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -3$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (-1), -17)",
+            "Eq((-4) - (-1), -3)"
+          ]
+        },
+        {
+          "id": "im1-elim-v07",
+          "statement": "Solve by elimination: $2x + y = -7$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-12$",
+            "$1$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -5$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (1), -7)",
+            "Eq((-4) - (1), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v08",
+          "statement": "Solve by elimination: $3x + y = -11$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-16$",
+            "$-5$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -5$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (1), -11)",
+            "Eq((-4) - (1), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v09",
+          "statement": "Solve by elimination: $4x + y = -15$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$1$",
+            "$-4$",
+            "$-20$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -5$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (1), -15)",
+            "Eq((-4) - (1), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v10",
+          "statement": "Solve by elimination: $2x + y = -6$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$2$",
+            "$-12$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -6$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (2), -6)",
+            "Eq((-4) - (2), -6)"
+          ]
+        },
+        {
+          "id": "im1-elim-v11",
+          "statement": "Solve by elimination: $3x + y = -10$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-16$",
+            "$2$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -6$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (2), -10)",
+            "Eq((-4) - (2), -6)"
+          ]
+        },
+        {
+          "id": "im1-elim-v12",
+          "statement": "Solve by elimination: $4x + y = -14$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-20$",
+            "$-6$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -6$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (2), -14)",
+            "Eq((-4) - (2), -6)"
+          ]
+        },
+        {
+          "id": "im1-elim-v13",
+          "statement": "Solve by elimination: $2x + y = -5$ and $x - y = -7$. Find $y$.",
+          "options": [
+            "$3$",
+            "$-4$",
+            "$-12$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -7$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (3), -5)",
+            "Eq((-4) - (3), -7)"
+          ]
+        },
+        {
+          "id": "im1-elim-v14",
+          "statement": "Solve by elimination: $3x + y = -9$ and $x - y = -7$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$3$",
+            "$-16$",
+            "$-7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -7$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (3), -9)",
+            "Eq((-4) - (3), -7)"
+          ]
+        },
+        {
+          "id": "im1-elim-v15",
+          "statement": "Solve by elimination: $4x + y = -13$ and $x - y = -7$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-20$",
+            "$3$",
+            "$-7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -7$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (3), -13)",
+            "Eq((-4) - (3), -7)"
+          ]
+        },
+        {
+          "id": "im1-elim-v16",
+          "statement": "Solve by elimination: $2x + y = -4$ and $x - y = -8$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-12$",
+            "$-8$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -8$ gives $y = 4$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (4), -4)",
+            "Eq((-4) - (4), -8)"
+          ]
+        },
+        {
+          "id": "im1-elim-v17",
+          "statement": "Solve by elimination: $3x + y = -8$ and $x - y = -8$. Find $y$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$-16$",
+            "$-8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -8$ gives $y = 4$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (4), -8)",
+            "Eq((-4) - (4), -8)"
+          ]
+        },
+        {
+          "id": "im1-elim-v18",
+          "statement": "Solve by elimination: $4x + y = -12$ and $x - y = -8$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$-20$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -8$ gives $y = 4$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (4), -12)",
+            "Eq((-4) - (4), -8)"
+          ]
+        },
+        {
+          "id": "im1-elim-v19",
+          "statement": "Solve by elimination: $2x + y = -3$ and $x - y = -9$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-12$",
+            "$5$",
+            "$-9$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -12$, so $x = -4$. Substituting into $x - y = -9$ gives $y = 5$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-4) + (5), -3)",
+            "Eq((-4) - (5), -9)"
+          ]
+        },
+        {
+          "id": "im1-elim-v20",
+          "statement": "Solve by elimination: $3x + y = -7$ and $x - y = -9$. Find $y$.",
+          "options": [
+            "$-4$",
+            "$-16$",
+            "$-9$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -16$, so $x = -4$. Substituting into $x - y = -9$ gives $y = 5$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-4) + (5), -7)",
+            "Eq((-4) - (5), -9)"
+          ]
+        },
+        {
+          "id": "im1-elim-v21",
+          "statement": "Solve by elimination: $4x + y = -11$ and $x - y = -9$. Find $y$.",
+          "options": [
+            "$5$",
+            "$-4$",
+            "$-20$",
+            "$-9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -20$, so $x = -4$. Substituting into $x - y = -9$ gives $y = 5$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-4) + (5), -11)",
+            "Eq((-4) - (5), -9)"
+          ]
+        },
+        {
+          "id": "im1-elim-v22",
+          "statement": "Solve by elimination: $2x + y = -8$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-2$",
+            "$-9$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -9$, so $x = -3$. Substituting into $x - y = -1$ gives $y = -2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-3) + (-2), -8)",
+            "Eq((-3) - (-2), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v23",
+          "statement": "Solve by elimination: $3x + y = -11$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-12$",
+            "$-2$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -12$, so $x = -3$. Substituting into $x - y = -1$ gives $y = -2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-3) + (-2), -11)",
+            "Eq((-3) - (-2), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v24",
+          "statement": "Solve by elimination: $4x + y = -14$ and $x - y = -1$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-15$",
+            "$-1$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -15$, so $x = -3$. Substituting into $x - y = -1$ gives $y = -2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-3) + (-2), -14)",
+            "Eq((-3) - (-2), -1)"
+          ]
+        },
+        {
+          "id": "im1-elim-v25",
+          "statement": "Solve by elimination: $2x + y = -7$ and $x - y = -2$. Find $y$.",
+          "options": [
+            "$-1$",
+            "$-3$",
+            "$-9$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -9$, so $x = -3$. Substituting into $x - y = -2$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-3) + (-1), -7)",
+            "Eq((-3) - (-1), -2)"
+          ]
+        },
+        {
+          "id": "im1-elim-v26",
+          "statement": "Solve by elimination: $3x + y = -10$ and $x - y = -2$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-1$",
+            "$-12$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -12$, so $x = -3$. Substituting into $x - y = -2$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-3) + (-1), -10)",
+            "Eq((-3) - (-1), -2)"
+          ]
+        },
+        {
+          "id": "im1-elim-v27",
+          "statement": "Solve by elimination: $4x + y = -13$ and $x - y = -2$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-15$",
+            "$-1$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -15$, so $x = -3$. Substituting into $x - y = -2$ gives $y = -1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-3) + (-1), -13)",
+            "Eq((-3) - (-1), -2)"
+          ]
+        },
+        {
+          "id": "im1-elim-v28",
+          "statement": "Solve by elimination: $2x + y = -5$ and $x - y = -4$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-9$",
+            "$-4$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -9$, so $x = -3$. Substituting into $x - y = -4$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-3) + (1), -5)",
+            "Eq((-3) - (1), -4)"
+          ]
+        },
+        {
+          "id": "im1-elim-v29",
+          "statement": "Solve by elimination: $3x + y = -8$ and $x - y = -4$. Find $y$.",
+          "options": [
+            "$1$",
+            "$-3$",
+            "$-12$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -12$, so $x = -3$. Substituting into $x - y = -4$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-3) + (1), -8)",
+            "Eq((-3) - (1), -4)"
+          ]
+        },
+        {
+          "id": "im1-elim-v30",
+          "statement": "Solve by elimination: $4x + y = -11$ and $x - y = -4$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$1$",
+            "$-15$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -15$, so $x = -3$. Substituting into $x - y = -4$ gives $y = 1$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-3) + (1), -11)",
+            "Eq((-3) - (1), -4)"
+          ]
+        },
+        {
+          "id": "im1-elim-v31",
+          "statement": "Solve by elimination: $2x + y = -4$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-9$",
+            "$2$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -9$, so $x = -3$. Substituting into $x - y = -5$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-3) + (2), -4)",
+            "Eq((-3) - (2), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v32",
+          "statement": "Solve by elimination: $3x + y = -7$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-12$",
+            "$-5$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -12$, so $x = -3$. Substituting into $x - y = -5$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-3) + (2), -7)",
+            "Eq((-3) - (2), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v33",
+          "statement": "Solve by elimination: $4x + y = -10$ and $x - y = -5$. Find $y$.",
+          "options": [
+            "$2$",
+            "$-3$",
+            "$-15$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -15$, so $x = -3$. Substituting into $x - y = -5$ gives $y = 2$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-3) + (2), -10)",
+            "Eq((-3) - (2), -5)"
+          ]
+        },
+        {
+          "id": "im1-elim-v34",
+          "statement": "Solve by elimination: $2x + y = -3$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$3$",
+            "$-9$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the equations cancels $y$ and gives $3x = -9$, so $x = -3$. Substituting into $x - y = -6$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(2*(-3) + (3), -3)",
+            "Eq((-3) - (3), -6)"
+          ]
+        },
+        {
+          "id": "im1-elim-v35",
+          "statement": "Solve by elimination: $3x + y = -6$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-12$",
+            "$3$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the equations cancels $y$ and gives $4x = -12$, so $x = -3$. Substituting into $x - y = -6$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(3*(-3) + (3), -6)",
+            "Eq((-3) - (3), -6)"
+          ]
+        },
+        {
+          "id": "im1-elim-v36",
+          "statement": "Solve by elimination: $4x + y = -9$ and $x - y = -6$. Find $y$.",
+          "options": [
+            "$-3$",
+            "$-15$",
+            "$-6$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the equations cancels $y$ and gives $5x = -15$, so $x = -3$. Substituting into $x - y = -6$ gives $y = 3$. Elimination finds one unknown first — the second still has to be recovered.",
+          "check": [
+            "Eq(4*(-3) + (3), -9)",
+            "Eq((-3) - (3), -6)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "im1-growth-factor",
       "title": "Growth and decay factors",
       "level": 1,
@@ -32522,6 +33107,555 @@
       ]
     },
     {
+      "id": "im1-slope-two-points",
+      "title": "Slope from two points",
+      "level": 1,
+      "unit": "coordinate-geometry",
+      "skill": "Rise over run — the y-difference goes on top.",
+      "variants": [
+        {
+          "id": "im1-slope2-v01",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-3,\\ -17)$.",
+          "options": [
+            "$-3$",
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-17 - (-11)}{-3 - (-5)} = \\frac{-6}{2} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-17 - (-11), -3 - (-5)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v02",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-3,\\ -15)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$-2$",
+            "$2$",
+            "$-4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-15 - (-11)}{-3 - (-5)} = \\frac{-4}{2} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-15 - (-11), -3 - (-5)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v03",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-3,\\ -7)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$2$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-7 - (-11)}{-3 - (-5)} = \\frac{4}{2} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-7 - (-11), -3 - (-5)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v04",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-3,\\ -5)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$6$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-5 - (-11)}{-3 - (-5)} = \\frac{6}{2} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-5 - (-11), -3 - (-5)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v05",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-3,\\ -3)$.",
+          "options": [
+            "$4$",
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-3 - (-11)}{-3 - (-5)} = \\frac{8}{2} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-3 - (-11), -3 - (-5)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v06",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-2,\\ -20)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$-3$",
+            "$3$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-20 - (-11)}{-2 - (-5)} = \\frac{-9}{3} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-20 - (-11), -2 - (-5)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v07",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-2,\\ -17)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-17 - (-11)}{-2 - (-5)} = \\frac{-6}{3} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-17 - (-11), -2 - (-5)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v08",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-2,\\ -5)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-5 - (-11)}{-2 - (-5)} = \\frac{6}{3} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-5 - (-11), -2 - (-5)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v09",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-2,\\ -2)$.",
+          "options": [
+            "$3$",
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-2 - (-11)}{-2 - (-5)} = \\frac{9}{3} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-2 - (-11), -2 - (-5)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v10",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-2,\\ 1)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$4$",
+            "$-4$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{1 - (-11)}{-2 - (-5)} = \\frac{12}{3} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(1 - (-11), -2 - (-5)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v11",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-1,\\ -23)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$-12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-23 - (-11)}{-1 - (-5)} = \\frac{-12}{4} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-23 - (-11), -1 - (-5)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v12",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-1,\\ -19)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-8$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-19 - (-11)}{-1 - (-5)} = \\frac{-8}{4} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-19 - (-11), -1 - (-5)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v13",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-1,\\ -3)$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-3 - (-11)}{-1 - (-5)} = \\frac{8}{4} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-3 - (-11), -1 - (-5)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v14",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-1,\\ 1)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{1 - (-11)}{-1 - (-5)} = \\frac{12}{4} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(1 - (-11), -1 - (-5)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v15",
+          "statement": "Find the slope of the line through $(-5,\\ -11)$ and $(-1,\\ 5)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$4$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{5 - (-11)}{-1 - (-5)} = \\frac{16}{4} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(5 - (-11), -1 - (-5)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v16",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-2,\\ -15)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-6$",
+            "$-3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-15 - (-9)}{-2 - (-4)} = \\frac{-6}{2} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-15 - (-9), -2 - (-4)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v17",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-2,\\ -13)$.",
+          "options": [
+            "$-2$",
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-13 - (-9)}{-2 - (-4)} = \\frac{-4}{2} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-13 - (-9), -2 - (-4)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v18",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-2,\\ -5)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-5 - (-9)}{-2 - (-4)} = \\frac{4}{2} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-5 - (-9), -2 - (-4)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v19",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-2,\\ -3)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-3 - (-9)}{-2 - (-4)} = \\frac{6}{2} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-3 - (-9), -2 - (-4)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v20",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-2,\\ -1)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$8$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-1 - (-9)}{-2 - (-4)} = \\frac{8}{2} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-1 - (-9), -2 - (-4)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v21",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-1,\\ -18)$.",
+          "options": [
+            "$-3$",
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-18 - (-9)}{-1 - (-4)} = \\frac{-9}{3} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-18 - (-9), -1 - (-4)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v22",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-1,\\ -15)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$-2$",
+            "$2$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-15 - (-9)}{-1 - (-4)} = \\frac{-6}{3} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-15 - (-9), -1 - (-4)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v23",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-1,\\ -3)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$2$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-3 - (-9)}{-1 - (-4)} = \\frac{6}{3} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-3 - (-9), -1 - (-4)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v24",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-1,\\ 0)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$9$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{0 - (-9)}{-1 - (-4)} = \\frac{9}{3} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(0 - (-9), -1 - (-4)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v25",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(-1,\\ 3)$.",
+          "options": [
+            "$4$",
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{3 - (-9)}{-1 - (-4)} = \\frac{12}{3} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(3 - (-9), -1 - (-4)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v26",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(0,\\ -21)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$-3$",
+            "$3$",
+            "$-12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-21 - (-9)}{0 - (-4)} = \\frac{-12}{4} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-21 - (-9), 0 - (-4)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v27",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(0,\\ -17)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$-8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-17 - (-9)}{0 - (-4)} = \\frac{-8}{4} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-17 - (-9), 0 - (-4)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v28",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(0,\\ -1)$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$8$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-1 - (-9)}{0 - (-4)} = \\frac{8}{4} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-1 - (-9), 0 - (-4)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v29",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(0,\\ 3)$.",
+          "options": [
+            "$3$",
+            "$\\frac{1}{3}$",
+            "$-3$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{3 - (-9)}{0 - (-4)} = \\frac{12}{4} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(3 - (-9), 0 - (-4)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v30",
+          "statement": "Find the slope of the line through $(-4,\\ -9)$ and $(0,\\ 7)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$4$",
+            "$-4$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{7 - (-9)}{0 - (-4)} = \\frac{16}{4} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(7 - (-9), 0 - (-4)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v31",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(-1,\\ -13)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{-13 - (-7)}{-1 - (-3)} = \\frac{-6}{2} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-13 - (-7), -1 - (-3)), -3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v32",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(-1,\\ -11)$.",
+          "options": [
+            "$-\\frac{1}{2}$",
+            "$2$",
+            "$-4$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-11 - (-7)}{-1 - (-3)} = \\frac{-4}{2} = -2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-11 - (-7), -1 - (-3)), -2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v33",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(-1,\\ -3)$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Slope is rise over run: $\\frac{-3 - (-7)}{-1 - (-3)} = \\frac{4}{2} = 2$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-3 - (-7), -1 - (-3)), 2)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v34",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(-1,\\ -1)$.",
+          "options": [
+            "$\\frac{1}{3}$",
+            "$3$",
+            "$-3$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Slope is rise over run: $\\frac{-1 - (-7)}{-1 - (-3)} = \\frac{6}{2} = 3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-1 - (-7), -1 - (-3)), 3)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v35",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(-1,\\ 1)$.",
+          "options": [
+            "$\\frac{1}{4}$",
+            "$-4$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Slope is rise over run: $\\frac{1 - (-7)}{-1 - (-3)} = \\frac{8}{2} = 4$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(1 - (-7), -1 - (-3)), 4)"
+          ]
+        },
+        {
+          "id": "im1-slope2-v36",
+          "statement": "Find the slope of the line through $(-3,\\ -7)$ and $(0,\\ -16)$.",
+          "options": [
+            "$-\\frac{1}{3}$",
+            "$3$",
+            "$-9$",
+            "$-3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Slope is rise over run: $\\frac{-16 - (-7)}{0 - (-3)} = \\frac{-9}{3} = -3$. Putting the $x$-difference on top inverts the slope, which describes a completely different line.",
+          "check": [
+            "Eq(Rational(-16 - (-7), 0 - (-3)), -3)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "im1-centre-spread",
       "title": "Mean, median and range",
       "level": 1,
@@ -34233,6 +35367,2202 @@
           "explanation": "Here firms advertise most in the seasons when demand is already high, so a third factor plausibly moves both variables at once. A strong, correctly computed correlation on a large sample still cannot establish causation on its own — only a controlled experiment can.",
           "check": [
             "Eq(1, 1)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "im1-missing-value-mean",
+      "title": "A missing value from the mean",
+      "level": 2,
+      "unit": "data-and-statistics",
+      "skill": "Turn the mean into a total, then subtract what you already have.",
+      "variants": [
+        {
+          "id": "im1-mvm-v01",
+          "statement": "Four numbers have mean $4$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$1$",
+            "$4$",
+            "$16$",
+            "$-11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $4$ over four numbers means the TOTAL is $4 \\times 4 = 16$. The three given add to $15$, so the fourth is $16 - 15 = 1$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 1, 4), 4)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v02",
+          "statement": "Four numbers have mean $5$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$5$",
+            "$4$",
+            "$20$",
+            "$-11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $5$ over four numbers means the TOTAL is $4 \\times 5 = 20$. The three given add to $16$, so the fourth is $20 - 16 = 4$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 4, 4), 5)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v03",
+          "statement": "Four numbers have mean $5$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$5$",
+            "$20$",
+            "$2$",
+            "$-13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $5$ over four numbers means the TOTAL is $4 \\times 5 = 20$. The three given add to $18$, so the fourth is $20 - 18 = 2$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 2, 4), 5)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v04",
+          "statement": "Four numbers have mean $5$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$5$",
+            "$20$",
+            "$-12$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $5$ over four numbers means the TOTAL is $4 \\times 5 = 20$. The three given add to $17$, so the fourth is $20 - 17 = 3$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 3, 4), 5)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v05",
+          "statement": "Four numbers have mean $6$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$6$",
+            "$24$",
+            "$-10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $6$ over four numbers means the TOTAL is $4 \\times 6 = 24$. The three given add to $16$, so the fourth is $24 - 16 = 8$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 8, 4), 6)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v06",
+          "statement": "Four numbers have mean $6$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$6$",
+            "$7$",
+            "$24$",
+            "$-11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $6$ over four numbers means the TOTAL is $4 \\times 6 = 24$. The three given add to $17$, so the fourth is $24 - 17 = 7$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 7, 4), 6)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v07",
+          "statement": "Four numbers have mean $6$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$6$",
+            "$24$",
+            "$4$",
+            "$-14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $6$ over four numbers means the TOTAL is $4 \\times 6 = 24$. The three given add to $20$, so the fourth is $24 - 20 = 4$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 4, 4), 6)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v08",
+          "statement": "Four numbers have mean $6$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$6$",
+            "$24$",
+            "$-9$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $6$ over four numbers means the TOTAL is $4 \\times 6 = 24$. The three given add to $15$, so the fourth is $24 - 15 = 9$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 9, 4), 6)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v09",
+          "statement": "Four numbers have mean $6$. Three of them are $2$, $8$ and $11$. Find the fourth.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$24$",
+            "$-15$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $6$ over four numbers means the TOTAL is $4 \\times 6 = 24$. The three given add to $21$, so the fourth is $24 - 21 = 3$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 8 + 11 + 3, 4), 6)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v10",
+          "statement": "Four numbers have mean $7$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$7$",
+            "$12$",
+            "$28$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $7$ over four numbers means the TOTAL is $4 \\times 7 = 28$. The three given add to $16$, so the fourth is $28 - 16 = 12$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 12, 4), 7)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v11",
+          "statement": "Four numbers have mean $7$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$7$",
+            "$28$",
+            "$10$",
+            "$-11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $7$ over four numbers means the TOTAL is $4 \\times 7 = 28$. The three given add to $18$, so the fourth is $28 - 18 = 10$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 10, 4), 7)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v12",
+          "statement": "Four numbers have mean $7$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$7$",
+            "$28$",
+            "$-10$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $7$ over four numbers means the TOTAL is $4 \\times 7 = 28$. The three given add to $17$, so the fourth is $28 - 17 = 11$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 11, 4), 7)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v13",
+          "statement": "Four numbers have mean $7$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$7$",
+            "$28$",
+            "$-13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $7$ over four numbers means the TOTAL is $4 \\times 7 = 28$. The three given add to $20$, so the fourth is $28 - 20 = 8$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 8, 4), 7)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v14",
+          "statement": "Four numbers have mean $7$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$7$",
+            "$13$",
+            "$28$",
+            "$-8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $7$ over four numbers means the TOTAL is $4 \\times 7 = 28$. The three given add to $15$, so the fourth is $28 - 15 = 13$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 13, 4), 7)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v15",
+          "statement": "Four numbers have mean $8$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$32$",
+            "$16$",
+            "$-8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $16$, so the fourth is $32 - 16 = 16$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 16, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v16",
+          "statement": "Four numbers have mean $8$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$32$",
+            "$-10$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $18$, so the fourth is $32 - 18 = 14$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 14, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v17",
+          "statement": "Four numbers have mean $8$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$15$",
+            "$8$",
+            "$32$",
+            "$-9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $17$, so the fourth is $32 - 17 = 15$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 15, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v18",
+          "statement": "Four numbers have mean $8$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$12$",
+            "$32$",
+            "$-12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $20$, so the fourth is $32 - 20 = 12$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 12, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v19",
+          "statement": "Four numbers have mean $8$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$32$",
+            "$17$",
+            "$-7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $15$, so the fourth is $32 - 15 = 17$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 17, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v20",
+          "statement": "Four numbers have mean $8$. Three of them are $2$, $8$ and $11$. Find the fourth.",
+          "options": [
+            "$8$",
+            "$32$",
+            "$-13$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $8$ over four numbers means the TOTAL is $4 \\times 8 = 32$. The three given add to $21$, so the fourth is $32 - 21 = 11$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 8 + 11 + 11, 4), 8)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v21",
+          "statement": "Four numbers have mean $9$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$20$",
+            "$9$",
+            "$36$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $16$, so the fourth is $36 - 16 = 20$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 20, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v22",
+          "statement": "Four numbers have mean $9$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$9$",
+            "$18$",
+            "$36$",
+            "$-9$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $18$, so the fourth is $36 - 18 = 18$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 18, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v23",
+          "statement": "Four numbers have mean $9$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$9$",
+            "$36$",
+            "$19$",
+            "$-8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $17$, so the fourth is $36 - 17 = 19$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 19, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v24",
+          "statement": "Four numbers have mean $9$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$9$",
+            "$36$",
+            "$-11$",
+            "$16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $20$, so the fourth is $36 - 20 = 16$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 16, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v25",
+          "statement": "Four numbers have mean $9$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$21$",
+            "$9$",
+            "$36$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $15$, so the fourth is $36 - 15 = 21$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 21, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v26",
+          "statement": "Four numbers have mean $9$. Three of them are $2$, $8$ and $11$. Find the fourth.",
+          "options": [
+            "$9$",
+            "$15$",
+            "$36$",
+            "$-12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $9$ over four numbers means the TOTAL is $4 \\times 9 = 36$. The three given add to $21$, so the fourth is $36 - 21 = 15$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 8 + 11 + 15, 4), 9)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v27",
+          "statement": "Four numbers have mean $10$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$10$",
+            "$40$",
+            "$24$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $16$, so the fourth is $40 - 16 = 24$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 24, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v28",
+          "statement": "Four numbers have mean $10$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$10$",
+            "$40$",
+            "$-8$",
+            "$22$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $18$, so the fourth is $40 - 18 = 22$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 22, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v29",
+          "statement": "Four numbers have mean $10$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$23$",
+            "$10$",
+            "$40$",
+            "$-7$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $17$, so the fourth is $40 - 17 = 23$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 23, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v30",
+          "statement": "Four numbers have mean $10$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$40$",
+            "$-10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $20$, so the fourth is $40 - 20 = 20$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 20, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v31",
+          "statement": "Four numbers have mean $10$. Three of them are $5$, $5$ and $5$. Find the fourth.",
+          "options": [
+            "$10$",
+            "$40$",
+            "$25$",
+            "$-5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $15$, so the fourth is $40 - 15 = 25$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 25, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v32",
+          "statement": "Four numbers have mean $10$. Three of them are $2$, $8$ and $11$. Find the fourth.",
+          "options": [
+            "$10$",
+            "$40$",
+            "$-11$",
+            "$19$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $10$ over four numbers means the TOTAL is $4 \\times 10 = 40$. The three given add to $21$, so the fourth is $40 - 21 = 19$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 8 + 11 + 19, 4), 10)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v33",
+          "statement": "Four numbers have mean $11$. Three of them are $2$, $5$ and $9$. Find the fourth.",
+          "options": [
+            "$28$",
+            "$11$",
+            "$44$",
+            "$-5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A mean of $11$ over four numbers means the TOTAL is $4 \\times 11 = 44$. The three given add to $16$, so the fourth is $44 - 16 = 28$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(2 + 5 + 9 + 28, 4), 11)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v34",
+          "statement": "Four numbers have mean $11$. Three of them are $3$, $7$ and $8$. Find the fourth.",
+          "options": [
+            "$11$",
+            "$26$",
+            "$44$",
+            "$-7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A mean of $11$ over four numbers means the TOTAL is $4 \\times 11 = 44$. The three given add to $18$, so the fourth is $44 - 18 = 26$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(3 + 7 + 8 + 26, 4), 11)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v35",
+          "statement": "Four numbers have mean $11$. Three of them are $1$, $6$ and $10$. Find the fourth.",
+          "options": [
+            "$11$",
+            "$44$",
+            "$27$",
+            "$-6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A mean of $11$ over four numbers means the TOTAL is $4 \\times 11 = 44$. The three given add to $17$, so the fourth is $44 - 17 = 27$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(1 + 6 + 10 + 27, 4), 11)"
+          ]
+        },
+        {
+          "id": "im1-mvm-v36",
+          "statement": "Four numbers have mean $11$. Three of them are $4$, $4$ and $12$. Find the fourth.",
+          "options": [
+            "$11$",
+            "$44$",
+            "$-9$",
+            "$24$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A mean of $11$ over four numbers means the TOTAL is $4 \\times 11 = 44$. The three given add to $20$, so the fourth is $44 - 20 = 24$. Working with the total rather than the mean is what makes this one line.",
+          "check": [
+            "Eq(Rational(4 + 4 + 12 + 24, 4), 11)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "im1-shift-all-values",
+      "title": "Adding a constant to every value",
+      "level": 2,
+      "unit": "data-and-statistics",
+      "skill": "The centre moves with the shift; the spread does not move at all.",
+      "variants": [
+        {
+          "id": "im1-shift-v01",
+          "statement": "A data set has mean $12$ and range $6$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$14$",
+            "$12$",
+            "$8$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $12 + 2 = 14$, while the RANGE stays $6$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(12 + (2), 14)"
+          ]
+        },
+        {
+          "id": "im1-shift-v02",
+          "statement": "A data set has mean $12$ and range $6$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$6$",
+            "$14$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $6$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 6) + (2)), 6)"
+          ]
+        },
+        {
+          "id": "im1-shift-v03",
+          "statement": "A data set has mean $12$ and range $8$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$10$",
+            "$14$",
+            "$8$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $8$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 8) + (2)), 8)"
+          ]
+        },
+        {
+          "id": "im1-shift-v04",
+          "statement": "A data set has mean $12$ and range $9$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$12$",
+            "$11$",
+            "$10$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $12 + 2 = 14$, while the RANGE stays $9$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(12 + (2), 14)"
+          ]
+        },
+        {
+          "id": "im1-shift-v05",
+          "statement": "A data set has mean $12$ and range $9$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$9$",
+            "$11$",
+            "$14$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $9$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 9) + (2)), 9)"
+          ]
+        },
+        {
+          "id": "im1-shift-v06",
+          "statement": "A data set has mean $12$ and range $11$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$12$",
+            "$14$",
+            "$13$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $12 + 2 = 14$, while the RANGE stays $11$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(12 + (2), 14)"
+          ]
+        },
+        {
+          "id": "im1-shift-v07",
+          "statement": "A data set has mean $12$ and range $11$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$13$",
+            "$14$",
+            "$11$",
+            "$22$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $11$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 11) + (2)), 11)"
+          ]
+        },
+        {
+          "id": "im1-shift-v08",
+          "statement": "A data set has mean $15$ and range $6$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$15$",
+            "$8$",
+            "$13$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $15 + 2 = 17$, while the RANGE stays $6$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(15 + (2), 17)"
+          ]
+        },
+        {
+          "id": "im1-shift-v09",
+          "statement": "A data set has mean $15$ and range $6$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$6$",
+            "$8$",
+            "$17$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $6$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 6) + (2)), 6)"
+          ]
+        },
+        {
+          "id": "im1-shift-v10",
+          "statement": "A data set has mean $15$ and range $8$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$15$",
+            "$17$",
+            "$10$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $15 + 2 = 17$, while the RANGE stays $8$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(15 + (2), 17)"
+          ]
+        },
+        {
+          "id": "im1-shift-v11",
+          "statement": "A data set has mean $15$ and range $8$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$10$",
+            "$17$",
+            "$8$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $8$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 8) + (2)), 8)"
+          ]
+        },
+        {
+          "id": "im1-shift-v12",
+          "statement": "A data set has mean $15$ and range $9$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$15$",
+            "$11$",
+            "$13$",
+            "$17$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $15 + 2 = 17$, while the RANGE stays $9$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(15 + (2), 17)"
+          ]
+        },
+        {
+          "id": "im1-shift-v13",
+          "statement": "A data set has mean $15$ and range $9$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$9$",
+            "$11$",
+            "$17$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $9$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 9) + (2)), 9)"
+          ]
+        },
+        {
+          "id": "im1-shift-v14",
+          "statement": "A data set has mean $15$ and range $11$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$13$",
+            "$11$",
+            "$17$",
+            "$22$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $11$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 11) + (2)), 11)"
+          ]
+        },
+        {
+          "id": "im1-shift-v15",
+          "statement": "A data set has mean $20$ and range $6$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$20$",
+            "$8$",
+            "$22$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $20 + 2 = 22$, while the RANGE stays $6$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(20 + (2), 22)"
+          ]
+        },
+        {
+          "id": "im1-shift-v16",
+          "statement": "A data set has mean $20$ and range $6$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$22$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $6$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 6) + (2)), 6)"
+          ]
+        },
+        {
+          "id": "im1-shift-v17",
+          "statement": "A data set has mean $20$ and range $8$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$22$",
+            "$20$",
+            "$10$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $20 + 2 = 22$, while the RANGE stays $8$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(20 + (2), 22)"
+          ]
+        },
+        {
+          "id": "im1-shift-v18",
+          "statement": "A data set has mean $20$ and range $8$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$10$",
+            "$8$",
+            "$22$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $8$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 8) + (2)), 8)"
+          ]
+        },
+        {
+          "id": "im1-shift-v19",
+          "statement": "A data set has mean $20$ and range $9$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$20$",
+            "$11$",
+            "$22$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $20 + 2 = 22$, while the RANGE stays $9$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(20 + (2), 22)"
+          ]
+        },
+        {
+          "id": "im1-shift-v20",
+          "statement": "A data set has mean $20$ and range $9$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$11$",
+            "$22$",
+            "$18$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $9$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 9) + (2)), 9)"
+          ]
+        },
+        {
+          "id": "im1-shift-v21",
+          "statement": "A data set has mean $20$ and range $11$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$22$",
+            "$20$",
+            "$13$",
+            "$18$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $20 + 2 = 22$, while the RANGE stays $11$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(20 + (2), 22)"
+          ]
+        },
+        {
+          "id": "im1-shift-v22",
+          "statement": "A data set has mean $25$ and range $6$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$25$",
+            "$27$",
+            "$8$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $25 + 2 = 27$, while the RANGE stays $6$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(25 + (2), 27)"
+          ]
+        },
+        {
+          "id": "im1-shift-v23",
+          "statement": "A data set has mean $25$ and range $6$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$27$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $6$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 6) + (2)), 6)"
+          ]
+        },
+        {
+          "id": "im1-shift-v24",
+          "statement": "A data set has mean $25$ and range $8$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$25$",
+            "$10$",
+            "$23$",
+            "$27$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $25 + 2 = 27$, while the RANGE stays $8$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(25 + (2), 27)"
+          ]
+        },
+        {
+          "id": "im1-shift-v25",
+          "statement": "A data set has mean $25$ and range $8$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$10$",
+            "$27$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $8$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 8) + (2)), 8)"
+          ]
+        },
+        {
+          "id": "im1-shift-v26",
+          "statement": "A data set has mean $25$ and range $9$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$25$",
+            "$27$",
+            "$11$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $25 + 2 = 27$, while the RANGE stays $9$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(25 + (2), 27)"
+          ]
+        },
+        {
+          "id": "im1-shift-v27",
+          "statement": "A data set has mean $25$ and range $9$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$11$",
+            "$27$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $9$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 9) + (2)), 9)"
+          ]
+        },
+        {
+          "id": "im1-shift-v28",
+          "statement": "A data set has mean $25$ and range $11$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$25$",
+            "$13$",
+            "$23$",
+            "$27$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $25 + 2 = 27$, while the RANGE stays $11$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(25 + (2), 27)"
+          ]
+        },
+        {
+          "id": "im1-shift-v29",
+          "statement": "A data set has mean $25$ and range $11$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$11$",
+            "$13$",
+            "$27$",
+            "$22$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $11$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 11) + (2)), 11)"
+          ]
+        },
+        {
+          "id": "im1-shift-v30",
+          "statement": "A data set has mean $30$ and range $6$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$30$",
+            "$32$",
+            "$8$",
+            "$28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $30 + 2 = 32$, while the RANGE stays $6$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(30 + (2), 32)"
+          ]
+        },
+        {
+          "id": "im1-shift-v31",
+          "statement": "A data set has mean $30$ and range $6$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$32$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $6$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 6) + (2)), 6)"
+          ]
+        },
+        {
+          "id": "im1-shift-v32",
+          "statement": "A data set has mean $30$ and range $8$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$30$",
+            "$10$",
+            "$28$",
+            "$32$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $30 + 2 = 32$, while the RANGE stays $8$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(30 + (2), 32)"
+          ]
+        },
+        {
+          "id": "im1-shift-v33",
+          "statement": "A data set has mean $30$ and range $8$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$8$",
+            "$10$",
+            "$32$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $8$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 8) + (2)), 8)"
+          ]
+        },
+        {
+          "id": "im1-shift-v34",
+          "statement": "A data set has mean $30$ and range $9$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$30$",
+            "$32$",
+            "$11$",
+            "$28$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $30 + 2 = 32$, while the RANGE stays $9$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(30 + (2), 32)"
+          ]
+        },
+        {
+          "id": "im1-shift-v35",
+          "statement": "A data set has mean $30$ and range $9$. Every value is increased by $2$. What is the new range?",
+          "options": [
+            "$11$",
+            "$32$",
+            "$9$",
+            "$18$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Range is the largest value minus the smallest. Adding $2$ to both lifts them equally, so the difference is untouched: the range is still $9$. Only the centre moved.",
+          "check": [
+            "Eq((100 + (2)) - ((100 - 9) + (2)), 9)"
+          ]
+        },
+        {
+          "id": "im1-shift-v36",
+          "statement": "A data set has mean $30$ and range $11$. Every value is increased by $2$. What is the new mean?",
+          "options": [
+            "$30$",
+            "$13$",
+            "$28$",
+            "$32$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Adding the same amount to every value slides the whole data set along: the mean moves with it, $30 + 2 = 32$, while the RANGE stays $11$ because every gap between values is unchanged. Shift affects centre, not spread.",
+          "check": [
+            "Eq(30 + (2), 32)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "im1-arith-sum",
+      "title": "Summing an arithmetic sequence",
+      "level": 2,
+      "unit": "functions-and-sequences",
+      "skill": "Pair the ends: n/2 times (first + last).",
+      "variants": [
+        {
+          "id": "im1-asum-v01",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $2$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$25$",
+            "$9$",
+            "$45$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $5$th is $9$, and every pair sums to $10$. So the total is $\\frac{5}{2}(1 + 9) = 25$. The LAST term $9$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(1 + 9), 2), 25)"
+          ]
+        },
+        {
+          "id": "im1-asum-v02",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $2$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$11$",
+            "$36$",
+            "$66$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $6$th is $11$, and every pair sums to $12$. So the total is $\\frac{6}{2}(1 + 11) = 36$. The LAST term $11$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(1 + 11), 2), 36)"
+          ]
+        },
+        {
+          "id": "im1-asum-v03",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $2$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$15$",
+            "$120$",
+            "$64$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $8$th is $15$, and every pair sums to $16$. So the total is $\\frac{8}{2}(1 + 15) = 64$. The LAST term $15$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(1 + 15), 2), 64)"
+          ]
+        },
+        {
+          "id": "im1-asum-v04",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $2$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$19$",
+            "$190$",
+            "$21$",
+            "$100$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $10$th is $19$, and every pair sums to $20$. So the total is $\\frac{10}{2}(1 + 19) = 100$. The LAST term $19$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(1 + 19), 2), 100)"
+          ]
+        },
+        {
+          "id": "im1-asum-v05",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $2$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$144$",
+            "$23$",
+            "$276$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $12$th is $23$, and every pair sums to $24$. So the total is $\\frac{12}{2}(1 + 23) = 144$. The LAST term $23$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(1 + 23), 2), 144)"
+          ]
+        },
+        {
+          "id": "im1-asum-v06",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $3$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$13$",
+            "$35$",
+            "$65$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $5$th is $13$, and every pair sums to $14$. So the total is $\\frac{5}{2}(1 + 13) = 35$. The LAST term $13$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(1 + 13), 2), 35)"
+          ]
+        },
+        {
+          "id": "im1-asum-v07",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $3$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$16$",
+            "$96$",
+            "$51$",
+            "$19$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $6$th is $16$, and every pair sums to $17$. So the total is $\\frac{6}{2}(1 + 16) = 51$. The LAST term $16$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(1 + 16), 2), 51)"
+          ]
+        },
+        {
+          "id": "im1-asum-v08",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $3$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$22$",
+            "$176$",
+            "$25$",
+            "$92$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $8$th is $22$, and every pair sums to $23$. So the total is $\\frac{8}{2}(1 + 22) = 92$. The LAST term $22$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(1 + 22), 2), 92)"
+          ]
+        },
+        {
+          "id": "im1-asum-v09",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $3$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$145$",
+            "$28$",
+            "$280$",
+            "$31$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $10$th is $28$, and every pair sums to $29$. So the total is $\\frac{10}{2}(1 + 28) = 145$. The LAST term $28$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(1 + 28), 2), 145)"
+          ]
+        },
+        {
+          "id": "im1-asum-v10",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $3$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$34$",
+            "$210$",
+            "$408$",
+            "$37$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $12$th is $34$, and every pair sums to $35$. So the total is $\\frac{12}{2}(1 + 34) = 210$. The LAST term $34$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(1 + 34), 2), 210)"
+          ]
+        },
+        {
+          "id": "im1-asum-v11",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $4$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$17$",
+            "$85$",
+            "$45$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $5$th is $17$, and every pair sums to $18$. So the total is $\\frac{5}{2}(1 + 17) = 45$. The LAST term $17$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(1 + 17), 2), 45)"
+          ]
+        },
+        {
+          "id": "im1-asum-v12",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $4$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$21$",
+            "$126$",
+            "$25$",
+            "$66$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $6$th is $21$, and every pair sums to $22$. So the total is $\\frac{6}{2}(1 + 21) = 66$. The LAST term $21$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(1 + 21), 2), 66)"
+          ]
+        },
+        {
+          "id": "im1-asum-v13",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $4$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$120$",
+            "$29$",
+            "$232$",
+            "$33$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $8$th is $29$, and every pair sums to $30$. So the total is $\\frac{8}{2}(1 + 29) = 120$. The LAST term $29$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(1 + 29), 2), 120)"
+          ]
+        },
+        {
+          "id": "im1-asum-v14",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $4$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$37$",
+            "$190$",
+            "$370$",
+            "$41$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $10$th is $37$, and every pair sums to $38$. So the total is $\\frac{10}{2}(1 + 37) = 190$. The LAST term $37$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(1 + 37), 2), 190)"
+          ]
+        },
+        {
+          "id": "im1-asum-v15",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $4$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$45$",
+            "$540$",
+            "$276$",
+            "$49$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $12$th is $45$, and every pair sums to $46$. So the total is $\\frac{12}{2}(1 + 45) = 276$. The LAST term $45$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(1 + 45), 2), 276)"
+          ]
+        },
+        {
+          "id": "im1-asum-v16",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $5$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$21$",
+            "$105$",
+            "$26$",
+            "$55$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $5$th is $21$, and every pair sums to $22$. So the total is $\\frac{5}{2}(1 + 21) = 55$. The LAST term $21$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(1 + 21), 2), 55)"
+          ]
+        },
+        {
+          "id": "im1-asum-v17",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $5$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$81$",
+            "$26$",
+            "$156$",
+            "$31$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $6$th is $26$, and every pair sums to $27$. So the total is $\\frac{6}{2}(1 + 26) = 81$. The LAST term $26$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(1 + 26), 2), 81)"
+          ]
+        },
+        {
+          "id": "im1-asum-v18",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $5$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$36$",
+            "$148$",
+            "$288$",
+            "$41$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $8$th is $36$, and every pair sums to $37$. So the total is $\\frac{8}{2}(1 + 36) = 148$. The LAST term $36$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(1 + 36), 2), 148)"
+          ]
+        },
+        {
+          "id": "im1-asum-v19",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $5$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$46$",
+            "$460$",
+            "$235$",
+            "$51$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $10$th is $46$, and every pair sums to $47$. So the total is $\\frac{10}{2}(1 + 46) = 235$. The LAST term $46$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(1 + 46), 2), 235)"
+          ]
+        },
+        {
+          "id": "im1-asum-v20",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $5$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$56$",
+            "$672$",
+            "$61$",
+            "$342$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $12$th is $56$, and every pair sums to $57$. So the total is $\\frac{12}{2}(1 + 56) = 342$. The LAST term $56$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(1 + 56), 2), 342)"
+          ]
+        },
+        {
+          "id": "im1-asum-v21",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $6$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$65$",
+            "$25$",
+            "$125$",
+            "$31$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $5$th is $25$, and every pair sums to $26$. So the total is $\\frac{5}{2}(1 + 25) = 65$. The LAST term $25$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(1 + 25), 2), 65)"
+          ]
+        },
+        {
+          "id": "im1-asum-v22",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $6$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$31$",
+            "$96$",
+            "$186$",
+            "$37$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $1$, the $6$th is $31$, and every pair sums to $32$. So the total is $\\frac{6}{2}(1 + 31) = 96$. The LAST term $31$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(1 + 31), 2), 96)"
+          ]
+        },
+        {
+          "id": "im1-asum-v23",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $6$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$43$",
+            "$344$",
+            "$176$",
+            "$49$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $1$, the $8$th is $43$, and every pair sums to $44$. So the total is $\\frac{8}{2}(1 + 43) = 176$. The LAST term $43$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(1 + 43), 2), 176)"
+          ]
+        },
+        {
+          "id": "im1-asum-v24",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $6$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$55$",
+            "$550$",
+            "$61$",
+            "$280$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $1$, the $10$th is $55$, and every pair sums to $56$. So the total is $\\frac{10}{2}(1 + 55) = 280$. The LAST term $55$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(1 + 55), 2), 280)"
+          ]
+        },
+        {
+          "id": "im1-asum-v25",
+          "statement": "An arithmetic sequence starts at $1$ and goes up by $6$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$408$",
+            "$67$",
+            "$804$",
+            "$73$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $1$, the $12$th is $67$, and every pair sums to $68$. So the total is $\\frac{12}{2}(1 + 67) = 408$. The LAST term $67$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(1 + 67), 2), 408)"
+          ]
+        },
+        {
+          "id": "im1-asum-v26",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $2$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$10$",
+            "$30$",
+            "$50$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $2$, the $5$th is $10$, and every pair sums to $12$. So the total is $\\frac{5}{2}(2 + 10) = 30$. The LAST term $10$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(2 + 10), 2), 30)"
+          ]
+        },
+        {
+          "id": "im1-asum-v27",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $2$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$12$",
+            "$72$",
+            "$42$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $2$, the $6$th is $12$, and every pair sums to $14$. So the total is $\\frac{6}{2}(2 + 12) = 42$. The LAST term $12$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(2 + 12), 2), 42)"
+          ]
+        },
+        {
+          "id": "im1-asum-v28",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $2$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$16$",
+            "$128$",
+            "$18$",
+            "$72$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $2$, the $8$th is $16$, and every pair sums to $18$. So the total is $\\frac{8}{2}(2 + 16) = 72$. The LAST term $16$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(2 + 16), 2), 72)"
+          ]
+        },
+        {
+          "id": "im1-asum-v29",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $2$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$110$",
+            "$20$",
+            "$200$",
+            "$22$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $2$, the $10$th is $20$, and every pair sums to $22$. So the total is $\\frac{10}{2}(2 + 20) = 110$. The LAST term $20$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(2 + 20), 2), 110)"
+          ]
+        },
+        {
+          "id": "im1-asum-v30",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $2$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$24$",
+            "$156$",
+            "$288$",
+            "$26$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $2$, the $12$th is $24$, and every pair sums to $26$. So the total is $\\frac{12}{2}(2 + 24) = 156$. The LAST term $24$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(2 + 24), 2), 156)"
+          ]
+        },
+        {
+          "id": "im1-asum-v31",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $3$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$14$",
+            "$70$",
+            "$40$",
+            "$17$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $2$, the $5$th is $14$, and every pair sums to $16$. So the total is $\\frac{5}{2}(2 + 14) = 40$. The LAST term $14$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(2 + 14), 2), 40)"
+          ]
+        },
+        {
+          "id": "im1-asum-v32",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $3$ each time. Find the sum of its first $6$ terms.",
+          "options": [
+            "$17$",
+            "$102$",
+            "$20$",
+            "$57$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $2$, the $6$th is $17$, and every pair sums to $19$. So the total is $\\frac{6}{2}(2 + 17) = 57$. The LAST term $17$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(6*(2 + 17), 2), 57)"
+          ]
+        },
+        {
+          "id": "im1-asum-v33",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $3$ each time. Find the sum of its first $8$ terms.",
+          "options": [
+            "$100$",
+            "$23$",
+            "$184$",
+            "$26$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pair the ends: the first term is $2$, the $8$th is $23$, and every pair sums to $25$. So the total is $\\frac{8}{2}(2 + 23) = 100$. The LAST term $23$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(8*(2 + 23), 2), 100)"
+          ]
+        },
+        {
+          "id": "im1-asum-v34",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $3$ each time. Find the sum of its first $10$ terms.",
+          "options": [
+            "$29$",
+            "$155$",
+            "$290$",
+            "$32$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pair the ends: the first term is $2$, the $10$th is $29$, and every pair sums to $31$. So the total is $\\frac{10}{2}(2 + 29) = 155$. The LAST term $29$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(10*(2 + 29), 2), 155)"
+          ]
+        },
+        {
+          "id": "im1-asum-v35",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $3$ each time. Find the sum of its first $12$ terms.",
+          "options": [
+            "$35$",
+            "$420$",
+            "$222$",
+            "$38$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Pair the ends: the first term is $2$, the $12$th is $35$, and every pair sums to $37$. So the total is $\\frac{12}{2}(2 + 35) = 222$. The LAST term $35$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(12*(2 + 35), 2), 222)"
+          ]
+        },
+        {
+          "id": "im1-asum-v36",
+          "statement": "An arithmetic sequence starts at $2$ and goes up by $4$ each time. Find the sum of its first $5$ terms.",
+          "options": [
+            "$18$",
+            "$90$",
+            "$22$",
+            "$50$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Pair the ends: the first term is $2$, the $5$th is $18$, and every pair sums to $20$. So the total is $\\frac{5}{2}(2 + 18) = 50$. The LAST term $18$ is a different question from the total.",
+          "check": [
+            "Eq(Rational(5*(2 + 18), 2), 50)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "im1-geo-ratio",
+      "title": "Finding the common ratio",
+      "level": 2,
+      "unit": "functions-and-sequences",
+      "skill": "Dividing two terms gives a POWER of r — take the root.",
+      "variants": [
+        {
+          "id": "im1-gr-v01",
+          "statement": "A geometric sequence starts at $1$ and its $3$rd term is $4$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$3$",
+            "$\\frac{3}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $1 \\cdot r^{2} = 4$ gives $r^{2} = 4$ and $r = 2$. Dividing the two terms without taking the root gives $4$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(1*2**2, 4)"
+          ]
+        },
+        {
+          "id": "im1-gr-v02",
+          "statement": "A geometric sequence starts at $1$ and its $4$th term is $8$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$3$",
+            "$\\frac{7}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $1 \\cdot r^{3} = 8$ gives $r^{3} = 8$ and $r = 2$. Dividing the two terms without taking the root gives $8$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(1*2**3, 8)"
+          ]
+        },
+        {
+          "id": "im1-gr-v03",
+          "statement": "A geometric sequence starts at $1$ and its $5$th term is $16$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$3$",
+            "$2$",
+            "$\\frac{15}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $1 \\cdot r^{4} = 16$ gives $r^{4} = 16$ and $r = 2$. Dividing the two terms without taking the root gives $16$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(1*2**4, 16)"
+          ]
+        },
+        {
+          "id": "im1-gr-v04",
+          "statement": "A geometric sequence starts at $1$ and its $4$th term is $27$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$27$",
+            "$4$",
+            "$\\frac{26}{3}$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $1 \\cdot r^{3} = 27$ gives $r^{3} = 27$ and $r = 3$. Dividing the two terms without taking the root gives $27$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(1*3**3, 27)"
+          ]
+        },
+        {
+          "id": "im1-gr-v05",
+          "statement": "A geometric sequence starts at $1$ and its $5$th term is $81$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$3$",
+            "$81$",
+            "$4$",
+            "$20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $1 \\cdot r^{4} = 81$ gives $r^{4} = 81$ and $r = 3$. Dividing the two terms without taking the root gives $81$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(1*3**4, 81)"
+          ]
+        },
+        {
+          "id": "im1-gr-v06",
+          "statement": "A geometric sequence starts at $1$ and its $3$rd term is $16$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$4$",
+            "$5$",
+            "$\\frac{15}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $1 \\cdot r^{2} = 16$ gives $r^{2} = 16$ and $r = 4$. Dividing the two terms without taking the root gives $16$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(1*4**2, 16)"
+          ]
+        },
+        {
+          "id": "im1-gr-v07",
+          "statement": "A geometric sequence starts at $1$ and its $4$th term is $64$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$64$",
+            "$5$",
+            "$4$",
+            "$21$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $1 \\cdot r^{3} = 64$ gives $r^{3} = 64$ and $r = 4$. Dividing the two terms without taking the root gives $64$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(1*4**3, 64)"
+          ]
+        },
+        {
+          "id": "im1-gr-v08",
+          "statement": "A geometric sequence starts at $1$ and its $5$th term is $256$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$256$",
+            "$5$",
+            "$\\frac{255}{4}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $1 \\cdot r^{4} = 256$ gives $r^{4} = 256$ and $r = 4$. Dividing the two terms without taking the root gives $256$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(1*4**4, 256)"
+          ]
+        },
+        {
+          "id": "im1-gr-v09",
+          "statement": "A geometric sequence starts at $1$ and its $3$rd term is $25$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$5$",
+            "$25$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $1 \\cdot r^{2} = 25$ gives $r^{2} = 25$ and $r = 5$. Dividing the two terms without taking the root gives $25$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(1*5**2, 25)"
+          ]
+        },
+        {
+          "id": "im1-gr-v10",
+          "statement": "A geometric sequence starts at $1$ and its $4$th term is $125$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$125$",
+            "$5$",
+            "$6$",
+            "$\\frac{124}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $1 \\cdot r^{3} = 125$ gives $r^{3} = 125$ and $r = 5$. Dividing the two terms without taking the root gives $125$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(1*5**3, 125)"
+          ]
+        },
+        {
+          "id": "im1-gr-v11",
+          "statement": "A geometric sequence starts at $1$ and its $5$th term is $625$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$625$",
+            "$6$",
+            "$5$",
+            "$156$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $1 \\cdot r^{4} = 625$ gives $r^{4} = 625$ and $r = 5$. Dividing the two terms without taking the root gives $625$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(1*5**4, 625)"
+          ]
+        },
+        {
+          "id": "im1-gr-v12",
+          "statement": "A geometric sequence starts at $1$ and its $3$rd term is $36$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$36$",
+            "$7$",
+            "$\\frac{35}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $1 \\cdot r^{2} = 36$ gives $r^{2} = 36$ and $r = 6$. Dividing the two terms without taking the root gives $36$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(1*6**2, 36)"
+          ]
+        },
+        {
+          "id": "im1-gr-v13",
+          "statement": "A geometric sequence starts at $1$ and its $4$th term is $216$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$6$",
+            "$216$",
+            "$7$",
+            "$\\frac{215}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $1 \\cdot r^{3} = 216$ gives $r^{3} = 216$ and $r = 6$. Dividing the two terms without taking the root gives $216$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(1*6**3, 216)"
+          ]
+        },
+        {
+          "id": "im1-gr-v14",
+          "statement": "A geometric sequence starts at $1$ and its $5$th term is $1296$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$1296$",
+            "$6$",
+            "$7$",
+            "$\\frac{1295}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $1 \\cdot r^{4} = 1296$ gives $r^{4} = 1296$ and $r = 6$. Dividing the two terms without taking the root gives $1296$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(1*6**4, 1296)"
+          ]
+        },
+        {
+          "id": "im1-gr-v15",
+          "statement": "A geometric sequence starts at $2$ and its $4$th term is $16$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$8$",
+            "$3$",
+            "$2$",
+            "$\\frac{14}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $2 \\cdot r^{3} = 16$ gives $r^{3} = 8$ and $r = 2$. Dividing the two terms without taking the root gives $8$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(2*2**3, 16)"
+          ]
+        },
+        {
+          "id": "im1-gr-v16",
+          "statement": "A geometric sequence starts at $2$ and its $5$th term is $32$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$3$",
+            "$\\frac{15}{2}$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $2 \\cdot r^{4} = 32$ gives $r^{4} = 16$ and $r = 2$. Dividing the two terms without taking the root gives $16$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(2*2**4, 32)"
+          ]
+        },
+        {
+          "id": "im1-gr-v17",
+          "statement": "A geometric sequence starts at $2$ and its $3$rd term is $18$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$4$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $2 \\cdot r^{2} = 18$ gives $r^{2} = 9$ and $r = 3$. Dividing the two terms without taking the root gives $9$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(2*3**2, 18)"
+          ]
+        },
+        {
+          "id": "im1-gr-v18",
+          "statement": "A geometric sequence starts at $2$ and its $4$th term is $54$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$27$",
+            "$3$",
+            "$4$",
+            "$\\frac{52}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $2 \\cdot r^{3} = 54$ gives $r^{3} = 27$ and $r = 3$. Dividing the two terms without taking the root gives $27$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(2*3**3, 54)"
+          ]
+        },
+        {
+          "id": "im1-gr-v19",
+          "statement": "A geometric sequence starts at $2$ and its $5$th term is $162$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$81$",
+            "$4$",
+            "$3$",
+            "$40$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $2 \\cdot r^{4} = 162$ gives $r^{4} = 81$ and $r = 3$. Dividing the two terms without taking the root gives $81$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(2*3**4, 162)"
+          ]
+        },
+        {
+          "id": "im1-gr-v20",
+          "statement": "A geometric sequence starts at $2$ and its $3$rd term is $32$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$5$",
+            "$15$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $2 \\cdot r^{2} = 32$ gives $r^{2} = 16$ and $r = 4$. Dividing the two terms without taking the root gives $16$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(2*4**2, 32)"
+          ]
+        },
+        {
+          "id": "im1-gr-v21",
+          "statement": "A geometric sequence starts at $2$ and its $4$th term is $128$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$4$",
+            "$64$",
+            "$5$",
+            "$42$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $2 \\cdot r^{3} = 128$ gives $r^{3} = 64$ and $r = 4$. Dividing the two terms without taking the root gives $64$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(2*4**3, 128)"
+          ]
+        },
+        {
+          "id": "im1-gr-v22",
+          "statement": "A geometric sequence starts at $2$ and its $5$th term is $512$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$256$",
+            "$4$",
+            "$5$",
+            "$\\frac{255}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $2 \\cdot r^{4} = 512$ gives $r^{4} = 256$ and $r = 4$. Dividing the two terms without taking the root gives $256$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(2*4**4, 512)"
+          ]
+        },
+        {
+          "id": "im1-gr-v23",
+          "statement": "A geometric sequence starts at $2$ and its $3$rd term is $50$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$25$",
+            "$6$",
+            "$5$",
+            "$24$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $2 \\cdot r^{2} = 50$ gives $r^{2} = 25$ and $r = 5$. Dividing the two terms without taking the root gives $25$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(2*5**2, 50)"
+          ]
+        },
+        {
+          "id": "im1-gr-v24",
+          "statement": "A geometric sequence starts at $2$ and its $4$th term is $250$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$125$",
+            "$6$",
+            "$\\frac{248}{3}$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $2 \\cdot r^{3} = 250$ gives $r^{3} = 125$ and $r = 5$. Dividing the two terms without taking the root gives $125$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(2*5**3, 250)"
+          ]
+        },
+        {
+          "id": "im1-gr-v25",
+          "statement": "A geometric sequence starts at $2$ and its $5$th term is $1250$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$5$",
+            "$625$",
+            "$6$",
+            "$312$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $2 \\cdot r^{4} = 1250$ gives $r^{4} = 625$ and $r = 5$. Dividing the two terms without taking the root gives $625$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(2*5**4, 1250)"
+          ]
+        },
+        {
+          "id": "im1-gr-v26",
+          "statement": "A geometric sequence starts at $2$ and its $3$rd term is $72$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$36$",
+            "$6$",
+            "$7$",
+            "$35$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $2 \\cdot r^{2} = 72$ gives $r^{2} = 36$ and $r = 6$. Dividing the two terms without taking the root gives $36$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(2*6**2, 72)"
+          ]
+        },
+        {
+          "id": "im1-gr-v27",
+          "statement": "A geometric sequence starts at $2$ and its $4$th term is $432$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$216$",
+            "$7$",
+            "$6$",
+            "$\\frac{430}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $2 \\cdot r^{3} = 432$ gives $r^{3} = 216$ and $r = 6$. Dividing the two terms without taking the root gives $216$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(2*6**3, 432)"
+          ]
+        },
+        {
+          "id": "im1-gr-v28",
+          "statement": "A geometric sequence starts at $2$ and its $5$th term is $2592$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$1296$",
+            "$7$",
+            "$\\frac{1295}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $2 \\cdot r^{4} = 2592$ gives $r^{4} = 1296$ and $r = 6$. Dividing the two terms without taking the root gives $1296$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(2*6**4, 2592)"
+          ]
+        },
+        {
+          "id": "im1-gr-v29",
+          "statement": "A geometric sequence starts at $3$ and its $3$rd term is $12$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$3$",
+            "$\\frac{9}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $3 \\cdot r^{2} = 12$ gives $r^{2} = 4$ and $r = 2$. Dividing the two terms without taking the root gives $4$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(3*2**2, 12)"
+          ]
+        },
+        {
+          "id": "im1-gr-v30",
+          "statement": "A geometric sequence starts at $3$ and its $4$th term is $24$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$3$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $3 \\cdot r^{3} = 24$ gives $r^{3} = 8$ and $r = 2$. Dividing the two terms without taking the root gives $8$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(3*2**3, 24)"
+          ]
+        },
+        {
+          "id": "im1-gr-v31",
+          "statement": "A geometric sequence starts at $3$ and its $5$th term is $48$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$3$",
+            "$2$",
+            "$\\frac{45}{4}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $3 \\cdot r^{4} = 48$ gives $r^{4} = 16$ and $r = 2$. Dividing the two terms without taking the root gives $16$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(3*2**4, 48)"
+          ]
+        },
+        {
+          "id": "im1-gr-v32",
+          "statement": "A geometric sequence starts at $3$ and its $3$rd term is $27$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$9$",
+            "$4$",
+            "$12$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $3 \\cdot r^{2} = 27$ gives $r^{2} = 9$ and $r = 3$. Dividing the two terms without taking the root gives $9$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(3*3**2, 27)"
+          ]
+        },
+        {
+          "id": "im1-gr-v33",
+          "statement": "A geometric sequence starts at $3$ and its $4$th term is $81$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$3$",
+            "$27$",
+            "$4$",
+            "$26$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $3 \\cdot r^{3} = 81$ gives $r^{3} = 27$ and $r = 3$. Dividing the two terms without taking the root gives $27$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(3*3**3, 81)"
+          ]
+        },
+        {
+          "id": "im1-gr-v34",
+          "statement": "A geometric sequence starts at $3$ and its $5$th term is $243$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$81$",
+            "$3$",
+            "$4$",
+            "$60$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Each step multiplies by $r$, so after $4$ steps the start has been multiplied by $r^{4}$: $3 \\cdot r^{4} = 243$ gives $r^{4} = 81$ and $r = 3$. Dividing the two terms without taking the root gives $81$, which is $r^{4}$, not $r$.",
+          "check": [
+            "Eq(3*3**4, 243)"
+          ]
+        },
+        {
+          "id": "im1-gr-v35",
+          "statement": "A geometric sequence starts at $3$ and its $3$rd term is $48$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$16$",
+            "$5$",
+            "$4$",
+            "$\\frac{45}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Each step multiplies by $r$, so after $2$ steps the start has been multiplied by $r^{2}$: $3 \\cdot r^{2} = 48$ gives $r^{2} = 16$ and $r = 4$. Dividing the two terms without taking the root gives $16$, which is $r^{2}$, not $r$.",
+          "check": [
+            "Eq(3*4**2, 48)"
+          ]
+        },
+        {
+          "id": "im1-gr-v36",
+          "statement": "A geometric sequence starts at $3$ and its $4$th term is $192$. Find the common ratio, given that it is positive.",
+          "options": [
+            "$64$",
+            "$5$",
+            "$63$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Each step multiplies by $r$, so after $3$ steps the start has been multiplied by $r^{3}$: $3 \\cdot r^{3} = 192$ gives $r^{3} = 64$ and $r = 4$. Dividing the two terms without taking the root gives $64$, which is $r^{3}$, not $r$.",
+          "check": [
+            "Eq(3*4**3, 192)"
           ]
         }
       ]

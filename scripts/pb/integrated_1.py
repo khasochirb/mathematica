@@ -1590,6 +1590,189 @@ def _g_line_of_fit():
     return raws
 
 
+# ===========================================================================
+# Batch 2 — the forms that take every Integrated 1 unit to six collections.
+# ===========================================================================
+
+def _g_arith_sum():
+    raws = []
+    for a1 in range(1, 12):
+        for d in (2, 3, 4, 5, 6):
+            for n in (5, 6, 8, 10, 12):
+                total = n * (2 * a1 + (n - 1) * d) // 2
+                last = a1 + (n - 1) * d
+                raws.append({
+                    "statement": ("An arithmetic sequence starts at $%d$ and "
+                                  "goes up by $%d$ each time. Find the sum "
+                                  "of its first $%d$ terms."
+                                  % (a1, d, n)),
+                    "correct": total,
+                    "dvals": [last, n * last, a1 + n * d],
+                    "explanation": ("Pair the ends: the first term is $%d$, "
+                                    "the $%d$th is $%d$, and every pair "
+                                    "sums to $%d$. So the total is "
+                                    "$\\frac{%d}{2}(%d + %d) = %d$. The "
+                                    "LAST term $%d$ is a different question "
+                                    "from the total."
+                                    % (a1, n, last, a1 + last, n, a1, last,
+                                       total, last)),
+                    "check": ["Eq(Rational(%d*(%d + %d), 2), %d)"
+                              % (n, a1, last, total)],
+                })
+    return raws
+
+
+def _g_geo_ratio():
+    raws = []
+    for a1 in (1, 2, 3, 4, 5, 6, 7, 8):
+        for r in (2, 3, 4, 5, 6):
+            for n in (3, 4, 5):
+                term = a1 * r ** (n - 1)
+                raws.append({
+                    "statement": ("A geometric sequence starts at $%d$ and "
+                                  "its $%d$rd term is $%d$. Find the common "
+                                  "ratio, given that it is positive."
+                                  % (a1, n, term)) if n == 3 else
+                                 ("A geometric sequence starts at $%d$ and "
+                                  "its $%d$th term is $%d$. Find the common "
+                                  "ratio, given that it is positive."
+                                  % (a1, n, term)),
+                    "correct": r,
+                    "dvals": [Rational(term, a1), r + 1,
+                              Rational(term - a1, n - 1)],
+                    "explanation": ("Each step multiplies by $r$, so after "
+                                    "$%d$ steps the start has been "
+                                    "multiplied by $r^{%d}$: "
+                                    "$%d \\cdot r^{%d} = %d$ gives "
+                                    "$r^{%d} = %d$ and $r = %d$. Dividing "
+                                    "the two terms without taking the root "
+                                    "gives $%s$, which is $r^{%d}$, not $r$."
+                                    % (n - 1, n - 1, a1, n - 1, term,
+                                       n - 1, r ** (n - 1), r,
+                                       fmt(Rational(term, a1)), n - 1)),
+                    "check": ["Eq(%d*%d**%d, %d)" % (a1, r, n - 1, term)],
+                })
+    return raws
+
+
+def _g_im1_elimination():
+    raws = []
+    for x in range(-4, 6):
+        for y in range(-3, 6):
+            for a in (2, 3, 4):
+                c1, c2 = a * x + y, x - y
+                raws.append({
+                    "statement": ("Solve by elimination: $%dx + y = %d$ and "
+                                  "$x - y = %d$. Find $y$." % (a, c1, c2)),
+                    "correct": y,
+                    "dvals": [x, c1 + c2, x - y],
+                    "explanation": ("Adding the equations cancels $y$ and "
+                                    "gives $%dx = %d$, so $x = %d$. "
+                                    "Substituting into $x - y = %d$ gives "
+                                    "$y = %d$. Elimination finds one unknown "
+                                    "first — the second still has to be "
+                                    "recovered."
+                                    % (a + 1, c1 + c2, x, c2, y)),
+                    "check": ["Eq(%d*(%d) + (%d), %d)" % (a, x, y, c1),
+                              "Eq((%d) - (%d), %d)" % (x, y, c2)],
+                })
+    return raws
+
+
+def _g_im1_slope():
+    raws = []
+    for x1 in range(-5, 5):
+        for dx in (1, 2, 3, 4):
+            for m in (-3, -2, -1, 1, 2, 3, 4):
+                x2 = x1 + dx
+                y1 = 2 * x1 - 1
+                y2 = y1 + m * dx
+                raws.append({
+                    "statement": ("Find the slope of the line through "
+                                  "$(%d,\\ %d)$ and $(%d,\\ %d)$."
+                                  % (x1, y1, x2, y2)),
+                    "correct": m,
+                    "dvals": [Rational(dx, y2 - y1) if y2 != y1 else m + 1,
+                              -m, y2 - y1],
+                    "explanation": ("Slope is rise over run: "
+                                    "$\\frac{%d - (%d)}{%d - (%d)} = "
+                                    "\\frac{%d}{%d} = %d$. Putting the "
+                                    "$x$-difference on top inverts the "
+                                    "slope, which describes a completely "
+                                    "different line."
+                                    % (y2, y1, x2, x1, y2 - y1, dx, m)),
+                    "check": ["Eq(Rational(%d - (%d), %d - (%d)), %d)"
+                              % (y2, y1, x2, x1, m)],
+                })
+    return raws
+
+
+def _g_missing_value_mean():
+    raws = []
+    for mean in range(4, 16):
+        for base in ([2, 5, 9], [3, 7, 8], [1, 6, 10], [4, 4, 12],
+                     [5, 5, 5], [2, 8, 11]):
+            missing = mean * (len(base) + 1) - sum(base)
+            if missing <= 0:
+                continue
+            raws.append({
+                "statement": ("Four numbers have mean $%d$. Three of them "
+                              "are $%d$, $%d$ and $%d$. Find the fourth."
+                              % (mean, base[0], base[1], base[2])),
+                "correct": missing,
+                "dvals": [mean, mean * 4, mean - sum(base)],
+                "explanation": ("A mean of $%d$ over four numbers means the "
+                                "TOTAL is $4 \\times %d = %d$. The three "
+                                "given add to $%d$, so the fourth is "
+                                "$%d - %d = %d$. Working with the total "
+                                "rather than the mean is what makes this "
+                                "one line." % (mean, mean, mean * 4,
+                                               sum(base), mean * 4,
+                                               sum(base), missing)),
+                "check": ["Eq(Rational(%d + %d + %d + %d, 4), %d)"
+                          % (base[0], base[1], base[2], missing, mean)],
+            })
+    return raws
+
+
+def _g_shift_all_values():
+    raws = []
+    for c in (2, 3, 5, 7, 10, -2, -4, -6):
+        for mean in (12, 15, 20, 25, 30):
+            for rng in (6, 8, 9, 11):
+                raws.append({
+                    "statement": ("A data set has mean $%d$ and range $%d$. "
+                                  "Every value is increased by $%d$. What is "
+                                  "the new mean?" % (mean, rng, c)),
+                    "correct": mean + c,
+                    "dvals": [mean, rng + c, mean - c],
+                    "explanation": ("Adding the same amount to every value "
+                                    "slides the whole data set along: the "
+                                    "mean moves with it, $%d + %d = %d$, "
+                                    "while the RANGE stays $%d$ because "
+                                    "every gap between values is unchanged. "
+                                    "Shift affects centre, not spread."
+                                    % (mean, c, mean + c, rng)),
+                    "check": ["Eq(%d + (%d), %d)" % (mean, c, mean + c)],
+                })
+                raws.append({
+                    "statement": ("A data set has mean $%d$ and range $%d$. "
+                                  "Every value is increased by $%d$. What is "
+                                  "the new range?" % (mean, rng, c)),
+                    "correct": rng,
+                    "dvals": [rng + c, mean + c, rng * 2],
+                    "explanation": ("Range is the largest value minus the "
+                                    "smallest. Adding $%d$ to both lifts "
+                                    "them equally, so the difference is "
+                                    "untouched: the range is still $%d$. "
+                                    "Only the centre moved."
+                                    % (c, rng)),
+                    "check": ["Eq((100 + (%d)) - ((100 - %d) + (%d)), %d)"
+                              % (c, rng, c, rng)],
+                })
+    return raws
+
+
 def build():
     forms = _remapped_forms()
 
@@ -1652,6 +1835,9 @@ def build():
         form("im1-feasible-region", "Feasible regions and their corners", 2, U5,
              "A point qualifies only if EVERY inequality holds; corners come from boundary intersections.",
              mk_txt("im1-feas", _g_feasible())),
+        form("im1-elimination", "Solving by elimination", 1, U5,
+             "Opposite coefficients cancel when the equations are added.",
+             mk_num("im1-elim", _g_im1_elimination())),
     ]
 
     U6 = "exponential-functions"
@@ -1709,6 +1895,9 @@ def build():
         form("im1-classify-quad", "Classifying a quadrilateral by coordinates", 2, U8,
              "Slopes decide parallel and perpendicular; distances decide equal sides.",
              mk_txt("im1-quad", _g_classify_quad())),
+        form("im1-slope-two-points", "Slope from two points", 1, U8,
+             "Rise over run — the y-difference goes on top.",
+             mk_num("im1-slope2", _g_im1_slope())),
     ]
 
     U9 = "data-and-statistics"
@@ -1725,6 +1914,22 @@ def build():
         form("im1-line-of-fit", "Interpreting a line of fit", 2, U9,
              "Slope is change per unit; intercept is the prediction at zero; neither proves cause.",
              mk_txt("im1-lof", _g_line_of_fit())),
+        form("im1-missing-value-mean", "A missing value from the mean", 2, U9,
+             "Turn the mean into a total, then subtract what you already have.",
+             mk_num("im1-mvm", _g_missing_value_mean())),
+        form("im1-shift-all-values", "Adding a constant to every value", 2, U9,
+             "The centre moves with the shift; the spread does not move at all.",
+             mk_num("im1-shift", _g_shift_all_values())),
+    ]
+
+    U3 = "functions-and-sequences"
+    forms += [
+        form("im1-arith-sum", "Summing an arithmetic sequence", 2, U3,
+             "Pair the ends: n/2 times (first + last).",
+             mk_num("im1-asum", _g_arith_sum())),
+        form("im1-geo-ratio", "Finding the common ratio", 2, U3,
+             "Dividing two terms gives a POWER of r — take the root.",
+             mk_num("im1-gr", _g_geo_ratio())),
     ]
 
     return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,

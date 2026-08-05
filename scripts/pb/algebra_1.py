@@ -787,6 +787,218 @@ def _gen_words():
     return _mk12("A1-words", raws)
 
 
+# ---------------------------------------------------------------------------
+# batch 3: the forms that take every Algebra 1 unit to six collections
+# ---------------------------------------------------------------------------
+def _gen_range_from_domain():
+    raws = []
+    for a in (2, 3, 4, 5, -2, -3):
+        for b in (1, -4, 7, 0, -6, 5):
+            dom = [-2, 0, 1, 3]
+            outs = [a * x + b for x in dom]
+            hi, lo = max(outs), min(outs)
+            if hi == lo:
+                continue
+            raws.append({
+                "statement": ("$f(x) = %s$ has domain $\\{-2, 0, 1, 3\\}$. "
+                              "What is the LARGEST value in its range?"
+                              % _lin(a, b)),
+                "correct": hi,
+                "dvals": [lo, a * 3 + b if hi != a * 3 + b else b + 1,
+                          hi + a],
+                "explanation": ("Evaluate $f$ at each allowed input: "
+                                "$%s$. The range is that set of outputs, and "
+                                "the largest is $%d$. With a %s slope the "
+                                "largest OUTPUT comes from the %s input — "
+                                "which is why the biggest $x$ is not always "
+                                "the answer."
+                                % (", ".join(str(o) for o in outs), hi,
+                                   "positive" if a > 0 else "negative",
+                                   "largest" if a > 0 else "smallest")),
+                "check": ["Eq(Max(%s), %d)"
+                          % (", ".join(str(o) for o in outs), hi)],
+            })
+    return _mk12("A1-rng", raws)
+
+
+def _rz_range_from_domain(s):
+    # The constant is optional: _lin(a, 0) prints "2x" with nothing after it.
+    m = re.search(r"f\(x\) = (-?\d*)x(?: ([+-]) (\d+))?\$", s)
+    a = 1 if m.group(1) in ("", "+") else (-1 if m.group(1) == "-"
+                                           else int(m.group(1)))
+    b = 0 if m.group(3) is None else (int(m.group(3)) *
+                                      (1 if m.group(2) == "+" else -1))
+    return ("num", max(a * x + b for x in (-2, 0, 1, 3)))
+
+
+def _gen_elimination_a1():
+    raws = []
+    for x in range(-4, 6):
+        for y in range(-3, 6):
+            for a in (2, 3):
+                c1, c2 = a * x + y, x - y
+                raws.append({
+                    "statement": ("Solve by elimination: $%dx + y = %d$ and "
+                                  "$x - y = %d$. Find $x$."
+                                  % (a, c1, c2)),
+                    "correct": x,
+                    "dvals": [y, c1 - c2, x + y],
+                    "explanation": ("The $y$ terms are already opposites, so "
+                                    "ADD the two equations: "
+                                    "$%dx = %d$, giving $x = %d$. "
+                                    "Substituting back gives $y = %d$. "
+                                    "Elimination works here without any "
+                                    "rearranging — that is what makes it "
+                                    "faster than substitution on this pair."
+                                    % (a + 1, c1 + c2, x, y)),
+                    "check": ["Eq(%d*(%d) + (%d), %d)" % (a, x, y, c1),
+                              "Eq((%d) - (%d), %d)" % (x, y, c2)],
+                })
+    return _mk12("A1-elim", raws)
+
+
+def _rz_elimination_a1(s):
+    a, c1, c2 = [int(t) for t in
+                 re.search(r"\$(\d+)x \+ y = (-?\d+)\$ and \$x - y = "
+                            r"(-?\d+)\$", s).groups()]
+    return ("num", Rational(c1 + c2, a + 1))
+
+
+def _gen_factor_trinomial_a1():
+    raws = []
+    for p in range(-8, 9):
+        for q in range(-8, 9):
+            if p >= q or p == 0 or q == 0:
+                continue
+            b, c = p + q, p * q
+            raws.append({
+                "statement": ("Factor $%s$." % _quad(1, b, c)),
+                "copt": "$%s%s$" % (_xp(p), _xp(q)),
+                "dopts": ["$%s%s$" % (_xp(-p), _xp(-q)),
+                          "$%s%s$" % (_xp(p), _xp(-q)),
+                          "$%s%s$" % (_xp(-p), _xp(q))],
+                "explanation": ("Find two numbers multiplying to $%d$ and "
+                                "adding to $%d$: they are $%d$ and $%d$, so "
+                                "the factoring is $%s%s$. Expanding your "
+                                "answer is the free check — the middle term "
+                                "has to come back."
+                                % (c, b, p, q, _xp(p), _xp(q))),
+                "check": ["Eq(expand((x + (%d))*(x + (%d))),"
+                          " x**2 + (%d)*x + (%d))" % (p, q, b, c)],
+            })
+    return _mk12("A1-ftri", raws)
+
+
+def _rz_factor_trinomial_a1(s):
+    m = re.search(r"Factor \$x\^2 ([+-]) (\d+)x ([+-]) (\d+)\$", s)
+    if m:
+        b = int(m.group(2)) * (1 if m.group(1) == "+" else -1)
+        c = int(m.group(4)) * (1 if m.group(3) == "+" else -1)
+    else:
+        m = re.search(r"Factor \$x\^2 ([+-]) (\d+)\$", s)
+        b, c = 0, int(m.group(2)) * (1 if m.group(1) == "+" else -1)
+    disc = _isqrt(b * b - 4 * c)
+    p, q = (b - disc) // 2, (b + disc) // 2
+    return ("opt", "$%s%s$" % (_xp(p), _xp(q)))
+
+
+def _gen_distribute_monomial():
+    raws = []
+    for k in range(2, 9):
+        for a in range(2, 8):
+            for b in (-7, -3, 4, 6, 9):
+                raws.append({
+                    "statement": ("Expand $%dx(%s)$." % (k, _lin(a, b))),
+                    "copt": "$%dx^2%s$" % (k * a, _ctm2(k * b)),
+                    "dopts": ["$%dx^2%s$" % (k * a, _ctm2(b)),
+                              "$%dx%s$" % (k * a, _ctm2(k * b)),
+                              "$%dx^2%s$" % (a, _ctm2(k * b))],
+                    "explanation": ("The monomial multiplies EVERY term "
+                                    "inside: $%dx \\cdot %dx = %dx^2$ and "
+                                    "$%dx \\cdot (%d) = %dx$, giving "
+                                    "$%dx^2%s$. Distributing to only the "
+                                    "first term is the classic omission."
+                                    % (k, a, k * a, k, b, k * b, k * a,
+                                       _ctm2(k * b))),
+                    "check": ["Eq(expand(%d*x*(%d*x + (%d))),"
+                              " %d*x**2 + (%d)*x)" % (k, a, b, k * a, k * b)],
+                })
+    return _mk12("A1-mono", raws)
+
+
+def _rz_distribute_monomial(s):
+    m = re.search(r"Expand \$(\d+)x\((\d+)x ([+-]) (\d+)\)\$", s)
+    k, a = int(m.group(1)), int(m.group(2))
+    b = int(m.group(4)) * (1 if m.group(3) == "+" else -1)
+    return ("opt", "$%dx^2%s$" % (k * a, _ctm2(k * b)))
+
+
+def _lin(a, b):
+    """ax + b with clean signs, no '1x' and no '+ -5'."""
+    head = "x" if a == 1 else ("-x" if a == -1 else "%dx" % a)
+    if b == 0:
+        return head
+    return head + (" + %d" % b if b > 0 else " - %d" % (-b))
+
+
+def _quad(a, b, c):
+    """ax^2 + bx + c with clean signs, dropping zero terms."""
+    head = "x^2" if a == 1 else ("-x^2" if a == -1 else "%dx^2" % a)
+    out = head
+    if b:
+        out += (" + " if b > 0 else " - ") + ("x" if abs(b) == 1
+                                              else "%dx" % abs(b))
+    if c:
+        out += (" + " if c > 0 else " - ") + str(abs(c))
+    return out
+
+
+def _xp(p):
+    """(x + p) with the sign folded in."""
+    return "(x + %d)" % p if p > 0 else "(x - %d)" % (-p)
+
+
+def _ctm2(c):
+    """Signed trailing term ' + 5x' style constant: ' + 5' / ' - 5'."""
+    if c == 0:
+        return ""
+    return (" + %dx" % c) if c > 0 else (" - %dx" % (-c))
+
+
+_BATCH3_META = [
+    ("range-from-domain", "The range over a finite domain", 2, "functions",
+     "Evaluate at every allowed input; a negative slope flips which one wins.",
+     _gen_range_from_domain, _rz_range_from_domain),
+    ("elimination-solve", "Solving by elimination", 1, "systems-of-equations",
+     "Opposite coefficients cancel when you add the equations.",
+     _gen_elimination_a1, _rz_elimination_a1),
+    ("factor-trinomial", "Factoring x² + bx + c", 2,
+     "polynomials-and-factoring",
+     "Two numbers multiplying to c and adding to b.",
+     _gen_factor_trinomial_a1, _rz_factor_trinomial_a1),
+    ("distribute-monomial", "Distributing a monomial", 1,
+     "polynomials-and-factoring",
+     "The monomial multiplies every term inside the bracket.",
+     _gen_distribute_monomial, _rz_distribute_monomial),
+]
+
+
+def _batch3_forms():
+    return [{"id": fid, "title": title, "level": level, "unit": unit,
+             "skill": skill, "variants": gen()}
+            for fid, title, level, unit, skill, gen, _rz in _BATCH3_META]
+
+
+_NEW_FORMS_BATCH_1_AND_2 = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 3
+    return _NEW_FORMS_BATCH_1_AND_2() + _batch3_forms()
+
+
+RESOLVERS.update({fid: rz for fid, _t, _l, _u, _s, _g, rz in _BATCH3_META})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = _remapped_forms() + new_forms()

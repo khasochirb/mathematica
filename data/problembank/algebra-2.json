@@ -797,6 +797,199 @@
       ]
     },
     {
+      "id": "even-odd-a2",
+      "title": "Even, odd, or neither",
+      "level": 2,
+      "unit": "functions-and-transformations",
+      "skill": "Even: f(-x) = f(x). Odd: f(-x) = -f(x). Mixed powers: neither.",
+      "variants": [
+        {
+          "id": "A2-eo-v01",
+          "statement": "Is $f(x) = x^2 + 4$ even, odd, or neither?",
+          "options": [
+            "even",
+            "odd",
+            "neither even nor odd",
+            "both even and odd"
+          ],
+          "correctIndex": 0,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**2 + 4) - ((3)**2 + 4) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v02",
+          "statement": "Is $f(x) = x^3 - 2x$ even, odd, or neither?",
+          "options": [
+            "even",
+            "odd",
+            "neither even nor odd",
+            "both even and odd"
+          ],
+          "correctIndex": 1,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**3 - 2*(-3)) + ((3)**3 - 2*(3)) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v03",
+          "statement": "Is $f(x) = x^2 + x$ even, odd, or neither?",
+          "options": [
+            "even",
+            "odd",
+            "neither even nor odd",
+            "both even and odd"
+          ],
+          "correctIndex": 2,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**2 + (-3)) - ((3)**2 + (3)) != 0",
+            "((-3)**2 + (-3)) + ((3)**2 + (3)) != 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v04",
+          "statement": "Is $f(x) = 3x^4 - x^2$ even, odd, or neither?",
+          "options": [
+            "odd",
+            "neither even nor odd",
+            "both even and odd",
+            "even"
+          ],
+          "correctIndex": 3,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "(3*(-3)**4 - (-3)**2) - (3*(3)**4 - (3)**2) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v05",
+          "statement": "Is $f(x) = x^5 + 7x$ even, odd, or neither?",
+          "options": [
+            "odd",
+            "even",
+            "neither even nor odd",
+            "both even and odd"
+          ],
+          "correctIndex": 0,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**5 + 7*(-3)) + ((3)**5 + 7*(3)) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v06",
+          "statement": "Is $f(x) = x^3 + 5$ even, odd, or neither?",
+          "options": [
+            "even",
+            "neither even nor odd",
+            "odd",
+            "both even and odd"
+          ],
+          "correctIndex": 1,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**3 + 5) - ((3)**3 + 5) != 0",
+            "((-3)**3 + 5) + ((3)**3 + 5) != 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v07",
+          "statement": "Is $f(x) = 6 - 2x^2$ even, odd, or neither?",
+          "options": [
+            "odd",
+            "neither even nor odd",
+            "even",
+            "both even and odd"
+          ],
+          "correctIndex": 2,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "(6 - 2*(-3)**2) - (6 - 2*(3)**2) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v08",
+          "statement": "Is $f(x) = 4x^7 - x^3$ even, odd, or neither?",
+          "options": [
+            "even",
+            "neither even nor odd",
+            "both even and odd",
+            "odd"
+          ],
+          "correctIndex": 3,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "(4*(-3)**7 - (-3)**3) + (4*(3)**7 - (3)**3) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v09",
+          "statement": "Is $f(x) = x^4 + x$ even, odd, or neither?",
+          "options": [
+            "neither even nor odd",
+            "even",
+            "odd",
+            "both even and odd"
+          ],
+          "correctIndex": 0,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**4 + (-3)) - ((3)**4 + (3)) != 0",
+            "((-3)**4 + (-3)) + ((3)**4 + (3)) != 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v10",
+          "statement": "Is $f(x) = x^6 + 9$ even, odd, or neither?",
+          "options": [
+            "odd",
+            "even",
+            "neither even nor odd",
+            "both even and odd"
+          ],
+          "correctIndex": 1,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**6 + 9) - ((3)**6 + 9) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v11",
+          "statement": "Is $f(x) = 2x - x^5$ even, odd, or neither?",
+          "options": [
+            "even",
+            "neither even nor odd",
+            "odd",
+            "both even and odd"
+          ],
+          "correctIndex": 2,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "(2*(-3) - (-3)**5) + (2*(3) - (3)**5) == 0"
+          ]
+        },
+        {
+          "id": "A2-eo-v12",
+          "statement": "Is $f(x) = x^2 - 6x + 9$ even, odd, or neither?",
+          "options": [
+            "even",
+            "odd",
+            "both even and odd",
+            "neither even nor odd"
+          ],
+          "correctIndex": 3,
+          "explanation": "Test $f(-x)$ against $f(x)$ at a concrete input. Even means $f(-x) = f(x)$, a mirror in the $y$-axis; odd means $f(-x) = -f(x)$, a half-turn about the origin. A polynomial mixing even and odd powers has neither symmetry.",
+          "check": [
+            "((-3)**2 - 6*(-3) + 9) - ((3)**2 - 6*(3) + 9) != 0",
+            "((-3)**2 - 6*(-3) + 9) + ((3)**2 - 6*(3) + 9) != 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "inverse-of-linear",
       "title": "Evaluating a linear inverse",
       "level": 2,
@@ -2912,6 +3105,195 @@
       ]
     },
     {
+      "id": "discriminant-nature",
+      "title": "What the discriminant tells you",
+      "level": 2,
+      "unit": "quadratics-and-complex-numbers",
+      "skill": "The sign of b² - 4ac settles the roots without solving anything.",
+      "variants": [
+        {
+          "id": "A2-disc-v01",
+          "statement": "What does the discriminant say about the roots of $x^2 - 5 x + 6 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots — two complex ones",
+            "exactly three roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b^2 - 4ac = (-5)^2 - 4(1)(6) = 1$, which is positive, so the equation has two distinct real roots. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(-5)**2 - 4*(1)*(6) > 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v02",
+          "statement": "What does the discriminant say about the roots of $x^2 + 2 x + 5 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "one repeated real root",
+            "exactly three roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "$b^2 - 4ac = (2)^2 - 4(1)(5) = -16$, which is negative, so the equation has no real roots — two complex ones. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(2)**2 - 4*(1)*(5) < 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v03",
+          "statement": "What does the discriminant say about the roots of $x^2 - 4 x + 4 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "one repeated real root",
+            "exactly three roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "$b^2 - 4ac = (-4)^2 - 4(1)(4) = 0$, which is zero, so the equation has one repeated real root. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(-4)**2 - 4*(1)*(4) == 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v04",
+          "statement": "What does the discriminant say about the roots of $2x^2 + 3 x - 2 = 0$?",
+          "options": [
+            "one repeated real root",
+            "no real roots — two complex ones",
+            "exactly three roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "$b^2 - 4ac = (3)^2 - 4(2)(-2) = 25$, which is positive, so the equation has two distinct real roots. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(3)**2 - 4*(2)*(-2) > 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v05",
+          "statement": "What does the discriminant say about the roots of $x^2 + 6 x + 9 = 0$?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "exactly three roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b^2 - 4ac = (6)^2 - 4(1)(9) = 0$, which is zero, so the equation has one repeated real root. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(6)**2 - 4*(1)*(9) == 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v06",
+          "statement": "What does the discriminant say about the roots of $3x^2 + 1 x + 4 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "one repeated real root",
+            "exactly three roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "$b^2 - 4ac = (1)^2 - 4(3)(4) = -47$, which is negative, so the equation has no real roots — two complex ones. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(1)**2 - 4*(3)*(4) < 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v07",
+          "statement": "What does the discriminant say about the roots of $x^2 - 2 x + 5 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots — two complex ones",
+            "exactly three roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "$b^2 - 4ac = (-2)^2 - 4(1)(5) = -16$, which is negative, so the equation has no real roots — two complex ones. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(-2)**2 - 4*(1)*(5) < 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v08",
+          "statement": "What does the discriminant say about the roots of $2x^2 - 8 x + 8 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "exactly three roots",
+            "one repeated real root"
+          ],
+          "correctIndex": 3,
+          "explanation": "$b^2 - 4ac = (-8)^2 - 4(2)(8) = 0$, which is zero, so the equation has one repeated real root. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(-8)**2 - 4*(2)*(8) == 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v09",
+          "statement": "What does the discriminant say about the roots of $x^2 + 7 x + 12 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots — two complex ones",
+            "exactly three roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "$b^2 - 4ac = (7)^2 - 4(1)(12) = 1$, which is positive, so the equation has two distinct real roots. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(7)**2 - 4*(1)*(12) > 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v10",
+          "statement": "What does the discriminant say about the roots of $5x^2 + 2 x + 1 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "one repeated real root",
+            "exactly three roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "$b^2 - 4ac = (2)^2 - 4(5)(1) = -16$, which is negative, so the equation has no real roots — two complex ones. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(2)**2 - 4*(5)*(1) < 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v11",
+          "statement": "What does the discriminant say about the roots of $x^2 - 6 x + 9 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "one repeated real root",
+            "exactly three roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "$b^2 - 4ac = (-6)^2 - 4(1)(9) = 0$, which is zero, so the equation has one repeated real root. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(-6)**2 - 4*(1)*(9) == 0"
+          ]
+        },
+        {
+          "id": "A2-disc-v12",
+          "statement": "What does the discriminant say about the roots of $4x^2 + 4 x + 1 = 0$?",
+          "options": [
+            "two distinct real roots",
+            "no real roots — two complex ones",
+            "exactly three roots",
+            "one repeated real root"
+          ],
+          "correctIndex": 3,
+          "explanation": "$b^2 - 4ac = (4)^2 - 4(4)(1) = 0$, which is zero, so the equation has one repeated real root. The discriminant is the part under the root in the quadratic formula — its SIGN alone settles the question, without solving anything.",
+          "check": [
+            "(4)**2 - 4*(4)*(1) == 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "complex-roots",
       "title": "Reading β from complex roots",
       "level": 3,
@@ -3528,6 +3910,195 @@
             "(8)**2 - 4*(52) == -144",
             "sqrt(144)/2 == 6",
             "expand(((-4) + (6)*I)**2 + (8)*((-4) + (6)*I) + (52)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break-even",
+      "title": "Break-even point",
+      "level": 2,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "Cost equals revenue; each unit contributes price minus unit cost.",
+      "variants": [
+        {
+          "id": "A2-bev-v01",
+          "statement": "It costs $3$ to make each unit plus $20$ in fixed costs, and each unit sells for $5$. How many units must be sold to break even?",
+          "options": [
+            "$10$",
+            "$4$",
+            "$6$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Break-even means cost equals revenue: $3n + 20 = 5n$. Every unit contributes $5 - 3 = 2$ towards the fixed costs, so $n = \\frac{20}{2} = 10$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "3*10 + 20 == 5*10"
+          ]
+        },
+        {
+          "id": "A2-bev-v02",
+          "statement": "It costs $4$ to make each unit plus $30$ in fixed costs, and each unit sells for $6$. How many units must be sold to break even?",
+          "options": [
+            "$5$",
+            "$15$",
+            "$7$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Break-even means cost equals revenue: $4n + 30 = 6n$. Every unit contributes $6 - 4 = 2$ towards the fixed costs, so $n = \\frac{30}{2} = 15$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "4*15 + 30 == 6*15"
+          ]
+        },
+        {
+          "id": "A2-bev-v03",
+          "statement": "It costs $2$ to make each unit plus $18$ in fixed costs, and each unit sells for $5$. How many units must be sold to break even?",
+          "options": [
+            "$3$",
+            "$9$",
+            "$6$",
+            "$7$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Break-even means cost equals revenue: $2n + 18 = 5n$. Every unit contributes $5 - 2 = 3$ towards the fixed costs, so $n = \\frac{18}{3} = 6$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "2*6 + 18 == 5*6"
+          ]
+        },
+        {
+          "id": "A2-bev-v04",
+          "statement": "It costs $5$ to make each unit plus $40$ in fixed costs, and each unit sells for $9$. How many units must be sold to break even?",
+          "options": [
+            "$4$",
+            "$8$",
+            "$11$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Break-even means cost equals revenue: $5n + 40 = 9n$. Every unit contributes $9 - 5 = 4$ towards the fixed costs, so $n = \\frac{40}{4} = 10$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "5*10 + 40 == 9*10"
+          ]
+        },
+        {
+          "id": "A2-bev-v05",
+          "statement": "It costs $6$ to make each unit plus $25$ in fixed costs, and each unit sells for $11$. How many units must be sold to break even?",
+          "options": [
+            "$5$",
+            "$2$",
+            "$4$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Break-even means cost equals revenue: $6n + 25 = 11n$. Every unit contributes $11 - 6 = 5$ towards the fixed costs, so $n = \\frac{25}{5} = 5$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "6*5 + 25 == 11*5"
+          ]
+        },
+        {
+          "id": "A2-bev-v06",
+          "statement": "It costs $3$ to make each unit plus $45$ in fixed costs, and each unit sells for $8$. How many units must be sold to break even?",
+          "options": [
+            "$5$",
+            "$9$",
+            "$15$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Break-even means cost equals revenue: $3n + 45 = 8n$. Every unit contributes $8 - 3 = 5$ towards the fixed costs, so $n = \\frac{45}{5} = 9$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "3*9 + 45 == 8*9"
+          ]
+        },
+        {
+          "id": "A2-bev-v07",
+          "statement": "It costs $7$ to make each unit plus $60$ in fixed costs, and each unit sells for $12$. How many units must be sold to break even?",
+          "options": [
+            "$5$",
+            "$8$",
+            "$12$",
+            "$13$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Break-even means cost equals revenue: $7n + 60 = 12n$. Every unit contributes $12 - 7 = 5$ towards the fixed costs, so $n = \\frac{60}{5} = 12$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "7*12 + 60 == 12*12"
+          ]
+        },
+        {
+          "id": "A2-bev-v08",
+          "statement": "It costs $2$ to make each unit plus $36$ in fixed costs, and each unit sells for $8$. How many units must be sold to break even?",
+          "options": [
+            "$4$",
+            "$18$",
+            "$7$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Break-even means cost equals revenue: $2n + 36 = 8n$. Every unit contributes $8 - 2 = 6$ towards the fixed costs, so $n = \\frac{36}{6} = 6$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "2*6 + 36 == 8*6"
+          ]
+        },
+        {
+          "id": "A2-bev-v09",
+          "statement": "It costs $4$ to make each unit plus $55$ in fixed costs, and each unit sells for $9$. How many units must be sold to break even?",
+          "options": [
+            "$11$",
+            "$6$",
+            "$13$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Break-even means cost equals revenue: $4n + 55 = 9n$. Every unit contributes $9 - 4 = 5$ towards the fixed costs, so $n = \\frac{55}{5} = 11$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "4*11 + 55 == 9*11"
+          ]
+        },
+        {
+          "id": "A2-bev-v10",
+          "statement": "It costs $8$ to make each unit plus $42$ in fixed costs, and each unit sells for $14$. How many units must be sold to break even?",
+          "options": [
+            "$3$",
+            "$7$",
+            "$5$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Break-even means cost equals revenue: $8n + 42 = 14n$. Every unit contributes $14 - 8 = 6$ towards the fixed costs, so $n = \\frac{42}{6} = 7$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "8*7 + 42 == 14*7"
+          ]
+        },
+        {
+          "id": "A2-bev-v11",
+          "statement": "It costs $5$ to make each unit plus $33$ in fixed costs, and each unit sells for $8$. How many units must be sold to break even?",
+          "options": [
+            "$4$",
+            "$6$",
+            "$11$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Break-even means cost equals revenue: $5n + 33 = 8n$. Every unit contributes $8 - 5 = 3$ towards the fixed costs, so $n = \\frac{33}{3} = 11$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "5*11 + 33 == 8*11"
+          ]
+        },
+        {
+          "id": "A2-bev-v12",
+          "statement": "It costs $6$ to make each unit plus $28$ in fixed costs, and each unit sells for $10$. How many units must be sold to break even?",
+          "options": [
+            "$2$",
+            "$4$",
+            "$8$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Break-even means cost equals revenue: $6n + 28 = 10n$. Every unit contributes $10 - 6 = 4$ towards the fixed costs, so $n = \\frac{28}{4} = 7$. Dividing the fixed costs by the PRICE ignores the cost of making each unit.",
+          "check": [
+            "6*7 + 28 == 10*7"
           ]
         }
       ]
@@ -5117,6 +5688,195 @@
       ]
     },
     {
+      "id": "three-unknowns",
+      "title": "Three symmetric equations",
+      "level": 3,
+      "unit": "systems-and-nonlinear-models",
+      "skill": "Add all three: every unknown appears twice.",
+      "variants": [
+        {
+          "id": "A2-3un-v01",
+          "statement": "$x + y = 5$, $y + z = 8$ and $x + z = 7$. Find $x + y + z$.",
+          "options": [
+            "$10$",
+            "$20$",
+            "$5$",
+            "$11$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 5 + 8 + 7 = 20$, so $x + y + z = 10$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(5) + (8) + (7) == 2*10"
+          ]
+        },
+        {
+          "id": "A2-3un-v02",
+          "statement": "$x + y = 5$, $y + z = 10$ and $x + z = 7$. Find $x + y + z$.",
+          "options": [
+            "$22$",
+            "$11$",
+            "$5$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 5 + 10 + 7 = 22$, so $x + y + z = 11$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(5) + (10) + (7) == 2*11"
+          ]
+        },
+        {
+          "id": "A2-3un-v03",
+          "statement": "$x + y = 6$, $y + z = 10$ and $x + z = 10$. Find $x + y + z$.",
+          "options": [
+            "$26$",
+            "$6$",
+            "$13$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 6 + 10 + 10 = 26$, so $x + y + z = 13$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(6) + (10) + (10) == 2*13"
+          ]
+        },
+        {
+          "id": "A2-3un-v04",
+          "statement": "$x + y = 7$, $y + z = 6$ and $x + z = 9$. Find $x + y + z$.",
+          "options": [
+            "$22$",
+            "$7$",
+            "$12$",
+            "$11$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 7 + 6 + 9 = 22$, so $x + y + z = 11$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(7) + (6) + (9) == 2*11"
+          ]
+        },
+        {
+          "id": "A2-3un-v05",
+          "statement": "$x + y = 2$, $y + z = 10$ and $x + z = 10$. Find $x + y + z$.",
+          "options": [
+            "$11$",
+            "$22$",
+            "$2$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 2 + 10 + 10 = 22$, so $x + y + z = 11$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(2) + (10) + (10) == 2*11"
+          ]
+        },
+        {
+          "id": "A2-3un-v06",
+          "statement": "$x + y = 10$, $y + z = 8$ and $x + z = 6$. Find $x + y + z$.",
+          "options": [
+            "$24$",
+            "$12$",
+            "$10$",
+            "$13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 10 + 8 + 6 = 24$, so $x + y + z = 12$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(10) + (8) + (6) == 2*12"
+          ]
+        },
+        {
+          "id": "A2-3un-v07",
+          "statement": "$x + y = 8$, $y + z = 4$ and $x + z = 10$. Find $x + y + z$.",
+          "options": [
+            "$22$",
+            "$8$",
+            "$11$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 8 + 4 + 10 = 22$, so $x + y + z = 11$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(8) + (4) + (10) == 2*11"
+          ]
+        },
+        {
+          "id": "A2-3un-v08",
+          "statement": "$x + y = 10$, $y + z = 13$ and $x + z = 7$. Find $x + y + z$.",
+          "options": [
+            "$30$",
+            "$10$",
+            "$16$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 10 + 13 + 7 = 30$, so $x + y + z = 15$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(10) + (13) + (7) == 2*15"
+          ]
+        },
+        {
+          "id": "A2-3un-v09",
+          "statement": "$x + y = 10$, $y + z = 5$ and $x + z = 7$. Find $x + y + z$.",
+          "options": [
+            "$11$",
+            "$22$",
+            "$10$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 10 + 5 + 7 = 22$, so $x + y + z = 11$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(10) + (5) + (7) == 2*11"
+          ]
+        },
+        {
+          "id": "A2-3un-v10",
+          "statement": "$x + y = 8$, $y + z = 13$ and $x + z = 11$. Find $x + y + z$.",
+          "options": [
+            "$32$",
+            "$16$",
+            "$8$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 8 + 13 + 11 = 32$, so $x + y + z = 16$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(8) + (13) + (11) == 2*16"
+          ]
+        },
+        {
+          "id": "A2-3un-v11",
+          "statement": "$x + y = 11$, $y + z = 4$ and $x + z = 11$. Find $x + y + z$.",
+          "options": [
+            "$26$",
+            "$11$",
+            "$13$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 11 + 4 + 11 = 26$, so $x + y + z = 13$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(11) + (4) + (11) == 2*13"
+          ]
+        },
+        {
+          "id": "A2-3un-v12",
+          "statement": "$x + y = 8$, $y + z = 11$ and $x + z = 5$. Find $x + y + z$.",
+          "options": [
+            "$24$",
+            "$8$",
+            "$13$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Add all three equations: each unknown appears twice, giving $2(x + y + z) = 8 + 11 + 5 = 24$, so $x + y + z = 12$. Solving for $x$, $y$ and $z$ one at a time works too, but the symmetry gets there in one line.",
+          "check": [
+            "(8) + (11) + (5) == 2*12"
+          ]
+        }
+      ]
+    },
+    {
       "id": "degree-of-product",
       "title": "Degree and leading coefficient of a product",
       "level": 1,
@@ -6665,6 +7425,195 @@
       ]
     },
     {
+      "id": "vieta-a2",
+      "title": "Sum and product of the roots",
+      "level": 2,
+      "unit": "polynomial-functions",
+      "skill": "r + s = -b/a and rs = c/a — the minus belongs to the sum only.",
+      "variants": [
+        {
+          "id": "A2-viet-v01",
+          "statement": "The roots of $x^2 - 7 x + 12 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$7$",
+            "$-7$",
+            "$-12$",
+            "$-\\frac{1}{7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $7$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(7, 1) == Rational(7, 1)"
+          ]
+        },
+        {
+          "id": "A2-viet-v02",
+          "statement": "The roots of $2x^2 + 5 x + 3 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$\\frac{5}{2}$",
+            "$\\frac{3}{2}$",
+            "$-\\frac{3}{2}$",
+            "$\\frac{2}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $\\frac{3}{2}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(3, 2) == Rational(3, 2)"
+          ]
+        },
+        {
+          "id": "A2-viet-v03",
+          "statement": "The roots of $x^2 + 3 x - 10 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$3$",
+            "$10$",
+            "$-3$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $-3$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(-3, 1) == Rational(-3, 1)"
+          ]
+        },
+        {
+          "id": "A2-viet-v04",
+          "statement": "The roots of $3x^2 - 4 x + 1 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$-\\frac{4}{3}$",
+            "$-\\frac{1}{3}$",
+            "$-\\frac{3}{4}$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $\\frac{1}{3}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(1, 3) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "A2-viet-v05",
+          "statement": "The roots of $x^2 - 9 x + 20 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$9$",
+            "$-9$",
+            "$-20$",
+            "$-\\frac{1}{9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $9$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(9, 1) == Rational(9, 1)"
+          ]
+        },
+        {
+          "id": "A2-viet-v06",
+          "statement": "The roots of $5x^2 + 6 x + 1 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$\\frac{6}{5}$",
+            "$\\frac{1}{5}$",
+            "$-\\frac{1}{5}$",
+            "$\\frac{5}{6}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $\\frac{1}{5}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(1, 5) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "A2-viet-v07",
+          "statement": "The roots of $2x^2 - 11 x + 12 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$-\\frac{11}{2}$",
+            "$-6$",
+            "$\\frac{11}{2}$",
+            "$-\\frac{2}{11}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $\\frac{11}{2}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(11, 2) == Rational(11, 2)"
+          ]
+        },
+        {
+          "id": "A2-viet-v08",
+          "statement": "The roots of $x^2 + 8 x + 15 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$8$",
+            "$-15$",
+            "$\\frac{1}{8}$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $15$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(15, 1) == Rational(15, 1)"
+          ]
+        },
+        {
+          "id": "A2-viet-v09",
+          "statement": "The roots of $4x^2 + 3 x - 1 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$-\\frac{3}{4}$",
+            "$\\frac{3}{4}$",
+            "$\\frac{1}{4}$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $-\\frac{3}{4}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(-3, 4) == Rational(-3, 4)"
+          ]
+        },
+        {
+          "id": "A2-viet-v10",
+          "statement": "The roots of $x^2 - 5 x - 14 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$-5$",
+            "$-14$",
+            "$14$",
+            "$-\\frac{1}{5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $-14$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(-14, 1) == Rational(-14, 1)"
+          ]
+        },
+        {
+          "id": "A2-viet-v11",
+          "statement": "The roots of $3x^2 + 7 x + 2 = 0$ are $r$ and $s$. Find $r + s$.",
+          "options": [
+            "$\\frac{7}{3}$",
+            "$-\\frac{2}{3}$",
+            "$-\\frac{7}{3}$",
+            "$\\frac{3}{7}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $-\\frac{7}{3}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(-7, 3) == Rational(-7, 3)"
+          ]
+        },
+        {
+          "id": "A2-viet-v12",
+          "statement": "The roots of $2x^2 - 3 x - 5 = 0$ are $r$ and $s$. Find $rs$.",
+          "options": [
+            "$-\\frac{3}{2}$",
+            "$\\frac{5}{2}$",
+            "$-\\frac{2}{3}$",
+            "$-\\frac{5}{2}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expanding $a(x - r)(x - s)$ and matching coefficients gives $r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer is $-\\frac{5}{2}$. The minus sign belongs to the SUM only — the product takes $c$ over $a$ as written.",
+          "check": [
+            "Rational(-5, 2) == Rational(-5, 2)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "zeros-multiplicity",
       "title": "Zeros with multiplicity",
       "level": 2,
@@ -7824,6 +8773,195 @@
           "explanation": "Multiply under one radical: $\\sqrt{6} \\cdot \\sqrt{24} = \\sqrt{144} = 12$. Adding the radicands to get $\\sqrt{30}$ is the classic slip, and $144$ forgets the square root.",
           "check": [
             "sqrt(6)*sqrt(24) == 12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative-exponent",
+      "title": "Negative rational exponents",
+      "level": 2,
+      "unit": "radicals-and-rational-exponents",
+      "skill": "Denominator roots, numerator powers, minus sign reciprocates.",
+      "variants": [
+        {
+          "id": "A2-negx-v01",
+          "statement": "Evaluate $4^{-\\frac{1}{2}}$.",
+          "options": [
+            "$\\frac{1}{2}$",
+            "$2$",
+            "$-2$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Read the exponent in three parts. The denominator $2$ is the root: $\\sqrt[2]{4} = 2$. The numerator $1$ is the power: $2^{1} = 2$. The minus sign flips it: $\\frac{1}{2}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(4, 1)**(-Rational(1, 2)) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "A2-negx-v02",
+          "statement": "Evaluate $8^{-\\frac{1}{3}}$.",
+          "options": [
+            "$2$",
+            "$\\frac{1}{2}$",
+            "$-2$",
+            "$\\frac{1}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Read the exponent in three parts. The denominator $3$ is the root: $\\sqrt[3]{8} = 2$. The numerator $1$ is the power: $2^{1} = 2$. The minus sign flips it: $\\frac{1}{2}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(8, 1)**(-Rational(1, 3)) == Rational(1, 2)"
+          ]
+        },
+        {
+          "id": "A2-negx-v03",
+          "statement": "Evaluate $9^{-\\frac{1}{2}}$.",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Read the exponent in three parts. The denominator $2$ is the root: $\\sqrt[2]{9} = 3$. The numerator $1$ is the power: $3^{1} = 3$. The minus sign flips it: $\\frac{1}{3}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(9, 1)**(-Rational(1, 2)) == Rational(1, 3)"
+          ]
+        },
+        {
+          "id": "A2-negx-v04",
+          "statement": "Evaluate $27^{-\\frac{2}{3}}$.",
+          "options": [
+            "$9$",
+            "$-9$",
+            "$\\frac{1}{729}$",
+            "$\\frac{1}{9}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Read the exponent in three parts. The denominator $3$ is the root: $\\sqrt[3]{27} = 3$. The numerator $2$ is the power: $3^{2} = 9$. The minus sign flips it: $\\frac{1}{9}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(27, 1)**(-Rational(2, 3)) == Rational(1, 9)"
+          ]
+        },
+        {
+          "id": "A2-negx-v05",
+          "statement": "Evaluate $16^{-\\frac{3}{4}}$.",
+          "options": [
+            "$\\frac{1}{8}$",
+            "$8$",
+            "$-8$",
+            "$\\frac{1}{4096}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Read the exponent in three parts. The denominator $4$ is the root: $\\sqrt[4]{16} = 2$. The numerator $3$ is the power: $2^{3} = 8$. The minus sign flips it: $\\frac{1}{8}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(16, 1)**(-Rational(3, 4)) == Rational(1, 8)"
+          ]
+        },
+        {
+          "id": "A2-negx-v06",
+          "statement": "Evaluate $25^{-\\frac{1}{2}}$.",
+          "options": [
+            "$5$",
+            "$\\frac{1}{5}$",
+            "$-5$",
+            "$\\frac{1}{25}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Read the exponent in three parts. The denominator $2$ is the root: $\\sqrt[2]{25} = 5$. The numerator $1$ is the power: $5^{1} = 5$. The minus sign flips it: $\\frac{1}{5}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(25, 1)**(-Rational(1, 2)) == Rational(1, 5)"
+          ]
+        },
+        {
+          "id": "A2-negx-v07",
+          "statement": "Evaluate $32^{-\\frac{2}{5}}$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$\\frac{1}{4}$",
+            "$\\frac{1}{1024}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Read the exponent in three parts. The denominator $5$ is the root: $\\sqrt[5]{32} = 2$. The numerator $2$ is the power: $2^{2} = 4$. The minus sign flips it: $\\frac{1}{4}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(32, 1)**(-Rational(2, 5)) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "A2-negx-v08",
+          "statement": "Evaluate $64^{-\\frac{1}{3}}$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$\\frac{1}{64}$",
+            "$\\frac{1}{4}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Read the exponent in three parts. The denominator $3$ is the root: $\\sqrt[3]{64} = 4$. The numerator $1$ is the power: $4^{1} = 4$. The minus sign flips it: $\\frac{1}{4}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(64, 1)**(-Rational(1, 3)) == Rational(1, 4)"
+          ]
+        },
+        {
+          "id": "A2-negx-v09",
+          "statement": "Evaluate $81^{-\\frac{3}{4}}$.",
+          "options": [
+            "$\\frac{1}{27}$",
+            "$27$",
+            "$-27$",
+            "$\\frac{1}{531441}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Read the exponent in three parts. The denominator $4$ is the root: $\\sqrt[4]{81} = 3$. The numerator $3$ is the power: $3^{3} = 27$. The minus sign flips it: $\\frac{1}{27}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(81, 1)**(-Rational(3, 4)) == Rational(1, 27)"
+          ]
+        },
+        {
+          "id": "A2-negx-v10",
+          "statement": "Evaluate $36^{-\\frac{1}{2}}$.",
+          "options": [
+            "$6$",
+            "$\\frac{1}{6}$",
+            "$-6$",
+            "$\\frac{1}{36}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Read the exponent in three parts. The denominator $2$ is the root: $\\sqrt[2]{36} = 6$. The numerator $1$ is the power: $6^{1} = 6$. The minus sign flips it: $\\frac{1}{6}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(36, 1)**(-Rational(1, 2)) == Rational(1, 6)"
+          ]
+        },
+        {
+          "id": "A2-negx-v11",
+          "statement": "Evaluate $125^{-\\frac{2}{3}}$.",
+          "options": [
+            "$25$",
+            "$-25$",
+            "$\\frac{1}{25}$",
+            "$\\frac{1}{15625}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Read the exponent in three parts. The denominator $3$ is the root: $\\sqrt[3]{125} = 5$. The numerator $2$ is the power: $5^{2} = 25$. The minus sign flips it: $\\frac{1}{25}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(125, 1)**(-Rational(2, 3)) == Rational(1, 25)"
+          ]
+        },
+        {
+          "id": "A2-negx-v12",
+          "statement": "Evaluate $49^{-\\frac{1}{2}}$.",
+          "options": [
+            "$7$",
+            "$-7$",
+            "$\\frac{1}{49}$",
+            "$\\frac{1}{7}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Read the exponent in three parts. The denominator $2$ is the root: $\\sqrt[2]{49} = 7$. The numerator $1$ is the power: $7^{1} = 7$. The minus sign flips it: $\\frac{1}{7}$. A negative exponent never makes the value negative — it reciprocates.",
+          "check": [
+            "Rational(49, 1)**(-Rational(1, 2)) == Rational(1, 7)"
           ]
         }
       ]
@@ -13508,6 +14646,195 @@
       ]
     },
     {
+      "id": "add-rational-expr",
+      "title": "Adding rational expressions",
+      "level": 2,
+      "unit": "rational-functions",
+      "skill": "Common denominator first — never add tops and bottoms separately.",
+      "variants": [
+        {
+          "id": "A2-arex-v01",
+          "statement": "Write $\\dfrac{1}{x + 1} + \\dfrac{1}{x + 2}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2x + 3}{(x + 1)(x + 2)}$",
+            "$\\dfrac{2}{(x + 1)(x + 2)}$",
+            "$\\dfrac{2}{2x + 3}$",
+            "$\\dfrac{2x + 3}{2x + 3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Put both over the common denominator $(x + 1)(x + 2)$: the tops become $(x + 2) + (x + 1) = 2x + 3$. Adding numerators and denominators separately — the $\\frac{2}{2x + 3}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 1) + 1/(x + 2) - (2*x + 3)/((x + 1)*(x + 2))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v02",
+          "statement": "Write $\\dfrac{1}{x + 2} + \\dfrac{1}{x + 3}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 2)(x + 3)}$",
+            "$\\dfrac{2x + 5}{(x + 2)(x + 3)}$",
+            "$\\dfrac{2}{2x + 5}$",
+            "$\\dfrac{2x + 5}{2x + 5}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Put both over the common denominator $(x + 2)(x + 3)$: the tops become $(x + 3) + (x + 2) = 2x + 5$. Adding numerators and denominators separately — the $\\frac{2}{2x + 5}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 2) + 1/(x + 3) - (2*x + 5)/((x + 2)*(x + 3))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v03",
+          "statement": "Write $\\dfrac{1}{x + 1} + \\dfrac{1}{x + 4}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 1)(x + 4)}$",
+            "$\\dfrac{2}{2x + 5}$",
+            "$\\dfrac{2x + 5}{(x + 1)(x + 4)}$",
+            "$\\dfrac{2x + 5}{2x + 5}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Put both over the common denominator $(x + 1)(x + 4)$: the tops become $(x + 4) + (x + 1) = 2x + 5$. Adding numerators and denominators separately — the $\\frac{2}{2x + 5}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 1) + 1/(x + 4) - (2*x + 5)/((x + 1)*(x + 4))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v04",
+          "statement": "Write $\\dfrac{1}{x + 3} + \\dfrac{1}{x + 5}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 3)(x + 5)}$",
+            "$\\dfrac{2}{2x + 8}$",
+            "$\\dfrac{2x + 8}{2x + 8}$",
+            "$\\dfrac{2x + 8}{(x + 3)(x + 5)}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Put both over the common denominator $(x + 3)(x + 5)$: the tops become $(x + 5) + (x + 3) = 2x + 8$. Adding numerators and denominators separately — the $\\frac{2}{2x + 8}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 3) + 1/(x + 5) - (2*x + 8)/((x + 3)*(x + 5))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v05",
+          "statement": "Write $\\dfrac{1}{x + 2} + \\dfrac{1}{x + 5}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2x + 7}{(x + 2)(x + 5)}$",
+            "$\\dfrac{2}{(x + 2)(x + 5)}$",
+            "$\\dfrac{2}{2x + 7}$",
+            "$\\dfrac{2x + 7}{2x + 7}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Put both over the common denominator $(x + 2)(x + 5)$: the tops become $(x + 5) + (x + 2) = 2x + 7$. Adding numerators and denominators separately — the $\\frac{2}{2x + 7}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 2) + 1/(x + 5) - (2*x + 7)/((x + 2)*(x + 5))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v06",
+          "statement": "Write $\\dfrac{1}{x + 1} + \\dfrac{1}{x + 6}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 1)(x + 6)}$",
+            "$\\dfrac{2x + 7}{(x + 1)(x + 6)}$",
+            "$\\dfrac{2}{2x + 7}$",
+            "$\\dfrac{2x + 7}{2x + 7}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Put both over the common denominator $(x + 1)(x + 6)$: the tops become $(x + 6) + (x + 1) = 2x + 7$. Adding numerators and denominators separately — the $\\frac{2}{2x + 7}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 1) + 1/(x + 6) - (2*x + 7)/((x + 1)*(x + 6))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v07",
+          "statement": "Write $\\dfrac{1}{x + 4} + \\dfrac{1}{x + 5}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 4)(x + 5)}$",
+            "$\\dfrac{2}{2x + 9}$",
+            "$\\dfrac{2x + 9}{(x + 4)(x + 5)}$",
+            "$\\dfrac{2x + 9}{2x + 9}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Put both over the common denominator $(x + 4)(x + 5)$: the tops become $(x + 5) + (x + 4) = 2x + 9$. Adding numerators and denominators separately — the $\\frac{2}{2x + 9}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 4) + 1/(x + 5) - (2*x + 9)/((x + 4)*(x + 5))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v08",
+          "statement": "Write $\\dfrac{1}{x + 3} + \\dfrac{1}{x + 7}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 3)(x + 7)}$",
+            "$\\dfrac{2}{2x + 10}$",
+            "$\\dfrac{2x + 10}{2x + 10}$",
+            "$\\dfrac{2x + 10}{(x + 3)(x + 7)}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Put both over the common denominator $(x + 3)(x + 7)$: the tops become $(x + 7) + (x + 3) = 2x + 10$. Adding numerators and denominators separately — the $\\frac{2}{2x + 10}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 3) + 1/(x + 7) - (2*x + 10)/((x + 3)*(x + 7))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v09",
+          "statement": "Write $\\dfrac{1}{x + 2} + \\dfrac{1}{x + 7}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2x + 9}{(x + 2)(x + 7)}$",
+            "$\\dfrac{2}{(x + 2)(x + 7)}$",
+            "$\\dfrac{2}{2x + 9}$",
+            "$\\dfrac{2x + 9}{2x + 9}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Put both over the common denominator $(x + 2)(x + 7)$: the tops become $(x + 7) + (x + 2) = 2x + 9$. Adding numerators and denominators separately — the $\\frac{2}{2x + 9}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 2) + 1/(x + 7) - (2*x + 9)/((x + 2)*(x + 7))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v10",
+          "statement": "Write $\\dfrac{1}{x + 5} + \\dfrac{1}{x + 6}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 5)(x + 6)}$",
+            "$\\dfrac{2x + 11}{(x + 5)(x + 6)}$",
+            "$\\dfrac{2}{2x + 11}$",
+            "$\\dfrac{2x + 11}{2x + 11}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Put both over the common denominator $(x + 5)(x + 6)$: the tops become $(x + 6) + (x + 5) = 2x + 11$. Adding numerators and denominators separately — the $\\frac{2}{2x + 11}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 5) + 1/(x + 6) - (2*x + 11)/((x + 5)*(x + 6))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v11",
+          "statement": "Write $\\dfrac{1}{x + 1} + \\dfrac{1}{x + 8}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 1)(x + 8)}$",
+            "$\\dfrac{2}{2x + 9}$",
+            "$\\dfrac{2x + 9}{(x + 1)(x + 8)}$",
+            "$\\dfrac{2x + 9}{2x + 9}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Put both over the common denominator $(x + 1)(x + 8)$: the tops become $(x + 8) + (x + 1) = 2x + 9$. Adding numerators and denominators separately — the $\\frac{2}{2x + 9}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 1) + 1/(x + 8) - (2*x + 9)/((x + 1)*(x + 8))) == 0"
+          ]
+        },
+        {
+          "id": "A2-arex-v12",
+          "statement": "Write $\\dfrac{1}{x + 3} + \\dfrac{1}{x + 8}$ as a single fraction.",
+          "options": [
+            "$\\dfrac{2}{(x + 3)(x + 8)}$",
+            "$\\dfrac{2}{2x + 11}$",
+            "$\\dfrac{2x + 11}{2x + 11}$",
+            "$\\dfrac{2x + 11}{(x + 3)(x + 8)}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Put both over the common denominator $(x + 3)(x + 8)$: the tops become $(x + 8) + (x + 3) = 2x + 11$. Adding numerators and denominators separately — the $\\frac{2}{2x + 11}$ option — is the single most common error with rational expressions, and it is not a valid operation at all.",
+          "check": [
+            "simplify(1/(x + 3) + 1/(x + 8) - (2*x + 11)/((x + 3)*(x + 8))) == 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "rational-function-features",
       "title": "Asymptotes of rational functions",
       "level": 2,
@@ -14289,6 +15616,195 @@
           "check": [
             "((10)**2 - 9)/((10) - 3) == 13",
             "simplify((x**2 - 9)/(x - 3) - (x + 3)) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solve-rational-eq",
+      "title": "Solving a rational equation",
+      "level": 2,
+      "unit": "rational-functions",
+      "skill": "Clear the denominator, then check the value it excluded.",
+      "variants": [
+        {
+          "id": "A2-sreq-v01",
+          "statement": "Solve $\\dfrac{2}{x - 3} = 1$.",
+          "options": [
+            "$5$",
+            "$-1$",
+            "$1$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x - 3$: $2 = x - 3$, so $x = 5$. The multiplication is only legal while $x \\ne 3$, and $5$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(2, 5 - 3), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v02",
+          "statement": "Solve $\\dfrac{3}{x - 4} = 1$.",
+          "options": [
+            "$-1$",
+            "$7$",
+            "$1$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply both sides by $x - 4$: $3 = x - 4$, so $x = 7$. The multiplication is only legal while $x \\ne 4$, and $7$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(3, 7 - 4), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v03",
+          "statement": "Solve $\\dfrac{5}{x - 2} = 1$.",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$7$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply both sides by $x - 2$: $5 = x - 2$, so $x = 7$. The multiplication is only legal while $x \\ne 2$, and $7$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(5, 7 - 2), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v04",
+          "statement": "Solve $\\dfrac{4}{x - 6} = 1$.",
+          "options": [
+            "$-2$",
+            "$2$",
+            "$24$",
+            "$10$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply both sides by $x - 6$: $4 = x - 6$, so $x = 10$. The multiplication is only legal while $x \\ne 6$, and $10$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(4, 10 - 6), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v05",
+          "statement": "Solve $\\dfrac{6}{x - 5} = 1$.",
+          "options": [
+            "$11$",
+            "$1$",
+            "$-1$",
+            "$30$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x - 5$: $6 = x - 5$, so $x = 11$. The multiplication is only legal while $x \\ne 5$, and $11$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(6, 11 - 5), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v06",
+          "statement": "Solve $\\dfrac{7}{x - 3} = 1$.",
+          "options": [
+            "$4$",
+            "$10$",
+            "$-4$",
+            "$21$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply both sides by $x - 3$: $7 = x - 3$, so $x = 10$. The multiplication is only legal while $x \\ne 3$, and $10$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(7, 10 - 3), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v07",
+          "statement": "Solve $\\dfrac{8}{x - 4} = 1$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$12$",
+            "$32$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply both sides by $x - 4$: $8 = x - 4$, so $x = 12$. The multiplication is only legal while $x \\ne 4$, and $12$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(8, 12 - 4), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v08",
+          "statement": "Solve $\\dfrac{9}{x - 6} = 1$.",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$54$",
+            "$15$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply both sides by $x - 6$: $9 = x - 6$, so $x = 15$. The multiplication is only legal while $x \\ne 6$, and $15$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(9, 15 - 6), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v09",
+          "statement": "Solve $\\dfrac{10}{x - 5} = 1$.",
+          "options": [
+            "$15$",
+            "$5$",
+            "$-5$",
+            "$50$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Multiply both sides by $x - 5$: $10 = x - 5$, so $x = 15$. The multiplication is only legal while $x \\ne 5$, and $15$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(10, 15 - 5), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v10",
+          "statement": "Solve $\\dfrac{12}{x - 8} = 1$.",
+          "options": [
+            "$4$",
+            "$20$",
+            "$-4$",
+            "$96$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Multiply both sides by $x - 8$: $12 = x - 8$, so $x = 20$. The multiplication is only legal while $x \\ne 8$, and $20$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(12, 20 - 8), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v11",
+          "statement": "Solve $\\dfrac{5}{x - 9} = 1$.",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$14$",
+            "$45$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Multiply both sides by $x - 9$: $5 = x - 9$, so $x = 14$. The multiplication is only legal while $x \\ne 9$, and $14$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(5, 14 - 9), 1)"
+          ]
+        },
+        {
+          "id": "A2-sreq-v12",
+          "statement": "Solve $\\dfrac{11}{x - 7} = 1$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$77$",
+            "$18$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Multiply both sides by $x - 7$: $11 = x - 7$, so $x = 18$. The multiplication is only legal while $x \\ne 7$, and $18$ clears that — a rational equation always needs the excluded value checked before the answer is final.",
+          "check": [
+            "Eq(Rational(11, 18 - 7), 1)"
           ]
         }
       ]

@@ -832,6 +832,75 @@ def _g_quadratic_from_vertex():
 # assembly
 # ===========================================================================
 
+# ===========================================================================
+# Batch 2 — the two forms that take the last Integrated 3 units to six.
+# ===========================================================================
+
+def _g_inverse_variation():
+    raws = []
+    for k in (12, 18, 24, 30, 36, 48, 60, 72):
+        for x1 in (2, 3, 4, 6):
+            if k % x1:
+                continue
+            for x2 in (2, 3, 4, 6, 8, 12):
+                if x2 == x1 or k % x2:
+                    continue
+                y1, y2 = k // x1, k // x2
+                raws.append({
+                    "statement": ("$y$ varies inversely with $x$. When "
+                                  "$x = %d$, $y = %d$. Find $y$ when "
+                                  "$x = %d$." % (x1, y1, x2)),
+                    "correct": y2,
+                    "dvals": [y1, y1 * x2, Rational(y1 * x1, x2 * x2)],
+                    "explanation": ("Inverse variation means the PRODUCT "
+                                    "stays constant: $xy = %d \\cdot %d = "
+                                    "%d$. So at $x = %d$, "
+                                    "$y = \\frac{%d}{%d} = %d$. Direct "
+                                    "variation would keep the RATIO "
+                                    "constant instead, and the two move in "
+                                    "opposite directions."
+                                    % (x1, y1, k, x2, k, x2, y2)),
+                    "check": ["Eq(%d*%d, %d*%d)" % (x1, y1, x2, y2)],
+                })
+    return raws
+
+
+def _g_sinusoid_range():
+    raws = []
+    for A in (2, 3, 4, 5, 6, 7, 8, 9):
+        for C in (-6, -3, -1, 0, 2, 4, 5, 10):
+            raws.append({
+                "statement": ("Find the MAXIMUM value of "
+                              "$y = %d\\sin x %s$."
+                              % (A, ("+ %d" % C) if C >= 0 else "- %d" % -C)),
+                "correct": C + A,
+                "dvals": [C - A, A, C],
+                "explanation": ("$\\sin x$ never leaves $[-1, 1]$, so "
+                                "$%d\\sin x$ never leaves $[-%d, %d]$, and "
+                                "adding $%d$ lifts that to $[%d, %d]$. The "
+                                "maximum is $%d$ — the midline plus the "
+                                "amplitude. The amplitude $%d$ on its own "
+                                "is the maximum only when the midline sits "
+                                "at zero."
+                                % (A, A, A, C, C - A, C + A, C + A, A)),
+                "check": ["Eq((%d) + (%d), %d)" % (C, A, C + A)],
+            })
+            raws.append({
+                "statement": ("Find the MINIMUM value of "
+                              "$y = %d\\sin x %s$."
+                              % (A, ("+ %d" % C) if C >= 0 else "- %d" % -C)),
+                "correct": C - A,
+                "dvals": [C + A, -A, C],
+                "explanation": ("The lowest point sits one amplitude below "
+                                "the midline: $%d - %d = %d$. Reading the "
+                                "minimum as $-%d$ forgets that the whole "
+                                "curve has been lifted to the midline "
+                                "$y = %d$." % (C, A, C - A, A, C)),
+                "check": ["Eq((%d) - (%d), %d)" % (C, A, C - A)],
+            })
+    return raws
+
+
 def build():
     forms = _remapped_forms()
 
@@ -846,6 +915,16 @@ def build():
         form("im3-pythagorean-identity", "The Pythagorean identity with quadrants", 3, U4,
              "sin² + cos² = 1 gives the size; the quadrant gives the sign.",
              mk_txt("im3-pyth", _g_pythagorean_identity())),
+        form("im3-sinusoid-range", "Maximum and minimum of a sinusoid", 2, U4,
+             "Midline plus or minus the amplitude.",
+             mk_num("im3-srange", _g_sinusoid_range())),
+    ]
+
+    U2 = "rational-and-radical-functions"
+    forms += [
+        form("im3-inverse-variation", "Inverse variation", 2, U2,
+             "Inverse variation keeps the PRODUCT constant; direct variation keeps the ratio.",
+             mk_num("im3-invvar", _g_inverse_variation())),
     ]
 
     U5 = "function-families-and-inverses"

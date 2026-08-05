@@ -1707,6 +1707,367 @@ RESOLVERS.update({
 })
 
 
+# =========================================================================
+# Batch 3 — the forms that take every Algebra 2 unit to six collections.
+# =========================================================================
+def _fr(fr):
+    """Batch-3 rational renderer (KaTeX body, leading minus outside)."""
+    fr = Fraction(fr)
+    if fr.denominator == 1:
+        return "%d" % fr.numerator
+    if fr < 0:
+        return "-\\frac{%d}{%d}" % (-fr.numerator, fr.denominator)
+    return "\\frac{%d}{%d}" % (fr.numerator, fr.denominator)
+
+
+_EVEN_ODD_A2 = [
+    ("x^2 + 4", "x**2 + 4", "even"),
+    ("x^3 - 2x", "x**3 - 2*x", "odd"),
+    ("x^2 + x", "x**2 + x", "neither"),
+        ("3x^4 - x^2", "3*x**4 - x**2", "even"),
+    ("x^5 + 7x", "x**5 + 7*x", "odd"),
+    ("x^3 + 5", "x**3 + 5", "neither"),
+        ("6 - 2x^2", "6 - 2*x**2", "even"),
+        ("4x^7 - x^3", "4*x**7 - x**3", "odd"),
+    ("x^4 + x", "x**4 + x", "neither"),
+    ("x^6 + 9", "x**6 + 9", "even"),
+        ("2x - x^5", "2*x - x**5", "odd"),
+    ("x^2 - 6x + 9", "x**2 - 6*x + 9", "neither"),
+]
+
+_EO_NAMES = {"even": "even", "odd": "odd",
+             "neither": "neither even nor odd"}
+
+
+def _gen_even_odd_a2():
+    names = _EO_NAMES
+    variants = []
+    for i, (tex, src, kind) in enumerate(_EVEN_ODD_A2):
+        at_neg, at_pos = src.replace("x", "(-3)"), src.replace("x", "(3)")
+        chk = ({"even": ["(%s) - (%s) == 0" % (at_neg, at_pos)],
+                "odd": ["(%s) + (%s) == 0" % (at_neg, at_pos)]}
+               .get(kind, ["(%s) - (%s) != 0" % (at_neg, at_pos),
+                           "(%s) + (%s) != 0" % (at_neg, at_pos)]))
+        variants.append(_mk12(
+            "A2-eo-v%02d" % (i + 1),
+            "Is $f(x) = %s$ even, odd, or neither?" % tex,
+            names[kind],
+            [names[k] for k in ("even", "odd", "neither") if k != kind]
+            + ["both even and odd"], i,
+            "Test $f(-x)$ against $f(x)$ at a concrete input. Even means "
+            "$f(-x) = f(x)$, a mirror in the $y$-axis; odd means "
+            "$f(-x) = -f(x)$, a half-turn about the origin. A polynomial "
+            "mixing even and odd powers has neither symmetry.",
+            chk))
+    return _floor12("even-odd-a2", variants)
+
+
+def _rs_even_odd_a2(s):
+    tex = _re.search(r"f\(x\) = (.+?)\$ even", s).group(1)
+    for t, _src, kind in _EVEN_ODD_A2:
+        if t == tex:
+            return ("opt", _EO_NAMES[kind])
+    raise ValueError("even-odd: unknown %r" % tex)
+
+
+def _gen_discriminant_nature():
+    cands = [(1, -5, 6), (1, 2, 5), (1, -4, 4), (2, 3, -2), (1, 6, 9),
+             (3, 1, 4), (1, -2, 5), (2, -8, 8), (1, 7, 12), (5, 2, 1),
+             (1, -6, 9), (4, 4, 1)]
+    variants = []
+    for i, (a, b, c) in enumerate(cands):
+        d = b * b - 4 * a * c
+        kind = ("two distinct real roots" if d > 0 else
+                "one repeated real root" if d == 0 else
+                "no real roots — two complex ones")
+        wrongs = [k for k in ("two distinct real roots",
+                              "one repeated real root",
+                              "no real roots — two complex ones")
+                  if k != kind] + ["exactly three roots"]
+        variants.append(_mk12(
+            "A2-disc-v%02d" % (i + 1),
+            "What does the discriminant say about the roots of "
+            "$%sx^2%s x%s = 0$?"
+            % ("" if a == 1 else "%d" % a, _pm(b), _pm(c)),
+            kind, wrongs[:3], i,
+            "$b^2 - 4ac = (%d)^2 - 4(%d)(%d) = %d$, which is %s, so the "
+            "equation has %s. The discriminant is the part under the root in "
+            "the quadratic formula — its SIGN alone settles the question, "
+            "without solving anything."
+            % (b, a, c, d, "positive" if d > 0 else
+               ("zero" if d == 0 else "negative"), kind),
+            ["(%d)**2 - 4*(%d)*(%d) %s 0"
+             % (b, a, c, ">" if d > 0 else ("==" if d == 0 else "<"))]))
+    return _floor12("discriminant-nature", variants)
+
+
+def _rs_discriminant_nature(s):
+    m = _re.search(r"\$(\d*)x\^2 ([+-]) (\d+) x ([+-]) (\d+) = 0\$", s)
+    a = 1 if m.group(1) == "" else int(m.group(1))
+    b = int(m.group(3)) * (1 if m.group(2) == "+" else -1)
+    c = int(m.group(5)) * (1 if m.group(4) == "+" else -1)
+    d = b * b - 4 * a * c
+    return ("opt", "two distinct real roots" if d > 0 else
+            ("one repeated real root" if d == 0 else
+             "no real roots — two complex ones"))
+
+
+def _gen_break_even():
+    cands = [(3, 20, 5), (4, 30, 6), (2, 18, 5), (5, 40, 9), (6, 25, 11),
+             (3, 45, 8), (7, 60, 12), (2, 36, 8), (4, 55, 9), (8, 42, 14),
+             (5, 33, 8), (6, 28, 10)]
+    variants = []
+    for i, (var_cost, fixed, price) in enumerate(cands):
+        assert price > var_cost and fixed % (price - var_cost) == 0
+        n = fixed // (price - var_cost)
+        wrongs = [fixed // price, fixed // var_cost, n + 1]
+        variants.append(_mk12(
+            "A2-bev-v%02d" % (i + 1),
+            "It costs $%d$ to make each unit plus $%d$ in fixed costs, and "
+            "each unit sells for $%d$. How many units must be sold to break "
+            "even?" % (var_cost, fixed, price),
+            "$%d$" % n, ["$%d$" % w for w in wrongs], i,
+            "Break-even means cost equals revenue: $%dn + %d = %dn$. Every "
+            "unit contributes $%d - %d = %d$ towards the fixed costs, so "
+            "$n = \\frac{%d}{%d} = %d$. Dividing the fixed costs by the "
+            "PRICE ignores the cost of making each unit."
+            % (var_cost, fixed, price, price, var_cost, price - var_cost,
+               fixed, price - var_cost, n),
+            ["%d*%d + %d == %d*%d" % (var_cost, n, fixed, price, n)]))
+    return _floor12("break-even", variants)
+
+
+def _rs_break_even(s):
+    v, f, p = [int(x) for x in
+               _re.search(r"costs \$(\d+)\$ to make each unit plus \$(\d+)\$ "
+                          r"in fixed costs, and each unit sells for \$(\d+)\$",
+                          s).groups()]
+    return ("num", Fraction(f, p - v))
+
+
+def _gen_three_unknowns():
+    cands = [(2, 3, 5), (1, 4, 6), (3, 3, 7), (5, 2, 4), (1, 1, 9),
+             (4, 6, 2), (7, 1, 3), (2, 8, 5), (6, 4, 1), (3, 5, 8),
+             (9, 2, 2), (1, 7, 4)]
+    variants = []
+    for i, (x, y, z) in enumerate(cands):
+        s1, s2, s3 = x + y, y + z, x + z
+        tot = x + y + z
+        wrongs = [tot * 2, s1, tot + 1]
+        variants.append(_mk12(
+            "A2-3un-v%02d" % (i + 1),
+            "$x + y = %d$, $y + z = %d$ and $x + z = %d$. Find "
+            "$x + y + z$." % (s1, s2, s3),
+            "$%d$" % tot, ["$%d$" % w for w in wrongs], i,
+            "Add all three equations: each unknown appears twice, giving "
+            "$2(x + y + z) = %d + %d + %d = %d$, so $x + y + z = %d$. "
+            "Solving for $x$, $y$ and $z$ one at a time works too, but the "
+            "symmetry gets there in one line."
+            % (s1, s2, s3, 2 * tot, tot),
+            ["(%d) + (%d) + (%d) == 2*%d" % (s1, s2, s3, tot)]))
+    return _floor12("three-unknowns", variants)
+
+
+def _rs_three_unknowns(s):
+    a, b, c = [int(x) for x in
+               _re.search(r"x \+ y = (\d+)\$, \$y \+ z = (\d+)\$ and "
+                          r"\$x \+ z = (\d+)\$", s).groups()]
+    return ("num", Fraction(a + b + c, 2))
+
+
+def _gen_vieta_a2():
+    cands = [(1, -7, 12), (2, 5, 3), (1, 3, -10), (3, -4, 1), (1, -9, 20),
+             (5, 6, 1), (2, -11, 12), (1, 8, 15), (4, 3, -1), (1, -5, -14),
+             (3, 7, 2), (2, -3, -5)]
+    variants = []
+    for i, (a, b, c) in enumerate(cands):
+        ask_sum = i % 2 == 0
+        ans = Fraction(-b, a) if ask_sum else Fraction(c, a)
+        pool = [Fraction(b, a), Fraction(-c, a), Fraction(a, b),
+                ans + 1, ans - 1, ans + 2]
+        seen, wrongs = {ans}, []
+        for w in pool:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append("$%s$" % _fr(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk12(
+            "A2-viet-v%02d" % (i + 1),
+            "The roots of $%sx^2%s x%s = 0$ are $r$ and $s$. Find $%s$."
+            % ("" if a == 1 else "%d" % a, _pm(b), _pm(c),
+               "r + s" if ask_sum else "rs"),
+            "$%s$" % _fr(ans), wrongs, i,
+            "Expanding $a(x - r)(x - s)$ and matching coefficients gives "
+            "$r + s = -\\frac{b}{a}$ and $rs = \\frac{c}{a}$, so the answer "
+            "is $%s$. The minus sign belongs to the SUM only — the product "
+            "takes $c$ over $a$ as written." % _fr(ans),
+            ["Rational(%d, %d) == Rational(%d, %d)"
+             % (-b if ask_sum else c, a, ans.numerator, ans.denominator)]))
+    return _floor12("vieta-a2", variants)
+
+
+def _rs_vieta_a2(s):
+    m = _re.search(r"\$(\d*)x\^2 ([+-]) (\d+) x ([+-]) (\d+) = 0\$", s)
+    a = 1 if m.group(1) == "" else int(m.group(1))
+    b = int(m.group(3)) * (1 if m.group(2) == "+" else -1)
+    c = int(m.group(5)) * (1 if m.group(4) == "+" else -1)
+    return ("num", Fraction(-b, a) if "r + s" in s else Fraction(c, a))
+
+
+def _gen_negative_exponent():
+    cands = [(4, 1, 2), (8, 1, 3), (9, 1, 2), (27, 2, 3), (16, 3, 4),
+             (25, 1, 2), (32, 2, 5), (64, 1, 3), (81, 3, 4), (36, 1, 2),
+             (125, 2, 3), (49, 1, 2)]
+    variants = []
+    for i, (base, p, q) in enumerate(cands):
+        root = round(base ** (1.0 / q))
+        assert root ** q == base, (base, q)
+        val = Fraction(1, root ** p)
+        pool = [Fraction(root ** p), Fraction(-root ** p),
+                Fraction(1, base ** p), Fraction(1, root * p),
+                val + 1, val * 2]
+        seen, wrongs = {val}, []
+        for w in pool:
+            if w not in seen:
+                seen.add(w)
+                wrongs.append("$%s$" % _fr(w))
+            if len(wrongs) == 3:
+                break
+        variants.append(_mk12(
+            "A2-negx-v%02d" % (i + 1),
+            "Evaluate $%d^{-\\frac{%d}{%d}}$." % (base, p, q),
+            "$%s$" % _fr(val), wrongs, i,
+            "Read the exponent in three parts. The denominator $%d$ is the "
+            "root: $\\sqrt[%d]{%d} = %d$. The numerator $%d$ is the power: "
+            "$%d^{%d} = %d$. The minus sign flips it: $%s$. A negative "
+            "exponent never makes the value negative — it reciprocates."
+            % (q, q, base, root, p, root, p, root ** p, _fr(val)),
+            ["Rational(%d, %d)**(-Rational(%d, %d)) == Rational(%d, %d)"
+             % (base, 1, p, q, val.numerator, val.denominator)]))
+    return _floor12("negative-exponent", variants)
+
+
+def _rs_negative_exponent(s):
+    base, p, q = [int(x) for x in
+                  _re.search(r"\$(\d+)\^\{-\\frac\{(\d+)\}\{(\d+)\}\}\$",
+                             s).groups()]
+    root = round(base ** (1.0 / q))
+    return ("num", Fraction(1, root ** p))
+
+
+def _gen_add_rational_expr():
+    cands = [(1, 2), (2, 3), (1, 4), (3, 5), (2, 5), (1, 6),
+             (4, 5), (3, 7), (2, 7), (5, 6), (1, 8), (3, 8)]
+    variants = []
+    for i, (a, b) in enumerate(cands):
+        # 1/(x + a) + 1/(x + b) = (2x + a + b)/((x + a)(x + b))
+        num = "2x + %d" % (a + b)
+        den = "(x + %d)(x + %d)" % (a, b)
+        correct = "$\\dfrac{%s}{%s}$" % (num, den)
+        wrongs = ["$\\dfrac{2}{%s}$" % den,
+                  "$\\dfrac{2}{2x + %d}$" % (a + b),
+                  "$\\dfrac{%s}{2x + %d}$" % (num, a + b)]
+        variants.append(_mk12(
+            "A2-arex-v%02d" % (i + 1),
+            "Write $\\dfrac{1}{x + %d} + \\dfrac{1}{x + %d}$ as a single "
+            "fraction." % (a, b),
+            correct, wrongs, i,
+            "Put both over the common denominator $%s$: the tops become "
+            "$(x + %d) + (x + %d) = %s$. Adding numerators and denominators "
+            "separately — the $\\frac{2}{2x + %d}$ option — is the single "
+            "most common error with rational expressions, and it is not a "
+            "valid operation at all." % (den, b, a, num, a + b),
+            ["simplify(1/(x + %d) + 1/(x + %d) - "
+             "(2*x + %d)/((x + %d)*(x + %d))) == 0"
+             % (a, b, a + b, a, b)]))
+    return _floor12("add-rational-expr", variants)
+
+
+def _rs_add_rational_expr(s):
+    a, b = [int(x) for x in
+            _re.search(r"\{1\}\{x \+ (\d+)\} \+ \\dfrac\{1\}\{x \+ (\d+)\}",
+                       s).groups()]
+    return ("opt", "$\\dfrac{2x + %d}{(x + %d)(x + %d)}$" % (a + b, a, b))
+
+
+def _gen_solve_rational_eq():
+    cands = [(2, 3), (3, 4), (5, 2), (4, 6), (6, 5), (7, 3),
+             (8, 4), (9, 6), (10, 5), (12, 8), (5, 9), (11, 7)]
+    variants = []
+    for i, (k, a) in enumerate(cands):
+        # k / (x - a) = 1  ->  x = k + a
+        ans = k + a
+        wrongs = [k - a, a - k, k * a]
+        variants.append(_mk12(
+            "A2-sreq-v%02d" % (i + 1),
+            "Solve $\\dfrac{%d}{x - %d} = 1$." % (k, a),
+            "$%d$" % ans, ["$%d$" % w for w in wrongs], i,
+            "Multiply both sides by $x - %d$: $%d = x - %d$, so $x = %d$. "
+            "The multiplication is only legal while $x \\ne %d$, and $%d$ "
+            "clears that — a rational equation always needs the excluded "
+            "value checked before the answer is final."
+            % (a, k, a, ans, a, ans),
+            ["Eq(Rational(%d, %d - %d), 1)" % (k, ans, a)]))
+    return _floor12("solve-rational-eq", variants)
+
+
+def _rs_solve_rational_eq(s):
+    k, a = [int(x) for x in
+            _re.search(r"\\dfrac\{(\d+)\}\{x - (\d+)\} = 1", s).groups()]
+    return ("num", k + a)
+
+
+_BATCH3_META = [
+    ("even-odd-a2", "Even, odd, or neither", 2,
+     "functions-and-transformations",
+     "Even: f(-x) = f(x). Odd: f(-x) = -f(x). Mixed powers: neither.",
+     _gen_even_odd_a2, _rs_even_odd_a2),
+    ("discriminant-nature", "What the discriminant tells you", 2,
+     "quadratics-and-complex-numbers",
+     "The sign of b² - 4ac settles the roots without solving anything.",
+     _gen_discriminant_nature, _rs_discriminant_nature),
+    ("break-even", "Break-even point", 2, "systems-and-nonlinear-models",
+     "Cost equals revenue; each unit contributes price minus unit cost.",
+     _gen_break_even, _rs_break_even),
+    ("three-unknowns", "Three symmetric equations", 3,
+     "systems-and-nonlinear-models",
+     "Add all three: every unknown appears twice.",
+     _gen_three_unknowns, _rs_three_unknowns),
+    ("vieta-a2", "Sum and product of the roots", 2, "polynomial-functions",
+     "r + s = -b/a and rs = c/a — the minus belongs to the sum only.",
+     _gen_vieta_a2, _rs_vieta_a2),
+    ("negative-exponent", "Negative rational exponents", 2,
+     "radicals-and-rational-exponents",
+     "Denominator roots, numerator powers, minus sign reciprocates.",
+     _gen_negative_exponent, _rs_negative_exponent),
+    ("add-rational-expr", "Adding rational expressions", 2,
+     "rational-functions",
+     "Common denominator first — never add tops and bottoms separately.",
+     _gen_add_rational_expr, _rs_add_rational_expr),
+    ("solve-rational-eq", "Solving a rational equation", 2,
+     "rational-functions",
+     "Clear the denominator, then check the value it excluded.",
+     _gen_solve_rational_eq, _rs_solve_rational_eq),
+]
+
+
+def _batch3_forms():
+    return [{"id": fid, "title": title, "level": level, "unit": unit,
+             "skill": skill, "variants": gen()}
+            for fid, title, level, unit, skill, gen, _rz in _BATCH3_META]
+
+
+_BATCH_1_AND_2_FORMS = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 3 to the previous two
+    return _BATCH_1_AND_2_FORMS() + _batch3_forms()
+
+
+RESOLVERS.update({fid: rz for fid, _t, _l, _u, _s, _g, rz in _BATCH3_META})
+
+
 def build():
     unit_order = {u["id"]: i for i, u in enumerate(UNITS)}
     forms = _remapped_forms() + new_forms()

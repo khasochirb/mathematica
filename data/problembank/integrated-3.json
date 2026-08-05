@@ -16515,6 +16515,1104 @@
       ]
     },
     {
+      "id": "im3-sinusoid-range",
+      "title": "Maximum and minimum of a sinusoid",
+      "level": 2,
+      "unit": "trigonometric-functions",
+      "skill": "Midline plus or minus the amplitude.",
+      "variants": [
+        {
+          "id": "im3-srange-v01",
+          "statement": "Find the MAXIMUM value of $y = 2\\sin x - 6$.",
+          "options": [
+            "$-4$",
+            "$-8$",
+            "$2$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $-6$ lifts that to $[-8, -4]$. The maximum is $-4$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-6) + (2), -4)"
+          ]
+        },
+        {
+          "id": "im3-srange-v02",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x - 6$.",
+          "options": [
+            "$-4$",
+            "$-8$",
+            "$-2$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $-6 - 2 = -8$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = -6$.",
+          "check": [
+            "Eq((-6) - (2), -8)"
+          ]
+        },
+        {
+          "id": "im3-srange-v03",
+          "statement": "Find the MAXIMUM value of $y = 2\\sin x - 3$.",
+          "options": [
+            "$-5$",
+            "$2$",
+            "$-1$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $-3$ lifts that to $[-5, -1]$. The maximum is $-1$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-3) + (2), -1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v04",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x - 3$.",
+          "options": [
+            "$-1$",
+            "$-2$",
+            "$-3$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $-3 - 2 = -5$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = -3$.",
+          "check": [
+            "Eq((-3) - (2), -5)"
+          ]
+        },
+        {
+          "id": "im3-srange-v05",
+          "statement": "Find the MAXIMUM value of $y = 2\\sin x - 1$.",
+          "options": [
+            "$1$",
+            "$-3$",
+            "$2$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $-1$ lifts that to $[-3, 1]$. The maximum is $1$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-1) + (2), 1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v06",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x - 1$.",
+          "options": [
+            "$1$",
+            "$-3$",
+            "$-2$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $-1 - 2 = -3$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = -1$.",
+          "check": [
+            "Eq((-1) - (2), -3)"
+          ]
+        },
+        {
+          "id": "im3-srange-v07",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x + 2$.",
+          "options": [
+            "$4$",
+            "$-2$",
+            "$0$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The lowest point sits one amplitude below the midline: $2 - 2 = 0$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = 2$.",
+          "check": [
+            "Eq((2) - (2), 0)"
+          ]
+        },
+        {
+          "id": "im3-srange-v08",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x + 4$.",
+          "options": [
+            "$6$",
+            "$-2$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $4 - 2 = 2$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = 4$.",
+          "check": [
+            "Eq((4) - (2), 2)"
+          ]
+        },
+        {
+          "id": "im3-srange-v09",
+          "statement": "Find the MAXIMUM value of $y = 2\\sin x + 5$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$2$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $5$ lifts that to $[3, 7]$. The maximum is $7$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((5) + (2), 7)"
+          ]
+        },
+        {
+          "id": "im3-srange-v10",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x + 5$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$-2$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $5 - 2 = 3$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = 5$.",
+          "check": [
+            "Eq((5) - (2), 3)"
+          ]
+        },
+        {
+          "id": "im3-srange-v11",
+          "statement": "Find the MAXIMUM value of $y = 2\\sin x + 10$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$12$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $10$ lifts that to $[8, 12]$. The maximum is $12$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((10) + (2), 12)"
+          ]
+        },
+        {
+          "id": "im3-srange-v12",
+          "statement": "Find the MINIMUM value of $y = 2\\sin x + 10$.",
+          "options": [
+            "$12$",
+            "$-2$",
+            "$10$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $10 - 2 = 8$. Reading the minimum as $-2$ forgets that the whole curve has been lifted to the midline $y = 10$.",
+          "check": [
+            "Eq((10) - (2), 8)"
+          ]
+        },
+        {
+          "id": "im3-srange-v13",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x - 6$.",
+          "options": [
+            "$-3$",
+            "$-9$",
+            "$3$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $-6$ lifts that to $[-9, -3]$. The maximum is $-3$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-6) + (3), -3)"
+          ]
+        },
+        {
+          "id": "im3-srange-v14",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x - 3$.",
+          "options": [
+            "$-6$",
+            "$0$",
+            "$3$",
+            "$-3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $-3$ lifts that to $[-6, 0]$. The maximum is $0$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-3) + (3), 0)"
+          ]
+        },
+        {
+          "id": "im3-srange-v15",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x - 1$.",
+          "options": [
+            "$-4$",
+            "$3$",
+            "$2$",
+            "$-1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $-1$ lifts that to $[-4, 2]$. The maximum is $2$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-1) + (3), 2)"
+          ]
+        },
+        {
+          "id": "im3-srange-v16",
+          "statement": "Find the MINIMUM value of $y = 3\\sin x - 1$.",
+          "options": [
+            "$2$",
+            "$-3$",
+            "$-1$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $-1 - 3 = -4$. Reading the minimum as $-3$ forgets that the whole curve has been lifted to the midline $y = -1$.",
+          "check": [
+            "Eq((-1) - (3), -4)"
+          ]
+        },
+        {
+          "id": "im3-srange-v17",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x + 2$.",
+          "options": [
+            "$5$",
+            "$-1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $2$ lifts that to $[-1, 5]$. The maximum is $5$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((2) + (3), 5)"
+          ]
+        },
+        {
+          "id": "im3-srange-v18",
+          "statement": "Find the MINIMUM value of $y = 3\\sin x + 2$.",
+          "options": [
+            "$5$",
+            "$-1$",
+            "$-3$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $2 - 3 = -1$. Reading the minimum as $-3$ forgets that the whole curve has been lifted to the midline $y = 2$.",
+          "check": [
+            "Eq((2) - (3), -1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v19",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x + 4$.",
+          "options": [
+            "$1$",
+            "$3$",
+            "$7$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $4$ lifts that to $[1, 7]$. The maximum is $7$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((4) + (3), 7)"
+          ]
+        },
+        {
+          "id": "im3-srange-v20",
+          "statement": "Find the MINIMUM value of $y = 3\\sin x + 4$.",
+          "options": [
+            "$7$",
+            "$-3$",
+            "$4$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $4 - 3 = 1$. Reading the minimum as $-3$ forgets that the whole curve has been lifted to the midline $y = 4$.",
+          "check": [
+            "Eq((4) - (3), 1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v21",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x + 5$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$3$",
+            "$5$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $5$ lifts that to $[2, 8]$. The maximum is $8$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((5) + (3), 8)"
+          ]
+        },
+        {
+          "id": "im3-srange-v22",
+          "statement": "Find the MINIMUM value of $y = 3\\sin x + 5$.",
+          "options": [
+            "$8$",
+            "$2$",
+            "$-3$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $5 - 3 = 2$. Reading the minimum as $-3$ forgets that the whole curve has been lifted to the midline $y = 5$.",
+          "check": [
+            "Eq((5) - (3), 2)"
+          ]
+        },
+        {
+          "id": "im3-srange-v23",
+          "statement": "Find the MAXIMUM value of $y = 3\\sin x + 10$.",
+          "options": [
+            "$7$",
+            "$3$",
+            "$13$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $3\\sin x$ never leaves $[-3, 3]$, and adding $10$ lifts that to $[7, 13]$. The maximum is $13$ — the midline plus the amplitude. The amplitude $3$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((10) + (3), 13)"
+          ]
+        },
+        {
+          "id": "im3-srange-v24",
+          "statement": "Find the MINIMUM value of $y = 3\\sin x + 10$.",
+          "options": [
+            "$13$",
+            "$-3$",
+            "$10$",
+            "$7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $10 - 3 = 7$. Reading the minimum as $-3$ forgets that the whole curve has been lifted to the midline $y = 10$.",
+          "check": [
+            "Eq((10) - (3), 7)"
+          ]
+        },
+        {
+          "id": "im3-srange-v25",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x - 6$.",
+          "options": [
+            "$-2$",
+            "$-10$",
+            "$4$",
+            "$-6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $-6$ lifts that to $[-10, -2]$. The maximum is $-2$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-6) + (4), -2)"
+          ]
+        },
+        {
+          "id": "im3-srange-v26",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x - 6$.",
+          "options": [
+            "$-2$",
+            "$-10$",
+            "$-4$",
+            "$-6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $-6 - 4 = -10$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = -6$.",
+          "check": [
+            "Eq((-6) - (4), -10)"
+          ]
+        },
+        {
+          "id": "im3-srange-v27",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x - 3$.",
+          "options": [
+            "$-7$",
+            "$4$",
+            "$1$",
+            "$-3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $-3$ lifts that to $[-7, 1]$. The maximum is $1$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-3) + (4), 1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v28",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x - 3$.",
+          "options": [
+            "$1$",
+            "$-4$",
+            "$-3$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $-3 - 4 = -7$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = -3$.",
+          "check": [
+            "Eq((-3) - (4), -7)"
+          ]
+        },
+        {
+          "id": "im3-srange-v29",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x - 1$.",
+          "options": [
+            "$3$",
+            "$-5$",
+            "$4$",
+            "$-1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $-1$ lifts that to $[-5, 3]$. The maximum is $3$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((-1) + (4), 3)"
+          ]
+        },
+        {
+          "id": "im3-srange-v30",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x - 1$.",
+          "options": [
+            "$3$",
+            "$-5$",
+            "$-4$",
+            "$-1$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The lowest point sits one amplitude below the midline: $-1 - 4 = -5$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = -1$.",
+          "check": [
+            "Eq((-1) - (4), -5)"
+          ]
+        },
+        {
+          "id": "im3-srange-v31",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x + 2$.",
+          "options": [
+            "$-2$",
+            "$4$",
+            "$6$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $2$ lifts that to $[-2, 6]$. The maximum is $6$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((2) + (4), 6)"
+          ]
+        },
+        {
+          "id": "im3-srange-v32",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x + 2$.",
+          "options": [
+            "$6$",
+            "$-4$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The lowest point sits one amplitude below the midline: $2 - 4 = -2$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = 2$.",
+          "check": [
+            "Eq((2) - (4), -2)"
+          ]
+        },
+        {
+          "id": "im3-srange-v33",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x + 4$.",
+          "options": [
+            "$0$",
+            "$8$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The lowest point sits one amplitude below the midline: $4 - 4 = 0$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = 4$.",
+          "check": [
+            "Eq((4) - (4), 0)"
+          ]
+        },
+        {
+          "id": "im3-srange-v34",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x + 5$.",
+          "options": [
+            "$1$",
+            "$9$",
+            "$4$",
+            "$5$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $5$ lifts that to $[1, 9]$. The maximum is $9$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((5) + (4), 9)"
+          ]
+        },
+        {
+          "id": "im3-srange-v35",
+          "statement": "Find the MINIMUM value of $y = 4\\sin x + 5$.",
+          "options": [
+            "$9$",
+            "$-4$",
+            "$1$",
+            "$5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The lowest point sits one amplitude below the midline: $5 - 4 = 1$. Reading the minimum as $-4$ forgets that the whole curve has been lifted to the midline $y = 5$.",
+          "check": [
+            "Eq((5) - (4), 1)"
+          ]
+        },
+        {
+          "id": "im3-srange-v36",
+          "statement": "Find the MAXIMUM value of $y = 4\\sin x + 10$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$10$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $4\\sin x$ never leaves $[-4, 4]$, and adding $10$ lifts that to $[6, 14]$. The maximum is $14$ — the midline plus the amplitude. The amplitude $4$ on its own is the maximum only when the midline sits at zero.",
+          "check": [
+            "Eq((10) + (4), 14)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "im3-inverse-variation",
+      "title": "Inverse variation",
+      "level": 2,
+      "unit": "rational-and-radical-functions",
+      "skill": "Inverse variation keeps the PRODUCT constant; direct variation keeps the ratio.",
+      "variants": [
+        {
+          "id": "im3-invvar-v01",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 6$. Find $y$ when $x = 3$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$18$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 6 = 12$. So at $x = 3$, $y = \\frac{12}{3} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*6, 3*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v02",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 6$. Find $y$ when $x = 4$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$24$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 6 = 12$. So at $x = 4$, $y = \\frac{12}{4} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*6, 4*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v03",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 6$. Find $y$ when $x = 6$.",
+          "options": [
+            "$6$",
+            "$36$",
+            "$2$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 6 = 12$. So at $x = 6$, $y = \\frac{12}{6} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*6, 6*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v04",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 6$. Find $y$ when $x = 12$.",
+          "options": [
+            "$6$",
+            "$72$",
+            "$\\frac{1}{12}$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 6 = 12$. So at $x = 12$, $y = \\frac{12}{12} = 1$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*6, 12*1)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v05",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 4$. Find $y$ when $x = 2$.",
+          "options": [
+            "$6$",
+            "$4$",
+            "$8$",
+            "$3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 4 = 12$. So at $x = 2$, $y = \\frac{12}{2} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*4, 2*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v06",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 4$. Find $y$ when $x = 4$.",
+          "options": [
+            "$4$",
+            "$3$",
+            "$16$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 4 = 12$. So at $x = 4$, $y = \\frac{12}{4} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*4, 4*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v07",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 4$. Find $y$ when $x = 6$.",
+          "options": [
+            "$4$",
+            "$24$",
+            "$2$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 4 = 12$. So at $x = 6$, $y = \\frac{12}{6} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*4, 6*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v08",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 4$. Find $y$ when $x = 12$.",
+          "options": [
+            "$4$",
+            "$48$",
+            "$\\frac{1}{12}$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 4 = 12$. So at $x = 12$, $y = \\frac{12}{12} = 1$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*4, 12*1)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v09",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 3$. Find $y$ when $x = 3$.",
+          "options": [
+            "$4$",
+            "$3$",
+            "$9$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 3 = 12$. So at $x = 3$, $y = \\frac{12}{3} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*3, 3*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v10",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 3$. Find $y$ when $x = 6$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$18$",
+            "$\\frac{1}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 3 = 12$. So at $x = 6$, $y = \\frac{12}{6} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*3, 6*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v11",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 3$. Find $y$ when $x = 12$.",
+          "options": [
+            "$3$",
+            "$36$",
+            "$1$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 3 = 12$. So at $x = 12$, $y = \\frac{12}{12} = 1$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*3, 12*1)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v12",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 2$. Find $y$ when $x = 2$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 2 = 12$. So at $x = 2$, $y = \\frac{12}{2} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*2, 2*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v13",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 2$. Find $y$ when $x = 3$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$6$",
+            "$\\frac{4}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 2 = 12$. So at $x = 3$, $y = \\frac{12}{3} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*2, 3*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v14",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 2$. Find $y$ when $x = 4$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$8$",
+            "$\\frac{3}{4}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 2 = 12$. So at $x = 4$, $y = \\frac{12}{4} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*2, 4*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v15",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 2$. Find $y$ when $x = 12$.",
+          "options": [
+            "$2$",
+            "$24$",
+            "$1$",
+            "$\\frac{1}{12}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 2 = 12$. So at $x = 12$, $y = \\frac{12}{12} = 1$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*2, 12*1)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v16",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 9$. Find $y$ when $x = 3$.",
+          "options": [
+            "$9$",
+            "$27$",
+            "$2$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 9 = 18$. So at $x = 3$, $y = \\frac{18}{3} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*9, 3*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v17",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 9$. Find $y$ when $x = 6$.",
+          "options": [
+            "$3$",
+            "$9$",
+            "$54$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 9 = 18$. So at $x = 6$, $y = \\frac{18}{6} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*9, 6*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v18",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 6$. Find $y$ when $x = 2$.",
+          "options": [
+            "$6$",
+            "$9$",
+            "$12$",
+            "$\\frac{9}{2}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 6 = 18$. So at $x = 2$, $y = \\frac{18}{2} = 9$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*6, 2*9)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v19",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 6$. Find $y$ when $x = 6$.",
+          "options": [
+            "$6$",
+            "$36$",
+            "$3$",
+            "$\\frac{1}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 6 = 18$. So at $x = 6$, $y = \\frac{18}{6} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*6, 6*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v20",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 3$. Find $y$ when $x = 2$.",
+          "options": [
+            "$3$",
+            "$6$",
+            "$\\frac{9}{2}$",
+            "$9$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 3 = 18$. So at $x = 2$, $y = \\frac{18}{2} = 9$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*3, 2*9)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v21",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 3$. Find $y$ when $x = 3$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$9$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 3 = 18$. So at $x = 3$, $y = \\frac{18}{3} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*3, 3*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v22",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 12$. Find $y$ when $x = 3$.",
+          "options": [
+            "$12$",
+            "$8$",
+            "$36$",
+            "$\\frac{8}{3}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 12 = 24$. So at $x = 3$, $y = \\frac{24}{3} = 8$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*12, 3*8)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v23",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 12$. Find $y$ when $x = 4$.",
+          "options": [
+            "$12$",
+            "$48$",
+            "$6$",
+            "$\\frac{3}{2}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 12 = 24$. So at $x = 4$, $y = \\frac{24}{4} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*12, 4*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v24",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 12$. Find $y$ when $x = 6$.",
+          "options": [
+            "$12$",
+            "$72$",
+            "$\\frac{2}{3}$",
+            "$4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 12 = 24$. So at $x = 6$, $y = \\frac{24}{6} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*12, 6*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v25",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 12$. Find $y$ when $x = 8$.",
+          "options": [
+            "$3$",
+            "$12$",
+            "$96$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 12 = 24$. So at $x = 8$, $y = \\frac{24}{8} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*12, 8*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v26",
+          "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 12$. Find $y$ when $x = 12$.",
+          "options": [
+            "$12$",
+            "$2$",
+            "$144$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 12 = 24$. So at $x = 12$, $y = \\frac{24}{12} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(2*12, 12*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v27",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 8$. Find $y$ when $x = 2$.",
+          "options": [
+            "$8$",
+            "$16$",
+            "$12$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 8 = 24$. So at $x = 2$, $y = \\frac{24}{2} = 12$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*8, 2*12)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v28",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 8$. Find $y$ when $x = 4$.",
+          "options": [
+            "$8$",
+            "$32$",
+            "$\\frac{3}{2}$",
+            "$6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 8 = 24$. So at $x = 4$, $y = \\frac{24}{4} = 6$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*8, 4*6)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v29",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 8$. Find $y$ when $x = 6$.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$48$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 8 = 24$. So at $x = 6$, $y = \\frac{24}{6} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*8, 6*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v30",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 8$. Find $y$ when $x = 8$.",
+          "options": [
+            "$8$",
+            "$3$",
+            "$64$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 8 = 24$. So at $x = 8$, $y = \\frac{24}{8} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*8, 8*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v31",
+          "statement": "$y$ varies inversely with $x$. When $x = 3$, $y = 8$. Find $y$ when $x = 12$.",
+          "options": [
+            "$8$",
+            "$96$",
+            "$2$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 3 \\cdot 8 = 24$. So at $x = 12$, $y = \\frac{24}{12} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(3*8, 12*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v32",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 6$. Find $y$ when $x = 3$.",
+          "options": [
+            "$6$",
+            "$18$",
+            "$\\frac{8}{3}$",
+            "$8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 6 = 24$. So at $x = 3$, $y = \\frac{24}{3} = 8$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*6, 3*8)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v33",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 6$. Find $y$ when $x = 6$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$36$",
+            "$\\frac{2}{3}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 6 = 24$. So at $x = 6$, $y = \\frac{24}{6} = 4$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*6, 6*4)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v34",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 6$. Find $y$ when $x = 8$.",
+          "options": [
+            "$6$",
+            "$3$",
+            "$48$",
+            "$\\frac{3}{8}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 6 = 24$. So at $x = 8$, $y = \\frac{24}{8} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*6, 8*3)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v35",
+          "statement": "$y$ varies inversely with $x$. When $x = 4$, $y = 6$. Find $y$ when $x = 12$.",
+          "options": [
+            "$6$",
+            "$72$",
+            "$2$",
+            "$\\frac{1}{6}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 4 \\cdot 6 = 24$. So at $x = 12$, $y = \\frac{24}{12} = 2$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(4*6, 12*2)"
+          ]
+        },
+        {
+          "id": "im3-invvar-v36",
+          "statement": "$y$ varies inversely with $x$. When $x = 6$, $y = 4$. Find $y$ when $x = 2$.",
+          "options": [
+            "$4$",
+            "$8$",
+            "$6$",
+            "$12$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 6 \\cdot 4 = 24$. So at $x = 2$, $y = \\frac{24}{2} = 12$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
+          "check": [
+            "Eq(6*4, 2*12)"
+          ]
+        }
+      ]
+    },
+    {
       "id": "im3-even-odd",
       "title": "Even, odd, or neither",
       "level": 2,
