@@ -37,6 +37,7 @@ SUBJECTS = [
     ("integrated-2", "integrated_2"),
     ("integrated-3", "integrated_3"),
     # Primary and middle band: one collection per unit of each year.
+    ("3", "grade3"),
     ("4", "grade4"),
     ("5", "grade5"),
     ("6", "grade6"),

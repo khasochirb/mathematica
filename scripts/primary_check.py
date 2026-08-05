@@ -41,7 +41,13 @@ FIGURE_STEPS = {"teach", "tapQuestion"}
 # counts as debris mid-sentence.
 # "actually"/"wait" are only debris as SELF-CORRECTION ("wait, no", "— actually"),
 # not in ordinary prose ("the questions people actually ask").
-DEBRIS = re.compile(r"\.\.\.|…|\bwait[,.]|\bwait\s+no\b|[—-]\s*actually\b|"
+#
+# `wait` followed by a FULL STOP was in the original pattern and contradicted
+# that intent: it fired on "the animals do not wait." — an ordinary sentence
+# that simply ends in the word. Only the comma form ("wait, no...") is
+# self-correction, so the full stop is gone. Narrowing this can only reduce
+# matches, and the Grade 4 corpus is unchanged by it.
+DEBRIS = re.compile(r"\.\.\.|…|\bwait,|\bwait\s+no\b|[—-]\s*actually\b|"
                     r"\bactually[,.]|\bhmm\b|careful:", re.I)
 MID_SENTENCE_NO = re.compile(r"\S\s+no —", re.I)
 # A number with a decimal point inside a sympy check string.

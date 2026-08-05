@@ -3,7 +3,7 @@
 import Link from "next/link";
 // Spines, not the registry: the catalog lists courses, it renders no
 // lesson, so it must not ship the course corpus (lib/genmath-spines.ts).
-import { listGrades, GRADE4_SPINE, GRADE5_SPINE, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
+import { listGrades, GRADE3_SPINE, GRADE4_SPINE, GRADE5_SPINE, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
 import useRatings from "@/lib/use-ratings";
 import {
   COURSE_DEFAULT_ATTRIBUTE,
@@ -23,6 +23,7 @@ const BAND_COLOR: Record<Band, string> = {
 
 const TOPIC_COUNTS: Record<number, number> = {
   // Primary grades go live topic by topic — count only what a student can open.
+  3: GRADE3_SPINE.filter((t) => t.live).length,
   4: GRADE4_SPINE.filter((t) => t.live).length,
   5: GRADE5_SPINE.filter((t) => t.live).length,
   6: GRADE6_SPINE.length,
@@ -457,13 +458,15 @@ export default function MathLandingPage() {
         <section id="primary" className="mb-12" style={{ scrollMarginTop: 96 }}>
           <div className="eyebrow mb-1.5">Primary school · Mongol curriculum</div>
           <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
-            Grades 1–5, year by year. Grades 4 and 5 — the school-entrance
-            runway — are complete and open; grades 1–3 follow.
+            Grades 1–5, year by year. Grades 3, 4 and 5 are complete and
+            open — three full years running down from the school-entrance
+            runway; grades 1 and 2 follow.
           </p>
           <div className="grid gap-4" style={gridStyle}>
             <GradeCard grade={5} active={isActive(5)} />
             <GradeCard grade={4} active={isActive(4)} />
-            {[1, 2, 3].map((g) => (
+            <GradeCard grade={3} active={isActive(3)} />
+            {[1, 2].map((g) => (
               <GradeCard key={g} grade={g} active={false} />
             ))}
           </div>

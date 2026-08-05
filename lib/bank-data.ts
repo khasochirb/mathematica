@@ -29,6 +29,7 @@ import vectorsMatrices from "@/data/problembank/vectors-matrices.json";
 import integrated1 from "@/data/problembank/integrated-1.json";
 import integrated2 from "@/data/problembank/integrated-2.json";
 import integrated3 from "@/data/problembank/integrated-3.json";
+import grade3 from "@/data/problembank/3.json";
 import grade4 from "@/data/problembank/4.json";
 import grade5 from "@/data/problembank/5.json";
 import grade6 from "@/data/problembank/6.json";
@@ -69,8 +70,9 @@ const TOPICS: BankTopic[] = [
   integrated1,
   integrated2,
   integrated3,
-  // Primary and middle band (slugs mirror the course paths /math/4 ...),
+  // Primary and middle band (slugs mirror the course paths /math/3 ...),
   // one collection per unit of each year.
+  grade3,
   grade4,
   grade5,
   grade6,

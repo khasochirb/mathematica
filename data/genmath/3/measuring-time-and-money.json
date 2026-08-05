@@ -1,0 +1,3278 @@
+{
+  "slug": "measuring-time-and-money",
+  "title": "Measuring, Time & Money",
+  "grade": 3,
+  "status": "published",
+  "blurb": "Measuring length in centimetres from the zero mark, metres for the things a ruler cannot reach, comparing masses on a balance and capacities by filling, telling o'clock and half past, and counting tögrög notes and change.",
+  "lessons": [
+    {
+      "slug": "measuring-in-centimetres",
+      "title": "Measuring in Centimetres",
+      "concreteComparison": "Two children measure the same pencil and get different answers. One started at the $0$ on the ruler; the other started at the metal edge, a little before the $0$. The pencil never changed — the counting did.",
+      "objective": "Measure a length in centimetres with a ruler, start the count in the right place, and read a length whose ends do not sit at zero.",
+      "concept": [
+        "**A centimetre is the unit you are counting.** Measuring means asking how many centimetres fit along the object. The answer is a number AND a unit — \"$8$\" alone says nothing, \"$8$ cm\" says everything.",
+        "**Line the object up with the ZERO, not the end of the ruler.** Most rulers have a little blank strip before the $0$. Start from the ruler's edge and every measurement comes out too big.",
+        "**If the object does not start at zero, subtract.** A stick lying from the $2$ cm mark to the $9$ cm mark is not $9$ cm long. It covers $9 - 2 = 7$ centimetres — count the marks the object actually spans."
+      ],
+      "keyIdea": "A length is a count of centimetres, so start the count at zero — and when the object starts elsewhere, subtract to find how many centimetres it really covers.",
+      "facts": [
+        {
+          "title": "Start at zero",
+          "latex": "8 - 0 = 8",
+          "explanation": "An object laid from 0 to 8 covers 8 centimetres."
+        },
+        {
+          "title": "Subtract when it does not",
+          "latex": "9 - 2 = 7",
+          "explanation": "From the 2 cm mark to the 9 cm mark is 7 centimetres, not 9."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3me-l1-we1",
+          "statement": "A pencil is laid on a ruler from the $0$ mark to the $8$ cm mark. How long is it?",
+          "note": "Count the centimetres it covers.",
+          "solution": "Starting at zero, the pencil covers every centimetre up to $8$: $8 - 0 = 8$, so it is $8$ cm long. Note the unit — \"$8$\" on its own would not say whether we meant centimetres, metres or steps.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(8 - 0, 8)"
+          ]
+        },
+        {
+          "id": "g3me-l1-we2",
+          "statement": "A stick lies along a ruler from the $2$ cm mark to the $9$ cm mark. How long is it?",
+          "note": "It does not start at zero.",
+          "solution": "The stick covers the centimetres from $2$ up to $9$, which is $9 - 2 = 7$ of them. So it is $7$ cm long — not $9$ cm, which would be the answer only if it had started at zero.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(9 - 2, 7)",
+            "Ne(7, 9)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading off the mark at the far end when the object did not start at zero — calling the 2-to-9 stick 9 cm.",
+          "correction": "That reads the ruler's position, not the object's length. Subtract: 9 − 2 = 7 cm is how many centimetres the stick actually covers.",
+          "authored": true
+        },
+        {
+          "text": "Starting the measurement at the ruler's metal edge instead of the 0 mark.",
+          "correction": "Most rulers have a blank strip before the 0. Starting there adds that strip to every measurement, so line the object up with the printed 0 every time.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3me-l1-t1",
+          "statement": "A ribbon lies from the $0$ mark to the $6$ cm mark. How long is it?",
+          "solution": "It covers all six centimetres from zero: $6 - 0 = 6$, so the ribbon is $6$ cm long.",
+          "check": [
+            "Eq(6 - 0, 6)"
+          ]
+        },
+        {
+          "id": "g3me-l1-t2",
+          "statement": "A twig lies from the $3$ cm mark to the $10$ cm mark. How long is it?",
+          "solution": "$10 - 3 = 7$, so the twig is $7$ cm long. Reading only the far end would give $10$ cm, which is $3$ cm too much.",
+          "check": [
+            "Eq(10 - 3, 7)",
+            "Eq(10 - 7, 3)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Counting centimetres from zero",
+            "beats": [
+              "The ruler below shows an object laid from the $0$ mark to the $8$ cm mark.",
+              "Measuring is counting: how many centimetres fit along the object? Starting from zero, the answer is read straight off — $8 - 0 = 8$, so $8$ cm.",
+              "Always say the unit. \"$8$\" could be centimetres, metres or paces; \"$8$ cm\" is a measurement, and a number without its unit is not one."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0 cm",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 4,
+                    "label": "4 cm"
+                  },
+                  {
+                    "value": 8,
+                    "label": "8 cm",
+                    "color": "#d97706"
+                  }
+                ],
+                "min": 0,
+                "max": 10
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Measure from zero",
+            "intro": "Line the object up with the $0$ mark.",
+            "examples": [
+              {
+                "prompt": "A pencil lies from $0$ to $8$ cm. How long is it?",
+                "steps": [
+                  "It starts at zero, so read the far end.",
+                  "$8 - 0 = 8$: the pencil is $8$ cm long."
+                ],
+                "answer": "$8$ cm",
+                "check": [
+                  "Eq(8 - 0, 8)"
+                ]
+              },
+              {
+                "prompt": "A ribbon lies from $0$ to $6$ cm. How long is it?",
+                "steps": [
+                  "Again it starts at zero.",
+                  "$6 - 0 = 6$: the ribbon is $6$ cm long."
+                ],
+                "answer": "$6$ cm",
+                "check": [
+                  "Eq(6 - 0, 6)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Read the ruler",
+            "intro": "Where does the object start?",
+            "problems": [
+              {
+                "prompt": "The object below runs from $0$ to $6$ cm. It is:",
+                "options": [
+                  "$6$ cm long",
+                  "$0$ cm long",
+                  "$60$ cm long"
+                ],
+                "correctIndex": 0,
+                "explanation": "Starting at zero, the far end gives the length directly: $6 - 0 = 6$ cm.",
+                "check": [
+                  "Eq(6 - 0, 6)"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 0,
+                        "label": "0 cm",
+                        "color": "#d97706"
+                      },
+                      {
+                        "value": 6,
+                        "label": "6 cm",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "min": 0,
+                    "max": 10
+                  }
+                }
+              },
+              {
+                "prompt": "A measurement written as just \"$7$\" is:",
+                "options": [
+                  "incomplete — it needs a unit",
+                  "$7$ centimetres",
+                  "$7$ metres"
+                ],
+                "correctIndex": 0,
+                "explanation": "A number alone does not say what was counted. Seven centimetres and seven metres are wildly different lengths, and $7$ says neither.",
+                "check": [
+                  "Eq(7 - 0, 7)"
+                ]
+              },
+              {
+                "prompt": "Starting a measurement at the ruler's metal edge instead of the $0$ makes every answer:",
+                "options": [
+                  "too big",
+                  "too small",
+                  "exactly right"
+                ],
+                "correctIndex": 0,
+                "explanation": "The blank strip before the $0$ gets counted as part of the object, so every length comes out longer than it really is.",
+                "check": [
+                  "Eq(8 - 0, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Where does the count start?",
+            "prompt": "Why must you line an object up with the $0$ and not the ruler's edge?",
+            "options": [
+              "the blank strip before $0$ would be counted too",
+              "because the edge is made of metal",
+              "it makes no difference which you use",
+              "because rulers start at $1$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Most rulers have a small blank strip before the printed $0$. Starting there adds it to every measurement, making each one too long — whereas from the $0$ mark, an object reaching $8$ is exactly $8 - 0 = 8$ cm.",
+            "check": [
+              "Eq(8 - 0, 8)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why the centimetre is the size it is",
+            "body": "A centimetre is one hundredth of a metre, and the metre was first defined so that the distance from the equator to the North Pole would be exactly ten million of them. Almost nobody has ever needed that fact — but it is why a centimetre is a comfortable size for a fingernail and a metre for a stride."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "When the object does not start at zero",
+            "beats": [
+              "Objects do not always begin at the $0$ mark. The ruler below shows one lying from the $2$ cm mark to the $9$ cm mark.",
+              "It is not $9$ cm long. Read the ruler as a count: the object covers the centimetres from $2$ up to $9$, which is $9 - 2 = 7$ of them.",
+              "So subtract the starting mark from the finishing one. And check the answer makes sense — $7$ cm must be shorter than the $9$ cm mark it reaches, which it is."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 2,
+                    "label": "2 cm",
+                    "color": "#d97706"
+                  },
+                  {
+                    "value": 5,
+                    "label": "5 cm"
+                  },
+                  {
+                    "value": 9,
+                    "label": "9 cm",
+                    "color": "#d97706"
+                  }
+                ],
+                "min": 0,
+                "max": 10
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Subtract the start",
+            "intro": "Finishing mark minus starting mark.",
+            "examples": [
+              {
+                "prompt": "A stick lies from $2$ cm to $9$ cm. How long is it?",
+                "steps": [
+                  "It covers the centimetres from $2$ to $9$.",
+                  "$9 - 2 = 7$, so the stick is $7$ cm long."
+                ],
+                "answer": "$7$ cm",
+                "check": [
+                  "Eq(9 - 2, 7)",
+                  "Eq(7 + 2, 9)"
+                ]
+              },
+              {
+                "prompt": "A twig lies from $3$ cm to $10$ cm. How long is it?",
+                "steps": [
+                  "$10 - 3 = 7$.",
+                  "The twig is $7$ cm long — the same length as the stick above, in a different place on the ruler."
+                ],
+                "answer": "$7$ cm",
+                "check": [
+                  "Eq(10 - 3, 7)",
+                  "Eq(7 + 3, 10)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Not starting at zero",
+            "intro": "Take the starting mark away.",
+            "problems": [
+              {
+                "prompt": "The object below runs from the $2$ cm mark to the $9$ cm mark. It is:",
+                "options": [
+                  "$7$ cm long",
+                  "$9$ cm long",
+                  "$11$ cm long"
+                ],
+                "correctIndex": 0,
+                "explanation": "It covers $9 - 2 = 7$ centimetres. Reading only the far end gives $9$, and adding the marks gives $11$ — neither counts the object.",
+                "check": [
+                  "Eq(9 - 2, 7)",
+                  "Eq(9 + 2, 11)"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 2,
+                        "label": "2 cm",
+                        "color": "#d97706"
+                      },
+                      {
+                        "value": 5,
+                        "label": "5 cm"
+                      },
+                      {
+                        "value": 9,
+                        "label": "9 cm",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "min": 0,
+                    "max": 10
+                  }
+                }
+              },
+              {
+                "prompt": "A ribbon runs from the $4$ cm mark to the $10$ cm mark. It is:",
+                "options": [
+                  "$6$ cm long",
+                  "$10$ cm long",
+                  "$14$ cm long"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10 - 4 = 6$ centimetres covered. The receipt confirms it: $6 + 4 = 10$ ✓.",
+                "check": [
+                  "Eq(10 - 4, 6)",
+                  "Eq(6 + 4, 10)"
+                ]
+              },
+              {
+                "prompt": "Two sticks measure $2$ to $7$ cm and $0$ to $5$ cm. They are:",
+                "options": [
+                  "the same length",
+                  "different lengths",
+                  "impossible to compare"
+                ],
+                "correctIndex": 0,
+                "explanation": "The first covers $7 - 2 = 5$ cm and the second $5 - 0 = 5$ cm — both $5$ cm, just lying in different places on the ruler.",
+                "check": [
+                  "Eq(7 - 2, 5)",
+                  "Eq(5 - 0, 5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Position against length",
+            "prompt": "A pencil lies from the $3$ cm mark to the $9$ cm mark. How long is it?",
+            "options": [
+              "$6$ cm",
+              "$9$ cm",
+              "$12$ cm",
+              "$3$ cm"
+            ],
+            "correctIndex": 0,
+            "explanation": "The pencil covers the centimetres from $3$ up to $9$: $9 - 3 = 6$ cm. The $9$ is where the pencil ENDS on the ruler, not how long it is — receipt: $6 + 3 = 9$ ✓.",
+            "check": [
+              "Eq(9 - 3, 6)",
+              "Eq(6 + 3, 9)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Measuring is counting units — and the unit must be said, not just the number.",
+              "Line the object up with the printed $0$, never the ruler's edge.",
+              "If it starts elsewhere, subtract: from $2$ cm to $9$ cm is $9 - 2 = 7$ cm.",
+              "Two objects of the same length can sit at quite different places on the ruler."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before reading any ruler, put your finger on the $0$ and check the object's end is there. Almost every wrong measurement in this lesson comes from a start that was never checked."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Where does it start, and where does it end?",
+            "problems": [
+              {
+                "prompt": "An object from $0$ to $9$ cm is:",
+                "options": [
+                  "$9$ cm long",
+                  "$0$ cm long",
+                  "$90$ cm long"
+                ],
+                "correctIndex": 0,
+                "explanation": "Starting at zero, the far mark IS the length: $9 - 0 = 9$ cm.",
+                "check": [
+                  "Eq(9 - 0, 9)"
+                ]
+              },
+              {
+                "prompt": "An object from $5$ cm to $8$ cm is:",
+                "options": [
+                  "$3$ cm long",
+                  "$8$ cm long",
+                  "$13$ cm long"
+                ],
+                "correctIndex": 0,
+                "explanation": "$8 - 5 = 3$ centimetres covered; the receipt $3 + 5 = 8$ ✓ confirms it.",
+                "check": [
+                  "Eq(8 - 5, 3)",
+                  "Eq(3 + 5, 8)"
+                ]
+              },
+              {
+                "prompt": "Which measurement is written properly?",
+                "options": [
+                  "$12$ cm",
+                  "$12$",
+                  "cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "A measurement is a number AND a unit. Either one alone leaves the reader guessing what was counted.",
+                "check": [
+                  "Eq(12 - 0, 12)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Measuring in Centimetres\"",
+            "body": "You can now measure anything that fits on a ruler. The next lesson deals with the things that do not — and finds that the answer is simply a bigger unit."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "metres-and-comparing",
+      "title": "Metres & Comparing Lengths",
+      "concreteComparison": "Measuring a ger with a $30$ cm ruler would take all afternoon. For long things there is a bigger unit — the metre, which is $100$ centimetres — and a doorway is about two of them.",
+      "objective": "Choose between centimetres and metres for a given object, use the fact that a metre is $100$ cm, and compare two lengths given in the same unit.",
+      "concept": [
+        "**A metre is one hundred centimetres.** It is the unit for things a ruler cannot reach: a room, a rope, the height of a door. One metre is about a long stride.",
+        "**Choose the unit to fit the object.** A pencil in metres would be a fraction of one; a ger in centimetres would be hundreds. Pick the unit that gives a comfortable, countable number — that is the whole art of choosing a unit.",
+        "**Compare only in the SAME unit.** A ribbon of $45$ cm and a rope of $80$ cm compare directly: $80 > 45$, so the rope is $80 - 45 = 35$ cm longer. Comparing $45$ cm with \"$2$\" is meaningless until you know what the $2$ counts."
+      ],
+      "keyIdea": "A metre is $100$ centimetres; choose whichever unit gives a comfortable number, and only ever compare two lengths that are counted in the same one.",
+      "facts": [
+        {
+          "title": "A metre in centimetres",
+          "latex": "1 \\times 100 = 100",
+          "explanation": "One metre is 100 centimetres — the unit for long things."
+        },
+        {
+          "title": "Compare in one unit",
+          "latex": "80 - 45 = 35",
+          "explanation": "A rope of 80 cm is 35 cm longer than a ribbon of 45 cm."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3me-l2-we1",
+          "statement": "Would you measure a pencil in centimetres or metres? And a ger?",
+          "note": "Which gives a comfortable number?",
+          "solution": "A pencil in centimetres — perhaps $18$ cm, a comfortable number. In metres it would be less than one whole metre, which is awkward to say. A ger is the other way round: in metres it might be $5$ m, while in centimetres that is $5 \\times 100 = 500$ cm, a big number to carry about.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(5*100, 500)",
+            "Eq(1*100, 100)"
+          ]
+        },
+        {
+          "id": "g3me-l2-we2",
+          "statement": "A ribbon is $45$ cm and a rope is $80$ cm. Which is longer, and by how much?",
+          "note": "Same unit, so compare directly.",
+          "solution": "Both are in centimetres, so they compare straight away: $80 > 45$, so the rope is longer, by $80 - 45 = 35$ cm. Receipt: $35 + 45 = 80$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "80 > 45",
+            "Eq(80 - 45, 35)",
+            "Eq(35 + 45, 80)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Comparing a length in centimetres with one in metres as if the numbers meant the same thing.",
+          "correction": "2 m is far longer than 45 cm, even though 45 is the bigger number — because a metre is 100 cm, and 2 m is 200 cm. Put both into one unit before comparing.",
+          "authored": true
+        },
+        {
+          "text": "Measuring long things in centimetres out of habit, giving numbers like 500 cm for a ger.",
+          "correction": "That is not wrong, but it is uncomfortable. 500 cm is 5 m, and the smaller number is easier to say, remember and check.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3me-l2-t1",
+          "statement": "How many centimetres are there in $3$ metres?",
+          "solution": "Each metre is $100$ cm, so three of them is $3 \\times 100 = 300$ cm.",
+          "check": [
+            "Eq(3*100, 300)"
+          ]
+        },
+        {
+          "id": "g3me-l2-t2",
+          "statement": "A stick is $60$ cm and a pole is $90$ cm. How much longer is the pole?",
+          "solution": "Both in centimetres, so subtract: $90 - 60 = 30$ cm longer. Receipt: $30 + 60 = 90$ ✓.",
+          "check": [
+            "Eq(90 - 60, 30)",
+            "Eq(30 + 60, 90)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "A bigger unit for bigger things",
+            "beats": [
+              "A ruler runs out quickly. For a rope, a room or a doorway there is a bigger unit: the metre.",
+              "One metre is $100$ centimetres — the picture below counts three lots of ten to give you a feel for how the centimetres stack up. A metre is about one long stride.",
+              "So $3$ metres is $3 \\times 100 = 300$ cm. The length has not changed; only the unit you count it in has."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 10,
+                  "color": "#3b82f6",
+                  "label": "10 cm"
+                },
+                {
+                  "count": 10,
+                  "color": "#3b82f6",
+                  "label": "20 cm"
+                },
+                {
+                  "count": 10,
+                  "color": "#3b82f6",
+                  "label": "30 cm"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Metres and centimetres",
+            "intro": "One metre is one hundred centimetres.",
+            "examples": [
+              {
+                "prompt": "How many centimetres in $3$ metres?",
+                "steps": [
+                  "Each metre is $100$ cm.",
+                  "$3 \\times 100 = 300$ cm."
+                ],
+                "answer": "$300$ cm",
+                "check": [
+                  "Eq(3*100, 300)"
+                ]
+              },
+              {
+                "prompt": "A ger is about $5$ m across. How many centimetres is that?",
+                "steps": [
+                  "$5$ metres, each of $100$ cm.",
+                  "$5 \\times 100 = 500$ cm — which is why metres are the friendlier unit here."
+                ],
+                "answer": "$500$ cm",
+                "check": [
+                  "Eq(5*100, 500)",
+                  "500 > 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which unit?",
+            "intro": "Pick the one that gives a comfortable number.",
+            "problems": [
+              {
+                "prompt": "You would measure a pencil in:",
+                "options": [
+                  "centimetres",
+                  "metres",
+                  "either — it makes no difference"
+                ],
+                "correctIndex": 0,
+                "explanation": "A pencil is about $18$ cm, a comfortable number. In metres it would not even reach one whole metre.",
+                "check": [
+                  "Eq(1*100, 100)",
+                  "100 > 18"
+                ]
+              },
+              {
+                "prompt": "$2$ metres is the same as:",
+                "options": [
+                  "$200$ cm",
+                  "$20$ cm",
+                  "$2$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each metre is $100$ cm, so $2 \\times 100 = 200$ cm.",
+                "check": [
+                  "Eq(2*100, 200)"
+                ]
+              },
+              {
+                "prompt": "You would measure the height of a door in:",
+                "options": [
+                  "metres",
+                  "centimetres",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "A door is about $2$ m. Measuring it in centimetres gives $200$ — correct, but a bigger number to carry about for no benefit.",
+                "check": [
+                  "Eq(2*100, 200)",
+                  "200 > 2"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "How many centimetres?",
+            "prompt": "A rope is $4$ metres long. In centimetres that is:",
+            "options": [
+              "$400$ cm",
+              "$40$ cm",
+              "$104$ cm",
+              "$4$ cm"
+            ],
+            "correctIndex": 0,
+            "explanation": "Each metre is $100$ centimetres, so four metres is $4 \\times 100 = 400$ cm. The rope has not changed length — only the unit counting it.",
+            "check": [
+              "Eq(4*100, 400)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The metre that lived in a vault",
+            "body": "For most of a century, the metre was a particular metal bar kept in a vault near Paris, and every ruler in the world was ultimately a copy of it. That stopped a few decades ago: the metre is now defined by how far light travels in a fixed sliver of a second, which nobody can lose, bend or steal."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Comparing lengths",
+            "beats": [
+              "The line below shows a ribbon of $45$ cm and a rope of $80$ cm against a full metre.",
+              "Both are measured in centimetres, so they compare directly: $80 > 45$, and the rope is $80 - 45 = 35$ cm longer.",
+              "But comparing only works in ONE unit. A rope of \"$2$\" and a ribbon of \"$45$ cm\" cannot be ranked until you know what the $2$ counts — if it is metres, that rope is $200$ cm and far the longer."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0"
+                  },
+                  {
+                    "value": 45,
+                    "label": "ribbon: 45 cm"
+                  },
+                  {
+                    "value": 80,
+                    "label": "rope: 80 cm"
+                  },
+                  {
+                    "value": 100,
+                    "label": "1 m"
+                  }
+                ],
+                "min": 0,
+                "max": 100
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compare fairly",
+            "intro": "Get both lengths into the same unit.",
+            "examples": [
+              {
+                "prompt": "A ribbon is $45$ cm and a rope is $80$ cm. Which is longer, and by how much?",
+                "steps": [
+                  "Same unit, so compare directly: $80 > 45$.",
+                  "$80 - 45 = 35$ cm longer; receipt $35 + 45 = 80$ ✓."
+                ],
+                "answer": "the rope, by $35$ cm",
+                "check": [
+                  "80 > 45",
+                  "Eq(80 - 45, 35)",
+                  "Eq(35 + 45, 80)"
+                ]
+              },
+              {
+                "prompt": "A rope is $2$ m and a ribbon is $45$ cm. Which is longer?",
+                "steps": [
+                  "Different units — put them into one.",
+                  "$2$ m is $2 \\times 100 = 200$ cm.",
+                  "$200 > 45$, so the rope is longer, by $200 - 45 = 155$ cm."
+                ],
+                "answer": "the rope",
+                "check": [
+                  "Eq(2*100, 200)",
+                  "200 > 45",
+                  "Eq(200 - 45, 155)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which is longer?",
+            "intro": "Same unit first, then compare.",
+            "problems": [
+              {
+                "prompt": "A stick of $70$ cm and a pole of $95$ cm: the pole is longer by:",
+                "options": [
+                  "$25$ cm",
+                  "$165$ cm",
+                  "$35$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "$95 - 70 = 25$ cm. Adding the two would give $165$, which answers a question nobody asked.",
+                "check": [
+                  "Eq(95 - 70, 25)",
+                  "Eq(25 + 70, 95)"
+                ]
+              },
+              {
+                "prompt": "Which is longer, $1$ m or $80$ cm?",
+                "options": [
+                  "$1$ m",
+                  "$80$ cm",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "One metre is $100$ cm, and $100 > 80$ — so the metre wins by $100 - 80 = 20$ cm, even though $80$ is the bigger-looking number.",
+                "check": [
+                  "Eq(1*100, 100)",
+                  "100 > 80",
+                  "Eq(100 - 80, 20)"
+                ]
+              },
+              {
+                "prompt": "Before comparing $3$ m with $250$ cm you should:",
+                "options": [
+                  "put both into the same unit",
+                  "compare the numbers $3$ and $250$",
+                  "measure them again"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3$ m is $3 \\times 100 = 300$ cm, and $300 > 250$ — so the three metres is longer, by $50$ cm. Comparing $3$ with $250$ would give the wrong answer entirely.",
+                "check": [
+                  "Eq(3*100, 300)",
+                  "300 > 250",
+                  "Eq(300 - 250, 50)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The bigger number that is shorter",
+            "prompt": "Which is longer, $2$ m or $150$ cm?",
+            "options": [
+              "$2$ m",
+              "$150$ cm",
+              "they are the same",
+              "you cannot compare them"
+            ],
+            "correctIndex": 0,
+            "explanation": "Put both in one unit: $2$ m is $2 \\times 100 = 200$ cm, and $200 > 150$. So the two metres is longer by $50$ cm, even though $150$ looks like the bigger number.",
+            "check": [
+              "Eq(2*100, 200)",
+              "200 > 150",
+              "Eq(200 - 150, 50)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A metre is $100$ centimetres — the unit for ropes, rooms and doorways.",
+              "Choose the unit that gives a comfortable number: pencils in cm, gers in m.",
+              "Two lengths can only be compared in the SAME unit.",
+              "$2$ m beats $150$ cm, because $2$ m is $200$ cm — the bigger number is not always the longer thing."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Whenever two lengths carry different units, write both in centimetres before you compare a single digit. It takes one multiplication and it removes the only real trap in this lesson."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Same unit, then compare.",
+            "problems": [
+              {
+                "prompt": "$5$ metres in centimetres is:",
+                "options": [
+                  "$500$ cm",
+                  "$50$ cm",
+                  "$105$ cm"
+                ],
+                "correctIndex": 0,
+                "explanation": "Each metre is $100$ cm: $5 \\times 100 = 500$ cm.",
+                "check": [
+                  "Eq(5*100, 500)"
+                ]
+              },
+              {
+                "prompt": "A rope of $90$ cm and a rope of $1$ m. The longer is:",
+                "options": [
+                  "the $1$ m rope",
+                  "the $90$ cm rope",
+                  "they are equal"
+                ],
+                "correctIndex": 0,
+                "explanation": "One metre is $100$ cm, and $100 > 90$ — longer by $10$ cm.",
+                "check": [
+                  "Eq(1*100, 100)",
+                  "Eq(100 - 90, 10)"
+                ]
+              },
+              {
+                "prompt": "You would measure the length of a classroom in:",
+                "options": [
+                  "metres",
+                  "centimetres",
+                  "neither"
+                ],
+                "correctIndex": 0,
+                "explanation": "A classroom is several metres across. In centimetres the number would run into the hundreds for no benefit.",
+                "check": [
+                  "Eq(5*100, 500)",
+                  "500 > 5"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Metres & Comparing Lengths\"",
+            "body": "Choosing a unit and comparing within it is the habit behind every measurement you will ever make. The next lesson applies it to two new questions: how heavy, and how much does it hold."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "heavier-lighter-holds-more",
+      "title": "Heavier, Lighter, Holds More",
+      "concreteComparison": "A big bag of wool and a small bag of salt sit on the counter. The big one looks heavier, but lift them and the salt wins. Size and weight are different questions, and only a balance settles the second one.",
+      "objective": "Compare masses with a balance and capacities by filling, use kilograms and litres to say how much, and explain why size does not decide weight.",
+      "concept": [
+        "**A balance compares two masses directly.** Put one thing in each pan: the heavier side goes down. If a $5$ kg sack sinks against a $3$ kg one, it is heavier by $5 - 3 = 2$ kg.",
+        "**Capacity is how much a container holds.** A jug that takes $6$ litres holds more than one that takes $4$: $6 - 4 = 2$ litres more. You find out by filling, not by looking.",
+        "**Size does not decide weight.** A big box of wool can be lighter than a small box of salt — $2$ kg against $7$ kg. How much room something takes up and how heavy it is are two separate measurements, and only weighing answers the second."
+      ],
+      "keyIdea": "Mass is measured in kilograms with a balance and capacity in litres by filling — and neither can be judged by how big something looks.",
+      "facts": [
+        {
+          "title": "Comparing masses",
+          "latex": "5 - 3 = 2",
+          "explanation": "A 5 kg sack is 2 kg heavier than a 3 kg one."
+        },
+        {
+          "title": "Comparing capacities",
+          "latex": "6 - 4 = 2",
+          "explanation": "A 6-litre jug holds 2 litres more than a 4-litre one."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3me-l3-we1",
+          "statement": "A sack of $5$ kg is balanced against one of $3$ kg. Which pan goes down, and by how much is it heavier?",
+          "note": "The heavier side sinks.",
+          "solution": "The $5$ kg pan goes down, because $5 > 3$. It is heavier by $5 - 3 = 2$ kg — and adding $2$ kg to the lighter pan would level the balance: $3 + 2 = 5$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "5 > 3",
+            "Eq(5 - 3, 2)",
+            "Eq(3 + 2, 5)"
+          ]
+        },
+        {
+          "id": "g3me-l3-we2",
+          "statement": "A big box of wool weighs $2$ kg and a small box of salt weighs $7$ kg. Which is heavier, and what does that show?",
+          "note": "Compare the masses, not the sizes.",
+          "solution": "The salt, by $7 - 2 = 5$ kg — even though its box is the smaller of the two. Size and weight are separate measurements: how much room a thing takes up says nothing about how heavy it is.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "7 > 2",
+            "Eq(7 - 2, 5)",
+            "Eq(2 + 5, 7)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Deciding the bigger object must be the heavier one.",
+          "correction": "A big box of wool can weigh 2 kg while a small box of salt weighs 7 kg. Size is one measurement and mass is another — only a balance settles the second.",
+          "authored": true
+        },
+        {
+          "text": "Giving a mass or a capacity as a bare number, with no unit.",
+          "correction": "\"5\" could be kilograms, litres or sacks. Always say 5 kg or 5 litres — the unit is half the measurement.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3me-l3-t1",
+          "statement": "A jug holds $8$ litres and a bucket holds $5$. How much more does the jug hold?",
+          "solution": "$8 - 5 = 3$ litres more. Receipt: $5 + 3 = 8$ ✓.",
+          "check": [
+            "Eq(8 - 5, 3)",
+            "Eq(5 + 3, 8)"
+          ]
+        },
+        {
+          "id": "g3me-l3-t2",
+          "statement": "Two sacks weigh $9$ kg and $4$ kg. Which pan of a balance goes down, and by how much?",
+          "solution": "The $9$ kg pan, since $9 > 4$. It is heavier by $9 - 4 = 5$ kg.",
+          "check": [
+            "9 > 4",
+            "Eq(9 - 4, 5)",
+            "Eq(4 + 5, 9)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "The balance settles it",
+            "beats": [
+              "A balance answers one question and answers it honestly: which of these two is heavier? Put one thing in each pan and the heavier side goes down.",
+              "The picture below shows $5$ kg against $3$ kg. The left pan sinks, because $5 > 3$, and it is heavier by $5 - 3 = 2$ kg.",
+              "The kilogram is the unit for saying HOW heavy. Without it, \"$5$\" could mean anything — five kilograms, five sacks, five stones."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#3b82f6",
+                  "label": "left pan: 5 kg"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "right pan: 3 kg"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compare two masses",
+            "intro": "The heavier pan goes down.",
+            "examples": [
+              {
+                "prompt": "Which pan goes down: $5$ kg or $3$ kg? By how much?",
+                "steps": [
+                  "$5 > 3$, so the $5$ kg pan sinks.",
+                  "It is heavier by $5 - 3 = 2$ kg; adding $2$ kg to the other pan would level it."
+                ],
+                "answer": "the $5$ kg pan, by $2$ kg",
+                "check": [
+                  "5 > 3",
+                  "Eq(5 - 3, 2)",
+                  "Eq(3 + 2, 5)"
+                ]
+              },
+              {
+                "prompt": "Two sacks weigh $9$ kg and $4$ kg. Compare them.",
+                "steps": [
+                  "$9 > 4$, so the $9$ kg sack is heavier.",
+                  "By $9 - 4 = 5$ kg."
+                ],
+                "answer": "$5$ kg heavier",
+                "check": [
+                  "9 > 4",
+                  "Eq(9 - 4, 5)",
+                  "Eq(4 + 5, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which is heavier?",
+            "intro": "Compare the masses, in kilograms.",
+            "problems": [
+              {
+                "prompt": "A $7$ kg sack and a $4$ kg sack. The heavier is:",
+                "options": [
+                  "the $7$ kg sack, by $3$ kg",
+                  "the $4$ kg sack, by $3$ kg",
+                  "they balance"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 > 4$, so the seven-kilogram sack sinks — heavier by $7 - 4 = 3$ kg.",
+                "check": [
+                  "7 > 4",
+                  "Eq(7 - 4, 3)",
+                  "Eq(4 + 3, 7)"
+                ]
+              },
+              {
+                "prompt": "To level a balance holding $6$ kg against $2$ kg, you add to the light side:",
+                "options": [
+                  "$4$ kg",
+                  "$8$ kg",
+                  "$2$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "The gap is $6 - 2 = 4$ kg, so adding $4$ kg makes both sides $6$: $2 + 4 = 6$ ✓.",
+                "check": [
+                  "Eq(6 - 2, 4)",
+                  "Eq(2 + 4, 6)"
+                ]
+              },
+              {
+                "prompt": "A mass written as just \"$5$\" is:",
+                "options": [
+                  "incomplete — it needs a unit",
+                  "$5$ kilograms",
+                  "$5$ litres"
+                ],
+                "correctIndex": 0,
+                "explanation": "The unit is half the measurement. Five kilograms and five litres measure quite different things.",
+                "check": [
+                  "Eq(5 - 3, 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Size against weight",
+            "prompt": "A big box weighs $2$ kg and a small box weighs $7$ kg. Which is heavier?",
+            "options": [
+              "the small box, by $5$ kg",
+              "the big box, because it is bigger",
+              "they weigh the same",
+              "you cannot tell without lifting them"
+            ],
+            "correctIndex": 0,
+            "explanation": "The masses are given, and $7 > 2$ — so the small box is heavier by $7 - 2 = 5$ kg. How much room a thing takes up and how heavy it is are two separate measurements.",
+            "check": [
+              "7 > 2",
+              "Eq(7 - 2, 5)",
+              "Eq(2 + 5, 7)"
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 2,
+                  "color": "#d97706",
+                  "label": "big box: 2 kg"
+                },
+                {
+                  "count": 7,
+                  "color": "#3b82f6",
+                  "label": "small box: 7 kg"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why a balance beats a guess",
+            "body": "A balance does not need to know what a kilogram is. It only compares, and comparing is something it does perfectly — which is why balances are thousands of years older than any agreed unit of weight. Traders were weighing goods against each other long before anyone decided how heavy a kilogram should be."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "How much does it hold?",
+            "beats": [
+              "Capacity is a different question again: not how heavy a container is, but how much it HOLDS.",
+              "You find out by filling. The picture below shows a $4$-litre jug beside a $6$-litre one — the second holds $6 - 4 = 2$ litres more.",
+              "The litre is the unit here, and looks can mislead just as badly as with weight: a tall thin jug and a short wide one can hold exactly the same amount."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "jug A: 4 litres"
+                },
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "jug B: 6 litres"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Compare two capacities",
+            "intro": "Fill them and count the litres.",
+            "examples": [
+              {
+                "prompt": "A jug holds $6$ litres and another holds $4$. Which holds more, and by how much?",
+                "steps": [
+                  "$6 > 4$, so the first holds more.",
+                  "By $6 - 4 = 2$ litres; receipt $4 + 2 = 6$ ✓."
+                ],
+                "answer": "the $6$-litre jug, by $2$ litres",
+                "check": [
+                  "6 > 4",
+                  "Eq(6 - 4, 2)",
+                  "Eq(4 + 2, 6)"
+                ]
+              },
+              {
+                "prompt": "A bucket holds $9$ litres and a pot holds $5$. Compare them.",
+                "steps": [
+                  "$9 > 5$, so the bucket holds more.",
+                  "By $9 - 5 = 4$ litres."
+                ],
+                "answer": "$4$ litres more",
+                "check": [
+                  "9 > 5",
+                  "Eq(9 - 5, 4)",
+                  "Eq(5 + 4, 9)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Which holds more?",
+            "intro": "Litres, not looks.",
+            "problems": [
+              {
+                "prompt": "A pot of $7$ litres and a jug of $3$ litres. The pot holds:",
+                "options": [
+                  "$4$ litres more",
+                  "$10$ litres more",
+                  "$3$ litres more"
+                ],
+                "correctIndex": 0,
+                "explanation": "$7 - 3 = 4$ litres more. Adding the two would give $10$, which is what they hold together, not the difference.",
+                "check": [
+                  "Eq(7 - 3, 4)",
+                  "Eq(7 + 3, 10)"
+                ]
+              },
+              {
+                "prompt": "A tall thin jug and a short wide one both hold $5$ litres. This shows:",
+                "options": [
+                  "shape does not decide capacity",
+                  "the tall jug must hold more",
+                  "one of them was measured wrongly"
+                ],
+                "correctIndex": 0,
+                "explanation": "Capacity is found by filling, not by looking. Two containers of quite different shapes can hold exactly the same $5$ litres.",
+                "check": [
+                  "Eq(5 - 5, 0)"
+                ]
+              },
+              {
+                "prompt": "Two buckets hold $8$ and $6$ litres. Together they hold:",
+                "options": [
+                  "$14$ litres",
+                  "$2$ litres",
+                  "$48$ litres"
+                ],
+                "correctIndex": 0,
+                "explanation": "Together means add: $8 + 6 = 14$ litres. The $2$ is their difference, which answers a different question.",
+                "check": [
+                  "Eq(8 + 6, 14)",
+                  "Eq(8 - 6, 2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Two different questions",
+            "prompt": "A jug is bigger than a tin but the tin is heavier. Is that possible?",
+            "options": [
+              "yes — size and weight are different measurements",
+              "no — bigger always means heavier",
+              "only if the jug is empty",
+              "no — one of them was measured wrongly"
+            ],
+            "correctIndex": 0,
+            "explanation": "Perfectly possible: a big box of wool at $2$ kg against a small box of salt at $7$ kg is the same situation, and $7 > 2$. How much room a thing takes and how heavy it is are answered by different instruments.",
+            "check": [
+              "7 > 2",
+              "Eq(7 - 2, 5)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "A balance compares two masses: the heavier pan goes down.",
+              "Mass is said in kilograms; capacity is said in litres.",
+              "Capacity is found by filling — shape does not decide how much a container holds.",
+              "Size does not decide weight: a big light box can lose to a small heavy one."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For every measurement, ask yourself what question it answers: how long, how heavy, or how much does it hold. Three questions, three units — and mixing them up is the only way to go badly wrong here."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Which question is being asked?",
+            "problems": [
+              {
+                "prompt": "A $10$ kg sack against a $6$ kg sack: heavier by:",
+                "options": [
+                  "$4$ kg",
+                  "$16$ kg",
+                  "$6$ kg"
+                ],
+                "correctIndex": 0,
+                "explanation": "$10 - 6 = 4$ kg. Adding gives their combined weight, not the difference.",
+                "check": [
+                  "Eq(10 - 6, 4)",
+                  "Eq(6 + 4, 10)"
+                ]
+              },
+              {
+                "prompt": "The right unit for how much a bucket holds is:",
+                "options": [
+                  "litres",
+                  "kilograms",
+                  "centimetres"
+                ],
+                "correctIndex": 0,
+                "explanation": "Capacity is measured in litres. Kilograms answer how heavy, and centimetres how long.",
+                "check": [
+                  "Eq(6 - 4, 2)"
+                ]
+              },
+              {
+                "prompt": "A feather-filled box is bigger than a stone. The stone is heavier. This is:",
+                "options": [
+                  "perfectly normal",
+                  "impossible",
+                  "only true for very small stones"
+                ],
+                "correctIndex": 0,
+                "explanation": "Size and weight are separate measurements — exactly like $2$ kg of wool against $7$ kg of salt, where the smaller box wins by $5$ kg.",
+                "check": [
+                  "7 > 2",
+                  "Eq(7 - 2, 5)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Heavier, Lighter, Holds More\"",
+            "body": "Three questions now have their own units: how long, how heavy, how much it holds. The next lesson measures something you cannot hold at all — time."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "telling-the-time",
+      "title": "Telling the Time",
+      "concreteComparison": "Two hands, one face, and they mean different things. The short hand says which hour, the long hand says how far through it you are. Straight up is the start of an hour; straight down is halfway through.",
+      "objective": "Read o'clock and half past on a clock face, say which hand does which job, and know that an hour is $60$ minutes.",
+      "concept": [
+        "**The short hand names the hour; the long hand counts the minutes.** At $3$ o'clock the short hand points at the $3$ and the long hand points straight up at the $12$ — zero minutes past.",
+        "**An hour is sixty minutes, and half of one is thirty.** When the long hand points straight down at the $6$, half the hour has gone: that is half past, $30$ minutes in. Half of $60$ is $30$ because $2 \\times 30 = 60$.",
+        "**At half past, the short hand sits BETWEEN two numbers.** At half past four it has left the $4$ but not reached the $5$ — it is halfway between, because half the hour has passed. Reading it as five o'clock is the classic mistake."
+      ],
+      "keyIdea": "The short hand names the hour and the long hand counts the minutes into it — straight up is o'clock, straight down is half past.",
+      "facts": [
+        {
+          "title": "An hour in minutes",
+          "latex": "2 \\times 30 = 60",
+          "explanation": "An hour is 60 minutes, so half an hour is 30."
+        },
+        {
+          "title": "Half past",
+          "latex": "60 - 30 = 30",
+          "explanation": "At half past, 30 minutes have gone and 30 remain."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3me-l4-we1",
+          "statement": "The long hand points straight up and the short hand points at the $3$. What time is it?",
+          "note": "Long hand first — how many minutes?",
+          "solution": "The long hand straight up at the $12$ means zero minutes past, so the hour has just begun. The short hand at the $3$ names it: $3$ o'clock. A whole hour from now the long hand will have gone right round, all $60$ minutes of it.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*30, 60)",
+            "Eq(60 - 60, 0)"
+          ]
+        },
+        {
+          "id": "g3me-l4-we2",
+          "statement": "The long hand points straight down and the short hand sits between the $4$ and the $5$. What time is it?",
+          "note": "How much of the hour has gone?",
+          "solution": "The long hand straight down at the $6$ means half the hour has passed: $30$ minutes of the $60$. The short hand has therefore moved halfway from the $4$ towards the $5$, so the hour is still the fourth: it is half past four.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(2*30, 60)",
+            "Eq(60 - 30, 30)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading half past four as half past five, because the short hand is nearly at the 5.",
+          "correction": "The hour is the number the short hand has PASSED, not the one it is heading for. Half past four is 30 minutes into the fourth hour, so the hand sits halfway between 4 and 5.",
+          "authored": true
+        },
+        {
+          "text": "Swapping the hands and reading 3 o'clock as \"12 past 3\".",
+          "correction": "The short hand names the hour and the long hand counts minutes. Long hand straight up means zero minutes past, not twelve.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3me-l4-t1",
+          "statement": "How many minutes are there in an hour, and how many in half an hour?",
+          "solution": "An hour is $60$ minutes, and half of that is $30$, because $2 \\times 30 = 60$.",
+          "check": [
+            "Eq(2*30, 60)",
+            "Eq(60 - 30, 30)"
+          ]
+        },
+        {
+          "id": "g3me-l4-t2",
+          "statement": "At half past seven, where is each hand?",
+          "solution": "The long hand points straight down at the $6$ — $30$ minutes past. The short hand sits halfway between the $7$ and the $8$, because half of the seventh hour has gone.",
+          "check": [
+            "Eq(2*30, 60)",
+            "Eq(7 + 1, 8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Two hands, two jobs",
+            "beats": [
+              "The clock below reads $3$ o'clock. Look at the two hands: the long one points straight up at the $12$, and the short one points at the $3$.",
+              "The long hand counts MINUTES. Straight up means zero minutes past — the hour has only just begun.",
+              "The short hand names the HOUR. It is at the $3$, so the time is $3$ o'clock. Two hands, two entirely different jobs, and mixing them up is the only real difficulty here."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "h1",
+                    "x": 7.1,
+                    "y": 8.637,
+                    "label": ""
+                  },
+                  {
+                    "id": "h2",
+                    "x": 8.637,
+                    "y": 7.1,
+                    "label": ""
+                  },
+                  {
+                    "id": "h3",
+                    "x": 9.2,
+                    "y": 5.0,
+                    "label": "3"
+                  },
+                  {
+                    "id": "h4",
+                    "x": 8.637,
+                    "y": 2.9,
+                    "label": ""
+                  },
+                  {
+                    "id": "h5",
+                    "x": 7.1,
+                    "y": 1.363,
+                    "label": ""
+                  },
+                  {
+                    "id": "h6",
+                    "x": 5.0,
+                    "y": 0.8,
+                    "label": "6"
+                  },
+                  {
+                    "id": "h7",
+                    "x": 2.9,
+                    "y": 1.363,
+                    "label": ""
+                  },
+                  {
+                    "id": "h8",
+                    "x": 1.363,
+                    "y": 2.9,
+                    "label": ""
+                  },
+                  {
+                    "id": "h9",
+                    "x": 0.8,
+                    "y": 5.0,
+                    "label": "9"
+                  },
+                  {
+                    "id": "h10",
+                    "x": 1.363,
+                    "y": 7.1,
+                    "label": ""
+                  },
+                  {
+                    "id": "h11",
+                    "x": 2.9,
+                    "y": 8.637,
+                    "label": ""
+                  },
+                  {
+                    "id": "h12",
+                    "x": 5.0,
+                    "y": 9.2,
+                    "label": "12"
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 5.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "H",
+                    "x": 7.184,
+                    "y": 5.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 5.0,
+                    "y": 8.612,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "h1",
+                    "to": "h2",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h2",
+                    "to": "h3",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h3",
+                    "to": "h4",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h4",
+                    "to": "h5",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h5",
+                    "to": "h6",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h6",
+                    "to": "h7",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h7",
+                    "to": "h8",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h8",
+                    "to": "h9",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h9",
+                    "to": "h10",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h10",
+                    "to": "h11",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h11",
+                    "to": "h12",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h12",
+                    "to": "h1",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "M",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "H",
+                    "color": "#d97706"
+                  }
+                ],
+                "height": 220
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read o'clock",
+            "intro": "Long hand up means the hour has just started.",
+            "examples": [
+              {
+                "prompt": "Long hand straight up, short hand at the $3$. The time?",
+                "steps": [
+                  "Long hand up: zero minutes past.",
+                  "Short hand at $3$: the third hour. So $3$ o'clock."
+                ],
+                "answer": "$3$ o'clock",
+                "check": [
+                  "Eq(60 - 60, 0)",
+                  "Eq(2*30, 60)"
+                ]
+              },
+              {
+                "prompt": "Long hand straight up, short hand at the $7$. The time?",
+                "steps": [
+                  "Zero minutes past again.",
+                  "Short hand at $7$: it is $7$ o'clock."
+                ],
+                "answer": "$7$ o'clock",
+                "check": [
+                  "Eq(60 - 60, 0)",
+                  "Eq(7 + 1, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "O'clock",
+            "intro": "Which hand names the hour?",
+            "problems": [
+              {
+                "prompt": "The clock below shows:",
+                "options": [
+                  "$7$ o'clock",
+                  "$12$ o'clock",
+                  "half past seven"
+                ],
+                "correctIndex": 0,
+                "explanation": "The long hand points straight up — zero minutes past — and the short hand points at the $7$, naming the hour.",
+                "check": [
+                  "Eq(60 - 60, 0)",
+                  "Eq(2*30, 60)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "h1",
+                        "x": 7.1,
+                        "y": 8.637,
+                        "label": ""
+                      },
+                      {
+                        "id": "h2",
+                        "x": 8.637,
+                        "y": 7.1,
+                        "label": ""
+                      },
+                      {
+                        "id": "h3",
+                        "x": 9.2,
+                        "y": 5.0,
+                        "label": "3"
+                      },
+                      {
+                        "id": "h4",
+                        "x": 8.637,
+                        "y": 2.9,
+                        "label": ""
+                      },
+                      {
+                        "id": "h5",
+                        "x": 7.1,
+                        "y": 1.363,
+                        "label": ""
+                      },
+                      {
+                        "id": "h6",
+                        "x": 5.0,
+                        "y": 0.8,
+                        "label": "6"
+                      },
+                      {
+                        "id": "h7",
+                        "x": 2.9,
+                        "y": 1.363,
+                        "label": ""
+                      },
+                      {
+                        "id": "h8",
+                        "x": 1.363,
+                        "y": 2.9,
+                        "label": ""
+                      },
+                      {
+                        "id": "h9",
+                        "x": 0.8,
+                        "y": 5.0,
+                        "label": "9"
+                      },
+                      {
+                        "id": "h10",
+                        "x": 1.363,
+                        "y": 7.1,
+                        "label": ""
+                      },
+                      {
+                        "id": "h11",
+                        "x": 2.9,
+                        "y": 8.637,
+                        "label": ""
+                      },
+                      {
+                        "id": "h12",
+                        "x": 5.0,
+                        "y": 9.2,
+                        "label": "12"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.0,
+                        "y": 5.0,
+                        "label": ""
+                      },
+                      {
+                        "id": "H",
+                        "x": 3.908,
+                        "y": 3.109,
+                        "label": ""
+                      },
+                      {
+                        "id": "M",
+                        "x": 5.0,
+                        "y": 8.612,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "h1",
+                        "to": "h2",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h2",
+                        "to": "h3",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h3",
+                        "to": "h4",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h4",
+                        "to": "h5",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h5",
+                        "to": "h6",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h6",
+                        "to": "h7",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h7",
+                        "to": "h8",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h8",
+                        "to": "h9",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h9",
+                        "to": "h10",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h10",
+                        "to": "h11",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h11",
+                        "to": "h12",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h12",
+                        "to": "h1",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "M",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "H",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 220
+                  }
+                }
+              },
+              {
+                "prompt": "The long hand pointing straight up means:",
+                "options": [
+                  "zero minutes past the hour",
+                  "twelve minutes past the hour",
+                  "twelve o'clock, always"
+                ],
+                "correctIndex": 0,
+                "explanation": "Straight up is the start of an hour, whatever the short hand says. The short hand is what names WHICH hour.",
+                "check": [
+                  "Eq(60 - 60, 0)"
+                ]
+              },
+              {
+                "prompt": "The hand that names the hour is:",
+                "options": [
+                  "the short one",
+                  "the long one",
+                  "either one"
+                ],
+                "correctIndex": 0,
+                "explanation": "The short hand names the hour and the long hand counts minutes into it — two hands, two jobs.",
+                "check": [
+                  "Eq(2*30, 60)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which hand?",
+            "prompt": "Which hand tells you how many minutes have passed?",
+            "options": [
+              "the long one",
+              "the short one",
+              "both together",
+              "neither — you need a third hand"
+            ],
+            "correctIndex": 0,
+            "explanation": "The long hand counts the minutes of the hour, all $60$ of them per lap. The short hand only names which hour you are in.",
+            "check": [
+              "Eq(2*30, 60)",
+              "Eq(60 - 60, 0)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why sixty and not a hundred",
+            "body": "Sixty minutes in an hour is inherited from Babylonian astronomers, who counted in sixties — and it survived because $60$ shares out so beautifully. It splits exactly into halves, thirds, quarters, fifths and sixths: $2 \\times 30$, $3 \\times 20$, $4 \\times 15$. A hundred-minute hour would not divide into thirds at all."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Half past",
+            "beats": [
+              "The clock below reads half past four. The long hand points straight DOWN, at the $6$.",
+              "Straight down means half the hour has gone: $30$ minutes of the $60$, since $2 \\times 30 = 60$. Thirty have passed and thirty remain.",
+              "Now look carefully at the short hand. It is no longer on the $4$, but it has not reached the $5$ either — it sits halfway between, because half the fourth hour has gone. The hour is the number it has PASSED, so this is half past four, not half past five."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "h1",
+                    "x": 7.1,
+                    "y": 8.637,
+                    "label": ""
+                  },
+                  {
+                    "id": "h2",
+                    "x": 8.637,
+                    "y": 7.1,
+                    "label": ""
+                  },
+                  {
+                    "id": "h3",
+                    "x": 9.2,
+                    "y": 5.0,
+                    "label": "3"
+                  },
+                  {
+                    "id": "h4",
+                    "x": 8.637,
+                    "y": 2.9,
+                    "label": ""
+                  },
+                  {
+                    "id": "h5",
+                    "x": 7.1,
+                    "y": 1.363,
+                    "label": ""
+                  },
+                  {
+                    "id": "h6",
+                    "x": 5.0,
+                    "y": 0.8,
+                    "label": "6"
+                  },
+                  {
+                    "id": "h7",
+                    "x": 2.9,
+                    "y": 1.363,
+                    "label": ""
+                  },
+                  {
+                    "id": "h8",
+                    "x": 1.363,
+                    "y": 2.9,
+                    "label": ""
+                  },
+                  {
+                    "id": "h9",
+                    "x": 0.8,
+                    "y": 5.0,
+                    "label": "9"
+                  },
+                  {
+                    "id": "h10",
+                    "x": 1.363,
+                    "y": 7.1,
+                    "label": ""
+                  },
+                  {
+                    "id": "h11",
+                    "x": 2.9,
+                    "y": 8.637,
+                    "label": ""
+                  },
+                  {
+                    "id": "h12",
+                    "x": 5.0,
+                    "y": 9.2,
+                    "label": "12"
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 5.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "H",
+                    "x": 6.544,
+                    "y": 3.456,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 5.0,
+                    "y": 1.388,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "h1",
+                    "to": "h2",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h2",
+                    "to": "h3",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h3",
+                    "to": "h4",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h4",
+                    "to": "h5",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h5",
+                    "to": "h6",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h6",
+                    "to": "h7",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h7",
+                    "to": "h8",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h8",
+                    "to": "h9",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h9",
+                    "to": "h10",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h10",
+                    "to": "h11",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h11",
+                    "to": "h12",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "h12",
+                    "to": "h1",
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "M",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "H",
+                    "color": "#d97706"
+                  }
+                ],
+                "height": 220
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Read half past",
+            "intro": "The hour is the number the short hand has passed.",
+            "examples": [
+              {
+                "prompt": "Long hand straight down, short hand between $4$ and $5$. The time?",
+                "steps": [
+                  "Long hand down: $30$ minutes past.",
+                  "Short hand has passed the $4$ but not reached the $5$.",
+                  "So it is half past four."
+                ],
+                "answer": "half past four",
+                "check": [
+                  "Eq(2*30, 60)",
+                  "Eq(60 - 30, 30)"
+                ]
+              },
+              {
+                "prompt": "Where are the hands at half past seven?",
+                "steps": [
+                  "Long hand straight down at the $6$: $30$ minutes past.",
+                  "Short hand halfway between the $7$ and the $8$."
+                ],
+                "answer": "down, and between $7$ and $8$",
+                "check": [
+                  "Eq(60 - 30, 30)",
+                  "Eq(7 + 1, 8)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Half past",
+            "intro": "Which number has the short hand passed?",
+            "problems": [
+              {
+                "prompt": "The clock below shows:",
+                "options": [
+                  "half past four",
+                  "half past five",
+                  "$4$ o'clock"
+                ],
+                "correctIndex": 0,
+                "explanation": "The long hand is straight down — $30$ minutes past — and the short hand sits between the $4$ and the $5$, so the hour it has passed is the fourth.",
+                "check": [
+                  "Eq(60 - 30, 30)",
+                  "Eq(2*30, 60)"
+                ],
+                "figure": {
+                  "mode": "geo",
+                  "geo": {
+                    "points": [
+                      {
+                        "id": "h1",
+                        "x": 7.1,
+                        "y": 8.637,
+                        "label": ""
+                      },
+                      {
+                        "id": "h2",
+                        "x": 8.637,
+                        "y": 7.1,
+                        "label": ""
+                      },
+                      {
+                        "id": "h3",
+                        "x": 9.2,
+                        "y": 5.0,
+                        "label": "3"
+                      },
+                      {
+                        "id": "h4",
+                        "x": 8.637,
+                        "y": 2.9,
+                        "label": ""
+                      },
+                      {
+                        "id": "h5",
+                        "x": 7.1,
+                        "y": 1.363,
+                        "label": ""
+                      },
+                      {
+                        "id": "h6",
+                        "x": 5.0,
+                        "y": 0.8,
+                        "label": "6"
+                      },
+                      {
+                        "id": "h7",
+                        "x": 2.9,
+                        "y": 1.363,
+                        "label": ""
+                      },
+                      {
+                        "id": "h8",
+                        "x": 1.363,
+                        "y": 2.9,
+                        "label": ""
+                      },
+                      {
+                        "id": "h9",
+                        "x": 0.8,
+                        "y": 5.0,
+                        "label": "9"
+                      },
+                      {
+                        "id": "h10",
+                        "x": 1.363,
+                        "y": 7.1,
+                        "label": ""
+                      },
+                      {
+                        "id": "h11",
+                        "x": 2.9,
+                        "y": 8.637,
+                        "label": ""
+                      },
+                      {
+                        "id": "h12",
+                        "x": 5.0,
+                        "y": 9.2,
+                        "label": "12"
+                      },
+                      {
+                        "id": "C",
+                        "x": 5.0,
+                        "y": 5.0,
+                        "label": ""
+                      },
+                      {
+                        "id": "H",
+                        "x": 6.544,
+                        "y": 3.456,
+                        "label": ""
+                      },
+                      {
+                        "id": "M",
+                        "x": 5.0,
+                        "y": 1.388,
+                        "label": ""
+                      }
+                    ],
+                    "objects": [
+                      {
+                        "kind": "segment",
+                        "from": "h1",
+                        "to": "h2",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h2",
+                        "to": "h3",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h3",
+                        "to": "h4",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h4",
+                        "to": "h5",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h5",
+                        "to": "h6",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h6",
+                        "to": "h7",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h7",
+                        "to": "h8",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h8",
+                        "to": "h9",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h9",
+                        "to": "h10",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h10",
+                        "to": "h11",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h11",
+                        "to": "h12",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "h12",
+                        "to": "h1",
+                        "color": "#94a3b8"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "M",
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "kind": "segment",
+                        "from": "C",
+                        "to": "H",
+                        "color": "#d97706"
+                      }
+                    ],
+                    "height": 220
+                  }
+                }
+              },
+              {
+                "prompt": "At half past six, the long hand points:",
+                "options": [
+                  "straight down",
+                  "straight up",
+                  "at the $3$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Straight down at the $6$ marks half the hour: $30$ of the $60$ minutes gone.",
+                "check": [
+                  "Eq(60 - 30, 30)"
+                ]
+              },
+              {
+                "prompt": "At half past nine, the short hand is:",
+                "options": [
+                  "between the $9$ and the $10$",
+                  "exactly on the $9$",
+                  "exactly on the $10$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Half the ninth hour has gone, so the short hand has moved halfway from the $9$ towards the $10$ — the hour named is still nine.",
+                "check": [
+                  "Eq(9 + 1, 10)",
+                  "Eq(60 - 30, 30)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The hour it has passed",
+            "prompt": "At half past four, why is the short hand not on the $4$?",
+            "options": [
+              "half the hour has gone, so it has moved halfway to the $5$",
+              "because the clock is broken",
+              "it should be on the $5$ by then",
+              "the short hand never points at numbers"
+            ],
+            "correctIndex": 0,
+            "explanation": "The short hand moves steadily through the hour, so after $30$ of the $60$ minutes it is halfway between the $4$ and the $5$. The hour is the one it has PASSED — four.",
+            "check": [
+              "Eq(2*30, 60)",
+              "Eq(60 - 30, 30)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The short hand names the hour; the long hand counts the minutes.",
+              "Long hand straight up is o'clock — zero minutes past.",
+              "Long hand straight down is half past — $30$ of the hour's $60$ minutes.",
+              "At half past, the short hand sits BETWEEN two numbers, and the hour is the one it has passed."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Read the long hand first and the short hand second — minutes, then hour. Doing it in that order makes the half-past trap almost impossible to fall into, because you already know the hour is only half done."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Long hand first, then the short.",
+            "problems": [
+              {
+                "prompt": "Long hand up, short hand at $5$. The time is:",
+                "options": [
+                  "$5$ o'clock",
+                  "half past five",
+                  "$12$ o'clock"
+                ],
+                "correctIndex": 0,
+                "explanation": "Straight up means zero minutes past, and the short hand names the hour: $5$ o'clock.",
+                "check": [
+                  "Eq(60 - 60, 0)"
+                ]
+              },
+              {
+                "prompt": "Half an hour is how many minutes?",
+                "options": [
+                  "$30$",
+                  "$60$",
+                  "$15$"
+                ],
+                "correctIndex": 0,
+                "explanation": "An hour is $60$ minutes and half of it is $30$, since $2 \\times 30 = 60$.",
+                "check": [
+                  "Eq(2*30, 60)",
+                  "Eq(60 - 30, 30)"
+                ]
+              },
+              {
+                "prompt": "The short hand sits between the $2$ and the $3$, long hand down. The time is:",
+                "options": [
+                  "half past two",
+                  "half past three",
+                  "$2$ o'clock"
+                ],
+                "correctIndex": 0,
+                "explanation": "Long hand down means $30$ minutes past, and the hour is the one the short hand has already passed — the second.",
+                "check": [
+                  "Eq(60 - 30, 30)",
+                  "Eq(2 + 1, 3)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Telling the Time\"",
+            "body": "Two hands with two jobs, and an hour that halves into thirty. The last lesson counts something people care about even more than the time — money."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "counting-money",
+      "title": "Counting Tögrög",
+      "concreteComparison": "A handful of notes is not a number until you count it — and the fast way is to start with the biggest. Three hundreds and two fifties: $300$, then $400$, and the answer is on its way before you have looked at every note.",
+      "objective": "Find the total of a set of tögrög notes, work out the change from a payment, and check the change with a receipt.",
+      "concept": [
+        "**Count the big notes first.** Three $100$ notes make $3 \\times 100 = 300$; two $50$ notes make $2 \\times 50 = 100$. Together $300 + 100 = 400$ tögrög. Starting with the biggest keeps the running total simple.",
+        "**Change is what is left after paying.** Pay $400$ tögrög for something costing $260$ and the change is $400 - 260 = 140$ tögrög. It is a subtraction like any other, and it takes the same receipt.",
+        "**The receipt proves the change.** $140 + 260 = 400$ ✓ — the change plus the price must give back exactly what you handed over. Shopkeepers count change UP from the price for this very reason."
+      ],
+      "keyIdea": "Count money from the biggest note down, and check every amount of change by adding it back to the price.",
+      "facts": [
+        {
+          "title": "Counting notes",
+          "latex": "3 \\times 100 = 300",
+          "explanation": "Three hundred-tögrög notes make 300 tögrög."
+        },
+        {
+          "title": "The change receipt",
+          "latex": "140 + 260 = 400",
+          "explanation": "Change plus price returns what you handed over."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g3me-l5-we1",
+          "statement": "Count three $100$ tögrög notes and two $50$ tögrög notes.",
+          "note": "Biggest notes first.",
+          "solution": "The hundreds: $3 \\times 100 = 300$ tögrög. The fifties: $2 \\times 50 = 100$ tögrög. Together $300 + 100 = 400$ tögrög.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(3*100, 300)",
+            "Eq(2*50, 100)",
+            "Eq(300 + 100, 400)"
+          ]
+        },
+        {
+          "id": "g3me-l5-we2",
+          "statement": "A pencil costs $260$ tögrög and you pay with $400$. What is the change?",
+          "note": "Subtract, then take the receipt.",
+          "solution": "Change is what remains after the price is taken off: $400 - 260 = 140$ tögrög. Receipt: $140 + 260 = 400$ ✓ — the change and the price together return exactly what was handed over.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(400 - 260, 140)",
+            "Eq(140 + 260, 400)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Counting the number of notes instead of their value — calling five notes \"5 tögrög\".",
+          "correction": "A note's value is what counts, not the note itself. Three 100s and two 50s are five notes but 400 tögrög.",
+          "authored": true
+        },
+        {
+          "text": "Handing over change without checking it adds back to the amount paid.",
+          "correction": "Change plus price must return the payment: 140 + 260 = 400 ✓. The check takes a second and catches every slip.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g3me-l5-t1",
+          "statement": "Count two $100$ notes and three $20$ notes.",
+          "solution": "Hundreds: $2 \\times 100 = 200$. Twenties: $3 \\times 20 = 60$. Together $200 + 60 = 260$ tögrög.",
+          "check": [
+            "Eq(2*100, 200)",
+            "Eq(3*20, 60)",
+            "Eq(200 + 60, 260)"
+          ]
+        },
+        {
+          "id": "g3me-l5-t2",
+          "statement": "A notebook costs $340$ tögrög and you pay with a $500$ note. What is the change, and how do you check it?",
+          "solution": "$500 - 340 = 160$ tögrög. Check with the receipt: $160 + 340 = 500$ ✓.",
+          "check": [
+            "Eq(500 - 340, 160)",
+            "Eq(160 + 340, 500)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Biggest notes first",
+            "beats": [
+              "The picture below shows three $100$ tögrög notes and two $50$ tögrög notes. Five notes — but five is not the answer to anything.",
+              "Count by VALUE, and start with the biggest: $3 \\times 100 = 300$ tögrög from the hundreds, then $2 \\times 50 = 100$ from the fifties.",
+              "Together that is $300 + 100 = 400$ tögrög. Starting from the biggest note keeps the running total tidy and gets you most of the way there in one step."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "100 togrog"
+                },
+                {
+                  "count": 2,
+                  "color": "#d97706",
+                  "label": "50 togrog"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Count the notes",
+            "intro": "Value, not number — biggest first.",
+            "examples": [
+              {
+                "prompt": "Count three $100$ notes and two $50$ notes.",
+                "steps": [
+                  "Hundreds: $3 \\times 100 = 300$.",
+                  "Fifties: $2 \\times 50 = 100$.",
+                  "Total: $300 + 100 = 400$ tögrög."
+                ],
+                "answer": "$400$ tögrög",
+                "check": [
+                  "Eq(3*100, 300)",
+                  "Eq(2*50, 100)",
+                  "Eq(300 + 100, 400)"
+                ]
+              },
+              {
+                "prompt": "Count two $100$ notes and three $20$ notes.",
+                "steps": [
+                  "Hundreds: $2 \\times 100 = 200$.",
+                  "Twenties: $3 \\times 20 = 60$.",
+                  "Total: $200 + 60 = 260$ tögrög."
+                ],
+                "answer": "$260$ tögrög",
+                "check": [
+                  "Eq(2*100, 200)",
+                  "Eq(3*20, 60)",
+                  "Eq(200 + 60, 260)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "How much altogether?",
+            "intro": "Count by value, biggest first.",
+            "problems": [
+              {
+                "prompt": "The notes below come to:",
+                "options": [
+                  "$260$ tögrög",
+                  "$5$ tögrög",
+                  "$120$ tögrög"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two hundreds make $200$ and three twenties make $60$: $200 + 60 = 260$ tögrög. Answering $5$ counts the notes rather than their value.",
+                "check": [
+                  "Eq(2*100, 200)",
+                  "Eq(3*20, 60)",
+                  "Eq(200 + 60, 260)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 2,
+                      "color": "#3b82f6",
+                      "label": "100 togrog"
+                    },
+                    {
+                      "count": 3,
+                      "color": "#d97706",
+                      "label": "20 togrog"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "Four $50$ tögrög notes come to:",
+                "options": [
+                  "$200$ tögrög",
+                  "$54$ tögrög",
+                  "$4$ tögrög"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4 \\times 50 = 200$ tögrög — and two fifties make a hundred, so four make two hundreds.",
+                "check": [
+                  "Eq(4*50, 200)",
+                  "Eq(2*50, 100)"
+                ]
+              },
+              {
+                "prompt": "Five notes are worth $500$ tögrög. They could be:",
+                "options": [
+                  "five $100$ notes",
+                  "five $50$ notes",
+                  "five $20$ notes"
+                ],
+                "correctIndex": 0,
+                "explanation": "$5 \\times 100 = 500$ ✓. Five fifties give only $250$ and five twenties $100$ — the number of notes never settles the value.",
+                "check": [
+                  "Eq(5*100, 500)",
+                  "Eq(5*50, 250)",
+                  "Eq(5*20, 100)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Notes against value",
+            "prompt": "You hold five notes. How much money is that?",
+            "options": [
+              "you cannot tell without knowing the notes",
+              "$5$ tögrög",
+              "$500$ tögrög",
+              "$50$ tögrög"
+            ],
+            "correctIndex": 0,
+            "explanation": "The number of notes says nothing about the value. Five $100$ notes are $5 \\times 100 = 500$ tögrög, but five $20$ notes are only $5 \\times 20 = 100$.",
+            "check": [
+              "Eq(5*100, 500)",
+              "Eq(5*20, 100)",
+              "500 > 100"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Why shopkeepers count change upwards",
+            "body": "Handed $400$ for a $260$ purchase, a shopkeeper rarely subtracts. They count UP from the price — \"$260$, $300$, $400$\" — handing over notes as they go, and the change is whatever they handed you. It is the same arithmetic as $400 - 260 = 140$, done in the direction that is harder to get wrong."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Change, and the receipt",
+            "beats": [
+              "Something costs $260$ tögrög and you pay with $400$. The change is what is left over: $400 - 260 = 140$ tögrög.",
+              "That is an ordinary subtraction, and it deserves an ordinary receipt: $140 + 260 = 400$ ✓. The change plus the price must give back exactly what you handed over.",
+              "The picture below shows a $500$ note. Pay $340$ with it and the change is $500 - 340 = 160$, with receipt $160 + 340 = 500$ ✓. Never hand over change you have not checked."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "500 togrog"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Work out the change",
+            "intro": "Subtract, then add it back to the price.",
+            "examples": [
+              {
+                "prompt": "A pencil costs $260$ and you pay $400$. What is the change?",
+                "steps": [
+                  "$400 - 260 = 140$ tögrög.",
+                  "Receipt: $140 + 260 = 400$ ✓."
+                ],
+                "answer": "$140$ tögrög",
+                "check": [
+                  "Eq(400 - 260, 140)",
+                  "Eq(140 + 260, 400)"
+                ]
+              },
+              {
+                "prompt": "A notebook costs $340$ and you pay with $500$.",
+                "steps": [
+                  "$500 - 340 = 160$ tögrög.",
+                  "Receipt: $160 + 340 = 500$ ✓."
+                ],
+                "answer": "$160$ tögrög",
+                "check": [
+                  "Eq(500 - 340, 160)",
+                  "Eq(160 + 340, 500)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "What is the change?",
+            "intro": "Subtract, then check with the receipt.",
+            "problems": [
+              {
+                "prompt": "A book costs $180$ and you pay $200$. The change is:",
+                "options": [
+                  "$20$",
+                  "$380$",
+                  "$120$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$200 - 180 = 20$ tögrög, and the receipt $20 + 180 = 200$ ✓ confirms it. Adding would give $380$, more than you handed over.",
+                "check": [
+                  "Eq(200 - 180, 20)",
+                  "Eq(20 + 180, 200)"
+                ]
+              },
+              {
+                "prompt": "A sweet costs $70$ and you pay with a $100$ note. The change is:",
+                "options": [
+                  "$30$",
+                  "$170$",
+                  "$70$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$100 - 70 = 30$ tögrög; receipt $30 + 70 = 100$ ✓.",
+                "check": [
+                  "Eq(100 - 70, 30)",
+                  "Eq(30 + 70, 100)"
+                ]
+              },
+              {
+                "prompt": "Bat pays $500$ for a $250$ item and is given $300$ change. The receipt says:",
+                "options": [
+                  "$300 + 250 = 550$, so it is wrong",
+                  "$300 + 250 = 500$, so it is right",
+                  "the receipt cannot check change"
+                ],
+                "correctIndex": 0,
+                "explanation": "$300 + 250 = 550$, which is $50$ more than he handed over — so the change is too much. The correct change is $500 - 250 = 250$ tögrög.",
+                "check": [
+                  "Eq(300 + 250, 550)",
+                  "Eq(550 - 500, 50)",
+                  "Eq(500 - 250, 250)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Checking the change",
+            "prompt": "You pay $400$ for a $260$ item and get $140$ back. Which sum proves it is right?",
+            "options": [
+              "$140 + 260 = 400$",
+              "$400 + 260 = 660$",
+              "$400 - 140 = 260$ is the only check",
+              "$140 \\times 260$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Change plus price must return the payment: $140 + 260 = 400$ ✓. (The third option is also true, but the receipt is deliberately an ADDITION — additions are easier to get right than a second subtraction.)",
+            "check": [
+              "Eq(140 + 260, 400)",
+              "Eq(400 - 260, 140)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Count money by value and start with the biggest note.",
+              "Three $100$ notes and two $50$ notes are $400$ tögrög — five notes, but that is not the answer.",
+              "Change is payment minus price: $400 - 260 = 140$.",
+              "Always check change with the receipt: change plus price equals what you handed over."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "After working out any change, count it back UP to the amount you paid, the way a shopkeeper does. If the count does not land exactly on the payment, the change is wrong."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Chapter practice",
+            "intro": "Value first; then check the change.",
+            "problems": [
+              {
+                "prompt": "Three $50$ notes and one $100$ note come to:",
+                "options": [
+                  "$250$ tögrög",
+                  "$4$ tögrög",
+                  "$150$ tögrög"
+                ],
+                "correctIndex": 0,
+                "explanation": "$3 \\times 50 = 150$ plus $100$ gives $150 + 100 = 250$ tögrög.",
+                "check": [
+                  "Eq(3*50, 150)",
+                  "Eq(150 + 100, 250)"
+                ]
+              },
+              {
+                "prompt": "An item costs $430$ and you pay $500$. The change is:",
+                "options": [
+                  "$70$",
+                  "$930$",
+                  "$130$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$500 - 430 = 70$ tögrög; receipt $70 + 430 = 500$ ✓.",
+                "check": [
+                  "Eq(500 - 430, 70)",
+                  "Eq(70 + 430, 500)"
+                ]
+              },
+              {
+                "prompt": "Which change FAILS its receipt?",
+                "options": [
+                  "$300$ paid, $120$ item, $200$ change",
+                  "$300$ paid, $120$ item, $180$ change",
+                  "$200$ paid, $150$ item, $50$ change"
+                ],
+                "correctIndex": 0,
+                "explanation": "$200 + 120 = 320$, which overshoots the $300$ handed over by $20$ — so that change is wrong. The correct amount is $300 - 120 = 180$.",
+                "check": [
+                  "Eq(200 + 120, 320)",
+                  "Eq(320 - 300, 20)",
+                  "Eq(300 - 120, 180)",
+                  "Eq(200 - 150, 50)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Counting Tögrög\" — and the topic",
+            "body": "Length, mass, capacity, time and money: five different things to measure, five sets of units, and one habit running through all of them — a number means nothing without the unit beside it. The last topic of the year collects numbers and draws them."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g3me-pr1",
+      "statement": "A stick lies along the ruler shown, from the $1$ cm mark to the $8$ cm mark. How long is it, and what answer would a careless reader give?",
+      "solution": "It covers $8 - 1 = 7$ centimetres, so it is $7$ cm long. A careless reader takes the far mark alone and answers $8$ cm — one centimetre too many, because the stick never started at zero.",
+      "check": [
+        "Eq(8 - 1, 7)",
+        "Eq(7 + 1, 8)"
+      ],
+      "courseFigure": {
+        "mode": "numberLine",
+        "numberLine": {
+          "points": [
+            {
+              "value": 1,
+              "label": "1 cm",
+              "color": "#d97706"
+            },
+            {
+              "value": 5,
+              "label": "5 cm"
+            },
+            {
+              "value": 8,
+              "label": "8 cm",
+              "color": "#d97706"
+            }
+          ],
+          "min": 0,
+          "max": 10
+        }
+      }
+    },
+    {
+      "id": "g3me-pr2",
+      "statement": "How many centimetres are in $4$ metres? Say which unit you would use for a rope that long, and why.",
+      "solution": "$4 \\times 100 = 400$ cm. Metres is the better unit here: $4$ is a comfortable number to say and remember, while $400$ is a big number carrying no extra information.",
+      "check": [
+        "Eq(4*100, 400)",
+        "400 > 4"
+      ]
+    },
+    {
+      "id": "g3me-pr3",
+      "statement": "A rope is $2$ m and a ribbon is $170$ cm. Which is longer, and by how much?",
+      "solution": "Put both in one unit: $2$ m is $2 \\times 100 = 200$ cm. Then $200 > 170$, so the rope is longer by $200 - 170 = 30$ cm. Comparing $2$ with $170$ directly would have given exactly the wrong answer.",
+      "check": [
+        "Eq(2*100, 200)",
+        "200 > 170",
+        "Eq(200 - 170, 30)"
+      ]
+    },
+    {
+      "id": "g3me-pr4",
+      "statement": "A balance holds $8$ kg on one side and $3$ kg on the other. Which way does it tip, and what would level it?",
+      "solution": "The $8$ kg side goes down, since $8 > 3$. Adding $8 - 3 = 5$ kg to the light side levels it: $3 + 5 = 8$ ✓.",
+      "check": [
+        "8 > 3",
+        "Eq(8 - 3, 5)",
+        "Eq(3 + 5, 8)"
+      ]
+    },
+    {
+      "id": "g3me-pr5",
+      "statement": "Read the clock shown, and say where each hand is and why.",
+      "solution": "The long hand points straight down at the $6$, so $30$ of the hour's $60$ minutes have gone — half past. The short hand sits between the $9$ and the $10$, having moved halfway through the ninth hour, so the time is half past nine. The hour is the number the short hand has PASSED.",
+      "check": [
+        "Eq(2*30, 60)",
+        "Eq(60 - 30, 30)",
+        "Eq(9 + 1, 10)"
+      ],
+      "courseFigure": {
+        "mode": "geo",
+        "geo": {
+          "points": [
+            {
+              "id": "h1",
+              "x": 7.1,
+              "y": 8.637,
+              "label": ""
+            },
+            {
+              "id": "h2",
+              "x": 8.637,
+              "y": 7.1,
+              "label": ""
+            },
+            {
+              "id": "h3",
+              "x": 9.2,
+              "y": 5.0,
+              "label": "3"
+            },
+            {
+              "id": "h4",
+              "x": 8.637,
+              "y": 2.9,
+              "label": ""
+            },
+            {
+              "id": "h5",
+              "x": 7.1,
+              "y": 1.363,
+              "label": ""
+            },
+            {
+              "id": "h6",
+              "x": 5.0,
+              "y": 0.8,
+              "label": "6"
+            },
+            {
+              "id": "h7",
+              "x": 2.9,
+              "y": 1.363,
+              "label": ""
+            },
+            {
+              "id": "h8",
+              "x": 1.363,
+              "y": 2.9,
+              "label": ""
+            },
+            {
+              "id": "h9",
+              "x": 0.8,
+              "y": 5.0,
+              "label": "9"
+            },
+            {
+              "id": "h10",
+              "x": 1.363,
+              "y": 7.1,
+              "label": ""
+            },
+            {
+              "id": "h11",
+              "x": 2.9,
+              "y": 8.637,
+              "label": ""
+            },
+            {
+              "id": "h12",
+              "x": 5.0,
+              "y": 9.2,
+              "label": "12"
+            },
+            {
+              "id": "C",
+              "x": 5.0,
+              "y": 5.0,
+              "label": ""
+            },
+            {
+              "id": "H",
+              "x": 2.89,
+              "y": 5.565,
+              "label": ""
+            },
+            {
+              "id": "M",
+              "x": 5.0,
+              "y": 1.388,
+              "label": ""
+            }
+          ],
+          "objects": [
+            {
+              "kind": "segment",
+              "from": "h1",
+              "to": "h2",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h2",
+              "to": "h3",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h3",
+              "to": "h4",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h4",
+              "to": "h5",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h5",
+              "to": "h6",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h6",
+              "to": "h7",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h7",
+              "to": "h8",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h8",
+              "to": "h9",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h9",
+              "to": "h10",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h10",
+              "to": "h11",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h11",
+              "to": "h12",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "h12",
+              "to": "h1",
+              "color": "#94a3b8"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "M",
+              "color": "#3b82f6"
+            },
+            {
+              "kind": "segment",
+              "from": "C",
+              "to": "H",
+              "color": "#d97706"
+            }
+          ],
+          "height": 220
+        }
+      }
+    },
+    {
+      "id": "g3me-pr6",
+      "statement": "Count four $100$ tögrög notes and one $50$ tögrög note, then say how many notes that is.",
+      "solution": "Hundreds: $4 \\times 100 = 400$. The fifty adds $50$: $400 + 50 = 450$ tögrög. That is $4 + 1 = 5$ notes — but five is the number of notes, not the amount of money.",
+      "check": [
+        "Eq(4*100, 400)",
+        "Eq(400 + 50, 450)",
+        "Eq(4 + 1, 5)"
+      ]
+    },
+    {
+      "id": "g3me-pr7",
+      "statement": "An item costs $370$ tögrög and Saruul pays with a $500$ note. Find her change and prove it two ways.",
+      "solution": "Subtracting: $500 - 370 = 130$ tögrög. Counting up the way a shopkeeper does: from $370$ to $400$ is $30$, and from $400$ to $500$ is $100$, so $30 + 100 = 130$ ✓. Receipt: $130 + 370 = 500$ ✓.",
+      "check": [
+        "Eq(500 - 370, 130)",
+        "Eq(400 - 370, 30)",
+        "Eq(30 + 100, 130)",
+        "Eq(130 + 370, 500)"
+      ]
+    },
+    {
+      "id": "g3me-pr8",
+      "statement": "Bat says his big box of feathers must be heavier than a small box of salt. Explain what is wrong with his reasoning.",
+      "solution": "He is judging mass by size, and they are separate measurements. A big box of feathers might weigh $2$ kg while a small box of salt weighs $7$ kg — the salt is heavier by $7 - 2 = 5$ kg despite the smaller box. Only a balance settles which is heavier.",
+      "check": [
+        "7 > 2",
+        "Eq(7 - 2, 5)",
+        "Eq(2 + 5, 7)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g3me-x1",
+      "statement": "A pencil lies from the $2$ cm mark to the $9$ cm mark and a ribbon from $0$ to $7$ cm. Which is longer?",
+      "solution": "The pencil covers $9 - 2 = 7$ cm and the ribbon covers $7 - 0 = 7$ cm — they are exactly the same length, $7$ cm each, despite sitting at different places on the ruler. Reading the pencil's far mark alone would have wrongly made it $9$ cm.",
+      "check": [
+        "Eq(9 - 2, 7)",
+        "Eq(7 - 0, 7)"
+      ]
+    },
+    {
+      "id": "g3me-x2",
+      "statement": "Put $3$ m, $250$ cm and $1$ m in order from shortest to longest.",
+      "solution": "Into one unit: $3$ m is $300$ cm and $1$ m is $100$ cm. Then $100 < 250 < 300$, so the order is $1$ m, $250$ cm, $3$ m. The gap between the longest and shortest is $300 - 100 = 200$ cm.",
+      "check": [
+        "Eq(3*100, 300)",
+        "Eq(1*100, 100)",
+        "100 < 250",
+        "250 < 300",
+        "Eq(300 - 100, 200)"
+      ]
+    },
+    {
+      "id": "g3me-x3",
+      "statement": "A jug holds $9$ litres and a bucket holds $4$. Give both their difference and their combined capacity, and say which question each answers.",
+      "solution": "Difference: $9 - 4 = 5$ litres, which answers \"how much more does the jug hold\". Combined: $9 + 4 = 13$ litres, which answers \"how much do they hold between them\". Two questions, two different sums.",
+      "check": [
+        "Eq(9 - 4, 5)",
+        "Eq(9 + 4, 13)"
+      ]
+    },
+    {
+      "id": "g3me-x4",
+      "statement": "At half past three, describe exactly where both hands point, and explain why the hour is three and not four.",
+      "solution": "The long hand points straight down at the $6$: $30$ of the hour's $60$ minutes have gone, since $2 \\times 30 = 60$. The short hand sits halfway between the $3$ and the $4$, because half of the third hour has passed. The hour named is the one the short hand has already PASSED — three — and the fourth hour has not started until the long hand returns to the top.",
+      "check": [
+        "Eq(2*30, 60)",
+        "Eq(60 - 30, 30)",
+        "Eq(3 + 1, 4)"
+      ]
+    },
+    {
+      "id": "g3me-x5",
+      "statement": "Count two $100$ notes, one $50$ note and two $20$ notes. Then find the change from paying a $200$ tögrög item with that money.",
+      "solution": "Hundreds: $2 \\times 100 = 200$. Fifty: $50$. Twenties: $2 \\times 20 = 40$. Total $200 + 50 + 40 = 290$ tögrög. Paying $200$ from that leaves $290 - 200 = 90$ tögrög, with receipt $90 + 200 = 290$ ✓.",
+      "check": [
+        "Eq(2*100, 200)",
+        "Eq(2*20, 40)",
+        "Eq(200 + 50 + 40, 290)",
+        "Eq(290 - 200, 90)",
+        "Eq(90 + 200, 290)"
+      ]
+    },
+    {
+      "id": "g3me-x6",
+      "statement": "Saruul pays $400$ tögrög for an item costing $220$ and is handed $200$ change. Use the receipt to show she has been given the wrong amount, and say how much it is out by.",
+      "solution": "Receipt: $200 + 220 = 420$, which is $20$ more than the $400$ she handed over — so the change is too much by exactly that. The correct change is $400 - 220 = 180$ tögrög, and $180 + 220 = 400$ ✓.",
+      "check": [
+        "Eq(200 + 220, 420)",
+        "Eq(420 - 400, 20)",
+        "Eq(400 - 220, 180)",
+        "Eq(180 + 220, 400)"
+      ]
+    }
+  ]
+}

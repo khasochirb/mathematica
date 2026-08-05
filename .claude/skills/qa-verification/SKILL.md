@@ -30,11 +30,13 @@ scratch directory.
 | Any page/route/layout | all of the above that apply + `npm run build` |
 | Route behavior (new pages, i18n toggles, auth flows) | Playwright walk (below) |
 | A NEW course, or any shared navigation component | `npm run verify:links` (below) |
+| Primary-band lessons (grades 3–4) | `python3 scripts/gradeN/check_gradeN.py` — the grade idiom, the number ceiling, figure sanity and the debris sweep. Checks live in `scripts/primary_check.py`, shared by both years so the rules cannot drift. |
+| A per-unit problem bank | `npm run verify:bank`, plus the module's own `python3 scripts/pb/<subject>.py` self-check where it has one |
 | Anything at all, before deploy | full stack: genmath + ptest + tsc + vitest + build + Playwright spot-walk |
 
 Current healthy baselines (update when they legitimately move):
-`verify:genmath` ≈ 12,600 sympy checks green; vitest ≈ 346 tests;
-build generates 48 static pages. A DROP in check count on a content-add
+`verify:genmath` ≈ 31,500 sympy checks green; `verify:bank` ≈ 39,800;
+vitest ≈ 598 tests; build generates 48 static pages. A DROP in check count on a content-add
 diff means files fell out of the glob — investigate, don't celebrate.
 
 ## Soft 404s — why link checking needs its own gate
@@ -133,3 +135,25 @@ lessons ✓
 ```
 If a gate was skipped, say so and why ("docs-only diff — gates n/a").
 A claim without the numbers is not a verification, it's a hope.
+
+
+## Figures that are authored, verified and never drawn
+
+A figure can pass every gate and still be invisible, because only some
+renderers read the field it was written to. This has bitten twice:
+
+- **`figure` on a practice/testYourself bank problem.** That field is the
+  ЭЕШ hub's IMAGE shape (`src`/`width`/`height`); `RevealProblemCard`
+  renders `geoFigure` and `courseFigure`, never `figure`. Twenty of Grade
+  4's practice figures shipped invisibly, taking their questions down with
+  them — "the picture shows the bundles for a number" is unanswerable with
+  no picture. Genmath specs go in `courseFigure`, via `withprobfig()`.
+- **`figure` on a step whose kind is not `teach` or `tapQuestion`.** Those
+  are the only two step kinds LessonPlayer reads it from. A figure on a
+  `tryItSet` step is dropped silently; it belongs on one of the step's
+  problems, which do draw it.
+
+Both are now build failures in `scripts/primary_check.py`, and its figure
+walker validates `courseFigure` as well so moving a figure between the two
+keys cannot drop it out of the gate's sight. When adding a new figure
+field or renderer, extend that check in the same commit.

@@ -29,6 +29,7 @@ export interface GeometrySpineEntry {
 }
 
 const ALL_GRADES: GradeInfo[] = [
+  { grade: 3, active: true },
   { grade: 4, active: true },
   { grade: 5, active: true },
   { grade: 6, active: true },
@@ -43,6 +44,73 @@ const ALL_GRADES: GradeInfo[] = [
 export function listGrades(): GradeInfo[] {
   return ALL_GRADES;
 }
+
+// Grade 3 — authored as one complete batch (scripts/grade3/build_*.py), one
+// rung BELOW Grade 4 and mechanically held there: scripts/primary_check.py
+// runs with a ceiling of 1000, so a four-digit number in student-facing prose
+// fails the build. The level split from Grade 4 is deliberate throughout —
+// numbers to 1000 (not 10 000), tables of 2/3/4/5/10 (not to ten), exact
+// division with no remainders, denominators of 2/3/4 only, the clock to
+// o'clock and half past (not the quarter hour), and every graph strictly
+// one-for-one (no keys, no scales).
+export const GRADE3_SPINE: GradeSpineEntry[] = [
+  {
+    slug: "numbers-to-1000",
+    title: "Numbers to 1000",
+    blurb:
+      "Hundreds, tens and ones as bundles you could tie, reading and writing three-digit numbers in words and digits, comparing and ordering from the left, counting in steps of 2, 5, 10 and 100, and rounding to the nearest ten.",
+    live: true,
+  },
+  {
+    slug: "addition-and-subtraction-to-1000",
+    title: "Addition & Subtraction to 1000",
+    blurb:
+      "Adding whole tens and hundreds in your head, column addition with a carry, column subtraction with a break, fact families and missing numbers, and reading a word problem to decide whether it joins or splits.",
+    live: true,
+  },
+  {
+    slug: "multiplication-first-facts",
+    title: "Multiplication — First Facts",
+    blurb:
+      "Equal groups and repeated addition, arrays and the turnaround, the friendly tables of 2, 5 and 10 with their ending patterns, the threes and fours built by doubling, and the quiet rules for times one and times zero.",
+    live: true,
+  },
+  {
+    slug: "division-sharing-and-grouping",
+    title: "Division — Sharing & Grouping",
+    blurb:
+      "Sharing a total into equal parts and grouping it into bundles — the two faces of one operation — division facts read backwards out of the times tables, dividing by 3 and by 4, and choosing between times and divide from a story.",
+    live: true,
+  },
+  {
+    slug: "fractions-halves-and-quarters",
+    title: "Fractions — Halves, Thirds & Quarters",
+    blurb:
+      "Equal parts as the promise every fraction makes, naming halves, thirds and quarters, why a bigger bottom number means a smaller piece, taking more than one part, and finding a fraction of a set by sharing it.",
+    live: true,
+  },
+  {
+    slug: "shapes-sides-and-corners",
+    title: "Shapes, Sides & Corners",
+    blurb:
+      "Naming circles, triangles, squares and rectangles by what you can count on them, testing a square corner with the corner of a page, the solid shapes and whether each rolls or stacks, repeating shape patterns, and sorting by a stated rule.",
+    live: true,
+  },
+  {
+    slug: "measuring-time-and-money",
+    title: "Measuring, Time & Money",
+    blurb:
+      "Measuring length in centimetres from the zero mark, metres for the things a ruler cannot reach, comparing masses on a balance and capacities by filling, telling o'clock and half past, and counting tögrög notes and change.",
+    live: true,
+  },
+  {
+    slug: "tallies-and-picture-graphs",
+    title: "Tallies & Picture Graphs",
+    blurb:
+      "Counting with tally marks bundled in fives, collecting the counts into a table with a total, drawing picture graphs and block graphs one-for-one, and answering most, fewest, how-many-more and altogether questions from them.",
+    live: true,
+  },
+];
 
 // Grade 4 — the second primary-band year, authored as one complete batch
 // (scripts/grade4/build_*.py) and the first grade with figures from day one.
