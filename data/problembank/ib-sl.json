@@ -6271,6 +6271,555 @@
       ]
     },
     {
+      "id": "IBSL-F6",
+      "title": "The discriminant",
+      "level": 2,
+      "unit": "functions",
+      "skill": "The sign of b^2 - 4ac counts the real roots without finding them.",
+      "variants": [
+        {
+          "id": "IBSL-F6-v01",
+          "statement": "How many real roots does $x^2 - 9x - 6 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-6) = 105$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-6) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v02",
+          "statement": "How many real roots does $x^2 - 9x - 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-5) = 101$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v03",
+          "statement": "How many real roots does $x^2 - 9x - 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-4) = 97$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v04",
+          "statement": "How many real roots does $x^2 - 9x - 3 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-3) = 93$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v05",
+          "statement": "How many real roots does $x^2 - 9x - 2 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-2) = 89$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v06",
+          "statement": "How many real roots does $x^2 - 9x - 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(-1) = 85$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(-1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v07",
+          "statement": "How many real roots does $x^2 - 9x + 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(1) = 77$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v08",
+          "statement": "How many real roots does $x^2 - 9x + 2 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(2) = 73$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v09",
+          "statement": "How many real roots does $x^2 - 9x + 3 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(3) = 69$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v10",
+          "statement": "How many real roots does $x^2 - 9x + 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(4) = 65$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v11",
+          "statement": "How many real roots does $x^2 - 9x + 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(5) = 61$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v12",
+          "statement": "How many real roots does $x^2 - 9x + 6 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-9)^2 - 4(1)(6) = 57$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-9)**2 - 4*(1)*(6) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v13",
+          "statement": "How many real roots does $x^2 - 8x - 6 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-6) = 88$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-6) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v14",
+          "statement": "How many real roots does $x^2 - 8x - 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-5) = 84$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v15",
+          "statement": "How many real roots does $x^2 - 8x - 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-4) = 80$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v16",
+          "statement": "How many real roots does $x^2 - 8x - 3 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-3) = 76$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v17",
+          "statement": "How many real roots does $x^2 - 8x - 2 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-2) = 72$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v18",
+          "statement": "How many real roots does $x^2 - 8x - 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(-1) = 68$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(-1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v19",
+          "statement": "How many real roots does $x^2 - 8x + 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(1) = 60$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v20",
+          "statement": "How many real roots does $x^2 - 8x + 2 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(2) = 56$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v21",
+          "statement": "How many real roots does $x^2 - 8x + 3 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(3) = 52$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v22",
+          "statement": "How many real roots does $x^2 - 8x + 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(4) = 48$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v23",
+          "statement": "How many real roots does $x^2 - 8x + 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(5) = 44$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v24",
+          "statement": "How many real roots does $x^2 - 8x + 6 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-8)^2 - 4(1)(6) = 40$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-8)**2 - 4*(1)*(6) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v25",
+          "statement": "How many real roots does $x^2 - 7x - 6 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-6) = 73$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-6) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v26",
+          "statement": "How many real roots does $x^2 - 7x - 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-5) = 69$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v27",
+          "statement": "How many real roots does $x^2 - 7x - 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-4) = 65$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v28",
+          "statement": "How many real roots does $x^2 - 7x - 3 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-3) = 61$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v29",
+          "statement": "How many real roots does $x^2 - 7x - 2 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-2) = 57$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v30",
+          "statement": "How many real roots does $x^2 - 7x - 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(-1) = 53$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(-1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v31",
+          "statement": "How many real roots does $x^2 - 7x + 1 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(1) = 45$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(1) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v32",
+          "statement": "How many real roots does $x^2 - 7x + 2 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(2) = 41$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(2) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v33",
+          "statement": "How many real roots does $x^2 - 7x + 3 = 0$ have?",
+          "options": [
+            "two distinct real roots",
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 0,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(3) = 37$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(3) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v34",
+          "statement": "How many real roots does $x^2 - 7x + 4 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "two distinct real roots",
+            "no real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 1,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(4) = 33$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(4) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v35",
+          "statement": "How many real roots does $x^2 - 7x + 5 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "two distinct real roots",
+            "exactly three real roots"
+          ],
+          "correctIndex": 2,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(5) = 29$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(5) > 0"
+          ]
+        },
+        {
+          "id": "IBSL-F6-v36",
+          "statement": "How many real roots does $x^2 - 7x + 6 = 0$ have?",
+          "options": [
+            "one repeated real root",
+            "no real roots",
+            "exactly three real roots",
+            "two distinct real roots"
+          ],
+          "correctIndex": 3,
+          "explanation": "The discriminant is $b^2 - 4ac = (-7)^2 - 4(1)(6) = 25$, which is positive — so the equation has two distinct real roots. Its SIGN is the whole answer; the roots themselves never have to be found.",
+          "check": [
+            "(-7)**2 - 4*(1)*(6) > 0"
+          ]
+        }
+      ]
+    },
+    {
       "id": "IBSL-G1",
       "title": "Arc length in radians",
       "level": 1,
@@ -8636,6 +9185,555 @@
           "explanation": "$\\tan x = -2$ has exactly one solution in each of two periods of $\\tan$ inside $[0, 2\\pi)$ — two solutions in total. Sketch one period before counting — the graph answers this faster than algebra.",
           "check": [
             "Eq(tan(atan(-2)), -2)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "IBSL-G6",
+      "title": "Volume of a cone",
+      "level": 1,
+      "unit": "geometry-and-trigonometry",
+      "skill": "V = (1/3) pi r^2 h — the third is what separates it from the cylinder.",
+      "variants": [
+        {
+          "id": "IBSL-G6-v01",
+          "statement": "A cone has radius $4$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$16\\pi$",
+            "$48\\pi$",
+            "$24\\pi$",
+            "$12\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 16 \\cdot 3 = 16\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*4**2*3, 16)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v02",
+          "statement": "A cone has radius $4$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$96\\pi$",
+            "$32\\pi$",
+            "$48\\pi$",
+            "$24\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 16 \\cdot 6 = 32\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*4**2*6, 32)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v03",
+          "statement": "A cone has radius $4$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$144\\pi$",
+            "$72\\pi$",
+            "$48\\pi$",
+            "$36\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 16 \\cdot 9 = 48\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*4**2*9, 48)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v04",
+          "statement": "A cone has radius $4$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$192\\pi$",
+            "$96\\pi$",
+            "$48\\pi$",
+            "$64\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 16 \\cdot 12 = 64\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*4**2*12, 64)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v05",
+          "statement": "A cone has radius $5$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$25\\pi$",
+            "$75\\pi$",
+            "$30\\pi$",
+            "$15\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 25 \\cdot 3 = 25\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*5**2*3, 25)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v06",
+          "statement": "A cone has radius $5$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$150\\pi$",
+            "$50\\pi$",
+            "$60\\pi$",
+            "$30\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 25 \\cdot 6 = 50\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*5**2*6, 50)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v07",
+          "statement": "A cone has radius $5$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$225\\pi$",
+            "$90\\pi$",
+            "$75\\pi$",
+            "$45\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 25 \\cdot 9 = 75\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*5**2*9, 75)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v08",
+          "statement": "A cone has radius $5$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$300\\pi$",
+            "$120\\pi$",
+            "$60\\pi$",
+            "$100\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 25 \\cdot 12 = 100\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*5**2*12, 100)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v09",
+          "statement": "A cone has radius $7$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$49\\pi$",
+            "$147\\pi$",
+            "$42\\pi$",
+            "$21\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 49 \\cdot 3 = 49\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*7**2*3, 49)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v10",
+          "statement": "A cone has radius $7$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$294\\pi$",
+            "$98\\pi$",
+            "$84\\pi$",
+            "$42\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 49 \\cdot 6 = 98\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*7**2*6, 98)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v11",
+          "statement": "A cone has radius $7$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$441\\pi$",
+            "$126\\pi$",
+            "$147\\pi$",
+            "$63\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 49 \\cdot 9 = 147\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*7**2*9, 147)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v12",
+          "statement": "A cone has radius $7$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$588\\pi$",
+            "$168\\pi$",
+            "$84\\pi$",
+            "$196\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 49 \\cdot 12 = 196\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*7**2*12, 196)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v13",
+          "statement": "A cone has radius $8$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$64\\pi$",
+            "$192\\pi$",
+            "$48\\pi$",
+            "$24\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 64 \\cdot 3 = 64\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*8**2*3, 64)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v14",
+          "statement": "A cone has radius $8$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$384\\pi$",
+            "$128\\pi$",
+            "$96\\pi$",
+            "$48\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 64 \\cdot 6 = 128\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*8**2*6, 128)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v15",
+          "statement": "A cone has radius $8$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$576\\pi$",
+            "$144\\pi$",
+            "$192\\pi$",
+            "$72\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 64 \\cdot 9 = 192\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*8**2*9, 192)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v16",
+          "statement": "A cone has radius $8$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$768\\pi$",
+            "$192\\pi$",
+            "$96\\pi$",
+            "$256\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 64 \\cdot 12 = 256\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*8**2*12, 256)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v17",
+          "statement": "A cone has radius $9$ cm and height $1$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$27\\pi$",
+            "$81\\pi$",
+            "$18\\pi$",
+            "$9\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 1 = 27\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*1, 27)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v18",
+          "statement": "A cone has radius $9$ cm and height $2$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$162\\pi$",
+            "$54\\pi$",
+            "$36\\pi$",
+            "$18\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 2 = 54\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*2, 54)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v19",
+          "statement": "A cone has radius $9$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$243\\pi$",
+            "$54\\pi$",
+            "$81\\pi$",
+            "$27\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 3 = 81\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*3, 81)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v20",
+          "statement": "A cone has radius $9$ cm and height $4$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$324\\pi$",
+            "$72\\pi$",
+            "$36\\pi$",
+            "$108\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 4 = 108\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*4, 108)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v21",
+          "statement": "A cone has radius $9$ cm and height $5$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$135\\pi$",
+            "$405\\pi$",
+            "$90\\pi$",
+            "$45\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 5 = 135\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*5, 135)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v22",
+          "statement": "A cone has radius $9$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$486\\pi$",
+            "$162\\pi$",
+            "$108\\pi$",
+            "$54\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 6 = 162\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*6, 162)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v23",
+          "statement": "A cone has radius $9$ cm and height $7$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$567\\pi$",
+            "$126\\pi$",
+            "$189\\pi$",
+            "$63\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 7 = 189\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*7, 189)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v24",
+          "statement": "A cone has radius $9$ cm and height $8$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$648\\pi$",
+            "$144\\pi$",
+            "$72\\pi$",
+            "$216\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 8 = 216\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*8, 216)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v25",
+          "statement": "A cone has radius $9$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$243\\pi$",
+            "$729\\pi$",
+            "$162\\pi$",
+            "$81\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 9 = 243\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*9, 243)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v26",
+          "statement": "A cone has radius $9$ cm and height $10$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$810\\pi$",
+            "$270\\pi$",
+            "$180\\pi$",
+            "$90\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 10 = 270\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*10, 270)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v27",
+          "statement": "A cone has radius $9$ cm and height $11$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$891\\pi$",
+            "$198\\pi$",
+            "$297\\pi$",
+            "$99\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 11 = 297\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*11, 297)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v28",
+          "statement": "A cone has radius $9$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$972\\pi$",
+            "$216\\pi$",
+            "$108\\pi$",
+            "$324\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 81 \\cdot 12 = 324\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*9**2*12, 324)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v29",
+          "statement": "A cone has radius $10$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$100\\pi$",
+            "$300\\pi$",
+            "$60\\pi$",
+            "$30\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 100 \\cdot 3 = 100\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*10**2*3, 100)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v30",
+          "statement": "A cone has radius $10$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$600\\pi$",
+            "$200\\pi$",
+            "$120\\pi$",
+            "$60\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 100 \\cdot 6 = 200\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*10**2*6, 200)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v31",
+          "statement": "A cone has radius $10$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$900\\pi$",
+            "$180\\pi$",
+            "$300\\pi$",
+            "$90\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 100 \\cdot 9 = 300\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*10**2*9, 300)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v32",
+          "statement": "A cone has radius $10$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$1200\\pi$",
+            "$240\\pi$",
+            "$120\\pi$",
+            "$400\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 100 \\cdot 12 = 400\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*10**2*12, 400)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v33",
+          "statement": "A cone has radius $11$ cm and height $3$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$121\\pi$",
+            "$363\\pi$",
+            "$66\\pi$",
+            "$33\\pi$"
+          ],
+          "correctIndex": 0,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 121 \\cdot 3 = 121\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*11**2*3, 121)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v34",
+          "statement": "A cone has radius $11$ cm and height $6$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$726\\pi$",
+            "$242\\pi$",
+            "$132\\pi$",
+            "$66\\pi$"
+          ],
+          "correctIndex": 1,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 121 \\cdot 6 = 242\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*11**2*6, 242)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v35",
+          "statement": "A cone has radius $11$ cm and height $9$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$1089\\pi$",
+            "$198\\pi$",
+            "$363\\pi$",
+            "$99\\pi$"
+          ],
+          "correctIndex": 2,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 121 \\cdot 9 = 363\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*11**2*9, 363)"
+          ]
+        },
+        {
+          "id": "IBSL-G6-v36",
+          "statement": "A cone has radius $11$ cm and height $12$ cm. Find its volume in cm$^3$, giving the answer as a multiple of $\\pi$.",
+          "options": [
+            "$1452\\pi$",
+            "$264\\pi$",
+            "$132\\pi$",
+            "$484\\pi$"
+          ],
+          "correctIndex": 3,
+          "explanation": "$V = \\tfrac13\\pi r^2 h = \\tfrac13\\pi \\cdot 121 \\cdot 12 = 484\\pi$. Dropping the $\\tfrac13$ gives the CYLINDER on the same base — exactly three times too big.",
+          "check": [
+            "Eq(Rational(1,3)*11**2*12, 484)"
           ]
         }
       ]
@@ -11111,6 +12209,555 @@
           "explanation": "$X \\sim B(7, \\frac{3}{5})$, so $P(X = 3) = \\binom{7}{3} \\left(\\frac{3}{5}\\right)^{3}\\left(\\frac{2}{5}\\right)^{4} = \\frac{3024}{15625}$. Without the $\\binom{7}{3} = 35$ factor you count only ONE ordering of the heads.",
           "check": [
             "Eq(binomial(7,3)*Rational(3,5)**3*Rational(2,5)**4, Rational(3024,15625))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "IBSL-S6",
+      "title": "The interquartile range",
+      "level": 1,
+      "unit": "statistics-and-probability",
+      "skill": "Q3 - Q1 — the middle half, deliberately blind to the extremes.",
+      "variants": [
+        {
+          "id": "IBSL-S6-v01",
+          "statement": "The ordered data set is $3,\\ 5,\\ 8,\\ 12,\\ 15,\\ 19,\\ 22,\\ 26$. Find the interquartile range.",
+          "options": [
+            "$14$",
+            "$\\frac{13}{2}$",
+            "$\\frac{41}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{13}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{41}{2}$, so $\\text{IQR} = \\frac{41}{2} - \\frac{13}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(19 + 22, 2) - Rational(5 + 8, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v02",
+          "statement": "The ordered data set is $6,\\ 10,\\ 16,\\ 24,\\ 30,\\ 38,\\ 44,\\ 52$. Find the interquartile range.",
+          "options": [
+            "$13$",
+            "$28$",
+            "$41$",
+            "$46$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $13$, and $Q_3$ is the middle of the upper half, $41$, so $\\text{IQR} = 41 - 13 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(38 + 44, 2) - Rational(10 + 16, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v03",
+          "statement": "The ordered data set is $9,\\ 15,\\ 24,\\ 36,\\ 45,\\ 57,\\ 66,\\ 78$. Find the interquartile range.",
+          "options": [
+            "$\\frac{39}{2}$",
+            "$\\frac{123}{2}$",
+            "$42$",
+            "$69$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{39}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{123}{2}$, so $\\text{IQR} = \\frac{123}{2} - \\frac{39}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(57 + 66, 2) - Rational(15 + 24, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v04",
+          "statement": "The ordered data set is $4,\\ 6,\\ 9,\\ 13,\\ 16,\\ 20,\\ 23,\\ 27$. Find the interquartile range.",
+          "options": [
+            "$\\frac{15}{2}$",
+            "$\\frac{43}{2}$",
+            "$23$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{15}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{43}{2}$, so $\\text{IQR} = \\frac{43}{2} - \\frac{15}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(20 + 23, 2) - Rational(6 + 9, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v05",
+          "statement": "The ordered data set is $7,\\ 11,\\ 17,\\ 25,\\ 31,\\ 39,\\ 45,\\ 53$. Find the interquartile range.",
+          "options": [
+            "$28$",
+            "$14$",
+            "$42$",
+            "$46$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $14$, and $Q_3$ is the middle of the upper half, $42$, so $\\text{IQR} = 42 - 14 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(39 + 45, 2) - Rational(11 + 17, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v06",
+          "statement": "The ordered data set is $10,\\ 16,\\ 25,\\ 37,\\ 46,\\ 58,\\ 67,\\ 79$. Find the interquartile range.",
+          "options": [
+            "$\\frac{41}{2}$",
+            "$42$",
+            "$\\frac{125}{2}$",
+            "$69$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{41}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{125}{2}$, so $\\text{IQR} = \\frac{125}{2} - \\frac{41}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(58 + 67, 2) - Rational(16 + 25, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v07",
+          "statement": "The ordered data set is $5,\\ 7,\\ 10,\\ 14,\\ 17,\\ 21,\\ 24,\\ 28$. Find the interquartile range.",
+          "options": [
+            "$\\frac{17}{2}$",
+            "$\\frac{45}{2}$",
+            "$14$",
+            "$23$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{17}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{45}{2}$, so $\\text{IQR} = \\frac{45}{2} - \\frac{17}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(21 + 24, 2) - Rational(7 + 10, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v08",
+          "statement": "The ordered data set is $8,\\ 12,\\ 18,\\ 26,\\ 32,\\ 40,\\ 46,\\ 54$. Find the interquartile range.",
+          "options": [
+            "$15$",
+            "$43$",
+            "$46$",
+            "$28$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $15$, and $Q_3$ is the middle of the upper half, $43$, so $\\text{IQR} = 43 - 15 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(40 + 46, 2) - Rational(12 + 18, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v09",
+          "statement": "The ordered data set is $11,\\ 17,\\ 26,\\ 38,\\ 47,\\ 59,\\ 68,\\ 80$. Find the interquartile range.",
+          "options": [
+            "$42$",
+            "$\\frac{43}{2}$",
+            "$\\frac{127}{2}$",
+            "$69$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{43}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{127}{2}$, so $\\text{IQR} = \\frac{127}{2} - \\frac{43}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(59 + 68, 2) - Rational(17 + 26, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v10",
+          "statement": "The ordered data set is $6,\\ 8,\\ 11,\\ 15,\\ 18,\\ 22,\\ 25,\\ 29$. Find the interquartile range.",
+          "options": [
+            "$\\frac{19}{2}$",
+            "$14$",
+            "$\\frac{47}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{19}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{47}{2}$, so $\\text{IQR} = \\frac{47}{2} - \\frac{19}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(22 + 25, 2) - Rational(8 + 11, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v11",
+          "statement": "The ordered data set is $9,\\ 13,\\ 19,\\ 27,\\ 33,\\ 41,\\ 47,\\ 55$. Find the interquartile range.",
+          "options": [
+            "$16$",
+            "$44$",
+            "$28$",
+            "$46$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $16$, and $Q_3$ is the middle of the upper half, $44$, so $\\text{IQR} = 44 - 16 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(41 + 47, 2) - Rational(13 + 19, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v12",
+          "statement": "The ordered data set is $12,\\ 18,\\ 27,\\ 39,\\ 48,\\ 60,\\ 69,\\ 81$. Find the interquartile range.",
+          "options": [
+            "$\\frac{45}{2}$",
+            "$\\frac{129}{2}$",
+            "$69$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{45}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{129}{2}$, so $\\text{IQR} = \\frac{129}{2} - \\frac{45}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(60 + 69, 2) - Rational(18 + 27, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v13",
+          "statement": "The ordered data set is $7,\\ 9,\\ 12,\\ 16,\\ 19,\\ 23,\\ 26,\\ 30$. Find the interquartile range.",
+          "options": [
+            "$14$",
+            "$\\frac{21}{2}$",
+            "$\\frac{49}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{21}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{49}{2}$, so $\\text{IQR} = \\frac{49}{2} - \\frac{21}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(23 + 26, 2) - Rational(9 + 12, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v14",
+          "statement": "The ordered data set is $10,\\ 14,\\ 20,\\ 28,\\ 34,\\ 42,\\ 48,\\ 56$. Find the interquartile range.",
+          "options": [
+            "$17$",
+            "$28$",
+            "$45$",
+            "$46$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $17$, and $Q_3$ is the middle of the upper half, $45$, so $\\text{IQR} = 45 - 17 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(42 + 48, 2) - Rational(14 + 20, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v15",
+          "statement": "The ordered data set is $13,\\ 19,\\ 28,\\ 40,\\ 49,\\ 61,\\ 70,\\ 82$. Find the interquartile range.",
+          "options": [
+            "$\\frac{47}{2}$",
+            "$\\frac{131}{2}$",
+            "$42$",
+            "$69$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{47}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{131}{2}$, so $\\text{IQR} = \\frac{131}{2} - \\frac{47}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(61 + 70, 2) - Rational(19 + 28, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v16",
+          "statement": "The ordered data set is $8,\\ 10,\\ 13,\\ 17,\\ 20,\\ 24,\\ 27,\\ 31$. Find the interquartile range.",
+          "options": [
+            "$\\frac{23}{2}$",
+            "$\\frac{51}{2}$",
+            "$23$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{23}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{51}{2}$, so $\\text{IQR} = \\frac{51}{2} - \\frac{23}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(24 + 27, 2) - Rational(10 + 13, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v17",
+          "statement": "The ordered data set is $14,\\ 20,\\ 29,\\ 41,\\ 50,\\ 62,\\ 71,\\ 83$. Find the interquartile range.",
+          "options": [
+            "$42$",
+            "$\\frac{49}{2}$",
+            "$\\frac{133}{2}$",
+            "$69$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{49}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{133}{2}$, so $\\text{IQR} = \\frac{133}{2} - \\frac{49}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(62 + 71, 2) - Rational(20 + 29, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v18",
+          "statement": "The ordered data set is $9,\\ 11,\\ 14,\\ 18,\\ 21,\\ 25,\\ 28,\\ 32$. Find the interquartile range.",
+          "options": [
+            "$\\frac{25}{2}$",
+            "$14$",
+            "$\\frac{53}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{25}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{53}{2}$, so $\\text{IQR} = \\frac{53}{2} - \\frac{25}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(25 + 28, 2) - Rational(11 + 14, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v19",
+          "statement": "The ordered data set is $12,\\ 16,\\ 22,\\ 30,\\ 36,\\ 44,\\ 50,\\ 58$. Find the interquartile range.",
+          "options": [
+            "$19$",
+            "$47$",
+            "$28$",
+            "$46$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $19$, and $Q_3$ is the middle of the upper half, $47$, so $\\text{IQR} = 47 - 19 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(44 + 50, 2) - Rational(16 + 22, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v20",
+          "statement": "The ordered data set is $15,\\ 21,\\ 30,\\ 42,\\ 51,\\ 63,\\ 72,\\ 84$. Find the interquartile range.",
+          "options": [
+            "$\\frac{51}{2}$",
+            "$\\frac{135}{2}$",
+            "$69$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{51}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{135}{2}$, so $\\text{IQR} = \\frac{135}{2} - \\frac{51}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(63 + 72, 2) - Rational(21 + 30, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v21",
+          "statement": "The ordered data set is $10,\\ 12,\\ 15,\\ 19,\\ 22,\\ 26,\\ 29,\\ 33$. Find the interquartile range.",
+          "options": [
+            "$14$",
+            "$\\frac{27}{2}$",
+            "$\\frac{55}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{27}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{55}{2}$, so $\\text{IQR} = \\frac{55}{2} - \\frac{27}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(26 + 29, 2) - Rational(12 + 15, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v22",
+          "statement": "The ordered data set is $13,\\ 17,\\ 23,\\ 31,\\ 37,\\ 45,\\ 51,\\ 59$. Find the interquartile range.",
+          "options": [
+            "$20$",
+            "$28$",
+            "$48$",
+            "$46$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $20$, and $Q_3$ is the middle of the upper half, $48$, so $\\text{IQR} = 48 - 20 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(45 + 51, 2) - Rational(17 + 23, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v23",
+          "statement": "The ordered data set is $16,\\ 22,\\ 31,\\ 43,\\ 52,\\ 64,\\ 73,\\ 85$. Find the interquartile range.",
+          "options": [
+            "$\\frac{53}{2}$",
+            "$\\frac{137}{2}$",
+            "$42$",
+            "$69$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{53}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{137}{2}$, so $\\text{IQR} = \\frac{137}{2} - \\frac{53}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(64 + 73, 2) - Rational(22 + 31, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v24",
+          "statement": "The ordered data set is $11,\\ 13,\\ 16,\\ 20,\\ 23,\\ 27,\\ 30,\\ 34$. Find the interquartile range.",
+          "options": [
+            "$\\frac{29}{2}$",
+            "$\\frac{57}{2}$",
+            "$23$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{29}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{57}{2}$, so $\\text{IQR} = \\frac{57}{2} - \\frac{29}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(27 + 30, 2) - Rational(13 + 16, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v25",
+          "statement": "The ordered data set is $14,\\ 18,\\ 24,\\ 32,\\ 38,\\ 46,\\ 52,\\ 60$. Find the interquartile range.",
+          "options": [
+            "$28$",
+            "$21$",
+            "$49$",
+            "$46$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $21$, and $Q_3$ is the middle of the upper half, $49$, so $\\text{IQR} = 49 - 21 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(46 + 52, 2) - Rational(18 + 24, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v26",
+          "statement": "The ordered data set is $17,\\ 23,\\ 32,\\ 44,\\ 53,\\ 65,\\ 74,\\ 86$. Find the interquartile range.",
+          "options": [
+            "$\\frac{55}{2}$",
+            "$42$",
+            "$\\frac{139}{2}$",
+            "$69$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{55}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{139}{2}$, so $\\text{IQR} = \\frac{139}{2} - \\frac{55}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(65 + 74, 2) - Rational(23 + 32, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v27",
+          "statement": "The ordered data set is $12,\\ 14,\\ 17,\\ 21,\\ 24,\\ 28,\\ 31,\\ 35$. Find the interquartile range.",
+          "options": [
+            "$\\frac{31}{2}$",
+            "$\\frac{59}{2}$",
+            "$14$",
+            "$23$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{31}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{59}{2}$, so $\\text{IQR} = \\frac{59}{2} - \\frac{31}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(28 + 31, 2) - Rational(14 + 17, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v28",
+          "statement": "The ordered data set is $15,\\ 19,\\ 25,\\ 33,\\ 39,\\ 47,\\ 53,\\ 61$. Find the interquartile range.",
+          "options": [
+            "$22$",
+            "$50$",
+            "$46$",
+            "$28$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $22$, and $Q_3$ is the middle of the upper half, $50$, so $\\text{IQR} = 50 - 22 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(47 + 53, 2) - Rational(19 + 25, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v29",
+          "statement": "The ordered data set is $18,\\ 24,\\ 33,\\ 45,\\ 54,\\ 66,\\ 75,\\ 87$. Find the interquartile range.",
+          "options": [
+            "$42$",
+            "$\\frac{57}{2}$",
+            "$\\frac{141}{2}$",
+            "$69$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{57}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{141}{2}$, so $\\text{IQR} = \\frac{141}{2} - \\frac{57}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(66 + 75, 2) - Rational(24 + 33, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v30",
+          "statement": "The ordered data set is $13,\\ 15,\\ 18,\\ 22,\\ 25,\\ 29,\\ 32,\\ 36$. Find the interquartile range.",
+          "options": [
+            "$\\frac{33}{2}$",
+            "$14$",
+            "$\\frac{61}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{33}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{61}{2}$, so $\\text{IQR} = \\frac{61}{2} - \\frac{33}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(29 + 32, 2) - Rational(15 + 18, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v31",
+          "statement": "The ordered data set is $16,\\ 20,\\ 26,\\ 34,\\ 40,\\ 48,\\ 54,\\ 62$. Find the interquartile range.",
+          "options": [
+            "$23$",
+            "$51$",
+            "$28$",
+            "$46$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $23$, and $Q_3$ is the middle of the upper half, $51$, so $\\text{IQR} = 51 - 23 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(48 + 54, 2) - Rational(20 + 26, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v32",
+          "statement": "The ordered data set is $19,\\ 25,\\ 34,\\ 46,\\ 55,\\ 67,\\ 76,\\ 88$. Find the interquartile range.",
+          "options": [
+            "$\\frac{59}{2}$",
+            "$\\frac{143}{2}$",
+            "$69$",
+            "$42$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{59}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{143}{2}$, so $\\text{IQR} = \\frac{143}{2} - \\frac{59}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(67 + 76, 2) - Rational(25 + 34, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v33",
+          "statement": "The ordered data set is $14,\\ 16,\\ 19,\\ 23,\\ 26,\\ 30,\\ 33,\\ 37$. Find the interquartile range.",
+          "options": [
+            "$14$",
+            "$\\frac{35}{2}$",
+            "$\\frac{63}{2}$",
+            "$23$"
+          ],
+          "correctIndex": 0,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{35}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{63}{2}$, so $\\text{IQR} = \\frac{63}{2} - \\frac{35}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(30 + 33, 2) - Rational(16 + 19, 2), Rational(14, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v34",
+          "statement": "The ordered data set is $17,\\ 21,\\ 27,\\ 35,\\ 41,\\ 49,\\ 55,\\ 63$. Find the interquartile range.",
+          "options": [
+            "$24$",
+            "$28$",
+            "$52$",
+            "$46$"
+          ],
+          "correctIndex": 1,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $24$, and $Q_3$ is the middle of the upper half, $52$, so $\\text{IQR} = 52 - 24 = 28$. The full range $46$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(49 + 55, 2) - Rational(21 + 27, 2), Rational(28, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v35",
+          "statement": "The ordered data set is $20,\\ 26,\\ 35,\\ 47,\\ 56,\\ 68,\\ 77,\\ 89$. Find the interquartile range.",
+          "options": [
+            "$\\frac{61}{2}$",
+            "$\\frac{145}{2}$",
+            "$42$",
+            "$69$"
+          ],
+          "correctIndex": 2,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{61}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{145}{2}$, so $\\text{IQR} = \\frac{145}{2} - \\frac{61}{2} = 42$. The full range $69$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(68 + 77, 2) - Rational(26 + 35, 2), Rational(42, 1))"
+          ]
+        },
+        {
+          "id": "IBSL-S6-v36",
+          "statement": "The ordered data set is $15,\\ 17,\\ 20,\\ 24,\\ 27,\\ 31,\\ 34,\\ 38$. Find the interquartile range.",
+          "options": [
+            "$\\frac{37}{2}$",
+            "$\\frac{65}{2}$",
+            "$23$",
+            "$14$"
+          ],
+          "correctIndex": 3,
+          "explanation": "With $8$ values, the lower half is the first four and the upper half the last four. $Q_1$ is the middle of the lower half, $\\frac{37}{2}$, and $Q_3$ is the middle of the upper half, $\\frac{65}{2}$, so $\\text{IQR} = \\frac{65}{2} - \\frac{37}{2} = 14$. The full range $23$ uses the extremes, which is exactly what the IQR is designed to ignore.",
+          "check": [
+            "Eq(Rational(31 + 34, 2) - Rational(17 + 20, 2), Rational(14, 1))"
           ]
         }
       ]
@@ -13718,6 +15365,555 @@
           "explanation": "Area $= \\displaystyle\\int_0^{12} 3(12x - x^2)\\,dx = 3\\left[\\frac{12x^2}{2} - \\frac{x^3}{3}\\right]_0^{12} = 864$. Both terms matter: dropping either one leaves $\\frac{3 b^3}{2}$- or $\\frac{3 b^3}{3}$-type values.",
           "check": [
             "Eq(integrate(3*x*(12 - x), (x, 0, 12)), Rational(864,1))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "IBSL-C6",
+      "title": "Stationary points",
+      "level": 2,
+      "unit": "calculus",
+      "skill": "Solve f'(x) = 0; the constant term can never move one sideways.",
+      "variants": [
+        {
+          "id": "IBSL-C6-v01",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 16x - 5$.",
+          "options": [
+            "$-8$",
+            "$8$",
+            "$-16$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 16$, which vanishes at $x = -8$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-8) + (16), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v02",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 16x$.",
+          "options": [
+            "$8$",
+            "$-8$",
+            "$-16$",
+            "$16$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 16$, which vanishes at $x = -8$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-8) + (16), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v03",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 16x + 4$.",
+          "options": [
+            "$8$",
+            "$-16$",
+            "$-8$",
+            "$16$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 16$, which vanishes at $x = -8$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-8) + (16), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v04",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 16x + 7$.",
+          "options": [
+            "$8$",
+            "$-16$",
+            "$16$",
+            "$-8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 16$, which vanishes at $x = -8$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-8) + (16), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v05",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 14x - 5$.",
+          "options": [
+            "$-7$",
+            "$7$",
+            "$-14$",
+            "$14$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 14$, which vanishes at $x = -7$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-7) + (14), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v06",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 14x$.",
+          "options": [
+            "$7$",
+            "$-7$",
+            "$-14$",
+            "$14$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 14$, which vanishes at $x = -7$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-7) + (14), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v07",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 14x + 4$.",
+          "options": [
+            "$7$",
+            "$-14$",
+            "$-7$",
+            "$14$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 14$, which vanishes at $x = -7$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-7) + (14), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v08",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 14x + 7$.",
+          "options": [
+            "$7$",
+            "$-14$",
+            "$14$",
+            "$-7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 14$, which vanishes at $x = -7$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-7) + (14), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v09",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 12x - 5$.",
+          "options": [
+            "$-6$",
+            "$6$",
+            "$-12$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 12$, which vanishes at $x = -6$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-6) + (12), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v10",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 12x$.",
+          "options": [
+            "$6$",
+            "$-6$",
+            "$-12$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 12$, which vanishes at $x = -6$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-6) + (12), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v11",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 12x + 4$.",
+          "options": [
+            "$6$",
+            "$-12$",
+            "$-6$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 12$, which vanishes at $x = -6$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-6) + (12), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v12",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 12x + 7$.",
+          "options": [
+            "$6$",
+            "$-12$",
+            "$12$",
+            "$-6$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 12$, which vanishes at $x = -6$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-6) + (12), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v13",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 10x - 5$.",
+          "options": [
+            "$-5$",
+            "$5$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 10$, which vanishes at $x = -5$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-5) + (10), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v14",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 10x$.",
+          "options": [
+            "$5$",
+            "$-5$",
+            "$-10$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 10$, which vanishes at $x = -5$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-5) + (10), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v15",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 10x + 4$.",
+          "options": [
+            "$5$",
+            "$-10$",
+            "$-5$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 10$, which vanishes at $x = -5$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-5) + (10), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v16",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 10x + 7$.",
+          "options": [
+            "$5$",
+            "$-10$",
+            "$10$",
+            "$-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 10$, which vanishes at $x = -5$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-5) + (10), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v17",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 8x - 5$.",
+          "options": [
+            "$-4$",
+            "$4$",
+            "$-8$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 8$, which vanishes at $x = -4$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-4) + (8), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v18",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 8x$.",
+          "options": [
+            "$4$",
+            "$-4$",
+            "$-8$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 8$, which vanishes at $x = -4$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-4) + (8), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v19",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 8x + 4$.",
+          "options": [
+            "$4$",
+            "$-8$",
+            "$-4$",
+            "$8$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 8$, which vanishes at $x = -4$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-4) + (8), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v20",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 8x + 7$.",
+          "options": [
+            "$4$",
+            "$-8$",
+            "$8$",
+            "$-4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 8$, which vanishes at $x = -4$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-4) + (8), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v21",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 6x - 5$.",
+          "options": [
+            "$-3$",
+            "$3$",
+            "$-6$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 6$, which vanishes at $x = -3$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-3) + (6), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v22",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 6x$.",
+          "options": [
+            "$3$",
+            "$-3$",
+            "$-6$",
+            "$6$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 6$, which vanishes at $x = -3$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-3) + (6), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v23",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 6x + 4$.",
+          "options": [
+            "$3$",
+            "$-6$",
+            "$-3$",
+            "$6$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 6$, which vanishes at $x = -3$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-3) + (6), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v24",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 6x + 7$.",
+          "options": [
+            "$3$",
+            "$-6$",
+            "$6$",
+            "$-3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 6$, which vanishes at $x = -3$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-3) + (6), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v25",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 4x - 5$.",
+          "options": [
+            "$-2$",
+            "$2$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 4$, which vanishes at $x = -2$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-2) + (4), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v26",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 4x$.",
+          "options": [
+            "$2$",
+            "$-2$",
+            "$-4$",
+            "$4$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 4$, which vanishes at $x = -2$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-2) + (4), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v27",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 4x + 4$.",
+          "options": [
+            "$2$",
+            "$-4$",
+            "$-2$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 4$, which vanishes at $x = -2$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-2) + (4), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v28",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 4x + 7$.",
+          "options": [
+            "$2$",
+            "$-4$",
+            "$4$",
+            "$-2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 4$, which vanishes at $x = -2$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-2) + (4), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v29",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 2x - 5$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$-2$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 2$, which vanishes at $x = -1$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-1) + (2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v30",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 2x$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$-2$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 2$, which vanishes at $x = -1$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-1) + (2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v31",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 2x + 4$.",
+          "options": [
+            "$1$",
+            "$-2$",
+            "$-1$",
+            "$2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 2$, which vanishes at $x = -1$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-1) + (2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v32",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 + 2x + 7$.",
+          "options": [
+            "$1$",
+            "$-2$",
+            "$2$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x + 2$, which vanishes at $x = -1$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(-1) + (2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v33",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 - 2x - 5$.",
+          "options": [
+            "$1$",
+            "$-1$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x - 2$, which vanishes at $x = 1$. The constant $-5$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(1) + (-2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v34",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 - 2x$.",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$2$",
+            "$-2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x - 2$, which vanishes at $x = 1$. The constant $0$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(1) + (-2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v35",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 - 2x + 4$.",
+          "options": [
+            "$-1$",
+            "$2$",
+            "$1$",
+            "$-2$"
+          ],
+          "correctIndex": 2,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x - 2$, which vanishes at $x = 1$. The constant $4$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(1) + (-2), 0)"
+          ]
+        },
+        {
+          "id": "IBSL-C6-v36",
+          "statement": "Find the $x$-coordinate of the stationary point of $f(x) = x^2 - 2x + 7$.",
+          "options": [
+            "$-1$",
+            "$2$",
+            "$-2$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "A stationary point is where $f'(x) = 0$. Here $f'(x) = 2x - 2$, which vanishes at $x = 1$. The constant $7$ shifts the curve up or down and can never move a stationary point sideways.",
+          "check": [
+            "Eq(2*(1)*(1) + (-2), 0)"
           ]
         }
       ]

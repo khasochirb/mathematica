@@ -1655,6 +1655,467 @@ def _g_hl_substitution():
 # assembly
 # ===========================================================================
 
+# ===========================================================================
+# Batch 2 — the forms that take every IB SL and AHL unit to six collections.
+# ===========================================================================
+
+# ---- SL: functions --------------------------------------------------------
+def _g_sl_discriminant():
+    raws = []
+    for a in (1, 2, 3):
+        for b in range(-9, 10):
+            for c in range(-6, 7):
+                if c == 0:
+                    continue
+                d = b * b - 4 * a * c
+                kind = ("two distinct real roots" if d > 0 else
+                        "one repeated real root" if d == 0 else
+                        "no real roots")
+                raws.append({
+                    "statement": ("How many real roots does "
+                                  "$%sx^2%s = 0$ have?"
+                                  % ("" if a == 1 else "%d" % a,
+                                     _pmterm(b, "x") + _pmterm(c, ""))),
+                    "correct": kind,
+                    "dvals": [k for k in ("two distinct real roots",
+                                          "one repeated real root",
+                                          "no real roots") if k != kind]
+                    + ["exactly three real roots"],
+                    "explanation": ("The discriminant is "
+                                    "$b^2 - 4ac = (%d)^2 - 4(%d)(%d) = %d$, "
+                                    "which is %s — so the equation has %s. "
+                                    "Its SIGN is the whole answer; the roots "
+                                    "themselves never have to be found."
+                                    % (b, a, c, d,
+                                       "positive" if d > 0 else
+                                       ("zero" if d == 0 else "negative"),
+                                       kind)),
+                    "check": ["(%d)**2 - 4*(%d)*(%d) %s 0"
+                              % (b, a, c,
+                                 ">" if d > 0 else ("==" if d == 0 else "<"))],
+                })
+    return raws
+
+
+# ---- SL: geometry-and-trigonometry ----------------------------------------
+def _g_sl_cone_volume():
+    raws = []
+    for r in range(1, 13):
+        for h in range(1, 13):
+            if (r * r * h) % 3:
+                continue
+            k = r * r * h // 3
+            raws.append({
+                "statement": ("A cone has radius $%d$ cm and height $%d$ cm. "
+                              "Find its volume in cm$^3$, giving the answer "
+                              "as a multiple of $\\pi$." % (r, h)),
+                "correct": "$%s$" % pi_mult(k),
+                "dvals": ["$%s$" % pi_mult(r * r * h),
+                          "$%s$" % pi_mult(2 * r * h),
+                          "$%s$" % pi_mult(r * h)],
+                "explanation": ("$V = \\tfrac13\\pi r^2 h = "
+                                "\\tfrac13\\pi \\cdot %d \\cdot %d = %s$. "
+                                "Dropping the $\\tfrac13$ gives the CYLINDER "
+                                "on the same base — exactly three times too "
+                                "big." % (r * r, h, pi_mult(k))),
+                "check": ["Eq(Rational(1,3)*%d**2*%d, %d)" % (r, h, k)],
+            })
+    return raws
+
+
+# ---- SL: statistics-and-probability ---------------------------------------
+def _g_sl_quartile():
+    raws = []
+    base = [3, 5, 8, 12, 15, 19, 22, 26]
+    for shift in range(0, 14):
+        for scale in (1, 2, 3):
+            data = [scale * v + shift for v in base]
+            q1 = Rational(data[1] + data[2], 2)
+            q3 = Rational(data[5] + data[6], 2)
+            iqr = q3 - q1
+            raws.append({
+                "statement": ("The ordered data set is "
+                              "$%s$. Find the interquartile range."
+                              % ",\\ ".join(str(v) for v in data)),
+                "correct": iqr,
+                "dvals": [q1, q3, data[-1] - data[0]],
+                "explanation": ("With $8$ values, the lower half is the "
+                                "first four and the upper half the last "
+                                "four. $Q_1$ is the middle of the lower "
+                                "half, $%s$, and $Q_3$ is the middle of the "
+                                "upper half, $%s$, so "
+                                "$\\text{IQR} = %s - %s = %s$. The full "
+                                "range $%d$ uses the extremes, which is "
+                                "exactly what the IQR is designed to ignore."
+                                % (fmt(q1), fmt(q3), fmt(q3), fmt(q1),
+                                   fmt(iqr), data[-1] - data[0])),
+                "check": ["Eq(Rational(%d + %d, 2) - Rational(%d + %d, 2),"
+                          " Rational(%d, %d))"
+                          % (data[5], data[6], data[1], data[2],
+                             iqr.p, iqr.q)],
+            })
+    return raws
+
+
+# ---- SL: calculus ---------------------------------------------------------
+def _g_sl_stationary_point():
+    raws = []
+    for a in (1, 2, 3):
+        for p in range(-8, 9):
+            for c in (-5, 0, 4, 7):
+                b = -2 * a * p
+                raws.append({
+                    "statement": ("Find the $x$-coordinate of the "
+                                  "stationary point of "
+                                  "$f(x) = %sx^2%s$."
+                                  % ("" if a == 1 else "%d" % a,
+                                     _pmterm(b, "x") + _pmterm(c, ""))),
+                    "correct": p,
+                    "dvals": [-p, 2 * p, Rational(b, a)],
+                    "explanation": ("A stationary point is where "
+                                    "$f'(x) = 0$. Here "
+                                    "$f'(x) = %dx%s$, which vanishes at "
+                                    "$x = %d$. The constant $%d$ shifts the "
+                                    "curve up or down and can never move a "
+                                    "stationary point sideways."
+                                    % (2 * a, _pmterm(b, ""), p, c)),
+                    "check": ["Eq(2*(%d)*(%d) + (%d), 0)" % (a, p, b)],
+                })
+    return raws
+
+
+# ---- HL: number-and-algebra ----------------------------------------------
+def _g_hl_binomial_term():
+    from math import comb as _comb
+    raws = []
+    for n in range(3, 10):
+        for k in range(1, n):
+            for a in (1, 2, 3):
+                coeff = _comb(n, k) * a ** k
+                raws.append({
+                    "statement": ("Find the coefficient of $x^{%d}$ in the "
+                                  "expansion of $(1 + %sx)^{%d}$."
+                                  % (k, "" if a == 1 else "%d" % a, n)),
+                    "correct": coeff,
+                    "dvals": [_comb(n, k), _comb(n, k) * a,
+                              _comb(n, k) * a ** (k + 1)],
+                    "explanation": ("The general term is "
+                                    "$\\binom{%d}{r}(%sx)^r$, so at "
+                                    "$r = %d$ the coefficient is "
+                                    "$\\binom{%d}{%d}\\cdot %d^{%d} = "
+                                    "%d \\cdot %d = %d$. Forgetting to raise "
+                                    "the inner coefficient to the same power "
+                                    "leaves just $\\binom{%d}{%d} = %d$."
+                                    % (n, "" if a == 1 else "%d" % a, k, n, k,
+                                       a, k, _comb(n, k), a ** k, coeff,
+                                       n, k, _comb(n, k))),
+                    "check": ["Eq(binomial(%d, %d)*%d**%d, %d)"
+                              % (n, k, a, k, coeff)],
+                })
+    return raws
+
+
+def _g_hl_conjugate_root():
+    raws = []
+    for p in range(-6, 7):
+        for q in range(1, 8):
+            raws.append({
+                "statement": ("A quadratic with REAL coefficients has "
+                              "$%s$ as one root. What is the other?"
+                              % _cnum(p, q)),
+                "correct": "$%s$" % _cnum(p, -q),
+                "dvals": ["$%s$" % _cnum(-p, q), "$%s$" % _cnum(-p, -q),
+                          "$%s$" % _cnum(q, p)],
+                "explanation": ("Real coefficients force complex roots to "
+                                "come in conjugate pairs: the real part "
+                                "stays and only the imaginary part changes "
+                                "sign, so the other root is $%s$. Flipping "
+                                "the real part as well would give a "
+                                "quadratic with a complex $x$-coefficient."
+                                % _cnum(p, -q)),
+                "check": ["Eq(expand((x - (%d + %d*I))*(x - (%d - %d*I))),"
+                          " x**2 - %d*x + %d)"
+                          % (p, q, p, q, 2 * p, p * p + q * q)],
+            })
+    return raws
+
+
+# ---- HL: functions --------------------------------------------------------
+def _g_hl_equal_roots_k():
+    raws = []
+    for a in (1, 2, 3, 4, 5, 6, 8, 9):
+        for b in range(2, 31, 2):
+            if (b * b) % (4 * a):
+                continue
+            k = b * b // (4 * a)
+            raws.append({
+                "statement": ("For which value of $k$ does "
+                              "$%sx^2 + %dx + k = 0$ have a repeated root?"
+                              % ("" if a == 1 else "%d" % a, b)),
+                "correct": k,
+                "dvals": [-k, 2 * k, Rational(b, 2 * a)],
+                "explanation": ("A repeated root means the discriminant "
+                                "vanishes: $%d^2 - 4(%d)k = 0$, so "
+                                "$k = \\frac{%d}{%d} = %d$. Any larger $k$ "
+                                "pushes the discriminant negative and the "
+                                "roots off the real line entirely."
+                                % (b, a, b * b, 4 * a, k)),
+                "check": ["Eq(%d**2 - 4*(%d)*(%d), 0)" % (b, a, k)],
+            })
+    return raws
+
+
+def _g_hl_inverse_rational():
+    raws = []
+    for a in (1, 2, 3):
+        for b in range(-6, 7):
+            for d in range(1, 7):
+                # f(x) = (a x + b)/(x + d); solve f(x) = y for x
+                for y in (2, 3, 5):
+                    if y == a:
+                        continue
+                    num = d * y - b
+                    den = a - y
+                    x = Rational(num, den)
+                    raws.append({
+                        "statement": ("$f(x) = \\dfrac{%s}{x + %d}$. Find "
+                                      "$f^{-1}(%d)$."
+                                      % (lin(a, b), d, y)),
+                        "correct": x,
+                        # Rational(num, -den) IS -x, so it cannot stand
+                        # beside it as a second distractor — that collision
+                        # made every draw degenerate. These three are
+                        # genuinely different slips.
+                        "dvals": [-x,
+                                  Rational(d * y + b, a - y),
+                                  Rational(d * y - b, a + y)
+                                  if a + y else x + 1],
+                        "explanation": ("$f^{-1}(%d)$ is the input that "
+                                        "produces $%d$, so solve "
+                                        "$\\frac{%s}{x + %d} = %d$: "
+                                        "$%s = %d(x + %d)$, and collecting "
+                                        "gives $x = %s$. Checking by "
+                                        "substituting back into $f$ is one "
+                                        "line and catches every sign slip."
+                                        % (y, y, lin(a, b), d, y,
+                                           lin(a, b), y, d, fmt(x))),
+                        "check": ["Eq((%d*Rational(%d,%d) + (%d))/"
+                                  "(Rational(%d,%d) + %d), %d)"
+                                  % (a, x.p, x.q, b, x.p, x.q, d, y)],
+                    })
+    return raws
+
+
+# ---- HL: geometry-and-trigonometry ---------------------------------------
+def _g_hl_line_point():
+    raws = []
+    for ax in range(-3, 4):
+        for bx in (1, 2, 3):
+            for t in (2, 3, 4, 5):
+                ay, az = ax + 1, ax - 2
+                by, bz = bx + 1, 2 * bx
+                px, py, pz = ax + t * bx, ay + t * by, az + t * bz
+                raws.append({
+                    "statement": ("A line has vector equation "
+                                  "$\\mathbf{r} = (%d; %d; %d) + t(%d; %d; "
+                                  "%d)$. Find the point at $t = %d$ — give "
+                                  "its $x$-coordinate."
+                                  % (ax, ay, az, bx, by, bz, t)),
+                    "correct": px,
+                    "dvals": [ax + bx, t * bx, ax - t * bx],
+                    "explanation": ("Each coordinate advances by $t$ copies "
+                                    "of the direction vector: "
+                                    "$x = %d + %d \\cdot %d = %d$ (and the "
+                                    "full point is $(%d; %d; %d)$). "
+                                    "Substituting $t$ into only one place, "
+                                    "or forgetting the starting point, are "
+                                    "the two ways this goes wrong."
+                                    % (ax, t, bx, px, px, py, pz)),
+                    "check": ["Eq((%d) + (%d)*(%d), %d)" % (ax, t, bx, px)],
+                })
+    return raws
+
+
+def _g_hl_scalar_projection():
+    raws = []
+    for ux in range(-4, 5):
+        for uy in range(-4, 5):
+            for (vx, vy) in ((3, 4), (5, 12), (8, 15), (6, 8)):
+                mag = _isqrt_exact(vx * vx + vy * vy)
+                dot = ux * vx + uy * vy
+                if mag is None or dot == 0:
+                    continue
+                proj = Rational(dot, mag)
+                raws.append({
+                    "statement": ("For $\\mathbf{u} = (%d; %d)$ and "
+                                  "$\\mathbf{v} = (%d; %d)$, find the "
+                                  "scalar projection of $\\mathbf{u}$ onto "
+                                  "$\\mathbf{v}$." % (ux, uy, vx, vy)),
+                    "correct": proj,
+                    "dvals": [dot, Rational(dot, mag * mag), -proj],
+                    "explanation": ("The scalar projection is "
+                                    "$\\dfrac{\\mathbf{u} \\cdot "
+                                    "\\mathbf{v}}{|\\mathbf{v}|} = "
+                                    "\\dfrac{%d}{%d} = %s$. Dividing by "
+                                    "$|\\mathbf{v}|^2 = %d$ instead gives "
+                                    "the multiplier for the VECTOR "
+                                    "projection, which is a different object."
+                                    % (dot, mag, fmt(proj), mag * mag)),
+                    "check": ["Eq(Rational(%d*%d + %d*%d, %d),"
+                              " Rational(%d, %d))"
+                              % (ux, vx, uy, vy, mag, proj.p, proj.q)],
+                })
+    return raws
+
+
+# ---- HL: statistics-and-probability --------------------------------------
+def _g_hl_variance_discrete():
+    raws = []
+    for x2 in range(2, 10):
+        for n in (2, 4, 5, 8, 10):
+            # X takes 0 with prob (n-1)/n and x2 with prob 1/n
+            p = Rational(1, n)
+            mean = p * x2
+            var = p * x2 * x2 - mean * mean
+            raws.append({
+                "statement": ("A random variable takes the value $0$ with "
+                              "probability $\\frac{%d}{%d}$ and $%d$ with "
+                              "probability $\\frac{1}{%d}$. Find its "
+                              "variance." % (n - 1, n, x2, n)),
+                "correct": var,
+                "dvals": [mean, p * x2 * x2, mean * mean],
+                "explanation": ("$E(X) = %s$ and $E(X^2) = %s$, so "
+                                "$\\text{Var}(X) = E(X^2) - [E(X)]^2 = %s$. "
+                                "Subtracting the mean rather than the mean "
+                                "SQUARED is the standard slip, and it leaves "
+                                "the units wrong as well as the number."
+                                % (fmt(mean), fmt(p * x2 * x2), fmt(var))),
+                "check": ["Eq(Rational(1,%d)*%d**2 - "
+                          "(Rational(1,%d)*%d)**2, Rational(%d, %d))"
+                          % (n, x2, n, x2, var.p, var.q)],
+            })
+    return raws
+
+
+def _g_hl_tree_conditional():
+    raws = []
+    for a in range(2, 9):
+        for b in range(2, 9):
+            for n in (10, 12, 15, 20):
+                if a + b >= n:
+                    continue
+                # Bag 1 chosen with prob 1/2; P(red|bag1) = a/n, |bag2 = b/n
+                joint = Rational(1, 2) * Rational(a, n)
+                total = Rational(1, 2) * Rational(a + b, n)
+                cond = joint / total
+                raws.append({
+                    "statement": ("One of two bags is chosen at random. "
+                                  "Bag 1 gives a red ball with probability "
+                                  "$\\frac{%d}{%d}$ and bag 2 with "
+                                  "probability $\\frac{%d}{%d}$. A red ball "
+                                  "is drawn. Find the probability it came "
+                                  "from bag 1." % (a, n, b, n)),
+                    "correct": cond,
+                    "dvals": [joint, total, Rational(a, n)],
+                    "explanation": ("Bayes over the two branches: the red "
+                                    "path through bag 1 has probability "
+                                    "$%s$, and red overall has probability "
+                                    "$%s$, so the answer is their ratio, "
+                                    "$%s$. The unconditional $\\frac{%d}{%d}$ "
+                                    "answers a question nobody asked — the "
+                                    "red ball is already given."
+                                    % (fmt(joint), fmt(total), fmt(cond),
+                                       a, n)),
+                    "check": ["Eq(Rational(1,2)*Rational(%d,%d) / "
+                              "(Rational(1,2)*Rational(%d,%d)),"
+                              " Rational(%d, %d))"
+                              % (a, n, a + b, n, cond.p, cond.q)],
+                })
+    return raws
+
+
+# ---- HL: calculus ---------------------------------------------------------
+def _g_hl_chain_value():
+    raws = []
+    for a in (1, 2, 3):
+        for b in range(-5, 6):
+            for n in (2, 3, 4):
+                for x in (0, 1, 2):
+                    inner = a * x + b
+                    if inner == 0:
+                        continue
+                    val = n * inner ** (n - 1) * a
+                    raws.append({
+                        "statement": ("$f(x) = (%s)^{%d}$. Find $f'(%d)$."
+                                      % (lin(a, b), n, x)),
+                        "correct": val,
+                        "dvals": [n * inner ** (n - 1),
+                                  inner ** n, n * inner ** n * a],
+                        "explanation": ("Differentiate the outside, then "
+                                        "multiply by the derivative of the "
+                                        "inside: "
+                                        "$f'(x) = %d(%s)^{%d}\\cdot %d$. At "
+                                        "$x = %d$ the bracket is $%d$, so "
+                                        "$f'(%d) = %d \\cdot %d \\cdot %d = "
+                                        "%d$. Leaving off the inner "
+                                        "derivative $%d$ is the whole point "
+                                        "of the chain rule."
+                                        % (n, lin(a, b), n - 1, a, x, inner,
+                                           x, n, inner ** (n - 1), a, val,
+                                           a)),
+                        "check": ["Eq(diff((%d*x + (%d))**%d, x).subs(x, %d),"
+                                  " %d)" % (a, b, n, x, val)],
+                    })
+    return raws
+
+
+def _g_hl_area_between():
+    raws = []
+    for m in range(1, 10):
+        for a in (1, 2, 3, 4):
+            # y = mx meets y = a x^2 at x = 0 and x = m/a; the enclosed area
+            # is m^3 / (6 a^2), which stays exact for every pair.
+            area = Rational(m ** 3, 6 * a * a)
+            raws.append({
+                "statement": ("Find the area enclosed between $y = %dx$ and "
+                              "$y = %sx^2$."
+                              % (m, "" if a == 1 else "%d" % a)),
+                "correct": area,
+                "dvals": [Rational(m ** 3, 3 * a * a),
+                          Rational(m ** 3, 2 * a * a),
+                          Rational(m * m, 6 * a)],
+                "explanation": ("The curves meet where $%sx^2 = %dx$, at "
+                                "$x = 0$ and $x = %s$. Between those the "
+                                "line is above, so the area is "
+                                "$\\int_0^{%s}(%dx - %sx^2)\\,dx = %s$. "
+                                "Integrating just one of the two curves — "
+                                "rather than their difference — is the "
+                                "error to watch for."
+                                % ("" if a == 1 else "%d" % a, m,
+                                   fmt(Rational(m, a)), fmt(Rational(m, a)),
+                                   m, "" if a == 1 else "%d" % a,
+                                   fmt(area))),
+                "check": ["Eq(integrate(%d*x - %d*x**2,"
+                          " (x, 0, Rational(%d, %d))), Rational(%d, %d))"
+                          % (m, a, m, a, area.p, area.q)],
+            })
+    return raws
+
+
+def _pmterm(c, var):
+    """Signed term ' + 3x' / ' - 3' — omitted entirely when c is zero."""
+    if c == 0:
+        return ""
+    body = (str(abs(c)) if not var else
+            (var if abs(c) == 1 else "%d%s" % (abs(c), var)))
+    return (" + " if c > 0 else " - ") + body
+
+
+def _isqrt_exact(n):
+    r = int(n ** 0.5 + 0.5)
+    return r if r * r == n else None
+
+
 def build_sl():
     NA, F, G, S, C = ("number-and-algebra", "functions", "geometry-and-trigonometry",
                       "statistics-and-probability", "calculus")
@@ -1682,6 +2143,9 @@ def build_sl():
         form("IBSL-F5", "Transformations of graphs", 3, F,
              "Track a point through y = a f(x - h) + k in the right order.",
              mk_txt("IBSL-F5", _g_sl_transform_point())),
+        form("IBSL-F6", "The discriminant", 2, F,
+             "The sign of b^2 - 4ac counts the real roots without finding them.",
+             mk_txt("IBSL-F6", _g_sl_discriminant())),
         form("IBSL-G1", "Arc length in radians", 1, G,
              "Use s = r·theta (and know when it is the sector area instead).",
              mk_txt("IBSL-G1", _g_sl_arc_length())),
@@ -1694,6 +2158,9 @@ def build_sl():
         form("IBSL-G5", "Counting trig solutions", 3, G,
              "Count solutions of sin/cos/tan equations on [0, 2pi).",
              mk_num("IBSL-G5", _g_sl_trig_count())),
+        form("IBSL-G6", "Volume of a cone", 1, G,
+             "V = (1/3) pi r^2 h — the third is what separates it from the cylinder.",
+             mk_txt("IBSL-G6", _g_sl_cone_volume())),
         form("IBSL-S1", "Mean from a frequency table", 1, S,
              "Weight each value by its frequency.", mk_num("IBSL-S1", _g_sl_mean_freq())),
         form("IBSL-S2", "Probability of a union", 2, S,
@@ -1704,6 +2171,9 @@ def build_sl():
              "Restrict the sample space before dividing.", mk_num("IBSL-S4", _g_sl_conditional())),
         form("IBSL-S5", "The binomial distribution", 3, S,
              "Assemble P(X = k) with the binomial coefficient.", mk_num("IBSL-S5", _g_sl_binomial_dist())),
+        form("IBSL-S6", "The interquartile range", 1, S,
+             "Q3 - Q1 — the middle half, deliberately blind to the extremes.",
+             mk_num("IBSL-S6", _g_sl_quartile())),
         form("IBSL-C1", "Derivative at a point", 1, C,
              "Differentiate a polynomial and evaluate.", mk_num("IBSL-C1", _g_sl_derivative_value())),
         form("IBSL-C2", "Equation of a tangent", 2, C,
@@ -1714,6 +2184,9 @@ def build_sl():
              "Antidifferentiate and evaluate between limits.", mk_num("IBSL-C4", _g_sl_definite_integral())),
         form("IBSL-C5", "Area under a curve", 3, C,
              "Integrate between the x-intercepts.", mk_num("IBSL-C5", _g_sl_area_under())),
+        form("IBSL-C6", "Stationary points", 2, C,
+             "Solve f'(x) = 0; the constant term can never move one sideways.",
+             mk_num("IBSL-C6", _g_sl_stationary_point())),
     ]
     return {
         "slug": "ib-sl",
@@ -1739,6 +2212,12 @@ def build_hl():
              "Principal argument from quadrant + reference angle.", mk_txt("IBHL-NA3", _g_hl_argument())),
         form("IBHL-NA4", "Counting: combinations", 3, NA,
              "Choose committees, with and without restrictions.", mk_num("IBHL-NA4", _g_hl_combinations())),
+        form("IBHL-NA5", "Binomial theorem: a single coefficient", 2, NA,
+             "Raise the inner coefficient to the same power as x.",
+             mk_num("IBHL-NA5", _g_hl_binomial_term())),
+        form("IBHL-NA6", "Conjugate roots", 1, NA,
+             "Real coefficients force complex roots into conjugate pairs.",
+             mk_txt("IBHL-NA6", _g_hl_conjugate_root())),
         form("IBHL-F1", "The remainder theorem", 2, F,
              "Remainder on division by (x - a) is p(a).", mk_num("IBHL-F1", _g_hl_remainder())),
         form("IBHL-F2", "Vieta for cubics", 2, F,
@@ -1747,6 +2226,12 @@ def build_hl():
              "Force p(a) = 0 to find an unknown coefficient.", mk_num("IBHL-F3", _g_hl_factor_k())),
         form("IBHL-F4", "Symmetric functions of roots", 3, F,
              "Compute alpha^2 + beta^2 from sum and product.", mk_num("IBHL-F4", _g_hl_sum_sq_roots())),
+        form("IBHL-F5", "Repeated roots: solving for k", 2, F,
+             "Set the discriminant to zero and solve for the unknown coefficient.",
+             mk_num("IBHL-F5", _g_hl_equal_roots_k())),
+        form("IBHL-F6", "Inverse of a rational function", 3, F,
+             "f^{-1}(y) is the input that produces y — solve, then check by substituting back.",
+             mk_num("IBHL-F6", _g_hl_inverse_rational())),
         form("IBHL-G1", "Magnitude of a 3D vector", 1, G,
              "Square, sum, square-root — signs vanish.", mk_num("IBHL-G1", _g_hl_vec_magnitude())),
         form("IBHL-G2", "Perpendicular vectors", 2, G,
@@ -1756,6 +2241,12 @@ def build_hl():
         form("IBHL-G4", "Compound-angle exact values", 3, G,
              "sin/cos/tan of 15°, 75°, 105°, 165° by expanding identities.",
              mk_txt("IBHL-G4", _g_hl_compound_angle())),
+        form("IBHL-G5", "Points on a vector line", 1, G,
+             "r = a + t b: every coordinate advances by t copies of the direction.",
+             mk_num("IBHL-G5", _g_hl_line_point())),
+        form("IBHL-G6", "Scalar projection", 3, G,
+             "u.v over |v| — dividing by |v| squared gives the vector projection instead.",
+             mk_num("IBHL-G6", _g_hl_scalar_projection())),
         form("IBHL-S1", "Bayes' theorem", 3, S,
              "Reverse a conditional probability over two sources.", mk_num("IBHL-S1", _g_hl_bayes())),
         form("IBHL-S2", "Expectation algebra", 2, S,
@@ -1765,6 +2256,12 @@ def build_hl():
              "E(X) = sum of x P(X = x) from a table.", mk_num("IBHL-S3", _g_hl_expected_value())),
         form("IBHL-S4", "Probability without replacement", 2, S,
              "Update both counts after each draw.", mk_num("IBHL-S4", _g_hl_prob_combinatorics())),
+        form("IBHL-S5", "Variance of a discrete variable", 2, S,
+             "Var(X) = E(X^2) - [E(X)]^2 — the mean is SQUARED before subtracting.",
+             mk_num("IBHL-S5", _g_hl_variance_discrete())),
+        form("IBHL-S6", "Bayes from a tree diagram", 3, S,
+             "Divide the branch you want by the total probability of the outcome.",
+             mk_num("IBHL-S6", _g_hl_tree_conditional())),
         form("IBHL-C1", "The product rule", 2, C,
              "Differentiate a product and evaluate.", mk_num("IBHL-C1", _g_hl_product_rule())),
         form("IBHL-C2", "The quotient rule", 2, C,
@@ -1773,6 +2270,12 @@ def build_hl():
              "Differentiate y-terms with a dy/dx factor.", mk_num("IBHL-C3", _g_hl_implicit())),
         form("IBHL-C4", "Integration by substitution", 3, C,
              "Change variable AND limits, then integrate in u.", mk_num("IBHL-C4", _g_hl_substitution())),
+        form("IBHL-C5", "The chain rule at a point", 2, C,
+             "Differentiate the outside, then multiply by the inner derivative.",
+             mk_num("IBHL-C5", _g_hl_chain_value())),
+        form("IBHL-C6", "Area between a line and a parabola", 3, C,
+             "Integrate upper minus lower between the intersection points.",
+             mk_num("IBHL-C6", _g_hl_area_between())),
     ]
     return {
         "slug": "ib-hl",
