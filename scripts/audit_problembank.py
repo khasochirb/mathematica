@@ -513,13 +513,20 @@ def solve_variant(topic, form_id, v):
     # subject modules' RESOLVERS dicts (scripts/pb/<subject>.py). They receive
     # the raw statement and return the same tagged tuples as above, plus
     # ("opt", exact-option-string) for categorical answers.
-    if form_id in PLUGIN_RESOLVERS:
-        return PLUGIN_RESOLVERS[form_id](s)
+    if (topic, form_id) in PLUGIN_RESOLVERS:
+        return PLUGIN_RESOLVERS[(topic, form_id)](s)
 
     return ("no-resolver", form_id)
 
 
 def _load_plugin_resolvers():
+    """Subject module RESOLVERS, keyed by (subject slug, form id).
+
+    Form ids only have to be unique WITHIN a subject — precalculus and
+    trigonometry both teach reference angles, and both banks are right to
+    carry a form called reference-angle. Keying on the id alone made those
+    two collide, so the pair is the key.
+    """
     import importlib.util
     out = {}
     pb = os.path.join(ROOT, "scripts", "pb")
@@ -533,9 +540,11 @@ def _load_plugin_resolvers():
         spec = importlib.util.spec_from_file_location("pbaud_" + modname, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
+        slug = getattr(mod, "SLUG", modname)
         for fid, fn in getattr(mod, "RESOLVERS", {}).items():
-            assert fid not in out, f"duplicate plugin resolver for {fid}"
-            out[fid] = fn
+            key = (slug, fid)
+            assert key not in out, f"duplicate plugin resolver for {key}"
+            out[key] = fn
     return out
 
 
