@@ -13,9 +13,9 @@ Run `python3 scripts/pb/geometry_course.py` for the self-check.
 import importlib.util
 import os
 import re
-from math import cos, radians, sin
+from math import cos, isqrt, radians, sin
 
-from sympy import Rational, simplify, sqrt, sympify
+from sympy import Rational, pi, simplify, sqrt, sympify
 
 PB = os.path.dirname(os.path.abspath(__file__))
 
@@ -112,6 +112,22 @@ def L(v):
 
 def degL(v):
     return "%d°" % int(v)
+
+
+def piL(k):
+    """LaTeX for k·pi, with the coefficient rendered by L()."""
+    k = sympify(k)
+    if k == 1:
+        return "\\pi"
+    if k == -1:
+        return "-\\pi"
+    return L(k) + "\\pi"
+
+
+def surd(coef, base):
+    """LaTeX for coef·√base with integer coef ≥ 1."""
+    coef = int(coef)
+    return ("\\sqrt{%d}" % base) if coef == 1 else "%d\\sqrt{%d}" % (coef, base)
 
 
 def build_latex_options(correct, cands, pos, latex_of=None):
@@ -2674,6 +2690,1791 @@ RESOLVERS.update({
     "l-shape-area": _r2_lshape,
     "translation-rule": _r2_trule,
     "missing-endpoint": _r2_endp,
+})
+
+
+# =============================================================================
+# Batch 3 — the forms that take every Geometry unit to six collections.
+#
+# Written against the gaps rather than the topics: before this batch,
+# Surface Area & Volume had one form and Reasoning & Proof had three, while
+# most units had four. Each generator below drills something none of the
+# existing forms in its unit already asks.
+# =============================================================================
+
+def _txt_opts(hint, correct, wrongs, pos):
+    """4 distinct sentence options with `correct` at `pos`. Crash on collision."""
+    opts = list(wrongs[:3])
+    assert len(opts) == 3, "%s: need exactly 3 distractors" % hint
+    opts.insert(pos, correct)
+    assert len(set(opts)) == 4, "%s: option collision" % hint
+    return opts, pos
+
+
+# --- foundations -------------------------------------------------------------
+
+def gen3_angadd():
+    fwd = [(25, 40), (32, 55), (18, 63), (47, 28), (54, 36), (61, 24)]
+    rev = [(120, 45), (95, 38), (140, 62), (108, 27), (156, 71), (83, 39)]
+    out = []
+    idx = 0
+    for a, b in fwd:
+        ans = a + b
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(abs(a - b)), abs(a - b)), (degL(180 - ans), 180 - ans),
+             (degL(90 + a), 90 + a)], pos, latex_of=degL)
+        out.append({
+            "statement": "Ray $OB$ lies inside $\\angle AOC$. If "
+                         "$\\angle AOB = %d°$ and $\\angle BOC = %d°$, find "
+                         "$\\angle AOC$." % (a, b),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The two smaller angles sit side by side inside the "
+                           "big one, so they add: $%d + %d = %d°$. Subtracting "
+                           "would answer a question about the difference "
+                           "between them." % (a, b, ans),
+            "check": ["%d + %d == %d" % (a, b, ans)],
+        })
+        idx += 1
+    for whole, a in rev:
+        ans = whole - a
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(whole + a), whole + a), (degL(a), a),
+             (degL(180 - ans), 180 - ans)], pos, latex_of=degL)
+        out.append({
+            "statement": "Ray $OB$ lies inside $\\angle AOC$. If "
+                         "$\\angle AOC = %d°$ and $\\angle AOB = %d°$, find "
+                         "$\\angle BOC$." % (whole, a),
+            "options": opts, "correctIndex": ci,
+            "explanation": "$\\angle AOB$ is a PART of $\\angle AOC$, so the "
+                           "rest is $%d - %d = %d°$. Adding instead of "
+                           "subtracting makes the part bigger than the whole."
+                           % (whole, a, ans),
+            "check": ["%d - %d == %d" % (whole, a, ans)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_classify():
+    data = [(14, "acute"), (37, "acute"), (58, "acute"), (72, "acute"),
+            (89, "acute"), (90, "right"), (104, "obtuse"), (121, "obtuse"),
+            (137, "obtuse"), (155, "obtuse"), (179, "obtuse"),
+            (180, "straight")]
+    names = {"acute": "an acute angle", "right": "a right angle",
+             "obtuse": "an obtuse angle", "straight": "a straight angle"}
+    why = {
+        "acute": "anything strictly between $0°$ and $90°$ is acute",
+        "right": "exactly $90°$ is the right angle, and nothing else is",
+        "obtuse": "obtuse means bigger than $90°$ but still under $180°$",
+        "straight": "at exactly $180°$ the two rays point opposite ways and "
+                    "form a straight line",
+    }
+    out = []
+    for i, (deg, kind) in enumerate(data):
+        pos = i % 4
+        correct = names[kind]
+        wrongs = [names[k] for k in ("acute", "right", "obtuse", "straight")
+                  if k != kind]
+        opts, ci = _txt_opts("classify", correct, wrongs, pos)
+        out.append({
+            "statement": "An angle measures $%d°$. What kind of angle is it?"
+                         % deg,
+            "options": opts, "correctIndex": ci,
+            "explanation": "It is %s: %s. The boundaries are the whole story — "
+                           "$89°$ and $91°$ sit in different families."
+                           % (correct, why[kind]),
+            "check": ["%d > 0" % deg, "%d <= 180" % deg],
+        })
+    return out
+
+
+# --- reasoning-and-proof -----------------------------------------------------
+
+_CONVERSE_DATA = [
+    ("a shape is a square", "it has four right angles"),
+    ("two angles are vertical", "they are congruent"),
+    ("a triangle is equilateral", "all three of its angles are equal"),
+    ("two lines are parallel", "they never meet"),
+    ("a quadrilateral is a rhombus", "its four sides are equal"),
+    ("an angle measures $90°$", "it is a right angle"),
+    ("a point is on the perpendicular bisector of $AB$",
+     "it is the same distance from $A$ and from $B$"),
+    ("a triangle has two equal sides", "it has two equal angles"),
+    ("a polygon is regular", "all of its sides are equal"),
+    ("two angles form a linear pair", "they add to $180°$"),
+    ("a quadrilateral is a parallelogram", "its opposite sides are parallel"),
+    ("a number is a multiple of $4$", "it is even"),
+]
+
+
+def gen3_converse():
+    out = []
+    for i, (p, q) in enumerate(_CONVERSE_DATA):
+        pos = i % 4
+        correct = "If %s, then %s." % (q, p)
+        wrongs = ["If %s is false, then %s is false." % (p, q),
+                  "If %s is false, then %s is false." % (q, p),
+                  "If %s, then %s is false." % (p, q)]
+        opts, ci = _txt_opts("converse", correct, wrongs, pos)
+        out.append({
+            "statement": "Write the converse of: If %s, then %s." % (p, q),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The converse SWAPS the two parts: hypothesis and "
+                           "conclusion trade places, and neither is negated. "
+                           "Negating both without swapping gives the inverse; "
+                           "doing both gives the contrapositive, which is the "
+                           "only one of the three always guaranteed to be true "
+                           "when the original is.",
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+def gen3_counterexample():
+    cases = [
+        ("every quadrilateral with four equal sides is a square",
+         "a rhombus whose angles are $60°$ and $120°$",
+         ["a square of side $5$", "a rectangle $3$ by $7$",
+          "a trapezoid with one pair of parallel sides"]),
+        ("every triangle with two equal angles is equilateral",
+         "a triangle with angles $50°$, $50°$ and $80°$",
+         ["a triangle with angles $60°$, $60°$ and $60°$",
+          "a triangle with angles $40°$, $60°$ and $80°$",
+          "a triangle with angles $90°$, $45°$ and $45°$"]),
+        ("every quadrilateral with two parallel sides is a parallelogram",
+         "a trapezoid with parallel sides $4$ and $9$",
+         ["a square of side $6$", "a rhombus of side $6$",
+          "a rectangle $2$ by $8$"]),
+        ("if two angles are supplementary then both are obtuse",
+         "a pair measuring $40°$ and $140°$",
+         ["a pair measuring $90°$ and $90°$",
+          "a pair measuring $100°$ and $80°$ that meet at a point",
+          "a pair measuring $60°$ and $30°$"]),
+        ("every rectangle is a square",
+         "a rectangle $3$ by $8$",
+         ["a square of side $8$", "a rhombus of side $3$",
+          "a parallelogram with angles $70°$ and $110°$"]),
+        ("if a quadrilateral has perpendicular diagonals it is a rhombus",
+         "a kite with sides $3$, $3$, $7$, $7$",
+         ["a rhombus of side $5$", "a square of side $4$",
+          "a rectangle $5$ by $9$"]),
+        ("every triangle with a $60°$ angle is equilateral",
+         "a triangle with angles $60°$, $40°$ and $80°$",
+         ["a triangle with angles $60°$, $60°$ and $60°$",
+          "a triangle with angles $30°$, $60°$ and $90°$ drawn to scale",
+          "a triangle with three sides of length $7$"]),
+        ("if two triangles have three pairs of equal angles they are congruent",
+         "triangles with sides $3, 4, 5$ and $6, 8, 10$",
+         ["triangles with sides $3, 4, 5$ and $3, 4, 5$",
+          "triangles with sides $5, 12, 13$ and $5, 12, 13$",
+          "triangles with angles $50°, 60°, 70°$ and sides $7, 8, 9$"]),
+        ("every polygon with equal sides is regular",
+         "a rhombus with angles $80°$ and $100°$",
+         ["a square of side $9$", "an equilateral triangle of side $9$",
+          "a regular hexagon of side $9$"]),
+        ("if a quadrilateral has a pair of equal opposite sides it is a "
+         "parallelogram",
+         "a kite with sides $6$, $6$, $2$, $2$ arranged so no sides are "
+         "parallel",
+         ["a parallelogram with sides $6$ and $2$",
+          "a rectangle $6$ by $2$", "a rhombus of side $6$"]),
+        ("every triangle with an angle bisector that is also a median is "
+         "equilateral",
+         "an isosceles triangle with sides $5$, $5$ and $8$",
+         ["an equilateral triangle of side $5$",
+          "a scalene triangle with sides $4$, $6$, $7$",
+          "a right triangle with legs $3$ and $4$"]),
+        ("if the diagonals of a quadrilateral are equal it is a rectangle",
+         "an isosceles trapezoid with parallel sides $4$ and $10$",
+         ["a rectangle $4$ by $10$", "a square of side $4$",
+          "a parallelogram with sides $4$ and $10$"]),
+    ]
+    out = []
+    for i, (claim, cex, wrongs) in enumerate(cases):
+        pos = i % 4
+        opts, ci = _txt_opts("cex", cex, wrongs, pos)
+        out.append({
+            "statement": "Which of these is a counterexample to the claim "
+                         "that %s?" % claim,
+            "options": opts, "correctIndex": ci,
+            "explanation": "A counterexample must satisfy the claim's "
+                           "hypothesis and BREAK its conclusion — one such "
+                           "case is enough to sink the whole statement. The "
+                           "other three either fail the hypothesis or happen "
+                           "to obey the conclusion, so they leave the claim "
+                           "standing.",
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+def gen3_property():
+    cases = [
+        ("$AB = AB$", "the reflexive property of equality",
+         "a quantity always equals itself"),
+        ("If $AB = CD$, then $CD = AB$", "the symmetric property of equality",
+         "an equality may be read in either direction"),
+        ("If $AB = CD$ and $CD = EF$, then $AB = EF$",
+         "the transitive property of equality",
+         "two equalities sharing a middle quantity chain together"),
+        ("$\\angle 1 \\cong \\angle 1$", "the reflexive property of equality",
+         "an angle is congruent to itself"),
+        ("If $x + 5 = 12$, then $x = 7$",
+         "the subtraction property of equality",
+         "the same amount was taken from both sides"),
+        ("If $3x = 18$, then $x = 6$", "the division property of equality",
+         "both sides were divided by the same non-zero number"),
+        ("If $\\angle A = 40°$ and $\\angle A + \\angle B = 90°$, then "
+         "$40° + \\angle B = 90°$", "the substitution property of equality",
+         "a known value replaced its name inside another statement"),
+        ("If $x - 4 = 9$, then $x = 13$", "the addition property of equality",
+         "the same amount was added to both sides"),
+        ("If $\\tfrac{x}{2} = 7$, then $x = 14$",
+         "the multiplication property of equality",
+         "both sides were multiplied by the same number"),
+        ("If $\\angle P = \\angle Q$ and $\\angle Q = \\angle R$, then "
+         "$\\angle P = \\angle R$", "the transitive property of equality",
+         "the middle angle links the outer two"),
+        ("If $m = n$, then $n = m$", "the symmetric property of equality",
+         "the two sides of an equality may be swapped"),
+        ("If $2x + 1 = 11$, then $2x = 10$",
+         "the subtraction property of equality",
+         "$1$ was removed from both sides"),
+    ]
+    pool = ["the reflexive property of equality",
+            "the symmetric property of equality",
+            "the transitive property of equality",
+            "the substitution property of equality",
+            "the addition property of equality",
+            "the subtraction property of equality",
+            "the multiplication property of equality",
+            "the division property of equality"]
+    out = []
+    for i, (step, correct, why) in enumerate(cases):
+        pos = i % 4
+        wrongs = [p for p in pool if p != correct][i % 5:][:3]
+        assert len(wrongs) == 3, "property: distractor pool exhausted"
+        opts, ci = _txt_opts("property", correct, wrongs, pos)
+        out.append({
+            "statement": "Which property justifies this step in a proof? %s."
+                         % step,
+            "options": opts, "correctIndex": ci,
+            "explanation": "This is %s — %s. Naming the property is what turns "
+                           "a chain of true statements into a proof: every "
+                           "line has to be licensed by something."
+                           % (correct, why),
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+# --- parallel-and-perpendicular ----------------------------------------------
+
+def gen3_slopes():
+    data = [(2, 1), (3, 1), (1, 2), (3, 2), (5, 3), (4, 5), (7, 2), (2, 5),
+            (5, 4), (3, 7), (6, 5), (8, 3)]
+    out = []
+    idx = 0
+    for a, b in data:
+        m = Rational(a, b)
+        if idx % 2 == 0:
+            ans, word = m, "parallel to"
+            cands = [(L(-m), -m), (L(Rational(b, a)), Rational(b, a)),
+                     (L(-Rational(b, a)), -Rational(b, a))]
+            ex = ("Parallel lines have the SAME slope, so the answer is $%s$ "
+                  "again. The negative reciprocal $%s$ is what you would use "
+                  "for a perpendicular line."
+                  % (L(m), L(-Rational(b, a))))
+        else:
+            ans, word = -Rational(b, a), "perpendicular to"
+            cands = [(L(m), m), (L(-m), -m),
+                     (L(Rational(b, a)), Rational(b, a))]
+            ex = ("Perpendicular slopes multiply to $-1$, so flip the fraction "
+                  "and change the sign: $%s$. Keeping the same slope describes "
+                  "a parallel line, and flipping without the sign change "
+                  "leaves the lines meeting at the wrong angle."
+                  % L(-Rational(b, a)))
+        pos = idx % 4
+        opts, ci = build_latex_options((L(ans), ans), cands, pos, latex_of=L)
+        out.append({
+            "statement": "A line has slope $%s$. Find the slope of a line %s "
+                         "it." % (L(m), word),
+            "options": opts, "correctIndex": ci,
+            "explanation": ex,
+            "check": ["Rational(%d, %d) == Rational(%d, %d)"
+                      % (a, b, ans.p, ans.q)] if word == "parallel to" else
+                     ["Rational(%d, %d) * Rational(%d, %d) == -1"
+                      % (a, b, ans.p, ans.q)],
+        })
+        idx += 1
+    return out
+
+
+_PAIR_FACTS = [
+    ("corresponding", "congruent", "the converse of the corresponding angles "
+     "postulate"),
+    ("alternate interior", "congruent", "the converse of the alternate "
+     "interior angles theorem"),
+    ("alternate exterior", "congruent", "the converse of the alternate "
+     "exterior angles theorem"),
+    ("co-interior (same-side interior)", "supplementary",
+     "the converse of the co-interior angles theorem"),
+]
+
+
+def gen3_provepar():
+    labels = [(1, 5), (3, 6), (2, 7), (4, 5), (1, 8), (2, 6), (3, 5), (4, 6),
+              (1, 6), (2, 8), (3, 7), (4, 8)]
+    out = []
+    for i, (p, q) in enumerate(labels):
+        kind, rel, correct = _PAIR_FACTS[i % 4]
+        wrongs = [f[2] for f in _PAIR_FACTS if f[2] != correct]
+        pos = i % 4
+        opts, ci = _txt_opts("provepar", correct, wrongs, pos)
+        out.append({
+            "statement": "Lines $m$ and $n$ are cut by a transversal. "
+                         "$\\angle %d$ and $\\angle %d$ are %s angles, and "
+                         "they are %s. Which fact proves $m \\parallel n$?"
+                         % (p, q, kind, rel),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Each angle-pair theorem runs one way — parallel "
+                           "lines give the angle fact — and its CONVERSE runs "
+                           "the other: the angle fact gives parallel lines. "
+                           "Here the pair is %s, so the licence is %s. Naming "
+                           "the theorem for a different pair proves nothing "
+                           "about these two angles." % (kind, correct),
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+# --- triangles-and-congruence ------------------------------------------------
+
+def gen3_shortcut():
+    cases = [
+        ("$AB = DE$, $BC = EF$ and $AC = DF$", "SSS",
+         "three pairs of sides"),
+        ("$AB = DE$, $BC = EF$ and $\\angle B = \\angle E$", "SAS",
+         "two sides and the angle BETWEEN them"),
+        ("$\\angle A = \\angle D$, $AB = DE$ and $\\angle B = \\angle E$",
+         "ASA", "two angles and the side between them"),
+        ("$\\angle A = \\angle D$, $\\angle B = \\angle E$ and $BC = EF$",
+         "AAS", "two angles and a side NOT between them"),
+        ("the triangles are right-angled at $B$ and $E$, with $AC = DF$ and "
+         "$AB = DE$", "HL", "the hypotenuse and one leg of two right "
+         "triangles"),
+        ("$BC = EF$, $AC = DF$ and $\\angle C = \\angle F$", "SAS",
+         "two sides and their included angle"),
+        ("$\\angle B = \\angle E$, $BC = EF$ and $\\angle C = \\angle F$",
+         "ASA", "two angles and the side joining them"),
+        ("$AB = DE$, $AC = DF$ and $BC = EF$", "SSS",
+         "all three sides matched"),
+        ("$\\angle A = \\angle D$, $\\angle C = \\angle F$ and $AB = DE$",
+         "AAS", "a side outside the two matched angles"),
+        ("the triangles are right-angled at $A$ and $D$, with $BC = EF$ and "
+         "$AC = DF$", "HL", "hypotenuse and leg"),
+        ("$AC = DF$, $\\angle A = \\angle D$ and $AB = DE$", "SAS",
+         "the angle sits between the two sides"),
+        ("$\\angle C = \\angle F$, $AC = DF$ and $\\angle A = \\angle D$",
+         "ASA", "the side lies between the two angles"),
+    ]
+    pool = ["SSS", "SAS", "ASA", "AAS", "HL"]
+    out = []
+    for i, (given, correct, why) in enumerate(cases):
+        pos = i % 4
+        wrongs = [p for p in pool if p != correct][:3]
+        opts, ci = _txt_opts("shortcut", correct, wrongs, pos)
+        out.append({
+            "statement": "In $\\triangle ABC$ and $\\triangle DEF$, %s. Which "
+                         "congruence shortcut applies?" % given,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The given parts are %s, which is exactly %s. "
+                           "Whether the marked angle sits BETWEEN the two "
+                           "marked sides is what separates SAS from the "
+                           "arrangement that proves nothing." % (why, correct),
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+def gen3_triclass():
+    data = [(5, 7, 9), (6, 6, 8), (7, 7, 7), (2, 3, 9),
+            (4, 9, 11), (5, 5, 6), (9, 9, 9), (3, 4, 12),
+            (8, 10, 13), (7, 12, 12), (11, 11, 11), (1, 5, 8)]
+    out = []
+    for i, (a, b, c) in enumerate(data):
+        ok = a + b > c and a + c > b and b + c > a
+        if not ok:
+            correct = "no triangle can have these sides"
+            why = ("$%d + %d = %d$, which does not exceed $%d$ — the two "
+                   "shorter sides cannot reach across the longest one"
+                   % (a, b, a + b, c))
+        elif a == b == c:
+            correct = "equilateral"
+            why = "all three sides are equal"
+        elif len({a, b, c}) == 2:
+            correct = "isosceles"
+            why = "exactly two sides are equal"
+        else:
+            correct = "scalene"
+            why = "no two sides are equal"
+        pool = ["scalene", "isosceles", "equilateral",
+                "no triangle can have these sides"]
+        wrongs = [p for p in pool if p != correct]
+        pos = i % 4
+        opts, ci = _txt_opts("triclass", correct, wrongs, pos)
+        chk = (["%d + %d > %d" % (a, b, c)] if ok
+               else ["%d + %d <= %d" % (a, b, c)])
+        out.append({
+            "statement": "A triangle is described with sides $%d$, $%d$ and "
+                         "$%d$. Classify it by its sides." % (a, b, c),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Check the triangle inequality first, then count "
+                           "equal sides: %s, so the answer is %s. Classifying "
+                           "before checking that the triangle exists at all is "
+                           "the trap here." % (why, correct),
+            "check": chk,
+        })
+    return out
+
+
+# --- relationships-in-triangles ----------------------------------------------
+
+def gen3_centroid():
+    out = []
+    idx = 0
+    for med in (12, 18, 24, 30, 15, 21):
+        ans = 2 * med // 3
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(med // 3), med // 3), (intL(med // 2), med // 2),
+             (intL(med), med)], pos, latex_of=intL)
+        out.append({
+            "statement": "The medians of $\\triangle ABC$ meet at $G$. The "
+                         "median from $A$ to the midpoint $M$ of $BC$ has "
+                         "length $%d$. Find $AG$." % med,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The centroid cuts every median in the ratio "
+                           "$2 : 1$ measured FROM THE VERTEX, so "
+                           "$AG = \\tfrac{2}{3} \\cdot %d = %d$ and "
+                           "$GM = %d$. Halving the median puts $G$ at the "
+                           "midpoint, which it never is."
+                           % (med, ans, med // 3),
+            "check": ["Rational(2,3)*%d == %d" % (med, ans)],
+        })
+        idx += 1
+    for ag in (10, 14, 16, 22, 8, 26):
+        ans = ag // 2
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(ag), ag), (intL(2 * ag), 2 * ag),
+             (intL(ag + ans), ag + ans)], pos, latex_of=intL)
+        out.append({
+            "statement": "The medians of $\\triangle ABC$ meet at $G$, and $M$ "
+                         "is the midpoint of $BC$. If $AG = %d$, find $GM$."
+                         % ag,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$AG : GM = 2 : 1$, so $GM$ is HALF of $AG$: "
+                           "$%d$. The whole median is $AG + GM = %d$, which is "
+                           "the value to reach for only if the question asks "
+                           "for it." % (ans, ag + ans),
+            "check": ["Rational(%d, 2) == %d" % (ag, ans)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_segname():
+    cases = [
+        ("runs from a vertex to the MIDPOINT of the opposite side",
+         "a median", "it splits the opposite side into two equal pieces"),
+        ("runs from a vertex PERPENDICULAR to the line of the opposite side",
+         "an altitude", "it is the height used in the area formula"),
+        ("starts at a vertex and splits that vertex's angle into two equal "
+         "angles", "an angle bisector", "it halves the angle, not the side"),
+        ("is perpendicular to a side and passes through that side's midpoint",
+         "a perpendicular bisector",
+         "every point on it is equidistant from the side's two endpoints"),
+        ("joins the midpoints of two sides",
+         "a midsegment", "it is parallel to the third side and half its "
+         "length"),
+        ("meets the opposite side at a right angle, starting from a vertex",
+         "an altitude", "perpendicular to the opposite side is the defining "
+         "property"),
+        ("cuts the opposite side into two equal parts, starting from a vertex",
+         "a median", "the midpoint of the opposite side is its other end"),
+        ("passes through the midpoint of $BC$ at $90°$ but need not touch $A$",
+         "a perpendicular bisector",
+         "it is defined by the side alone, not by a vertex"),
+        ("divides $\\angle A$ into $\\angle 1$ and $\\angle 2$ with "
+         "$\\angle 1 = \\angle 2$", "an angle bisector",
+         "equal angles, not equal segments"),
+        ("connects the midpoint of $AB$ to the midpoint of $AC$",
+         "a midsegment", "both endpoints are midpoints"),
+        ("is the segment whose length is used as the height when the base is "
+         "$BC$", "an altitude", "area needs a perpendicular height"),
+        ("has one endpoint at $A$ and the other at the point that halves $BC$",
+         "a median", "vertex to midpoint"),
+    ]
+    pool = ["a median", "an altitude", "an angle bisector",
+            "a perpendicular bisector", "a midsegment"]
+    out = []
+    for i, (desc, correct, why) in enumerate(cases):
+        pos = i % 4
+        wrongs = [p for p in pool if p != correct][:3]
+        opts, ci = _txt_opts("segname", correct, wrongs, pos)
+        out.append({
+            "statement": "In $\\triangle ABC$, a segment %s. What is it "
+                         "called?" % desc,
+            "options": opts, "correctIndex": ci,
+            "explanation": "That is %s — %s. Medians and altitudes are the "
+                           "pair most often swapped: one aims at a midpoint, "
+                           "the other at a right angle, and they coincide only "
+                           "in special triangles." % (correct, why),
+            "check": ["1 == 1"],
+        })
+    return out
+
+
+# --- quadrilaterals-and-polygons ---------------------------------------------
+
+def gen3_sidesfromangle():
+    out = []
+    idx = 0
+    for n in (3, 4, 5, 6, 8, 9, 10, 12):
+        interior = 180 - 360 // n
+        assert (180 - interior) * n == 360
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(n), n),
+            [(intL(n + 1), n + 1), (intL(n - 1), n - 1),
+             (intL(2 * n), 2 * n)], pos, latex_of=intL)
+        out.append({
+            "statement": "Each interior angle of a regular polygon measures "
+                         "$%d°$. How many sides does it have?" % interior,
+            "options": opts, "correctIndex": ci,
+            "explanation": "Work through the EXTERIOR angle, which is the "
+                           "easy one: $180 - %d = %d°$, and the exterior "
+                           "angles of any polygon add to $360°$, so "
+                           "$n = \\frac{360}{%d} = %d$."
+                           % (interior, 180 - interior, 180 - interior, n),
+            "check": ["Rational(360, 180 - %d) == %d" % (interior, n)],
+        })
+        idx += 1
+    for n in (15, 18, 20, 24):
+        interior = 180 - 360 // n
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(n), n),
+            [(intL(n + 2), n + 2), (intL(n - 2), n - 2),
+             (intL(180 - interior), 180 - interior)], pos, latex_of=intL)
+        out.append({
+            "statement": "Each interior angle of a regular polygon measures "
+                         "$%d°$. How many sides does it have?" % interior,
+            "options": opts, "correctIndex": ci,
+            "explanation": "The exterior angle is $180 - %d = %d°$, and "
+                           "$\\frac{360}{%d} = %d$ sides. Dividing $360$ by "
+                           "the INTERIOR angle instead is the usual slip, and "
+                           "it does not even give a whole number here."
+                           % (interior, 180 - interior, 180 - interior, n),
+            "check": ["Rational(360, 180 - %d) == %d" % (interior, n)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_trapmid():
+    fwd = [(6, 10), (8, 14), (5, 11), (9, 17), (12, 20), (7, 15)]
+    rev = [(9, 4), (12, 7), (15, 6), (11, 3), (14, 9), (10, 2)]
+    out = []
+    idx = 0
+    for a, b in fwd:
+        ans = (a + b) // 2
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(a + b), a + b), (intL(b - a), b - a),
+             (intL((b - a) // 2), (b - a) // 2)], pos, latex_of=intL)
+        out.append({
+            "statement": "A trapezoid has parallel sides of length $%d$ and "
+                         "$%d$. Find the length of its midsegment."
+                         % (a, b),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The midsegment is the AVERAGE of the two parallel "
+                           "sides: $\\frac{%d + %d}{2} = %d$. Their sum $%d$ "
+                           "is the number to halve, not the answer itself."
+                           % (a, b, ans, a + b),
+            "check": ["Rational(%d + %d, 2) == %d" % (a, b, ans)],
+        })
+        idx += 1
+    for m, a in rev:
+        ans = 2 * m - a
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(m - a), m - a), (intL(m + a), m + a),
+             (intL(2 * m), 2 * m)], pos, latex_of=intL)
+        out.append({
+            "statement": "A trapezoid has midsegment $%d$ and one parallel "
+                         "side $%d$. Find the other parallel side."
+                         % (m, a),
+            "options": opts, "correctIndex": ci,
+            "explanation": "From $\\frac{a + b}{2} = %d$ the two sides must "
+                           "total $%d$, so the other one is $%d - %d = %d$. "
+                           "Subtracting from the midsegment instead of from "
+                           "the doubled midsegment is the usual slip."
+                           % (m, 2 * m, 2 * m, a, ans),
+            "check": ["Rational(%d + %d, 2) == %d" % (a, ans, m)],
+        })
+        idx += 1
+    return out
+
+# --- similarity --------------------------------------------------------------
+
+def gen3_proportion():
+    data = [(3, 4, 9), (2, 5, 8), (5, 6, 15), (4, 7, 12), (3, 8, 21),
+            (6, 5, 18), (7, 4, 14), (2, 9, 10), (5, 3, 20), (8, 7, 24),
+            (9, 2, 27), (4, 11, 16)]
+    out = []
+    for i, (a, b, c) in enumerate(data):
+        ans = Rational(b * c, a)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (L(ans), ans),
+            [(L(Rational(a * c, b)), Rational(a * c, b)),
+             (L(Rational(a * b, c)), Rational(a * b, c)),
+             (L(c + b - a), c + b - a)], pos, latex_of=L)
+        out.append({
+            "statement": "Solve for $x$: $\\dfrac{%d}{%d} = \\dfrac{%d}{x}$."
+                         % (a, b, c),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Cross-multiply: $%d x = %d \\cdot %d$, so "
+                           "$x = \\dfrac{%d}{%d} = %s$. Adding the same amount "
+                           "to top and bottom is the error similarity keeps "
+                           "punishing — proportions scale, they do not shift."
+                           % (a, b, c, b * c, a, L(ans)),
+            "check": ["Rational(%d, %d) == Rational(%d, 1) / (%s)"
+                      % (a, b, c, "Rational(%d, %d)" % (ans.p, ans.q))],
+        })
+    return out
+
+
+def gen3_shadow():
+    # (pole height, pole shadow, tree shadow) with an exact tree height
+    data = [(2, 3, 12), (3, 4, 20), (5, 2, 6), (4, 5, 25), (2, 5, 35),
+            (6, 4, 10), (3, 7, 21), (8, 3, 12), (5, 6, 18), (4, 9, 27),
+            (7, 2, 8), (9, 5, 15)]
+    out = []
+    for i, (h, s, S) in enumerate(data):
+        assert (h * S) % s == 0, "shadow: non-integer height"
+        ans = h * S // s
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(h + S - s), h + S - s), (intL(h * s), h * s),
+             (intL(S), S)], pos, latex_of=intL)
+        out.append({
+            "statement": "A pole $%d$ m tall casts a shadow $%d$ m long. At "
+                         "the same moment a tree casts a shadow $%d$ m long. "
+                         "How tall is the tree?" % (h, s, S),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The sun's rays hit both at the same angle, so the "
+                           "two right triangles are similar and heights are to "
+                           "shadows in one ratio: "
+                           "$\\dfrac{%d}{%d} = \\dfrac{h}{%d}$, giving "
+                           "$h = \\dfrac{%d \\cdot %d}{%d} = %d$ m. Adding the "
+                           "extra shadow length to the pole's height treats a "
+                           "ratio as a difference."
+                           % (h, s, S, h, S, s, ans),
+            "check": ["Rational(%d, %d) == Rational(%d, %d)"
+                      % (h, s, ans, S)],
+        })
+    return out
+
+
+# --- right-triangles-and-trig ------------------------------------------------
+
+def gen3_elevation():
+    out = []
+    idx = 0
+    for d in (12, 25, 40, 7):
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(d), d),
+            [(intL(2 * d), 2 * d), (surd(d, 3), d * sqrt(3)),
+             (intL(d // 2 if d % 2 == 0 else d + 1),
+              d // 2 if d % 2 == 0 else d + 1)], pos, latex_of=intL)
+        out.append({
+            "statement": "From a point $%d$ m from the foot of a tower, on "
+                         "level ground, the angle of elevation of the top is "
+                         "$45°$. How tall is the tower?" % d,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$\\tan 45° = 1$, so height $=$ distance: $%d$ m. "
+                           "A $45°$ elevation always makes an isosceles right "
+                           "triangle — the two legs must match." % d,
+            "check": ["tan(pi/4) == 1", "%d * 1 == %d" % (d, d)],
+        })
+        idx += 1
+    for d in (5, 9, 14, 20):
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (surd(d, 3), d * sqrt(3)),
+            [(intL(d), d), (intL(2 * d), 2 * d),
+             (surd(2 * d, 3), 2 * d * sqrt(3))], pos)
+        out.append({
+            "statement": "From a point $%d$ m from the foot of a mast, on "
+                         "level ground, the angle of elevation of the top is "
+                         "$60°$. How tall is the mast? Leave the answer in "
+                         "surd form." % d,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$\\tan 60° = \\sqrt{3}$, so the height is "
+                           "$%d\\sqrt{3}$ m. Reading the $60°$ triangle as "
+                           "$1 : 1 : \\sqrt{2}$ instead of $1 : \\sqrt{3} : 2$ "
+                           "is what turns this into $%d$." % (d, d),
+            "check": ["tan(pi/3) == sqrt(3)",
+                      "%d*tan(pi/3) == %d*sqrt(3)" % (d, d)],
+        })
+        idx += 1
+    for k in (2, 4, 5, 7):
+        d = 3 * k
+        ans = k * sqrt(3)
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (surd(k, 3), ans),
+            [(intL(d), d), (surd(d, 3), d * sqrt(3)),
+             (intL(k), k)], pos)
+        out.append({
+            "statement": "From a point $%d$ m from the foot of a flagpole, on "
+                         "level ground, the angle of elevation of the top is "
+                         "$30°$. How tall is the flagpole? Leave the answer in "
+                         "surd form." % d,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$\\tan 30° = \\dfrac{\\sqrt{3}}{3}$, so the height "
+                           "is $%d \\cdot \\dfrac{\\sqrt{3}}{3} = %d\\sqrt{3}$ "
+                           "m. At $30°$ the far side is the SHORT leg — an "
+                           "answer taller than the distance cannot be right."
+                           % (d, k),
+            "check": ["tan(pi/6) == sqrt(3)/3",
+                      "%d*tan(pi/6) == %d*sqrt(3)" % (d, k)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_acuteobtuse():
+    data = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17),
+            (4, 5, 6), (7, 8, 10), (9, 10, 12), (5, 6, 7),
+            (4, 5, 8), (3, 5, 7), (6, 7, 12), (2, 3, 9)]
+    out = []
+    for i, (a, b, c) in enumerate(data):
+        exists = a + b > c
+        lhs, rhs = c * c, a * a + b * b
+        if not exists:
+            correct = "no triangle can have these sides"
+            why = ("$%d + %d = %d$ does not exceed $%d$, so the sides never "
+                   "close up" % (a, b, a + b, c))
+            chk = ["%d + %d <= %d" % (a, b, c)]
+        elif lhs == rhs:
+            correct = "right-angled"
+            why = "$%d^2 = %d$ and $%d^2 + %d^2 = %d$ — equal" % (
+                c, lhs, a, b, rhs)
+            chk = ["%d**2 == %d**2 + %d**2" % (c, a, b)]
+        elif lhs < rhs:
+            correct = "acute"
+            why = "$%d^2 = %d$ is LESS than $%d^2 + %d^2 = %d$" % (
+                c, lhs, a, b, rhs)
+            chk = ["%d**2 < %d**2 + %d**2" % (c, a, b), "%d + %d > %d" % (a, b, c)]
+        else:
+            correct = "obtuse"
+            why = "$%d^2 = %d$ is GREATER than $%d^2 + %d^2 = %d$" % (
+                c, lhs, a, b, rhs)
+            chk = ["%d**2 > %d**2 + %d**2" % (c, a, b), "%d + %d > %d" % (a, b, c)]
+        pool = ["right-angled", "acute", "obtuse",
+                "no triangle can have these sides"]
+        wrongs = [p for p in pool if p != correct]
+        pos = i % 4
+        opts, ci = _txt_opts("acuteobtuse", correct, wrongs, pos)
+        out.append({
+            "statement": "A triangle has sides $%d$, $%d$ and $%d$. Is it "
+                         "right-angled, acute or obtuse?" % (a, b, c),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Compare the square of the LONGEST side with the "
+                           "sum of the other two squares: %s, so the triangle "
+                           "is %s. The Pythagorean theorem is the boundary "
+                           "case of this test, not a separate one."
+                           % (why, correct),
+            "check": chk,
+        })
+    return out
+
+
+# --- circles -----------------------------------------------------------------
+
+def gen3_tangentlen():
+    # (radius, distance from centre) drawn from Pythagorean triples
+    data = [(3, 5), (6, 10), (5, 13), (8, 17), (9, 15), (12, 20),
+            (7, 25), (15, 17), (10, 26), (20, 29), (16, 34), (12, 37)]
+    out = []
+    for i, (r, d) in enumerate(data):
+        t2 = d * d - r * r
+        t = isqrt(t2)
+        assert t * t == t2, "tangent: not a triple (%d, %d)" % (r, d)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(t), t),
+            [(intL(d - r), d - r), (intL(d + r), d + r),
+             (intL(t2), t2)], pos, latex_of=intL)
+        out.append({
+            "statement": "From an external point $P$, a tangent touches a "
+                         "circle of radius $%d$ at $T$. The centre $O$ "
+                         "satisfies $OP = %d$. Find $PT$." % (r, d),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A tangent meets the radius at the point of "
+                           "contact at $90°$, so $\\triangle OTP$ is "
+                           "right-angled at $T$ with hypotenuse $OP$: "
+                           "$PT = \\sqrt{%d^2 - %d^2} = \\sqrt{%d} = %d$. "
+                           "Subtracting the radius from $OP$ measures along "
+                           "the line through the centre, not along the "
+                           "tangent." % (d, r, t2, t),
+            "check": ["%d**2 + %d**2 == %d**2" % (r, t, d)],
+        })
+    return out
+
+
+def gen3_cyclic():
+    data = [(70, "A", "C"), (95, "B", "D"), (110, "A", "C"), (48, "B", "D"),
+            (125, "C", "A"), (63, "D", "B"), (88, "A", "C"), (134, "B", "D"),
+            (57, "C", "A"), (101, "D", "B"), (76, "A", "C"), (119, "B", "D")]
+    out = []
+    for i, (x, given, asked) in enumerate(data):
+        ans = 180 - x
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (degL(ans), ans),
+            [(degL(x), x), (degL(360 - x), 360 - x),
+             (degL(90 - x if x < 90 else x - 90), 90 - x if x < 90 else x - 90)],
+            pos, latex_of=degL)
+        out.append({
+            "statement": "$ABCD$ is a cyclic quadrilateral — all four vertices "
+                         "lie on one circle. If $\\angle %s = %d°$, find "
+                         "$\\angle %s$." % (given, x, asked),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Opposite angles of a cyclic quadrilateral are "
+                           "supplementary: $\\angle %s + \\angle %s = 180°$, "
+                           "so $\\angle %s = 180 - %d = %d°$. Equal opposite "
+                           "angles belong to a parallelogram, which is a "
+                           "different figure unless the parallelogram happens "
+                           "to be a rectangle." % (given, asked, asked, x, ans),
+            "check": ["%d + %d == 180" % (x, ans)],
+        })
+    return out
+
+
+# --- area-and-perimeter ------------------------------------------------------
+
+def gen3_rectperim():
+    data = [(48, 6), (60, 5), (72, 8), (36, 4), (90, 9), (84, 7),
+            (56, 8), (100, 10), (45, 3), (66, 6), (120, 12), (54, 9)]
+    out = []
+    for i, (area, w) in enumerate(data):
+        assert area % w == 0
+        other = area // w
+        ans = 2 * (w + other)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(w + other), w + other), (intL(other), other),
+             (intL(area), area)], pos, latex_of=intL)
+        out.append({
+            "statement": "A rectangle has area $%d$ and one side of length "
+                         "$%d$. Find its perimeter." % (area, w),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The other side is $\\frac{%d}{%d} = %d$, and the "
+                           "perimeter counts every side: "
+                           "$2(%d + %d) = %d$. Stopping at $%d$ adds one of "
+                           "each side and forgets the opposite pair."
+                           % (area, w, other, w, other, ans, w + other),
+            "check": ["%d * %d == %d" % (w, other, area),
+                      "2*(%d + %d) == %d" % (w, other, ans)],
+        })
+    return out
+
+
+def gen3_apothem():
+    data = [(5, 30), (6, 36), (8, 40), (4, 24), (10, 60), (3, 18),
+            (12, 72), (6, 48), (5, 45), (8, 64), (9, 54), (7, 42)]
+    out = []
+    for i, (a, P) in enumerate(data):
+        ans = Rational(a * P, 2)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (L(ans), ans),
+            [(intL(a * P), a * P), (L(Rational(P, 2)), Rational(P, 2)),
+             (intL(a + P), a + P)], pos, latex_of=L)
+        out.append({
+            "statement": "A regular polygon has apothem $%d$ and perimeter "
+                         "$%d$. Find its area." % (a, P),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Cut the polygon into triangles from the centre: "
+                           "each has height equal to the apothem, and their "
+                           "bases together make the perimeter, so "
+                           "$A = \\tfrac{1}{2}aP = \\tfrac{1}{2} \\cdot %d "
+                           "\\cdot %d = %s$. Dropping the $\\tfrac12$ doubles "
+                           "the area." % (a, P, L(ans)),
+            "check": ["Rational(1,2)*%d*%d == %s"
+                      % (a, P, "Rational(%d, %d)" % (ans.p, ans.q))],
+        })
+    return out
+
+
+# --- surface-area-and-volume -------------------------------------------------
+
+def gen3_prismvol():
+    fwd = [(3, 4, 5), (2, 6, 7), (5, 5, 8), (4, 9, 3), (6, 7, 2), (8, 3, 6)]
+    rev = [(120, 4, 5), (168, 6, 7), (90, 5, 9), (144, 8, 3), (210, 7, 6),
+           (96, 4, 8)]
+    out = []
+    idx = 0
+    for l, w, h in fwd:
+        ans = l * w * h
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(2 * (l * w + l * h + w * h)), 2 * (l * w + l * h + w * h)),
+             (intL(l + w + h), l + w + h), (intL(l * w), l * w)],
+            pos, latex_of=intL)
+        out.append({
+            "statement": "A rectangular prism measures $%d \\times %d \\times "
+                         "%d$. Find its volume." % (l, w, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Volume fills the box, so all three dimensions "
+                           "multiply: $%d \\cdot %d \\cdot %d = %d$. The "
+                           "larger option is the surface area, which WRAPS "
+                           "the box instead." % (l, w, h, ans),
+            "check": ["%d*%d*%d == %d" % (l, w, h, ans)],
+        })
+        idx += 1
+    for V, l, w in rev:
+        assert V % (l * w) == 0
+        ans = V // (l * w)
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(V // l), V // l), (intL(V - l * w), V - l * w),
+             (intL(l * w), l * w)], pos, latex_of=intL)
+        out.append({
+            "statement": "A rectangular prism has volume $%d$. Its base "
+                         "measures $%d \\times %d$. Find its height."
+                         % (V, l, w),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The base area is $%d \\cdot %d = %d$, and volume "
+                           "is base area times height, so "
+                           "$h = \\frac{%d}{%d} = %d$. Dividing by only one "
+                           "edge leaves an area, not a length."
+                           % (l, w, l * w, V, l * w, ans),
+            "check": ["%d*%d*%d == %d" % (l, w, ans, V)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_prismsurf():
+    data = [(3, 4, 5), (2, 6, 7), (5, 5, 8), (4, 9, 3), (6, 7, 2), (8, 3, 6),
+            (2, 2, 9), (7, 4, 4), (10, 2, 5), (3, 8, 6), (9, 5, 2), (4, 4, 4)]
+    out = []
+    for i, (l, w, h) in enumerate(data):
+        ans = 2 * (l * w + l * h + w * h)
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(l * w * h), l * w * h),
+             (intL(l * w + l * h + w * h), l * w + l * h + w * h),
+             (intL(6 * l * w), 6 * l * w)], pos, latex_of=intL)
+        out.append({
+            "statement": "A rectangular box measures $%d \\times %d \\times "
+                         "%d$. Find its total surface area." % (l, w, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Three different faces, each appearing twice: "
+                           "$2(%d \\cdot %d + %d \\cdot %d + %d \\cdot %d) = "
+                           "%d$. Forgetting the doubling counts only the "
+                           "three faces you can see from one corner."
+                           % (l, w, l, h, w, h, ans),
+            "check": ["2*(%d*%d + %d*%d + %d*%d) == %d"
+                      % (l, w, l, h, w, h, ans)],
+        })
+    return out
+
+
+def gen3_cylsurf():
+    data = [(2, 3), (3, 5), (4, 6), (5, 2), (6, 4), (2, 8), (7, 3), (3, 9),
+            (5, 10), (4, 11), (8, 2), (6, 7)]
+    out = []
+    for i, (r, h) in enumerate(data):
+        ans = 2 * r * (r + h)          # coefficient of pi
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (piL(ans), ans * pi),
+            [(piL(2 * r * h), 2 * r * h * pi),
+             (piL(2 * r * r), 2 * r * r * pi),
+             (piL(r * (r + h)), r * (r + h) * pi),
+             (piL(r * r * h), r * r * h * pi),
+             (piL(2 * r * r + 2 * h), (2 * r * r + 2 * h) * pi)],
+            pos)
+        out.append({
+            "statement": "A closed cylinder has radius $%d$ and height $%d$. "
+                         "Find its total surface area, in terms of $\\pi$."
+                         % (r, h),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Two circular ends plus the curved wall unrolled "
+                           "into a rectangle: "
+                           "$2\\pi r^2 + 2\\pi rh = 2\\pi \\cdot %d(%d + %d) = "
+                           "%s$. The option $%s$ is the curved surface only — "
+                           "an open tube, not a closed can."
+                           % (r, r, h, piL(ans), piL(2 * r * h)),
+            "check": ["2*pi*%d**2 + 2*pi*%d*%d == %d*pi" % (r, r, h, ans)],
+        })
+    return out
+
+
+def gen3_spheresurf():
+    out = []
+    idx = 0
+    for R in (1, 2, 3, 4, 5, 6, 7, 9):
+        ans = 4 * R * R
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (piL(ans), ans * pi),
+            [(piL(R * R), R * R * pi),
+             (piL(Rational(4 * R ** 3, 3)), Rational(4 * R ** 3, 3) * pi),
+             (piL(2 * R * R), 2 * R * R * pi),
+             (piL(4 * R), 4 * R * pi)], pos)
+        out.append({
+            "statement": "Find the surface area of a sphere of radius $%d$, "
+                         "in terms of $\\pi$." % R,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$S = 4\\pi R^2 = 4\\pi \\cdot %d = %s$. The "
+                           "$\\frac{4}{3}$ belongs to the VOLUME formula; "
+                           "surface area has a plain $4$."
+                           % (R * R, piL(ans)),
+            "check": ["4*pi*%d**2 == %d*pi" % (R, ans)],
+        })
+        idx += 1
+    for R in (8, 10, 11, 12):
+        ans = 4 * R * R
+        pos = idx % 4
+        opts, ci = build_latex_options(
+            (piL(ans), ans * pi),
+            [(piL(2 * R * R), 2 * R * R * pi),
+             (piL(4 * R), 4 * R * pi),
+             (piL(Rational(4 * R ** 3, 3)), Rational(4 * R ** 3, 3) * pi)], pos)
+        out.append({
+            "statement": "A ball has radius $%d$. Find its surface area, in "
+                         "terms of $\\pi$." % R,
+            "options": opts, "correctIndex": ci,
+            "explanation": "$S = 4\\pi R^2$, and squaring comes before "
+                           "multiplying: $4\\pi \\cdot %d^2 = %s$. Writing "
+                           "$4\\pi R$ instead treats the radius as if it were "
+                           "a length around a circle." % (R, piL(ans)),
+            "check": ["4*pi*%d**2 == %d*pi" % (R, ans)],
+        })
+        idx += 1
+    return out
+
+
+def gen3_volscale():
+    # (linear ratio j:k, volume of the smaller) with an exact larger volume
+    data = [(1, 2, 5), (1, 3, 4), (2, 3, 16), (1, 2, 9), (3, 4, 27),
+            (1, 4, 3), (2, 5, 8), (1, 3, 7), (3, 5, 54), (2, 3, 24),
+            (1, 2, 11), (4, 5, 64)]
+    out = []
+    for i, (j, k, V) in enumerate(data):
+        assert (V * k ** 3) % j ** 3 == 0, "volscale: non-integer volume"
+        ans = V * k ** 3 // j ** 3
+        pos = i % 4
+        opts, ci = build_latex_options(
+            (intL(ans), ans),
+            [(intL(V * k // j), V * k // j),
+             (intL(V * k * k // (j * j)), V * k * k // (j * j)),
+             (intL(V + k - j), V + k - j)], pos, latex_of=intL)
+        out.append({
+            "statement": "Two similar solids have corresponding lengths in the "
+                         "ratio $%d : %d$. The smaller has volume $%d$. Find "
+                         "the volume of the larger." % (j, k, V),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Lengths scale by $\\frac{%d}{%d}$, areas by its "
+                           "square, and volumes by its CUBE: "
+                           "$%d \\cdot \\left(\\frac{%d}{%d}\\right)^3 = %d$. "
+                           "Scaling the volume by the plain length ratio is "
+                           "the standard slip." % (k, j, V, k, j, ans),
+            "check": ["%d * Rational(%d, %d)**3 == %d" % (V, k, j, ans)],
+        })
+    return out
+
+
+# --- transformations ---------------------------------------------------------
+
+def gen3_dilation():
+    data = [(3, 4, 2), (-2, 5, 3), (6, -3, 2), (-4, -1, 4), (5, 2, 3),
+            (-7, 3, 2), (1, -6, 5), (8, 4, 2), (-3, -5, 3), (2, 9, 4),
+            (-6, 2, 3), (7, -4, 2)]
+    out = []
+    for i, (x, y, k) in enumerate(data):
+        nx, ny = k * x, k * y
+        pos = i % 4
+        opts, ci = _pair_opts(
+            "dilation", (nx, ny),
+            [(x + k, y + k), (k * x, y), (x, k * y)], pos)
+        out.append({
+            "statement": "The point $(%d; %d)$ is dilated about the origin by "
+                         "a scale factor of $%d$. Find the image."
+                         % (x, y, k),
+            "options": opts, "correctIndex": ci,
+            "explanation": "A dilation about the origin MULTIPLIES both "
+                           "coordinates by the factor: $(%d \\cdot %d;\\ %d "
+                           "\\cdot %d) = (%d; %d)$. Adding the factor instead "
+                           "would be a translation, which changes size not at "
+                           "all." % (k, x, k, y, nx, ny),
+            "check": ["%d*(%d) == (%d)" % (k, x, nx),
+                      "%d*(%d) == (%d)" % (k, y, ny)],
+        })
+    return out
+
+
+def gen3_reflectdiag():
+    pos_pts = [(3, 5), (-2, 7), (6, -1), (-4, -3), (8, 2), (-5, 9)]
+    neg_pts = [(2, 6), (-3, 4), (7, -5), (-6, -2), (9, 1), (-1, 8)]
+    out = []
+    idx = 0
+    for x, y in pos_pts:
+        nxy = (y, x)
+        pos = idx % 4
+        opts, ci = _pair_opts("refl-yx", nxy,
+                              [(-y, -x), (x, -y), (-x, y)], pos)
+        out.append({
+            "statement": "The point $(%d; %d)$ is reflected over the line "
+                         "$y = x$. Find the image." % (x, y),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Reflecting over $y = x$ SWAPS the coordinates: "
+                           "$(%d; %d)$. The line $y = x$ is the set of points "
+                           "already equal in both coordinates, so it is "
+                           "exactly the mirror that trades them." % nxy,
+            "check": ["(%d) == (%d)" % (y, nxy[0]), "(%d) == (%d)" % (x, nxy[1])],
+        })
+        idx += 1
+    for x, y in neg_pts:
+        nxy = (-y, -x)
+        pos = idx % 4
+        opts, ci = _pair_opts("refl-negyx", nxy,
+                              [(y, x), (-x, -y), (x, -y)], pos)
+        out.append({
+            "statement": "The point $(%d; %d)$ is reflected over the line "
+                         "$y = -x$. Find the image." % (x, y),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Reflecting over $y = -x$ swaps the coordinates "
+                           "AND changes both signs: $(%d; %d)$. Swapping "
+                           "without the sign change reflects over $y = x$ "
+                           "instead." % nxy,
+            "check": ["-(%d) == (%d)" % (y, nxy[0]),
+                      "-(%d) == (%d)" % (x, nxy[1])],
+        })
+        idx += 1
+    return out
+
+
+_SYMMETRY = [
+    ("a square", 4, 4),
+    ("a rectangle that is not a square", 2, 2),
+    ("a rhombus that is not a square", 2, 2),
+    ("a parallelogram that is neither a rhombus nor a rectangle", 0, 2),
+    ("an isosceles triangle that is not equilateral", 1, 1),
+    ("an equilateral triangle", 3, 3),
+    ("a scalene triangle", 0, 1),
+    ("a regular pentagon", 5, 5),
+    ("a regular hexagon", 6, 6),
+    ("a regular octagon", 8, 8),
+    ("a kite that is not a rhombus", 1, 1),
+    ("a circle with one marked radius", 1, 1),
+]
+
+
+def gen3_symmetry():
+    out = []
+    for i, (shape, lines, order) in enumerate(_SYMMETRY):
+        ask_lines = i % 2 == 0
+        ans = lines if ask_lines else order
+        other = order if ask_lines else lines
+        cands = [(intL(other), other), (intL(ans + 1), ans + 1),
+                 (intL(ans + 2), ans + 2), (intL(ans + 4), ans + 4)]
+        pos = i % 4
+        opts, ci = build_latex_options((intL(ans), ans), cands, pos,
+                                       latex_of=intL)
+        if ask_lines:
+            st = "How many lines of symmetry does %s have?" % shape
+            ex = ("A line of symmetry folds the shape onto itself. %s has %d. "
+                  "Its rotational symmetry has order %d — the two counts "
+                  "agree for regular polygons and part company as soon as the "
+                  "shape stops being regular."
+                  % (shape[0].upper() + shape[1:], lines, order))
+        else:
+            st = ("What is the order of rotational symmetry of %s?" % shape)
+            ex = ("Order of rotational symmetry counts how many turns of less "
+                  "than a full circle — plus the full turn itself — land the "
+                  "shape back on itself. For %s that is %d, while it has %d "
+                  "line%s of symmetry."
+                  % (shape, order, lines, "" if lines == 1 else "s"))
+        out.append({
+            "statement": st, "options": opts, "correctIndex": ci,
+            "explanation": ex,
+            "check": ["%d >= 0" % ans, "%d == %d" % (ans, ans)],
+        })
+    return out
+
+
+# --- coordinate-geometry -----------------------------------------------------
+
+def gen3_slope2pts():
+    data = [(1, 2, 4, 8), (-3, 1, 3, 5), (2, 7, 6, 3), (-4, -2, 0, 6),
+            (5, 1, 8, 10), (-1, 4, 4, -6), (0, 0, 5, 15), (3, -2, 9, 4),
+            (-5, 3, -1, 11), (7, 2, 2, 12), (4, 9, 10, 3), (-2, -7, 2, 1)]
+    out = []
+    for i, (x1, y1, x2, y2) in enumerate(data):
+        m = Rational(y2 - y1, x2 - x1)
+        pos = i % 4
+        inv = (Rational(x2 - x1, y2 - y1) if y2 != y1 else m + 1)
+        opts, ci = build_latex_options(
+            (L(m), m), [(L(-m), -m), (L(inv), inv),
+                        (L(Rational(y2 + y1, x2 + x1))
+                         if x2 + x1 != 0 else L(m + 2),
+                         Rational(y2 + y1, x2 + x1) if x2 + x1 != 0 else m + 2)],
+            pos, latex_of=L)
+        out.append({
+            "statement": "Find the slope of the line through $(%d; %d)$ and "
+                         "$(%d; %d)$." % (x1, y1, x2, y2),
+            "options": opts, "correctIndex": ci,
+            "explanation": "Slope is rise over run: "
+                           "$\\dfrac{%d - (%d)}{%d - (%d)} = "
+                           "\\dfrac{%d}{%d} = %s$. Putting the $x$-difference "
+                           "on top inverts the slope, which describes a "
+                           "different line entirely."
+                           % (y2, y1, x2, x1, y2 - y1, x2 - x1, L(m)),
+            "check": ["Rational(%d - (%d), %d - (%d)) == Rational(%d, %d)"
+                      % (y2, y1, x2, x1, m.p, m.q)],
+        })
+    return out
+
+
+def gen3_circleeq():
+    data = [(2, 3, 5), (-1, 4, 3), (4, -2, 7), (5, 1, 4), (-3, -6, 10),
+            (6, 2, 8), (-4, 7, 6), (1, -5, 9), (8, -3, 2), (-7, 1, 12),
+            (3, 9, 11), (-2, -8, 13)]
+    out = []
+    for i, (h, k, r) in enumerate(data):
+        ask_centre = i % 2 == 0
+        eq = "(x %s %d)^2 + (y %s %d)^2 = %d" % (
+            "-" if h >= 0 else "+", abs(h),
+            "-" if k >= 0 else "+", abs(k), r * r)
+        pos = i % 4
+        if ask_centre:
+            opts, ci = _pair_opts("circleeq", (h, k),
+                                  [(-h, -k), (k, h), (-h, k)], pos)
+            st = ("A circle has equation $%s$. Find its centre." % eq)
+            ex = ("The equation is built from $(x - h)^2 + (y - k)^2 = r^2$, "
+                  "so the centre reads off with the SIGNS FLIPPED from what "
+                  "is written: $(%d; %d)$. The radius is $\\sqrt{%d} = %d$, "
+                  "not $%d$." % (h, k, r * r, r, r * r))
+        else:
+            opts, ci = build_latex_options(
+                (intL(r), r),
+                [(intL(r * r), r * r), (intL(2 * r), 2 * r),
+                 (intL(r + 1), r + 1)], pos, latex_of=intL)
+            st = ("A circle has equation $%s$. Find its radius." % eq)
+            ex = ("The right-hand side is $r^2$, not $r$: "
+                  "$r = \\sqrt{%d} = %d$. Reading $%d$ straight off as the "
+                  "radius is the one mistake this form is built to catch."
+                  % (r * r, r, r * r))
+        out.append({
+            "statement": st, "options": opts, "correctIndex": ci,
+            "explanation": ex,
+            "check": ["sqrt(%d) == %d" % (r * r, r)],
+        })
+    return out
+
+
+def gen3_lineeq():
+    data = [(0, 1, 2, 7), (1, 3, 3, 11), (-2, 5, 2, 13), (0, -4, 3, 5),
+            (2, 1, 5, 10), (-1, 6, 1, 2), (4, 0, 6, 8), (-3, 2, 0, 11),
+            (1, -5, 4, 4), (5, 3, 7, 13), (-4, 9, -2, 3), (2, 8, 6, 0)]
+    out = []
+    for i, (x1, y1, x2, y2) in enumerate(data):
+        m = Rational(y2 - y1, x2 - x1)
+        assert m.q == 1, "lineeq: slope must be an integer"
+        m = int(m)
+        b = y1 - m * x1
+        def eqs(mm, bb):
+            return "$y = %sx %s %d$" % (
+                "" if mm == 1 else ("-" if mm == -1 else str(mm)),
+                "+" if bb >= 0 else "-", abs(bb))
+        correct = eqs(m, b)
+        wrongs, seen = [], {correct}
+        for cand in (eqs(m, -b), eqs(-m, b), eqs(b, m), eqs(m + 1, b),
+                     eqs(m, b + 1)):
+            if cand not in seen:
+                seen.add(cand)
+                wrongs.append(cand)
+            if len(wrongs) == 3:
+                break
+        pos = i % 4
+        opts, ci = _txt_opts("lineeq", correct, wrongs, pos)
+        out.append({
+            "statement": "Find the equation of the line through $(%d; %d)$ "
+                         "and $(%d; %d)$, in the form $y = mx + b$."
+                         % (x1, y1, x2, y2),
+            "options": opts, "correctIndex": ci,
+            "explanation": "The slope is $\\dfrac{%d - (%d)}{%d - (%d)} = %d$. "
+                           "Substituting $(%d; %d)$ gives "
+                           "$%d = %d \\cdot %d + b$, so $b = %d$. The second "
+                           "point confirms it: $%d \\cdot %d + %d = %d$. Only "
+                           "one line passes through both, so a wrong slope or "
+                           "a wrong intercept misses one of them."
+                           % (y2, y1, x2, x1, m, x1, y1, y1, m, x1, b,
+                              m, x2, b, y2),
+            "check": ["%d*(%d) + (%d) == %d" % (m, x1, b, y1),
+                      "%d*(%d) + (%d) == %d" % (m, x2, b, y2)],
+        })
+    return out
+
+NEW_FORMS_META_3 = [
+    ("angle-addition", "Angle addition", 1, "GEO-angadd",
+     "foundations", gen3_angadd),
+    ("classify-an-angle", "Naming an angle by its size", 1, "GEO-cls",
+     "foundations", gen3_classify),
+    ("converse-of-a-statement", "Writing the converse", 2, "GEO-conv",
+     "reasoning-and-proof", gen3_converse),
+    ("finding-a-counterexample", "Finding a counterexample", 2, "GEO-cex",
+     "reasoning-and-proof", gen3_counterexample),
+    ("justifying-a-step", "Justifying a step in a proof", 2, "GEO-prop",
+     "reasoning-and-proof", gen3_property),
+    ("parallel-and-perpendicular-slopes",
+     "Slopes of parallel and perpendicular lines", 2, "GEO-pps",
+     "parallel-and-perpendicular", gen3_slopes),
+    ("proving-lines-parallel", "Proving two lines parallel", 2, "GEO-ppr",
+     "parallel-and-perpendicular", gen3_provepar),
+    ("congruence-shortcuts", "Choosing the congruence shortcut", 2,
+     "GEO-cshort", "triangles-and-congruence", gen3_shortcut),
+    ("classify-by-sides", "Classifying a triangle by its sides", 1,
+     "GEO-tcls", "triangles-and-congruence", gen3_triclass),
+    ("the-centroid", "The centroid and the 2:1 ratio", 3, "GEO-cent",
+     "relationships-in-triangles", gen3_centroid),
+    ("naming-special-segments", "Naming the special segments", 2, "GEO-ssn",
+     "relationships-in-triangles", gen3_segname),
+    ("sides-from-an-interior-angle", "Sides from an interior angle", 2,
+     "GEO-psa", "quadrilaterals-and-polygons", gen3_sidesfromangle),
+    ("trapezoid-midsegment", "The trapezoid midsegment", 2, "GEO-tmid",
+     "quadrilaterals-and-polygons", gen3_trapmid),
+    ("solving-a-proportion", "Solving a proportion", 1, "GEO-prop2",
+     "similarity", gen3_proportion),
+    ("shadows-and-similar-triangles", "Heights from shadows", 2, "GEO-shad",
+     "similarity", gen3_shadow),
+    ("angles-of-elevation", "Angles of elevation at special angles", 3,
+     "GEO-elev", "right-triangles-and-trig", gen3_elevation),
+    ("right-acute-or-obtuse", "Right, acute or obtuse", 2, "GEO-raot",
+     "right-triangles-and-trig", gen3_acuteobtuse),
+    ("tangent-length", "The length of a tangent", 3, "GEO-tanl",
+     "circles", gen3_tangentlen),
+    ("cyclic-quadrilaterals", "Cyclic quadrilaterals", 3, "GEO-cyc",
+     "circles", gen3_cyclic),
+    ("perimeter-from-area", "Perimeter from area and one side", 1, "GEO-rfa",
+     "area-and-perimeter", gen3_rectperim),
+    ("area-from-an-apothem", "Area of a regular polygon", 3, "GEO-apo",
+     "area-and-perimeter", gen3_apothem),
+    ("box-volume", "Volume of a rectangular prism", 1, "GEO-pvol",
+     "surface-area-and-volume", gen3_prismvol),
+    ("prism-surface-area", "Surface area of a box", 2, "GEO-psurf",
+     "surface-area-and-volume", gen3_prismsurf),
+    ("cylinder-surface-area", "Surface area of a cylinder", 2, "GEO-csa",
+     "surface-area-and-volume", gen3_cylsurf),
+    ("sphere-surface-area", "Surface area of a sphere", 2, "GEO-ssa",
+     "surface-area-and-volume", gen3_spheresurf),
+    ("volume-scale-factor", "Scaling a volume", 3, "GEO-vscale",
+     "surface-area-and-volume", gen3_volscale),
+    ("dilations", "Dilations about the origin", 2, "GEO-dil",
+     "transformations", gen3_dilation),
+    ("reflecting-over-a-diagonal", "Reflecting over the diagonals", 2,
+     "GEO-rdiag", "transformations", gen3_reflectdiag),
+    ("counting-symmetry", "Counting symmetry", 1, "GEO-sym",
+     "transformations", gen3_symmetry),
+    ("slope-from-two-points", "Slope from two points", 1, "GEO-slope",
+     "coordinate-geometry", gen3_slope2pts),
+    ("reading-a-circle-equation", "Reading a circle's equation", 2,
+     "GEO-ceq", "coordinate-geometry", gen3_circleeq),
+    ("equation-of-a-line", "The equation of a line through two points", 2,
+     "GEO-lfp", "coordinate-geometry", gen3_lineeq),
+]
+
+
+def _batch3_forms():
+    forms = []
+    for form_id, title, level, skill, unit, gen in NEW_FORMS_META_3:
+        raw = gen()
+        assert len(raw) >= 12, "%s: only %d variants" % (form_id, len(raw))
+        variants = []
+        for i, v in enumerate(raw):
+            vd = {"id": "%s-v%02d" % (skill, i + 1)}
+            vd.update(v)
+            variants.append(vd)
+        forms.append({"id": form_id, "title": title, "level": level,
+                      "skill": skill, "unit": unit, "variants": variants})
+    return forms
+
+
+_NEW_FORMS_BATCH_1_AND_2 = new_forms
+
+
+def new_forms():  # noqa: F811 — appends batch 3 to the previous two
+    """All unit-specific forms: batches 1 and 2 above, plus batch 3."""
+    return _NEW_FORMS_BATCH_1_AND_2() + _batch3_forms()
+
+
+# --- batch-3 independent re-solvers ------------------------------------------
+# Each reads the STATEMENT and recomputes the answer without consulting the
+# generator's data tables, so a mislabelled option has to survive two
+# independently written accounts of the same question.
+
+def _r3_angadd(s):
+    a, b = [int(x) for x in re.findall(r"= (\d+)°", s)]
+    return ("num", a + b if "find $\\angle AOC$" in s else a - b)
+
+
+def _r3_classify(s):
+    d = int(re.search(r"measures \$(\d+)°\$", s).group(1))
+    if d < 90:
+        return ("opt", "an acute angle")
+    if d == 90:
+        return ("opt", "a right angle")
+    return ("opt", "an obtuse angle" if d < 180 else "a straight angle")
+
+
+def _r3_converse(s):
+    m = re.search(r"converse of: If (.+), then (.+)\.$", s)
+    return ("opt", "If %s, then %s." % (m.group(2), m.group(1)))
+
+
+# Which case each claim is broken by, written from the claims rather than
+# copied from the generator's rows: if the two ever disagree, the audit fails.
+_CEX_MARKERS = [
+    ("four equal sides is a square", "rhombus"),
+    ("two equal angles is equilateral", "$50°$, $50°$ and $80°$"),
+    ("two parallel sides is a parallelogram", "trapezoid"),
+    ("supplementary then both are obtuse", "$40°$ and $140°$"),
+    ("every rectangle is a square", "rectangle $3$ by $8$"),
+    ("perpendicular diagonals it is a rhombus", "kite"),
+    ("$60°$ angle is equilateral", "$60°$, $40°$ and $80°$"),
+    ("three pairs of equal angles they are congruent", "$6, 8, 10$"),
+    ("every polygon with equal sides is regular", "rhombus"),
+    ("pair of equal opposite sides it is a parallelogram", "kite"),
+    ("angle bisector that is also a median", "isosceles"),
+    ("diagonals of a quadrilateral are equal it is a rectangle", "trapezoid"),
+]
+
+
+def _r3_counterexample(s):
+    claim = re.search(r"claim that (.+)\?$", s).group(1)
+    for key, phrase in _CEX_MARKERS:
+        if key in claim:
+            return ("txt", phrase)
+    raise ValueError("counterexample: unknown claim %r" % claim[:60])
+
+
+def _r3_property(s):
+    """Classify the step by its SHAPE, not by looking it up.
+
+    No 'then' at all means the line asserts something about itself; a 'then'
+    whose two sides are the hypothesis reversed is symmetry; two hypotheses
+    sharing a middle term chain transitively; anything else is an equation
+    being solved, and the operation still attached to the unknown names the
+    property that undid it."""
+    step = re.search(r"proof\? (.+)\.$", s).group(1)
+    if ", then " not in step:
+        return ("opt", "the reflexive property of equality")
+    hyp, con = step[len("If "):].split(", then ")
+    if " and " in hyp:
+        a, b = hyp.split(" and ")
+        left = [t.strip(" $") for t in a.split(" = ")]
+        right = [t.strip(" $") for t in b.split(" = ")]
+        if len(left) == 2 and len(right) == 2 and left[1] == right[0]:
+            return ("opt", "the transitive property of equality")
+        return ("opt", "the substitution property of equality")
+    lhs = [t.strip(" $") for t in hyp.split(" = ")]
+    rhs = [t.strip(" $") for t in con.split(" = ")]
+    if len(lhs) == 2 and len(rhs) == 2 and lhs == rhs[::-1]:
+        return ("opt", "the symmetric property of equality")
+    expr = lhs[0]
+    if "\\tfrac" in expr:
+        return ("opt", "the multiplication property of equality")
+    if "+" in expr:
+        return ("opt", "the subtraction property of equality")
+    if "-" in expr:
+        return ("opt", "the addition property of equality")
+    return ("opt", "the division property of equality")
+
+
+def _r3_slopes(s):
+    m = re.search(r"slope \$\\frac\{(-?\d+)\}\{(\d+)\}\$", s)
+    sl = (Rational(int(m.group(1)), int(m.group(2))) if m else
+          Rational(int(re.search(r"slope \$(-?\d+)\$", s).group(1))))
+    return ("num", sl if "parallel to" in s else -1 / sl)
+
+
+def _r3_provepar(s):
+    kind = re.search(r"\\angle \d+\$ are (.+?) angles", s).group(1)
+    for k, _rel, fact in _PAIR_FACTS:
+        if k == kind:
+            return ("opt", fact)
+    raise ValueError("provepar: unknown pair %r" % kind)
+
+
+def _r3_shortcut(s):
+    given = re.search(r"\\triangle DEF\$, (.+)\. Which congruence", s).group(1)
+    if "right-angled" in given:
+        return ("opt", "HL")
+    sides = re.findall(r"([A-F]{2}) = [A-F]{2}", given)
+    angles = re.findall(r"\\angle ([A-F]) = \\angle [A-F]", given)
+    if len(sides) == 3:
+        return ("opt", "SSS")
+    if len(sides) == 2 and len(angles) == 1:
+        return ("opt", "SAS")
+    if len(sides) == 1 and len(angles) == 2:
+        # ASA when the named side JOINS the two named angles; otherwise AAS.
+        return ("opt", "ASA" if set(sides[0]) == set(angles) else "AAS")
+    raise ValueError("shortcut: cannot read %r" % given[:60])
+
+
+def _r3_triclass(s):
+    a, b, c = sorted(int(x) for x in re.findall(r"\$(\d+)\$", s))
+    if a + b <= c:
+        return ("opt", "no triangle can have these sides")
+    return ("opt", {1: "equilateral", 2: "isosceles",
+                    3: "scalene"}[len({a, b, c})])
+
+
+def _r3_centroid(s):
+    m = re.search(r"length \$(\d+)\$", s)
+    if m:
+        return ("num", Rational(2 * int(m.group(1)), 3))
+    return ("num", Rational(int(re.search(r"AG = (\d+)", s).group(1)), 2))
+
+
+_SEGNAME_MARKERS = [
+    ("MIDPOINT of the opposite side", "a median"),
+    ("cuts the opposite side into two equal parts", "a median"),
+    ("the point that halves $BC$", "a median"),
+    ("PERPENDICULAR to the line", "an altitude"),
+    ("meets the opposite side at a right angle", "an altitude"),
+    ("used as the height when the base", "an altitude"),
+    ("splits that vertex's angle", "an angle bisector"),
+    ("divides $\\angle A$", "an angle bisector"),
+    ("passes through that side's midpoint", "a perpendicular bisector"),
+    ("passes through the midpoint of $BC$ at $90°$",
+     "a perpendicular bisector"),
+    ("joins the midpoints of two sides", "a midsegment"),
+    ("connects the midpoint of $AB$", "a midsegment"),
+]
+
+
+def _r3_segname(s):
+    desc = re.search(r"a segment (.+?)\. What is it called", s).group(1)
+    for key, phrase in _SEGNAME_MARKERS:
+        if key in desc:
+            return ("opt", phrase)
+    raise ValueError("segname: unknown description %r" % desc[:60])
+
+
+def _r3_sidesfromangle(s):
+    interior = int(re.search(r"measures \$(\d+)°\$", s).group(1))
+    return ("num", Rational(360, 180 - interior))
+
+
+def _r3_trapmid(s):
+    if "midsegment $" in s:
+        m = int(re.search(r"midsegment \$(\d+)\$", s).group(1))
+        a = int(re.search(r"one parallel side \$(\d+)\$", s).group(1))
+        return ("num", 2 * m - a)
+    a, b = [int(x) for x in re.findall(r"\$(\d+)\$", s)[:2]]
+    return ("num", Rational(a + b, 2))
+
+
+def _r3_proportion(s):
+    m = re.search(r"\\dfrac\{(\d+)\}\{(\d+)\} = \\dfrac\{(\d+)\}\{x\}", s)
+    a, b, c = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return ("num", Rational(b * c, a))
+
+
+def _r3_shadow(s):
+    h = int(re.search(r"pole \$(\d+)\$ m tall", s).group(1))
+    small = int(re.search(r"shadow \$(\d+)\$ m long", s).group(1))
+    big = int(re.search(r"tree casts a shadow \$(\d+)\$ m long", s).group(1))
+    return ("num", Rational(h * big, small))
+
+
+def _r3_elevation(s):
+    d = int(re.search(r"point \$(\d+)\$ m from", s).group(1))
+    ang = int(re.search(r"elevation of the top is \$(\d+)°\$", s).group(1))
+    return ("num", {45: d, 60: d * sqrt(3)}.get(ang, Rational(d, 3) * sqrt(3)))
+
+
+def _r3_acuteobtuse(s):
+    a, b, c = sorted(int(x) for x in re.findall(r"\$(\d+)\$", s))
+    if a + b <= c:
+        return ("opt", "no triangle can have these sides")
+    if c * c == a * a + b * b:
+        return ("opt", "right-angled")
+    return ("opt", "acute" if c * c < a * a + b * b else "obtuse")
+
+
+def _r3_tangentlen(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    d = int(re.search(r"OP = (\d+)\$", s).group(1))
+    return ("num", sqrt(d * d - r * r))
+
+
+def _r3_cyclic(s):
+    return ("num", 180 - int(re.search(r"= (\d+)°", s).group(1)))
+
+
+def _r3_rectperim(s):
+    area = int(re.search(r"area \$(\d+)\$", s).group(1))
+    w = int(re.search(r"side of length \$(\d+)\$", s).group(1))
+    return ("num", 2 * (w + Rational(area, w)))
+
+
+def _r3_apothem(s):
+    a = int(re.search(r"apothem \$(\d+)\$", s).group(1))
+    p = int(re.search(r"perimeter \$(\d+)\$", s).group(1))
+    return ("num", Rational(a * p, 2))
+
+
+def _r3_prismvol(s):
+    m = re.search(r"volume \$(\d+)\$", s)
+    if m:
+        l, w = [int(x) for x in
+                re.search(r"base measures \$(\d+) \\times (\d+)\$",
+                          s).groups()]
+        return ("num", Rational(int(m.group(1)), l * w))
+    l, w, h = [int(x) for x in
+               re.search(r"\$(\d+) \\times (\d+) \\times (\d+)\$",
+                         s).groups()]
+    return ("num", l * w * h)
+
+
+def _r3_prismsurf(s):
+    l, w, h = [int(x) for x in
+               re.search(r"\$(\d+) \\times (\d+) \\times (\d+)\$",
+                         s).groups()]
+    return ("num", 2 * (l * w + l * h + w * h))
+
+
+def _r3_cylsurf(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    h = int(re.search(r"height \$(\d+)\$", s).group(1))
+    return ("num", 2 * pi * r * (r + h))
+
+
+def _r3_spheresurf(s):
+    r = int(re.search(r"radius \$(\d+)\$", s).group(1))
+    return ("num", 4 * pi * r * r)
+
+
+def _r3_volscale(s):
+    j, k = [int(x) for x in
+            re.search(r"ratio \$(\d+) : (\d+)\$", s).groups()]
+    v = int(re.search(r"volume \$(\d+)\$", s).group(1))
+    return ("num", v * Rational(k, j) ** 3)
+
+
+def _r3_dilation(s):
+    x, y = [int(t) for t in re.search(r"\((-?\d+); (-?\d+)\)", s).groups()]
+    k = int(re.search(r"scale factor of \$(-?\d+)\$", s).group(1))
+    return ("opt", _pair_str(k * x, k * y))
+
+
+def _r3_reflectdiag(s):
+    x, y = [int(t) for t in re.search(r"\((-?\d+); (-?\d+)\)", s).groups()]
+    return ("opt", _pair_str(y, x) if "$y = x$" in s else _pair_str(-y, -x))
+
+
+def _r3_symmetry(s):
+    # Longest description first: "a square" is a substring of "a rectangle
+    # that is not a square", and matching it would answer the wrong shape.
+    for shape, lines, order in sorted(_SYMMETRY, key=lambda t: -len(t[0])):
+        if shape in s:
+            return ("num", lines if "lines of symmetry" in s else order)
+    raise ValueError("symmetry: unknown shape in %r" % s[:60])
+
+
+def _r3_slope2pts(s):
+    (x1, y1), (x2, y2) = [(int(a), int(b)) for a, b in
+                          re.findall(r"\((-?\d+); (-?\d+)\)", s)]
+    return ("num", Rational(y2 - y1, x2 - x1))
+
+
+def _r3_circleeq(s):
+    m = re.search(r"\(x ([+-]) (\d+)\)\^2 \+ \(y ([+-]) (\d+)\)\^2 = (\d+)", s)
+    h = int(m.group(2)) * (1 if m.group(1) == "-" else -1)
+    k = int(m.group(4)) * (1 if m.group(3) == "-" else -1)
+    if "Find its centre" in s:
+        return ("opt", _pair_str(h, k))
+    return ("num", sqrt(int(m.group(5))))
+
+
+def _r3_lineeq(s):
+    (x1, y1), (x2, y2) = [(int(a), int(b)) for a, b in
+                          re.findall(r"\((-?\d+); (-?\d+)\)", s)]
+    m = Rational(y2 - y1, x2 - x1)
+    b = y1 - m * x1
+    return ("opt", "$y = %sx %s %d$" % (
+        "" if m == 1 else ("-" if m == -1 else str(m)),
+        "+" if b >= 0 else "-", abs(b)))
+
+
+RESOLVERS.update({
+    "angle-addition": _r3_angadd,
+    "classify-an-angle": _r3_classify,
+    "converse-of-a-statement": _r3_converse,
+    "finding-a-counterexample": _r3_counterexample,
+    "justifying-a-step": _r3_property,
+    "parallel-and-perpendicular-slopes": _r3_slopes,
+    "proving-lines-parallel": _r3_provepar,
+    "congruence-shortcuts": _r3_shortcut,
+    "classify-by-sides": _r3_triclass,
+    "the-centroid": _r3_centroid,
+    "naming-special-segments": _r3_segname,
+    "sides-from-an-interior-angle": _r3_sidesfromangle,
+    "trapezoid-midsegment": _r3_trapmid,
+    "solving-a-proportion": _r3_proportion,
+    "shadows-and-similar-triangles": _r3_shadow,
+    "angles-of-elevation": _r3_elevation,
+    "right-acute-or-obtuse": _r3_acuteobtuse,
+    "tangent-length": _r3_tangentlen,
+    "cyclic-quadrilaterals": _r3_cyclic,
+    "perimeter-from-area": _r3_rectperim,
+    "area-from-an-apothem": _r3_apothem,
+    "box-volume": _r3_prismvol,
+    "prism-surface-area": _r3_prismsurf,
+    "cylinder-surface-area": _r3_cylsurf,
+    "sphere-surface-area": _r3_spheresurf,
+    "volume-scale-factor": _r3_volscale,
+    "dilations": _r3_dilation,
+    "reflecting-over-a-diagonal": _r3_reflectdiag,
+    "counting-symmetry": _r3_symmetry,
+    "slope-from-two-points": _r3_slope2pts,
+    "reading-a-circle-equation": _r3_circleeq,
+    "equation-of-a-line": _r3_lineeq,
 })
 
 

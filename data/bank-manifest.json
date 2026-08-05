@@ -468,8 +468,13 @@
     "blurb": "Unit-by-unit practice for the Geometry course — from points and angles to circles, area, and coordinates.",
     "courseLadder": true,
     "unitCount": 13,
-    "problemCount": 1128,
+    "problemCount": 1512,
     "forms": [
+      {
+        "id": "angle-addition",
+        "unit": "foundations",
+        "level": 1
+      },
       {
         "id": "angle-bisector",
         "unit": "foundations",
@@ -477,6 +482,11 @@
       },
       {
         "id": "angle-pairs",
+        "unit": "foundations",
+        "level": 1
+      },
+      {
+        "id": "classify-an-angle",
         "unit": "foundations",
         "level": 1
       },
@@ -492,6 +502,21 @@
       },
       {
         "id": "angles-around-point",
+        "unit": "reasoning-and-proof",
+        "level": 2
+      },
+      {
+        "id": "converse-of-a-statement",
+        "unit": "reasoning-and-proof",
+        "level": 2
+      },
+      {
+        "id": "finding-a-counterexample",
+        "unit": "reasoning-and-proof",
+        "level": 2
+      },
+      {
+        "id": "justifying-a-step",
         "unit": "reasoning-and-proof",
         "level": 2
       },
@@ -516,7 +541,17 @@
         "level": 1
       },
       {
+        "id": "parallel-and-perpendicular-slopes",
+        "unit": "parallel-and-perpendicular",
+        "level": 2
+      },
+      {
         "id": "perpendicular-composition",
+        "unit": "parallel-and-perpendicular",
+        "level": 2
+      },
+      {
+        "id": "proving-lines-parallel",
         "unit": "parallel-and-perpendicular",
         "level": 2
       },
@@ -524,6 +559,11 @@
         "id": "transversal-solve",
         "unit": "parallel-and-perpendicular",
         "level": 2
+      },
+      {
+        "id": "classify-by-sides",
+        "unit": "triangles-and-congruence",
+        "level": 1
       },
       {
         "id": "isosceles-angles",
@@ -534,6 +574,11 @@
         "id": "triangle-angle-sum",
         "unit": "triangles-and-congruence",
         "level": 1
+      },
+      {
+        "id": "congruence-shortcuts",
+        "unit": "triangles-and-congruence",
+        "level": 2
       },
       {
         "id": "congruent-parts",
@@ -551,6 +596,11 @@
         "level": 2
       },
       {
+        "id": "naming-special-segments",
+        "unit": "relationships-in-triangles",
+        "level": 2
+      },
+      {
         "id": "side-angle-order",
         "unit": "relationships-in-triangles",
         "level": 2
@@ -564,6 +614,11 @@
         "id": "triangle-inequality",
         "unit": "relationships-in-triangles",
         "level": 2
+      },
+      {
+        "id": "the-centroid",
+        "unit": "relationships-in-triangles",
+        "level": 3
       },
       {
         "id": "exterior-angle-regular",
@@ -586,7 +641,27 @@
         "level": 2
       },
       {
+        "id": "sides-from-an-interior-angle",
+        "unit": "quadrilaterals-and-polygons",
+        "level": 2
+      },
+      {
+        "id": "trapezoid-midsegment",
+        "unit": "quadrilaterals-and-polygons",
+        "level": 2
+      },
+      {
+        "id": "solving-a-proportion",
+        "unit": "similarity",
+        "level": 1
+      },
+      {
         "id": "perimeter-ratio",
+        "unit": "similarity",
+        "level": 2
+      },
+      {
+        "id": "shadows-and-similar-triangles",
         "unit": "similarity",
         "level": 2
       },
@@ -616,6 +691,11 @@
         "level": 1
       },
       {
+        "id": "right-acute-or-obtuse",
+        "unit": "right-triangles-and-trig",
+        "level": 2
+      },
+      {
         "id": "special-triangles",
         "unit": "right-triangles-and-trig",
         "level": 2
@@ -624,6 +704,11 @@
         "id": "trig-ratio-read",
         "unit": "right-triangles-and-trig",
         "level": 2
+      },
+      {
+        "id": "angles-of-elevation",
+        "unit": "right-triangles-and-trig",
+        "level": 3
       },
       {
         "id": "circle-basics",
@@ -641,12 +726,27 @@
         "level": 2
       },
       {
+        "id": "cyclic-quadrilaterals",
+        "unit": "circles",
+        "level": 3
+      },
+      {
         "id": "inscribed-angle",
         "unit": "circles",
         "level": 3
       },
       {
+        "id": "tangent-length",
+        "unit": "circles",
+        "level": 3
+      },
+      {
         "id": "parallelogram-area",
+        "unit": "area-and-perimeter",
+        "level": 1
+      },
+      {
+        "id": "perimeter-from-area",
         "unit": "area-and-perimeter",
         "level": 1
       },
@@ -666,9 +766,44 @@
         "level": 2
       },
       {
+        "id": "area-from-an-apothem",
+        "unit": "area-and-perimeter",
+        "level": 3
+      },
+      {
+        "id": "box-volume",
+        "unit": "surface-area-and-volume",
+        "level": 1
+      },
+      {
+        "id": "cylinder-surface-area",
+        "unit": "surface-area-and-volume",
+        "level": 2
+      },
+      {
+        "id": "prism-surface-area",
+        "unit": "surface-area-and-volume",
+        "level": 2
+      },
+      {
+        "id": "sphere-surface-area",
+        "unit": "surface-area-and-volume",
+        "level": 2
+      },
+      {
         "id": "solid-volumes",
         "unit": "surface-area-and-volume",
         "level": 3
+      },
+      {
+        "id": "volume-scale-factor",
+        "unit": "surface-area-and-volume",
+        "level": 3
+      },
+      {
+        "id": "counting-symmetry",
+        "unit": "transformations",
+        "level": 1
       },
       {
         "id": "transform-point",
@@ -681,6 +816,16 @@
         "level": 1
       },
       {
+        "id": "dilations",
+        "unit": "transformations",
+        "level": 2
+      },
+      {
+        "id": "reflecting-over-a-diagonal",
+        "unit": "transformations",
+        "level": 2
+      },
+      {
         "id": "rotate-point",
         "unit": "transformations",
         "level": 2
@@ -691,12 +836,27 @@
         "level": 1
       },
       {
+        "id": "slope-from-two-points",
+        "unit": "coordinate-geometry",
+        "level": 1
+      },
+      {
         "id": "distance-points",
         "unit": "coordinate-geometry",
         "level": 2
       },
       {
+        "id": "equation-of-a-line",
+        "unit": "coordinate-geometry",
+        "level": 2
+      },
+      {
         "id": "missing-endpoint",
+        "unit": "coordinate-geometry",
+        "level": 2
+      },
+      {
+        "id": "reading-a-circle-equation",
         "unit": "coordinate-geometry",
         "level": 2
       }
