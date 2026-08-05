@@ -84,6 +84,24 @@ def check_numeric(v, expected):
         fail(v, "MISMATCH", expected)
 
 
+def check_phrase(v, phrase):
+    """For classification questions whose options are sentences.
+
+    The resolver returns the KEY PHRASE it derived from the statement, and it
+    must appear in the correct option and in none of the distractors. The
+    second half is what makes this a re-solve rather than a spell-check: a
+    phrase that also matches a wrong option would confirm any labelling.
+    """
+    p = str(phrase).lower()
+    correct = v["options"][v["correctIndex"]].lower()
+    others = [o.lower() for j, o in enumerate(v["options"])
+              if j != v["correctIndex"]]
+    if p not in correct:
+        fail(v, "PHRASE-MISSING", phrase)
+    elif any(p in o for o in others):
+        fail(v, "PHRASE-AMBIGUOUS", phrase)
+
+
 # ---------------------------------------------------------------------------
 # Per-form resolvers: statement -> expected answer (numeric or structured)
 # ---------------------------------------------------------------------------
@@ -574,8 +592,10 @@ def main():
                 except Exception as e:  # noqa: BLE001
                     unparsed.append((v["id"], f"resolver crashed: {e}", v["statement"][:90]))
                     continue
-                if kind == "num":
+                if kind in ("num", "frac"):
                     check_numeric(v, val)
+                elif kind == "txt":
+                    check_phrase(v, val)
                 elif kind == "assert":
                     if val is not True:
                         fail(v, "ASSERT-MISMATCH", val)

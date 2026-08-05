@@ -1492,7 +1492,9 @@ def _gen_comb_identity():
 
 
 def _rs_comb_identity(s):
-    return ("txt", "equal")
+    m = re.search(r"\^\{(\d+)\}C_\{(\d+)\}", s)
+    n, k = int(m.group(1)), int(m.group(2))
+    return ("opt", "they are equal, both $%d$" % comb(n, k))
 
 
 def _gen_handshakes():
@@ -1872,8 +1874,10 @@ def _gen_independence_test():
 
 
 def _rs_independence_test(s):
-    fr = _fracs_in(s)
-    return ("txt", "yes" if fr[0] * fr[1] == fr[2] else "no")
+    pa, pb, given = _fracs_in(s)[:3]
+    if pa * pb == given:
+        return ("opt", "yes — $P(A)P(B)$ matches $P(A \\cap B)$")
+    return ("opt", "no — $P(A)P(B) = %s$, which differs" % _fr_core(pa * pb))
 
 
 def _gen_cond_reverse():
@@ -2159,7 +2163,10 @@ def _gen_binom_conditions():
 def _rs_binom_conditions(s):
     yes = ["Rolling a die", "Asking $50$", "Flipping a fair", "Testing $8$",
            "Shooting $10$", "Recording pass"]
-    return ("txt", "yes" if any(k in s for k in yes) else "no")
+    # The reason clause differs per case, but every distractor sits on the
+    # opposite side of the yes/no split — so the verdict alone identifies the
+    # correct option, which is exactly the decision this form drills.
+    return ("txt", "yes — " if any(k in s for k in yes) else "no — ")
 
 
 def _gen_binom_variance():
@@ -2351,34 +2358,47 @@ def _rs_skew_shape(s):
     return ("txt", "right" if a > b else ("left" if a < b else "symmetric"))
 
 
+def _ordinal(k):
+    """25 -> '25th', 32 -> '32nd'. A percentile is spoken as an ordinal, and
+    'the $32$th percentile' is not English."""
+    k = int(k)
+    if 10 <= k % 100 <= 20:
+        return "%dth" % k
+    return "%d%s" % (k, {1: "st", 2: "nd", 3: "rd"}.get(k % 10, "th"))
+
+
 def _gen_percentile():
     variants = []
-    # Chosen by search across the whole percentile range: the percentile, the
-    # plain fraction, the raw count and the complement must be four different
-    # numbers, and two hand-picked pairs were not.
-    data = [(200, 18), (150, 24), (80, 20), (300, 96), (120, 47), (500, 245),
-            (60, 34), (250, 155), (400, 272), (90, 67), (180, 144), (1000, 860)]
+    # Counts chosen so 100·below/n lands on a whole percentile across the
+    # range — "roughly what percentile" should not answer $\frac{235}{6}$ —
+    # and so the percentile, the raw count below, the count above and the
+    # complement are four different numbers.
+    data = [(50, 6), (75, 15), (80, 20), (200, 64), (120, 48), (20, 9),
+            (300, 165), (250, 150), (125, 85), (40, 30), (500, 400), (60, 54)]
     for i, (n, below) in enumerate(data):
-        pct = Fraction(below * 100, n)
+        pct = below * 100 // n
         stmt = ("In a group of $%d$ scores, $%d$ are below yours. Roughly what "
                 "percentile are you at?" % (n, below))
         variants.append(_mk(
-            "PS-pct-v%02d" % (i + 1), stmt, _fr(pct) + "th",
-            [_fr(Fraction(below, n)) + "th", "$%d$th" % below,
-             _fr(100 - pct) + "th"], i,
-            "A percentile is the PERCENTAGE below you: "
-            "$\\frac{%d}{%d} \\times 100 = %s$. Reporting the raw count $%d$ "
-            "or the plain fraction leaves out the conversion to a percentage."
-            % (below, n, _fr_core(pct), below),
-            ["Rational(%d * 100, %d) == Rational(%d, %d)"
-             % (below, n, pct.numerator, pct.denominator)]))
+            "PS-pct-v%02d" % (i + 1), stmt,
+            "the $%s$ percentile" % _ordinal(pct),
+            ["the $%s$ percentile" % _ordinal(below),
+             "the $%s$ percentile" % _ordinal(100 - pct),
+             "the $%s$ percentile" % _ordinal(n - below)], i,
+            "A percentile is the PERCENTAGE below you, not the count: "
+            "$\\frac{%d}{%d} \\times 100 = %d$, so you are at the $%s$ "
+            "percentile. Quoting the raw $%d$ scores below you skips the "
+            "conversion, and $%s$ counts down from the top instead of up "
+            "from the bottom."
+            % (below, n, pct, _ordinal(pct), below, _ordinal(100 - pct)),
+            ["Rational(%d * 100, %d) == %d" % (below, n, pct)]))
     return _floor("percentile-from-counts", variants)
 
 
 def _rs_percentile(s):
     m = re.search(r"group of \$(\d+)\$ scores, \$(\d+)\$ are below", s)
     n, b = int(m.group(1)), int(m.group(2))
-    return ("frac", Fraction(b * 100, n))
+    return ("opt", "the $%s$ percentile" % _ordinal(Fraction(b * 100, n)))
 
 
 def _gen_standard_deviation_shift():
@@ -2519,7 +2539,11 @@ def _gen_causation():
 
 
 def _rs_causation(s):
-    return ("txt", "not causal")
+    # Every scenario here is an observed association with no assignment of
+    # treatment, so the safe conclusion is always the same one — that is the
+    # point of the form. The three distractors each claim a direction of
+    # cause, so this phrase picks the correct option out on its own.
+    return ("txt", "correlation is not proof of cause")
 
 
 # ---- inference-and-studies -----------------------------------------------
@@ -2617,8 +2641,31 @@ def _gen_bias_source():
     return _floor("sources-of-bias", variants)
 
 
+_BIAS_MARKERS = [
+    ("inside the library", "already use libraries"),
+    ("by text message", "without phones"),
+    ("bother to return", "over-represented"),
+    ("Don't you agree that", "leads the respondent"),
+    ("volunteers from a gym", "fitter"),
+    ("conducted online", "poor connections"),
+    ("face to face", "under-report"),
+    ("present on the day", "absentees"),
+    ("its own service", "stopped coming"),
+    ("weekday morning", "shift and weekend"),
+    ("'good' and 'excellent'", "negative view"),
+    ("donors whether charity", "not representative"),
+]
+
+
 def _rs_bias_source(s):
-    return ("txt", "biased sample")
+    """Name the flaw independently of the generator's table.
+
+    Written from the scenarios rather than copied from them: if the two ever
+    disagree about which scenario carries which flaw, the audit fails."""
+    for marker, phrase in _BIAS_MARKERS:
+        if marker in s:
+            return ("txt", phrase)
+    raise ValueError("unrecognised bias scenario: %s" % s[:80])
 
 
 def _gen_margin_of_error():
@@ -2647,7 +2694,7 @@ def _gen_margin_of_error():
 def _rs_margin_of_error(s):
     m = re.search(r"\$(\d+)\\%\$ support with a margin of error of \$(\d+)\$", s)
     p_, e = int(m.group(1)), int(m.group(2))
-    return ("txt", "%d to %d" % (p_ - e, p_ + e))
+    return ("opt", "$%d\\%%$ to $%d\\%%$" % (p_ - e, p_ + e))
 
 # Round two: the forms that take every unit from two or three collections
 # to six.
@@ -2864,7 +2911,10 @@ def _gen_interpret_slope():
 
 
 def _rs_interpret_slope(s):
-    return ("txt", "rate of change")
+    m = re.search(r"\$y = (\d+)x \+ \d+\$, where \$x\$ is (.+?) and \$y\$ is "
+                  r"(.+?)\. What does", s)
+    slope, x, y = int(m.group(1)), m.group(2), m.group(3)
+    return ("opt", "each extra unit of %s adds about $%d$ to %s" % (x, slope, y))
 
 
 def _gen_population_sample():
@@ -2914,13 +2964,15 @@ def _gen_population_sample():
 
 
 def _rs_population_sample(s):
-    if "true " in s or "ALL the" in s:
-        return ("txt", "parameter")
-    if "all " in s or "every " in s:
-        return ("txt", "population")
-    if "among those" in s or "of the $" in s and "measured" in s:
-        return ("txt", "statistic")
-    return ("txt", "sample")
+    """Re-decide from the description alone, by the two questions that
+    actually separate the four words: is it a GROUP or a NUMBER, and does it
+    describe the WHOLE population or only the part that was measured."""
+    is_number = any(w in s for w in ("percentage", "mean ", "rate"))
+    whole = any(w in s for w in ("true ", "ALL ", "national", "all voters"))
+    if is_number:
+        return ("opt", "a parameter" if whole else "a statistic")
+    return ("opt", "the population"
+            if ("all " in s or "every " in s) else "the sample")
 
 
 _FORMS_META += [
@@ -2933,6 +2985,12 @@ _FORMS_META += [
      "A parameter describes the population; a statistic comes from a sample.",
      _gen_population_sample, _rs_population_sample),
 ]
+
+# Re-registered after the appended tables. The first RESOLVERS.update sits
+# beside the original _FORMS_META, so it only ever saw the forms defined
+# above it; without this line the round-two forms would ship with no
+# independent re-solver and audit_problembank.py would count them uncovered.
+RESOLVERS.update({fid: rz for fid, _t, _l, _u, _s, _g, rz in _FORMS_META})
 
 
 # The self-check runs last on purpose: the round-two forms are appended to
