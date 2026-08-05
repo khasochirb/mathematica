@@ -956,10 +956,20 @@
     "blurb": "Unit-by-unit practice for the Probability & Statistics course — counting to inference, every unit with its own exercise set.",
     "courseLadder": true,
     "unitCount": 12,
-    "problemCount": 419,
+    "problemCount": 971,
     "forms": [
       {
+        "id": "multi-stage-journeys",
+        "unit": "counting-principles",
+        "level": 1
+      },
+      {
         "id": "multiplication-principle",
+        "unit": "counting-principles",
+        "level": 1
+      },
+      {
+        "id": "strings-with-repeats",
         "unit": "counting-principles",
         "level": 1
       },
@@ -969,7 +979,22 @@
         "level": 2
       },
       {
+        "id": "complementary-counting",
+        "unit": "counting-principles",
+        "level": 2
+      },
+      {
+        "id": "restricted-arrangements",
+        "unit": "counting-principles",
+        "level": 3
+      },
+      {
         "id": "npr-value",
+        "unit": "permutations",
+        "level": 1
+      },
+      {
+        "id": "permutation-formula",
         "unit": "permutations",
         "level": 1
       },
@@ -979,14 +1004,49 @@
         "level": 2
       },
       {
+        "id": "ordered-selections",
+        "unit": "permutations",
+        "level": 2
+      },
+      {
+        "id": "arrangements-with-repeats",
+        "unit": "permutations",
+        "level": 3
+      },
+      {
+        "id": "circular-arrangements",
+        "unit": "permutations",
+        "level": 3
+      },
+      {
+        "id": "handshakes",
+        "unit": "combinations",
+        "level": 1
+      },
+      {
         "id": "ncr-value",
         "unit": "combinations",
         "level": 1
       },
       {
+        "id": "combination-symmetry",
+        "unit": "combinations",
+        "level": 2
+      },
+      {
         "id": "committee",
         "unit": "combinations",
         "level": 2
+      },
+      {
+        "id": "at-least-one",
+        "unit": "combinations",
+        "level": 3
+      },
+      {
+        "id": "pascal-entry",
+        "unit": "binomial-theorem",
+        "level": 1
       },
       {
         "id": "pascal-row",
@@ -999,6 +1059,26 @@
         "level": 2
       },
       {
+        "id": "binomial-constant-term",
+        "unit": "binomial-theorem",
+        "level": 2
+      },
+      {
+        "id": "pascal-row-sum",
+        "unit": "binomial-theorem",
+        "level": 2
+      },
+      {
+        "id": "binomial-general-term",
+        "unit": "binomial-theorem",
+        "level": 3
+      },
+      {
+        "id": "mutually-exclusive-or",
+        "unit": "probability-models",
+        "level": 1
+      },
+      {
         "id": "single-event",
         "unit": "probability-models",
         "level": 1
@@ -1006,6 +1086,31 @@
       {
         "id": "complement",
         "unit": "probability-models",
+        "level": 2
+      },
+      {
+        "id": "odds-to-probability",
+        "unit": "probability-models",
+        "level": 2
+      },
+      {
+        "id": "at-least-one-probability",
+        "unit": "probability-models",
+        "level": 3
+      },
+      {
+        "id": "without-replacement",
+        "unit": "probability-models",
+        "level": 3
+      },
+      {
+        "id": "tree-multiplication",
+        "unit": "conditional-probability",
+        "level": 1
+      },
+      {
+        "id": "conditional-from-a-table",
+        "unit": "conditional-probability",
         "level": 2
       },
       {
@@ -1019,8 +1124,58 @@
         "level": 3
       },
       {
+        "id": "independence-test",
+        "unit": "conditional-probability",
+        "level": 3
+      },
+      {
+        "id": "reverse-conditioning",
+        "unit": "conditional-probability",
+        "level": 3
+      },
+      {
+        "id": "linearity-of-expectation",
+        "unit": "random-variables",
+        "level": 1
+      },
+      {
+        "id": "expected-gain",
+        "unit": "random-variables",
+        "level": 2
+      },
+      {
+        "id": "expected-value-from-a-distribution",
+        "unit": "random-variables",
+        "level": 2
+      },
+      {
         "id": "expected-value",
         "unit": "random-variables",
+        "level": 3
+      },
+      {
+        "id": "variance-two-point",
+        "unit": "random-variables",
+        "level": 3
+      },
+      {
+        "id": "binomial-conditions",
+        "unit": "binomial-distribution",
+        "level": 1
+      },
+      {
+        "id": "binomial-mean",
+        "unit": "binomial-distribution",
+        "level": 1
+      },
+      {
+        "id": "binomial-variance",
+        "unit": "binomial-distribution",
+        "level": 2
+      },
+      {
+        "id": "binomial-at-most-one",
+        "unit": "binomial-distribution",
         "level": 3
       },
       {
@@ -1034,9 +1189,34 @@
         "level": 1
       },
       {
+        "id": "median-even-count",
+        "unit": "describing-data",
+        "level": 1
+      },
+      {
+        "id": "range-against-mode",
+        "unit": "describing-data",
+        "level": 1
+      },
+      {
         "id": "add-a-value",
         "unit": "describing-data",
         "level": 2
+      },
+      {
+        "id": "weighted-mean",
+        "unit": "describing-data",
+        "level": 2
+      },
+      {
+        "id": "outlier-effect-on-mean",
+        "unit": "describing-data",
+        "level": 3
+      },
+      {
+        "id": "percentile-from-counts",
+        "unit": "distributions-and-position",
+        "level": 1
       },
       {
         "id": "range-iqr-position",
@@ -1049,6 +1229,21 @@
         "level": 2
       },
       {
+        "id": "skew-from-mean-and-median",
+        "unit": "distributions-and-position",
+        "level": 2
+      },
+      {
+        "id": "shifting-a-distribution",
+        "unit": "distributions-and-position",
+        "level": 3
+      },
+      {
+        "id": "expected-correlation",
+        "unit": "two-variable-data",
+        "level": 1
+      },
+      {
         "id": "scatterplot-association",
         "unit": "two-variable-data",
         "level": 1
@@ -1059,6 +1254,26 @@
         "level": 2
       },
       {
+        "id": "residuals",
+        "unit": "two-variable-data",
+        "level": 2
+      },
+      {
+        "id": "correlation-and-causation",
+        "unit": "two-variable-data",
+        "level": 3
+      },
+      {
+        "id": "interpreting-slope",
+        "unit": "two-variable-data",
+        "level": 3
+      },
+      {
+        "id": "sampling-methods",
+        "unit": "inference-and-studies",
+        "level": 1
+      },
+      {
         "id": "study-type",
         "unit": "inference-and-studies",
         "level": 1
@@ -1067,6 +1282,21 @@
         "id": "sample-vs-population",
         "unit": "inference-and-studies",
         "level": 2
+      },
+      {
+        "id": "sources-of-bias",
+        "unit": "inference-and-studies",
+        "level": 2
+      },
+      {
+        "id": "margin-of-error",
+        "unit": "inference-and-studies",
+        "level": 3
+      },
+      {
+        "id": "population-and-sample",
+        "unit": "inference-and-studies",
+        "level": 3
       },
       {
         "id": "ps-perm-comb",
