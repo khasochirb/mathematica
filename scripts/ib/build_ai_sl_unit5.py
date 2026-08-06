@@ -598,7 +598,7 @@ def lesson_power_rule():
 def lesson_increasing_decreasing():
     return {
         "slug": "increasing-and-decreasing-functions",
-        "title": "Increasing, Decreasing, and What $f'$ Tells You",
+        "title": "Increasing, Decreasing, and What the Derivative Tells You",
         "concreteComparison": (
             "Walking a hilly path, the slope under your feet tells you what the path is doing "
             "without your having to look ahead: uphill, downhill, or momentarily level at a "

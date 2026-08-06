@@ -241,6 +241,20 @@ def main():
         topics_checked += 1
         slug = topic.get("slug", "<no-slug>")
 
+        # Titles are rendered as PLAIN TEXT — the course hub, the unit page's
+        # lesson list and the catalog all interpolate them directly, never
+        # through MathText. A title carrying $...$ therefore shows the student
+        # literal dollar signs and a raw LaTeX macro. (Two shipped that way in
+        # the IB AI SL course and were caught only by reading production HTML.)
+        if "$" in topic.get("title", ""):
+            failures.append(f"{slug}: unit title contains math delimiters — titles render as plain text: {topic['title']!r}")
+        for lesson in topic.get("lessons", []):
+            if "$" in lesson.get("title", ""):
+                failures.append(
+                    f"{slug} / {lesson.get('slug')}: lesson title contains math delimiters — "
+                    f"titles render as plain text, not through MathText: {lesson['title']!r}"
+                )
+
         for lesson in topic.get("lessons", []):
             lslug = lesson.get("slug", "<no-lesson-slug>")
             cc = lesson.get("concreteComparison", "")

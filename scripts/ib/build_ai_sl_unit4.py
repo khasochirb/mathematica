@@ -3087,7 +3087,7 @@ def lesson_spearman():
 def lesson_hypothesis_tests():
     return {
         "slug": "hypothesis-testing",
-        "title": "Hypothesis Tests: $\\chi^2$ and $t$",
+        "title": "Hypothesis Tests: Chi-Squared and t",
         "concreteComparison": (
             "A coin lands heads seven times in ten. Suspicious, or ordinary luck? A hypothesis "
             "test answers exactly that: it assumes nothing is going on, works out how surprising "
