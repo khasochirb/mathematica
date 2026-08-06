@@ -47,7 +47,7 @@ describe("hub landing pages share the ЭЕШ design idiom", () => {
     const need: Record<string, string[]> = {
       "app/practice/esh/page.tsx": ["/practice/esh/test", "/practice/esh/topics", "/practice/esh/practice"],
       "app/practice/sat/page.tsx": ["/practice/sat/test/", "/practice/sat/learn", "/practice/sat/bank"],
-      "app/practice/ib/page.tsx": ["/math/ib-sl", "/math/ib-hl", "/practice/ib/bank"],
+      "app/practice/ib/page.tsx": ["/math/ib-sl", "/math/ib-hl", "/math/ib-ai-sl", "/practice/ib/bank"],
     };
     for (const [file, hrefs] of Object.entries(need)) {
       const src = fs.readFileSync(path.join(ROOT, file), "utf8");

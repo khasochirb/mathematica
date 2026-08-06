@@ -31,7 +31,7 @@ export function contextFromPathname(pathname: string): string | null {
   if (/^\/practice\/esh\/learn\/[^/]+\/[^/]+/.test(pathname)) return ESH_COURSE_CONTEXT;
   if (/^\/practice\/sat\/learn\/[^/]+\/[^/]+/.test(pathname)) return SAT_COURSE_CONTEXT;
 
-  const m = /^\/math\/(solid-geometry|geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|integrated-1|integrated-2|integrated-3|precalculus|calculus|trigonometry|ib-sl|ib-hl|\d+)\//.exec(pathname);
+  const m = /^\/math\/(solid-geometry|geometry|prob-stats|vectors-matrices|algebra-1|algebra-2|integrated-1|integrated-2|integrated-3|precalculus|calculus|trigonometry|ib-sl|ib-hl|ib-ai-sl|\d+)\//.exec(pathname);
   if (!m) return null;
   const seg = m[1];
   return /^\d+$/.test(seg) ? `course:grade-${seg}` : `course:${seg}`;
@@ -80,6 +80,7 @@ export function contextLabel(context: string): string {
   if (context === "course:trigonometry") return "Тригонометр";
   if (context === "course:solid-geometry") return "Огторгуйн геометр";
   if (context === "course:ib-sl") return "IB Math SL (AA)";
+  if (context === "course:ib-ai-sl") return "IB Math SL (AI)";
   if (context === "course:ib-hl") return "IB Math HL (AA)";
   const grade = /^course:grade-(\d+)$/.exec(context);
   if (grade) return `${grade[1]}-р анги`;
@@ -105,6 +106,7 @@ export function contextHref(context: string): string | null {
   if (context === "course:trigonometry") return "/math/trigonometry";
   if (context === "course:solid-geometry") return "/math/solid-geometry";
   if (context === "course:ib-sl") return "/math/ib-sl";
+  if (context === "course:ib-ai-sl") return "/math/ib-ai-sl";
   if (context === "course:ib-hl") return "/math/ib-hl";
   const grade = /^course:grade-(\d+)$/.exec(context);
   if (grade) return `/math/${grade[1]}`;

@@ -35,6 +35,7 @@ import {
   GRADE12_SPINE,
   IB_HL_SPINE,
   IB_SL_SPINE,
+  IB_AI_SL_SPINE,
   IM1_SPINE,
   IM2_SPINE,
   IM3_SPINE,
@@ -76,6 +77,7 @@ const COURSE_TOPIC_ORDER: Record<CourseKey, string[]> = {
   "integrated-3": IM3_SPINE.map((u) => u.slug),
   "ib-sl": IB_SL_SPINE.map((u) => u.slug),
   "ib-hl": IB_HL_SPINE.map((u) => u.slug),
+  "ib-ai-sl": IB_AI_SL_SPINE.map((u) => u.slug),
 };
 
 /** Every course the policy knows about. */
@@ -132,6 +134,7 @@ const SPINE_WITH_LIVE: Record<CourseKey, { slug: string; live: boolean }[]> = {
   "integrated-3": IM3_SPINE,
   "ib-sl": IB_SL_SPINE,
   "ib-hl": IB_HL_SPINE,
+  "ib-ai-sl": IB_AI_SL_SPINE,
 };
 
 /**

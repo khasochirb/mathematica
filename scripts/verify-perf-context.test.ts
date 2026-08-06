@@ -67,6 +67,7 @@ describe("performance contexts", () => {
       "geometry", "prob-stats", "vectors-matrices", "algebra-1", "algebra-2",
       "integrated-1", "integrated-2", "integrated-3", "precalculus",
       "calculus", "trigonometry", "solid-geometry", "ib-sl", "ib-hl",
+      "ib-ai-sl",
       "6", "7", "8", "9", "10", "11", "12",
     ];
     for (const route of COURSE_ROUTES) {

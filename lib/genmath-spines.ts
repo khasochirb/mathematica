@@ -1414,6 +1414,52 @@ export const IB_HL_SPINE: GeometrySpineEntry[] = [
   },
 ];
 
+// The second IB track: Applications & Interpretation SL. Same five-topic
+// skeleton as AA, different syllabus underneath — AI is calculator-always,
+// leans hardest on statistics and modelling, and carries codes AA has no
+// counterpart for (Voronoi diagrams, χ² tests, the trapezoidal rule).
+export const IB_AI_SL_SPINE: GeometrySpineEntry[] = [
+  {
+    unit: 1,
+    slug: "number-and-algebra",
+    title: "Number & Algebra",
+    blurb: "Standard form, arithmetic and geometric sequences and series, compound interest and depreciation, exponents and logarithms, approximation and error, amortization and annuities, and systems solved by technology — AI SL 1.1 to 1.8.",
+    live: true,
+  },
+  {
+    unit: 2,
+    slug: "functions",
+    title: "Functions",
+    blurb: "Straight lines and gradients, domain, range and inverses, graphing and sketching with technology, key features and intersections, the six modelling families, and the modelling process itself — AI SL 2.1 to 2.6.",
+    buildsOn: "Topic 1's exponential and logarithmic work.",
+    live: true,
+  },
+  {
+    unit: 3,
+    slug: "geometry-and-trigonometry",
+    title: "Geometry & Trigonometry",
+    blurb: "Distance and midpoint in 3D, right-triangle and non-right trigonometry, area and volume of solids, perpendicular bisectors and Voronoi diagrams — AI SL 3.1 to 3.6.",
+    buildsOn: "Topic 2's straight lines, which become the boundaries of a Voronoi diagram.",
+    live: false,
+  },
+  {
+    unit: 4,
+    slug: "statistics-and-probability",
+    title: "Statistics & Probability",
+    blurb: "Sampling and data, summary statistics, correlation and regression, probability and its laws, discrete and normal distributions, Spearman's rank, and χ² and t-tests — AI SL 4.1 to 4.11.",
+    buildsOn: "Topic 2's regression and modelling process — the largest topic on the course.",
+    live: false,
+  },
+  {
+    unit: 5,
+    slug: "calculus",
+    title: "Calculus",
+    blurb: "Limits and the derivative, gradients and tangents, optimisation, integration as area, and the trapezoidal rule — AI SL 5.1 to 5.8.",
+    buildsOn: "Topic 2's graphs and key features.",
+    live: false,
+  },
+];
+
 // Grade 6 predates the spine convention — every topic shipped live on day
 // one, so no roadmap literal existed. This one is the registry order;
 // lib/genmath-split.test.ts keeps it in step with the topic data.

@@ -44,6 +44,7 @@ import {
   TRIG_SPINE,
   SOLIDGEO_SPINE,
   IB_SL_SPINE,
+  IB_AI_SL_SPINE,
   IB_HL_SPINE,
 } from "./genmath-spines";
 import { contextHref } from "./perf-context";
@@ -112,6 +113,7 @@ export const COURSE_DEFAULT_ATTRIBUTE: Record<string, AttributeKey> = {
   "course:vectors-matrices": "linear",
   "course:ib-sl": "algebra",
   "course:ib-hl": "algebra",
+  "course:ib-ai-sl": "algebra",
 };
 
 // Key: "<context>/<unit slug>".
@@ -186,6 +188,11 @@ export const UNIT_ATTRIBUTE_OVERRIDES: Record<string, AttributeKey> = {
   "course:ib-hl/geometry-and-trigonometry": "trigonometry",
   "course:ib-hl/statistics-and-probability": "probstats",
   "course:ib-hl/calculus": "calculus",
+  // IB AI SL (default algebra) — same five topics, different syllabus
+  "course:ib-ai-sl/functions": "functions",
+  "course:ib-ai-sl/geometry-and-trigonometry": "trigonometry",
+  "course:ib-ai-sl/statistics-and-probability": "probstats",
+  "course:ib-ai-sl/calculus": "calculus",
 };
 
 // ЭЕШ canonical topics (lib/esh-questions TOPIC_LABELS) → attribute.
@@ -288,6 +295,7 @@ export function allRatedUnits(): RatedUnit[] {
     ["course:solid-geometry", SOLIDGEO_SPINE],
     ["course:ib-sl", IB_SL_SPINE],
     ["course:ib-hl", IB_HL_SPINE],
+    ["course:ib-ai-sl", IB_AI_SL_SPINE],
   ];
   for (const [context, spine] of namedSpines) {
     spine

@@ -45,6 +45,7 @@ export {
   SOLIDGEO_SPINE,
   IB_SL_SPINE,
   IB_HL_SPINE,
+  IB_AI_SL_SPINE,
 } from "@/lib/genmath-spines";
 export type { GradeInfo, GradeSpineEntry, GeometrySpineEntry } from "@/lib/genmath-spines";
 
@@ -73,6 +74,7 @@ export * from "@/lib/genmath-data/trigonometry";
 export * from "@/lib/genmath-data/solid-geometry";
 export * from "@/lib/genmath-data/ib-sl";
 export * from "@/lib/genmath-data/ib-hl";
+export * from "@/lib/genmath-data/ib-ai-sl";
 
 import { grade3Topics, grade3TopicsMn, getGrade3Topics } from "@/lib/genmath-data/grade-3";
 import { grade4Topics, grade4TopicsMn, getGrade4Topics } from "@/lib/genmath-data/grade-4";
@@ -110,6 +112,7 @@ import { getTrigSpine, getTrigUnit } from "@/lib/genmath-data/trigonometry";
 import { getSolidGeoSpine, getSolidGeoUnit } from "@/lib/genmath-data/solid-geometry";
 import { getIbSlSpine, getIbSlUnit } from "@/lib/genmath-data/ib-sl";
 import { getIbHlSpine, getIbHlUnit } from "@/lib/genmath-data/ib-hl";
+import { getIbAiSlSpine, getIbAiSlUnit } from "@/lib/genmath-data/ib-ai-sl";
 import type { CourseUnit } from "@/lib/genmath-types";
 
 // ---------------------------------------------------------------------------
@@ -201,6 +204,7 @@ const NAMED_COURSE_LESSON_SOURCES: Record<
   "course:solid-geometry": { spine: getSolidGeoSpine, unit: getSolidGeoUnit },
   "course:ib-sl": { spine: getIbSlSpine, unit: getIbSlUnit },
   "course:ib-hl": { spine: getIbHlSpine, unit: getIbHlUnit },
+  "course:ib-ai-sl": { spine: getIbAiSlSpine, unit: getIbAiSlUnit },
 };
 
 /**

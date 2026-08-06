@@ -17,17 +17,24 @@ export default function IbHubPage() {
   const cards: HubActionCardDef[] = [
     {
       href: "/math/ib-sl",
-      title: "Standard Level (SL)",
-      subtitle: "The complete SL syllabus · 5 topics · one lesson per subtopic code",
+      title: "Analysis & Approaches SL",
+      subtitle: "The complete AA SL syllabus · 5 topics · one lesson per subtopic code",
       icon: BookOpen,
       badge: { label: "Live", tone: "accent" },
     },
     {
       href: "/math/ib-hl",
-      title: "Higher Level (HL)",
-      subtitle: "The AHL extension on top of SL · proof, complex numbers, 3D vectors, deeper calculus",
+      title: "Analysis & Approaches HL",
+      subtitle: "The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus",
       icon: BookOpen,
       badge: { label: "Live", tone: "accent" },
+    },
+    {
+      href: "/math/ib-ai-sl",
+      title: "Applications & Interpretation SL",
+      subtitle: "The other IB track — calculator-always, modelling-first · Topics 1–2 open",
+      icon: BookOpen,
+      badge: { label: "New", tone: "accent" },
     },
     {
       href: "/practice/ib/bank",
@@ -40,12 +47,12 @@ export default function IbHubPage() {
   return (
     <HubShell>
       <HubHeader
-        eyebrow="IB Mathematics · Analysis & Approaches"
+        eyebrow="IB Mathematics · Analysis & Approaches · Applications & Interpretation"
         title="IB Math practice"
         statsLine={
           <>
-            SL + HL courses · topic drills · practice sets marked to
-            markscheme standard
+            AA SL + HL and AI SL courses · topic drills · practice sets
+            marked to markscheme standard
           </>
         }
       />

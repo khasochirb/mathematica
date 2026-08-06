@@ -133,8 +133,8 @@ def lesson_standard_form():
                 "authored": True,
             },
             {
-                "text": "Copying the calculator's `1.25E8` straight onto the answer line.",
-                "correction": "`E` is calculator shorthand. Write $1.25 \\times 10^{8}$ — the examiner marks what you wrote, not what the screen said.",
+                "text": "Copying the calculator's $1.25\\text{E}8$ straight onto the answer line.",
+                "correction": "The $\\text{E}$ is calculator shorthand. Write $1.25 \\times 10^{8}$ — the examiner marks what you wrote, not what the screen said.",
                 "authored": True,
             },
             {
@@ -266,8 +266,9 @@ def lesson_standard_form():
                     "eyebrow": "Calculator discipline",
                     "title": "The E is not part of the answer",
                     "body": (
-                        "Every GDC prints standard form with an `E`. It is a display convention, "
-                        "not mathematics. Marking guides treat `2.4E5` on an answer line as a "
+                        "Every GDC prints standard form with an $\\text{E}$. It is a display "
+                        "convention, not mathematics. Marking guides treat "
+                        "$2.4\\text{E}5$ on an answer line as a "
                         "presentation error — the A-mark goes to $2.4 \\times 10^{5}$. Build the "
                         "habit now, in Topic 1, because you will be quoting calculator output "
                         "for the whole of this course."
@@ -278,10 +279,10 @@ def lesson_standard_form():
                 {
                     "kind": "recap",
                     "title": "Standard form in three lines",
-                    "beats": [
+                    "points": [
                         "$a \\times 10^{k}$, $1 \\le a < 10$, $k$ an integer.",
                         "Multiply/divide the leading numbers; add/subtract the exponents.",
-                        "Renormalise, and never write `E` on the answer line.",
+                        "Renormalise, and never write $\\text{E}$ on the answer line.",
                     ],
                 },
             ]
@@ -549,7 +550,7 @@ def lesson_arithmetic():
                 {
                     "kind": "recap",
                     "title": "Arithmetic, compressed",
-                    "beats": [
+                    "points": [
                         "Constant DIFFERENCE $d$; term $n$ has taken $n-1$ steps.",
                         "$S_n = \\frac{n}{2}(u_1 + u_n)$ whenever the last term is known.",
                         "A linear recipe inside $\\sum$ is arithmetic — use the formulas, don't list terms.",
@@ -819,7 +820,7 @@ def lesson_geometric():
                 {
                     "kind": "recap",
                     "title": "Geometric, compressed",
-                    "beats": [
+                    "points": [
                         "Constant RATIO $r$; $u_n = u_1 r^{\\,n-1}$.",
                         "$S_n = \\frac{u_1(r^n - 1)}{r - 1}$ for $r \\ne 1$.",
                         "Percentages become multipliers: $+p\\% \\to 1 + \\frac{p}{100}$, $-p\\% \\to 1 - \\frac{p}{100}$.",
@@ -1074,7 +1075,7 @@ def lesson_financial():
                 {
                     "kind": "recap",
                     "title": "Finance, compressed",
-                    "beats": [
+                    "points": [
                         "$FV = PV\\left(1 + \\frac{r}{100k}\\right)^{kn}$ — $k$ divides the rate and multiplies the time.",
                         "Depreciation is a negative rate; the multiplier is what remains.",
                         "Interest earned $= FV - PV$, never $FV$.",
@@ -1337,7 +1338,7 @@ def lesson_exponents_logs():
                 {
                     "kind": "recap",
                     "title": "Exponents and logs, compressed",
-                    "beats": [
+                    "points": [
                         "Multiply → add exponents; power of a power → multiply them; negative → reciprocal.",
                         "$a^{x} = b \\iff \\log_{a} b = x$ — the conversion is the whole tool.",
                         "$\\log$ is base 10, $\\ln$ is base $e$; evaluate both on the GDC.",
@@ -1609,7 +1610,7 @@ def lesson_approximation():
                 {
                     "kind": "recap",
                     "title": "Accuracy, compressed",
-                    "beats": [
+                    "points": [
                         "Significant figures start at the first non-zero digit; decimal places start at the point.",
                         "A value rounded to the nearest $u$ has bounds $\\pm\\frac{u}{2}$.",
                         "$\\varepsilon = \\left|\\frac{v_A - v_E}{v_E}\\right| \\times 100$ — exact value on the bottom.",
@@ -1868,7 +1869,7 @@ def lesson_amortization():
                 {
                     "kind": "recap",
                     "title": "Loans and annuities, compressed",
-                    "beats": [
+                    "points": [
                         "Four slots in, one out; $N$ counts PAYMENTS.",
                         "Money in and money out take opposite signs.",
                         "Interest $= N \\times |PMT| - PV$; write your inputs down for the method mark.",
@@ -2151,7 +2152,7 @@ def lesson_solving_with_technology():
                 {
                     "kind": "recap",
                     "title": "Solving by technology, compressed",
-                    "beats": [
+                    "points": [
                         "Define variables, one equation per fact, rearrange to a common form.",
                         "The GDC reports unique / none / infinitely many — interpret it.",
                         "Sift roots against the context and state the reason for each rejection.",
