@@ -181,6 +181,9 @@
             "title": "Only-A, both, only-B, neither",
             "teach": "Every question about two overlapping categories is answered by one or more of these four numbers. Build them once and 'and', 'or', 'only' and 'neither' all become reading rather than calculating.",
             "config": {
+              "mode": "regions",
+              "labelA": "A",
+              "labelB": "B",
               "onlyA": 11,
               "both": 7,
               "onlyB": 8,
@@ -418,10 +421,14 @@
             "title": "Cycling and living nearby",
             "teach": "Sixty students cycle and live near; twenty cycle and live far; forty live near without cycling; eighty do neither. Every probability in this lesson is one of these four numbers over one of the totals.",
             "config": {
+              "mode": "regions",
+              "labelA": "Cycles",
+              "labelB": "Lives near",
               "onlyA": 20,
               "both": 60,
               "onlyB": 40,
-              "neither": 80
+              "neither": 80,
+              "countNoun": "students"
             }
           },
           {
@@ -692,10 +699,14 @@
             "title": "The overlap lands exactly where the product predicts",
             "teach": "Two hundred and forty smartphone owners, one hundred and fifty subscribers, ninety doing both — out of four hundred. The overlap is precisely $0.6 \\times 0.375$ of the total, which is what independence looks like in a table.",
             "config": {
+              "mode": "regions",
+              "labelA": "Smartphone",
+              "labelB": "Subscribes",
               "onlyA": 150,
               "both": 90,
               "onlyB": 60,
-              "neither": 100
+              "neither": 100,
+              "countNoun": "people"
             }
           },
           {

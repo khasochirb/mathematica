@@ -103,7 +103,8 @@ WIDGET_CONFIG_KEYS = {
     "tangentCircle": ([], ["color"]),
     "treeDiagram": (["mode", "stages"], ["mode", "stages", "caption"]),
     "transformPlane": (["transform"], ["transform", "shape", "dx", "dy", "deg", "k", "min", "max", "color"]),
-    "vennCounts": ([], ["onlyA", "both", "onlyB", "neither", "color"]),
+    "vennCounts": (["mode", "labelA", "labelB", "onlyA", "both", "onlyB"],
+                    ["mode", "labelA", "labelB", "onlyA", "both", "onlyB", "neither", "countNoun"]),
 }
 
 # Steps that carry no `config` at all — prose and problem references.

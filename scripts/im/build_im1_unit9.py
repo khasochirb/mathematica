@@ -1112,7 +1112,9 @@ def lesson_two_way():
                     "you look at. A percentage means nothing until you say which group it is a "
                     "percentage OF."
                 ),
-                "config": {"onlyA": 36, "both": 84, "onlyB": 6, "neither": 54},
+                "config": {"mode": "regions", "labelA": "Cycles", "labelB": "Owns a bike",
+                           "onlyA": 36, "both": 84, "onlyB": 6, "neither": 54,
+                           "countNoun": "students"},
             },
             {
                 "kind": "teach",

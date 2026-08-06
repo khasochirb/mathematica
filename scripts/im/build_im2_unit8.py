@@ -306,7 +306,8 @@ def lesson_sample_spaces():
                     "of these four numbers. Build them once and 'and', 'or', 'only' and 'neither' "
                     "all become reading rather than calculating."
                 ),
-                "config": {"onlyA": 11, "both": 7, "onlyB": 8, "neither": 4},
+                "config": {"mode": "regions", "labelA": "A", "labelB": "B",
+                           "onlyA": 11, "both": 7, "onlyB": 8, "neither": 4},
             },
             {
                 "kind": "teach",
@@ -670,7 +671,9 @@ def lesson_two_way_tables():
                     "near without cycling; eighty do neither. Every probability in this lesson is "
                     "one of these four numbers over one of the totals."
                 ),
-                "config": {"onlyA": 20, "both": 60, "onlyB": 40, "neither": 80},
+                "config": {"mode": "regions", "labelA": "Cycles", "labelB": "Lives near",
+                           "onlyA": 20, "both": 60, "onlyB": 40, "neither": 80,
+                           "countNoun": "students"},
             },
             {
                 "kind": "worked",
@@ -1064,7 +1067,9 @@ def lesson_independence():
                     "\\times 0.375$ of the total, which is what independence looks like in a "
                     "table."
                 ),
-                "config": {"onlyA": 150, "both": 90, "onlyB": 60, "neither": 100},
+                "config": {"mode": "regions", "labelA": "Smartphone", "labelB": "Subscribes",
+                           "onlyA": 150, "both": 90, "onlyB": 60, "neither": 100,
+                           "countNoun": "people"},
             },
             {
                 "kind": "worked",

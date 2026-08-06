@@ -838,7 +838,8 @@ def build_venn_diagrams():
                     "universe recompute. Notice $|A|$ changes when 'both' changes — the circle "
                     "total always includes the overlap."
                 ),
-                "config": {"onlyA": 10, "both": 8, "onlyB": 6, "neither": 6},
+                "config": {"mode": "regions", "labelA": "A", "labelB": "B",
+                           "onlyA": 10, "both": 8, "onlyB": 6, "neither": 6},
             },
             {"kind": "worked", "title": "Overlap first, then outward", "problemId": "esh-venn-l1-we1"},
             tap(

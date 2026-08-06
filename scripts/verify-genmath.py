@@ -66,6 +66,91 @@ def check_render_safety(label, node):
         for value in node:
             check_render_safety(label, value)
 
+# --- Widget-config contract (derived from lib/genmath-interactive.ts) ------
+# A lesson page renders ONLY the interactive player, so a widget handed a
+# config its component does not understand fails SILENTLY: React destructures
+# the missing key to undefined and the widget draws a label reading
+# "only undefined", or falls back to a default mode and plays the wrong
+# animation. Nothing throws, nothing logs, and every other gate reports the
+# file clean — five vennCounts steps shipped that way across three courses.
+#
+# The contract is the TypeScript source of truth, parsed rather than
+# duplicated: the discriminated union at the bottom of genmath-interactive.ts
+# maps each step kind to its <Kind>Config interface, and the interface says
+# which keys are required (no `?`) and which take a fixed set of string
+# literals. A per-builder allowlist would drift; this cannot.
+IFACE_SRC = os.path.join(ROOT, "lib", "genmath-interactive.ts")
+_KIND_TO_CONFIG = re.compile(
+    r'\|\s*\{\s*kind:\s*"([A-Za-z0-9]+)";[^}]*?config:\s*(\w+Config)\s*\}'
+)
+_FIELD = re.compile(r"(\w+)(\?)?:\s*([^;]+);")
+_STRING_UNION = re.compile(r'(\s*"[^"]+"\s*\|?)+')
+
+
+def _drop_nested(body):
+    """Erase brace-nested types so inline shapes ({ x: number; y: number }[])
+    do not leak their inner fields into the top-level field list."""
+    out, depth = [], 0
+    for ch in body:
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            out.append("X")
+        elif depth == 0:
+            out.append(ch)
+    return "".join(out)
+
+
+def load_widget_contract():
+    """kind -> {field: (required, allowed_literals or None)}."""
+    with open(IFACE_SRC, "r", encoding="utf-8") as fh:
+        src = fh.read()
+    contract = {}
+    for kind, cfg_name in _KIND_TO_CONFIG.findall(src):
+        m = re.search(r"export interface " + cfg_name + r"\s*\{\n(.*?)\n\}", src, re.S)
+        if not m:
+            failures.append(f"widget contract: no interface {cfg_name} for kind {kind!r}")
+            continue
+        body = _drop_nested(re.sub(r"//[^\n]*", "", m.group(1)))
+        fields = {}
+        for name, optional, ty in _FIELD.findall(body):
+            ty = ty.strip()
+            literals = re.findall(r'"([^"]+)"', ty)
+            enum = literals if literals and _STRING_UNION.fullmatch(ty) else None
+            fields[name] = (optional == "", enum)
+        contract[kind] = fields
+    return contract
+
+
+WIDGET_CONTRACT = load_widget_contract()
+widget_steps_checked = 0
+
+
+def check_widget_config(topic_slug, lesson_slug, step):
+    global widget_steps_checked
+    kind = step.get("kind")
+    fields = WIDGET_CONTRACT.get(kind)
+    if fields is None:
+        return  # not a config-carrying widget kind
+    label = f"{topic_slug} / {lesson_slug} / {kind}"
+    config = step.get("config")
+    if not isinstance(config, dict):
+        failures.append(f"{label}: widget step has no config object")
+        return
+    widget_steps_checked += 1
+    for name, (required, enum) in fields.items():
+        if required and name not in config:
+            failures.append(f"{label}: config missing required key {name!r}")
+        if enum and name in config and config[name] not in enum:
+            failures.append(
+                f"{label}: config[{name!r}] = {config[name]!r} is not one of {enum}"
+            )
+    for name in config:
+        if name not in fields:
+            failures.append(f"{label}: config has unknown key {name!r} (the component ignores it)")
+
+
 problems_checked = 0
 tapq_checked = 0
 checks_run = 0
@@ -168,6 +253,7 @@ def main():
             steps = (lesson.get("interactive") or {}).get("steps", [])
             for s in steps:
                 k = s.get("kind")
+                check_widget_config(slug, lslug, s)
                 if k == "tapQuestion":
                     check_tap_question(slug, f"{lslug}:interactive", s)
                 elif k == "workedSet":
@@ -239,7 +325,8 @@ def main():
     print(f"verify:genmath — published topics: {', '.join(published)}")
     print(
         f"  problems: {problems_checked}   tap-questions: {tapq_checked}   "
-        f"sympy checks run: {checks_run}   render-safety strings: {render_strings_checked}"
+        f"sympy checks run: {checks_run}   render-safety strings: {render_strings_checked}   "
+        f"widget configs: {widget_steps_checked}"
     )
 
     if failures:
