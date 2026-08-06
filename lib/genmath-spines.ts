@@ -1438,9 +1438,9 @@ export const IB_AI_SL_SPINE: GeometrySpineEntry[] = [
     unit: 3,
     slug: "geometry-and-trigonometry",
     title: "Geometry & Trigonometry",
-    blurb: "Distance and midpoint in 3D, right-triangle and non-right trigonometry, area and volume of solids, perpendicular bisectors and Voronoi diagrams — AI SL 3.1 to 3.6.",
+    blurb: "Distance, volume and angles in 3D, right and non-right trigonometry, elevation, depression and bearings, arcs and sectors, perpendicular bisectors, and Voronoi diagrams — AI SL 3.1 to 3.6.",
     buildsOn: "Topic 2's straight lines, which become the boundaries of a Voronoi diagram.",
-    live: false,
+    live: true,
   },
   {
     unit: 4,

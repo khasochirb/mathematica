@@ -32,7 +32,7 @@ export default function IbHubPage() {
     {
       href: "/math/ib-ai-sl",
       title: "Applications & Interpretation SL",
-      subtitle: "The other IB track — calculator-always, modelling-first · Topics 1–2 open",
+      subtitle: "The other IB track — calculator-always, modelling-first · Topics 1–3 open",
       icon: BookOpen,
       badge: { label: "New", tone: "accent" },
     },

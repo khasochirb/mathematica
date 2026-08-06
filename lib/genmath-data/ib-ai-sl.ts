@@ -12,10 +12,12 @@ import { IB_AI_SL_SPINE, type GeometrySpineEntry } from "@/lib/genmath-spines";
 
 import ibAiSlNumberAlgebra from "@/data/genmath/ib-ai-sl/number-and-algebra.json";
 import ibAiSlFunctions from "@/data/genmath/ib-ai-sl/functions.json";
+import ibAiSlGeoTrig from "@/data/genmath/ib-ai-sl/geometry-and-trigonometry.json";
 
 const ibAiSlUnits: CourseUnit[] = [
   ibAiSlNumberAlgebra as unknown as CourseUnit,
   ibAiSlFunctions as unknown as CourseUnit,
+  ibAiSlGeoTrig as unknown as CourseUnit,
 ];
 
 export function getIbAiSlSpine(): GeometrySpineEntry[] {
