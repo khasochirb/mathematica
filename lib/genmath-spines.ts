@@ -1454,9 +1454,9 @@ export const IB_AI_SL_SPINE: GeometrySpineEntry[] = [
     unit: 5,
     slug: "calculus",
     title: "Calculus",
-    blurb: "Limits and the derivative, gradients and tangents, optimisation, integration as area, and the trapezoidal rule — AI SL 5.1 to 5.8.",
-    buildsOn: "Topic 2's graphs and key features.",
-    live: false,
+    blurb: "Limits and the derivative as a rate of change, the power rule, increasing and decreasing functions, tangents and normals, stationary points, optimisation, integration and area, and the trapezoidal rule — AI SL 5.1 to 5.8.",
+    buildsOn: "Topic 2's graphs, key features and straight lines.",
+    live: true,
   },
 ];
 

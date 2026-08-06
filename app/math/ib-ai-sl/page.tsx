@@ -40,7 +40,7 @@ export default function IbAiSlCoursePage() {
         <p className="mb-8 text-[13px]" style={{ color: "var(--fg-3)", maxWidth: "56ch" }}>
           English-only, like the real exam. AI is a calculator course from end
           to end: there is no non-calculator paper, and the marks live in
-          modelling and interpretation. Topics open as they are written.
+          modelling and interpretation. All five AI SL topics are open.
         </p>
 
         <CoursePersonalization context="course:ib-ai-sl" />
