@@ -100,6 +100,30 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-06** — Probe after deploys `3f1086a` and `fab8f8e` (the IB
+  Applications & Interpretation SL course — 39 lessons across all five
+  syllabus topics, 424 interactive steps, 291 problems and 1,163 sympy
+  checks, plus the title fix below): `anthropic_api_key: configured`,
+  `migration_009: applied`, `migration_008_student_profiles: unknown`
+  (FLAG-002 unchanged — still `unknown`, so read that flag's "Reading a
+  non-`applied` result" row before acting). FLAG-003 still optional/unset.
+  Content, build-scripts and course wiring only: no migrations, auth, API,
+  env or middleware files in the diff, so nothing depended on either open
+  flag. Prod verified: `/math/ib-ai-sl` serves all five topics with Topic 1
+  free and 2–5 Premium-locked, and
+  `/math/ib-ai-sl/statistics-and-probability` serves all eleven lesson
+  links. Runtime errors clean over the 3h window. Build 2m37s, alias
+  immediate — no propagation lag this time, unlike the large-bank deploys.
+  TWO DEPLOYS, deliberately: reading the prod HTML during verification
+  caught two lesson titles containing `$...$`. Titles are interpolated as
+  PLAIN TEXT by the course hub, the unit page and the catalog — none of
+  them route a title through MathText — so students briefly saw
+  "Hypothesis Tests: $\chi^2$ and $t$" verbatim. `fab8f8e` rewrote both
+  titles as prose and added a verify:genmath rule rejecting any unit or
+  lesson title containing a math delimiter. Lesson for the next reader:
+  the render-safety checks all assume MathText is in the path; fields
+  rendered raw need their own rule.
+
 - **2026-08-05** — Probe after deploy `9115452` (the six-forms-per-unit
   expansion — 250 new problem-bank forms and ~7,600 new problems, taking
   every unit of all 25 banks to six collections; 894 → 1,144 forms and
