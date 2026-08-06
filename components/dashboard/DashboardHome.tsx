@@ -17,6 +17,10 @@ import { recommendedCourse } from "@/lib/ratings";
 import RatingsPanel from "@/components/ratings/RatingsPanel";
 import RecommendedNextCard from "@/components/ratings/RecommendedNextCard";
 
+import useGamification from "@/lib/use-gamification";
+import ProgressStrip from "@/components/gamification/ProgressStrip";
+import BadgeShelf from "@/components/gamification/BadgeShelf";
+
 const i18n = {
   eyebrow_dashboard: { en: "Dashboard", mn: "Хяналтын самбар" },
   greeting_friend: { en: "friend", mn: "найз" },
@@ -150,6 +154,9 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
   // 8 strict attribute scores out. The pinned recommendation targets the
   // lowest attribute.
   const { profile } = useRatings();
+  // Streak, level and daily goal — derived from the same attempt log the
+  // rest of this page reads, so it can never disagree with the stats above it.
+  const { summary: game, ready: gameReady } = useGamification();
   const ratingsRec = recommendedCourse(profile);
   // Server-derived test sessions (cross-device-safe). Replaces the previous
   // local-only ts.getCompletedSessions() for stats display so a fresh-device
@@ -275,6 +282,17 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
             </div>
           )}
         </section>
+
+        {/* Momentum — streak, level, today's goal. Placed above the ratings
+            because it answers "am I keeping this up?", which is the question
+            a returning student actually opens the dashboard with. Hidden
+            entirely until there is a first attempt: an empty streak card is
+            a worse welcome than no card. */}
+        {gameReady && game && !game.isEmpty && (
+          <div className="mt-8">
+            <ProgressStrip summary={game} />
+          </div>
+        )}
 
         {/* Ratings + pinned recommendation — shown as soon as ANY evidence
             exists (a placement test alone is enough for a provisional
@@ -493,6 +511,14 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
               </div>
             </section>
           </>
+        )}
+
+        {/* Badge shelf — below the modules, because it is a record of what
+            has been done rather than a prompt for what to do next. */}
+        {gameReady && game && !game.isEmpty && (
+          <div className="mt-8">
+            <BadgeShelf badges={game.badges} />
+          </div>
         )}
 
         {/* Placement results — level per course, straight from the local
